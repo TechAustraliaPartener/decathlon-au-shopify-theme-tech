@@ -1,0 +1,40 @@
+{%- for option in product.options -%}
+  {%- if option == 'Color' -%}
+    {%- assign colors = '' -%}
+    {%- assign variant_images = '' -%}
+    {%- assign opt = 'option' | append: forloop.index -%}
+    {%- for variant in product.variants -%}
+
+      {%- assign color_array = colors | split: ',' -%}
+      {%- assign color_exists = false -%}
+      {%- for col in color_array -%}
+        {%- assign color = col | split: '|' %}
+        {%- if color[0] == variant[opt] -%}
+           {% assign color_exists = true %}
+        {%- endif -%}
+      {%- endfor -%}
+      {%- unless color_exists -%}
+        {%- assign obj = '' -%}
+        {%- assign obj = variant[opt]  -%}
+        {%- assign img = variant.image | img_url: '600x' -%}
+        {%- assign obj = obj | append: '|' | append: img -%}
+        {%- assign obj = obj | append: '|' | append: variant.id -%}
+        {%- assign colors = colors | append: obj | append: ',' -%}
+      {%- endunless -%}
+    {%- endfor -%}
+
+    {%- assign colors = colors | split: ',' -%}
+    <div class="collectionProduct-colors{% if colors.size < 2 %} hidden{% endif %}" data-colorChoice="{{ colors | first | split: '|' | first }}" data-variantChoice="{{ colors | first | split: '|' | last }}">
+    {% for color in colors %}
+      {%- assign col = color | split: '|' -%}
+      {%- if forloop.first == true -%}
+        {%- assign activeClass = ' option--active' -%}
+      {%- else -%}
+        {%- assign activeClass = '' -%}
+      {%- endif -%}
+      <span class="option option--color-{{ col[0] | handleize }} js-colorChip{{ activeClass }}" title="{{ col[0] }}" data-variant="{{ col[2] }}" data-color="{{ col[0] }}" data-image="{{ col[1] }}"></span>
+    {% endfor %}
+    </div>
+  {%- endif -%}
+{%- endfor -%}
+

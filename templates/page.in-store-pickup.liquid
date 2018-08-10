@@ -1,0 +1,61 @@
+{% assign banner_bg_image =  'in_store_pickup_banner_background_image.jpg' | asset_url %}
+{% include 'banner--billboard',
+  banner_adtl_classes: ' banner--centeredContent',
+  banner_title: 'In-Store Pickup',
+%}
+
+<div class="u-block u-paddingTopBottom4x text-center pickupInfo">
+  <div class="wrapper">
+    {% include 'tag' with 'pickup_section' %}
+    <div class="u-flex-list u-flex-list--line">
+      <div class="u-flex-listItem pickupInfo-stepFlex">
+        {{ 'in_store_pickup_computer.png' | asset_url | img_tag: '[Computer]' }}
+        {% include 'tag' with 'pickup_icon_1' %}
+      </div>
+      <div class="u-flex-listItem pickupInfo-stepFlex">
+        {{ 'in_store_pickup_map_pin.png' | asset_url | img_tag: '[Map Pin]' }}
+        {% include 'tag' with 'pickup_icon_2' %}
+      </div>
+      <div class="u-flex-listItem pickupInfo-stepFlex">
+        {{ 'in_store_pickup_cards.png' | asset_url | img_tag: '[Credit Cards]' }}
+        {% include 'tag' with 'pickup_icon_3' %}
+      </div>
+      <div class="u-flex-listItem pickupInfo-stepFlex">
+        {{ 'in_store_pickup_package.png' | asset_url | img_tag: '[Package]' }}
+        {% include 'tag' with 'pickup_icon_4' %}
+      </div>
+    </div>
+    {% include 'button',
+      button_url: '/collections',
+      button_title: 'Shop Decathlon Now'
+    %}
+    {% capture pickup_notes %}{% include 'tag' with 'pickup_notes' %}{% endcapture %}
+    {{ pickup_notes | replace: '<p>', '<p class="pickupInfo-notes">' }}
+  </div>
+</div>
+
+<div class="u-block u-paddingTopBottom6x u-bgLightGray">
+  <div class="wrapper">
+    <div class="grid">
+      <div class="grid__item large--one-half">
+        {% include 'tag' with 'try_us_section' %}
+      </div>
+      <div class="grid__item large--one-half">
+        {% include 'tag' with 'feedback_section' %}
+        {% include 'button',
+          button_wrapper: 'feedbackButton',
+          button_adtl_classes: ' btn--text',
+          button_url: '/pages/contact-us',
+          button_title: 'We’re new to the neighborhood and have lots to learn!'
+        %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% assign banner_bg_image =  'san_francisco_banner_background_image.jpg' | asset_url %}
+{% include 'sanFrancisco',
+  banner_title: "We can't wait to see you in San Francisco!",
+  banner_title_adtl_classes: ' h2',
+  button_wrapper: 'u-marginBottom0x'
+%}

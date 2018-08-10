@@ -1,0 +1,109 @@
+{%- if section.settings.enable == true -%}
+    <script type="text/javascript">
+        window.bundles = {
+            collections: {},
+            products: {}
+        };
+        {%- for block in section.blocks -%}
+            {%- if block.settings.collection != blank -%}
+                window.bundles.collections[{{ block.settings.collection | json }}] =  [
+                    {%- if block.settings.product-1 != '' and all_products[block.settings.product-1] != nil -%}
+                        {{ all_products[block.settings.product-1] | json }},
+                    {%- endif -%}
+                    {%- if block.settings.product-2 != '' and all_products[block.settings.product-2] -%}
+                        {{ all_products[block.settings.product-2] | json }},
+                    {%- endif -%}
+                    {%- if block.settings.product-3 != '' and all_products[block.settings.product-3] -%}
+                        {{ all_products[block.settings.product-3] | json }}
+                    {%- endif -%}
+                ];
+            {%- elsif block.settings.product != blank -%}
+                window.bundles.products[{{ block.settings.product | json }}] =  [
+                    {%- if block.settings.product-1 != '' and all_products[block.settings.product-1] != nil -%}
+                        {{ all_products[block.settings.product-1] | json }},
+                    {%- endif -%}
+                    {%- if block.settings.product-2 != '' and all_products[block.settings.product-2] -%}
+                        {{ all_products[block.settings.product-2] | json }},
+                    {%- endif -%}
+                    {%- if block.settings.product-3 != '' and all_products[block.settings.product-3] -%}
+                        {{ all_products[block.settings.product-3] | json }}
+                    {%- endif -%}
+                ];
+            {%- endif -%}
+        {%- endfor -%}
+    </script>
+{%- endif -%}
+
+{% schema %}
+{
+    "name": "Bundles",
+    "settings" : [
+        {
+            "type": "checkbox",
+            "id": "enable",
+            "label": "Enable bundles",
+            "default": true
+        }
+    ],
+    "blocks": [
+        {
+            "type": "Bundle",
+            "name": "Collection Bundle",
+            "settings": [
+                {
+                    "type": "collection",
+                    "id": "collection",
+                    "label": "Collection"
+                },
+                {
+                    "type": "product",
+                    "id": "product-1",
+                    "label": "Bundle Product 1"
+                },
+                {
+                    "type": "product",
+                    "id": "product-2",
+                    "label": "Bundle Product 2"
+                },
+                {
+                    "type": "product",
+                    "id": "product-3",
+                    "label": "Bundle Product 3"
+                }
+            ]
+        },
+        {
+            "type": "Product_Bundle",
+            "name": "Product Bundle",
+            "settings": [
+                {
+                    "type": "product",
+                    "id": "product",
+                    "label": "Parent Product"
+                },
+                {
+                    "type": "product",
+                    "id": "product-1",
+                    "label": "Bundle Product 1"
+                },
+                {
+                    "type": "product",
+                    "id": "product-2",
+                    "label": "Bundle Product 2"
+                },
+                {
+                    "type": "product",
+                    "id": "product-3",
+                    "label": "Bundle Product 3"
+                }
+            ]
+        }
+    ],
+    "presets": [
+      {
+        "name": "Collection Bundle",
+        "category": "Collection Bundle"
+      }
+    ]
+}
+{% endschema %}

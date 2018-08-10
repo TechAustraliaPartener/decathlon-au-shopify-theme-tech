@@ -1,0 +1,104 @@
+<script>
+  var tag = document.createElement('script');
+
+  tag.src = "https://www.youtube.com/iframe_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  var aspect = .5625;
+
+  var introPlayer, innovationPlayer;
+
+  function onYouTubeIframeAPIReady() {
+    var videoId = 'fVLaEQVQ1Rk';
+    if (window.innerWidth > 600) {
+      introPlayer = new YT.Player('introVideo', {
+        height: window.innerHeight,
+        width: window.innerHeight*1.77,
+        videoId: videoId,
+        playerVars: { 
+          autoplay: 1, 
+          controls: 0,
+          showinfo: 0, 
+          rel: 0 
+        },
+        events: {
+          'onReady': onIntroPlayerReady,
+          'onStateChange': onPlayerStateChange,
+          'onError': onPlayerError
+        }
+      });
+    }
+    videoId = "{{ settings['homepage_video_banner_youtube_url'] | split: '?v=' | last }}";
+    if (window.innerWidth > 768) {
+      innovationPlayer = new YT.Player('homeInnovationVideoBg', {
+        height: window.innerHeight,
+        width: window.innerHeight*1.77,
+        videoId: videoId,
+        playerVars: { 
+          autoplay: 1, 
+          controls: 0,
+          showinfo: 0, 
+          rel: 0 
+        },
+        events: {
+          'onReady': onInnovationPlayerReady,
+          'onStateChange': onPlayerStateChange,
+          'onError': onPlayerError
+        }
+      });
+    }
+  };
+
+  function onPlayerError(event) {
+    console.log('error: ', event);
+  }
+
+  // 4. The API will call this function when the video player is ready.
+  function onIntroPlayerReady(event) {
+    //document.querySelector('.player-holder').style.height = (window.innerHeight - 103)+ 'px';
+
+    function onResize(e) {
+      if (window.innerHeight / window.innerWidth > aspect) {
+        introPlayer.setSize(window.innerHeight / aspect, window.innerHeight);
+      } else {
+        introPlayer.setSize(window.innerWidth, window.innerWidth * aspect);
+      }
+    }
+
+    window.addEventListener('resize', onResize);
+    onResize();
+
+    introPlayer.setVolume(0);
+    introPlayer.playVideo();
+
+    document.getElementById('introVideo').style.visibility = 'visible';
+  }
+
+  function onInnovationPlayerReady(event) {
+    var parent = document.getElementById('homeInnovationVideoBg').parentElement;
+    function onResize(e) {
+      if (parent.clientHeight / parent.clientWidth > aspect) {
+        innovationPlayer.setSize(parent.clientWidth, parent.clientWidth * aspect);
+      } else {
+        innovationPlayer.setSize(parent.clientHeight / aspect, parent.clientHeight);
+      }
+    }
+
+    window.addEventListener('resize', onResize);
+    onResize();
+
+
+    innovationPlayer.setVolume(0);
+    innovationPlayer.playVideo();
+  }
+
+  function onPlayerStateChange(event) {
+    if (event.data === YT.PlayerState.ENDED) {
+      event.target.playVideo();
+    }
+  }
+  function stopVideo(event) {
+    event.target.stopVideo();
+  }
+</script>

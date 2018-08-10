@@ -1,0 +1,278 @@
+{{ 'option_selection.js' | shopify_asset_url | script_tag }}
+<script>
+  {{ product_json }}
+
+  var productQueue = [],
+      addAllText = '';
+
+  for (entry in productJSON) {
+    for (option in productJSON[entry].product.options) {
+      var opt = productJSON[entry].product.options[option];
+      if (productJSON[entry].product.options[option] === 'Color') {
+        productJSON[entry].colorOption = parseInt(option);
+      }
+
+      if (opt === 'model_code' || opt === 'Model Code') {
+        productJSON[entry].modelCodeOption = parseInt(option);
+      }
+
+    }
+  }
+
+  var selectCallback = function(variant, selector) {
+    /*!
+     * Model code is not a "selectable" option. In order to make a proper selection
+     * we loop through all variants, select the variant that matches all options
+     * except model code since the combination of (ex) Size / Color will be 
+     * unique per product.
+     */
+    var modelCodeOption = null;
+
+    if (!variant) {
+      var currentProduct = false;
+
+      $(productJSON).each(function(k,v) {
+        if (v.product.id === selector.product.id) {
+          modelCodeOption = v.modelCodeOption;
+          currentProduct = v.product;
+        }
+      });
+
+      var options = [];
+      selector.selectors.each(function(v,k) {
+        if (k === modelCodeOption) { return }
+        options.push($(v.element).val());
+      });
+  
+      $(currentProduct.variants).each(function(k,v) {
+        var allOptions = [];
+        $(v).each(function(kk,vv) {
+          var titleArr = vv.title.split(' / ');
+          titleArr.splice(modelCodeOption, 1);
+          if (titleArr.join('/') === options.join('/')) {
+            variant = vv;
+          }
+        });
+      });
+    }
+
+    var $curEl = $(selector.variantIdField).parents('.collectionProduct');
+    if (variant) {
+      $(selector.variantIdField).find('option[selected]').attr('selected', null);
+      $(selector.variantIdField).find('option[value="'+ variant.id + '"]').attr('selected', 'selected');
+      $(selector.variantIdField).attr('disabled', null);
+    }
+
+    timber.productPage({
+      money_format: "{{ shop.money_format }}",
+      variant: variant,
+      selector: selector
+    });
+
+    if (variant && !variant.available{% if settings.is_lookbook == true %} && !window.addToWishlist{% endif %}) {
+      $('#'+ selector.domIdPrefix).parents('.collectionProduct-hoverBox-shadow')
+        .find('.addToCart').addClass('disabled').attr('disabled', 'disabled')
+        .find('.addToCartText').text('{{ 'products.product.sold_out' | t }}');
+    };
+
+  };
+
+  jQuery(function($) {
+
+    /* this function is called after the js-colorChip handles are setup */
+    attachOptionSelectors = function() {
+      for (entry in productJSON) {
+
+        /*! fixes errors with hiding options */
+        if (!$('#productSelect-'+ productJSON[entry].id).length) {
+          return;
+        }
+
+        new Shopify.OptionSelectors('productSelect-'+ productJSON[entry].id, {
+          product: productJSON[entry].product,
+          onVariantSelected: selectCallback
+        });
+
+        if (productJSON[entry].addLabel) {
+          $('#productSelect-'+ productJSON[entry].id).parent().find('.selector-wrapper:eq(0)')
+            .prepend('<label for="productSelect-'+ productJSON[entry].id +'-option-0">'+ productJSON[entry].addLabel +'</label>');
+        }
+
+        var colorId = 'productSelect-'+ productJSON[entry].id +'-option-'+ productJSON[entry].colorOption;
+        $('#'+ colorId +', label[for="'+ colorId +'"]').hide();
+
+        var modelCodeId = 'productSelect-'+ productJSON[entry].id +'-option-'+ productJSON[entry].modelCodeOption;
+        $('#'+ modelCodeId +', label[for="'+ modelCodeId +'"]').hide();
+
+        (function(colorSelector) {
+        colorSelector.parents('.collectionProduct').find('.js-colorChip').click(function(e) {
+          e.preventDefault();
+          var colorChoice = $(e.currentTarget).parent().attr('data-colorChoice');
+          colorSelector.val(colorChoice);
+          colorSelector.change();
+        });
+
+        var colorChoice = colorSelector.parents('.collectionProduct').find('.collectionProduct-colors').attr('data-colorChoice');
+        colorSelector.val(colorChoice);
+        })($('#'+ colorId));
+
+      }
+
+      $('.selector-wrapper').each(function(e) {
+        var options = $(this).find('option');
+        if (options.length == 1) {
+          $(this).hide();
+        }
+      });
+    };
+
+    function initAjaxCart(item) {
+      ajaxCart.init({
+        formSelector: '.timber-activeProduct .addToCartForm',
+        cartContainer: '#CartContainer',
+        addToCartSelector: '.addToCart',
+        cartCountSelector: '#CartCount',
+        cartCostSelector: '#CartCost',
+        moneyFormat: {{ shop.money_format | json }}
+      });
+    }
+
+    $('.js-addAllToCart').on('click', function(e) {
+      e.preventDefault();
+
+      addAllText = $(e.currentTarget).text();
+
+      var item = $(e.currentTarget).data('itemClass');
+
+      {% if settings['is_lookbook'] == false %}
+      $(item).each(function(k,v) {
+        productQueue.push(function() {
+          $(v).addClass('timber-activeProduct');
+          initAjaxCart();
+          $(v).removeClass('timber-activeProduct');
+          $(v).find('.collectionProduct-addToCart').trigger('click');
+        });
+      });
+
+      $(e.currentTarget).css('pointer-events', 'none').text('Adding items to cart');
+
+      productQueue[0](); // initiate items
+      productQueue.shift();
+
+      {% else %}
+      $(e.currentTarget).css('pointer-events', 'none').text('Adding items to wishlist');
+
+      var itemLength = $(item).length;
+      $(item).each(function(k,v) {
+        setTimeout(function() { 
+          Appmate.wk.addProduct(
+            $(v).find('.wk-button-product').data('wkAddProduct'),
+            $(v).find('.collectionProduct-colors').data('variantchoice')
+          ); 
+
+          $(v).find('.addToCartText').text('Remove from Wishlist');
+
+          if ((k+1) === itemLength) { 
+            $('.js-addAllToCart').text('Items added');
+          }
+
+        },200*k);
+      });
+
+
+      {% endif %}
+
+    });
+
+    $('.supports-no-touch .collectionProduct').hover(function(e) {
+      $(this).addClass('timber-activeProduct');
+      initAjaxCart();
+    }, function(e) {
+      $(this).removeClass('timber-activeProduct');
+    });
+
+    var itemPopupTemplate = Handlebars.compile($('#AddedItemTemplate').html()),
+        productsAdded = [];
+
+    $('body').on('completeAddItem.ajaxCart', function(evt, obj, jqxhr) {
+
+      productsAdded.push(jqxhr.responseJSON.product_title);
+
+      if (productQueue.length > 0) {
+        productQueue[0]();
+        productQueue.shift();
+        return true;
+      } 
+
+      $('.js-addAllToCart').text('Items added');
+
+      if (jqxhr.status < 400) {
+        var context = jqxhr.responseJSON;
+        context.multiple_products = productsAdded.length > 1 ? productsAdded : false;
+
+        /* set the add to cart pane to load once the thumbnail loads */
+        var thumbnail = new Image();
+
+        /* display the item popup and setup some event listeners */
+        function displayItemPopup() {
+          $('#AddedItemPopup').remove();
+          $('body').append(itemPopupTemplate(context));
+          productsAdded = [];
+
+          $('#AddedItemPopup .close-itemPopup-btn').click(function(e) {
+            $('#AddedItemPopup').remove();
+          });
+
+          $('#AddedItemPopup .js-submitCart').click(function(e) {
+            e.preventDefault();
+            $('.cart__checkout').click();
+          });
+
+          setTimeout(function() {
+            $('#AddedItemPopup').remove();
+            $('.js-addAllToCart').css('pointer-events', 'auto').text(addAllText);
+          }, 3000);
+
+        }
+        thumbnail.onload = displayItemPopup;
+
+        /* TODO: make this actually use the rating */
+        context.rating = $('.collectionProduct[data-product-id="'+ context.product_id +'"] .starRating').html();
+        context.price_dollars = Shopify.formatMoney(context.price, {{ shop.money_format | json }});
+        context.subtotal = $('#CartSubtotal').text();
+        var defaultTitleIndex = context.variant_options.indexOf('Default Title');
+        if (defaultTitleIndex > -1) {
+          context.variant_options.splice(defaultTitleIndex, 1);
+        }
+
+        /* if subtotal is empty then the cart needs to be loaded */
+        if (!context.subtotal) {
+          function getCartHandler(e, cart) {
+            $('body').off('afterGetCart.ajaxCart', getCartHandler);
+            context.subtotal = Shopify.formatMoney(cart.total_price, {{ shop.money_format | json }});
+            thumbnail.src = context.image;
+          }
+          $('body').on('afterGetCart.ajaxCart', getCartHandler);
+          ajaxCart.load();
+
+        } else {
+          thumbnail.src = context.image;
+        }
+      }
+    });
+
+  try {
+    Appmate.wk.ready(function() {
+      $('.collectionProduct').each(function(k,v) {
+        if (Appmate.wk.collection.containsProduct($(v).data('productId')) && window.addToWishlist) {
+          $(v).find('.addToCartText').text('Remove from Wishlist');
+        }
+      });
+    });
+  } catch(e) {}
+
+
+  });
+
+</script>
+

@@ -1,0 +1,377 @@
+<script>
+var bcSfFilterConfig = {
+   shop: {
+       apiUrl: 'https://services.mybcapps.com/bc-sf-filter/filter', // updated
+       name: '{{ shop.name }}',
+       domain: '{{ shop.permanent_domain }}',
+       currency: '{{ shop.currency }}',
+       money_with_currency_format: '{{ shop.money_with_currency_format }}'
+   },
+   general: {
+       file_url: "{{ '' | file_url }}",
+       collection_id: {{ collection.id | default: 0 }},
+       collection_handle: "{{ collection.handle }}",
+       collection_tags: {{ current_tags | json }},
+       default_sort_by: "{{ collection.default_sort_by }}", // missing comma
+       swatch_extension: "png",
+       no_image_url: "{{ 'bc-sf-filter-no-image.gif' | asset_url }}"      
+   },
+   product: {
+       // Sale text for sale label
+       sale_text: "Sale",
+       // Sold out text label
+       sold_out_text: "Sold out",
+       // Regular price text
+       regular_price_text: "Regular price",
+       // Sale price text
+       sale_price_text: "Sale price"
+   },
+   collection: {
+       // Sorting label
+       sorting_text: "Sort",
+       // Show label (8, 12 or 16 products per page)
+       show_limit_text: "Show"
+   },
+   section: {
+       // Display as grid or list
+       layout: "grid",
+       // Number of product per row
+       //grid_number: 4,
+       // Display vendor or not
+       vendor_enable: true
+   },
+   label: {}
+ };
+</script>
+
+{% if collection.image %}
+<div class="collectionImage" style="background-image:url('{{ collection.image | img_url: '1024x' }}'); " data-background-image="{{ collection.image | img_url: '1024x' }}">
+  <div class="wrapper">
+    {% include 'breadcrumb', adtl_classes: ' breadcrumb--overImage' %}
+
+    <h1 class="collectionImage-header text-center">{{ collection.title }}</h1>
+  </div>
+</div>
+{% endif %}
+
+<div class="wrapper{% if collection.image %} wrapper--collectionWithBanner u-paddingTopBottom4x{% else %} u-marginBottom4x{% endif %}">
+{% unless collection.image %}
+  {% include 'breadcrumb' %}
+{% endunless %}
+
+  <div class="grid">
+    <div class="grid__item large--one-quarter left">
+      <div id="bc-sf-filter-tree-mobile"></div>
+      <div id="bc-sf-filter-tree"></div>
+
+      <ul class="collectionList colletionShopHomeList no-bullets">
+      {%- for link in linklists['shop-homepage-links'].links -%}
+        <li class="collectionList-item{% if collection.url == link.url %} collectionList-item--active{% endif %}">
+          <a class="collectionList-item-link" href="{{ link.url }}">{{ link.title }}</a>
+          {%- if collections[link.handle].tags.size > 0 -%}
+          <ul class="collectionList-tags no-bullets">
+          {%- for tag in linklists[link.handle].links -%}
+            <li class="collectionList-tagItem">
+              {% comment %}
+              TODO: {% if current_tags contains tag.url %} collectionList-tagItem-link--active{% endif %}
+              {% endcomment %}
+              <a class="collectionList-tagItem-link" href="{{ tag.url }}">{{ tag.title }}</a>
+            </li>
+          {%- endfor -%}
+          </ul>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+      </ul>
+
+    </div>
+
+    <div class="grid__item large--seven-tenths right">
+      {% comment %}
+        Different markup if a collection description exists
+      {% endcomment %}
+      {% if collection.description != blank %}
+        <header class="section-header">
+          <h1 class="section-header__title">{{ collection.title }}</h1>
+          <div class="rte rte--header">
+            {{ collection.description }}
+          </div>
+        </header>
+        <hr>
+        <div class="section-header">
+          <div class="section-header__right">
+            {% include 'collection-sorting' %}
+          </div>
+        </div>
+      {% else %}
+  
+        <header class="section-header">
+        {%- unless collection.image -%}
+            <h1 class="section-header__title section-header__left">{{ collection.title }}</h1>
+        {%- endunless -%}
+          <div class="section-header__right">
+            {% include 'collection-sorting' %}
+          </div>
+        </header>
+  
+      {% endif %}
+
+
+      <div id="bc-sf-filter-products" class="grid-uniform"></div>
+      <div id="bc-sf-filter-bottom-pagination"></div>
+    </div>
+    
+    {% comment %}
+    <div id="bc-sf-filter-top-sorting"></div>
+    {% endcomment %}
+  </div>
+</div>
+
+<script>
+function RatingInit() {
+  $('.collectionProduct-rating').each(function() {
+    var $self = $(this);
+    $.get('/products/'+ $(this).data('handle') +'?view=rating', function(res, status, data) {
+      var rating = parseFloat(JSON.parse(data.responseText).rating);
+
+      if (rating == 0 || rating == NaN) {
+        $self.addClass('starRating--noRating');
+      } else {
+        $self.attr('data-rating', rating);
+        for (var i = 0; i <= 4; i++) {
+          if (i < Math.round(rating)) {
+            $self.append('<span class="ico ico--star u-textYellow"></span>');
+          } else {
+            $self.append('<span class="ico ico--star"></span>');
+          }
+        }
+      }
+    });
+  });
+}
+
+function TimberInit() {
+  var productJSON = window.productJSON;
+
+  productJSON.forEach(function(entry) {
+    entry.product.options_with_values.forEach(function(option, index) {
+      if (option.name === 'color') {
+        entry.colorOption = index;
+      }
+    });
+  });
+
+  var selectCallback = function(variant, selector) {
+    timber.productPage({
+      money_format: "{{ shop.money_format }}",
+      variant: variant,
+      selector: selector
+    });
+  };
+
+  $('.js-colorChip').on('click', function(e) { 
+    e.preventDefault();
+    $(e.currentTarget).parents('.collectionProduct').find('.collectionProduct-image')
+      .attr('src', $(e.currentTarget).data('image')); 
+
+    $(e.currentTarget).parent().attr('data-colorChoice', $(e.currentTarget).data('color'));
+    $(e.currentTarget).parent().attr('data-variantChoice', $(e.currentTarget).data('variant'));
+    $(e.currentTarget).parent().find('.option.option--active').removeClass('option--active');
+    $(e.currentTarget).addClass('option--active');
+  });
+
+
+  productJSON.forEach(function(entry) {
+    if ($('[data-product-id="'+ entry.id +'"]').data('timberInit') == true) return;
+
+    new Shopify.OptionSelectors('productSelect-'+ entry.id, {
+      product: entry.product,
+      onVariantSelected: selectCallback
+    });
+
+    $('[data-product-id="'+ entry.id +'"]').data('timberInit', true);
+
+    if (entry.addLabel) {
+      $('#productSelect-'+ entry.id).parent().find('.selector-wrapper:eq(0)')
+        .prepend('<label for="productSelect-'+ entry.id +'-option-0">'+ entry.addLabel +'</label>');
+    }
+
+    entry.product.options.forEach(function(option) {
+      var $label = $('label[for="productSelect-'+ entry.id +'-option-'+ (option.position-1) +'"]');
+
+      if (!(entry.addLabel && option.position == 1)) {
+        $label.html(option.name.charAt(0).toUpperCase() + option.name.slice(1));
+      }
+    });
+
+    var colorId = 'productSelect-'+ entry.id +'-option-'+ entry.colorOption;
+    $('#'+ colorId +', label[for="'+ colorId +'"]').hide();
+
+    (function(colorSelector) {
+    colorSelector.parents('.collectionProduct').find('.js-colorChip').click(function(e) {
+      e.preventDefault();
+      var colorChoice = $(e.currentTarget).parent().attr('data-colorChoice');
+      colorSelector.val(colorChoice);
+      colorSelector.change();
+    });
+
+    var colorChoice = colorSelector.parents('.collectionProduct').find('.collectionProduct-colors').attr('data-colorChoice');
+    colorSelector.val(colorChoice);
+    })($('#'+ colorId));
+
+  });
+
+  $('.selector-wrapper').each(function(e) {
+    var options = $(this).find('option');
+    if (options.length == 1) {
+      $(this).hide();
+    }
+  });
+
+  function initAjaxCart(item) {
+    ajaxCart.init({
+      formSelector: '.timber-activeProduct .addToCartForm',
+      cartContainer: '#CartContainer',
+      addToCartSelector: '.addToCart',
+      cartCountSelector: '#CartCount',
+      cartCostSelector: '#CartCost',
+      moneyFormat: {{ shop.money_format | json }}
+    });
+  }
+
+  $('.collectionProduct').hover(function(e) {
+    $(this).addClass('timber-activeProduct');
+    initAjaxCart();
+  }, function(e) {
+    $(this).removeClass('timber-activeProduct');
+  });
+
+  var itemPopupTemplate = Handlebars.compile($('#AddedItemTemplate').html()),
+      productsAdded = [];
+
+  $('body').on('completeAddItem.ajaxCart', function(evt, obj, jqxhr) {
+
+    if (jqxhr.status < 400) {
+      var context = jqxhr.responseJSON;
+      context.isWishlist = true;
+
+      /* set the add to cart pane to load once the thumbnail loads */
+      var thumbnail = new Image();
+
+      /* display the item popup and setup some event listeners */
+      function displayItemPopup() {
+        $('#AddedItemPopup').remove();
+        $('body').append(itemPopupTemplate(context));
+        productsAdded = [];
+
+        $('#AddedItemPopup .close-itemPopup-btn').click(function(e) {
+          $('#AddedItemPopup').remove();
+        });
+
+        $('#AddedItemPopup .js-submitCart').click(function(e) {
+          e.preventDefault();
+          $('.cart__checkout').click();
+        });
+
+        setTimeout(function() {
+          $('#AddedItemPopup').remove();
+        }, 3000);
+
+      }
+      thumbnail.onload = displayItemPopup;
+
+      /* TODO: make this actually use the rating */
+      context.rating = $('.collectionProduct[data-product-id="'+ context.product_id +'"] .starRating').html();
+      context.price_dollars = Shopify.formatMoney(context.price, {{ shop.money_format | json }});
+      context.subtotal = $('#CartSubtotal').text();
+      var defaultTitleIndex = context.variant_options.indexOf('Default Title');
+      if (defaultTitleIndex > -1) {
+        context.variant_options.splice(defaultTitleIndex, 1);
+      }
+
+      /* if subtotal is empty then the cart needs to be loaded */
+      if (!context.subtotal) {
+        function getCartHandler(e, cart) {
+          $('body').off('afterGetCart.ajaxCart', getCartHandler);
+          context.subtotal = Shopify.formatMoney(cart.total_price, {{ shop.money_format | json }});
+          thumbnail.src = context.image;
+        }
+        $('body').on('afterGetCart.ajaxCart', getCartHandler);
+        ajaxCart.load();
+
+      } else {
+        thumbnail.src = context.image;
+      }
+    }
+  });
+}
+
+function chooseColors() {
+  var queryColors = [];
+  var query = window.location.search.substring(1);
+  var vars = query.split("&");
+  for (var i=0; i < vars.length; i++) {
+    var pair = vars[i].split("=");
+    if (pair[0] == 'pf_opt_color') {
+      queryColors.push(pair[1]);
+    }
+  }
+
+  for (var i = 0; i < queryColors.length; i++) {
+    var chip = $('.js-colorChip[data-color="'+ queryColors[i] +'"]');
+    chip.click();
+  }
+}
+
+
+$(function() {
+  window.checkGridInterval = setInterval(function() {
+    if ($('#bc-sf-filter-loading').is(':hidden')) {
+      clearInterval(window.checkGridInterval);
+      window.checkGridInterval = false;
+
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = '{{ 'option_selection.js' | shopify_asset_url }}';
+
+      if (script.readyState) {  //IE
+        script.onreadystatechange = function() {
+          if ( script.readyState === "loaded" || script.readyState === "complete" ) {
+            script.onreadystatechange = null;
+            RatingInit();
+            TimberInit();
+            chooseColors();
+            window.wishlistSwap(); 
+            window.productJSON = [];
+          }
+        };
+      } else {  //Others
+        script.onload = function() {
+          RatingInit();
+          TimberInit();
+          chooseColors();
+          window.wishlistSwap(); 
+          window.productJSON = [];
+        };
+      }
+
+      document.body.appendChild(script);
+    }
+  }, 250);
+
+  window.checkGrid = function() {
+    if ($('#bc-sf-filter-loading').is(':hidden')) {
+      clearInterval(window.checkGridInterval);
+      window.checkGridInterval = false;
+
+      RatingInit();
+      TimberInit();
+      chooseColors();
+      window.wishlistSwap(); 
+      window.productJSON = [];
+    }
+  };
+});
+
+</script>
+

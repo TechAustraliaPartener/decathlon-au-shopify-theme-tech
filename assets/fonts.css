@@ -1,0 +1,47 @@
+@font-face {
+    font-family: 'avalon_mediumbold';
+    src: url('Avalon-Bold-webfont.eot');
+    src: url('Avalon-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('Avalon-Bold-webfont.woff2') format('woff2'),
+         url('Avalon-Bold-webfont.woff') format('woff'),
+         url('Avalon-Bold-webfont.ttf') format('truetype'),
+         url('Avalon-Bold-webfont.svg#avalon_mediumbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'avalonregular';
+    src: url('Avalon-Book-webfont.eot');
+    src: url('Avalon-Book-webfont.eot?#iefix') format('embedded-opentype'),
+         url('Avalon-Book-webfont.woff2') format('woff2'),
+         url('Avalon-Book-webfont.woff') format('woff'),
+         url('Avalon-Book-webfont.ttf') format('truetype'),
+         url('Avalon-Book-webfont.svg#avalonregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'avalonbold';
+    src: url('Avalon-Demi-webfont.eot');
+    src: url('Avalon-Demi-webfont.eot?#iefix') format('embedded-opentype'),
+         url('Avalon-Demi-webfont.woff2') format('woff2'),
+         url('Avalon-Demi-webfont.woff') format('woff'),
+         url('Avalon-Demi-webfont.ttf') format('truetype'),
+         url('Avalon-Demi-webfont.svg#avalonbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'avalonmedium';
+    src: url('Avalon-Medium-webfont.eot');
+    src: url('Avalon-Medium-webfont.eot?#iefix') format('embedded-opentype'),
+         url('Avalon-Medium-webfont.woff2') format('woff2'),
+         url('Avalon-Medium-webfont.woff') format('woff'),
+         url('Avalon-Medium-webfont.ttf') format('truetype'),
+         url('Avalon-Medium-webfont.svg#avalonmedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}

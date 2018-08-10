@@ -1,0 +1,136 @@
+{% assign banner_bg_image =  'san_francisco_banner_background_image.jpg' | asset_url %}
+{% assign banner_intro = 'san_francisco_bridge_icon.png' | asset_url | img_tag: '[Bridge]' %}
+{% include 'sanFrancisco',
+  banner_title: 'San Francisco',
+  button_wrapper: 'u-marginBottom0x'
+%}
+
+<div class="u-block">
+  <div class="wrapper">
+    <div class="u-block helloSanFran">
+      <div class="helloSanFran-item helloSanFran-image text-center">
+        <img class="" src="{{ 'san_francisco_store_info_image.jpg' | asset_url }}" alt="Decathlon Store Picture">
+      </div>
+
+      <div class="helloSanFran-item helloSanFran-content">
+        {% include 'tag' with 'hello_section' %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="u-block u-bgLightGray u-paddingTopBottom8x storeTeam">
+  <div class="wrapper">
+    <h3 class="text-center">Meet Our Store Team</h3>
+    <div class="u-flex-list u-flex-list--line js-slick--attr" data-slick='{ "infinite": true, "autoplay": false, "slidesToShow": 1, "dots": true, "arrows": false, "mobileFirst": true, "responsive": [ { "breakpoint": 768, "settings": "unslick" } ] }'>
+      {% capture team_name_list %}{% include 'tag' with 'team_members' %}{% endcapture %}
+      {% assign team_name_list = team_name_list | strip_html | strip_newlines | split: ',' %}
+
+
+      {% comment %}
+      some possible logic to handle last row spacing for a variable number of members
+      styling is setup assuming 5 members for now
+      {% endcomment %}
+
+      {% comment %}
+      ** logic updated for variable amount of members **
+      ** placed below .u-flex-list so <style> tags not included as children and placed into mobile carousel **
+      {% endcomment %}
+
+
+      {% for member in team_name_list %}
+        {% assign member_tag = 'member_' | append: member %}
+        <div class="u-flex-listItem">
+          <div class="storeTeam-thumb" style="background-image:url('{{ 'san_francisco_team_' | append: member | append: '.jpg' | file_url }}')"></div>
+          {% include 'tag' with member_tag %}
+        </div>
+      {% endfor %}
+
+    </div>
+
+    {% assign last_row_size = team_name_list.size | modulo: 3 %}
+    {% if last_row_size == 1 %}
+
+          <style>
+              @media screen and (min-width: 769px) {
+                  .u-flex-listItem:last-child {
+                      margin: 7em auto;
+                  }
+              }
+          </style>
+
+    {% elsif last_row_size == 2 %}
+
+        <style>
+            @media screen and (min-width: 769px) {
+                .u-flex-listItem:nth-last-child(2),
+                .u-flex-listItem:last-child  {
+                    margin: 7em auto;
+                }
+            }
+        </style>
+
+    {% endif %}
+
+  </div>
+</div>
+
+<div class="u-block visitStore">
+  <div class="wrapper">
+    <div class="grid">
+      <div class="grid__item visitStore-column u-paddingTopBottom6x">
+        {% include 'tag' with 'visit_section' %}
+        <div class="grid-uniform">
+          <div class="grid__item medium--one-half large--one-half visitStore-item">
+            <p class="h6"><i class="ico ico--quote"></i> Advice from sport experts</p>
+          </div>
+          <div class="grid__item medium--one-half large--one-half visitStore-item">
+            <p class="h6"><i class="ico ico--thumbsUp"></i> Testing of our products</p>
+          </div>
+          <div class="grid__item medium--one-half large--one-half visitStore-item">
+            <p class="h6"><i class="ico ico--bicycle"></i> Bike workshop</p>
+          </div>
+          <div class="grid__item medium--one-half large--one-half visitStore-item">
+            <p class="h6"><i class="ico ico--internet"></i> Free internet</p>
+          </div>
+          <div class="grid__item medium--one-half large--one-half visitStore-item">
+            <p class="h6"><i class="ico ico--computer"></i> Coworking space</p>
+          </div>
+          <div class="grid__item medium--one-half large--one-half visitStore-item">
+            <p class="h6"><i class="ico ico--coffeeCup"></i> Coffee</p>
+          </div>
+        </div>
+        <p class="visitStore-smiles">&#8230;and of course <span class="u-bold">smiles</span> from our team!</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="blogCards u-paddingTopBottom8x">
+  <div class="wrapper">
+    <h3 class="text-center u-marginBottom2x">Our San Francisco Playbook</h3>
+    <div class="grid-uniform u-flex-list u-flex-list--line js-slick--attr" data-slick='{ "infinite": true, "autoplay": false, "slidesToShow": 1, "dots": true, "arrows": false, "mobileFirst": true, "responsive": [ { "breakpoint": 768, "settings": "unslick" } ] }'>
+    {% assign featured_articles = false %}
+    {% for blog in linklists['all-blogs'].links %}
+      {% if featured_articles %}
+        {% assign featured_articles = featured_articles | concat: blog.object.articles %}
+      {% else %}
+        {% assign featured_articles = blog.object.articles %}
+      {% endif %}
+    {% endfor %}
+
+    {% assign featured_articles = featured_articles | sort: 'published_at' | reverse %}
+    {%- for article in featured_articles -%}
+      {% if forloop.index > 3 %}{% break %}{% endif %}
+      {% include 'get-blog-for-article', blogs: linklists['all-blogs'].links, article: article %}
+      {% include 'blog-grid-item', size_classes: 'large--one-third' %}
+    {%- endfor -%}
+
+    </div>
+    {% include 'button',
+      button_wrapper: 'text-center blogCards-moreButton u-marginTop4x u-block',
+      button_url: '/pages/all-blogs',
+      button_title: 'More from our playbook'
+    %}
+  </div>
+</div>

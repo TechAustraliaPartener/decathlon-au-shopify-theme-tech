@@ -1,0 +1,74 @@
+{%- assign page_content = page.content | split: '<p>---content---</p>' %}
+{%- assign page_intro = page_content[0] -%}
+{%- assign page_content = page_content[1] | split: '<p>---featuredpacks---</p>' -%}
+{%- assign packs = page_content[1] | strip_html | strip | split: ',' -%}
+{%- assign banner_bg_image = page.handle | append: '-banner-bg.jpg' | file_url -%}
+
+{% include 'banner--billboard',
+  banner_adtl_classes: ' banner--centeredContent',
+  banner_title: page.title,
+  banner_subtitle: page_intro
+%}
+
+<div class="u-block u-paddingTopBottom6x">
+  <div class="wrapper wrapper--midWidth text-center">
+    {{ page_content[0] }}
+  </div>
+</div>
+<div class="grid--full anchorLinks js-pinToHeader">
+  <div class="wrapper">
+    <ul class="anchorList js-getGoingPackFilters">
+      {% for link in linklists['get-going-packs'].links %}
+      <li class="anchorList-item">
+        <a href="#{{ link.object.handle }}" class="anchorList-link js-anchorLink">{{ link.title }}</a>
+      </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</div>
+
+<div class="grid--full js-noPacks" style="display: none">
+  <div class="wrapper">
+    <h4 class="text-center u-marginTop4x">There are currently no Get Going Packs for <span class="js-packFilterName"></span>.</h4>
+  </div>
+</div>
+
+{% for link in linklists['get-going-packs'].links %}
+  {%- capture get_going_pack_adtl_classes -%}{% cycle '', ' getGoingPack--swapped' %}{%- endcapture -%}
+  {% include 'get-going-pack',
+    get_going_pack_collection: link.object,
+    enable_anchors: true
+  %}
+{%- endfor -%}
+
+{%- include 'button',
+  button_wrapper: 'text-center u-block u-paddingTopBottom6x u-marginBottom0x',
+  button_title: 'Suggest our next get going pack',
+  button_url: '/pages/contact-us'
+-%}
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('.getGoingPack--swapped:odd').addClass('getGoingPack--reversed');
+		$('.getGoingPack--swapped:even').addClass('getGoingPack--normal-direction');
+	});
+</script>
+
+{% comment %}
+{% capture product_json %}
+var productJSON = [
+  {% for pack in packs %}
+    {% for product in collections[pack].products limit: 5 %}
+      {
+      {% if product.options.size == 1 and product.options.first != 'Title' %}
+        addLabel: '{{ product.options.first | escape }}',
+      {% endif %}
+        id: '{{ pack }}-{{ product.id }}',
+        product: {{ product | json }}
+      },
+    {% endfor %}
+  {% endfor %}
+  ];
+{% endcapture %}
+{% include 'catalog-script' %}
+{% endcomment %}

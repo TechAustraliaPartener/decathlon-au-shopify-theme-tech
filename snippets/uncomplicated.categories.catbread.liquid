@@ -1,0 +1,24 @@
+<!-- Begin uncomplicated category-based breadcrumb -->
+<nav id="uncomplicated-breadcrumbs" class="breadcrumb" role="navigation" aria-label="breadcrumbs">
+
+    <a id="uncomplicated-category-breadcrumb-model-item" href="{% if link_catroot %}{{ link_catroot }}{% else %}/{% endif %}" title="{% if text_catroot %}{{ text_catroot }}{% else %}Home{% endif %}">{% if text_catroot %}{{ text_catroot }}{% else %}Home{% endif %}</a>
+    <span id="uncomplicated-category-breadcrumb-top-separator" aria-hidden="true" class="breadcrumb__sep">&rsaquo;</span>
+    {% if collection %}
+        {% capture url %}/collections/{{ collection.handle }}{% endcapture %}
+        <a href="{{ url }}" class="" id="uncomplicated-category-breadcrumb-final-item" >{{ collection.title }}</a>
+    {% else %}
+        <a href="{% if link_catall %}{{ link_catall }}{% else %}/collections/all{% endif %}" title="{% if text_catall %}{{ text_catall }}{% else %}All Products{% endif %}">{% if text_catall %}{{ text_catall }}{% else %}All Products{% endif %}</a>
+    {% endif %}
+    {% if current_tags %}
+        <span aria-hidden="true" class="breadcrumb__sep">&rsaquo;</span>
+        <span>{{ current_tags | join: " + " }}</span>
+    {% endif %}
+    {% if product %}
+        <span aria-hidden="true" class="breadcrumb__sep">&rsaquo;</span>
+        <span><strong>{{ product.title | truncate: 28 }}</strong></span>
+    {% endif %}
+</nav>
+
+{{ 'uncomplicated.categories.catlist.min.js' | asset_url | script_tag }}
+{{ 'uncomplicated.categories.catlist.css' | asset_url | stylesheet_tag }}
+<!-- End uncomplicated category-based breadcrumb -->

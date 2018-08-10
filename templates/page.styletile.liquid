@@ -1,0 +1,121 @@
+{%- include 'styletile-divider', title: 'Banners' -%}
+
+{%- include 'banner--billboard',
+  banner_adtl_classes: ' js-fullscreen',
+  banner_title: 'Sport For&nbsp;All.',
+  banner_subtitle: 'Decathlon is building community through sports by creating innovative and accessibly priced gear so everyone can play.',
+  button_wrapper: 'banner-btnContainer',
+  button_url: '/pages/our-story',
+  button_title: 'Learn About Our Story'
+-%}
+
+<div class="grid--full">
+  {%- assign banner_img = 'comp-bikeImage.jpg' | asset_url -%}
+  {%- include 'banner--half', 
+    banner_image: banner_img, 
+    banner_title: 'Hit the<br/>Road.',
+    button_url: '/collections/bikes',
+    button_title: 'Shop Bikes',
+    button_wrapper: 'banner-btnContainer'
+  -%}
+  {%- include 'banner--half', 
+    banner_image: banner_img, 
+    banner_title: 'Get Out<br/>and Run.',
+    button_url: '/collections/running',
+    button_title: 'Shop Running',
+    button_wrapper: 'banner-btnContainer'
+  -%}
+</div>
+
+{%- include 'banner--billboard',
+  banner_bg_image: '//picshare.decathlon.com/uploads/picshare/medias/600x600/ef/93/7868609adb84ff4729bac7d428783481a169.jpg',
+  banner_adtl_classes: ' u-dimBg js-fullscreen',
+  banner_intro: 'Innovation Spotlight',
+  banner_title: 'Introducing Easybreath.',
+  banner_subtitle: "Enjoy the sea with the world's first full-face snorkeling mask.",
+  button_wrapper: 'banner-btnContainer',
+  button_url: '/products/easybreath',
+  button_title: '$79.99 - Easybreath Snorkeling Mask'
+-%}
+
+{%- include 'banner--billboard',
+  banner_adtl_classes: ' banner--centeredContent',
+  banner_title: 'When Work Is Play.',
+  banner_title_adtl_classes: ' h2',
+  banner_subtitle: "Whether a Decathlon team member works in product design or in a retail store, in France or in the US, whatever our role, our life's work is making sports available to more people. Luckily, we have a great time doing it."
+-%}
+
+{%- include 'banner--billboard',
+  banner_adtl_classes: ' banner--centeredContent',
+  banner_title: 'Our Innovation Awards',
+  banner_title_adtl_classes: ' h2',
+  banner_subtitle: "Each year, ten products compete to win the coveted Innovation Award....",
+  button_title: 'Explore our innovation awards',
+  button_url: '#'
+-%}
+
+{%- include 'styletile-divider', title: 'Typography & Buttons' -%}
+
+<div class="u-block">
+  <div class="wrapper u-paddingTopBottom3x">
+    <h1>H1 Title</h1>
+    <h2>H2 Title</h2>
+    <h3>H3 Title</h3>
+    <h4>H4 Title</h4>
+    <h5>H5 Title</h5>
+    <h6>H6 Title</h6>
+    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</p>
+
+    {%- include 'button',
+      button_link: '#',
+      button_title: 'Primary button',
+      button_wrapper: 'text-center'
+    -%}
+
+    {%- include 'button', 
+      button_link: '#',
+      button_title: 'Add to Cart',
+      button_wrapper: 'text-center',
+      button_adtl_classes: ' btn--addToCart'
+    -%}
+
+    {%- include 'button', 
+      button_link: '#',
+      button_title: 'Text button',
+      button_wrapper: 'text-center',
+      button_adtl_classes: ' btn--text'
+    -%}
+
+  </div>
+</div>
+
+<div class="u-block">
+  <div class="wrapper u-paddingTopBottom3x">
+
+{% include 'split-content',
+  split_content_title: 'Innovation for access.',
+  split_content_description: '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis non mollis neque. Duis vitae felis id turpis porta molestie. Donec pharetra, nisi ut iaculis laoreet, sapien mi laoreet magna, in fringilla leo elit ut orci. Maecenas varius lorem ac massa lobortis tempor. Suspendisse ac eros vel diam facilisis tincidunt nec nec leo.</p>
+
+  <p>Sed ut sapien felis. Nullam cursus, nulla et tincidunt ultricies, odio mi finibus velit, non sagittis ex dui in elit.</p>',
+  split_image_url: 'http://www.decathlon.co.uk/ecuk/static/images/universe/camping/tent-cat.jpg',
+
+  button_url: 'http://bluelikeneon.com',
+  button_title: 'Testing',
+  button_wrapper: 'split-content-btn' 
+%}
+
+{% include 'split-content',
+  split_content_adtl_classes: ' splitContent--swapped',
+  split_content_title: 'Innovation for performance.',
+  split_content_description: '<p>Nunc vitae elementum eros, vel porttitor ipsum. Nam facilisis dui et ex lacinia mattis. Quisque eget tortor ut dolor venenatis tincidunt.</p>
+
+  <p>Curabitur dictum, magna in commodo varius, diam odio varius urna, sed dignissim ligula nulla interdum dolor. Aliquam ornare interdum metus, a ultrices justo cursus vitae. Fusce faucibus sagittis metus eu congue. Curabitur nunc dui, euismod et enim at, consectetur imperdiet leo.</p>',
+  split_image_url: 'http://www.decathlon.co.uk/ecuk/static/images/universe/camping/tent-cat.jpg',
+
+  button_url: 'http://bluelikeneon.com',
+  button_title: '$79.99 for Racket - Click Here',
+  button_wrapper: 'split-content-btn' 
+%}
+
+  </div>
+</div>

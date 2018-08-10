@@ -1,0 +1,171 @@
+{% include 'banner--billboard',
+  banner_adtl_classes: ' banner--centeredContent',
+  button_adtl_classes: ' js-sanFranAppt',
+  button_url: '#appointment',
+  button_title: 'Schedule an Appointment'
+%}
+
+<div class="appointment">
+  <div class="u-centerVertically">
+    <div class="u-centerVertically-ie">
+      <div class="appointment-wrapper">
+        <button class="close-btn js-closeAppt" type="button"></button>
+        <h3 class="hide-on-success">Get Advice from Our Staff</h3>
+        <h5 class="hide-on-success">Appointment Request: San&nbsp;Francisco</h5>
+        <div class="form-vertical">
+        {% form 'contact' %}
+
+        {%- if form.posted_successfully? -%}
+          <h3 class="text-center form-success">Thank you for scheduling an appointment!</h3>
+        {%- endif -%}
+
+          {% comment %}
+            Successful message
+          {% endcomment %}
+          {% if form.posted_successfully? %}
+            <div class="note form-success">
+              <p class="text-center"> One of our team members will reach out shortly to coordinate with you.</p>
+              {% include 'button',
+                button_wrapper: 'text-center u-marginTop2x',
+                button_url: '/collections',
+                button_title: 'Explore our products'
+              %}
+            </div>
+          {% endif %}
+
+          {{ form.errors | default_errors }}
+
+          <div class="formInput-wrapperGroup text-left hide-on-success">
+            <div class="inputWrap">
+              <label for="ContactFormFirstName">First Name*</label>
+              <input type="text" id="ContactFormFirstName" class="input-full" name="contact[firstName]"  required value="{% if form['firstName'] %}{{ form['firstName'] }}{% elsif customer %}{{ customer.firstName }}{% endif %}" placeholder="First Name*">
+            </div>
+
+            <div class="inputWrap">
+
+              <label for="ContactFormLast Name">Last Name*</label>
+              <input type="text" id="ContactFormLastName" class="input-full" name="contact[lastName]"  required value="{% if form['lastName'] %}{{ form['lastName'] }}{% elsif customer %}{{ customer.lastName }}{% endif %}" placeholder="Last Name*">
+            </div>
+
+            <div class="inputWrap">
+              <label for="ContactFormEmail">Email Address*</label>
+              <input type="email" id="ContactFormEmail" class="input-full" name="contact[email]" autocorrect="off" autocapitalize="off" required value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" placeholder="Email Address*">
+            </div>
+          </div>
+
+          <div class="inputWrap text-left hide-on-success">
+            <label for="ContactFormMessage">{{ 'contact.form.message' | t }}</label>
+            <textarea rows="4" id="ContactFormMessage" class="input-full" name="contact[body]" placeholder="Message - please note when you would like to schedule an appointment and someone will follow up to confirm">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+          </div>
+
+          <input type="submit" class="btn hide-on-success" value="SEND REQUEST">
+          <input type="button" class="js-closeAppt hide-on-success" value="CANCEL">
+
+        {% endform %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="decathlonAddress u-paddingTopBottom4x u-block">
+  <div class="wrapper">
+    <div class="grid">
+      <div class="grid__item large--two-fifths">
+        <p class="h4">735 market street<br/>San Francisco, CA&nbsp;94103</p>
+        {% include 'button',
+          button_adtl_classes: ' btn--text u-textWhite',
+          button_url: 'https://www.google.com/maps/dir//735+Market+Street,+San+Francisco,+CA/@37.7861791,-122.4060072,16z/data=!4m8!4m7!1m0!1m5!1m1!1s0x808580887e6659bb:0x26d36241b76a9b50!2m2!1d-122.4041019!2d37.7865676',
+          button_title: 'Get Directions'
+          new_window: true
+        %}
+      </div>
+      <div class="grid__item large--three-tenths">
+
+        <div class="storeHours js-storeOpen">
+
+        <p class="u-uppercase storeHours-default-title"><b>Store Hours</b></p>
+          <p class="u-uppercase u-textGreen storeHours-open-now"><b>Open Now!</b></p>
+          <p data-day-info="1,5,10,20">Monday - Sunday: 9:00 AM - 8:00 PM</p>
+        </div>
+      </div>
+      <div class="grid__item large--three-tenths">
+        <p class="u-uppercase"><b>Contact:</b></p>
+        <p class="u-marginBottom0x">
+          <a class="u-textWhite u-textSemiBold h6" href="mailto:customer.service@decathlon.com" style="margin-top: 5px;">
+          customer.service@decathlon.com</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="googleMap">
+  <div id="map"></div>
+
+  {% comment %}{{ 'fontawesome-markers.min.js' | asset_url | script_tag }}{% endcomment %}
+
+  <script>
+    function initMap() {
+      var hqLatLng = {lat: 37.7861791, lng: -122.4060072 };
+      var centerLatLng = {lat: 37.7861791, lng: -122.4060072 };
+
+      var map = new google.maps.Map(document.getElementById('map'), {
+        center: centerLatLng,
+        zoom: 15,
+        disableDefaultUI: true,
+        scrollwheel: false,
+        draggable: false
+      });
+
+      // Marker Icon
+      var icon = {
+          url: "https://cdn.shopify.com/s/files/1/1298/0469/files/DEC-Store-Pin.svg?12127020942522016658", // url
+          scaledSize: new google.maps.Size(70, 70), // scaled size
+          origin: new google.maps.Point(0,0), // origin
+          anchor: new google.maps.Point(-30,50) // anchor
+      };
+
+      // Marker
+      var marker = new google.maps.Marker({
+        position: hqLatLng,
+        map: map
+        , icon: icon
+      });
+      /*
+        icon: {
+            path: fontawesome.markers.MAP_MARKER,
+            scale: 0.90,
+            strokeWeight: 0.2,
+            strokeColor: '#3a4545',
+            strokeOpacity: 1,
+            fillColor: '#3a4545',
+            fillOpacity: 1
+        }
+
+      // infowindow
+      var contentString = '<div class="infowindow-content">'+
+        '<div class="infowindow-logo"><img src="https://cdn.shopify.com/s/files/1/1347/1101/files/map-infowindow-otl-logo.png?2944117336162143070" alt="logo"></div>'+
+        '<p class="infowindow-heading">Of This Land Headquarters</p>'+
+        '<div id="bodyContent">'+
+        '<p>3515 Hancock Street<br>'+
+        'San Diego, CA 92110</p>'+
+        '<p>(858) 270-9900<br>'+
+        '<a class="infowindow-email" href="mailto:hello@ofthisland.com">hello@ofthisland.com</a></p>'+
+        '</div>'+
+        '</div>';
+
+      var infowindow = new google.maps.InfoWindow({
+        content: contentString
+      });
+
+      infowindow.open(map, marker);
+      marker.addListener('click', function() {
+        infowindow.open(map, marker);
+      });
+      */
+
+    }
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5dk3oR6kb_jSAL0FWBh5SSxj0un4Szg8&callback=initMap"
+  async defer></script>
+</div>

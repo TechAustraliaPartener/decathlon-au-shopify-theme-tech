@@ -1,0 +1,15 @@
+
+<div class="splitContent{{ split_content_adtl_classes }}">
+    <div class="large--one-half splitContent-image{{ split_image_adtl_classes }}"  data-background-image="{{ split_image_url }}"></div>
+    <div class="large--one-half splitContent-content">
+    	<div class="splitContent-content-wrapper">
+	        {%- if split_content_title -%}<h3>{{ split_content_title }}</h3>{%- endif -%}
+	        {%- if split_content_description -%}
+	          <div class="splitContent-description">{{ split_content_description }}</div>
+	        {%- endif -%}
+	        {%- if button_url -%}
+	          {% include 'button' %}
+	        {%- endif -%}
+	    </div>
+    </div>
+</div>

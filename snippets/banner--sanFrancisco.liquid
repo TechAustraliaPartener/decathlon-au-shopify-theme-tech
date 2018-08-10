@@ -1,0 +1,34 @@
+{% include 'banner--billboard',
+  banner_adtl_classes: ' banner--centeredContent',
+  button_url: pages.san-francisco.handle,
+  button_title: 'Schedule an Appointment'
+%}
+
+<div class="blue-band">
+  <div class="wrapper">
+    <div class="grid">
+      <div class="grid__item large--two-fifths">
+        <p class="h4">350 11th Street<br/>San Francisco, CA&nbsp;94103</p>
+        {% include 'button',
+          button_adtl_classes: ' btn--text u-textWhite',
+          button_url: pages.contact-us.handle,
+          button_title: 'Get Directions'
+        %}
+      </div>
+      <div class="grid__item large--three-tenths">
+        <p class="u-uppercase u-textGreen"><b>Open Now!</b></p>
+        <p><b>Monday - Friday: 10:00 AM - 8:00 PM</b><br/>
+          Saturday: 10:00 AM - 8:00 PM<br/>
+          Sunday: 10:00 AM - 8:00 PM</p>
+      </div>
+      <div class="grid__item large--three-tenths">
+        <p class="u-uppercase"><b>Contact:</b></p>
+        {% include 'button',
+          button_adtl_classes: ' btn--text u-textWhite u-textBold',
+          button_url: 'mailto:info@decathlon.com',
+          button_title: 'info@decathlon.com'
+        %}
+      </div>
+    </div>
+  </div>
+</div>

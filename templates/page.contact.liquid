@@ -1,0 +1,25 @@
+<!-- /templates/page.contact.liquid -->
+{% comment %}
+
+  This page template is a requirement if you are submitting your theme to the Shopify Theme Store.
+  Be sure to select page.contact as the template from the admin page to have this template take effect.
+
+  For information on adding more fields, visit:
+    - http://docs.shopify.com/support/configuration/store-customization/adding-fields-to-the-liquid-contact-form
+
+{% endcomment %}
+
+
+
+{% capture banner_subtitle %}{% include 'tag' with 'banner_subtitle' %}{% endcapture %}
+{% if banner_subtitle == blank %}{% assign banner_subtitle = nil %}{% endif %}
+{% capture page_content %}{% include 'tag' with 'content' %}{% endcapture %}
+<div class="u-block u-paddingTop6x genericPage">
+  <div class="wrapper wrapper--midWidth">
+    <h1 class="text-center h3">{{ page.title }}</h1>
+    <h5 class="text-center">{{ banner_subtitle | strip_html }}</h5>
+    {{ page_content }}
+  </div>
+</div>
+
+{% include 'contact-form' %}

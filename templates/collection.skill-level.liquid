@@ -1,0 +1,214 @@
+{% comment %}
+  top_level is used for both breadcrumbs and navigation
+{% endcomment %}
+{% for link in linklists %}
+  {% for sub in link.links %}
+    {% if sub.active or sub.child_active %}
+      {% assign top_level = link %}
+      {%break%}
+    {% endif %}
+  {% endfor %}
+  {% if top_level %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% include 'collection-header-js' %}
+
+{% if collection.image %}
+<div class="collectionImage" style="background-image:url('{{ collection.image | img_url: '1024x' }}'); " data-background-image="{{ collection.image | img_url: '1024x' }}">
+  <div class="wrapper">
+    {% include 'breadcrumb', adtl_classes: ' breadcrumb--overImage' %}
+
+    <h1 class="collectionImage-header text-center">{{ collection.title }}</h1>
+  </div>
+</div>
+{% endif %}
+
+
+<div class="wrapper{% if collection.image %} wrapper--collectionWithBanner u-paddingTopBottom4x{% else %} u-marginBottom4x{% endif %}">
+{% unless collection.image %}
+  <!-- Create Breadcrumbs Start -->
+ <nav class="breadcrumb" role="navigation" aria-label="breadcrumbs">
+   <a href="/collections" title="All Sports">All Sports</a>
+   <span aria-hidden="true" class="breadcrumb__sep">&rsaquo;</span>
+   <a href="{{top_level.url}}" title="{{top_level.title}}">{{top_level.title}}</a>
+   {% for link in top_level.links %}
+       {% if link.active or link.child_active %}
+       <span aria-hidden="true" class="breadcrumb__sep">&rsaquo;</span>
+        <a href="{{link.url}}" title="{{link.title}}">{{link.title}}</a>
+           {% if link.child_active %}
+               <span aria-hidden="true" class="breadcrumb__sep">&rsaquo;</span>
+           {% endif %}
+           {% if link.links != blank %}
+               {% for sub in link.links %}
+                   {% if sub.active %}
+                       <a href="{{sub.url}}" title="{{sub.title}}">{{sub.title}}</a>
+                   {% endif %}
+               {% endfor %}
+           {% endif %}
+       {% endif%}
+   {% endfor %}
+ </nav>
+ <!-- Create Breadcrumbs End -->
+{% endunless %}
+
+  <div class="grid">
+    <div class="grid__item large--one-quarter left">
+
+	<!-- Start Nested Nav -->
+      <div id="nested-nav">
+      <ul style='list-style: none'>
+        <li>
+        <a class="breadcrumb-item top-level" href="{{shop.url}}/collections/{{top_level.handle}}">{{top_level.title}}</a>
+          <ul style='list-style: none'>
+      		{% for link in top_level.links %}
+      			<li>
+          		<a class="{% if link.active or link.child_active %}breadcrumb-item{% else %}not-breadcrumb-item{% endif %}"
+                   href="{{link.url}}">{{link.title}}</a>
+          			{% if link.child_active or link.active and link.links != blank %}
+          				<ul style='list-style: none'>
+          				{% for sub in link.links %}
+              				<li>
+          					<a class="{% if sub.active or sub.child_active %}breadcrumb-item{% else %}not-breadcrumb-item{% endif %}"
+                               href="{{sub.url}}">{{sub.title}}</a>
+              				</li>
+          				{% endfor %}
+          				</ul>
+          			{% endif %}
+        		</li>
+      		{% endfor %}
+          </ul>
+        </li>
+      </ul>
+      </div>
+      <!-- End Nested Nav -->
+
+
+      <!-- Adept Search Start -->
+      <div class="decathlon-filter__container decathlon-filter__collection">
+        <input type="checkbox" class="decathlon-filter__mobile-toggle"/>
+        <button class="decathlon-filter__mobile-toggle-button">Refine Search</button>
+        <div class="decathlon-filter__group">
+
+          <div class="adept-search-filter"
+               render-from="getCollectionFilter"
+               on-change="window.onCollectionFilterChange"
+               title=""
+               ></div>
+        </div>
+      </div>
+      <!-- Adept Search End -->
+
+
+    </div>
+
+    <div class="grid__item large--seven-tenths right">
+
+      <!-- Remove html tags from content -->
+      {% assign page_content = collection.description | strip_html %}
+
+      <!-- Get the description -->
+      {% assign description = page_content | split: '---/description---' | first | split: '---description---' | last%}
+
+
+      {% comment %}
+        Different markup if a collection description exists
+      {% endcomment %}
+      {% if current_tags.size %}
+          <header class="section-header is-currentTag">
+            <h1 class="section-header__title u-marginBottom0x">{{ tag_title }}</h1>
+          </header>
+      {% else %}
+        {% if collection.description != blank %}
+          <header class="section-header">
+            <h1 class="section-header__title">{{ collection.title }}</h1>
+            <div class="rte rte--header">
+              {{ description }}
+            </div>
+          </header>
+        {% else %}
+
+          <header class="section-header">
+          {%- unless collection.image -%}
+              <h1 class="section-header__title section-header__left">{{ collection.title }}</h1>
+          {%- endunless -%}
+          </header>
+        {% endif %}
+      {% endif %}
+
+
+
+      <div class="all-skill-level-sections">
+      <!-- All products -->
+      {% assign all_sections = page_content | split: '---/all_sections---' | first | split: '---all_sections---' | last | split: '---/section_products---' %}
+
+      {% assign product_counter = 0 %}
+      {% for section in all_sections %}
+		{% if section != blank %}
+      		{% assign section_info = section | split: '---section_products---' %}
+      		{% assign section_name = section_info | first | split: '---section_header---' | last | split: '---/section_header---' | first %}
+      <div class="skill-level-section">
+      <h4 class="skill-level-section-header">{{section_name}}</h4>
+
+
+			{% assign section_products = section_info | last | split: '---/product_description---'%}
+      		{% for single_product in section_products%}
+      		{% if single_product != blank %}
+
+        	{% comment %}
+        	TODO: remove all product_name logic and update the description template: no longer using
+        	{%endcomment%}
+
+      			{% assign single_product_info = single_product | split: '---/product_name---' %}
+      			{% assign product_name = single_product_info | first | split: '---product_name---' | last %}
+      			{% assign product_description = single_product_info | last | split: '---product_description---' | last %}
+      			{% assign product = collection.products[product_counter]%}
+                <div>
+
+                  {%comment %}
+                  <h6>{{product_name}}</h6>
+                  {%endcomment%}
+
+                  <div class="skill-level-product-info">
+                    <p class="skill-level-product-description hide-mobile">{{product_description}}</p>
+                    <div class="skill-level-product">
+                      {% include 'product-skill-level' %}
+                      <p class="skill-level-product-description show-mobile">{{product_description}}</p>
+                    </div>
+                  </div>
+                </div>
+
+      			{% assign product_counter = product_counter | plus: 1 %}
+      		{% endif %}
+      		{% endfor %}
+      	{% endif %}
+
+
+        </div>
+      {% endfor %}
+    </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+{% capture product_json %}
+var productJSON = [
+  {% for product in collection.products %}
+    {
+    {% if product.options.size == 1 and product.options.first != 'Title' %}
+      addLabel: '{{ product.options.first | escape }}',
+    {% endif %}
+      id: '{{ collection.handle }}-{{ product.id }}',
+      product: {{ product | json }}
+    },
+  {% endfor %}
+  ];
+{% endcapture %}
+{% include 'catalog-script' %}
+{% include 'skill-level-script' %}
+
+{% include 'collection-footer-js' %}

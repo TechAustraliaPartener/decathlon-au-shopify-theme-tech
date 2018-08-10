@@ -1,0 +1,26 @@
+{%- for tag in product.tags -%}
+  {%- if tag contains 'Size Chart: ' -%}
+    {%- assign size_guide_tag = tag | split: 'Size Chart: ' -%}
+    {%- assign size_guide = size_guide_tag[1] -%}
+  {%- endif -%}
+{%- endfor -%}
+
+<div class="sizechart">
+  <div class="u-centerVertically">
+    <div class="u-centerVertically-ie">
+      <div class="sizechart-wrapper">
+        <button class="close-btn js-closeSizechart" type="button"></button>
+        <h3 class="sizechart-title">&nbsp;</h3>
+        <div class="grid--full">
+          <div class="grid__item large--one-third">
+            <img class="sizechart-visual" src="{{ size_guide | handleize | prepend: 'sizechart-' | append: '.jpg' | file_img_url: '300x' }}" alt="Size Guide Visual" />
+            <p class="sizechart-measurements"></p>
+          </div>
+          <div class="grid__item push--large--one-twelfth large--seven-twelfths">
+            <div class="sizeGuide" data-app="eastsideco_sizeGuides" data-shop="{{ shop.permanent_domain }}" data-tags="{{ product.tags | join:',' }}"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+{% unless settings['promo_band__text'] == blank %}
+  <div class="promo-band is-hidden">
+    <div class="wrapper">
+      <p class="u-marginBottom0x u-textUppercase">
+      {% if settings['promo_band__page_link'] != '' %}
+        <a href="{{ settings['promo_band__page_link'] }}" class="">
+        {{ settings['promo_band__text'] }}
+        </a>
+      {% else %}
+        {{ settings['promo_band__text'] }}
+      {% endif %}
+
+      </p>
+    </div>
+    <div class="promo-band__close"></div>
+  </div>
+{% endunless %}

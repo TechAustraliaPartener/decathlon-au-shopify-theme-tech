@@ -1,0 +1,82 @@
+{% raw %}
+  <script id="instagramPostTemplate" type="text/template">
+  {{#photos}}
+    {{#if ../twoRow}}
+    {{#if_even @index}}
+    <div class="instagramColumn">
+    {{/if_even}}
+    {{/if}}
+    <p class="instagramPost text-center">
+      <span class="instagramPost-link u-block" style="background-image: url('{{ ../INSTAGRAM_ROOT }}{{ file_data.high.url }}')">
+        <img class="instagramPost-image u-block" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt="{{ description }}"/>
+
+        {{#unless ../hideLogo}}
+        <span class="instagramPost-logo"><span class="footer-icon-instagram"></span></span>
+        {{/unless}}
+        <span class="instagramPost-descriptionContainer">
+          <span class="instagramPost-descriptionBg"></span>
+          <span class="instagramPost-description">
+            {{ description }}<br/>
+            <strong>{{ author.firstname }}</strong>
+          </span>
+        </span>
+      </span>
+    </p>
+    {{#if ../twoRow}}
+    {{#if_odd @index}}
+    </div>
+    {{/if_odd}}
+    {{/if}}
+  {{/photos}}
+  {{#if oddCount}}
+  </div>
+  {{/if}}
+
+  {{#if firstRow}}
+  {{#if photos}}
+  {{#unless hideLogo}}
+  <a class="btn instagramProductFeed-submitPhoto js-picshareForm" href="https://picshare.decathlon.com/en_US/picshare/new/1132/{{ modelCode }}/return-bar" target="_blank">Submit your photo</a>
+  {{/unless}}
+  {{/if}}
+  {{/if}}
+  </script>
+  <script id="instagramLightBoxTemplate" type="text/template">
+  {{#if initialize}}
+  <div class="instagramLightBox is-hidden">
+    <div class="instagramLightBox-vertical u-centerVertically js-closeInstagramLightBox">
+      <div class="u-centerVertically-ie">
+        <div class="instagramLightBox-wrapper js-stopPropagation">
+          <div class="instagramLightBox-close js-closeInstagramLightBox"></div>
+          <div class="instagramLightBox-slick js-instagramSlick">
+  {{/if}}
+          {{#photos}}
+          <div class="instagramLightBox-slide">
+            <div class="instagramLightBox-image" style="background-image: url('{{ ../INSTAGRAM_ROOT }}{{ file_data.high.url }}')">
+            </div>
+            <div class="instagramLightBox-content">
+              <div class="instagramLightBox-info u-centerVertically">
+                <p class="instagramLightBox-author">{{ author.firstname }}</p>
+                <p class="instagramLightBox-description">{{ description }}</p>
+              </div>
+              <div class="instagramLightBox-social">
+                <a class="icon-fallback-text" target="_blank" onclick="window.open('https://twitter.com/intent/tweet?text={{ products.0.name }}&url=http://picshare.decathlon.com/en_GB/picshare/share/901/{{ id }}','name','height=300, width=600,toolbar=no,directories=no,status=no, menubar=no,scrollbars=no,resizable=yes'); return false;">
+                  <span class="icon icon-twitter" aria-hidden="true"></span>
+                  <span class="fallback-text">Twitter</span>
+                </a>
+                <a class="icon-fallback-text" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=http://picshare.decathlon.com/en_GB/picshare/share/901/{{ id }}','name','height=255, width=600,toolbar=no,directories=no,status=no, menubar=no,scrollbars=no,resizable=yes'); return false;">
+                  <span class="ico ico--facebook" aria-hidden="true"></span>
+                  <span class="fallback-text">Facebook</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          {{/photos}}
+  {{#if initialize}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{/if}}
+  </script>
+{% endraw %}

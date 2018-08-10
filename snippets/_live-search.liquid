@@ -1,0 +1,18 @@
+<script id="template-liveSearchResults" type="text/template">{% raw %}
+<ul class="grid--full header-searchResults no-bullets">
+{{#if noResults}}
+   <li class="grid__item header-searchResult header-searchResult--noResults">No results found</li>
+{{else}}
+  {{#each results}}
+  <li class="grid__item header-searchResult">
+    <a class="header-searchResult-link" href="{{ url }}">
+      {{#if img}}
+      <img class="one-quarter header-searchResult-image" src="{{ image }}" alt="{{ title }}" />
+      {{/if}}
+      <span class="three-quarters text-left header-searchResult-title">{{ title }}</span>
+    </a>
+  </li>
+  {{/each}}
+{{/if}}
+</ul>
+{% endraw %}</script>

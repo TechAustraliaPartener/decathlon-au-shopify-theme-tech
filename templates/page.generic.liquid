@@ -1,0 +1,16 @@
+{% assign banner_bg_image =  page.handle | replace: '-', '_' | append: '_banner_background_image.jpg' | asset_url %}
+{% capture banner_subtitle %}{% include 'tag' with 'banner_subtitle' %}{% endcapture %}
+{% if banner_subtitle == blank %}{% assign banner_subtitle = nil %}{% endif %}
+{% include 'banner--billboard',
+  banner_adtl_classes: ' banner--centeredContent',
+  banner_title: page.title
+%}
+
+
+{% capture page_content %}{% include 'tag' with 'content' %}{% endcapture %}
+{% if page_content == blank %}{% assign page_content = page.content %}{% endif %}
+<div class="u-block u-paddingTopBottom6x genericPage">
+  <div class="wrapper wrapper--midWidth">
+    {{ page_content }}
+  </div>
+</div>

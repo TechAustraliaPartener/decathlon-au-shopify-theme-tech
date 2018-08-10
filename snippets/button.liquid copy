@@ -1,0 +1,3 @@
+<p class="{{ button_wrapper }}">
+  <a class="btn{{ button_adtl_classes }}" href="{{ button_url }}">{{ button_title }}</a>
+</p>

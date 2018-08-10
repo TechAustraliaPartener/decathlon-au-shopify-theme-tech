@@ -1,0 +1,48 @@
+<div class="grid__item medium--one-whole footerNewsletter{{ adtl_newsletter_classes }}">
+  {% comment %}
+    MailChimp is the go-to newsletter service for Shopify.
+    Use the link below to find your MailChimp form action
+    and insert it in your site settings.
+
+    If the form action URL is not set in the theme settings,
+    it will fallback to a customer form so you can still capture the email.
+
+    MailChimp newsletter integration and requirement:
+     - http://docs.shopify.com/support/configuration/store-customization/where-do-i-get-my-mailchimp-form-action
+  {% endcomment %}
+  <h5>{{ 'layout.footer.newsletter_title' | t }}</h5>
+    <form action="https://decathlon.us13.list-manage.com/subscribe/post-json?u=5812b069aeec3fbe14100ea0c&id=1bb9141623&c=?" method="get" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" class="footerNewsletter-form">
+      <div class="input-group newsletterSignupForm">
+        <div class="footerNewsletter-dropdown-wrap input-group-field">
+          {% include 'state-dropdown', dropdown_list: true %}
+        </div>
+
+        <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ 'general.newsletter_form.newsletter_email' | t }}" name="EMAIL" id="mail" class="input-group-field" aria-label="{{ 'general.newsletter_form.newsletter_email' | t }}" autocorrect="off" autocapitalize="off">
+        <span class="input-group-btn">
+          <input type="submit" class="btn btn--signup" name="subscribe" id="subscribe" value="{{ 'general.newsletter_form.submit' | t }}">
+        </span>
+      </div>
+    </form>
+  {% comment %}
+  {% form 'customer' %}
+    {% if form.posted_successfully? %}
+      <p class="note form-success">{{ 'general.newsletter_form.confirmation' | t }}</p>
+    {% else %}
+      <div class="input-group newsletterSignupForm">
+        <div class="footerNewsletter-dropdown-wrap input-group-field">
+          {% include 'state-dropdown', dropdown_list: true %}
+        </div>
+
+        <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ 'general.newsletter_form.newsletter_email' | t }}" name="contact[email]" id="Email" class="input-group-field" aria-label="{{ 'general.newsletter_form.newsletter_email' | t }}" autocorrect="off" autocapitalize="off">
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <span class="input-group-btn">
+          <input type="submit" class="btn btn--signup" name="subscribe" id="subscribe" value="{{ 'general.newsletter_form.submit' | t }}">
+        </span>
+      </div>
+    {% endif %}
+
+    {{ form.errors | default_errors }}
+
+  {% endform %}
+  {% endcomment %}
+</div>

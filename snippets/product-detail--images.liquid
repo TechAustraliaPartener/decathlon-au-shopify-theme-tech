@@ -1,0 +1,12 @@
+{% comment %}
+  TODO: filter images via variants
+{% endcomment %}
+
+{%- for image in product.images -%}
+<div class="grid__item large--one-half productImage" data-action="zoom">
+  <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" 
+    data-lazy="{{ image | img_url: 'large' }}" alt="{{ image.alt | escape }}" 
+    data-original="{{ image | img_url: 'original' }}"
+    style="margin: 0 auto;">
+</div>
+{%- endfor -%}

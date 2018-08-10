@@ -1,0 +1,58 @@
+<div id="gateway" data-background-image="{{ 'popup__background_image.jpg' | asset_url }}">
+	<div id="introVideoWrap">
+  	{% comment %}
+  	<iframe id="introVideo" data-timberIgnore="yes" frameborder="0" allowfullscreen="1" width="1600" height="900" src="https://www.youtube.com/embed/fhq1x9bYlgQ?autoplay=1&controls=0&showinfo=0&playlistId=fhq1x9bYlgQ&rel=0&enablejsapi=1" onload="if (window.innerHeight / window.innerWidth > aspect) { this.width = window.innerHeight / aspect; this.height = window.innerHeight; } else { this.width = window.innerWidth; this.height = window.innerWidth * aspect; } this.style.visibility='visible'"></iframe>
+  	{% endcomment %}
+  	<div id="introVideo"></div>
+    </div>
+  <div class="wrapper u-centerVertically">
+    <div class="u-centerVertically-ie">
+
+      <div class="gateway-content">
+      {% if settings.logo_use_image %}
+        <a href="/" itemprop="url" class="gateway-logo">
+          <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" itemprop="logo">
+        </a>
+      {% endif %}
+
+<!--         <h4 class="banner-title">{{ settings['gateway__headline'] }}</h4> -->
+		<h4 class="banner-title" id="hello-state"></h4>
+        
+        {%- if settings['gateway__headline'] -%}
+          <p class="banner-subtitle" style="margin-bottom: 2em;">{{ settings['gateway__subheadline'] }}</p>
+        {%- endif -%}
+
+        <form action="#createCustomer" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" >
+          <div class="gateway-inputWrap hide-on-success">
+            {% include 'state-dropdown', state_required: true, state_name: 'MMERGE1' %}
+            <span class="gateway-selectArrow"></span>
+
+            <input type="email" id="GatewayFormEmail" name="EMAIL" placeholder="Email Address*" autocorrect="off" autocapitalize="off" required value="{% if form.email %}{{ form.email }}{% endif %}">
+          </div>
+
+          <div class="gateway-mw530">
+            <input type="submit" class="btn btn--white hide-on-success" value="SUBMIT & ENTER SITE">
+            <p><a class="btn btn--text js-closePopup hide-on-success" href="#PageContainer">Enter Site</a></p>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+  <button type="button" class="close-popup-btn"></button>
+
+{% comment %}
+  {% if settings['is_lookbook'] == true %}
+  <div class="easybreathCTA-wrapper">
+    <div class="easybreathCTA">
+      <div class="easybreathCTA-content">
+        <p class="easybreathCTA-intro">The world's first full-face snorkeling mask.</p>
+        <p class="easybreathCTA-link"><a class="btn btn--text" href="https://easybreath.decathlon.com/" target="_blank">Shop Easybreath Now</a></p>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+{% endcomment %}
+</div>
+
+

@@ -1,0 +1,106 @@
+<!-- /templates/blog.liquid -->
+{% assign banner_bg_image = 'Careers_HeroBanner.jpg' | file_img_url: '1600x' %}
+{% include 'banner--billboard',
+  banner_adtl_classes: ' banner--centeredContent',
+  banner_title: blog.title,
+  banner_title_adtl_classes: ' u-marginBottom025x',
+  banner_subtitle: 'Active Careers for Active People'
+%}
+
+{% paginate blog.articles by 6 %}
+
+{% comment %}
+{% assign blogCategory = 'blog-list--' | append: blog.handle %}
+{% include blogCategory %}
+{% endcomment %}
+
+<div class="u-block">
+  <div class="wrapper u-paddingTopBottom6x">
+    <div class="grid--rev">
+
+      <div class="grid__item large--one-half currentJobOpenings">
+                <h5>Our current openings:</h5> 
+        
+        
+        <script type='text/javascript' src='https://static.smartrecruiters.com/job-widget/1.3.3/script/smart_widget.js'></script>
+<script type='text/javascript' class='job_widget'>
+widget({
+    "company_code": "DECATHLON",
+    "font": "avalon",
+    "bg_color_widget": "#ffffff",
+    "bg_color_headers": "#969696",
+    "bg_color_links": "#cfcfcf",
+    "txt_color_headers": "#2a2b2c",
+    "txt_color_job": "#2a2b2c",
+    "bg_color_even_row": "#e0e0e0",
+    "bg_color_odd_row": "#f7f7f7",
+    "auto_width": "auto",
+    "auto_height": "auto",
+    "number": "on",
+    "job_title": "true",
+    "location": "true",
+    "department": "true",
+    "published_since": "true",
+    "filter_locations": "San Francisco",
+
+    "jobAdType": "PUBLIC",
+    "trid": "",
+    "api_url": "https://www.smartrecruiters.com",
+    "custom_css_url": "https://static.smartrecruiters.com/job-widget/1.3.3/css/smart_widget.css"
+});
+</script>
+
+        
+
+        <!--{% if blog.articles.size == 0 %}
+          <h5 class="text-center u-bgLightGray u-paddingTopBottom3x u-marginBottom4x currentJobOpenings-noOpenings">There are currently no&nbsp;openings</h5>
+        {% else %}
+          <h4 class="currentJobOpenings-title">Current Openings</h4>
+          <ul class="currentJobOpenings-openings no-bullets u-marginBottom4x u-block">
+          {%- for article in blog.articles -%}
+            <li class="currentJobOpening h5">
+              <a class="currentJobOpening-link" href="{{ article.url }}">{{ article.title }}</a>
+            </li>
+          {%- endfor -%}
+          </ul>
+        {% endif %}-->
+  
+      </div>
+      <div class="grid__item large--one-half blog-jobsIntro">
+        <h4>Sport is a part of who we are.</h4> 
+        <p>Therefore first and foremost, we are looking for people to join us who are passionate about their sport.</p>
+        <p>That box ticked, we are also on the look out for those with an entrepreneurial spirit and who like to help their customers and team mates. We are looking for challengers, game-changers, "out-the-box" thinkers and doers.</p>
+        <p>As an Equal Opportunities employer, we look to recruit a diverse team of Decathletes from all horizons and backgrounds. We offer full time & part time contracts, permanent & fixed-term contracts, work placements and apprenticeships. We operate a “no zero hours contract” policy.</p>
+        <p>Every Decathlete has their role to play and therefore their own responsibilities, from day 1. Their integration, development plan and monthly decision meetings with their manager, allows them to develop and take decisions for themselves.</p>
+        <p>Decathlon US is part of the DECATHLON Group - an international network with 70,000 employees present in more than 30 countries. This network is a gateway to a diverse array of international jobs: COME AND CREATE YOUR OWN CAREER PATH WITH US.</p>
+      </div>
+
+
+    </div>
+  
+  </div>
+</div>
+
+{% comment %}
+<div class="wrapper u-paddingTopBottom8x">
+{% if blog.handle == 'jobs' %}
+  {% include 'blog-list--jobs' %}
+{% else %}
+  {% include 'blog-list--default' %}
+{% endif %}
+</div>
+{% endcomment %}
+
+{% endpaginate %}
+
+<script>
+$('.authorSelect').change(function(e) {
+  var url = $('.authorSelect option:selected').val();
+  window.location.href = url;
+});
+
+$(function() {
+  var path = $(location).attr('pathname');
+  $('.authorSelect').val(path);
+});
+</script>

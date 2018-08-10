@@ -1,0 +1,75 @@
+<script>
+var bcSfFilterConfig = {
+   shop: {
+       apiUrl: 'https://services.mybcapps.com/bc-sf-filter/filter', // updated
+       name: '{{ shop.name }}',
+       domain: '{{ shop.permanent_domain }}',
+       currency: '{{ shop.currency }}',
+       money_with_currency_format: '${% raw %}{{amount}}{% endraw %}'//'{{ shop.money_with_currency_format }}'
+   },
+   general: {
+       {% for tag in collection.tags %} 
+        {% assign tag_handle = tag | handle %}
+        {% for current_tag in current_tags %} 
+     		{% assign current_tag_handle = current_tag | handle %}
+     		{% if current_tag_handle == tag_handle %}
+     			{% assign current_tag_text = tag %}
+     		{% endif %}
+     	{% endfor %}
+       {% endfor %}
+       file_url: "{{ '' | file_url }}",
+       collection_id: {{ collection.id | default: 0 }},
+       collection_handle: "{{ collection.handle }}",
+{% if current_tag_text != blank %}
+       collection_tags: ["{{ current_tag_text }}"],
+{% endif %}
+       default_sort_by: "{{ collection.default_sort_by }}", // missing comma
+       swatch_extension: "png",
+       no_image_url: "{{ 'bc-sf-filter-no-image.gif' | asset_url }}"      
+   },
+   product: {
+       // Sale text for sale label
+       sale_text: "Sale",
+       // Sold out text label
+       sold_out_text: "Sold out",
+       // Regular price text
+       regular_price_text: "Regular price",
+       // Sale price text
+       sale_price_text: "Sale price",
+   },
+   collection: {
+       // Sorting label
+       sorting_text: "Sort",
+       // Show label (8, 12 or 16 products per page)
+       show_limit_text: "Show"
+   },
+   section: {
+       // Display as grid or list
+       layout: "grid",
+       // Number of product per row
+       //grid_number: 4,
+       // Display vendor or not
+       vendor_enable: false
+   },
+   label: {
+   }
+ };
+{% if current_tags.size %}
+bcSfFilterConfig.general.collection_tags = [
+  {% for tag in current_tags %}"{{ tag | replace: '-', ' ' }}"{% if forloop.last != true %},{% endif %}{% endfor %}                         
+];
+{% endif %}
+
+</script>
+
+{% if current_tags.size %}
+  {% capture url %}/collections/{{ collection.handle }}{% endcapture %}
+  {% assign tag_slug = current_tag_text | replace: ' ', '-' %}
+  {% assign tag_match = '/collections/' | append: collection.handle | append: '/' | append: tag_slug %}
+
+  {%- for tag in linklists[collection.handle].links -%}
+  {% if tag_match == tag.url %}
+    {% assign tag_title = tag.title %}
+  {% endif %}
+  {%- endfor -%}
+{% endif %}

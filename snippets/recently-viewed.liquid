@@ -1,0 +1,29 @@
+<script id="recentlyViewedTemplate" type="text/template">{% raw %}
+{{#each products}}
+<div class="grid__item large--one-quarter medium--one-half collectionProduct js-bln-product" data-product-id="{{ id }}">
+  <div class="u-block">
+    <a href="{{ url }}" class="grid__image collectionProduct-imageLink">
+      <img class="collectionProduct-image" src="{{ featured_image }}" alt="{{ title }}">
+    </a>
+    <div class="starRating collectionProduct-rating">
+      {{ ratings rating }}
+    </div>
+  </div>
+  <p class="collectionProduct-content">
+    <a class="collectionProduct-title" href="{{ url }}">{{ title }}</a>
+  </p>
+  <p class="collectionProduct-price">{{ price }}</p>
+{{!--{% endraw %}
+  {% comment %}
+  {%- if settings['is_lookbook'] -%}
+    <p><a class="btn btn--text" href="{% raw %}{{ url }}{% endraw %}">{{ 'products.product.add_to_wishlist' | t }}</a></p>
+  {%- else -%}
+  {%- endif -%}
+  {% endcomment %}
+    <p><a class="btn btn--text" href="{% raw %}{{ url }}{% endraw %}">{{ 'products.product.add_to_cart' | t }}</a></p>
+{% raw %}
+--}}
+</div>
+{{/each}}
+{% endraw %}</script>
+

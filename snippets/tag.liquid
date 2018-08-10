@@ -1,0 +1,18 @@
+{%- unless get_tag_inside -%}
+  {%- if page.content -%}
+    {%- assign get_tag_inside = page.content -%}
+  {%- elsif collection.description -%}
+    {%- assign get_tag_inside = collection.description -%}
+  {%- endif -%}
+{%- endunless -%}
+{%- if tag -%}
+  {%- assign start_tag = '<p>---' | append: tag | append: '---</p>' -%}
+  {%- assign end_tag = '<p>---/'| append: tag | append: '---</p>' -%}
+  {%- assign tag_content = get_tag_inside | split: start_tag -%}
+  {%- if tag_content.size == 2 %}
+    {%- assign tag_content = tag_content | last | split: end_tag | first -%}
+  {%- else -%}
+    {%- assign tag_content = nil -%}
+  {%- endif -%}
+  {{- tag_content -}}
+{%- endif -%}

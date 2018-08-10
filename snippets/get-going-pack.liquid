@@ -1,0 +1,53 @@
+{% if index == 'top' %}
+	{% assign coll = settings.collection_1 %}
+	{% assign get_going_pack_adtl_classes = settings.addtl_class_1 %}
+{% else %}
+	{% assign coll = settings.collection_2 %}
+	{% assign get_going_pack_adtl_classes = settings.addtl_class_2 %}
+{% endif %}
+
+{% assign collection_class = 'getGoingPack--' | append: get_going_pack_collection %}
+{% assign get_going_pack_collection = collections[coll] %}
+
+{%- assign get_going_pack_icon = 'mountains' -%}
+{%- if get_going_pack_collection.metafields.get_going_pack.icon -%}
+  	{%- assign get_going_pack_icon = get_going_pack_collection.metafields.get_going_pack.icon -%}
+{%- endif -%}
+
+<div{% if enable_anchors %} id="{{ get_going_pack_collection.handle }}"{% endif %} class="grid--full getGoingPack {{ collection_class }} {% if index != '' %}{{ get_going_pack_adtl_classes }}{% else %}{% cycle ' getGoingPack--default', ' getGoingPack--swapped' %}{% endif %} js-getGoingPack">
+
+  	<div class="grid__item getGoingPack-banner large--three-fifths u-paddingTopBottom10x" data-background-image="{{ get_going_pack_collection.image | img_url: '2000x' }}">
+    	<div class="getGoingPack-arrow"></div>
+    	<p><i class="ico ico--getGoingPack--{{ get_going_pack_icon }}"></i></p>
+    	<p class="banner-intro">Get Going Pack</p>
+    	<h2 class="banner-title">{{ get_going_pack_collection.title }}</h2>
+    	<div class="banner-subtitle">{{ get_going_pack_collection.description }}</div>
+
+    	{%- assign collection_setting_key = get_going_pack_collection.handle | replace: '-', '_' | prepend: 'pack_' | append: '_sport' -%}
+    	{%- assign collection_total = 0 -%}
+    	{%- for product in get_going_pack_collection.products -%}
+      		{%- assign collection_total = collection_total | plus: product.price_min -%}
+    	{%- endfor -%}
+    	<!-- {{ collection_total }} -->
+    	{%- assign collection_total = collection_total | divided_by: 100 | ceil | times: 100 | money_without_trailing_zeros -%}
+    	{% if settings['is_lookbook'] == false %}
+      		{%- assign button_text = 'Get your ' | append: settings[collection_setting_key] | append: ' pack from ' | append: collection_total -%}
+    	{% else %}
+      		{%- assign button_text = 'Explore this ' | append: settings[collection_setting_key] | append: ' pack from ' | append: collection_total -%}
+    	{% endif %}
+      	<p class="banner-btnContainer"><a class="btn" href="{{ get_going_pack_collection.url }}" isp_ignore>{{ button_text }}</a></p>
+  </div>
+
+  <div class="grid__item getGoingPack-products large--two-fifths">
+    	<div class="grid--full getGoingPack-currentProductWrapper u-block js-slick--attr" data-slick='{"slidesToShow": 1, "slidesToScroll": 1, "arrows": false, "dots": false, "asNavFor": ".{{ collection_class }} .getGoingPack-productList"}'>
+	    	{%- for product in get_going_pack_collection.products limit: 5 -%}
+	      		{% include 'product-grid-item', grid_item_width: 'getGoingPack-product', collection: get_going_pack_collection, show_add_to_cart: false %}
+	    	{%- endfor -%}
+    	</div>
+    	<div class="getGoingPack-productList u-block js-slick--attr" data-slick='{"slidesToShow": 4, "slidesToScroll": 1, "arrows": false, "asNavFor": ".{{ collection_class }} .getGoingPack-currentProductWrapper", "focusOnSelect": true}'>
+		    {%- for product in get_going_pack_collection.products limit: 5 -%}
+		      <div class="getGoingPack-productList-product">{{ product.variants.first.featured_image | img_url: '600x' | img_tag }}</div>
+		    {%- endfor -%}
+    	</div>
+  </div>
+</div>

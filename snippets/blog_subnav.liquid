@@ -1,0 +1,19 @@
+<div class="grid--full anchorLinks">
+  <div class="wrapper">
+    <ul class="anchorList">
+    {%- for link in blog_subnav.links -%}
+      <li class="anchorList-item">
+        <a class="anchorList-link{% if link.url == page.url or link.url == blog.url %} anchorList-link--active{% endif %}" href="{{ link.url }}">{{ link.title }}</a>
+      </li>
+    {%- endfor -%}
+    </ul>
+  </div>
+</div>
+
+{% comment %}
+<div class="wrapper">
+  <select name="author">
+    <option value="all" selected>AUTHORS: ALL</option>
+  </select>
+</div>
+{% endcomment %}

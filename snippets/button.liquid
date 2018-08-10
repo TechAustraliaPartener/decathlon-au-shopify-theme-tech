@@ -1,0 +1,5 @@
+<p class="{{ button_wrapper }}">
+  <a class="btn{{ button_adtl_classes }}{% if button_cta_image %} has-btn-image{% endif %}" href="{{ button_url }}" {% if (new_window) %}target="_blank" {% endif %} {{ btn_adtl_attrs }}>
+    {% if button_cta_image %}{{ button_cta_image | img_tag: '', 'btn-image' }}{% endif %}
+  {{ button_title }}</a>	
+</p>

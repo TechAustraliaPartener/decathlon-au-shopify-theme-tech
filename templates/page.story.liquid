@@ -1,0 +1,132 @@
+{% assign main_banner_subtitle = page.content | strip_html %}
+
+{% assign banner_bg_image =  'story_main_banner_background_image.jpg' | asset_url %}
+{% include 'banner--video',
+  banner_id: 'story-banner-video',
+  banner_adtl_classes: ' banner--centeredContent banner-video--noPadding',
+  banner_title: settings['story_main_banner_headline'],
+  banner_title_normal: true,
+  banner_title_adtl_classes: '',
+  video_url: settings['story_main_banner_video_url'],
+%}
+
+<div class="u-block">
+  <div class="wrapper u-paddingTopBottom8x wrapper--narrow wrapper--center">
+    <h3>{{ settings['story_feature_content_1_headline'] }}</h3>
+    <p class="u-textFeatured--narrow">{{ settings['story_feature_content_1_content'] }}</p>
+  </div>
+</div>
+
+{% include 'anchor-links', links: 'Our Mission=#our-mission|Our Legacy=#our-legacy|Our Family=#our-family' %}
+
+<div class="grid--full" id="our-mission">
+  {% for i in (1..8) %}
+    {% assign blockName = 'story_split_full_content_' | append: i | append: '_'  %}
+    {% assign blockImage = blockName | append: 'image.jpg'  %}
+    {% assign blockTitle = blockName | append: 'title'  %}
+    {% assign blockDescription = blockName | append: 'description'  %}
+
+    {% assign split_image_url = blockImage | asset_url %}
+
+    {% capture split_content_adtl_classes %} {% cycle ' splitContent--full-width', ' splitContent--full-width splitContent--swapped' %} {% endcapture %}
+
+    {% include 'split-content',
+      split_content_title: settings[blockTitle],
+      split_content_description: settings[blockDescription],
+    %}
+  {% endfor %}
+</div>
+
+{% assign banner_bg_image =  'story_banner_2_background_image.jpg' | asset_url %}
+{% include 'banner--billboard',
+  banner_id: 'our-legacy',
+  banner_adtl_classes: ' banner--centeredContent',
+  banner_wrapper_adtl_classes: ' u-marginBottom4x',
+  banner_title: settings['story_banner_2_headline'],
+  banner_title_adtl_classes: ' h4',
+  banner_subtitle: settings['story_banner_2_subheadline'],
+%}
+
+<div class="u-block">
+  <div class="wrapper u-paddingTopBottom8x wrapper--narrow wrapper--center">
+    <h5 class="u-textUppercase u-marginBottom1x">{{ settings['story_feature_content_2_headline'] }}</h5>
+    <p class="u-textFeatured--narrow">{{ settings['story_feature_content_2_content'] | newline_to_br }}</p>
+  </div>
+</div>
+
+<div class="u-bgLightGray u-block">
+  <div class="wrapper u-paddingTopBottom6x">
+    {% for i in (1..4) %}
+      {% assign blockName = 'story_grey_content_block_' | append: i | append: '_'  %}
+      {% assign blockImage = blockName | append: 'image.jpg'  %}
+      {% assign blockTitle = blockName | append: 'title'  %}
+      {% assign blockDescription = blockName | append: 'description'  %}
+
+      {% assign split_image_url = blockImage | asset_url %}
+
+      {% capture split_content_adtl_classes %} {% cycle ' u-block', ' splitContent--swapped u-block' %} {% endcapture %}
+
+      <div class="grid{% cycle '', ' grid--rev' %} u-marginBottom3x">
+        <div class="grid__item large--one-half text-center">{{ blockImage | asset_url | img_tag }}</div>
+        <div class="grid__item large--one-half u-marginTop6x">
+          <h3>{{ settings[blockTitle] }}</h3>
+          <div class="splitContent-description"><p>{{ settings[blockDescription] | newline_to_br }}</p></div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% assign banner_bg_image =  'story_banner_3_background_image.jpg' | asset_url %}
+{% include 'banner--billboard',
+  banner_id: 'our-family',
+  banner_adtl_classes: ' banner--centeredContent',
+  banner_wrapper_adtl_classes: ' u-paddingTopBottom4x',
+  banner_title: settings['story_banner_3_headline'],
+  banner_title_adtl_classes: ' h4',
+  banner_subtitle: settings['story_banner_3_subheadline'],
+%}
+
+<div class="u-bgLightGray u-block behindHikers">
+
+  <div id="passion-brands" class="wrapper u-paddingTopBottom8x text-center">
+    <h3>{{ settings['story_feature_content_3_headline'] }}</h3>
+    <div class="wrapper--midWidth u-textFeatured--narrow">
+      <p class="u-marginBottom2x u-marginAuto">{{ settings['story_feature_content_3_content'] }}</p>
+    </div>
+    <div class="grid grid--full">
+    {%- for brand in shop.vendors -%}
+    {%- unless brand == shop.name -%}
+      <div class="grid__item large--one-fifth medium--one-half small--one-half">
+        <p class="u-bgWhite u-marginBottom0x">
+        <a class="passionBrand-rollover" href="/collections/all?_=pf&pf_v_vendor={{ brand }}"  data-background-image="{{ brand | handleize | append: '-rollover.jpg' | file_url }}">
+          <img class="u-block" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="  alt="{{ brand }}" />
+        </a>
+        </p>
+      </div>
+    {%- endunless -%}
+    {%- endfor -%}
+    </div>
+  </div>
+
+  <div class="wrapper u-paddingTopBottom6x">
+    {% for i in (5..7) %}
+      {% assign blockName = 'story_grey_content_block_' | append: i | append: '_'  %}
+      {% assign blockImage = blockName | append: 'image.jpg'  %}
+      {% assign blockTitle = blockName | append: 'title'  %}
+      {% assign blockDescription = blockName | append: 'description'  %}
+
+      {% assign split_image_url = blockImage | asset_url %}
+
+      {% capture split_content_adtl_classes %} {% cycle ' u-block', ' splitContent--swapped u-block' %} {% endcapture %}
+
+      <div class="grid{% cycle '', ' grid--rev' %} u-marginBottom2x">
+        <div class="grid__item large--one-half text-center">{{ blockImage | asset_url | img_tag }}</div>
+        <div class="grid__item large--one-half u-marginTop6x">
+          <h3>{{ settings[blockTitle] }}</h3>
+          <div class="splitContent-description"><p>{{ settings[blockDescription] | newline_to_br }}</p></div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>

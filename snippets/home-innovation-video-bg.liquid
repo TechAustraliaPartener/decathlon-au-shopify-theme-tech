@@ -1,0 +1,20 @@
+<div class="banner banner--video banner--billboard{{ banner_adtl_classes }} home-innovation-video-bg"{% if banner_bg_image %} data-background-image="{{ banner_bg_image }}"{% endif %} {% if banner_id %} id="{{banner_id}}" {% endif %}>
+  <div class="homeInnovationWrap">
+    <div id="homeInnovationVideoBg-wrap">
+      <div id="homeInnovationVideoBg"></div>
+    </div>
+    <div class="homeInnovation-png-headline u-absolute" data-background-image="{{ banner_transparent_png }}"></div>
+
+    <h2>{{ banner_title }}</h2>
+
+    {%- if video_url -%}
+    <a class=" js-bannerVideo" href="{{ video_url }}" target="_blank"{% if video_button %} data-videoButton='{{ video_button }}'{% endif %}>
+    </a>
+    {%- endif -%}
+
+    <div class="home-innovations-mobile-btns">
+      <a href="{{ video_url }}" class="btn btn--blue play-video js-bannerVideo">Watch the Video</a>
+      <a href="/pages/the-joy-of-innovation" class="btn btn--blue cta-btn">Learn How We Innovate</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,444 @@
+{% comment %}
+  top_level is used for both breadcrumbs and navigation
+{% endcomment %}
+{% for link in linklists %}
+  {% if top_level %}
+    {% break %}
+  {% endif %}
+  {% if link.links != blank %}
+    {% for sub in link.links %}
+      {% if sub.active or sub.child_active %}
+        {% if sub.child_active %}
+      	  {% assign top_level = link %}
+      	{% elsif sub.active and sub.links == blank %}
+      	  {% if link.title == "Shop" or link.title == "Shop All Sports" or link.title == "Shop-Homepage" or link.title == "Header Shop Menu Links" %}
+      	    {% assign top_level = sub %}
+      	  {% else %}
+      		{% assign top_level = link %}
+      	  {% endif %}
+      	{% elsif sub.active and sub.links != blank %}
+      	  {% assign top_level = link %}
+      	{% endif %}
+      	{% break %}
+	  {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endfor %}
+
+<!-- check that top_level has links -->
+{% if top_level.links == blank %}
+  {% for link in linklists %}
+     {% if link.handle == top_level.handle %}
+      	{% assign top_level = link %}
+      	{% break %}
+     {% elsif link.title == top_level.title %}
+      	{% assign top_level = link %}
+      	{% break %}
+      {% endif %}
+   {% endfor %}
+{% endif %}
+
+<script>var collectionViewMulti = true;</script>
+
+{% include 'collection-header-js' %}
+
+{% comment %}
+'product_json' & 'catalog-script' needed for
+one-click-add-to-cart that includes size selector
+{% endcomment %}
+{% if linklists.links %}
+    {% capture product_json %}
+    var productJSON = [
+        {% for link in linklists[collection.handle].links %}
+            {% for product in link.object.products limit:6 %}
+                {%- if product.available -%}
+                {
+                    {% if product.options.size == 1 and product.options.first != 'Title' %}
+                        addLabel: '{{ product.options.first | escape }}',
+                    {% endif %}
+                        id: '{{ link.object.handle }}-{{ product.id }}',
+                        product: {{ product | json }}
+                },
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+        ];
+    {% endcapture %}
+{% endif %}
+
+<style type="text/css">#bc-sf-filter-products .section-header__title { margin-left: 30px; }</style>
+
+{% if collection.image %}
+<div class="collectionImage" style="background-image:url('{{ collection.image | img_url: '1024x' }}'); " data-background-image="{{ collection.image | img_url: '1024x' }}">
+    <div class="wrapper">
+        {% include 'breadcrumb', adtl_classes: ' breadcrumb--overImage' %}
+
+        <h1 class="collectionImage-header text-center">{{ collection.title }}</h1>
+    </div>
+</div>
+{% endif %}
+
+<div class="wrapper{% if collection.image %} wrapper--collectionWithBanner u-paddingTopBottom4x{% else %} u-marginBottom4x{% endif %}">
+    {% unless collection.image %}
+		<!-- Create Breadcrumbs Start -->
+		<nav class="breadcrumb" role="navigation" aria-label="breadcrumbs">
+			<a href="/collections" title="All Sports">All Sports</a>
+			<span aria-hidden="true" class="breadcrumb__sep">&rsaquo;</span>
+			<a href="{{shop.url}}/collections/{{top_level.handle}}" title="{{top_level.title}}">{{top_level.title}}</a>
+			{% for link in top_level.links %}
+				{% if link.active or link.child_active %}
+				<span aria-hidden="true" class="breadcrumb__sep">&rsaquo;</span>
+				<a href="{{link.url}}" title="{{link.title}}">{{link.title}}</a>
+					{% if link.child_active %}
+						<span aria-hidden="true" class="breadcrumb__sep">&rsaquo;</span>
+					{% endif %}
+					{% if link.links != blank %}
+						{% for sub in link.links %}
+							{% if sub.active %}
+								<a href="{{sub.url}}" title="{{sub.title}}">{{sub.title}}</a>
+							{% endif %}
+						{% endfor %}
+					{% endif %}
+				{% endif%}
+			{% endfor %}
+		</nav>
+		<!-- Create Breadcrumbs End -->
+
+    {% endunless %}
+
+    <div class="grid">
+        <div class="grid__item large--one-quarter left">
+
+			<!-- Nested Nav Start -->
+		      <div id="nested-nav">
+		      <ul style='list-style: none'>
+		        <li>
+		        <a class="breadcrumb-item top-level" href="{{shop.url}}/collections/{{top_level.handle}}">{{top_level.title}}</a>
+		          <ul style='list-style: none'>
+		      		{% for link in top_level.links %}
+		      			<li>
+		          		<a class="{% if link.active or link.child_active %}breadcrumb-item{% else %}not-breadcrumb-item{% endif %}"
+		                   href="{{link.url}}">{{link.title}}</a>
+		          			{% if link.child_active or link.active and link.links != blank %}
+		          				<ul style='list-style: none'>
+		          				{% for sub in link.links %}
+		              				<li>
+		          					<a class="{% if sub.active or sub.child_active %}breadcrumb-item{% else %}not-breadcrumb-item{% endif %}"
+		                               href="{{sub.url}}">{{sub.title}}</a>
+		              				</li>
+		          				{% endfor %}
+		          				</ul>
+		          			{% endif %}
+		        		</li>
+		      		{% endfor %}
+		          </ul>
+		        </li>
+		      </ul>
+		      </div>
+		      <!-- Nested Nav End -->
+
+
+				<!-- Adept Search Start -->
+				<div class="decathlon-filter__container decathlon-filter__collection">
+				    <input type="checkbox" class="decathlon-filter__mobile-toggle"/>
+				    <button class="decathlon-filter__mobile-toggle-button">Refine Search</button>
+				    <div class="decathlon-filter__group">
+				        <div class="adept-search-filter"
+				        title="">
+				    </div>
+				</div>
+				</div>
+				<!-- Adept Search End -->
+
+</div>
+
+
+<div class="grid__item large--seven-tenths right">
+    {% comment %}
+    Different markup if a collection description exists
+    {% endcomment %}
+    {% if current_tags.size %}
+        <header class="section-header">
+            <h1 class="section-header__title u-marginBottom0x">{{ tag_title }}</h1>
+        </header>
+        <hr>
+    {% else %}
+    {% if collection.description != blank %}
+        <header class="section-header">
+            <h1 class="section-header__title">{{ collection.title }}</h1>
+            <div class="rte rte--header">
+                {{ collection.description }}
+            </div>
+        </header>
+        <hr>
+        <div class="section-header">
+            <div class="section-header__right">
+                {% comment %}<div id="bc-sf-filter-top-sorting"></div>{% endcomment %}
+                {% comment %}{% include 'collection-sorting' %}{% endcomment %}
+            </div>
+        </div>
+    {% else %}
+
+    <header class="section-header">
+        {%- unless collection.image -%}
+        <h1 class="section-header__title section-header__left">{{ collection.title }}</h1>
+        {%- endunless -%}
+        <div class="section-header__right">
+            {% comment %}<div id="bc-sf-filter-top-sorting"></div>{% endcomment %}
+            {% comment %}{% include 'collection-sorting' %}{% endcomment %}
+        </div>
+    </header>
+
+    {% endif %}
+    {% endif %}
+
+    <div id="bc-sf-filter-products" class="grid-uniform">
+
+        {% if current_tags.size %}
+
+            {% paginate collection.products by 15 %}
+                {% for product in collection.products %}
+
+                    {% assign group_name = 'group' | append: collection.handle %}
+                    {% capture featuredClass %}{% cycle group_name: '', ' collectionProduct--featured--middle', ' collectionProduct--featured--end js-adjustFeaturedContent' %}{% endcapture %}
+                    {% assign default_giw = 'large--one-third one-half' %}
+                    {% if product.tags contains 'featured' %}
+                        {% assign grid_item_width = default_giw | append: ' collectionProduct--featured' | append: featuredClass %}
+                    {% else %}
+                        {% assign grid_item_width = default_giw %}
+                    {% endif %}
+                        {% include 'product-grid-item' %}
+                    {% else %}
+
+                    {% comment %}
+                    <p class="grid__item text-center">Sorry, we couldn't find any products for this collection.</p>
+                    <p class="grid__item text-center"><a href="{{ collection.url }}" class="btn">Back to {{ collection.title }}</a></p>
+                    {% endcomment %}
+
+                {% endfor %}
+            {% endpaginate %}
+
+        {% else %}
+			{% comment %} Find the correct collection: {% endcomment %}
+			{% for topLevelLink in linklists %}
+				{% if topLevelLink.links != blank %}
+					{% for firstLink in topLevelLink.links %}
+						{% if firstLink.links != blank %}
+							{% for secondLink in firstLink.links %}
+								{% if secondLink.links != blank %}
+									{% for thirdLink in secondLink.links %}
+										{% if thirdLink.title == collection.title %}
+											{% assign collectionLinks = thirdLink.links %}
+											{% break %}
+										{% endif %}
+									{% endfor %}
+								{% endif %}
+								{% if secondLink.title == collection.title %}
+									{% assign collectionLinks = secondLink.links %}
+									{% break %}
+								{% endif %}
+							{% endfor %}
+						{% endif %}
+						{% if firstLink.title == collection.title %}
+							{% assign collectionLinks = firstLink.links %}
+							{% break %}
+						{% endif %}
+					{% endfor %}
+				{% endif %}
+				{% if topLevelLink.title == collection.title %}
+					{% assign collectionLinks = topLevelLink.links %}
+					{%break%}
+				{% endif %}
+			{% endfor %}
+
+            {% for link in collectionLinks %}
+
+                {% if link.type == 'product_link' %}
+                    <div class="collectionPromo collectionPromo--product" data-background-image="{{ link.title | handleize | append: '-promo.jpg' | file_url }}">
+                        <div class="collectionPromo-bg"></div>
+                        <div class="collectionPromo-content">
+                            <h4>{{ link.title }}</h4>
+                            {% assign product = link.object %}
+                            {% assign product_intro = product.description | split: '<p>---' %}
+                            <p class="u-marginBottom2x">{{ product_intro[0] | strip_html }}</p>
+                            {% if settings['is_lookbook'] == false %}
+                                <p class="u-marginBottom0x">
+                                    <a class="btn btn--rev" href="{{ link.url }}">
+                                    Buy
+                                    {% if product.price_varies %}
+                                        {% assign price = product.price | money %}
+                                        {{ 'products.general.from_text_html' | t: price: price }}
+                                    {% else %}
+                                        for {{ product.price | money }}
+                                    {% endif %}
+                                    </a>
+                                </p>
+                            {% else %}
+                                <p class="u-marginBottom0x">
+                                    <a class="btn btn--rev" href="{{ link.url }}">
+                                    {% if settings['is_lookbook'] == false %}
+                                        Shop Now
+                                        {% else %}
+                                        Explore
+                                    {% endif %}
+                                    </a>
+                                </p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% continue %}
+                {% endif %}
+
+                {% assign collection = link.object %}
+
+                <header class="section-header">
+                    <h1 class="section-header__title">
+                        {{ link.title }}
+                        <a class="btn btn--text" href="{{ link.url }}" style="margin: 10px 0 0 10px;">
+                            View All Products
+                        </a>
+                    </h1>
+                </header>
+                <div {% comment %}class="grid-uniform"{% endcomment %}>
+
+                    {% assign has_featured = false %}
+                    {% assign path_items = link.url | split: '/' %}
+                    {% assign product_filter = path_items.last | replace: '-', ' '%}
+                    {% assign curIndex = 0 %}
+
+                {% paginate collection.products by 120 %}
+                    {% for product in collection.products %}
+
+                        {% comment %} using filter in active collection {% endcomment %}
+                        {% if product.tags contains product_filter %}
+
+                            {% if curIndex == 6 %}{% break %}{% endif %}
+
+                            {% assign group_name = 'group' | append: collection.handle %}
+                            {% capture featuredClass %}
+                                {% cycle group_name: '', ' collectionProduct--featured--middle', ' collectionProduct--featured--end js-adjustFeaturedContent' %}
+                            {% endcapture %}
+                            {% if product.tags contains 'featured' and has_featured == false %}
+                                {% assign default_giw = 'large--one-third one-half' %}
+                                {% assign grid_item_width = default_giw | append: ' collectionProduct--featured' | append: featuredClass %}
+                                {% assign has_featured = true %}
+                            {% else %}
+                                {% assign grid_item_width = defailt_giw %}
+                            {% endif %}
+                            {% include 'product-grid-item' %}
+                            {% assign curIndex = curIndex | plus: 1 %}
+
+                        {% else %}
+
+                            {% comment %}TODO! Filtering outside of active collection{% endcomment %}
+                            {% comment %}Regular collection{% endcomment %}
+
+                            {% if collection.url == link.url %}
+
+                                {% if curIndex == 6 %}{% break %}{% endif %}
+
+                                    {% assign group_name = 'group' | append: collection.handle %}
+                                    {% capture featuredClass %}
+                                        {% cycle group_name: '', ' collectionProduct--featured--middle', ' collectionProduct--featured--end js-adjustFeaturedContent' %}
+                                    {% endcapture %}
+                                    {% if product.tags contains 'featured' and has_featured == false %}
+                                        {% assign default_giw = 'large--one-third one-half' %}
+                                        {% assign grid_item_width = default_giw | append: ' collectionProduct--featured' | append: featuredClass %}
+                                        {% assign has_featured = true %}
+                                    {% else %}
+                                        {% assign grid_item_width = defailt_giw %}
+                                    {% endif %}
+                                    {% include 'product-grid-item' %}
+                                    {% assign curIndex = curIndex | plus: 1 %}
+
+                            {% else %}
+
+                                {% if collection.url == link.url %}
+
+                                    {% if curIndex == 6 %}{% break %}{% endif %}
+
+                                    {% assign group_name = 'group' | append: collection.handle %}
+                                    {% capture featuredClass %}
+                                        {% cycle group_name: '', ' collectionProduct--featured--middle', ' collectionProduct--featured--end js-adjustFeaturedContent' %}
+                                    {% endcapture %}
+                                    {% if product.tags contains 'featured' and has_featured == false %}
+                                        {% assign default_giw = 'large--one-third one-half' %}
+                                        {% assign grid_item_width = default_giw | append: ' collectionProduct--featured' | append: featuredClass %}
+                                        {% assign has_featured = true %}
+                                    {% else %}
+                                        {% assign grid_item_width = defailt_giw %}
+                                    {% endif %}
+                                    {% include 'product-grid-item' %}
+                                    {% assign curIndex = curIndex | plus: 1 %}
+
+                                {% else %}
+
+                                        {% assign cur_tag = link.url | replace: collection.url, '' | replace: '/','' %}
+
+                                        {% if cur_tag == '' %}
+
+                                            {% if curIndex == 6 %}{% break %}{% endif %}
+                                            {% assign group_name = 'group' | append: collection.handle %}
+                                            {% capture featuredClass %}
+                                                {% cycle group_name: '', ' collectionProduct--featured--middle', ' collectionProduct--featured--end js-adjustFeaturedContent' %}
+                                            {% endcapture %}
+                                            {% if product.tags contains 'featured' and has_featured == false %}
+                                                {% assign default_giw = 'large--one-third one-half' %}
+                                                {% assign grid_item_width = default_giw | append: ' collectionProduct--featured' | append: featuredClass %}
+                                                {% assign has_featured = true %}
+                                            {% else %}
+                                                {% assign grid_item_width = defailt_giw %}
+                                            {% endif %}
+                                            {% include 'product-grid-item' %}
+                                            {% assign curIndex = curIndex | plus: 1 %}
+
+                                        {% else %}
+
+                                            {% comment %}
+                                            Pick Active Product Tag for collection
+                                            {% endcomment %}
+
+                                            {% assign handled_cur_tag = cur_tag | handle %}
+                                            {% assign active_product_tag = '' %}
+                                            {% for tag in product.tags %}
+                                                {% assign tagged_handle = tag | handle %}
+                                                {% if tagged_handle == handled_cur_tag %}
+                                                    {% assign active_product_tag = tag %}
+                                                {% endif %}
+                                            {% endfor %}
+
+                                            {% if product.tags contains active_product_tag %}
+                                                {% if curIndex == 6 %}{% break %}{% endif %}
+
+                                                {% assign group_name = 'group' | append: collection.handle %}
+                                                {% capture featuredClass %}
+                                                    {% cycle group_name: '', ' collectionProduct--featured--middle', ' collectionProduct--featured--end js-adjustFeaturedContent' %}
+                                                {% endcapture %}
+                                                {% if product.tags contains 'featured' and has_featured == false %}
+                                                    {% assign default_giw = 'large--one-third one-half' %}
+                                                    {% assign grid_item_width = default_giw | append: ' collectionProduct--featured' | append: featuredClass %}
+                                                    {% assign has_featured = true %}
+                                                {% else %}
+                                                    {% assign grid_item_width = defailt_giw %}
+                                                {% endif %}
+                                                {% include 'product-grid-item' %}
+                                                {% assign curIndex = curIndex | plus: 1 %}
+                                            {% endif %}
+
+                                        {% endif %}
+                                    {% endif %}
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                {% endpaginate %}
+                </div>
+            {% endfor %}
+            </div>
+        {% endif %}
+        </div>
+        <div id="bc-sf-filter-bottom-pagination"></div>
+    </div>
+</div>
+
+{% include 'catalog-script' %}
+{% include 'collection-footer-js' %}

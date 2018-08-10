@@ -1,0 +1,247 @@
+<!-- /templates/cart.liquid -->
+{% comment %}
+
+  For info on test orders:
+    - General http://docs.shopify.com/manual/your-store/orders/test-orders
+    - Shopify Payments - http://docs.shopify.com/manual/more/shopify-payments/testing-shopify-payments
+
+{% endcomment %}
+<style type="text/css">
+  .cart__row { margin-top: 0; padding-top: 1px}
+  .u-letterSpacing,
+  th, td small { letter-spacing: 1px; }
+
+  .cart-table td, .cart-table th { padding-top: 20px; padding-bottom: 20px; }
+
+  .update-cart { margin: 0 0 0 2em; border: none !important;}
+  .subtotalWrap { 
+    float:right; width: 100%;
+    margin-bottom: 1px; 
+    margin-top: 0.5em;
+  }
+  .fee-message { margin-bottom: 1em; }
+  .checkout-btn { width: 154px;}
+
+
+
+  @media screen and (max-width: 480px) {
+    .table--responsive th, 
+    .table--responsive td {
+      text-align: left;
+      padding: 10px;
+    }
+
+    .table--responsive td small,
+    .table--responsive td .h6 { text-align: center; } 
+
+    td[data-label="Remove"] {
+      float: right;
+      bottom: 0;
+      position: absolute;
+      text-align: right;
+      margin-bottom: 53px;
+      width: auto;
+      right: 0;
+    }
+
+    td[data-label="Remove"]:before { content: ''; }
+
+    td[data-label="Quantity"]:before { margin-top: 13px; }
+
+
+  }
+
+  @media screen and (max-width: 768px) {
+    .attachHikers:before { display: none; }
+    .update-cart { margin: 1em 0 0; }
+    .subtotalWrap { float:right; width: 100%; margin-top: 1em; font-size: 1.4em; }
+  }
+
+  .btn--shopNow { display: none; }
+
+</style>
+
+{% if settings['is_lookbook'] == false %}
+
+<div class="u-paddingTopBottom4x u-marginBottom4x">
+  <div class="wrapper wrapper--midWidth">
+  {% if cart.item_count > 0 %}
+  
+    <h1 class="h3 text-center">{{ 'cart.general.title' | t }}</h1>
+    {% comment %}
+    {% if settings['is_lookbook'] == true %}
+      <p class="u-textBold text-center">NOTE: Only Easybreath is available for purchase.</p>
+    {% endif %}
+    {% endcomment %}
+
+    <form action="/cart" method="post" novalidate class="cart table-wrap">
+      <table class="cart-table full table--responsive">
+        <thead class="cart__row cart__header-labels">
+          <th>&nbsp;</th>
+          <th class="u-textUppercase u-textBold">{{ 'cart.label.product' | t }}</th>
+          <th class="u-textUppercase u-textBold text-center">{{ 'cart.label.price' | t }}</th>
+          <th class="u-textUppercase u-textBold text-center">{{ 'cart.label.quantity' | t }}</th>
+          <th class="u-textUppercase u-textBold text-right">{{ 'cart.label.total' | t }}</th>
+          <th class="column--remove">&nbsp;</th>
+        </thead>
+        <tbody>
+          {% for item in cart.items %}
+            {% assign var_id = item.variant.id | append: '' %}
+            {% assign addons_ids = '' %}
+            {% assign addons_markup = '' %}
+            {% assign addons_remove = '' %}
+
+            {% for addon in cart.items %}
+              {% if addon.product.tags contains '_addon' and item.properties._for != blank and addon.properties['_for'] == var_id and addon.variant.id != item.variant.id %}
+                {% capture addons_ids %}{{ addons_ids }}{% unless addons_ids == '' %},{% endunless %}{{ addon.properties._for }}_{{ addon.variant.id }}{% endcapture %}
+                {% capture addons_remove %}{{ addons_remove }}updates[{{ addon.key }}]=0&amp;{% endcapture %}
+                {% capture addons_markup %}
+                  <tr class="addon__item">
+                    <td></td>
+                    <td>
+                      <a href="{{ addon.url }}" class="u-textBold u-marginBottom0x">
+                        {{ addon.product.title }}
+                      </a>
+                      {% unless addon.variant.title contains 'Default' %}
+                        <small class="u-textUppercase u-textBold u-block">{{ addon.variant.title }}</small>
+                      {% endunless %}
+
+                      {% if settings.cart_vendor_enable %}
+                        <p>{{ addon.vendor }}</p>
+                      {% endif %}
+                    </td>
+                    <td class="text-center"  data-label="{{ 'cart.label.price' | t }}">{{ addon.price | money }}</td>
+                    <td class="text-center"  data-label="{{ 'cart.label.quantity' | t }}">
+                      <span id="updates_{{ addon.properties._for }}_{{ addon.variant.id }}__display">{{ addon.quantity }}</span>
+                    </td>
+                    <td></td>
+                  </tr>
+                  {{ addons_markup }}
+                {% endcapture %}
+              {% endif %}
+            {% endfor %}
+            {% if addons_markup != '' %}
+              {% capture addons_markup %}{{ addons_markup }}</tbody><tbody><tr class="spacer"></tr></tbody>{% endcapture %}
+            {% endif %}
+
+            <tr class="cart__row table__section{% if item.properties._for != blank and item.properties['_for'] != var_id %} cart__row--addon{% endif %}">
+              <td {% comment %}data-label="{{ 'customer.order.product' | t }}"{% endcomment %}>
+                <a href="{{ item.url | within: collections.all }}" class="cart__image">
+                  {% comment %}
+                    More image size options at:
+                      - http://docs.shopify.com/themes/filters/product-img-url
+                  {% endcomment %}
+                  <img src="{{ item | img_url: '100x' }}" alt="{{ item.title | escape }}">
+                </a>
+              </td>
+              <td>
+                <a href="{{ item.url }}" class="h6 u-marginBottom0x">
+                  {{ item.product.title }}
+                </a>
+                {% unless item.variant.title contains 'Default' %}
+                  <small class="u-textUppercase u-textBold u-block">{{ item.variant.title }}</small>
+                {% endunless %}
+  
+                {% if settings.cart_vendor_enable %}
+                  <p>{{ item.vendor }}</p>
+                {% endif %}
+  
+                {% comment %}
+                  Optional, loop through custom product line items if available
+  
+                  For more info on line item properties, visit:
+                    - http://docs.shopify.com/support/your-store/products/how-do-I-collect-additional-information-on-the-product-page-Like-for-a-monogram-engraving-or-customization
+                {% endcomment %}
+                {% assign property_size = item.properties | size %}
+                {% if property_size > 0 %}
+                  {% for p in item.properties %}
+                    {% unless p.last == blank or p.first == '_for' %}
+                      {{ p.first }}:
+  
+                      {% comment %}
+                        Check if there was an uploaded file associated
+                      {% endcomment %}
+                      {% if p.last contains '/uploads/' %}
+                        <a href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
+                      {% else %}
+                        {{ p.last }}
+                      {% endif %}
+  
+                      <br>
+                    {% endunless %}
+                  {% endfor %}
+                {% endif %}
+               </td>
+              <td data-label="{{ 'cart.label.price' | t }}">
+                <span class="h6 text-center">
+                  {{ item.price | money }}
+                </span>
+              </td>
+              <td data-label="{{ 'cart.label.quantity' | t }}" class="text-center">
+                {% assign item_id = item.id %}
+                {% if item.product.tags contains '_addon' and item.properties._for != blank and item.properties['_for'] != item.variant.id %}
+                  {% assign item_id = item.id | prepend: '_' | prepend: item.properties._for %}
+                {% endif %}
+                <input type="number" name="updates[]" id="updates_{{ item_id }}" value="{{ item.quantity }}" min="0" style="text-align: center; max-width: 75px;"{% if addons_ids != '' %}data-addons={{ addons_ids | json}}{% endif %}>
+              </td>
+              <td data-label="{{ 'cart.label.total' | t }}" class="text-right">
+                <span class="h6">
+                  {{ item.line_price | money }}
+                </span>
+              </td>
+              <td data-label="Remove">
+                <a href="/cart/update?{{ addons_remove }}updates[{{ item.key }}]=0" class="cart__remove">
+                  <i class="ico ico--close"></i>
+                </a>
+              </td>
+            </tr>
+            {{ addons_markup }}
+          {% endfor %}
+        </tbody>
+      </table>
+      <div class="grid--full cart__row">
+        {% if settings.cart_notes_enable %}
+          <div class="grid__item large--two-fifths one-whole">
+            <label class="u-textBold u-textUppercase u-letterSpacing" for="CartSpecialInstructions">{{ 'cart.general.note' | t }}</label>
+            <textarea name="note" class="input-full" id="CartSpecialInstructions">{{ cart.note }}</textarea>
+          </div>
+        {% endif %}
+        <div class="grid__item large--text-right{% if settings.cart_notes_enable %} push--large--one-tenth large--one-half small--one-whole{% endif %}">
+          <p class="small--text-right medium--text-right">
+            <input type="submit" name="update" class="btn btn--text update-cart" value="{{ 'cart.general.update' | t }}">
+
+            <span class="subtotalWrap h6">
+              <span class="cart__subtotal-title u-textUppercase u-textBold u-letterSpacing">{{ 'cart.general.subtotal' | t }}</span>
+              <span class="h6 cart__subtotal">{{ cart.total_price | money }}</span>
+            </span>
+          </p>
+          <small class="u-textUppercase u-letterSpacing u-textBold u-block u-marginBottom2x small--text-right medium--text-right fee-message">{{ 'cart.general.shipping_at_checkout' | t }}</small>
+
+          <p class="small--text-right medium--text-right">
+            {% comment %}
+            <a href="/collections" class="btn btn--text">Continue Shopping</a>
+            <span style="padding: 0 .5em 0 .25em;">or</span>
+            {% endcomment %}
+            <input type="submit" name="checkout" class="btn btn--fill checkout-btn" value="{{ 'cart.general.checkout' | t }}">
+          </p>
+        </div>
+      </div>
+    </form>
+  {% else %}
+    {% comment %}
+      The cart is empty
+    {% endcomment %}
+    <div class="text-center">
+      <h1 class="h3">{{ 'cart.general.title' | t }}</h1>
+      <p>{{ 'cart.general.empty' | t }}</p>
+      {% comment %}<p>{{ 'cart.general.continue_browsing_html' | t }}</p>{% endcomment %}
+      <p><a class="btn" href="/collections">Continue Browsing</a></p>
+    </div>
+  {% endif %}
+  </div>
+
+  {% include 'trending-products', show_add_to_cart: false %}
+</div>
+{% else %}
+  {% include '404' %}
+{% endif %}

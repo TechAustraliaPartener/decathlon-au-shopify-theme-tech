@@ -1,0 +1,129 @@
+<!-- /snippets/collection-sidebar.liquid -->
+{% comment %}
+
+  Side navigation for the product types, vendors, and tags.
+  These can be based on the current collection or all products. Details in comments below.
+
+  Note: Clicking on a tag will filter the products within the current collection.
+  Clicking on a type or vendor link will take you out of the current collection
+  to a standalone collection page. E.g. /collections/vendors?q=Pepsi
+
+{% endcomment %}
+
+{% comment %}
+  Product tags in the current collection
+{% endcomment %}
+
+{% if current_tags %}
+<ul class="currentTags no-bullets">
+  {% for tag in current_tags %}
+    {% assign active_tag = tag | split: ': '%}
+    <li class="currentTag">
+      <a class="currentTag-link js-tagLink" href="{{ tag | handleize | replace: '-39-', '' }}"><i class="ico ico--close"></i> 
+        <span class="currentTag-title">{{ active_tag[1] }}</span>
+      </a></li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+<ul class="collectionList no-bullets">
+{% if collection %}
+  <li class="collectionList-item collectionList-item--active">
+    <a class="collectionList-item-link" href="{{ collection.url }}">{{ collection.title }}</a>
+    <ul class="collectionList-tags no-bullets">
+    {%- unless linklists[collection.handle].empty? -%}
+    {%- for tag in linklists[collection.handle].links -%}
+      <li class="collectionList-tagItem">
+        {% comment %}
+        TODO: {% if current_tags contains tag.url %} collectionList-tagItem-link--active{% endif %}
+        {% endcomment %}
+        <a class="collectionList-tagItem-link" href="{{ tag.url }}">{{ tag.title }}</a>
+      </li>
+    {%- endfor -%}
+    </ul>
+    {%- endunless -%}
+  </li>
+{% else %}
+{%- for link in linklists['all-sports'].links -%}
+  <li class="collectionList-item{% if collection.url == link.url %} collectionList-item--active{% endif %}">
+    <a class="collectionList-item-link" href="{{ link.url }}">{{ link.title }}</a>
+    {% if hide_children == false %}
+    {%- if collections[link.handle].tags.size > 0 -%}
+    <ul class="collectionList-tags no-bullets">
+    {%- for tag in linklists[link.handle].links -%}
+      <li class="collectionList-tagItem">
+        {% comment %}
+        TODO: {% if current_tags contains tag.url %} collectionList-tagItem-link--active{% endif %}
+        {% endcomment %}
+        <a class="collectionList-tagItem-link" href="{{ tag.url }}">{{ tag.title }}</a>
+      </li>
+    {%- endfor -%}
+    </ul>
+    {%- endif -%}
+    {% endif %}
+  </li>
+{%- endfor -%}
+{% endif %}
+</ul>
+{% unless hide_filters %}
+  {% if collection.all_tags.size > 0 %}
+    {% comment %}<h3>{{ 'collections.sidebar.tags' | t }}</h3>{% endcomment %}
+    {%- assign current_tags = current_tags | replace: '&#39;', "'" -%}
+    {%- for link in linklists['collections-sidebar'].links -%}
+    {%- assign link_title = link.title | replace: 'Tag: ', '' -%}
+    <div class="collectionFilter collectionFilter--{{ link.title | replace: 'Tag: ', '' | handleize }}">
+      <h6 class="collectionFilter-title">{{ link_title }}</h6>
+      <ul class="collectionFilter-list inline-list">
+      {% assign collection_handle = link.handle %}
+
+      {%- for tag_link in linklists[collection_handle].links -%}
+        {%- assign tag = tag_link.title -%}
+        {%- assign tag_title = link_title | append: ': ' | append: tag -%}
+        {%- assign tag_handle = tag_title | handleize -%}
+        <li class="collectionFilter-listItem{% if current_tags contains tag_title %} active{% endif %}">
+          {%- assign tag_link_classes = 'collectionFilter-listItem-link js-tagLink' -%}
+          {%- if collection_handle == 'tag-color' -%}
+            {%- assign color = tag | handleize -%}
+            {%- assign tag_link_classes = tag_link_classes | append: ' collectionFilter-listItem-link--color option--color-' | append: color -%}
+          {%- endif -%}
+          {%- if collection_handle == 'tag-gender' -%}
+            {% assign tag_link_classes = tag_link_classes | append: ' collectionFilter-listItem-checkbox' -%}
+          {%- endif -%}
+          <a class="{{ tag_link_classes }}" href="{{ tag_handle }}"{% if collection_handle == 'tag-color' %} title="{{ tag }}"{% endif %}>{{ tag }}</a>
+        </li>
+      {%- endfor -%}
+
+      {% comment %}
+      {%- for link in linklists[link.handle].links -%}
+        <li class="collectionFilter-listItem {% if current_tags contains link.handle %} active {% endif %}">
+            <a class="collectionFilter-listItem-link{% if collection_handle == 'tag-color' %} collectionFilter-listItem-link--color option--color-{{link.title | handleize }}{% endif %} {% if collection_handle == 'tag-gender' %} collectionFilter-listItem-checkbox {% endif %} js-tagLink" href="{{ link.url | remove: '#' }}">{{ link.title }}</a>
+        </li>
+      {%- endfor -%}
+      {% endcomment %}
+      </ul> 
+    </div>
+    {%- endfor -%}
+  {% endif %}
+{% endunless %}
+
+
+<ul class="collectionList colletionShopHomeList no-bullets">
+{%- for link in linklists['shop-homepage-links'].links -%}
+  <li class="collectionList-item{% if collection.url == link.url %} collectionList-item--active{% endif %}">
+    <a class="collectionList-item-link" href="{{ link.url }}">{{ link.title }}</a>
+    {%- if collections[link.handle].tags.size > 0 -%}
+    <ul class="collectionList-tags no-bullets">
+    {%- for tag in linklists[link.handle].links -%}
+      <li class="collectionList-tagItem">
+        {% comment %}
+        TODO: {% if current_tags contains tag.url %} collectionList-tagItem-link--active{% endif %}
+        {% endcomment %}
+        <a class="collectionList-tagItem-link" href="{{ tag.url }}">{{ tag.title }}</a>
+      </li>
+    {%- endfor -%}
+    </ul>
+    {%- endif -%}
+  </li>
+{%- endfor -%}
+</ul>
+

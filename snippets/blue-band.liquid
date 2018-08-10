@@ -1,0 +1,72 @@
+<div class="blue-band{% if footer_blue_banner %} blue-band--footer{% endif %}">
+  <div class="wrapper">
+    {%- if footer_blue_banner -%}<div class="attachHikers u-block"></div>{%- endif -%}
+    <div class="grid">
+      <div class="grid__item large--one-fifth{% if footer_blue_banner %} blue-band--footer-logo{% endif %}">
+        {%- if footer_blue_banner -%}
+        <div class="yellowgram">
+          <img class="u-blockAuto" style="max-width: 140px;" src="{{ 'decathlonlogo.png' | asset_img_url: 'original' }}" alt="Decathlon" />
+        </div>
+        {%- else -%}
+        <p class="blue-band-title u-textUppercase u-textBold text-center blue-band-item-wrapper">{{ settings['blue_band__home_title'] }}</p>
+        {%- endif -%}
+      </div>
+      <div class="grid__item large--one-fifth medium--one-half">
+        {% if settings['blue_band__fact_one_link'] == blank %}
+        <div class="blue-band-item-wrapper">
+        {% else %}
+        <div class="blue-band-item-wrapper blue-band-link" data-href="{{ settings['blue_band__fact_one_link'] }}">
+        {% endif %}
+          <div class="blue-band-icon">
+            <i class="ico ico--100"></i>
+          </div>
+          <div class="blue-band-content">
+            <p class="">{{ settings['blue_band__fact_one_text'] }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="grid__item large--one-fifth medium--one-half">
+        {% if settings['blue_band__fact_two_link'] == blank %}
+        <div class="blue-band-item-wrapper">
+        {% else %}
+        <div class="blue-band-item-wrapper blue-band-link" data-href="{{ settings['blue_band__fact_two_link'] }}">
+        {% endif %}
+          <div class="blue-band-icon">
+            <i class="ico ico--365"></i>
+          </div>
+          <div class="blue-band-content">
+            <p>{{ settings['blue_band__fact_two_text'] }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="grid__item large--one-fifth medium--one-half">
+        {% if settings['blue_band__fact_three_link'] == blank %}
+        <div class="blue-band-item-wrapper">
+        {% else %}
+        <div class="blue-band-item-wrapper blue-band-link" data-href="{{ settings['blue_band__fact_three_link'] }}">
+        {% endif %}
+          <div class="blue-band-icon">
+            <i class="ico ico--star"></i>
+          </div>
+          <div class="blue-band-content">
+            <p>{{ settings['blue_band__fact_three_text'] }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="grid__item large--one-fifth medium--one-half">
+        {% if settings['blue_band__fact_four_link'] == blank %}
+        <div class="blue-band-item-wrapper">
+        {% else %}
+        <div class="blue-band-item-wrapper blue-band-link" data-href="{{ settings['blue_band__fact_four_link'] }}">
+        {% endif %}
+          <div class="blue-band-icon">
+            <i class="ico ico--dollar"></i>
+          </div>
+          <div class="blue-band-content">
+            <p>{{ settings['blue_band__fact_four_text'] }}</p>
+          </div> 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

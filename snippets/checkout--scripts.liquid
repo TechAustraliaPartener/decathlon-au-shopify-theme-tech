@@ -1,0 +1,139 @@
+<script id="newsletterSignupTemplate" type="text/template">
+<div class="section section--newsletter-signup">
+    <div class="section__header">
+      <h2 class="section__title">Subscribe to our newsletter*</h2>
+      <p>Please select</p>
+    </div>
+    <div class="section__content">
+      <div class="content-box">
+        <div class="radio-wrapper content-box__row">
+          <div class="radio__input">
+            <input class="input-radio custom_bam" type="radio" value="1" name="buyer_accepts_marketing" id="custom_bam_true" checked="checked">
+          </div>
+          <label class="radio__label content-box__emphasis" for="custom_bam_true">Yes, sign me up</label>
+        </div>
+        <div class="radio-wrapper content-box__row">
+          <div class="radio__input">
+            <input class="input-radio custom_bam" type="radio" value="0" name="buyer_accepts_marketing" id="custom_bam_false">
+          </div>
+          <label class="radio__label content-box__emphasis" for="custom_bam_false">No, do not sign me up</label>
+        </div>
+      </div>
+    </div>
+</div>
+</script>
+    
+<script>
+
+;(function($) {
+  $(function() {
+
+    function insertAfter(newNode, referenceNode) {
+      return referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+    };
+        
+    /*!
+     * discount modifications
+     */
+    var reductionCodeField = document.getElementById('checkout_reduction_code'),
+        discountContainer = document.querySelector('.order-summary__section--discount'),
+        discountText = document.createElement('p');
+
+    $('.order-summary__section--discount').addClass('hidden');
+    $('#checkout_reduction_code').attr('placeholder', 'Promotion Code');      
+
+    if (discountContainer) {
+      discountText.innerHTML = 'Have a promotion code? <a href="#" class="js-toggleDiscount">Click here to enter it ></a>';
+      discountText.className = 'order-summary__section order-summary__section--discountText';
+      insertAfter(discountText, discountContainer);
+
+    }
+
+    $('.js-toggleDiscount').on('click', function(e) {
+      e.preventDefault();
+      discountText.classList.add('hidden');
+      discountContainer.classList.remove('hidden');
+    });
+    
+    /*!
+     * newsletter signup modifications
+     */
+    var newsletterSubscription = $('.checkbox__label').text().trim() == "Subscribe to our newsletter";
+    if (newsletterSubscription) {
+      $('.section--optional').addClass('hidden');
+      //document.querySelector('.section--optional').classList.add('hidden');
+      var signupContainer = document.createElement('div');
+      signupContainer.className = 'section section--newsletter-signup';
+      signupContainer.innerHTML = document.querySelector('#newsletterSignupTemplate').text;
+      insertAfter(signupContainer, document.querySelector('.section--optional'));
+
+      $('.custom_bam').on('click', function(e) {
+        $('input[name="checkout[buyer_accepts_marketing]"]').val($(e.currentTarget).val());
+      });
+    }
+
+    var storeLink = Shopify.shop || Shopify.Checkout.apiHost;
+
+    if (storeLink !== 'decathlon-usa.myshopify.com') {
+      $('.footerNav-link, .site-nav__link, .site-nav__all-shop-link, .site-nav__shop-list, .site-header__logo-link, .mobile-nav__link').each(function(k,v) { 
+        $(v).attr('href', 'https://'+ storeLink + $(v).attr('href')); 
+      }); 
+    }
+
+    /*! https://goo.gl/BP0KiC */
+		function day(a) {
+		    var date = new Date();
+		    var hours = date.getHours();
+		
+		    // If after 3pm, add 1 day
+		    if (hours >= 15) a++;
+		
+		    var expectedDeliveryDate = addWeekdays(date, a);
+		    return expectedDeliveryDate;
+		}
+		
+		function addWeekdays(fromDate, days) {
+		    var count = 0;
+		    while (count < days) {
+		        fromDate.setDate(fromDate.getDate() + 1);
+		        if (fromDate.getDay() != 0 && fromDate.getDay() != 6) // Skip weekends
+		            count++;
+		    }
+		    return fromDate;
+		}
+
+    var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+    if ($('.section--shipping-method').length) {
+      console.log('Waiting for shipping methods');
+      var shippingMethodsLoaded = false;
+
+      var waitForShippingMethods = setInterval(function() {
+        var shippingMethods = $('.section--shipping-method .content-box__row');
+        console.log(shippingMethods.length + ' found');
+        if (shippingMethods.length) {
+          shippingMethodsLoaded = true;
+
+          $('[data-shipping-method]').each(function(k,v) {
+            var $label = $(v).find('.radio__label__primary');
+            var businessDaysNum = $label.text().split(' business day')[0].split('(')[1];
+
+            if (businessDaysNum) {
+							var dateInfo = day(businessDaysNum),
+							    dateString = days[dateInfo.getDay()]+ ', '+ months[dateInfo.getMonth()] + ' ' + dateInfo.getDate();
+
+              $label.append('<br>Estimated arrival: <strong>'+ dateString + '</strong>');
+            }
+          });
+
+          clearInterval(waitForShippingMethods);
+        }
+      }, 500);      
+    }
+
+  });
+})(jQuery);
+
+</script>
+

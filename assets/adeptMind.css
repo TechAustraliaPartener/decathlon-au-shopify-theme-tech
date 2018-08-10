@@ -1,0 +1,62 @@
+.header-searchWrapper .adept-autocomplete {
+    top: 100% !important;
+}
+.header-searchWrapper input.adept-header-searchInput.header-searchInput {
+    font-family: avalonregular, HelveticaNeue, Helvetica Neue, Helvetica, Arial, sans-serif !important;
+}
+.header-searchWrapper input.adept-header-searchInput.header-searchInput.header-searchInput {
+    height: 35px;
+}
+  
+@media screen and (-ms-high-contrast: none) {
+    .header-searchWrapper input.adept-header-searchInput.header-searchInput.header-searchInput {
+        width: 100%;
+        padding: 5px 30px 8px 5px !important;
+        position: relative;
+        height: 35px;
+    }
+    .header-searchWrapper .adept-input__button-container .adept-button span:-ms-input-placeholder {
+        padding: 5px 30px 8px 5px !important; 
+    }
+    .adept-form-text input {
+        padding: 5px 30px 8px 5px !important; 
+    }
+}
+  
+.adept-search__autocomplete__field .adept-button {
+    background-color: transparent !important;
+}
+.adept-autocomplete__takeover__icon.jsForSearchToggle:after {
+    color: #0082c3 !important;
+}
+.adept-autocomplete__takeover .adept-input__button-inset input { height: 35px !important; }
+.adept-autocomplete-section--product { 
+    display: none 
+}
+.adept-autocomplete__search-link {
+    display:none !important; /* hide the search link from results overlay*/
+}  
+.adept-autocomplete__takeover__search {
+    padding: 2px 10px 5px 10px !important;
+    height: 40px !important;
+}
+.adept-filter-takeover {
+    top: 10000vh !important;
+    padding-top: 80px !important;
+}
+  
+@media screen and (min-width: 620px) {
+    .adept-filter-takeover {
+        padding-top: 45px !important;
+    }
+}
+  
+/* ===== Style for search button on small screens ===== */
+@media screen and (max-width: 619px) {
+    .adept-search__autocomplete__field .adept-button:after {
+        color: white !important;
+    }
+    .adept-search__autocomplete__field .adept-button {
+        background-color: #0082c3 !important;
+    }
+}

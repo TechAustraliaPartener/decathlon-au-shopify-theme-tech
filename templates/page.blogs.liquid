@@ -1,0 +1,45 @@
+<!-- /templates/page.blogs.liquid -->
+<div class="wrapper blogHeader">
+  <h1 class="h2">{{ 'homepage.sections.news_title' | t }}</h1>
+</div>
+
+{% assign featured_articles = false %}
+{% assign featured_tags = false %}
+{% for blog in linklists['all-blogs'].links %}
+  {% if featured_articles %}
+    {% assign featured_articles = featured_articles | concat: blog.object.articles %}
+  {% else %}
+    {% assign featured_articles = blog.object.articles %}
+  {% endif %}
+  {% if featured_tags %}
+    {% assign featured_tags = featured_tags | concat: blog.object.all_tags %}
+  {% else %}
+    {% assign featured_tags = blog.object.all_tags %}
+  {% endif %}
+{% endfor %}
+
+{% comment %}
+uniq doesn't seem to work on the tag list, so I join/split it to force the tags to become strings
+{% endcomment %}
+{% assign featured_tags = featured_tags | join: ',' | split: ',' | uniq %}
+
+{% include 'blog_subnav' with linklists['all-blogs'] %}
+
+
+
+<div class="wrapper">
+
+  <div class="blogCards u-paddingTopBottom3x">
+    <div class="wrapper">
+  
+      <div class="grid-uniform u-flex-list u-flex-list--line">
+      {% assign featured_articles = featured_articles | sort: 'published_at' | reverse %}
+      {%- for article in featured_articles -%}
+        {% include 'get-blog-for-article', blogs: linklists['all-blogs'].links, article: article %}
+        {% include 'blog-grid-item', size_classes: 'large--one-third medium--one-half', include_excerpt: true  %}
+      {%- endfor -%}
+      </div>
+  
+    </div>
+  </div>
+</div>

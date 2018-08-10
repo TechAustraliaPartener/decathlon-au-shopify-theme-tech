@@ -1,0 +1,129 @@
+{% assign start_tag = '<p>---collection_' | append: collection.handle | append: '---</p>' %}
+{% assign end_tag = '<p>---/collection_' | append: collection.handle | append: '---</p>' %}
+{% assign section_content = pages['get-going-pack-extra-sections'].content | split: start_tag %}
+{% if section_content.size == 2 %}
+  {% assign section_content = section_content | last | split: end_tag | first | replace: '<p>---line_rule---</p>', '<hr/>' %}
+  
+  {% assign curator_name = section_content | split: '<p>---curator_name---</p>' %}
+  {% if curator_name.size == 2 %}
+    {% assign curator_name = curator_name | last | split: '<p>---/curator_name---</p>' | first %}
+    {% assign curator_image = curator_name | strip_newlines | strip_html | downcase | prepend: 'san_francisco_team_' | append: '.jpg' | asset_url %}
+  {% else %}
+    {% assign curator_name = false %}
+    {% assign curator_image = false %}
+  {% endif %}
+
+  {% assign curator_tag = section_content | split: '<p>---curator_tag---</p>' %}
+  {% if curator_tag.size == 2 %}
+    {% assign curator_tag = curator_tag | last | split: '<p>---/curator_tag---</p>' | first %}
+  {% else %}
+    {% assign curator_tag = false %}
+  {% endif %}
+
+  {% assign intro_title = section_content | split: '<p>---intro_title---</p>' %}
+  {% if intro_title.size == 2 %}
+    {% assign intro_title = intro_title | last | split: '<p>---/intro_title---</p>' | first %}
+  {% else %}
+    {% assign intro_title = false %}
+  {% endif %}
+
+  {% assign intro_description = section_content | split: '<p>---intro_description---</p>' %}
+  {% if intro_description.size == 2 %}
+    {% assign intro_description = intro_description | last | split: '<p>---/intro_description---</p>' | first %}
+  {% else %}
+    {% assign intro_description = false %}
+  {% endif %}
+
+  {% assign resource_section = section_content | split: '<p>---resource_section---</p>' %}
+  {% if resource_section.size == 2 %}
+    {% assign resource_section = resource_section | last | split: '<p>---/resource_section---</p>' | first | split: '<p>---column_break---</p>' %}
+  {% else %}
+    {% assign resource_section = false %}
+  {% endif %}
+
+{% else %}
+  {% assign section_content = false %}
+{% endif %}
+
+{% assign banner_bg_image = collection.image | img_url: '2000x' %}
+{% include 'banner--billboard',
+  banner_adtl_classes: ' banner--centeredContent banner--wide',
+  banner_intro: 'Get Going Pack',
+  banner_title: collection.title
+%}
+
+{% if intro_title or intro_description %}
+<div class="u-block packIntro">
+  <div class="packIntro-curatorImage" style="background-image:url('{{ curator_image }}')"></div>
+  <div class="wrapper wrapper--narrow">
+    {% if curator_name %}
+      <h5 class="packIntro-curatorCredit">Curated By {{ curator_name | strip_html }}</h5>
+      {% if curator_tag %}<p class="packIntro-curatorTag">{{ curator_tag | strip_html }}</p>{% endif %}
+    {% endif %}
+    {% if intro_title %}<h4 class="packIntro-title">{{ intro_title | strip_html }}</h4>{% endif %}
+    {% if intro_description %}<p class="packIntro-description">{{ intro_description | strip_html }}</p>{% endif %}
+    <h6 class="text-center u-marginTop2x">Select your options for each product</h6>
+    
+    {%- assign collection_total = 0 -%}
+    {%- for product in collection.products -%}
+      {%- assign collection_total = collection_total | plus: product.price_min -%}
+    {%- endfor -%}
+    {%- assign collection_total = collection_total | divided_by: 100 | ceil | times: 100 | money_without_trailing_zeros -%}
+  </div>
+</div>
+{% endif %}
+
+<div class="u-block u-paddingTopBottom4x packProducts">
+<div class="wrapper wrapper--midWidth">
+  <div class="grid-uniform js-slick--attr" data-slick='{ "slidesToShow": 1, "infinite": true, "dots": true, "arrows": false, "mobileFirst": true, "responsive": [{ "breakpoint": 480, "settings": "unslick" }] }'>
+  {% for product in collection.products %}
+    {% include 'product-grid-item', grid_item_width: 'large--one-quarter medium--one-half' %}
+  {% endfor %}
+  </div>
+  {%- assign button_wrapper = 'u-block u-marginTop4x text-center' -%}
+  {%- assign button_url = pages['get-going-packs'].url -%}
+  {%- assign button_title = 'Explore More Get Going Packs' -%}
+
+    {%- assign button_text = 'Get it all for ' | append: collection_total -%}
+    {% if settings['is_lookbook'] == true %}
+      {%- assign button_text = 'Add all to wishlist for ' | append: collection_total -%}
+    {% endif %}
+
+  <p class="u-marginTop2x packIntro-buttonWrap text-center">
+    <a class="btn js-addAllToCart" data-item-class=".collectionProduct" href="{{ collection.url }}">{{ button_text }}</a>
+  </p>
+  
+</div>
+</div>
+
+{% if resource_section %}
+<div class="u-block u-paddingTopBottom8x u-bgLightGray packResources behindHikers">
+  <div class="wrapper">
+    <div class="grid">
+      <div class="grid__item large--one-half packResources-column">
+        {{ resource_section[0] }}
+      </div>
+      <div class="grid__item large--one-half packResources-column">
+        {{ resource_section[1] }}
+      </div>
+    </div>
+    {% include 'button' %}
+  </div>
+</div>
+{% endif %}
+
+
+{% capture product_json %}
+var productJSON = [
+  {% for product in collection.products %}
+    {
+    {% if product.options.size == 1 and product.options.first != 'Title' %}
+      addLabel: '{{ product.options.first | escape }}',
+    {% endif %}
+      id: '{{ collection.handle }}-{{ product.id }}',
+      product: {{ product | json }}
+    },
+  {% endfor %}
+  ];
+{% endcapture %}
+{% include 'catalog-script' %}

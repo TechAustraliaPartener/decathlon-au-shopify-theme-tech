@@ -1,0 +1,298 @@
+<!-- /templates/index.liquid -->
+{% comment %} {% include 'promo-band' %} {% endcomment %}
+
+<div id="bannerHero" class="banner banner--slideshow js-slick--attr" data-slick='{ "dots": true, "infinite": true, "autoplay": false, "autoplaySpeed": 2000, "slidesToShow": 1, "arrows": true, "adaptiveHeight": true }'>
+
+    {% for i in (1..3) %}
+      {% assign slideName = 'homepage_main_banner_' | append: i | append: '_'  %}
+      {% assign slideImage = slideName | append: 'background_image.jpg'  %}
+      {% assign slideBGPosition = slideName | append: 'background_position' %}
+      {% assign slideIntro = slideName | append: 'intro'  %}
+      {% assign slideTitle = slideName | append: 'headline'  %}
+      {% assign slideDescription = slideName | append: 'subheadline'  %}
+      {% assign slideLinkText = slideName | append: 'link_text'  %}
+      {% assign slideLink = slideName | append: 'page_link'  %}
+      {% assign slideShowCTAImage = slideName | append: 'show_cta_product'  %}
+      {% assign slideCTAImage = slideName | append: 'cta_product_image.png' %}
+
+      {% assign banner_bg_image = slideImage | asset_url %}
+
+      {% if settings[slideShowCTAImage] %}
+        {% assign button_cta_image = slideCTAImage | asset_url %}
+      {% else %}
+        {% assign button_cta_image = null %}
+      {% endif %}
+
+      {% if settings[slideTitle] != blank %}
+      <div class="banner--slide">
+        {% include 'banner--billboard',
+          banner_wrapper_adtl_classes: ' u-centerVertically',
+          banner_bg_position: settings[slideBGPosition],
+          banner_title: settings[slideTitle],
+          banner_subtitle: settings[slideDescription],
+          button_wrapper: 'banner-btnContainer',
+          button_url: settings[slideLink],
+          button_title: settings[slideLinkText]
+        %}
+      </div>
+      {% endif %}
+
+    {% endfor %}
+
+</div>
+
+{% assign button_cta_image = null %}
+
+{% comment %} {% include 'blue-band' %} {% endcomment %}
+
+{% comment %} {% if settings['homepage_store_info_toggle'] == true %}
+<div class="storeInfo">
+  <div class="wrapper">
+    <div class="grid--full">
+      <div class="grid__item storeInfo-hoursFlex u-centerVertically">
+        <div class="u-centerVertically-ie">
+          <div class="storeInfo-hoursFlex-box u-bgLightGray">
+            <h6 class="text-center">{{ settings['homepage_store_info_grey_box_title'] }}</h6>
+            <p class="text-center u-marginBottom0x">{{ settings['homepage_store_info_hours'] }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="grid__item storeInfo-btnsFlex u-centerVertically">
+        <div class="u-centerVertically-ie">
+
+          <h4 class="visitUsText">{{ settings['homepage_store_info_middle_title'] }}</h4>
+          <div class="storeInfo-btnsFlex-box">
+            <a class="btn btn--text btn--storeInfo" href="/pages/{{ settings['homepage_store_info_middle_link_1_page_link'] }}">{{ settings['homepage_store_info_middle_link_1_text'] }}</a>
+            <a class="btn btn--text btn--storeInfo" href="/pages/{{ settings['homepage_store_info_middle_link_2_page_link'] }}">{{ settings['homepage_store_info_middle_link_2_text'] }}</a>
+          </div>
+        </div>
+      </div>
+      <div class="grid__item storeInfo-imgFlex">
+        <img src="{{ 'homepage_store_info_image.jpg' | asset_url }}" alt="Decathlon Store Picture">
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %} {% endcomment %}
+
+{% comment %} <div class="grid--full medium-down--hide large--show">
+  {% assign banner_img = 'homepage_half_banner_left_image.jpg' | asset_url %}
+  {% include 'banner--half',
+    banner_image: banner_img,
+    banner_title: settings['homepage_half_banner_left_title'],
+    button_wrapper: 'u-zindex1x',
+    button_url: collections[settings['homepage_half_banner_left_collection']].url,
+    button_title: settings['homepage_half_banner_left_btn_text'],
+    wrapper: 'banner-btnContainer'
+  %}
+  {% assign banner_img = 'homepage_half_banner_right_image.jpg' | asset_url %}
+  {% include 'banner--half',
+    banner_image: banner_img,
+    banner_title: settings['homepage_half_banner_right_title'],
+    button_wrapper: 'u-zindex1x',
+    button_url: collections[settings['homepage_half_banner_right_collection']].url,
+    button_title: settings['homepage_half_banner_right_link_text'],
+    wrapper: 'banner-btnContainer'
+  %}
+</div> {% endcomment %}
+
+{% comment %} {% include 'get-going-pack', index: 'top' %} {% endcomment %}
+
+{% assign banner_bg_image = nil %}
+{% comment %} {% assign video_banner_png = 'banner_transparent_png.png' | asset_url %} {% endcomment %}
+{% comment %} {% include 'home-innovation-video-bg',
+  banner_adtl_classes: ' banner--centeredContent',
+  banner_title: settings['homepage_video_banner_headline'],
+  banner_transparent_png: video_banner_png,
+  video_url: settings['homepage_video_banner_youtube_url'],
+  button_title_image: settings['homepage_video_banner_video_link_text'],
+  button_url: settings['homepage_video_banner_page_link'],
+  video_button: '{ "url": "/pages/the-joy-of-innovation", "text": "Learn How We Innovate" }'
+ %} {% endcomment %}
+
+{% comment %} <div id="innovationBanner" class="banner banner--slideshow js-slick--attr" data-slick='{ "dots": true, "infinite": true, "autoplay": true, "autoplaySpeed": 7000, "slidesToShow": 1, "arrows": true, "adaptiveHeight": true }'>
+
+    {% for i in (1..3) %}
+      {% assign slideName = 'homepage_slider_banner_' | append: i | append: '_'  %}
+      {% assign slideImage = slideName | append: 'background_image.jpg'  %}
+      {% assign slideBGPosition = slideName | append: 'background_position' %}
+      {% assign slideIntro = slideName | append: 'intro'  %}
+      {% assign slideTitle = slideName | append: 'headline'  %}
+      {% assign slideDescription = slideName | append: 'subheadline'  %}
+      {% assign slideLinkText = slideName | append: 'link_text'  %}
+      {% assign slideLink = slideName | append: 'product_link'  %}
+      {% assign slideProduct = all_products[settings[slideLink]] %}
+      {% assign slidePrice = slideProduct.price | money %}
+
+      {% assign banner_bg_image = slideImage | asset_url %}
+      {% assign button_url = slideProduct.url %}
+      {% assign button_title = settings[slideLinkText] | replace: '{price}', slidePrice %}
+
+      <!--{{ slideProduct.url }}-->
+      <div class="banner--slide">
+        {% include 'banner--billboard',
+          banner_wrapper_adtl_classes: ' u-centerVertically',
+          banner_bg_position: settings[slideBGPosition],
+          banner_title: settings[slideTitle],
+          banner_intro: settings[slideIntro],
+          banner_subtitle: settings[slideDescription],
+          button_wrapper: 'banner-btnContainer'
+        %}
+      </div>
+
+    {% endfor %}
+
+</div> {% endcomment %}
+
+{% comment %} {% include 'get-going-pack', index: 'bottom' %} {% endcomment %}
+
+{% include 'trending-products' %}
+
+<div class="instagramFeed-wrapper u-block hidden">
+  <div class="wrapper wrapper--narrow">
+    <div class="instagramFeed-message instagramFeed-message--homepage">
+      <h3 class="instagramMessage-title text-center">
+        {% comment %}
+        <span class="footer-icon-instagram instagramFeed-icon"></span><br/>
+        Be part of our community&nbsp;on Instagram&nbsp;and #LiveDecathlon
+        {{ settings['homepage_instagram_banner_title'] }}
+        {% endcomment %}
+      </h3>
+    </div>
+  </div>
+  <div class="instagramFeed js-instagramFeed grid--full js-slick--attr" data-instagram="{{ shop.metafields.global.instagram_feed | replace: '"', '&#34;' }}" data-slick='{ "dots": false, "infinite": false, "autoplay": false, "slidesToShow": 1, "arrows": true, "adaptiveHeight": true, "slide": ".instagramColumn", "mobileFirst": true, "responsive": [
+      {
+        "breakpoint": 1120,
+        "settings": { "slidesToShow": 5 }
+      },
+      {
+        "breakpoint": 900,
+        "settings": { "slidesToShow": 4 }
+      },
+      {
+        "breakpoint": 600,
+        "settings": { "slidesToShow": 3 }
+      },
+      {
+        "breakpoint": 400,
+        "settings": { "slidesToShow": 2 }
+      }
+    ]}'>
+      <button class="instagramProductFeed-loadMore js-loadInstagram" type="button">Next</button>
+    </div>
+</div>
+{% comment %} {%- unless settings['is_lookbook'] -%}
+<!-- #DecathlonSF -->
+{%- endunless -%}
+
+<div class="sportsSearch u-block u-bgLightGray">
+  <div class="wrapper">
+
+    <h3 class="text-center sportsSearch-search large--show">I'm looking for <input class="sportsSearch-searchInput js-search js-nobfcache" type="search" placeholder="my sport type" /><span class="icon"></span></h3>
+
+    <div class="sportsSearchResultsWrapper searchResults"></div>
+
+    <h3 class="medium-down--show large--hide text-center">Find Your Sport</h3>
+  </div>
+
+  <div class="js-slick--attr" data-slick='{ "dots": false, "arrows": true, "infinite": true, "centerMode": false, "centerPadding": "5%", "slidesToShow": 6, "autoplay": false, "responsive": [
+    {
+      "breakpoint": 1520,
+      "settings": { "slidesToShow": 6, "centerMode": false }
+    },
+    {
+      "breakpoint": 1390,
+      "settings": { "slidesToShow": 5, "centerMode": true, "centerPadding": "3%"  }
+    },
+    {
+      "breakpoint": 1060,
+      "settings": { "slidesToShow": 4, "centerMode": false }
+    },
+    {
+      "breakpoint": 810,
+      "settings": { "slidesToShow": 3, "centerMode": true, "centerPadding": "6%" }
+    },
+    {
+      "breakpoint": 650,
+      "settings": { "slidesToShow": 3, "centerMode": false }
+    },
+    {
+      "breakpoint": 500,
+      "settings": { "slidesToShow": 2, "centerMode": false }
+    },
+    {
+      "breakpoint": 430,
+      "settings": { "slidesToShow": 1, "centerMode": true, "centerPadding": "23%" }
+    }
+  ]}'>
+  {%- for link in linklists['featured-sports'].links -%}
+  <div class="sportsSearch-slide" data-sport="{{ link.object.title | downcase }}">
+      <a href="{{ link.object.url }}">
+        <img alt="{{ link.object.title | capitalize }}" src="{{ link.object.title | handleize | prepend: 'sportsSearch-' | append: '.jpg' | file_url }}" />
+        <div class="u-centerVertically sportsSearch-slide-vcenter">
+          <div class="u-centerVertically-ie">
+            <p class="sportsSearch-slide-title">{{ link.object.title | capitalize }}</p>
+          </div>
+        </div>
+        <p class="sportsSearch-slide-shop">Shop Now</p>
+      </a>
+    </div>
+  {%- endfor -%}
+  </div>
+
+  <div class="wrapper">
+    <p class="text-center"><a class="btn" href="/collections">All Sports</a></p>
+  </div>
+</div> {% endcomment %}
+
+{% comment %} <!-- blog cards -->
+<div class="blogCards">
+  <div class="wrapper">
+    <h3 class="text-center u-marginBottom2x">{{ 'homepage.sections.news_title' | t }}</h3>
+    <div class="grid-uniform u-flex-list u-flex-list--line js-slick--attr" data-slick='{ "infinite": true, "autoplay": false, "slidesToShow": 1, "dots": true, "arrows": false, "mobileFirst": true, "responsive": [ { "breakpoint": 768, "settings": "unslick" } ] }'>
+    {% assign featured_articles = false %}
+    {% for blog in linklists['all-blogs'].links %}
+      {% if featured_articles %}
+        {% assign featured_articles = featured_articles | concat: blog.object.articles %}
+      {% else %}
+        {% assign featured_articles = blog.object.articles %}
+      {% endif %}
+    {% endfor %}
+
+    {% assign featured_articles = featured_articles | sort: 'published_at' | reverse %}
+    {%- for article in featured_articles -%}
+      {% if forloop.index > 3 %}{% break %}{% endif %}
+      {% include 'get-blog-for-article', blogs: linklists['all-blogs'].links, article: article %}
+      {% include 'blog-grid-item', size_classes: 'large--one-third' %}
+    {%- endfor -%}
+
+    </div>
+    {% include 'button',
+      button_wrapper: 'text-center blogCards-moreButton u-marginTop4x u-block',
+      button_url: '/pages/all-blogs',
+      button_title: 'More from Our Playbook'
+    %}
+  </div>
+</div> {% endcomment %}
+
+{% comment %} {% include 'videos-script' %} {% endcomment %}
+{% include 'instagram-template' %}
+
+{% capture product_json %}
+var productJSON = [
+  {% for product in collections['trending-products'].products limit:20 %}
+    {%- if product.available -%}
+      {
+      {% if product.options.size == 1 and product.options.first != 'Title' %}
+        addLabel: '{{ product.options.first | escape }}',
+      {% endif %}
+        id: 'trending-products-{{ product.id }}',
+        product: {{ product | json }}
+      },
+    {% endif %}
+  {% endfor %}
+  ];
+{% endcapture %}
+{% include 'catalog-script' %}
+
+{{ content_for_index }}

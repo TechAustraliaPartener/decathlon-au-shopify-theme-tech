@@ -1,0 +1,45 @@
+<div class="wrapper u-paddingTopBottom4x u-marginBottom4x">
+  {% include 'customers--my-account-header', account_title: 'Communication preferences' %}
+
+  <div class="account-communicationPreferences u-marginTop2x u-block">
+    <div class="u-block">
+
+  <div class="">
+
+    <div class="form-vertical">
+      <form class="customerForm updateCustomer js-updateCustomer">
+        <div class="notifications u-marginBottom1x"></div>
+        <input type="hidden" name="token" value="{{ customer.metafields.customers.access_token }}">
+
+          <div class="inputWrap">
+            <label for="Email">{{ 'customer.register.email' | t }}</label>
+            <input type="email" name="email" id="Email" class="input-full{% if form.errors contains 'email' %} error{% endif %}" placeholder="{{ 'customer.register.email' | t }}" value="{{ customer.email }}" autocorrect="off" >
+          </div>
+
+          <div class="account-radioWrapper u-block">
+              <label class="h5 text-left" for="AcceptsMarketing">Newsletter subscription</label>
+
+              <div class="account-radioItem">
+                <input class="input-radio custom_bam" type="radio" value="1" name="accepts_marketing" id="custom_bam_true" {% if customer.accepts_marketing == true %}checked="checked"{% endif %}>
+                <label class="" for="custom_bam_true">Yes, sign me up</label>
+              </div>
+              <div class="account-radioItem">
+                <input class="input-radio custom_bam" type="radio" value="0" name="accepts_marketing" id="custom_bam_false" {% unless customer.accepts_marketing %}checked="checked"{% endunless %}>
+                <label class="radio__label content-box__emphasis" for="custom_bam_false">No, do not sign me up</label>
+              </div>
+          </div>
+
+{% comment %}
+            <label for="AcceptsMarketing">Newsletter subscription</label>
+            <input id="AcceptsMarketing" type="checkbox" name="accepts_marketing" {% if customer.accepts_marketing %}checked="checked"{% endif %}> 
+{% endcomment %}
+
+
+        <p>
+          <input type="submit" value="Update" class="btn btn--fill btn--full">
+        </p>
+    </form>
+    </div></div></div>
+
+  </div>
+</div>

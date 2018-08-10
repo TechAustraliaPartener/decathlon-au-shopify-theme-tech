@@ -1,0 +1,246 @@
+<!doctype html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="ie9 no-js"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+
+  <!-- Basic page needs ================================================== -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+
+  {% comment %}Favicon{% endcomment %}
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ 'apple-touch-icon.png' | asset_url }}">
+  <link rel="icon" type="image/png" href="{{ 'favicon-32x32.png' | asset_url }}" sizes="32x32">
+  <link rel="icon" type="image/png" href="{{ 'favicon-16x16.png' | asset_url }}" sizes="16x16">
+  <link rel="manifest" href="{{ 'site.webmanifest' | asset_url }}">
+  <link rel="mask-icon" href="{{ 'safari-pinned-tab.svg' | asset_url }}" color="#0080c4">
+  <meta name="apple-mobile-web-app-title" content="Decathlon">
+  <meta name="application-name" content="Decathlon">
+  <meta name="msapplication-TileColor" content="#0080c4">
+  <meta name="theme-color" content="#0080c4">
+
+
+  <!-- Title and description ================================================== -->
+  <title>
+  {{ page_title }}{% if current_tags %}{% assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags }}{% endif %}{% if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
+  </title>
+
+  {% if page_description %}
+  <meta name="description" content="{{ page_description | escape }}">
+  {% endif %}
+
+  <!-- Helpers ================================================== -->
+  {% include 'social-meta-tags' %}
+  <link rel="canonical" href="{{ canonical_url }}">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no, user-scalable=0">
+  <meta name="theme-color" content="{{ settings.color_primary }}">
+
+  <!-- CSS ================================================== -->
+  {{ 'fonts.css' | asset_url | stylesheet_tag }}
+  <link rel="stylesheet" href="https://i.icomoon.io/public/71cc821593/Decathlon/style.css">
+  {{ '//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css' | stylesheet_tag }}
+  {{ '//cdn.jsdelivr.net/jquery.slick/1.6.0/slick-theme.css' | stylesheet_tag }}
+  {{ 'timber.scss.css' | asset_url | stylesheet_tag }}
+  {{ 'fancybox.css' | asset_url | stylesheet_tag }}
+  {{ 'skill-level.scss' | asset_url | stylesheet_tag }}
+  {{ 'header.scss' | asset_url | stylesheet_tag }}
+  {{ 'adeptMind.css' | asset_url | stylesheet_tag }}
+  {% comment %}
+  {{ 'zoom.css' | asset_url | stylesheet_tag }}
+  {% endcomment %}
+
+
+  <!-- Header hook for plugins ================================================== -->
+  {{ content_for_header }}
+  {% include 'oldIE-js' %}
+
+  {{ '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js' | script_tag }}
+  {{ 'modernizr.min.js' | asset_url | script_tag }}
+
+  {% comment %}
+    If you store has customer accounts disabled, you can remove the following JS file
+  {% endcomment %}
+  {% if template contains 'customers' %}
+    {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
+  {% endif %}
+
+  {% comment %} wishlist {% endcomment %}
+  {% if settings.app_wk_enabled %}
+    {% include 'appmate-wishlist-king' %}
+  {% endif %}
+
+  {% comment %}
+    script for Minubo
+  {% endcomment %}
+  <script>
+   window.dataLayer = window.dataLayer || [];
+   dataLayer.push({
+      'random': Math.random().toString(36).substr(2,9),
+      'timestamp': new Date().getTime()
+   });
+  </script>
+
+{% if settings.bugherd_enabled %}
+<script type='text/javascript'>
+(function (d, t) {
+ var bh = d.createElement(t), s = d.getElementsByTagName(t)[0];
+ bh.type = 'text/javascript';
+ bh.src = 'https://www.bugherd.com/sidebarv2.js?apikey=dhjrnisw4jmjeitzvlhxbq';
+ s.parentNode.insertBefore(bh, s);
+ })(document, 'script');
+</script>
+{% endif %}
+
+{% comment %} {{ 'bc-sf-filter.css' | asset_url | stylesheet_tag }}{% endcomment %}
+{{ '//shopify-decathlon-prod-api.adeptmind.ai/css/app.css' | stylesheet_tag }}
+
+  <!-- pinterest -->
+  <meta name="p:domain_verify" content="15f1bb70fdfd58ef2b29026440052233"/>
+
+  <!-- google -->
+  <meta name="google-site-verification" content="6qKkKWLZThwdqmzBveUbaIA9-3z3DPevIUqf8LQ5B-0" />
+</head>
+
+{% comment %}
+  Add the page template as a class for easy page or template specific styling.
+{% endcomment %}
+<body id="{% if collection %}{{ collection.handle }}{% else %}{{ page_title | handle }}{% endif %}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }} is-shortNav{% if settings['is_lookbook'] == true %} is-wishlistOnly{% endif %}{% if cart.item_count > 0 %} has-itemsInCart{% endif %}{% if product and product.tags contains 'allow sale' %} is-sellableProduct{% endif %}">
+
+  {% section 'add-on-products' %}
+
+  {% include 'google-tag-manager' %}
+  {% comment %} {% include '_header--mobile-nav' %} {% endcomment %}
+  {% include '_header' %}
+
+  {% if settings.ajax_cart_method == "drawer" %}
+    {% include 'ajax-cart--drawer' %}
+  {% endif %}
+
+  {% include 'gateway' %}
+
+  {% comment %} <div id="PageContainer" class="is-moved-by-drawer"> {% endcomment %}
+  <div id="PageContainer">
+    <main class="main-content" role="main">
+      {{ content_for_layout }}
+    </main>
+
+    {% include '_footer' %}
+  </div>
+
+  {{ 'fastclick.min.js' | asset_url | script_tag }}
+
+  {{ 'timber.js' | asset_url | script_tag }}
+
+  {% comment %}{% include '_live-search' %}{% endcomment %}
+
+  {% comment %}
+    Template-specific js
+  {% endcomment %}
+  <script>
+    {% if resetPassword %}
+      $(function() {
+        timber.resetPasswordSuccess();
+      });
+    {% endif %}
+  </script>
+
+  {% comment %}
+    Ajaxify your cart with this plugin.
+    Documentation:
+      - http://shopify.com/timber#ajax-cart
+  {% endcomment %}
+  {% if settings.ajax_cart_method == "drawer" %}
+    {{ 'handlebars.min.js' | asset_url | script_tag }}
+    {{ 'fancybox.js' | asset_url | script_tag }}
+    {{ 'jquery.fancybox-media.js' | asset_url | script_tag }}
+    {% include 'ajax-cart-template' %}
+    {{ 'ajax-cart.js' | asset_url | script_tag }}
+    <script>
+      jQuery(function($) {
+        if ($('.timber-activeProduct').length > 0) {
+          ajaxCart.init({
+            formSelector: '.addToCartForm',
+            cartContainer: '#CartContainer',
+            addToCartSelector: '.addToCart',
+            cartCountSelector: '#CartCount',
+            cartCostSelector: '#CartCost',
+            moneyFormat: {{ shop.money_format | json }}
+          });
+        }
+      });
+      jQuery('body').on('ajaxCart.afterCartLoad', function(evt, cart) {
+        // Bind to 'ajaxCart.afterCartLoad' to run any javascript after the cart has loaded in the DOM
+        timber.RightDrawer.open();
+      });
+
+    </script>
+  {% endif %}
+
+  {% include 'added-item-popup-template' %}
+
+  {{ '//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js' | script_tag }}
+  {{ 'https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.2/js.cookie.min.js' | script_tag }}
+
+  <script>
+  ;(function(window, $, Cookies) {
+  $(function() {
+
+    // Alan - 030618 - added for native app to clear localStorage
+    if (Cookies.get('noLocalStorage')) {
+      localStorage.clear();
+      Cookies.remove('noLocalStorage');
+    }
+
+  try {
+    Appmate.wk.ready(function(data) {
+      Cookies.set('helpdesk', {
+        cartCount: {{ cart.item_count }},
+        wishlistCount: Appmate.wk.collection.items.length
+      }, { domain: '.decathlon.com' });
+    });
+  } catch(e) {}
+
+  });
+  })(window, jQuery, Cookies);
+  </script>
+
+  {% comment %}
+  {{ 'zoom.js' | asset_url | script_tag }}
+  {{ 'transition.js' | asset_url | script_tag }}
+  {% endcomment %}
+
+  {{ 'decathlon.js' | asset_url | script_tag }}
+  {{ 'account-order--write-review.js' | asset_url | script_tag }}
+  {% comment %}{% include 'decathlon-wishlist' %}{% endcomment %}
+  {% comment %}{% include 'zendesk-chat' %}{% endcomment %}
+
+{% include 'add-to-cart-wishlist-swap' %}
+
+{% if shop.metafields.customers.api_endpoint %}
+  <div id="decathlon-customer-api" data-api-root="{{ shop.metafields.customers.api_endpoint }}"></div>
+{% endif %}
+  <script>window.shipStates = [{{ shop.metafields.decathlon.ship_states }}];</script>
+
+  {{ '//shopify-decathlon-prod-api.adeptmind.ai/js/bundle.js' | script_tag }}
+
+  <script type="text/javascript">
+	  window.onload = function() {
+		  var bannerBillboard = document.querySelector('.slick-active .banner--billboard'),
+		      bannerOverlay= document.getElementById('bannerOverlay');
+
+		  bannerBillboard.classList.remove('loading');
+		  bannerOverlay.classList.remove('loading');
+	  };
+	  var mouseflowCrossDomainSupport = true;
+	  window._mfq = window._mfq || [];
+	  (function() {
+		  var mf = document.createElement("script");
+		  mf.type = "text/javascript"; mf.async = true;
+		  mf.src = "//cdn.mouseflow.com/projects/3c536446-71f3-4a65-8c6e-6e254c934dff.js";
+		  document.getElementsByTagName("head")[0].appendChild(mf);
+	  })();
+  </script>
+
+</body>
+</html>

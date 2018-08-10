@@ -1,0 +1,46 @@
+<!-- /templates/page.blogs.liquid -->
+<div class="wrapper blogHeader">
+  <h1>Careers</h1>
+</div>
+
+
+
+
+{% assign featured_articles = false %}
+{% assign featured_tags = false %}
+{% for blog in linklists['jobs'].links %}
+  {% assign featured_articles = blog.object.articles %}
+{% endfor %}
+
+{% comment %}
+uniq doesn't seem to work on the tag list, so I join/split it to force the tags to become strings
+{% endcomment %}
+{% assign featured_tags = featured_tags | join: ',' | split: ',' | uniq %}
+
+<div class="wrapper">
+  <div class="blogCards u-paddingTopBottom3x">
+    <div class="wrapper">
+  
+      <div class="grid-uniform u-flex-list u-flex-list--line">
+      {% assign featured_articles = featured_articles | sort: 'published_at' %}
+      {%- for article in featured_articles -%}
+        {% include 'get-blog-for-article', blogs: linklists['jobs'].links, article: article %}
+        {% include 'job-grid-item', include_excerpt: true  %}
+      {%- endfor -%}
+      </div>
+  
+    </div>
+  </div>
+</div>
+
+<script>
+$('.authorSelect').change(function(e) {
+  var authorName = $('.authorSelect option:selected').text();
+
+  $('.blogCard').show();
+  if (authorName == 'AUTHOR: ALL') {
+  } else {
+    $('.blogCard:not([data-author="'+ authorName +'"])').hide();
+  }
+});
+</script>

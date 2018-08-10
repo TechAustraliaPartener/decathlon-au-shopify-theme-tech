@@ -1,0 +1,81 @@
+  <style> @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
+   ss.accordion,.accordion *{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}.accordion{overflow:hidden;border-radius:3px}.accordion-section-title{width:100%;padding:15px;display:inline-block;border-bottom:1px solid #E4E4E8;transition:all linear .15s;font-size:1.1em;color:#141513}.accordion-section-title.active,.accordion-section-title:hover{text-decoration:none}.accordion-section:last-child .accordion-section-title{border-bottom:none}.accordion-section-content{padding:15px;display:none}ul.rig{list-style:none;font-size:0;margin-left:-2.5%}ul.rig li{display:inline-block;padding:5px;margin:0 0 2.5% 2.5%;background:#fff;font-size:16px;font-size:1rem;vertical-align:top;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box}ul.rig li img{max-width:100%;height:auto;margin:0 0 10px}ul.rig li h3{margin:0 0 5px}ul.rig li p{font-size:.9em;line-height:1.5em;color:#999}ul.rig.columns-2 li{width:47.5%}ul.rig.columns-3 li{width:30.83%}ul.rig.columns-4 li{width:22.5%}.add_to_cart_form{float:left;margin-right:5px}.btn-delete{background-color:#007a87 !important}.addthis_sharing_toolbox_holder{display:none;margin-top:5px}.share_holder{float:right}.grid-container{margin-top:28px}.delete_wishlist{right: 0; padding-top: 16px; display: absolute; position: absolute; display:none; font-size:16px} .accordion-section:hover span{display : block;}
+
+  </style>
+  <div class="wishlist-pro-wrapper-page" class="row">
+    <div class="span12">Loading content ...</div>
+  </div>
+
+    <script type="text/javascript">
+      var cus_wishlist_pro = {
+        id: "{{ customer.id }}",
+        email: "{{ customer.email }}",
+        first_name: "{{ customer.first_name }}",
+        shopify_domain: "{{ shop.permanent_domain }}",
+        api_version: "1.0"
+      };
+    </script>
+
+    <script type="text/template" id='wishlist-pro-wrapper-page'>
+      <div class="span12">
+      <%if(conditions.can_share){ %>
+          <div><%if(!is_share) { %>
+          <a class ="add_list" href="#"><i class="fa fa-plus"></i> New List</a>&nbsp;&nbsp;
+          <% } %>
+          <a id="share_all" href="{{ shop.url }}/pages/wishlist-pro?share=<%= share_url %>"><i class="fa fa-share-alt"></i> Share all Wishlists</a>
+         </div>
+         <% } else { %>
+           <div><a class ="add_list" href="#"><i class="fa fa-plus"></i> New List</a></div>
+      <% } %>
+      <div class="accordion">
+      <% _.each(wishlists,function(item,key,list){
+           var active = ""
+           var open = ""
+           var style = ""
+           if(wlpro == "undefined"){
+             if(key == 0 ){
+                 active = "active"
+                 open = "open"
+                 style = 'style="display:block"'
+             }
+           }else if(item.wishlist.id == wlpro){
+               active = "active"
+               open = "open"
+               style = 'style="display:block"'
+           }
+      %>
+       <div class="accordion-section">
+         <span id ="<%= item.wishlist.id %>" class="delete_wishlist"><i class="fa fa-times-circle-o"></i></span>
+         <a id="<%= item.wishlist.id %>" class="accordion-section-title <%= active %>" href="#accordion-<%= key %>"> <%= item.wishlist.name %> <% if(item.items.length == 0){ %>(empty)<% } %></a>
+         <div id="accordion-<%= key %>" class="accordion-section-content <%= open %>" <%= style %>>
+         <% if(conditions.can_share && (item.items.length != 0)){ %>
+         	<div class="share_holder"><a class="share_item" data-item_name = "<%= item.wishlist.name %>" data-item_id = "<%= item.wishlist.id %>" id="sharing-button-<%= key %>" href="#"><i class="fa fa-share-alt"></i> Share <%= item.wishlist.name %> Wishlist</a></div>
+         <% } %>
+          <div id="three-columns" class="grid-container" style="display: block;">
+                <ul class="rig columns-3">
+				         <% _.each(item.items,function(item,key,list){ %>
+                  <li>
+                   <img src='<%= item.image_url %>'>
+                  <div>
+                  <form class="add_to_cart_form" action="/cart/add" method="post">
+                    <input type="submit" class="btn add-to-cart" name="add" value="Add to Cart">
+                    <input type="hidden" name="id" value='<%= item.variant_id %>'>
+                  </form>
+                  <%if(!is_share) { %>
+                  <input type="button" id='<%= item.id %>' class="btn btn-delete sharer-0 delete_product" value="Remove from Wishlist"></input>
+                  <%}%>
+                  </div>
+                  </li>
+                 <% }) %>
+               </ul>
+           </div>
+         </div>
+       </div>
+      <% }); %>
+       </div>
+      </div>
+    </script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-515c03475f6bd5f0" async="async"></script>
+    <script type="text/javascript">!function(){function t(){n=window.jQuery.noConflict(!0),e()}function e(){n(document).ready(function(t){function e(){n(".accordion .accordion-section-title").removeClass("active"),n(".accordion .accordion-section-content").slideUp(300).removeClass("open")}var d=r("share");if(void 0!=d&&""!=d){var l=c.decode(d).split("-");cus_wishlist_pro={id:l[0],item:l[1],shopify_domain:"{{ shop.permanent_domain }}",api_version:"1.0"}}var h=a+"/wishlist/load_page?callback=?";t.getJSON(h,cus_wishlist_pro,function(e){var r=i("wlpro"),o=!1;void 0!=d&&(r="undefined",o=!0);var n=_.template(t("#wishlist-pro-wrapper-page").html());t(".wishlist-pro-wrapper-page").html(n({wishlists:e.wishlists.list,conditions:e.wishlists.conditions,wlpro:r,share_url:c.encode(cus_wishlist_pro.id.toString()),is_share:o})),s(cus_wishlist_pro.id)}),t(document).on("click",".accordion-section-title",function(t){var i=n(this).attr("href");n(t.target).is(".active")?e():(e(),n(this).addClass("active"),n(".accordion "+i).slideDown(300).addClass("open")),o(n(this).text(),n(this).attr("id"),"sharing-button-"+i.split("-")[1]),t.preventDefault()}),t(document).on("click",".delete_wishlist",function(e){var i=confirm("Are you sure you want to delete this wishlist?");if(1==i){wishl_list=t(this);var r=a+"/wishlist/destroy?callback=?";t.getJSON(r,{id:wishl_list.attr("id")},function(t){alert("Your Wishlist successfully Deleted"),wishl_list.closest(".accordion-section").hide("slow",function(){$target.remove()})})}e.preventDefault()}),t(document).on("click",".add_list",function(e){var i=prompt("Please enter the Wishlist name","Wishlist");if(null!=i){cus_wishlist_pro.list_name=i;var r=a+"/wishlist/add_list?callback=?";t.getJSON(r,cus_wishlist_pro,function(e){alert("Your Wishlist "+i+" has been successfully created"),t(".accordion").append('<div class="accordion-section"><a class="accordion-section-title " href="#accordion-2">'+i+'</a><div id="accordion-2" class="accordion-section-content "><div id="three-columns" class="grid-container" style="display: block;"></div></div></div>')})}e.preventDefault()}),t(document).on("click",".delete_product",function(e){this_list=t(this);var i=a+"/wishlist/delete_product?callback=?";t.getJSON(i,{product_id:this_list.attr("id")},function(t){this_list.closest("li").hide(300)}),e.preventDefault()}),t(document).on("click mouseover",".share_item",function(e){var i=t(this).data("item_name"),r=t(this).data("item_id");o(i,r,t(this).attr("id"))})})}function i(t){for(var e=t+"=",i=document.cookie.split(";"),r=0;r<i.length;r++){for(var o=i[r];" "==o.charAt(0);)o=o.substring(1);if(0==o.indexOf(e))return o.substring(e.length,o.length)}return""}function r(t){var e,i,r=decodeURIComponent(window.location.search.substring(1)),o=r.split("&");for(i=0;i<o.length;i++)if(e=o[i].split("="),e[0]===t)return void 0===e[1]?!0:e[1]}function o(t,e,i){var r=cus_wishlist_pro.id+"-"+e,o="{{ shop.url }}/pages/wishlist-pro/?share="+c.encode(r);addthis.button("#"+i,{},{url:o,title:t})}function s(t){var e="{{ shop.url }}/pages/wishlist-pro/?share="+c.encode(t);addthis.button("#share_all",{},{url:e,title:"My Wishlist"})}var n,a="https://wishlistpro.microapps.com",c={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",encode:function(t){var e,i,r,o,s,n,a,d="",l=0;for(t=c._utf8_encode(t);l<t.length;)e=t.charCodeAt(l++),i=t.charCodeAt(l++),r=t.charCodeAt(l++),o=e>>2,s=(3&e)<<4|i>>4,n=(15&i)<<2|r>>6,a=63&r,isNaN(i)?n=a=64:isNaN(r)&&(a=64),d=d+this._keyStr.charAt(o)+this._keyStr.charAt(s)+this._keyStr.charAt(n)+this._keyStr.charAt(a);return d},decode:function(t){var e,i,r,o,s,n,a,d="",l=0;for(t=t.replace(/[^A-Za-z0-9\+\/\=]/g,"");l<t.length;)o=this._keyStr.indexOf(t.charAt(l++)),s=this._keyStr.indexOf(t.charAt(l++)),n=this._keyStr.indexOf(t.charAt(l++)),a=this._keyStr.indexOf(t.charAt(l++)),e=o<<2|s>>4,i=(15&s)<<4|n>>2,r=(3&n)<<6|a,d+=String.fromCharCode(e),64!=n&&(d+=String.fromCharCode(i)),64!=a&&(d+=String.fromCharCode(r));return d=c._utf8_decode(d)},_utf8_encode:function(t){t=t.replace("","");for(var e="",i=0;i<t.length;i++){var r=t.charCodeAt(i);128>r?e+=String.fromCharCode(r):r>127&&2048>r?(e+=String.fromCharCode(r>>6|192),e+=String.fromCharCode(63&r|128)):(e+=String.fromCharCode(r>>12|224),e+=String.fromCharCode(r>>6&63|128),e+=String.fromCharCode(63&r|128))}return e},_utf8_decode:function(t){for(var e="",i=0,r=c1=c2=0;i<t.length;)r=t.charCodeAt(i),128>r?(e+=String.fromCharCode(r),i++):r>191&&224>r?(c2=t.charCodeAt(i+1),e+=String.fromCharCode((31&r)<<6|63&c2),i+=2):(c2=t.charCodeAt(i+1),c3=t.charCodeAt(i+2),e+=String.fromCharCode((15&r)<<12|(63&c2)<<6|63&c3),i+=3);return e}};if(void 0===window.jQuery){var d=document.createElement("script");d.setAttribute("type","text/javascript"),d.setAttribute("src","http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"),d.readyState?d.onreadystatechange=function(){("complete"==this.readyState||"loaded"==this.readyState)&&t()}:d.onload=t,(document.getElementsByTagName("head")[0]||document.documentElement).appendChild(d)}else n=window.jQuery,e()}();</script>

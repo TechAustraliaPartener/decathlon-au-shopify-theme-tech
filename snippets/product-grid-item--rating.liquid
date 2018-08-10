@@ -1,0 +1,16 @@
+{% comment %}
+The rating variable should be a number between 0 and 5 inclusive.
+The number of stars filled in will be the ceiling integer of the rating.
+{% endcomment %}
+
+  {% comment %}
+  add zero to convert the string to a number, which is stored as a string
+  because metafields can't be floats
+  {% endcomment %}
+  {% assign product_rating = product.metafields.ratings.product_rating | plus:0 %}
+  {% assign rounded_rating = product_rating | round %}
+  <div class="starRating{{ rating_adtl_classes }}{% if product_rating == 0 %} starRating--noRating{% endif %}" data-rating="{{ product_rating }}">
+  {% for i in (0..4) %}
+    <span class="ico ico--star{% if i < rounded_rating %} u-textYellow{% endif %}"></span>
+  {% endfor %}
+</div>

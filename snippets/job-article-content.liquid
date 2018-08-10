@@ -1,0 +1,35 @@
+{% comment %}
+  Clipping section to their respective variables.
+{% endcomment %}
+{% assign start = article.content | split: "<p>---" %}
+{% assign job_time = start[0] %}
+
+{% assign start = article.content | split: '<p>---location---</p>' %}
+{% assign end = start[1] | split: '<p>---/location---</p>' %}
+{% assign job_location = end[0] %}
+
+{% assign start = article.content | split: '<p>---role---</p>' %}
+{% assign end = start[1] | split: '<p>---/role---</p>' %}
+{% assign job_role = end[0] %}
+
+{% assign start = article.content | split: '<p>---aboutyou---</p>' %}
+{% assign end = start[1] | split: '<p>---/aboutyou---</p>' %}
+{% assign job_aboutyou = end[0] %}
+
+<header class="section-header text-center">
+  <div class="section-header__left">
+    <h5 class="section-jobsubtitle">CAREER</h5>
+    <h1 class="blogPost-title h2">{{ article.title }}</h1>
+    <div class="jobArticle-info">
+      <div class="jobArticle-time">{{ job_time }}</div>
+      <div class="jobArticle-location">{{ job_location }}</div>
+    </div>
+  </div>
+</header>
+
+<div class="u-block u-paddingTopBottom3x" itemprop="articleBody">
+  <h5>Job Role</h5>
+  <div class="jobArticle-role">{{ job_role }}</div>
+  <h5>About You</h5>
+  <div class="jobArticle-role">{{ job_aboutyou }}</div>
+</div>

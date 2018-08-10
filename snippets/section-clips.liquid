@@ -1,0 +1,32 @@
+{% comment %}
+  Clipping section to their respective variables.
+{% endcomment %}
+{%- assign start = product.description | split: "<p>---" -%}
+{%- assign product_intro = start[0] -%}
+
+{%- assign start = product.description | split: '<p>---questions---</p>' -%}
+{%- assign end = start[1] | split: '<p>---/questions---</p>' -%}
+{%- assign product_faqs = end[0] -%}
+
+{%- assign start = product.description | split: '<p>---specs---</p>' -%}
+{%- assign end = start[1] | split: '<p>---/specs---</p>' -%}
+{%- assign product_specs = end[0] -%}
+
+{%- assign start = product.description | split: '<p>---features---</p>' -%}
+{%- assign end = start[1] | split: '<p>---/features---</p>' -%}
+{%- assign product_features = end[0] -%}
+
+{%- assign start = product.description | split: '<p>---videos---</p>' -%}
+{%- assign end = start[1] | split: '<p>---/videos---</p>' -%}
+{%- assign product_video = end[0] | strip_html | strip_newlines | split: ',' -%}
+
+{%- assign start = product.description | split: '<p>---catchline---</p>' -%}
+{%- assign end = start[1] | split: '<p>---/catchline---</p>' -%}
+{%- assign product_catchline = end[0] | strip_html -%}
+
+{%- assign start = product.description | split: '<p>---made_for---</p>' -%}
+{%- assign end = start[1] | split: '<p>---/made_for---</p>' -%}
+{%- assign product_made_for = end[0] | strip_html -%}
+
+{%- assign callouts = product.description | split: '<p>---callout---</p>' -%}
+

@@ -1,0 +1,215 @@
+
+
+<div class="wrapper">
+
+	<script>
+	function slugify(str) {
+    return str.toLowerCase()
+      .replace(/[^\w\s-]/g, '')
+      .replace(/[\s_-]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+  }
+
+  var __isp_options = {
+    isp_serp_callback: function() {
+      $('.isp_facet_value a[facet_name="Color"]').each(function(k,v) { 
+        var facetValue = $(v).attr('facet_value').replace(/%20/g, '-');
+        $(v).parent().addClass('collectionFilter-listItem').css({ float: 'left', 'margin-right': '.5em' });
+        $(v).addClass('collectionFilter-listItem-link collectionFilter-listItem-link--color option--color-'+ slugify(facetValue));
+				$(v).find('div').addClass('visually-hidden');
+			});
+
+			$('.isp_facet_check_box_icon_checked').parent().parent().addClass('is-active');
+
+      $('.isp_facet_value a[facet_name="Size"]').each(function(k,v) { 
+        $(v).parent().addClass('collectionFilter-listItem').css({ float: 'left', 'margin-right': '.5em' });
+        $(v).addClass('collectionFilter-listItem-link text-center');
+				$(v).find('.isp_facet_check_box_icon, .isp_facet_value_counter').addClass('visually-hidden');
+			});
+
+			$('.isp_facet_title').addClass('collectionFilter-title');
+      //$('.isp_custom_price_container').hide();
+
+			$('.isp_facet_show_hide_values').hide();
+			$('.isp_facet_unvisible_values').show();
+
+    }
+  };
+  </script>
+
+  <!--noptimize--><script>// <![CDATA[
+  	if (typeof _isp_host_prefix === 'undefined') {
+  		var _isp_host_prefix = null;
+  		try {
+  			_isp_host_prefix = localStorage.getItem('_isp_host_prefix');
+  			if (!_isp_host_prefix.match(/^[a-z0-9-]+$/)) {
+  				_isp_host_prefix = null;
+  			}
+  		} catch (e) {}
+  	}
+  	
+  	function isp_injectCSS(url,cssId){
+  	    var head  = document.getElementsByTagName('head')[0];
+  		var link  = document.createElement('link');
+  		link.id   = cssId;
+  		link.rel  = 'stylesheet';
+  		link.type = 'text/css';
+  		link.href = url;
+  		link.media = 'all';
+  		head.appendChild(link);	
+  	}
+  	
+  	function isp_injectJS(url, beforeId) {
+  		var s = document.createElement('script');
+  		s.type = 'text/javascript';	
+  		s.src = url;
+  		var this_node = document.getElementById(beforeId);
+  		this_node.parentNode.insertBefore(s, this_node.nextSibling);
+  	}
+  	
+  // ]]></script>
+  <div id="isp_search_results_js_inject"></div>
+  <link rel="stylesheet" href="https://cdn-gae-ssl-default.akamaized.net/css/search_result_page.css?v=1.2.41">
+  <script type="text/javascript" id="isp_search_results_js_inject_common_PRE">// <![CDATA[
+  	isp_injectCSS("https://cdn-gae-ssl-default.akamaized.net/css/jquery.raty.css?v=1.0.1", "isp_search_results_css_inject_common_PRE");
+  // ]]></script><script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script><script>// <![CDATA[
+  		try{
+  			var $jquery_isp = jQuery.noConflict(true);
+  		} catch(e) {}
+  		var __isp_serp_uuid 		= "9f30c603-32d7-4373-872b-4a26f3e2a9d6";
+  		var __isp_serp_store_id 	= "12980469";
+  	
+  // ]]></script><script type="text/javascript">// <![CDATA[
+  		
+  		if (typeof isp_global_serp_scripts_injected === 'undefined'){
+  			(function() { 
+  				var host = "https://cdn-gae-ssl-default.akamaized.net";
+  				if (_isp_host_prefix) {
+  					host = _isp_host_prefix.startsWith('localhost') ? 'http://' + _isp_host_prefix :
+          				'https://' + _isp_host_prefix + '-dot-acp-magento.appspot.com';
+  				}				
+  				isp_injectJS(host + "/js/search_result_page.js?isp_platform=shopify&v=2.0.2222", "isp_search_results_js_inject");
+  				if (typeof History === 'undefined')	{
+  					isp_injectJS(host + "/js/jquery.history.js?v=1.0.6", "isp_search_results_js_inject");
+  				}
+  			})();
+  			var isp_global_serp_scripts_injected = true;
+  		}
+  	
+  // ]]></script><script type="text/javascript">// <![CDATA[
+  	isp_injectJS("https://cdn-gae-ssl-default.akamaized.net/js/jquery.raty.js?v=1.0.8", "isp_search_results_js_inject");
+  // ]]></script><!-- IE8 fix - keep the comment open/close in different lines --> <!-- 
+  	[if lt IE 9]><style>LI.isp_grid_product .isp_product_image { position: static; 	margin-right:0;	}</style> <![endif] 
+  -->
+<style type="text/css">
+.isp_single_facet_wrapper { float: left; width: 100%;  }
+.isp_facet_show_hide_values { float: left; width: 100%; }
+.collectionFilter-listItem-link { border: 1px solid #f3f3f3 !important; }
+
+#isp_left_container_facets .isp_custom_price_container { display: none; }
+
+#isp_search_result_page_container div.isp_center_container_position { margin-left: auto; }
+
+div.isp_center_container ul#isp_search_results_container li.isp_grid_product:hover,
+div.isp_center_container ul#isp_search_results_container li.isp_grid_product { border: none; }
+
+#isp_left_container_facets .isp_search_res_facets_container .isp_facet_value a[facet_name="Size"] { 
+  padding-left: .5em;
+}
+
+#isp_left_container_facets .isp_search_res_facets_container .isp_facet_value a{
+  padding-left: 0;
+  text-indent: 0;
+}
+
+#isp_left_container_facets .isp_facet_value a .isp_facet_value_name {
+  font-size: 1em;
+}
+#isp_left_container_facets .isp_facet_value a[facet_name="Size"] .isp_facet_value_name {
+  font-size: .9em;
+}
+
+.collectionFilter-listItem.is-active .collectionFilter-listItem-link {
+  border-color: black !important;
+}
+
+#isp_left_container_facets .isp_search_res_facets_container .isp_single_facet_wrapper .isp_facet_title {
+  padding: .5em 0 1em;
+}
+
+#isp_left_container .isp_facet_value a div.isp_facet_check_box_icon.isp_facet_check_box_icon_not_checked,
+#isp_left_container .isp_facet_value a div.isp_facet_check_box_icon.isp_facet_check_box_icon_checked {
+  background: none;
+  border: 1px solid #dfdfdf;
+  padding: .5em;
+}
+
+#isp_left_container .isp_facet_value a div.isp_facet_check_box_icon.isp_facet_check_box_icon_checked:before {
+  content: '\00d7';
+  position: relative;
+  top: -11px;
+  left: -5px;
+  font-size: 1.4em;
+  color: #000;
+}
+
+#isp_left_container_facets .isp_search_res_facets_container .isp_facet_value a {
+  color: black;
+}
+
+#isp_search_box_container { display: none !important; }
+
+/* #isp_results_summary #isp_results_summary { display:none; } */
+/*
+#isp_results_search_text {
+  font-size: 2.6em;
+  text-shadow: 1px 0 0 white, -1px 0 0 white, 0 1px 0 white, 0 -1px 0 white;
+  text-transform: capitalize;
+}
+*/
+
+@media only screen and (min-width: 769px) { 
+  #isp_search_result_page_container div.isp_left_container { width: 25%; }
+}
+
+/* .collectionFilter-listItem.is-active .collectionFilter-listItem-link--color  { border: 2px solid white !important; }*/
+</style>
+  <div id="isp_search_result_page_container">
+  <div id="isp_search_box_container" class="isp_search_box_container isp_center_container_position" style="display: block;"><input type="search" id="isp_main_search_box" class="isp_search_box" data-placeholder-live="false" placeholder="Search... " /> <input type="button" style="display: none;" title="Click to search" id="isp_icon_id" class="isp_transparent_icon" onclick="ispApiDoFullTextSearch();" /> <a target="_blank" rel="nofollow" href="https://www.instantsearchplus.com/instantsearchplus-autocomplete-shopify?src=shopify_fulltextsearch" class="isp_watermark" style="display: none;"> <span class="isp_watermark_text">Powered by </span> <img src="https://shopify.instantsearchplus.com/images/site_search_plus_16x16.png" id="isp_watermark_img" /> <span style="font-weight: bold; color: #666;" class="isp_watermark_text"> InstantSearch+</span> </a></div>
+  <div id="isp_left_container" class="isp_left_container large--one-quarter left">
+    <div id="isp_left_container_header" class="isp_left_container_header"></div>
+    <div id="isp_left_container_facets" class="isp_left_container_facets"></div>
+  </div>
+
+  <div id="isp_right_container" class="isp_right_container"></div>
+
+  <div id="isp_center_container" class="isp_center_container isp_center_container_position large--seven-tenths right">
+  <div class="isp_center_container_header" data-no-instant=""><a id="isp_refine_nevigation" class="isp_refine_nevigation" href="#!" refine_display="no" onclick="ispRefineSectionDisplay(event, this)"> <img src="https://shopify.instantsearchplus.com/images/isp_icon_navigation_16x16.png" id="isp_watermark_img" /> <span id="isp_refine_button" class="isp_refine_navigation_content">Refine</span> </a>
+  <div class="isp_sorting_and_result_view_wrapper">
+  <ul id="isp_search_res_sorting_menu">
+  <li id="search_res_sorting_title">Sort by:</li>
+  <li id="isp_sorting_drop_container" style="display: inline-block;" class="isp_dropdown" onclick="toggleDropdownSort()"><a href="#" role="button" class="dropdown-toggle-isp" data-toggle="dropdown-isp"><span id="sorting_chosen_name">Best Match</span><b class="caret"></b></a>
+  <ul id="sorting_drop_list" class="dropdown-menu" role="menu">
+  <li role="presentation" style="list-style: none;"><a id="isp_sort_best_match" sort_name="sorting_list" sort_value="relevency" style="padding-left: 24px;" role="menuitem" tabindex="-1" href="#!" onclick="ispHandleSortingChoice(event, this)">Best Match</a></li>
+  <li role="presentation" style="list-style: none;"><a id="isp_sort_price_low_to_high" sort_name="sorting_list" sort_value="price_min_to_max" style="padding-left: 24px;" role="menuitem" tabindex="-1" href="#!" onclick="ispHandleSortingChoice(event, this)">Price: Low to High</a></li>
+  <li role="presentation" style="list-style: none;"><a id="isp_sort_price_high_to_low" sort_name="sorting_list" sort_value="price_max_to_min" style="padding-left: 24px;" role="menuitem" tabindex="-1" href="#!" onclick="ispHandleSortingChoice(event, this)">Price: High to Low</a></li>
+  <li role="presentation" style="list-style: none;"><a id="isp_sort_newest_arrival" sort_name="sorting_list" sort_value="creation_date" style="padding-left: 24px;" role="menuitem" tabindex="-1" href="#!" onclick="ispHandleSortingChoice(event, this)">Newest Arrivals</a></li>
+  </ul>
+  </li>
+  </ul>
+  <div class="isp_search_res_view_type"><a class="isp_view_mode_button" href="#!" title="View results in grid mode" id="isp_mode_grid" onclick="isp_switch_mode(0)"> <img src="https://cdn-gae-ssl-default.akamaized.net/images/isp_icon_grid.png" style="margin-right: 0.1em;" /> </a> <a class="isp_view_mode_button" href="#!" title="View results in list mode" id="isp_mode_list" onclick="isp_switch_mode(1)"> <img src="https://cdn-gae-ssl-default.akamaized.net/images/isp_icon_list.png" /> </a></div>
+  </div>
+  <div class="isp_results_summary_wrapper">
+  <h1 id="isp_results_summary"></h1>
+  </div>
+  </div>
+  <!-- end of isp_center_container_header -->
+  <div id="isp_results_did_you_mean"></div>
+  <div id="isp_search_results_banner"></div>
+  <div id="isp_search_results_filter_tags" style="padding: 0;"></div>
+  <ul id="isp_search_results_container"></ul>
+  <div id="isp_search_res_progress" style="height: 80px;"><img class="isp_progress_gif" src="https://shopify.instantsearchplus.com/images/isp_loading_ajax.gif" border="0" /><br /><br /><br /><br /></div>
+  </div>
+  </div>
+  <!--/noptimize-->
+</div>

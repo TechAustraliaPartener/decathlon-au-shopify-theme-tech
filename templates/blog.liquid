@@ -1,0 +1,56 @@
+<!-- /templates/blog.liquid -->
+<div class="wrapper blogHeader">
+  <h1 class="h2">{{ 'homepage.sections.news_title' | t }}</h1>
+</div>
+
+{% include 'blog_subnav' with linklists['all-blogs'] %}
+
+{% paginate blog.articles by 6 %}
+
+{% comment %}
+{% assign blogCategory = 'blog-list--' | append: blog.handle %}
+{% include blogCategory %}
+{% endcomment %}
+
+<div class="wrapper">
+  <div class="blogCards u-paddingTopBottom5x">
+    <div class="wrapper">
+      {% if blog.articles.size == 0 %}
+        <h4 class="text-center u-marginBottom1x">There are currently no articles for {{ blog.title }}.</h3>
+        <p class="text-center"><a class="btn" href="/pages/all-blogs">Back to all blogs</a></p>
+      {% else %}
+
+      <div class="grid-uniform u-flex-list u-flex-list--line{% if blog.articles.size <= 2 %} u-centerCards{% endif %}">
+      {%- for article in blog.articles -%}
+        {% include 'get-blog-for-article', blogs: linklists['all-blogs'].links, article: article %}
+        {% include 'blog-grid-item', size_classes: 'large--one-third medium--one-half', include_excerpt: true %}
+      {%- endfor -%}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% comment %}
+<div class="wrapper u-paddingTopBottom8x">
+{% if blog.handle == 'jobs' %}
+  {% include 'blog-list--jobs' %}
+{% else %}
+  {% include 'blog-list--default' %}
+{% endif %}
+</div>
+{% endcomment %}
+
+{% endpaginate %}
+
+<script>
+$('.authorSelect').change(function(e) {
+  var url = $('.authorSelect option:selected').val();
+  window.location.href = url;
+});
+
+$(function() {
+  var path = $(location).attr('pathname');
+  $('.authorSelect').val(path);
+});
+</script>

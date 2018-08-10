@@ -1,0 +1,310 @@
+{% if tag_title == blank %}
+    <script>
+    $(function() {
+      var $header = $('.section-header__title');
+      if ($header.html() === '') {
+        var titleText = $('#uncomplicated-categories .activecat span').text();
+        $header.html(titleText);
+        $('#uncomplicated-breadcrumbs span:last-child').text(titleText);
+      }
+    });
+    </script>
+{% endif %}
+
+<script>
+function RatingInit() {
+  $('.collectionProduct-rating').each(function() {
+    var $self = $(this);
+
+    $.get('/products/'+ $(this).data('handle') +'?view=rating', function(res, status, data) {
+      var rating = parseFloat(JSON.parse(data.responseText).rating);
+
+      if (rating == 0 || rating == NaN) {
+        $self.addClass('starRating--noRating');
+      }
+
+      $self.attr('data-rating', rating);
+      for (var i = 0; i <= 4; i++) {
+        if (i < Math.round(rating)) {
+          $self.append('<span class="ico ico--star u-textYellow"></span>');
+        } else {
+          $self.append('<span class="ico ico--star"></span>');
+        }
+      }
+
+    });
+  });
+}
+
+function TimberInit() {
+  if (!window.productJSON) { return; }
+
+  var productJSON = window.productJSON;
+
+  productJSON.forEach(function(entry) {
+    entry.product.options_with_values.forEach(function(option, index) {
+      if (option.name === 'color') {
+        entry.colorOption = index;
+      }
+
+
+      if (option.name === 'model_code') {
+        entry.modelCodeOption = index;
+      }
+    });
+  });
+
+  var selectCallback = function(variant, selector) {
+
+    /*!
+     * Model code is not a "selectable" option. In order to make a proper selection
+     * we loop through all variants, select the variant that matches all options
+     * except model code since the combination of (ex) Size / Color will be
+     * unique per product.
+     */
+    var modelCodeOption = null;
+
+    if (!variant) {
+      var currentProduct = false;
+
+      $(productJSON).each(function(k,v) {
+        if (v.product.id === selector.product.id) {
+          modelCodeOption = v.modelCodeOption;
+          currentProduct = v.product;
+        }
+      });
+
+      var options = [];
+      selector.selectors.each(function(v,k) {
+        if (k === modelCodeOption) { return }
+        options.push($(v.element).val());
+      });
+
+      $(currentProduct.variants).each(function(k,v) {
+        var allOptions = [];
+        $(v).each(function(kk,vv) {
+          var titleArr = vv.title.split(' / ');
+          titleArr.splice(modelCodeOption, 1);
+          if (titleArr.join('/') === options.join('/')) {
+            variant = vv;
+          }
+        });
+      });
+    }
+
+    var $curEl = $(selector.variantIdField).parents('.collectionProduct');
+    if (variant) {
+      $(selector.variantIdField).find('option[selected]').attr('selected', null);
+      $(selector.variantIdField).find('option[value="'+ variant.id + '"]').attr('selected', 'selected');
+      $(selector.variantIdField).attr('disabled', null);
+    }
+
+    timber.productPage({
+      money_format: "{{ shop.money_format }}",
+      variant: variant,
+      selector: selector
+    });
+
+    if (variant && !variant.available{% if settings.is_lookbook == true %} && !window.addToWishlist{% endif %}) {
+      $('#'+ selector.domIdPrefix).parents('.collectionProduct-hoverBox-shadow')
+        .find('.addToCart').addClass('disabled').attr('disabled', 'disabled')
+        .find('.addToCartText').text('{{ 'products.product.sold_out' | t }}');
+    };
+
+  };
+
+  $('.js-colorChip').on('click', function(e) {
+    e.preventDefault();
+    $(e.currentTarget).parents('.collectionProduct').find('.collectionProduct-image')
+      .attr('src', $(e.currentTarget).data('image'));
+
+    $(e.currentTarget).parent().attr('data-colorChoice', $(e.currentTarget).data('color'));
+    $(e.currentTarget).parent().attr('data-variantChoice', $(e.currentTarget).data('variant'));
+    $(e.currentTarget).parent().find('.option.option--active').removeClass('option--active');
+    $(e.currentTarget).addClass('option--active');
+  });
+
+
+  productJSON.forEach(function(entry) {
+    if ($('[data-product-id="'+ entry.product.id +'"]').data('timberInit') == true) return;
+
+    try {
+
+      new Shopify.OptionSelectors('productSelect-'+ entry.id, {
+        product: entry.product,
+        onVariantSelected: selectCallback
+      });
+    } catch(err) {
+      //console.log('err: productSelect-'+ entry.id, err);
+
+      //$('#productSelect-'+ entry.id).parents('.collectionProduct-hoverBox-shadow')
+      //  .find('.addToCart').addClass('disabled').attr('disabled', 'disabled')
+      //  .find('.addToCartText').text('{{ 'products.product.sold_out' | t }}');
+    }
+
+    $('[data-product-id="'+ entry.product.id +'"]').data('timberInit', true);
+
+    if (entry.addLabel) {
+      $('#productSelect-'+ entry.id).parent().find('.selector-wrapper:eq(0)')
+        .prepend('<label for="productSelect-'+ entry.id +'-option-0">'+ entry.addLabel +'</label>');
+    }
+
+    entry.product.options.forEach(function(option) {
+      var $label = $('label[for="productSelect-'+ entry.id +'-option-'+ (option.position-1) +'"]');
+
+      if (!(entry.addLabel && option.position == 1)) {
+        $label.html(option.name.charAt(0).toUpperCase() + option.name.slice(1));
+      }
+    });
+
+    var colorId = 'productSelect-'+ entry.id +'-option-'+ entry.colorOption;
+    $('#'+ colorId +', label[for="'+ colorId +'"]').hide();
+
+    var modelCodeId = 'productSelect-'+ entry.id +'-option-'+ entry.modelCodeOption;
+    $('#'+ modelCodeId +', label[for="'+ modelCodeId +'"]').hide();
+
+    (function(colorSelector) {
+    colorSelector.parents('.collectionProduct').find('.js-colorChip').click(function(e) {
+      e.preventDefault();
+      var colorChoice = $(e.currentTarget).parent().attr('data-colorChoice');
+      colorSelector.val(colorChoice);
+      colorSelector.change();
+    });
+
+    var colorChoice = colorSelector.parents('.collectionProduct').find('.collectionProduct-colors').attr('data-colorChoice');
+    colorSelector.val(colorChoice);
+    })($('#'+ colorId));
+
+  });
+
+  $('.selector-wrapper').each(function(e) {
+    var options = $(this).find('option');
+    if (options.length == 1) {
+      $(this).hide();
+    }
+  });
+
+  function initAjaxCart(item) {
+    ajaxCart.init({
+      formSelector: '.timber-activeProduct .addToCartForm',
+      cartContainer: '#CartContainer',
+      addToCartSelector: '.addToCart',
+      cartCountSelector: '#CartCount',
+      cartCostSelector: '#CartCost',
+      moneyFormat: {{ shop.money_format | json }}
+    });
+  }
+
+  $('.collectionProduct').hover(function(e) {
+    $(this).addClass('timber-activeProduct');
+    initAjaxCart();
+  }, function(e) {
+    $(this).removeClass('timber-activeProduct');
+  });
+
+  var itemPopupTemplate = Handlebars.compile($('#AddedItemTemplate').html()),
+      productsAdded = [];
+
+  $('body').on('completeAddItem.ajaxCart', function(evt, obj, jqxhr) {
+
+    if (jqxhr.status < 400) {
+      var context = jqxhr.responseJSON;
+      context.isWishlist = window.addToWishlist;
+
+      /* set the add to cart pane to load once the thumbnail loads */
+      var thumbnail = new Image();
+
+      /* display the item popup and setup some event listeners */
+      function displayItemPopup() {
+        $('#AddedItemPopup').remove();
+        $('body').append(itemPopupTemplate(context));
+        productsAdded = [];
+
+        $('#AddedItemPopup .close-itemPopup-btn').click(function(e) {
+          $('#AddedItemPopup').remove();
+        });
+
+        $('#AddedItemPopup .js-submitCart').click(function(e) {
+          e.preventDefault();
+          $('.cart__checkout').click();
+        });
+
+        setTimeout(function() {
+          $('#AddedItemPopup').remove();
+        }, 3000);
+
+      }
+      thumbnail.onload = displayItemPopup;
+
+      /* TODO: make this actually use the rating */
+      context.rating = $('.collectionProduct[data-product-id="'+ context.product_id +'"] .starRating').html();
+      context.price_dollars = Shopify.formatMoney(context.price, {{ shop.money_format | json }});
+      context.subtotal = $('#CartSubtotal').text();
+      var defaultTitleIndex = context.variant_options.indexOf('Default Title');
+      if (defaultTitleIndex > -1) {
+        context.variant_options.splice(defaultTitleIndex, 1);
+      }
+
+      /* if subtotal is empty then the cart needs to be loaded */
+      if (!context.subtotal) {
+        function getCartHandler(e, cart) {
+          $('body').off('afterGetCart.ajaxCart', getCartHandler);
+          context.subtotal = Shopify.formatMoney(cart.total_price, {{ shop.money_format | json }});
+          thumbnail.src = context.image;
+        }
+        $('body').on('afterGetCart.ajaxCart', getCartHandler);
+        ajaxCart.load();
+
+      } else {
+        thumbnail.src = context.image;
+      }
+    }
+  });
+}
+
+function chooseColors() {
+  var queryColors = [];
+  var query = window.location.search.substring(1);
+  var vars = query.split("&");
+  for (var i=0; i < vars.length; i++) {
+    var pair = vars[i].split("=");
+    if (pair[0] == 'pf_opt_color') {
+      queryColors.push(pair[1]);
+    }
+  }
+
+  for (var i = 0; i < queryColors.length; i++) {
+    var chip = $('.js-colorChip[data-color="'+ queryColors[i] +'"]');
+    chip.click();
+  }
+};
+
+function updateColorSwatchClasses() {
+  //$('[class^="bc-sf-filter-swatch-"]').each(function() {
+  //  $(this).addClass($(this).attr('class').replace('bc-sf-filter-swatch-','option--color-'));
+  //});
+
+  $('.bc-sf-filter-option-swatch a').each(function() {
+    $(this).addClass('option--color-' + slugify($(this).attr('data-value')));
+  });
+
+};
+
+    $('.js-adjustFeaturedContent').each(function(k,v) {
+      if (!$(this).prev().hasClass('collectionProduct--featured')) {
+        $(this).prev().addClass('collectionProduct--nextIsEndFeatured');
+      } else {
+        $(this).removeClass('collectionProduct--featured--end');
+      }
+    });
+</script>
+{{ 'option_selection.js' | shopify_asset_url | script_tag }}
+{{ 'api.jquery.js' | shopify_asset_url | script_tag }}
+<script>
+  var bcsffilter = new BCSfFilter();
+  bcsffilter.init();
+</script>
+
+<script>
+  var cacheInit = document.querySelector('#bc-sf-filter-products').innerHTML;
+</script>

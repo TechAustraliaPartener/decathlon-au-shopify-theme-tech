@@ -1,0 +1,57 @@
+/*--------- /asset/skill-level.scss ---------*/
+
+.product-without-options-padding {
+  padding-bottom: 45px;
+}
+.product-with-options-padding {
+  padding-bottom: 150px;
+}
+
+.skill-level-section-header {
+  padding-bottom: 20px;
+  border-bottom: solid #e5e5e5 2px;
+
+}
+
+.skill-level-product img{
+  max-height: 220px;
+}
+
+/* -- display specific description <p> depending on screen width --*/
+@media screen and (max-width: 480px) {
+   .skill-level-product-description {
+  padding: 10% 0;
+}
+
+  .show-mobile {
+  	display: block;
+  }
+
+  .hide-mobile {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 481px) {
+   .skill-level-product-info {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+     -ms-flex-align: center;
+     -webkit-align-items: center;
+     -webkit-box-align: center;
+
+     align-items: center;
+  }
+  .skill-level-product-description {
+   flex: .5;
+  }
+
+  .show-mobile {
+  	display: none;
+  }
+
+  .hide-mobile {
+    display: flex;
+  }
+}

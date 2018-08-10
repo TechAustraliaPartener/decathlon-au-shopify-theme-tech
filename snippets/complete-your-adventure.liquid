@@ -1,0 +1,33 @@
+{% assign collection_is_a_ggp = false %}
+{%- for pack in linklists['get-going-packs'].links -%}
+  {%- if collection.handle == pack.object.handle -%}
+    {% assign collection_is_a_ggp = true %}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- if collection_is_a_ggp -%}
+<div class="getGoingPack-productBanner u-block u-paddingTopBottom4x u-bgBlack" data-background-image="{{ collection.image | img_url: '2000x' }}">
+  <div class="wrapper wrapper--midWidth text-center">
+    <h4 class="u-textCenter u-textWhite u-marginBottom2x">Complete Your Adventure</h4>
+
+    <div class="grid-uniform js-slick--attr" data-slick='{ "slidesToShow": 1, "infinite": true, "dots": true, "arrows": false, "mobileFirst": true, "responsive": [{ "breakpoint": 480, "settings": "unslick" }] }'>
+    {% for collection_product in collection.products %}
+      {% unless product.handle == collection_product.handle %}
+      {% include 'product-grid-item', product: collection_product, show_add_to_cart: false %}
+      {% endunless %}
+    {% endfor %}
+    </div>
+
+
+    {%- assign collection_total = 0 -%}
+    {%- for product in collection.products -%}
+      {%- assign collection_total = collection_total | plus: product.price_min -%}
+    {%- endfor -%}
+    <!-- {{ collection_total }} -->
+    {%- assign collection_total = collection_total | divided_by: 100 | ceil | times: 100 | money_without_trailing_zeros -%}
+    {%- assign button_text = 'Get it all from ' | append: collection_total -%}
+    <p class="u-marginBottom0x packIntro-buttonWrap"><a class="btn btn--whiteOutline" href="{{ collection.url }}">{{ button_text }}</a></p>
+  </div>
+</div>
+
+{%- endif -%}

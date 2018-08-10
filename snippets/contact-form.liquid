@@ -1,0 +1,72 @@
+{% form 'contact' %}
+
+<div class="wrapper wrapper--midWidth">
+
+<div class="grid--full{% unless remove_padding %} u-paddingTopBottom4x{% endunless %}{% if form.posted_successfully? %} u-paddingTopBottom4x{% endif %}">
+
+  <div class="grid__item large--two-thirds push--large--one-sixth">
+
+    {%- if form.posted_successfully? -%}
+    <h4 class="text-center">Thanks for contacting us!</h4>
+    {%- endif -%}
+
+    {% comment %}
+      Contact form starts here
+    {% endcomment %}
+    <div class="form-vertical">
+
+        {% comment %}
+          Successful message
+        {% endcomment %}
+        {% if form.posted_successfully? %}
+            <p class="text-center">One of our team members will reach out to you shortly.</p>
+            {% include 'button',
+              button_wrapper: 'text-center u-marginTop2x',
+              button_url: '/collections',
+              button_title: 'Explore our products'
+            %}
+        {% endif %}
+
+        <div class="formInput-wrapperGroup hide-on-success">
+        {{ form.errors | default_errors }}
+
+        <div class="inputWrap">
+          <label for="ContactFormName" class="requiredLabel">First Name</label>
+          <input type="text" id="ContactFormFirstName" class="input-full" name="contact[firstName]"  required value="{% if form[firstName] %}{{ form[firstName] }}{% elsif customer %}{{ customer.firstName }}{% endif %}" placeholder="First Name*">
+        </div>
+
+        <div class="inputWrap">
+          <label for="ContactFormName" class="requiredLabel">Last Name</label>
+          <input type="text" id="ContactFormLastName" class="input-full" name="contact[lastName]"  required value="{% if form[lastName] %}{{ form[lastName] }}{% elsif customer %}{{ customer.lastName }}{% endif %}" placeholder="Last Name*">
+        </div>
+
+        <div class="inputWrap">
+          <label for="ContactFormEmail" class="requiredLabel">Email</label>
+          <input type="email" id="ContactFormEmail" class="input-full" name="contact[email]" autocorrect="off" required value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" placeholder="Email*">
+        </div>
+
+        <div class="inputWrap">
+          <label for="ContactFormSubject">Reason for Contact</label>
+          <select name="contact[subject]" id="ContactFormSubject" class="input-full">
+            <option disabled selected>Reason for Contact</option>
+            {% for option in linklists['reason-for-contact'].links %}
+              <option>{{ option.title }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="inputWrap">
+          <label for="ContactFormMessage">{{ 'contact.form.message' | t }}</label>
+          <textarea rows="10" id="ContactFormMessage" class="input-full" name="contact[body]" placeholder="{{ 'contact.form.message' | t }}">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+        </div>
+
+        <p class="u-block u-marginBottom0x"><input type="submit" class="btn center" value="Send Message"></p>
+        <p class="text-center u-textItalic u-textGray">* Required fields</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+</div>
+{% endform %}

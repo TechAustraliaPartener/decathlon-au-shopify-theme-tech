@@ -1,0 +1,107 @@
+<!-- /templates/customers/account.liquid -->
+{% comment %}
+
+  For all available customer liquid tags:
+    - http://docs.shopify.com/themes/liquid-variables/customer
+
+{% endcomment %}
+
+{% assign customer_home = true %}
+
+<div class="wrapper u-paddingTopBottom4x u-marginBottom4x">
+  {% if customer.first_name != blank %}
+    {% assign account_title = 'Hey, ' | append: customer.first_name | append: '!' %}
+  {% endif %}
+  {% include 'customers--my-account-header' %}
+  
+  <div class="grid account-links u-marginTop2x js-hideable">
+
+    <div class="grid__item large--one-third medium--one-half">
+
+      {% if settings['is_lookbook'] == false %}
+      <div class="u-block u-marginBottom1x">
+        <h5>Purchase History</h5>
+        <ul class="no-bullets">
+          <li><a href="/account?view=order-history">View order history</a></li>
+          <li><a href="/pages/returns">Return or replace items</a></li>
+          <li><a href="/account?view=review-products">Write a product review</a></li>
+        </ul>
+      </div>
+      {% endif %}
+
+      <div class="u-block u-marginBottom1x">
+        <h5>Account Information</h5>
+        <ul class="no-bullets">
+          <li><a href="/account?view=edit">Your personal details</a></li>
+          <li><a href="/account/login?redirect_to=/account#recover">Change password</a></li>
+          <li><a href="/account?view=communication-preference">Communication preferences</a></li>
+        </ul>
+
+      </div>
+
+
+    </div>
+    <div class="grid__item large--one-third medium--one-half">
+      <div class="u-block u-marginBottom1x">
+        <h5>Wishlist</h5>
+        <ul class="no-bullets">
+          <li><a href="/pages/wishlist">View wishlist</a></li>
+        </ul>
+      </div>
+
+      <div class="u-block u-marginBottom1x">
+        <h5>Help</h5>
+        <ul class="no-bullets">
+          <li><a href="http://help.decathlon.com/" target="_blank">FAQ</a></li>
+          <li><a href="/pages/contact-us">Contact us</a></li>
+        </ul>
+
+      </div>
+
+    </div>
+
+    <div class="grid__item large--one-third">
+      <div class="account-addresses">
+        <h5>Addresses{% comment %}{{ 'customer.account.details' | t }}{% endcomment %}</h5>
+  
+        {% comment %}<h5>{{ customer.name }}</h5>{% endcomment %}
+  
+        {% if customer.default_address != nil and customer.default_address.address1 != blank %}
+          <p class="address--default">
+          <strong>{{ customer.default_address.address1 }}{%- if customer.default_address.address2 != "" -%}, {{ customer.default_address.address2 }}
+          {%- endif -%}
+          </strong>
+          <br/>
+          {% if customer.default_address.city != "" %}
+            {{ customer.default_address.city }},
+          {% endif %}
+  
+          {% if customer.default_address.province_code != "" %}
+            {{ customer.default_address.province_code | upcase }}
+          {% endif %}
+  
+          {% if customer.default_address.zip != "" %}
+            {{ customer.default_address.zip | upcase }}<br>
+          {% endif %}
+  
+          {% if customer.default_address.country != "" %}
+            {{ customer.default_address.country }}<br>
+          {% endif %}
+  
+          {% if customer.default_address.phone != "" %}
+            {{ customer.default_address.phone }}
+          {% endif %}
+          </p>
+  
+        {% endif %}
+  
+        <ul class="no-bullets">
+        {% if customer.addresses_count > 0 %}
+          <li><a href="/account/addresses">{{ 'customer.account.view_addresses' | t }}</a></li>
+        {% endif %}
+          <li><a href="/account/addresses#add">{{ 'customer.addresses.add_new' | t }}</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

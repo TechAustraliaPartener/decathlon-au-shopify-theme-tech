@@ -1,0 +1,30 @@
+<div class="grid__item large--one-third medium--one-half blogCard {{ adtl_classes }}" data-author="{{ article.author }}">
+  <a class="blogCard-link" href="{{ article.url }}">
+    <div class="jobCard-content">
+      <span class="jobCard-title">{{ article.title }}</span>
+      <div class="jobCard-summary">
+        {% comment %}
+          Clipping section to their respective variables.
+        {% endcomment %}
+        {% assign start = article.content | split: "<p>---" %}
+        {% assign job_time = start[0] %}
+
+        {% assign start = article.content | split: '<p>---location---</p>' %}
+        {% assign end = start[1] | split: '<p>---/location---</p>' %}
+        {% assign job_location = end[0] %}
+
+        {% assign start = article.content | split: '<p>---role---</p>' %}
+        {% assign end = start[1] | split: '<p>---/role---</p>' %}
+        {% assign job_role = end[0] %}
+
+        {% assign start = article.content | split: '<p>---aboutyou---</p>' %}
+        {% assign end = start[1] | split: '<p>---/aboutyou---</p>' %}
+        {% assign job_aboutyou = end[0] %}
+
+        <div class="jobCard-time">{{ job_time }}</div>
+        <div class="jobCard-location">{{ job_location }}</div>
+        <div class="jobCard-role">{{ job_role | strip_html | truncatewords: 35 }}</div>
+      </div>
+    </div>
+  </a>
+</div>

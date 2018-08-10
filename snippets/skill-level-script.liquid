@@ -1,0 +1,22 @@
+<script>
+  $('.supports-no-touch .collectionProduct').hover(function(e) {
+    if ($( window ).width() > 755) {
+      var parentSection = $(this).parents('.skill-level-product-info');
+      parentSection.addClass('product-without-options-padding');
+      var options = $(this).find('div.collectionProduct-optionSelect');
+      options.each(function () {
+        if ($(this).css('display') == 'block') {
+          parentSection.removeClass('product-without-options-padding');
+          parentSection.addClass('product-with-options-padding');
+        }
+      })
+    }
+    initAjaxCart();
+  }, function(e) {
+    if ($( window ).width() > 755) {
+      var parentSection = $(this).parents('.skill-level-product-info');
+      parentSection.removeClass('product-without-options-padding');
+      parentSection.removeClass('product-with-options-padding');
+    }
+  });
+</script>

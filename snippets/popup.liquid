@@ -1,0 +1,33 @@
+<div class="banner banner--billboard banner--billboardVideo banner--centeredContent popup u-dimBg" data-background-image="{{ 'popup__background_image.jpg' | asset_url }}">
+  <div id="introVideoWrap">
+    {% comment %}
+    <iframe id="introVideo" data-timberIgnore="yes" frameborder="0" allowfullscreen="1" width="1600" height="900" src="https://www.youtube.com/embed/fhq1x9bYlgQ?autoplay=1&controls=0&showinfo=0&playlistId=fhq1x9bYlgQ&rel=0&enablejsapi=1" onload="if (window.innerHeight / window.innerWidth > aspect) { this.width = window.innerHeight / aspect; this.height = window.innerHeight; } else { this.width = window.innerWidth; this.height = window.innerWidth * aspect; } this.style.visibility='visible'"></iframe>
+    {% endcomment %}
+    <div id="introVideo"></div>
+  </div>
+  <div class="wrapper u-centerVertically" style="background-image:url({{ 'popup-content-bg.png' | asset_url }});">
+    <div class="u-centerVertically-ie">
+
+      <div class="banner-content">
+      {% if settings.logo_use_image %}
+        <a href="/" itemprop="url" class="popup-logo">
+          <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" itemprop="logo">
+        </a>
+      {% endif %}
+
+        <div class="popup-content">
+          <h3 class="banner-title">{{ settings['popup__headline'] }}</h3> 
+
+          {%- if settings['popup__headline'] -%}
+            <p class="banner-subtitle" style="margin-bottom: 2em;">{{ settings['popup__subheadline'] }}</p>
+          {%- endif -%}
+
+          <p><a class="btn btn--white js-seenBanner" href="{{ settings['popup__button_link'] }}">{{ settings['popup__button_text'] }}</a></p>
+        </div>
+      </div> 
+
+    </div>
+  </div>
+
+  <button type="button" class="close-popup-btn"></button>
+</div>

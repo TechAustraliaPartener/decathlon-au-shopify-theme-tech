@@ -1,0 +1,9 @@
+<div class="split-content {{ split_content_adtl_classes }}">
+	<div class="split-oneHalf split-content">
+		{%- if split_content_title -%}<h2>{{ split_content_title }}</h2>{%- endif -%}
+	</div>
+{%- if button_url -%}
+  {%- include 'button' -%}
+{%- endif -%}
+	</div>
+</div>

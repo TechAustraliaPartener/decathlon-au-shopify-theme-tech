@@ -1,0 +1,19 @@
+{% assign items = links | split: '|' %}
+
+{% if no_pin_header %}
+<div class="grid--full anchorLinks">
+{% else %}
+<div class="grid--full anchorLinks js-pinToHeader">
+{% endif %}
+  <div class="wrapper">
+    <ul class="anchorList">
+      {%- for item in items -%}
+        {%- assign info = item | split: '=' -%}
+        <li class="anchorList-item">
+          <a class="anchorList-link {% if forloop.first %} anchorList-link--active{% endif %} js-anchorLink" href="{{ info[1] }}">{{ info[0] }}</a>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</div>
+

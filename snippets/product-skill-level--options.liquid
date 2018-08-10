@@ -1,0 +1,36 @@
+{% comment %}
+{%- for optionName in product.options -%}
+  {%- if optionName != 'Color' -%}
+    {%- assign options = '' -%}
+    {%- assign optKey = 'option' | append: forloop.index -%}
+    {%- for variant in product.variants -%}
+      {%- if options.size > 0 -%}{%- assign options = options | append: ',' -%}{%- endif -%}
+      {%- assign options = options | append: variant[optKey] -%}
+    {%- endfor -%}
+    <select class="collectionProduct-optionSelect" name="{{ optionName | handleize }}">
+      <option disabled selected>{{ optionName }}</option>
+      {%- assign options = options | split: ',' | uniq -%}
+      {%- for opt in options -%}
+        <option value="{{ opt | handleize }}">{{ opt }}</option>
+      {%- endfor -%}
+    </select>
+  {%- endif -%}
+{%- endfor -%}
+{% endcomment %}
+
+
+<div class="collectionProduct-optionSelect">
+  <select name="id" id="productSelect-{{ collection.handle }}-{{ product.id }}" class="product-single__variants">
+    {%- for variant in product.variants -%}
+      {%- if variant.available -%}
+
+        <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money_with_currency }}</option>
+
+      {%- else -%}
+        <option disabled="disabled">
+          {{ variant.title }} - {{ 'products.product.sold_out' | t }}
+        </option>
+      {%- endif -%}
+    {%- endfor -%}
+  </select>
+</div>

@@ -1,0 +1,8 @@
+{{ 'wishlist.js' | asset_url | script_tag }}
+
+<script>
+;(function(window, $, Shopify) {
+  window.wishlist = new BLNWishlist({ accessKey: 'j9lunmha', shopName: Shopify.shop });
+  {% if customer %}wishlist.setCustomer('{{ customer.id }}');{% endif %}
+})(window, jQuery, Shopify);
+</script>

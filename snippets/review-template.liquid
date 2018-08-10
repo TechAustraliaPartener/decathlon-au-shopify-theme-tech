@@ -1,0 +1,157 @@
+<!-- snippet review-template.liquid -->
+{% raw %}
+  <script id="writeReviewTemplate" type="text/template">
+  <div class="writeReview">
+    <div class="u-centerVertically">
+      <div class="u-centerVertically-ie">
+        <div class="writeReview-wrapper">
+          <button class="close-btn js-closeWriteReview" type="button"></button>
+          <h5>Write a review for this product</h5>
+          <div class="form-vertical">
+            <form method="post" action="{{ REVIEWS_ROOT }}/api/post/en_US/review/post.json?ovbearer={{ token }}">
+              <div class="formInput-wrapperGroup u-block">
+                <!--
+                  stars choice: Very Bad, Bad, Average, Good, Excellent
+                  label: Product Rating: *
+                  help: please give a rating
+                  name="review_draft[note]"
+                -->
+                <div class="formInput-choiceWrapper u-block u-marginBottom1x">
+                  <p>Product Rating*</p>
+                  <label><input type="radio" name="note" value="1" required />Very Bad</label>
+                  <label><input type="radio" name="note" value="2" required />Bad</label>
+                  <label><input type="radio" name="note" value="3" required />Average</label>
+                  <label><input type="radio" name="note" value="4" required />Good</label>
+                  <label><input type="radio" name="note" value="5" required />Excellent</label>
+                </div>
+
+                
+                <div class="inputWrap">
+                  <label for="review_draft_title">Review Title*</label>
+                  <input type="text" id="review_draft_title" class="input-full" name="review_draft[title]" maxlength="50" required placeholder="Review Title*" />
+                </div>
+
+                <!--
+                <div class="inputWrap">
+                  <label for="review_draft_positive">Positives</label>
+                  <input type="text" id="review_draft_positive" class="input-full" name="review_draft[positive]" maxlength="50" title="What you liked" placeholder="Positives" />
+                </div>
+
+                <div class="inputWrap">
+                  <label for="review_draft_negative">Negatives</label>
+                  <input type="text" id="review_draft_negative" class="input-full" name="review_draft[negative]" maxlength="50" title="What disappointed you" placeholder="Negatives"/>
+                </div>
+                -->
+
+                <div class="inputWrap">
+                  <label for="review_draft_body">Comment*</label>
+                  <textarea rows="4" id="review_draft_body" class="input-full" name="body" maxlength="3000" placeholder="Comment*" title="Some advice to write your review" required />
+                </div>
+
+                <div class="formInput-choiceWrapper u-block u-marginBottom1x">
+                  <p>Will you recommend this product?*</p>
+                  <label><input type="radio" name="recommended" value="1" required />Yes</label>
+                  <label><input type="radio" name="recommended" value="0" required />No</label>
+                </div>
+
+                <div class="inputWrap">
+                  <label for="review_draft_userEmail">Email*</label>
+                  <input type="email" id="review_draft_userEmail" class="input-full" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" placeholder="Email*" />
+                </div>
+
+                <div class="inputWrap">
+                  <label for="review_draft_userFirstname">First Name*</label>
+                  <input type="text" id="review_draft_userFirstname" class="input-full" name="firstname" required placeholder="First Name*"/>
+                </div>
+
+                <div class="inputWrap">
+                  <label for="review_draft_userLastname">Last Name*</label>
+                  <input type="text" id="review_draft_userLastname" class="input-full" name="lastname" required placeholder="Last Name*" />
+                </div>
+
+                <!--
+                <div class="formInput-inputWrapper u-block">
+                  <input type="text" id="review_draft_userJobAndLocation" class="input-full" name="review_draft[userJobAndLocation]" placeholder="eg: Sales assistant, Coventry" required />
+                  <label for="review_draft_userJobAndLocation">Occupation and workplace*</label>
+                </div>
+
+                <div class="formInput-choiceWrapper">
+                  <p>Gender</p>
+                  <input type="radio" name="review_draft[userGender]" value="1" required />
+                  <label for="1">Man</label>
+                  <input type="radio" name="review_draft[userGender]" value="2" required />
+                  <label for="2">Woman</label>
+                </div>
+
+                <div class="formInput-choiceWrapper">
+                  <p>Your Age</p>
+                  <input type="radio" name="review_draft[userRangeAge]" value="0_19" required />
+                  <label for="0_19">Under 20 years old</label>
+                  <input type="radio" name="review_draft[userRangeAge]" value="20_29" required />
+                  <label for="20_29">20-29 years old</label>
+                  <input type="radio" name="review_draft[userRangeAge]" value="30_39" required />
+                  <label for="30_39">30-39 years old</label>
+                  <input type="radio" name="review_draft[userRangeAge]" value="40_49" required />
+                  <label for="40_49">40-49 years old</label>
+                  <input type="radio" name="review_draft[userRangeAge]" value="50_59" required />
+                  <label for="50_59">50-59 years old</label>
+                  <input type="radio" name="review_draft[userRangeAge]" value="60" required />
+                  <label for="60">60+ years old</label>
+                </div>
+
+                <div class="formInput-choiceWrapper">
+                  <p>Used Since</p>
+                  <input type="radio" name="review_draft[rangeUsedSince]" value="0_7" required />
+                  <label for="0_7">1 week or less</label>
+                  <input type="radio" name="review_draft[rangeUsedSince]" value="14_56" required />
+                  <label for="14_56">2 to 8 weeks</label>
+                  <input type="radio" name="review_draft[rangeUsedSince]" value="90_180" required />
+                  <label for="90_180">3 to 6 months</label>
+                  <input type="radio" name="review_draft[rangeUsedSince]" value="210_365" required />
+                  <label for="210_365">7 to 12 months</label>
+                  <input type="radio" name="review_draft[rangeUsedSince]" value="365" required />
+                  <label for="365">More than 1 year</label>
+                  <input type="radio" name="review_draft[rangeUsedSince]" value="730" required />
+                  <label for="730">More than 2 years</label>
+                </div>
+
+                <div class="formInput-choiceWrapper">
+                  <p>I have read and accept the
+                     <a href="http://reviews.decathlon.com/en_US/review/terms/sitedecathlonus/1" target="_blank">
+                     rules of publication</a>.*</p>
+                  <input type="checkbox" id="review_draft_cgu" class="input-full" name="review_draft[cgu]" required />
+                </div>
+                -->
+              </div>
+
+                <input type="hidden" name="siteReference" value="{{ siteCode }}" />
+                <input type="hidden" name="offerReference" value="{{ modelCode }}" />
+                <input type="hidden" name="offerType" value="5" />
+                <!--
+                <input type="hidden" name="review_draft[typeForm]" />
+                <input type="hidden" name="review_draft[custom_token]" />
+                <input type="nature" name="review_draft[nature]" />
+                -->
+
+                <input type="submit" class="btn" value="POST YOUR REVIEW">
+                <input type="button" class="js-closeWriteReview" value="CANCEL">
+
+
+            </form>
+          </div>
+        </div>
+
+        <div class="writeReview-wrapper--after">
+          <button class="close-btn js-closeWriteReview--after" type="button"></button>
+          <div class="form-vertical">
+            <form method="post" action="{{ REVIEWS_ROOT }}/api/post/en_US/review/post.json?ovbearer={{ token }}">
+              <h5 class="writeReview-thank">Thank you for sharing!</h5>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  </script>
+{% endraw %}

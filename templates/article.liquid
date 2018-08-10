@@ -1,0 +1,329 @@
+<!-- /templates/article.liquid -->
+{% comment %}
+
+  Comments will not appear right after they are submitted, either to be checked for spam
+  or to await moderation. When a comment is submitted, the browser is redirected to a page
+  that includes the new comment id in its URL.
+    Example: http://shopname.myshopify.com/blogs/news/2022072-my-post?comment=3721372
+
+  More information:
+    - http://docs.shopify.com/themes/liquid-variables/comment
+
+{% endcomment %}
+
+{% assign number_of_comments = article.comments_count %}
+
+{% comment %}
+  If a comment was just submitted and it has no blank fields, we have an extra comment to count.
+{% endcomment %}
+{% if comment and comment.created_at %}
+  {% assign number_of_comments = article.comments_count | plus: 1 %}
+{% endif %}
+ 
+<div class="wrapper">
+{% include 'breadcrumb' %}
+
+<div class="wrapper wrapper--midWidth">
+
+  <div class="grid">
+  
+    <article class="grid__item blogPost" itemscope itemtype="http://schema.org/Article">
+
+      <header class="section-header text-center">
+        <div class="section-header__left">
+          <h1 class="blogPost-title h3">{{ article.title }}</h1>
+          {% if article.excerpt %}
+            <h2 class="blogPost-subtitle h5">{{ article.excerpt }}</h2>
+          {% endif %}
+          {% unless article.tags contains 'Job' %}
+          {% if article.tags %}
+            <ul class="inline-list">
+              {% include 'tags-article' %}
+            </ul>
+          {% endif %}
+          {% endunless %}
+        </div>
+      </header>
+
+      {%- if article.image -%}{{ article.image | img_url: '2000x' | img_tag: article.title, 'u-block' }}{%- endif -%}
+  
+      <div class="u-block u-paddingTopBottom3x" itemprop="articleBody">
+        {{ article.content }}
+      </div>
+  
+  
+      {% if blog.comments_enabled? %}
+        <hr>
+  
+        <h3>{{ 'blogs.comments.with_count' | t: count: number_of_comments }}</h3>
+  
+        <hr>
+  
+        {% comment %}
+          Just like blog.liquid page, define how many comments should be on each page.
+        {% endcomment %}
+        {% paginate article.comments by 5 %}
+          {% comment %}
+            #comments is required, it is used as an anchor link by Shopify.
+          {% endcomment %}
+          <div id="comments">
+  
+            {% if comment and comment.created_at %}
+              <p class="note form-success">
+                {% if blog.moderated? %}
+                  {{ 'blogs.comments.success_moderated' | t }}
+                {% else %}
+                  {{ 'blogs.comments.success' | t }}
+                {% endif %}
+              </p>
+            {% endif %}
+  
+            {% if number_of_comments > 0 %}
+              <ul class="no-bullets">
+                {% comment %}
+                  If a comment was just submitted with no blank field, show it.
+                {% endcomment %}
+                {% if comment and comment.created_at %}
+                  <li id="{{ comment.id }}" class="comment first{% if article.comments_count == 0 %} last{% endif %}">
+                    {% include 'comment' %}
+                  </li>
+                {% endif %}
+  
+                {% comment %}
+                  Showing the rest of the comments.
+                {% endcomment %}
+                {% for comment in article.comments %}
+                  <li id="{{ comment.id }}" class="comment{% unless number_of_comments > article.comments_count %}{% if forloop.first %} first{% endif %}{% endunless %}{% if forloop.last %} last {% endif %}">
+                    {% include 'comment' %}
+                  </li>
+  
+                  {% unless forloop.last %}
+                    <li><hr></li>
+                  {% endunless %}
+                {% endfor %}
+              </ul>
+  
+              {% if paginate.pages > 1 %}
+                <hr>
+                <div class="pagination">
+                  {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
+                </div>
+              {% endif %}
+  
+              <hr>
+  
+            {% endif %}
+  
+            <div class="form-vertical">
+              {% form 'new_comment', article %}
+                <h3>{{ 'blogs.comments.title' | t }}</h3>
+  
+                {{ form.errors | default_errors }}
+  
+                <div class="grid">
+  
+                  <div class="grid__item large--one-half">
+                    <label for="CommentAuthor" class="hidden-label">{{ 'blogs.comments.name' | t }}</label>
+                    <input type="text" name="comment[author]" id="CommentAuthor" class="input-full{% if form.errors contains 'author' %} error{% endif %}" placeholder="{{ 'blogs.comments.name' | t }}" value="{{ form.author }}" >
+  
+                    <label for="CommentEmail" class="hidden-label">{{ 'blogs.comments.email' | t }}</label>
+                    <input type="email" name="comment[email]" id="CommentEmail" class="input-full{% if form.errors contains 'email' %} error{% endif %}" placeholder="{{ 'blogs.comments.email' | t }}" value="{{ form.email }}" autocorrect="off" >
+                  </div>
+  
+                  <div class="grid__item large--one-half">
+                    <label for="CommentBody" class="hidden-label">{{ 'blogs.comments.message' | t }}</label>
+                    <textarea name="comment[body]" id="CommentBody" class="input-full{% if form.errors contains 'body' %} error{% endif %}" placeholder="{{ 'blogs.comments.message' | t }}">{{ form.body }}</textarea>
+                  </div>
+  
+                </div>
+  
+                {% if blog.moderated? %}
+                  <p>{{ 'blogs.comments.moderated' | t }}</p>
+                {% endif %}
+  
+                <input type="submit" class="btn" value="{{ 'blogs.comments.post' | t }}">
+              {% endform %}
+            </div>
+  
+          </div>
+        {% endpaginate %}
+      {% endif %}
+  
+      {% unless article.tags contains 'Job' %}
+        <h4 class="text-center u-marginBottom2x">Comments</h4>
+        {% include 'disqus' %}
+      {% endunless %}
+    </article>
+  </div>
+
+  {% if article.tags contains 'Job' %}
+  <div class="careerForm one-whole large--two-thirds push--large--one-sixth">
+    {% form 'contact' %}
+      {%- if form.posted_successfully? -%}
+      <h3 class="text-center">Thanks for applying!</h3>
+      <p class="text-center">One of our team members will reach out to you shortly.</p>
+      {%- else -%}
+      <h3 class="text-center u-marginBottom1x">Apply Now</h3>
+      {%- endif -%}
+
+      {% comment %}
+        Contact form starts here
+      {% endcomment %}
+      {% if form.posted_successfully? %}
+      {% else %}
+      <div class="form-vertical">
+
+        <div class="formInput-wrapperGroup">
+          {{ form.errors | default_errors }}
+
+          <div class="formInput-inputWrapper">
+            <input type="text" id="ContactFormFirstName" class="input-full" name="contact[firstName]" required  value="{% if form[firstName] %}{{ form[firstName] }}{% elsif customer %}{{ customer.firstName }}{% endif %}">
+            <label for="ContactFormName">First Name*</label>
+          </div>
+
+          <div class="formInput-inputWrapper">
+            <input type="text" id="ContactFormLastName" class="input-full" name="contact[lastName]" required  value="{% if form[lastName] %}{{ form[lastName] }}{% elsif customer %}{{ customer.lastName }}{% endif %}">
+            <label for="ContactFormName">Last Name*</label>
+          </div>
+
+          <div class="formInput-inputWrapper">
+            <input type="email" id="ContactFormEmail" class="input-full" name="contact[email]" autocorrect="off" required value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}">
+            <label for="ContactFormEmail">Email Address*</label>
+          </div>
+
+          <div class="formInput-inputWrapper">
+            <input type="text" id="ContactFormCityState" class="input-full" name="contact[cityState]" autocorrect="off" required value="{% if form.cityState %}{{ form.cityState }}{% elsif customer %}{{ customer.cityState }}{% endif %}">
+            <label for="ContactFormCityState">City, State*</label>
+          </div>
+
+          <div class="formInput-inputWrapper">
+            <input type="file" accept="application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" id="ContactFormResume" class="input-full" name="contact[resume]" autocorrect="off" required value="{% if form.resume %}{{ form.resume }}{% elsif customer %}{{ customer.resume }}{% endif %}">
+              <input type="hidden" name="S3File" value="undefined" />
+            <label for="ContactFormResume">Resume*</label>
+          </div>
+
+          <div class="formInput-inputWrapper">
+            <label for="ContactFormMessage" class="hidden-label">{{ 'contact.form.message' | t }}</label>
+            <textarea rows="10" id="ContactFormMessage" class="input-full" name="contact[body]" placeholder="Additional Comments - what's your sport?">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+          </div>
+
+          <input type="submit" class="btn center" value="Send">
+        </div>
+      </div>
+      {% endif %}
+
+    {% endform %}
+  {% endif %}
+  </div>
+  {% comment %}</div>{% endcomment %}
+
+  {% if article.tags contains 'Job' %}
+    {% assign button_url = blog.url %}
+    {% include 'button',  
+      button_wrapper: 'text-center u-block u-marginTop4x', 
+      button_adtl_classes: ' btn--blog u-marginBottom6x',
+      button_title: 'Explore Careers' %}
+  {% else %}
+  <div class="blogCards blogCards-related">
+    <h4 class="text-center u-marginBottom2x">Related Posts</h4>
+    <div class="grid-uniform u-flex-list u-flex-list--line{% if blog.articles.size <= 2 %} u-centerCards{% endif %} js-slick--attr" data-slick='{ "infinite": true, "autoplay": false, "slidesToShow": 1, "dots": true, "arrows": false, "mobileFirst": true, "responsive": [ { "breakpoint": 768, "settings": "unslick" } ] }'>
+    {% assign featured_articles = false %}
+    {% for blog in linklists['all-blogs'].links %}
+      {% if featured_articles %}
+        {% assign featured_articles = featured_articles | concat: blog.object.articles %}
+      {% else %}
+        {% assign featured_articles = blog.object.articles %}
+      {% endif %}
+    {% endfor %}
+
+    {% assign featured_articles = featured_articles | sort: 'published_at' | reverse %}
+    {% assign current_article = article %}
+    {%- for article in featured_articles -%}
+      {% if forloop.index > 4 %}{% break %}{% endif %}
+      {%- unless article.id == current_article.id -%}
+        {% include 'get-blog-for-article', blogs: linklists['all-blogs'].links, article: article %}
+        {% include 'blog-grid-item', size_classes: 'large--one-third' %}
+      {%- endunless -%}
+    {%- endfor -%}
+    </div>
+  </div>
+
+  {% assign button_url = '/blogs/' | append: blog.handle %}
+    {% include 'button',  
+      button_wrapper: 'text-center u-block u-marginBottom4x', 
+      button_adtl_classes: ' btn--blog',
+      button_title: 'Explore Our Playbook' %}
+  {% endif %}
+
+</div>
+
+{% if article.tags contains 'Job' %}
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.7.6.min.js"></script>
+<script>
+  var uuid = function b(a){
+    return a           // if the placeholder was passed, return
+      ? (              // a random number from 0 to 15
+        a ^            // unless b is 8,
+        Math.random()  // in which case
+        * 16           // a random number from
+        >> a/4         // 8 to 11
+        ).toString(16) // in hexadecimal
+      : (              // or otherwise a concatenated string:
+        [1e7] +        // 10000000 +
+        -1e3 +         // -1000 +
+        -4e3 +         // -4000 +
+        -8e3 +         // -80000000 +
+        -1e11          // -100000000000,
+        ).replace(     // replacing
+          /[018]/g,    // zeroes, ones, and eights with
+          b            // random hex digits
+        )
+  };
+
+  AWS.config.region = 'us-west-2'; // Region
+  AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+      IdentityPoolId: 'us-west-2:9f43914a-b302-49da-90f7-8505b82b918a',
+  });
+  
+  var s3 = new AWS.S3({
+    apiVersion: '2006-03-01',
+    endpoint: new AWS.Endpoint('s3.amazonaws.com'),
+    params: {Bucket: 'decathlon-usa-uploads'}
+  });
+
+$(function() {
+  var submitClean = false;
+
+  $('.careerForm form').submit(function(e) {
+    if (submitClean) return;
+
+    var form = this;
+    e.preventDefault();
+
+    var files = $('#ContactFormResume').prop('files');
+
+    if (!files.length) return;
+
+    var file = files[0],
+        ext = file.name.split('.').pop(),
+        fileKey = 'resumes/'+ uuid() +'.'+ ext;
+
+    s3.upload({
+      Key: fileKey,
+      Body: file,
+      ACL: 'public-read'
+    }, function(err, data) {
+      console.log(data);
+      if (err) {
+        console.log(err);
+        return alert('There was an error uploading your resume.');
+      }
+
+      $('input[name="S3File"]').val(data.Location);
+      submitClean = true;
+      form.submit();  
+    });
+  });
+})
+</script>
+{% endif %}

@@ -1,0 +1,29 @@
+<div class="accountHeader">
+{% if account_title == null %}
+  {% assign account_title = 'customer.account.title' | t %}
+{% endif %}
+{% comment %}
+  {% capture account_title %}
+  {% if customer.first_name %}
+    Hello, {{ customer.first_name }}!
+  {% else %}
+    {{ 'customer.account.title' | t }}
+  {% endif %}
+  {% endcapture %}
+{% endcomment %}
+  {% if customer.metafields.customers.profile_image and customer_home == true %}
+    <img src="{{ customer.metafields.customers.profile_image }}" style="height: 30px; position: relative; float: left; top: 6px; margin-right: 1em;" />
+  {% endif %}
+
+  <h1 class="h3">{{ account_title }}</h1>
+
+  <p class="accountLogout small--hide">
+    {% if customer_home %}
+      <a class="accountLogout-link btn btn--text" href="/account/logout">Logout</a>
+    {% else %}
+      <a class="btn btn--text" href="/account">Back To My Account</a>
+    {% endif %}
+  </p>
+  <hr class="hr--small">
+</div>
+

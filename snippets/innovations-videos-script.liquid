@@ -1,0 +1,78 @@
+<script>
+  var tag = document.createElement('script');
+
+  tag.src = "https://www.youtube.com/iframe_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  var aspect = .5625;
+
+  var players = [
+  {% for i in (1..5) %}
+    {% assign blockName = 'innovations_content_block_' | append: i | append: '_'  %}
+    {% assign blockProductVideo = blockName | append:'video_url' %}
+    {% assign blockVideoId = settings[blockProductVideo] | split: '?v=' | last %}
+    {% if blockVideoId %}'{{ blockVideoId }}',{% endif %}
+  {% endfor %}
+  ];
+  function onYouTubeIframeAPIReady() {
+    if (window.innerWidth > 600) {
+      for (var i = 0; i < players.length; i++) {
+        players[i] = new YT.Player('video-'+ players[i], {
+          height: window.innerHeight / 2,
+          width: window.innerHeight*1.77 / 2,
+          videoId: players[i],
+          playerVars: { 
+            autoplay: 1, 
+            controls: 0, 
+            showinfo: 0, 
+            rel: 0 
+          },
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange,
+            'onError': onPlayerError
+          }
+        });
+      }
+    }
+  };
+
+  function onPlayerError(event) {
+    console.log('error: ', event);
+  }
+
+  function onPlayerReady(event) {
+    var player = event.target,
+        parent = player.a.parentElement;
+
+    parent.parentElement.parentElement.classList.add('innovationVideo--active');
+
+    function onResize(e) {
+      if (parent.clientHeight / parent.clientWidth > aspect) {
+        player.setSize(parent.clientHeight / aspect, parent.clientHeight);
+      } else {
+        player.setSize(parent.clientWidth, parent.clientWidth * aspect);
+      }
+    }
+
+    $(window).resize(onResize);
+    onResize();
+
+
+    player.setVolume(0);
+    player.playVideo();
+  }
+
+  // 5. The API calls this function when the player's state changes.
+  //    The function indicates that when playing a video (state=1),
+  //    the player should play for six seconds and then stop.
+  function onPlayerStateChange(event) {
+    if (event.data === YT.PlayerState.ENDED) {
+      event.target.playVideo();
+    }
+  }
+  function stopVideo(event) {
+    event.target.stopVideo();
+  }
+</script>
