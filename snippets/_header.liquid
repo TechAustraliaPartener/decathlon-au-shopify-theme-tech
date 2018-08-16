@@ -274,6 +274,21 @@
       }
     }
 
+    /* ========== Hide sitckyFeedbackbtn if the Adeot filter is visible ========= */
+    var bodyId = $('body').attr('id')
+    $('.decathlon-filter__mobile-toggle-button').on('click', toggleStickyFeedbackBtn);
+    $('.adept-filter-takeover__apply').on('click', toggleStickyFeedbackBtn);
+    $('.adept-filter-takeover__close').on('click', toggleStickyFeedbackBtn);
+    
+    function toggleStickyFeedbackBtn() {
+      var stickyVisible = $('.stickyFeedbackbtn').is(':visible');
+      if (stickyVisible == true){
+      	$('.stickyFeedbackbtn').hide()
+      } else {
+        $('.stickyFeedbackbtn').show()
+      }
+    }
+    
   });
 </script>
   <!-- End snippets/_header.liquid -->
