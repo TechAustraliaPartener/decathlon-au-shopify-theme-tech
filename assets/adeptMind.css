@@ -77,6 +77,16 @@
         padding-bottom: 120px!important;
     }
 }
+
+/* TEMP: Hide the stickyFeedbackbtn on search results and collections under 770px
+This will be removed once AdeptMind can work with us to add click events to their elements
+*/
+@media screen and (max-width: 768px){
+    #decathlon .stickyFeedbackbtn,
+    .template-collection .stickyFeedbackbtn {
+        display: none;
+    }
+}
   
 /* ===== Style for search button on small screens ===== */
 @media screen and (max-width: 619px) {
