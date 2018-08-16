@@ -42,12 +42,39 @@
 }
 .adept-filter-takeover {
     top: 10000vh !important;
-    padding-top: 80px !important;
+    padding-top: 45px !important;
+}
+
+@media screen and (max-width: 620px){
+    .adept-filter-takeover--visible {
+        padding-top: 30px !important;
+    }
+    #decathlon .adept-filter-takeover--visible .adept-filter-takeover__apply {
+        bottom: 56px!important;
+    }
+    .template-collection .adept-filter-takeover--visible .adept-filter-takeover__apply {
+        bottom: 39px!important;
+    }
 }
   
 @media screen and (min-width: 620px) {
-    .adept-filter-takeover {
-        padding-top: 45px !important;
+    #decathlon .adept-filter-takeover--visible {
+        padding-top: 0px !important;
+    }
+    #decathlon .adept-page__wrapper {
+        padding-top: .5em!important;
+    }
+    #decathlon .decathlon-filter__mobile-toggle-button {
+        top: 0.05em !important;
+    }
+    #decathlon .adept-filter-takeover--visible .adept-filter-takeover__apply {
+        bottom: 45px!important;
+    }
+}
+
+@media screen and (max-width: 770px){
+    #decathlon .adept-filter-takeover--visible .adept-filter-takeover__content {
+        padding-bottom: 120px!important;
     }
 }
   
