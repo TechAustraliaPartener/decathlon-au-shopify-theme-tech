@@ -78,6 +78,22 @@
     }
 }
 
+@media (hover:none), (hover:on-demand) {
+    /* mobile devices -> move +50px for the height of the apply
+        it was below the fold
+    */
+    #decathlon .adept-filter, 
+    .template-collection .adept-filter {
+        padding-bottom: 50px;
+    }
+    #decathlon .adept-filter-takeover--visible .adept-filter-takeover__apply {        bottom: 106px!important;
+        bottom: 106px!important;
+    }
+    .template-collection .adept-filter-takeover--visible .adept-filter-takeover__apply {
+        bottom: 89px!important;
+    }
+}
+
 /* TEMP: Hide the stickyFeedbackbtn on search results and collections under 770px
 This will be removed once AdeptMind can work with us to add click events to their elements
 */
