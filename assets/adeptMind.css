@@ -78,7 +78,7 @@
     }
 }
 
-@media (hover:none) and (max-width: 480px), (hover:on-demand) and (max-width: 480px){
+@media (hover:none), (hover:on-demand) {
     /* mobile devices -> move +50px for the height of the apply
         it was below the fold
     */
@@ -86,7 +86,7 @@
     .template-collection .adept-filter {
         padding-bottom: 50px;
     }
-    #decathlon .adept-filter-takeover--visible .adept-filter-takeover__apply {
+    #decathlon .adept-filter-takeover--visible .adept-filter-takeover__apply {        bottom: 106px!important;
         bottom: 106px!important;
     }
     .template-collection .adept-filter-takeover--visible .adept-filter-takeover__apply {
