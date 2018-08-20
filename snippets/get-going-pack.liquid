@@ -31,9 +31,9 @@
     	<!-- {{ collection_total }} -->
     	{%- assign collection_total = collection_total | divided_by: 100 | ceil | times: 100 | money_without_trailing_zeros -%}
     	{% if settings['is_lookbook'] == false %}
-      		{%- assign button_text = 'Get your ' | append: settings[collection_setting_key] | append: ' pack from ' | append: collection_total -%}
+      		{%- assign button_text = 'Get your ' | append: settings[collection_setting_key] | append: ' pack for ' | append: collection_total -%}
     	{% else %}
-      		{%- assign button_text = 'Explore this ' | append: settings[collection_setting_key] | append: ' pack from ' | append: collection_total -%}
+      		{%- assign button_text = 'Explore this ' | append: settings[collection_setting_key] | append: ' pack for ' | append: collection_total -%}
     	{% endif %}
       	<p class="banner-btnContainer"><a class="btn" href="{{ get_going_pack_collection.url }}" isp_ignore>{{ button_text }}</a></p>
   </div>
