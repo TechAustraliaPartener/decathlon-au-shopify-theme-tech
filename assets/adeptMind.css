@@ -94,6 +94,20 @@
     }
 }
 
+/* Target iPads */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+    #decathlon .adept-filter, 
+    .template-collection .adept-filter {
+        padding-bottom: 50px;
+    }
+    #decathlon .adept-filter-takeover--visible .adept-filter-takeover__apply {
+        bottom: 75px!important;
+    }
+    .template-collection .adept-filter-takeover--visible .adept-filter-takeover__apply {
+        bottom: 30px!important;
+    }
+}
+
 /* TEMP: Hide the stickyFeedbackbtn on search results and collections under 770px
 This will be removed once AdeptMind can work with us to add click events to their elements
 */
