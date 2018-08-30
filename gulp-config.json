@@ -5,8 +5,9 @@
 		"js" 		: "src/js/",
 		"jsBuild" 	: "src/js/build/",
 		"jsDist" 	: "src/js/dist/",
-		"jsPlugins" : "src/js/plugins/",
-		"scss" 		: "src/scss/",
+		"jsPlugins"	: "src/js/plugins/",
+		"patterns"	: "patterns/",
+		"scss"		: "src/scss/",
 		"snippets" 	: "snippets/"
 	},
 	"sprite" : {
