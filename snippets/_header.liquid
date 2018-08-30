@@ -10,7 +10,7 @@
         <div id="header--burger">
       <nav class="nav-bar" role="navigation">
         <div id="header--burger-dropBtn">
-          <div class="site-nav--mobile"> 
+          <div class="site-nav--mobile">
             <button type="button" class="icon-fallback-text site-nav__link js-drawer-open-left" aria-controls="NavDrawer" aria-expanded="false">
               <span class="icon icon-hamburger" aria-hidden="true"></span>
               <span class="fallback-text">{{ 'layout.navigation.menu' | t }}</span>
@@ -104,6 +104,9 @@
                     <a href="{{ shoplink.url }}">{{ shoplink.title }}</a>
                   </li>
                   {% endfor %}
+				  <li>
+				  	{% include 'patterns-forms-button', class: 'de-Dark', content: 'Test' %}
+				  </li>
                 </ul>
               </div>
               {% if settings['is_lookbook'] == true %}
@@ -164,7 +167,7 @@
             {% comment %}
             TODO: Account Menu. Once created, add this div back in and create logic to open the menu
             {%endcomment %}
-            
+
         <!-- Start Account -->
               <div id="header--account">
           {% comment %}
@@ -178,7 +181,7 @@
           {% endif %}
         </div>
         <!-- End Account -->
-            
+
         <!-- Start Cart -->
               <div id="header--cart">
               <div class="header-cartWrapper">
@@ -228,7 +231,7 @@
   $(window).load(function () {
     setShopMenuHeight();
     $(window).resize(setShopMenuHeight);
-    
+
         /* ========= Determine Height of Shop Menu ========= */
     function setShopMenuHeight () {
       // Get height of the shop-list
@@ -239,22 +242,22 @@
       if (shopListHeight >= windowHeight) {
         $('.site-nav__dropdown-and-shop').css('height', '50vh');
       } else {
-       $('.site-nav__dropdown-and-shop').css('height', 'auto'); 
+       $('.site-nav__dropdown-and-shop').css('height', 'auto');
       }
     }
   });
   $(document).ready(function () {
-    $(window).resize(setPlaceholderText); 
-    
+    $(window).resize(setPlaceholderText);
+
     /* ========= Search Placeholder ========= */
     // Check if search has been injected
     var searchElement = $('.adept-header-searchInput');
     while (!searchElement) {
-     searchElement = $('.adept-header-searchInput'); 
+     searchElement = $('.adept-header-searchInput');
     }
-    
+
     setPlaceholderText();
-    
+
     // Determine what the placeholder text will be based on document width
     function setPlaceholderText () {
         var docWidth = $(document).innerWidth();
@@ -262,7 +265,7 @@
       if ((docWidth <= 320) || ((docWidth >= 605) && (docWidth < 689))) {
         updatedPlaceholder = "Search 10k products";
       } else {
-        updatedPlaceholder = "Search 10k products, 70 sports"; 
+        updatedPlaceholder = "Search 10k products, 70 sports";
       }
 
       //Update search input placeholder text
@@ -278,7 +281,7 @@
     $('.template-collection').on('click', '.decathlon-filter__mobile-toggle-button', toggleStickyFeedbackBtn);
     $('.template-collection').on('click', '.adept-filter-takeover__apply', toggleStickyFeedbackBtn);
     $('.template-collection').on('click', '.adept-filter-takeover__close', toggleStickyFeedbackBtn);
-    
+
     function toggleStickyFeedbackBtn() {
       var stickyVisible = $('.stickyFeedbackbtn').is(':visible');
       if (stickyVisible == true){
@@ -287,7 +290,7 @@
         $('.stickyFeedbackbtn').show()
       }
     }
-    
+
   });
 </script>
   <!-- End snippets/_header.liquid -->
