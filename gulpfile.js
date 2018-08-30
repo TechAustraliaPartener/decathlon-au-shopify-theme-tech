@@ -59,19 +59,19 @@ gulp.task('copyPatterns', function() {
 		//       for each level of nested directories
 		.pipe(replace(
 			/include \'([^\/]+)\/([^\/]+)\/([^\/]+)\/([^\/]+)\/([^\']+)\.liquid\'/,
-		 	"include \'$1\-$2\-$3\-$4\-$5.liquid\'"
+		 	"include \'$1\-$2\-$3\-$4\-$5\'"
 		))
 		.pipe(replace(
 			/include \'([^\/]+)\/([^\/]+)\/([^\/]+)\/([^\']+)\.liquid\'/,
-		 	"include \'$1\-$2\-$3\-$4.liquid\'"
+		 	"include \'$1\-$2\-$3\-$4\'"
 		))
 		.pipe(replace(
 			/include \'([^\/]+)\/([^\/]+)\/([^\']+)\.liquid\'/,
-		 	"include \'$1\-$2\-$3.liquid\'"
+		 	"include \'$1\-$2\-$3\'"
 		))
 		.pipe(replace(
 			/include \'([^\/]+)\/([^\']+)\.liquid\'/,
-		 	"include \'$1\-$2.liquid\'"
+		 	"include \'$1\-$2\'"
 		))
 		.pipe(gulp.dest(config.path.snippets));
 });
