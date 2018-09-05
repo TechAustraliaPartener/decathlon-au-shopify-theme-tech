@@ -11,6 +11,7 @@ var clean = require('gulp-clean'),
  	cp = require('child_process'),
  	del = require('del'),
  	fs	= require('fs'),
+	git = require('gulp-git'),
  	gulp = require('gulp'),
  	jshint = require('gulp-jshint'),
  	mqpacker = require('css-mqpacker'),
@@ -18,6 +19,7 @@ var clean = require('gulp-clean'),
  	rename = require('gulp-rename'),
 	replace = require('gulp-replace'),
  	sass = require('gulp-sass'),
+	sequence = require('gulp-sequence'),
  	size = require('gulp-size'),
  	sourcemaps = require('gulp-sourcemaps'),
  	svgSprite = require('gulp-svg-sprite'),
@@ -37,6 +39,45 @@ function handleError(err) {
 	util.log(err.toString());
 	this.emit('end');
 }
+
+/**
+ * update Patterns
+ */
+gulp.task('updatePatternsSubmodule', function() {
+	git.updateSubmodule({ args: '--remote patterns' });
+});
+
+gulp.task('copyPatterns', function() {
+// TODO: Copy Assets, CSS, and JS
+// TODO: Address old patterns - clean everything prefixed with 'patterns-'?
+	return gulp.src(config.path.patterns + 'src/content/_includes/patterns/**/*.liquid')
+		.pipe(rename(function(path) {
+			path.basename = "patterns-" + path.dirname.replace(/\//g, "-") + "-" + path.basename;
+			path.dirname = "";
+		}))
+		// TODO: Make this cleaner than a distinct operation
+		//       for each level of nested directories
+		.pipe(replace(
+			/include \'([^\/]+)\/([^\/]+)\/([^\/]+)\/([^\/]+)\/([^\']+)\.liquid\'/,
+		 	"include \'$1\-$2\-$3\-$4\-$5\'"
+		))
+		.pipe(replace(
+			/include \'([^\/]+)\/([^\/]+)\/([^\/]+)\/([^\']+)\.liquid\'/,
+		 	"include \'$1\-$2\-$3\-$4\'"
+		))
+		.pipe(replace(
+			/include \'([^\/]+)\/([^\/]+)\/([^\']+)\.liquid\'/,
+		 	"include \'$1\-$2\-$3\'"
+		))
+		.pipe(replace(
+			/include \'([^\/]+)\/([^\']+)\.liquid\'/,
+		 	"include \'$1\-$2\'"
+		))
+		.pipe(gulp.dest(config.path.snippets));
+});
+
+gulp.task('updatePatterns', sequence('updatePatternsSubmodule', 'copyPatterns'));
+
 
 /**
  * clean sprites
