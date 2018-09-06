@@ -4,24 +4,25 @@
   <div id="review-products" class="account-reviewProducts u-marginTop2x u-marginBottom2x u-block">
     <div class="grid-uniform">
     {% if customer.orders.size != 0 %}
-      {% for order in customer.orders %}
-        {% for item in order.line_items %}
-        <div class="grid__item medium--one-half large--one-fifth text-center">
-            <a class="account-writeReviewButton account-order--js-writeReviewForm" 
-              review-modelCode="{{item.variant.option3}}" 
-              review-productName="{{ item.title | split: ' / ' | first | split: ' - ' | first }}">
-              <img src="{{ item | img_url }}" alt="{{ item.title | escape }}"><br/>
-              {{ item.product.title }}
-            </a>
-        </div>
-        {% endfor %}
+    {% for order in customer.orders %}
+      {% for item in order.line_items %}
+      <div class="grid__item medium--one-half large--one-fifth text-center">
+          <a class="account-writeReviewButton account-order--js-writeReviewForm" 
+            review-modelCode="{{item.variant.option3}}" 
+            review-productName="{{ item.title | split: ' / ' | first | split: ' - ' | first }}">
+            <img src="{{ item | img_url }}" alt="{{ item.title | escape }}"><br/>
+            {{ item.product.title }}
+          </a>
+      </div>
       {% endfor %}
+    {% endfor %}
+
     {% else %}
       <p class="text-center">{{ 'customer.orders.none' | t }}</p>
       <p class="text-center"><a href="/collections" class="btn">Shop Now</a></p>
     {% endif %}
+
     </div>
-    <div class="js-account-review-products" data-jwt-token="{{ shop.metafields.picshare.jwt_token }}"></div>
   </div>
 </div>
 {% include 'review-template' %}

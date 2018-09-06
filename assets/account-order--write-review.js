@@ -11,8 +11,8 @@
             REVIEWS_ROOT: s,
             siteCode: 1132,
             modelCode: M,
-            productName: P,
-            token: t(".js-account-review-products").data("jwtToken")
+          productName: P,
+            token: t(".js-instagramFeed").data("jwtToken")
         })), 
           t(".inputWrap > select").on("change", function() {}),
           t(".inputWrap > input, .inputWrap > textarea").on("keyup", function() {}),
