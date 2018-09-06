@@ -228,9 +228,13 @@
 	  window.onload = function() {
 		  var bannerBillboard = document.querySelector('.slick-active .banner--billboard'),
 		      bannerOverlay= document.getElementById('bannerOverlay');
+          if (bannerBillboard) {
+              bannerBillboard.classList.remove('loading');
+          }
+          if (bannerOverlay) {
+              bannerOverlay.classList.remove('loading');
+          }
 
-		  bannerBillboard.classList.remove('loading');
-		  bannerOverlay.classList.remove('loading');
 	  };
 	  var mouseflowCrossDomainSupport = true;
 	  window._mfq = window._mfq || [];
