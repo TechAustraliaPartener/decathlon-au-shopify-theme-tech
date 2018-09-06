@@ -416,6 +416,7 @@
     $(productJSON.options).each(function(k,v) {
       if (v == 'Model Code') { modelCodeOption = k; }
     });
+
     if(!variant) {
       var variantInfo = [];
       $('.option-selector').each(function(k,v) {
@@ -471,7 +472,16 @@
       $('.addToCartForm [name="id"]').val(variant.id);
       $('.addToCartForm [name="id"]').val(variant.id);
       $('.addToCartForm [name="id"]').val(variant.id);
-    }
+  } else {
+	  setTimeout(function() {
+		  var selectedSize = $('.selector-wrapper--size label').text();
+
+		  $('#productSelect option[selected]').attr('selected', null);
+		  $('#productSelect').find('[data-color-size="'+selectedColor+'/'+selectedSize+'"]').attr('selected','selected');
+		  $('#productSelect').trigger('change');
+	  }, 200);
+
+  }
 
     timber.productPage({
       money_format: "{{ shop.money_format }}",
@@ -559,9 +569,17 @@
       $('.productOptions-sizeChart').addClass('sizeChart--oneOption');
     }
 
+	$(document).on('mouseover', '.option.disabled', function() {
+		$(this).parents('.selector-wrapper').addClass('disabled-hovered');
+	});
+
+	$(document).on('mouseout', '.option.disabled', function() {
+		$(this).parents('.selector-wrapper').removeClass('disabled-hovered');
+	});
+
 
     $(window).on('load', function(e) {
-		console.log('hello!');
+		// console.log('hello!');
       var $optsHeight = $('.productOptions').height(),
           $headerHeight = $('.site-header').height(),
           $images = $('.js-slick--products');
@@ -780,6 +798,7 @@ $.extend(Shopify.OptionSelectors.prototype, {
             if (selector.element.nextElementSibling) {
 
                 $(selector.element.nextElementSibling.children).find('.option').click(function(e) {
+
                   	e.preventDefault();
                   	var selected = $(this).attr('data-value');
                     selector.element.value = selected;
@@ -795,14 +814,37 @@ $.extend(Shopify.OptionSelectors.prototype, {
                         $(this).siblings().removeClass('selected');
                         $(this).addClass('selected');
 
-                      	this_form.find('.addToCart').prop('disabled',false); // Enable add to cart button
+                      	this_form.find('.addToCart').prop('disabled',false);
+						this_form.find('.addToCart').html('Add To Cart');
+						this_form.find('.addToCart').removeAttr('id');
+
+						$('#BIS_trigger').hide();
+
+
+						// Enable add to cart button
                         /*if (outofstock.css('display') == 'block') {
                             this_form.find('.btn-addtocart').css('display', 'block');
                             outofstock.css('display', 'none');
                           	outofstock.find('form').find('input[type="submit"]').prop('disabled', true).val('select a size');
                         }*/
                     } else {
-						this_form.find('.addToCart').prop('disabled',true);
+						// this_form.find('.addToCart').prop('disabled',true);
+						this_form.find('.addToCart').prop('disabled',false);
+						this_form.find('.addToCart').html('Email When Available');
+
+						setTimeout( function() {
+							var variantId = $('#productSelect').val();
+
+							if ($('#soldOutMsg').length > 0) {
+								$('#soldOutMsg').show();
+							} else {
+								$('.selector-wrapper--size label').empty();
+								$('.selector-wrapper--size label').append('<span id="soldOutMsg">Out Of Stock, Get Email</span>');
+				  			  	this_form.find('.addToCart').attr('id','BIS_trigger').attr('data-variant-id', variantId);
+							}
+						}, 300);
+
+
                       	// out of stock
                       	/*$(this).addClass('selected');
 
@@ -890,7 +932,12 @@ $.extend(Shopify.OptionSelectors.prototype, {
                 var selectedValue;
                 var cnt = 0;
                 $.each(selectors[i].element.children, function(idx, option) {
-                    option.disabled = true;
+                    // option.disabled = true;
+					$(option).addClass('sold-out');
+					if (option.innerHTML.indexOf('Out of Stock') == -1) {
+						option.innerHTML = option.innerHTML + ' - Out of Stock';
+					}
+
                     $.each(variants, function(idx, variant) {
 
                         var sanity = true;
@@ -901,10 +948,14 @@ $.extend(Shopify.OptionSelectors.prototype, {
                         });
 
                         if (sanity && (typeof(variant) === 'object' && !variant.remove && option.value == variant.options[i] && variant.available) || option.value == "-1") {
-                            option.disabled = false;
+                            // option.disabled = false;
+							$(option).removeClass('sold-out');
+							option.innerHTML = option.innerHTML.replace(' - Out of Stock', '');
                             if (cnt == 0) selectedValue = option.value;
                             cnt++;
-                        }
+                        } else {
+							$(option).addClass('na');
+						}
 
                     });
                 });
@@ -950,6 +1001,14 @@ $.extend(Shopify.OptionSelectors.prototype, {
 	                    radio.addClass('disabled');
 	                }
 
+					if ($(selectors[i].element.children[k]).hasClass('sold-out')) {
+					   radio.addClass('disabled');
+				   	}
+
+					if ($(selectors[i].element.children[k]).hasClass('na')) {
+					   radio.addClass('na');
+				   	}
+
 
 	            });
 			} else {
@@ -993,10 +1052,28 @@ $.extend(Shopify.OptionSelectors.prototype, {
 
     },*/
 
+
+	checkSizeSelector: function(currentColor) {
+		var prodVariants = this.product.variants;
+		var sizeSelectorEl = this.selectors[1].element
+
+		//console.log(this);
+
+		$.each(prodVariants, function(idx, option) {
+			if (option.option1 == currentColor) {
+				$('#productSelect-option-1').find('option[value="'+option.option2+'"]').removeClass('na');
+				$('.selector-wrapper--size').find('a[data-value="'+option.option2+'"]').removeClass('na');
+			}
+		});
+
+	},
+
     updateSelectors: function(index, options) {
         var currValues = this.selectedValues(); // get current values
         this.variantCheck(index, currValues);
         var variant    = this.product.getVariant(currValues);
+
+		this.checkSizeSelector(currValues[0]);
 
         if (variant) {
             this.variantIdField.disabled = false;
@@ -1050,7 +1127,7 @@ $.extend(Shopify.OptionSelectors.prototype, {
                 selectorName = selectorName.name;
             }
 			inputWrap.setAttribute('class','options active');
-			inputWrap.setAttribute('data-option','option'+(selector.index+1))
+			inputWrap.setAttribute('data-option','option'+(selector.index+1));
 
             if ($.inArray(selectorName, radios) > -1) {
                 selector.element.setAttribute('class', 'option-selector');
