@@ -1,13 +1,14 @@
 <!-- snippets/_header.liquid -->
 {% assign greetingLength = 9 %} {% comment %}Variable for the number of characters in users' Name in greeting {% endcomment %}
 {% include '_header--mobile-nav' %} {%comment%}Render burger menu first so it's ready when the header shows{%endcomment%}
-<header class="site-header">
+<header class="site-header de-PageWrap-header"
+  data-de-page-wrap-fix="bar">
   <!-- Start header wrapper -->
     <div id="header--wrapper" class="wrapper">
     <!-- Start header--left-wrapper -->
-      <div id="header--left-wrapper">
+      <div id="header--left-wrapper" class="de-PageWrap-headerPrimary">
         <!-- Start burger -->
-        <div id="header--burger">
+        <div id="header--burger" class="de-PageWrap-narrowMenuControl">
       <nav class="nav-bar" role="navigation">
         <div id="header--burger-dropBtn">
           <div class="site-nav--mobile">
@@ -21,7 +22,7 @@
         </div>
       <!-- End burger -->
       <!-- Start logo -->
-        <div id="header--logo">
+        <div id="header--logo" class="de-PageWrap-logo">
         <div class="text-center">
           {% comment %}
           Use the uploaded logo from theme settings if enabled.

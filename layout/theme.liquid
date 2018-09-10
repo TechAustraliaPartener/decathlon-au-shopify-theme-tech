@@ -106,27 +106,30 @@
   Add the page template as a class for easy page or template specific styling.
 {% endcomment %}
 <body id="{% if collection %}{{ collection.handle }}{% else %}{{ page_title | handle }}{% endif %}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }} is-shortNav{% if settings['is_lookbook'] == true %} is-wishlistOnly{% endif %}{% if cart.item_count > 0 %} has-itemsInCart{% endif %}{% if product and product.tags contains 'allow sale' %} is-sellableProduct{% endif %}">
-
   {% section 'add-on-products' %}
 
   {% include 'google-tag-manager' %}
   {% comment %} {% include '_header--mobile-nav' %} {% endcomment %}
-  {% include '_header' %}
+  <div class="de-PageWrap js-de-PageWrap">
+    {% include '_header' %}
 
-  {% if settings.ajax_cart_method == "drawer" %}
-    {% include 'ajax-cart--drawer' %}
-  {% endif %}
+    {% if settings.ajax_cart_method == "drawer" %}
+      {% include 'ajax-cart--drawer' %}
+    {% endif %}
 
-  {% include 'gateway' %}
+    {% include 'gateway' %}
 
-  {% comment %} <div id="PageContainer" class="is-moved-by-drawer"> {% endcomment %}
-  <div id="PageContainer">
-    <main class="main-content" role="main">
-      {{ content_for_layout }}
-    </main>
-
-    {% include '_footer' %}
+    {% comment %} <div id="PageContainer" class="is-moved-by-drawer"> {% endcomment %}
+    <div class="de-PageWrap-main">
+      <div data-de-page-wrap-fix="scroll bar">
+        <main class="main-content" role="main">
+          {{ content_for_layout }}
+        </main>
+        {% include '_footer' %}
+      </div>
+    </div>
   </div>
+
 
   {{ 'fastclick.min.js' | asset_url | script_tag }}
 
