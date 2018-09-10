@@ -15,6 +15,7 @@ var clean = require('gulp-clean'),
  	gulp = require('gulp'),
  	jshint = require('gulp-jshint'),
  	mqpacker = require('css-mqpacker'),
+	path = require('path'),
  	prefix = require('gulp-autoprefixer'),
  	rename = require('gulp-rename'),
 	replace = require('gulp-replace'),
@@ -22,6 +23,7 @@ var clean = require('gulp-clean'),
 	sequence = require('gulp-sequence'),
  	size = require('gulp-size'),
  	sourcemaps = require('gulp-sourcemaps'),
+	spawn = require('cross-spawn'),
  	svgSprite = require('gulp-svg-sprite'),
  	uglify = require('gulp-uglify'),
  	util = require('gulp-util'),
@@ -43,40 +45,92 @@ function handleError(err) {
 /**
  * update Patterns
  */
+
+gulp.task('cleanPatternAssets', function() {
+	// TODO: Decisions need to be made about how to handle images that are
+	//       removed or renamed. This task just deletes all pattern images
+	//       before copying the new images from the patterns submodule.
+	return gulp.src('assets/patterns-*.*')
+		.pipe(clean());
+});
+
+gulp.task('cleanPatternSnippets', function() {
+	// TODO: Decisions need to be made about how to handle patterns that are
+	//       removed or renamed. This task just deletes all patterns before
+	//       replacing with the new contents of the patterns submodule.
+	return gulp.src('snippets/patterns-*.liquid')
+		.pipe(clean());
+});
+
+gulp.task('cleanPatterns', sequence('cleanPatternAssets', 'cleanPatternSnippets'));
+
 gulp.task('updatePatternsSubmodule', function() {
 	git.updateSubmodule({ args: '--remote patterns' });
 });
 
-gulp.task('copyPatterns', function() {
-// TODO: Copy Assets, CSS, and JS
-// TODO: Address old patterns - clean everything prefixed with 'patterns-'?
+/* TODO: Debug: for some reason this task appears to complete without
+         completing the /dist directory, which causes the subsequent
+		 copy tasks to be no-ops. */
+gulp.task('patterns:build', function (callback) {
+	var child = spawn('npm', ['install', 'run', 'build'], {
+		cwd: path.join(__dirname, 'patterns'),
+		stdio: 'inherit'
+	});
+	child.on('close', callback);
+});
+
+gulp.task('patterns:copy:css', function () {
+  return gulp.src('patterns/dist/styles/toolkit.css')
+  	.pipe(rename(function(path){
+		path.basename = "patterns-" + path.basename;
+		path.dirname = "";
+	}))
+    .pipe(gulp.dest(config.path.assets));
+});
+
+gulp.task('patterns:copy:images', function () {
+  return gulp.src([
+	  'patterns/dist/images/**/*',
+	  '!patterns/dist/images/{demos,demos/**}',
+	  '!patterns/dist/images/{fpo,fpo/**}'
+  	])
+  	.pipe(rename(function(path){
+		path.basename = "patterns-" + path.basename;
+		path.dirname = "";
+  	}))
+    .pipe(gulp.dest(config.path.assets));
+});
+
+gulp.task('patterns:copy:js', function () {
+  return gulp.src('patterns/dist/scripts/toolkit.js')
+  	.pipe(rename(function(path){
+		path.basename = "patterns-" + path.basename;
+		path.dirname = "";
+  	}))
+    .pipe(gulp.dest(config.path.assets));
+});
+
+gulp.task('patterns:copy', sequence('patterns:copy:css', 'patterns:copy:images', 'patterns:copy:js'));
+
+gulp.task('transformPatterns', function() {
 	return gulp.src(config.path.patterns + 'src/content/_includes/patterns/**/*.liquid')
 		.pipe(rename(function(path) {
 			path.basename = "patterns-" + path.dirname.replace(/\//g, "-") + "-" + path.basename;
 			path.dirname = "";
 		}))
-		// TODO: Make this cleaner than a distinct operation
-		//       for each level of nested directories
-		.pipe(replace(
-			/include \'([^\/]+)\/([^\/]+)\/([^\/]+)\/([^\/]+)\/([^\']+)\.liquid\'/,
-		 	"include \'$1\-$2\-$3\-$4\-$5\'"
-		))
-		.pipe(replace(
-			/include \'([^\/]+)\/([^\/]+)\/([^\/]+)\/([^\']+)\.liquid\'/,
-		 	"include \'$1\-$2\-$3\-$4\'"
-		))
-		.pipe(replace(
-			/include \'([^\/]+)\/([^\/]+)\/([^\']+)\.liquid\'/,
-		 	"include \'$1\-$2\-$3\'"
-		))
-		.pipe(replace(
-			/include \'([^\/]+)\/([^\']+)\.liquid\'/,
-		 	"include \'$1\-$2\'"
-		))
+		.pipe(replace(/include ('?patterns[0-9A-Za-z\/\.\-\_]+)/g, function(match) {
+			match = match.replace(/\'/g, "");
+			match = match.replace(/\//g, "-");
+			match = match.replace(".liquid", "");
+			match = match.replace(/include\s+/, "include '");
+			match += "'";
+			return match;
+		}))
 		.pipe(gulp.dest(config.path.snippets));
 });
 
-gulp.task('updatePatterns', sequence('updatePatternsSubmodule', 'copyPatterns'));
+gulp.task('updatePatterns',
+	sequence('cleanPatterns', 'updatePatternsSubmodule', 'patterns:build', 'patterns:copy', 'transformPatterns'));
 
 
 /**

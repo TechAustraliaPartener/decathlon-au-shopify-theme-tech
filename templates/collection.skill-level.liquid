@@ -1,18 +1,3 @@
-{% comment %}
-  top_level is used for both breadcrumbs and navigation
-{% endcomment %}
-{% for link in linklists %}
-  {% for sub in link.links %}
-    {% if sub.active or sub.child_active %}
-      {% assign top_level = link %}
-      {%break%}
-    {% endif %}
-  {% endfor %}
-  {% if top_level %}
-    {% break %}
-  {% endif %}
-{% endfor %}
-
 {% include 'collection-header-js' %}
 
 {% if collection.image %}
@@ -27,6 +12,7 @@
 
 
 <div class="wrapper{% if collection.image %} wrapper--collectionWithBanner u-paddingTopBottom4x{% else %} u-marginBottom4x{% endif %}">
+{% include 'find-top-level-collection' %}
 {% unless collection.image %}
   <!-- Create Breadcrumbs Start -->
  <nav class="breadcrumb" role="navigation" aria-label="breadcrumbs">
@@ -55,36 +41,7 @@
 
   <div class="grid">
     <div class="grid__item large--one-quarter left">
-
-	<!-- Start Nested Nav -->
-      <div id="nested-nav">
-      <ul style='list-style: none'>
-        <li>
-        <a class="breadcrumb-item top-level" href="{{shop.url}}/collections/{{top_level.handle}}">{{top_level.title}}</a>
-          <ul style='list-style: none'>
-      		{% for link in top_level.links %}
-      			<li>
-          		<a class="{% if link.active or link.child_active %}breadcrumb-item{% else %}not-breadcrumb-item{% endif %}"
-                   href="{{link.url}}">{{link.title}}</a>
-          			{% if link.child_active or link.active and link.links != blank %}
-          				<ul style='list-style: none'>
-          				{% for sub in link.links %}
-              				<li>
-          					<a class="{% if sub.active or sub.child_active %}breadcrumb-item{% else %}not-breadcrumb-item{% endif %}"
-                               href="{{sub.url}}">{{sub.title}}</a>
-              				</li>
-          				{% endfor %}
-          				</ul>
-          			{% endif %}
-        		</li>
-      		{% endfor %}
-          </ul>
-        </li>
-      </ul>
-      </div>
-      <!-- End Nested Nav -->
-
-
+      {% include 'nested-navigation' %}
       <!-- Adept Search Start -->
       <div class="decathlon-filter__container decathlon-filter__collection">
         <input type="checkbox" class="decathlon-filter__mobile-toggle"/>

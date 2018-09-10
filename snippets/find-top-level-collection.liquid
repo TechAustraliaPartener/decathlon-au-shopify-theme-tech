@@ -1,0 +1,38 @@
+{% comment %} top_level is used for both breadcrumbs and navigation {% endcomment %}
+{% for link in linklists %}
+  {% if link.handle == collection.handle %}
+	{% assign top_level = link %}
+  {% endif %}
+  {% if top_level %}
+	{% break %}
+  {% endif %}
+    {% for sub in link.links %}
+      {% if sub.active or sub.child_active %}
+        {% if sub.child_active %}
+      	  {% assign top_level = link %}
+      	{% elsif sub.active and sub.links == blank %}
+      	  {% if link.title == "Shop" or link.title == "Shop All Sports" or link.title == "Shop-Homepage" or link.title == "Header Shop Menu Links" or link.title == "Main menu"%}
+      	    {% assign top_level = sub %}
+      	  {% else %}
+      		{% assign top_level = link %}
+      	  {% endif %}
+      	{% elsif sub.active and sub.links != blank %}
+      	  {% assign top_level = link %}
+      	{% endif %}
+      	{% break %}
+	  {% endif %}
+    {% endfor %}
+{% endfor %}
+
+{% comment %} Check if top_level is it's own menu {% endcomment %}
+{% if top_level.links == blank %}
+  {% for link in linklists %}
+     {% if link.handle == top_level.handle %}
+      	{% assign top_level = link %}
+      	{% break %}
+     {% elsif link.title == top_level.title %}
+      	{% assign top_level = link %}
+      	{% break %}
+      {% endif %}
+   {% endfor %}
+{% endif %}
