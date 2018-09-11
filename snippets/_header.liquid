@@ -8,12 +8,17 @@
         <button class="de-MenuBar-action de-MenuBar-action--stack"
           data-de-page-wrap-action="toggleMenu"
           data-de-page-wrap-target="demo-side">
+          {% include 'patterns-icons-bars'
+            with class: 'de-MenuBar-icon' %}
           <span class="de-MenuBar-label">Menu</span>
         </button>
       </div>
     </div>
     <div class="de-PageWrap-logo">
-      Logo
+      {% include 'patterns-branding-logo' with
+        titleId:'logo-title',
+        href: '/',
+        class: 'de-PageWrap-logoObject' %}
     </div>
     <div class="de-PageWrap-wideMenuControl">
       <div class="de-MenuBar">
@@ -32,20 +37,28 @@
         <button class="de-MenuBar-action"
           data-de-page-wrap-action="toggleExpand"
           data-de-page-wrap-target="demo-search">
-          Search
+          {% include 'patterns-icons-search'
+              with class: 'de-MenuBar-icon' %}
         </button>
       </li>
       <li>
         <a class="de-MenuBar-action de-MenuBar-action--primary" href="">
           <span class="de-MenuBar-label de-u-textNormal">0</span>
-          Cart
+          {% include 'patterns-icons-cart'
+              with class: 'de-MenuBar-icon' %}
         </a>
       </li>
     </ul>
   </nav>
   <div class="de-PageWrap-headerTertiary" id="demo-search">
-    (Search)
-  </div>
+      <form class="de-SingleInputForm" action="">
+        <input class="de-Input de-SingleInputForm-input" type="search" name="search" placeholder="Example...">
+        <button class="de-SingleInputForm-action">
+          {% include 'patterns-icons-search', class: 'de-u-textGrow3', role: 'presentation' %}
+          <span class="de-u-hiddenVisually">Search</span>
+        </button>
+      </form>
+    </div>
 </header>
 <div class="de-PageWrap-narrowMenu"
   data-de-page-wrap-action="closeMenu">
