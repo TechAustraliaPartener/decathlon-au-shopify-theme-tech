@@ -1,294 +1,74 @@
 <!-- snippets/_header.liquid -->
 {% assign greetingLength = 9 %} {% comment %}Variable for the number of characters in users' Name in greeting {% endcomment %}
-{% include '_header--mobile-nav' %} {%comment%}Render burger menu first so it's ready when the header shows{%endcomment%}
-<header class="site-header de-PageWrap-header"
+<header class="de-PageWrap-header"
   data-de-page-wrap-fix="bar">
-  <!-- Start header wrapper -->
-    <div id="header--wrapper" class="wrapper">
-    <!-- Start header--left-wrapper -->
-      <div id="header--left-wrapper" class="de-PageWrap-headerPrimary">
-        <!-- Start burger -->
-        <div id="header--burger" class="de-PageWrap-narrowMenuControl">
-      <nav class="nav-bar" role="navigation">
-        <div id="header--burger-dropBtn">
-          <div class="site-nav--mobile">
-            <button type="button" class="icon-fallback-text site-nav__link js-drawer-open-left" aria-controls="NavDrawer" aria-expanded="false">
-              <span class="icon icon-hamburger" aria-hidden="true"></span>
-              <span class="fallback-text">{{ 'layout.navigation.menu' | t }}</span>
-            </button>
-          </div>
-        </div>
-      </nav>
-        </div>
-      <!-- End burger -->
-      <!-- Start logo -->
-        <div id="header--logo" class="de-PageWrap-logo">
-        <div class="text-center">
-          {% comment %}
-          Use the uploaded logo from theme settings if enabled.
-          Site name gets precedence with H1 tag on homepage, div on other pages.
-          {% endcomment %}
-          {% if template == 'index' %}
-          <h1 class="site-header__logo" itemscope itemtype="http://schema.org/Organization">
-            {% else %}
-            <div class="h1 site-header__logo" itemscope itemtype="http://schema.org/Organization">
-              {% endif %}
-              {% if settings.logo_use_image %}
-              <a href="/" itemprop="url" class="site-header__logo-link">
-                <img src="{{ 'logo.svg' | asset_url }}" alt="{{ shop.name }}" itemprop="logo">
-              </a>
-              {% else %}
-              <a href="/" itemprop="url">{{ shop.name }}</a>
-              {% endif %}
-              {% if template == 'index' %}
-              </h1>
-            {% else %}
-            </div>
-          {% endif %}
-        </div>
-          </div>
-        <!-- End logo -->
-        <!-- Start Shop Menu -->
-          <div id="header--shopMenu">
-            <ul class="site-nav" id="AccessibleNav">
-          {% assign link = linklists["Shop"] %}
-          {% assign child_list_handle = link.title | handleize %}
-               <li class="site-nav--has-dropdown{% if link.active %} site-nav--active{% endif %}" aria-haspopup="true">
-                 <a class="site-nav__link">
-              {{ link.title }}
-              <span class="dropdown-arrow" aria-hidden="true" style="position: relative;"></span>
-              <span class="active-arrow-up"></span>
-            </a>
-            <div class="site-nav__dropdown">
-              <div class="site-nav__dropdown-and-shop">
-              	<ul class="site-nav__dropdown-list">
-
-                  {% comment %}
-                	Determine partitions for nav links, to split them up into four columns, that fill vertically
-                  {% endcomment %}
-                  {% assign link_count = linklists[child_list_handle].links.size %}
-                  {% assign row_count = link_count | divided_by: 4 | floor %}
-                  {% assign remainder = link_count | modulo: 4 %}
-                  {% if remainder > 0 %}
-                  {% assign first_break = row_count | plus: 1 %}
-                  {% else %}
-                  {% assign first_break = row_count %}
-                  {% endif %}
-                  {% if remainder > 1 %}
-                  {% assign second_break = first_break | plus: row_count | plus: 1 %}
-                  {% else %}
-                  {% assign second_break = first_break | plus: row_count %}
-                  {% endif %}
-                  {% if remainder > 2 %}
-                  {% assign third_break = second_break | plus: row_count | plus: 1 %}
-                  {% else %}
-                  {% assign third_break = second_break | plus: row_count %}
-                  {% endif %}
-                  <!--{{ link_count }}|{{ first_break }}|{{ second_break }}|{{ third_break }}-->
-
-                  <div class="site-nav__dropdown-partition">
-                    {% for childlink in linklists[child_list_handle].links %}
-                    <li{% if childlink.active %} class="site-nav--active"{% endif %}>
-                      <a href="{{ childlink.url }}" class="site-nav__link">{{ childlink.title | escape }}</a>
-                    </li>
-                    {% if forloop.index == first_break or forloop.index == second_break or forloop.index == third_break %}
-                  </div>
-                  <div class="site-nav__dropdown-partition">
-                    {% endif %}
-                    {% endfor %}
-                  </div>
-                </ul>
-                {% if link.title == "Shop" or link.title == 'Our Products' %}
-                <ul class="site-nav__shop-list">
-                  {% for shoplink in linklists.header-shop-menu-links.links %}
-                  <li{% if shoplink.active %} class="site-nav--active"{% endif %}>
-                    <a href="{{ shoplink.url }}">{{ shoplink.title }}</a>
-                  </li>
-                  {% endfor %}
-                </ul>
-              </div>
-              {% if settings['is_lookbook'] == true %}
-              <a href="/collections" class="site-nav__all-shop-link">Explore All Sports</a>
-              {% else %}
-              <a href="/collections" class="site-nav__all-shop-link">Shop All Sports</a>
-              {% endif %}
-              {% endif %}
-            </div>
-              </li>
-            </ul>
-        </div>
-        <!-- End Shop Menu -->
-      <!-- End header--left-wrapper -->
+  <div class="de-PageWrap-headerPrimary">
+    <div class="de-PageWrap-narrowMenuControl">
+      <div class="de-MenuBar">
+        <button class="de-MenuBar-action de-MenuBar-action--stack"
+          data-de-page-wrap-action="toggleMenu"
+          data-de-page-wrap-target="demo-side">
+          <span class="de-MenuBar-label">Menu</span>
+        </button>
       </div>
-      <!-- Start header middle wrapper -->
-      <div id="header--middle-wrapper">
-        <div id="header--search-greeting">
-        <!-- Start Search -->
-        <!-- Adept Search Start -->
-        <div id="header--adept-search">
-          <div class="adept-autocomplete-takeover-search"
-               form-action="/apps/adeptsearch"
-               dropdown-align="right"
-               button-label='false'
-               input-placeholder='Search 10k products, 70 sports'
-               input-classes='header-searchInput adept-header-searchInput'></div>
-
-          <div class="header-searchWrapper">
-            <div class="adept-autocomplete-search"
-                 form-action="/apps/adeptsearch"
-                 dropdown-align="right"
-                 button-label='false'
-                 input-placeholder='Search 10k products, 70 sports'
-                 input-classes='header-searchInput adept-header-searchInput'></div>
-          </div>
-        </div>
-        <!-- Adept Search End -->
-        <!-- End Search -->
-        <!-- Start Sign In/Greeting -->
-        <div id="header--greeting">
-          {% if customer %}
-	          {% if customer.first_name != blank %}
-    	      <a href="/account" class="header--greeting-msg">{{customer.first_name | slice: 0, greetingLength | capitalize }}</a>
-          	{% else %}
-          	<a href="/account" class="header--greeting-msg">{{ customer.email | split: '@' | first | slice: 0, greetingLength | capitalize }}</a>
-        	  {% endif %}
-          {% else %}
-          <div><a href="/account/login?checkout_url=/">Sign In</a></div>
-          {% endif %}
-        </div>
-        <!-- End Sign In/Greeting -->
+    </div>
+    <div class="de-PageWrap-logo">
+      Logo
+    </div>
+    <div class="de-PageWrap-wideMenuControl">
+      <div class="de-MenuBar">
+        <button class="de-MenuBar-action de-u-textGrow1"
+          data-de-page-wrap-action="toggleMenu"
+          data-de-page-wrap-target="demo-mega"
+          data-de-page-wrap-hover="true">
+          <span class="de-MenuBar-label">Menu</span>
+        </button>
       </div>
-      </div>
-      <!-- End header middle wrapper -->
-      <!-- Start header right wrapper -->
-          <div id="header--right-wrapper">
-            {% comment %}
-            TODO: Account Menu. Once created, add this div back in and create logic to open the menu
-            {%endcomment %}
-
-        <!-- Start Account -->
-              <div id="header--account">
-          {% comment %}
-          If customer accounts are enabled, provide login and create account links
-          {% endcomment %}
-
-          {% if shop.customer_accounts_enabled %}
-          <div class="header-customerAccount">
-            <a class="u-textBlack account-icon" href="/account"><i class="ico ico--account"></i><span class="rollover-description">My Account</span></a>
-          </div>
-          {% endif %}
-        </div>
-        <!-- End Account -->
-
-        <!-- Start Cart -->
-              <div id="header--cart">
-              <div class="header-cartWrapper">
-        {% comment %}
-        Show number of items in the cart and total cost in the /cart link
-
-        Ajax Cart Notes:
-        - #cartCount updates the total number of items in the cart
-        - #cartCost updates the total cost of the cart
-        - Documentation:  http://shopify.com/timber#ajax-cart
-        {% endcomment %}
-
-          <a href="/cart" class="site-header__cart-toggle" aria-controls="CartDrawer" aria-expanded="false">
-            <span id="CartCount">{{ cart.item_count }}</span>
-            <i class="ico ico--cart{% if cart.item_count == 0 %}--empty{% endif %} h5 u-marginBottom0x left"></i>
-          </a>
-          <!-- include 'wishlist-link-li' -->
-        </div>
-          </div>
-        <!-- End Cart -->
-    </div>
-      <!-- End header right wrapper -->
-    </div>
-    <!-- End header wrapper-->
-    <!-- Start search wrapper -->
-    <div class="header-searchWrapper mobile-searchWrapper">
-      <input class="header-searchInput js-search" type="search" placeholder="SEARCH FOR SPORT" />
-      <div class="header-searchResultsWrapper searchResults"></div>
-      <button type="button" class="mobile-search__close"></button>
-    </div>
-    <!-- End search wrapper -->
-    </header>
-
-  {% comment %} Hide smaller feedback button on cart page {% endcomment %}
-  {% if template != 'cart' %}
-  <!-- Start sticky feedback btn -->
-  <div class="js-sticky-btn stickyFeedbackbtn">
-    <div class="wrapper">
-      <a href="/pages/your-opinion-matters" class="medium-down--show large--hide">Give Us Feedback</a>
-      <a href="/pages/your-opinion-matters" class="large--show medium-down--hide">Your Opinion Matters! Give Us Feedback</a>
     </div>
   </div>
-  <!-- End sticky feedback btn -->
-  {% endif %}
-
-<script>
-  $(window).load(function () {
-    setShopMenuHeight();
-    $(window).resize(setShopMenuHeight);
-
-        /* ========= Determine Height of Shop Menu ========= */
-    function setShopMenuHeight () {
-      // Get height of the shop-list
-      var shopListHeight = $('.site-nav__dropdown-and-shop').height() + $('.site-header').height();
-      // get the height of the window
-      var windowHeight = $(window).height();
-      // Set height of menu
-      if (shopListHeight >= windowHeight) {
-        $('.site-nav__dropdown-and-shop').css('height', '50vh');
-      } else {
-       $('.site-nav__dropdown-and-shop').css('height', 'auto');
-      }
-    }
-  });
-  $(document).ready(function () {
-    $(window).resize(setPlaceholderText);
-
-    /* ========= Search Placeholder ========= */
-    // Check if search has been injected
-    var searchElement = $('.adept-header-searchInput');
-    while (!searchElement) {
-     searchElement = $('.adept-header-searchInput');
-    }
-
-    setPlaceholderText();
-
-    // Determine what the placeholder text will be based on document width
-    function setPlaceholderText () {
-        var docWidth = $(document).innerWidth();
-      var updatedPlaceholder;
-      if ((docWidth <= 320) || ((docWidth >= 605) && (docWidth < 689))) {
-        updatedPlaceholder = "Search 10k products";
-      } else {
-        updatedPlaceholder = "Search 10k products, 70 sports";
-      }
-
-      //Update search input placeholder text
-      var currentInputVal = searchElement.val();
-      if ($.browser == "msie") {
-        searchElement.attr('placeholder',updatedPlaceholder).val(currentInputVal);
-      } else {
-        searchElement.attr("placeholder", updatedPlaceholder).val(currentInputVal);
-      }
-    }
-
-    /* ========== Hide sitckyFeedbackbtn if the Adeot filter is visible ========= */
-    $('.template-collection').on('click', '.decathlon-filter__mobile-toggle-button', toggleStickyFeedbackBtn);
-    $('.template-collection').on('click', '.adept-filter-takeover__apply', toggleStickyFeedbackBtn);
-    $('.template-collection').on('click', '.adept-filter-takeover__close', toggleStickyFeedbackBtn);
-
-    function toggleStickyFeedbackBtn() {
-      var stickyVisible = $('.stickyFeedbackbtn').is(':visible');
-      if (stickyVisible == true){
-      	$('.stickyFeedbackbtn').hide()
-      } else {
-        $('.stickyFeedbackbtn').show()
-      }
-    }
-
-  });
-</script>
+  <nav class="de-PageWrap-headerSecondary">
+    <ul class="de-MenuBar">
+      <li class="de-PageWrap-headerTertiaryControl">
+        <button class="de-MenuBar-action"
+          data-de-page-wrap-action="toggleExpand"
+          data-de-page-wrap-target="demo-search">
+          Search
+        </button>
+      </li>
+      <li>
+        <a class="de-MenuBar-action de-MenuBar-action--primary" href="">
+          <span class="de-MenuBar-label de-u-textNormal">0</span>
+          Cart
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <div class="de-PageWrap-headerTertiary" id="demo-search">
+    (Search)
+  </div>
+</header>
+<div class="de-PageWrap-narrowMenu"
+  data-de-page-wrap-action="closeMenu">
+  <nav class="de-PageWrap-narrowMenuInner"
+    id="demo-side"
+    data-de-page-wrap-cancel>
+    <ol>
+      {% for i in (1..10) %}
+        <li>Menu Item</li>
+      {% endfor %}
+    </ol>
+  </nav>
+</div>
+<div class="de-PageWrap-wideMenu"
+  data-de-page-wrap-action="closeMenu">
+  <nav class="de-PageWrap-wideMenuInner"
+    id="demo-mega"
+    data-de-page-wrap-cancel>
+    <ol>
+      {% for i in (1..3) %}
+        <li>Menu Item</li>
+      {% endfor %}
+    </ol>
+  </nav>
+</div>
   <!-- End snippets/_header.liquid -->
