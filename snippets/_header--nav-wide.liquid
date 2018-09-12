@@ -50,33 +50,36 @@
                 </ul>
               </div>
             </div>
-{% comment %} TODO: update linkLists when navigation menus have been created {% endcomment %}
             <div class="de-u-pad2 de-u-borderTopSm de-u-borderGray50 de-u-borderOverlapTopSm">
               <div class="de-Collapsible js-de-Collapsible" data-parent="mega-tabs" id="mega-tab-activity">
-                {% include 'patterns-nav-wide-list',
+                {% include '_header--nav-wide-list',
                   list: linklists["activities"] %}
               </div>
+{% comment %} TODO: update linkLists when navigation menus have been created {% endcomment %}
               <div class="de-Collapsible js-de-Collapsible" data-parent="mega-tabs" id="mega-tab-alpha">
-                {% include 'patterns-nav-wide-list',
+                {% include '_header--nav-wide-list',
                   list: linklists["activities"] %}
               </div>
               <div class="de-Collapsible js-de-Collapsible" data-parent="mega-tabs" id="mega-tab-women">
-                {% include 'patterns-nav-wide-list',
+{% comment %} TODO: update linkList to "womens" {% endcomment %}
+                {% include '_header--nav-wide-list',
                   list: linklists["activities"] %}
               </div>
               <div class="de-Collapsible js-de-Collapsible" data-parent="mega-tabs" id="mega-tab-men">
-                {% include 'patterns-nav-wide-list',
+{% comment %} TODO: update linkList to "mens" {% endcomment %}
+                {% include '_header--nav-wide-list',
                   list: linklists["activities"] %}
               </div>
+{% comment %} TODO: update linkLists when navigation menus have been created {% endcomment %}
               <div class="de-Collapsible js-de-Collapsible" data-parent="mega-tabs" id="mega-tab-kids">
-                {% include 'patterns-nav-wide-list',
+                {% include '_header--nav-wide-list',
                   list: linklists["activities"] %}
               </div>
             </div>
           </div>
         </div>
         <div class="de-u-size1of5 de-u-xl-size1of6 de-u-bgWhite">
-          {% include 'patterns-nav-wide-extras' %}
+          {% include '_header--nav-wide-extras' %}
         </div>
       </div>
     </nav>
