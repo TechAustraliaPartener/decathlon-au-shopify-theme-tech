@@ -1,0 +1,86 @@
+<div class="de-PageWrap-wideMenu"
+    data-de-page-wrap-action="closeMenu">
+    <nav class="de-PageWrap-wideMenuInner"
+      id="demo-mega"
+      data-de-page-wrap-cancel>
+      <div class="de-Grid de-Grid--equalHeight">
+        <div class="de-u-size4of5 de-u-xl-size5of6" id="mega-tabs">
+          <div class="de-u-sizeFull">
+            <div class="de-u-padSides2">
+              <div class="de-MenuBar">
+                <h2 class="de-MenuBar-heading">
+                  Shop All Sports…
+                </h2>
+                <ul class="de-MenuBar-list">
+                  <li>
+                    <button class="de-MenuBar-action"
+                      data-de-collapsible-target="mega-tab-activity"
+                      data-de-collapsible-action="show">
+                      By Activity
+                    </button>
+                  </li>
+                  <li>
+                    <button class="de-MenuBar-action"
+                      data-de-collapsible-target="mega-tab-alpha"
+                      data-de-collapsible-action="show">
+                      From A – Z
+                    </button>
+                  </li>
+                  <li>
+                    <button class="de-MenuBar-action"
+                      data-de-collapsible-target="mega-tab-women"
+                      data-de-collapsible-action="show">
+                      For Women
+                    </button>
+                  </li>
+                  <li>
+                    <button class="de-MenuBar-action"
+                      data-de-collapsible-target="mega-tab-men"
+                      data-de-collapsible-action="show">
+                      For Men
+                    </button>
+                  </li>
+                  <li>
+                    <button class="de-MenuBar-action"
+                      data-de-collapsible-target="mega-tab-kids"
+                      data-de-collapsible-action="show">
+                      For Kids
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="de-u-pad2 de-u-borderTopSm de-u-borderGray50 de-u-borderOverlapTopSm">
+              <div class="de-Collapsible js-de-Collapsible" data-parent="mega-tabs" id="mega-tab-activity">
+                {% include '_header--nav-wide-list',
+                  list: linklists["activities"] %}
+              </div>
+{% comment %} TODO: update linkLists when navigation menus have been created {% endcomment %}
+              <div class="de-Collapsible js-de-Collapsible" data-parent="mega-tabs" id="mega-tab-alpha">
+                {% include '_header--nav-wide-list',
+                  list: linklists["activities"] %}
+              </div>
+              <div class="de-Collapsible js-de-Collapsible" data-parent="mega-tabs" id="mega-tab-women">
+{% comment %} TODO: update linkList to "womens" {% endcomment %}
+                {% include '_header--nav-wide-list',
+                  list: linklists["activities"] %}
+              </div>
+              <div class="de-Collapsible js-de-Collapsible" data-parent="mega-tabs" id="mega-tab-men">
+{% comment %} TODO: update linkList to "mens" {% endcomment %}
+                {% include '_header--nav-wide-list',
+                  list: linklists["activities"] %}
+              </div>
+{% comment %} TODO: update linkLists when navigation menus have been created {% endcomment %}
+              <div class="de-Collapsible js-de-Collapsible" data-parent="mega-tabs" id="mega-tab-kids">
+                {% include '_header--nav-wide-list',
+                  list: linklists["activities"] %}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="de-u-size1of5 de-u-xl-size1of6 de-u-bgWhite">
+          {% include '_header--nav-wide-extras' %}
+        </div>
+      </div>
+    </nav>
+  </div>
