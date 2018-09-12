@@ -1,0 +1,48 @@
+<nav class="de-MenuBar">
+  <h2 class="de-MenuBar-heading">
+    Text Label…
+  </h2>
+  <ul class="de-MenuBar-list">
+    <li>
+      <button class="de-MenuBar-action" aria-expanded="true">
+        Selected
+      </button>
+    </li>
+    <li>
+      <button class="de-MenuBar-action">
+        Button
+      </button>
+    </li>
+    <li>
+      <a class="de-MenuBar-action" href="">
+        Link
+      </a>
+    </li>
+    <li>
+      <button class="de-MenuBar-action">
+        {% include 'patterns-icons-user'
+          with class: 'de-MenuBar-icon' %}
+        <span class="de-MenuBar-label">Icon Before</span>
+      </button>
+    </li>
+    <li>
+      <button class="de-MenuBar-action">
+        <span class="de-MenuBar-label">Icon After</span>
+        {% include 'patterns-icons-cart'
+          with class: 'de-MenuBar-icon' %}
+      </button>
+    </li>
+    <li>
+      <button class="de-MenuBar-action de-MenuBar-action--stack" aria-expanded="true">
+        {% include 'patterns-icons-bars'
+          with class: 'de-MenuBar-icon' %}
+        <span class="de-MenuBar-label">Stack</span>
+      </button>
+    </li>
+    <li>
+      <a class="de-MenuBar-action de-MenuBar-action--primary" href="">
+        Primary
+      </a>
+    </li>
+  </ul>
+</nav>
