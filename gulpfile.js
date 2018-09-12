@@ -72,11 +72,15 @@ gulp.task('updatePatternsSubmodule', function() {
          completing the /dist directory, which causes the subsequent
 		 copy tasks to be no-ops. */
 gulp.task('patterns:build', function (callback) {
-	var child = spawn('npm', ['install', 'run', 'build'], {
+	var shellOpts = {
 		cwd: path.join(__dirname, 'patterns'),
+		env: Object.assign(process.env, { NODE_ENV: 'production' }),
 		stdio: 'inherit'
-	});
-	child.on('close', callback);
+	};
+	spawn('npm', ['install'], shellOpts).on('close', function (code) {
+		if (code !== 0) throw new Error('npm install in patterns directory failed')
+		spawn('npm', ['run', 'build'], shellOpts).on('close', callback);
+	})
 });
 
 gulp.task('patterns:copy:css', function () {
