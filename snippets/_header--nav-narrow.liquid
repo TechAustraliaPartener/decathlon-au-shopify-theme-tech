@@ -27,9 +27,9 @@
 				{% include 'patterns-icons-chevron', class: "de-MenuList-icon" role: 'presentation' %}
 				</a>
 			</li>
-	    </ul>
+		</ul>
 		<ul class="de-MenuList de-u-listReset">
-	    	<li class="de-u-spaceNone">
+	    <li class="de-u-spaceNone">
 				<button class="de-MenuList-item" href="#"
 					data-de-slideViews-target="menu-narrow-all-sports"
 					data-de-slideViews-action="pop">
@@ -44,11 +44,15 @@
 					</p>
 					{% include 'patterns-icons-chevron', class: "de-MenuList-icon" role: 'presentation' %}
 				</button>
-		    </li>
+		   </li>
+			 {% include 'navigation-menu-list', list: linklists["activities"] %}
 		</ul>
-		{% include 'navigation-menu-list', list: linklists["activities"] %}
-		{% include 'navigation-menu-list', list: linklists["additional-shopping"] %}
-		{% include 'navigation-menu-list', list: linklists["brand-menu"] %}
+		<ul class="de-MenuList">
+			{% include 'navigation-menu-list', list: linklists["additional-shopping"] %}
+		</ul>
+		<ul class="de-MenuList">
+			{% include 'navigation-menu-list', list: linklists["brand-menu"] %}
+		</ul>
 	</section>
 	<section class="de-SlideViews-view js-de-SlideViews-view" id="menu-narrow-all-sports">
 	    <ul class="de-MenuList">
