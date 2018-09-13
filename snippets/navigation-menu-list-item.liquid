@@ -13,7 +13,13 @@
           {% if item.subhead %}
             {{ item.subhead }}
           {% else %}
-            {{ item.links | map: 'title' | join: ", " | at_most: 2}}
+            {% if item.links.size > 2 %}
+              {% for list-item in item.links limit:2 %}
+                {{ list-item.title }}{% if forloop.last %}…{% else %},{% endif %}
+              {% endfor %}
+            {% else %}
+              {{ item.links | map: 'title' | join: ", "}}
+            {% endif %}
           {% endif %}
         </p>
       </div>
