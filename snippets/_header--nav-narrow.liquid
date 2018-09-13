@@ -2,14 +2,29 @@
 	<section class="de-SlideViews-view js-de-SlideViews-view" id="menu-narrow">
 		<ul class="de-MenuList">
 			<li class="de-u-spaceNone">
-				<a class="de-MenuList-item de-MenuList-item--muted" href="#">
-				  {% include 'patterns-icons-user', class: 'de-MenuList-icon de-u-textGrow3', role: 'presentation' %}
-				  <p class="de-MenuList-content de-u-textShrink1">
-					Hey, Alexandre
-				  </p>
-				  <p class="de-MenuList-badge">Sign In</p>
-				  {% include 'patterns-icons-chevron', class: "de-MenuList-icon" role: 'presentation' %}
-				</a>
+				{% if !customer %}
+					<p class="de-MenuList-item de-MenuList-item--muted" href="/account/login?checkout_url=/">
+						<span class="de-MenuList-content de-u-textShrink1" href="#">
+							{% include 'patterns-icons-user', class: 'de-MenuList-icon de-u-textGrow3', role: 'presentation' %}
+							Hey, {{ customer.first_name | capitalize }}
+						</span>
+						<a class="de-MenuList-badge" href="/account/login?checkout_url=/">
+							Account
+							{% include 'patterns-icons-chevron', class: "de-MenuList-icon" role: 'presentation' %}
+						</a>
+					</p>
+					{% else %}
+					<p class="de-MenuList-item de-MenuList-item--muted" href="/account/login?checkout_url=/">
+						{% include 'patterns-icons-user', class: 'de-MenuList-icon de-u-textGrow3', role: 'presentation' %}
+							<a class="de-MenuList-content de-u-textShrink1" href="/account/login?checkout_url=/">
+								Sign In
+							</a>
+							<a class="de-MenuList-badge" href="/account/register?checkout_url=/">
+							Create An Account
+								{% include 'patterns-icons-chevron', class: "de-MenuList-icon" role: 'presentation' %}
+							</a>
+					</p>
+				{% endif %}
 			</li>
 			<li class="de-u-spaceNone">
 			<a class="de-MenuList-item de-MenuList-item--brand" href="/pages/our-story">
