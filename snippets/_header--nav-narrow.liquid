@@ -75,10 +75,10 @@
 	        list: linklists["shop"] %}
 	    </ul>
 	</section>
-	<!--
+	{% comment %}
 	 @todo
 	 1. Rename id "demo-view-" to something more appropriate.
-	 -->
+	 {% endcomment %}
 	{% for link in linklists.activities.links %}
 	{% if link.links != blank %}
 	<section class="de-SlideViews-view js-de-SlideViews-view" id="demo-view-{{ forloop.index }}">
