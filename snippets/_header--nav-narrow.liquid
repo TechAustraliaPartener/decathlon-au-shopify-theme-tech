@@ -1,0 +1,102 @@
+<div class="de-SlideViews js-de-SlideViews">
+	<section class="de-SlideViews-view js-de-SlideViews-view" id="menu-narrow">
+		<ul class="de-MenuList">
+			<li class="de-u-spaceNone">
+				{% if customer %}
+					<a class="de-MenuList-item de-MenuList-item--muted" href="/account/">
+						{% include 'patterns-icons-user', class: 'de-MenuList-icon de-u-textGrow3', role: 'presentation' %}
+						<p class="de-MenuList-content de-u-textShrink1 de-u-spaceEndsNone">Hey, {{ customer.first_name | capitalize }}</p>
+						<p class="de-MenuList-badge de-u-spaceEndsNone">Account</p>
+						{% include 'patterns-icons-chevron', class: "de-MenuList-icon" role: 'presentation' %}
+					</a>
+				{% else %}
+					<a class="de-MenuList-item de-MenuList-item--muted" href="/account/login">
+						{% include 'patterns-icons-user', class: 'de-MenuList-icon de-u-textGrow3', role: 'presentation' %}
+						<p class="de-MenuList-content de-u-textShrink1 de-u-spaceEndsNone">Welcome</p>
+						<p class="de-MenuList-badge de-u-spaceEndsNone">Sign In</p>
+						{% include 'patterns-icons-chevron', class: "de-MenuList-icon" role: 'presentation' %}
+					</a>
+				{% endif %}
+			</li>
+			<li class="de-u-spaceNone">
+				<a class="de-MenuList-item de-MenuList-item--brand" href="/pages/our-story">
+				<div class="de-MenuList-content">
+					<h5 class="de-MenuList-heading">Meet Decathlon</h5>
+					<p class="de-MenuList-summary">Our Mission, Our Story</p>
+				</div>
+				{% include 'patterns-icons-chevron', class: "de-MenuList-icon" role: 'presentation' %}
+				</a>
+			</li>
+	    </ul>
+		<ul class="de-MenuList de-u-listReset">
+	    	<li class="de-u-spaceNone">
+				<button class="de-MenuList-item" href="#"
+					data-de-slideViews-target="menu-narrow-all-sports"
+					data-de-slideViews-action="pop">
+					<div class="de-MenuList-content">
+						<h5 class="de-MenuList-heading">
+							All Sports
+						</h5>
+						<p class="de-MenuList-summary">A-Z</p>
+					</div>
+					<p class="de-MenuList-badge">
+						{{ linklists["shop"].links.size }}
+					</p>
+					{% include 'patterns-icons-chevron', class: "de-MenuList-icon" role: 'presentation' %}
+				</button>
+		    </li>
+		</ul>
+		{% include 'navigation-menu-list', list: linklists["activities"] %}
+		{% include 'navigation-menu-list', list: linklists["additional-shopping"] %}
+		{% include 'navigation-menu-list', list: linklists["brand-menu"] %}
+	</section>
+	<section class="de-SlideViews-view js-de-SlideViews-view" id="menu-narrow-all-sports">
+	    <ul class="de-MenuList">
+	      <li class="de-u-spaceNone">
+	        <a class="de-MenuList-item de-MenuList-item--muted"
+	        data-de-slideViews-target="menu-narrow"
+	        data-de-slideViews-action="pop"
+	        href="#menu-narrow">
+	          {% include 'patterns-icons-chevron', class: 'de-MenuList-icon', role: 'presentation', direction: 'left' %}
+	          <span class="de-MenuList-content de-u-textShrink1">
+	          	Home
+	          </span>
+	        </a>
+	      </li>
+	      {% include 'navigation-menu-list',
+	        list: linklists["shop"] %}
+	    </ul>
+	</section>
+	{% comment %}
+	 @todo
+	 1. Rename id "demo-view-" to something more appropriate.
+	 {% endcomment %}
+	{% for link in linklists.activities.links %}
+	{% if link.links != blank %}
+	<section class="de-SlideViews-view js-de-SlideViews-view" id="demo-view-{{ forloop.index }}">
+		<ul class="de-MenuList">
+			<li class="de-u-spaceNone">
+		        <a class="de-MenuList-item de-MenuList-item--muted"
+		        	data-de-slideViews-target="menu-narrow"
+		        	data-de-slideViews-action="pop"
+		        	href="#menu-narrow">
+		          	{% include 'patterns-icons-chevron', class: 'de-MenuList-icon', role: 'presentation', direction: 'left' %}
+					<span class="de-MenuList-content de-u-textShrink1">
+						Home
+					</span>
+		        </a>
+			</li>
+	    </ul>
+	    <ul class="de-MenuList">
+		    {% for child_link in link.links %}
+		    <li class="de-u-spaceNone">
+		      <a class="de-MenuList-item" href= "{{ child_link.url }}">
+		        {{ child_link.title }}
+		      </a>
+		    </li>
+		    {% endfor %}
+	    </ul>
+	</section>
+  	{% endif %}
+  	{% endfor %}
+</div>
