@@ -63,17 +63,10 @@
       </div>
     </div>
 </header>
-<div class="de-PageWrap-narrowMenu"
-  data-de-page-wrap-action="closeMenu">
-  <nav class="de-PageWrap-narrowMenuInner"
-    id="demo-side"
-    data-de-page-wrap-cancel>
-    <ol>
-      {% for i in (1..10) %}
-        <li>Menu Item</li>
-      {% endfor %}
-    </ol>
-  </nav>
+<div class="de-PageWrap-narrowMenu" data-de-page-wrap-action="closeMenu">
+	<nav class="de-PageWrap-narrowMenuInner" id="demo-side" data-de-page-wrap-cancel="" aria-hidden="false">
+	  {% include '_header--nav-narrow' %}
+	</nav>
 </div>
 <div class="de-PageWrap-wideMenu"
   data-de-page-wrap-action="closeMenu">
