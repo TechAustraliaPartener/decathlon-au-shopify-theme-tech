@@ -1,0 +1,26 @@
+{% comment %}
+<a class="de-MenuBar-action de-MenuBar-action--primary" href="">
+  <span class="de-MenuBar-label de-u-textNormal">0</span>
+  {% include 'patterns-icons-cart'
+      with class: 'de-MenuBar-icon' %}
+</a>
+{% endcomment %}
+<!-- Start Cart -->
+
+    {% comment %}
+      Show number of items in the cart and total cost in the /cart link
+
+      Ajax Cart Notes:
+      - #cartCount updates the total number of items in the cart
+      - #cartCost updates the total cost of the cart
+      - Documentation:  http://shopify.com/timber#ajax-cart
+    {% endcomment %}
+
+    <a href="/cart" class="site-header__cart-toggle de-MenuBar-action de-MenuBar-action--primary" aria-controls="CartDrawer" aria-expanded="false">
+        <span  class="de-MenuBar-label de-u-textNormal" id="CartCount">{{ cart.item_count }}</span>
+        {% include 'patterns-icons-cart'
+            with class: 'de-MenuBar-icon' %}
+    </a>
+    <!-- include 'wishlist-link-li' -->
+
+<!-- End Cart -->
