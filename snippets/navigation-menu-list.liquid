@@ -1,10 +1,8 @@
-<ul class="de-MenuList">
-	{% for list-item in list.links %}
-		{% assign count = forloop.index %}
-		{% include 'navigation-menu-list-item',
-			item: list-item,
-			showCaret: true,
-			showLabel: true,
-			listClass: 'de-u-spaceNone' %}
-	{% endfor %}
-</ul>
+{% for list-item in list.links %}
+	{% assign count = forloop.index %}
+	{% include 'navigation-menu-list-item',
+		item: list-item,
+		showCaret: true,
+		showLabel: true,
+		listClass: 'de-u-spaceNone' %}
+{% endfor %}
