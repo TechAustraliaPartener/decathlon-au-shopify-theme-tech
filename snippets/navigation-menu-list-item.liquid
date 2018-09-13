@@ -13,7 +13,7 @@
           {% if item.subhead %}
             {{ item.subhead }}
           {% else %}
-            {{ item.links | map: 'title' | join: ", " }}
+            {{ item.links | map: 'title' | join: ", " | at_most: 2}}
           {% endif %}
         </p>
       </div>
