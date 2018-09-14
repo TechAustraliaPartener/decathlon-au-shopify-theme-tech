@@ -8,6 +8,11 @@
     height: 35px;
 }
 
+/*
+ *  The following set of selectors makes subtle changes to the header search
+ *  form styles to better match the new header.
+*/
+
 .de-SingleInputForm .adept-input__button-inset input {
   border-width: 2px !important;
 }
