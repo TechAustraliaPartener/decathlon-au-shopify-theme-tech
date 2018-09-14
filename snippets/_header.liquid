@@ -1,5 +1,4 @@
 <!-- snippets/_header.liquid -->
-{% assign greetingLength = 9 %} {% comment %}Variable for the number of characters in users' Name in greeting {% endcomment %}
 <header class="de-PageWrap-header">
   <div class="de-PageWrap-headerPrimary">
     <div class="de-PageWrap-narrowMenuControl">
@@ -39,6 +38,9 @@
           {% include 'patterns-icons-search'
               with class: 'de-MenuBar-icon' %}
         </button>
+      </li>
+      <li class="de-u-hidden de-u-sm-block">
+        {% include '_header--greeting' %}
       </li>
       <li>
         {% include '_header--cart' %}
