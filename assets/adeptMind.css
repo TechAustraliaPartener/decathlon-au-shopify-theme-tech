@@ -7,7 +7,34 @@
 .header-searchWrapper input.adept-header-searchInput.header-searchInput.header-searchInput {
     height: 35px;
 }
-  
+
+/*
+ *  The following set of selectors makes subtle changes to the header search
+ *  form styles to better match the new header.
+*/
+
+.de-SingleInputForm .adept-input__button-inset input {
+  border-width: 2px !important;
+}
+
+.de-SingleInputForm .adept-search__autocomplete__field .adept-button {
+  min-width: 47px;
+}
+
+.de-SingleInputForm .adept-search__autocomplete__field .adept-button:focus,
+.de-SingleInputForm .adept-search__autocomplete__field .adept-button:hover {
+  background: #0082c3 !important;
+}
+
+.de-SingleInputForm .adept-search__autocomplete__field .adept-button:after {
+  color: #2a2b2c;
+}
+
+.de-SingleInputForm .adept-search__autocomplete__field .adept-button:focus::after,
+.de-SingleInputForm .adept-search__autocomplete__field .adept-button:hover::after {
+  color: #fff; !important;
+}
+
 @media screen and (-ms-high-contrast: none) {
     .header-searchWrapper input.adept-header-searchInput.header-searchInput.header-searchInput {
         width: 100%;
@@ -16,13 +43,13 @@
         height: 35px;
     }
     .header-searchWrapper .adept-input__button-container .adept-button span:-ms-input-placeholder {
-        padding: 5px 30px 8px 5px !important; 
+        padding: 5px 30px 8px 5px !important;
     }
     .adept-form-text input {
-        padding: 5px 30px 8px 5px !important; 
+        padding: 5px 30px 8px 5px !important;
     }
 }
-  
+
 .adept-search__autocomplete__field .adept-button {
     background-color: transparent !important;
 }
@@ -30,12 +57,12 @@
     color: #0082c3 !important;
 }
 .adept-autocomplete__takeover .adept-input__button-inset input { height: 35px !important; }
-.adept-autocomplete-section--product { 
-    display: none 
+.adept-autocomplete-section--product {
+    display: none
 }
 .adept-autocomplete__search-link {
     display:none !important; /* hide the search link from results overlay*/
-}  
+}
 .adept-autocomplete__takeover__search {
     padding: 2px 10px 5px 10px !important;
     height: 40px !important;
@@ -56,7 +83,7 @@
         bottom: 39px!important;
     }
 }
-  
+
 @media screen and (min-width: 620px) {
     #decathlon .adept-filter-takeover--visible {
         padding-top: 0px !important;
@@ -82,7 +109,7 @@
     /* mobile devices -> move +50px for the height of the apply
         it was below the fold
     */
-    #decathlon .adept-filter, 
+    #decathlon .adept-filter,
     .template-collection .adept-filter {
         padding-bottom: 50px;
     }
@@ -96,7 +123,7 @@
 
 /* Target iPads */
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
-    #decathlon .adept-filter, 
+    #decathlon .adept-filter,
     .template-collection .adept-filter {
         padding-bottom: 50px;
     }
@@ -105,15 +132,5 @@
     }
     .template-collection .adept-filter-takeover--visible .adept-filter-takeover__apply {
         bottom: 30px!important;
-    }
-}
-  
-/* ===== Style for search button on small screens ===== */
-@media screen and (max-width: 619px) {
-    .adept-search__autocomplete__field .adept-button:after {
-        color: white !important;
-    }
-    .adept-search__autocomplete__field .adept-button {
-        background-color: #0082c3 !important;
     }
 }
