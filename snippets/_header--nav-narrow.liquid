@@ -29,7 +29,7 @@
 			</li>
 		</ul>
 		<ul class="de-MenuList de-u-listReset">
-	    <li class="de-u-spaceNone">
+	    	<li class="de-u-spaceNone">
 				<button class="de-MenuList-item" href="#"
 					data-de-slideViews-target="menu-narrow-all-sports"
 					data-de-slideViews-action="pop">
@@ -44,8 +44,10 @@
 					</p>
 					{% include 'patterns-icons-chevron', class: "de-MenuList-icon" role: 'presentation' %}
 				</button>
-		   </li>
-			 {% include 'navigation-menu-list', list: linklists["activities"] %}
+			</li>
+			{% include 'navigation-menu-list', list: linklists["activities"] %}
+			{% include 'navigation-menu-list-collection', list: linklists["womens"] %}
+			{% include 'navigation-menu-list-collection', list: linklists["mens"] %}
 		</ul>
 		<ul class="de-MenuList">
 			{% include 'navigation-menu-list', list: linklists["additional-shopping"] %}
@@ -54,6 +56,7 @@
 			{% include 'navigation-menu-list', list: linklists["brand-menu"] %}
 		</ul>
 	</section>
+
 	<section class="de-SlideViews-view js-de-SlideViews-view" id="menu-narrow-all-sports">
 	    <ul class="de-MenuList">
 			<li class="de-u-spaceNone">
@@ -68,11 +71,43 @@
 				</a>
 			</li>
 	      	{% include 'navigation-menu-list', list: linklists["shop"] %}
-
-			{% include 'navigation-menu-list', list: linklists["women"] %}
-			{% include 'navigation-menu-list', list: linklists["men"] %}
 	    </ul>
 	</section>
+
+	<section class="de-SlideViews-view js-de-SlideViews-view" id="demo-view-womens">
+		<ul class="de-MenuList">
+			<li class="de-u-spaceNone">
+				<a class="de-MenuList-item de-MenuList-item--muted"
+				data-de-slideViews-target="menu-narrow"
+				data-de-slideViews-action="pop"
+				href="#menu-narrow">
+				  {% include 'patterns-icons-chevron', class: 'de-MenuList-icon', role: 'presentation', direction: 'left' %}
+				  <span class="de-MenuList-content de-u-textShrink1">
+				  	Home
+				  </span>
+				</a>
+			</li>
+	      	{% include 'navigation-menu-list-collection-item', list: linklists["womens"] %}
+	    </ul>
+	</section>
+
+	<section class="de-SlideViews-view js-de-SlideViews-view" id="demo-view-mens">
+		<ul class="de-MenuList">
+			<li class="de-u-spaceNone">
+				<a class="de-MenuList-item de-MenuList-item--muted"
+				data-de-slideViews-target="menu-narrow"
+				data-de-slideViews-action="pop"
+				href="#menu-narrow">
+				  {% include 'patterns-icons-chevron', class: 'de-MenuList-icon', role: 'presentation', direction: 'left' %}
+				  <span class="de-MenuList-content de-u-textShrink1">
+				  	Home
+				  </span>
+				</a>
+			</li>
+	      	{% include 'navigation-menu-list-collection-item', list: linklists["mens"] %}
+	    </ul>
+	</section>
+
 	{% comment %}
 	 @todo
 	 1. Rename id "demo-view-" to something more appropriate.
