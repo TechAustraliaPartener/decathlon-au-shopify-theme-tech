@@ -56,19 +56,21 @@
 	</section>
 	<section class="de-SlideViews-view js-de-SlideViews-view" id="menu-narrow-all-sports">
 	    <ul class="de-MenuList">
-	      <li class="de-u-spaceNone">
-	        <a class="de-MenuList-item de-MenuList-item--muted"
-	        data-de-slideViews-target="menu-narrow"
-	        data-de-slideViews-action="pop"
-	        href="#menu-narrow">
-	          {% include 'patterns-icons-chevron', class: 'de-MenuList-icon', role: 'presentation', direction: 'left' %}
-	          <span class="de-MenuList-content de-u-textShrink1">
-	          	Home
-	          </span>
-	        </a>
-	      </li>
-	      {% include 'navigation-menu-list',
-	        list: linklists["shop"] %}
+			<li class="de-u-spaceNone">
+				<a class="de-MenuList-item de-MenuList-item--muted"
+				data-de-slideViews-target="menu-narrow"
+				data-de-slideViews-action="pop"
+				href="#menu-narrow">
+				  {% include 'patterns-icons-chevron', class: 'de-MenuList-icon', role: 'presentation', direction: 'left' %}
+				  <span class="de-MenuList-content de-u-textShrink1">
+				  	Home
+				  </span>
+				</a>
+			</li>
+	      	{% include 'navigation-menu-list', list: linklists["shop"] %}
+
+			{% include 'navigation-menu-list', list: linklists["women"] %}
+			{% include 'navigation-menu-list', list: linklists["men"] %}
 	    </ul>
 	</section>
 	{% comment %}
