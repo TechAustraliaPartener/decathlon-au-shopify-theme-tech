@@ -1,0 +1,27 @@
+<li class="de-u-spaceNone">
+	{% if customer %}
+		<a class="de-MenuList-item de-MenuList-item--muted" href="/account/">
+			{% include 'patterns-icons-user',
+				class: 'de-MenuList-icon de-u-textGrow3',
+				role: 'presentation' %}
+			<p class="de-MenuList-content de-u-textShrink1 de-u-spaceEndsNone">
+				Hey, {{ customer.first_name | capitalize }}
+			</p>
+			<p class="de-MenuList-badge de-u-spaceEndsNone">Account</p>
+			{% include 'patterns-icons-chevron',
+				class: "de-MenuList-icon",
+				role: 'presentation' %}
+		</a>
+	{% else %}
+		<a class="de-MenuList-item de-MenuList-item--muted" href="/account/login">
+			{% include 'patterns-icons-user',
+				class: 'de-MenuList-icon de-u-textGrow3',
+				role: 'presentation' %}
+			<p class="de-MenuList-content de-u-textShrink1 de-u-spaceEndsNone">Welcome</p>
+			<p class="de-MenuList-badge de-u-spaceEndsNone">Sign In</p>
+			{% include 'patterns-icons-chevron',
+				class: "de-MenuList-icon",
+				role: 'presentation' %}
+		</a>
+	{% endif %}
+</li>
