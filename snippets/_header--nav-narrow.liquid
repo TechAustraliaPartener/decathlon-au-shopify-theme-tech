@@ -27,74 +27,49 @@
 					<p class="de-MenuList-badge">
 						{{ linklists["shop"].links.size }}
 					</p>
-					{% include 'patterns-icons-chevron',
-						class: "de-MenuList-icon",
-						role: 'presentation' %}
+					{% include 'patterns-icons-chevron', class: "de-MenuList-icon", role: 'presentation' %}
 				</button>
 			</li>
 
 			{% include 'navigation-menu-list',
 				list: linklists["activities"],
 				menuChild: "menu-list" %}
-
-			{% include 'navigation-menu-list-collection',
-				list: linklists["womens"],
-				menuChild: "menu-list" %}
-
-			{% include 'navigation-menu-list-collection',
-				list: linklists["mens"],
-				menuChild: "menu-list" %}
 		</ul>
 		<ul class="de-MenuList">
-			{% include 'navigation-menu-list',
-				list: linklists["additional-shopping"] %}
+			{% include 'navigation-menu-list-collection', list: linklists["womens"], menuChild: "menu-list" %}
+
+			{% include 'navigation-menu-list-collection', list: linklists["mens"], menuChild: "menu-list" %}
 		</ul>
 		<ul class="de-MenuList">
-			{% include 'navigation-menu-list',
-				list: linklists["brand-menu"] %}
+			{% include 'navigation-menu-list', list: linklists["additional-shopping"] %}
+		</ul>
+		<ul class="de-MenuList">
+			{% include 'navigation-menu-list', list: linklists["brand-menu"] %}
 		</ul>
 	</section>
-
 	<section class="de-SlideViews-view js-de-SlideViews-view" id="menu-list-all-sports">
 	    <ul class="de-MenuList">
-			{% include 'navigation-menu-mobile-crumb',
-				slideTarget: "menu-narrow",
-				linkLabel: "Home" %}
-	      	{% include 'navigation-menu-list',
-				list: linklists["shop"],
-				showCaret: false %}
+			{% include 'navigation-menu-mobile-crumb', slideTarget: "menu-narrow", linkLabel: "Home" %}
+	      	{% include 'navigation-menu-list', list: linklists["shop"], showCaret: false %}
 	    </ul>
 	</section>
-
 	<section class="de-SlideViews-view js-de-SlideViews-view" id="menu-list-womens">
 		<ul class="de-MenuList">
-			{% include 'navigation-menu-mobile-crumb',
-				slideTarget: "menu-narrow",
-				linkLabel: "Home" %}
-			{% include 'navigation-menu-list',
-				list: linklists["womens"],
-				menuChild: "menu-list" %}
+			{% include 'navigation-menu-mobile-crumb', slideTarget: "menu-narrow", linkLabel: "Home" %}
+			{% include 'navigation-menu-list', list: linklists["womens"], menuChild: "menu-list" %}
 	    </ul>
 	</section>
-
 	<section class="de-SlideViews-view js-de-SlideViews-view" id="menu-list-mens">
 		<ul class="de-MenuList">
-			{% include 'navigation-menu-mobile-crumb',
-				slideTarget: "menu-narrow",
-				linkLabel: "Home" %}
-			{% include 'navigation-menu-list',
-				list: linklists["mens"],
-				menuChild: "menu-list" %}
+			{% include 'navigation-menu-mobile-crumb', slideTarget: "menu-narrow", linkLabel: "Home" %}
+			{% include 'navigation-menu-list', list: linklists["mens"], menuChild: "menu-list" %}
 	    </ul>
 	</section>
-
 	{% for link in linklists.activities.links %}
 	{% if link.links != blank %}
 	<section class="de-SlideViews-view js-de-SlideViews-view" id="menu-list-{{ link.handle }}">
 		<ul class="de-MenuList">
-			{% include 'navigation-menu-mobile-crumb',
-				slideTarget: "menu-narrow",
-				linkLabel: "Home" %}
+			{% include 'navigation-menu-mobile-crumb', slideTarget: "menu-narrow", linkLabel: "Home" %}
 	    </ul>
 	    <ul class="de-MenuList">
 		    {% for child_link in link.links %}
@@ -108,14 +83,11 @@
 	</section>
   	{% endif %}
   	{% endfor %}
-
 	{% for link in linklists.womens.links %}
 	{% assign menuCrumbLabel = linklists.womens.title | remove: "'s" | prepend: "For " %}
 	<section class="de-SlideViews-view js-de-SlideViews-view" id="menu-list-{{ link.handle }}">
 		<ul class="de-MenuList">
-			{% include 'navigation-menu-mobile-crumb',
-				slideTarget: "menu-list-womens",
-				linkLabel: menuCrumbLabel %}
+			{% include 'navigation-menu-mobile-crumb', slideTarget: "menu-list-womens", linkLabel: menuCrumbLabel %}
 			<ul class="de-MenuList">
 			    {% for child_link in link.links %}
 			    <li class="de-u-spaceNone">
@@ -128,15 +100,11 @@
 		</ul>
 	</section>
 	{% endfor %}
-
 	{% for link in linklists.mens.links %}
 	{% assign menuCrumbLabel = linklists.mens.title | remove: "'s" | prepend: "For " %}
-	{% assign menuName%}
 	<section class="de-SlideViews-view js-de-SlideViews-view" id="menu-list-{{ link.handle }}">
 		<ul class="de-MenuList">
-			{% include 'navigation-menu-mobile-crumb',
-				slideTarget: "menu-list-mens",
-				linkLabel: menuCrumbLabel %}
+			{% include 'navigation-menu-mobile-crumb', slideTarget: "menu-list-mens", linkLabel: menuCrumbLabel %}
 			<ul class="de-MenuList">
 			    {% for child_link in link.links %}
 			    <li class="de-u-spaceNone">
@@ -146,8 +114,7 @@
 			    </li>
 			    {% endfor %}
 		    </ul>
-	</ul>
+		</ul>
 	</section>
 	{% endfor %}
-
 </div>
