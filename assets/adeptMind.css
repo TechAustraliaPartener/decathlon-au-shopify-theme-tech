@@ -134,3 +134,14 @@
         bottom: 30px!important;
     }
 }
+
+/**
+ * Removes a large top margin (4.5em) on breadcrumbs intended to clear the
+ * fixed-position header. Our design adds top padding to the `PageWrap-main` div
+ * rendering this top margin redundant. Child selector so it won't affect
+ * breadcrumbs on pages that don't have the new header.
+ */
+
+ .de-PageWrap-main .breadcrumb {
+   margin-top: 0.5em;
+ }
