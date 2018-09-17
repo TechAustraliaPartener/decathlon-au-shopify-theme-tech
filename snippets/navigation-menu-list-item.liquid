@@ -3,11 +3,11 @@
   {% if item.links.size > 0 %}
     {% assign content-element = 'button' %}
   {% endif %}
-  <{{ content-element }} class="de-MenuList-item{% if class %} {{class}}{% endif %}"{% if item.url %} href="{{ item.url }}{% endif %}" {% if item.links.size > 0 or item.subhead %} data-de-slideViews-target="demo-view-{{ count }}"{% endif %}>
+  <{{ content-element }} class="de-MenuList-item{% if class %} {{class}}{% endif %}"{% if item.url %} href="{{ item.url }}{% endif %}" {% if item.links.size > 0 or item.subhead %} data-de-slideViews-target="{{menuChild}}-{{ item.handle }}"{% endif %}>
     {% if item.links.size > 0 or item.subhead %}
       <div class="de-MenuList-content">
         <h5 class="de-MenuList-heading">
-          {{ item.title }}
+          {{ item.title | remove: "Women's "  | remove: "Men's " | capitalize }}
         </h5>
         <p class="de-MenuList-summary">
           {% if item.subhead %}
