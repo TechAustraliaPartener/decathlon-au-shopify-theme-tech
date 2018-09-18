@@ -8,3 +8,8 @@
  .de-PageWrap-main .breadcrumb {
    margin-top: 0.5em;
  }
+
+.de-addedItemPopup {
+  top: auto;
+  z-index: 1000;
+}
