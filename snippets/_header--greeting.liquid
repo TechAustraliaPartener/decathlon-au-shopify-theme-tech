@@ -21,9 +21,9 @@
       {% include 'patterns-icons-user'
         with class: 'de-MenuBar-icon', role: 'presentation' %}
       <span class="de-MenuBar-label de-u-textNormal de-u-hidden de-u-lg-block">
-        Hey, 
+        Hey,
         {% assign emailName = customer.email | split: '@' | first %}
-        {% if emailName <= maxNameLength %}
+        {% if emailName.size <= maxNameLength %}
           {{ customer.email | split: '@' | first | capitalize }}
         {% else %}
           {{ customer.email | split: '@' | first | slice: 0, greetingLength | capitalize }}…

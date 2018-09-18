@@ -16,9 +16,9 @@
 						{{customer.first_name | slice: 0, greetingLength | capitalize }}…
 					{% endif %}
 				{% else %}
-					Hey, 
+					Hey,
 					{% assign emailName = customer.email | split: '@' | first %}
-					{% if emailName <= maxNameLength %}
+					{% if emailName.size <= maxNameLength %}
 						{{ customer.email | split: '@' | first | capitalize }}
 					{% else %}
 						{{ customer.email | split: '@' | first | slice: 0, greetingLength | capitalize }}…
