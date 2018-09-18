@@ -50,6 +50,22 @@ var allowedStates = {
     "WY": "Wyoming"
 }
 
+/**
+ * Simple array of header element class names, including legacy Decathlon and newer from patterns
+ * To be used in various functions throughout this file
+ */
+
+var headerJSHookClassNames = [
+	".js-de-PageWrap-header",
+	".site-header"
+];
+
+/**
+ * headerClassName will be set on jQuery document ready
+ */
+
+var headerClassName = '';
+
 function isProductPage() {
     var thisUrl = window.location.href
     var pages = thisUrl.split('/')
@@ -77,7 +93,84 @@ function getLocaleSync(t, str) { // alan
     });
     return {error: error, data: data}
 }
-  
+
+/**
+ * getHeaderJSHookClass
+ *
+ * @return {string} className - the class name of the header on the current page
+ * which should be used as the hook for other functions in this file. Dumb default
+ * to empty string, to avoid cascading errors
+ */
+
+function getHeaderJSHookClass() {
+	var existingHeaderClassNames = headerJSHookClassNames.filter(function(className) {
+		return !!document.querySelector(className);
+	});
+	return existingHeaderClassNames.length > 0 ? existingHeaderClassNames[0] : '';
+}
+
+/**
+ * Return a dimension of an element using jQuery methods, defaulting to 0;
+ *
+ * @param {string} selector - a valid selector for jQuery
+ * @param {string} dimensionMethod - a valid method for getting an el dimension via jQuery
+ * @return {integer} dimensionValue - the value of the element's given dimension
+ */
+function safeGetElementDimension(selector, dimensionMethod) {
+	var $el,
+		returnVal,
+		args = [selector, dimensionMethod];
+	args.map(function(arg) {
+		if (!(typeof arg === 'string' && arg.length && arg.length > 0)) {
+			return 0;
+		}
+	});
+	$el = $(selector);
+	if (typeof $el[dimensionMethod] !== 'function') {
+		return 0;
+	}
+	returnVal = $el[dimensionMethod]();
+	return !!returnVal ? returnVal : 0;
+}
+
+/**
+ * Safely get the value of an elemnent's css property
+ *
+ * @param {string} selector - a valid selector for jQuery
+ * @param {string} cssProp - a valid method for getting an el dimension via jQuery
+ * @return {string} propertyValue - the value of the element's given css property
+ */
+
+function safeGetElementCSSValue(selector, cssProp) {
+	var $el,
+		returnVal,
+		args = [selector, cssProp];
+	args.map(function(arg) {
+		if (!(typeof arg === 'string' && arg.length && arg.length > 0)) {
+			return '';
+		}
+	});
+	$el = $(selector);
+	returnVal = $el.css(cssProp);
+	return typeof returnVal !== 'string' ? '' : returnVal;
+}
+
+/**
+ * Safely get the integer value of a string, defaulting to 0
+ *
+ * @param {string} input - a string to return as an integer
+ * @return {integer} value - the integer value of the input or 0
+ */
+
+function safeStringToInt (input) {
+	var returnVal;
+	if (typeof input !== 'string') {
+		return 0;
+	}
+	returnVal = parseInt(input, 10);
+	return isNaN(returnVal) ? 0 : returnVal;
+}
+
 ! function(e) {
     function t() {}
 
@@ -314,12 +407,12 @@ function(e, t, i) {
     }, n.prototype.getUserRegionCode = function() {
         var e = this;
         var rc = null;
-        e.getData("userSetRegion") === "California" ? rc = "CA" : null; 
+        e.getData("userSetRegion") === "California" ? rc = "CA" : null;
         return rc || e.getData("locale").region_code
     }, n.prototype.getUserRegion = function() {
         var e = this;
         var thisRegion = e.getData("userSetRegion");
-            if (thisRegion) 
+            if (thisRegion)
                 return thisRegion;
             thisRegion = e.getData("locale");
             if (thisRegion)
@@ -395,7 +488,7 @@ function(e, t, i) {
     }, n.prototype.pinToHeader = function(t) {
         var n = this,
             o = i(t.selector),
-            a = i(t.selector).innerHeight() + i(".site-header").innerHeight() + 5,
+            a = i(t.selector).innerHeight() + safeGetElementDimension(headerClassName, 'innerHeight') + 5,
             r = t.selector.substr(1);
         if (!o.length) return n;
         var s = [];
@@ -408,7 +501,7 @@ function(e, t, i) {
         var c = t.offset(),
             l = o.offset().top - c,
             d = function(e) {
-                c = t.offset(), l = o.offset().top - c, a = o.innerHeight() + i(".site-header").innerHeight() + 5, s = [], o.find(".js-anchorLink").each(function(e) {
+                c = t.offset(), l = o.offset().top - c, a = o.innerHeight() + safeGetElementDimension(headerClassName, 'innerHeight') + 5, s = [], o.find(".js-anchorLink").each(function(e) {
                     s.push({
                         top: i(i(this).attr("href")).offset().top - a,
                         index: e
@@ -418,7 +511,7 @@ function(e, t, i) {
         i("#PageContainer").resize(d);
         var u = function(n) {
             if (isProductPage()) {
-                if (i(e).scrollTop() < (l - i('.site-header').css('height').split('px')[0])) return void(1 === i(t.selector + "--cloned").length && (o.detach(), o.removeClass(r + "--cloned is-fixed"), o.css({
+                if (i(e).scrollTop() < (l - safeStringToInt(safeGetElementCSSValue(headerClassName, 'height').split('px')[0]))) return void(1 === i(t.selector + "--cloned").length && (o.detach(), o.removeClass(r + "--cloned is-fixed"), o.css({
                     top: ""
                 }), i(t.selector + "--placeholder").replaceWith(o), t.unpinCallback && t.unpinCallback(o)))
             }
@@ -646,8 +739,10 @@ function(e, t, i, n, o) {
         return e % 2 == 0 ? t.fn(this) : t.inverse(this)
     }), n.registerHelper("if_odd", function(e, t) {
         return e % 2 == 1 ? t.fn(this) : t.inverse(this)
-    }), t(function() {
-        function d(t) {
+    }), t(function() { //document ready
+		headerClassName = getHeaderJSHookClass();
+
+		function d(t) {
             e.scrollTo(0, 0)
         }
 
@@ -706,7 +801,7 @@ function(e, t, i, n, o) {
         }
 
         function y() {
-            var i = t(e).height() - t(".site-header").height() - t(".productOptions").height() - 182;
+            var i = t(e).height() - safeGetElementDimension(headerClassName, 'height') - t(".productOptions").height() - 182;
             if (i > 500) {
                 var n = .5 * (i - 500);
                 t(".productImages").css({
@@ -788,12 +883,12 @@ function(e, t, i, n, o) {
             return true; // by default don't show overlay
         }
         T.getLocale(), T.fullscreen({
-            offsetHeight: Math.floor(t(".site-header").outerHeight())
+            offsetHeight: Math.floor(safeGetElementDimension(headerClassName, 'outerHeight'))
         }), t(e).bind("pageshow", function() {
             t(".js-nobfcache").val("")
         });
         var j = function() {
-            return Math.floor(t(".site-header").outerHeight())
+            return Math.floor(safeGetElementDimension(headerClassName, 'outerHeight'))
         };
         T.pinToHeader({
             selector: ".js-pinToHeader",
@@ -817,8 +912,8 @@ function(e, t, i, n, o) {
                 t(this).removeClass("search-open"), t(".header-search-mobile-btn").removeClass("search-open"), t(".mobile-searchWrapper").removeClass("open")
             }), t(".mobile-nav__item a").each(function() {
                 "/account" == t(this).attr("href") && t(this).parent().addClass("account-item")
-            }), 
-            // t(".account-item").before('<li class="mobile-nav__item"><a href="/pages/wishlist" class="mobile-nav__link">My Wishlist</a></li>'), 
+            }),
+            // t(".account-item").before('<li class="mobile-nav__item"><a href="/pages/wishlist" class="mobile-nav__link">My Wishlist</a></li>'),
             t(".mobile-nav__has-sublist .mobile-nav__link").on("click", function(e) {
                 var i = t(e.currentTarget).parent();
                 i.hasClass("mobile-nav--expanded") || (e.preventDefault(), i.toggleClass("mobile-nav--expanded"))
@@ -826,11 +921,11 @@ function(e, t, i, n, o) {
                 "Get going packs" === t(this).text() && (t(this).parent().find(".mobile-nav__toggle").remove(), t(this).parent().parent().find(".mobile-nav__sublist").remove()), t(this).on("click", function(i) {
                     e.location = t(i.currentTarget).attr("href")
                 })
-            }), 
-            // t("#customer_login_link").parent().hide(), 
-            // t("#customer_register_link").parent().hide(), 
-            // t("#NavDrawer .drawer__title").addClass("h5").removeClass("h3").html('<a href="/account"><i class="ico ico--account mobileHeader-accountIcon"></i>My Account</a>'), 
-            
+            }),
+            // t("#customer_login_link").parent().hide(),
+            // t("#customer_register_link").parent().hide(),
+            // t("#NavDrawer .drawer__title").addClass("h5").removeClass("h3").html('<a href="/account"><i class="ico ico--account mobileHeader-accountIcon"></i>My Account</a>'),
+
             (!isMobileDevice() && !isProductPage() && !fromAllowedState(T) && !T.getData("seenGateway") && !nativeAppCookie.getData("noGateway")) && t("#gateway").length && (t("body").hasClass("template-index") ? t("#gateway").addClass("gateway--home") : t("#PageContainer").css({
                 "-o-filter": "blur(5px)",
                 "-moz-filter": "blur(5px)",
@@ -846,7 +941,7 @@ function(e, t, i, n, o) {
                   	t('#hello-state').text('Hello!');
                 t('#sel-state option:contains(' + gatewayRegion + ')').prop({selected: true}),
                 t('#sel-state').addClass( "is-selected" )
-                  
+
             }()), t("#gateway #contact_form").css("height", t("#gateway #contact_form").innerHeight()), T.getData("seenBanner") || t(".popup .banner-content").hide(), t(e).on("scroll", d), t("#gateway").on("touchmove", u), t("#gateway .close-popup-btn").on("click", f), t("#gateway .js-closePopup").on("click", function(e) {
                 e.preventDefault(), f()
             }), t("#gateway form select").on("change", function(e) {
@@ -1505,12 +1600,7 @@ function(e, t, i, n, o) {
             t(this).parent().parent().addClass("active"), t(this).parent().parent().siblings().removeClass("active")
         })), t(".blue-band-link").click(function(i) {
             (t(e).width() >= 1e3 || "P" == i.target.nodeName) && (e.location.href = t(this).data("href"))
-        }), 
-        // t(e).on("resize", function(e) {
-        //     t(".site-nav__dropdown").css({
-        //         width: t(".site-header .wrapper").width()
-        //     })
-        // }), 
+        }),
         C.prototype = {
             initEvents: function() {
                 var e = this;
