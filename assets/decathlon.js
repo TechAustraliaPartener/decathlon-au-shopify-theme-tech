@@ -50,10 +50,19 @@ var allowedStates = {
     "WY": "Wyoming"
 }
 
+/**
+ * Simple array of header element class names, including legacy Decathlon and newer from patterns
+ * To be used in various functions throughout this file
+ */
+
 var headerJSHookClassNames = [
 	".js-de-PageWrap-header",
 	".site-header"
 ];
+
+/**
+ * headerClassName will be set on jQuery document ready
+ */
 
 var headerClassName = '';
 
