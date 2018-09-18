@@ -9162,6 +9162,8 @@ body.is-shortNav .header-cartWrapper:before { height: 45px; }
 
 .accountHeading {
   flex-grow: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* .site-header__logo img { width: 190px; max-width: 172px; } */
