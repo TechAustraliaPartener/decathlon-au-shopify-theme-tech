@@ -35,6 +35,16 @@
   color: #fff; !important;
 }
 
+/*
+ * The following selector is necessary for the JS-injected search form to fill
+ * the full available space, replacing the in-page form without a significant
+ * shift in appearance.
+*/
+
+.adept-inject-element {
+  width: 100%;
+}
+
 @media screen and (-ms-high-contrast: none) {
     .header-searchWrapper input.adept-header-searchInput.header-searchInput.header-searchInput {
         width: 100%;
