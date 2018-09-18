@@ -7721,9 +7721,12 @@ body.is-emptyRecentlyViewed .blue-band--footer {
   margin-top: 0;
 }
 
-.accountLogout {
-  float: right;
-  margin-top: $space*-2.45;
+.accountHeader {
+  display: flex;
+}
+
+.accountHeading {
+  flex-grow: 1;
 }
 
 .customerForm,
@@ -9157,8 +9160,14 @@ body.is-shortNav .header-cartWrapper:before { height: 45px; }
 
 .blog-jobsIntro { padding-right: 30px; }
 
-.accountLogout {
-  margin-top: $space*-2.85;
+.accountHeader {
+  display: flex;
+}
+
+.accountHeading {
+  flex-grow: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* .site-header__logo img { width: 190px; max-width: 172px; } */
