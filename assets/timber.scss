@@ -9158,10 +9158,12 @@ body.is-shortNav .header-cartWrapper:before { height: 45px; }
 
 .accountHeader {
   display: flex;
+  align-items: center;
 }
 
 .accountHeading {
   flex-grow: 1;
+  margin: 0;
   overflow: hidden;
   text-overflow: ellipsis;
 }
