@@ -1,12 +1,19 @@
  <!-- Start Sign In/Greeting -->
-{% assign greetingLength = 9 %} {% comment %}Variable for the number of characters in users' Name in greeting {% endcomment %}
+{% assign maxNameLength = 9 %}
+{% assign greetingLength = 6 %}
+{% assign emailName = '' %}
 {% if customer %}
   {% if customer.first_name != blank %}
     <a href="/account" class="de-MenuBar-action">
       {% include 'patterns-icons-user'
         with class: 'de-MenuBar-icon', role: 'presentation' %}
       <span class="de-MenuBar-label de-u-textNormal de-u-hidden de-u-lg-block">
-        {{customer.first_name | slice: 0, greetingLength | capitalize }}
+        Hey,
+        {% if customer.first_name.size <= maxNameLength %}
+          {{customer.first_name | capitalize }}
+        {% else %}
+          {{customer.first_name | slice: 0, greetingLength | capitalize }}…
+        {% endif %}
       </span>
     </a>
   {% else %}
@@ -14,7 +21,13 @@
       {% include 'patterns-icons-user'
         with class: 'de-MenuBar-icon', role: 'presentation' %}
       <span class="de-MenuBar-label de-u-textNormal de-u-hidden de-u-lg-block">
-        {{ customer.email | split: '@' | first | slice: 0, greetingLength | capitalize }}</a>
+        Hey,
+        {% assign emailName = customer.email | split: '@' | first %}
+        {% if emailName.size <= maxNameLength %}
+          {{ customer.email | split: '@' | first | capitalize }}
+        {% else %}
+          {{ customer.email | split: '@' | first | slice: 0, greetingLength | capitalize }}…
+        {% endif %}
       </span>
     </a>
   {% endif %}
