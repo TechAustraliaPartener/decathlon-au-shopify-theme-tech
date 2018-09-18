@@ -55,7 +55,7 @@ var headerJSHookClassNames = [
 	".site-header"
 ];
 
-var headerClassName = getHeaderJSHookClass();
+var headerClassName = '';
 
 function isProductPage() {
     var thisUrl = window.location.href
@@ -730,8 +730,10 @@ function(e, t, i, n, o) {
         return e % 2 == 0 ? t.fn(this) : t.inverse(this)
     }), n.registerHelper("if_odd", function(e, t) {
         return e % 2 == 1 ? t.fn(this) : t.inverse(this)
-    }), t(function() {
-        function d(t) {
+    }), t(function() { //document ready
+		headerClassName = getHeaderJSHookClass();
+
+		function d(t) {
             e.scrollTo(0, 0)
         }
 
