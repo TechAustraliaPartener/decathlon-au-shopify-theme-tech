@@ -9,6 +9,13 @@
    margin-top: 0.5em;
  }
 
+/**
+ * Adds a classname to the #AddedItemPopup div that is added to the DOM
+ * and displayed temporarily after a user clicks the add-to-cart button.
+ * Without this added class the interface is partially covered by the
+ * header and thus unusable.
+ */
+
 .de-AddedItemPopup {
   top: auto;
   z-index: 1000;
