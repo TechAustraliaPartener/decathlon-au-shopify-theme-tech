@@ -115,14 +115,14 @@ timber.accessibleNav = function () {
   var shopBtnAction = 1;
 
   // Close the menu if it is open and user clicks outside of it
-  $(document).on('click', function(event) {
+  $(document).on('click', function(event) { 
     if(!$(event.target).closest('.site-nav--has-dropdown').length) {
       if($('.site-nav--has-dropdown').is(":visible")) {
         var $el = $('.site-nav--has-dropdown');
         hideDropdown($el);
         //shopBtnAction = 1;
       }
-    }
+    }        
   });
 
   // Click - both touch and nontouch device
@@ -135,23 +135,23 @@ timber.accessibleNav = function () {
        hideDropdown($el);
        shopBtnAction = 1;
      }
-
-
-
+   
+     
+     
 {% comment %} /* This was used for Shop Menu functionality. 1st click open menu, 2nd click go to All Sports page*/
 //      if (isTouchDevice()) {
 //         var $el = $('.site-nav--has-dropdown');
 //        if (shopBtnAction == 1) {
-//          showDropdown($el);
+//          showDropdown($el);  
 //          shopBtnAction = 2;
 //        } else {
 //          window.location.href = "/collections";
 //          shopBtnAction = 1;
 //        }
 //      } else {
-//        window.location.href = "/collections";
+//        window.location.href = "/collections";    
 //      }{% endcomment %}
-  });
+  }); 
 
   // Mouseenter
   $('.site-nav--has-dropdown').on('mouseenter touchstart', function(evt) {
@@ -278,11 +278,8 @@ timber.productPage = function (options) {
       $productPrice = $('.timber-activeProduct .productPrice'),
       $comparePrice = $('.timber-activeProduct .comparePrice'),
       $quantityElements = $('.timber-activeProduct .quantity-selector, label + .js-qty'),
-      $addToCartText = $('.btn--addToCart'),
+      $addToCartText = $('.timber-activeProduct .addToCartText'),
       $sizeSelect = $('.selector-wrapper--size select');
-
-	  $('.u-block--empty-cart-cta').addClass('hidden');
-	  $('.selector-wrapper').removeClass('selector-wrapper--no-items-selected');
 
   if (variant) {
 
@@ -299,7 +296,6 @@ timber.productPage = function (options) {
           $addToCart.removeClass('disabled').prop('disabled', false);
           if (!window.addToWishlist) {
               $addToCartText.html({{ 'products.product.add_to_cart' | t | json }});
-			  $addToCartText.attr('id','');
           }
           $quantityElements.show();
           // Size selector disabled if unavailable later in function
@@ -307,11 +303,8 @@ timber.productPage = function (options) {
       } else {
           // Sold out, disable the submit button, change text, hide quantity elements
           if (!window.addToWishlist) {
-			  $addToCart.prop('disabled', false);
-              // $addToCart.addClass('disabled').prop('disabled', true);
-			  $addToCart.addClass('disabled');
-              $addToCartText.html('Email When Available');
-			  $addToCartText.attr('id','BIS_trigger').attr('data-variant-id', variant.id);
+              $addToCart.addClass('disabled').prop('disabled', true);
+              $addToCartText.html({{ 'products.product.sold_out' | t | json }});
           }
           $quantityElements.hide();
       }
@@ -328,13 +321,6 @@ timber.productPage = function (options) {
           $comparePrice.hide();
       }
 
-      if ($('.selector-wrapper--size .custom-variants > a').hasClass('option--size-one-size')) {
-
-          $('.selector-wrapper--size>label').addClass('is-selected').text('One Size');
-          $('.selector-wrapper--color .custom-variants .option').addClass('selected option--active');
-
-      }
-
   } else {
       // The variant doesn't exist, disable submit button.
       // This may be an error or notice that a specific variant is not available.
@@ -344,16 +330,12 @@ timber.productPage = function (options) {
 
       // If variant unavailable, disable size selector
       // Size selector enabled if available earlier in function
-      // $sizeSelect.prop('disabled', true);
+      $sizeSelect.prop('disabled', true);
 
       if (!window.addToWishlist) {
-          // $addToCart.addClass('disabled').prop('disabled', true);
-		  $addToCart.addClass('disabled');
-		  $addToCartText.html('Email When Available');
-		  $addToCartText.attr('id','BIS_trigger'); //.attr('data-variant-id', variant.id);
-
+          $addToCart.addClass('disabled').prop('disabled', true);
+          $addToCartText.html({{ 'products.product.sold_out' | t | json }});
           $quantityElements.hide();
-
           if ($('.selector-wrapper--size .custom-variants > a').hasClass('option--size-one-size')) {
 
               $('.selector-wrapper--size>label').addClass('is-selected').text('One Size');
