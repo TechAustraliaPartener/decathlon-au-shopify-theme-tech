@@ -1,6 +1,5 @@
  <!-- Start Sign In/Greeting -->
-{% assign maxNameLength = 9 %}
-{% assign greetingLength = 6 %}
+{% assign greetingLength = 9 %}
 {% assign emailName = '' %}
 {% if customer %}
   {% if customer.first_name != blank %}
@@ -8,12 +7,8 @@
       {% include 'patterns-icons-user'
         with class: 'de-MenuBar-icon', role: 'presentation' %}
       <span class="de-MenuBar-label de-u-textNormal de-u-hidden de-u-lg-block">
-        Hey,
-        {% if customer.first_name.size <= maxNameLength %}
-          {{customer.first_name | capitalize }}
-        {% else %}
-          {{customer.first_name | slice: 0, greetingLength | capitalize }}…
-        {% endif %}
+        {{customer.first_name | slice: 0, greetingLength | capitalize }}
+        {% if customer.first_name.size > greetingLength %}…{% endif %}
       </span>
     </a>
   {% else %}
@@ -21,13 +16,9 @@
       {% include 'patterns-icons-user'
         with class: 'de-MenuBar-icon', role: 'presentation' %}
       <span class="de-MenuBar-label de-u-textNormal de-u-hidden de-u-lg-block">
-        Hey,
         {% assign emailName = customer.email | split: '@' | first %}
-        {% if emailName.size <= maxNameLength %}
-          {{ customer.email | split: '@' | first | capitalize }}
-        {% else %}
-          {{ customer.email | split: '@' | first | slice: 0, greetingLength | capitalize }}…
-        {% endif %}
+        {{ customer.email | split: '@' | first | slice: 0, greetingLength | capitalize }}
+        {% if emailName.size > greetingLength %}…{% endif %}
       </span>
     </a>
   {% endif %}
