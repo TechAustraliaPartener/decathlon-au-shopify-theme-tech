@@ -9156,8 +9156,12 @@ body.is-shortNav .header-cartWrapper:before { height: 45px; }
 
 .blog-jobsIntro { padding-right: 30px; }
 
-.accountLogout {
-  margin-top: $space*-2.85;
+.accountHeader {
+  display: flex;
+}
+
+.accountHeading {
+  flex-grow: 1;
 }
 
 /* .site-header__logo img { width: 190px; max-width: 172px; } */

@@ -12,18 +12,17 @@
   {% endcapture %}
 {% endcomment %}
   {% if customer.metafields.customers.profile_image and customer_home == true %}
-    <img src="{{ customer.metafields.customers.profile_image }}" style="height: 30px; position: relative; float: left; top: 6px; margin-right: 1em;" />
+    <img src="{{ customer.metafields.customers.profile_image }}" style="width: 30px; margin-right: 0.5em;" />
   {% endif %}
 
-  <h1 class="h3">{{ account_title }}</h1>
+  <h1 class="h3 accountHeading">{{ account_title }}</h1>
 
-  <p class="accountLogout small--hide">
+  <p class="accountLogout">
     {% if customer_home %}
       <a class="accountLogout-link btn btn--text" href="/account/logout">Logout</a>
     {% else %}
       <a class="btn btn--text" href="/account">Back To My Account</a>
     {% endif %}
   </p>
-  <hr class="hr--small">
 </div>
-
+<hr class="hr--small">
