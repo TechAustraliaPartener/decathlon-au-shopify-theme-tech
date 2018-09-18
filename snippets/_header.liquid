@@ -1,11 +1,13 @@
 <!-- snippets/_header.liquid -->
+
 <header class="de-PageWrap-header js-de-PageWrap-header">
   <div class="de-PageWrap-headerPrimary">
     <div class="de-PageWrap-narrowMenuControl">
       <div class="de-MenuBar">
         <button class="de-MenuBar-action de-MenuBar-action--stack"
-          data-de-page-wrap-action="toggleMenu"
-          data-de-page-wrap-target="demo-side">
+			id="data-MenuBar-narrow"
+          	data-de-page-wrap-action="toggleMenu"
+          	data-de-page-wrap-target="demo-side">
           {% include 'patterns-icons-bars'
             with class: 'de-MenuBar-icon' %}
           <span class="de-MenuBar-label">Menu</span>
@@ -21,9 +23,10 @@
     <div class="de-PageWrap-wideMenuControl">
       <div class="de-MenuBar">
         <button class="de-MenuBar-action de-u-textGrow1"
-          data-de-page-wrap-action="toggleMenu"
-          data-de-page-wrap-target="demo-mega"
-          data-de-page-wrap-hover="true">
+			id="data-MenuBar-Wide"
+          	data-de-page-wrap-action="toggleMenu"
+          	data-de-page-wrap-target="demo-mega"
+          	data-de-page-wrap-hover="true">
           <span class="de-MenuBar-label">Menu</span>
         </button>
       </div>
