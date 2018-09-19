@@ -90,7 +90,7 @@
             {% assign sale_price = product.price | money %}
             {{ 'products.product.on_sale_from_html' | t: price: sale_price }}
         {% else %}
-            <strong style="color: #000000;">{{ 'products.product.on_sale' | t }}</strong>
+            <strong style="color: #FF0000;">{{ 'products.product.on_sale' | t }}</strong>
             {{ current_variant.price | money }}
         {% endif %}
     {% else %}
