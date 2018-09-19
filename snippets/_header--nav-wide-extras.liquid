@@ -1,0 +1,35 @@
+<div class="de-u-sizeFull">
+  <div class="de-FlexEmbed">
+    <div class="de-FlexEmbed-ratio de-FlexEmbed-ratio--4by3"></div>
+    <img class="de-FlexEmbed-content" src="{{ 'story_split_full_content_1_image.jpg' | asset_url }}" alt="">
+  </div>
+  <ul class="de-MenuList">
+    <li>
+      <a class="de-MenuList-item de-MenuList-item--brand de-u-padSides2" href="/pages/our-story">
+        <div class="de-MenuList-content">
+          <h5 class="de-MenuList-heading">Meet Decathlon</h5>
+          <p class="de-MenuList-summary">Our Mission, Our Story</p>
+        </div>
+        {% include 'patterns-icons-chevron', class: 'de-MenuList-icon', role: 'presentation' %}
+      </a>
+    </li>
+  </ul>
+  <div class="de-u-pad2">
+    <ul class="de-u-listReset de-u-spaceNone de-u-lineHeight3">
+      {% for link in linklists.additional-shopping.links %}
+        <li class="de-u-spaceNone">
+          <a class="de-u-linkClean de-u-textShrink1" href="{{ link.url }}">{{ link.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="de-u-pad2 de-u-borderTopMd de-u-borderOverlapTopMd de-u-borderGray50">
+    <ul class="de-u-listReset de-u-spaceNone de-u-lineHeight3">
+      {% for link in linklists.brand-menu.links %}
+        <li class="de-u-spaceNone">
+          <a class="de-u-linkClean de-u-textShrink1" href="{{ link.url }}">{{ link.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>

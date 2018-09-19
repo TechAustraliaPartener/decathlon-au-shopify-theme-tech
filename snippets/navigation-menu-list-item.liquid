@@ -1,0 +1,42 @@
+<li {% if listClass %} class="{{listClass}}"{% endif %}>
+  {% assign content-element = 'a' %}
+  {% if item.links.size > 0 %}
+    {% assign content-element = 'button' %}
+  {% endif %}
+  <{{ content-element }} class="de-MenuList-item{% if class %} {{class}}{% endif %}"{% if item.url %} href="{{ item.url }}{% endif %}" {% if item.links.size > 0 or item.subhead %} data-de-slideViews-target="{{menuChild}}-{{ item.handle }}"{% endif %}>
+    {% if item.links.size > 0 or item.subhead %}
+      <div class="de-MenuList-content">
+        <h5 class="de-MenuList-heading">
+          {{ item.title | remove: "Women's "  | remove: "Men's " }}
+        </h5>
+        <p class="de-MenuList-summary">
+          {% if item.subhead %}
+            {{ item.subhead }}
+          {% else %}
+            {% if item.links.size > 2 %}
+              {% for list-item in item.links limit:2 %}
+                {{ list-item.title }}{% if forloop.last %}…{% else %},{% endif %}
+              {% endfor %}
+            {% else %}
+              {{ item.links | map: 'title' | join: ", "}}
+            {% endif %}
+          {% endif %}
+        </p>
+      </div>
+    {% else %}
+      <p class="de-MenuList-content de-u-textSizeBase">
+        {{ item.title }}
+      </p>
+    {% endif %}
+    {% if showLabel %}
+      {% if item.label %}
+        <p class="de-MenuList-badge">{{ item.label }}</p>
+      {% elsif item.links.size > 0 %}
+        <p class="de-MenuList-badge">{{ item.links.size }}</p>
+      {% endif %}
+    {% endif %}
+    {% if item.links.size > 0 or showCaret %}
+      {% include 'patterns-icons-chevron', class: 'de-MenuList-icon', role: 'presentation' %}
+    {% endif %}
+  </{{ content-element }}>
+</li>

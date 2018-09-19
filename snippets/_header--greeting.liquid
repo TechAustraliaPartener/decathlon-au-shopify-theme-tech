@@ -1,0 +1,34 @@
+ <!-- Start Sign In/Greeting -->
+{% assign greetingLength = 9 %}
+{% assign emailName = '' %}
+{% if customer %}
+  {% if customer.first_name != blank %}
+    <a href="/account" class="de-MenuBar-action">
+      {% include 'patterns-icons-user'
+        with class: 'de-MenuBar-icon', role: 'presentation' %}
+      <span class="de-MenuBar-label de-u-textNormal de-u-hidden de-u-lg-block">
+        {{customer.first_name | slice: 0, greetingLength | capitalize }}
+        {% if customer.first_name.size > greetingLength %}…{% endif %}
+      </span>
+    </a>
+  {% else %}
+    <a href="/account" class="de-MenuBar-action">
+      {% include 'patterns-icons-user'
+        with class: 'de-MenuBar-icon', role: 'presentation' %}
+      <span class="de-MenuBar-label de-u-textNormal de-u-hidden de-u-lg-block">
+        {% assign emailName = customer.email | split: '@' | first %}
+        {{ customer.email | split: '@' | first | slice: 0, greetingLength | capitalize }}
+        {% if emailName.size > greetingLength %}…{% endif %}
+      </span>
+    </a>
+  {% endif %}
+{% else %}
+  <a href="/account/login?checkout_url=/" class="de-MenuBar-action">
+    {% include 'patterns-icons-user'
+      with class: 'de-MenuBar-icon', role: 'presentation' %}
+    <span class="de-MenuBar-label de-u-textNormal de-u-hidden de-u-lg-block">
+      Sign In
+    </span>
+  </a>
+{% endif %}
+<!-- End Sign In/Greeting -->
