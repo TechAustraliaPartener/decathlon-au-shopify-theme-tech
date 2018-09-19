@@ -1,0 +1,6 @@
+{% for list-item in list.links %}
+	{% include 'navigation-menu-list-item',
+		item: list-item,
+		showLabel: true,
+		listClass: 'de-u-spaceNone' %}
+{% endfor %}

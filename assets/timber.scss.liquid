@@ -3636,7 +3636,7 @@ body.is-rollingUpBanner .popup { margin-top: -100vh; }
   @include transition(bottom 0.6s ease-in-out);
 }
 
-.blue-band--footer { margin-top: 5em; }
+.blue-band--footer { margin-top: 0em; }
 .blue-band--footer.blue-band .grid__item:first-child { display: none; }
 
 
@@ -7766,9 +7766,16 @@ body.is-emptyRecentlyViewed .blue-band--footer {
   margin-top: 0;
 }
 
-.accountLogout {
-  float: right;
-  margin-top: $space*-2.45;
+.accountHeader {
+  align-items: center;
+  display: flex;
+}
+
+.accountHeading {
+  flex-grow: 1;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .customerForm,
@@ -9213,8 +9220,16 @@ body.is-shortNav .header-cartWrapper:before { height: 45px; }
 
 .blog-jobsIntro { padding-right: 30px; }
 
-.accountLogout {
-  margin-top: $space*-2.85;
+.accountHeader {
+  align-items: center;
+  display: flex;
+}
+
+.accountHeading {
+  flex-grow: 1;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* .site-header__logo img { width: 190px; max-width: 172px; } */
@@ -9470,7 +9485,7 @@ body:first-of-type .header-cartWrapper {
   }
 }
 
-.blue-band--footer { margin-top: 1em; }
+.blue-band--footer { margin-top: 0em; }
 .blue-band--footer .blue-band--footer-logo,
 .blue-band--footer .large--one-fifth { width: 20%; }
 .footer-copyright { color: $midGray; font-size: 0.8em; display: inline-block; vertical-align: middle;}

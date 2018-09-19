@@ -77,7 +77,7 @@ function getLocaleSync(t, str) { // alan
     });
     return {error: error, data: data}
 }
-  
+
 ! function(e) {
     function t() {}
 
@@ -314,12 +314,12 @@ function(e, t, i) {
     }, n.prototype.getUserRegionCode = function() {
         var e = this;
         var rc = null;
-        e.getData("userSetRegion") === "California" ? rc = "CA" : null; 
+        e.getData("userSetRegion") === "California" ? rc = "CA" : null;
         return rc || e.getData("locale").region_code
     }, n.prototype.getUserRegion = function() {
         var e = this;
         var thisRegion = e.getData("userSetRegion");
-            if (thisRegion) 
+            if (thisRegion)
                 return thisRegion;
             thisRegion = e.getData("locale");
             if (thisRegion)
@@ -393,48 +393,51 @@ function(e, t, i) {
     }, n.prototype.getData = function(e) {
         return this.cookieData_[e]
     }, n.prototype.pinToHeader = function(t) {
-        var n = this,
-            o = i(t.selector),
-            a = i(t.selector).innerHeight() + i(".site-header").innerHeight() + 5,
-            r = t.selector.substr(1);
-        if (!o.length) return n;
-        var s = [];
-        o.find(".js-anchorLink").each(function(e) {
-            s.push({
-                top: i(i(this).attr("href")).offset().top - a,
-                index: e
-            })
-        });
-        var c = t.offset(),
-            l = o.offset().top - c,
-            d = function(e) {
-                c = t.offset(), l = o.offset().top - c, a = o.innerHeight() + i(".site-header").innerHeight() + 5, s = [], o.find(".js-anchorLink").each(function(e) {
-                    s.push({
-                        top: i(i(this).attr("href")).offset().top - a,
-                        index: e
-                    })
-                })
-            };
-        i("#PageContainer").resize(d);
-        var u = function(n) {
-            if (isProductPage()) {
-                if (i(e).scrollTop() < (l - i('.site-header').css('height').split('px')[0])) return void(1 === i(t.selector + "--cloned").length && (o.detach(), o.removeClass(r + "--cloned is-fixed"), o.css({
-                    top: ""
-                }), i(t.selector + "--placeholder").replaceWith(o), t.unpinCallback && t.unpinCallback(o)))
-            }
-            else {
-                if (i(e).scrollTop() < l) return void(1 === i(t.selector + "--cloned").length && (o.detach(), o.removeClass(r + "--cloned is-fixed"), o.css({
-                    top: ""
-                }), i(t.selector + "--placeholder").replaceWith(o), t.unpinCallback && t.unpinCallback(o)))
-            }
-            if (0 === i(t.selector + "--cloned").length && (o.after('<div class="' + o.attr("class") + " " + r + '--placeholder" style="height:' + o[0].getBoundingClientRect().height + 'px"></div>'), o.addClass(r + "--cloned is-fixed").detach(), i("body").append(o), o.css({
-                    top: c
-                }), t.pinCallback && t.pinCallback(o)), s.length) {
-                for (var a = null, d = 0; d < s.length && i(e).scrollTop() > s[d].top; d++) a = o.find(".anchorList-link").eq(s[d].index);
-                o.find(".anchorList-link").removeClass("anchorList-link--active").blur(), a && a.addClass("anchorList-link--active")
-            }
-        };
-        return i(e).on("scroll", u), i("#PageContainer").resize(u), n
+		var n = this;
+		return setTimeout(_pinToHeader, 10);
+		function _pinToHeader() {
+			var o = i(t.selector),
+			a = i(t.selector).innerHeight() + i(".js-de-PageWrap-header").innerHeight() + 5,
+			r = t.selector.substr(1);
+			if (!o.length) return n;
+			var s = [];
+			o.find(".js-anchorLink").each(function(e) {
+				s.push({
+					top: i(i(this).attr("href")).offset().top - a,
+					index: e
+				})
+			});
+			var c = t.offset(),
+				l = o.offset().top - c,
+				d = function(e) {
+					c = t.offset(), l = o.offset().top - c, a = o.innerHeight() + i(".js-de-PageWrap-header").innerHeight() + 5, s = [], o.find(".js-anchorLink").each(function(e) {
+						s.push({
+							top: i(i(this).attr("href")).offset().top - a,
+							index: e
+						})
+					})
+				};
+			i("#PageContainer").resize(d);
+			var u = function(n) {
+				if (isProductPage()) {
+					if (i(e).scrollTop() < (l - i('.js-de-PageWrap-header').css('height').split('px')[0])) return void(1 === i(t.selector + "--cloned").length && (o.detach(), o.removeClass(r + "--cloned is-fixed"), o.css({
+						top: ""
+					}), i(t.selector + "--placeholder").replaceWith(o), t.unpinCallback && t.unpinCallback(o)))
+				}
+				else {
+					if (i(e).scrollTop() < l) return void(1 === i(t.selector + "--cloned").length && (o.detach(), o.removeClass(r + "--cloned is-fixed"), o.css({
+						top: ""
+					}), i(t.selector + "--placeholder").replaceWith(o), t.unpinCallback && t.unpinCallback(o)))
+				}
+				if (0 === i(t.selector + "--cloned").length && (o.after('<div class="' + o.attr("class") + " " + r + '--placeholder" style="height:' + o[0].getBoundingClientRect().height + 'px"></div>'), o.addClass(r + "--cloned is-fixed").detach(), i("body").append(o), o.css({
+						top: c
+					}), t.pinCallback && t.pinCallback(o)), s.length) {
+					for (var a = null, d = 0; d < s.length && i(e).scrollTop() > s[d].top; d++) a = o.find(".anchorList-link").eq(s[d].index);
+					o.find(".anchorList-link").removeClass("anchorList-link--active").blur(), a && a.addClass("anchorList-link--active")
+				}
+			};
+			return i(e).on("scroll", u), i("#PageContainer").resize(u), n
+		}
     }, e.BlueLikeNeon = n
 }(window, Cookies, jQuery),
 function(e, t) {
@@ -706,7 +709,7 @@ function(e, t, i, n, o) {
         }
 
         function y() {
-            var i = t(e).height() - t(".site-header").height() - t(".productOptions").height() - 182;
+            var i = t(e).height() - t(".js-de-PageWrap-header").height() - t(".productOptions").height() - 182;
             if (i > 500) {
                 var n = .5 * (i - 500);
                 t(".productImages").css({
@@ -788,12 +791,12 @@ function(e, t, i, n, o) {
             return true; // by default don't show overlay
         }
         T.getLocale(), T.fullscreen({
-            offsetHeight: Math.floor(t(".site-header").outerHeight())
+            offsetHeight: Math.floor(t(".js-de-PageWrap-header").outerHeight())
         }), t(e).bind("pageshow", function() {
             t(".js-nobfcache").val("")
         });
         var j = function() {
-            return Math.floor(t(".site-header").outerHeight())
+            return Math.floor(t(".js-de-PageWrap-header").outerHeight())
         };
         T.pinToHeader({
             selector: ".js-pinToHeader",
@@ -817,8 +820,8 @@ function(e, t, i, n, o) {
                 t(this).removeClass("search-open"), t(".header-search-mobile-btn").removeClass("search-open"), t(".mobile-searchWrapper").removeClass("open")
             }), t(".mobile-nav__item a").each(function() {
                 "/account" == t(this).attr("href") && t(this).parent().addClass("account-item")
-            }), 
-            // t(".account-item").before('<li class="mobile-nav__item"><a href="/pages/wishlist" class="mobile-nav__link">My Wishlist</a></li>'), 
+            }),
+            // t(".account-item").before('<li class="mobile-nav__item"><a href="/pages/wishlist" class="mobile-nav__link">My Wishlist</a></li>'),
             t(".mobile-nav__has-sublist .mobile-nav__link").on("click", function(e) {
                 var i = t(e.currentTarget).parent();
                 i.hasClass("mobile-nav--expanded") || (e.preventDefault(), i.toggleClass("mobile-nav--expanded"))
@@ -826,11 +829,11 @@ function(e, t, i, n, o) {
                 "Get going packs" === t(this).text() && (t(this).parent().find(".mobile-nav__toggle").remove(), t(this).parent().parent().find(".mobile-nav__sublist").remove()), t(this).on("click", function(i) {
                     e.location = t(i.currentTarget).attr("href")
                 })
-            }), 
-            // t("#customer_login_link").parent().hide(), 
-            // t("#customer_register_link").parent().hide(), 
-            // t("#NavDrawer .drawer__title").addClass("h5").removeClass("h3").html('<a href="/account"><i class="ico ico--account mobileHeader-accountIcon"></i>My Account</a>'), 
-            
+            }),
+            // t("#customer_login_link").parent().hide(),
+            // t("#customer_register_link").parent().hide(),
+            // t("#NavDrawer .drawer__title").addClass("h5").removeClass("h3").html('<a href="/account"><i class="ico ico--account mobileHeader-accountIcon"></i>My Account</a>'),
+
             (!isMobileDevice() && !isProductPage() && !fromAllowedState(T) && !T.getData("seenGateway") && !nativeAppCookie.getData("noGateway")) && t("#gateway").length && (t("body").hasClass("template-index") ? t("#gateway").addClass("gateway--home") : t("#PageContainer").css({
                 "-o-filter": "blur(5px)",
                 "-moz-filter": "blur(5px)",
@@ -846,7 +849,7 @@ function(e, t, i, n, o) {
                   	t('#hello-state').text('Hello!');
                 t('#sel-state option:contains(' + gatewayRegion + ')').prop({selected: true}),
                 t('#sel-state').addClass( "is-selected" )
-                  
+
             }()), t("#gateway #contact_form").css("height", t("#gateway #contact_form").innerHeight()), T.getData("seenBanner") || t(".popup .banner-content").hide(), t(e).on("scroll", d), t("#gateway").on("touchmove", u), t("#gateway .close-popup-btn").on("click", f), t("#gateway .js-closePopup").on("click", function(e) {
                 e.preventDefault(), f()
             }), t("#gateway form select").on("change", function(e) {
@@ -1505,12 +1508,12 @@ function(e, t, i, n, o) {
             t(this).parent().parent().addClass("active"), t(this).parent().parent().siblings().removeClass("active")
         })), t(".blue-band-link").click(function(i) {
             (t(e).width() >= 1e3 || "P" == i.target.nodeName) && (e.location.href = t(this).data("href"))
-        }), 
+        }),
         // t(e).on("resize", function(e) {
         //     t(".site-nav__dropdown").css({
-        //         width: t(".site-header .wrapper").width()
+        //         width: t(".js-de-PageWrap-header .wrapper").width()
         //     })
-        // }), 
+        // }),
         C.prototype = {
             initEvents: function() {
                 var e = this;

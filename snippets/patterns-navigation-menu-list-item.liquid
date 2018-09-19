@@ -1,0 +1,36 @@
+<li>
+  {% assign content-element = 'button' %}
+  {% if item.links.size > 0 %}
+    {% assign content-element = 'a' %}
+  {% endif %}
+  <{{ content-element }} class="de-MenuList-item{% if class %} {{class}}{% endif %}"{% if item.url %} href="{{ item.url }}{% endif %}">
+    {% if item.links.size > 0 or item.subhead %}
+      <div class="de-MenuList-content">
+        <h5 class="de-MenuList-heading">
+          {{ item.title }}
+        </h5>
+        <p class="de-MenuList-summary">
+          {% if item.subhead %}
+            {{ item.subhead }}
+          {% else %}
+            {{ item.links | map: 'title' | join: ", " }}
+          {% endif %}
+        </p>
+      </div>
+    {% else %}
+      <p class="de-MenuList-content">
+        {{ item.title }}
+      </p>
+    {% endif %}
+    {% if showLabel %}
+      {% if item.label %}
+        <p class="de-MenuList-badge">{{ item.label }}</p>
+      {% elsif item.links.size > 0 %}
+        <p class="de-MenuList-badge">{{ item.links.size }}</p>
+      {% endif %}
+    {% endif %}
+    {% if item.links.size > 0 or showCaret %}
+      {% include 'patterns-icons-chevron', class: 'de-MenuList-icon', role: 'presentation' %}
+    {% endif %}
+  </{{ content-element }}>
+</li>
