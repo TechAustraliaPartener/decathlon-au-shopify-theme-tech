@@ -37,3 +37,19 @@ There's a task in gulp to create an SVG icon sprite, and to update the src/scss/
 * If you'd like to change the css that is output into **\_icons.scss** you do so by going to **src/scss/globals/mixins/_svg-template.scss**. The file is built using mustache templating.
 * If you'd like to add additional sprites you can add them to createSprites object towards the top of the gulp file. The names you enter must match with the folder you create inside the SVG directory.
 * While **npm run dev** is going dropping new svgs into the folder will update the sprite.
+
+## Updating Patterns Submodule
+
+Do this any time updates were committed in the decathlon-patterns repo and merged into that repo's master branch.
+
+Here are the steps followed to create this PR:
+
+1. Enter the directory for the shopify repo: `cd shopify-theme-decathlonusa`
+1. Checkout the `dev-cloud4` branch: `git checkout dev-cloud4`
+1. Make sure the branch is up-to-date: `git pull`
+1. Checkout a new branch from there: `git checkout -b chore/update-patterns`
+1. Update the patterns: `npx gulp updatePatterns`
+1. Double-check that updated files appear correct (all begin with `patterns`): `git status`
+1. Add modified and new files: `git add -A`
+1. Commit the changes: `git commit -m "Update patterns to latest"`
+1. Push to the remote: `git push -u origin chore/update-patterns`
