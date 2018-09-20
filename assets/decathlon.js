@@ -420,8 +420,9 @@ function(e, t, i) {
 			i("#PageContainer").resize(d);
 			var u = function(n) {
 				if (isProductPage()) {
-					if (i(e).scrollTop() < (l - i('.js-de-PageWrap-header').css('height').split('px')[0])) return void(1 === i(t.selector + "--cloned").length && (o.detach(), o.removeClass(r + "--cloned is-fixed"), o.css({
-						top: ""
+					// if (i(e).scrollTop() < (l - i('.js-de-PageWrap-header').css('height').split('px')[0])) return void(1 === i(t.selector + "--cloned").length && (o.detach(), o.removeClass(r + "--cloned is-fixed"), o.css({
+					if (i(e).scrollTop() < l) return void(1 === i(t.selector + "--cloned").length && (o.detach(), o.removeClass(r + "--cloned is-fixed"), o.css({                        
+                        top: ""
 					}), i(t.selector + "--placeholder").replaceWith(o), t.unpinCallback && t.unpinCallback(o)))
 				}
 				else {
