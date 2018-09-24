@@ -699,6 +699,12 @@
 
 			sizeWrap.addClass('selector-wrapper--oneOption');
 	        $('.productOptions-sizeChart').addClass('sizeChart--oneOption');
+
+            if (sizeSelector.find('option').hasClass('sold-out')) {
+                setTimeout(function() {
+                    sizeWrap.find('label').addClass('is-selected').html(sizeSelector.find('.sold-out').val());
+                },500);
+            }
 	    }
 	}
 
