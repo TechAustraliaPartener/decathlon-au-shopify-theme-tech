@@ -459,29 +459,28 @@
       	selectedColor = variant[colorOption];
     }
 
-    if (variant) {
-      $('.js-modelCodeDisplay').text(variant.options[modelCodeOption]);
-      window.currentVariant = variant;
+	if (variant) {
+	      $('.js-modelCodeDisplay').text(variant.options[modelCodeOption]);
+	      window.currentVariant = variant;
 
-      $('#productSelect option[selected]').attr('selected', null);
-      $('#productSelect option[value="'+ variant.id + '"]').attr('selected', 'selected');
-      $('#productSelect').attr('disabled', null);
+	      $('#productSelect option[selected]').attr('selected', null);
+	      $('#productSelect option[value="'+ variant.id + '"]').attr('selected', 'selected');
+	      $('#productSelect').attr('disabled', null);
 
-      //$('.addToCartForm [name="properties[_for]"]').val(variant.id);
-      // forced variant to change to correct id - Alan 3/20/18
-      $('.addToCartForm [name="id"]').val(variant.id);
-      $('.addToCartForm [name="id"]').val(variant.id);
-      $('.addToCartForm [name="id"]').val(variant.id);
-  } else {
-	  setTimeout(function() {
-		  var selectedSize = $('.selector-wrapper--size label').text();
+	      //$('.addToCartForm [name="properties[_for]"]').val(variant.id);
+	      // forced variant to change to correct id - Alan 3/20/18
+	      $('.addToCartForm [name="id"]').val(variant.id);
+	      $('.addToCartForm [name="id"]').val(variant.id);
+	      $('.addToCartForm [name="id"]').val(variant.id);
+	} else {
+		  setTimeout(function() {
+			  var selectedSize = $('.selector-wrapper--size label').text();
 
-		  $('#productSelect option[selected]').attr('selected', null);
-		  $('#productSelect').find('[data-color-size="'+selectedColor+'/'+selectedSize+'"]').attr('selected','selected');
-		  $('#productSelect').trigger('change');
-	  }, 200);
-
-  }
+			  $('#productSelect option[selected]').attr('selected', null);
+			  $('#productSelect').find('[data-color-size="'+selectedColor+'/'+selectedSize+'"]').attr('selected','selected');
+			  $('#productSelect').trigger('change');
+		  }, 200);
+	}
 
     timber.productPage({
       money_format: "{{ shop.money_format }}",
@@ -509,6 +508,7 @@
       if (colorOption && selectCallbackInitialized && updatedColor) {
         // TODO: check current filter onload
         var idx = 0;
+
         $('.js-slick--products').slick('slickUnfilter')
           .slick('slickFilter', function(index) {
             var $self = $(this),
@@ -718,20 +718,30 @@
      */
     var multipleColorsOneSize = function() {
 
-        var sizeWrapOption = $('.selector-wrapper--size .custom-variants > a'),
+        var sizeWrap = $('.selector-wrapper--size'),
+			sizeWrapOption = sizeWrap.find('.custom-variants > a'),
             sizeWrapLabel = $('.selector-wrapper--size>label'),
-            colorWrapOption = $('.selector-wrapper--color .custom-variants .option');
+			colorWrap = $('.selector-wrapper--color'),
+			selectedColor = colorWrap.find('select').val();
+            colorWrapOption = colorWrap.find('.custom-variants .option');
 
         if (sizeWrapOption.hasClass('option--size-one-size')) {
 
-            $(sizeWrapLabel).addClass('is-selected').text('One Size');
-            $(sizeWrapOption).addClass('selected option--active');
+            sizeWrapLabel.addClass('is-selected').text('One Size');
+            sizeWrapOption.addClass('selected option--active');
 
-            $(colorWrapOption).click(function() {
+			setTimeout(function() {
+				colorWrapOption.removeClass('selected').removeClass('option--active');
+				colorWrap.find('[data-value="'+selectedColor+'"]').addClass('selected option--active');
+			},100);
 
-                $(sizeWrapLabel).addClass('is-selected').text('One Size');
-                $(sizeWrapOption).addClass('selected option--active');
+            colorWrapOption.click(function() {
 
+                sizeWrapLabel.addClass('is-selected').text('One Size');
+                sizeWrapOption.addClass('selected option--active');
+				sizeWrap.find('select').trigger('change');
+				colorWrapOption.removeClass('selected').removeClass('option--active');
+				$(this).addClass('selected option--active');
             });
         }
     }
