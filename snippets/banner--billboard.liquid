@@ -1,5 +1,5 @@
 <div class="banner banner--billboard loading{{ banner_adtl_classes }}"{% if banner_bg_image %} data-background-image="{{ banner_bg_image }}"{% endif %}{% if banner_bg_position != blank %} style="background-position:{{ banner_bg_position }}"{% endif %}{% if banner_id %} id="{{banner_id}}"{% endif %}>
-  <div id="bannerOverlay" class="banner--billboard__overlay loading"></div>
+  {% comment %} <div id="bannerOverlay" class="banner--billboard__overlay loading"></div> {% endcomment %}
 
   <div class="wrapper{{ banner_wrapper_adtl_classes }}">
     <div class="banner-content">
