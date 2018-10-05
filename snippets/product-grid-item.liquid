@@ -86,13 +86,8 @@
     {% endcomment %}
 
     {% if on_sale %}
-        {% if product.price_varies %}
-            {% assign sale_price = product.price | money %}
-            {{ 'products.product.on_sale_from_html' | t: price: sale_price }}
-        {% else %}
-            <strong style="color: #FF0000;">{{ 'products.product.on_sale' | t }}</strong>
-            {{ current_variant.price | money }}
-        {% endif %}
+        <span style="color: #E53322;"><strong>{{ 'products.product.on_sale' | t }}</strong>
+        {{ current_variant.price | money }}</span>
     {% else %}
         {% if product.price_varies %}
             {% assign price = current_variant.price | money %}
