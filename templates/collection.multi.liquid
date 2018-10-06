@@ -238,7 +238,7 @@ one-click-add-to-cart that includes size selector
                     {% assign product_filter = path_items.last | replace: '-', ' '%}
                     {% assign curIndex = 0 %}
 
-                {% paginate collection.products by 120 %}
+                {% paginate collection.products by 6 %}
                     {% for product in collection.products %}
 
                         {% comment %} using filter in active collection {% endcomment %}
