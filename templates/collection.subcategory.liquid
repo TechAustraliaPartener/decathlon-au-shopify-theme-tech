@@ -42,9 +42,11 @@
     {% unless collection.image %}
 		<!-- Create Breadcrumbs Start -->
 		<nav class="breadcrumb" role="navigation" aria-label="breadcrumbs">
-			<a href="/collections" title="All Sports">All Sports</a>
+			{% comment %} Hiding "All Sports" per DEC-643
+            <a href="/collections" title="All Sports">All Sports</a>
 			<span aria-hidden="true" class="breadcrumb__sep">&rsaquo;</span>
-			<a href="{{shop.url}}/collections/{{top_level.handle}}" title="{{top_level.title}}">{{top_level.title}}</a>
+			{% endcomment %}
+            <a href="{{shop.url}}/collections/{{top_level.handle}}" title="{{top_level.title}}">{{top_level.title}}</a>
 			{% for link in top_level.links %}
 				{% if link.active or link.child_active %}
 				<span aria-hidden="true" class="breadcrumb__sep">&rsaquo;</span>

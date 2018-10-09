@@ -41,30 +41,7 @@ one-click-add-to-cart that includes size selector
 <div class="wrapper{% if collection.image %} wrapper--collectionWithBanner u-paddingTopBottom4x{% else %} u-marginBottom4x{% endif %}">
     {% include 'find-top-level-collection' %}
     {% unless collection.image %}
-		<!-- Create Breadcrumbs Start -->
-		<nav class="breadcrumb" role="navigation" aria-label="breadcrumbs">
-			<a href="/collections" title="All Sports">All Sports</a>
-			<span aria-hidden="true" class="breadcrumb__sep">&rsaquo;</span>
-			<a href="{{shop.url}}/collections/{{top_level.handle}}" title="{{top_level.title}}">{{top_level.title}}</a>
-			{% for link in top_level.links %}
-				{% if link.active or link.child_active %}
-				<span aria-hidden="true" class="breadcrumb__sep">&rsaquo;</span>
-				<a href="{{link.url}}" title="{{link.title}}">{{link.title}}</a>
-					{% if link.child_active %}
-						<span aria-hidden="true" class="breadcrumb__sep">&rsaquo;</span>
-					{% endif %}
-					{% if link.links != blank %}
-						{% for sub in link.links %}
-							{% if sub.active %}
-								<a href="{{sub.url}}" title="{{sub.title}}">{{sub.title}}</a>
-							{% endif %}
-						{% endfor %}
-					{% endif %}
-				{% endif%}
-			{% endfor %}
-		</nav>
-		<!-- Create Breadcrumbs End -->
-
+    {% include 'create-breadcrumbs' %}
     {% endunless %}
 
     <div class="grid">
