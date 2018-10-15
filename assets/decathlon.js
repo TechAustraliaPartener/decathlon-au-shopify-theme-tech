@@ -421,7 +421,7 @@ function(e, t, i) {
 			var u = function(n) {
 				if (isProductPage()) {
 					// if (i(e).scrollTop() < (l - i('.js-de-PageWrap-header').css('height').split('px')[0])) return void(1 === i(t.selector + "--cloned").length && (o.detach(), o.removeClass(r + "--cloned is-fixed"), o.css({
-					if (i(e).scrollTop() < l) return void(1 === i(t.selector + "--cloned").length && (o.detach(), o.removeClass(r + "--cloned is-fixed"), o.css({                        
+					if (i(e).scrollTop() < l) return void(1 === i(t.selector + "--cloned").length && (o.detach(), o.removeClass(r + "--cloned is-fixed"), o.css({
                         top: ""
 					}), i(t.selector + "--placeholder").replaceWith(o), t.unpinCallback && t.unpinCallback(o)))
 				}
@@ -1063,7 +1063,7 @@ function(e, t, i, n, o) {
                 }]
             });
             var G = !0;
-            t(".js-slick--products").on("afterChange", k), t(".js-slick--products .productImage").click(k), t(e).resize(k), t(e).width() <= c && t(".productImage.slick-slide img").removeAttr("data-action"), t(e).width() >= l && (y(), t(e).resize(y), T.pinToHeader({
+            t(".js-slick--products").on("afterChange", k), t(".selector-wrapper--color .option").on("click", k), t(".js-slick--products .productImage").click(k), t(e).resize(k), t(e).width() <= c && t(".productImage.slick-slide img").removeAttr("data-action"), t(e).width() >= l && (y(), t(e).resize(y), T.pinToHeader({
                 selector: ".js-pinProductOptions",
                 offset: function() {
                     return 0
