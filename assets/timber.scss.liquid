@@ -3739,13 +3739,14 @@ body.is-rollingUpBanner .popup { margin-top: -100vh; }
 
 .bluegram:before,
 .bluegram:after {
-  background: $colorPrimary;
-  content: "";
-  height: 100%;//weird value addresses a gap on firefox
-  left: 100%;
-  position: absolute;
-  top: 0;
-  width: 10000px;
+    background: $colorPrimary;
+    content: "";
+    height: 100%;//weird value addresses a gap on firefox
+    left: 100%;
+    position: absolute;
+    top: 0;
+    width: 10000px;
+
 }
 
 .bluegram:after {
@@ -5361,6 +5362,12 @@ right: 0; }
 .addToCartForm .productOptions-selects .selector-wrapper--no-items-selected {
 	border: red 2px solid !important;
 }
+.addToCartForm {
+    @media screen and (max-width: 768px) {
+        overflow: hidden;
+        width: 100%;
+    }
+}
 
 .productOptions-notify {
   display: none;
@@ -6667,12 +6674,12 @@ body.js-drawer-open {
    margin-bottom: 50px;
  }
   #close-review-button {
-    padding-bottom: 3em; 
+    padding-bottom: 3em;
   }
 }
-@media screen and (max-width: 480px) { 
+@media screen and (max-width: 480px) {
   .close-btn.js-closeWriteReview {
-   top: 5em; 
+   top: 5em;
   }
 }
 /* Mobile: landscape */
@@ -6682,16 +6689,16 @@ body.js-drawer-open {
 	top: 45px;
   }
   .close-btn.js-closeWriteReview {
-   top: 3em; 
+   top: 3em;
   }
 }
 /* iPad: landscape */
 @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape){
   .writeReview-wrapper {
-    top:45px; 
+    top:45px;
   }
   .close-btn.js-closeWriteReview {
-   	top: 2em; 
+   	top: 2em;
   }
 }
 
