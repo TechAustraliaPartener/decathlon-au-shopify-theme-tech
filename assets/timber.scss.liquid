@@ -3736,7 +3736,7 @@ body.is-rollingUpBanner .popup { margin-top: -100vh; }
   z-index: 1;
 }
 
-.addToCartForm::after {
+.template-product .addToCartForm::after {
 	content: '';
 	bottom: 0;
 	display: block;
@@ -3763,7 +3763,11 @@ body.is-rollingUpBanner .popup { margin-top: -100vh; }
     left: 100%;
     position: absolute;
     top: 0;
-	width: auto;
+    width: auto;
+
+	@media screen and (max-width: 768px) {
+		width: auto;
+	}
 
 	@media screen and (max-width: 768px) {
 		width: auto;
@@ -5368,7 +5372,7 @@ right: 0; }
 .productDescription-container { text-align: center; }
 .productDescription-rating { margin: $space*1.5 0 $space*.5; } //2
 
-.productOptions { background: $lightGray; }
+.productOptions { background: $lightGray;}
 .productOptions-selects {
   position: relative;
   max-width: 270px;
@@ -6601,11 +6605,8 @@ body.js-drawer-open {
     height: 100%;
   }
 }
-<<<<<<< HEAD
-=======
 #shopify-products-for-review,
 #newStore-products-for-review { display: none; }
->>>>>>> ad08f9d... [#SD-10214] Update Fix Blue Bar on PDP
 
 .writeReview-wrapper--after { display: none; }
 
