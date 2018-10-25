@@ -10,7 +10,7 @@ one-click-add-to-cart that includes size selector
     {% capture product_json %}
     var productJSON = [
         {% for link in linklists[collection.handle].links %}
-            {% for product in link.object.products limit:6 %}
+            {% for product in link.object.products limit:8 %}
                 {%- if product.available -%}
                 {
                     {% if product.options.size == 1 and product.options.first != 'Title' %}
@@ -48,15 +48,7 @@ one-click-add-to-cart that includes size selector
         <div class="grid__item large--one-quarter left">
             {% include 'nested-navigation' %}
 				<!-- Adept Search Start -->
-				<div class="decathlon-filter__container decathlon-filter__collection">
-				    <input type="checkbox" class="decathlon-filter__mobile-toggle"/>
-				    <button class="decathlon-filter__mobile-toggle-button">Refine Search</button>
-				    <div class="decathlon-filter__group">
-				        <div class="adept-search-filter"
-				        title="">
-				    </div>
-				</div>
-				</div>
+				<div class="adept-collection-filters"></div>
 				<!-- Adept Search End -->
 
 </div>
@@ -101,7 +93,7 @@ one-click-add-to-cart that includes size selector
     {% endif %}
     {% endif %}
 
-    <div id="bc-sf-filter-products" class="grid-uniform">
+    <div id="bc-sf-filter-products" class="grid-uniform adept-collection-products">
 
         {% if current_tags.size %}
 
@@ -215,13 +207,13 @@ one-click-add-to-cart that includes size selector
                     {% assign product_filter = path_items.last | replace: '-', ' '%}
                     {% assign curIndex = 0 %}
 
-                {% paginate collection.products by 6 %}
+                {% paginate collection.products by 8 %}
                     {% for product in collection.products %}
 
                         {% comment %} using filter in active collection {% endcomment %}
                         {% if product.tags contains product_filter %}
 
-                            {% if curIndex == 6 %}{% break %}{% endif %}
+                            {% if curIndex == 8 %}{% break %}{% endif %}
 
                             {% assign group_name = 'group' | append: collection.handle %}
                             {% capture featuredClass %}
@@ -244,7 +236,7 @@ one-click-add-to-cart that includes size selector
 
                             {% if collection.url == link.url %}
 
-                                {% if curIndex == 6 %}{% break %}{% endif %}
+                                {% if curIndex == 8 %}{% break %}{% endif %}
 
                                     {% assign group_name = 'group' | append: collection.handle %}
                                     {% capture featuredClass %}
@@ -264,7 +256,7 @@ one-click-add-to-cart that includes size selector
 
                                 {% if collection.url == link.url %}
 
-                                    {% if curIndex == 6 %}{% break %}{% endif %}
+                                    {% if curIndex == 8 %}{% break %}{% endif %}
 
                                     {% assign group_name = 'group' | append: collection.handle %}
                                     {% capture featuredClass %}
@@ -286,7 +278,7 @@ one-click-add-to-cart that includes size selector
 
                                         {% if cur_tag == '' %}
 
-                                            {% if curIndex == 6 %}{% break %}{% endif %}
+                                            {% if curIndex == 8 %}{% break %}{% endif %}
                                             {% assign group_name = 'group' | append: collection.handle %}
                                             {% capture featuredClass %}
                                                 {% cycle group_name: '', ' collectionProduct--featured--middle', ' collectionProduct--featured--end js-adjustFeaturedContent' %}
@@ -317,7 +309,7 @@ one-click-add-to-cart that includes size selector
                                             {% endfor %}
 
                                             {% if product.tags contains active_product_tag %}
-                                                {% if curIndex == 6 %}{% break %}{% endif %}
+                                                {% if curIndex == 8 %}{% break %}{% endif %}
 
                                                 {% assign group_name = 'group' | append: collection.handle %}
                                                 {% capture featuredClass %}

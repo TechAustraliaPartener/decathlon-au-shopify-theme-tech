@@ -1,3 +1,4 @@
+
 <!-- /snippets/product-grid-item.liquid -->
 {% comment %}
 
@@ -43,10 +44,20 @@
 
 <div class="grid__item {{ grid_item_width }} collectionProduct js-bln-product" data-product-id="{{ product.id }}">
     <form action="/cart/add" method="post" enctype="multipart/form-data" class="addToCartForm collectionProduct-relative">
-
     {% if product.tags contains 'Innovation' %}
       <span class="productFlag collectionProduct-flag collectionProduct-flag--innovation">Innovation</span>
+    {% elsif (on_sale) %}
+      <div class="adept-product-flag adept-product-flag__sale">
+        <div class="adept-product-flag__content">
+          <div class="adept-product-flag-container">
+            <div class="adept-product-flag__label">
+              <span>On Sale</span>
+            </div>
+          </div>
+        </div>
+      </div>
     {% endif %}
+      
 
     {% comment %}
       Link to your product with the 'within: collection' filter for the link to be aware of the collection.
@@ -86,7 +97,7 @@
     {% endcomment %}
 
     {% if on_sale %}
-        <span style="color: #E53322;"><strong>{{ 'products.product.on_sale' | t }}</strong>
+        <span style="color: #E53322;"><strong>{{ products.product.on_sale }}</strong>
         {{ current_variant.price | money }}</span>
     {% else %}
         {% if product.price_varies %}
@@ -112,7 +123,11 @@
         <div class="collectionProduct-hoverWrap-shadow">
             <div class="collectionProduct-hoverBox">
                 <div class="collectionProduct-hoverBox-shadow">
-
+                  {% comment %}
+	                <p class="collectionProduct-hoverBox-description">
+                      {{ product.metafields.global.description_tag }}
+                    </p>
+					
                     {% include 'product-grid-item--options' %}
 
                     {% if settings.is_lookbook == true %}
@@ -135,6 +150,7 @@
                         <a class="u-textBold u-marginBottom0x">Included:</a>
                         <small class="addons-list__items"></small>
                     </div>
+                  {% endcomment %}
                 </div>
             </div>
         </div>

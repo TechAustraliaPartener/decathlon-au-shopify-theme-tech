@@ -21,18 +21,7 @@
     <div class="grid__item large--one-quarter left">
       {% include 'nested-navigation' %}
       <!-- Adept Search Start -->
-      <div class="decathlon-filter__container decathlon-filter__collection">
-        <input type="checkbox" class="decathlon-filter__mobile-toggle"/>
-        <button class="decathlon-filter__mobile-toggle-button">Refine Search</button>
-        <div class="decathlon-filter__group">
-
-          <div class="adept-search-filter"
-               render-from="getCollectionFilter"
-               on-change="window.onCollectionFilterChange"
-               title=""
-               ></div>
-        </div>
-      </div>
+      <div class="adept-collection-filters"></div>
       <!-- Adept Search End -->
 
 
@@ -71,10 +60,10 @@
           </header>
         {% endif %}
       {% endif %}
+      
+      <!-- AdeptMind - Injecting Products once filters are activated -->
+      <div class="all-skill-level-sections adept-collection-products">
 
-
-
-      <div class="all-skill-level-sections">
       <!-- All products -->
       {% assign all_sections = page_content | split: '---/all_sections---' | first | split: '---all_sections---' | last | split: '---/section_products---' %}
 
