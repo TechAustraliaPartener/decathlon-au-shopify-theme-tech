@@ -3733,19 +3733,46 @@ body.is-rollingUpBanner .popup { margin-top: -100vh; }
   background: $colorPrimary;
   padding: $space*1.5 0;
   text-align: center;
+  z-index: 1;
+}
+
+.template-product .addToCartForm::after {
+	content: '';
+	bottom: 0;
+	display: block;
+	position: absolute;
+	right: 0;
+	width: 30%;
+	background: $colorPrimary;
+	height: 85px;
+	z-index: 0;
+
+	@media screen and (max-width: 768px) {
+		width: 100%;
+		height: 73px;
+	}
+
+    @media screen and (min-width: 2800px) {
+		width: 35%;
+	}
 }
 
 .bluegram p { color: $white; }
 
 .bluegram:before,
 .bluegram:after {
-  background: $colorPrimary;
-  content: "";
-  height: 100%;//weird value addresses a gap on firefox
-  left: 100%;
-  position: absolute;
-  top: 0;
-  width: 10000px;
+    background: $colorPrimary;
+    content: "";
+    height: 100%;//weird value addresses a gap on firefox
+    left: 100%;
+    position: absolute;
+    top: 0;
+    width: auto;
+
+	@media screen and (max-width: 768px) {
+		width: auto;
+	}
+  
 }
 
 .bluegram:after {
@@ -5235,6 +5262,7 @@ right: 0; }
 .productReview-helpful-dash { margin: 0 5px; }
 
 .productReview-response {
+  word-break: break-word;
   position: relative;
   margin: $space*3 0;
   padding: $space*2.5 $space*1.5;
@@ -5346,7 +5374,7 @@ right: 0; }
 .productDescription-container { text-align: center; }
 .productDescription-rating { margin: $space*1.5 0 $space*.5; } //2
 
-.productOptions { background: $lightGray; }
+.productOptions { background: $lightGray;}
 .productOptions-selects {
   position: relative;
   max-width: 270px;
@@ -6667,12 +6695,12 @@ body.js-drawer-open {
    margin-bottom: 50px;
  }
   #close-review-button {
-    padding-bottom: 3em; 
+    padding-bottom: 3em;
   }
 }
-@media screen and (max-width: 480px) { 
+@media screen and (max-width: 480px) {
   .close-btn.js-closeWriteReview {
-   top: 5em; 
+   top: 5em;
   }
 }
 /* Mobile: landscape */
@@ -6682,16 +6710,16 @@ body.js-drawer-open {
 	top: 45px;
   }
   .close-btn.js-closeWriteReview {
-   top: 3em; 
+   top: 3em;
   }
 }
 /* iPad: landscape */
 @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape){
   .writeReview-wrapper {
-    top:45px; 
+    top:45px;
   }
   .close-btn.js-closeWriteReview {
-   	top: 2em; 
+   	top: 2em;
   }
 }
 
