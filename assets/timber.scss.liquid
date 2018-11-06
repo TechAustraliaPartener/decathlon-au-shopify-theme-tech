@@ -3653,7 +3653,7 @@ body.is-rollingUpBanner .popup { margin-top: -100vh; }
   width: 220px; //355px;
   top: -144px;
   right: 0;
-  left: 0;
+  left: auto;
   position: absolute;
   background-position: bottom;
   background-repeat: no-repeat;
@@ -3661,7 +3661,7 @@ body.is-rollingUpBanner .popup { margin-top: -100vh; }
   margin: 0 auto;
 
   background-image: url('{{ 'footer-blue-band-graphic.png' | file_url }}');
-  z-index: -1;
+  z-index: 0;
 }
 
 .behindHikers { z-index: -1; }
@@ -8967,7 +8967,6 @@ h1.banner-title {
 .blue-band--footer .blue-band--footer-logo { top: 0; width: 32%; }
 .attachHikers:before {
   top: -99px;
-  left: auto;
   width: 355px;
 }
 .blue-band--footer.blue-band .grid__item:first-child { display: inline-block; width: 28%; }
