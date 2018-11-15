@@ -1,0 +1,93 @@
+$(document).ready(function() {
+  jQuery.ajax(params);
+
+});
+
+var params = {
+  type: 'GET',
+    url: `/tools/shopify-decathlon-proxy-s/newstore-order-for-shopify/newstore-reviews?email=${customerEmail}&customerId=${customerId}`,
+  success: function(products) {
+    var productDiv = $('#newstore-products-for-review')
+    if (products.length > 0) {
+      for (let i = 0; i < products.length; i ++) {
+        // Create the image tag for the product. If no image url is associated, a default image is used
+  		let imgTag;
+        if (products[i].variantImgUrl == null || products[i].variantImgUrl === ""){
+          imgTag = `{{ 'reviews--default-img.gif' | asset_url | img_tag }}`
+        } else {
+          imgTag = `<img src="${products[i].variantImgUrl}" alt="${products[i].productName}">`
+        }
+        if (products[i].modelCode == '') {
+        	console.log('product: ', product[i])
+        }
+        // Append the product div
+        productDiv.append(`<div class="grid__item medium--one-half large--one-fifth text-center"><a class="account-writeReviewButton account-order--js-writeReviewForm" review-sku="${products[i].sku}" review-modelCode="${products[i].modelCode}" review-productName="${products[i].productName}">` + imgTag + `<br/>${products[i].productName}</a></div>`)
+      }
+      $('#spinningLoad').hide()
+      $('#newstore-products-for-review').show()
+    } else {
+      $('#spinningLoad').hide()
+      $('#shopify-products-for-review').show()
+    }
+    
+    
+    ////
+    // Function to handle the review (opening/closing/success/failure)
+    //    Included here so the click event handler is attatched to both shopify and NewStore orders
+    ////
+    ! function(e, t, i, n) {
+    t(".account-order--js-writeReviewForm").click(function(e) {
+      var M = '',
+          P = '',
+          s = '//reviews.decathlon.com';
+      var reviewTitle = 'Write a review for ' + $(this).attr('review-productName');
+      document.getElementsByTagName('html')[0].style.overflowY = 'hidden';
+      var reviewModelCode = $(this).attr('review-modelCode');
+      if (e.preventDefault(), !t(".writeReview").length) {
+        var i = n.compile(t("#writeReviewTemplate").html());
+        t("body").append(i({
+            REVIEWS_ROOT: s,
+            siteCode: 1132,
+            modelCode: M,
+            productName: P,
+            token: t(".js-instagramFeed").data("jwtToken")
+        })), 
+          t(".inputWrap > select").on("change", function() {}),
+          t(".inputWrap > input, .inputWrap > textarea").on("keyup", function() {}),
+            t(".js-closeWriteReview").click(function(e) {
+          		document.getElementsByTagName('html')[0].style.overflowY = 'scroll'		
+				document.body.scrollTop = 0; // Scroll to top of page when closed: For Safari		
+				document.documentElement.scrollTop = 0; // Scroll to top of page when closed:For Chrome, Firefox, IE and Opera
+                t(".writeReview form").get(0).reset(), t(".writeReview").css("display", "none")
+          }),
+          console.log(`t(this).attr("action") before POST: ${t(this).attr("action")}`)
+          t(".writeReview form").submit(function(e) {
+                e.preventDefault();
+                var i = t(this);
+                t.post(i.attr("action"), i.serialize(), function(e, i) {
+                "success" == i ? (t(".writeReview-wrapper").hide(), t(".writeReview-wrapper--after").show() ): console.log(i, e);
+                t(".js-closeWriteReview--after").click(function(e) {
+                  	document.body.scrollTop = 0; // Scroll to top of page when closed: For Safari	
+					document.documentElement.scrollTop = 0; // Scroll to top of page when closed:For Chrome, Firefox, IE and Opera
+                  t(".writeReview form").get(0).reset(), t(".writeReview").css("display", "none"), t(".writeReview-wrapper--after").css("display", "none")
+                })
+              })
+          })
+        }
+      else {
+        document.getElementsByTagName('html')[0].style.overflowY = 'hidden',
+        t(".writeReview-wrapper").show()
+      }
+      t("input[name='offerReference']").val(reviewModelCode);
+      t(".writeReview-wrapper > h5").text(reviewTitle);
+        t(".writeReview").css("display", "block")
+  })
+  }(window, jQuery, BlueLikeNeon, Handlebars);
+
+  },
+  error: function (xhr, ajaxOptions, thrownError) {
+    console.error(`/tools/shopify-decathlon-proxy-s/newstore-order-for-shopify/newstore-reviews?email=${customerEmail}&customerId=${customerId}`)
+    console.error(xhr.status);
+    console.error(thrownError);
+  }
+}
