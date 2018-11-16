@@ -1,0 +1,52 @@
+#spinningLoad {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+  .order-page--date,
+  .order-page--pending-table,
+  .order-page--shipped-home-table,
+  .order-page--shipped-store-table,
+  .order-page--cancelled-table,
+  .order-page--returned-table,
+  .order-page--billing-and-shipping,
+  .order-page--totals-table,
+  #shopify-order-bottom-buttons {
+   display: none; 
+  }
+  
+  .order-page--writeReviewButton {
+      float: left;
+      margin-top: 0;
+  }
+  
+  .order-page--table th,
+  .order-page--table td {
+   padding: 5px 15px; 
+  }
+  
+  .order-page--td-totals {
+    font-weight: bold;
+  }
+  .order-page--product {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .order-page--table,
+  .order-page--table thead,
+  .order-page--table th,
+  .order-page--table tbody,
+  .order-page--table tr,
+  .order-page--table td {
+   border: none; 
+  }
+  .order-page--table table {
+   border-top: 1px solid rgb(128, 128, 128); 
+  }
+  
+  .order-page--product-img {
+   max-height: 6rem; 
+  }
