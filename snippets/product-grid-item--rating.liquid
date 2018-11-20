@@ -8,9 +8,18 @@ The number of stars filled in will be the ceiling integer of the rating.
   because metafields can't be floats
   {% endcomment %}
   {% assign product_rating = product.metafields.ratings.product_rating | plus:0 %}
+	{% assign review_count = product.metafields.recent_reviews.total_item_count | plus:0 %}
   {% assign rounded_rating = product_rating | round %}
-  <div class="starRating{{ rating_adtl_classes }}{% if product_rating == 0 %} starRating--noRating{% endif %}" data-rating="{{ product_rating }}">
-  {% for i in (0..4) %}
-    <span class="ico ico--star{% if i < rounded_rating %} u-textYellow{% endif %}"></span>
-  {% endfor %}
-</div>
+  <div class="starRating-container">
+	<div class="starRating{{ rating_adtl_classes }}{% if product_rating == 0 %} starRating--noRating{% endif %}" data-rating="{{ product_rating }}">
+    {% for i in (0..4) %}
+    	<span class="ico ico--star{% if i < rounded_rating %} u-textYellow{% endif %}"></span>
+    {% endfor %}
+      
+    </div>
+    <div class="adept-product-rating__info">
+        <div class="adept-product-rating__text">{{product_rating}}</div>
+        <div class="adept-product-rating__count">({{review_count}})</div>
+      </div>
+	</div>
+
