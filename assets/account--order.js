@@ -238,3 +238,60 @@ function createProductDict (products) {
   }
   return newDict
 }
+
+/**
+ * Function to create HTML of trs for the section provided
+ * @param {Object} sectionObj - object for a section including items and quantity of each item ordered
+ * @param {Boolean} reviewLink - true if the link should be included, otherwise false
+ * @returns - string representing the HTML trs created
+ */
+function createProductTableRows (sectionObj, reviewLink) {
+  var productList = Object.values(sectionObj)
+  var tableRowHtml = ''
+  if (productList.length < 1) {
+    return tableRowHtml
+  }
+  for (let i = 0; i < productList.length; i++) {
+    var singleRow = '<tr>'
+    // Product Image
+    singleRow += '<td>'
+    if (productList[i].product.product) {
+      var variantImage = getVariantImage(productList[i].product.variant.image_id, productList[i].product.product.images, defaultImg)
+      singleRow += `<a href="${productList[i].product.url}">`
+      singleRow += "<img class='account-order--product-img' src='" + variantImage + "' alt='" + productList[i].product.title + "'>"
+      singleRow += '</a>'
+      singleRow += '</td>'
+
+      // Start Product Info
+      singleRow += '<td>'
+      singleRow += "<div class='row'>"
+      singleRow += `<a href="${productList[i].product.url}">`
+      singleRow += "<span class='u-block account-order--product'>" + productList[i].product.title + '</span>'
+      singleRow += '</a>'
+      singleRow += '</div>'
+    } else {
+      singleRow += "<img class='account-order--product-img' src='" + defaultImg + "' alt='" + productList[i].product.title + "'>"
+      singleRow += '</td>'
+
+      // Start Product Info
+      singleRow += '<td>'
+      singleRow += "<div class='row'><span class='u-block account-order--product'>" + productList[i].product.title + '</span></div>'
+    }
+    // Finish Product Info
+    singleRow += "<div class='row'>Quantity: " + productList[i].quantity + '</div>'
+    singleRow += "<div class='row'>SKU: " + productList[i].product.sku + '</div>'
+    if (reviewLink) {
+      singleRow += "<div class='row'><a style='position: relative;' class='btn btn--text account-writeReviewButton account-order--writeReviewButton' href='/account?view=review-products'>Write Review</a></div>"
+    }
+    singleRow += '</td>'
+
+    // Price
+    singleRow += "<td class='text-right'>"
+    singleRow += '$' + (productList[i].quantity * parseFloat(productList[i].product.price)).toFixed(2)
+    singleRow += '</td>'
+    singleRow += '</tr>'
+    tableRowHtml += singleRow
+  }
+  return tableRowHtml
+}
+
