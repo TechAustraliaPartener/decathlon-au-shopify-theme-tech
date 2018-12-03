@@ -295,3 +295,24 @@ function createProductTableRows (sectionObj, reviewLink) {
   return tableRowHtml
 }
 
+/**
+ * Function to format a shopify number representing money into a float
+ * @param {Number} num - number to format (Example: 253478)
+ * @returns {Float} formatted num (Example: 2,534.78)
+ */
+function formatMoney (num) {
+  if (!num || num == undefined || num == 0) {
+    return (parseFloat('0').toFixed(2))
+  }
+  var formattedNum = ''
+  num = num.toString().split('')
+  var cents = '.' + num.slice(-2).join('')
+  num = num.slice(0, -2).join('')
+
+  while (num.length > 3) {
+    formattedNum += `,${num.slice(-3).join('')}`
+    num = num.slice(0, -3)
+  }
+  formattedNum = parseFloat(num + formattedNum + cents).toFixed(2)
+  return formattedNum
+}
