@@ -88,6 +88,22 @@ $(document).ready(function () {
         addProductsReturn = addProductsToSection(productDict, 'returned', sections, [jsOrder.lineItems[i]])
         sections = addProductsReturn[0]
         productDict = addProductsReturn[1]
+      } else if (!jsOrder.lineItems[i].fulfillment && (jsOrder.fulfillment == 'partial' || jsOrder.fulfillment == 'unfulfilled')) {
+        // If item has no fulfillment and is partially fulfulled, add item to pending section
+        addProductsReturn = addProductsToSection(productDict, 'pending', sections, [jsOrder.lineItems[i]])
+        sections = addProductsReturn[0]
+        productDict = addProductsReturn[1]
+      } else if (jsOrder.lineItems[i].fulfillment && (jsOrder.shippingMethods.length < 1)) {
+        // save references to the quantity fulfilled and quantity ordered
+        var fulfilledQty = productDict[jsOrder.lineItems[i].sku].fulfilled
+        var orderedQty = productDict[jsOrder.lineItems[i].sku].quantity
+        // check if fulfilled == quantity ordered -> add to shipped_home
+        if (fulfilledQty == orderedQty) {
+          addProductsReturn = addProductsToSection(productDict, 'shipped_home', sections, [jsOrder.lineItems[i]])
+          sections = addProductsReturn[0]
+          productDict = addProductsReturn[1]
+          $('.account-order--shipping-title').text('Shipped to Home')
+
       }
     }
   }
