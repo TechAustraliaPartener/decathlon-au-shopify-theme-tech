@@ -79,6 +79,17 @@ $(document).ready(function () {
 
     // Loop products ordered
     for (let i = 0; i < jsOrder.lineItems.length; i++) {
+      // If the product is not in the reference dictionary continue
+      if (!productDict.hasOwnProperty(jsOrder.lineItems[i].sku)) {
+        continue
+      }
+      if (!jsOrder.lineItems[i].fulfillment && jsOrder.financial == 'partially_refunded') {
+        // If item has no fulfillment and is partially refunded, add item to returned section
+        addProductsReturn = addProductsToSection(productDict, 'returned', sections, [jsOrder.lineItems[i]])
+        sections = addProductsReturn[0]
+        productDict = addProductsReturn[1]
+      }
+    }
   }
   }
 })
