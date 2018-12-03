@@ -105,6 +105,7 @@ $(document).ready(function () {
           $('.account-order--shipping-title').text('Shipped to Home')
 
         } else {
+          // fulfilled != ordered
           // copy the product information
           var lineItemCopyForFulfilled = Object.assign({}, jsOrder.lineItems[i])
           // update the quantity for both the info for qualitied ordered and the copied quantity
