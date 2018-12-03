@@ -149,6 +149,13 @@ $(document).ready(function () {
       }
     }
   }
+
+  // Populate Tables
+  $('.account-order--pending-table tbody').append(createProductTableRows(sections.pending['items'], false))
+  $('.account-order--shipped-home-table tbody').append(createProductTableRows(sections.shipped_home['items'], true))
+  $('.account-order--shipped-store-table tbody').append(createProductTableRows(sections.shipped_store['items'], true))
+  $('.account-order--cancelled-table tbody').append(createProductTableRows(sections.cancelled['items'], false))
+  $('.account-order--returned-table tbody').append(createProductTableRows(sections.returned['items'], true))
   }
 })
 /**
