@@ -194,6 +194,45 @@ $(document).ready(function () {
   $('.account-order--billing-and-shipping').show()
   $('#shopify-order-bottom-buttons').css('display', 'flex')
 })
+
+/**
+ * Function to add Products to a section object
+ * @param {Object} productDict - reference dictionary of products
+ * @param {String} section - title of the section to add products to
+ * @param {Object} sectionsObj - object representing all product sections
+ * @param {Array} products - list of products to add the section
+ */
+function addProductsToSection (productDict, section, sectionsObj, products) {
+  for (let i = 0; i < products.length; i++) {
+    // add taxes to section's netTax
+    let taxLines = products[i].tax_lines
+    for (let j = 0; j < taxLines.length; j++) {
+      sectionsObj[section].netTax += (products[i].quantity * taxLines[j].tax_line.price)
+    }
+    // add line total to section's netTotal
+    sectionsObj[section].netTotal += (products[i].quantity * products[i].price)
+    //  Check if the product is in the section to update quantity, add if not there
+    if (sectionsObj[section].items.hasOwnProperty(products[i].sku)) {
+      sectionsObj[section].items[products[i].sku].quantity += products[i].quantity
+    } else {
+      sectionsObj[section].items[products[i].sku] = {
+        quantity: products[i].quantity,
+        product: products[i],
+        fulfilled: productDict[products[i].sku].fulfilled
+      }
+    }
+    // Decrement the reference dict, if it exists
+    if (productDict.hasOwnProperty(products[i].sku)) {
+      productDict[products[i].sku].quantity -= products[i].quantity
+      // if quantity and fulfilled are less than 1, remove the product from the reference dict
+      if (productDict[products[i].sku].quantity < 1 && productDict[products[i].sku].fulfilled < 1) {
+        delete productDict[products[i].sku]
+      }
+    }
+  }
+  return [sectionsObj, productDict]
+}
+
 /**
  * Function to take a list of products and return a reference object
  * @param {Array} {products} - list of products to create reference dictionary
