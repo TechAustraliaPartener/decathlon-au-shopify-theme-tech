@@ -168,6 +168,12 @@ $(document).ready(function () {
   $('.account-order--shipping-total').text('$' + formatMoney(jsOrder.moneyLines.shipping))
   $('.account-order--taxes').text('$' + (formatMoney(jsOrder.moneyLines.tax) - (sections.cancelled.netTax + sections.returned.netTax)).toFixed(2))
   $('.account-order--totals').text('$' + (formatMoney(jsOrder.moneyLines.total) - (sections.cancelled.netTotal + sections.returned.netTotal) - (sections.returned.netTax + sections.cancelled.netTax)).toFixed(2))
+  // change the section items from an object to a list
+  sections.pending.items = Object.values(sections.pending.items)
+  sections.returned.items = Object.values(sections.returned.items)
+  sections.cancelled.items = Object.values(sections.cancelled.items)
+  sections.shipped_home.items = Object.values(sections.shipped_home.items)
+  sections.shipped_store.items = Object.values(sections.shipped_store.items)
   // Hide the Spinner
   $('#spinningLoad').hide()
   // Show tables that have data (not []), billing and shipping info, bottom buttons
