@@ -177,6 +177,8 @@ $(document).ready(function () {
   sections.shipped_store.items = Object.values(sections.shipped_store.items)
   // Hide the Spinner
   $('#spinningLoad').hide()
+  // Show Date
+  $('.account-order--date').show()
   // Show tables that have data (not []), billing and shipping info, bottom buttons
   if (sections.pending.items.length > 0) {
     $('.account-order--pending-table').show()
