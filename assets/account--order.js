@@ -22,3 +22,42 @@ var storeAddressRef = {
       city_state_zip: "Emeryville, CA 94608"
     }
 }
+$(document).ready(function () {
+  // Set up variables
+  var productDict = {}
+  var addProductsReturn
+  var sections = {
+    pending: {
+      name: 'pending',
+      items: {},
+      netTax: 0,
+      netTotal: 0
+    },
+    shipped_home: {
+      name: 'shipped_home',
+      items: {},
+      netTax: 0,
+      netTotal: 0
+    },
+    shipped_store: {
+      name: 'shipped_store',
+      items: {},
+      netTax: 0,
+      netTotal: 0
+    },
+    cancelled: {
+      name: 'cancelled',
+      items: {},
+      original_shipped: '',
+      netTax: 0,
+      netTotal: 0
+    },
+    returned: {
+      name: 'returned',
+      items: {},
+      original_shipped: '',
+      netTax: 0,
+      netTotal: 0
+    }
+  }
+})
