@@ -156,6 +156,18 @@ $(document).ready(function () {
   $('.account-order--shipped-store-table tbody').append(createProductTableRows(sections.shipped_store['items'], true))
   $('.account-order--cancelled-table tbody').append(createProductTableRows(sections.cancelled['items'], false))
   $('.account-order--returned-table tbody').append(createProductTableRows(sections.returned['items'], true))
+
+  /*
+   Totals
+   */
+  // Populate Totals table with money info
+  $('.account-order--subtotal').text('$' + formatMoney(jsOrder.moneyLines.subtotal))
+  $('.account-order--cancelled-total').text('$' + (-sections.cancelled.netTotal).toFixed(2))
+  $('.account-order--returned-total').text('$' + (-sections.returned.netTotal).toFixed(2))
+  $('.account-order--shipping-type').text(jsOrder.shipping.type)
+  $('.account-order--shipping-total').text('$' + formatMoney(jsOrder.moneyLines.shipping))
+  $('.account-order--taxes').text('$' + (formatMoney(jsOrder.moneyLines.tax) - (sections.cancelled.netTax + sections.returned.netTax)).toFixed(2))
+  $('.account-order--totals').text('$' + (formatMoney(jsOrder.moneyLines.total) - (sections.cancelled.netTotal + sections.returned.netTotal) - (sections.returned.netTax + sections.cancelled.netTax)).toFixed(2))
   }
 })
 /**
