@@ -2,6 +2,7 @@
 <div class="wrapper u-paddingTopBottom4x u-marginBottom4x shopify-wrapper">
   {% assign account_title = 'customer.order.title' | t: name: order.name %}
   {% include 'customers--my-account-header' %}
+  <img id="spinningLoad" src="{{ 'Rolling-1s-200px.gif' | asset_url }}" alt="loading indicator">
   
   <div class="grid--full">
   
