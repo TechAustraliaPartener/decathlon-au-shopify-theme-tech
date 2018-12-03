@@ -1,0 +1,56 @@
+#spinningLoad {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+  .account-order--date,
+  .account-order--pending-table,
+  .account-order--shipped-home-table,
+  .account-order--shipped-store-table,
+  .account-order--cancelled-table,
+  .account-order--returned-table,
+  .account-order--billing-and-shipping,
+  .account-order--totals-table,
+  #shopify-order-bottom-buttons {
+   display: none; 
+  }
+  
+  .account-order--writeReviewButton {
+      float: left;
+      margin-top: 0;
+  }
+  
+  .account-order--table td {
+   padding: 5px 15px; 
+  }
+  
+  .account-order--totals-table {
+    display: table;
+    width: 100%;
+  }
+  .account-order--totals-table td {
+    padding: 0.5rem;
+  }
+  .account-order--td-totals {
+    font-weight: bold;
+  }
+  
+  .account-order--table,
+  .account-order--table thead,
+  .account-order--table th,
+  .account-order--table tbody,
+  .account-order--table tr,
+  .account-order--table td {
+   border: none; 
+  }
+  .account-order--table table {
+   border-top: 1px solid rgb(128, 128, 128); 
+  }
+  
+  .account-order--product-img {
+   max-height: 6rem;
+   max-width: 6rem; 
+  }
+  .account-writeReviewButton {
+  }
+  
