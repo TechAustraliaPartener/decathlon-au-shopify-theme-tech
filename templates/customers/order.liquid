@@ -154,5 +154,28 @@
   </div>
 
 </div></div>
+</div>
+<script>
+// Script to save the order variable as an object that account--order.js.liquid can use
+var jsOrder = {
+  lineItems : {{ order.line_items | json }},
+  cancelled: {{ order.cancelled }},
+  financial: `{{ order.financial_status }}`,
+  fulfillment: `{{order.fulfillment_status }}`,
+  billing : {{ order.billing_address | json }},
+  shipping : {{ order.shipping_address | json }},
+  shippingMethods : {{ order.shipping_methods | json }},
+  shippingLines : {{ order.shipping_lines | json }},
+  moneyLines : {
+    shipping: {{ order.shipping_price | json }},
+    subtotal: {{ order.subtotal_price }},
+    tax: {{ order.tax_price }},
+    {% if order.total_discounts %}
+    discounts: {{ order.total_discounts}},
+    {% endif %}
+    total: {{ order.total_price }}
+  }
+}
+</script>
 {{ 'account--order.css' | asset_url | stylesheet_tag }}
 {{ 'account--order.js' | asset_url | script_tag }}
