@@ -316,3 +316,18 @@ function formatMoney (num) {
   formattedNum = parseFloat(num + formattedNum + cents).toFixed(2)
   return formattedNum
 }
+
+/**
+ * Function to find a products image src from a list of images, using the imageId
+ * @param {*} imageId - id of the image src to find
+ * @param {*} images - list of images to search through
+ * @param {*} defaultImage - defaultImage in case no src is found
+ */
+function getVariantImage (imageId, images, defaultImage) {
+  for (let i = 0; i < images.length; i++) {
+    if (images[i].id == imageId) {
+      return images[i].src
+    }
+  }
+  return defaultImage
+}
