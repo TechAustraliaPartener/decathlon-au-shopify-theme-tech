@@ -121,6 +121,31 @@ $(document).ready(function () {
           productDict = addProductsReturn[1]
           $('.account-order--shipping-title').text('Shipped to Home')
         }
+      } else if (jsOrder.lineItems[i].fulfillment && (jsOrder.shippingMethods.length > 0)) {
+        $('.account-order--shipping-title').text('Shipped to Store')
+        // check title of shipping methods, if in-store pickup ("Decathlon San Francisco Store Pickup", "Decathlon Emeryville Store Pickup")
+        for (let i = 0; i < jsOrder.shippingMethods.length; i++) {
+          if (jsOrder.shippingMethods[i].title == 'Decathlon San Francisco Store Pickup') {
+            /*
+            address1, city, province, zip, country, phone
+            */
+            $('.account-order--shipping-address1').text(storeAddressRef['STSF001'].address_line_1)
+            $('.account-order--shipping-city').text(storeAddressRef['STSF001'].city_state_zip)
+            $('.account-order--shipping-province').hide()
+            $('.account-order--shipping-zip').hide()
+            $('.account-order--shipping-country').hide()
+            $('.account-order--shipping-phone').hide()
+          } else if (jsOrder.shippingMethods[i].title == 'Decathlon Emeryville Store Pickup') {
+            $('.account-order--shipping-address1').text(storeAddressRef['STEM001'].address_line_1)
+            $('.account-order--shipping-city').text(storeAddressRef['STEM001'].city_state_zip)
+            $('.account-order--shipping-province').hide()
+            $('.account-order--shipping-zip').hide()
+            $('.account-order--shipping-country').hide()
+            $('.account-order--shipping-phone').hide()
+          } else {
+            $('.account-order--shipping p').hide()
+          }
+        }
       }
     }
   }
