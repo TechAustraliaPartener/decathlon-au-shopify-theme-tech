@@ -3,12 +3,6 @@
   {% include 'customers--my-account-header' %}
 
   <div id="order-history" class="account-orderHistory u-marginTop2x u-block">
-  
-    {% comment %}
-      TODO: Clicking "purchase history" will open "order history" as if it is a new page
-
-      If we have past orders, loop through each one
-    {% endcomment %}
     <img id="spinningLoad" src="{{ 'Rolling-1s-200px.gif' | asset_url }}" style="height:200px;" alt="simple, lightweight generic loading indicator">
 
     <div class="table-wrap" id="order-table-wrap">
