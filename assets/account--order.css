@@ -25,7 +25,6 @@
   }
   
   .account-order--totals-table {
-    display: table;
     width: 100%;
   }
   .account-order--totals-table td {

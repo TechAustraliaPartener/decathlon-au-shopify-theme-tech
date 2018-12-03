@@ -197,7 +197,7 @@ $(document).ready(function () {
   } else {
     $('.account-order--returned-total-row').hide()
   }
-  $('.account-order--totals-table').show()
+  $('.account-order--totals-table').css('display', 'table')
   $('.account-order--billing-and-shipping').show()
   $('#shopify-order-bottom-buttons').css('display', 'flex')
 })
