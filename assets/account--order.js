@@ -60,4 +60,52 @@ $(document).ready(function () {
       netTotal: 0
     }
   }
+
+  // populate productDict
+  productDict = createProductDict(jsOrder.lineItems)
+
 })
+/**
+ * Function to take a list of products and return a reference object
+ * @param {Array} {products} - list of products to create reference dictionary
+ * @returns - reference dictionary for the products
+ */
+function createProductDict (products) {
+  var newDict = {}
+  var seenFulfillments = []
+  var holdFulfillments = {}
+
+  for (let i = 0; i < products.length; i++) {
+    if (!newDict.hasOwnProperty(products[i].sku)) {
+      newDict[products[i].sku] = {
+        quantity: products[i].quantity,
+        item: products[i],
+        fulfilled: 0
+      }
+    } else {
+      newDict[products[i].sku].quantity += products[i].quantity
+    }
+    if (products[i].fulfillment && seenFulfillments.indexOf(products[i].fulfillment.id) == -1) {
+      //  Save a reference to the fulfillment id to avoid duplicates
+      seenFulfillments.push(products[i].fulfillment.id)
+      for (let j = 0; j < products[i].fulfillment.line_items.length; j++) {
+        if (newDict.hasOwnProperty(products[i].fulfillment.line_items[j].sku)) {
+          // if item is in the product reference, add the quantity fulfilled
+          newDict[products[i].fulfillment.line_items[j].sku].fulfilled += products[i].fulfillment.line_items[j].quantity
+        } else if (holdFulfillments.hasOwnProperty(products[i].fulfillment.line_items[j].sku)) {
+          // if item is not in product reference, but is in holdFulfillments, add quantity to holdFulfillments,
+          holdFulfillments[products[i].fulfillment.line_items[j].sku] += products[i].fulfillment.line_items[j].quantity
+        } else {
+          // if item is not in either, add to holdFulfillments
+          holdFulfillments[products[i].fulfillment.line_items[j].sku] = products[i].fulfillment.line_items[j].quantity
+        }
+      }
+    }
+  }
+  //  Add quantities from holdFulfillment to the reference dictionary
+  var keys = Object.keys(holdFulfillments)
+  for (let k = 0; k < keys.length; k++) {
+    newDict[keys[k]].fulfilled += holdFulfillments[keys[k]]
+  }
+  return newDict
+}
