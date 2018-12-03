@@ -64,6 +64,16 @@ $(document).ready(function () {
   // populate productDict
   productDict = createProductDict(jsOrder.lineItems)
 
+  if (jsOrder.cancelled) {
+    // If order is cancelled, add all products to the cancelled section and set the shipping title 
+    addProductsReturn = addProductsToSection(productDict, 'cancelled', sections, jsOrder.lineItems)
+    sections = addProductsReturn[0]
+    productDict = addProductsReturn[1]
+
+    $('.account-order--shipping-title').text('No Shipments for this Order')
+    $('.account-order--shipping h5').hide()
+    $('.account-order--shipping p').hide()
+  }
 })
 /**
  * Function to take a list of products and return a reference object
