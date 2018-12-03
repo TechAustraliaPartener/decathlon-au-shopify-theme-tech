@@ -168,6 +168,8 @@ $(document).ready(function () {
   $('.account-order--shipping-total').text('$' + formatMoney(jsOrder.moneyLines.shipping))
   $('.account-order--taxes').text('$' + (formatMoney(jsOrder.moneyLines.tax) - (sections.cancelled.netTax + sections.returned.netTax)).toFixed(2))
   $('.account-order--totals').text('$' + (formatMoney(jsOrder.moneyLines.total) - (sections.cancelled.netTotal + sections.returned.netTotal) - (sections.returned.netTax + sections.cancelled.netTax)).toFixed(2))
+  // Hide the Spinner
+  $('#spinningLoad').hide()
   }
 })
 /**
