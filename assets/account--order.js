@@ -170,7 +170,29 @@ $(document).ready(function () {
   $('.account-order--totals').text('$' + (formatMoney(jsOrder.moneyLines.total) - (sections.cancelled.netTotal + sections.returned.netTotal) - (sections.returned.netTax + sections.cancelled.netTax)).toFixed(2))
   // Hide the Spinner
   $('#spinningLoad').hide()
+  // Show tables that have data (not []), billing and shipping info, bottom buttons
+  if (sections.pending.items.length > 0) {
+    $('.account-order--pending-table').show()
   }
+  if (sections.shipped_home.items.length > 0) {
+    $('.account-order--shipped-home-table').show()
+  }
+  if (sections.shipped_store.items.length > 0) {
+    $('.account-order--shipped-store-table').show()
+  }
+  if (sections.cancelled.items.length > 0) {
+    $('.account-order--cancelled-table').show()
+  } else {
+    $('.account-order--cancelled-total-row').hide()
+  }
+  if (sections.returned.items.length > 0) {
+    $('.account-order--returned-table').show()
+  } else {
+    $('.account-order--returned-total-row').hide()
+  }
+  $('.account-order--totals-table').show()
+  $('.account-order--billing-and-shipping').show()
+  $('#shopify-order-bottom-buttons').css('display', 'flex')
 })
 /**
  * Function to take a list of products and return a reference object
