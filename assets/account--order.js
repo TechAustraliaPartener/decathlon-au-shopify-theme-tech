@@ -104,6 +104,23 @@ $(document).ready(function () {
           productDict = addProductsReturn[1]
           $('.account-order--shipping-title').text('Shipped to Home')
 
+        } else {
+          // copy the product information
+          var lineItemCopyForFulfilled = Object.assign({}, jsOrder.lineItems[i])
+          // update the quantity for both the info for qualitied ordered and the copied quantity
+          lineItemCopyForFulfilled.quantity = fulfilledQty
+          jsOrder.lineItems[i].quantity -= fulfilledQty
+
+          // Add the fulfilled items to shipped home section
+          addProductsReturn = addProductsToSection(productDict, 'shipped_home', sections, [lineItemCopyForFulfilled])
+          sections = addProductsReturn[0]
+          productDict = addProductsReturn[1]
+          // Add the remaining quantity to pending section
+          addProductsReturn = addProductsToSection(productDict, 'pending', sections, [jsOrder.lineItems[i]])
+          sections = addProductsReturn[0]
+          productDict = addProductsReturn[1]
+          $('.account-order--shipping-title').text('Shipped to Home')
+        }
       }
     }
   }
