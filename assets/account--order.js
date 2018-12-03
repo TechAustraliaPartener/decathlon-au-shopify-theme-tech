@@ -73,6 +73,13 @@ $(document).ready(function () {
     $('.account-order--shipping-title').text('No Shipments for this Order')
     $('.account-order--shipping h5').hide()
     $('.account-order--shipping p').hide()
+  } else {
+    // create a reference dictionary of all products ordered
+    productDict = createProductDict(jsOrder.lineItems)
+
+    // Loop products ordered
+    for (let i = 0; i < jsOrder.lineItems.length; i++) {
+  }
   }
 })
 /**
