@@ -162,7 +162,7 @@ $(document).ready(function () {
    Totals
    */
   // Populate Totals table with money info
-  $('.account-order--subtotal').text('$' + formatMoney(jsOrder.moneyLines.subtotal))
+  $('.account-order--subtotal').text('$' + (sections.cancelled.netTotal + sections.returned.netTotal + sections.pending.netTotal + sections.shipped_home.netTotal + sections.shipped_store.netTotal).toFixed(2))
   $('.account-order--cancelled-total').text('$' + (-sections.cancelled.netTotal).toFixed(2))
   $('.account-order--returned-total').text('$' + (-sections.returned.netTotal).toFixed(2))
   $('.account-order--shipping-type').text(jsOrder.shipping.type)
