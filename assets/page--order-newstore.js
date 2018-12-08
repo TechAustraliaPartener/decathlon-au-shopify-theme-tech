@@ -118,6 +118,7 @@ function createProductTableRows (products, reviewLink) {
       singleRow += "<span class='u-block order-page--product order-page--product-span'>" + products[i].name + '</span>'
       singleRow += '</a></div>'
     }
+    singleRow += "<br /><div class='row'>Quantity: " + products[i].quantity + '</div>'
     singleRow += "<div class='row'>SKU: " + products[i].product_sku + '</div>'
     if (reviewLink) {
       singleRow += "<div class='row'><a style='position: relative;' class='btn btn--text account-writeReviewButton order-page--writeReviewButton' href='/account?view=review-products'>Write Review</a></div>"

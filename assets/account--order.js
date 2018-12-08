@@ -326,7 +326,7 @@ function createProductTableRows (sectionObj, reviewLink) {
       singleRow += "<div class='row'><span class='u-block account-order--product account-order--product-span'>" + productList[i].product.title + '</span></div>'
     }
     // Finish Product Info
-    singleRow += "<div class='row'>Quantity: " + productList[i].quantity + '</div>'
+    singleRow += "<br /><div class='row'>Quantity: " + productList[i].quantity + '</div>'
     singleRow += "<div class='row'>SKU: " + productList[i].product.sku + '</div>'
     if (reviewLink) {
       singleRow += "<div class='row'><a style='position: relative;' class='btn btn--text account-writeReviewButton account-order--writeReviewButton' href='/account?view=review-products'>Write Review</a></div>"
