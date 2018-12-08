@@ -12,7 +12,7 @@
       <p><span class="account-order--date">{{ 'customer.order.date' | t: date: order.created_at | date: "%B %d, %Y %I:%M%p" }}</span></p>
       
       <!-- Pending Items Table -->
-      <div class="table-wrap account-order--table account-order--pending-table">
+      <div class="account-order--table account-order--pending-table">
         <h6>Item(s) Being Processed</h6>
         <table class="full">
           {% include 'order-page--table-header' %}
@@ -21,7 +21,7 @@
           </table>
       </div>
       <!-- Shipped Home Table -->
-      <div class="table-wrap account-order--table account-order--shipped-home-table">
+      <div class="account-order--table account-order--shipped-home-table">
         <h6>Item(s) Shipped To Home</h6>
         <table class="full">
           {% include 'order-page--table-header' %}
@@ -30,7 +30,7 @@
         </table>
       </div>
       <!-- Shipped Store Table -->
-      <div class="table-wrap account-order--table account-order--shipped-store-table">
+      <div class="account-order--table account-order--shipped-store-table">\
         <h6>Item(s) Shipped To Store</h6>
         <table class="full">
           {% include 'order-page--table-header' %}
@@ -39,7 +39,7 @@
         </table>
       </div>
       <!-- Cancelled Table -->
-      <div class="table-wrap account-order--table account-order--cancelled-table">
+      <div class="account-order--table account-order--cancelled-table">    
         <h6>Cancelled Item(s)</h6>
         <table class="full">
           {% include 'order-page--table-header' %}
@@ -48,7 +48,7 @@
         </table>
       </div>
       <!-- Returned Table -->
-      <div class="table-wrap account-order--table account-order--returned-table">
+      <div class="account-order--table account-order--returned-table">
         <h6>Returned Item(s)</h6>
         <table class="full">
           {% include 'order-page--table-header' %}
@@ -61,7 +61,7 @@
 
     <!-- Totals Table -->
     <br /><br />
-    <div class="table-wrap account-order--table account-order--totals-table">
+    <div class="account-order--table account-order--totals-table">
       <table class="full">
         <tbody>
           <tr>
@@ -154,7 +154,6 @@
     <p class="shopify-order-return-wrap"><a id="shopify-order-return-btn" class="btn" href={{returnLink}}>Return An Item</a></p>
   </div>
 
-</div></div>
 </div>
 <script>
 // Script to save the order variable as an object that account--order.js.liquid can use
