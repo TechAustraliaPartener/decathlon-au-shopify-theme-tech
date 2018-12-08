@@ -313,8 +313,8 @@ function createProductTableRows (sectionObj, reviewLink) {
       // Start Product Info
       singleRow += '<td>'
       singleRow += "<div class='row'>"
-      singleRow += `<a href="${productList[i].product.url}">`
-      singleRow += "<span class='u-block account-order--product'>" + productList[i].product.title + '</span>'
+      singleRow += `<a class="account-order-product-link" href="${productList[i].product.url}">`
+      singleRow += "<span class='u-block account-order--product account-order--product-span'>" + productList[i].product.title + '</span>'
       singleRow += '</a>'
       singleRow += '</div>'
     } else {
@@ -323,7 +323,7 @@ function createProductTableRows (sectionObj, reviewLink) {
 
       // Start Product Info
       singleRow += '<td>'
-      singleRow += "<div class='row'><span class='u-block account-order--product'>" + productList[i].product.title + '</span></div>'
+      singleRow += "<div class='row'><span class='u-block account-order--product account-order--product-span'>" + productList[i].product.title + '</span></div>'
     }
     // Finish Product Info
     singleRow += "<div class='row'>Quantity: " + productList[i].quantity + '</div>'

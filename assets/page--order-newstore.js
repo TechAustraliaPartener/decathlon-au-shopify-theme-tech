@@ -111,8 +111,13 @@ function createProductTableRows (products, reviewLink) {
 
     // Product Info
     singleRow += '<td>'
-    singleRow += "<div class='row'><span class='u-block order-page--product'>" + products[i].name + '</span></div>'
-    singleRow += "<div class='row'>Quantity: " + products[i].quantity + '</div>'
+    if (products.handle == '') {
+      singleRow += "<div class='row'><span class='u-block order-page--product order-page--product-span'>" + products[i].name + '</span></div>'
+    } else {
+      singleRow += '<div class="row"><a href="/products/' + products[i].handle + '">'
+      singleRow += "<span class='u-block order-page--product order-page--product-span'>" + products[i].name + '</span>'
+      singleRow += '</a></div>'
+    }
     singleRow += "<div class='row'>SKU: " + products[i].product_sku + '</div>'
     if (reviewLink) {
       singleRow += "<div class='row'><a style='position: relative;' class='btn btn--text account-writeReviewButton order-page--writeReviewButton' href='/account?view=review-products'>Write Review</a></div>"
