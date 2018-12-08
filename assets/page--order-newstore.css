@@ -2,56 +2,84 @@
     margin-left: auto;
     margin-right: auto;
     display: block;
-  }
-  .order-page--date,
-  .order-page--pending-table,
-  .order-page--shipped-home-table,
-  .order-page--shipped-store-table,
-  .order-page--cancelled-table,
-  .order-page--returned-table,
-  .order-page--billing-and-shipping,
-  .order-page--totals-table,
-  #shopify-order-bottom-buttons {
-   display: none; 
-  }
-  
-  .order-page--writeReviewButton {
-      float: left;
-      margin-top: 0;
-  }
-  
-  .order-page--table th,
-  .order-page--table td {
-   padding: 5px 15px; 
-  }
-  
-  .order-page--td-totals {
-    font-weight: bold;
-  }
-  .order-page--product {
-    display: block;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  
-  .order-page--table,
-  .order-page--table thead,
-  .order-page--table th,
-  .order-page--table tbody,
-  .order-page--table tr,
-  .order-page--table td {
-   border: none; 
-  }
-  .order-page--table table {
-   border-top: 1px solid rgb(128, 128, 128); 
-  }
-  
-  .order-page--product-img {
-   max-height: 6rem; 
-  }
+}
+/* hide everything on page load */
+.order-page--date,
+.order-page--pending-table,
+.order-page--shipped-home-table,
+.order-page--shipped-store-table,
+.order-page--cancelled-table,
+.order-page--returned-table,
+.order-page--billing-and-shipping,
+.order-page--totals-table,
+#shopify-order-bottom-buttons {
+  display: none; 
+}
 
-  .account-writeReviewButton {
-    text-decoration: underline;
+/* @tables */
+.order-page--table th,
+.order-page--table td {
+  padding: 5px 15px; 
+}
+.order-page--table,
+.order-page--table thead,
+.order-page--table th,
+.order-page--table tbody,
+.order-page--table tr,
+.order-page--table td {
+  border: none; 
+}
+.order-page--table table {
+  border-top: 1px solid rgb(128, 128, 128); 
+}
+
+/* @totalsTable */
+.order-page--td-totals {
+  font-weight: bold;
+}
+
+/* @productRows */
+.order-page--product-span {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  -webkit-transition: width 2s; /* Safari */
+  transition: width 2s;
+}
+
+.order-page--product-img {
+  max-height: 6rem; 
+}
+
+/* change the width of product name/link span based on screen size */
+@media screen and (max-width : 30em) {
+  .order-page--product-span {
+    width: 5em;
   }
-  
+}
+@media screen and (min-width : 30em) {
+  .order-page--product-span {
+    width: 14em;
+  }
+}
+@media screen and (min-width : 40em) {
+  .order-page--product-span {
+    width: 25em;
+  }
+}
+@media screen and (min-width : 60em) {
+  .order-page--product-span {
+    width: 47em;
+  }
+}
+
+/* @reviewButton */
+.account-writeReviewButton {
+  text-decoration: underline;
+}
+
+.order-page--writeReviewButton {
+  float: left;
+  margin-top: 0;
+}

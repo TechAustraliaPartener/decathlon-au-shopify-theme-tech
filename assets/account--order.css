@@ -2,55 +2,87 @@
     margin: auto;
     display: block;
     height: 200px;
+}
+/* @productTable */
+.account-order--date,
+.account-order--pending-table,
+.account-order--shipped-home-table,
+.account-order--shipped-store-table,
+.account-order--cancelled-table,
+.account-order--returned-table,
+.account-order--billing-and-shipping,
+.account-order--totals-table,
+#shopify-order-bottom-buttons {
+  display: none; 
+}
+
+.account-order--table td {
+  padding: 5px 15px; 
+}
+
+/* @productRows */
+.account-order--product-img {
+  max-height: 6rem;
+  max-width: 6rem; 
+}
+.account-order--product-span {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  -webkit-transition: width 2s; /* Safari */
+  transition: width 2s;
+}
+/* change the width of product name/link span based on screen size */
+@media screen and (max-width : 30em) {
+  .account-order--product-span {
+    width: 5em;
   }
-  .account-order--date,
-  .account-order--pending-table,
-  .account-order--shipped-home-table,
-  .account-order--shipped-store-table,
-  .account-order--cancelled-table,
-  .account-order--returned-table,
-  .account-order--billing-and-shipping,
-  .account-order--totals-table,
-  #shopify-order-bottom-buttons {
-   display: none; 
+}
+@media screen and (min-width : 30em) {
+  .account-order--product-span {
+    width: 14em;
   }
-  
-  .account-order--writeReviewButton {
-      float: left;
-      margin-top: 0;
+}
+@media screen and (min-width : 40em) {
+  .account-order--product-span {
+    width: 25em;
   }
-  
-  .account-order--table td {
-   padding: 5px 15px; 
+}
+@media screen and (min-width : 60em) {
+  .account-order--product-span {
+    width: 47em;
   }
-  
-  .account-order--totals-table {
-    width: 100%;
-  }
-  .account-order--totals-table td {
-    padding: 0.5rem;
-  }
-  .account-order--td-totals {
-    font-weight: bold;
-  }
-  
-  .account-order--table,
-  .account-order--table thead,
-  .account-order--table th,
-  .account-order--table tbody,
-  .account-order--table tr,
-  .account-order--table td {
-   border: none; 
-  }
-  .account-order--table table {
-   border-top: 1px solid rgb(128, 128, 128); 
-  }
-  
-  .account-order--product-img {
-   max-height: 6rem;
-   max-width: 6rem; 
-  }
-  .account-writeReviewButton {
-    text-decoration: underline;
-  }
-  
+}
+
+/* @totalsTable */
+.account-order--totals-table {
+  width: 100%;
+}
+.account-order--totals-table td {
+  padding: 0.5rem;
+}
+.account-order--td-totals {
+  font-weight: bold;
+}
+
+.account-order--table,
+.account-order--table thead,
+.account-order--table th,
+.account-order--table tbody,
+.account-order--table tr,
+.account-order--table td {
+  border: none; 
+}
+.account-order--table table {
+  border-top: 1px solid rgb(128, 128, 128); 
+}
+
+/* @reviewButton */
+.account-order--writeReviewButton {
+  float: left;
+  margin-top: 0;
+}
+.account-writeReviewButton {
+  text-decoration: underline;
+}
