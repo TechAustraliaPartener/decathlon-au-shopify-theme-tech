@@ -24,8 +24,17 @@
     {%- endfor -%}
 
     {%- assign colors = colors | split: ',' -%}
+
+  {%- if colors.size <= 4 -%}
+    {% assign shownColors = colors %}
+  {%- else -%}
+    {% assign shownColors = colors | slice: 0, 3 %}
+  {%- endif -%}
+
+  {%- assign additionalColors = colors.size | minus: shownColors.size -%}
+
     <div class="collectionProduct-colors{% if colors.size < 2 %} hidden{% endif %}" data-colorChoice="{{ colors | first | split: '|' | first }}" data-variantChoice="{{ colors | first | split: '|' | last }}">
-    {% for color in colors %}
+    {% for color in shownColors %}
       {%- assign col = color | split: '|' -%}
       {%- if forloop.first == true -%}
         {%- assign activeClass = ' option--active' -%}
@@ -34,7 +43,11 @@
       {%- endif -%}
       <span class="option option--color-{{ col[0] | handleize }} js-colorChip{{ activeClass }}" title="{{ col[0] }}" data-variant="{{ col[2] }}" data-color="{{ col[0] }}" data-image="{{ col[1] }}"></span>
     {% endfor %}
+    {%- if additionalColors > 0 -%}
+      <span class="adept-product-display__color__extra">
+        + {{additionalColors}}
+      </span>  
+    {%- endif -%}
     </div>
   {%- endif -%}
 {%- endfor -%}
-
