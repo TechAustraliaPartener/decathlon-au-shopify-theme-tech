@@ -5,6 +5,7 @@
 }
 /* hide everything on page load */
 .order-page--date,
+.cancelled,
 .order-page--pending-table,
 .order-page--shipped-home-table,
 .order-page--shipped-store-table,

@@ -74,6 +74,13 @@ var params = {
       $('.order-page--shipped-store-table').show()
     }
     if (order.cancelled.items.length > 0) {
+      // Only populate and show cancelled message if there were cancelled items
+      if (order.cancelled.full) {
+        $('.order-page--cancelled-message').text('Order cancelled on ' + order.cancelled.date)
+      } else {
+        $('.order-page--cancelled-message').text('Item(s) in this order were cancelled on ' + order.cancelled.date)
+      }
+      $('.cancelled').show()
       $('.order-page--cancelled-table').show()
     } else {
       $('.order-page--cancelled-total-row').hide()
