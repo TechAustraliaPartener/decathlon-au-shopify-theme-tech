@@ -17,29 +17,15 @@
         <p class="h5"><span class='order-page--cancelled-message'></span></p>          
       </div>
       
+      {% comment %}
+      Table tbodys are populated by page--order-newstore.js
+      {% endcomment %}
       <!-- Pending Items Table -->
       <div class="table-wrap order-page--table order-page--pending-table">
         <h6>Item(s) Being Processed</h6>
         <table class="full">
           {% include 'order-page--table-header' %}
-<!--           /account?view=foo -->
           <tbody>
-            {% comment %}
-            Tables are populated by page--order-newstore.js
-            
-            Each row:
-            	<tr>
-                  	<td><div class=""
-            		<td>
-                      <div class="row">
-                          <div class="row"><span class="u-block">TITLE OF PRODUCT</span></div>
-                          <div class="row"><span>Quantity: QUANTITY ORDERED</span></div>
-                          <div class="row"><span>SKU: PRODUCT SKU</span></div>
-                      </div>
-              		</td>
-              		<td class="text-right">PRODUCT PRICE x QUANTITY</td>  
-            	</tr>
-            {% endcomment %}
           </tbody>
         </table>
       </div>
