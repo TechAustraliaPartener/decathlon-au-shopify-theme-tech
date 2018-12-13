@@ -7,7 +7,7 @@ var params = {
   url: `/tools/shopify-decathlon-proxy-s/newstore-order-for-shopify/single-order?order=${forJS['order']}`,
   success: function (order) {
     // Populate order date
-    $('.order-page--date').text(formattedDateString(order.date))
+    $('.order-page--date').text(order.date)
 
     // Populate Pending Table
     $('.order-page--pending-table tbody').append(createProductTableRows(order.pending['items'], false))
@@ -135,14 +135,3 @@ function createProductTableRows (products, reviewLink) {
     tableRowHtml += singleRow
   }
   return tableRowHtml
-}
-
-function formattedDateString (str) {
-  var d = new Date(str)
-  var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-
-  var dateNum = String(d.getDate())
-  if (dateNum.length === 1) { dateNum = '0' + dateNum }
-
-  return months[d.getMonth()] + ' ' + dateNum + ', ' + d.getFullYear()
-}
