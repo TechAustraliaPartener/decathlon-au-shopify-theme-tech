@@ -11,7 +11,6 @@ var clean = require('gulp-clean'),
  	cp = require('child_process'),
  	del = require('del'),
  	fs	= require('fs'),
-	git = require('gulp-git'),
  	gulp = require('gulp'),
  	jshint = require('gulp-jshint'),
  	mqpacker = require('css-mqpacker'),
@@ -33,6 +32,9 @@ var clean = require('gulp-clean'),
  * Load Config Files
  */
 var config = require('./gulp-config.json');
+
+const patternDir = 'patterns';
+const patternCwd = path.join(__dirname, patternDir);
 
 /**
  * handle error
@@ -64,8 +66,22 @@ gulp.task('cleanPatternSnippets', function() {
 
 gulp.task('cleanPatterns', sequence('cleanPatternAssets', 'cleanPatternSnippets'));
 
-gulp.task('updatePatternsSubmodule', function() {
-	git.updateSubmodule({ args: '--remote patterns' });
+gulp.task('updatePatternsSubmodule', function(callback) {
+	const child = spawn('git', ['submodule', 'update', '--remote', patternDir], {
+		stdio: 'inherit'
+	});
+	child.on('close', callback);
+});
+
+gulp.task('patterns:install', function (callback) {
+	const child = spawn('npm', ['ci'], {
+		cwd: patternCwd,
+		stdio: 'inherit'
+	});
+	child.on('close', function (code) {
+		if (code !== 0) throw new Error('npm install in patterns directory failed');
+		callback();
+	});
 });
 
 /* TODO: Debug: for some reason this task appears to complete without
@@ -73,14 +89,14 @@ gulp.task('updatePatternsSubmodule', function() {
 		 copy tasks to be no-ops. */
 gulp.task('patterns:build', function (callback) {
 	var shellOpts = {
-		cwd: path.join(__dirname, 'patterns'),
-		env: Object.assign(process.env, { NODE_ENV: 'production' }),
+		cwd: patternCwd,
+		env: {
+			...process.env, // Extends existing enviroment variables
+			NODE_ENV: 'production' // For optimized files
+		},
 		stdio: 'inherit'
 	};
-	spawn('npm', ['install'], shellOpts).on('close', function (code) {
-		if (code !== 0) throw new Error('npm install in patterns directory failed')
-		spawn('npm', ['run', 'build'], shellOpts).on('close', callback);
-	})
+	spawn('npm', ['run', 'build'], shellOpts).on('close', callback);
 });
 
 gulp.task('patterns:copy:css', function () {
@@ -134,7 +150,15 @@ gulp.task('transformPatterns', function() {
 });
 
 gulp.task('updatePatterns',
-	sequence('cleanPatterns', 'updatePatternsSubmodule', 'patterns:build', 'patterns:copy', 'transformPatterns'));
+	sequence(
+		'cleanPatterns',
+		'updatePatternsSubmodule',
+		'patterns:install',
+		'patterns:build',
+		'patterns:copy',
+		'transformPatterns'
+	)
+);
 
 
 /**
