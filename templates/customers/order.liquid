@@ -11,10 +11,12 @@
       <!-- Date order placed -->
       <p><span class="account-order--date">{{ 'customer.order.date' | t: date: order.created_at | date: "%B %d, %Y %I:%M%p" }}</span></p>
       
+      {% if order.cancelled == true } %}
       <div class="cancelled">
           {% assign cancelled_at = order.cancelled_at | date: "%B %d, %Y %I:%M%p" %}
           <p class="h5">{{ 'customer.order.cancelled' | t: date: cancelled_at }}</p>          
       </div>
+      {% endif %}
       <!-- Pending Items Table -->
       <div class="account-order--table account-order--pending-table">
         <h6>Item(s) Being Processed</h6>
