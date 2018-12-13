@@ -3,14 +3,11 @@
   {% assign account_title = 'customer.order.title' | t: name: order.name %}
   {% include 'customers--my-account-header' %}
   <img id="spinningLoad" src="{{ 'Rolling-1s-200px.gif' | asset_url }}" alt="loading indicator">
-  
   <div class="grid--full">
-  
     <!-- Order Tables Wrap -->
     <div class="grid__item">
       <!-- Date order placed -->
       <p><span class="account-order--date">{{ 'customer.order.date' | t: date: order.created_at | date: "%B %d, %Y %I:%M%p" }}</span></p>
-      
       {% if order.cancelled == true } %}
       <div class="cancelled">
           {% assign cancelled_at = order.cancelled_at | date: "%B %d, %Y %I:%M%p" %}
