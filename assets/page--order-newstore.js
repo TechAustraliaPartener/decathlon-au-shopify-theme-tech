@@ -72,6 +72,7 @@ var params = {
     if (order.cancelled.items.length > 0) {
       $('.order-page--cancelled-message').text(order.cancelled.message)
       $('.cancelled').show()
+      $('.cancelled p.h5').show()
       $('.order-page--cancelled-table').show()
     } else {
       $('.order-page--cancelled-total-row').hide()
