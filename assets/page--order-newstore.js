@@ -9,15 +9,11 @@ var params = {
     // Populate order date
     $('.order-page--date').text(order.date)
 
-    // Populate Pending Table
+    // Populate Item Tables
     $('.order-page--pending-table tbody').append(createProductTableRows(order.pending['items'], false))
-    // Populate Shipped Home Table
     $('.order-page--shipped-home-table tbody').append(createProductTableRows(order.shipped_home['items'], true))
-    // Populate Shipped Store Table
     $('.order-page--shipped-store-table tbody').append(createProductTableRows(order.shipped_store['items'], true))
-    // Populate Cancelled Table
     $('.order-page--cancelled-table tbody').append(createProductTableRows(order.cancelled['items'], false))
-    // Populate Returned Table
     $('.order-page--returned-table tbody').append(createProductTableRows(order.returned['items'], true))
 
     // Populate Totals
