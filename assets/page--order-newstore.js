@@ -131,3 +131,4 @@ function createProductTableRows (products, reviewLink) {
     tableRowHtml += singleRow
   }
   return tableRowHtml
+}
