@@ -2,3 +2,6 @@
 .DS_Store
 node_modules/*
 src/css/*
+package-lock.json
+package.json
+.eslintrc.js
