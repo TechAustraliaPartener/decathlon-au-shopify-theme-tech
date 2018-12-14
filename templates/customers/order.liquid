@@ -179,7 +179,7 @@ var jsOrder = {
     total: {{ order.total_price }}
   }
 }
-var defaultImg = `{{ 'default--no-image-100_small.jpg' | asset_img_url }}`
+var defaultImg = `https:{{ 'default--no-image-100_small.jpg' | asset_img_url }}`
 </script>
 {{ 'account--order.css' | asset_url | stylesheet_tag }}
 {{ 'account--order.js' | asset_url | script_tag }}
