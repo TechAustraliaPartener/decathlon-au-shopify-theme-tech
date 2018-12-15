@@ -2,26 +2,48 @@
   {% include 'customers--my-account-header', account_title: 'Review a product' %}
 
   <div id="review-products" class="account-reviewProducts u-marginTop2x u-marginBottom2x u-block">
-    <div class="grid-uniform">
+    <div class='text-center'>
+      <img id="spinningLoad" class='text-center' src="{{ 'Rolling-1s-200px.gif' | asset_url }}" style="height:200px;" alt="simple, lightweight generic loading indicator">		
+    </div>		
+    {% comment %}
+    	NOTE: 	inline style for #shopify-products-for-review is used
+    			otherwise the div shows briefly before being hidden
+    {% endcomment %}
+    <div id="shopify-products-for-review" class="grid-uniform" style="display:none">
     {% if customer.orders.size != 0 %}
       {% for order in customer.orders %}
         {% for item in order.line_items %}
+        {% unless {{item.variant.option3}} == undefined %}
         <div class="grid__item medium--one-half large--one-fifth text-center">
             <a class="account-writeReviewButton account-order--js-writeReviewForm" 
+              review-sku="{{item.sku}}"
               review-modelCode="{{item.variant.option3}}" 
               review-productName="{{ item.title | split: ' / ' | first | split: ' - ' | first }}">
               <img src="{{ item | img_url }}" alt="{{ item.title | escape }}"><br/>
               {{ item.product.title }}
             </a>
         </div>
+        {% endunless %}
         {% endfor %}
       {% endfor %}
     {% else %}
       <p class="text-center">{{ 'customer.orders.none' | t }}</p>
       <p class="text-center"><a href="/collections" class="btn">Shop Now</a></p>
     {% endif %}
+    {% comment %}
+    	NOTE: 	inline style for #newstore-products-for-review is used
+    			    otherwise the div shows briefly before being hidden
+    {% endcomment %}
+    <div id="newstore-products-for-review" class="grid-uniform" style="display:none">	
     </div>
     <div class="js-account-review-products" data-jwt-token="{{ shop.metafields.picshare.jwt_token }}"></div>
   </div>
 </div>
+<script>	
+  // Shopify information is saved to variables so customers--account--review-products.js can use them
+  var customerEmail = `{{customer.email}}`;		
+  var customerId = `{{customer.id}}`;
+</script>
+{{ 'customers--account--review-products.scss.css' | asset_url | stylesheet_tag }} 
+{{'customers--account--review-products.js' | asset_url | script_tag }}
 {% include 'review-template' %}
