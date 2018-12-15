@@ -158,6 +158,7 @@
   </div>
 
 </div>
+{{ 'account--order.css' | asset_url | stylesheet_tag }}
 <script>
 // Script to save the order variable as an object that account--order.js.liquid can use
 var jsOrder = {
@@ -181,5 +182,4 @@ var jsOrder = {
 }
 var defaultImg = `https:{{ 'default--no-image-100_small.jpg' | asset_img_url }}`
 </script>
-{{ 'account--order.css' | asset_url | stylesheet_tag }}
 {{ 'account--order.js' | asset_url | script_tag }}
