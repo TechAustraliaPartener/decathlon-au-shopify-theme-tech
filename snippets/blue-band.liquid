@@ -2,19 +2,19 @@
   <div class="wrapper">
     {% comment %} {%- if footer_blue_banner -%}<div class="attachHikers u-block"></div>{%- endif -%} {% endcomment %}
     <div class="grid">
-      <div class="grid__item large--one-fifth{% if footer_blue_banner %} blue-band--footer-logo{% endif %} hide-tablet-mobile">
+      <div class="grid__item large--one-fifth{% if footer_blue_banner %} blue-band--footer-logo{% endif %}">
         {%- if footer_blue_banner -%}
         <div class="yellowgram">
 			<div class="yellowgram-item-wrapper">
-				 <div class="blue-band-icon">
-					{% if settings.blue_band__fact_one_dark_icon != blank %}
-  	   					<img src="{{ settings.blue_band__fact_one_dark_icon | img_url: 'master' }}" alt="{{ settings.blue_band__fact_one_text }}" />
+				 <div class="yellowgram-icon">
+					{% if settings.blue_band__yellowgram_icon != blank %}
+  	   					<img src="{{ settings.blue_band__yellowgram_icon | img_url: 'master' }}" alt="{{ settings.blue_band__yellowgram_text }}" />
   	   				{% else %}
   	   			  		<i class="ico ico--100"></i>
   	   				{% endif %}
 		   		 </div>
-		   		 <div class="blue-band-content">
-		   		   <p class="">{{ settings['blue_band__fact_one_text'] }}</p>
+		   		 <div class="yellowgram-content">
+		   		   <p class="">{{ settings['blue_band__yellowgram_text'] }}</p>
 		   		 </div>
 			 </div>
         </div>
@@ -22,7 +22,7 @@
         <p class="blue-band-title u-textUppercase u-textBold text-center blue-band-item-wrapper">{{ settings['blue_band__home_title'] }}</p>
         {%- endif -%}
       </div>
-      <div class="grid__item large--one-fifth medium--one-half hide-tablet-desktop">
+      <div class="grid__item large--one-fifth medium--one-half">
         {% if settings['blue_band__fact_one_link'] == blank %}
         	<div class="blue-band-item-wrapper">
         {% else %}
