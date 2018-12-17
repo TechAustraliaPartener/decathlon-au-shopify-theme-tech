@@ -3706,7 +3706,7 @@ body.is-rollingUpBanner .popup { margin-top: -100vh; }
 .yellowgram {
   @include block($width: auto);
   background: $colorSecondary;
-  padding: $space*3 $space*3 $space*3 0;
+  padding: 0 $space*3 0 0;
 }
 
 .yellowgram:before,
@@ -4198,7 +4198,7 @@ body.is-rollingUpBanner .popup { margin-top: -100vh; }
   padding-bottom: 0;
 }
 
-#bannerHero .banner--billboard { min-height: $space*37; }
+// #bannerHero .banner--billboard { min-height: $space*37; }
 
 #innovationBanner .wrapper,
 #bannerHero .wrapper {
@@ -8418,7 +8418,7 @@ h1.banner-title {
 
 .banner--halfBanner .banner-title { font-size: $space*4.6; }
 
-#bannerHero .banner--billboard .wrapper { min-height: $space*31; }
+// #bannerHero .banner--billboard .wrapper { min-height: $space*31; }
 #innovationBanner .banner--billboard { padding: $space*2 0; }
 #innovationBanner .banner--billboard .wrapper { min-height: $space*40; }
 
@@ -9696,7 +9696,7 @@ body:first-of-type .header-cartWrapper {
     content: '';
   }
 }
-.blue-band .grid__item .blue-band-icon i.ico--100:before { position: relative; top: 0; }
+.blue-band .grid__item .blue-band-icon i.ico--100:before { position: relative;  }
 
 .blue-band .grid__item:hover .blue-band-icon i { opacity: 1; }
 .blue-band-icon {
@@ -10174,12 +10174,12 @@ tr.cart__row--addon {
 
 .hypervisual-btn a.hypervisual__button {
  @extend .btn;
-  
+
   border: 2px solid #1c82c3 !important;
   padding: 17px 25px 16px !important;
   letter-spacing: 2px !important;
   text-transform: uppercase !important;
-  
+
   &:hover {
     background-color: #1c82c3 !important;
     color: #fff !important;
@@ -10190,5 +10190,148 @@ tr.cart__row--addon {
    background-color: #1c82c3 !important;
     color: #fff !important;
   }
-  
+
+}
+
+
+/* Homepage Hero */
+.template-index {
+    .main-content {
+        height: 100vh;
+    }
+    .banner--billboard {
+        height: 100vh;
+    }
+	.banner--slideshow {
+		.slick-dots {
+			bottom: 180px;
+
+			@media only screen and (min-width: 768px) {
+				bottom: 130px;
+			}
+
+			@media only screen and (min-width: 1000px) {
+				bottom: 80px;
+			}
+		}
+	}
+
+    .de-PageWrap-main {
+        padding-top: 0;
+    }
+
+    .blue-band--footer {
+        bottom: 0;
+        position: absolute;
+		padding: 30px 0 64px;
+
+		@media only screen and (min-width: 768px) {
+			padding: 0 0 46px;
+		}
+		@media only screen and (min-width: 1000px) {
+			padding: 0;
+		}
+
+        .blue-band-content {
+
+			@media only screen and (min-width: 768px) {
+				padding-top: 15px;
+				padding-bottom: 15px;
+			}
+			@media only screen and (min-width: 1000px) {
+				padding: 0;
+			}
+        }
+
+        .blue-band-item-wrapper {
+            padding-top: 0;
+        }
+
+        .grid {
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+			margin-left: 0;
+
+			@media only screen and (min-width: 768px) {
+				margin-left: -30px;
+
+				.grid__item:first-child {
+					padding-bottom: 0;
+				}
+			}
+
+			@media only screen and (max-width: 1000px) {
+				justify-content: center;
+				height: 70px;
+			}
+        }
+
+		.grid__item {
+			.blue-band-icon {
+				position: relative;
+
+				i {
+					display: inline-block;
+					height: 35px;
+				}
+				@media only screen and (max-width: 1000px) {
+					img {
+						opacity: 0.5;
+					}
+				}
+			}
+
+			&.active {
+				.blue-band-icon {
+					img {
+						opacity: 1;
+					}
+				}
+				.blue-band-icon i:after {
+					bottom: -39px;
+
+					@media only screen and (max-width: 768px) {
+						bottom: -50px;
+					}
+				}
+
+				.blue-band-icon .ico--100:after {
+					bottom: -39px;
+
+					@media only screen and (max-width: 768px) {
+						bottom: -50px;
+					}
+				}
+			}
+		}
+
+		.yellowgram {
+			align-items: center;
+			display: flex;
+			width: 90%;
+			height: 70px;
+
+			.yellowgram-item-wrapper {
+				color: #1f1f1f;
+			}
+
+			@media only screen and (min-width: 1000px) {
+				height: 58px;
+			}
+		}
+
+		.hide-tablet-desktop {
+			@media only screen and (min-width: 1000px) {
+				display: none;
+			}
+		}
+
+		.hide-tablet-mobile {
+			@media only screen and (max-width: 1000px) {
+				display: none!important;
+			}
+		}
+    }
+
 }
