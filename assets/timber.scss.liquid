@@ -3706,7 +3706,31 @@ body.is-rollingUpBanner .popup { margin-top: -100vh; }
 .yellowgram {
   @include block($width: auto);
   background: $colorSecondary;
-  padding: 0 $space*3 0 0;
+  padding: $space*3 $space*3 $space*3 0;
+  align-items: center;
+  display: flex;
+  width: 90%;
+
+  .yellowgram-item-wrapper {
+	  color: #0082C3;
+	  display: flex;
+	  align-items: center;
+	  justify-content: space-between;
+  }
+
+  .yellowgram-icon {
+	  align-items: center;
+	  display: flex;
+  }
+  .yellowgram-content {
+	  font-size: 12px;
+	  line-height: 14px;
+	  margin-left: 5px;
+
+	  p {
+		  margin: 0;
+	  }
+  }
 }
 
 .yellowgram:before,
@@ -7021,6 +7045,10 @@ h5.writeReview-thank { margin-bottom: 0; }
     top: 0;
     right: -100px;
     z-index: -1;
+
+	@media only screen and (max-width: 768px) {
+		width: auto;
+	}
   }
 }
 
@@ -9708,7 +9736,7 @@ body:first-of-type .header-cartWrapper {
   margin-top: 2px;
 }
 
-.blue-band-content { display: inline-block; vertical-align: middle; width: 50%; text-align: left;}
+.blue-band-content { display: inline-block; vertical-align: middle; width: 55%; text-align: left;}
 .blue-band .u-flex-listItem {display: flex; justify-content: center; flex-direction: column; text-align: center;}
 .blue-band--footer { padding: 0; }
 .blue-band--footer .large--one-fifth { width: 19%; }
@@ -10200,7 +10228,14 @@ tr.cart__row--addon {
         height: 100vh;
     }
     .banner--billboard {
+        align-items: center;
+        display: flex;
         height: 100vh;
+
+		.wrapper {
+			flex: 1;
+		}
+
     }
 	.banner--slideshow {
 		.slick-dots {
@@ -10311,9 +10346,10 @@ tr.cart__row--addon {
 			display: flex;
 			width: 90%;
 			height: 70px;
+			padding: 0 $space*3 0 0;
 
 			.yellowgram-item-wrapper {
-				color: #1f1f1f;
+				color: #0082C3;
 				display: flex;
 				align-items: center;
 				justify-content: space-between;
@@ -10349,4 +10385,8 @@ tr.cart__row--addon {
 		}
     }
 
+}
+
+html {
+	padding-bottom: 0!important;
 }
