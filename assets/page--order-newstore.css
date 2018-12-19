@@ -12,7 +12,8 @@
 .order-page--shipped-store-table,
 .order-page--cancelled-table,
 .order-page--returned-table,
-.order-page--billing-and-shipping,
+.order-page--shipping,
+.order-page--shipping-address,
 .order-page--totals-table,
 #shopify-order-bottom-buttons {
   display: none; 
