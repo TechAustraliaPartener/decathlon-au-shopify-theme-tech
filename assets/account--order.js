@@ -304,7 +304,12 @@ function createProductTableRows (sectionObj, reviewLink) {
     // Product Image
     singleRow += '<td>'
     if (productList[i].product.product) {
-      var variantImage = getVariantImage(productList[i].product.variant.image_id, productList[i].product.product.images, defaultImg)
+      var variantImage 
+      if (productList[i].product.variant) {
+        variantImage = getVariantImage(productList[i].product.variant.image_id, productList[i].product.product.images, defaultImg)      
+      } else {
+        variantImage = getVariantImage(productList[i].product.product.image.id, productList[i].product.product.images, defaultImg)
+      }
       singleRow += `<a href="${productList[i].product.url}">`
       singleRow += "<img class='account-order--product-img' src='" + variantImage + "' alt='" + productList[i].product.title + "'>"
       singleRow += '</a>'
