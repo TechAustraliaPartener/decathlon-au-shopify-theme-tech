@@ -25,27 +25,19 @@ var params = {
     $('.order-page--taxes').text('$' + order.totals.taxes)
     $('.order-page--totals').text('$' + order.totals.grand_total)
 
-    // Populate Billing
-    $('.order-page--billing-name').text(order.billing.name)
-    $('.order-page--billing-address-line-1').text(order.billing.address_line_1)
-    if (order.billing.address_line_2 !== '') {
-      $('.order-page--billing-address-line-2').html(order.billing.address_line_2 + '<br>')
-    } else {
-      $('.order-page--billing-address-line-2').hide()
-    }
-    $('.order-page--billing-city-state-zip').text(order.billing.city_state_zip)
 
     // Populate Shipping
-    $('.order-page--shipping-title').text(order.shipping.shippingType)
-    $('.order-page--shipping-name').text(order.shipping.name)
-    $('.order-page--shipping-address-line-1').text(order.shipping.address_line_1)
-
-    if (order.shipping.address_line_2 !== '') {
-      $('.order-page--shipping-address-line-2').html(order.shipping.address_line_2 + '<br>')
-    } else {
-      $('.order-page--shipping-address-line-2').hide()
+    if (order.shipping.address) {
+      $('.order-page--shipping-name').text(order.shipping.address.name)
+      $('.order-page--shipping-address-line-1').text(order.shipping.address.address_line_1)
+      if (order.shipping.address.address_line_2 !== '') {
+        $('.order-page--shipping-address-line-2').html(order.shipping.address.address_line_2 + '<br>')
+      } else {
+        $('.order-page--shipping-address-line-2').hide()
+      }
+      $('.order-page--shipping-city-state-zip').text(order.shipping.address.city_state_zip)
     }
-    $('.order-page--shipping-city-state-zip').text(order.shipping.city_state_zip)
+    $('.order-page--shipping-method').text(order.shipping.method)
 
     // If the order is USN, update the Return An Item link
     if (order.number.slice(-3) === 'USN') {
@@ -83,7 +75,10 @@ var params = {
       $('.order-page--returned-total-row').hide()
     }
     $('.order-page--totals-table').show()
-    $('.order-page--billing-and-shipping').show()
+    $('.order-page--shipping').show()
+    if(order.shipping.address) {
+      $('.order-page--shipping-address').show()
+    }
     $('#shopify-order-bottom-buttons').css('display', 'flex')
   },
   error: function (request, textStatus, error) {
