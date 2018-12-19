@@ -10224,6 +10224,9 @@ tr.cart__row--addon {
 
 /* Homepage Hero */
 .template-index {
+    .de-PageWrap-main {
+        position: relative;
+    }
     .main-content {
         height: 100vh;
     }
@@ -10236,14 +10239,14 @@ tr.cart__row--addon {
 			flex: 1;
 		}
 
+        @media only screen and (max-width: 480px) {
+            padding-bottom: 0;
+        }
+
     }
 	.banner--slideshow {
 		.slick-dots {
-			bottom: 180px;
-
-			@media only screen and (min-width: 768px) {
-				bottom: 130px;
-			}
+			bottom: 110px;
 
 			@media only screen and (min-width: 1000px) {
 				bottom: 80px;
@@ -10258,20 +10261,22 @@ tr.cart__row--addon {
     .blue-band--footer {
         bottom: 0;
         position: absolute;
-		padding: 30px 0 64px;
+		padding: 0 0 36px;
 
 		@media only screen and (min-width: 768px) {
-			padding: 0 0 46px;
+			padding: 0 0 36px;
 		}
 		@media only screen and (min-width: 1000px) {
 			padding: 0;
 		}
 
         .blue-band-content {
+            padding-top: 10px;
+            padding-bottom: 10px;
 
 			@media only screen and (min-width: 768px) {
-				padding-top: 15px;
-				padding-bottom: 15px;
+				padding-top: 10px;
+				padding-bottom: 10px;
 			}
 			@media only screen and (min-width: 1000px) {
 				padding: 0;
@@ -10280,6 +10285,9 @@ tr.cart__row--addon {
 
         .blue-band-item-wrapper {
             padding-top: 0;
+            @media only screen and (max-width: 768px) {
+                padding-bottom: 0;
+            }
         }
 
         .grid {
@@ -10298,21 +10306,27 @@ tr.cart__row--addon {
 
 			@media only screen and (max-width: 1000px) {
 				justify-content: center;
-				height: 70px;
+				height: 58px;
 			}
         }
 
 		.grid__item {
 			.blue-band-icon {
-				position: relative;
-
+                position: relative;
 				i {
 					display: inline-block;
-					height: 35px;
+					height: 33px;
 				}
+                img {
+                    max-height: 33px;
+                }
 				@media only screen and (max-width: 1000px) {
+                    display: flex;
+                    justify-content: center;
+    				align-items: center;
+
 					img {
-						opacity: 0.5;
+						opacity: 0.7;
 					}
 				}
 			}
@@ -10324,19 +10338,12 @@ tr.cart__row--addon {
 					}
 				}
 				.blue-band-icon i:after {
-					bottom: -39px;
+					bottom: -34px;
 
-					@media only screen and (max-width: 768px) {
-						bottom: -50px;
-					}
 				}
 
 				.blue-band-icon .ico--100:after {
-					bottom: -39px;
-
-					@media only screen and (max-width: 768px) {
-						bottom: -50px;
-					}
+					bottom: -34px;
 				}
 			}
 		}
@@ -10345,7 +10352,7 @@ tr.cart__row--addon {
 			align-items: center;
 			display: flex;
 			width: 90%;
-			height: 70px;
+			height: 58px;
 			padding: 0 $space*3 0 0;
 
 			.yellowgram-item-wrapper {
@@ -10357,6 +10364,10 @@ tr.cart__row--addon {
 			.yellowgram-icon {
 				align-items: center;
 				display: flex;
+
+                img {
+                    max-height: 33px;
+                }
 			}
 			.yellowgram-content {
 				font-size: 12px;
