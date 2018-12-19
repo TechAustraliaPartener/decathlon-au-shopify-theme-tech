@@ -191,14 +191,14 @@ a:hover, a:focus {opacity: 1}
 .bc-sf-filter-option-block .bc-sf-filter-block-title h3 span:before { border-top-color: #999; }
 
 #bc-sf-filter-tree-mobile button {
-	border: 2px solid #1c82c3;
+	border: 2px solid #0082c3;
   font-family: "avalonbold","HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif;
   font-size: .8rem;
   font-weight: normal;
   letter-spacing: 2px;
   padding: 12px 18px 11px;
   text-transform: uppercase;
-	background: #1c82c3;
+	background: #0082c3;
   color: #fff;
   margin-top: 0;
 }
