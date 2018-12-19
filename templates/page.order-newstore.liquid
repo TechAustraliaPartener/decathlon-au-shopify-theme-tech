@@ -98,40 +98,28 @@
         </table>
       </div>
     </div>
-  
-    <!-- Billing and Shipment Info -->
-    <div class="grid__item grid--full u-marginTop4x order-page--billing-and-shipping">
-      <!-- Billing -->
+    <!-- Shipment Info -->
+    <div class="grid__item grid--full u-marginTop4x order-page--shipping">
+      <!-- Shipping Address -->
+      {% comment %} Hidden if not shipped to home {% endcomment %}
      <div class="grid__item large--one-half u-marginBottom4x">
-      <h4>Billing Address</h4>
-  
+    <div class="order-page--shipping-address">
+      <h4>Shipping Address</h4>
        {% comment %} COMMENTED PER REQUIREMENTS - Keeping a reference in case we want to add it back in
        <p><strong>Payment Status:</strong><span class="order-page--payment-status"></span></p>
        {% endcomment %}
-  
-      <h5 class="order-page--billing-name"></h5>
-      <p>
-        <span class="order-page--billing-address-line-1"></span><br>
-        <span class="order-page--billing-address-line-2"><br></span>
-        <span class="order-page--billing-city-state-zip"></span>
-      </p>
-     </div>
-      <!-- Shipping -->
-     <div class="grid__item large--one-half">
-  
-       {% comment %} Either 'Shipped To Store' or 'Shipped To Home'{%endcomment%}
-      <h4 class="order-page--shipping-title"></h4>
-  
-       {% comment %} COMMENTED PER REQUIREMENTS - Keeping a reference in case we want to add it back in
-       <p><strong>Fulfillment Status:</strong> <span class="order-page--shipping-status"></span></p>
-       {% endcomment %}
-  
-       <h5><span class="order-page--shipping-name"></span></h5>
+      <h5 class="order-page--shipping-name"></h5>
       <p>
         <span class="order-page--shipping-address-line-1"></span><br>
         <span class="order-page--shipping-address-line-2"><br></span>
         <span class="order-page--shipping-city-state-zip"></span>
       </p>
+      </div>
+     </div>
+      <!-- Shipping Method -->
+     <div class="grid__item large--one-half u-marginBottom4x">
+      <h4>Shipping Method</h4>
+       <h5><span class="order-page--shipping-method"></span></h5>
      </div>
     </div>
   </div>
