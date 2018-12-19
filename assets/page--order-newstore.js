@@ -99,8 +99,8 @@ function createProductTableRows (products, reviewLink) {
     var singleRow = '<tr>'
     // Product Image
     singleRow += '<td>'
-    if (products.handle == '') {
       singleRow += "<img class='order-page--product-img' src='" + products[i].image + "' alt='" + products[i].name + "'>"
+    if (products[i].handle == '') {
       singleRow += '</td>'
     } else {
       singleRow += '<a href="/products/' + products[i].handle + '">'
@@ -110,7 +110,7 @@ function createProductTableRows (products, reviewLink) {
 
     // Product Info
     singleRow += '<td>'
-    if (products.handle == '') {
+    if (products[i].handle == '') {
       singleRow += "<div class='row'><span class='u-block order-page--product order-page--product-span'>" + products[i].name + '</span></div>'
     } else {
       singleRow += '<div class="row"><a href="/products/' + products[i].handle + '">'
