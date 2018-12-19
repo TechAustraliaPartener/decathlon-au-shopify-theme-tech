@@ -99,12 +99,18 @@ function createProductTableRows (products, reviewLink) {
     var singleRow = '<tr>'
     // Product Image
     singleRow += '<td>'
-      singleRow += "<img class='order-page--product-img' src='" + products[i].image + "' alt='" + products[i].name + "'>"
+    let image
+    if (!products[i].image || products[i].image == '') {
+      image = defaultImg 
+    } else {
+      image = products[i].image
+    }
     if (products[i].handle == '') {
+      singleRow += "<img class='order-page--product-img' src='" + image + "' alt='" + products[i].name + "'>"
       singleRow += '</td>'
     } else {
       singleRow += '<a href="/products/' + products[i].handle + '">'
-      singleRow += "<img class='order-page--product-img' src='" + products[i].image + "' alt='" + products[i].name + "'>"
+      singleRow += "<img class='order-page--product-img' src='" + image + "' alt='" + products[i].name + "'>"
       singleRow += '</a></td>'
     }
 
