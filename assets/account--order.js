@@ -178,6 +178,7 @@ $(document).ready(function () {
     $('.account-order--shipped-store-table').show()
   }
   if (sections.cancelled.items.length > 0) {
+    $('.cancelled').show()
     $('.account-order--cancelled-table').show()
   } else {
     $('.account-order--cancelled-total-row').hide()
