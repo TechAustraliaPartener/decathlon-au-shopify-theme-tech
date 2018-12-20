@@ -36,7 +36,6 @@ p {
 .account-order--shipped-store-table,
 .account-order--cancelled-table,
 .account-order--returned-table,
-.account-order--billing-and-shipping,
 .account-order--totals-table,
 #shopify-order-bottom-buttons {
   display: none; 

@@ -95,37 +95,8 @@
         </tbody>
       </table>
     </div>
-
-    <!-- Billing and Shipment Info -->
-    <div class="grid__item grid--full u-marginTop4x account-order--billing-and-shipping">
-      <!-- Billing -->
       <div>
         <div class="grid__item large--one-half u-marginBottom4x">
-        <h4>Billing Address</h4>
-
-        {% comment %} COMMENTED PER REQUIREMENTS - Keeping a reference in case we want to add it back in
-        <p><strong>Payment Status:</strong><span class="account-order--payment-status"></span></p>
-        {% endcomment %}
-
-        <h5>{{ order.billing_address.name }}</h5>
-        <p>
-          {{ order.billing_address.address1 }}<br>
-          {{ order.billing_address.city }},
-          {% if order.billing_address.province_code != '' %}
-            {{ order.billing_address.province_code }}
-          {% elsif order.billing_address.province != '' %}
-            {{ order.billing_address.province }}
-          {% endif %}
-          {{ order.billing_address.zip | upcase }}<br/>
-          {{ order.billing_address.country }}<br>
-          {{ order.billing_address.phone }}
-            </p>
-        </div>
-      </div>
-      <div class='account-order--shipping'>
-        <!-- Shipping -->
-        <div class="grid__item large--one-half">
-          <h4 class="account-order--shipping-title">Shipping Address</h4>
 
           {% comment %} COMMENTED PER REQUIREMENTS - Keeping a reference in case we want to add it back in
           <p><strong>Fulfillment Status:</strong> <span class="account-order--shipping-status"></span></p>

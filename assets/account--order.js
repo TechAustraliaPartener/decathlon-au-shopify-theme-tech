@@ -200,7 +200,6 @@ $(document).ready(function () {
     $('.account-order--returned-total-row').hide()
   }
   $('.account-order--totals-table').css('display', 'table')
-  $('.account-order--billing-and-shipping').show()
   $('#shopify-order-bottom-buttons').css('display', 'flex')
 })
 
