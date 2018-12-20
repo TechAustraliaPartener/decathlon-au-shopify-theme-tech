@@ -28,7 +28,11 @@ var params = {
 
     // Populate Shipping
     if (order.shipping.address) {
-      $('.order-page--shipping-name').text(order.shipping.address.name)
+      if (order.shipping.address.name != '' && order.shipping.address.name != ' ') {
+        $('.order-page--shipping-name').prepend(order.shipping.address.name)
+      } else {
+        $('.order-page--shipping-name').hide()
+      }
       $('.order-page--shipping-address-line-1').text(order.shipping.address.address_line_1)
       if (order.shipping.address.address_line_2 !== '') {
         $('.order-page--shipping-address-line-2').html(order.shipping.address.address_line_2 + '<br>')
