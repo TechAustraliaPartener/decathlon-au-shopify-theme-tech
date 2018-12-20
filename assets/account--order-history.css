@@ -26,6 +26,8 @@
   height: 53px !important; 
 }
 #spinningLoad {
+  max-width: 50px;
+  max-height: 50px;
   margin-left: auto;
   margin-right: auto;
   display: block;
