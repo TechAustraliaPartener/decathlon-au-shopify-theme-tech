@@ -26,6 +26,7 @@ $(document).ready(function () {
   // Set up variables
   var productDict = {}
   var addProductsReturn
+  var shippingMethod = 'Not Applicable'
   var sections = {
     pending: {
       name: 'pending',
@@ -70,9 +71,8 @@ $(document).ready(function () {
     sections = addProductsReturn[0]
     productDict = addProductsReturn[1]
 
-    $('.account-order--shipping-title').text('No Shipments for this Order')
-    $('.account-order--shipping h5').hide()
-    $('.account-order--shipping p').hide()
+    $('.account-order--shipping-method').text(shippingMethod)
+    $('.account-order--shipping-address').hide()
   } else {
     // create a reference dictionary of all products ordered
     productDict = createProductDict(jsOrder.lineItems)
@@ -102,8 +102,7 @@ $(document).ready(function () {
           addProductsReturn = addProductsToSection(productDict, 'shipped_home', sections, [jsOrder.lineItems[i]])
           sections = addProductsReturn[0]
           productDict = addProductsReturn[1]
-          $('.account-order--shipping-title').text('Shipped to Home')
-
+          shippingMethod = "Shipped to Home"
         } else {
           // fulfilled != ordered
           // copy the product information
@@ -120,36 +119,25 @@ $(document).ready(function () {
           addProductsReturn = addProductsToSection(productDict, 'pending', sections, [jsOrder.lineItems[i]])
           sections = addProductsReturn[0]
           productDict = addProductsReturn[1]
-          $('.account-order--shipping-title').text('Shipped to Home')
+          shippingMethod = 'Shipped to Home'
         }
       } else if (jsOrder.lineItems[i].fulfillment && (jsOrder.shippingMethods.length > 0)) {
-        $('.account-order--shipping-title').text('Shipped to Store')
+        // $('.account-order--shipping-title').text('Shipped to Store')
         // check title of shipping methods, if in-store pickup ("Decathlon San Francisco Store Pickup", "Decathlon Emeryville Store Pickup")
+        let sep = ''
+        let shippingMethod = ''
         for (let i = 0; i < jsOrder.shippingMethods.length; i++) {
-          if (jsOrder.shippingMethods[i].title == 'Decathlon San Francisco Store Pickup') {
-            /*
-            address1, city, province, zip, country, phone
-            */
-            $('.account-order--shipping-address1').text(storeAddressRef['STSF001'].address_line_1)
-            $('.account-order--shipping-city').text(storeAddressRef['STSF001'].city_state_zip)
-            $('.account-order--shipping-province').hide()
-            $('.account-order--shipping-zip').hide()
-            $('.account-order--shipping-country').hide()
-            $('.account-order--shipping-phone').hide()
-          } else if (jsOrder.shippingMethods[i].title == 'Decathlon Emeryville Store Pickup') {
-            $('.account-order--shipping-address1').text(storeAddressRef['STEM001'].address_line_1)
-            $('.account-order--shipping-city').text(storeAddressRef['STEM001'].city_state_zip)
-            $('.account-order--shipping-province').hide()
-            $('.account-order--shipping-zip').hide()
-            $('.account-order--shipping-country').hide()
-            $('.account-order--shipping-phone').hide()
-          } else {
-            $('.account-order--shipping p').hide()
+          if (jsOrder.shippingMethods[i].title != '') {
+            shippingMethod += sep
+            shippingMethod += jsOrder.shippingMethods[i].title
+            sep = ", "
           }
         }
       }
     }
   }
+  // Set shipping method
+  $('.account-order--shipping-method').text(shippingMethod)
 
   // Populate Tables
   $('.account-order--pending-table tbody').append(createProductTableRows(sections.pending['items'], false))
@@ -200,6 +188,9 @@ $(document).ready(function () {
     $('.account-order--returned-total-row').hide()
   }
   $('.account-order--totals-table').css('display', 'table')
+  $('.account-order--shipping-method').text(shippingMethod)
+  $('.account-order--shipping').show()
+  if (shippingMethod.indexOf('Pickup') == -1 && shippingMethod != "Not Applicable") { $('.account-order--shipping-address').show()}
   $('#shopify-order-bottom-buttons').css('display', 'flex')
 })
 
