@@ -9,10 +9,8 @@
       <div class='account-order--date-and-cancel'>
         <p class="account-order--date">{{ 'customer.order.date' | t: date: order.created_at | date: "%B %d, %Y %I:%M%p" }}</p>
         {% if order.cancelled == true } %}
-        {% comment %} <div class="cancelled"> {% endcomment %}
-            {% assign cancelled_at = order.cancelled_at | date: "%B %d, %Y" %}
-            <p class="cancelled">{{ 'customer.order.cancelled' | t: date: cancelled_at }}</p>          
-        {% comment %} </div> {% endcomment %}
+          {% assign cancelled_at = order.cancelled_at | date: "%B %d, %Y" %}
+          <p class="cancelled">Item(s) cancelled by customer or because of out-of-stock inventory. {{ cancelled_at }}</p>          
         {% endif %}
       </div>
       <!-- Pending Items Table -->
