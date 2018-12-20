@@ -61,9 +61,9 @@ p {
   border-top: 1px solid rgb(128, 128, 128); 
 }
 
-/* @totalsTable */
+.order-page--table th,
 .order-page--td-totals {
-  font-weight: bold;
+  font-family: "avalonbold","HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
 /* @productRows */
