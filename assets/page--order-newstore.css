@@ -5,6 +5,21 @@ p {
   font-size: 1.1em;
 }
 
+/* Date and cancellation */
+.order-page--date-and-cancel {
+  margin-bottom: 15px;
+}
+
+.order-page--date, 
+.cancelled {
+  margin: 0;
+}
+
+.cancelled {
+  background-color: transparent;
+  padding: 0;
+}
+
 /* Spinner */
 #spinningLoad {
   max-width: 50px;

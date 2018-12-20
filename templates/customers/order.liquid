@@ -6,14 +6,15 @@
   <div class="grid--full">
     <!-- Order Tables Wrap -->
     <div class="grid__item">
-      <!-- Date order placed -->
-      <p><span class="account-order--date">{{ 'customer.order.date' | t: date: order.created_at | date: "%B %d, %Y %I:%M%p" }}</span></p>
-      {% if order.cancelled == true } %}
-      <div class="cancelled">
-          {% assign cancelled_at = order.cancelled_at | date: "%B %d, %Y %I:%M%p" %}
-          <p class="h5">{{ 'customer.order.cancelled' | t: date: cancelled_at }}</p>          
+      <div class='account-order--date-and-cancel'>
+        <p class="account-order--date">{{ 'customer.order.date' | t: date: order.created_at | date: "%B %d, %Y %I:%M%p" }}</p>
+        {% if order.cancelled == true } %}
+        {% comment %} <div class="cancelled"> {% endcomment %}
+            {% assign cancelled_at = order.cancelled_at | date: "%B %d, %Y" %}
+            <p class="cancelled">{{ 'customer.order.cancelled' | t: date: cancelled_at }}</p>          
+        {% comment %} </div> {% endcomment %}
+        {% endif %}
       </div>
-      {% endif %}
       <!-- Pending Items Table -->
       <div class="account-order--table account-order--pending-table">
         <h6>Item(s) Being Processed</h6>

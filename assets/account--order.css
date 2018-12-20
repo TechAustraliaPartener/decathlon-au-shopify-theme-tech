@@ -6,6 +6,20 @@ p {
   line-height: 1.1em;
 }
 
+/* Date and cancellation */
+.account-order--date-and-cancel {
+  margin-bottom: 15px;
+}
+
+.account-order--date, 
+.cancelled {
+  margin: 0;
+}
+.cancelled {
+  background-color: transparent;
+  padding: 0;
+}
+
 /* Load Spinner */
 #spinningLoad {
   max-width: 50px;
@@ -16,6 +30,7 @@ p {
 }
 /* @productTable */
 .account-order--date,
+.cancelled,
 .account-order--pending-table,
 .account-order--shipped-home-table,
 .account-order--shipped-store-table,
