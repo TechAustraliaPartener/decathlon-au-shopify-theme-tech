@@ -1,3 +1,10 @@
+/* General */
+table,
+span,
+p {
+  font-size: 1.1em;
+}
+
 /* Spinner */
 #spinningLoad {
   max-width: 50px;
