@@ -41,7 +41,7 @@ var params = {
       }
       $('.order-page--shipping-city-state-zip').text(order.shipping.address.city_state_zip)
     }
-    $('.order-page--shipping-method').text(order.shipping.method)
+    $('.order-page--delivery-method').text(order.shipping.method)
 
     // If the order is USN, update the Return An Item link
     if (order.number.slice(-3) === 'USN') {
