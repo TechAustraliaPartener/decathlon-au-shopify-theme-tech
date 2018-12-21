@@ -67,6 +67,9 @@ p {
 }
 
 /* @productRows */
+.order-page--product-img {
+  max-height: 6rem; 
+}
 .order-page--product-span {
   display: block;
   overflow: hidden;
@@ -75,11 +78,6 @@ p {
   -webkit-transition: width 2s; /* Safari */
   transition: width 2s;
 }
-
-.order-page--product-img {
-  max-height: 6rem; 
-}
-
 /* change the width of product name/link span based on screen size */
 @media screen and (max-width : 30em) {
   .order-page--product-span {
