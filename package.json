@@ -1,10 +1,10 @@
 {
   "name": "decathlon",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Minify and Concat CSS and JS files, run jshint for all script files.",
   "repository": {
     "type": "git",
-    "url": "https://spiegel.git.beanstalkapp.com/decathlon.git"
+    "url": "https://github.com/decathlon-usa/shopify-theme-decathlonusa.git"
   },
   "keywords": [],
   "author": "devteam@sdg.la",
