@@ -158,6 +158,9 @@ $(document).ready(function () {
     if (methods[i].innerText.indexOf('Ship') != -1 || (methods[i].innerText.indexOf('ickup') == -1 && methods[i].innerText != "Not Applicable")) { 
       $('.account-order--shipping-address').show()
    }
+   if (sections.shipped_home['items'].length > 0 && (methods[i].innerText == 'Not Applicable' || methods[i].innerText == 'manual')) {
+     methods[i].innerText = 'Shipped to Home'
+   }
   }
   $('#shopify-order-bottom-buttons').css('display', 'flex')
 })
