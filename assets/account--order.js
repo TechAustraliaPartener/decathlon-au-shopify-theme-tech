@@ -152,6 +152,13 @@ $(document).ready(function () {
   }
   $('.account-order--totals-table').css('display', 'table')
   $('.account-order--shipping').show()
+
+  let methods = $('.account-order--delivery').find('.account-order--delivery-method')
+  for (let i = 0; i < methods.length; i++) {
+    if (methods[i].innerText.indexOf('Ship') != -1 || (methods[i].innerText.indexOf('ickup') == -1 && methods[i].innerText != "Not Applicable")) { 
+      $('.account-order--shipping-address').show()
+   }
+  }
   $('#shopify-order-bottom-buttons').css('display', 'flex')
 })
 
