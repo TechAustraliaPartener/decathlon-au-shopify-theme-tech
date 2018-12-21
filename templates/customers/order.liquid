@@ -107,7 +107,7 @@
 
           <p>
             {% if order.shipping_address.name != '' && order.shipping_address.name != ' ' %}
-            <span class="account-order--shipping-name">{{ order.shipping_address.name }}</span>
+            <span class="account-order--shipping-name">{{ order.shipping_address.name }}</span><br>
             {% endif %}
             <span class='account-order-shipping-address1'>{{ order.shipping_address.address1 }}</span><br>
             <span class='account-order-shipping-city'>{{ order.shipping_address.city }},</span>
