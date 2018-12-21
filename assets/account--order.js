@@ -134,6 +134,7 @@ $(document).ready(function () {
   }
   if (sections.shipped_home.items.length > 0) {
     $('.account-order--shipped-home-table').show()
+    $('.account-order--shipping-address').show()
   }
   if (sections.shipped_store.items.length > 0) {
     $('.account-order--shipped-store-table').show()
