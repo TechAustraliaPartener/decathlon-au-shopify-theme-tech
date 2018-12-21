@@ -1,143 +1,146 @@
 <!-- /templates/customers/order.liquid -->
+
 <div class="wrapper u-paddingTopBottom4x u-marginBottom4x shopify-wrapper">
   {% assign account_title = 'customer.order.title' | t: name: order.name %}
   {% include 'customers--my-account-header' %}
-  <img id="spinningLoad" src="{{ 'Rolling-1s-200px.gif' | asset_url }}" alt="loading indicator">
+  
   <div class="grid--full">
-    <!-- Order Tables Wrap -->
+  
     <div class="grid__item">
-      <div class='account-order--date-and-cancel'>
-        <p class="account-order--date">{{ 'customer.order.date' | t: date: order.created_at | date: "%B %d, %Y %I:%M%p" }}</p>
-        {% if order.cancelled == true } %}
-          {% assign cancelled_at = order.cancelled_at | date: "%B %d, %Y" %}
-          <p class="cancelled">Item(s) cancelled by customer or because of out-of-stock inventory. {{ cancelled_at }}</p>          
-        {% endif %}
-      </div>
-      <!-- Pending Items Table -->
-      <div class="account-order--table account-order--pending-table">
-        <h6>Item(s) Being Processed</h6>
-        <table class="full">
-          {% include 'order-page--table-header' %}
-          <tbody>
-          </tbody>
-          </table>
-      </div>
-      <!-- Shipped Home Table -->
-      <div class="account-order--table account-order--shipped-home-table">
-        <h6>Item(s) Shipped To Home</h6>
-        <table class="full">
-          {% include 'order-page--table-header' %}
-          <tbody>
-          </tbody>
-        </table>
-      </div>
-      <!-- Shipped Store Table -->
-      <div class="account-order--table account-order--shipped-store-table">\
-        <h6>Item(s) Shipped To Store</h6>
-        <table class="full">
-          {% include 'order-page--table-header' %}
-          <tbody>
-          </tbody>
-        </table>
-      </div>
-      <!-- Cancelled Table -->
-      <div class="account-order--table account-order--cancelled-table">    
-        <h6>Cancelled Item(s)</h6>
-        <table class="full">
-          {% include 'order-page--table-header' %}
-          <tbody>
-          </tbody>
-        </table>
-      </div>
-      <!-- Returned Table -->
-      <div class="account-order--table account-order--returned-table">
-        <h6>Returned Item(s)</h6>
-        <table class="full">
-          {% include 'order-page--table-header' %}
-          <tbody>
-          </tbody>
-        </table>
-      </div>
-      <br><br>
-    </div>
-
-    <!-- Totals Table -->
-    <br /><br />
-    <div class="account-order--table account-order--totals-table">
-      <table class="full">
-        <tbody>
-          <tr>
-            <td class='account-order--td-label text-left'>Subtotal</td>
-            <td class="test-right account-order--subtotal text-right"></td>
-          </tr>
-          <tr class="account-order--cancelled-total-row">
-            <td class='account-order--td-label text-left'>Cancelled Item(s)</td>
-            <td class="test-right account-order--cancelled-total text-right"></td>
-          </tr>
-          <tr class="account-order--returned-total-row">
-            <td class='account-order--td-label text-left'>Returned Item(s)</td>
-            <td class="test-right account-order--returned-total text-right"></td>
-          </tr>
-          <tr class="oaccount-order--shipping-total-row">
-            <td class='account-order--td-label text-left'>Shipping</td>
-            <td class="test-right account-order--shipping-total text-right"></td>
-          </tr>
-          <tr>
-            <td class='account-order--td-label text-left'>Taxes</td>
-            <td class="test-right account-order--taxes text-right"></td>
-          </tr>
-          <tr>
-            <td class='account-order--td-label account-order--td-totals text-left'>Total</td>
-            <td class="test-right account-order--totals text-right"></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <!-- Shipment Info -->
-    <div class="grid__item grid--full u-marginTop4x account-order--shipping">
-      <!-- Shipping -->
-      <div>
-        <div class="grid__item large--one-half u-marginBottom4x">
-          <div class="account-order--shipping-address">
-          <h6>Shipping Address</h6>
-
-            {% comment %} COMMENTED PER REQUIREMENTS - Keeping a reference in case we want to add it back in
-            <p><strong>Fulfillment Status:</strong> <span class="account-order--shipping-status"></span></p>
-            {% endcomment %}
-
-            <p>
-              {% if order.shipping_address.name != '' && order.shipping_address.name != ' ' %}
-              <span class="account-order--shipping-name">{{ order.shipping_address.name }}</span><br>
-              {% endif %}
-              <span class='account-order-shipping-address1'>{{ order.shipping_address.address1 }}</span><br>
-              <span class='account-order-shipping-city'>{{ order.shipping_address.city }},</span>
-              <span class='account-order-shipping-province'>
-              {% if order.shipping_address.province_code != '' %}
-                {{ order.shipping_address.province_code }}
-              {% elsif order.shipping_address.province != '' %}
-                {{ order.shipping_address.province }}
-              {% endif %}
-              </span>
-              <span class='account-order-shipping-zip'>{{ order.shipping_address.zip | upcase }}<br/></span>
-              <span class='account-order-shipping-country'>{{ order.shipping_address.country }}<br></span>
-              <span class='account-order-shipping-phone'>{{ order.shipping_address.phone }}<span>
-            </p>
-          </div>
+      {% comment %}<h4>{{ 'customer.order.title' | t: name: order.name }}</h4>{% endcomment %}
+  
+      <p>{{ 'customer.order.date' | t: date: order.created_at | date: "%B %d, %Y %I:%M%p" }}</p>
+  
+      {% if order.cancelled %}
+        <div class="cancelled">
+          {% assign cancelled_at = order.cancelled_at | date: "%B %d, %Y %I:%M%p" %}
+          <p class="h5">{{ 'customer.order.cancelled' | t: date: cancelled_at }}</p>
+          <p>{{ 'customer.order.cancelled_reason' | t: reason: order.cancel_reason }}</p>
         </div>
+      {% endif %}
+  
+      <div class="table-wrap">
+        <table class="full">
+          <thead>
+            <tr>
+              <th>{{ 'customer.order.product' | t }}</th>
+              <th>{{ 'customer.order.sku' | t }}</th>
+              <th>{{ 'customer.order.price' | t }}</th>
+              <th class="text-right">{{ 'customer.order.quantity' | t }}</th>
+              <th class="text-right">{{ 'customer.order.total' | t }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for line_item in order.line_items %}
+            <tr id="{{ line_item.id }}">
+              <td>
+                <span class="u-block">{{ line_item.title | link_to: line_item.product.url }}</span>
+                {% comment %}
+                {% if line_item.fulfillment %}
+                  <div class="note">
+                    {% assign created_at = line_item.fulfillment.created_at | date: format: 'month_day_year' %}
+                    {{ 'customer.order.fulfilled_at' | t: date: created_at }}
+                    {% if line_item.fulfillment.tracking_number %}
+                      <a href="{{ line_item.fulfillment.tracking_url }}">{{ line_item.fulfillment.tracking_company }} #{{ line_item.fulfillment.tracking_number}}</a>
+                    {% endif %}
+                  </div>
+                {% endif %}
+                {% endcomment %}
+                <a style="position: relative;" class="btn btn--text account-writeReviewButton" href="/account?view=review-products">Write Review</a>
+              </td>
+              <td>{{ line_item.sku }}</td>
+              <td>{{ line_item.price | money }}</td>
+              <td class="text-right">{{ line_item.quantity }}</td>
+              <td class="text-right">{{ line_item.quantity | times: line_item.price | money }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="4">{{ 'customer.order.subtotal' | t }}</td>
+              <td class="text-right">{{ order.subtotal_price | money }}</td>
+            </tr>
+  
+            {% for discount in order.discounts %}
+              <tr class="order_summary discount">
+                <td colspan="4">{{ discount.code }} {{ 'customer.order.discount' | t }}</td>
+                <td class="text-right">{{ discount.savings | money }}</td>
+              </tr>
+            {% endfor %}
+  
+            {% for shipping_method in order.shipping_methods %}
+            <tr>
+              <td colspan="4">{{ 'customer.order.shipping' | t }} ({{ shipping_method.title }})</td>
+              <td class="text-right">{{ shipping_method.price | money }}</td>
+            </tr>
+            {% endfor %}
+  
+            {% for tax_line in order.tax_lines %}
+              <tr>
+                <td colspan="4">{{ 'customer.order.tax' | t }} ({{ tax_line.title }} {{ tax_line.rate | times: 100 }}%)</td>
+                <td class="text-right">{{ tax_line.price | money }}</td>
+              </tr>
+            {% endfor %}
+  
+            <tr>
+              <td colspan="4"><strong>{{ 'customer.order.total' | t }}</strong></td>
+              <td class="text-right"><strong>{{ order.total_price | money }} {{ order.currency }}</strong></td>
+            </tr>
+          </tfoot>
+        </table>
       </div>
-      <!-- Shipping -->
-      <div class="account-order--delivery grid__item large--one-half u-marginBottom4x">
-        <h6>Delivery Method</h6>
-        {% for method in order.shipping_methods %}
-        <p class="account-order--delivery-method">{{ method.title }}</p>
-        {% endfor %}
-        {% if order.shipping_methods == blank %}
-        <p class="account-order--delivery-method">Not Applicable</p>
+  
+    </div>
+  
+    <div class="grid__item grid--full u-marginTop4x">
+     <div class="grid__item large--one-half u-marginBottom4x">
+      <h4>{{ 'customer.order.billing_address' | t }}</h4>
+  
+      <p><strong>{{ 'customer.order.payment_status' | t }}:</strong> {{ order.financial_status_label }}</p>
+  
+      <h5>{{ order.billing_address.name }}</h5>
+      <p>
+        {% comment %}
+        {% if order.billing_address.company != '' %}
+          {{ order.billing_address.company }}<br>
         {% endif %}
-      </div>
-
+        {% endcomment %}
+        {{ order.billing_address.street }}<br>
+        {{ order.billing_address.city }},
+        {% if order.billing_address.province != '' %}
+          {{ order.billing_address.province }}
+        {% endif %}
+        {{ order.billing_address.zip | upcase }}<br/>
+        {{ order.billing_address.country }}<br>
+        {{ order.billing_address.phone }}
+      </p>
+     </div>
+     <div class="grid__item large--one-half">
+  
+      <h4>{{ 'customer.order.shipping_address' | t }}</h4>
+  
+      <p><strong>{{ 'customer.order.fulfillment_status' | t }}:</strong> {{ order.fulfillment_status_label }}</p>
+  
+      <h5>{{ order.shipping_address.name }}</h5>
+      <p>
+        {% comment %}
+        {% if order.shipping_address.company != '' %}
+          {{ order.shipping_address.company }}<br>
+        {% endif %}
+        {% endcomment %}
+        {{ order.shipping_address.street }}<br>
+        {{ order.shipping_address.city }},
+        {% if order.shipping_address.province != '' %}
+          {{ order.shipping_address.province }}
+        {% endif %}
+        {{ order.shipping_address.zip | upcase }}<br>
+        {{ order.shipping_address.country }}<br>
+        {{ order.shipping_address.phone }}
+      </p>
+     </div>
+  
     </div>
-    </div>
+  
   </div>
 
   <div id="shopify-order-bottom-buttons" class="wrapper u-marginBottom4x">
@@ -147,27 +150,3 @@
   </div>
 
 </div>
-{{ 'account--order.css' | asset_url | stylesheet_tag }}
-<script>
-// Script to save the order variable as an object that account--order.js.liquid can use
-var jsOrder = {
-  lineItems : {{ order.line_items | json }},
-  cancelled: {{ order.cancelled }},
-  financial: `{{ order.financial_status }}`,
-  fulfillment: `{{order.fulfillment_status }}`,
-  billing : {{ order.billing_address | json }},
-  shipping : {{ order.shipping_address | json }},
-  shippingLines : {{ order.shipping_lines | json }},
-  moneyLines : {
-    shipping: {{ order.shipping_price | json }},
-    subtotal: {{ order.subtotal_price }},
-    tax: {{ order.tax_price }},
-    {% if order.total_discounts %}
-    discounts: {{ order.total_discounts}},
-    {% endif %}
-    total: {{ order.total_price }}
-  }
-}
-var defaultImg = `https:{{ 'default--no-image-100_small.jpg' | asset_img_url }}`
-</script>
-{{ 'account--order.js' | asset_url | script_tag }}

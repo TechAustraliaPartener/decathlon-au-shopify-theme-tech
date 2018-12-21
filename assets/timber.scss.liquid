@@ -6619,7 +6619,8 @@ body.js-drawer-open {
  */
 .sizechart,
 .appointment,
-.picshare {
+.picshare,
+.writeReview {
   display: none;
   position: fixed;
   top: 0;
@@ -6635,9 +6636,13 @@ body.js-drawer-open {
   }
 }
 
+.writeReview-wrapper--after { display: none; }
+
 .sizechart-wrapper,
 .appointment-wrapper,
-.picshare-wrapper {
+.picshare-wrapper,
+.writeReview-wrapper,
+.writeReview-wrapper--after {
   position: relative;
   background: $white;
   text-align: center;
@@ -6705,6 +6710,48 @@ body.js-drawer-open {
     }
   }
 }
+
+.writeReview-wrapper h5 {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+/* Mobile: portrait */
+@media screen and (max-width: 620px) {
+ .writeReview-wrapper {
+   padding-top: 100px;
+   top: 78px;
+   margin-bottom: 50px;
+ }
+  #close-review-button {
+    padding-bottom: 3em;
+  }
+}
+@media screen and (max-width: 480px) {
+  .close-btn.js-closeWriteReview {
+   top: 5em;
+  }
+}
+/* Mobile: landscape */
+@media screen and (max-device-width: 767px) and (orientation: landscape) {
+  .writeReview-wrapper {
+    padding-top: 200px;
+	top: 45px;
+  }
+  .close-btn.js-closeWriteReview {
+   top: 3em;
+  }
+}
+/* iPad: landscape */
+@media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape){
+  .writeReview-wrapper {
+    top:45px;
+  }
+  .close-btn.js-closeWriteReview {
+   	top: 2em;
+  }
+}
+
+h5.writeReview-thank { margin-bottom: 0; }
 
 .formInput-wrapperGroup { margin-bottom: $space; }
 
@@ -7810,6 +7857,15 @@ body.is-emptyRecentlyViewed .blue-band--footer {
   max-width: 410px;
 }
 
+.account-writeReviewButton {
+  display: block;
+  float: left;
+  width: auto;
+  text-decoration: underline;
+}
+
+.account-reviewProducts .grid__item { margin: 20px 0; }
+
 .account-orderHistory.visually-hidden,
 .account-reviewProducts.visually-hidden {
   position: absolute;
@@ -8061,9 +8117,9 @@ body.has-itemsInCart .header-cartWrapper .wishlist-link-li { display: none; }
   /* .site-nav--mobile .site-nav__link { margin-top: -0.4em; } */
 
   .appointment-wrapper,
-  .picshare-wrapper { 
-    padding: $space*4; 
-  }
+  .picshare-wrapper,
+  .writeReview-wrapper,
+  .writeReview-wrapper--after { padding: $space*4; }
   .customr-field-text input,
   .customr-field-email input,
   .customr-field-password input,
@@ -9002,7 +9058,9 @@ h1.banner-title {
  */
 .sizechart-wrapper,
 .appointment-wrapper,
-.picshare-wrapper {
+.picshare-wrapper,
+.writeReview-wrapper,
+.writeReview-wrapper--after {
   height: auto;
 
   .close-appt-btn {
@@ -9022,6 +9080,8 @@ h1.banner-title {
     font-size: 18px;
   }
 }
+
+h5.writeReview-thank { margin-bottom: 0; }
 
 .customr-field-text,
 .customr-field-email,
@@ -9794,6 +9854,12 @@ body.is-pinningForm .selector-wrapper.selector-wrapper--size:not(.selector-wrapp
     bottom: .5em;
   }
   .productOptions .productOptions-selects .selector-wrapper--color { width: 144px; }
+}
+
+.account-writeReviewButton {
+  float: right;
+  margin-top: $space*-1.4;
+  text-decoration: underline;
 }
 
   .productCallout-image--bottom {
