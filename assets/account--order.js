@@ -109,6 +109,11 @@ $(document).ready(function () {
             sep = ", "
           }
         }
+      } else {
+        // add anything left to pending
+        addProductsReturn = addProductsToSection(productDict, 'pending', sections, [jsOrder.lineItems[i]])
+        sections = addProductsReturn[0]
+        productDict = addProductsReturn[1]
       }
     }
   }
