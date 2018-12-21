@@ -1,7 +1,13 @@
 <!-- /templates/index.liquid -->
 {% comment %} {% include 'promo-band' %} {% endcomment %}
 
-<div id="bannerHero" class="banner banner--slideshow js-slick--attr" data-slick='{ "dots": true, "infinite": true, "autoplay": true, "autoplaySpeed": 7000, "slidesToShow": 1, "arrows": true, "adaptiveHeight": true }'>
+<div id="bannerHero" class="banner banner--slideshow js-slick--attr" data-slick='{ "dots": true, 
+  "infinite": true,
+  "autoplay": true,
+  "autoplaySpeed": 7000,
+  "slidesToShow": 1,
+  "arrows": true,
+  "adaptiveHeight": false }'>
 
     {% for i in (1..3) %}
       {% assign slideName = 'homepage_main_banner_' | append: i | append: '_'  %}
