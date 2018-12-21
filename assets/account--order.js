@@ -2,7 +2,6 @@ $(document).ready(function () {
   // Set up variables
   var productDict = {}
   var addProductsReturn
-  var deliveryMethod = 'Not Applicable'
   var sections = {
     pending: {
       name: 'pending',
@@ -46,13 +45,10 @@ $(document).ready(function () {
     addProductsReturn = addProductsToSection(productDict, 'cancelled', sections, jsOrder.lineItems)
     sections = addProductsReturn[0]
     productDict = addProductsReturn[1]
-
-    $('.account-order--shipping-method').text(deliveryMethod)
     $('.account-order--shipping-address').hide()
   } else {
     // create a reference dictionary of all products ordered
     productDict = createProductDict(jsOrder.lineItems)
-
     // Sort items into tables
     for (let i = 0; i < jsOrder.lineItems.length; i++) {
       // If the product is not in the reference dictionary continue
@@ -69,7 +65,7 @@ $(document).ready(function () {
         addProductsReturn = addProductsToSection(productDict, 'pending', sections, [jsOrder.lineItems[i]])
         sections = addProductsReturn[0]
         productDict = addProductsReturn[1]
-      } else if (jsOrder.lineItems[i].fulfillment && (jsOrder.shippingMethods.length < 1)) {
+      } else if (jsOrder.lineItems[i].fulfillment) {
         // save references to the quantity fulfilled and quantity ordered
         var fulfilledQty = productDict[jsOrder.lineItems[i].sku].fulfilled
         var orderedQty = productDict[jsOrder.lineItems[i].sku].quantity
@@ -78,7 +74,6 @@ $(document).ready(function () {
           addProductsReturn = addProductsToSection(productDict, 'shipped_home', sections, [jsOrder.lineItems[i]])
           sections = addProductsReturn[0]
           productDict = addProductsReturn[1]
-          deliveryMethod = "Shipped to Home"
         } else {
           // fulfilled != ordered
           // copy the product information
@@ -95,19 +90,6 @@ $(document).ready(function () {
           addProductsReturn = addProductsToSection(productDict, 'pending', sections, [jsOrder.lineItems[i]])
           sections = addProductsReturn[0]
           productDict = addProductsReturn[1]
-          deliveryMethod = 'Shipped to Home'
-        }
-      } else if (jsOrder.lineItems[i].fulfillment && (jsOrder.shippingMethods.length > 0)) {
-        // $('.account-order--shipping-title').text('Shipped to Store')
-        // check title of shipping methods, if in-store pickup ("Decathlon San Francisco Store Pickup", "Decathlon Emeryville Store Pickup")
-        let sep = ''
-        let deliveryMethod = ''
-        for (let i = 0; i < jsOrder.shippingMethods.length; i++) {
-          if (jsOrder.shippingMethods[i].title != '') {
-            deliveryMethod += sep
-            deliveryMethod += jsOrder.shippingMethods[i].title
-            sep = ", "
-          }
         }
       } else {
         // add anything left to pending
@@ -117,8 +99,6 @@ $(document).ready(function () {
       }
     }
   }
-  // Set shipping method
-  $('.account-order--delivery-method').text(deliveryMethod)
 
   // Populate Tables
   $('.account-order--pending-table tbody').append(createProductTableRows(sections.pending['items'], false))
@@ -170,9 +150,7 @@ $(document).ready(function () {
     $('.account-order--returned-total-row').hide()
   }
   $('.account-order--totals-table').css('display', 'table')
-  $('.account-order--shipping-method').text(deliveryMethod)
   $('.account-order--shipping').show()
-  if (deliveryMethod.indexOf('Pickup') == -1 && deliveryMethod != "Not Applicable") { $('.account-order--shipping-address').show()}
   $('#shopify-order-bottom-buttons').css('display', 'flex')
 })
 

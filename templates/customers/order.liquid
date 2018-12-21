@@ -99,6 +99,7 @@
       <div>
         <div class="grid__item large--one-half u-marginBottom4x">
           <div class="account-order--shipping-address">
+          <h6>Shipping Address</h6>
 
             {% comment %} COMMENTED PER REQUIREMENTS - Keeping a reference in case we want to add it back in
             <p><strong>Fulfillment Status:</strong> <span class="account-order--shipping-status"></span></p>
@@ -126,8 +127,13 @@
       </div>
       <!-- Shipping -->
       <div class="account-order--delivery grid__item large--one-half u-marginBottom4x">
-        <h6>Devlivery Method</h6>
-        <p><span class="account-order--delivery-method"></span></p>
+        <h6>Delivery Method</h6>
+        {% for method in order.shipping_methods %}
+        <p class="account-order--delivery-method">{{ method.title }}</p>
+        {% endfor %}
+        {% if order.shipping_methods == blank %}
+        <p class="account-order--delivery-method">Not Applicable</p>
+        {% endif %}
       </div>
 
     </div>
@@ -151,7 +157,6 @@ var jsOrder = {
   fulfillment: `{{order.fulfillment_status }}`,
   billing : {{ order.billing_address | json }},
   shipping : {{ order.shipping_address | json }},
-  shippingMethods : {{ order.shipping_methods | json }},
   shippingLines : {{ order.shipping_lines | json }},
   moneyLines : {
     shipping: {{ order.shipping_price | json }},
