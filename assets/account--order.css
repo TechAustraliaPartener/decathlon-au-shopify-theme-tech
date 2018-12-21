@@ -114,3 +114,10 @@ div.row {
 .account-writeReviewButton {
   text-decoration: underline;
 }
+
+/* Shipping and Delivery */
+@media screen and (max-width : 48em) {
+  .grid--full>.grid__item.account-order--delivery {
+    padding-left: 30px;
+  }
+}
