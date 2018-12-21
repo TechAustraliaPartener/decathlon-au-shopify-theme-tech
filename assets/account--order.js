@@ -53,7 +53,7 @@ $(document).ready(function () {
     // create a reference dictionary of all products ordered
     productDict = createProductDict(jsOrder.lineItems)
 
-    // Loop products ordered
+    // Sort items into tables
     for (let i = 0; i < jsOrder.lineItems.length; i++) {
       // If the product is not in the reference dictionary continue
       if (!productDict.hasOwnProperty(jsOrder.lineItems[i].sku)) {
