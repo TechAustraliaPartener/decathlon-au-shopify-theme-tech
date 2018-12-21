@@ -75,28 +75,30 @@ p {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+div.row {
   -webkit-transition: width 2s; /* Safari */
   transition: width 2s;
 }
-/* change the width of product name/link span based on screen size */
 @media screen and (max-width : 30em) {
-  .order-page--product-span {
-    width: 5em;
+  div.row {
+    width: 7em;
   }
 }
 @media screen and (min-width : 30em) {
-  .order-page--product-span {
+  div.row {
     width: 14em;
   }
 }
 @media screen and (min-width : 40em) {
-  .order-page--product-span {
-    width: 25em;
+  div.row {
+    width: 21em;
+
   }
 }
 @media screen and (min-width : 60em) {
-  .order-page--product-span {
-    width: 47em;
+  div.row {
+    width: 40em;
   }
 }
 
