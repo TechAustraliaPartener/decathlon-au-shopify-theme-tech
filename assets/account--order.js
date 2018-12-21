@@ -41,7 +41,7 @@ $(document).ready(function () {
   // populate productDict
   productDict = createProductDict(jsOrder.lineItems)
 
-  if (jsOrder.cancelled) {
+  if (jsOrder.cancelled == true) {
     // If order is cancelled, add all products to the cancelled section and set the shipping title 
     addProductsReturn = addProductsToSection(productDict, 'cancelled', sections, jsOrder.lineItems)
     sections = addProductsReturn[0]
