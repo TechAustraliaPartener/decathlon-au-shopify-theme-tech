@@ -98,31 +98,30 @@
       <!-- Shipping -->
       <div>
         <div class="grid__item large--one-half u-marginBottom4x">
-        <div class="account-order--shipping-address">
-        <h6>Shipping Address</h6>
+          <div class="account-order--shipping-address">
 
-          {% comment %} COMMENTED PER REQUIREMENTS - Keeping a reference in case we want to add it back in
-          <p><strong>Fulfillment Status:</strong> <span class="account-order--shipping-status"></span></p>
-          {% endcomment %}
+            {% comment %} COMMENTED PER REQUIREMENTS - Keeping a reference in case we want to add it back in
+            <p><strong>Fulfillment Status:</strong> <span class="account-order--shipping-status"></span></p>
+            {% endcomment %}
 
-          <p>
-            {% if order.shipping_address.name != '' && order.shipping_address.name != ' ' %}
-            <span class="account-order--shipping-name">{{ order.shipping_address.name }}</span><br>
-            {% endif %}
-            <span class='account-order-shipping-address1'>{{ order.shipping_address.address1 }}</span><br>
-            <span class='account-order-shipping-city'>{{ order.shipping_address.city }},</span>
-            <span class='account-order-shipping-province'>
-            {% if order.shipping_address.province_code != '' %}
-              {{ order.shipping_address.province_code }}
-            {% elsif order.shipping_address.province != '' %}
-              {{ order.shipping_address.province }}
-            {% endif %}
-            </span>
-            <span class='account-order-shipping-zip'>{{ order.shipping_address.zip | upcase }}<br/></span>
-            <span class='account-order-shipping-country'>{{ order.shipping_address.country }}<br></span>
-            <span class='account-order-shipping-phone'>{{ order.shipping_address.phone }}<span>
-          </p>
-            </div>
+            <p>
+              {% if order.shipping_address.name != '' && order.shipping_address.name != ' ' %}
+              <span class="account-order--shipping-name">{{ order.shipping_address.name }}</span><br>
+              {% endif %}
+              <span class='account-order-shipping-address1'>{{ order.shipping_address.address1 }}</span><br>
+              <span class='account-order-shipping-city'>{{ order.shipping_address.city }},</span>
+              <span class='account-order-shipping-province'>
+              {% if order.shipping_address.province_code != '' %}
+                {{ order.shipping_address.province_code }}
+              {% elsif order.shipping_address.province != '' %}
+                {{ order.shipping_address.province }}
+              {% endif %}
+              </span>
+              <span class='account-order-shipping-zip'>{{ order.shipping_address.zip | upcase }}<br/></span>
+              <span class='account-order-shipping-country'>{{ order.shipping_address.country }}<br></span>
+              <span class='account-order-shipping-phone'>{{ order.shipping_address.phone }}<span>
+            </p>
+          </div>
         </div>
       </div>
       <!-- Shipping -->
