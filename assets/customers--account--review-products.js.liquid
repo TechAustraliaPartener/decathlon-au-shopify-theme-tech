@@ -5,7 +5,7 @@ $(document).ready(function() {
 
 var params = {
   type: 'GET',
-    url: `/tools/shopify-decathlon-proxy-s/newstore-order-for-shopify/newstore-reviews?email=${customerEmail}&customerId=${customerId}`,
+    url: `/tools/shopify-decathlon-proxy-p/newstore-order-for-shopify/newstore-reviews?email=${customerEmail}&customerId=${customerId}`,
   success: function(products) {
     var productDiv = $('#newstore-products-for-review')
     if (products.length > 0) {
