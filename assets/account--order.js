@@ -137,7 +137,7 @@ $(document).ready(function () {
     }
   }
   // Set shipping method
-  $('.account-order--shipping-method').text(deliveryMethod)
+  $('.account-order--delivery-method').text(deliveryMethod)
 
   // Populate Tables
   $('.account-order--pending-table tbody').append(createProductTableRows(sections.pending['items'], false))
