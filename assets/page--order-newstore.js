@@ -4,7 +4,7 @@ $(document).ready(function () {
 
 var params = {
   type: 'GET',
-  url: `/tools/shopify-decathlon-proxy-p/newstore-order-for-shopify/single-order?order=${forJS['order']}`,
+  url: `/tools/shopify-decathlon-proxy-s/newstore-order-for-shopify/single-order?order=${forJS['order']}`,
   success: function (order) {
     // Populate order date
     $('.order-page--date').text(order.date)

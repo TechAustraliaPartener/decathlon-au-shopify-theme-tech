@@ -5,7 +5,7 @@ $(document).ready(function() {
 
 var params = {
   type: 'GET',
-    url: `/tools/shopify-decathlon-proxy-p/newstore-order-for-shopify/order-list?email=${customerEmail}&customerId=${customerId}`,
+    url: `/tools/shopify-decathlon-proxy-s/newstore-order-for-shopify/order-list?email=${customerEmail}&customerId=${customerId}`,
 
   success: function(orders) {
     var newstoreOrderBody = document.getElementById("newstoreOrderBody");
