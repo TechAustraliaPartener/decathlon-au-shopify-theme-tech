@@ -1,4 +1,4 @@
-// imported/called by parent gulp task
+// Imported/called by parent gulp task
 
 const rename = require('gulp-rename');
 const gulpRollup = require('gulp-better-rollup');
@@ -9,8 +9,6 @@ const babel = require('rollup-plugin-babel');
 const { terser } = require('rollup-plugin-terser');
 
 const babelConfig = require('./babel.config');
-
-const path = require('path');
 
 const taskName = 'jsPersistentCart';
 
