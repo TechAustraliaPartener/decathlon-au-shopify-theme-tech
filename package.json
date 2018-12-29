@@ -37,6 +37,7 @@
     "gulp-util": "^3.0.7",
     "gulp-watch": "^4.3.9",
     "jshint": "^2.9.1",
-    "jshint-stylish": "^2.2.1"
+    "jshint-stylish": "^2.2.1",
+    "persistent-cart": "./persistent-cart"
   }
 }

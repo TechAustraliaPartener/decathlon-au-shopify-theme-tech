@@ -1,4 +1,5 @@
 /config.yml
 .DS_Store
 node_modules/*
+/assets/persistent-cart.js
 src/css/*
