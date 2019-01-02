@@ -13,7 +13,7 @@ var params = {
         // Create the image tag for the product. If no image url is associated, a default image is used
   		let imgTag;
         if (products[i].variantImgUrl == null || products[i].variantImgUrl === ""){
-          imgTag = `{{ 'reviews--default-img.gif' | asset_url | img_tag }}`
+          imgTag = `{{ 'default-no-img.gif' | asset_url | img_tag }}`
         } else {
           imgTag = `<img src="${products[i].variantImgUrl}" alt="${products[i].productName}">`
         }
