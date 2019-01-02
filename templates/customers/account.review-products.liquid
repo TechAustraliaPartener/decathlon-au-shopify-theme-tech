@@ -47,11 +47,11 @@
     <div class="js-account-review-products" data-jwt-token="{{ shop.metafields.picshare.jwt_token }}"></div>
   </div>
 </div>
+{{ 'customers--account--review-products.scss.css' | asset_url | stylesheet_tag }} 
 <script>	
   // Shopify information is saved to variables so customers--account--review-products.js can use them
   var customerEmail = `{{customer.email}}`;		
   var customerId = `{{customer.id}}`;
 </script>
-{{ 'customers--account--review-products.scss.css' | asset_url | stylesheet_tag }} 
 {{'customers--account--review-products.js' | asset_url | script_tag }}
 {% include 'review-template' %}
