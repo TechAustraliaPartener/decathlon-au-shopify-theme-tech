@@ -1,30 +1,37 @@
 $(document).ready(function() {
   jQuery.ajax(params);
-
 });
 
 var params = {
   type: 'GET',
     url: `/tools/shopify-decathlon-proxy-s/newstore-order-for-shopify/newstore-reviews?email=${customerEmail}&customerId=${customerId}`,
   success: function(products) {
-    var productDiv = $('#newstore-products-for-review')
+    var reviewableProducts = []
     if (products.length > 0) {
       for (let i = 0; i < products.length; i ++) {
+        // Do not show product if there is no name or modelCode
+        if (!products[i].productName || products[i].productName == '' || !products[i].modelCode || products[i].modelCode == '') {
+          continue
+        }
         // Create the image tag for the product. If no image url is associated, a default image is used
-  		let imgTag;
+  		  let imgTag;
         if (products[i].variantImgUrl == null || products[i].variantImgUrl === ""){
           imgTag = `{{ 'default-no-img.gif' | asset_url | img_tag }}`
         } else {
           imgTag = `<img src="${products[i].variantImgUrl}" alt="${products[i].productName}">`
         }
-        if (products[i].modelCode == '') {
-        	console.log('product: ', product[i])
-        }
-        // Append the product div
-        productDiv.append(`<div class="grid__item medium--one-half large--one-fifth text-center"><a class="account-writeReviewButton account-order--js-writeReviewForm" review-sku="${products[i].sku}" review-modelCode="${products[i].modelCode}" review-productName="${products[i].productName}">` + imgTag + `<br/>${products[i].productName}</a></div>`)
+        // Append the product div to list of reviewableProducts
+        reviewableProducts.push(`<div class="grid__item medium--one-half large--one-fifth text-center"><a class="account-writeReviewButton account-order--js-writeReviewForm" review-sku="${products[i].sku}" review-modelCode="${products[i].modelCode}" review-productName="${products[i].productName}">` + imgTag + `<br/>${products[i].productName}</a></div>`)        
       }
-      $('#spinningLoad').hide()
-      $('#newstore-products-for-review').show()
+      if (reviewableProducts.length > 0) {
+        var productDiv = $('#newstore-products-for-review')
+        productDiv.append(reviewableProducts)
+        $('#spinningLoad').hide()        
+        $('#newstore-products-for-review').show()
+      } else {
+        $('#spinningLoad').hide()        
+        $('#shopify-products-for-review').show()
+      }
     } else {
       $('#spinningLoad').hide()
       $('#shopify-products-for-review').show()
