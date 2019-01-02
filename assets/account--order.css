@@ -1,0 +1,123 @@
+/* General */
+table,
+th,
+span,
+p {
+  font-size: 1.1em;
+}
+
+/* Date and cancellation */
+.account-order--date-and-cancel {
+  margin-bottom: 15px;
+}
+
+.account-order--date, 
+.cancelled {
+  margin: 0;
+}
+.cancelled {
+  background-color: transparent;
+  padding: 0;
+}
+
+/* Load Spinner */
+#spinningLoad {
+  max-width: 50px;
+  max-height: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+/* @productTable */
+.account-order--date,
+.cancelled,
+.account-order--pending-table,
+.account-order--shipped-home-table,
+.account-order--shipped-store-table,
+.account-order--cancelled-table,
+.account-order--returned-table,
+.account-order--shipping,
+.account-order--shipping-address,
+.account-order--totals-table,
+#shopify-order-bottom-buttons {
+  display: none; 
+}
+
+.account-order--table td {
+  padding: 5px 15px; 
+}
+
+/* @productRows */
+.account-order--product-img {
+  max-height: 6rem;
+  max-width: 6rem; 
+}
+.account-order--product-span {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+div.row {
+  -webkit-transition: width 2s; /* Safari */
+  transition: width 2s;
+}
+@media screen and (max-width : 30em) {
+  div.row {
+    width: 7em;
+  }
+}
+@media screen and (min-width : 30em) {
+  div.row {
+    width: 14em;
+  }
+}
+@media screen and (min-width : 40em) {
+  div.row {
+    width: 21em;
+  }
+}
+@media screen and (min-width : 60em) {
+  div.row {
+    width: 40em;
+  }
+}
+
+/* @totalsTable */
+.account-order--totals-table {
+  width: 100%;
+}
+.account-order--totals-table td {
+  padding: 0.5rem;
+}
+.account-order--td-totals {
+  font-weight: bold;
+}
+
+.account-order--table,
+.account-order--table thead,
+.account-order--table th,
+.account-order--table tbody,
+.account-order--table tr,
+.account-order--table td {
+  border: none; 
+}
+.account-order--table table {
+  border-top: 1px solid rgb(128, 128, 128); 
+}
+
+/* @reviewButton */
+.account-order--writeReviewButton {
+  float: left;
+  margin-top: 0;
+}
+.account-writeReviewButton {
+  text-decoration: underline;
+}
+
+/* Shipping and Delivery */
+@media screen and (max-width : 48em) {
+  .grid--full>.grid__item.account-order--delivery {
+    padding-left: 30px;
+  }
+}

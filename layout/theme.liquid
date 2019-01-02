@@ -22,9 +22,15 @@
 
 
   <!-- Title and description ================================================== -->
-  <title>
-  {{ page_title }}{% if current_tags %}{% assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags }}{% endif %}{% if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} | {{ shop.name }}{% endunless %}
-  </title>
+  {% if page_title == 'order-newstore' %}
+    <title>
+    Order | {{shop.name}}
+    </title>
+  {% else %}
+    <title>
+    {{ page_title }}{% if current_tags %}{% assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags }}{% endif %}{% if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} | {{ shop.name }}{% endunless %}
+    </title>
+  {% endif %}
 
   {% if page_description %}
   <meta name="description" content="{{ page_description | escape }}">
@@ -216,7 +222,6 @@
   {% endcomment %}
 
   {{ 'decathlon.js' | asset_url | script_tag }}
-  {{ 'account-order--write-review.js' | asset_url | script_tag }}
   {{ 'patterns-toolkit.js' | asset_url | script_tag }}
 
   {% comment %}{% include 'decathlon-wishlist' %}{% endcomment %}
