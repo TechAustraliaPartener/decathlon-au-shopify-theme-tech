@@ -31,6 +31,7 @@ makeRequest(
   `
 ).then(({ customer }) => console.log(customer.cart.id));
 
+// TODO: Does this need an expiration?
 const setCartCookie = cartId => {
   document.cookie = `cart=${cartId}; path=/`;
 };
