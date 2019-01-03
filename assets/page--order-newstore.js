@@ -131,7 +131,7 @@ function createProductTableRows (products, reviewLink) {
 
     // Price
     singleRow += "<td class='text-right'>"
-    singleRow += '$' + (products[i].quantity * products[i].price.net).toFixed(2)
+    singleRow += '$' + (products[i].quantity * products[i].price.catalog).toFixed(2)
     singleRow += '</td>'
     singleRow += '</tr>'
     tableRowHtml += singleRow
