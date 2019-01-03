@@ -7,7 +7,6 @@ const makeRequest = (query, data) =>
     body: query(data),
     method: 'POST',
     headers: {
-      'Access-Control-Allow-Origin': '*',
       'Content-Type': 'application/json'
     }
   })
