@@ -1,0 +1,6 @@
+{
+  "extends": "plugin:@cloudfour/recommended",
+  "env": {
+    "browser": true
+  }
+}
