@@ -125,8 +125,7 @@
 
   <div id="shopify-order-bottom-buttons" class="wrapper u-marginBottom4x">
     <p class="order-back-to-cart-btn"><a href="/account?view=order-history">Return To Order History</a></p>
-    {% assign returnLink = "https://returns.decathlon.com/start_return?ext_order_number=" | append: {{order.name}} | append: "&customer_id=" | append: {{customer.id}} %}    
-    <p class="shopify-order-return-wrap"><a id="shopify-order-return-btn" class="btn" href={{returnLink}}>Return An Item</a></p>
+    <p class="shopify-order-return-wrap"><a id="shopify-order-return-btn" class="btn" href=''>Return An Item</a></p>  
   </div>
 
 </div>
@@ -141,6 +140,7 @@
    var param = parts[i].split('=')
    forJS[param[0]] = param[1]
   }
+  forJS.customerId = {{ customer.id }}
   
   var defaultImg = `https:{{ 'default-no-img.gif' | asset_url }}`
 </script>
