@@ -10,10 +10,10 @@ const makeRequest = (query, data) =>
       'Content-Type': 'application/json'
     }
   })
-    .then(d => d.json())
-    .then(d => {
-      if (d.error) throw d.error;
-      return d.data;
+    .then(response => response.json())
+    .then(data => {
+      if (data.error) throw data.error;
+      return data.data;
     });
 
 makeRequest(
