@@ -1,5 +1,7 @@
 /config.yml
 .DS_Store
 node_modules/*
-/assets/persistent-cart.js
 src/css/*
+
+# Compiled/bundled from /persistent-cart
+/assets/persistent-cart.js
