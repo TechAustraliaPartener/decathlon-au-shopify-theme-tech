@@ -20,18 +20,14 @@ const makeRequest = (query, data) =>
 makeRequest(
   gql`
     {
-      message
+      customer(id: 2) {
+        cart {
+          id
+        }
+      }
     }
   `
-).then(({ message }) => console.log(message));
-
-makeRequest(
-  gql`
-    {
-      name
-    }
-  `
-);
+).then(({ customer }) => console.log(customer.cart.id));
 
 const setCartCookie = cartId => {
   document.cookie = `cart=${cartId}; path=/`;
