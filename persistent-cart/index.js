@@ -2,8 +2,11 @@ import gql from 'nanographql';
 
 console.log('persistent cart');
 
+const apiURL = `${process.env.DECATHLON_PERSISTENT_CART_URL ||
+  'http://localhost:8080'}/shopify/graphql`;
+
 const makeRequest = (query, data) =>
-  fetch('http://localhost:8080/shopify/graphql', {
+  fetch(apiURL, {
     body: query(data),
     method: 'POST',
     headers: {

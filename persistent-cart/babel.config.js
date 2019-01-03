@@ -1,4 +1,4 @@
 module.exports = {
-  presets: [[require('@babel/preset-env'), { loose: true }]],
-  plugins: []
+  presets: [['@babel/preset-env', { loose: true }]],
+  plugins: ['transform-inline-environment-variables']
 };
