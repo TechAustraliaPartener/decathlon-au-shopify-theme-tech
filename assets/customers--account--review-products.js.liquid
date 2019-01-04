@@ -63,9 +63,9 @@ var params = {
           t(".inputWrap > input, .inputWrap > textarea").on("keyup", function() {}),
             t(".js-closeWriteReview").click(function(e) {
           		document.getElementsByTagName('html')[0].style.overflowY = 'scroll'		
-				document.body.scrollTop = 0; // Scroll to top of page when closed: For Safari		
-				document.documentElement.scrollTop = 0; // Scroll to top of page when closed:For Chrome, Firefox, IE and Opera
-                t(".writeReview form").get(0).reset(), t(".writeReview").css("display", "none")
+              document.body.scrollTop = 0; // Scroll to top of page when closed: For Safari		
+              document.documentElement.scrollTop = 0; // Scroll to top of page when closed:For Chrome, Firefox, IE and Opera
+              t(".writeReview form").get(0).reset(), t(".writeReview").css("display", "none")
           }),
           console.log(`t(this).attr("action") before POST: ${t(this).attr("action")}`)
           t(".writeReview form").submit(function(e) {
@@ -74,8 +74,8 @@ var params = {
                 t.post(i.attr("action"), i.serialize(), function(e, i) {
                 "success" == i ? (t(".writeReview-wrapper").hide(), t(".writeReview-wrapper--after").show() ): console.log(i, e);
                 t(".js-closeWriteReview--after").click(function(e) {
-                  	document.body.scrollTop = 0; // Scroll to top of page when closed: For Safari	
-					document.documentElement.scrollTop = 0; // Scroll to top of page when closed:For Chrome, Firefox, IE and Opera
+                  document.body.scrollTop = 0; // Scroll to top of page when closed: For Safari	
+                  document.documentElement.scrollTop = 0; // Scroll to top of page when closed:For Chrome, Firefox, IE and Opera
                   t(".writeReview form").get(0).reset(), t(".writeReview").css("display", "none"), t(".writeReview-wrapper--after").css("display", "none")
                 })
               })
