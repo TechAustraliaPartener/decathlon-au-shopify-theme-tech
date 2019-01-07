@@ -30,19 +30,19 @@
             </tbody>
           </table>
       {% else %}
-  
+
         <p  id='noOrders' class="text-center">{{ 'customer.orders.none' | t }}</p>
         <p cid='shopNowBtn' lass="text-center"><a href="/collections" class="btn">Shop Now</a></p>
-  
+
       {% endif %}
       <table class="full" id="newstoreOrderTbl">
         <thead>
-          <tr>  
+          <tr>
             <th class="orderTh">{{ 'customer.orders.order_number' | t }}</th>
             <th class="orderTh">{{ 'customer.orders.date' | t }}</th>
             <th class="orderTh">{{ 'customer.orders.payment_status' | t }}</th>
             <th class="orderTh">{{ 'customer.orders.fulfillment_status' | t }}</th>
-          <th class="orderTh">{{ 'customer.orders.total' | t }}</th>       
+          <th class="orderTh">{{ 'customer.orders.total' | t }}</th>
           </tr>
         </thead>
         <tbody id="newstoreOrderBody">
@@ -50,8 +50,11 @@
       </table>
     </div>
     <p id="order-history-return-btn" class="text-center u-marginTop2x"><a class="btn" href="/pages/returns">Return An Item</a></p>
-  </div>  
+  </div>
 </div>
+{% comment %}
+Stylesheets
+{% endcomment %}
 {{ 'account--order-history.css' | asset_url | stylesheet_tag }}
 {% comment %}
 Save liquid variables to be used in account--order-history.js
