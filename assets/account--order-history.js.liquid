@@ -25,7 +25,7 @@ var params = {
         newTd.setAttribute('class', 'orderTd');
         var newA = document.createElement('a');
 
-        newA.setAttribute('href', "https://testing-decathlon-usa.myshopify.com/pages/order-newstore?order=" + newOrders.orders[newCounter].encodedString);
+        newA.setAttribute('href', `${shopUrl}/pages/order-newstore?order=${newOrders.orders[newCounter].encodedString}`);
 
         var newTxt = document.createTextNode(newOrders.orders[newCounter].name);
         newA.appendChild(newTxt);
