@@ -16,8 +16,9 @@ var params = {
     $('.order-page--cancelled-table tbody').append(createProductTableRows(order.cancelled['items'], false))
     $('.order-page--returned-table tbody').append(createProductTableRows(order.returned['items'], true))
 
-    // Populate Totals
-    $('.order-page--subtotal').text('$' + order.totals.subtotal)
+	// Populate Totals
+	$('.order-page--subtotal').text('$' + order.totals.subtotal)
+	$('.order-page--pending-total').text('$' + order.totals.pending)
     $('.order-page--cancelled-total').text('$' + order.totals.cancelled)
     $('.order-page--returned-total').text('$' + order.totals.returned)
     $('.order-page--shipping-type').text(order.shipping.type)
@@ -78,7 +79,10 @@ var params = {
       $('.order-page--returned-table').show()
     } else {
       $('.order-page--returned-total-row').hide()
-    }
+	}
+	if (order.pending.items.length == 0 || order.totals.pending == "0.00") {
+		$('.order-page--pending-total-row').hide()
+	}
     $('.order-page--totals-table').show()
     $('.order-page--shipping').show()
     if(order.shipping.address) {
