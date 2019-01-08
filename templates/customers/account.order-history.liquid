@@ -52,11 +52,7 @@
     <p id="order-history-return-btn" class="text-center u-marginTop2x"><a class="btn" href="/pages/returns">Return An Item</a></p>
   </div>
 </div>
-{% comment %}
-Stylesheets
-{% endcomment %}
 {{ 'account--order-history.css' | asset_url | stylesheet_tag }}
-{{ 'https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css' | stylesheet_tag }}
 {% comment %}
 Save liquid variables to be used in account--order-history.js
 {% endcomment %}
@@ -66,6 +62,6 @@ Save liquid variables to be used in account--order-history.js
       customerEmail = `{{ customer.email }}`,
 	  shopUrl = `{{ shop.secure_url }}`
 </script>
-<!-- include Javascript -->
 {{ 'https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js' | script_tag }}
+{{ 'https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css' | stylesheet_tag }}
 {{ 'account--order-history.js'| asset_url | script_tag}}
