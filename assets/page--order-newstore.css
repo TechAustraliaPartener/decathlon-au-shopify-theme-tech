@@ -1,9 +1,9 @@
 /* General */
 table,
-th,
-span,
-p {
-  font-size: 1.1em;
+p,
+.table-wrap p span,
+h6 {
+  font-size: 16px;
 }
 
 /* Date and cancellation */
