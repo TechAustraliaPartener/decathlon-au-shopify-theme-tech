@@ -140,7 +140,7 @@
    var param = parts[i].split('=')
    forJS[param[0]] = param[1]
   }
-  forJS.customerId = {{ customer.id }}
+  forJS.customerId = `{{ customer.id }}`
 
   var defaultImg = `https:{{ 'default-no-img.gif' | asset_url }}`
 </script>
