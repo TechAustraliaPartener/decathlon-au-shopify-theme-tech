@@ -2,9 +2,16 @@ $(document).ready(function () {
   jQuery.ajax(params)
 })
 
+var url = ''
+if (shopUrl == "https://decathlon.com") {
+  url =  `/tools/shopify-decathlon-proxy-p/newstore-order-for-shopify/single-order?order=${forJS['order']}`
+} else {
+	url =  `/tools/shopify-decathlon-proxy-s/newstore-order-for-shopify/single-order?order=${forJS['order']}`
+}
+
 var params = {
   type: 'GET',
-  url: `/tools/shopify-decathlon-proxy-s/newstore-order-for-shopify/single-order?order=${forJS['order']}`,
+  url: url,
   success: function (order) {
     // Populate order date
     $('.order-page--date').text(order.date)

@@ -2,9 +2,18 @@ $(document).ready(function() {
   jQuery.ajax(params);
 });
 
+var url = ''
+if (shopUrl == "https://decathlon.com") {
+  url = `/tools/shopify-decathlon-proxy-p/newstore-order-for-shopify/newstore-reviews?email=${customerEmail}&customerId=${customerId}`
+} else {
+  {% comment %} DEV: Hard code user for testing{% endcomment %}
+    //url = '/tools/shopify-decathlon-proxy-s/newstore-order-for-shopify/newstore-reviews?email=ashleybenson16@gmail.com&customerId=335502802953'
+    url =  `/tools/shopify-decathlon-proxy-s/newstore-order-for-shopify/newstore-reviews?email=${customerEmail}&customerId=${customerId}`
+}
+
 var params = {
   type: 'GET',
-    url: `/tools/shopify-decathlon-proxy-s/newstore-order-for-shopify/newstore-reviews?email=${customerEmail}&customerId=${customerId}`,
+  url: url,
   success: function(products) {
     var reviewableProducts = []
     if (products.length > 0) {
