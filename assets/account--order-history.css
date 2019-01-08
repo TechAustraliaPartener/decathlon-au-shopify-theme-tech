@@ -10,7 +10,12 @@
 .dataTables_filter {
   margin-bottom: 0.5em;
 }
-#shopifyOrderTbl, 
+@media screen and (min-width: 15.875em) and (max-width: 40em) {
+  .dataTables_length {
+    margin-left: -3.5em;
+  }
+}
+#shopifyOrderTbl,
 #newstoreOrderTbl {
   border-collapse: collapse !important;
 }
