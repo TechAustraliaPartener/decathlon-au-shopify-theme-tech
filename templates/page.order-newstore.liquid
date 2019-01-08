@@ -5,15 +5,15 @@
   {% include 'customers--my-account-header' %}
   {% comment %} Show Spinner while the order is being loaded, hidden once complete {% endcomment %}
   <img id="spinningLoad" src="{{ 'Rolling-1s-200px.gif' | asset_url }}" style="height:200px;" alt="loading indicator">
-  
+
   <div class="grid--full">
-  
+
     <!-- Order Tables Wrap -->
     <div class="grid__item">
       <div class="order-page--date-and-cancel">
         <!-- Date order placed -->
         <p class="order-page--date"></p>
-        <p class="cancelled"><span class='order-page--cancelled-message'></span></p>          
+        <p class="cancelled"><span class='order-page--cancelled-message'></span></p>
       </div>
       {% comment %}
       Table tbodys are populated by page--order-newstore.js
@@ -63,7 +63,7 @@
           </tbody>
         </table>
       </div>
-  
+
       <!-- Totals Table -->
       <br><br>
       <div class="table-wrap order-page--table order-page--totals-table">
@@ -125,7 +125,7 @@
 
   <div id="shopify-order-bottom-buttons" class="wrapper u-marginBottom4x">
     <p class="order-back-to-cart-btn"><a href="/account?view=order-history">Return To Order History</a></p>
-    <p class="shopify-order-return-wrap"><a id="shopify-order-return-btn" class="btn" href=''>Return An Item</a></p>  
+    <p class="shopify-order-return-wrap"><a id="shopify-order-return-btn" class="btn" href=''>Return An Item</a></p>
   </div>
 
 </div>
@@ -141,7 +141,7 @@
    forJS[param[0]] = param[1]
   }
   forJS.customerId = {{ customer.id }}
-  
+
   var defaultImg = `https:{{ 'default-no-img.gif' | asset_url }}`
 </script>
 {{ 'page--order-newstore.js' | asset_url | script_tag }}
