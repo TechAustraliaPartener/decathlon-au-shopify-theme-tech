@@ -58,7 +58,7 @@ var params = {
     $('.order-page--date').show()
     // Only show tables if there are products in them
     if (order.pending.items.length > 0) {
-      $('.order-page--pending-table').show()
+	  $('.order-page--pending-table').show()
     }
     if (order.shipped_home.items.length > 0) {
       $('.order-page--shipped-home-table').show()
@@ -101,7 +101,7 @@ function createProductTableRows (products, reviewLink) {
     singleRow += '<td>'
     let image
     if (!products[i].image || products[i].image == '') {
-      image = defaultImg 
+      image = defaultImg
     } else {
       image = products[i].image
     }
