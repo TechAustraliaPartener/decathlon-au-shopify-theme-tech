@@ -6,10 +6,9 @@
 #order-history-return-btn {
   display: none;
 }
-
-#shopifyOrderTbl_length, 
-#newstoreOrderTbl_length {
-  padding-bottom: 20px !important;    
+.dataTables_length,
+.dataTables_filter {
+  margin-bottom: 0.5em;
 }
 #shopifyOrderTbl, 
 #newstoreOrderTbl {
