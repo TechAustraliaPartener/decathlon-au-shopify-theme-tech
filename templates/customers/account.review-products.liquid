@@ -52,6 +52,7 @@
   // Shopify information is saved to variables so customers--account--review-products.js can use them
   var customerEmail = `{{customer.email}}`;
   var customerId = `{{customer.id}}`;
+  var shopUrl = `{{ shop.secure_url }}`
 </script>
 {{'customers--account--review-products.js' | asset_url | script_tag }}
 {% include 'review-template' %}

@@ -147,5 +147,6 @@
   forJS.customerId = `{{ customer.id }}`
 
   var defaultImg = `https:{{ 'default-no-img.gif' | asset_url }}`
+  var shopUrl = `{{ shop.secure_url}}`
 </script>
 {{ 'page--order-newstore.js' | asset_url | script_tag }}
