@@ -10,7 +10,7 @@
         <p class="account-order--date">{{ 'customer.order.date' | t: date: order.created_at | date: "%B %d, %Y %I:%M%p" }}</p>
         {% if order.cancelled == true } %}
           {% assign cancelled_at = order.cancelled_at | date: "%B %d, %Y" %}
-          <p class="cancelled">Item(s) cancelled by customer or because of out-of-stock inventory. {{ cancelled_at }}</p>          
+          <p class="cancelled">Item(s) cancelled by customer or because of out-of-stock inventory. {{ cancelled_at }}</p>
         {% endif %}
       </div>
       <!-- Pending Items Table -->
@@ -41,7 +41,7 @@
         </table>
       </div>
       <!-- Cancelled Table -->
-      <div class="account-order--table account-order--cancelled-table">    
+      <div class="account-order--table account-order--cancelled-table">
         <h6>Cancelled Item(s)</h6>
         <table class="full">
           {% include 'order-page--table-header' %}
@@ -142,7 +142,7 @@
 
   <div id="shopify-order-bottom-buttons" class="wrapper u-marginBottom4x">
     <p class="order-back-to-cart-btn"><a href="/account?view=order-history">Return To Order History</a></p>
-    {% assign returnLink = "https://returns.decathlon.com/start_return?ext_order_number=" | append: {{order.name}} | append: "&customer_id=" | append: {{customer.id}} %}    
+    {% assign returnLink = "https://returns.decathlon.com/start_return?ext_order_number=" | append: {{order.name}} | append: "&customer_id=" | append: {{customer.id}} %}
     <p class="shopify-order-return-wrap"><a id="shopify-order-return-btn" class="btn" href={{returnLink}}>Return An Item</a></p>
   </div>
 

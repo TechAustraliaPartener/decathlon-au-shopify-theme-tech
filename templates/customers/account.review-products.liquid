@@ -3,8 +3,8 @@
 
   <div id="review-products" class="account-reviewProducts u-marginTop2x u-marginBottom2x u-block">
     <div class='text-center'>
-      <img id="spinningLoad" class='text-center' src="{{ 'Rolling-1s-200px.gif' | asset_url }}" style="height:200px;" alt="simple, lightweight generic loading indicator">		
-    </div>		
+      <img id="spinningLoad" class='text-center' src="{{ 'Rolling-1s-200px.gif' | asset_url }}" style="height:200px;" alt="simple, lightweight generic loading indicator">
+    </div>
     {% comment %}
     	NOTE: 	inline style for #shopify-products-for-review is used
     			otherwise the div shows briefly before being hidden
@@ -17,9 +17,9 @@
           {% unless {{item.variant.option3}} == undefined %}
           {% assign reviewableItems = true %}
           <div class="grid__item medium--one-half large--one-fifth text-center">
-              <a class="account-writeReviewButton account-order--js-writeReviewForm" 
+              <a class="account-writeReviewButton account-order--js-writeReviewForm"
                 review-sku="{{item.sku}}"
-                review-modelCode="{{item.variant.option3}}" 
+                review-modelCode="{{item.variant.option3}}"
                 review-productName="{{ item.title | split: ' / ' | first | split: ' - ' | first }}">
                 <img src="{{ item | img_url }}" alt="{{ item.title | escape }}"><br/>
                 {{ item.product.title }}
@@ -42,15 +42,15 @@
     	NOTE: 	inline style for #newstore-products-for-review is used
     			    otherwise the div shows briefly before being hidden
     {% endcomment %}
-    <div id="newstore-products-for-review" class="grid-uniform" style="display:none;">	
+    <div id="newstore-products-for-review" class="grid-uniform" style="display:none;">
     </div>
     <div class="js-account-review-products" data-jwt-token="{{ shop.metafields.picshare.jwt_token }}"></div>
   </div>
 </div>
-{{ 'customers--account--review-products.scss.css' | asset_url | stylesheet_tag }} 
-<script>	
+{{ 'customers--account--review-products.scss.css' | asset_url | stylesheet_tag }}
+<script>
   // Shopify information is saved to variables so customers--account--review-products.js can use them
-  var customerEmail = `{{customer.email}}`;		
+  var customerEmail = `{{customer.email}}`;
   var customerId = `{{customer.id}}`;
 </script>
 {{'customers--account--review-products.js' | asset_url | script_tag }}

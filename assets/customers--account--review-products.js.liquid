@@ -21,23 +21,22 @@ var params = {
           imgTag = `<img src="${products[i].variantImgUrl}" alt="${products[i].productName}">`
         }
         // Append the product div to list of reviewableProducts
-        reviewableProducts.push(`<div class="grid__item medium--one-half large--one-fifth text-center"><a class="account-writeReviewButton account-order--js-writeReviewForm" review-sku="${products[i].sku}" review-modelCode="${products[i].modelCode}" review-productName="${products[i].productName}">` + imgTag + `<br/>${products[i].productName}</a></div>`)        
+        reviewableProducts.push(`<div class="grid__item medium--one-half large--one-fifth text-center"><a class="account-writeReviewButton account-order--js-writeReviewForm" review-sku="${products[i].sku}" review-modelCode="${products[i].modelCode}" review-productName="${products[i].productName}">` + imgTag + `<br/>${products[i].productName}</a></div>`)
       }
       if (reviewableProducts.length > 0) {
         var productDiv = $('#newstore-products-for-review')
         productDiv.append(reviewableProducts)
-        $('#spinningLoad').hide()        
+        $('#spinningLoad').hide()
         $('#newstore-products-for-review').show()
       } else {
-        $('#spinningLoad').hide()        
+        $('#spinningLoad').hide()
         $('#shopify-products-for-review').show()
       }
     } else {
       $('#spinningLoad').hide()
       $('#shopify-products-for-review').show()
     }
-    
-    
+
     ////
     // Function to handle the review (opening/closing/success/failure)
     //    Included here so the click event handler is attatched to both shopify and NewStore orders
@@ -58,12 +57,12 @@ var params = {
             modelCode: M,
             productName: P,
             token: t(".js-account-review-products").data("jwtToken")
-        })), 
+        })),
           t(".inputWrap > select").on("change", function() {}),
           t(".inputWrap > input, .inputWrap > textarea").on("keyup", function() {}),
             t(".js-closeWriteReview").click(function(e) {
-          		document.getElementsByTagName('html')[0].style.overflowY = 'scroll'		
-              document.body.scrollTop = 0; // Scroll to top of page when closed: For Safari		
+          		document.getElementsByTagName('html')[0].style.overflowY = 'scroll'
+              document.body.scrollTop = 0; // Scroll to top of page when closed: For Safari
               document.documentElement.scrollTop = 0; // Scroll to top of page when closed:For Chrome, Firefox, IE and Opera
               t(".writeReview form").get(0).reset(), t(".writeReview").css("display", "none")
           }),
@@ -74,8 +73,8 @@ var params = {
                 t.post(i.attr("action"), i.serialize(), function(e, i) {
                 "success" == i ? (t(".writeReview-wrapper").hide(), t(".writeReview-wrapper--after").show() ): console.log(i, e);
                 t(".js-closeWriteReview--after").click(function(e) {
-                  document.getElementsByTagName('html')[0].style.overflowY = 'scroll'		
-                  document.body.scrollTop = 0; // Scroll to top of page when closed: For Safari	
+                  document.getElementsByTagName('html')[0].style.overflowY = 'scroll'
+                  document.body.scrollTop = 0; // Scroll to top of page when closed: For Safari
                   document.documentElement.scrollTop = 0; // Scroll to top of page when closed:For Chrome, Firefox, IE and Opera
                   t(".writeReview form").get(0).reset(), t(".writeReview").css("display", "none"), t(".writeReview-wrapper--after").css("display", "none")
                 })
