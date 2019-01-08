@@ -11,7 +11,7 @@ h6 {
   margin-bottom: 15px;
 }
 
-.account-order--date, 
+.account-order--date,
 .cancelled {
   margin: 0;
 }
@@ -40,17 +40,17 @@ h6 {
 .account-order--shipping-address,
 .account-order--totals-table,
 #shopify-order-bottom-buttons {
-  display: none; 
+  display: none;
 }
 
 .account-order--table td {
-  padding: 5px 15px; 
+  padding: 5px 15px;
 }
 
 /* @productRows */
 .account-order--product-img {
   max-height: 6rem;
-  max-width: 6rem; 
+  max-width: 6rem;
 }
 .account-order--product-span {
   display: block;
@@ -100,10 +100,10 @@ div.row {
 .account-order--table tbody,
 .account-order--table tr,
 .account-order--table td {
-  border: none; 
+  border: none;
 }
 .account-order--table table {
-  border-top: 1px solid rgb(128, 128, 128); 
+  border-top: 1px solid rgb(128, 128, 128);
 }
 
 /* @reviewButton */

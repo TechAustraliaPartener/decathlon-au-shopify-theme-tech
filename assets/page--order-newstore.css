@@ -5,13 +5,12 @@ p,
 h6 {
   font-size: 16px;
 }
-
 /* Date and cancellation */
 .order-page--date-and-cancel {
   margin-bottom: 15px;
 }
 
-.order-page--date, 
+.order-page--date,
 .cancelled {
   margin: 0;
 }
@@ -31,7 +30,7 @@ h6 {
 }
 /* hide everything on page load */
 .order-page--date,
-.cancelled, 
+.cancelled,
 .cancelled p.h5,
 .order-page--pending-table,
 .order-page--shipped-home-table,
@@ -42,13 +41,13 @@ h6 {
 .order-page--shipping-address,
 .order-page--totals-table,
 #shopify-order-bottom-buttons {
-  display: none; 
+  display: none;
 }
 
 /* @tables */
 .order-page--table th,
 .order-page--table td {
-  padding: 5px 15px; 
+  padding: 5px 15px;
 }
 .order-page--table,
 .order-page--table thead,
@@ -56,10 +55,10 @@ h6 {
 .order-page--table tbody,
 .order-page--table tr,
 .order-page--table td {
-  border: none; 
+  border: none;
 }
 .order-page--table table {
-  border-top: 1px solid rgb(128, 128, 128); 
+  border-top: 1px solid rgb(128, 128, 128);
 }
 
 .order-page--table th,
@@ -69,7 +68,7 @@ h6 {
 
 /* @productRows */
 .order-page--product-img {
-  max-height: 6rem; 
+  max-height: 6rem;
 }
 .order-page--product-span {
   display: block;
