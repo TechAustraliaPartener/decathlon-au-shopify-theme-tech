@@ -6,8 +6,6 @@ var url = ''
 if (shopUrl == "https://www.decathlon.com") {
   url = `/tools/shopify-decathlon-proxy-p/newstore-order-for-shopify/newstore-reviews?email=${customerEmail}&customerId=${customerId}`
 } else {
-  {% comment %} DEV: Hard code user for testing{% endcomment %}
-    //url = '/tools/shopify-decathlon-proxy-s/newstore-order-for-shopify/newstore-reviews?email=ashleybenson16@gmail.com&customerId=335502802953'
     url =  `/tools/shopify-decathlon-proxy-s/newstore-order-for-shopify/newstore-reviews?email=${customerEmail}&customerId=${customerId}`
 }
 
