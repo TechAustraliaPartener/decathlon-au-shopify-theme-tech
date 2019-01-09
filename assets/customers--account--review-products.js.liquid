@@ -73,7 +73,6 @@ var params = {
               document.documentElement.scrollTop = 0; // Scroll to top of page when closed:For Chrome, Firefox, IE and Opera
               t(".writeReview form").get(0).reset(), t(".writeReview").css("display", "none")
           }),
-          console.log(`t(this).attr("action") before POST: ${t(this).attr("action")}`)
           t(".writeReview form").submit(function(e) {
                 e.preventDefault();
                 var i = t(this);
