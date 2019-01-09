@@ -3,57 +3,65 @@
   {% include 'customers--my-account-header' %}
 
   <div id="order-history" class="account-orderHistory u-marginTop2x u-block">
-  
-    {% comment %}
-      TODO: Clicking "purchase history" will open "order history" as if it is a new page
+    <img id="spinningLoad" src="{{ 'Rolling-1s-200px.gif' | asset_url }}" style="height:200px;" alt="simple, lightweight generic loading indicator">
 
-      If we have past orders, loop through each one
-    {% endcomment %}
-    {% paginate customer.orders by 20 %}
-      {% if customer.orders.size != 0 %}
-  
-        <div class="table-wrap">
-          <table class="full">
+    <div class="table-wrap" id="order-table-wrap">
+    {% if customer.orders.size != 0 %}
+          <table class="full" id="shopifyOrderTbl">
             <thead>
               <tr>
-                <th>{{ 'customer.orders.order_number' | t }}</th>
-                <th>{{ 'customer.orders.date' | t }}</th>
-                <th>{{ 'customer.orders.payment_status' | t }}</th>
-                <th>{{ 'customer.orders.fulfillment_status' | t }}</th>
-                <th>{{ 'customer.orders.total' | t }}</th>
+                <th class="orderTh">{{ 'customer.orders.order_number' | t }}</th>
+                <th class="orderTh">{{ 'customer.orders.date' | t }}</th>
+                <th class="orderTh">{{ 'customer.orders.payment_status' | t }}</th>
+                <th class="orderTh">{{ 'customer.orders.fulfillment_status' | t }}</th>
+                <th class="orderTh">{{ 'customer.orders.total' | t }}</th>
               </tr>
             </thead>
             <tbody>
               {% for order in customer.orders %}
-                <tr>
-                  <td>{{ order.name | link_to: order.customer_url }}</td>
-                  <td>{{ order.created_at | date: format: 'month_day_year' }}</td>
-                  <td>{{ order.financial_status_label }}</td>
-                  <td>{{ order.fulfillment_status_label }}</td>
-                  <td>{{ order.total_price | money }}</td>
+                <tr class="orderBodyTr">
+                  <td class="orderTd">{{ order.name | link_to: order.customer_url }}</td>
+                  <td class="orderTd">{{ order.created_at | date: format: 'month_day_year' }}</td>
+                  <td class="orderTd">{{ order.financial_status_label }}</td>
+                  <td class="orderTd">{{ order.fulfillment_status_label }}</td>
+                  <td class="orderTd">{{ order.total_price | money }}</td>
                 </tr>
               {% endfor %}
             </tbody>
           </table>
-        </div>
-
-      <p id="order-history-return-btn" class="text-center u-marginTop2x">
-        <a class="btn" href="/pages/returns">Return An Item</a>
-      </p> 
-
       {% else %}
-  
-        <p class="text-center">{{ 'customer.orders.none' | t }}</p>
-        <p class="text-center"><a href="/collections" class="btn">Shop Now</a></p>
-  
-      {% endif %}
-      {% if paginate.pages > 1 %}
-        <hr>
-        <div class="pagination">
-          {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
-        </div>
-      {% endif %}
-    {% endpaginate %}
-  </div>  
 
+        <p  id='noOrders' class="text-center">{{ 'customer.orders.none' | t }}</p>
+        <p cid='shopNowBtn' lass="text-center"><a href="/collections" class="btn">Shop Now</a></p>
+
+      {% endif %}
+      <table class="full" id="newstoreOrderTbl">
+        <thead>
+          <tr>
+            <th class="orderTh">{{ 'customer.orders.order_number' | t }}</th>
+            <th class="orderTh">{{ 'customer.orders.date' | t }}</th>
+            <th class="orderTh">{{ 'customer.orders.payment_status' | t }}</th>
+            <th class="orderTh">{{ 'customer.orders.fulfillment_status' | t }}</th>
+          <th class="orderTh">{{ 'customer.orders.total' | t }}</th>
+          </tr>
+        </thead>
+        <tbody id="newstoreOrderBody">
+        </tbody>
+      </table>
+    </div>
+    <p id="order-history-return-btn" class="text-center u-marginTop2x"><a class="btn" href="/pages/returns">Return An Item</a></p>
+  </div>
 </div>
+{{ 'account--order-history.css' | asset_url | stylesheet_tag }}
+{% comment %}
+Save liquid variables to be used in account--order-history.js
+{% endcomment %}
+<script>
+  var shopifyOrders = {{ customer.orders.size }},
+      customerId = `{{ customer.id }}`,
+      customerEmail = `{{ customer.email }}`,
+	  shopUrl = `{{ shop.secure_url }}`
+</script>
+{{ 'https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js' | script_tag }}
+{{ 'https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css' | stylesheet_tag }}
+{{ 'account--order-history.js'| asset_url | script_tag}}
