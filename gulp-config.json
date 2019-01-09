@@ -8,7 +8,8 @@
 		"jsPlugins"	: "src/js/plugins/",
 		"patterns"	: "patterns/",
 		"scss"		: "src/scss/",
-		"snippets" 	: "snippets/"
+		"snippets" 	: "snippets/",
+		"persistentCart": "persistent-cart/"
 	},
 	"sprite" : {
 		"dir"		: "src/svg/",

@@ -2,3 +2,6 @@
 .DS_Store
 node_modules/*
 src/css/*
+
+# Compiled/bundled from /persistent-cart
+/assets/persistent-cart.js
