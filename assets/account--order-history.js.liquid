@@ -1,0 +1,195 @@
+$(document).ready(function() {
+  jQuery.ajax(params);
+});
+
+var url = ''
+if (shopUrl == "https://www.decathlon.com") {
+  url = `/tools/shopify-decathlon-proxy-p/newstore-order-for-shopify/order-list?email=${customerEmail}&customerId=${customerId}`
+} else {
+    url = `/tools/shopify-decathlon-proxy-s/newstore-order-for-shopify/order-list?email=${customerEmail}&customerId=${customerId}`
+
+}
+
+var params = {
+  type: 'GET',
+  url: url,
+  success: function(orders) {
+    var newstoreOrderBody = document.getElementById("newstoreOrderBody");
+    var newCounter = 0;
+    var newOrders = {};
+    newOrders.orders = orders;
+
+    {% comment %} Create newstoreOrderTbl {% endcomment %}
+    if (orders.length > 0) {
+      while (newCounter < newOrders.orders.length) {
+        {% comment %} create new Row {% endcomment %}
+        var newTr = document.createElement('tr');
+        newTr.setAttribute('class', 'orderBodyTr');
+
+        {% comment %} Td for OrderId {% endcomment %}
+        var newTd = document.createElement('td');
+        newTd.setAttribute('class', 'orderTd');
+        var newA = document.createElement('a');
+
+        newA.setAttribute('href', `${shopUrl}/pages/order-newstore?order=${newOrders.orders[newCounter].encodedString}`);
+
+        var newTxt = document.createTextNode(newOrders.orders[newCounter].name);
+        newA.appendChild(newTxt);
+        newTd.appendChild(newA);
+        newTr.appendChild(newTd);
+
+        {% comment %} Td for order Date {% endcomment %}
+        newTd = document.createElement('td');
+        newTd.setAttribute('class', 'orderTd');
+        newTxt = document.createTextNode(formattedDateString(newOrders.orders[newCounter].created_at));
+        newTd.appendChild(newTxt);
+        newTr.appendChild(newTd);
+
+        {% comment %} Td for financial status label {% endcomment %}
+        newTd = document.createElement('td');
+        newTd.setAttribute('class', 'orderTd');
+        newTxt = document.createTextNode(newOrders.orders[newCounter].financial_status_label);
+        newTd.appendChild(newTxt);
+        newTr.appendChild(newTd);
+
+        {% comment %} Td for fullfillment status label {% endcomment %}
+        newTd = document.createElement('td');
+        newTd.setAttribute('class', 'orderTd');
+        newTxt = document.createTextNode(newOrders.orders[newCounter].fulfillment_status_label);
+        newTd.appendChild(newTxt);
+        newTr.appendChild(newTd);
+
+        {% comment %} Td for total price {% endcomment %}
+        newTd = document.createElement('td');
+        newTd.setAttribute('class', 'orderTd');
+        newTxt = document.createTextNode("$" + parseFloat(Math.round(newOrders.orders[newCounter].total_price * 100) / 100).toFixed(2));
+        newTd.appendChild(newTxt);
+        newTr.appendChild(newTd);
+
+        {% comment %} append row to body {% endcomment %}
+        newstoreOrderBody.appendChild(newTr);
+
+        newCounter++;
+      }
+    }
+
+    {% comment %} add table wrappers for pagination {% endcomment %}
+    $('#shopifyOrderTbl').DataTable({
+      "ordering": false
+    });
+    $('#shopifyOrderTbl_wrapper').hide()
+    $('#shopifyOrderTbl_wrapper').attr('aria-hidden', 'true')
+
+    $('#newstoreOrderTbl').DataTable({
+      "ordering": false
+    });
+    $('#newstoreOrderTbl_wrapper').hide()
+    $('#newstoreOrderTbl_wrapper').attr('aria-hidden', 'true')
+
+    {% comment %} hideArchive button for shopify table {% endcomment %}
+    var hideArchiveDiv = document.createElement('div')
+    hideArchiveDiv.setAttribute('id', 'order-hideArchive-div')
+    hideArchiveDiv.setAttribute('aria-hidden', 'true')
+    var hideArchive = document.createElement('a')
+    hideArchive.setAttribute('id', 'order-hideArchive')
+    var hideText = document.createTextNode('Hide Archived Orders')
+    hideArchive.addEventListener('click', (function() {
+      $('#shopifyOrderTbl').hide()
+      $('#shopifyOrderTbl_wrapper').hide()
+      $('#shopifyOrderTbl_wrapper').attr('aria-hidden', 'true')
+      $('#order-hideArchive-div').hide()
+      $('#order-hideArchive-div').attr('aria-hidden', 'true')
+
+      $('#newstoreOrderTbl').show()
+      $('#newstoreOrderTbl_wrapper').show()
+      $('#newstoreOrderTbl_wrapper').attr('aria-hidden', 'false')
+      $('#order-showArchive-div').show()
+      $('#order-showArchive-div').attr('aria-hidden', 'false')
+    }));
+    hideArchive.appendChild(hideText)
+    hideArchiveDiv.appendChild(hideArchive)
+    $('#order-table-wrap').append(hideArchiveDiv)
+
+    // showArchive button for newstore table
+    var showArchiveDiv = document.createElement('div')
+    showArchiveDiv.setAttribute('id', 'order-showArchive-div')
+    showArchiveDiv.setAttribute('aria-hidden', 'true')
+    var showArchive = document.createElement('a')
+    showArchive.setAttribute('id', 'order-showArchive')
+    var showText = document.createTextNode('Show Archived Orders')
+    showArchive.addEventListener('click', (function() {
+      $('#newstoreOrderTbl').hide()
+      $('#newstoreOrderTbl_wrapper').hide()
+      $('#newstoreOrderTbl_wrapper').attr('aria-hidden', 'true')
+      $('#order-showArchive-div').hide()
+      $('#order-showArchive-div').attr('aria-hidden', 'true')
+
+      $('#shopifyOrderTbl').show()
+      $('#shopifyOrderTbl_wrapper').show()
+      $('#shopifyOrderTbl_wrapper').attr('aria-hidden', 'false')
+      $('#order-hideArchive-div').show()
+      $('#order-hideArchive-div').attr('aria-hidden', 'false')
+
+    }));
+    showArchive.appendChild(showText)
+    showArchiveDiv.appendChild(showArchive)
+    $('#order-table-wrap').append(showArchiveDiv)
+
+    $('#spinningLoad').hide()
+  var newStoreOrders = newOrders.orders.length;
+
+  // determine which table, if any, are shown
+  if (newStoreOrders > 0) {
+    $('#newstoreOrderTbl').show()
+    $('#newstoreOrderTbl_wrapper').show()
+    $('#newstoreOrderTbl_wrapper').attr('aria-hidden', 'false')
+    $('#showArchive').attr('aria-hidden', 'false')
+    if (shopifyOrders <= 0) {
+      $('#order-showArchive-div').hide()
+      $('#order-showArchive-div').attr('aria-hidden', 'true')
+    } else {
+      $('#order-showArchive-div').show()
+      $('#order-showArchive-div').attr('aria-hidden', 'false')
+      $('#order-hideArchive-div').hide()
+      $('#order-hideArchive-div').attr('aria-hidden', 'true')
+    }
+  } else if (shopifyOrders > 0) {
+    $('#shopifyOrderTbl').show()
+    $('#shopifyOrderTbl_wrapper').show()
+    $('#shopifyOrderTbl_wrapper').attr('aria-hidden', 'false')
+    $('#order-hideArchive-div').hide()
+    $('#order-hideArchive-div').attr('aria-hidden', 'true')
+  } else {
+    $('#noOrders').show();
+    $('#noOrders').attr('aria-hidden', 'false');
+    $('#shopNowBtn').show();
+    $('#shopNowBtn').attr('aria-hidden', 'false');
+}
+
+// show table and return button when all work is done
+$('#order-table-wrap').show()
+$('#order-table-wrap').attr('aria-hidden', 'false')
+$('#order-history-return-btn').show()
+$('#order-history-return-btn').attr('aria-hidden', 'false')
+},
+  error: function(XMLHttpRequest, textStatus, error) {
+    console.log(XMLHttpRequest),
+      console.log(textStatus),
+      console.log(error)
+  }
+};
+
+function formattedDateString(str) {
+  var d = new Date(str);
+  var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+  var dateNum = String(d.getDate());
+  if (dateNum.length === 1)
+    dateNum = '0' + dateNum;
+
+  return months[d.getMonth()] + " " + dateNum + ", " + d.getFullYear();
+}
+
+function dateIsGreaterThan(date1, date2) {
+  return Date.parse(date1) >= Date.parse(date2)
+}

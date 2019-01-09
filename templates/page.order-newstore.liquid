@@ -1,0 +1,152 @@
+<!-- /templates/page.order-newstore.liquid -->
+<div class="wrapper u-paddingTopBottom4x u-marginBottom4x shopify-wrapper">
+  <!-- Page header -->
+	{% assign account_title = 'Loading Order' %}
+  {% include 'customers--my-account-header' %}
+  {% comment %} Show Spinner while the order is being loaded, hidden once complete {% endcomment %}
+  <img id="spinningLoad" src="{{ 'Rolling-1s-200px.gif' | asset_url }}" style="height:200px;" alt="loading indicator">
+
+  <div class="grid--full">
+
+    <!-- Order Tables Wrap -->
+    <div class="grid__item">
+      <div class="order-page--date-and-cancel">
+        <!-- Date order placed -->
+        <p class="order-page--date"></p>
+        <p class="cancelled"><span class='order-page--cancelled-message'></span></p>
+      </div>
+      {% comment %}
+      Table tbodys are populated by page--order-newstore.js
+      {% endcomment %}
+      <!-- Pending Items Table -->
+      <div class="table-wrap order-page--table order-page--pending-table">
+        <h6>Item(s) Being Processed</h6>
+        <table class="full">
+          {% include 'order-page--table-header' %}
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+      <!-- Shipped Home Table -->
+      <div class="table-wrap order-page--table order-page--shipped-home-table">
+        <h6>Item(s) Shipped To Home</h6>
+        <table class="full">
+          {% include 'order-page--table-header' %}
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+      <!-- Shipped Store Table -->
+      <div class="table-wrap order-page--table order-page--shipped-store-table">
+        <h6>Item(s) Shipped To Store</h6>
+        <table class="full">
+          {% include 'order-page--table-header' %}
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+      <!-- Cancelled Table -->
+      <div class="table-wrap order-page--table order-page--cancelled-table">
+        <h6>Cancelled Item(s)</h6>
+        <table class="full">
+          {% include 'order-page--table-header' %}
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+      <!-- Returned Table -->
+      <div class="table-wrap order-page--table order-page--returned-table">
+        <h6>Returned Item(s)</h6>
+        <table class="full">
+          {% include 'order-page--table-header' %}
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Totals Table -->
+      <br><br>
+      <div class="table-wrap order-page--table order-page--totals-table">
+        <table class="full">
+          <tbody>
+            <tr>
+              <td class='order-page--td-label text-left'>Subtotal</td>
+              <td class="order-page--subtotal text-right"></td>
+            </tr>
+			<tr class="order-page--pending-total-row">
+              <td class='order-page--td-label text-left'>Pending Item(s)</td>
+              <td class="order-page--pending-total text-right"></td>
+            </tr>
+            <tr class="order-page--cancelled-total-row">
+              <td class='order-page--td-label text-left'>Cancelled Item(s)</td>
+              <td class="order-page--cancelled-total text-right"></td>
+            </tr>
+            <tr class="order-page--returned-total-row">
+              <td class='order-page--td-label text-left'>Returned Item(s)</td>
+              <td class="order-page--returned-total text-right"></td>
+            </tr>
+            <tr class="order-page--shipping-total-row">
+              <td class='order-page--td-label text-left'>Shipping</td>
+              <td class="order-page--shipping-total text-right"></td>
+            </tr>
+            <tr>
+              <td class='order-page--td-label text-left'>Taxes</td>
+              <td class="order-page--taxes text-right"></td>
+            </tr>
+            <tr>
+              <td class='order-page--td-label order-page--td-totals text-left'>Total</td>
+              <td class="order-page--totals text-right"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- Shipment Info -->
+    <div class="grid__item grid--full u-marginTop4x order-page--shipping">
+      <!-- Shipping Address -->
+      {% comment %} Hidden if not shipped to home {% endcomment %}
+     <div class="grid__item large--one-half u-marginBottom4x">
+    <div class="order-page--shipping-address">
+      <h6>Shipping Address</h6>
+       {% comment %} COMMENTED PER REQUIREMENTS - Keeping a reference in case we want to add it back in
+       <p><strong>Payment Status:</strong><span class="order-page--payment-status"></span></p>
+       {% endcomment %}
+      <p>
+        <span class="order-page--shipping-name"><br></span>
+        <span class="order-page--shipping-address-line-1"></span><br>
+        <span class="order-page--shipping-address-line-2"><br></span>
+        <span class="order-page--shipping-city-state-zip"></span>
+      </p>
+      </div>
+     </div>
+      <!-- Shipping Method -->
+     <div class="grid__item large--one-half u-marginBottom4x">
+      <h6>Delivery Method</h6>
+      <p><span class="order-page--delivery-method"></span></p>
+     </div>
+    </div>
+  </div>
+
+  <div id="shopify-order-bottom-buttons" class="wrapper u-marginBottom4x">
+    <p class="order-back-to-cart-btn"><a href="/account?view=order-history">Return To Order History</a></p>
+    <p class="shopify-order-return-wrap"><a id="shopify-order-return-btn" class="btn" href=''>Return An Item</a></p>
+  </div>
+
+</div>
+{{ 'page--order-newstore.css' | asset_url | stylesheet_tag }}
+<script>
+  {% comment %}
+	Script to save url params to be used in order-newstore.js
+  {% endcomment %}
+    var forJS = {}
+  var parts = window.location.href.split('?')[1].split('&')
+  for (let i = 0; i < parts.length; i++){
+   var param = parts[i].split('=')
+   forJS[param[0]] = param[1]
+  }
+  forJS.customerId = `{{ customer.id }}`
+
+  var defaultImg = `https:{{ 'default-no-img.gif' | asset_url }}`
+  var shopUrl = `{{ shop.secure_url}}`
+</script>
+{{ 'page--order-newstore.js' | asset_url | script_tag }}
