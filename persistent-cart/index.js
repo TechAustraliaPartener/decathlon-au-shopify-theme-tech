@@ -38,7 +38,7 @@ const setCartCookie = cartId => {
 };
 
 const deleteCartCookie = () => {
-  document.cookie = `cart=; expires=Thu, 01 Jan 1970 00:00:01 GMT`;
+  document.cookie = 'cart=; expires=Thu, 01 Jan 1970 00:00:01 GMT';
 };
 
 const customerLoginForm = document.querySelector('#CustomerLoginForm > form');
