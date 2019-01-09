@@ -3,7 +3,7 @@ $(document).ready(function () {
 })
 
 var url = ''
-if (shopUrl == "https://decathlon.com") {
+if (shopUrl == "https://www.decathlon.com") {
   url =  `/tools/shopify-decathlon-proxy-p/newstore-order-for-shopify/single-order?order=${forJS['order']}`
 } else {
 	url =  `/tools/shopify-decathlon-proxy-s/newstore-order-for-shopify/single-order?order=${forJS['order']}`
