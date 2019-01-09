@@ -1,6 +1,7 @@
 import gql from 'nanographql';
 
-console.log('persistent cart');
+// TODO: Temporary, to confirm that the script is running
+console.log('Persistent Cart: JS Loaded');
 
 const apiURL = `${process.env.DECATHLON_PERSISTENT_CART_URL ||
   'http://localhost:8080'}/shopify/graphql`;
