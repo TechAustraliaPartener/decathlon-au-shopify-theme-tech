@@ -44,6 +44,7 @@ const customerLoginForm = document.querySelector('#CustomerLoginForm > form');
 
 if (customerLoginForm) {
   customerLoginForm.addEventListener('submit', () => {
+    // TODO: temporary hardcoded value
     setCartCookie('d3b0b5de56274bea158ddf8e348802be');
   });
 }
