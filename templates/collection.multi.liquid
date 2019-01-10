@@ -2,30 +2,6 @@
 
 {% include 'collection-header-js' %}
 
-{% comment %}
-'product_json' & 'catalog-script' needed for
-one-click-add-to-cart that includes size selector
-{% endcomment %}
-{% if linklists.links %}
-    {% capture product_json %}
-    var productJSON = [
-        {% for link in linklists[collection.handle].links %}
-            {% for product in link.object.products limit:8 %}
-                {%- if product.available -%}
-                {
-                    {% if product.options.size == 1 and product.options.first != 'Title' %}
-                        addLabel: '{{ product.options.first | escape }}',
-                    {% endif %}
-                        id: '{{ link.object.handle }}-{{ product.id }}',
-                        product: {{ product | json }}
-                },
-                {% endif %}
-            {% endfor %}
-        {% endfor %}
-        ];
-    {% endcapture %}
-{% endif %}
-
 <style type="text/css">#bc-sf-filter-products .section-header__title { margin-left: 30px; }</style>
 
 {% if collection.image %}
@@ -341,5 +317,4 @@ one-click-add-to-cart that includes size selector
     </div>
 </div>
 
-{% include 'catalog-script' %}
 {% include 'collection-footer-js' %}
