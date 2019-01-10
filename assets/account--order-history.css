@@ -1,0 +1,38 @@
+#order-table-wrap,
+#shopifyOrderTbl,
+#newstoreOrderTbl,
+#noOrders,
+#shopNowBtn,
+#order-history-return-btn {
+  display: none;
+}
+.dataTables_length,
+.dataTables_filter {
+  margin-bottom: 0.5em;
+}
+@media screen and (min-width: 15.875em) and (max-width: 40em) {
+  .dataTables_length {
+    margin-left: -3.5em;
+  }
+}
+#shopifyOrderTbl,
+#newstoreOrderTbl {
+  border-collapse: collapse !important;
+}
+.orderTh {
+  border-bottom-color: #E5E5E5 !important;
+  padding: 15px !important;
+}
+.orderTd {
+  padding: 15px !important;
+}
+#orderBodyTr {
+  height: 53px !important;
+}
+#spinningLoad {
+  max-width: 50px;
+  max-height: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
