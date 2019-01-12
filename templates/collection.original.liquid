@@ -121,19 +121,4 @@
 
 </div>{% comment %}end wrapper{% endcomment %}
 
-
-{% capture product_json %}
-var productJSON = [
-  {% for product in collection.products %}
-    {
-    {% if product.options.size == 1 and product.options.first != 'Title' %}
-      addLabel: '{{ product.options.first | escape }}',
-    {% endif %}
-      id: '{{ collection.handle }}-{{ product.id }}',
-      product: {{ product | json }}
-    },
-  {% endfor %}
-  ];
-{% endcapture %}
 {% endpaginate %}
-{% include 'catalog-script' %}

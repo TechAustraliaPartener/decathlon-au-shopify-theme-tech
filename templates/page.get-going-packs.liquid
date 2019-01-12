@@ -53,22 +53,3 @@
 		$('.getGoingPack--swapped:even').addClass('getGoingPack--normal-direction');
 	});
 </script>
-
-{% comment %}
-{% capture product_json %}
-var productJSON = [
-  {% for pack in packs %}
-    {% for product in collections[pack].products limit: 5 %}
-      {
-      {% if product.options.size == 1 and product.options.first != 'Title' %}
-        addLabel: '{{ product.options.first | escape }}',
-      {% endif %}
-        id: '{{ pack }}-{{ product.id }}',
-        product: {{ product | json }}
-      },
-    {% endfor %}
-  {% endfor %}
-  ];
-{% endcapture %}
-{% include 'catalog-script' %}
-{% endcomment %}
