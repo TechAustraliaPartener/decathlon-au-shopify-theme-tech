@@ -143,6 +143,9 @@
 
   {{ 'timber.js' | asset_url | script_tag }}
 
+  {% comment %} TODO: Disabling until Persistent Cart feature is ready to go {% endcomment %}
+  {% comment %} {{ 'persistent-cart.js' | asset_url | script_tag }} {% endcomment %}
+
   {% comment %}{% include '_live-search' %}{% endcomment %}
 
   {% comment %}
