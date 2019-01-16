@@ -1,16 +1,3 @@
-{% if tag_title == blank %}
-    <script>
-    $(function() {
-      var $header = $('.section-header__title');
-      if ($header.html() === '') {
-        var titleText = $('#uncomplicated-categories .activecat span').text();
-        $header.html(titleText);
-        $('#uncomplicated-breadcrumbs span:last-child').text(titleText);
-      }
-    });
-    </script>
-{% endif %}
-
 <script>
 function RatingInit() {
   $('.collectionProduct-rating').each(function() {
