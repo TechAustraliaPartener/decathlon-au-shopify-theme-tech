@@ -156,30 +156,3 @@ var productJSON = [
   ];
 {% endcapture %}
 {% include 'catalog-script' %}
-
-{% comment %}
-<script>
-  ;(function(window, $){
-    $(function() {
-      $('.level-0 > a').on('click', function(e) {
-        if ($(this).parent().hasClass('is-active')) { return true; }
-
-        var id = $(this).parent().attr('id');
-
-        if ($('li[id^="'+ id +'"]').length === 1) { return true; }
-
-        $('#uncomplicated-categories li').removeClass('is-active');
-
-        $('li[id^="'+ id +'"]').each(function(k,v) {
-          $(v).addClass('is-active');
-        });
-
-        if ($(this).parent().hasClass('is-active')) {
-          return false;
-        }
-
-      });
-    });
-  })(window, jQuery);
-</script>
-{% endcomment %}
