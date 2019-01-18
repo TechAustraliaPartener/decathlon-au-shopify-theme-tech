@@ -139,24 +139,6 @@
   </div>
 </div>
 
-{% capture product_json %}
-var productJSON = [
-  {% for link in linklists['shop-homepage'].links %}
-    {% assign collection = link.object %}
-    {% for product in collection.products limit:6 %}
-      {
-      {% if product.options.size == 1 and product.options.first != 'Title' %}
-        addLabel: '{{ product.options.first | escape }}',
-      {% endif %}
-        id: '{{ collection.handle }}-{{ product.id }}',
-        product: {{ product | json }}
-      },
-    {% endfor %}
-  {% endfor %}
-  ];
-{% endcapture %}
-{% include 'catalog-script' %}
-
 {% comment %}
 <script>
   ;(function(window, $){
