@@ -96,7 +96,7 @@
     </div>
     <div class="grid grid--full">
     {%- for brand in shop.vendors -%}
-    {%- unless brand == shop.name -%}
+    {%- unless brand == shop.name or brand == "Bell" or brand == "Shopify Gift Card" or brand == "Cycling" -%}
       <div class="grid__item large--one-fifth medium--one-half small--one-half">
         <p class="u-bgWhite u-marginBottom0x">
         <a class="passionBrand-rollover" href="/search?query={{ brand }}"  data-background-image="{{ brand | handleize | append: '-rollover.jpg' | file_url }}">
