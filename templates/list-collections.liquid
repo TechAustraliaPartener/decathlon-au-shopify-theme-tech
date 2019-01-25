@@ -139,29 +139,20 @@
   </div>
 </div>
 
-{% comment %}
-<script>
-  ;(function(window, $){
-    $(function() {
-      $('.level-0 > a').on('click', function(e) {
-        if ($(this).parent().hasClass('is-active')) { return true; }
-
-        var id = $(this).parent().attr('id');
-
-        if ($('li[id^="'+ id +'"]').length === 1) { return true; }
-
-        $('#uncomplicated-categories li').removeClass('is-active');
-
-        $('li[id^="'+ id +'"]').each(function(k,v) {
-          $(v).addClass('is-active');
-        });
-
-        if ($(this).parent().hasClass('is-active')) {
-          return false;
-        }
-
-      });
-    });
-  })(window, jQuery);
-</script>
-{% endcomment %}
+{% capture product_json %}
+var productJSON = [
+  {% for link in linklists['shop-homepage'].links %}
+    {% assign collection = link.object %}
+    {% for product in collection.products limit:6 %}
+      {
+      {% if product.options.size == 1 and product.options.first != 'Title' %}
+        addLabel: '{{ product.options.first | escape }}',
+      {% endif %}
+        id: '{{ collection.handle }}-{{ product.id }}',
+        product: {{ product | json }}
+      },
+    {% endfor %}
+  {% endfor %}
+  ];
+{% endcapture %}
+{% include 'catalog-script' %}
