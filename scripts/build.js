@@ -8,16 +8,16 @@ const rollupCommonJs = require('rollup-plugin-commonjs');
 const babel = require('rollup-plugin-babel');
 const { terser } = require('rollup-plugin-terser');
 
-const babelConfig = require('../babel.config');
+const babelConfig = require('./babel.config');
 
-const taskName = 'jsPersistentCart';
+const taskName = 'jsC4Scripts';
 
 const prod = process.env.NODE_ENV === 'production';
 
 module.exports = gulp => {
   gulp.task(taskName, () => {
     return gulp
-      .src(require.resolve('.'))
+      .src('scripts/*/index.js')
       .pipe(
         gulpRollup(
           {
@@ -45,7 +45,13 @@ module.exports = gulp => {
           }
         )
       )
-      .pipe(rename('persistent-cart.js'))
+      .pipe(
+        rename(path => {
+          // Rename from /scripts/asdf/index.js to /scripts/asdf.js
+          path.basename = path.dirname;
+          path.dirname = './';
+        })
+      )
       .pipe(gulp.dest('assets'));
   });
 

@@ -28,7 +28,7 @@ var clean = require('gulp-clean'),
  	util = require('gulp-util'),
 	watch = require('gulp-watch');
 
-const persistentCartTask = require('./scripts/persistent-cart/build')(gulp);
+const c4ScriptsTask = require('./scripts/build')(gulp);
 
 /**
  * Load Config Files
@@ -427,7 +427,7 @@ for (var key in scripts) {
 /**
  * js build task
  */
-gulp.task('jsTask', [...jsMinifyTasks, persistentCartTask]);
+gulp.task('jsTask', [...jsMinifyTasks, c4ScriptsTask]);
 
 /**
  * watch task
@@ -459,7 +459,7 @@ gulp.task('watch', function() {
 		gulp.watch([file,dir], [val + 'MqPack']).on('error',handleError);
 	}
 
-	gulp.watch(config.path.persistentCart + '**.js', [persistentCartTask])
+	gulp.watch(config.path.c4Scripts + '**.js', [c4ScriptsTask])
 
 	/**
 	 * core - watch core sass files and rebuild all css if there's a change.
