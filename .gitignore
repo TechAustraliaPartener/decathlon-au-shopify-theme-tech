@@ -3,5 +3,5 @@
 node_modules/*
 src/css/*
 
-# Compiled/bundled from /persistent-cart
+# Compiled/bundled from /scripts/persistent-cart
 /assets/persistent-cart.js

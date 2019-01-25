@@ -28,7 +28,7 @@ var clean = require('gulp-clean'),
  	util = require('gulp-util'),
 	watch = require('gulp-watch');
 
-const persistentCartTask = require('./persistent-cart/build')(gulp)
+const persistentCartTask = require('./scripts/persistent-cart/build')(gulp);
 
 /**
  * Load Config Files
