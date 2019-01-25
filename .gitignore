@@ -5,3 +5,4 @@ src/css/*
 
 # Compiled/bundled from /scripts/persistent-cart
 /assets/persistent-cart.js
+/assets/checkout.js
