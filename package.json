@@ -13,6 +13,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "theme watch & gulp",
+    "build": "gulp build",
     "check-lint": "eslint 'persistent-cart/**/*.js' && prettier --list-different 'persistent-cart/**/*.js'",
     "lint": "eslint --fix 'persistent-cart/**/*.js' && prettier --write 'persistent-cart/**/*.js'"
   },

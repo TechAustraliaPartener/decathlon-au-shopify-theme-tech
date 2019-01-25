@@ -8,7 +8,7 @@ const rollupCommonJs = require('rollup-plugin-commonjs');
 const babel = require('rollup-plugin-babel');
 const { terser } = require('rollup-plugin-terser');
 
-const babelConfig = require('./babel.config');
+const babelConfig = require('../babel.config');
 
 const taskName = 'jsPersistentCart';
 
