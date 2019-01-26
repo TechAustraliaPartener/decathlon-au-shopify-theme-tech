@@ -14,8 +14,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "theme watch & gulp",
     "build": "gulp build",
-    "check-lint": "eslint 'persistent-cart/**/*.js' && prettier --list-different 'persistent-cart/**/*.js'",
-    "lint": "eslint --fix 'persistent-cart/**/*.js' && prettier --write 'persistent-cart/**/*.js'"
+    "check-lint": "eslint 'scripts/**/*.js' && prettier --list-different 'scripts/**/*.js'",
+    "lint": "eslint --fix 'scripts/**/*.js' && prettier --write 'scripts/**/*.js'"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
