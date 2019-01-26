@@ -459,7 +459,7 @@ gulp.task('watch', function() {
 		gulp.watch([file,dir], [val + 'MqPack']).on('error',handleError);
 	}
 
-	gulp.watch(config.path.c4Scripts + '**.js', [c4ScriptsTask])
+	gulp.watch(config.path.c4Scripts + '**/*.js', [c4ScriptsTask])
 
 	/**
 	 * core - watch core sass files and rebuild all css if there's a change.
