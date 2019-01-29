@@ -18,7 +18,7 @@ const pickupToggleBtn = querySelector('.js-pickup-toggle-btn');
  * @see https://help.shopify.com/en/themes/development/layouts/checkout/best-practices#dom-dependency-and-liquid-drops
  */
 const addressInput = querySelector('[data-address-field="address1"');
-const cityInput = querySelector('[data-address-field="city"');
+const cityInput = querySelector('[data-address-field="city"]');
 const countryInput = querySelector('[data-address-field="country"]');
 const provinceInput = querySelector('[data-address-field="province"]');
 const zipInput = querySelector('[data-address-field="zip"]');
