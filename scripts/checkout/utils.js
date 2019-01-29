@@ -9,7 +9,7 @@ const CSS_HIDDEN_CLASS = 'de-u-hidden';
  */
 const hideElement = element => {
   element.classList.add(CSS_HIDDEN_CLASS);
-}
+};
 
 /**
  * Shows HTML element by removing CSS class
@@ -17,7 +17,7 @@ const hideElement = element => {
  */
 const showElement = element => {
   element.classList.remove(CSS_HIDDEN_CLASS);
-}
+};
 
 /**
  * Helper function shortening call to querySelector
@@ -34,7 +34,7 @@ export const hideElements = elements => {
   elements.forEach(element => {
     hideElement(element);
   });
-}
+};
 
 /**
  * Shows all HTML elements in array
@@ -44,4 +44,4 @@ export const showElements = elements => {
   elements.forEach(element => {
     showElement(element);
   });
-}
+};
