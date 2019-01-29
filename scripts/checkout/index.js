@@ -1,8 +1,4 @@
-import {
-  querySelector,
-  showElements,
-  hideElements
-} from './utils';
+import { querySelector, showElements, hideElements } from './utils';
 
 /**
  * The toggle buttons
@@ -50,10 +46,7 @@ shipToggleBtn.addEventListener('click', event => {
  * Without JS, the Ship/Pickup toggle buttons won't display.
  */
 const uiInit = () => {
-  showElements([
-    shipToggleBtn,
-    pickupToggleBtn
-  ]);
+  showElements([shipToggleBtn, pickupToggleBtn]);
 };
 
 document.addEventListener('DOMContentLoaded', uiInit);
