@@ -3,6 +3,6 @@
 node_modules/*
 src/css/*
 
-# Compiled/bundled from /scripts/persistent-cart
+# Compiled/bundled from /scripts/*/index.js
 /assets/persistent-cart.js
 /assets/checkout.js

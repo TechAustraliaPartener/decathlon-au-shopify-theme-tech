@@ -11,6 +11,7 @@
     {{ content_for_header }}
 
     {{ checkout_stylesheets }}
+    {{ 'patterns-toolkit.css' | asset_url | stylesheet_tag }}
     {{ checkout_scripts }}
   </head>
   <body>
@@ -45,6 +46,19 @@
             {{ alternative_payment_methods }}
           </div>
           <div class="main__content">
+
+            {% comment %}
+              The Ship & Pickup buttons start hidden.
+              The checkout JS (scripts/checkout/index.js)
+              will show and add UI functionality.
+            {% endcomment %}
+            <button class="btn js-toggle-shipping de-u-hidden">
+              <span class="btn__content">Ship</span>
+            </button>
+            <button class="btn js-toggle-pickup de-u-hidden">
+              <span class="btn__content">Pickup</span>
+            </button>
+
             {{ content_for_layout }}
           </div>
           <div class="main__footer">
@@ -63,5 +77,7 @@
     </div>
 
     {{ tracking_code }}
+
+    {{ 'checkout.js' | asset_url | script_tag }}
   </body>
 </html>
