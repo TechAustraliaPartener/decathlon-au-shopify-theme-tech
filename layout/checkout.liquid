@@ -11,6 +11,7 @@
     {{ content_for_header }}
 
     {{ checkout_stylesheets }}
+    {{ 'patterns-toolkit.css' | asset_url | stylesheet_tag }}
     {{ checkout_scripts }}
 
   </head>
