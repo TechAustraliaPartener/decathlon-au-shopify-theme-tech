@@ -31,9 +31,7 @@ export const querySelector = selector => document.querySelector(selector);
  * @param {array} elements An array of HTML elements
  */
 export const hideElements = elements => {
-  elements.forEach(element => {
-    hideElement(element);
-  });
+  elements.forEach(hideElement);
 };
 
 /**
@@ -41,7 +39,5 @@ export const hideElements = elements => {
  * @param {array} elements An array of HTML elements
  */
 export const showElements = elements => {
-  elements.forEach(element => {
-    showElement(element);
-  });
+  elements.forEach(showElement);
 };
