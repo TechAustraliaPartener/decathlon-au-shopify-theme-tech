@@ -3,8 +3,8 @@ import { querySelector, showElements, hideElements } from './utils';
 /**
  * The toggle buttons
  */
-const shipToggleBtn = querySelector('.js-ship-toggle-btn');
-const pickupToggleBtn = querySelector('.js-pickup-toggle-btn');
+const shipToggleBtn = querySelector('.js-toggle-shipping');
+const pickupToggleBtn = querySelector('.js-toggle-pickup');
 
 /**
  * Input fields of interest
