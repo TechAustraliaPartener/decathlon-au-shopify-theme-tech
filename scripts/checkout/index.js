@@ -12,6 +12,7 @@ const pickupToggleBtn = querySelector('.js-pickup-toggle-btn');
  * there is the possiblity the selectors will fail. This is a known
  * risk we are taking.
  * @see https://help.shopify.com/en/themes/development/layouts/checkout/best-practices#dom-dependency-and-liquid-drops
+ * @see https://docs.decathlon.us/shopify/-LSqQDiLEYzw_Jv4oueW/product-feature/untitled-2#shopify-plus-checkout-customization
  */
 const addressInput = querySelector('[data-address-field="address1"]');
 const cityInput = querySelector('[data-address-field="city"]');
