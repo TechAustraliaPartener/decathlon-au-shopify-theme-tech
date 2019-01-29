@@ -46,6 +46,19 @@
             {{ alternative_payment_methods }}
           </div>
           <div class="main__content">
+
+            {% comment %}
+              The Ship & Pickup buttons start hidden.
+              The checkout JS (scripts/checkout/index.js)
+              will show and add UI functionality.
+            {% endcomment %}
+            <button class="btn js-ship-toggle-btn de-u-hidden">
+              <span class="btn__content">Ship</span>
+            </button>
+            <button class="btn js-pickup-toggle-btn de-u-hidden">
+              <span class="btn__content">Pickup</span>
+            </button>
+
             {{ content_for_layout }}
           </div>
           <div class="main__footer">
@@ -64,5 +77,7 @@
     </div>
 
     {{ tracking_code }}
+
+    {{ 'checkout.js' | asset_url | script_tag }}
   </body>
 </html>
