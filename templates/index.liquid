@@ -284,21 +284,4 @@
 {% comment %} {% include 'videos-script' %} {% endcomment %}
 {% include 'instagram-template' %}
 
-{% capture product_json %}
-var productJSON = [
-  {% for product in collections['trending-products'].products limit:20 %}
-    {%- if product.available -%}
-      {
-      {% if product.options.size == 1 and product.options.first != 'Title' %}
-        addLabel: '{{ product.options.first | escape }}',
-      {% endif %}
-        id: 'trending-products-{{ product.id }}',
-        product: {{ product | json }}
-      },
-    {% endif %}
-  {% endfor %}
-  ];
-{% endcapture %}
-{% include 'catalog-script' %}
-
 {{ content_for_index }}

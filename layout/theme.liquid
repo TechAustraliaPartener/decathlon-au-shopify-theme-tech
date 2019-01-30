@@ -45,8 +45,7 @@
   <!-- CSS ================================================== -->
   {{ 'fonts.css' | asset_url | stylesheet_tag }}
   {{ 'icomoon.css' | asset_url | stylesheet_tag }}
-  {{ '//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css' | stylesheet_tag }}
-  {{ '//cdn.jsdelivr.net/jquery.slick/1.6.0/slick-theme.css' | stylesheet_tag }}
+  {% include 'slick-styles' %}
   {{ 'timber.scss.css' | asset_url | stylesheet_tag }}
   {{ 'fancybox.css' | asset_url | stylesheet_tag }}
   {{ 'skill-level.scss' | asset_url | stylesheet_tag }}

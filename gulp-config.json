@@ -9,7 +9,7 @@
 		"patterns"	: "patterns/",
 		"scss"		: "src/scss/",
 		"snippets" 	: "snippets/",
-		"persistentCart": "persistent-cart/"
+		"c4Scripts": "scripts/"
 	},
 	"sprite" : {
 		"dir"		: "src/svg/",
