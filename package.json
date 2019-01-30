@@ -15,7 +15,8 @@
     "dev": "theme watch & gulp",
     "build": "gulp build",
     "check-lint": "eslint 'scripts/**/*.js' && prettier --list-different 'scripts/**/*.js'",
-    "lint": "eslint --fix 'scripts/**/*.js' && prettier --write 'scripts/**/*.js'"
+    "lint": "eslint --fix 'scripts/**/*.js' && prettier --write 'scripts/**/*.js'",
+    "cypress:open": "cypress open"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
