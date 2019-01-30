@@ -17,6 +17,6 @@ Visual changes should include a screenshot.
 ---
 
 - Fixes # (issue)
-- or [TrelloCard/Issue/Story](LINK_TO_STORY)
+- or [Favro/Issue/Story](LINK)
 
 /CC @person
