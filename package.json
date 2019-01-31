@@ -15,7 +15,8 @@
     "dev": "theme watch & gulp",
     "build": "gulp build",
     "check-lint": "eslint 'scripts/**/*.js' && prettier --list-different 'scripts/**/*.js'",
-    "lint": "eslint --fix 'scripts/**/*.js' && prettier --write 'scripts/**/*.js'"
+    "lint": "eslint --fix 'scripts/**/*.js' && prettier --write 'scripts/**/*.js'",
+    "cypress:open": "cypress open"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
@@ -24,6 +25,7 @@
     "babel-plugin-transform-inline-environment-variables": "^0.4.3",
     "browser-sync": "^2.11.1",
     "css-mqpacker": "^5.0.1",
+    "cypress": "^3.1.5",
     "del": "^2.2.0",
     "es6-promise": "^3.0.2",
     "eslint": "^5.11.1",
