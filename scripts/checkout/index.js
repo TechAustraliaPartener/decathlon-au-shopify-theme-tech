@@ -36,10 +36,12 @@ const toggleElements = Object.keys(toggleElementSelectors).map(
  * Bind the toggle buttons
  */
 pickupToggleBtn.addEventListener('click', event => {
+  STATE.deliveryMethod = DELIVERY_METHODS.PICKUP;
   hideElements(toggleElements);
 });
 
 shipToggleBtn.addEventListener('click', event => {
+  STATE.deliveryMethod = DELIVERY_METHODS.SHIP;
   showElements(toggleElements);
 });
 
