@@ -1,3 +1,7 @@
+/* global Shopify */
+
+import { DELIVERY_METHODS } from './constants';
+import STATE from './state';
 import { querySelector, showElements, hideElements } from './utils';
 
 /**
@@ -44,7 +48,16 @@ shipToggleBtn.addEventListener('click', event => {
  * Without JS, the Ship/Pickup toggle buttons won't display.
  */
 const uiInit = () => {
+  // Set default delivery method
+  STATE.deliveryMethod = DELIVERY_METHODS.SHIP;
+  // Set the current Shopify checkout step
+  STATE.checkoutStep = Shopify && Shopify.Checkout && Shopify.Checkout.step;
+
   showElements([shipToggleBtn, pickupToggleBtn]);
 };
 
-document.addEventListener('DOMContentLoaded', uiInit);
+/**
+ * Listen to Shopify Checkout `page:load` to initialize
+ * @see https://help.shopify.com/en/themes/development/layouts/checkout#page-events
+ */
+document.addEventListener('page:load', uiInit);
