@@ -47,18 +47,44 @@
             {{ alternative_payment_methods }}
           </div>
           <div class="main__content">
-
             {% comment %}
               The Ship & Pickup buttons start hidden.
               The checkout JS (scripts/checkout/index.js)
               will show and add UI functionality.
             {% endcomment %}
-            <button class="btn js-toggle-shipping de-u-hidden">
-              <span class="btn__content">Ship</span>
-            </button>
-            <button class="btn js-toggle-pickup de-u-hidden">
-              <span class="btn__content">Pickup</span>
-            </button>
+            <div class="de-u-spaceEnds02">
+              <button class="btn js-de-toggle-shipping de-u-hidden">
+                <span class="btn__content">Ship</span>
+              </button>
+              <button class="btn js-de-toggle-pickup de-u-hidden">
+                <span class="btn__content">Pickup</span>
+              </button>
+            </div>
+
+            <div class="js-de-pickup-content de-u-hidden">
+              <p>Pickup your order in-store within 24 to 48Hr.<br/>You will receive an email when your order is ready for pickup.</p>
+
+              <ul class="de-u-spaceEnds02">
+                <li>
+                  <label>
+                    <input class="input-radio" type="radio" name="store" value="first-store">
+                    <span>First Store</span>
+                  </label>
+                </li>
+                <li>
+                  <label>
+                    <input class="input-radio" type="radio" name="store" value="second-store">
+                    <span>Second Store</span>
+                  </label>
+                </li>
+                <li>
+                  <label>
+                    <input class="input-radio" type="radio" name="store" value="third-store">
+                    <span>Third Store</span>
+                  </label>
+                </li>
+              </ul>
+            </div>
 
             {{ content_for_layout }}
           </div>
@@ -78,7 +104,5 @@
     </div>
     {{ 'checkout.js' | asset_url | script_tag }}
     {{ tracking_code }}
-
-    {{ 'checkout.js' | asset_url | script_tag }}
   </body>
 </html>
