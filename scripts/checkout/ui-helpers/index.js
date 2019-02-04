@@ -44,7 +44,7 @@ export const showElements = elements => {
 export const disableInput = input => {
   if (!input) return;
   input.disabled = true;
-}
+};
 
 /**
  * Enables HTML input element
@@ -53,5 +53,4 @@ export const disableInput = input => {
 export const enableInput = input => {
   if (!input) return;
   input.disabled = false;
-}
-
+};
