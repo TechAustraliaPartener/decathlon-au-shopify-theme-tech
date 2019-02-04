@@ -1,14 +1,15 @@
 /**
- * "Hidden" CSS class from the Patterns Toolkit CSS.
+ * Pattern Toolkit CSS classes to manipulate DOM
  */
-const CSS_HIDDEN_CLASS = 'de-u-hidden';
+const HIDDEN = 'de-u-hidden';
 
 /**
  * Hides HTML element by adding CSS class
  * @param {Element} element The HTML element to hide
  */
 const hideElement = element => {
-  element.classList.add(CSS_HIDDEN_CLASS);
+  if (!element) return;
+  element.classList.add(HIDDEN);
 };
 
 /**
@@ -16,15 +17,9 @@ const hideElement = element => {
  * @param {Element} element The HTML element to hide
  */
 const showElement = element => {
-  element.classList.remove(CSS_HIDDEN_CLASS);
+  if (!element) return;
+  element.classList.remove(HIDDEN);
 };
-
-/**
- * Helper function shortening call to querySelector
- * @param {string} selector Element CSS selector
- * @returns {Element} Element that matches the specified selector
- */
-export const querySelector = selector => document.querySelector(selector);
 
 /**
  * Hides all HTML elements in array
@@ -41,3 +36,22 @@ export const hideElements = elements => {
 export const showElements = elements => {
   elements.forEach(showElement);
 };
+
+/**
+ * Disables HTML input element
+ * @param {Element} input An HTML input element
+ */
+export const disableInput = input => {
+  if (!input) return;
+  input.disabled = true;
+}
+
+/**
+ * Enables HTML input element
+ * @param {Element} input An HTML input element
+ */
+export const enableInput = input => {
+  if (!input) return;
+  input.disabled = false;
+}
+
