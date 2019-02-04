@@ -3,7 +3,7 @@
 import { DELIVERY_METHODS } from './constants';
 import STATE from './state';
 import bindUI from './bind-ui';
-import updateUI from "./update-ui";
+import updateUI from './update-ui';
 
 /**
  * Intialize custom JS functionality

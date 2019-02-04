@@ -1,8 +1,13 @@
-import { storeLocations, pickupToggleBtn, shipToggleBtn, continueBtn } from "./ui-elements";
+import {
+  storeLocations,
+  pickupToggleBtn,
+  shipToggleBtn,
+  continueBtn
+} from './ui-elements';
 import STATE from '../../state';
 import { DELIVERY_METHODS } from '../../constants';
 import updateUI from './update-ui';
-import { enableInput } from "../../ui-helpers";
+import { enableInput } from '../../ui-helpers';
 
 const bindUI = () => {
   storeLocations.forEach(store => {

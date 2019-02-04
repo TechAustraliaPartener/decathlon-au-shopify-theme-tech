@@ -3,12 +3,9 @@ import SELECTORS from './selectors';
 /**
  * Grouping all toggle elements together into an array for easier access
  */
-export const deliveryElements =
-  Object
-    .keys(SELECTORS.DELIVERY_INPUTS)
-    .map(
-      key => document.querySelector(SELECTORS.DELIVERY_INPUTS[key])
-    );
+export const deliveryElements = Object.keys(SELECTORS.DELIVERY_INPUTS).map(
+  key => document.querySelector(SELECTORS.DELIVERY_INPUTS[key])
+);
 
 /**
  * Next step "continue" button

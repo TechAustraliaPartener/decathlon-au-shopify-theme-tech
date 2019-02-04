@@ -1,8 +1,18 @@
 import { DELIVERY_METHODS } from '../../constants';
 import STATE from '../../state';
-import { showElements, hideElements, disableInput, enableInput } from '../../ui-helpers';
-import { shipToggleBtn , pickupToggleBtn, deliveryElements, pickupContent, continueBtn} from './ui-elements';
-
+import {
+  showElements,
+  hideElements,
+  disableInput,
+  enableInput
+} from '../../ui-helpers';
+import {
+  shipToggleBtn,
+  pickupToggleBtn,
+  deliveryElements,
+  pickupContent,
+  continueBtn
+} from './ui-elements';
 
 const updateUI = () => {
   // Allow the Ship/Pickup buttons to show up
