@@ -6,6 +6,10 @@ const bindUI = () => {
   if (STATE.checkoutStep === CHECKOUT_STEPS.CONTACT_INFORMATION) {
     contactInformation.bindUI();
   }
+
+  if (STATE.checkoutStep === CHECKOUT_STEPS.SHIPPING_METHOD) {
+    // Bind the Shipping (Step 2) UI
+  }
 };
 
 export default bindUI;
