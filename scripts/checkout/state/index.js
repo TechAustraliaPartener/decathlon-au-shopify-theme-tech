@@ -8,8 +8,12 @@ const DEBUG_STATE = true;
 const logState = () => {
   if (!DEBUG_STATE) return;
   console.info('STATE:', STATE);
-}
+};
 
+/**
+ * @todo Refactor to not use getters/setters per feedback
+ * @see https://github.com/decathlon-usa/shopify-theme-decathlonusa/pull/101#discussion_r253569982
+ */
 const STATE = {
   _deliveryMethod: null,
   _pickupStore: null,
