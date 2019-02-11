@@ -35,6 +35,10 @@ const storageAvailableTest = type => {
   }
 };
 
+/**
+ * Helper testing for localStorage availability
+ * If sessionStorage is needed, create another const using the string 'sessionStorage'
+ */
 export const localStorageAvailable = storageAvailableTest('localStorage');
 
 /**
@@ -42,8 +46,8 @@ export const localStorageAvailable = storageAvailableTest('localStorage');
  * @param {string} test - A string to test setting and getting on a the document.cookie
  * @returns {boolean} - Whether the test passed
  */
-const cookiesAvailableTest = test => {
-  Cookies.set(test, 'foo');
+const cookiesAvailableTest = () => {
+  Cookies.set('persistent-cart-test', 'foo');
   const storedVal = Cookies.get(test);
   Cookies.remove(test);
   const deletedVal = Cookies.get(test);
@@ -54,7 +58,10 @@ const cookiesAvailableTest = test => {
   return storedVal && !deletedVal;
 };
 
-export const cookiesAvailable = cookiesAvailableTest('persistent-cart-test');
+/**
+ * Export the boolean return value from cookiesAvailableTest
+ */
+export const cookiesAvailable = cookiesAvailableTest();
 
 /**
  * Helper to set an object in localStorage
