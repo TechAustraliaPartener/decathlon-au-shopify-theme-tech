@@ -45,7 +45,7 @@ Do this any time updates were committed in the decathlon-patterns repo and merge
 Here are the steps followed to create this PR:
 
 1. Enter the directory for the shopify repo: `cd shopify-theme-decathlonusa`
-1. Checkout the `dev-cloud4` branch: `git checkout dev-cloud4`
+1. Checkout the `cloudfour-dev` branch: `git checkout cloudfour-dev`
 1. Make sure the branch is up-to-date: `git pull`
 1. Checkout a new branch from there: `git checkout -b chore/update-patterns`
 1. Update the patterns: `npx gulp updatePatterns`
