@@ -47,10 +47,11 @@ export const localStorageAvailable = storageAvailableTest('localStorage');
  * @returns {boolean} - Whether the test passed
  */
 const cookiesAvailableTest = () => {
-  Cookies.set('persistent-cart-test', 'foo');
-  const storedVal = Cookies.get('persistent-cart-test');
-  Cookies.remove('persistent-cart-test');
-  const deletedVal = Cookies.get('persistent-cart-test');
+  const test = 'persistent-cart-test';
+  Cookies.set(test, 'foo');
+  const storedVal = Cookies.get(test);
+  Cookies.remove(test);
+  const deletedVal = Cookies.get(test);
   // @TODO - remove comments for production
   console.log(
     `cookie was stored successfully if there's a value here: ${storedVal}`
