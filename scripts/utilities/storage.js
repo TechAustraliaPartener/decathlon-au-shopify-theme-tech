@@ -47,7 +47,8 @@ export const localStorageAvailable = storageAvailableTest('localStorage');
  * @returns {boolean} - Whether the test passed
  */
 const cookiesAvailableTest = () => {
-  Cookies.set('persistent-cart-test', 'foo');
+  const test = 'persistent-cart-test';
+  Cookies.set(test, 'foo');
   const storedVal = Cookies.get(test);
   Cookies.remove(test);
   const deletedVal = Cookies.get(test);
