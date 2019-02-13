@@ -1,14 +1,15 @@
 # SETUP README
 ## Project Setup
-1. In Mac Terminal navigate to your project's root folder.
-2. Make sure ThemeKit is installed. If it's not go to https://shopify.github.io/themekit/
-3. Install the 0.8.2 Pre-release version of ThemeKit: `theme update --version=0.8.2-prerelease`
-4. There should be a `config.yml.sample` in the root of the project. Duplicate this file and name it `config.yml`. This will have the default api information for Shopify. If you're working on a cloned theme because multiple developers are on the project, this is where you'd update your theme id. Make sure `config.yml` is not being tracked in the repo.
-5. Install all node dependencies for the project: `npm install` (or `npm ci` if `package-lock.json` is present).
-6. Type `npm run build` and press enter. This will run all project gulp tasks and also ensure that all dependencies are installed properly. If a dependency does not exist you'll see an error in terminal. If you see this error, install the missing dependency by typing the command `npm install *package_name* --save-dev`. After this make sure to commit your `package.json` file so that the next user has the dependencies they need.
-7. Replace what is on the Shopify theme with what is in your current project directory: `theme deploy`
-8. Run all project gulp tasks, and watch for changes to push to Shopify: `npm run dev`
-9. You might need to save a file (e.g. `scripts/checkout/*`) to trigger a gulp rebuild (troubleshooting issue).
+1. The project should be cloned, initially, with `git clone (url) --recurse-submodules`
+2. In Mac Terminal navigate to your project's root folder.
+3. Make sure ThemeKit is installed. If it's not go to https://shopify.github.io/themekit/
+4. Install the 0.8.2 Pre-release version of ThemeKit: `theme update --version=0.8.2-prerelease`
+5. There should be a `config.yml.sample` in the root of the project. Duplicate this file and name it `config.yml`. This will have the default api information for Shopify. If you're working on a cloned theme because multiple developers are on the project, this is where you'd update your theme id. Make sure `config.yml` is not being tracked in the repo.
+6. Install all node dependencies for the project: `npm install` (or `npm ci` if `package-lock.json` is present).
+7. Type `npm run build` and press enter. This will run all project gulp tasks and also ensure that all dependencies are installed properly. If a dependency does not exist you'll see an error in terminal. If you see this error, install the missing dependency by typing the command `npm install *package_name* --save-dev`. After this make sure to commit your `package.json` file so that the next user has the dependencies they need.
+8. Replace what is on the Shopify theme with what is in your current project directory: `theme deploy`
+9. Run all project gulp tasks, and watch for changes to push to Shopify: `npm run dev`
+10. You might need to save a file (e.g. `scripts/checkout/*`) to trigger a gulp rebuild (troubleshooting issue).
 
 ## Gulp Config
 There is a file in the root directory called `gulp-config`. This file maintains the list of directories, stylesheets, sprites, and javascript files. All configuration for gulp should be here.
