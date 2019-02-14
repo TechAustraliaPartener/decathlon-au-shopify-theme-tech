@@ -1,0 +1,4 @@
+{
+  "baseUrl": "https://testing-decathlon-usa.myshopify.com/",
+  "ignoreTestFiles": "example_spec.js"
+}
