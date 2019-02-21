@@ -51,9 +51,9 @@ var params = {
     ////
     ! function(e, t, i, n) {
     t(".account-order--js-writeReviewForm").click(function(e) {
-          s = '//reviews.decathlon.com';
       var M = $(this).attr('review-modelCode'),
           P = $(this).attr('review-productName'),
+          s = '//reviews.decathlon.com',
           T = 'Write a review for ' + P;
       document.getElementsByTagName('html')[0].style.overflowY = 'hidden';
       if (e.preventDefault(), !t(".writeReview").length) {
