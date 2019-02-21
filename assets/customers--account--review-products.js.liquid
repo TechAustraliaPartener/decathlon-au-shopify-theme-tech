@@ -51,17 +51,16 @@ var params = {
     ////
     ! function(e, t, i, n) {
     t(".account-order--js-writeReviewForm").click(function(e) {
-          P = '',
           s = '//reviews.decathlon.com';
       var reviewTitle = 'Write a review for ' + $(this).attr('review-productName');
       var M = $(this).attr('review-modelCode'),
+          P = $(this).attr('review-productName'),
       document.getElementsByTagName('html')[0].style.overflowY = 'hidden';
       if (e.preventDefault(), !t(".writeReview").length) {
         var i = n.compile(t("#writeReviewTemplate").html());
         t("body").append(i({
             REVIEWS_ROOT: s,
             siteCode: 1132,
-            productName: P,
             token: t(".js-account-review-products").data("jwtToken")
             MODEL_CODE: M,
         })),
