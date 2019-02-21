@@ -46,7 +46,8 @@ var params = {
 
     ////
     // Function to handle the review (opening/closing/success/failure)
-    //    Included here so the click event handler is attatched to both shopify and NewStore orders
+    //    Included here so the click event handler is attatched to both shopify and NewStore product reviews
+    //      Newstore products are not in the Shopify system, they need to be retreived from NewStore API
     ////
     ! function(e, t, i, n) {
     t(".account-order--js-writeReviewForm").click(function(e) {
