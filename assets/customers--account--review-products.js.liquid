@@ -60,9 +60,9 @@ var params = {
         var i = n.compile(t("#writeReviewTemplate").html());
         t("body").append(i({
             REVIEWS_ROOT: s,
-            token: t(".js-account-review-products").data("jwtToken")
             MODEL_CODE: M,
             REVIEW_TITLE: T,
+            TOKEN: t(".js-account-review-products").data("jwtToken")
         })),
           t(".inputWrap > select").on("change", function() {}),
           t(".inputWrap > input, .inputWrap > textarea").on("keyup", function() {}),
