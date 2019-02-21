@@ -6,7 +6,7 @@
       <div class="u-centerVertically-ie">
         <div class="writeReview-wrapper">
           <button class="close-btn js-closeWriteReview" type="button"></button>
-          <h5>Write a review for this product</h5>
+          <h5>{{ REVIEW_TITLE}}</h5>
           <div class="form-vertical">
             <form method="post" action="{{ REVIEWS_ROOT }}/api/post/en_US/review/post.json?ovbearer={{ token }}">
               <div class="formInput-wrapperGroup u-block">
