@@ -96,8 +96,10 @@ var params = {
 
   },
   error: function (xhr, ajaxOptions, thrownError) {
-    console.error(`${url}`)
-    console.error(xhr.status);
-    console.error(thrownError);
+    $('#spinningLoad').hide()
+    $('#shopify-products-for-review').show()
+    console.error(`Error: ${url}`)
+    console.error(`Error status: ${xhr.status}`);
+    console.error(`Error thrown: ${thrownError}`);
   }
 }
