@@ -46,24 +46,23 @@ var params = {
 
     ////
     // Function to handle the review (opening/closing/success/failure)
-    //    Included here so the click event handler is attatched to both shopify and NewStore orders
+    //    Included here so the click event handler is attatched to both shopify and NewStore product reviews
+    //      Newstore products are not in the Shopify system, they need to be retreived from NewStore API
     ////
     ! function(e, t, i, n) {
     t(".account-order--js-writeReviewForm").click(function(e) {
-      var M = '',
-          P = '',
-          s = '//reviews.decathlon.com';
-      var reviewTitle = 'Write a review for ' + $(this).attr('review-productName');
+      var M = $(this).attr('review-modelCode'),
+          P = $(this).attr('review-productName'),
+          s = '//reviews.decathlon.com',
+          T = 'Write a review for ' + P;
       document.getElementsByTagName('html')[0].style.overflowY = 'hidden';
-      var reviewModelCode = $(this).attr('review-modelCode');
       if (e.preventDefault(), !t(".writeReview").length) {
         var i = n.compile(t("#writeReviewTemplate").html());
         t("body").append(i({
             REVIEWS_ROOT: s,
-            siteCode: 1132,
-            modelCode: M,
-            productName: P,
-            token: t(".js-account-review-products").data("jwtToken")
+            MODEL_CODE: M,
+            REVIEW_TITLE: T,
+            TOKEN: t(".js-account-review-products").data("jwtToken")
         })),
           t(".inputWrap > select").on("change", function() {}),
           t(".inputWrap > input, .inputWrap > textarea").on("keyup", function() {}),
@@ -91,16 +90,16 @@ var params = {
         document.getElementsByTagName('html')[0].style.overflowY = 'hidden',
         t(".writeReview-wrapper").show()
       }
-      t("input[name='offerReference']").val(reviewModelCode);
-      t(".writeReview-wrapper > h5").text(reviewTitle);
         t(".writeReview").css("display", "block")
   })
   }(window, jQuery, BlueLikeNeon, Handlebars);
 
   },
   error: function (xhr, ajaxOptions, thrownError) {
-    console.error(`/tools/shopify-decathlon-proxy-s/newstore-order-for-shopify/newstore-reviews?email=${customerEmail}&customerId=${customerId}`)
-    console.error(xhr.status);
-    console.error(thrownError);
+    $('#spinningLoad').hide()
+    $('#shopify-products-for-review').show()
+    console.error(`Error: ${url}`)
+    console.error(`Error status: ${xhr.status}`);
+    console.error(`Error thrown: ${thrownError}`);
   }
 }

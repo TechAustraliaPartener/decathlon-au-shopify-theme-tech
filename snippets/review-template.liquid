@@ -6,15 +6,15 @@
       <div class="u-centerVertically-ie">
         <div class="writeReview-wrapper">
           <button class="close-btn js-closeWriteReview" type="button"></button>
-          <h5>Write a review for this product</h5>
+          <h5>{{ REVIEW_TITLE}}</h5>
           <div class="form-vertical">
-            <form method="post" action="{{ REVIEWS_ROOT }}/api/post/en_US/review/post.json?ovbearer={{ token }}">
+            <form method="post" action="{{ REVIEWS_ROOT }}/api/post/en_US/review/post.json?ovbearer={{ TOKEN }}">
               <div class="formInput-wrapperGroup u-block">
                 <!--
                   stars choice: Very Bad, Bad, Average, Good, Excellent
                   label: Product Rating: *
                   help: please give a rating
-                  name="review_draft[note]"
+                  name="note"
                 -->
                 <div class="formInput-choiceWrapper u-block u-marginBottom1x">
                   <p>Product Rating*</p>
@@ -28,7 +28,7 @@
                 
                 <div class="inputWrap">
                   <label for="review_draft_title">Review Title*</label>
-                  <input type="text" id="review_draft_title" class="input-full" name="review_draft[title]" maxlength="50" required placeholder="Review Title*" />
+                  <input type="text" id="review_draft_title" class="input-full" name="title" maxlength="50" placeholder="Review Title*" required />
                 </div>
 
                 <!--
@@ -56,17 +56,17 @@
 
                 <div class="inputWrap">
                   <label for="review_draft_userEmail">Email*</label>
-                  <input type="email" id="review_draft_userEmail" class="input-full" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" placeholder="Email*" />
+                  <input type="email" id="review_draft_userEmail" class="input-full" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" placeholder="Email*" required />
                 </div>
 
                 <div class="inputWrap">
                   <label for="review_draft_userFirstname">First Name*</label>
-                  <input type="text" id="review_draft_userFirstname" class="input-full" name="firstname" required placeholder="First Name*"/>
+                  <input type="text" id="review_draft_userFirstname" class="input-full" name="firstname" placeholder="First Name*" required />
                 </div>
 
                 <div class="inputWrap">
                   <label for="review_draft_userLastname">Last Name*</label>
-                  <input type="text" id="review_draft_userLastname" class="input-full" name="lastname" required placeholder="Last Name*" />
+                  <input type="text" id="review_draft_userLastname" class="input-full" name="lastname" placeholder="Last Name*" required />
                 </div>
 
                 <!--
@@ -124,9 +124,9 @@
                 -->
               </div>
 
-                <input type="hidden" name="siteReference" value="{{ siteCode }}" />
-                <input type="hidden" name="offerReference" value="{{ modelCode }}" />
-                <input type="hidden" name="offerType" value="5" />
+                <input type="hidden" name="offerReference" value="{{ MODEL_CODE }}" />
+                <input type="hidden" name="offerType" value="product" />
+                <input type="hidden" name="source" value="dktus" />
                 <!--
                 <input type="hidden" name="review_draft[typeForm]" />
                 <input type="hidden" name="review_draft[custom_token]" />
@@ -144,9 +144,7 @@
         <div class="writeReview-wrapper--after">
           <button class="close-btn js-closeWriteReview--after" type="button"></button>
           <div class="form-vertical">
-            <form method="post" action="{{ REVIEWS_ROOT }}/api/post/en_US/review/post.json?ovbearer={{ token }}">
               <h5 class="writeReview-thank">Thank you for sharing!</h5>
-            </form>
           </div>
         </div>
 
