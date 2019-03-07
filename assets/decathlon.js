@@ -1305,7 +1305,9 @@ function(e, t, i, n, o) {
             var i = new Image;
             i.src = t(e.currentTarget).data("image")
         }), t(".js-colorChip").on("click", function(e) {
-            e.preventDefault(), t(e.currentTarget).parents(".collectionProduct").find(".collectionProduct-image").attr("src", t(e.currentTarget).data("image")), t(e.currentTarget).parent().attr("data-colorChoice", t(e.currentTarget).data("color")), t(e.currentTarget).parent().attr("data-variantChoice", t(e.currentTarget).data("variant")), t(e.currentTarget).parent().find(".option.option--active").removeClass("option--active"), t(e.currentTarget).addClass("option--active")
+            e.preventDefault(), t(e.currentTarget).parents(".collectionProduct").find(".collectionProduct-image").attr("src", t(e.currentTarget).data("image"))
+			if(t(e.currentTarget).data("compare")){t(e.currentTarget).parents(".collectionProduct").find(".collectionProduct-price").html("<span style='color: #E53322;'>" + t(e.currentTarget).data("price") + "</span><span class='visually-hidden'>Regular price</span><br><s>" + t(e.currentTarget).data("compare") + "</s>")}else{t(e.currentTarget).parents(".collectionProduct").find(".collectionProduct-price").html(t(e.currentTarget).data("price"))}
+			t(e.currentTarget).parent().attr("data-colorChoice", t(e.currentTarget).data("color")), t(e.currentTarget).parent().attr("data-variantChoice", t(e.currentTarget).data("variant")), t(e.currentTarget).parent().find(".option.option--active").removeClass("option--active"), t(e.currentTarget).addClass("option--active")
         }), e.attachOptionSelectors && e.attachOptionSelectors(), t(".collectionProduct .js-shopNow").click(function(i) {
             i.preventDefault();
             var n = t(this).parents(".collectionProduct").find(".collectionProduct-colors").data("variantchoice");
