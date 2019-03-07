@@ -5,7 +5,7 @@
 
 {% include 'blog_subnav' with linklists['all-blogs'] %}
 
-{% paginate blog.articles by 6 %}
+{% paginate blog.articles by 30 %}
 
 {% comment %}
 {% assign blogCategory = 'blog-list--' | append: blog.handle %}
