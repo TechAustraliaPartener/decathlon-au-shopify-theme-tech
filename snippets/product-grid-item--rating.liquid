@@ -18,8 +18,12 @@ The number of stars filled in will be the ceiling integer of the rating.
       
     </div>
     <div class="adept-product-rating__info">
+	    {% if product_rating != 0 %}
         <div class="adept-product-rating__text">{{product_rating}}</div>
-        {% comment %} <div class="adept-product-rating__count">({{review_count}})</div> {% endcomment %}
+		{% endif %}
+		{% if product.metafields.reviews.recent_reviews %}
+        <div class="adept-product-rating__count">({{ product.metafields.reviews.recent_reviews | split: ',"items"' | first | split: '{"total_item_count":' }})</div>
+		{% endif %}
       </div>
 	</div>
 
