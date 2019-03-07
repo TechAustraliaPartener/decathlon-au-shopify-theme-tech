@@ -149,8 +149,7 @@
 
   {{ 'timber.js' | asset_url | script_tag }}
 
-  {% comment %} TODO: Disabling until Persistent Cart feature is ready to go {% endcomment %}
-  {% comment %} {{ 'persistent-cart.js' | asset_url | script_tag }} {% endcomment %}
+  {{ 'persistent-cart.js' | asset_url | script_tag }}
 
   {% comment %}{% include '_live-search' %}{% endcomment %}
 
@@ -264,6 +263,12 @@
 		  document.getElementsByTagName("head")[0].appendChild(mf);
 	  })();
   </script>
+  {% comment %}
+    Capture a customer ID (will be undefined if there's not a customer yet, but that's good).
+    Used by Persistent Cart JS
+  {% endcomment %}
+  <input type="hidden" class="js-de-cart-count" value="{{ cart.item_count }}">
+  <input type="hidden" class="js-de-cid" value="{{ customer.id }}">
 
   <script type="text/javascript">
     (function() {
@@ -272,6 +277,5 @@
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(avm, s);
     })();
   </script>
-
 </body>
 </html>

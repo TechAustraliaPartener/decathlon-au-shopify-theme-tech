@@ -14,9 +14,9 @@
   .cart-table td, .cart-table th { padding-top: 20px; padding-bottom: 20px; }
 
   .update-cart { margin: 0 0 0 2em; border: none !important;}
-  .subtotalWrap { 
+  .subtotalWrap {
     float:right; width: 100%;
-    margin-bottom: 1px; 
+    margin-bottom: 1px;
     margin-top: 0.5em;
   }
   .fee-message { margin-bottom: 1em; }
@@ -25,14 +25,14 @@
 
 
   @media screen and (max-width: 480px) {
-    .table--responsive th, 
+    .table--responsive th,
     .table--responsive td {
       text-align: left;
       padding: 10px;
     }
 
     .table--responsive td small,
-    .table--responsive td .h6 { text-align: center; } 
+    .table--responsive td .h6 { text-align: center; }
 
     td[data-label="Remove"] {
       float: right;
@@ -66,7 +66,7 @@
 <div class="u-paddingTopBottom4x u-marginBottom4x">
   <div class="wrapper wrapper--midWidth">
   {% if cart.item_count > 0 %}
-  
+
     <h1 class="h3 text-center">{{ 'cart.general.title' | t }}</h1>
     {% comment %}
     {% if settings['is_lookbook'] == true %}
@@ -74,7 +74,7 @@
     {% endif %}
     {% endcomment %}
 
-    <form action="/cart" method="post" novalidate class="cart table-wrap">
+    <form action="/cart" method="post" novalidate class="cart table-wrap js-de-cart">
       <table class="cart-table full table--responsive">
         <thead class="cart__row cart__header-labels">
           <th>&nbsp;</th>
@@ -141,14 +141,14 @@
                 {% unless item.variant.title contains 'Default' %}
                   <small class="u-textUppercase u-textBold u-block">{{ item.variant.title }}</small>
                 {% endunless %}
-  
+
                 {% if settings.cart_vendor_enable %}
                   <p>{{ item.vendor }}</p>
                 {% endif %}
-  
+
                 {% comment %}
                   Optional, loop through custom product line items if available
-  
+
                   For more info on line item properties, visit:
                     - http://docs.shopify.com/support/your-store/products/how-do-I-collect-additional-information-on-the-product-page-Like-for-a-monogram-engraving-or-customization
                 {% endcomment %}
@@ -157,7 +157,7 @@
                   {% for p in item.properties %}
                     {% unless p.last == blank or p.first == '_for' %}
                       {{ p.first }}:
-  
+
                       {% comment %}
                         Check if there was an uploaded file associated
                       {% endcomment %}
@@ -166,7 +166,7 @@
                       {% else %}
                         {{ p.last }}
                       {% endif %}
-  
+
                       <br>
                     {% endunless %}
                   {% endfor %}

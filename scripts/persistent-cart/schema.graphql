@@ -1,0 +1,23 @@
+# source: https://persistent-cart-decathlonusa-s.herokuapp.com/shopify/graphql
+# timestamp: Fri Jan 25 2019 22:22:09 GMT-0800 (Pacific Standard Time)
+
+type Customer {
+  customerID: ID!
+  cart: JSON
+  cartID: ID
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+type Mutation {
+  createOrUpdateCustomer(customerID: ID!, cart: JSON): Customer
+}
+
+type Query {
+  getCustomer(customerID: ID!): Customer
+  getCustomerCart(customerID: ID!): JSON
+  getCart(cartID: ID!): JSON
+}

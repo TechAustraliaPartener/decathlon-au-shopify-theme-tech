@@ -13,9 +13,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "theme watch & gulp",
+    "dev:heroku:staging": "DECATHLON_PERSISTENT_CART_URL=https://persistent-cart-decathlonusa-s.herokuapp.com STOREFRONT_API_KEY=d5d7d74c65c818a0d63d8926a9d7ec01 npm run dev",
+    "build:heroku:staging": "DECATHLON_PERSISTENT_CART_URL=https://persistent-cart-decathlonusa-s.herokuapp.com STOREFRONT_API_KEY=d5d7d74c65c818a0d63d8926a9d7ec01 npm run build",
+    "build:heroku:production": "DECATHLON_PERSISTENT_CART_URL=https://persistent-cart-decathlonusa-p.herokuapp.com STOREFRONT_API_KEY=f6c7c4e4db56de88295c2ba45762a331 npm run build",
     "build": "gulp build",
-    "check-lint": "eslint 'scripts/**/*.js' && prettier --list-different 'scripts/**/*.js'",
-    "lint": "eslint --fix 'scripts/**/*.js' && prettier --write 'scripts/**/*.js'",
+    "get-schema": "graphql get-schema",
+    "check-lint": "eslint '{scripts,cypress/integration/persistent-cart}/**/*.js' && prettier --list-different '{scripts,cypress/integration/persistent-cart}/**/*.js'",
+    "lint": "eslint --fix '{scripts,cypress/integration/persistent-cart}/**/*.js' && prettier --write '{scripts,cypress/integration/persistent-cart}/**/*.js'",
     "cypress:open": "cypress open"
   },
   "engines": {
@@ -31,10 +35,16 @@
     "css-mqpacker": "^5.0.1",
     "cypress": "^3.1.5",
     "del": "^2.2.0",
+    "dotenv": "^6.2.0",
     "es6-promise": "^3.0.2",
     "eslint": "^5.11.1",
+    "eslint-plugin-chai-friendly": "^0.4.1",
+    "eslint-plugin-cypress": "^2.2.1",
+    "eslint-plugin-graphql": "^3.0.1",
     "fast-async": "^6.3.8",
     "fs": "0.0.2",
+    "graphql": "^14.0.2",
+    "graphql-cli": "^3.0.4",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-better-rollup": "^3.4.0",
@@ -63,7 +73,10 @@
     "rollup-plugin-terser": "^4.0.1"
   },
   "dependencies": {
+    "fast-deep-equal": "^2.0.1",
+    "formdata-polyfill": "^3.0.15",
     "js-cookie": "^2.2.0",
-    "nanographql": "^2.0.0"
+    "promise-polyfill": "^8.1.0",
+    "unfetch": "^4.0.1"
   }
 }

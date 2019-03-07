@@ -14,8 +14,6 @@ const storageAvailableTest = type => {
     const x = '__storage_test__';
     storage.setItem(x, x);
     storage.removeItem(x);
-    // @TODO, remove comments for production
-    console.log(`Web storage test passed if this is logged: ${x}`);
     return true;
   } catch (error) {
     return (
@@ -52,10 +50,6 @@ const cookiesAvailableTest = () => {
   const storedVal = Cookies.get(test);
   Cookies.remove(test);
   const deletedVal = Cookies.get(test);
-  // @TODO - remove comments for production
-  console.log(
-    `cookie was stored successfully if there's a value here: ${storedVal}`
-  );
   return storedVal && !deletedVal;
 };
 
@@ -79,3 +73,9 @@ export const setObjectInLocalStorage = (name, value) =>
  */
 export const getObjectFromLocalStorage = name =>
   JSON.parse(localStorage.getItem(name));
+
+/**
+ * Helper to remove an item from localStorage
+ * @param {string} item The item to remove from localStorage
+ */
+export const removeItemFromLocalStorage = item => localStorage.removeItem(item);
