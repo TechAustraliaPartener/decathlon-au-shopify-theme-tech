@@ -41,6 +41,12 @@
 </div>
 {% endcomment %}
 
+                    {% if paginate.pages > 1 %}
+                        <div class="paginate-bottom">
+                            {{ paginate | default_pagination | replace: '&laquo; Previous', '&lang;' | replace: 'Next &raquo;', '&rang;' }}
+                        </div>
+                    {% endif %}
+
 {% endpaginate %}
 
 <script>
