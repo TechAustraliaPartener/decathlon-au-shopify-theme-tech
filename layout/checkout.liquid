@@ -12,12 +12,13 @@
 
     {{ checkout_stylesheets }}
     {{ checkout_scripts }}
+
   </head>
   <body>
     {{ skip_to_content_link }}
 
     {% include 'google-tag-manager' %}
-    
+
     <div class="banner" data-header>
       <div class="wrap">
         {{ content_for_logo }}
@@ -61,7 +62,7 @@
         </div>
       </div>
     </div>
-
+    {{ 'checkout.js' | asset_url | script_tag }}
     {{ tracking_code }}
   </body>
 </html>

@@ -22,7 +22,7 @@
     {% for link in linklists.main-menu.links %}
       {% comment %}
         Create a dropdown menu by naming a linklist the same as a link in the parent nav
-  
+
         More info on dropdowns:
           - http://docs.shopify.com/manual/your-website/navigation/create-drop-down-menu
       {% endcomment %}
@@ -93,7 +93,7 @@
     <div id="NavDrawer--fixed-sign-out">
     <ul class="mobile-nav">
       <li class="mobile-nav__item">
-        <a href="/account/logout">Sign Out</a>
+        <a class="js-de-logout" href="/account/logout">Sign Out</a>
       </li>
     </ul>
     </div>
@@ -111,18 +111,18 @@
   $(document).ready(function() {
     toggleSignOutMenuItem();
 
-    $('.mobile-nav__toggle-sign-out').on('click', 
+    $('.mobile-nav__toggle-sign-out').on('click',
                                          toggleSignOutMenuItem);
-    
+
     function toggleSignOutMenuItem () {
       var expanded;
       var clickedChildren;
       var expandedMenuItems = 0;
-      
+
       // check if the clicked element is the arrow toggle or the Shop menu
       // check if the sublist is already expanded
       // get the number of li elements in the sublist
-      
+
       if ($(this).hasClass('mobile-nav__toggle-open')){
 		expanded = false;
         clickedChildren = $(this).parent().parent().siblings('.mobile-nav__sublist').find('li').length;
@@ -133,16 +133,16 @@
         expanded = false;
         clickedChildren = $(this).parent().siblings('.mobile-nav__sublist').find('li').length;
       } else { // being called on pageload
-        clickedChildren = 0; 
+        clickedChildren = 0;
       }
-      
+
       // Find the height of menu items and the drawer header
       var drawerHeaderHeight = $('.drawer__header').outerHeight();
       var menuItemHeight = $('#NavDrawer--list .mobile-nav__item:last').outerHeight();
       // Find the max height the list can be
       var maxHeight = $('#NavDrawer--wrapper').height() - drawerHeaderHeight - menuItemHeight;
       var menuHeight;
-      
+
       // If drawer is closing, subtract it's menu items
       // If drawer is opening, add it's menu items
       if (expanded) {
@@ -150,7 +150,7 @@
       } else {
         expandedMenuItems += clickedChildren;
       }
-        
+
       var expandedMenuItemsHeight = expandedMenuItems * menuItemHeight;
       menuHeight = $('#NavDrawer--list').height() + expandedMenuItemsHeight;
 
@@ -165,5 +165,5 @@
       };
     }
   });
-  
+
 </script>

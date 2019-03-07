@@ -1,0 +1,14 @@
+# https://github.com/prisma/graphql-config
+projects:
+  default:
+    schemaPath: ./scripts/persistent-cart/schema.graphql
+    extensions:
+      endpoints:
+        default: https://persistent-cart-decathlonusa-s.herokuapp.com/shopify/graphql
+    query:
+      files:
+        match: "**/*.js"
+        parser:
+          - EmbeddedQueryParser
+          - startTag: gql`
+            endTag: "`"
