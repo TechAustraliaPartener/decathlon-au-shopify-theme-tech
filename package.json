@@ -1,6 +1,6 @@
 {
   "name": "decathlon",
-  "version": "1.3.3",
+  "version": "1.4.0",
   "description": "Minify and Concat CSS and JS files, run jshint for all script files.",
   "repository": {
     "type": "git",
@@ -13,9 +13,18 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "theme watch & gulp",
+    "dev:heroku:staging": "DECATHLON_PERSISTENT_CART_URL=https://persistent-cart-decathlonusa-s.herokuapp.com STOREFRONT_API_KEY=d5d7d74c65c818a0d63d8926a9d7ec01 npm run dev",
+    "build:heroku:staging": "DECATHLON_PERSISTENT_CART_URL=https://persistent-cart-decathlonusa-s.herokuapp.com STOREFRONT_API_KEY=d5d7d74c65c818a0d63d8926a9d7ec01 npm run build",
+    "build:heroku:production": "DECATHLON_PERSISTENT_CART_URL=https://persistent-cart-decathlonusa-p.herokuapp.com STOREFRONT_API_KEY=f6c7c4e4db56de88295c2ba45762a331 npm run build",
     "build": "gulp build",
-    "check-lint": "eslint 'scripts/**/*.js' && prettier --list-different 'scripts/**/*.js'",
-    "lint": "eslint --fix 'scripts/**/*.js' && prettier --write 'scripts/**/*.js'"
+    "get-schema": "graphql get-schema",
+    "check-lint": "eslint '{scripts,cypress/integration/persistent-cart}/**/*.js' && prettier --list-different '{scripts,cypress/integration/persistent-cart}/**/*.js'",
+    "lint": "eslint --fix '{scripts,cypress/integration/persistent-cart}/**/*.js' && prettier --write '{scripts,cypress/integration/persistent-cart}/**/*.js'",
+    "cypress:open": "cypress open"
+  },
+  "engines": {
+    "node": ">=10",
+    "npm": ">=6.8.0"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
@@ -24,10 +33,18 @@
     "babel-plugin-transform-inline-environment-variables": "^0.4.3",
     "browser-sync": "^2.11.1",
     "css-mqpacker": "^5.0.1",
+    "cypress": "^3.1.5",
     "del": "^2.2.0",
+    "dotenv": "^6.2.0",
     "es6-promise": "^3.0.2",
     "eslint": "^5.11.1",
+    "eslint-plugin-chai-friendly": "^0.4.1",
+    "eslint-plugin-cypress": "^2.2.1",
+    "eslint-plugin-graphql": "^3.0.1",
+    "fast-async": "^6.3.8",
     "fs": "0.0.2",
+    "graphql": "^14.0.2",
+    "graphql-cli": "^3.0.4",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-better-rollup": "^3.4.0",
@@ -45,6 +62,7 @@
     "gulp-uglify": "^1.5.2",
     "gulp-util": "^3.0.7",
     "gulp-watch": "^4.3.9",
+    "husky": "^1.3.1",
     "jshint": "^2.9.1",
     "jshint-stylish": "^2.2.1",
     "prettier": "^1.15.3",
@@ -55,6 +73,10 @@
     "rollup-plugin-terser": "^4.0.1"
   },
   "dependencies": {
-    "nanographql": "^2.0.0"
+    "fast-deep-equal": "^2.0.1",
+    "formdata-polyfill": "^3.0.15",
+    "js-cookie": "^2.2.0",
+    "promise-polyfill": "^8.1.0",
+    "unfetch": "^4.0.1"
   }
 }

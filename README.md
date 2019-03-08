@@ -45,7 +45,7 @@ Do this any time updates were committed in the decathlon-patterns repo and merge
 Here are the steps followed to create this PR:
 
 1. Enter the directory for the shopify repo: `cd shopify-theme-decathlonusa`
-1. Checkout the `dev-cloud4` branch: `git checkout dev-cloud4`
+1. Checkout the `cloudfour-dev` branch: `git checkout cloudfour-dev`
 1. Make sure the branch is up-to-date: `git pull`
 1. Checkout a new branch from there: `git checkout -b chore/update-patterns`
 1. Update the patterns: `npx gulp updatePatterns`
@@ -53,3 +53,97 @@ Here are the steps followed to create this PR:
 1. Add modified and new files: `git add -A`
 1. Commit the changes: `git commit -m "Update patterns to latest"`
 1. Push to the remote: `git push -u origin chore/update-patterns`
+
+## Persistent Cart (PC)
+
+The Persistent Cart feature is a combination of client-side code and a server-side application with a database, that together do the following:
+
+1. Create an association between a customer and a cart
+1. Keep a customer tracking a specific cart by using a single cart token (ID) for as long as possible
+1. Reconcile cart contents for a customer, combining cart contents from before they login with their persisted cart during logged-in session.
+1. Rehydrate carts from the database if Shopify expires a cart a customer has been using
+1. Listen to Shopify webhooks to keep up-to-date with cart contents as well as checkout events and customer deletions
+
+### Building the Persistent Cart for Production
+
+1. Run `npm run build:heroku:production`
+1. This sets 2 values in code, the `DECATHLON_PERSISTENT_CART_URL` and the `STOREFRONT_API_KEY`, used to create a custom checkout that works across devices with PC
+1. If either of these values needs to change, for whatever reason, reference the script in the project's `package.json` and replace values to be used in the build
+
+### Setting Persistent Cart API URL
+
+You have the ability to override the Persistent Cart API URL used by the client-side code via the `DECATHLON_PERSISTENT_CART_URL` environment variable.
+
+Example:
+```
+DECATHLON_PERSISTENT_CART_URL=https://<some-url> npm run build
+```
+
+This will build the Persistent Cart JS file pointing to the provided API URL.
+
+#### Production Default Domains & API URLs
+
+Production Domains Default: `['www.decathlon.com']`
+
+This can be overridden via a `PRODUCTION_DOMAINS` environment variable consisting of a comma-delimited list. Example:
+
+```
+PRODUCTION_DOMAINS='foo.com,bar.com' npm run build
+```
+
+Production API URL Default: `'https://persistent-cart-decathlonusa.herokuapp.com'` 
+
+This can be overridden via a `PRODUCTION_API_URL` environment. Example:
+
+```
+PRODUCTION_API_URL='foo.com' npm run build
+```
+
+#### Staging Default Domains & API URLs
+
+Staging Domains Default: `['testing-decathlon-usa.myshopify.com']`
+
+This can be overridden via a `STAGING_DOMAINS` environment variable consisting of a comma-delimited list. Example:
+
+```
+STAGING_DOMAINS='foo.com,bar.com' npm run build
+```
+
+Staging API URL Default: `'https://persistent-cart-decathlonusa-s.herokuapp.com'` 
+
+This can be overridden via a `STAGING_API_URL` environment. Example:
+
+```
+STAGING_API_URL='foo.com' npm run build
+```
+
+#### How are these all used?
+
+There is a check for `window.location.hostname` to determine if the result is a "production" or "staging" domain. Based on that, the "production" or "staging" API URL will be used.
+
+All of this logic can be overridden by using the `DECATHLON_PERSISTENT_CART_URL` environment variable as shown above.
+
+### Cypress tests
+
+Cypress tests have been added to help test the Persistent Cart E2E flow.
+
+#### Requirements
+
+You will need a Decathlon user account to be able to add items to cart and store them in the Persistent Cart. You can create a user via the Shopify theme you are testing against.
+
+#### Setup
+
+Create a copy of the `.env.sample` file making sure to rename it to `.env`. Update the environment variables removing the sample values.
+
+| Environment Variable | Description|
+|----------------------|------------|
+| `DEC_SHARED_PREVIEW_URL` | The [Cypress base URL](https://docs.cypress.io/guides/references/best-practices.html#Setting-a-global-baseUrl) used by all tests. This should be a [Shopify Shared Preview URL](https://help.shopify.com/en/manual/using-themes/adding-themes#share-a-theme-preview-with-others). |
+| `DEC_USERNAME` | The username for the Decathlon test account. |
+| `DEC_PASSWORD` | The password for the Decathlon test account. |
+| `DEC_ONE_SIZE_PRODUCT_PATH` | Some Persistent Cart tests need a product to test against. This sets the path to that product. The product must not require a size selection ("one-size" products only). See `.env.sample` file for example. |
+
+### Cypress test dashboard
+
+```
+npm run cypress:open
+```

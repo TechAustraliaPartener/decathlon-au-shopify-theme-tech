@@ -1,5 +1,15 @@
 {
   "extends": "plugin:@cloudfour/recommended",
+  "plugins": ["graphql"],
+  "rules": {
+    "graphql/template-strings": [
+      "error",
+      {
+        "env": "literal",
+        "tagName": "gql"
+      }
+    ]
+  },
   "env": {
     "browser": true
   }
