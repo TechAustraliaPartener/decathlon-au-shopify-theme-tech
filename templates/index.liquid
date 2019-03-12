@@ -154,6 +154,7 @@
 
 {% comment %} {% include 'trending-products' %} {% endcomment %}
 
+{% comment %}
 <div class="instagramFeed-wrapper u-block hidden">
   <div class="wrapper wrapper--narrow">
     <div class="instagramFeed-message instagramFeed-message--homepage">
@@ -187,6 +188,8 @@
       <button class="instagramProductFeed-loadMore js-loadInstagram" type="button">Next</button>
     </div>
 </div>
+{% endcomment %}
+
 {% comment %} {%- unless settings['is_lookbook'] -%}
 <!-- #DecathlonSF -->
 {%- endunless -%}
@@ -282,6 +285,6 @@
 </div> {% endcomment %}
 
 {% comment %} {% include 'videos-script' %} {% endcomment %}
-{% include 'instagram-template' %}
+{% comment %} {% include 'instagram-template' %} {% endcomment %}
 
 {{ content_for_index }}

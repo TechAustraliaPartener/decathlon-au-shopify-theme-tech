@@ -887,11 +887,13 @@ function(e, t, i, n, o) {
             })), t("body").hasClass("template-index")) {
             t(e).on("scroll", h), h();
             var P = r + "/api/v1/medias/recent?language[]=en&country[]=GB&limit=10",
-                I = n.compile(t("#instagramPostTemplate").html()),
-                O = n.compile(t("#instagramLightBoxTemplate").html()),
+                //I = n.compile(t("#instagramPostTemplate").html()),
+                //O = n.compile(t("#instagramLightBoxTemplate").html()),
+				I = null, O = null,
                 F = 0,
                 A = null,
-                R = t(".js-instagramFeed").data("instagram"),
+                //R = t(".js-instagramFeed").data("instagram"),
+				R = null,
                 z = !1,
                 N = function(i) {
                     if (z || (t("body").append(O({
@@ -935,9 +937,9 @@ function(e, t, i, n, o) {
                     }), o
                 },
                 L = function(e) {
-                    var e = e || function() {},
+                    /*var e = e || function() {},
                         i = 10 * F;
-                    A && i >= A || (F++, F <= 1 ? N(R.slice(i, i + 10)).then(e) : t.get(P + "&page=" + F).then(N).then(e))
+                    A && i >= A || (F++, F <= 1 ? N(R.slice(i, i + 10)).then(e) : t.get(P + "&page=" + F).then(N).then(e))*/
                 };
             L(), t(".js-loadInstagram").click(function(e) {
                 if (!t(this).hasClass("disabled")) {
