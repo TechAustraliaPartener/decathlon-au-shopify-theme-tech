@@ -182,7 +182,7 @@
                 {% if item.product.tags contains '_addon' and item.properties._for != blank and item.properties['_for'] != item.variant.id %}
                   {% assign item_id = item.id | prepend: '_' | prepend: item.properties._for %}
                 {% endif %}
-                <input type="number" class="quantity" name="updates[]" id="updates_{{ item_id }}" value="{{ item.quantity }}" min="0" style="text-align: center; max-width: 75px;"{% if addons_ids != '' %} data-addons={{ addons_ids | json}}{% endif %} data-price={{item.price}}>
+                <input type="number" name="updates[]" id="updates_{{ item_id }}" value="{{ item.quantity }}" min="0" style="text-align: center; max-width: 75px;"{% if addons_ids != '' %}data-addons={{ addons_ids | json}}{% endif %}>
               </td>
               <td data-label="{{ 'cart.label.total' | t }}" class="text-right">
                 <span class="h6">
@@ -245,15 +245,3 @@
 {% else %}
   {% include '404' %}
 {% endif %}
-
-<script>
-Shopify.money_format = "{{ shop.money_format }}";
-$(".quantity").on('click keyup', function() {
-  $(this).parent().next().find(".h6").text(Shopify.formatMoney($(this).val()*$(this).data("price")));
-  var total = 0;
-  $(".quantity").each(function() {
-  total += $(this).val()*$(this).data("price");
-  });
-  $(".cart__subtotal").text(Shopify.formatMoney(total));
-});
-</script>
