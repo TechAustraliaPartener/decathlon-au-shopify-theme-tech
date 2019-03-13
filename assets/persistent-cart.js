@@ -891,13 +891,9 @@
         };
     };
     var customCheckoutCartSubmitHandler = function(event) {
-        event.preventDefault(), event.stopPropagation();
-        var data = [].concat(new FormData(this).entries()).map(function(e) {
-            return encodeURIComponent(e[0]) + "=" + encodeURIComponent(e[1]);
-        });
-        fetch("/cart", {
+        event.preventDefault(), event.stopPropagation(), fetch("/cart", {
             method: "POST",
-            body: JSON.stringify(data)
+            body: new FormData(this)
         }).then(function(res) {
             return res.json();
         }).then(transformCartData).then(makeGraphQLCheckoutPayload).then(createCheckout).then(function(res) {

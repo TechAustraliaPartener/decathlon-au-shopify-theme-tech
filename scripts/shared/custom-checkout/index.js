@@ -36,15 +36,10 @@ const makeGraphQLCheckoutPayload = items => ({ lineItems: items });
 const customCheckoutCartSubmitHandler = function(event) {
   event.preventDefault();
   event.stopPropagation();
-  // @see https://stackoverflow.com/questions/42980645/easier-way-to-transform-formdata-into-query-string
-  // Transform cart data into a well-formatted query string, usable by IE11 and browsers that could do this more cleanly
-  const data = [...new FormData(this).entries()].map(
-    e => `${encodeURIComponent(e[0])}=${encodeURIComponent(e[1])}`
-  );
   // Fetch a cart from Shopify
   fetch('/cart', {
     method: 'POST',
-    body: JSON.stringify(data)
+    body: new FormData(this)
   })
     .then(res => res.json())
     // Transform cart data to a format that will work as a payload for the Storefront GraphQL API
