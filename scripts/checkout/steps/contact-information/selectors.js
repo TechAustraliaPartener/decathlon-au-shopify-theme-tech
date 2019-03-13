@@ -25,7 +25,7 @@ const CUSTOM_UI_SELECTORS = {
   TOGGLE_SHIPPING: '.js-de-toggle-shipping',
   TOGGLE_PICKUP: '.js-de-toggle-pickup',
   PICKUP_CONTENT: '.js-de-pickup-content',
-  STORE_INPUT: '[name="store"]'
+  PICKUP_LOCATIONS: '.js-de-pickup-locations'
 };
 
 export default {

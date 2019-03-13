@@ -23,3 +23,6 @@ export const pickupToggleBtn = document.querySelector(SELECTORS.TOGGLE_PICKUP);
  */
 export const pickupContent = document.querySelector(SELECTORS.PICKUP_CONTENT);
 export const storeLocations = document.querySelectorAll(SELECTORS.STORE_INPUT);
+export const pickupLocationList = document.querySelector(
+  SELECTORS.PICKUP_LOCATIONS
+);

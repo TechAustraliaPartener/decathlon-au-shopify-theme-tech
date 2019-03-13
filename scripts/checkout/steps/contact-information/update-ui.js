@@ -24,13 +24,16 @@ const updateUI = () => {
   if (deliveryMethod === DELIVERY_METHODS.PICKUP) {
     hideElements(deliveryElements);
     showElements([pickupContent]);
-
+    pickupToggleBtn.classList.add('js-de-active-pickship-btn');
+    shipToggleBtn.classList.remove('js-de-active-pickship-btn');
     // The "continue" button should be disabled until a store is chosen.
     if (STATE.pickupStore === null) {
       disableInput(continueBtn);
     }
   }
   if (deliveryMethod === DELIVERY_METHODS.SHIP) {
+    shipToggleBtn.classList.add('js-de-active-pickship-btn');
+    pickupToggleBtn.classList.remove('js-de-active-pickship-btn');
     showElements(deliveryElements);
     hideElements([pickupContent]);
 
