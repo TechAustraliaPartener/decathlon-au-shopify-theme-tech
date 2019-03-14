@@ -1,5 +1,5 @@
   {% comment %} The jquery.slick feature only exists on specific pages {% endcomment %}
   {% if template == 'index' or template == 'product' or template == 'cart' %}
     {{ 'slick.scss.css' | asset_url | stylesheet_tag }}
-    {{ 'https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick-theme.css' | stylesheet_tag }}
+    {{ 'slick-theme.css' | asset_url | stylesheet_tag }}
   {% endif %}
