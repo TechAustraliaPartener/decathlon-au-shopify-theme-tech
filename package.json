@@ -76,6 +76,7 @@
     "fast-deep-equal": "^2.0.1",
     "formdata-polyfill": "^3.0.15",
     "js-cookie": "^2.2.0",
+    "lodash.isplainobject": "^4.0.6",
     "promise-polyfill": "^8.1.0",
     "unfetch": "^4.0.1"
   }

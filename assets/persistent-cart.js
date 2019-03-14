@@ -526,6 +526,15 @@
     var removeCartCookie = function() {
         return js_cookie.remove(CART_COOKIE);
     };
+    var objectProto = Object.prototype;
+    var funcToString = Function.prototype.toString;
+    var hasOwnProperty = objectProto.hasOwnProperty;
+    var objectCtorString = funcToString.call(Object);
+    var objectToString = objectProto.toString;
+    var getPrototype = (func = Object.getPrototypeOf, transform = Object, function(arg) {
+        return func(transform(arg));
+    });
+    var func, transform;
     var updateCartUI = function(count) {
         var el = document.querySelector(".js-cart-count");
         el && (el.innerText = count);
@@ -1042,7 +1051,21 @@
                             return "function" == typeof arg ? (fn = arg, function() {
                                 for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) args[_key] = arguments[_key];
                                 var lineItemObject = args.find(function(arg) {
-                                    return "variant_id" in arg && "quantity" in arg;
+                                    return function(value) {
+                                        if (!function(value) {
+                                            return !!value && "object" == typeof value;
+                                        }(value) || "[object Object]" != objectToString.call(value) || function(value) {
+                                            var result = !1;
+                                            if (null != value && "function" != typeof value.toString) try {
+                                                result = !!(value + "");
+                                            } catch (e) {}
+                                            return result;
+                                        }(value)) return !1;
+                                        var proto = getPrototype(value);
+                                        if (null === proto) return !0;
+                                        var Ctor = hasOwnProperty.call(proto, "constructor") && proto.constructor;
+                                        return "function" == typeof Ctor && Ctor instanceof Ctor && funcToString.call(Ctor) == objectCtorString;
+                                    }(arg) && "variant_id" in arg && "quantity" in arg;
                                 });
                                 return lineItemObject && (cache.currentCartCount += lineItemObject.quantity, pcInit(customer)), 
                                 fn.apply(void 0, args);
