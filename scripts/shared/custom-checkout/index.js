@@ -49,7 +49,7 @@ const customCheckoutCartSubmitHandler = function(event) {
     .then(res => {
       // If the createCheckout method returns a checkout webURL, set it as the new location
       if (res.checkout && res.checkout.webUrl) {
-        window.location = res.checkout.webUrl;
+        window.location.assign(res.checkout.webUrl);
       }
     });
 };

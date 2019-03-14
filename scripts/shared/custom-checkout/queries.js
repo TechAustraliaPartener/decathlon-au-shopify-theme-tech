@@ -32,7 +32,7 @@ const createCheckoutMutation = gql`
 
 /**
  * Create a request for a new Shopify checkout from the Storefront API
- * Passes off to a wrapper over our generic makeRequest function to issue a GraphQL
+ * Passes off to a wrapper over our generic makeShopifyStorefrontRequest function to issue a GraphQL
  * request to the passed-in URL with appropriate headers set for accessing the Storefront API
  * @param {Object} params
  * @param {*} params.mutation - A GraphQL query template

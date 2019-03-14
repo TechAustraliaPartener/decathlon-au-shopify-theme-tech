@@ -92,6 +92,11 @@ const config = {
   STOREFRONT_API: {
     HEADER_NAME: 'X-Shopify-Storefront-Access-Token',
     KEY: process.env.STOREFRONT_API_KEY
+  },
+  NO_CACHE_HEADERS: {
+    'cache-control': 'no-store',
+    pragma: 'no-store',
+    cache: 'no-store'
   }
 };
 

@@ -153,6 +153,11 @@
         STOREFRONT_API: {
             HEADER_NAME: "X-Shopify-Storefront-Access-Token",
             KEY: "f6c7c4e4db56de88295c2ba45762a331"
+        },
+        NO_CACHE_HEADERS: {
+            "cache-control": "no-store",
+            pragma: "no-store",
+            cache: "no-store"
         }
     };
     function fetch$1(e, n) {
@@ -199,26 +204,30 @@
             }, s.onerror = r, s.send(n.body || null);
         });
     }
-    var _scriptsConfig$STOREF = config$1.STOREFRONT_API, HEADER_NAME = _scriptsConfig$STOREF.HEADER_NAME, KEY = _scriptsConfig$STOREF.KEY;
-    var makeRequest = function(query, data, url, extraGqlConfig) {
-        return void 0 === extraGqlConfig && (extraGqlConfig = {}), fetch$1(url || config.API_URL, {
-            body: query(data),
-            method: "POST",
-            headers: _extends({
-                "Content-Type": "application/json",
-                Accept: "application/json"
-            }, extraGqlConfig.headers)
-        }).then(function(response) {
-            return response.json();
-        }).then(function(_ref) {
-            var data = _ref.data, errors = _ref.errors;
-            if (errors) {
-                var messages = errors.reduce(function(acc, err, idx) {
-                    return acc + (idx > 0 ? ", " : "") + err.message;
-                }, "");
-                console.info("PC: ", messages);
-            }
-            return data;
+    var STOREFRONT_API = config$1.STOREFRONT_API, NO_CACHE_HEADERS = config$1.NO_CACHE_HEADERS;
+    var makeUncachedRequest = function(query, data, url, extraConfig) {
+        return void 0 === extraConfig && (extraConfig = {}), function(query, data, url, extraConfig) {
+            return void 0 === extraConfig && (extraConfig = {}), fetch$1(url || config.API_URL, {
+                body: query(data),
+                method: "POST",
+                headers: _extends({
+                    "Content-Type": "application/json",
+                    Accept: "application/json"
+                }, extraConfig.headers)
+            }).then(function(response) {
+                return response.json();
+            }).then(function(_ref) {
+                var data = _ref.data, errors = _ref.errors;
+                if (errors) {
+                    var messages = errors.reduce(function(acc, err, idx) {
+                        return acc + (idx > 0 ? ", " : "") + err.message;
+                    }, "");
+                    console.info("PC: ", messages);
+                }
+                return data;
+            });
+        }(query, data, url, {
+            headers: _extends({}, NO_CACHE_HEADERS, extraConfig.headers)
         });
     };
     function _templateObject2() {
@@ -237,7 +246,7 @@
     var createOrUpdateCustomerMutation = nanographql(_templateObject());
     var getCustomerQuery = nanographql(_templateObject2());
     var createOrUpdateCustomer = function(_ref3) {
-        return makeRequest((_ref = {
+        return makeUncachedRequest((_ref = {
             mutation: createOrUpdateCustomerMutation,
             customerID: _ref3.customerID,
             cart: _ref3.cart
@@ -556,7 +565,7 @@
             input: input
         }).mutation, data = {
             input: _ref.input
-        }, headers = {}, headers[HEADER_NAME] = KEY, makeRequest(query, data, "/api/graphql", {
+        }, headers = {}, headers[STOREFRONT_API.HEADER_NAME] = STOREFRONT_API.KEY, makeUncachedRequest(query, data, "/api/graphql", {
             headers: headers
         })).then(function(data) {
             return data.checkoutCreate;
@@ -909,7 +918,7 @@
         }).then(function(res) {
             return res.json();
         }).then(transformCartData).then(makeGraphQLCheckoutPayload).then(createCheckout).then(function(res) {
-            res.checkout && res.checkout.webUrl && (window.location = res.checkout.webUrl);
+            res.checkout && res.checkout.webUrl && window.location.assign(res.checkout.webUrl);
         });
     };
     var getErrorMessage = function(error) {
@@ -1018,7 +1027,7 @@
         var customerID, _ref2;
         cache.currentCartCount = parseInt(document.querySelector(CART_COUNT).value, 10), 
         cache.customerID = cidEl && cidEl.value ? cidEl.value : null, localStorageAvailable && cookiesAvailable && (cache.customerID ? (customerID = cache.customerID, 
-        makeRequest((_ref2 = {
+        makeUncachedRequest((_ref2 = {
             query: getCustomerQuery,
             customerID: customerID
         }).query, {
