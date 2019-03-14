@@ -4,7 +4,7 @@ import 'formdata-polyfill';
 import '../../utilities/element-matches-polyfill';
 
 const {
-  SELECTORS: { CART }
+  SELECTORS: { CART, CHECKOUT_INPUT }
 } = scriptsConfig;
 
 /**
@@ -71,7 +71,11 @@ const customCheckoutInit = () => {
       target && target !== this;
       target = target.parentNode
     ) {
-      if (target.matches(CART)) {
+      if (
+        // Ensure that we're delegating to the cart form and that the currentTarget.activeElement is not for checkout
+        target.matches(CART) &&
+        e.currentTarget.activeElement.matches(CHECKOUT_INPUT)
+      ) {
         customCheckoutCartSubmitHandler.call(target, e);
         break;
       }
