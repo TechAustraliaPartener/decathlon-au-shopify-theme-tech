@@ -43,17 +43,17 @@
   <meta name="theme-color" content="{{ settings.color_primary }}">
 
   <!-- CSS ================================================== -->
-  {{ 'fonts.css' | asset_url | stylesheet_tag }}
-  {{ 'icomoon.css' | asset_url | stylesheet_tag }}
+  {{ 'fonts.scss.css' | asset_url | stylesheet_tag }}
+  {{ 'icomoon.scss.css' | asset_url | stylesheet_tag }}
   {% include 'slick-styles' %}
   {{ 'timber.scss.css' | asset_url | stylesheet_tag }}
-  {{ 'fancybox.css' | asset_url | stylesheet_tag }}
-  {{ 'skill-level.scss' | asset_url | stylesheet_tag }}
-  {{ 'header.scss' | asset_url | stylesheet_tag }}
-  {{ 'adeptMind.css' | asset_url | stylesheet_tag }}
-  {{ 'patterns-toolkit.css' | asset_url | stylesheet_tag }}
-  {{ 'legacySupport.css' | asset_url | stylesheet_tag }}
-  {{ 'cadence.scss' | asset_url | stylesheet_tag }}
+  {{ 'fancybox.scss.css' | asset_url | stylesheet_tag }}
+  {{ 'skill-level.scss.css' | asset_url | stylesheet_tag }}
+  {{ 'header.css' | asset_url | stylesheet_tag }}
+  {{ 'adeptMind.scss.css' | asset_url | stylesheet_tag }}
+  {{ 'patterns-toolkit.scss.css' | asset_url | stylesheet_tag }}
+  {{ 'legacySupport.scss.css' | asset_url | stylesheet_tag }}
+  {{ 'cadence.scss.css' | asset_url | stylesheet_tag }}
 
   {% comment %}
   {{ 'zoom.css' | asset_url | stylesheet_tag }}
@@ -199,7 +199,7 @@
 
   {% include 'added-item-popup-template' %}
 
-  {{ '//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js' | script_tag }}
+  {{ 'slick.min.js' | asset_url | script_tag }}
   {{ 'https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.2/js.cookie.min.js' | script_tag }}
 
   <script>
