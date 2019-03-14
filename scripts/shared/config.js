@@ -91,7 +91,11 @@ const config = {
   },
   STOREFRONT_API: {
     HEADER_NAME: 'X-Shopify-Storefront-Access-Token',
-    KEY: process.env.STOREFRONT_API_KEY
+    /**
+     * This key is public, and the fallback is here in case the project is built without a value passed in.
+     * Will not break the compiled asset file. The key would be accessible in either case.
+     */
+    KEY: process.env.STOREFRONT_API_KEY || 'f6c7c4e4db56de88295c2ba45762a331'
   },
   NO_CACHE_HEADERS: {
     'cache-control': 'no-store',
