@@ -10,13 +10,14 @@ import { getObjectFromLocalStorage } from '../utilities/storage';
  * Intialize custom JS functionality
  */
 const init = () => {
-  // Set delivery method
+  // Set delivery method - Default to ship, set pick if selection is stored. Needs to change to sessionStorage
   if (getObjectFromLocalStorage('delivery_method') === 'pickup') {
     STATE.deliveryMethod = DELIVERY_METHODS.PICKUP;
   } else {
     STATE.deliveryMethod = DELIVERY_METHODS.SHIP;
   }
 
+  // Look for preferred store in storage and set global state. Needs to change to sessionStorage
   if (getObjectFromLocalStorage('pickup_store')) {
     STATE.pickupStore = getObjectFromLocalStorage('pickup_store');
   }

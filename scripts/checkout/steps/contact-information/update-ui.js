@@ -1,11 +1,6 @@
 import { DELIVERY_METHODS } from '../../constants';
 import STATE from '../../state';
-import {
-  showElements,
-  hideElements,
-  disableInput,
-  enableInput
-} from '../../ui-helpers';
+import { showElements, hideElements } from '../../ui-helpers';
 import {
   shipToggleBtn,
   pickupToggleBtn,
@@ -24,21 +19,18 @@ const updateUI = () => {
   if (deliveryMethod === DELIVERY_METHODS.PICKUP) {
     hideElements(deliveryElements);
     showElements([pickupContent]);
+    hideElements([continueBtn]);
+    showElements([document.querySelector('.js-de-payment-continue')]);
     pickupToggleBtn.classList.add('js-de-active-pickship-btn');
     shipToggleBtn.classList.remove('js-de-active-pickship-btn');
-    // The "continue" button should be disabled until a store is chosen.
-    if (STATE.pickupStore === null) {
-      disableInput(continueBtn);
-    }
   }
   if (deliveryMethod === DELIVERY_METHODS.SHIP) {
     shipToggleBtn.classList.add('js-de-active-pickship-btn');
     pickupToggleBtn.classList.remove('js-de-active-pickship-btn');
     showElements(deliveryElements);
     hideElements([pickupContent]);
-
-    // The "continue" button should always be enabled when "Ship" is selected.
-    enableInput(continueBtn);
+    hideElements([document.querySelector('.js-de-payment-continue')]);
+    showElements([continueBtn]);
   }
 };
 

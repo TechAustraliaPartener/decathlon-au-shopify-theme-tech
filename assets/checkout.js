@@ -38,9 +38,6 @@
     var showElements = function(elements) {
         elements.forEach(showElement);
     };
-    var enableInput = function(input) {
-        input && (input.disabled = !1);
-    };
     function _extends() {
         return (_extends = Object.assign || function(target) {
             for (var i = 1; i < arguments.length; i++) {
@@ -77,12 +74,13 @@
     var updateUI = function() {
         showElements([ shipToggleBtn, pickupToggleBtn ]);
         var deliveryMethod = STATE.deliveryMethod;
-        var input;
         "pickup" === deliveryMethod && (hideElements(deliveryElements), showElements([ pickupContent ]), 
-        pickupToggleBtn.classList.add("js-de-active-pickship-btn"), shipToggleBtn.classList.remove("js-de-active-pickship-btn"), 
-        null === STATE.pickupStore && (input = continueBtn) && (input.disabled = !0)), "ship" === deliveryMethod && (shipToggleBtn.classList.add("js-de-active-pickship-btn"), 
+        hideElements([ continueBtn ]), showElements([ document.querySelector(".js-de-payment-continue") ]), 
+        pickupToggleBtn.classList.add("js-de-active-pickship-btn"), shipToggleBtn.classList.remove("js-de-active-pickship-btn")), 
+        "ship" === deliveryMethod && (shipToggleBtn.classList.add("js-de-active-pickship-btn"), 
         pickupToggleBtn.classList.remove("js-de-active-pickship-btn"), showElements(deliveryElements), 
-        hideElements([ pickupContent ]), enableInput(continueBtn));
+        hideElements([ pickupContent ]), hideElements([ document.querySelector(".js-de-payment-continue") ]), 
+        showElements([ continueBtn ]));
     };
     var js_cookie = (function(module, exports) {
         module.exports = function() {
@@ -270,50 +268,57 @@
     document.addEventListener("page:load", function() {
         STATE.deliveryMethod = "pickup" === getObjectFromLocalStorage("delivery_method") ? "pickup" : "ship", 
         getObjectFromLocalStorage("pickup_store") && (STATE.pickupStore = getObjectFromLocalStorage("pickup_store")), 
-        STATE.checkoutStep = Shopify && Shopify.Checkout && Shopify.Checkout.step, "contact_information" === STATE.checkoutStep && (pickupToggleBtn.addEventListener("click", function(event) {
-            STATE.deliveryMethod = "pickup", pickupToggleBtn.classList.toggle("js-de-active-pickship-btn"), 
-            shipToggleBtn.classList.toggle("js-de-active-pickship-btn"), setObjectInLocalStorage("delivery_method", "pickup"), 
-            updateUI();
-        }), shipToggleBtn.addEventListener("click", function(event) {
-            STATE.deliveryMethod = "ship", pickupToggleBtn.classList.toggle("js-de-active-pickship-btn"), 
-            shipToggleBtn.classList.toggle("js-de-active-pickship-btn"), setObjectInLocalStorage("delivery_method", "ship"), 
-            updateUI();
-        }), fetch("https://decathlon-proxy.herokuapp.com/api/shiphawk").then(function(res) {
-            return res.json();
-        }).then(function(data) {
-            !function(locations) {
-                for (var _isArray = Array.isArray(_iterator = data.data), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator](); ;) {
-                    var _ref;
-                    if (_isArray) {
-                        if (_i >= _iterator.length) break;
-                        _ref = _iterator[_i++];
-                    } else {
-                        if ((_i = _iterator.next()).done) break;
-                        _ref = _i.value;
-                    }
-                    var location = _ref;
-                    var activeCard = !1;
-                    location.id === STATE.pickupStore && (activeCard = !0);
-                    var locationNode = document.createElement("li");
-                    locationNode.innerHTML = '<div class="js-de-pickup-location de-pickup-location' + (activeCard ? " js-de-active-location" : "") + '" data-id="' + location.id + '">\n      <span class="de-pickup-location-name">' + location.name + "</span>\n      <span>" + location.street1 + " " + (null === location.street2 ? "" : location.street2) + "</span>\n      <span>" + location.city + ", " + location.state + " " + location.zip + '</span>\n      <span class="de-pickup-location-hours">9:00 AM - 8:00 PM | Mon-Sun</span>\n    </div>', 
-                    pickupLocationList.appendChild(locationNode);
-                }
-                document.querySelectorAll(".js-de-pickup-location").forEach(function(location) {
-                    location.addEventListener("click", function(e) {
-                        if (this.classList.contains("js-de-active-location")) console.log("already active"); else {
-                            var activeLocation = document.querySelector(".js-de-active-location");
-                            null !== activeLocation && activeLocation.classList.remove("js-de-active-location"), 
-                            this.classList.add("js-de-active-location");
-                            var pickupStore = this.getAttribute("data-id");
-                            STATE.pickupStore = pickupStore, setObjectInLocalStorage("pickup_store", pickupStore), 
-                            document.querySelector(".js-de-pickup-location-map-img").src = "//cdn.shopify.com/s/files/1/1752/4727/t/79/assets/" + pickupStore + ".jpg";
+        STATE.checkoutStep = Shopify && Shopify.Checkout && Shopify.Checkout.step, "contact_information" === STATE.checkoutStep && function() {
+            pickupToggleBtn.addEventListener("click", function(event) {
+                STATE.deliveryMethod = "pickup", pickupToggleBtn.classList.toggle("js-de-active-pickship-btn"), 
+                shipToggleBtn.classList.toggle("js-de-active-pickship-btn"), setObjectInLocalStorage("delivery_method", "pickup"), 
+                updateUI();
+            }), shipToggleBtn.addEventListener("click", function(event) {
+                STATE.deliveryMethod = "ship", pickupToggleBtn.classList.toggle("js-de-active-pickship-btn"), 
+                shipToggleBtn.classList.toggle("js-de-active-pickship-btn"), setObjectInLocalStorage("delivery_method", "ship"), 
+                updateUI();
+            }), fetch("https://decathlon-proxy.herokuapp.com/api/shiphawk").then(function(res) {
+                return res.json();
+            }).then(function(data) {
+                !function(locations) {
+                    for (var _isArray = Array.isArray(_iterator = data.data), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator](); ;) {
+                        var _ref;
+                        if (_isArray) {
+                            if (_i >= _iterator.length) break;
+                            _ref = _iterator[_i++];
+                        } else {
+                            if ((_i = _iterator.next()).done) break;
+                            _ref = _i.value;
                         }
-                        enableInput(continueBtn);
+                        var location = _ref;
+                        var activeCard = !1;
+                        location.id === STATE.pickupStore && (activeCard = !0);
+                        var locationNode = document.createElement("li");
+                        locationNode.innerHTML = '<div class="js-de-pickup-location de-pickup-location' + (activeCard ? " js-de-active-location" : "") + '" data-id="' + location.id + '">\n      <span class="de-pickup-location-name">' + location.name + "</span>\n      <span>" + location.street1 + " " + (null === location.street2 ? "" : location.street2) + "</span>\n      <span>" + location.city + ", " + location.state + " " + location.zip + '</span>\n      <span class="de-pickup-location-hours">9:00 AM - 8:00 PM | Mon-Sun</span>\n    </div>', 
+                        pickupLocationList.appendChild(locationNode);
+                    }
+                    document.querySelectorAll(".js-de-pickup-location").forEach(function(location) {
+                        location.addEventListener("click", function(e) {
+                            if (this.classList.contains("js-de-active-location")) console.log("already active"); else {
+                                var activeLocation = document.querySelector(".js-de-active-location");
+                                null !== activeLocation && activeLocation.classList.remove("js-de-active-location"), 
+                                this.classList.add("js-de-active-location");
+                                var pickupStore = this.getAttribute("data-id");
+                                STATE.pickupStore = pickupStore, setObjectInLocalStorage("pickup_store", pickupStore), 
+                                document.querySelector(".js-de-pickup-location-map-img").src = "//cdn.shopify.com/s/files/1/1752/4727/t/79/assets/" + pickupStore + ".jpg?v=2";
+                            }
+                        });
                     });
-                });
-            }();
-        }), null !== STATE.pickupStore && (document.querySelector(".js-de-pickup-location-map-img").src = "//cdn.shopify.com/s/files/1/1752/4727/t/79/assets/" + STATE.pickupStore + ".jpg")), 
-        function() {
+                }();
+            }), null !== STATE.pickupStore && (document.querySelector(".js-de-pickup-location-map-img").src = "//cdn.shopify.com/s/files/1/1752/4727/t/79/assets/" + STATE.pickupStore + ".jpg?v=2");
+            var paymentBtnCont = document.querySelector(".js-de-payment-continue-container");
+            var paymentBtn = document.querySelector(".js-de-payment-continue");
+            var paymentBtnHTML = paymentBtnCont.innerHTML;
+            paymentBtnCont.removeChild(paymentBtn), continueBtn.insertAdjacentHTML("afterend", paymentBtnHTML), 
+            (paymentBtn = document.querySelector(".js-de-payment-continue")).addEventListener("click", function(e) {
+                e.preventDefault();
+            });
+        }(), function() {
             "contact_information" === STATE.checkoutStep && contactInformation_updateUI();
             var buildStepLink = function() {
                 var returnToCartLink = document.createElement("a");
