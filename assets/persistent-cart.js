@@ -28,15 +28,12 @@
     var STAGING_DOMAINS = [ "testing-decathlon-usa.myshopify.com" ];
     var config = {
         get API_URL() {
-            var persistentCartUrl = "http://localhost:8080";
             var hostname = window.location.hostname;
             return STAGING_DOMAINS.some(function(domain) {
                 return hostname.match(RegExp(domain));
-            }) && (persistentCartUrl = "https://persistent-cart-decathlonusa-s.herokuapp.com"), 
-            PRODUCTION_DOMAINS.some(function(domain) {
+            }), PRODUCTION_DOMAINS.some(function(domain) {
                 return hostname.match(RegExp(domain));
-            }) && (persistentCartUrl = "https://persistent-cart-decathlonusa.herokuapp.com"), 
-            persistentCartUrl + "/shopify/graphql";
+            }), "https://persistent-cart-decathlonusa-p.herokuapp.com/shopify/graphql";
         },
         STORAGE: {
             PREFIX: "de_pc_",
@@ -152,49 +149,51 @@
         },
         STOREFRONT_API: {
             HEADER_NAME: "X-Shopify-Storefront-Access-Token",
-            KEY: void 0
+            KEY: "f6c7c4e4db56de88295c2ba45762a331"
         }
     };
     function fetch$1(e, n) {
         return n = n || {}, new Promise(function(t, r) {
-            var s = new XMLHttpRequest(), o = [], u = [], i = {};
-            for (var l in s.open(n.method || "get", e, !0), s.onload = function() {
-                s.getAllResponseHeaders().replace(/^(.*?):[^\S\n]*([\s\S]*?)$/gm, function(e, n, t) {
-                    o.push(n = n.toLowerCase()), u.push([ n, t ]), i[n] = i[n] ? i[n] + "," + t : t;
-                }), t(function a() {
-                    return {
-                        ok: 2 == (s.status / 100 | 0),
-                        statusText: s.statusText,
-                        status: s.status,
-                        url: s.responseURL,
-                        text: function() {
-                            return Promise.resolve(s.responseText);
+            var s = new XMLHttpRequest();
+            for (var o in s.open(n.method || "get", e, !0), n.headers) s.setRequestHeader(o, n.headers[o]);
+            function u() {
+                var e, n = [], t = [], r = {};
+                return s.getAllResponseHeaders().replace(/^(.*?):[^\S\n]*([\s\S]*?)$/gm, function(s, o, u) {
+                    n.push(o = o.toLowerCase()), t.push([ o, u ]), r[o] = (e = r[o]) ? e + "," + u : u;
+                }), {
+                    ok: 2 == (s.status / 100 | 0),
+                    status: s.status,
+                    statusText: s.statusText,
+                    url: s.responseURL,
+                    clone: u,
+                    text: function() {
+                        return Promise.resolve(s.responseText);
+                    },
+                    json: function() {
+                        return Promise.resolve(s.responseText).then(JSON.parse);
+                    },
+                    blob: function() {
+                        return Promise.resolve(new Blob([ s.response ]));
+                    },
+                    headers: {
+                        keys: function() {
+                            return n;
                         },
-                        json: function() {
-                            return Promise.resolve(JSON.parse(s.responseText));
+                        entries: function() {
+                            return t;
                         },
-                        blob: function() {
-                            return Promise.resolve(new Blob([ s.response ]));
+                        get: function(e) {
+                            return r[e.toLowerCase()];
                         },
-                        clone: a,
-                        headers: {
-                            keys: function() {
-                                return o;
-                            },
-                            entries: function() {
-                                return u;
-                            },
-                            get: function(e) {
-                                return i[e.toLowerCase()];
-                            },
-                            has: function(e) {
-                                return e.toLowerCase() in i;
-                            }
+                        has: function(e) {
+                            return e.toLowerCase() in r;
                         }
-                    };
-                }());
-            }, s.onerror = r, s.withCredentials = "include" == n.credentials, n.headers) s.setRequestHeader(l, n.headers[l]);
-            s.send(n.body || null);
+                    }
+                };
+            }
+            s.withCredentials = "include" == n.credentials, s.onload = function() {
+                t(u());
+            }, s.onerror = r, s.send(n.body || null);
         });
     }
     var _scriptsConfig$STOREF = config$1.STOREFRONT_API, HEADER_NAME = _scriptsConfig$STOREF.HEADER_NAME, KEY = _scriptsConfig$STOREF.KEY;
@@ -567,8 +566,8 @@
                 };
             };
         }
-        var m = "function" == typeof Object.defineProperties ? Object.defineProperty : function(a, b, e) {
-            a != Array.prototype && a != Object.prototype && (a[b] = e.value);
+        var m = "function" == typeof Object.defineProperties ? Object.defineProperty : function(a, b, d) {
+            a != Array.prototype && a != Object.prototype && (a[b] = d.value);
         }, n = "undefined" != typeof window && window === this ? this : void 0 !== commonjsGlobal && null != commonjsGlobal ? commonjsGlobal : this;
         function p() {
             p = function() {}, n.Symbol || (n.Symbol = r);
@@ -606,8 +605,8 @@
                 var B = {};
                 try {
                     B.__proto__ = {
-                        s: !0
-                    }, z = B.s;
+                        o: !0
+                    }, z = B.o;
                     break a;
                 } catch (a) {}
                 z = !1;
@@ -619,47 +618,47 @@
         }
         var C = y;
         function D() {
-            this.h = !1, this.c = null, this.o = void 0, this.b = 1, this.m = this.u = 0, this.g = null;
+            this.g = !1, this.c = null, this.m = void 0, this.b = 1, this.l = this.s = 0, this.f = null;
         }
         function E(a) {
-            if (a.h) throw new TypeError("Generator is already running");
-            a.h = !0;
+            if (a.g) throw new TypeError("Generator is already running");
+            a.g = !0;
         }
-        function F(a, b, e) {
-            return a.b = e, {
+        function F(a, b, d) {
+            return a.b = d, {
                 value: b
             };
         }
         function G(a) {
-            for (var b in this.A = a, this.l = [], a) this.l.push(b);
-            this.l.reverse();
+            for (var b in this.w = a, this.j = [], a) this.j.push(b);
+            this.j.reverse();
         }
         function H(a) {
-            this.a = new D(), this.B = a;
+            this.a = new D(), this.A = a;
         }
-        function I(a, b, e, c) {
+        function I(a, b, d, c) {
             try {
-                var d = b.call(a.a.c, e);
-                if (!(d instanceof Object)) throw new TypeError("Iterator result " + d + " is not an object");
-                if (!d.done) return a.a.h = !1, d;
-                var f = d.value;
+                var e = b.call(a.a.c, d);
+                if (!(e instanceof Object)) throw new TypeError("Iterator result " + e + " is not an object");
+                if (!e.done) return a.a.g = !1, e;
+                var f = e.value;
             } catch (g) {
-                return a.a.c = null, a.a.j(g), J(a);
+                return a.a.c = null, a.a.i(g), J(a);
             }
             return a.a.c = null, c.call(a.a, f), J(a);
         }
         function J(a) {
             for (;a.a.b; ) try {
-                var b = a.B(a.a);
-                if (b) return a.a.h = !1, {
+                var b = a.A(a.a);
+                if (b) return a.a.g = !1, {
                     value: b.value,
                     done: !1
                 };
-            } catch (e) {
-                a.a.o = void 0, a.a.j(e);
+            } catch (d) {
+                a.a.m = void 0, a.a.i(d);
             }
-            if (a.a.h = !1, a.a.g) {
-                if (b = a.a.g, a.a.g = null, b.w) throw b.v;
+            if (a.a.g = !1, a.a.f) {
+                if (b = a.a.f, a.a.f = null, b.v) throw b.u;
                 return {
                     value: b.return,
                     done: !0
@@ -672,14 +671,14 @@
         }
         function L(a) {
             this.next = function(b) {
-                return a.i(b);
+                return a.h(b);
             }, this.throw = function(b) {
-                return a.j(b);
+                return a.i(b);
             }, this.return = function(b) {
                 return function(a, b) {
                     E(a.a);
-                    var e = a.a.c;
-                    return e ? I(a, "return" in e ? e.return : function(a) {
+                    var d = a.a.c;
+                    return d ? I(a, "return" in d ? d.return : function(a) {
                         return {
                             value: a,
                             done: !0
@@ -691,50 +690,54 @@
             };
         }
         function M(a, b) {
-            var e = new L(new H(b));
-            return C && C(e, a.prototype), e;
+            var d = new L(new H(b));
+            return C && C(d, a.prototype), d;
         }
-        if (D.prototype.i = function(a) {
-            this.o = a;
-        }, D.prototype.j = function(a) {
-            this.g = {
-                v: a,
-                w: !0
-            }, this.b = this.u || this.m;
+        if (D.prototype.h = function(a) {
+            this.m = a;
+        }, D.prototype.i = function(a) {
+            this.f = {
+                u: a,
+                v: !0
+            }, this.b = this.s || this.l;
         }, D.prototype.return = function(a) {
-            this.g = {
+            this.f = {
                 return: a
-            }, this.b = this.m;
+            }, this.b = this.l;
+        }, H.prototype.h = function(a) {
+            return E(this.a), this.a.c ? I(this, this.a.c.next, a, this.a.h) : (this.a.h(a), 
+            J(this));
         }, H.prototype.i = function(a) {
-            return E(this.a), this.a.c ? I(this, this.a.c.next, a, this.a.i) : (this.a.i(a), 
+            return E(this.a), this.a.c ? I(this, this.a.c.throw, a, this.a.h) : (this.a.i(a), 
             J(this));
-        }, H.prototype.j = function(a) {
-            return E(this.a), this.a.c ? I(this, this.a.c.throw, a, this.a.i) : (this.a.j(a), 
-            J(this));
-        }, "function" == typeof Blob && ("undefined" == typeof FormData || !FormData.prototype.keys)) {
+        }, "undefined" == typeof FormData || !FormData.prototype.keys) {
             var N = function(a, b) {
-                for (var e = 0; e < a.length; e++) b(a[e]);
-            }, O = function(a, b, e) {
-                return b instanceof Blob ? [ a + "", b, void 0 !== e ? e + "" : "string" == typeof b.name ? b.name : "blob" ] : [ a + "", b + "" ];
-            }, P = function(a, b) {
-                if (a.length < b) throw new TypeError(b + " argument required, but only " + a.length + " present.");
+                for (var d = 0; d < a.length; d++) b(a[d]);
+            }, P = function(a, b, d) {
+                if (2 > arguments.length) throw new TypeError("2 arguments required, but only " + arguments.length + " present.");
+                return b instanceof Blob ? [ a + "", b, void 0 !== d ? d + "" : "string" == typeof b.name ? b.name : "blob" ] : [ a + "", b + "" ];
             }, Q = function(a) {
+                if (!arguments.length) throw new TypeError("1 argument required, but only 0 present.");
+                return [ a + "" ];
+            }, R = function(a) {
                 var b = x(a);
                 return a = b.next().value, b = b.next().value, a instanceof Blob && (a = new File([ a ], b, {
                     type: a.type,
                     lastModified: a.lastModified
                 })), a;
-            }, R = "object" == typeof window ? window : "object" == typeof self ? self : this, S = R.FormData, T = R.XMLHttpRequest && R.XMLHttpRequest.prototype.send, U = R.Request && R.fetch, V = R.navigator && R.navigator.sendBeacon;
+            }, S = "object" == typeof window ? window : "object" == typeof self ? self : this, T = S.FormData, U = S.XMLHttpRequest && S.XMLHttpRequest.prototype.send, V = S.Request && S.fetch;
             p();
-            var W = R.Symbol && Symbol.toStringTag;
-            W && (Blob.prototype[W] || (Blob.prototype[W] = "Blob"), "File" in R && !File.prototype[W] && (File.prototype[W] = "File"));
+            var W = S.Symbol && Symbol.toStringTag, X = new WeakMap(), Y = Array.from || function(a) {
+                return [].slice.call(a);
+            };
+            W && (Blob.prototype[W] || (Blob.prototype[W] = "Blob"), "File" in S && !File.prototype[W] && (File.prototype[W] = "File"));
             try {
                 new File([], "");
             } catch (a) {
-                R.File = function(b, e, c) {
+                S.File = function(b, d, c) {
                     return b = new Blob(b, c), Object.defineProperties(b, {
                         name: {
-                            value: e
+                            value: d
                         },
                         lastModifiedDate: {
                             value: c = c && void 0 !== c.lastModified ? new Date(c.lastModified) : new Date()
@@ -753,127 +756,124 @@
                 };
             }
             p(), u();
-            var X = function(a) {
-                if (this.f = Object.create(null), !a) return this;
+            var Z = function(a) {
+                if (X.set(this, Object.create(null)), !a) return this;
                 var b = this;
                 N(a.elements, function(a) {
-                    if (a.name && !a.disabled && "submit" !== a.type && "button" !== a.type) if ("file" === a.type) {
-                        var c = a.files && a.files.length ? a.files : [ new File([], "", {
-                            type: "application/octet-stream"
-                        }) ];
-                        N(c, function(c) {
-                            b.append(a.name, c);
-                        });
-                    } else "select-multiple" === a.type || "select-one" === a.type ? N(a.options, function(c) {
+                    if (a.name && !a.disabled && "submit" !== a.type && "button" !== a.type) if ("file" === a.type) N(a.files || [], function(c) {
+                        b.append(a.name, c);
+                    }); else if ("select-multiple" === a.type || "select-one" === a.type) N(a.options, function(c) {
                         !c.disabled && c.selected && b.append(a.name, c.value);
-                    }) : "checkbox" === a.type || "radio" === a.type ? a.checked && b.append(a.name, a.value) : (c = "textarea" === a.type ? a.value.replace(/\r\n/g, "\n").replace(/\n/g, "\r\n") : a.value, 
-                    b.append(a.name, c));
+                    }); else if ("checkbox" === a.type || "radio" === a.type) a.checked && b.append(a.name, a.value); else {
+                        var c = "textarea" === a.type ? function(a) {
+                            return "string" == typeof a && (a = a.replace(/\r\n/g, "\n").replace(/\n/g, "\r\n")), 
+                            a;
+                        }(a.value) : a.value;
+                        b.append(a.name, c);
+                    }
                 });
             };
-            if ((k = X.prototype).append = function(a, b, e) {
-                P(arguments, 2);
-                var c = x(O.apply(null, arguments));
-                a = c.next().value, b = c.next().value, e = c.next().value, (c = this.f)[a] || (c[a] = []), 
-                c[a].push([ b, e ]);
+            if ((k = Z.prototype).append = function(a, b, d) {
+                var c = X.get(this);
+                c[a] || (c[a] = []), c[a].push([ b, d ]);
             }, k.delete = function(a) {
-                P(arguments, 1), delete this.f[a + ""];
+                delete X.get(this)[a];
             }, k.entries = function b() {
-                var c, d, f, g, h, e = this;
+                var c, e, f, g, h, d = this;
                 return M(b, function(b) {
                     switch (b.b) {
                       case 1:
-                        f = new G(c = e.f);
+                        c = X.get(d), f = new G(c);
 
                       case 2:
                         var t;
                         a: {
-                            for (t = f; 0 < t.l.length; ) {
-                                var w = t.l.pop();
-                                if (w in t.A) {
+                            for (t = f; 0 < t.j.length; ) {
+                                var w = t.j.pop();
+                                if (w in t.w) {
                                     t = w;
                                     break a;
                                 }
                             }
                             t = null;
                         }
-                        if (null == (d = t)) {
+                        if (null == (e = t)) {
                             b.b = 0;
                             break;
                         }
-                        g = x(c[d]), h = g.next();
+                        g = x(c[e]), h = g.next();
 
                       case 5:
                         if (h.done) {
                             b.b = 2;
                             break;
                         }
-                        return F(b, [ d, Q(h.value) ], 6);
+                        return F(b, [ e, R(h.value) ], 6);
 
                       case 6:
                         h = g.next(), b.b = 5;
                     }
                 });
-            }, k.forEach = function(b, e) {
-                P(arguments, 1);
-                for (var c = x(this), d = c.next(); !d.done; d = c.next()) {
-                    var f = x(d.value);
-                    d = f.next().value, f = f.next().value, b.call(e, f, d, this);
+            }, k.forEach = function(b, d) {
+                for (var c = x(this), e = c.next(); !e.done; e = c.next()) {
+                    var f = x(e.value);
+                    e = f.next().value, f = f.next().value, b.call(d, f, e, this);
                 }
             }, k.get = function(b) {
-                P(arguments, 1);
-                var e = this.f;
-                return e[b += ""] ? Q(e[b][0]) : null;
+                var d = X.get(this);
+                return d[b] ? R(d[b][0]) : null;
             }, k.getAll = function(b) {
-                return P(arguments, 1), (this.f[b + ""] || []).map(Q);
+                return (X.get(this)[b] || []).map(R);
             }, k.has = function(b) {
-                return P(arguments, 1), b + "" in this.f;
-            }, k.keys = function e() {
-                var d, f, c = this;
-                return M(e, function(e) {
-                    if (1 == e.b && (d = x(c), f = d.next()), 3 != e.b) return f.done ? void (e.b = 0) : F(e, x(f.value).next().value, 3);
-                    f = d.next(), e.b = 2;
+                return b in X.get(this);
+            }, k.keys = function d() {
+                var e, f, c = this;
+                return M(d, function(d) {
+                    if (1 == d.b && (e = x(c), f = e.next()), 3 != d.b) return f.done ? void (d.b = 0) : F(d, x(f.value).next().value, 3);
+                    f = e.next(), d.b = 2;
                 });
-            }, k.set = function(e, c, d) {
-                P(arguments, 2);
-                var f = O.apply(null, arguments);
-                this.f[f[0]] = [ [ f[1], f[2] ] ];
+            }, k.set = function(d, c, e) {
+                X.get(this)[d] = [ [ c, e ] ];
             }, k.values = function c() {
-                var f, g, q, d = this;
+                var f, g, q, e = this;
                 return M(c, function(c) {
-                    if (1 == c.b && (f = x(d), g = f.next()), 3 != c.b) return g.done ? void (c.b = 0) : ((q = x(g.value)).next(), 
+                    if (1 == c.b && (f = x(e), g = f.next()), 3 != c.b) return g.done ? void (c.b = 0) : ((q = x(g.value)).next(), 
                     F(c, q.next().value, 3));
                     g = f.next(), c.b = 2;
                 });
-            }, X.prototype._asNative = function() {
-                for (var c = new S(), d = x(this), f = d.next(); !f.done; f = d.next()) {
+            }, Z.prototype._asNative = function() {
+                for (var c = new T(), e = x(this), f = e.next(); !f.done; f = e.next()) {
                     var g = x(f.value);
                     f = g.next().value, g = g.next().value, c.append(f, g);
                 }
                 return c;
-            }, X.prototype._blob = function() {
-                for (var c = "----formdata-polyfill-" + Math.random(), d = [], f = x(this), g = f.next(); !g.done; g = f.next()) {
+            }, Z.prototype._blob = function() {
+                for (var c = "----formdata-polyfill-" + Math.random(), e = [], f = x(this), g = f.next(); !g.done; g = f.next()) {
                     var h = x(g.value);
-                    g = h.next().value, h = h.next().value, d.push("--" + c + "\r\n"), h instanceof Blob ? d.push('Content-Disposition: form-data; name="' + g + '"; filename="' + h.name + '"\r\n', "Content-Type: " + (h.type || "application/octet-stream") + "\r\n\r\n", h, "\r\n") : d.push('Content-Disposition: form-data; name="' + g + '"\r\n\r\n' + h + "\r\n");
+                    g = h.next().value, h = h.next().value, e.push("--" + c + "\r\n"), h instanceof Blob ? e.push('Content-Disposition: form-data; name="' + g + '"; filename="' + h.name + '"\r\n', "Content-Type: " + (h.type || "application/octet-stream") + "\r\n\r\n", h, "\r\n") : e.push('Content-Disposition: form-data; name="' + g + '"\r\n\r\n' + h + "\r\n");
                 }
-                return d.push("--" + c + "--"), new Blob(d, {
+                return e.push("--" + c + "--"), new Blob(e, {
                     type: "multipart/form-data; boundary=" + c
                 });
-            }, X.prototype[Symbol.iterator] = function() {
+            }, Z.prototype[Symbol.iterator] = function() {
                 return this.entries();
-            }, X.prototype.toString = function() {
+            }, Z.prototype.toString = function() {
                 return "[object FormData]";
-            }, W && (X.prototype[W] = "FormData"), T && (R.XMLHttpRequest.prototype.send = function(c) {
-                c instanceof X ? (c = c._blob(), this.setRequestHeader("Content-Type", c.type), 
-                T.call(this, c)) : T.call(this, c);
-            }), U) {
-                var Y = R.fetch;
-                R.fetch = function(c, d) {
-                    return d && d.body && d.body instanceof X && (d.body = d.body._blob()), Y.call(this, c, d);
+            }, W && (Z.prototype[W] = "FormData"), [ [ "append", P ], [ "delete", Q ], [ "get", Q ], [ "getAll", Q ], [ "has", Q ], [ "set", P ] ].forEach(function(c) {
+                var e = Z.prototype[c[0]];
+                Z.prototype[c[0]] = function() {
+                    return e.apply(this, c[1].apply(this, Y(arguments)));
+                };
+            }), U && (XMLHttpRequest.prototype.send = function(c) {
+                c instanceof Z ? (c = c._blob(), this.setRequestHeader("Content-Type", c.type), 
+                U.call(this, c)) : U.call(this, c);
+            }), V) {
+                var aa = S.fetch;
+                S.fetch = function(c, e) {
+                    return e && e.body && e.body instanceof Z && (e.body = e.body._blob()), aa(c, e);
                 };
             }
-            V && (R.navigator.sendBeacon = function(c, d) {
-                return d instanceof X && (d = d._asNative()), V.call(this, c, d);
-            }), R.FormData = X;
+            S.FormData = Z;
         }
     }(), Element.prototype.matches || (Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector);
     var CART = config$1.SELECTORS.CART;
@@ -1038,10 +1038,10 @@
                 if (ShopifyAPI && ShopifyAPI.addItemFromForm) {
                     var originalShopifyAddItemFromForm = ShopifyAPI.addItemFromForm;
                     ShopifyAPI.addItemFromForm = function() {
-                        for (var _len2 = arguments.length, args = [], _key2 = 0; _key2 < _len2; _key2++) args[_key2] = arguments[_key2];
+                        for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) args[_key2] = arguments[_key2];
                         var newArgs = args.map(function(arg) {
                             return "function" == typeof arg ? (fn = arg, function() {
-                                for (var _len = arguments.length, args = [], _key = 0; _key < _len; _key++) args[_key] = arguments[_key];
+                                for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) args[_key] = arguments[_key];
                                 var lineItemObject = args.find(function(arg) {
                                     return "variant_id" in arg && "quantity" in arg;
                                 });
