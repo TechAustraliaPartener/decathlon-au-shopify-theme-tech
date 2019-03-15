@@ -182,10 +182,10 @@
                 {% if item.product.tags contains '_addon' and item.properties._for != blank and item.properties['_for'] != item.variant.id %}
                   {% assign item_id = item.id | prepend: '_' | prepend: item.properties._for %}
                 {% endif %}
-                <input type="number" class="quantity" name="updates[]" id="updates_{{ item_id }}" value="{{ item.quantity }}" min="1" style="text-align: center; max-width: 75px;"{% if addons_ids != '' %} data-addons={{ addons_ids | json}}{% endif %} data-price={{item.price}} data-row={{ forloop.index }}>
+                <input type="number" class="js-de-quantity" name="updates[]" id="updates_{{ item_id }}" value="{{ item.quantity }}" min="1" style="text-align: center; max-width: 75px;"{% if addons_ids != '' %} data-addons={{ addons_ids | json}}{% endif %} data-price={{item.price}} data-row={{ forloop.index }}>
               </td>
               <td data-label="{{ 'cart.label.total' | t }}" class="text-right">
-                <span class="h6">
+                <span class="h6 js-de-line_price">
                   {{ item.line_price | money }}
                 </span>
               </td>
@@ -212,7 +212,7 @@
 
             <span class="subtotalWrap h6">
               <span class="cart__subtotal-title u-textUppercase u-textBold u-letterSpacing">{{ 'cart.general.subtotal' | t }}</span>
-              <span class="h6 cart__subtotal">{{ cart.total_price | money }}</span>
+              <span class="h6 cart__subtotal js-de-cart__subtotal">{{ cart.total_price | money }}</span>
             </span>
           </p>
           <small class="u-textUppercase u-letterSpacing u-textBold u-block u-marginBottom2x small--text-right medium--text-right fee-message">{{ 'cart.general.shipping_at_checkout' | t }}</small>
@@ -247,25 +247,33 @@
 {% endif %}
 
 <script>
+// Assign money_format so formatMoney() works properly
 Shopify.money_format = "{{ shop.money_format }}";
-$(".quantity").on('click keyup', function() {
-  var element = $(this);
+
+// Assign event handler to quantity input
+$(".js-de-quantity").on('click keyup', cartQuantityChange);
+
+// AJAX API Call to change Shopify cart object on quantity change
+function cartQuantityChange() {
   jQuery.ajax({
   type: 'post',
   url: '/cart/change.js',
   data: { quantity: $(this).val(), line: $(this).data("row") },
-  success: function(d){
-  element.parent().next().find(".h6").text(Shopify.formatMoney(element.val()*element.data("price")));
+  success: updateCartPrices($(this)),
+  dataType: 'json'
+});
+}
+
+// Update prices on cart page after successful quantity change
+function updateCartPrices(e){
+  e.parent().next().find(".js-de-line_price").text(Shopify.formatMoney(e.val()*e.data("price")));
   var total = 0;
   var qtotal = 0;
-  $(".quantity").each(function() {
+  $(".js-de-quantity").each(function() {
   total += $(this).val()*$(this).data("price");
   qtotal += $(this).val()*1;
   });
-  $(".cart__subtotal").text(Shopify.formatMoney(total));
+  $(".js-de-cart__subtotal").text(Shopify.formatMoney(total));
   $("#CartCount").text(qtotal);
-  },
-  dataType: 'json'
-});
-});
+}
 </script>
