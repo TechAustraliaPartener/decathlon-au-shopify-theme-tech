@@ -19,19 +19,19 @@ const config = {
       return `${this.PREFIX}cid`;
     },
     CHECKOUT: {
+      // @see https://help.shopify.com/en/themes/development/layouts/checkout#step-identification
+      STEPS: {
+        CONTACT_INFORMATION: 'contact_information',
+        SHIPPING_METHOD: 'shipping_method',
+        PAYMENT_METHOD: 'payment_method',
+        PROCESSING: 'processing',
+        REVIEW: 'review'
+      },
       get STEP() {
         return Shopify && Shopify.Checkout && Shopify.Checkout.step;
       },
       get PAGE() {
         return Shopify && Shopify.Checkout && Shopify.Checkout.page;
-      },
-      get IS_CONTACT_INFO_STEP() {
-        // @see https://help.shopify.com/en/themes/development/layouts/checkout/#shopify-checkout-step
-        return this.STEP === 'contact_information';
-      },
-      get IS_STOCK_PROBLEMS_PAGE() {
-        // @see https://help.shopify.com/en/themes/development/layouts/checkout/#shopify-checkout-page
-        return this.PAGE === 'stock_problems';
       },
       URLS: {
         ROOT_URL: '/',

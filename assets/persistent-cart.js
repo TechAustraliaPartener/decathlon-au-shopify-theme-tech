@@ -84,17 +84,18 @@
                 return this.PREFIX + "cid";
             },
             CHECKOUT: {
+                STEPS: {
+                    CONTACT_INFORMATION: "contact_information",
+                    SHIPPING_METHOD: "shipping_method",
+                    PAYMENT_METHOD: "payment_method",
+                    PROCESSING: "processing",
+                    REVIEW: "review"
+                },
                 get STEP() {
                     return Shopify && Shopify.Checkout && Shopify.Checkout.step;
                 },
                 get PAGE() {
                     return Shopify && Shopify.Checkout && Shopify.Checkout.page;
-                },
-                get IS_CONTACT_INFO_STEP() {
-                    return "contact_information" === this.STEP;
-                },
-                get IS_STOCK_PROBLEMS_PAGE() {
-                    return "stock_problems" === this.PAGE;
                 },
                 URLS: {
                     ROOT_URL: "/",
