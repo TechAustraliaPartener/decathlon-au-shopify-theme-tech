@@ -244,6 +244,21 @@
   <script>window.shipStates = [{{ shop.metafields.decathlon.ship_states }}];</script>
 
   <script type="text/javascript">
+	  window.onload = function() {
+		  var bannerBillboard = document.querySelector('.slick-active .banner--billboard'),
+		      bannerOverlay= document.getElementById('bannerOverlay'),
+			  bannerLoading = document.querySelector('.loading');
+          if (bannerBillboard) {
+              bannerBillboard.classList.remove('loading');
+          }
+          if (bannerOverlay) {
+              bannerOverlay.classList.remove('loading');
+          }
+		  if (bannerLoading) {
+              bannerLoading.classList.remove('loading');
+          }
+
+	  };
 	  var mouseflowCrossDomainSupport = true;
 	  window._mfq = window._mfq || [];
 	  (function() {
