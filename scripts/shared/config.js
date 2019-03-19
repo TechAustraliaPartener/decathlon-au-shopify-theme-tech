@@ -6,6 +6,9 @@ const config = {
     get CART() {
       return `${this.PREFIX}cart`;
     },
+    get CHECKOUT_INPUT() {
+      return `${this.PREFIX}checkout`;
+    },
     get LOGOUT() {
       return `${this.PREFIX}logout`;
     },
@@ -16,19 +19,19 @@ const config = {
       return `${this.PREFIX}cid`;
     },
     CHECKOUT: {
+      // @see https://help.shopify.com/en/themes/development/layouts/checkout#step-identification
+      STEPS: {
+        CONTACT_INFORMATION: 'contact_information',
+        SHIPPING_METHOD: 'shipping_method',
+        PAYMENT_METHOD: 'payment_method',
+        PROCESSING: 'processing',
+        REVIEW: 'review'
+      },
       get STEP() {
         return Shopify && Shopify.Checkout && Shopify.Checkout.step;
       },
       get PAGE() {
         return Shopify && Shopify.Checkout && Shopify.Checkout.page;
-      },
-      get IS_CONTACT_INFO_STEP() {
-        // @see https://help.shopify.com/en/themes/development/layouts/checkout/#shopify-checkout-step
-        return this.STEP === 'contact_information';
-      },
-      get IS_STOCK_PROBLEMS_PAGE() {
-        // @see https://help.shopify.com/en/themes/development/layouts/checkout/#shopify-checkout-page
-        return this.PAGE === 'stock_problems';
       },
       URLS: {
         ROOT_URL: '/',
@@ -88,7 +91,16 @@ const config = {
   },
   STOREFRONT_API: {
     HEADER_NAME: 'X-Shopify-Storefront-Access-Token',
-    KEY: process.env.STOREFRONT_API_KEY
+    /**
+     * This key is public, and the fallback is here in case the project is built without a value passed in.
+     * Will not break the compiled asset file. The key would be accessible in either case.
+     */
+    KEY: process.env.STOREFRONT_API_KEY || 'f6c7c4e4db56de88295c2ba45762a331'
+  },
+  NO_CACHE_HEADERS: {
+    'cache-control': 'no-store',
+    pragma: 'no-store',
+    cache: 'no-store'
   }
 };
 
