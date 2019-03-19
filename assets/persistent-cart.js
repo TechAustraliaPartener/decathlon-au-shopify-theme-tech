@@ -71,6 +71,9 @@
             get CART() {
                 return this.PREFIX + "cart";
             },
+            get CHECKOUT_INPUT() {
+                return this.PREFIX + "checkout";
+            },
             get LOGOUT() {
                 return this.PREFIX + "logout";
             },
@@ -81,17 +84,18 @@
                 return this.PREFIX + "cid";
             },
             CHECKOUT: {
+                STEPS: {
+                    CONTACT_INFORMATION: "contact_information",
+                    SHIPPING_METHOD: "shipping_method",
+                    PAYMENT_METHOD: "payment_method",
+                    PROCESSING: "processing",
+                    REVIEW: "review"
+                },
                 get STEP() {
                     return Shopify && Shopify.Checkout && Shopify.Checkout.step;
                 },
                 get PAGE() {
                     return Shopify && Shopify.Checkout && Shopify.Checkout.page;
-                },
-                get IS_CONTACT_INFO_STEP() {
-                    return "contact_information" === this.STEP;
-                },
-                get IS_STOCK_PROBLEMS_PAGE() {
-                    return "stock_problems" === this.PAGE;
                 },
                 URLS: {
                     ROOT_URL: "/",
@@ -150,6 +154,11 @@
         STOREFRONT_API: {
             HEADER_NAME: "X-Shopify-Storefront-Access-Token",
             KEY: "f6c7c4e4db56de88295c2ba45762a331"
+        },
+        NO_CACHE_HEADERS: {
+            "cache-control": "no-store",
+            pragma: "no-store",
+            cache: "no-store"
         }
     };
     function fetch$1(e, n) {
@@ -196,26 +205,30 @@
             }, s.onerror = r, s.send(n.body || null);
         });
     }
-    var _scriptsConfig$STOREF = config$1.STOREFRONT_API, HEADER_NAME = _scriptsConfig$STOREF.HEADER_NAME, KEY = _scriptsConfig$STOREF.KEY;
-    var makeRequest = function(query, data, url, extraGqlConfig) {
-        return void 0 === extraGqlConfig && (extraGqlConfig = {}), fetch$1(url || config.API_URL, {
-            body: query(data),
-            method: "POST",
-            headers: _extends({
-                "Content-Type": "application/json",
-                Accept: "application/json"
-            }, extraGqlConfig.headers)
-        }).then(function(response) {
-            return response.json();
-        }).then(function(_ref) {
-            var data = _ref.data, errors = _ref.errors;
-            if (errors) {
-                var messages = errors.reduce(function(acc, err, idx) {
-                    return acc + (idx > 0 ? ", " : "") + err.message;
-                }, "");
-                console.info("PC: ", messages);
-            }
-            return data;
+    var STOREFRONT_API = config$1.STOREFRONT_API, NO_CACHE_HEADERS = config$1.NO_CACHE_HEADERS;
+    var makeUncachedRequest = function(query, data, url, extraConfig) {
+        return void 0 === extraConfig && (extraConfig = {}), function(query, data, url, extraConfig) {
+            return void 0 === extraConfig && (extraConfig = {}), fetch$1(url || config.API_URL, {
+                body: query(data),
+                method: "POST",
+                headers: _extends({
+                    "Content-Type": "application/json",
+                    Accept: "application/json"
+                }, extraConfig.headers)
+            }).then(function(response) {
+                return response.json();
+            }).then(function(_ref) {
+                var data = _ref.data, errors = _ref.errors;
+                if (errors) {
+                    var messages = errors.reduce(function(acc, err, idx) {
+                        return acc + (idx > 0 ? ", " : "") + err.message;
+                    }, "");
+                    console.info("PC: ", messages);
+                }
+                return data;
+            });
+        }(query, data, url, {
+            headers: _extends({}, NO_CACHE_HEADERS, extraConfig.headers)
         });
     };
     function _templateObject2() {
@@ -234,7 +247,7 @@
     var createOrUpdateCustomerMutation = nanographql(_templateObject());
     var getCustomerQuery = nanographql(_templateObject2());
     var createOrUpdateCustomer = function(_ref3) {
-        return makeRequest((_ref = {
+        return makeUncachedRequest((_ref = {
             mutation: createOrUpdateCustomerMutation,
             customerID: _ref3.customerID,
             cart: _ref3.cart
@@ -523,6 +536,15 @@
     var removeCartCookie = function() {
         return js_cookie.remove(CART_COOKIE);
     };
+    var objectProto = Object.prototype;
+    var funcToString = Function.prototype.toString;
+    var hasOwnProperty = objectProto.hasOwnProperty;
+    var objectCtorString = funcToString.call(Object);
+    var objectToString = objectProto.toString;
+    var getPrototype = (func = Object.getPrototypeOf, transform = Object, function(arg) {
+        return func(transform(arg));
+    });
+    var func, transform;
     var updateCartUI = function(count) {
         var el = document.querySelector(".js-cart-count");
         el && (el.innerText = count);
@@ -544,7 +566,7 @@
             input: input
         }).mutation, data = {
             input: _ref.input
-        }, headers = {}, headers[HEADER_NAME] = KEY, makeRequest(query, data, "/api/graphql", {
+        }, headers = {}, headers[STOREFRONT_API.HEADER_NAME] = STOREFRONT_API.KEY, makeUncachedRequest(query, data, "/api/graphql", {
             headers: headers
         })).then(function(data) {
             return data.checkoutCreate;
@@ -876,7 +898,7 @@
             S.FormData = Z;
         }
     }(), Element.prototype.matches || (Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector);
-    var CART = config$1.SELECTORS.CART;
+    var _scriptsConfig$SELECT = config$1.SELECTORS, CART = _scriptsConfig$SELECT.CART, CHECKOUT_INPUT = _scriptsConfig$SELECT.CHECKOUT_INPUT;
     var transformCartData = function(cartData) {
         return cartData.items.map(function(item) {
             return {
@@ -891,24 +913,20 @@
         };
     };
     var customCheckoutCartSubmitHandler = function(event) {
-        event.preventDefault(), event.stopPropagation();
-        var data = [].concat(new FormData(this).entries()).map(function(e) {
-            return encodeURIComponent(e[0]) + "=" + encodeURIComponent(e[1]);
-        });
-        fetch("/cart", {
+        event.preventDefault(), event.stopPropagation(), fetch("/cart", {
             method: "POST",
-            body: JSON.stringify(data)
+            body: new FormData(this)
         }).then(function(res) {
             return res.json();
         }).then(transformCartData).then(makeGraphQLCheckoutPayload).then(createCheckout).then(function(res) {
-            res.checkout && res.checkout.webUrl && (window.location = res.checkout.webUrl);
+            res.checkout && res.checkout.webUrl && window.location.assign(res.checkout.webUrl);
         });
     };
     var getErrorMessage = function(error) {
         return "string" == typeof error.message ? error.message : error;
     };
     var _pcConfig$SHOPIFY_API = config.SHOPIFY_API, GET_CART = _pcConfig$SHOPIFY_API.GET_CART, UPDATE_CART = _pcConfig$SHOPIFY_API.UPDATE_CART;
-    var _scriptsConfig$SELECT = config$1.SELECTORS, CART_COUNT = _scriptsConfig$SELECT.CART_COUNT, CUSTOMER_ID = _scriptsConfig$SELECT.CUSTOMER_ID;
+    var _scriptsConfig$SELECT$1 = config$1.SELECTORS, CART_COUNT = _scriptsConfig$SELECT$1.CART_COUNT, CUSTOMER_ID = _scriptsConfig$SELECT$1.CUSTOMER_ID;
     var finalCartUpdates = function(cart) {
         if (!cart) throw Error("Cart not passed to handler for updating UI.");
         return setStoredShopifyCart(cart), updateCartUI(cart.item_count), cart;
@@ -1010,7 +1028,7 @@
         var customerID, _ref2;
         cache.currentCartCount = parseInt(document.querySelector(CART_COUNT).value, 10), 
         cache.customerID = cidEl && cidEl.value ? cidEl.value : null, localStorageAvailable && cookiesAvailable && (cache.customerID ? (customerID = cache.customerID, 
-        makeRequest((_ref2 = {
+        makeUncachedRequest((_ref2 = {
             query: getCustomerQuery,
             customerID: customerID
         }).query, {
@@ -1024,7 +1042,7 @@
                 if ("error" in customerResponse) throw Error(customerResponse.error);
             } else customer = customerResponse, console.log("Persistent Cart JS loaded"), (logoutLink = document.querySelector(LOGOUT)) && logoutLink.addEventListener("click", logoutHandler), 
             document.addEventListener("submit", function(e) {
-                for (var target = e.target; target && target !== this; target = target.parentNode) if (target.matches(CART)) {
+                for (var target = e.target; target && target !== this; target = target.parentNode) if (target.matches(CART) && e.currentTarget.activeElement.matches(CHECKOUT_INPUT)) {
                     customCheckoutCartSubmitHandler.call(target, e);
                     break;
                 }
@@ -1043,7 +1061,21 @@
                             return "function" == typeof arg ? (fn = arg, function() {
                                 for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) args[_key] = arguments[_key];
                                 var lineItemObject = args.find(function(arg) {
-                                    return "variant_id" in arg && "quantity" in arg;
+                                    return function(value) {
+                                        if (!function(value) {
+                                            return !!value && "object" == typeof value;
+                                        }(value) || "[object Object]" != objectToString.call(value) || function(value) {
+                                            var result = !1;
+                                            if (null != value && "function" != typeof value.toString) try {
+                                                result = !!(value + "");
+                                            } catch (e) {}
+                                            return result;
+                                        }(value)) return !1;
+                                        var proto = getPrototype(value);
+                                        if (null === proto) return !0;
+                                        var Ctor = hasOwnProperty.call(proto, "constructor") && proto.constructor;
+                                        return "function" == typeof Ctor && Ctor instanceof Ctor && funcToString.call(Ctor) == objectCtorString;
+                                    }(arg) && "variant_id" in arg && "quantity" in arg;
                                 });
                                 return lineItemObject && (cache.currentCartCount += lineItemObject.quantity, pcInit(customer)), 
                                 fn.apply(void 0, args);

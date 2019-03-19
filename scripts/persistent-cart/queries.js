@@ -7,7 +7,7 @@
  */
 
 import gql from '../utilities/graphql/nanographql';
-import { makeRequest } from '../utilities/graphql/make-request';
+import { makeUncachedRequest } from '../utilities/graphql/make-request';
 import config from './config';
 
 const { API_URL } = config;
@@ -21,7 +21,7 @@ const { API_URL } = config;
  * @returns {Promise<Object>} - A customer (with cart) from our DB
  */
 const createOrUpdateCustomerRequest = ({ mutation, customerID, cart }) =>
-  makeRequest(mutation, { customerID, cart }, API_URL)
+  makeUncachedRequest(mutation, { customerID, cart }, API_URL)
     .then(data => data.createOrUpdateCustomer)
     .catch(error => {
       throw new Error(
@@ -37,7 +37,7 @@ const createOrUpdateCustomerRequest = ({ mutation, customerID, cart }) =>
  * @returns {Promise<Object|null>} - A customer from the DB (or null if there is no customer with this ID)
  */
 const getCustomerRequest = ({ query, customerID }) =>
-  makeRequest(query, { customerID }, API_URL)
+  makeUncachedRequest(query, { customerID }, API_URL)
     .then(data => data.getCustomer)
     .catch(error => {
       throw new Error(`Error getting customer from database: ${error.message}`);
