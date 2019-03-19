@@ -2483,6 +2483,14 @@ body.is-rollingUpBanner .popup { margin-top: -100vh; }
 	}
 }
 
+#bannerHero {
+		opacity: 1;
+		transition: opacity 0.7s ease-in;
+		&.loading {
+			opacity: 0;
+		}
+	}
+
 .banner--billboard__overlay {
 	position: absolute;
 	width: 100%;
