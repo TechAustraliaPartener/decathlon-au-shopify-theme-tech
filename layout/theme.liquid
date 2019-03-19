@@ -43,10 +43,15 @@
   <meta name="theme-color" content="{{ settings.color_primary }}">
 
   <!-- CSS ================================================== -->
+
   {{ 'fonts.scss.css' | asset_url | stylesheet_tag }}
   {{ 'icomoon.scss.css' | asset_url | stylesheet_tag }}
   {% include 'slick-styles' %}
+  {% if template == "index" %}
+  {{ 'homeclean.scss.css' | asset_url | stylesheet_tag }}
+  {% else %}
   {{ 'timber.scss.css' | asset_url | stylesheet_tag }}
+  {% endif %}
   {{ 'fancybox.scss.css' | asset_url | stylesheet_tag }}
   {{ 'skill-level.scss.css' | asset_url | stylesheet_tag }}
   {{ 'header.css' | asset_url | stylesheet_tag }}
