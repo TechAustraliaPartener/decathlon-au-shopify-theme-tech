@@ -7,9 +7,6 @@
             get CART() {
                 return this.PREFIX + "cart";
             },
-            get CHECKOUT_INPUT() {
-                return this.PREFIX + "checkout";
-            },
             get LOGOUT() {
                 return this.PREFIX + "logout";
             },

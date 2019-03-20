@@ -12,6 +12,18 @@
     function _taggedTemplateLiteralLoose(strings, raw) {
         return raw || (raw = strings.slice(0)), strings.raw = raw, strings;
     }
+    function _toConsumableArray(arr) {
+        return function(arr) {
+            if (Array.isArray(arr)) {
+                for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
+                return arr2;
+            }
+        }(arr) || function(iter) {
+            if (Symbol.iterator in Object(iter) || "[object Arguments]" === Object.prototype.toString.call(iter)) return Array.from(iter);
+        }(arr) || function() {
+            throw new TypeError("Invalid attempt to spread non-iterable instance");
+        }();
+    }
     var getOpname = /(query|mutation) ?([\w\d-_]+)? ?\(.*?\)? \{/;
     function nanographql(str) {
         var _str = Array.isArray(str) ? str.join("") : str;
@@ -70,9 +82,6 @@
             PREFIX: ".js-de-",
             get CART() {
                 return this.PREFIX + "cart";
-            },
-            get CHECKOUT_INPUT() {
-                return this.PREFIX + "checkout";
             },
             get LOGOUT() {
                 return this.PREFIX + "logout";
@@ -898,7 +907,7 @@
             S.FormData = Z;
         }
     }(), Element.prototype.matches || (Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector);
-    var _scriptsConfig$SELECT = config$1.SELECTORS, CART = _scriptsConfig$SELECT.CART, CHECKOUT_INPUT = _scriptsConfig$SELECT.CHECKOUT_INPUT;
+    var CART = config$1.SELECTORS.CART;
     var transformCartData = function(cartData) {
         return cartData.items.map(function(item) {
             return {
@@ -912,21 +921,35 @@
             lineItems: items
         };
     };
+    var handleFetchError = function(response) {
+        if (!response.ok) throw Error(response.statusText);
+        return response;
+    };
     var customCheckoutCartSubmitHandler = function(event) {
-        event.preventDefault(), event.stopPropagation(), fetch("/cart", {
+        event.preventDefault(), event.stopPropagation();
+        var filteredInputs = _toConsumableArray(this.querySelectorAll('[name="updates[]"]')).filter(function(input) {
+            return parseInt(input.value, 10) > 0;
+        });
+        if (0 === filteredInputs.length) return window.location.reload(), !1;
+        var postForm = document.createElement("form");
+        filteredInputs.forEach(function(input) {
+            return postForm.appendChild(input.cloneNode());
+        }), fetch("/cart", {
             method: "POST",
-            body: new FormData(this)
-        }).then(function(res) {
+            body: new FormData(postForm)
+        }).then(handleFetchError).then(function(res) {
             return res.json();
         }).then(transformCartData).then(makeGraphQLCheckoutPayload).then(createCheckout).then(function(res) {
             res.checkout && res.checkout.webUrl && window.location.assign(res.checkout.webUrl);
+        }).catch(function(error) {
+            console.error(error), window.location.reload();
         });
     };
     var getErrorMessage = function(error) {
         return "string" == typeof error.message ? error.message : error;
     };
     var _pcConfig$SHOPIFY_API = config.SHOPIFY_API, GET_CART = _pcConfig$SHOPIFY_API.GET_CART, UPDATE_CART = _pcConfig$SHOPIFY_API.UPDATE_CART;
-    var _scriptsConfig$SELECT$1 = config$1.SELECTORS, CART_COUNT = _scriptsConfig$SELECT$1.CART_COUNT, CUSTOMER_ID = _scriptsConfig$SELECT$1.CUSTOMER_ID;
+    var _scriptsConfig$SELECT = config$1.SELECTORS, CART_COUNT = _scriptsConfig$SELECT.CART_COUNT, CUSTOMER_ID = _scriptsConfig$SELECT.CUSTOMER_ID;
     var finalCartUpdates = function(cart) {
         if (!cart) throw Error("Cart not passed to handler for updating UI.");
         return setStoredShopifyCart(cart), updateCartUI(cart.item_count), cart;
@@ -1006,7 +1029,7 @@
                         throw Error("No cart returned after attempting to update after setting cart cookie with cartID (" + newCartID + ")" + (reconciledCarts ? ", with reconciled carts: " + reconciledCarts : "") + ".");
                     });
                 }((currentCart = getStoredShopifyCart(), cart2 = cache.customerCartExpired ? cache.customer.cart : cache.masterShopifyCart, 
-                [].concat(getLineItems(cache.customerCartExpired ? null : currentCart), getLineItems(cart2)).reduce(function(acc, curr) {
+                [].concat(_toConsumableArray(getLineItems(cache.customerCartExpired ? null : currentCart)), _toConsumableArray(getLineItems(cart2))).reduce(function(acc, curr) {
                     return acc[curr.id] = (acc[curr.id] || 0) + curr.quantity, acc;
                 }, {}))).then(function(cart) {
                     return cache.customerCartExpired ? function(cart) {
@@ -1042,7 +1065,7 @@
                 if ("error" in customerResponse) throw Error(customerResponse.error);
             } else customer = customerResponse, console.log("Persistent Cart JS loaded"), (logoutLink = document.querySelector(LOGOUT)) && logoutLink.addEventListener("click", logoutHandler), 
             document.addEventListener("submit", function(e) {
-                for (var target = e.target; target && target !== this; target = target.parentNode) if (target.matches(CART) && e.currentTarget.activeElement.matches(CHECKOUT_INPUT)) {
+                for (var target = e.target; target && target !== this; target = target.parentNode) if (target.matches(CART)) {
                     customCheckoutCartSubmitHandler.call(target, e);
                     break;
                 }
@@ -1082,7 +1105,7 @@
                             }) : arg;
                             var fn;
                         });
-                        return originalShopifyAddItemFromForm.apply(void 0, newArgs);
+                        return originalShopifyAddItemFromForm.apply(void 0, _toConsumableArray(newArgs));
                     };
                 }
             }();
