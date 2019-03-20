@@ -12,6 +12,18 @@
     function _taggedTemplateLiteralLoose(strings, raw) {
         return raw || (raw = strings.slice(0)), strings.raw = raw, strings;
     }
+    function _toConsumableArray(arr) {
+        return function(arr) {
+            if (Array.isArray(arr)) {
+                for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
+                return arr2;
+            }
+        }(arr) || function(iter) {
+            if (Symbol.iterator in Object(iter) || "[object Arguments]" === Object.prototype.toString.call(iter)) return Array.from(iter);
+        }(arr) || function() {
+            throw new TypeError("Invalid attempt to spread non-iterable instance");
+        }();
+    }
     var getOpname = /(query|mutation) ?([\w\d-_]+)? ?\(.*?\)? \{/;
     function nanographql(str) {
         var _str = Array.isArray(str) ? str.join("") : str;
@@ -912,22 +924,28 @@
             lineItems: items
         };
     };
+    var handleFetchError = function(response) {
+        if (!response.ok) throw Error(response.statusText);
+        return response;
+    };
     var customCheckoutCartSubmitHandler = function(event) {
         event.preventDefault(), event.stopPropagation();
-        var updateInputs = this.querySelectorAll('[name="updates[]"]');
-        var filteredInputs = [].concat(updateInputs).filter(function(input) {
+        var filteredInputs = _toConsumableArray(this.querySelectorAll('[name="updates[]"]')).filter(function(input) {
             return parseInt(input.value, 10) > 0;
         });
+        0 === filteredInputs.length && window.location.reload();
         var postForm = document.createElement("form");
         filteredInputs.forEach(function(input) {
-            return postForm.appendChild(input);
+            return postForm.appendChild(input.cloneNode());
         }), fetch("/cart", {
             method: "POST",
             body: new FormData(postForm)
-        }).then(function(res) {
+        }).then(handleFetchError).then(function(res) {
             return res.json();
         }).then(transformCartData).then(makeGraphQLCheckoutPayload).then(createCheckout).then(function(res) {
             res.checkout && res.checkout.webUrl && window.location.assign(res.checkout.webUrl);
+        }).catch(function(error) {
+            console.error(error), window.location.reload();
         });
     };
     var getErrorMessage = function(error) {
@@ -1014,7 +1032,7 @@
                         throw Error("No cart returned after attempting to update after setting cart cookie with cartID (" + newCartID + ")" + (reconciledCarts ? ", with reconciled carts: " + reconciledCarts : "") + ".");
                     });
                 }((currentCart = getStoredShopifyCart(), cart2 = cache.customerCartExpired ? cache.customer.cart : cache.masterShopifyCart, 
-                [].concat(getLineItems(cache.customerCartExpired ? null : currentCart), getLineItems(cart2)).reduce(function(acc, curr) {
+                [].concat(_toConsumableArray(getLineItems(cache.customerCartExpired ? null : currentCart)), _toConsumableArray(getLineItems(cart2))).reduce(function(acc, curr) {
                     return acc[curr.id] = (acc[curr.id] || 0) + curr.quantity, acc;
                 }, {}))).then(function(cart) {
                     return cache.customerCartExpired ? function(cart) {
@@ -1090,7 +1108,7 @@
                             }) : arg;
                             var fn;
                         });
-                        return originalShopifyAddItemFromForm.apply(void 0, newArgs);
+                        return originalShopifyAddItemFromForm.apply(void 0, _toConsumableArray(newArgs));
                     };
                 }
             }();
