@@ -913,9 +913,17 @@
         };
     };
     var customCheckoutCartSubmitHandler = function(event) {
-        event.preventDefault(), event.stopPropagation(), fetch("/cart", {
+        event.preventDefault(), event.stopPropagation();
+        var updateInputs = this.querySelectorAll('[name="updates[]"]');
+        var filteredInputs = [].concat(updateInputs).filter(function(input) {
+            return parseInt(input.value, 10) > 0;
+        });
+        var postForm = document.createElement("form");
+        filteredInputs.forEach(function(input) {
+            return postForm.appendChild(input);
+        }), fetch("/cart", {
             method: "POST",
-            body: new FormData(this)
+            body: new FormData(postForm)
         }).then(function(res) {
             return res.json();
         }).then(transformCartData).then(makeGraphQLCheckoutPayload).then(createCheckout).then(function(res) {

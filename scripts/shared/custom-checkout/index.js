@@ -36,10 +36,16 @@ const makeGraphQLCheckoutPayload = items => ({ lineItems: items });
 const customCheckoutCartSubmitHandler = function(event) {
   event.preventDefault();
   event.stopPropagation();
+  const updateInputs = this.querySelectorAll('[name="updates[]"]');
+  const filteredInputs = [...updateInputs].filter(
+    input => parseInt(input.value, 10) > 0
+  );
+  const postForm = document.createElement('form');
+  filteredInputs.forEach(input => postForm.appendChild(input));
   // Fetch a cart from Shopify
   fetch('/cart', {
     method: 'POST',
-    body: new FormData(this)
+    body: new FormData(postForm)
   })
     .then(res => res.json())
     // Transform cart data to a format that will work as a payload for the Storefront GraphQL API
