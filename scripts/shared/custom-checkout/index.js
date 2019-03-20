@@ -59,6 +59,7 @@ const customCheckoutCartSubmitHandler = function(event) {
   // If all inputs are set to 0, just abandon the handler and reload the page to refresh with no cart
   if (filteredInputs.length === 0) {
     window.location.reload();
+    return false;
   }
   // Create a new form from inputs with quantity greater than 0
   const postForm = document.createElement('form');
@@ -82,6 +83,7 @@ const customCheckoutCartSubmitHandler = function(event) {
     })
     .catch(error => {
       console.error(error);
+      // Reload the page in order to try to resolve issues with the last payload
       window.location.reload();
     });
 };

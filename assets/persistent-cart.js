@@ -933,7 +933,7 @@
         var filteredInputs = _toConsumableArray(this.querySelectorAll('[name="updates[]"]')).filter(function(input) {
             return parseInt(input.value, 10) > 0;
         });
-        0 === filteredInputs.length && window.location.reload();
+        if (0 === filteredInputs.length) return window.location.reload(), !1;
         var postForm = document.createElement("form");
         filteredInputs.forEach(function(input) {
             return postForm.appendChild(input.cloneNode());
