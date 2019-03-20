@@ -104,6 +104,7 @@
         returnToCartLink.innerHTML = '<svg focusable="false" aria-hidden="true" class="icon-svg icon-svg--color-accent icon-svg--size-10 previous-link__icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><path d="M8 1L7 0 3 4 2 5l1 1 4 4 1-1-4-4"></path></svg><span class="step__footer__previous-link-content">Return to cart</span>', 
         document.querySelector("." + STEP_FOOTER).appendChild(returnToCartLink);
     };
+    var stepFooter;
     !function() {
         var breadcrumbLinks = document.querySelectorAll("." + BC_LINK);
         for (var _isArray = Array.isArray(_iterator = breadcrumbLinks), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator](); ;) {
@@ -120,7 +121,8 @@
         return !1;
     }() && Object.keys(STEPS).some(function(step) {
         return STEPS[step] === STEP;
-    }) && (STEP === STEPS.CONTACT_INFORMATION && buildStepLink(), function() {
+    }) && (STEP === STEPS.CONTACT_INFORMATION && (stepFooter = document.querySelector("." + STEP_FOOTER)) && !stepFooter.querySelector("." + STEP_FOOTER_PREVIOUS_LINK) && buildStepLink(), 
+    function() {
         var breadcrumbs = document.querySelector("." + BC_ROOT);
         if (breadcrumbs) {
             var cartCrumb = document.createElement("li");
