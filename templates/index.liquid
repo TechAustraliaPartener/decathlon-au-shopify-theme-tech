@@ -1,7 +1,8 @@
 <!-- /templates/index.liquid -->
 {% comment %} {% include 'promo-band' %} {% endcomment %}
 
-<div id="bannerHero" class="banner banner--slideshow js-slick--attr" data-slick='{ "dots": true, 
+<h1 style="display:none">{{ shop.name }}</h1>
+<div id="bannerHero" class="banner banner--slideshow js-slick--attr loading" data-slick='{ "dots": true, 
   "infinite": true,
   "autoplay": true,
   "autoplaySpeed": 7000,
@@ -154,6 +155,7 @@
 
 {% comment %} {% include 'trending-products' %} {% endcomment %}
 
+{% comment %}
 <div class="instagramFeed-wrapper u-block hidden">
   <div class="wrapper wrapper--narrow">
     <div class="instagramFeed-message instagramFeed-message--homepage">
@@ -187,6 +189,8 @@
       <button class="instagramProductFeed-loadMore js-loadInstagram" type="button">Next</button>
     </div>
 </div>
+{% endcomment %}
+
 {% comment %} {%- unless settings['is_lookbook'] -%}
 <!-- #DecathlonSF -->
 {%- endunless -%}
@@ -282,6 +286,6 @@
 </div> {% endcomment %}
 
 {% comment %} {% include 'videos-script' %} {% endcomment %}
-{% include 'instagram-template' %}
+{% comment %} {% include 'instagram-template' %} {% endcomment %}
 
 {{ content_for_index }}

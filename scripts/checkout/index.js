@@ -73,6 +73,24 @@ const cartBreadcrumbLinkExists = () => {
 };
 
 /**
+ * Check to see whether a cart step link should be built and inserted in DOM
+ * @returns {boolean} - Needs a cart step link built (or not)
+ */
+const needCartStepLink = () => {
+  const stepFooter = document.querySelector(`.${STEP_FOOTER}`);
+  if (stepFooter) {
+    const existingCartStepLink = stepFooter.querySelector(
+      `.${STEP_FOOTER_PREVIOUS_LINK}`
+    );
+    if (existingCartStepLink) {
+      return false;
+    }
+    return true;
+  }
+  return false;
+};
+
+/**
  * Builds a "step" link in the footer to return to the cart from the first page of checkout
  */
 const buildStepLink = () => {
@@ -137,7 +155,7 @@ const setLogoLinkHome = () => {
  * 3) The href on logos to point back to the web root of the deployed Decathlon site
  */
 if (!cartBreadcrumbLinkExists() && isCheckoutStep()) {
-  if (isContactInfoStep()) {
+  if (isContactInfoStep() && needCartStepLink()) {
     /**
      * Add Return to cart link on Checkout Step 1 (when the current step is "contact_information")
      * In subsequent steps, these links are automatically inserted into the DOM

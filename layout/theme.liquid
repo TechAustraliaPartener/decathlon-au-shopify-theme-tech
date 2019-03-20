@@ -1,7 +1,7 @@
 <!doctype html>
 <!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if IE 9 ]><html class="ie9 no-js"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js"> <!--<![endif]-->
+<!--[if IE 9 ]><html class="ie9 no-js" lang="en"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
 
   <!-- Basic page needs ================================================== -->
@@ -15,6 +15,41 @@
   <link rel="icon" type="image/png" href="{{ 'favicon-16x16.png' | asset_url }}" sizes="16x16">
   <link rel="manifest" href="{{ 'site.webmanifest' | asset_url }}">
   <link rel="mask-icon" href="{{ 'safari-pinned-tab.svg' | asset_url }}" color="#0080c4">
+  {% if template == "index" %}
+  <link rel="alternate" href="https://www.decathlon.co.th/th/" hreflang="th-th">
+  <link rel="alternate" href="https://www.decathlon.co.th/en/" hreflang="en-th">
+  <link rel="alternate" href="https://www.decathlon.cz/" hreflang="cs-cz">
+  <link rel="alternate" href="https://www.decathlon.cz/" hreflang="en-cz">
+  <link rel="alternate" href="https://www.decathlon.sk/" hreflang="sk-sk">
+  <link rel="alternate" href="https://www.decathlon.re/" hreflang="fr-re">
+  <link rel="alternate" href="https://www.decathlon.ro/" hreflang="ro-ro">
+  <link rel="alternate" href="https://www.decathlon.bg/" hreflang="bg-bg">
+  <link rel="alternate" href="https://www.decathlon.hr/" hreflang="hr-hr">
+  <link rel="alternate" href="https://www.decathlon.si/" hreflang="sl-si">
+  <link rel="alternate" href="https://www.decathlon.com.au/" hreflang="en-au">
+  <link rel="alternate" href="https://www.decathlon.in/" hreflang="en-in">
+  <link rel="alternate" href="https://www.decathlon.co.za/" hreflang="en-za">
+  <link rel="alternate" href="https://www.decathlon.ma/" hreflang="fr-ma">
+  <link rel="alternate" href="https://www.decathlon.com.mx/" hreflang="es-mx">
+  <link rel="alternate" href="http://www.decathlon-rdc.com/" hreflang="fr-cd">
+  <link rel="alternate" href="https://www.decathlon.vn/vi/" hreflang="vi-vn">
+  <link rel="alternate" href="https://www.decathlon.vn/en/" hreflang="en-vn">
+  <link rel="alternate" href="https://www.decathlon.tn/" hreflang="fr-tn">
+  <link rel="alternate" href="https://www.decathlon.mq/" hreflang="fr-mq">
+  <link rel="alternate" href="https://www.decathlon.gp/" hreflang="fr-gp">
+  <link rel="alternate" href="https://www.decathlon.sn/" hreflang="fr-sn">
+  <link rel="alternate" href="https://www.decathlon.com.co/es/" hreflang="es-co">
+  <link rel="alternate" href="https://www.decathlon.com.gh/" hreflang="en-gh">
+  <link rel="alternate" href="https://www.decathlon.fr/" hreflang="fr-fr">
+  <link rel="alternate" href="https://www.decathlon.co.uk/" hreflang="en-gb">
+  <link rel="alternate" href="https://www.decathlon.be/nl/" hreflang="fr-be">
+  <link rel="alternate" href="https://www.decathlon.es/" hreflang="es-es">
+  <link rel="alternate" href="https://www.decathlon.co.id/in/" hreflang="id-id">
+  <link rel="alternate" href="https://www.decathlon.co.id/en/" hreflang="en-id">
+  <link rel="alternate" href="https://www.decathlon.com.hk/zh/" hreflang="zh-hk">
+  <link rel="alternate" href="https://www.decathlon.com.hk/en/" hreflang="en-hk">
+  {% endif %}
+  <link rel="alternate" href="{{ canonical_url }}" hreflang="en-us">
   <meta name="apple-mobile-web-app-title" content="Decathlon">
   <meta name="application-name" content="Decathlon">
   <meta name="msapplication-TileColor" content="#0080c4">
@@ -43,16 +78,22 @@
   <meta name="theme-color" content="{{ settings.color_primary }}">
 
   <!-- CSS ================================================== -->
-  {{ 'fonts.css' | asset_url | stylesheet_tag }}
-  {{ 'icomoon.css' | asset_url | stylesheet_tag }}
+
+  {{ 'fonts.scss.css' | asset_url | stylesheet_tag }}
+  {{ 'icomoon.scss.css' | asset_url | stylesheet_tag }}
   {% include 'slick-styles' %}
+  {% if template == "index" %}
+  {{ 'home.scss.css' | asset_url | stylesheet_tag }}
+  {% else %}
   {{ 'timber.scss.css' | asset_url | stylesheet_tag }}
-  {{ 'fancybox.css' | asset_url | stylesheet_tag }}
-  {{ 'skill-level.scss' | asset_url | stylesheet_tag }}
-  {{ 'header.scss' | asset_url | stylesheet_tag }}
-  {{ 'adeptMind.css' | asset_url | stylesheet_tag }}
-  {{ 'patterns-toolkit.css' | asset_url | stylesheet_tag }}
-  {{ 'legacySupport.css' | asset_url | stylesheet_tag }}
+  {% endif %}
+  {{ 'fancybox.scss.css' | asset_url | stylesheet_tag }}
+  {{ 'skill-level.scss.css' | asset_url | stylesheet_tag }}
+  {{ 'header.css' | asset_url | stylesheet_tag }}
+  {{ 'adeptMind.scss.css' | asset_url | stylesheet_tag }}
+  {{ 'patterns-toolkit.scss.css' | asset_url | stylesheet_tag }}
+  {{ 'legacySupport.scss.css' | asset_url | stylesheet_tag }}
+  {{ 'cadence.scss.css' | asset_url | stylesheet_tag }}
 
   {% comment %}
   {{ 'zoom.css' | asset_url | stylesheet_tag }}
@@ -63,7 +104,7 @@
   {{ content_for_header }}
   {% include 'oldIE-js' %}
 
-  {{ '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js' | script_tag }}
+  {{ 'jquery.min.js' | asset_url | script_tag }}
   {{ 'modernizr.min.js' | asset_url | script_tag }}
 
   {% comment %}
@@ -198,8 +239,8 @@
 
   {% include 'added-item-popup-template' %}
 
-  {{ '//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js' | script_tag }}
-  {{ 'https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.2/js.cookie.min.js' | script_tag }}
+  {{ 'slick.min.js' | asset_url | script_tag }}
+  {{ 'js.cookie.min.js' | asset_url | script_tag }}
 
   <script>
   ;(function(window, $, Cookies) {
@@ -245,14 +286,19 @@
   <script type="text/javascript">
 	  window.onload = function() {
 		  var bannerBillboard = document.querySelector('.slick-active .banner--billboard'),
-		      bannerOverlay= document.getElementById('bannerOverlay');
+		      bannerOverlay= document.getElementById('bannerOverlay'),
+			  bannerLoading = document.querySelectorAll('.loading');
           if (bannerBillboard) {
               bannerBillboard.classList.remove('loading');
           }
           if (bannerOverlay) {
               bannerOverlay.classList.remove('loading');
           }
-
+		  if (bannerLoading) {
+		    bannerLoading.forEach(function(i) {
+              i.classList.remove('loading');
+			});
+          }
 	  };
 	  var mouseflowCrossDomainSupport = true;
 	  window._mfq = window._mfq || [];
