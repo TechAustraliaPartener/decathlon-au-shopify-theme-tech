@@ -24,7 +24,10 @@ const init = () => {
   STATE.checkoutStep =
     window.Shopify && window.Shopify.Checkout && window.Shopify.Checkout.step;
 
+  // Bind event listeners (and more)
   bindUI();
+
+  // Update UI elements, as needed
   updateUI();
 };
 

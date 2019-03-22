@@ -10,6 +10,7 @@ module.exports = {
   ],
   plugins: [
     'transform-inline-environment-variables',
+    '@babel/plugin-transform-spread',
     [
       'module:fast-async',
       {

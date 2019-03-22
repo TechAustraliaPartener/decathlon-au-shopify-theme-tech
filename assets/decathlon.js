@@ -887,11 +887,13 @@ function(e, t, i, n, o) {
             })), t("body").hasClass("template-index")) {
             t(e).on("scroll", h), h();
             var P = r + "/api/v1/medias/recent?language[]=en&country[]=GB&limit=10",
-                I = n.compile(t("#instagramPostTemplate").html()),
-                O = n.compile(t("#instagramLightBoxTemplate").html()),
+                //I = n.compile(t("#instagramPostTemplate").html()),
+                //O = n.compile(t("#instagramLightBoxTemplate").html()),
+				I = null, O = null,
                 F = 0,
                 A = null,
-                R = t(".js-instagramFeed").data("instagram"),
+                //R = t(".js-instagramFeed").data("instagram"),
+				R = null,
                 z = !1,
                 N = function(i) {
                     if (z || (t("body").append(O({
@@ -935,9 +937,9 @@ function(e, t, i, n, o) {
                     }), o
                 },
                 L = function(e) {
-                    var e = e || function() {},
+                    /*var e = e || function() {},
                         i = 10 * F;
-                    A && i >= A || (F++, F <= 1 ? N(R.slice(i, i + 10)).then(e) : t.get(P + "&page=" + F).then(N).then(e))
+                    A && i >= A || (F++, F <= 1 ? N(R.slice(i, i + 10)).then(e) : t.get(P + "&page=" + F).then(N).then(e))*/
                 };
             L(), t(".js-loadInstagram").click(function(e) {
                 if (!t(this).hasClass("disabled")) {
@@ -1305,7 +1307,9 @@ function(e, t, i, n, o) {
             var i = new Image;
             i.src = t(e.currentTarget).data("image")
         }), t(".js-colorChip").on("click", function(e) {
-            e.preventDefault(), t(e.currentTarget).parents(".collectionProduct").find(".collectionProduct-image").attr("src", t(e.currentTarget).data("image")), t(e.currentTarget).parent().attr("data-colorChoice", t(e.currentTarget).data("color")), t(e.currentTarget).parent().attr("data-variantChoice", t(e.currentTarget).data("variant")), t(e.currentTarget).parent().find(".option.option--active").removeClass("option--active"), t(e.currentTarget).addClass("option--active")
+            e.preventDefault(), t(e.currentTarget).parents(".collectionProduct").find(".collectionProduct-image").attr("src", t(e.currentTarget).data("image"))
+			if(t(e.currentTarget).data("compare")){t(e.currentTarget).parents(".collectionProduct").find(".collectionProduct-price").html("<span style='color: #E53322;'>" + t(e.currentTarget).data("price") + "</span><span class='visually-hidden'>Regular price</span><br><s>" + t(e.currentTarget).data("compare") + "</s>")}else{t(e.currentTarget).parents(".collectionProduct").find(".collectionProduct-price").html(t(e.currentTarget).data("price"))}
+			t(e.currentTarget).parent().attr("data-colorChoice", t(e.currentTarget).data("color")), t(e.currentTarget).parent().attr("data-variantChoice", t(e.currentTarget).data("variant")), t(e.currentTarget).parent().find(".option.option--active").removeClass("option--active"), t(e.currentTarget).addClass("option--active")
         }), e.attachOptionSelectors && e.attachOptionSelectors(), t(".collectionProduct .js-shopNow").click(function(i) {
             i.preventDefault();
             var n = t(this).parents(".collectionProduct").find(".collectionProduct-colors").data("variantchoice");

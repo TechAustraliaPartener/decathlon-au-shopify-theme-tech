@@ -1,5 +1,13 @@
 !function() {
     "use strict";
+    var CHECKOUT_STEPS = {
+        CONTACT_INFORMATION: "contact_information",
+        SHIPPING_METHOD: "shipping_method",
+        PAYMENT_METHOD: "payment_method",
+        PROCESSING: "processing",
+        THANK_YOU: "thank_you",
+        REVIEW: "review"
+    };
     var logState = function() {
         console.info("STATE:", STATE);
     };
@@ -188,6 +196,9 @@
             get CART() {
                 return this.PREFIX + "cart";
             },
+            get CHECKOUT_INPUT() {
+                return this.PREFIX + "checkout";
+            },
             get LOGOUT() {
                 return this.PREFIX + "logout";
             },
@@ -198,17 +209,18 @@
                 return this.PREFIX + "cid";
             },
             CHECKOUT: {
+                STEPS: {
+                    CONTACT_INFORMATION: "contact_information",
+                    SHIPPING_METHOD: "shipping_method",
+                    PAYMENT_METHOD: "payment_method",
+                    PROCESSING: "processing",
+                    REVIEW: "review"
+                },
                 get STEP() {
-                    return Shopify && Shopify.Checkout && Shopify.Checkout.step;
+                    return window.Shopify && Shopify.Checkout && Shopify.Checkout.step;
                 },
                 get PAGE() {
-                    return Shopify && Shopify.Checkout && Shopify.Checkout.page;
-                },
-                get IS_CONTACT_INFO_STEP() {
-                    return "contact_information" === this.STEP;
-                },
-                get IS_STOCK_PROBLEMS_PAGE() {
-                    return "stock_problems" === this.PAGE;
+                    return window.Shopify && Shopify.Checkout && Shopify.Checkout.page;
                 },
                 URLS: {
                     ROOT_URL: "/",
@@ -266,16 +278,25 @@
         },
         STOREFRONT_API: {
             HEADER_NAME: "X-Shopify-Storefront-Access-Token",
-            KEY: void 0
+            KEY: "f6c7c4e4db56de88295c2ba45762a331"
+        },
+        NO_CACHE_HEADERS: {
+            "cache-control": "no-store",
+            pragma: "no-store",
+            cache: "no-store"
         }
     };
-    var _config$SELECTORS$CHE = config.SELECTORS.CHECKOUT, IS_CONTACT_INFO_STEP = _config$SELECTORS$CHE.IS_CONTACT_INFO_STEP, IS_STOCK_PROBLEMS_PAGE = _config$SELECTORS$CHE.IS_STOCK_PROBLEMS_PAGE, CART_TEXT = _config$SELECTORS$CHE.TEXT.CART_TEXT, _config$SELECTORS$CHE2 = _config$SELECTORS$CHE.CLASSES, LOGO = _config$SELECTORS$CHE2.LOGO, _config$SELECTORS$CHE3 = _config$SELECTORS$CHE2.STEPS, STEP_FOOTER = _config$SELECTORS$CHE3.STEP_FOOTER, STEP_FOOTER_PREVIOUS_LINK = _config$SELECTORS$CHE3.STEP_FOOTER_PREVIOUS_LINK, _config$SELECTORS$CHE4 = _config$SELECTORS$CHE2.BREADCRUMBS, BC_ROOT = _config$SELECTORS$CHE4.BC_ROOT, BC_LINK = _config$SELECTORS$CHE4.BC_LINK, BC_ITEM = _config$SELECTORS$CHE4.BC_ITEM, BC_ITEM_COMPLETED = _config$SELECTORS$CHE4.BC_ITEM_COMPLETED, BC_CHEVRON_ICON = _config$SELECTORS$CHE4.BC_CHEVRON_ICON, _config$SELECTORS$CHE5 = _config$SELECTORS$CHE.ATTRIBUTES.BREADCRUMBS.DATA_TREKKIE_ID, TREKKIE_NAME = _config$SELECTORS$CHE5.TREKKIE_NAME, TREKKIE_VALUE = _config$SELECTORS$CHE5.TREKKIE_VALUE, _config$SELECTORS$CHE6 = _config$SELECTORS$CHE.URLS, CART_URL = _config$SELECTORS$CHE6.CART_URL, ROOT_URL = _config$SELECTORS$CHE6.ROOT_URL;
+    var STEP = config.STEP, _config$SELECTORS$CHE = config.SELECTORS.CHECKOUT, CART_TEXT = _config$SELECTORS$CHE.TEXT.CART_TEXT, _config$SELECTORS$CHE2 = _config$SELECTORS$CHE.CLASSES, LOGO = _config$SELECTORS$CHE2.LOGO, _config$SELECTORS$CHE3 = _config$SELECTORS$CHE2.STEPS, STEP_FOOTER = _config$SELECTORS$CHE3.STEP_FOOTER, STEP_FOOTER_PREVIOUS_LINK = _config$SELECTORS$CHE3.STEP_FOOTER_PREVIOUS_LINK, _config$SELECTORS$CHE4 = _config$SELECTORS$CHE2.BREADCRUMBS, BC_ROOT = _config$SELECTORS$CHE4.BC_ROOT, BC_LINK = _config$SELECTORS$CHE4.BC_LINK, BC_ITEM = _config$SELECTORS$CHE4.BC_ITEM, BC_ITEM_COMPLETED = _config$SELECTORS$CHE4.BC_ITEM_COMPLETED, BC_CHEVRON_ICON = _config$SELECTORS$CHE4.BC_CHEVRON_ICON, _config$SELECTORS$CHE5 = _config$SELECTORS$CHE.ATTRIBUTES.BREADCRUMBS.DATA_TREKKIE_ID, TREKKIE_NAME = _config$SELECTORS$CHE5.TREKKIE_NAME, TREKKIE_VALUE = _config$SELECTORS$CHE5.TREKKIE_VALUE, _config$SELECTORS$CHE6 = _config$SELECTORS$CHE.URLS, CART_URL = _config$SELECTORS$CHE6.CART_URL, ROOT_URL = _config$SELECTORS$CHE6.ROOT_URL;
+    var isContactInfoStep = function() {
+        return STEP === CHECKOUT_STEPS.CONTACT_INFORMATION;
+    };
     document.addEventListener("page:load", function() {
+        var returnToCartLink, stepFooter;
         STATE.deliveryMethod = "pickup" === getObjectFromLocalStorage("delivery_method") ? "pickup" : "ship", 
         getObjectFromLocalStorage("pickup_store") && (STATE.pickupStore = getObjectFromLocalStorage("pickup_store")), 
         STATE.checkoutStep = window.Shopify && window.Shopify.Checkout && window.Shopify.Checkout.step, 
         function() {
-            if ("contact_information" === STATE.checkoutStep && function() {
+            if (STATE.checkoutStep === CHECKOUT_STEPS.CONTACT_INFORMATION && function() {
                 pickupToggleBtn.addEventListener("click", function(event) {
                     STATE.deliveryMethod = "pickup", pickupToggleBtn.classList.toggle("js-de-active-pickship-btn"), 
                     shipToggleBtn.classList.toggle("js-de-active-pickship-btn"), setObjectInLocalStorage("delivery_method", "pickup"), 
@@ -414,65 +435,57 @@
                         });
                     }();
                 });
-            }(), "shipping_method" === STATE.checkoutStep && "ship" === STATE.deliveryMethod && (document.getElementById("checkout_shipping_rate_id_parcelify-pickup-0_00").parentNode.parentNode.parentNode.style.display = "none"), 
-            "payment_method" === STATE.checkoutStep && "pickup" === STATE.deliveryMethod && (document.querySelector("[data-different-billing-address]").style.display = "none", 
+            }(), STATE.checkoutStep === CHECKOUT_STEPS.SHIPPING_METHOD && "ship" === STATE.deliveryMethod && (document.getElementById("checkout_shipping_rate_id_parcelify-pickup-0_00").parentNode.parentNode.parentNode.style.display = "none"), 
+            STATE.checkoutStep === CHECKOUT_STEPS.PAYMENT_METHOD && "pickup" === STATE.deliveryMethod && (document.querySelector("[data-different-billing-address]").style.display = "none", 
             document.querySelector("[data-same-billing-address]").style.display = "none", document.querySelector(".review-block:nth-child(2) .review-block__label").innerHTML = "Pickup at", 
-            document.querySelector(".map").style.display = "none"), "thank_you" === STATE.checkoutStep && "pickup" === STATE.deliveryMethod) {
+            document.querySelector(".map").style.display = "none"), STATE.checkoutStep === CHECKOUT_STEPS.THANK_YOU && "pickup" === STATE.deliveryMethod) {
                 document.querySelector(".map").style.display = "none";
                 var headings = document.querySelectorAll("h3");
                 [].forEach.call(headings, function(heading) {
-                    "Shipping address" === heading.textContent && (heading.textContent = "Pickup address"), 
-                    "Shipping method" === heading.textContent && (heading.style.display = "none");
+                    "Shipping address" === heading.textContent && (heading.textContent = "Pickup address");
                 });
             }
-        }(), function() {
-            "contact_information" === STATE.checkoutStep && contactInformation_updateUI();
-            var buildStepLink = function() {
-                var returnToCartLink = document.createElement("a");
-                returnToCartLink.href = CART_URL, returnToCartLink.classList.add(STEP_FOOTER_PREVIOUS_LINK), 
-                returnToCartLink.innerHTML = '<svg focusable="false" aria-hidden="true" class="icon-svg icon-svg--color-accent icon-svg--size-10 previous-link__icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><path d="M8 1L7 0 3 4 2 5l1 1 4 4 1-1-4-4"></path></svg><span class="step__footer__previous-link-content">Return to cart</span>', 
-                document.querySelector("." + STEP_FOOTER).appendChild(returnToCartLink);
-            };
-            if (!function() {
-                var breadcrumbLinks = document.querySelectorAll("." + BC_LINK);
-                for (var _isArray = Array.isArray(_iterator = breadcrumbLinks), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator](); ;) {
-                    var _ref;
-                    if (_isArray) {
-                        if (_i >= _iterator.length) break;
-                        _ref = _iterator[_i++];
-                    } else {
-                        if ((_i = _iterator.next()).done) break;
-                        _ref = _i.value;
-                    }
-                    if (_ref.href.indexOf(CART_URL) > -1) return !0;
+        }(), isContactInfoStep() && contactInformation_updateUI(), !function() {
+            var breadcrumbLinks = document.querySelectorAll("." + BC_LINK);
+            for (var _isArray = Array.isArray(_iterator = breadcrumbLinks), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator](); ;) {
+                var _ref;
+                if (_isArray) {
+                    if (_i >= _iterator.length) break;
+                    _ref = _iterator[_i++];
+                } else {
+                    if ((_i = _iterator.next()).done) break;
+                    _ref = _i.value;
                 }
-                return !1;
-            }()) {
-                IS_CONTACT_INFO_STEP && buildStepLink(), function() {
-                    var breadcrumbs = document.querySelector("." + BC_ROOT);
-                    var cartCrumb = document.createElement("li");
-                    cartCrumb.classList.add(BC_ITEM, BC_ITEM_COMPLETED);
-                    var cartCrumbLink = document.createElement("a");
-                    cartCrumbLink.href = CART_URL, cartCrumbLink.classList.add("" + BC_LINK), cartCrumbLink.appendChild(document.createTextNode(CART_TEXT)), 
-                    cartCrumbLink.setAttribute(TREKKIE_NAME, TREKKIE_VALUE);
-                    var cartCrumbArrow = document.querySelector("." + BC_CHEVRON_ICON).cloneNode(!0);
-                    cartCrumb.appendChild(cartCrumbLink), breadcrumbs.insertBefore(cartCrumb, breadcrumbs.firstChild), 
-                    cartCrumb.insertBefore(cartCrumbArrow, cartCrumbLink.nextSibling);
-                }();
-                var logos = document.querySelectorAll("." + LOGO);
-                for (var _isArray2 = Array.isArray(_iterator2 = logos), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator](); ;) {
-                    var _ref2;
-                    if (_isArray2) {
-                        if (_i2 >= _iterator2.length) break;
-                        _ref2 = _iterator2[_i2++];
-                    } else {
-                        if ((_i2 = _iterator2.next()).done) break;
-                        _ref2 = _i2.value;
-                    }
-                    _ref2.href = ROOT_URL;
-                }
+                if (_ref.href.indexOf(CART_URL) > -1) return !0;
             }
-            IS_STOCK_PROBLEMS_PAGE && buildStepLink();
+            return !1;
+        }() && Object.keys(CHECKOUT_STEPS).some(function(step) {
+            return CHECKOUT_STEPS[step] === STEP;
+        }) && (isContactInfoStep() && (stepFooter = document.querySelector("." + STEP_FOOTER)) && !stepFooter.querySelector("." + STEP_FOOTER_PREVIOUS_LINK) && ((returnToCartLink = document.createElement("a")).href = CART_URL, 
+        returnToCartLink.classList.add(STEP_FOOTER_PREVIOUS_LINK), returnToCartLink.innerHTML = '<svg focusable="false" aria-hidden="true" class="icon-svg icon-svg--color-accent icon-svg--size-10 previous-link__icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><path d="M8 1L7 0 3 4 2 5l1 1 4 4 1-1-4-4"></path></svg><span class="step__footer__previous-link-content">Return to cart</span>', 
+        document.querySelector("." + STEP_FOOTER).appendChild(returnToCartLink)), function() {
+            var breadcrumbs = document.querySelector("." + BC_ROOT);
+            var cartCrumb = document.createElement("li");
+            cartCrumb.classList.add(BC_ITEM, BC_ITEM_COMPLETED);
+            var cartCrumbLink = document.createElement("a");
+            cartCrumbLink.href = CART_URL, cartCrumbLink.classList.add("" + BC_LINK), cartCrumbLink.appendChild(document.createTextNode(CART_TEXT)), 
+            cartCrumbLink.setAttribute(TREKKIE_NAME, TREKKIE_VALUE);
+            var cartCrumbArrow = document.querySelector("." + BC_CHEVRON_ICON).cloneNode(!0);
+            cartCrumb.appendChild(cartCrumbLink), breadcrumbs.insertBefore(cartCrumb, breadcrumbs.firstChild), 
+            cartCrumb.insertBefore(cartCrumbArrow, cartCrumbLink.nextSibling);
+        }()), function() {
+            var logos = document.querySelectorAll("." + LOGO);
+            for (var _isArray2 = Array.isArray(_iterator2 = logos), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator](); ;) {
+                var _ref2;
+                if (_isArray2) {
+                    if (_i2 >= _iterator2.length) break;
+                    _ref2 = _iterator2[_i2++];
+                } else {
+                    if ((_i2 = _iterator2.next()).done) break;
+                    _ref2 = _i2.value;
+                }
+                _ref2.href = ROOT_URL;
+            }
         }();
     });
 }();
