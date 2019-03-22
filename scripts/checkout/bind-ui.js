@@ -3,6 +3,7 @@ import { CHECKOUT_STEPS } from './constants';
 import contactInformation from './steps/contact-information';
 
 const bindUI = () => {
+  const mapEl = document.querySelector('.map');
   if (STATE.checkoutStep === CHECKOUT_STEPS.CONTACT_INFORMATION) {
     contactInformation.bindUI();
   }
@@ -24,13 +25,17 @@ const bindUI = () => {
       document.querySelector(
         '.review-block:nth-child(2) .review-block__label'
       ).innerHTML = 'Pickup at';
-      document.querySelector('.map').style.display = 'none';
+      if (mapEl) {
+        mapEl.style.display = 'none';
+      }
     }
   }
 
   if (STATE.checkoutStep === CHECKOUT_STEPS.THANK_YOU) {
     if (STATE.deliveryMethod === 'pickup') {
-      document.querySelector('.map').style.display = 'none';
+      if (mapEl) {
+        mapEl.style.display = 'none';
+      }
       const headings = document.querySelectorAll('h3');
       [].forEach.call(headings, function(heading) {
         if (heading.textContent === 'Shipping address') {

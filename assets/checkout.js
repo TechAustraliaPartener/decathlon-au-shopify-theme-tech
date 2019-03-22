@@ -291,6 +291,7 @@
         STATE.deliveryMethod = "pickup" === getObjectFromLocalStorage("delivery_method") ? "pickup" : "ship", 
         getObjectFromLocalStorage("pickup_store") && (STATE.pickupStore = getObjectFromLocalStorage("pickup_store")), 
         function() {
+            var mapEl = document.querySelector(".map");
             if (STATE.checkoutStep === CHECKOUT_STEPS.CONTACT_INFORMATION && function() {
                 pickupToggleBtn.addEventListener("click", function(event) {
                     STATE.deliveryMethod = "pickup", pickupToggleBtn.classList.toggle("js-de-active-pickship-btn"), 
@@ -433,8 +434,8 @@
             }(), STATE.checkoutStep === CHECKOUT_STEPS.SHIPPING_METHOD && "ship" === STATE.deliveryMethod && (document.getElementById("checkout_shipping_rate_id_parcelify-pickup-0_00").parentNode.parentNode.parentNode.style.display = "none"), 
             STATE.checkoutStep === CHECKOUT_STEPS.PAYMENT_METHOD && "pickup" === STATE.deliveryMethod && (document.querySelector("[data-different-billing-address]").style.display = "none", 
             document.querySelector("[data-same-billing-address]").style.display = "none", document.querySelector(".review-block:nth-child(2) .review-block__label").innerHTML = "Pickup at", 
-            document.querySelector(".map").style.display = "none"), STATE.checkoutStep === CHECKOUT_STEPS.THANK_YOU && "pickup" === STATE.deliveryMethod) {
-                document.querySelector(".map").style.display = "none";
+            mapEl && (mapEl.style.display = "none")), STATE.checkoutStep === CHECKOUT_STEPS.THANK_YOU && "pickup" === STATE.deliveryMethod) {
+                mapEl && (mapEl.style.display = "none");
                 var headings = document.querySelectorAll("h3");
                 [].forEach.call(headings, function(heading) {
                     "Shipping address" === heading.textContent && (heading.textContent = "Pickup address");
