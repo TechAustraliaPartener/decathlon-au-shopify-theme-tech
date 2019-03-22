@@ -12,6 +12,9 @@
 
     {{ checkout_stylesheets }}
     {{ 'patterns-toolkit.css' | asset_url | stylesheet_tag }}
+    <script>
+      window.checkoutID = {{ checkout.id }}
+    </script>
     {{ checkout_scripts }}
   </head>
   <body>
@@ -45,7 +48,7 @@
             {{ breadcrumb }}
             {{ alternative_payment_methods }}
           </div>
-          <div class="main__content">
+          <div class="main__content clearfix">
             {% comment %}
               The Ship & Pickup buttons start hidden.
               The checkout JS (scripts/checkout/index.js)
@@ -68,10 +71,14 @@
               <div class="js-de-pickup-location-map">
                 <img src="{{ 'no-selection-map.jpg' | asset_url }}" class="js-de-pickup-location-map-img" alt="">
               </div>
+              <h2 class="de-location-heading">Select location</h2>
+              <hr class="de-blue-hr">
               <ul class="de-u-spaceEnds02 js-de-pickup-locations clearfix"></ul>
+              <hr class="de-green-hr">
             </div>
 
             {{ content_for_layout }}
+            <div class="de-visit-cal-container de-u-hidden">Planning to be in San Francisco? <a href="#"class="de-visit-cal-btn">Try Pickup in Store</a></div>
             <span class="js-de-payment-continue-container">
               <a href="#" class="btn js-de-payment-continue de-u-hidden">Continue to Payment</a>
             </span>
@@ -91,6 +98,15 @@
       </div>
     </div>
     {{ 'checkout.js' | asset_url | script_tag }}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+      $('.de-visit-cal-btn').click(function() {
+        $('.js-de-toggle-shipping, .js-de-toggle-pickup').removeClass('de-u-hidden');
+        $(this).parent().hide();
+        $('.de-pickship-btn').click();
+      });
+    </script>
+
     {{ tracking_code }}
   </body>
 </html>

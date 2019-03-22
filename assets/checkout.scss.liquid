@@ -95,17 +95,18 @@
 
 .de-pickup-location {
   width:100%;
-  padding: 20px;
+  padding: 13px;
   box-sizing: border-box;
   border: 1px solid #d9d9d9;
   cursor: pointer;
   &.js-de-active-location, &:hover {
-    border-color: #1c82c3;
+    border: 3px solid #1c82c3;
+    padding: 11px;
   }
 }
 
-.de-pickup-location span {
-  display: block;
+.de-pickup-location div {
+  margin-bottom:5px;
 }
 
 .de-pickship-btn-container {
@@ -115,15 +116,19 @@
   box-sizing: border-box;
 }
 
+.de-pickup-location-time{
+  font-weight: bold;
+  font-size: 16px;
+  color: #0D1D39;
+}
+
 .de-pickup-location-name{
   font-weight: bold;
-  margin-bottom:8px;
 }
 
 .de-pickup-location-hours{
-  font-weight: bold;
   font-size: smaller;
-  margin-top: 8px;
+
 }
 
 .de-pickship-btn {
@@ -174,13 +179,53 @@
   margin-top: 17px;
 }
 
-.de-pickship-btn-container:nth-child(even), .js-de-pickup-locations li:nth-child(even) {
-  padding-right: 0;
+@media (min: 750px) {
+  .de-pickship-btn-container:nth-child(even), .js-de-pickup-locations li:nth-child(even) {
+    padding-right: 0;
+  }
+  .de-pickship-btn-container:nth-child(odd), .js-de-pickup-locations li:nth-child(odd) {
+    padding-left: 0;
+  }
 }
-.de-pickship-btn-container:nth-child(odd), .js-de-pickup-locations li:nth-child(odd) {
-  padding-left: 0;
+
+@media (max-width: 750px) {
+  .de-pickship-btn-container {
+    width: 100%;
+  }
 }
 
 .js-de-payment-continue {
   float: right;
+}
+
+.de-visit-cal-container {
+  float: right;
+  margin-top: 8px;
+  font-size: 12px;
+}
+
+.de-location-heading {
+
+
+  color: #333;
+  margin-top:30px;
+  font-size: 1.28571em;
+}
+
+.de-blue-hr, .de-green-hr {
+  height: 5px;
+  border: none;
+  margin-bottom: 20px;
+}
+
+.de-blue-hr{
+  background: #1c82c3;
+}
+.de-green-hr{
+  background: #C1FF0A;
+  margin-top: 20px;
+}
+
+.section--contact-information .section__header {
+  margin-top: 20px;
 }

@@ -1,5 +1,3 @@
-/* global Shopify */
-
 import { DELIVERY_METHODS } from './constants';
 import STATE from './state';
 import bindUI from './bind-ui';
@@ -23,7 +21,7 @@ const init = () => {
   }
 
   // Set the current Shopify checkout step
-  STATE.checkoutStep = Shopify && Shopify.Checkout && Shopify.Checkout.step;
+  STATE.checkoutStep = window.Shopify && window.Shopify.Checkout && window.Shopify.Checkout.step;
 
   bindUI();
   updateUI();

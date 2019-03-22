@@ -8,5 +8,6 @@ export default {
   SHIPPING_METHOD: 'shipping_method',
   PAYMENT_METHOD: 'payment_method',
   PROCESSING: 'processing', // Between payment page and thank you page
+  THANK_YOU: 'thank_you',
   REVIEW: 'review' // Optional step set in the Admin
 };
