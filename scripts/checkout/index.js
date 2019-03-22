@@ -21,7 +21,8 @@ const init = () => {
   }
 
   // Set the current Shopify checkout step
-  STATE.checkoutStep = window.Shopify && window.Shopify.Checkout && window.Shopify.Checkout.step;
+  STATE.checkoutStep =
+    window.Shopify && window.Shopify.Checkout && window.Shopify.Checkout.step;
 
   bindUI();
   updateUI();

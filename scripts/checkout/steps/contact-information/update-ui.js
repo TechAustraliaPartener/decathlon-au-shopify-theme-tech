@@ -23,8 +23,12 @@ const updateUI = () => {
     showElements([document.querySelector('.js-de-payment-continue')]);
     pickupToggleBtn.classList.add('js-de-active-pickship-btn');
     shipToggleBtn.classList.remove('js-de-active-pickship-btn');
-    document.querySelector('.section--shipping-address .section__header h2').textContent = 'Pickup information';
-    hideElements([document.querySelector('#checkout_shipping_address_id').parentNode]);
+    document.querySelector(
+      '.section--shipping-address .section__header h2'
+    ).textContent = 'Pickup information';
+    hideElements([
+      document.querySelector('#checkout_shipping_address_id').parentNode
+    ]);
   }
   if (deliveryMethod === DELIVERY_METHODS.SHIP) {
     shipToggleBtn.classList.add('js-de-active-pickship-btn');
@@ -33,8 +37,12 @@ const updateUI = () => {
     hideElements([pickupContent]);
     hideElements([document.querySelector('.js-de-payment-continue')]);
     showElements([continueBtn]);
-    document.querySelector('.section--shipping-address .section__header h2').textContent = 'Shipping address';
-    showElements([document.querySelector('#checkout_shipping_address_id').parentNode]);
+    document.querySelector(
+      '.section--shipping-address .section__header h2'
+    ).textContent = 'Shipping address';
+    showElements([
+      document.querySelector('#checkout_shipping_address_id').parentNode
+    ]);
   }
 };
 
