@@ -76,7 +76,6 @@
             return this.COOKIES.CART;
         }
     };
-    var Shopify = window.Shopify;
     var config$1 = {
         SELECTORS: {
             PREFIX: ".js-de-",
@@ -102,12 +101,6 @@
                     PAYMENT_METHOD: "payment_method",
                     PROCESSING: "processing",
                     REVIEW: "review"
-                },
-                get STEP() {
-                    return window.Shopify && Shopify.Checkout && Shopify.Checkout.step;
-                },
-                get PAGE() {
-                    return window.Shopify && Shopify.Checkout && Shopify.Checkout.page;
                 },
                 URLS: {
                     ROOT_URL: "/",

@@ -8,30 +8,26 @@
         THANK_YOU: "thank_you",
         REVIEW: "review"
     };
+    var Shopify = window.Shopify;
     var logState = function() {
         console.info("STATE:", STATE);
     };
     var STATE = {
         _deliveryMethod: null,
         _pickupStore: null,
-        _checkoutStep: null,
+        checkoutStep: Shopify && Shopify.Checkout && Shopify.Checkout.step,
+        checkoutPage: Shopify && Shopify.Checkout && Shopify.Checkout.page,
         get deliveryMethod() {
             return this._deliveryMethod;
         },
         get pickupStore() {
             return this._pickupStore;
         },
-        get checkoutStep() {
-            return this._checkoutStep;
-        },
         set deliveryMethod(method) {
             this._deliveryMethod = method, logState();
         },
         set pickupStore(store) {
             this._pickupStore = store, logState();
-        },
-        set checkoutStep(step) {
-            this._checkoutStep = step, logState();
         }
     };
     var hideElement = function(element) {
@@ -189,7 +185,6 @@
         return res.json();
     });
     var contactInformation_updateUI = updateUI;
-    var Shopify = window.Shopify;
     var config = {
         SELECTORS: {
             PREFIX: ".js-de-",
@@ -215,12 +210,6 @@
                     PAYMENT_METHOD: "payment_method",
                     PROCESSING: "processing",
                     REVIEW: "review"
-                },
-                get STEP() {
-                    return window.Shopify && Shopify.Checkout && Shopify.Checkout.step;
-                },
-                get PAGE() {
-                    return window.Shopify && Shopify.Checkout && Shopify.Checkout.page;
                 },
                 URLS: {
                     ROOT_URL: "/",
@@ -286,15 +275,21 @@
             cache: "no-store"
         }
     };
-    var STEP = config.STEP, _config$SELECTORS$CHE = config.SELECTORS.CHECKOUT, CART_TEXT = _config$SELECTORS$CHE.TEXT.CART_TEXT, _config$SELECTORS$CHE2 = _config$SELECTORS$CHE.CLASSES, LOGO = _config$SELECTORS$CHE2.LOGO, _config$SELECTORS$CHE3 = _config$SELECTORS$CHE2.STEPS, STEP_FOOTER = _config$SELECTORS$CHE3.STEP_FOOTER, STEP_FOOTER_PREVIOUS_LINK = _config$SELECTORS$CHE3.STEP_FOOTER_PREVIOUS_LINK, _config$SELECTORS$CHE4 = _config$SELECTORS$CHE2.BREADCRUMBS, BC_ROOT = _config$SELECTORS$CHE4.BC_ROOT, BC_LINK = _config$SELECTORS$CHE4.BC_LINK, BC_ITEM = _config$SELECTORS$CHE4.BC_ITEM, BC_ITEM_COMPLETED = _config$SELECTORS$CHE4.BC_ITEM_COMPLETED, BC_CHEVRON_ICON = _config$SELECTORS$CHE4.BC_CHEVRON_ICON, _config$SELECTORS$CHE5 = _config$SELECTORS$CHE.ATTRIBUTES.BREADCRUMBS.DATA_TREKKIE_ID, TREKKIE_NAME = _config$SELECTORS$CHE5.TREKKIE_NAME, TREKKIE_VALUE = _config$SELECTORS$CHE5.TREKKIE_VALUE, _config$SELECTORS$CHE6 = _config$SELECTORS$CHE.URLS, CART_URL = _config$SELECTORS$CHE6.CART_URL, ROOT_URL = _config$SELECTORS$CHE6.ROOT_URL;
+    var _config$SELECTORS$CHE = config.SELECTORS.CHECKOUT, CART_TEXT = _config$SELECTORS$CHE.TEXT.CART_TEXT, _config$SELECTORS$CHE2 = _config$SELECTORS$CHE.CLASSES, LOGO = _config$SELECTORS$CHE2.LOGO, _config$SELECTORS$CHE3 = _config$SELECTORS$CHE2.STEPS, STEP_FOOTER = _config$SELECTORS$CHE3.STEP_FOOTER, STEP_FOOTER_PREVIOUS_LINK = _config$SELECTORS$CHE3.STEP_FOOTER_PREVIOUS_LINK, _config$SELECTORS$CHE4 = _config$SELECTORS$CHE2.BREADCRUMBS, BC_ROOT = _config$SELECTORS$CHE4.BC_ROOT, BC_LINK = _config$SELECTORS$CHE4.BC_LINK, BC_ITEM = _config$SELECTORS$CHE4.BC_ITEM, BC_ITEM_COMPLETED = _config$SELECTORS$CHE4.BC_ITEM_COMPLETED, BC_CHEVRON_ICON = _config$SELECTORS$CHE4.BC_CHEVRON_ICON, _config$SELECTORS$CHE5 = _config$SELECTORS$CHE.ATTRIBUTES.BREADCRUMBS.DATA_TREKKIE_ID, TREKKIE_NAME = _config$SELECTORS$CHE5.TREKKIE_NAME, TREKKIE_VALUE = _config$SELECTORS$CHE5.TREKKIE_VALUE, _config$SELECTORS$CHE6 = _config$SELECTORS$CHE.URLS, CART_URL = _config$SELECTORS$CHE6.CART_URL, ROOT_URL = _config$SELECTORS$CHE6.ROOT_URL;
+    var checkoutStep$1 = STATE.checkoutStep, checkoutPage$1 = STATE.checkoutPage;
     var isContactInfoStep = function() {
-        return STEP === CHECKOUT_STEPS.CONTACT_INFORMATION;
+        return checkoutStep$1 === CHECKOUT_STEPS.CONTACT_INFORMATION;
+    };
+    var buildStepLink = function() {
+        var returnToCartLink = document.createElement("a");
+        returnToCartLink.href = CART_URL, returnToCartLink.classList.add(STEP_FOOTER_PREVIOUS_LINK), 
+        returnToCartLink.innerHTML = '<svg focusable="false" aria-hidden="true" class="icon-svg icon-svg--color-accent icon-svg--size-10 previous-link__icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><path d="M8 1L7 0 3 4 2 5l1 1 4 4 1-1-4-4"></path></svg><span class="step__footer__previous-link-content">Return to cart</span>', 
+        document.querySelector("." + STEP_FOOTER).appendChild(returnToCartLink);
     };
     document.addEventListener("page:load", function() {
-        var returnToCartLink, stepFooter;
+        var stepFooter;
         STATE.deliveryMethod = "pickup" === getObjectFromLocalStorage("delivery_method") ? "pickup" : "ship", 
         getObjectFromLocalStorage("pickup_store") && (STATE.pickupStore = getObjectFromLocalStorage("pickup_store")), 
-        STATE.checkoutStep = window.Shopify && window.Shopify.Checkout && window.Shopify.Checkout.step, 
         function() {
             if (STATE.checkoutStep === CHECKOUT_STEPS.CONTACT_INFORMATION && function() {
                 pickupToggleBtn.addEventListener("click", function(event) {
@@ -458,12 +453,11 @@
                 }
                 if (_ref.href.indexOf(CART_URL) > -1) return !0;
             }
-            return !1;
+            return console.log("No cartBreadcrumbLinkExists"), !1;
         }() && Object.keys(CHECKOUT_STEPS).some(function(step) {
-            return CHECKOUT_STEPS[step] === STEP;
-        }) && (isContactInfoStep() && (stepFooter = document.querySelector("." + STEP_FOOTER)) && !stepFooter.querySelector("." + STEP_FOOTER_PREVIOUS_LINK) && ((returnToCartLink = document.createElement("a")).href = CART_URL, 
-        returnToCartLink.classList.add(STEP_FOOTER_PREVIOUS_LINK), returnToCartLink.innerHTML = '<svg focusable="false" aria-hidden="true" class="icon-svg icon-svg--color-accent icon-svg--size-10 previous-link__icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><path d="M8 1L7 0 3 4 2 5l1 1 4 4 1-1-4-4"></path></svg><span class="step__footer__previous-link-content">Return to cart</span>', 
-        document.querySelector("." + STEP_FOOTER).appendChild(returnToCartLink)), function() {
+            return console.log(CHECKOUT_STEPS[step], checkoutStep$1), CHECKOUT_STEPS[step] === checkoutStep$1;
+        }) && (isContactInfoStep() && (stepFooter = document.querySelector("." + STEP_FOOTER)) && !stepFooter.querySelector("." + STEP_FOOTER_PREVIOUS_LINK) && buildStepLink(), 
+        function() {
             var breadcrumbs = document.querySelector("." + BC_ROOT);
             var cartCrumb = document.createElement("li");
             cartCrumb.classList.add(BC_ITEM, BC_ITEM_COMPLETED);
@@ -473,7 +467,7 @@
             var cartCrumbArrow = document.querySelector("." + BC_CHEVRON_ICON).cloneNode(!0);
             cartCrumb.appendChild(cartCrumbLink), breadcrumbs.insertBefore(cartCrumb, breadcrumbs.firstChild), 
             cartCrumb.insertBefore(cartCrumbArrow, cartCrumbLink.nextSibling);
-        }()), function() {
+        }()), "stock_problems" === checkoutPage$1 && buildStepLink(), function() {
             var logos = document.querySelectorAll("." + LOGO);
             for (var _isArray2 = Array.isArray(_iterator2 = logos), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator](); ;) {
                 var _ref2;

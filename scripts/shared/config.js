@@ -1,5 +1,3 @@
-const Shopify = window.Shopify;
-
 const config = {
   SELECTORS: {
     PREFIX: '.js-de-',
@@ -26,12 +24,6 @@ const config = {
         PAYMENT_METHOD: 'payment_method',
         PROCESSING: 'processing',
         REVIEW: 'review'
-      },
-      get STEP() {
-        return window.Shopify && Shopify.Checkout && Shopify.Checkout.step;
-      },
-      get PAGE() {
-        return window.Shopify && Shopify.Checkout && Shopify.Checkout.page;
       },
       URLS: {
         ROOT_URL: '/',

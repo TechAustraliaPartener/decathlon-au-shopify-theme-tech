@@ -4,12 +4,11 @@
  * Decide whether the state module is really needed anywhere and remove
  * duplicate code, if possible.
  */
+import STATE from './state';
 import { CHECKOUT_STEPS } from './constants';
 import contactInformation from './steps/contact-information';
 import config from '../shared/config';
 const {
-  PAGE,
-  STEP,
   SELECTORS: {
     CHECKOUT: {
       TEXT: { CART_TEXT },
@@ -33,6 +32,7 @@ const {
     }
   }
 } = config;
+const { checkoutStep, checkoutPage } = STATE;
 
 /**
  * Return true if this is any step in checkout,
@@ -40,9 +40,10 @@ const {
  * @returns {boolean} - Is or isn't a documented Shopify checkout step
  */
 const isCheckoutStep = () => {
-  return Object.keys(CHECKOUT_STEPS).some(
-    step => CHECKOUT_STEPS[step] === STEP
-  );
+  return Object.keys(CHECKOUT_STEPS).some(step => {
+    console.log(CHECKOUT_STEPS[step], checkoutStep);
+    return CHECKOUT_STEPS[step] === checkoutStep;
+  });
 };
 
 /**
@@ -52,7 +53,7 @@ const isCheckoutStep = () => {
  */
 const isContactInfoStep = () => {
   // @see https://help.shopify.com/en/themes/development/layouts/checkout/#shopify-checkout-step
-  return STEP === CHECKOUT_STEPS.CONTACT_INFORMATION;
+  return checkoutStep === CHECKOUT_STEPS.CONTACT_INFORMATION;
 };
 
 /**
@@ -61,7 +62,7 @@ const isContactInfoStep = () => {
  */
 const isShippingMethodStep = () => {
   // @see https://help.shopify.com/en/themes/development/layouts/checkout/#shopify-checkout-step
-  return STEP === CHECKOUT_STEPS.SHIPPING_METHOD;
+  return checkoutStep === CHECKOUT_STEPS.SHIPPING_METHOD;
 };
 
 /**
@@ -70,7 +71,7 @@ const isShippingMethodStep = () => {
  */
 const isStockProblemsPage = () => {
   // @see https://help.shopify.com/en/themes/development/layouts/checkout/#shopify-checkout-page
-  return PAGE === 'stock_problems';
+  return checkoutPage === 'stock_problems';
 };
 
 /**
@@ -102,6 +103,7 @@ const cartBreadcrumbLinkExists = () => {
       return true;
     }
   }
+  console.log('No cartBreadcrumbLinkExists');
   return false;
 };
 

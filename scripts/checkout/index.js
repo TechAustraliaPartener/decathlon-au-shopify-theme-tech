@@ -20,10 +20,6 @@ const init = () => {
     STATE.pickupStore = getObjectFromLocalStorage('pickup_store');
   }
 
-  // Set the current Shopify checkout step
-  STATE.checkoutStep =
-    window.Shopify && window.Shopify.Checkout && window.Shopify.Checkout.step;
-
   // Bind event listeners (and more)
   bindUI();
 
