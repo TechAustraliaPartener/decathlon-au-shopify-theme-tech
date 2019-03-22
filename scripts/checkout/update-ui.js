@@ -40,10 +40,9 @@ const { checkoutStep, checkoutPage } = STATE;
  * @returns {boolean} - Is or isn't a documented Shopify checkout step
  */
 const isCheckoutStep = () => {
-  return Object.keys(CHECKOUT_STEPS).some(step => {
-    console.log(CHECKOUT_STEPS[step], checkoutStep);
-    return CHECKOUT_STEPS[step] === checkoutStep;
-  });
+  return Object.keys(CHECKOUT_STEPS).some(
+    step => CHECKOUT_STEPS[step] === checkoutStep
+  );
 };
 
 /**
@@ -103,7 +102,6 @@ const cartBreadcrumbLinkExists = () => {
       return true;
     }
   }
-  console.log('No cartBreadcrumbLinkExists');
   return false;
 };
 

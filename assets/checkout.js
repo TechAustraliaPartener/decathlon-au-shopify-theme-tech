@@ -453,9 +453,9 @@
                 }
                 if (_ref.href.indexOf(CART_URL) > -1) return !0;
             }
-            return console.log("No cartBreadcrumbLinkExists"), !1;
+            return !1;
         }() && Object.keys(CHECKOUT_STEPS).some(function(step) {
-            return console.log(CHECKOUT_STEPS[step], checkoutStep$1), CHECKOUT_STEPS[step] === checkoutStep$1;
+            return CHECKOUT_STEPS[step] === checkoutStep$1;
         }) && (isContactInfoStep() && (stepFooter = document.querySelector("." + STEP_FOOTER)) && !stepFooter.querySelector("." + STEP_FOOTER_PREVIOUS_LINK) && buildStepLink(), 
         function() {
             var breadcrumbs = document.querySelector("." + BC_ROOT);
