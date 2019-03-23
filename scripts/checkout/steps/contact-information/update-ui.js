@@ -1,6 +1,6 @@
 import { DELIVERY_METHODS } from '../../constants';
 import STATE from '../../state';
-import { showElements, hideElements } from '../../ui-helpers';
+import { showElements, hideElements, elementExists } from '../../ui-helpers';
 import {
   shipToggleBtn,
   pickupToggleBtn,
@@ -26,9 +26,13 @@ const updateUI = () => {
     document.querySelector(
       '.section--shipping-address .section__header h2'
     ).textContent = 'Pickup information';
-    hideElements([
-      document.querySelector('#checkout_shipping_address_id').parentNode
-    ]);
+    if (
+      elementExists(document.querySelector('#checkout_shipping_address_id'))
+    ) {
+      hideElements([
+        document.querySelector('#checkout_shipping_address_id').parentNode
+      ]);
+    }
   }
   if (deliveryMethod === DELIVERY_METHODS.SHIP) {
     shipToggleBtn.classList.add('js-de-active-pickship-btn');
@@ -40,9 +44,13 @@ const updateUI = () => {
     document.querySelector(
       '.section--shipping-address .section__header h2'
     ).textContent = 'Shipping address';
-    showElements([
-      document.querySelector('#checkout_shipping_address_id').parentNode
-    ]);
+    if (
+      elementExists(document.querySelector('#checkout_shipping_address_id'))
+    ) {
+      showElements([
+        document.querySelector('#checkout_shipping_address_id').parentNode
+      ]);
+    }
   }
 };
 
