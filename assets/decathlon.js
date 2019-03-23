@@ -50,6 +50,58 @@ var allowedStates = {
     "WY": "Wyoming"
 }
 
+var countryURL = {
+"AU": "https://www.decathlon.com.au/",
+"AT": "https://www.decathlon.at/",
+"BE": "https://www.decathlon.be/",
+"BR": "http://www.decathlon.com.br/",
+"BG": "https://www.decathlon.bg/",
+"KH": "https://www.decathlon.com.kh/en/",
+"CA": "https://www.decathlon.ca/",
+"CL": "https://www.decathlon.cl/",
+"CO": "https://www.decathlon.com.co/",
+"HR": "https://www.decathlon.hr/",
+"CZ": "https://www.decathlon.cz/",
+"CD": "http://www.decathlon-rdc.com/",
+"EG": "https://www.decathlon.eg/",
+"FR": "https://www.decathlon.fr/",
+"DE": "https://www.decathlon.de/",
+"GH": "https://www.decathlon.com.gh/",
+"CN": "https://www.decathlon.com.cn/",
+"HU": "https://www.decathlon.hu/",
+"IN": "https://www.decathlon.in/",
+"ID": "https://www.decathlon.co.id/",
+"IL": "https://www.decathlon.co.il/",
+"IT": "https://www.decathlon.it/",
+"CI": "http://www.decathlon.ci/",
+"KE": "https://www.decathlon.co.ke/",
+"LT": "https://www.decathlon.lt/lt_en/",
+"MY": "https://www.decathlon.my/",
+"MX": "https://www.decathlon.com.mx/",
+"MA": "https://www.decathlon.ma/",
+"NL": "https://www.decathlon.nl/",
+"PH": "https://www.decathlon.ph/",
+"PL": "https://www.decathlon.pl/",
+"PT": "https://www.decathlon.pt/",
+"RO": "https://www.decathlon.ro/",
+"RU": "https://www.decathlon.ru/",
+"SN": "https://www.decathlon.sn/",
+"SG": "https://www.decathlon.sg/",
+"SK": "https://www.decathlon.sk/",
+"SI": "https://www.decathlon.si/",
+"ZA": "https://www.decathlon-sports.co.za/",
+"KR": "https://www.decathlon.co.kr/kr_ko/",
+"ES": "https://www.decathlon.es/",
+"LK": "http://decathlonsrilanka.com/",
+"SE": "https://www.decathlon.se/",
+"CH": "https://www.decathlon.ch/",
+"TH": "https://www.decathlon.co.th/",
+"TN": "https://www.decathlon.tn/",
+"TR": "https://www.decathlon.com.tr/",
+"GB": "https://www.decathlon.co.uk/",
+"US": "US"
+}
+
 function isProductPage() {
     var thisUrl = window.location.href
     var pages = thisUrl.split('/')
@@ -791,6 +843,15 @@ function(e, t, i, n, o) {
                 return allowedStates[syncResult.data.region_code];
             return true; // by default don't show overlay
         }
+		function getCountryURL() {
+            var syncResult = getLocaleSync(t, 'country check')
+            if (syncResult.error)
+              return ""; // by default don't show overlay
+            if (syncResult.data.country_code)
+				// return 2 element array with country URL and country name
+                return [ countryURL[syncResult.data.country_code], syncResult.data.country_name ];
+            return ""; // by default don't show overlay
+        }
         T.getLocale(), T.fullscreen({
             offsetHeight: Math.floor(t(".js-de-PageWrap-header").outerHeight())
         }), t(e).bind("pageshow", function() {
@@ -842,7 +903,21 @@ function(e, t, i, n, o) {
                 "-ms-filter": "\"progid:DXImageTransform.Microsoft.Blur(PixelRadius='5')\"",
                 filter: "blur(5px)"
             }), t("#gateway").show(), (function() {
-
+				// Get Country
+				var country = getCountryURL();
+				// If not in the USA, no email signup form, edit text and buttons to reflect correct country
+				if (country[0] != "US") {
+					t('#gateway form').remove();
+					t('#gateway .banner-subtitle').text('You are visiting Decathlon USA.');
+					t('#gateway .gateway-content').append('<div><a class="btn btn--text js-closePopup hide-on-success" href="#PageContainer">Enter U.S. Site</a></div>');
+					t('#hello-state').text('Hello ' + country[1] + '!');
+					// If Country has website, show link to website
+					if (country[0]) {
+						console.log("Has website");
+						t('#gateway .gateway-content').append('<div><a class="btn btn--text" href="' + country[0] + '">Enter ' + country[1] + ' Site</a></div>');
+					}
+				// Else if in USA, behave as before
+			    } else {
                 var gatewayRegion = T.getUserRegion()
                 if (gatewayRegion)
                 	t('#hello-state').text('Hello ' + gatewayRegion + '!');
@@ -850,6 +925,7 @@ function(e, t, i, n, o) {
                   	t('#hello-state').text('Hello!');
                 t('#sel-state option:contains(' + gatewayRegion + ')').prop({selected: true}),
                 t('#sel-state').addClass( "is-selected" )
+				}
 
             }()), t("#gateway #contact_form").css("height", t("#gateway #contact_form").innerHeight()), T.getData("seenBanner") || t(".popup .banner-content").hide(), t(e).on("scroll", d), t("#gateway").on("touchmove", u), t("#gateway .close-popup-btn").on("click", f), t("#gateway .js-closePopup").on("click", function(e) {
                 e.preventDefault(), f()
