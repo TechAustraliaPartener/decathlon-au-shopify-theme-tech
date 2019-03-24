@@ -10,12 +10,8 @@ import {
 } from './ui-elements';
 
 const updateUI = () => {
-  // Allow the Ship/Pickup buttons to show up
-  // showElements([shipToggleBtn, pickupToggleBtn]);
-
   // Capture the current selected delivery method
   const deliveryMethod = STATE.deliveryMethod;
-
   if (deliveryMethod === DELIVERY_METHODS.PICKUP) {
     hideElements(deliveryElements);
     showElements([pickupContent]);
@@ -35,6 +31,7 @@ const updateUI = () => {
     }
   }
   if (deliveryMethod === DELIVERY_METHODS.SHIP) {
+    console.log('here...');
     shipToggleBtn.classList.add('js-de-active-pickship-btn');
     pickupToggleBtn.classList.remove('js-de-active-pickship-btn');
     showElements(deliveryElements);

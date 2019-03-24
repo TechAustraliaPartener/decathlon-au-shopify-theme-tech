@@ -11,9 +11,10 @@
     {{ content_for_header }}
 
     {{ checkout_stylesheets }}
-    {{ 'patterns-toolkit.css' | asset_url | stylesheet_tag }}
+    <!-- Temporary update to static toolkit while debugging pattern toolkit bug -->
+    {{ 'toolkit.css' | asset_url | stylesheet_tag }}
     <script>
-      window.checkoutID = {{ checkout.id }}
+      window.checkoutID = {{ checkout.id }};
     </script>
     {{ checkout_scripts }}
   </head>

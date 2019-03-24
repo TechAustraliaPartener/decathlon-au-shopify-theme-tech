@@ -59,7 +59,7 @@ const bindLocations = () => {
 const updateLocationUI = currentLocation => {
   if (
     currentLocation.region_name === 'California' ||
-    STATE.deliveryMethod === 'pickup'
+    STATE.deliveryMethod === DELIVERY_METHODS.PICKUP
   ) {
     showElements([pickupToggleBtn, shipToggleBtn, pickupContent]);
   } else {
@@ -236,53 +236,6 @@ const bindUI = () => {
     .querySelector('.js-de-payment-continue')
     .addEventListener('click', function(event) {});
 
-  // Fetch pickup locations from ShipHawk
-  fetch('https://decathlon-proxy.herokuapp.com/api/shiphawk')
-    .then(res => res.json())
-    .then(data => {
-      const sampleData = {
-        data: [
-          {
-            id: 'adr_GezSSC9M',
-            name: 'San Francisco',
-            company: 'Decathlon',
-            street1: '735 Market St',
-            street2: '',
-            city: 'San Francisco',
-            state: 'CA',
-            zip: '94103',
-            country: 'US',
-            phone_number: '(123) 000 0000',
-            email: 'fakhar.nisa@decathlon.com',
-            is_residential: false,
-            is_warehouse: false,
-            address_type: null,
-            validated: false,
-            code: '135'
-          },
-          {
-            id: 'adr_XhPJyRNn',
-            name: 'Emeryville',
-            company: 'Decathlon',
-            street1: '3938 Horton St',
-            street2: null,
-            city: 'Emeryville',
-            state: 'CA',
-            zip: '94608',
-            country: 'US',
-            phone_number: null,
-            email: null,
-            is_residential: false,
-            is_warehouse: false,
-            address_type: null,
-            validated: false,
-            code: null
-          }
-        ]
-      };
-      buildStoreList(sampleData);
-    });
-
   /**
    * Update map if preferred store is selected on load.
    * This probably needs to move.
@@ -312,6 +265,58 @@ const bindUI = () => {
     e.preventDefault();
     updateCheckout();
   });
+
+  // Fetch pickup locations from ShipHawk - temporarily using hard-coded data below
+  // fetch('https://decathlon-proxy.herokuapp.com/api/shiphawk')
+  //   .then(res => res.json())
+  //   .then(data => {
+  //     buildStoreList(sampleData);
+  //   });
+
+  /**
+   * Temporary location data - hard-coded until new endpoint is established
+   */
+  const sampleData = {
+    data: [
+      {
+        id: 'adr_GezSSC9M',
+        name: 'San Francisco',
+        company: 'Decathlon',
+        street1: '735 Market St',
+        street2: '',
+        city: 'San Francisco',
+        state: 'CA',
+        zip: '94103',
+        country: 'US',
+        phone_number: '(123) 000 0000',
+        email: 'fakhar.nisa@decathlon.com',
+        is_residential: false,
+        is_warehouse: false,
+        address_type: null,
+        validated: false,
+        code: '135'
+      },
+      {
+        id: 'adr_XhPJyRNn',
+        name: 'Emeryville',
+        company: 'Decathlon',
+        street1: '3938 Horton St',
+        street2: null,
+        city: 'Emeryville',
+        state: 'CA',
+        zip: '94608',
+        country: 'US',
+        phone_number: null,
+        email: null,
+        is_residential: false,
+        is_warehouse: false,
+        address_type: null,
+        validated: false,
+        code: null
+      }
+    ]
+  };
+  buildStoreList(sampleData);
 };
 
 export default bindUI;
