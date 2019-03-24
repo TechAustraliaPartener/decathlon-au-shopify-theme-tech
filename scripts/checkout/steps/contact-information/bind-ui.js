@@ -3,14 +3,22 @@ import {
   shipToggleBtn,
   continueBtn,
   pickupLocationList,
-  pickupContent
+  pickupContent,
+  mapImage,
+  userFirstName,
+  userLastName,
+  userEmail
 } from './ui-elements';
 import STATE from '../../state';
+import SELECTORS from './selectors';
 import { DELIVERY_METHODS } from '../../constants';
 import updateUI from './update-ui';
 import { setObjectInLocalStorage } from '../../../utilities/storage';
 import { getCurrentLocation } from '../../../utilities/location';
 import { showElements } from '../../ui-helpers';
+import config from '../../config';
+
+const { CLASSES, ASSET_BASE_URL } = config;
 
 /**
  * Binds click event to location cards seperately
@@ -19,23 +27,23 @@ import { showElements } from '../../ui-helpers';
  * ShipHawk resolves and store list is built in the DOM.
  */
 const bindLocations = () => {
-  const pickupLocations = document.querySelectorAll('.js-de-pickup-location');
+  const pickupLocations = document.querySelectorAll(SELECTORS.PICKUP_LOCATION);
   pickupLocations.forEach(location => {
     location.addEventListener('click', function(e) {
       // Is this card already active?
-      if (this.classList.contains('js-de-active-location')) {
-        console.log('already active');
-      } else {
+      if (!this.classList.contains(CLASSES.ACTIVE_PICKUP_LOCATION)) {
         // Find the currently active card
-        const activeLocation = document.querySelector('.js-de-active-location');
+        const activeLocation = document.querySelector(
+          SELECTORS.ACTIVE_PICKUP_LOCATION
+        );
 
         // Make currently active card inactive
         if (activeLocation !== null) {
-          activeLocation.classList.remove('js-de-active-location');
+          activeLocation.classList.remove(CLASSES.ACTIVE_PICKUP_LOCATION);
         }
 
         // Make this card active
-        this.classList.add('js-de-active-location');
+        this.classList.add(CLASSES.ACTIVE_PICKUP_LOCATION);
 
         // Get the ShipHawk ID of this store
         const pickupStore = this.getAttribute('data-id');
@@ -48,9 +56,7 @@ const bindLocations = () => {
         setObjectInLocalStorage('pickup_store', pickupStore);
 
         // Update map image
-        document.querySelector(
-          '.js-de-pickup-location-map-img'
-        ).src = `//cdn.shopify.com/s/files/1/1752/4727/t/79/assets/${pickupStore}.jpg?v=3`;
+        mapImage.src = `${ASSET_BASE_URL}${pickupStore}.jpg?v=3`;
       }
     });
   });
@@ -76,16 +82,13 @@ const updateLocationUI = currentLocation => {
 const buildStoreList = locations => {
   for (const location of locations.data) {
     // Check to see if this is the active store so we can add active class
-    let activeCard = false;
-    if (location.id === STATE.pickupStore) {
-      activeCard = true;
-    }
+    const activeCard = location.id === STATE.pickupStore || false;
 
     // Build card
     const locationNode = document.createElement('li');
     locationNode.innerHTML = `
-      <div class="js-de-pickup-location de-pickup-location${
-        activeCard ? ' js-de-active-location' : ''
+      <div class="js-de-pickup-location de-pickup-location ${
+        activeCard ? CLASSES.ACTIVE_PICKUP_LOCATION : ''
       }"
       data-id="${location.id}"
       data-name="${location.name}"
@@ -119,26 +122,19 @@ const updateCheckout = () => {
   const checkoutKey = document
     .querySelector('[name="shopify-checkout-authorization-token"]')
     .getAttribute('content');
-  const selectedStore = document.querySelector('.js-de-active-location');
+  const selectedStore = document.querySelector(
+    SELECTORS.ACTIVE_PICKUP_LOCATION
+  );
   const selectedStoreData = {};
-  selectedStoreData.firstName = document.querySelector(
-    '#checkout_shipping_address_first_name'
-  ).value;
-  selectedStoreData.lastName = document.querySelector(
-    '#checkout_shipping_address_last_name'
-  ).value;
+  selectedStoreData.firstName = userFirstName.value;
+  selectedStoreData.lastName = userLastName.value;
   selectedStoreData.name = selectedStore.dataset.name;
   selectedStoreData.street1 = selectedStore.dataset.street1;
   selectedStoreData.street2 = selectedStore.dataset.street2;
   selectedStoreData.city = selectedStore.dataset.city;
   selectedStoreData.state = selectedStore.dataset.state;
   selectedStoreData.zip = selectedStore.dataset.zip;
-  //
-  // console.log(selectedStoreData);
-  // const checkoutURL = data.checkout.abandoned_checkout_url;
-  // const checkoutKeyRegex = /(&|\?key=)(.*?)(&|$)/g;
-  // const checkoutKeyMatches = checkoutKeyRegex.exec(checkoutURL);
-  // const checkoutKey = checkoutKeyMatches[2];
+
   const checkoutGID = btoa(
     `gid://shopify/Checkout/${window.Shopify.Checkout.token}?key=${checkoutKey}`
   );
@@ -171,8 +167,6 @@ const updateCheckout = () => {
 };
 
 const updateEmail = (checkoutGID, checkoutKey) => {
-  const userEmail = document.querySelector('#checkout_email').value;
-
   fetch('https://testing-decathlon-usa.myshopify.com/api/graphql', {
     method: 'POST',
     headers: {
@@ -180,7 +174,9 @@ const updateEmail = (checkoutGID, checkoutKey) => {
       'content-type': 'application/json'
     },
     /* eslint-disable graphql/template-strings, no-useless-escape */
-    body: `{\"query\":\"mutation checkoutEmailUpdateV2($checkoutId: ID!, $email: String!) {\\n  checkoutEmailUpdateV2(checkoutId: $checkoutId, email: $email) {\\n    checkout {\\n      id\\n      webUrl\\n    }\\n    checkoutUserErrors {\\n      code\\n      field\\n      message\\n    }\\n  }\\n}\",\"variables\":{\"email\":\"${userEmail}\",\"checkoutId\":\"${checkoutGID}\"},\"operationName\":\"checkoutEmailUpdateV2\"}`
+    body: `{\"query\":\"mutation checkoutEmailUpdateV2($checkoutId: ID!, $email: String!) {\\n  checkoutEmailUpdateV2(checkoutId: $checkoutId, email: $email) {\\n    checkout {\\n      id\\n      webUrl\\n    }\\n    checkoutUserErrors {\\n      code\\n      field\\n      message\\n    }\\n  }\\n}\",\"variables\":{\"email\":\"${
+      userEmail.value
+    }\",\"checkoutId\":\"${checkoutGID}\"},\"operationName\":\"checkoutEmailUpdateV2\"}`
     /* eslint-enable */
   })
     .then(res => res.json())
@@ -218,22 +214,22 @@ const bindUI = () => {
    */
   pickupToggleBtn.addEventListener('click', function(event) {
     STATE.deliveryMethod = DELIVERY_METHODS.PICKUP;
-    pickupToggleBtn.classList.toggle('js-de-active-pickship-btn');
-    shipToggleBtn.classList.toggle('js-de-active-pickship-btn');
-    setObjectInLocalStorage('delivery_method', 'pickup');
+    pickupToggleBtn.classList.toggle(CLASSES.ACTIVE_SHIPPICK_BTN);
+    shipToggleBtn.classList.toggle(CLASSES.ACTIVE_SHIPPICK_BTN);
+    setObjectInLocalStorage('delivery_method', DELIVERY_METHODS.PICKUP);
     updateUI();
   });
 
   shipToggleBtn.addEventListener('click', function(event) {
     STATE.deliveryMethod = DELIVERY_METHODS.SHIP;
-    pickupToggleBtn.classList.toggle('js-de-active-pickship-btn');
-    shipToggleBtn.classList.toggle('js-de-active-pickship-btn');
-    setObjectInLocalStorage('delivery_method', 'ship');
+    pickupToggleBtn.classList.toggle(CLASSES.ACTIVE_SHIPPICK_BTN);
+    shipToggleBtn.classList.toggle(CLASSES.ACTIVE_SHIPPICK_BTN);
+    setObjectInLocalStorage('delivery_method', DELIVERY_METHODS.SHIP);
     updateUI();
   });
 
   document
-    .querySelector('.js-de-payment-continue')
+    .querySelector(SELECTORS.PICKUP_CONTINUE_BTN)
     .addEventListener('click', function(event) {});
 
   /**
@@ -241,11 +237,7 @@ const bindUI = () => {
    * This probably needs to move.
    */
   if (STATE.pickupStore !== null) {
-    document.querySelector(
-      '.js-de-pickup-location-map-img'
-    ).src = `//cdn.shopify.com/s/files/1/1752/4727/t/79/assets/${
-      STATE.pickupStore
-    }.jpg?v=3`;
+    mapImage.src = `${ASSET_BASE_URL}${STATE.pickupStore}.jpg?v=3`;
   }
 
   /**
@@ -253,13 +245,13 @@ const bindUI = () => {
    * Needs refactoring.
    */
   const paymentBtnCont = document.querySelector(
-    '.js-de-payment-continue-container'
+    SELECTORS.PICKUP_CONTINUE_BTN_CONTAINER
   );
-  let paymentBtn = document.querySelector('.js-de-payment-continue');
+  let paymentBtn = document.querySelector(SELECTORS.PICKUP_CONTINUE_BTN);
   const paymentBtnHTML = paymentBtnCont.innerHTML;
   paymentBtnCont.removeChild(paymentBtn);
   continueBtn.insertAdjacentHTML('afterend', paymentBtnHTML);
-  paymentBtn = document.querySelector('.js-de-payment-continue');
+  paymentBtn = document.querySelector(SELECTORS.PICKUP_CONTINUE_BTN);
 
   paymentBtn.addEventListener('click', function(e) {
     e.preventDefault();
