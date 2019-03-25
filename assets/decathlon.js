@@ -900,18 +900,15 @@ function(e, t, i, n, o) {
             // t("#customer_login_link").parent().hide(),
             // t("#customer_register_link").parent().hide(),
             // t("#NavDrawer .drawer__title").addClass("h5").removeClass("h3").html('<a href="/account"><i class="ico ico--account mobileHeader-accountIcon"></i>My Account</a>'),
-
-            (!isMobileDevice() && !isProductPage() && !fromAllowedState(T) && !T.getData("seenGateway") && !nativeAppCookie.getData("noGateway")) && t("#gateway").length && (t("body").hasClass("template-index") ? t("#gateway").addClass("gateway--home") : t("#PageContainer").css({
+			// Get Country
+			country = getCountry(T),
+			(!isMobileDevice() && !isProductPage() && country[0] != "US") && t("#gateway").length && (t("body").hasClass("template-index") ? t("#gateway").addClass("gateway--home") : t("#PageContainer").css({
                 "-o-filter": "blur(5px)",
                 "-moz-filter": "blur(5px)",
                 "-webkit-filter": "blur(5px)",
                 "-ms-filter": "\"progid:DXImageTransform.Microsoft.Blur(PixelRadius='5')\"",
                 filter: "blur(5px)"
             }), t("#gateway").show(), (function() {
-				// Get Country
-				var country = getCountry(T);
-				// If not in the USA, no email signup form, edit text and buttons to reflect correct country
-				if (country[0] != "US") {
 					t('#gateway form').remove();
 					t('#gateway .banner-subtitle').text('You are visiting Decathlon USA.');
 					t('#gateway .gateway-content').append('<div><a class="btn btn--text js-closePopup hide-on-success" href="#PageContainer">Enter U.S. Site</a></div>');
@@ -924,8 +921,17 @@ function(e, t, i, n, o) {
 					if (country[0]) {
 						t('#gateway .gateway-content').append('<div><a class="btn btn--text" href="' + country[0] + '">Enter ' + country[1] + ' Site</a></div>');
 					}
-				// Else if in USA, behave as before
-			    } else {
+            }()), t("#gateway #contact_form").css("height", t("#gateway #contact_form").innerHeight()), T.getData("seenBanner") || t(".popup .banner-content").hide(), t(e).on("scroll", d), t("#gateway").on("touchmove", u), t("#gateway .close-popup-btn").on("click", f), t("#gateway .js-closePopup").on("click", function(e) {
+                e.preventDefault(), f()
+            })),
+
+            (!isMobileDevice() && !isProductPage() && !fromAllowedState(T) && country[0] == "US" && !T.getData("seenGateway") && !nativeAppCookie.getData("noGateway")) && t("#gateway").length && (t("body").hasClass("template-index") ? t("#gateway").addClass("gateway--home") : t("#PageContainer").css({
+                "-o-filter": "blur(5px)",
+                "-moz-filter": "blur(5px)",
+                "-webkit-filter": "blur(5px)",
+                "-ms-filter": "\"progid:DXImageTransform.Microsoft.Blur(PixelRadius='5')\"",
+                filter: "blur(5px)"
+            }), t("#gateway").show(), (function() {
                 var gatewayRegion = T.getUserRegion()
                 if (gatewayRegion)
                 	t('#hello-state').text('Hello ' + gatewayRegion + '!');
@@ -933,8 +939,6 @@ function(e, t, i, n, o) {
                   	t('#hello-state').text('Hello!');
                 t('#sel-state option:contains(' + gatewayRegion + ')').prop({selected: true}),
                 t('#sel-state').addClass( "is-selected" )
-				}
-
             }()), t("#gateway #contact_form").css("height", t("#gateway #contact_form").innerHeight()), T.getData("seenBanner") || t(".popup .banner-content").hide(), t(e).on("scroll", d), t("#gateway").on("touchmove", u), t("#gateway .close-popup-btn").on("click", f), t("#gateway .js-closePopup").on("click", function(e) {
                 e.preventDefault(), f()
             }), t("#gateway form select").on("change", function(e) {
