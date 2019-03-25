@@ -62,6 +62,11 @@ const bindLocations = () => {
   });
 };
 
+/**
+ * Hides In Store Pickup UI for users outside of California and
+ * reveals a link to optionally un-hide In Store Pickup UI
+ * @param  {object} currentLocation ipStack response
+ */
 const updateLocationUI = currentLocation => {
   if (
     currentLocation.region_name === 'California' ||
@@ -118,10 +123,19 @@ const buildStoreList = locations => {
   });
 };
 
+/**
+ * Gathers selected store location data and sends to checkout
+ * object as the shipping address with graphql call
+ * @return calls next step in graphql chain: updateEmail
+ */
 const updateCheckout = () => {
+  // Get "checkout_secret" from meta tags to use in contruction of GID
+  // @TODO move to config
   const checkoutKey = document
     .querySelector('[name="shopify-checkout-authorization-token"]')
     .getAttribute('content');
+
+  // Collect selected store location data and user input
   const selectedStore = document.querySelector(
     SELECTORS.ACTIVE_PICKUP_LOCATION
   );
@@ -135,10 +149,13 @@ const updateCheckout = () => {
   selectedStoreData.state = selectedStore.dataset.state;
   selectedStoreData.zip = selectedStore.dataset.zip;
 
+  // Construct GID for making graphql queries
+  // @TODO move to config
   const checkoutGID = btoa(
     `gid://shopify/Checkout/${window.Shopify.Checkout.token}?key=${checkoutKey}`
   );
 
+  // Graphql update
   fetch('https://testing-decathlon-usa.myshopify.com/api/graphql', {
     method: 'POST',
     headers: {
@@ -161,11 +178,17 @@ const updateCheckout = () => {
   })
     .then(res => res.json())
     .then(data => {
-      console.log(data);
       updateEmail(checkoutGID, checkoutKey);
     });
 };
 
+/**
+ * Gets user inputted email address and sends it to checkout object
+ * using graphql
+ * @param  {string} checkoutGID Shopify graphql ID of checkout
+ * @param  {string} checkoutKey checkout secret uses to construct checkout URL
+ * @return calls next step in graphql chain: updateShippingMethod
+ */
 const updateEmail = (checkoutGID, checkoutKey) => {
   fetch('https://testing-decathlon-usa.myshopify.com/api/graphql', {
     method: 'POST',
@@ -186,6 +209,14 @@ const updateEmail = (checkoutGID, checkoutKey) => {
     });
 };
 
+/**
+ * Updates checkout object with In Store Pickup shipping method
+ * using graphql, then redirects to payment page
+ * @param  {string} checkoutGID Shopify graphql ID of checkout
+ * @param  {string} checkoutKey checkout secret uses to construct checkout URL
+ * @TODO make shipping rate dynamic when Decathlon provides unique practices
+ * for each store.
+ */
 const updateShippingMethod = (checkoutGID, checkoutKey) => {
   fetch('https://testing-decathlon-usa.myshopify.com/api/graphql', {
     method: 'POST',
@@ -202,7 +233,6 @@ const updateShippingMethod = (checkoutGID, checkoutKey) => {
       const checkoutURL = `https://testing-decathlon-usa.myshopify.com/17524727/checkouts/${
         window.Shopify.Checkout.token
       }?key=${checkoutKey}`;
-      console.log(checkoutURL);
       window.location.href = checkoutURL;
     });
 };
