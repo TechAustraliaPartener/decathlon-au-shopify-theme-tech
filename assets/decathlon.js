@@ -843,7 +843,12 @@ function(e, t, i, n, o) {
                 return allowedStates[syncResult.data.region_code];
             return true; // by default don't show overlay
         }
-		function getCountryURL() {
+		function getCountry(T) {
+			// Try to get country from cookie data
+			var loc = T.getData("locale");
+            if (loc) {
+              return [ countryURL[loc.country_code], loc.country_name ];
+            }
             var syncResult = getLocaleSync(t, 'country check')
             if (syncResult.error)
               return ""; // by default don't show overlay
@@ -904,16 +909,19 @@ function(e, t, i, n, o) {
                 filter: "blur(5px)"
             }), t("#gateway").show(), (function() {
 				// Get Country
-				var country = getCountryURL();
+				var country = getCountry(T);
 				// If not in the USA, no email signup form, edit text and buttons to reflect correct country
 				if (country[0] != "US") {
 					t('#gateway form').remove();
 					t('#gateway .banner-subtitle').text('You are visiting Decathlon USA.');
 					t('#gateway .gateway-content').append('<div><a class="btn btn--text js-closePopup hide-on-success" href="#PageContainer">Enter U.S. Site</a></div>');
-					t('#hello-state').text('Hello ' + country[1] + '!');
+					if (country[1] && country[1] != "undefined") {
+					  t('#hello-state').text('Hello ' + country[1] + '!');
+					} else {
+					  t('#hello-state').text('Hello!');
+					}
 					// If Country has website, show link to website
 					if (country[0]) {
-						console.log("Has website");
 						t('#gateway .gateway-content').append('<div><a class="btn btn--text" href="' + country[0] + '">Enter ' + country[1] + ' Site</a></div>');
 					}
 				// Else if in USA, behave as before
