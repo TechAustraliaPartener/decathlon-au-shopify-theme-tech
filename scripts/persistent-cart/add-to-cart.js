@@ -1,3 +1,5 @@
+import isPlainObject from 'lodash.isplainobject';
+
 /**
  * Sets up decorators or listeners on the AJAX Add-To-Cart functionality
  * of the Shopify store. If an add-to-cart event is detected, this
@@ -37,7 +39,8 @@ const onCartAjaxUpdated = persistentCartInit => {
   const argDecorator = fn => (...args) => {
     // Check that this argument is a product by checking both variant_id and quantity properties
     const lineItemObject = args.find(
-      arg => 'variant_id' in arg && 'quantity' in arg
+      // Ensure that arg is a JS object before using prop in object checks
+      arg => isPlainObject(arg) && 'variant_id' in arg && 'quantity' in arg
     );
     if (lineItemObject) {
       // Initialize the application, passing in the quantity of the item just added to the cart

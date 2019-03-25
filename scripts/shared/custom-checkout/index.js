@@ -4,7 +4,7 @@ import 'formdata-polyfill';
 import '../../utilities/element-matches-polyfill';
 
 const {
-  SELECTORS: { CART }
+  SELECTORS: { CART, CHECKOUT_INPUT }
 } = scriptsConfig;
 
 /**
@@ -27,6 +27,19 @@ const transformCartData = cartData => {
 const makeGraphQLCheckoutPayload = items => ({ lineItems: items });
 
 /**
+ * Check a fetch response and throw if needed
+ * @param {Object} response - A fetch response object
+ * @returns {Object} - The same response
+ * @throws {Object} - An error object containing the response's statusText
+ */
+const handleFetchError = response => {
+  if (!response.ok) {
+    throw new Error(response.statusText);
+  }
+  return response;
+};
+
+/**
  * Hijack submissions of Shopify cart forms to create a custom checkout.
  * This allows multiple devices using persistent cart to reach checkout. For whatever reason,
  * while persistent cart is active, trying to checkout on more than one device
@@ -36,16 +49,27 @@ const makeGraphQLCheckoutPayload = items => ({ lineItems: items });
 const customCheckoutCartSubmitHandler = function(event) {
   event.preventDefault();
   event.stopPropagation();
-  // @see https://stackoverflow.com/questions/42980645/easier-way-to-transform-formdata-into-query-string
-  // Transform cart data into a well-formatted query string, usable by IE11 and browsers that could do this more cleanly
-  const data = [...new FormData(this).entries()].map(
-    e => `${encodeURIComponent(e[0])}=${encodeURIComponent(e[1])}`
+  const updateInputs = this.querySelectorAll('[name="updates[]"]');
+  // Create an array from the updates inputs
+  const inputsArr = [...updateInputs];
+  // Filter out inputs whose value is 0
+  const filteredInputs = inputsArr.filter(
+    input => parseInt(input.value, 10) > 0
   );
+  // If all inputs are set to 0, just abandon the handler and reload the page to refresh with no cart
+  if (filteredInputs.length === 0) {
+    window.location.reload();
+    return false;
+  }
+  // Create a new form from inputs with quantity greater than 0
+  const postForm = document.createElement('form');
+  filteredInputs.forEach(input => postForm.appendChild(input.cloneNode()));
   // Fetch a cart from Shopify
   fetch('/cart', {
     method: 'POST',
-    body: JSON.stringify(data)
+    body: new FormData(postForm)
   })
+    .then(handleFetchError)
     .then(res => res.json())
     // Transform cart data to a format that will work as a payload for the Storefront GraphQL API
     .then(transformCartData)
@@ -54,8 +78,13 @@ const customCheckoutCartSubmitHandler = function(event) {
     .then(res => {
       // If the createCheckout method returns a checkout webURL, set it as the new location
       if (res.checkout && res.checkout.webUrl) {
-        window.location = res.checkout.webUrl;
+        window.location.assign(res.checkout.webUrl);
       }
+    })
+    .catch(error => {
+      console.error(error);
+      // Reload the page in order to try to resolve issues with the last payload
+      window.location.reload();
     });
 };
 
@@ -76,7 +105,11 @@ const customCheckoutInit = () => {
       target && target !== this;
       target = target.parentNode
     ) {
-      if (target.matches(CART)) {
+      if (
+        // Ensure that we're delegating to the cart form and that the currentTarget.activeElement is not for checkout
+        target.matches(CART) &&
+        e.currentTarget.activeElement.matches(CHECKOUT_INPUT)
+      ) {
         customCheckoutCartSubmitHandler.call(target, e);
         break;
       }

@@ -11,8 +11,9 @@ import config from '../shared/config';
 const {
   SELECTORS: {
     CHECKOUT: {
-      IS_CONTACT_INFO_STEP,
-      IS_STOCK_PROBLEMS_PAGE,
+      STEP,
+      STEPS,
+      PAGE,
       TEXT: { CART_TEXT },
       CLASSES: {
         LOGO,
@@ -36,6 +37,28 @@ const {
 } = config;
 
 /**
+ * The first step in checkout is the contact information step
+ * and that is where we'll want to add a breadcrumb and step link to cart
+ */
+const isContactInfoStep = () => {
+  // @see https://help.shopify.com/en/themes/development/layouts/checkout/#shopify-checkout-step
+  return STEP === STEPS.CONTACT_INFORMATION;
+};
+
+/**
+ * Return true if this is any step in checkout,
+ * meaning that it's a candidate for breadcrumbs and step links
+ */
+const isCheckoutStep = () => {
+  return Object.keys(STEPS).some(step => STEPS[step] === STEP);
+};
+
+const isStockProblemsPage = () => {
+  // @see https://help.shopify.com/en/themes/development/layouts/checkout/#shopify-checkout-page
+  return PAGE === 'stock_problems';
+};
+
+/**
  * Check to see whether a breadcrumb cart link exists
  * @returns {boolean} - Has a breadcrumb cart link (or not)
  */
@@ -45,6 +68,24 @@ const cartBreadcrumbLinkExists = () => {
     if (link.href.indexOf(CART_URL) > -1) {
       return true;
     }
+  }
+  return false;
+};
+
+/**
+ * Check to see whether a cart step link should be built and inserted in DOM
+ * @returns {boolean} - Needs a cart step link built (or not)
+ */
+const needCartStepLink = () => {
+  const stepFooter = document.querySelector(`.${STEP_FOOTER}`);
+  if (stepFooter) {
+    const existingCartStepLink = stepFooter.querySelector(
+      `.${STEP_FOOTER_PREVIOUS_LINK}`
+    );
+    if (existingCartStepLink) {
+      return false;
+    }
+    return true;
   }
   return false;
 };
@@ -71,6 +112,11 @@ const buildCartBreadCrumb = () => {
   // Get breadcrumb list
   const breadcrumbs = document.querySelector(`.${BC_ROOT}`);
 
+  // Abort if there aren't breadcrumbs to add to
+  if (!breadcrumbs) {
+    return;
+  }
+
   // Build crumb
   const cartCrumb = document.createElement('li');
   cartCrumb.classList.add(BC_ITEM, BC_ITEM_COMPLETED);
@@ -93,15 +139,23 @@ const buildCartBreadCrumb = () => {
   cartCrumb.insertBefore(cartCrumbArrow, cartCrumbLink.nextSibling);
 };
 
+// Update logo links to link to the "home" page
+const setLogoLinkHome = () => {
+  const logos = document.querySelectorAll(`.${LOGO}`);
+  for (const logo of logos) {
+    logo.href = ROOT_URL;
+  }
+};
+
 /**
- * If there is no breadcrumb link
+ * If there is no breadcrumb link and this is a "step" in checkout
  * run this code to build or update
  * 1) A breadcrumb that goes back to the cart
  * 2) A step link in the footer that returns to the cart
  * 3) The href on logos to point back to the web root of the deployed Decathlon site
  */
-if (!cartBreadcrumbLinkExists()) {
-  if (IS_CONTACT_INFO_STEP) {
+if (!cartBreadcrumbLinkExists() && isCheckoutStep()) {
+  if (isContactInfoStep() && needCartStepLink()) {
     /**
      * Add Return to cart link on Checkout Step 1 (when the current step is "contact_information")
      * In subsequent steps, these links are automatically inserted into the DOM
@@ -109,14 +163,9 @@ if (!cartBreadcrumbLinkExists()) {
     buildStepLink();
   }
   buildCartBreadCrumb();
-  // Update logo links to link to the "home" page
-  const logos = document.querySelectorAll(`.${LOGO}`);
-  for (const logo of logos) {
-    logo.href = ROOT_URL;
-  }
 }
 
-if (IS_STOCK_PROBLEMS_PAGE) {
+if (isStockProblemsPage()) {
   /**
    * Also add return to cart link on the `stock_problems` page (aka, Out of Stock), so the user has a way
    * to get back to cart. For whatever reason, at least in testing, the breadcrumbs are output correctly
@@ -124,3 +173,6 @@ if (IS_STOCK_PROBLEMS_PAGE) {
    */
   buildStepLink();
 }
+
+// On any step or page in checkout flow, update logo links to link to the "home" page (shop web root)
+setLogoLinkHome();
