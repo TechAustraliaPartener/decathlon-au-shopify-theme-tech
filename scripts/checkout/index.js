@@ -2,22 +2,22 @@ import { DELIVERY_METHODS } from './constants';
 import STATE from './state';
 import bindUI from './bind-ui';
 import updateUI from './update-ui';
-import { getObjectFromLocalStorage } from '../utilities/storage';
+import { getObjectFromSessionStorage } from '../utilities/storage';
 
 /**
  * Intialize custom JS functionality
  */
 const init = () => {
   // Set delivery method - Default to ship, set pick if selection is stored. Needs to change to sessionStorage
-  if (getObjectFromLocalStorage('delivery_method') === 'pickup') {
+  if (getObjectFromSessionStorage('delivery_method') === 'pickup') {
     STATE.deliveryMethod = DELIVERY_METHODS.PICKUP;
   } else {
     STATE.deliveryMethod = DELIVERY_METHODS.SHIP;
   }
 
   // Look for preferred store in storage and set global state. Needs to change to sessionStorage
-  if (getObjectFromLocalStorage('pickup_store')) {
-    STATE.pickupStore = getObjectFromLocalStorage('pickup_store');
+  if (getObjectFromSessionStorage('pickup_store')) {
+    STATE.pickupStore = getObjectFromSessionStorage('pickup_store');
   }
 
   // Bind event listeners (and more)

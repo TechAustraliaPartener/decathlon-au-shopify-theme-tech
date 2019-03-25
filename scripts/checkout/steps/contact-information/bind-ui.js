@@ -13,7 +13,10 @@ import STATE from '../../state';
 import SELECTORS from './selectors';
 import { DELIVERY_METHODS } from '../../constants';
 import updateUI from './update-ui';
-import { setObjectInLocalStorage } from '../../../utilities/storage';
+import {
+  sessionStorageAvailable,
+  setObjectInSessionStorage
+} from '../../../utilities/storage';
 import { getCurrentLocation } from '../../../utilities/location';
 import { showElements } from '../../ui-helpers';
 import config from '../../config';
@@ -51,9 +54,10 @@ const bindLocations = () => {
         // Update global state with pickup store
         STATE.pickupStore = pickupStore;
 
-        // Set preferred store in localStorage
-        // @TODO change to sessionStorage
-        setObjectInLocalStorage('pickup_store', pickupStore);
+        // Set preferred store in sessionStorage
+        if (sessionStorageAvailable) {
+          setObjectInSessionStorage('pickup_store', pickupStore);
+        }
 
         // Update map image
         mapImage.src = `${ASSET_BASE_URL}${pickupStore}.jpg?v=3`;
@@ -246,7 +250,9 @@ const bindUI = () => {
     STATE.deliveryMethod = DELIVERY_METHODS.PICKUP;
     pickupToggleBtn.classList.toggle(CLASSES.ACTIVE_SHIPPICK_BTN);
     shipToggleBtn.classList.toggle(CLASSES.ACTIVE_SHIPPICK_BTN);
-    setObjectInLocalStorage('delivery_method', DELIVERY_METHODS.PICKUP);
+    if (sessionStorageAvailable) {
+      setObjectInSessionStorage('delivery_method', DELIVERY_METHODS.PICKUP);
+    }
     updateUI();
   });
 
@@ -254,7 +260,9 @@ const bindUI = () => {
     STATE.deliveryMethod = DELIVERY_METHODS.SHIP;
     pickupToggleBtn.classList.toggle(CLASSES.ACTIVE_SHIPPICK_BTN);
     shipToggleBtn.classList.toggle(CLASSES.ACTIVE_SHIPPICK_BTN);
-    setObjectInLocalStorage('delivery_method', DELIVERY_METHODS.SHIP);
+    if (sessionStorageAvailable) {
+      setObjectInSessionStorage('delivery_method', DELIVERY_METHODS.SHIP);
+    }
     updateUI();
   });
 
