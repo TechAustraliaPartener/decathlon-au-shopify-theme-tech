@@ -60,7 +60,7 @@ const bindLocations = () => {
         }
 
         // Update map image
-        mapImage.src = `${ASSET_BASE_URL}${pickupStore}.jpg?v=3`;
+        mapImage.src = `${ASSET_BASE_URL}${pickupStore}.jpg?v=4`;
       }
     });
   });
@@ -275,7 +275,7 @@ const bindUI = () => {
    * This probably needs to move.
    */
   if (STATE.pickupStore !== null) {
-    mapImage.src = `${ASSET_BASE_URL}${STATE.pickupStore}.jpg?v=3`;
+    mapImage.src = `${ASSET_BASE_URL}${STATE.pickupStore}.jpg?v=4`;
   }
 
   /**
