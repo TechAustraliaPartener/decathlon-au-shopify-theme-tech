@@ -76,7 +76,10 @@ const updateLocationUI = currentLocation => {
     currentLocation.region_name === 'California' ||
     STATE.deliveryMethod === DELIVERY_METHODS.PICKUP
   ) {
-    showElements([pickupToggleBtn, shipToggleBtn, pickupContent]);
+    showElements([pickupToggleBtn, shipToggleBtn]);
+    if (STATE.deliveryMethod === DELIVERY_METHODS.PICKUP) {
+      showElements([pickupContent]);
+    }
   } else {
     showElements([document.querySelector('.de-visit-cal-container')]);
   }
