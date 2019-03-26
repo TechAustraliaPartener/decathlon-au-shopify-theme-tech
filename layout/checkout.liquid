@@ -9,10 +9,10 @@
     <title>{{ page_title }}</title>
 
     {{ content_for_header }}
-
-    {{ checkout_stylesheets }}
     <!-- Temporary update to static toolkit while debugging pattern toolkit bug -->
     {{ 'toolkit.css' | asset_url | stylesheet_tag }}
+    {{ checkout_stylesheets }}
+
     <script>
       window.checkoutID = {{ checkout.id }};
     </script>
@@ -49,7 +49,7 @@
             {{ breadcrumb }}
             {{ alternative_payment_methods }}
           </div>
-          <div class="main__content clearfix">
+          <div class="main__content">
             {% comment %}
               The Ship & Pickup buttons start hidden.
               The checkout JS (scripts/checkout/index.js)

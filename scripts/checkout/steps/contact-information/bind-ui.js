@@ -371,25 +371,25 @@ const bindUI = () => {
         address_type: null,
         validated: false,
         code: '135'
-      },
-      {
-        id: 'adr_emery',
-        name: 'Emeryville',
-        company: 'Decathlon',
-        street1: '3938 Horton St',
-        street2: null,
-        city: 'Emeryville',
-        state: 'CA',
-        zip: '94608',
-        country: 'US',
-        phone_number: null,
-        email: null,
-        is_residential: false,
-        is_warehouse: false,
-        address_type: null,
-        validated: false,
-        code: null
       }
+      // {
+      //   id: 'adr_emery',
+      //   name: 'Emeryville',
+      //   company: 'Decathlon',
+      //   street1: '3938 Horton St',
+      //   street2: null,
+      //   city: 'Emeryville',
+      //   state: 'CA',
+      //   zip: '94608',
+      //   country: 'US',
+      //   phone_number: null,
+      //   email: null,
+      //   is_residential: false,
+      //   is_warehouse: false,
+      //   address_type: null,
+      //   validated: false,
+      //   code: null
+      // }
     ]
   };
   buildStoreList(sampleData);
