@@ -95,6 +95,7 @@ const buildStoreList = locations => {
 
     // Build card
     const locationNode = document.createElement('li');
+    locationNode.classList.add('de-u-size1of2');
     locationNode.innerHTML = `
       <div class="js-de-pickup-location de-pickup-location ${
         activeCard ? CLASSES.ACTIVE_PICKUP_LOCATION : ''
@@ -106,12 +107,14 @@ const buildStoreList = locations => {
       data-city="${location.city}"
       data-state="${location.state}"
       data-zip="${location.zip}">
-      <div class="de-pickup-location-time">Pickup Tomorrow</div>
-      <div><span class="de-pickup-location-name">${location.name}</span> ${
-      location.street1
-    } ${location.street2 === null ? '' : location.street2}</div>
+      <p class="de-pickup-location-time de-u-textBlack de-u-textSemibold de-u-textGrow1">Pickup Tomorrow</p>
+      <p><span class="de-pickup-location-name de-u-textSemibold de-u-textBlack">${
+        location.name
+      }</span> ${location.street1} ${
+      location.street2 === null ? '' : location.street2
+    }</p>
 
-      <div class="de-pickup-location-hours">9:00 AM - 8:00 PM</div>
+      <p class="de-pickup-location-hours de-u-textShrink2">9:00 AM - 8:00 PM</p>
     </div>`;
 
     // Insert card
@@ -293,7 +296,47 @@ const bindUI = () => {
 
   paymentBtn.addEventListener('click', function(e) {
     e.preventDefault();
-    updateCheckout();
+    // @TODO create validtion function
+    if (!this.classList.contains('submitted')) {
+      if (
+        userFirstName.value === '' ||
+        userLastName.value === '' ||
+        userEmail.value === ''
+      ) {
+        if (userFirstName.value === '') {
+          userFirstName.parentNode.parentNode.classList.add('field--error');
+          userFirstName.addEventListener('blur', () => {
+            userFirstName.parentNode.parentNode.classList.remove(
+              'field--error'
+            );
+          });
+        }
+        if (userLastName.value === '') {
+          userLastName.parentNode.parentNode.classList.add('field--error');
+          userLastName.addEventListener('blur', () => {
+            userLastName.parentNode.parentNode.classList.remove('field--error');
+          });
+        }
+        if (userEmail.value === '') {
+          userEmail.parentNode.parentNode.classList.add('field--error');
+          userEmail.addEventListener('blur', () => {
+            userEmail.parentNode.parentNode.classList.remove('field--error');
+          });
+        }
+      } else {
+        this.classList.add = 'submitted';
+        // Make button spin
+        document.querySelector(
+          '.js-de-payment-continue-spinner'
+        ).style.animation = 'rotate 0.5s linear infinite';
+        document.querySelector(
+          '.js-de-payment-continue-spinner'
+        ).style.opacity = '1';
+        document.querySelector('.js-de-payment-continue-copy').style.opacity =
+          '0';
+        updateCheckout();
+      }
+    }
   });
 
   // Fetch pickup locations from ShipHawk - temporarily using hard-coded data below
@@ -309,7 +352,7 @@ const bindUI = () => {
   const sampleData = {
     data: [
       {
-        id: 'adr_GezSSC9M',
+        id: 'adr_sf',
         name: 'San Francisco',
         company: 'Decathlon',
         street1: '735 Market St',
@@ -327,7 +370,7 @@ const bindUI = () => {
         code: '135'
       },
       {
-        id: 'adr_XhPJyRNn',
+        id: 'adr_emery',
         name: 'Emeryville',
         company: 'Decathlon',
         street1: '3938 Horton St',

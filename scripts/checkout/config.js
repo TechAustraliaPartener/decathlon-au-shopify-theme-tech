@@ -8,7 +8,7 @@ const config = {
     SHIPPING_ADDRESS_HEADING: 'Shipping address',
     PICKUP_ADDRESS_HEADING: 'Pickup address'
   },
-  ASSET_BASE_URL: '//cdn.shopify.com/s/files/1/1752/4727/t/79/assets/'
+  ASSET_BASE_URL: '//cdn.shopify.com/s/files/1/1752/4727/t/84/assets/'
 };
 
 export default config;

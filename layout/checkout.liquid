@@ -55,33 +55,36 @@
               The checkout JS (scripts/checkout/index.js)
               will show and add UI functionality.
             {% endcomment %}
-            <div class="clearfix">
-              <div class="de-pickship-btn-container">
+            <div class="de-Grid de-Grid--withGutter">
+              <div class="de-pickship-btn-container de-u-size1of2">
                 <button class="btn js-de-toggle-shipping de-pickship-btn de-u-hidden">
                   <span class="btn__content">{% include 'ship-icon' %} Ship to Home</span>
                 </button>
               </div>
-              <div class="de-pickship-btn-container">
+              <div class="de-pickship-btn-container de-u-size1of2">
                 <button class="btn js-de-toggle-pickup de-pickship-btn de-u-hidden">
                   <span class="btn__content">{% include 'pickup-icon' %} Pickup in Store</span>
                 </button>
               </div>
             </div>
 
-            <div class="js-de-pickup-content de-u-hidden">
-              <div class="js-de-pickup-location-map">
-                <img src="{{ 'no-selection-map.jpg' | asset_url }}" class="js-de-pickup-location-map-img" alt="">
+            <div class="js-de-pickup-content de-pickup-content de-u-hidden de-u-spaceTop1">
+              <div class="js-de-pickup-location-map de-pickup-location-map">
+                <img src="{{ 'no-selection-map2.jpg' | asset_url }}" class="js-de-pickup-location-map-img de-pickup-location-map-img" alt="">
               </div>
-              <h2 class="de-location-heading">Select location</h2>
-              <hr class="de-blue-hr">
-              <ul class="de-u-spaceEnds02 js-de-pickup-locations clearfix"></ul>
-              <hr class="de-green-hr">
+              <h2 class="de-location-heading de-u-spaceTop2">Select location</h2>
+              <hr class="de-u-bgBlue de-location-hr de-u-spaceEnds2">
+              <ul class="de-u-spaceEnds02 js-de-pickup-locations de-pickup-locations de-Grid de-Grid--withGutter"></ul>
+              <hr class="de-u-bgLime de-location-hr de-u-spaceEnds2">
             </div>
 
             {{ content_for_layout }}
-            <div class="de-visit-cal-container de-u-hidden">Planning to be in San Francisco? <a href="#"class="de-visit-cal-btn">Try Pickup in Store</a></div>
+            <div class="de-visit-cal-container de-u-hidden de-u-spaceTop de-u-textShrink3">Planning to be in San Francisco? <a href="#"class="de-visit-cal-btn">Try Pickup in Store</a></div>
             <span class="js-de-payment-continue-container">
-              <a href="#" class="btn js-de-payment-continue de-u-hidden">Continue to Payment</a>
+              <a href="#" class="btn js-de-payment-continue de-payment-continue de-u-hidden">
+                <span class="js-de-payment-continue-copy">Continue to Payment</span>
+                <svg class="icon-svg icon-svg--size-18 btn__spinner icon-svg--spinner-button js-de-payment-continue-spinner" aria-hidden="true" focusable="false"> <use xlink:href="#spinner-button"></use> </svg>
+              </a>
             </span>
           </div>
           <div class="main__footer">

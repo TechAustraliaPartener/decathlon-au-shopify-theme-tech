@@ -72,7 +72,7 @@
       padding-top: 1em;
   }
 }
-@media (max-width: 999px) {
+@media (max-width: 1000px) {
   .banner {
  	 padding: 10px 0 5px 0;
    }
@@ -82,19 +82,7 @@
     }
 }
 
-.js-de-pickup-locations li{
-  width:50%;
-  float:left;
-  padding: 0.42857em;
-  box-sizing: border-box;
-}
-
-.js-de-pickup-locations li:nth-child(n+3) {
-  display: none;
-}
-
 .de-pickup-location {
-  width:100%;
   padding: 13px;
   box-sizing: border-box;
   border: 1px solid #d9d9d9;
@@ -105,30 +93,9 @@
   }
 }
 
-.de-pickup-location div {
-  margin-bottom:5px;
-}
-
-.de-pickship-btn-container {
-  width:50%;
-  float:left;
-  padding: 0.42857em;
-  box-sizing: border-box;
-}
-
-.de-pickup-location-time{
-  font-weight: bold;
-  font-size: 16px;
-  color: #0D1D39;
-}
-
-.de-pickup-location-name{
-  font-weight: bold;
-}
-
-.de-pickup-location-hours{
-  font-size: smaller;
-
+.de-pickup-location p {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .de-pickship-btn {
@@ -170,20 +137,15 @@
   }
 }
 
-.js-de-pickup-location-map {
+.de-pickup-location-map-img {
   width: 100%;
-}
-
-.js-de-pickup-location-map-img {
-  width: 100%;
-  margin-top: 17px;
 }
 
 @media (min: 750px) {
-  .de-pickship-btn-container:nth-child(even), .js-de-pickup-locations li:nth-child(even) {
+  .de-pickship-btn-container:nth-child(even), .de-pickup-locations li:nth-child(even) {
     padding-right: 0;
   }
-  .de-pickship-btn-container:nth-child(odd), .js-de-pickup-locations li:nth-child(odd) {
+  .de-pickship-btn-container:nth-child(odd), .de-pickup-locations li:nth-child(odd) {
     padding-left: 0;
   }
 }
@@ -194,36 +156,23 @@
   }
 }
 
-.js-de-payment-continue {
+.de-payment-continue {
   float: right;
 }
 
 .de-visit-cal-container {
   float: right;
-  margin-top: 8px;
-  font-size: 12px;
 }
 
+// Matches Shopify style
 .de-location-heading {
-
-
   color: #333;
-  margin-top:30px;
   font-size: 1.28571em;
 }
 
-.de-blue-hr, .de-green-hr {
+.de-location-hr {
   height: 5px;
   border: none;
-  margin-bottom: 20px;
-}
-
-.de-blue-hr{
-  background: #1c82c3;
-}
-.de-green-hr{
-  background: #C1FF0A;
-  margin-top: 20px;
 }
 
 .section--contact-information .section__header {
