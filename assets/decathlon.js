@@ -849,6 +849,7 @@ function(e, t, i, n, o) {
             if (loc) {
               return [ countryURL[loc.country_code], loc.country_name ];
             }
+			// Try to get country from geolocation API call
             var syncResult = getLocaleSync(t, 'country check')
             if (syncResult.error)
               return ""; // by default don't show overlay
@@ -900,15 +901,19 @@ function(e, t, i, n, o) {
             // t("#customer_login_link").parent().hide(),
             // t("#customer_register_link").parent().hide(),
             // t("#NavDrawer .drawer__title").addClass("h5").removeClass("h3").html('<a href="/account"><i class="ico ico--account mobileHeader-accountIcon"></i>My Account</a>'),
+			
 			// Get Country
 			country = getCountry(T),
+			// Check if not mobile device, only homepage, and outside of US (removed check for 'seenGateway' cookie)
 			(!isMobileDevice() && !isProductPage() && country[0] != "US") && t("#gateway").length && (t("body").hasClass("template-index") ? t("#gateway").addClass("gateway--home") : t("#PageContainer").css({
                 "-o-filter": "blur(5px)",
                 "-moz-filter": "blur(5px)",
                 "-webkit-filter": "blur(5px)",
                 "-ms-filter": "\"progid:DXImageTransform.Microsoft.Blur(PixelRadius='5')\"",
                 filter: "blur(5px)"
+			// Show gateway splash screen
             }), t("#gateway").show(), (function() {
+			        // Remove email signup form, add buttons
 					t('#gateway form').remove();
 					t('#gateway .banner-subtitle').text('You are visiting Decathlon USA.');
 					t('#gateway .gateway-content').append('<div><a class="btn btn--text js-closePopup hide-on-success" href="#PageContainer">Enter U.S. Site</a></div>');
