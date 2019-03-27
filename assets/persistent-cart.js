@@ -83,9 +83,6 @@
             get CART() {
                 return this.PREFIX + "cart";
             },
-            get CHECKOUT_INPUT() {
-                return this.PREFIX + "checkout";
-            },
             get LOGOUT() {
                 return this.PREFIX + "logout";
             },
@@ -910,7 +907,7 @@
             S.FormData = Z;
         }
     }(), Element.prototype.matches || (Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector);
-    var _scriptsConfig$SELECT = config$1.SELECTORS, CART = _scriptsConfig$SELECT.CART, CHECKOUT_INPUT = _scriptsConfig$SELECT.CHECKOUT_INPUT;
+    var CART = config$1.SELECTORS.CART;
     var transformCartData = function(cartData) {
         return cartData.items.map(function(item) {
             return {
@@ -952,7 +949,7 @@
         return "string" == typeof error.message ? error.message : error;
     };
     var _pcConfig$SHOPIFY_API = config.SHOPIFY_API, GET_CART = _pcConfig$SHOPIFY_API.GET_CART, UPDATE_CART = _pcConfig$SHOPIFY_API.UPDATE_CART;
-    var _scriptsConfig$SELECT$1 = config$1.SELECTORS, CART_COUNT = _scriptsConfig$SELECT$1.CART_COUNT, CUSTOMER_ID = _scriptsConfig$SELECT$1.CUSTOMER_ID;
+    var _scriptsConfig$SELECT = config$1.SELECTORS, CART_COUNT = _scriptsConfig$SELECT.CART_COUNT, CUSTOMER_ID = _scriptsConfig$SELECT.CUSTOMER_ID;
     var finalCartUpdates = function(cart) {
         if (!cart) throw Error("Cart not passed to handler for updating UI.");
         return setStoredShopifyCart(cart), updateCartUI(cart.item_count), cart;
@@ -1068,7 +1065,7 @@
                 if ("error" in customerResponse) throw Error(customerResponse.error);
             } else customer = customerResponse, console.log("Persistent Cart JS loaded"), (logoutLink = document.querySelector(LOGOUT)) && logoutLink.addEventListener("click", logoutHandler), 
             document.addEventListener("submit", function(e) {
-                for (var target = e.target; target && target !== this; target = target.parentNode) if (target.matches(CART) && e.currentTarget.activeElement.matches(CHECKOUT_INPUT)) {
+                for (var target = e.target; target && target !== this; target = target.parentNode) if (target.matches(CART)) {
                     customCheckoutCartSubmitHandler.call(target, e);
                     break;
                 }
