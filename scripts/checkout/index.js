@@ -5,7 +5,7 @@ import updateUI from './update-ui';
 import { getObjectFromSessionStorage } from '../utilities/storage';
 
 /**
- * Intialize custom JS functionality
+ * Initialize custom JS functionality
  */
 const init = () => {
   // Set delivery method - Default to ship, set pick if selection is stored. Needs to change to sessionStorage
