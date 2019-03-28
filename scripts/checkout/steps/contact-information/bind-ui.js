@@ -7,7 +7,9 @@ import {
   mapImage,
   userFirstName,
   userLastName,
-  userEmail
+  userEmail,
+  loadingImage,
+  loadingOverlay
 } from './ui-elements';
 import STATE from '../../state';
 import SELECTORS from './selectors';
@@ -18,7 +20,7 @@ import {
   setObjectInSessionStorage
 } from '../../../utilities/storage';
 import { getCurrentLocation } from '../../../utilities/location';
-import { showElements } from '../../ui-helpers';
+import { showElements, hideElements } from '../../ui-helpers';
 import config from '../../config';
 
 const { CLASSES, ASSET_BASE_URL } = config;
@@ -83,6 +85,7 @@ const updateLocationUI = currentLocation => {
   } else {
     showElements([document.querySelector('.de-visit-cal-container')]);
   }
+  hideElements([loadingOverlay, loadingImage]);
 };
 
 /**

@@ -9,3 +9,6 @@ export const pickupShippingMethods = SELECTORS.PICKUP_SHIPPING_METHOD_BLOCKS.map
     return false;
   }
 );
+
+export const loadingOverlay = document.querySelector(SELECTORS.LOADING_OVERLAY);
+export const loadingImage = document.querySelector(SELECTORS.LOADING_IMAGE);

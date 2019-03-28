@@ -30,6 +30,45 @@
             this._pickupStore = store, logState();
         }
     };
+    function _extends() {
+        return (_extends = Object.assign || function(target) {
+            for (var i = 1; i < arguments.length; i++) {
+                var source = arguments[i];
+                for (var key in source) Object.prototype.hasOwnProperty.call(source, key) && (target[key] = source[key]);
+            }
+            return target;
+        }).apply(this, arguments);
+    }
+    var SELECTORS = _extends({}, {
+        CONTINUE_BTN: ".step__footer__continue-btn",
+        SHIPPING_ADDRESS_HEADER: ".section--shipping-address .section__header h2",
+        DELIVERY_INPUTS: {
+            addressInput: '[data-address-field="address1"]',
+            cityInput: '[data-address-field="city"]',
+            countryInput: '[data-address-field="country"]',
+            provinceInput: '[data-address-field="province"]',
+            zipInput: '[data-address-field="zip"]'
+        },
+        USER_ADDRESS_LIST: "#checkout_shipping_address_id",
+        USER_FIRST_NAME: "#checkout_shipping_address_first_name",
+        USER_LAST_NAME: "#checkout_shipping_address_last_name",
+        USER_EMAIL: "#checkout_email"
+    }, {
+        TOGGLE_SHIPPING: ".js-de-toggle-shipping",
+        TOGGLE_PICKUP: ".js-de-toggle-pickup",
+        PICKUP_CONTENT: ".js-de-pickup-content",
+        PICKUP_LOCATIONS: ".js-de-pickup-locations",
+        PICKUP_LOCATION: ".js-de-pickup-location",
+        ACTIVE_PICKUP_LOCATION: ".js-de-active-location",
+        PICKUP_CONTINUE_BTN_CONTAINER: ".js-de-payment-continue-container",
+        PICKUP_CONTINUE_BTN: ".js-de-payment-continue",
+        MAP_IMAGE: ".js-de-pickup-location-map-img",
+        LOADING_OVERLAY: ".de-loading-overlay",
+        LOADING_IMAGE: ".de-checkout-loader"
+    });
+    var elementExists = function(element) {
+        return !!element;
+    };
     var hideElement = function(element) {
         element && element.classList.add("de-u-hidden");
     };
@@ -42,30 +81,6 @@
     var showElements = function(elements) {
         elements.forEach(showElement);
     };
-    function _extends() {
-        return (_extends = Object.assign || function(target) {
-            for (var i = 1; i < arguments.length; i++) {
-                var source = arguments[i];
-                for (var key in source) Object.prototype.hasOwnProperty.call(source, key) && (target[key] = source[key]);
-            }
-            return target;
-        }).apply(this, arguments);
-    }
-    var SELECTORS = _extends({}, {
-        CONTINUE_BTN: ".step__footer__continue-btn",
-        DELIVERY_INPUTS: {
-            addressInput: '[data-address-field="address1"]',
-            cityInput: '[data-address-field="city"]',
-            countryInput: '[data-address-field="country"]',
-            provinceInput: '[data-address-field="province"]',
-            zipInput: '[data-address-field="zip"]'
-        }
-    }, {
-        TOGGLE_SHIPPING: ".js-de-toggle-shipping",
-        TOGGLE_PICKUP: ".js-de-toggle-pickup",
-        PICKUP_CONTENT: ".js-de-pickup-content",
-        PICKUP_LOCATIONS: ".js-de-pickup-locations"
-    });
     var deliveryElements = Object.keys(SELECTORS.DELIVERY_INPUTS).map(function(key) {
         return document.querySelector(SELECTORS.DELIVERY_INPUTS[key]);
     });
@@ -75,18 +90,28 @@
     var pickupContent = document.querySelector(SELECTORS.PICKUP_CONTENT);
     document.querySelectorAll(SELECTORS.STORE_INPUT);
     var pickupLocationList = document.querySelector(SELECTORS.PICKUP_LOCATIONS);
+    var shippingAddressHeader = document.querySelector(SELECTORS.SHIPPING_ADDRESS_HEADER);
+    var userAddressList = !!elementExists(document.querySelector(SELECTORS.USER_ADDRESS_LIST)) && document.querySelector(SELECTORS.USER_ADDRESS_LIST).parentNode;
+    var userFirstName = document.querySelector(SELECTORS.USER_FIRST_NAME);
+    var userLastName = document.querySelector(SELECTORS.USER_LAST_NAME);
+    var userEmail = document.querySelector(SELECTORS.USER_EMAIL);
+    var mapImage = document.querySelector(SELECTORS.MAP_IMAGE);
+    var loadingOverlay = document.querySelector(SELECTORS.LOADING_OVERLAY);
+    var loadingImage = document.querySelector(SELECTORS.LOADING_IMAGE);
+    var config_CLASSES = {
+        ACTIVE_SHIPPICK_BTN: "js-de-active-pickship-btn",
+        ACTIVE_PICKUP_LOCATION: "js-de-active-location"
+    };
+    var CLASSES = config_CLASSES;
     var updateUI = function() {
         var deliveryMethod = STATE.deliveryMethod;
-        "pickup" === deliveryMethod && (hideElements(deliveryElements), showElements([ pickupContent ]), 
-        hideElements([ continueBtn ]), showElements([ document.querySelector(".js-de-payment-continue") ]), 
-        pickupToggleBtn.classList.add("js-de-active-pickship-btn"), shipToggleBtn.classList.remove("js-de-active-pickship-btn"), 
-        document.querySelector(".section--shipping-address .section__header h2").textContent = "Pickup information", 
-        hideElements([ document.querySelector("#checkout_shipping_address_id").parentNode ])), 
-        "ship" === deliveryMethod && (shipToggleBtn.classList.add("js-de-active-pickship-btn"), 
-        pickupToggleBtn.classList.remove("js-de-active-pickship-btn"), showElements(deliveryElements), 
-        hideElements([ pickupContent ]), hideElements([ document.querySelector(".js-de-payment-continue") ]), 
-        showElements([ continueBtn ]), document.querySelector(".section--shipping-address .section__header h2").textContent = "Shipping address", 
-        showElements([ document.querySelector("#checkout_shipping_address_id").parentNode ]));
+        "pickup" === deliveryMethod && (pickupToggleBtn.classList.add(CLASSES.ACTIVE_SHIPPICK_BTN), 
+        shipToggleBtn.classList.remove(CLASSES.ACTIVE_SHIPPICK_BTN), hideElements(deliveryElements), 
+        hideElements([ continueBtn, shippingAddressHeader, userAddressList ]), showElements([ pickupContent ]), 
+        showElements([ document.querySelector(SELECTORS.PICKUP_CONTINUE_BTN) ])), "ship" === deliveryMethod && (shipToggleBtn.classList.add(CLASSES.ACTIVE_SHIPPICK_BTN), 
+        pickupToggleBtn.classList.remove(CLASSES.ACTIVE_SHIPPICK_BTN), hideElements([ pickupContent ]), 
+        hideElements([ document.querySelector(SELECTORS.PICKUP_CONTINUE_BTN) ]), showElements(deliveryElements), 
+        showElements([ continueBtn, shippingAddressHeader, userAddressList ]), shippingAddressHeader.textContent = "Shipping address");
     };
     var js_cookie = (function(module, exports) {
         module.exports = function() {
@@ -163,29 +188,70 @@
         exports: {}
     }), module.exports);
     var module;
-    var test;
-    !function(type) {
+    var storageAvailableTest = function(type) {
         var storage;
         try {
-            storage = window.localStorage;
+            storage = window[type];
             var x = "__storage_test__";
-            storage.setItem(x, x), storage.removeItem(x);
+            return storage.setItem(x, x), storage.removeItem(x), !0;
         } catch (error) {
             return error instanceof DOMException && (22 === error.code || 1014 === error.code || "QuotaExceededError" === error.name || "NS_ERROR_DOM_QUOTA_REACHED" === error.name) && 0 !== storage.length;
         }
-    }(), js_cookie.set(test = "persistent-cart-test", "foo"), js_cookie.get(test), js_cookie.remove(test), 
-    js_cookie.get(test);
-    var setObjectInLocalStorage = function(name, value) {
-        return localStorage.setItem(name, JSON.stringify(value));
     };
-    var getObjectFromLocalStorage = function(name) {
-        return JSON.parse(localStorage.getItem(name));
+    storageAvailableTest("localStorage");
+    var sessionStorageAvailable = storageAvailableTest("sessionStorage");
+    var test;
+    js_cookie.set(test = "persistent-cart-test", "foo"), js_cookie.get(test), js_cookie.remove(test), 
+    js_cookie.get(test);
+    var setObjectInSessionStorage = function(name, value) {
+        return sessionStorage.setItem(name, JSON.stringify(value));
+    };
+    var getObjectFromSessionStorage = function(name) {
+        return JSON.parse(sessionStorage.getItem(name));
     };
     var getCurrentLocation = fetch("https://api.ipstack.com/check?access_key=23cb2745b5ee35580d6f00373f14f868&legacy=1").then(function(res) {
         return res.json();
     });
+    var CLASSES$1 = config_CLASSES, ASSET_BASE_URL = "//cdn.shopify.com/s/files/1/1752/4727/t/84/assets/";
     var contactInformation_updateUI = updateUI;
-    var config = {
+    var SELECTORS$1 = {
+        CUSTOM_UI_SELECTORS: {
+            PICKUP_SHIPPING_METHOD_BLOCKS: [ "shopify-In%20Store%20Pickup-0.00", "empty-test" ].map(function(selector) {
+                return '[data-shipping-method="' + selector + '"]';
+            }),
+            LOADING_OVERLAY: ".de-loading-overlay",
+            LOADING_IMAGE: ".de-checkout-loader"
+        }
+    };
+    var pickupShippingMethods = SELECTORS$1.PICKUP_SHIPPING_METHOD_BLOCKS.map(function(selector) {
+        return !!elementExists(document.querySelector(selector)) && document.querySelector(selector).parentNode;
+    });
+    var loadingOverlay$1 = document.querySelector(SELECTORS$1.LOADING_OVERLAY);
+    var loadingImage$1 = document.querySelector(SELECTORS$1.LOADING_IMAGE);
+    var SELECTORS$2 = {
+        SHOPIFY_UI_SELECTORS: {
+            BILLING_ADDRESS_CHOICES: {
+                sameAsShipping: "[data-same-billing-address]",
+                differentThanShipping: "[data-different-billing-address]"
+            },
+            SHIP_TO_LABEL: ".review-block:nth-child(2) .review-block__label",
+            SHIP_TO_MAP: ".map",
+            LOADING_OVERLAY: ".de-loading-overlay",
+            LOADING_IMAGE: ".de-checkout-loader"
+        }
+    };
+    var billingAddressChoices = Object.keys(SELECTORS$2.BILLING_ADDRESS_CHOICES).map(function(key) {
+        return document.querySelector(SELECTORS$2.BILLING_ADDRESS_CHOICES[key]);
+    });
+    var shipToLabel = document.querySelector(SELECTORS$2.SHIP_TO_LABEL);
+    var shipToMap = document.querySelector(SELECTORS$2.SHIP_TO_MAP);
+    var loadingOverlay$2 = document.querySelector(SELECTORS$2.LOADING_OVERLAY);
+    var loadingImage$2 = document.querySelector(SELECTORS$2.LOADING_IMAGE);
+    var SELECTORS$3 = _extends({}, {
+        SHIP_TO_MAP: ".map"
+    });
+    var shipToMap$1 = document.querySelector(SELECTORS$3.SHIP_TO_MAP);
+    var config$1 = {
         SELECTORS: {
             PREFIX: ".js-de-",
             get CART() {
@@ -258,7 +324,7 @@
                         DATA_TREKKIE_ID: {
                             TREKKIE_NAME: "data-trekkie-id",
                             get TREKKIE_VALUE() {
-                                return config.SELECTORS.CHECKOUT.CLASSES.BREADCRUMBS.BC_ROOT + "_cart_link";
+                                return config$1.SELECTORS.CHECKOUT.CLASSES.BREADCRUMBS.BC_ROOT + "_cart_link";
                             }
                         }
                     }
@@ -275,7 +341,7 @@
             cache: "no-store"
         }
     };
-    var _config$SELECTORS$CHE = config.SELECTORS.CHECKOUT, CART_TEXT = _config$SELECTORS$CHE.TEXT.CART_TEXT, _config$SELECTORS$CHE2 = _config$SELECTORS$CHE.CLASSES, LOGO = _config$SELECTORS$CHE2.LOGO, _config$SELECTORS$CHE3 = _config$SELECTORS$CHE2.STEPS, STEP_FOOTER = _config$SELECTORS$CHE3.STEP_FOOTER, STEP_FOOTER_PREVIOUS_LINK = _config$SELECTORS$CHE3.STEP_FOOTER_PREVIOUS_LINK, _config$SELECTORS$CHE4 = _config$SELECTORS$CHE2.BREADCRUMBS, BC_ROOT = _config$SELECTORS$CHE4.BC_ROOT, BC_LINK = _config$SELECTORS$CHE4.BC_LINK, BC_ITEM = _config$SELECTORS$CHE4.BC_ITEM, BC_ITEM_COMPLETED = _config$SELECTORS$CHE4.BC_ITEM_COMPLETED, BC_CHEVRON_ICON = _config$SELECTORS$CHE4.BC_CHEVRON_ICON, _config$SELECTORS$CHE5 = _config$SELECTORS$CHE.ATTRIBUTES.BREADCRUMBS.DATA_TREKKIE_ID, TREKKIE_NAME = _config$SELECTORS$CHE5.TREKKIE_NAME, TREKKIE_VALUE = _config$SELECTORS$CHE5.TREKKIE_VALUE, _config$SELECTORS$CHE6 = _config$SELECTORS$CHE.URLS, CART_URL = _config$SELECTORS$CHE6.CART_URL, ROOT_URL = _config$SELECTORS$CHE6.ROOT_URL;
+    var _config$SELECTORS$CHE = config$1.SELECTORS.CHECKOUT, CART_TEXT = _config$SELECTORS$CHE.TEXT.CART_TEXT, _config$SELECTORS$CHE2 = _config$SELECTORS$CHE.CLASSES, LOGO = _config$SELECTORS$CHE2.LOGO, _config$SELECTORS$CHE3 = _config$SELECTORS$CHE2.STEPS, STEP_FOOTER = _config$SELECTORS$CHE3.STEP_FOOTER, STEP_FOOTER_PREVIOUS_LINK = _config$SELECTORS$CHE3.STEP_FOOTER_PREVIOUS_LINK, _config$SELECTORS$CHE4 = _config$SELECTORS$CHE2.BREADCRUMBS, BC_ROOT = _config$SELECTORS$CHE4.BC_ROOT, BC_LINK = _config$SELECTORS$CHE4.BC_LINK, BC_ITEM = _config$SELECTORS$CHE4.BC_ITEM, BC_ITEM_COMPLETED = _config$SELECTORS$CHE4.BC_ITEM_COMPLETED, BC_CHEVRON_ICON = _config$SELECTORS$CHE4.BC_CHEVRON_ICON, _config$SELECTORS$CHE5 = _config$SELECTORS$CHE.ATTRIBUTES.BREADCRUMBS.DATA_TREKKIE_ID, TREKKIE_NAME = _config$SELECTORS$CHE5.TREKKIE_NAME, TREKKIE_VALUE = _config$SELECTORS$CHE5.TREKKIE_VALUE, _config$SELECTORS$CHE6 = _config$SELECTORS$CHE.URLS, CART_URL = _config$SELECTORS$CHE6.CART_URL, ROOT_URL = _config$SELECTORS$CHE6.ROOT_URL;
     var checkoutStep$1 = STATE.checkoutStep, checkoutPage$1 = STATE.checkoutPage;
     var isContactInfoStep = function() {
         return checkoutStep$1 === CHECKOUT_STEPS.CONTACT_INFORMATION;
@@ -288,154 +354,142 @@
     };
     document.addEventListener("page:load", function() {
         var stepFooter;
-        STATE.deliveryMethod = "pickup" === getObjectFromLocalStorage("delivery_method") ? "pickup" : "ship", 
-        getObjectFromLocalStorage("pickup_store") && (STATE.pickupStore = getObjectFromLocalStorage("pickup_store")), 
-        function() {
-            var mapEl = document.querySelector(".map");
-            if (STATE.checkoutStep === CHECKOUT_STEPS.CONTACT_INFORMATION && function() {
-                pickupToggleBtn.addEventListener("click", function(event) {
-                    STATE.deliveryMethod = "pickup", pickupToggleBtn.classList.toggle("js-de-active-pickship-btn"), 
-                    shipToggleBtn.classList.toggle("js-de-active-pickship-btn"), setObjectInLocalStorage("delivery_method", "pickup"), 
-                    updateUI();
-                }), shipToggleBtn.addEventListener("click", function(event) {
-                    STATE.deliveryMethod = "ship", pickupToggleBtn.classList.toggle("js-de-active-pickship-btn"), 
-                    shipToggleBtn.classList.toggle("js-de-active-pickship-btn"), setObjectInLocalStorage("delivery_method", "ship"), 
-                    updateUI();
-                }), document.querySelector(".js-de-payment-continue").addEventListener("click", function(event) {}), 
-                fetch("https://decathlon-proxy.herokuapp.com/api/shiphawk").then(function(res) {
-                    return res.json();
-                }).then(function(data) {
-                    !function(locations) {
-                        for (var _isArray = Array.isArray(_iterator = [ {
-                            id: "adr_GezSSC9M",
-                            name: "San Francisco",
-                            company: "Decathlon",
-                            street1: "735 Market St",
-                            street2: "",
-                            city: "San Francisco",
-                            state: "CA",
-                            zip: "94103",
-                            country: "US",
-                            phone_number: "(123) 000 0000",
-                            email: "fakhar.nisa@decathlon.com",
-                            is_residential: !1,
-                            is_warehouse: !1,
-                            address_type: null,
-                            validated: !1,
-                            code: "135"
-                        }, {
-                            id: "adr_XhPJyRNn",
-                            name: "Emeryville",
-                            company: "Decathlon",
-                            street1: "3938 Horton St",
-                            street2: null,
-                            city: "Emeryville",
-                            state: "CA",
-                            zip: "94608",
-                            country: "US",
-                            phone_number: null,
-                            email: null,
-                            is_residential: !1,
-                            is_warehouse: !1,
-                            address_type: null,
-                            validated: !1,
-                            code: null
-                        } ]), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator](); ;) {
-                            var _ref;
-                            if (_isArray) {
-                                if (_i >= _iterator.length) break;
-                                _ref = _iterator[_i++];
-                            } else {
-                                if ((_i = _iterator.next()).done) break;
-                                _ref = _i.value;
-                            }
-                            var location = _ref;
-                            var activeCard = !1;
-                            location.id === STATE.pickupStore && (activeCard = !0);
-                            var locationNode = document.createElement("li");
-                            locationNode.innerHTML = '\n      <div class="js-de-pickup-location de-pickup-location' + (activeCard ? " js-de-active-location" : "") + '"\n      data-id="' + location.id + '"\n      data-name="' + location.name + '"\n      data-street1="' + location.street1 + '"\n      data-street2="' + location.street2 + '"\n      data-city="' + location.city + '"\n      data-state="' + location.state + '"\n      data-zip="' + location.zip + '">\n      <div class="de-pickup-location-time">Pickup Tomorrow</div>\n      <div><span class="de-pickup-location-name">' + location.name + "</span> " + location.street1 + " " + (null === location.street2 ? "" : location.street2) + '</div>\n\n      <div class="de-pickup-location-hours">9:00 AM - 8:00 PM</div>\n    </div>', 
-                            pickupLocationList.appendChild(locationNode);
-                        }
-                        document.querySelectorAll(".js-de-pickup-location").forEach(function(location) {
-                            location.addEventListener("click", function(e) {
-                                if (this.classList.contains("js-de-active-location")) console.log("already active"); else {
-                                    var activeLocation = document.querySelector(".js-de-active-location");
-                                    null !== activeLocation && activeLocation.classList.remove("js-de-active-location"), 
-                                    this.classList.add("js-de-active-location");
-                                    var pickupStore = this.getAttribute("data-id");
-                                    STATE.pickupStore = pickupStore, setObjectInLocalStorage("pickup_store", pickupStore), 
-                                    document.querySelector(".js-de-pickup-location-map-img").src = "//cdn.shopify.com/s/files/1/1752/4727/t/79/assets/" + pickupStore + ".jpg?v=3";
-                                }
+        STATE.deliveryMethod = "pickup" === getObjectFromSessionStorage("delivery_method") ? "pickup" : "ship", 
+        getObjectFromSessionStorage("pickup_store") && (STATE.pickupStore = getObjectFromSessionStorage("pickup_store")), 
+        STATE.checkoutStep === CHECKOUT_STEPS.CONTACT_INFORMATION && function() {
+            pickupToggleBtn.addEventListener("click", function(event) {
+                STATE.deliveryMethod = "pickup", pickupToggleBtn.classList.toggle(CLASSES$1.ACTIVE_SHIPPICK_BTN), 
+                shipToggleBtn.classList.toggle(CLASSES$1.ACTIVE_SHIPPICK_BTN), sessionStorageAvailable && setObjectInSessionStorage("delivery_method", "pickup"), 
+                updateUI();
+            }), shipToggleBtn.addEventListener("click", function(event) {
+                STATE.deliveryMethod = "ship", pickupToggleBtn.classList.toggle(CLASSES$1.ACTIVE_SHIPPICK_BTN), 
+                shipToggleBtn.classList.toggle(CLASSES$1.ACTIVE_SHIPPICK_BTN), sessionStorageAvailable && setObjectInSessionStorage("delivery_method", "ship"), 
+                updateUI();
+            }), document.querySelector(SELECTORS.PICKUP_CONTINUE_BTN).addEventListener("click", function(event) {}), 
+            null !== STATE.pickupStore && (mapImage.src = "" + ASSET_BASE_URL + STATE.pickupStore + ".jpg?v=4");
+            var paymentBtnCont = document.querySelector(SELECTORS.PICKUP_CONTINUE_BTN_CONTAINER);
+            var paymentBtn = document.querySelector(SELECTORS.PICKUP_CONTINUE_BTN);
+            var paymentBtnHTML = paymentBtnCont.innerHTML;
+            paymentBtnCont.removeChild(paymentBtn), continueBtn.insertAdjacentHTML("afterend", paymentBtnHTML), 
+            (paymentBtn = document.querySelector(SELECTORS.PICKUP_CONTINUE_BTN)).addEventListener("click", function(e) {
+                e.preventDefault(), this.classList.contains("submitted") || ("" === userFirstName.value || "" === userLastName.value || "" === userEmail.value ? ("" === userFirstName.value && (userFirstName.parentNode.parentNode.classList.add("field--error"), 
+                userFirstName.addEventListener("blur", function() {
+                    userFirstName.parentNode.parentNode.classList.remove("field--error");
+                })), "" === userLastName.value && (userLastName.parentNode.parentNode.classList.add("field--error"), 
+                userLastName.addEventListener("blur", function() {
+                    userLastName.parentNode.parentNode.classList.remove("field--error");
+                })), "" === userEmail.value && (userEmail.parentNode.parentNode.classList.add("field--error"), 
+                userEmail.addEventListener("blur", function() {
+                    userEmail.parentNode.parentNode.classList.remove("field--error");
+                }))) : (this.classList.add = "submitted", document.querySelector(".js-de-payment-continue-spinner").style.animation = "rotate 0.5s linear infinite", 
+                document.querySelector(".js-de-payment-continue-spinner").style.opacity = "1", document.querySelector(".js-de-payment-continue-copy").style.opacity = "0", 
+                function() {
+                    var checkoutKey = document.querySelector('[name="shopify-checkout-authorization-token"]').getAttribute("content");
+                    var selectedStore = document.querySelector(SELECTORS.ACTIVE_PICKUP_LOCATION);
+                    var selectedStoreData = {};
+                    selectedStoreData.firstName = userFirstName.value, selectedStoreData.lastName = userLastName.value, 
+                    selectedStoreData.name = selectedStore.dataset.name, selectedStoreData.street1 = selectedStore.dataset.street1, 
+                    selectedStoreData.street2 = selectedStore.dataset.street2, selectedStoreData.city = selectedStore.dataset.city, 
+                    selectedStoreData.state = selectedStore.dataset.state, selectedStoreData.zip = selectedStore.dataset.zip;
+                    var checkoutGID = btoa("gid://shopify/Checkout/" + window.Shopify.Checkout.token + "?key=" + checkoutKey);
+                    fetch("https://testing-decathlon-usa.myshopify.com/api/graphql", {
+                        method: "POST",
+                        headers: {
+                            "x-shopify-storefront-access-token": "8e681070902104a65649736d6b1f7bd0",
+                            "content-type": "application/json"
+                        },
+                        body: '{"query":"\\n\\nmutation checkoutShippingAddressUpdateV2($shippingAddress: MailingAddressInput!, $checkoutId: ID!) {\\n  checkoutShippingAddressUpdateV2(shippingAddress: $shippingAddress, checkoutId: $checkoutId) {\\n    checkoutUserErrors {\\n      code\\n      field\\n      message\\n    }\\n    checkout {\\n      id\\n      webUrl\\n      shippingAddress {\\n        company\\n        firstName\\n        lastName\\n        address1\\n        province\\n        country\\n        zip\\n      }\\n    }\\n  }\\n}","variables":{"shippingAddress":{"company":"' + selectedStoreData.name + '","lastName":"' + selectedStoreData.lastName + '","firstName":"' + selectedStoreData.firstName + '","address1":"' + selectedStoreData.street1 + '","province":"' + selectedStoreData.state + '","country":"United States","zip":"' + selectedStoreData.zip + '","city":"' + selectedStoreData.city + '"},"checkoutId":"' + checkoutGID + '"},"operationName":"checkoutShippingAddressUpdateV2"}'
+                    }).then(function(res) {
+                        return res.json();
+                    }).then(function(data) {
+                        !function(checkoutGID, checkoutKey) {
+                            fetch("https://testing-decathlon-usa.myshopify.com/api/graphql", {
+                                method: "POST",
+                                headers: {
+                                    "x-shopify-storefront-access-token": "8e681070902104a65649736d6b1f7bd0",
+                                    "content-type": "application/json"
+                                },
+                                body: '{"query":"mutation checkoutEmailUpdateV2($checkoutId: ID!, $email: String!) {\\n  checkoutEmailUpdateV2(checkoutId: $checkoutId, email: $email) {\\n    checkout {\\n      id\\n      webUrl\\n    }\\n    checkoutUserErrors {\\n      code\\n      field\\n      message\\n    }\\n  }\\n}","variables":{"email":"' + userEmail.value + '","checkoutId":"' + checkoutGID + '"},"operationName":"checkoutEmailUpdateV2"}'
+                            }).then(function(res) {
+                                return res.json();
+                            }).then(function(data) {
+                                console.log(data), function(checkoutGID, checkoutKey) {
+                                    fetch("https://testing-decathlon-usa.myshopify.com/api/graphql", {
+                                        method: "POST",
+                                        headers: {
+                                            "x-shopify-storefront-access-token": "8e681070902104a65649736d6b1f7bd0",
+                                            "content-type": "application/json"
+                                        },
+                                        body: '{"query":"mutation checkoutShippingLineUpdate($checkoutId: ID!, $shippingRateHandle: String!) {\\n  checkoutShippingLineUpdate(checkoutId: $checkoutId, shippingRateHandle: $shippingRateHandle) {\\n    checkout {\\n      id\\n      webUrl\\n    }\\n    checkoutUserErrors {\\n      code\\n      field\\n      message\\n    }\\n  }\\n}","variables":{"checkoutId":"' + checkoutGID + '","shippingRateHandle":"shopify-In%20Store%20Pickup-0.00"},"operationName":"checkoutShippingLineUpdate"}'
+                                    }).then(function(res) {
+                                        return res.json();
+                                    }).then(function(data) {
+                                        var checkoutURL = "https://testing-decathlon-usa.myshopify.com/17524727/checkouts/" + window.Shopify.Checkout.token + "?key=" + checkoutKey;
+                                        window.location.href = checkoutURL;
+                                    });
+                                }(checkoutGID, checkoutKey);
                             });
-                        }), getCurrentLocation.then(function(currentLocation) {
-                            !function(currentLocation) {
-                                showElements("California" === currentLocation.region_name || "pickup" === STATE.deliveryMethod ? [ pickupToggleBtn, shipToggleBtn, pickupContent ] : [ document.querySelector(".de-visit-cal-container") ]);
-                            }(currentLocation);
-                        });
-                    }();
-                }), null !== STATE.pickupStore && (document.querySelector(".js-de-pickup-location-map-img").src = "//cdn.shopify.com/s/files/1/1752/4727/t/79/assets/" + STATE.pickupStore + ".jpg?v=3");
-                var paymentBtnCont = document.querySelector(".js-de-payment-continue-container");
-                var paymentBtn = document.querySelector(".js-de-payment-continue");
-                var paymentBtnHTML = paymentBtnCont.innerHTML;
-                paymentBtnCont.removeChild(paymentBtn), continueBtn.insertAdjacentHTML("afterend", paymentBtnHTML), 
-                (paymentBtn = document.querySelector(".js-de-payment-continue")).addEventListener("click", function(e) {
-                    e.preventDefault(), function() {
-                        var checkoutKey = document.querySelector('[name="shopify-checkout-authorization-token"]').getAttribute("content");
-                        var selectedStore = document.querySelector(".js-de-active-location");
-                        var selectedStoreData = {};
-                        selectedStoreData.firstName = document.querySelector("#checkout_shipping_address_first_name").value, 
-                        selectedStoreData.lastName = document.querySelector("#checkout_shipping_address_last_name").value, 
-                        selectedStoreData.name = selectedStore.dataset.name, selectedStoreData.street1 = selectedStore.dataset.street1, 
-                        selectedStoreData.street2 = selectedStore.dataset.street2, selectedStoreData.city = selectedStore.dataset.city, 
-                        selectedStoreData.state = selectedStore.dataset.state, selectedStoreData.zip = selectedStore.dataset.zip;
-                        var checkoutGID = btoa("gid://shopify/Checkout/" + window.Shopify.Checkout.token + "?key=" + checkoutKey);
-                        fetch("https://testing-decathlon-usa.myshopify.com/api/graphql", {
-                            method: "POST",
-                            headers: {
-                                "x-shopify-storefront-access-token": "8e681070902104a65649736d6b1f7bd0",
-                                "content-type": "application/json"
-                            },
-                            body: '{"query":"\\n\\nmutation checkoutShippingAddressUpdateV2($shippingAddress: MailingAddressInput!, $checkoutId: ID!) {\\n  checkoutShippingAddressUpdateV2(shippingAddress: $shippingAddress, checkoutId: $checkoutId) {\\n    checkoutUserErrors {\\n      code\\n      field\\n      message\\n    }\\n    checkout {\\n      id\\n      webUrl\\n      shippingAddress {\\n        company\\n        firstName\\n        lastName\\n        address1\\n        province\\n        country\\n        zip\\n      }\\n    }\\n  }\\n}","variables":{"shippingAddress":{"company":"' + selectedStoreData.name + '","lastName":"' + selectedStoreData.lastName + '","firstName":"' + selectedStoreData.firstName + '","address1":"' + selectedStoreData.street1 + '","province":"' + selectedStoreData.state + '","country":"United States","zip":"' + selectedStoreData.zip + '","city":"' + selectedStoreData.city + '"},"checkoutId":"' + checkoutGID + '"},"operationName":"checkoutShippingAddressUpdateV2"}'
-                        }).then(function(res) {
-                            return res.json();
-                        }).then(function(data) {
-                            console.log(data), function(checkoutGID, checkoutKey) {
-                                var userEmail = document.querySelector("#checkout_email").value;
-                                fetch("https://testing-decathlon-usa.myshopify.com/api/graphql", {
-                                    method: "POST",
-                                    headers: {
-                                        "x-shopify-storefront-access-token": "8e681070902104a65649736d6b1f7bd0",
-                                        "content-type": "application/json"
-                                    },
-                                    body: '{"query":"mutation checkoutEmailUpdateV2($checkoutId: ID!, $email: String!) {\\n  checkoutEmailUpdateV2(checkoutId: $checkoutId, email: $email) {\\n    checkout {\\n      id\\n      webUrl\\n    }\\n    checkoutUserErrors {\\n      code\\n      field\\n      message\\n    }\\n  }\\n}","variables":{"email":"' + userEmail + '","checkoutId":"' + checkoutGID + '"},"operationName":"checkoutEmailUpdateV2"}'
-                                }).then(function(res) {
-                                    return res.json();
-                                }).then(function(data) {
-                                    console.log(data), function(checkoutGID, checkoutKey) {
-                                        fetch("https://testing-decathlon-usa.myshopify.com/api/graphql", {
-                                            method: "POST",
-                                            headers: {
-                                                "x-shopify-storefront-access-token": "8e681070902104a65649736d6b1f7bd0",
-                                                "content-type": "application/json"
-                                            },
-                                            body: '{"query":"mutation checkoutShippingLineUpdate($checkoutId: ID!, $shippingRateHandle: String!) {\\n  checkoutShippingLineUpdate(checkoutId: $checkoutId, shippingRateHandle: $shippingRateHandle) {\\n    checkout {\\n      id\\n      webUrl\\n    }\\n    checkoutUserErrors {\\n      code\\n      field\\n      message\\n    }\\n  }\\n}","variables":{"checkoutId":"' + checkoutGID + '","shippingRateHandle":"shopify-In%20Store%20Pickup-0.00"},"operationName":"checkoutShippingLineUpdate"}'
-                                        }).then(function(res) {
-                                            return res.json();
-                                        }).then(function(data) {
-                                            var checkoutURL = "https://testing-decathlon-usa.myshopify.com/17524727/checkouts/" + window.Shopify.Checkout.token + "?key=" + checkoutKey;
-                                            console.log(checkoutURL), window.location.href = checkoutURL;
-                                        });
-                                    }(checkoutGID, checkoutKey);
-                                });
-                            }(checkoutGID, checkoutKey);
-                        });
-                    }();
+                        }(checkoutGID, checkoutKey);
+                    });
+                }()));
+            }), function(locations) {
+                for (var _isArray = Array.isArray(_iterator = [ {
+                    id: "adr_sf",
+                    name: "San Francisco",
+                    company: "Decathlon",
+                    street1: "735 Market St",
+                    street2: "",
+                    city: "San Francisco",
+                    state: "CA",
+                    zip: "94103",
+                    country: "US",
+                    phone_number: "(123) 000 0000",
+                    email: "fakhar.nisa@decathlon.com",
+                    is_residential: !1,
+                    is_warehouse: !1,
+                    address_type: null,
+                    validated: !1,
+                    code: "135"
+                } ]), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator](); ;) {
+                    var _ref;
+                    if (_isArray) {
+                        if (_i >= _iterator.length) break;
+                        _ref = _iterator[_i++];
+                    } else {
+                        if ((_i = _iterator.next()).done) break;
+                        _ref = _i.value;
+                    }
+                    var location = _ref;
+                    var activeCard = location.id === STATE.pickupStore || !1;
+                    var locationNode = document.createElement("li");
+                    locationNode.classList.add("de-u-size1of2"), locationNode.innerHTML = '\n      <div class="js-de-pickup-location de-pickup-location ' + (activeCard ? CLASSES$1.ACTIVE_PICKUP_LOCATION : "") + '"\n      data-id="' + location.id + '"\n      data-name="' + location.name + '"\n      data-street1="' + location.street1 + '"\n      data-street2="' + location.street2 + '"\n      data-city="' + location.city + '"\n      data-state="' + location.state + '"\n      data-zip="' + location.zip + '">\n      <p class="de-pickup-location-time de-u-textBlack de-u-textSemibold de-u-textGrow1">Pickup Tomorrow</p>\n      <p><span class="de-pickup-location-name de-u-textSemibold de-u-textBlack">' + location.name + "</span> " + location.street1 + " " + (null === location.street2 ? "" : location.street2) + '</p>\n\n      <p class="de-pickup-location-hours de-u-textShrink2">9:00 AM - 8:00 PM</p>\n    </div>', 
+                    pickupLocationList.appendChild(locationNode);
+                }
+                document.querySelectorAll(SELECTORS.PICKUP_LOCATION).forEach(function(location) {
+                    location.addEventListener("click", function(e) {
+                        if (!this.classList.contains(CLASSES$1.ACTIVE_PICKUP_LOCATION)) {
+                            var activeLocation = document.querySelector(SELECTORS.ACTIVE_PICKUP_LOCATION);
+                            null !== activeLocation && activeLocation.classList.remove(CLASSES$1.ACTIVE_PICKUP_LOCATION), 
+                            this.classList.add(CLASSES$1.ACTIVE_PICKUP_LOCATION);
+                            var pickupStore = this.getAttribute("data-id");
+                            STATE.pickupStore = pickupStore, sessionStorageAvailable && setObjectInSessionStorage("pickup_store", pickupStore), 
+                            mapImage.src = "" + ASSET_BASE_URL + pickupStore + ".jpg?v=4";
+                        }
+                    });
+                }), getCurrentLocation.then(function(currentLocation) {
+                    !function(currentLocation) {
+                        "California" === currentLocation.region_name || "pickup" === STATE.deliveryMethod ? (showElements([ pickupToggleBtn, shipToggleBtn ]), 
+                        "pickup" === STATE.deliveryMethod && showElements([ pickupContent ])) : showElements([ document.querySelector(".de-visit-cal-container") ]), 
+                        hideElements([ loadingOverlay, loadingImage ]);
+                    }(currentLocation);
                 });
-            }(), STATE.checkoutStep === CHECKOUT_STEPS.SHIPPING_METHOD && "ship" === STATE.deliveryMethod && (document.getElementById("checkout_shipping_rate_id_parcelify-pickup-0_00").parentNode.parentNode.parentNode.style.display = "none"), 
-            STATE.checkoutStep === CHECKOUT_STEPS.PAYMENT_METHOD && "pickup" === STATE.deliveryMethod && (document.querySelector("[data-different-billing-address]").style.display = "none", 
-            document.querySelector("[data-same-billing-address]").style.display = "none", document.querySelector(".review-block:nth-child(2) .review-block__label").innerHTML = "Pickup at", 
-            mapEl && (mapEl.style.display = "none")), STATE.checkoutStep === CHECKOUT_STEPS.THANK_YOU && "pickup" === STATE.deliveryMethod) {
-                mapEl && (mapEl.style.display = "none");
+            }();
+        }(), STATE.checkoutStep === CHECKOUT_STEPS.SHIPPING_METHOD && (hideElements([ loadingOverlay$1, loadingImage$1 ]), 
+        "ship" === STATE.deliveryMethod && hideElements(pickupShippingMethods)), STATE.checkoutStep === CHECKOUT_STEPS.PAYMENT_METHOD && (hideElements([ loadingOverlay$2, loadingImage$2 ]), 
+        "pickup" === STATE.deliveryMethod && (hideElements(billingAddressChoices), hideElements([ shipToMap ]), 
+        shipToLabel.innerHTML = "Pickup at")), STATE.checkoutStep === CHECKOUT_STEPS.THANK_YOU && function() {
+            if ("pickup" === STATE.deliveryMethod) {
+                hideElements(shipToMap$1);
                 var headings = document.querySelectorAll("h3");
                 [].forEach.call(headings, function(heading) {
                     "Shipping address" === heading.textContent && (heading.textContent = "Pickup address");

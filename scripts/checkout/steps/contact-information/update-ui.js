@@ -22,11 +22,9 @@ const updateUI = () => {
     pickupToggleBtn.classList.add(CLASSES.ACTIVE_SHIPPICK_BTN);
     shipToggleBtn.classList.remove(CLASSES.ACTIVE_SHIPPICK_BTN);
     hideElements(deliveryElements);
-    hideElements([continueBtn]);
-    hideElements([userAddressList]);
+    hideElements([continueBtn, shippingAddressHeader, userAddressList]);
     showElements([pickupContent]);
     showElements([document.querySelector(SELECTORS.PICKUP_CONTINUE_BTN)]);
-    shippingAddressHeader.textContent = COPY.PICKUP_ADDRESS_HEADING;
   }
   if (deliveryMethod === DELIVERY_METHODS.SHIP) {
     shipToggleBtn.classList.add(CLASSES.ACTIVE_SHIPPICK_BTN);
@@ -34,8 +32,7 @@ const updateUI = () => {
     hideElements([pickupContent]);
     hideElements([document.querySelector(SELECTORS.PICKUP_CONTINUE_BTN)]);
     showElements(deliveryElements);
-    showElements([continueBtn]);
-    showElements([userAddressList]);
+    showElements([continueBtn, shippingAddressHeader, userAddressList]);
     shippingAddressHeader.textContent = COPY.SHIPPING_ADDRESS_HEADING;
   }
 };

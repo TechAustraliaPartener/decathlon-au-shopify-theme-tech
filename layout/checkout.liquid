@@ -44,6 +44,9 @@
     <div class="content" data-content>
       <div class="wrap">
         <div class="main" role="main">
+          <div class="js-de-loading-overlay de-loading-overlay">
+            <img src="{{ 'decathlon-loader.gif' | asset_url }}" class="de-checkout-loader" />
+          </div>
           <div class="main__header">
             {{ content_for_logo }}
             {{ breadcrumb }}
@@ -56,19 +59,19 @@
               will show and add UI functionality.
             {% endcomment %}
             <div class="de-Grid de-Grid--withGutter">
-              <div class="de-pickship-btn-container de-u-size1of2">
+              <div class="de-pickship-btn-container de-u-size1of2 de-u-spaceBottom">
                 <button class="btn js-de-toggle-shipping de-pickship-btn de-u-hidden">
                   <span class="btn__content">{% include 'ship-icon' %} Ship to Home</span>
                 </button>
               </div>
-              <div class="de-pickship-btn-container de-u-size1of2">
+              <div class="de-pickship-btn-container de-u-size1of2 de-u-spaceBottom">
                 <button class="btn js-de-toggle-pickup de-pickship-btn de-u-hidden">
                   <span class="btn__content">{% include 'pickup-icon' %} Pickup in Store</span>
                 </button>
               </div>
             </div>
 
-            <div class="js-de-pickup-content de-pickup-content de-u-hidden de-u-spaceTop1">
+            <div class="js-de-pickup-content de-pickup-content de-u-hidden">
               <div class="js-de-pickup-location-map de-pickup-location-map">
                 <img src="{{ 'no-selection-map2.jpg' | asset_url }}" class="js-de-pickup-location-map-img de-pickup-location-map-img" alt="">
               </div>

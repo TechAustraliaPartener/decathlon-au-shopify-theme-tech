@@ -39,3 +39,5 @@ export const userFirstName = document.querySelector(SELECTORS.USER_FIRST_NAME);
 export const userLastName = document.querySelector(SELECTORS.USER_LAST_NAME);
 export const userEmail = document.querySelector(SELECTORS.USER_EMAIL);
 export const mapImage = document.querySelector(SELECTORS.MAP_IMAGE);
+export const loadingOverlay = document.querySelector(SELECTORS.LOADING_OVERLAY);
+export const loadingImage = document.querySelector(SELECTORS.LOADING_IMAGE);
