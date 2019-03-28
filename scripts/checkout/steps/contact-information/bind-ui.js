@@ -142,7 +142,7 @@ const buildStoreList = locations => {
  * @return calls next step in graphql chain: updateEmail
  */
 const updateCheckout = () => {
-  // Get "checkout_secret" from meta tags to use in contruction of GID
+  // Get "checkout_secret" from meta tags to use in construction of GID
   // @TODO move to config
   const checkoutKey = document
     .querySelector('[name="shopify-checkout-authorization-token"]')
