@@ -26,7 +26,7 @@ import config from '../../config';
 const { CLASSES, ASSET_BASE_URL } = config;
 
 /**
- * Binds click event to location cards seperately
+ * Binds click event to location cards separately
  * since they are dynamically added after the DOM is
  * loaded. This function is called after the fetch to
  * ShipHawk resolves and store list is built in the DOM.
