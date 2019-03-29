@@ -1,11 +1,12 @@
-import { shipToMap } from './ui-elements';
+import { shipToMap, loadingOverlay, loadingImage } from './ui-elements';
 import STATE from '../../state';
 import { DELIVERY_METHODS } from '../../constants';
 import { hideElements } from '../../ui-helpers';
 
 const bindUI = () => {
+  hideElements([loadingOverlay, loadingImage]);
   if (STATE.deliveryMethod === DELIVERY_METHODS.PICKUP) {
-    hideElements(shipToMap);
+    hideElements([shipToMap]);
     const headings = document.querySelectorAll('h3');
     [].forEach.call(headings, function(heading) {
       if (heading.textContent === 'Shipping address') {

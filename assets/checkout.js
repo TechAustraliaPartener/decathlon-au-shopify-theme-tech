@@ -214,43 +214,53 @@
     });
     var CLASSES$1 = config_CLASSES, ASSET_BASE_URL = "//cdn.shopify.com/s/files/1/1752/4727/t/84/assets/";
     var contactInformation_updateUI = updateUI;
-    var SELECTORS$1 = {
-        CUSTOM_UI_SELECTORS: {
-            PICKUP_SHIPPING_METHOD_BLOCKS: [ "shopify-In%20Store%20Pickup-0.00", "empty-test" ].map(function(selector) {
-                return '[data-shipping-method="' + selector + '"]';
-            }),
-            LOADING_OVERLAY: ".de-loading-overlay",
-            LOADING_IMAGE: ".de-checkout-loader"
-        }
+    var CUSTOM_UI_SELECTORS$1 = {
+        PICKUP_SHIPPING_METHOD_BLOCKS: [ "shopify-Pickup%20Method-0.00", "empty-test" ].map(function(selector) {
+            return '[data-shipping-method="' + selector + '"]';
+        }),
+        PICKUP_SHIPPING_METHOD: '[data-shipping-method="shopify-Pickup%20Method-0.00"]',
+        LOADING_OVERLAY: ".de-loading-overlay",
+        LOADING_IMAGE: ".de-checkout-loader"
     };
-    var pickupShippingMethods = SELECTORS$1.PICKUP_SHIPPING_METHOD_BLOCKS.map(function(selector) {
+    CUSTOM_UI_SELECTORS$1.PICKUP_SHIPPING_METHOD_BLOCKS.map(function(selector) {
         return !!elementExists(document.querySelector(selector)) && document.querySelector(selector).parentNode;
-    });
-    var loadingOverlay$1 = document.querySelector(SELECTORS$1.LOADING_OVERLAY);
-    var loadingImage$1 = document.querySelector(SELECTORS$1.LOADING_IMAGE);
-    var SELECTORS$2 = {
-        SHOPIFY_UI_SELECTORS: {
-            BILLING_ADDRESS_CHOICES: {
-                sameAsShipping: "[data-same-billing-address]",
-                differentThanShipping: "[data-different-billing-address]"
-            },
-            SHIP_TO_LABEL: ".review-block:nth-child(2) .review-block__label",
-            SHIP_TO_MAP: ".map",
-            LOADING_OVERLAY: ".de-loading-overlay",
-            LOADING_IMAGE: ".de-checkout-loader"
+    }), document.querySelector(CUSTOM_UI_SELECTORS$1.PICKUP_SHIPPING_METHOD_BLOCK);
+    var loadingOverlay$1 = document.querySelector(CUSTOM_UI_SELECTORS$1.LOADING_OVERLAY);
+    var loadingImage$1 = document.querySelector(CUSTOM_UI_SELECTORS$1.LOADING_IMAGE);
+    var updateShippingMethod$1 = function() {
+        if (document.querySelector(CUSTOM_UI_SELECTORS$1.PICKUP_SHIPPING_METHOD + " input").checked) {
+            console.log("here2");
+            var radios = document.querySelectorAll(".input-radio");
+            var pickupMethod = document.querySelector(CUSTOM_UI_SELECTORS$1.PICKUP_SHIPPING_METHOD).getAttribute("data-shipping-method");
+            for (var i = 0, length = radios.length; i < length; i++) {
+                var currentMethod = radios[i].value;
+                if (console.log(currentMethod), pickupMethod !== currentMethod) {
+                    radios[i].checked = !0, hideElements([ document.querySelector(".review-block:nth-child(3)") ]);
+                    break;
+                }
+            }
         }
     };
-    var billingAddressChoices = Object.keys(SELECTORS$2.BILLING_ADDRESS_CHOICES).map(function(key) {
-        return document.querySelector(SELECTORS$2.BILLING_ADDRESS_CHOICES[key]);
+    var SHOPIFY_UI_SELECTORS$1 = {
+        BILLING_ADDRESS_CHOICES: {
+            sameAsShipping: "[data-same-billing-address]",
+            differentThanShipping: "[data-different-billing-address]"
+        },
+        SHIP_TO_LABEL: ".review-block:nth-child(2) .review-block__label",
+        SHIP_TO_MAP: ".map",
+        LOADING_OVERLAY: ".de-loading-overlay",
+        LOADING_IMAGE: ".de-checkout-loader"
+    };
+    var billingAddressChoices = Object.keys(SHOPIFY_UI_SELECTORS$1.BILLING_ADDRESS_CHOICES).map(function(key) {
+        return document.querySelector(SHOPIFY_UI_SELECTORS$1.BILLING_ADDRESS_CHOICES[key]);
     });
-    var shipToLabel = document.querySelector(SELECTORS$2.SHIP_TO_LABEL);
-    var shipToMap = document.querySelector(SELECTORS$2.SHIP_TO_MAP);
-    var loadingOverlay$2 = document.querySelector(SELECTORS$2.LOADING_OVERLAY);
-    var loadingImage$2 = document.querySelector(SELECTORS$2.LOADING_IMAGE);
-    var SELECTORS$3 = _extends({}, {
-        SHIP_TO_MAP: ".map"
-    });
-    var shipToMap$1 = document.querySelector(SELECTORS$3.SHIP_TO_MAP);
+    var shipToLabel = document.querySelector(SHOPIFY_UI_SELECTORS$1.SHIP_TO_LABEL);
+    var shipToMap = document.querySelector(SHOPIFY_UI_SELECTORS$1.SHIP_TO_MAP);
+    var loadingOverlay$2 = document.querySelector(SHOPIFY_UI_SELECTORS$1.LOADING_OVERLAY);
+    var loadingImage$2 = document.querySelector(SHOPIFY_UI_SELECTORS$1.LOADING_IMAGE);
+    var shipToMap$1 = document.querySelector(".map");
+    var loadingOverlay$3 = document.querySelector(".de-loading-overlay");
+    var loadingImage$3 = document.querySelector(".de-checkout-loader");
     var config$1 = {
         SELECTORS: {
             PREFIX: ".js-de-",
@@ -358,15 +368,14 @@
         getObjectFromSessionStorage("pickup_store") && (STATE.pickupStore = getObjectFromSessionStorage("pickup_store")), 
         STATE.checkoutStep === CHECKOUT_STEPS.CONTACT_INFORMATION && function() {
             pickupToggleBtn.addEventListener("click", function(event) {
-                STATE.deliveryMethod = "pickup", pickupToggleBtn.classList.toggle(CLASSES$1.ACTIVE_SHIPPICK_BTN), 
+                event.preventDefault(), STATE.deliveryMethod = "pickup", pickupToggleBtn.classList.toggle(CLASSES$1.ACTIVE_SHIPPICK_BTN), 
                 shipToggleBtn.classList.toggle(CLASSES$1.ACTIVE_SHIPPICK_BTN), sessionStorageAvailable && setObjectInSessionStorage("delivery_method", "pickup"), 
                 updateUI();
             }), shipToggleBtn.addEventListener("click", function(event) {
                 STATE.deliveryMethod = "ship", pickupToggleBtn.classList.toggle(CLASSES$1.ACTIVE_SHIPPICK_BTN), 
                 shipToggleBtn.classList.toggle(CLASSES$1.ACTIVE_SHIPPICK_BTN), sessionStorageAvailable && setObjectInSessionStorage("delivery_method", "ship"), 
                 updateUI();
-            }), document.querySelector(SELECTORS.PICKUP_CONTINUE_BTN).addEventListener("click", function(event) {}), 
-            null !== STATE.pickupStore && (mapImage.src = "" + ASSET_BASE_URL + STATE.pickupStore + ".jpg?v=4");
+            }), null !== STATE.pickupStore && (mapImage.src = "" + ASSET_BASE_URL + STATE.pickupStore + ".jpg?v=4");
             var paymentBtnCont = document.querySelector(SELECTORS.PICKUP_CONTINUE_BTN_CONTAINER);
             var paymentBtn = document.querySelector(SELECTORS.PICKUP_CONTINUE_BTN);
             var paymentBtnHTML = paymentBtnCont.innerHTML;
@@ -420,7 +429,7 @@
                                             "x-shopify-storefront-access-token": "8e681070902104a65649736d6b1f7bd0",
                                             "content-type": "application/json"
                                         },
-                                        body: '{"query":"mutation checkoutShippingLineUpdate($checkoutId: ID!, $shippingRateHandle: String!) {\\n  checkoutShippingLineUpdate(checkoutId: $checkoutId, shippingRateHandle: $shippingRateHandle) {\\n    checkout {\\n      id\\n      webUrl\\n    }\\n    checkoutUserErrors {\\n      code\\n      field\\n      message\\n    }\\n  }\\n}","variables":{"checkoutId":"' + checkoutGID + '","shippingRateHandle":"shopify-In%20Store%20Pickup-0.00"},"operationName":"checkoutShippingLineUpdate"}'
+                                        body: '{"query":"mutation checkoutShippingLineUpdate($checkoutId: ID!, $shippingRateHandle: String!) {\\n  checkoutShippingLineUpdate(checkoutId: $checkoutId, shippingRateHandle: $shippingRateHandle) {\\n    checkout {\\n      id\\n      webUrl\\n    }\\n    checkoutUserErrors {\\n      code\\n      field\\n      message\\n    }\\n  }\\n}","variables":{"checkoutId":"' + checkoutGID + '","shippingRateHandle":"shopify-Pickup%20Method-0.00"},"operationName":"checkoutShippingLineUpdate"}'
                                     }).then(function(res) {
                                         return res.json();
                                     }).then(function(data) {
@@ -476,7 +485,8 @@
                             mapImage.src = "" + ASSET_BASE_URL + pickupStore + ".jpg?v=4";
                         }
                     });
-                }), getCurrentLocation.then(function(currentLocation) {
+                }), document.querySelector(SELECTORS.ACTIVE_PICKUP_LOCATION) || document.querySelector(SELECTORS.PICKUP_LOCATION).click(), 
+                getCurrentLocation.then(function(currentLocation) {
                     !function(currentLocation) {
                         "California" === currentLocation.region_name || "pickup" === STATE.deliveryMethod ? (showElements([ pickupToggleBtn, shipToggleBtn ]), 
                         "pickup" === STATE.deliveryMethod && showElements([ pickupContent ])) : showElements([ document.querySelector(".de-visit-cal-container") ]), 
@@ -484,12 +494,20 @@
                     }(currentLocation);
                 });
             }();
-        }(), STATE.checkoutStep === CHECKOUT_STEPS.SHIPPING_METHOD && (hideElements([ loadingOverlay$1, loadingImage$1 ]), 
-        "ship" === STATE.deliveryMethod && hideElements(pickupShippingMethods)), STATE.checkoutStep === CHECKOUT_STEPS.PAYMENT_METHOD && (hideElements([ loadingOverlay$2, loadingImage$2 ]), 
+        }(), STATE.checkoutStep === CHECKOUT_STEPS.SHIPPING_METHOD && (console.log(CUSTOM_UI_SELECTORS$1.PICKUP_SHIPPING_METHOD), 
+        hideElements([ loadingOverlay$1, loadingImage$1 ]), "ship" === STATE.deliveryMethod && (hideElements([ document.querySelector(CUSTOM_UI_SELECTORS$1.PICKUP_SHIPPING_METHOD).parentNode ]), 
+        document.querySelector(".content-box__row:nth-child(3)").style.borderTop = "none", 
+        document.querySelector(CUSTOM_UI_SELECTORS$1.PICKUP_SHIPPING_METHOD) ? updateShippingMethod$1() : new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                updateShippingMethod$1();
+            });
+        }).observe(document.querySelector(".section__content"), {
+            childList: !0
+        }))), STATE.checkoutStep === CHECKOUT_STEPS.PAYMENT_METHOD && (hideElements([ loadingOverlay$2, loadingImage$2 ]), 
         "pickup" === STATE.deliveryMethod && (hideElements(billingAddressChoices), hideElements([ shipToMap ]), 
         shipToLabel.innerHTML = "Pickup at")), STATE.checkoutStep === CHECKOUT_STEPS.THANK_YOU && function() {
-            if ("pickup" === STATE.deliveryMethod) {
-                hideElements(shipToMap$1);
+            if (hideElements([ loadingOverlay$3, loadingImage$3 ]), "pickup" === STATE.deliveryMethod) {
+                hideElements([ shipToMap$1 ]);
                 var headings = document.querySelectorAll("h3");
                 [].forEach.call(headings, function(heading) {
                     "Shipping address" === heading.textContent && (heading.textContent = "Pickup address");

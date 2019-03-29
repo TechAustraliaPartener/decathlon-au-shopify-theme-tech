@@ -33,6 +33,7 @@ const { CLASSES, ASSET_BASE_URL } = config;
  */
 const bindLocations = () => {
   const pickupLocations = document.querySelectorAll(SELECTORS.PICKUP_LOCATION);
+
   pickupLocations.forEach(location => {
     location.addEventListener('click', function(e) {
       // Is this card already active?
@@ -66,6 +67,10 @@ const bindLocations = () => {
       }
     });
   });
+
+  if (!document.querySelector(SELECTORS.ACTIVE_PICKUP_LOCATION)) {
+    document.querySelector(SELECTORS.PICKUP_LOCATION).click();
+  }
 };
 
 /**
@@ -238,7 +243,7 @@ const updateShippingMethod = (checkoutGID, checkoutKey) => {
       'content-type': 'application/json'
     },
     /* eslint-disable graphql/template-strings, no-useless-escape */
-    body: `{\"query\":\"mutation checkoutShippingLineUpdate($checkoutId: ID!, $shippingRateHandle: String!) {\\n  checkoutShippingLineUpdate(checkoutId: $checkoutId, shippingRateHandle: $shippingRateHandle) {\\n    checkout {\\n      id\\n      webUrl\\n    }\\n    checkoutUserErrors {\\n      code\\n      field\\n      message\\n    }\\n  }\\n}\",\"variables\":{\"checkoutId\":\"${checkoutGID}\",\"shippingRateHandle\":\"shopify-In%20Store%20Pickup-0.00\"},\"operationName\":\"checkoutShippingLineUpdate\"}`
+    body: `{\"query\":\"mutation checkoutShippingLineUpdate($checkoutId: ID!, $shippingRateHandle: String!) {\\n  checkoutShippingLineUpdate(checkoutId: $checkoutId, shippingRateHandle: $shippingRateHandle) {\\n    checkout {\\n      id\\n      webUrl\\n    }\\n    checkoutUserErrors {\\n      code\\n      field\\n      message\\n    }\\n  }\\n}\",\"variables\":{\"checkoutId\":\"${checkoutGID}\",\"shippingRateHandle\":\"shopify-Pickup%20Method-0.00\"},\"operationName\":\"checkoutShippingLineUpdate\"}`
     /* eslint-enable */
   })
     .then(res => res.json())
@@ -256,6 +261,7 @@ const bindUI = () => {
    * Some of these procedures may move to updateUI
    */
   pickupToggleBtn.addEventListener('click', function(event) {
+    event.preventDefault();
     STATE.deliveryMethod = DELIVERY_METHODS.PICKUP;
     pickupToggleBtn.classList.toggle(CLASSES.ACTIVE_SHIPPICK_BTN);
     shipToggleBtn.classList.toggle(CLASSES.ACTIVE_SHIPPICK_BTN);
@@ -274,10 +280,6 @@ const bindUI = () => {
     }
     updateUI();
   });
-
-  document
-    .querySelector(SELECTORS.PICKUP_CONTINUE_BTN)
-    .addEventListener('click', function(event) {});
 
   /**
    * Update map if preferred store is selected on load.

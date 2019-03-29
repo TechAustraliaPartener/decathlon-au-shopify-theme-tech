@@ -9,4 +9,4 @@ const SHOPIFY_UI_SELECTORS = {
   LOADING_IMAGE: '.de-checkout-loader'
 };
 
-export default { SHOPIFY_UI_SELECTORS };
+export default SHOPIFY_UI_SELECTORS;
