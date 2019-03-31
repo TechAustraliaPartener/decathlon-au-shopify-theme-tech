@@ -105,15 +105,6 @@
       </div>
     </div>
     {{ 'checkout.js' | asset_url | script_tag }}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script>
-      $('.de-visit-cal-btn').click(function() {
-        $('.js-de-toggle-shipping, .js-de-toggle-pickup').removeClass('de-u-hidden');
-        $(this).parent().hide();
-        $('.de-pickship-btn').click();
-      });
-    </script>
-
     {{ tracking_code }}
   </body>
 </html>

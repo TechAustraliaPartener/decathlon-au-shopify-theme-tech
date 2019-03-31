@@ -491,8 +491,13 @@
                 getCurrentLocation.then(function(currentLocation) {
                     !function(currentLocation) {
                         "California" === currentLocation.region_name || "pickup" === STATE.deliveryMethod ? (showElements([ pickupToggleBtn, shipToggleBtn ]), 
-                        "pickup" === STATE.deliveryMethod && showElements([ pickupContent ])) : showElements([ document.querySelector(".de-visit-cal-container") ]), 
-                        hideElements([ loadingOverlay, loadingImage ]);
+                        "pickup" === STATE.deliveryMethod && showElements([ pickupContent ])) : (showElements([ document.querySelector(".de-visit-cal-container") ]), 
+                        document.querySelector(".de-visit-cal-btn").addEventListener("click", function(event) {
+                            showElements([ pickupToggleBtn, shipToggleBtn, pickupContent ]), STATE.deliveryMethod = "pickup", 
+                            pickupToggleBtn.classList.toggle(CLASSES$1.ACTIVE_SHIPPICK_BTN), shipToggleBtn.classList.toggle(CLASSES$1.ACTIVE_SHIPPICK_BTN), 
+                            sessionStorageAvailable && setObjectInSessionStorage("delivery_method", "pickup"), 
+                            updateUI(), hideElements([ document.querySelector(".de-visit-cal-container") ]);
+                        })), hideElements([ loadingOverlay, loadingImage ]);
                     }(currentLocation);
                 });
             }();

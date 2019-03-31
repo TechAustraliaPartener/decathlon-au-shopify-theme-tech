@@ -89,6 +89,19 @@ const updateLocationUI = currentLocation => {
     }
   } else {
     showElements([document.querySelector('.de-visit-cal-container')]);
+    document
+      .querySelector('.de-visit-cal-btn')
+      .addEventListener('click', event => {
+        showElements([pickupToggleBtn, shipToggleBtn, pickupContent]);
+        STATE.deliveryMethod = DELIVERY_METHODS.PICKUP;
+        pickupToggleBtn.classList.toggle(CLASSES.ACTIVE_SHIPPICK_BTN);
+        shipToggleBtn.classList.toggle(CLASSES.ACTIVE_SHIPPICK_BTN);
+        if (sessionStorageAvailable) {
+          setObjectInSessionStorage('delivery_method', DELIVERY_METHODS.PICKUP);
+        }
+        updateUI();
+        hideElements([document.querySelector('.de-visit-cal-container')]);
+      });
   }
   hideElements([loadingOverlay, loadingImage]);
 };
@@ -260,7 +273,7 @@ const bindUI = () => {
    * Bind the toggle buttons.
    * Some of these procedures may move to updateUI
    */
-  pickupToggleBtn.addEventListener('click', function(event) {
+  pickupToggleBtn.addEventListener('click', event => {
     event.preventDefault();
     STATE.deliveryMethod = DELIVERY_METHODS.PICKUP;
     pickupToggleBtn.classList.toggle(CLASSES.ACTIVE_SHIPPICK_BTN);
@@ -271,7 +284,7 @@ const bindUI = () => {
     updateUI();
   });
 
-  shipToggleBtn.addEventListener('click', function(event) {
+  shipToggleBtn.addEventListener('click', event => {
     STATE.deliveryMethod = DELIVERY_METHODS.SHIP;
     pickupToggleBtn.classList.toggle(CLASSES.ACTIVE_SHIPPICK_BTN);
     shipToggleBtn.classList.toggle(CLASSES.ACTIVE_SHIPPICK_BTN);
