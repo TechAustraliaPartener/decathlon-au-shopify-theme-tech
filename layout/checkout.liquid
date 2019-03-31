@@ -9,8 +9,7 @@
     <title>{{ page_title }}</title>
 
     {{ content_for_header }}
-    <!-- Temporary update to static toolkit while debugging pattern toolkit bug -->
-    {{ 'toolkit.css' | asset_url | stylesheet_tag }}
+    {{ 'patterns-toolkit.css' | asset_url | stylesheet_tag }}
     {{ checkout_stylesheets }}
 
     <script>
