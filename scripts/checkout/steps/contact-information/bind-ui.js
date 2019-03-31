@@ -5,8 +5,13 @@ import {
   pickupLocationList,
   pickupContent,
   mapImage,
+  company,
   userFirstName,
   userLastName,
+  userAddress1,
+  userAddress2,
+  userCity,
+  userZip,
   userEmail,
   loadingImage,
   loadingOverlay
@@ -24,6 +29,14 @@ import { showElements, hideElements } from '../../ui-helpers';
 import config from '../../config';
 
 const { CLASSES, ASSET_BASE_URL } = config;
+
+const clearShippingForm = () => {
+  company.value = '';
+  userAddress1.value = '';
+  userAddress2.value = '';
+  userCity.value = '';
+  userZip.value = '';
+};
 
 /**
  * Binds click event to location cards separately
@@ -269,6 +282,8 @@ const updateShippingMethod = (checkoutGID, checkoutKey) => {
 };
 
 const bindUI = () => {
+  // Clear form if store data is pre-populating
+
   /**
    * Bind the toggle buttons.
    * Some of these procedures may move to updateUI
@@ -285,6 +300,10 @@ const bindUI = () => {
   });
 
   shipToggleBtn.addEventListener('click', event => {
+    const regexDEC = new RegExp(/Decathlon/);
+    if (regexDEC.test(company.value)) {
+      clearShippingForm();
+    }
     STATE.deliveryMethod = DELIVERY_METHODS.SHIP;
     pickupToggleBtn.classList.toggle(CLASSES.ACTIVE_SHIPPICK_BTN);
     shipToggleBtn.classList.toggle(CLASSES.ACTIVE_SHIPPICK_BTN);
@@ -374,7 +393,7 @@ const bindUI = () => {
     data: [
       {
         id: 'adr_sf',
-        name: 'San Francisco',
+        name: 'Decathlon - San Francisco',
         company: 'Decathlon',
         street1: '735 Market St',
         street2: '',
@@ -392,7 +411,7 @@ const bindUI = () => {
       }
       // {
       //   id: 'adr_emery',
-      //   name: 'Emeryville',
+      //   name: 'Decathlon - Emeryville',
       //   company: 'Decathlon',
       //   street1: '3938 Horton St',
       //   street2: null,

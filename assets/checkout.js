@@ -43,15 +43,21 @@
         CONTINUE_BTN: ".step__footer__continue-btn",
         SHIPPING_ADDRESS_HEADER: ".section--shipping-address .section__header h2",
         DELIVERY_INPUTS: {
-            addressInput: '[data-address-field="address1"]',
+            address1Input: '[data-address-field="address1"]',
+            address2Input: '[data-address-field="address2"]',
             cityInput: '[data-address-field="city"]',
             countryInput: '[data-address-field="country"]',
             provinceInput: '[data-address-field="province"]',
             zipInput: '[data-address-field="zip"]'
         },
         USER_ADDRESS_LIST: "#checkout_shipping_address_id",
+        COMPANY: "#checkout_shipping_address_company",
         USER_FIRST_NAME: "#checkout_shipping_address_first_name",
         USER_LAST_NAME: "#checkout_shipping_address_last_name",
+        USER_ADDRESS_1: "#checkout_shipping_address_address1",
+        USER_ADDRESS_2: "#checkout_shipping_address_address2",
+        USER_CITY: "#checkout_shipping_address_city",
+        USER_ZIP: "#checkout_shipping_address_zip",
         USER_EMAIL: "#checkout_email"
     }, {
         TOGGLE_SHIPPING: ".js-de-toggle-shipping",
@@ -92,8 +98,13 @@
     var pickupLocationList = document.querySelector(SELECTORS.PICKUP_LOCATIONS);
     var shippingAddressHeader = document.querySelector(SELECTORS.SHIPPING_ADDRESS_HEADER);
     var userAddressList = !!elementExists(document.querySelector(SELECTORS.USER_ADDRESS_LIST)) && document.querySelector(SELECTORS.USER_ADDRESS_LIST).parentNode;
+    var company = document.querySelector(SELECTORS.COMPANY);
     var userFirstName = document.querySelector(SELECTORS.USER_FIRST_NAME);
     var userLastName = document.querySelector(SELECTORS.USER_LAST_NAME);
+    var userAddress1 = document.querySelector(SELECTORS.USER_ADDRESS_1);
+    var userAddress2 = document.querySelector(SELECTORS.USER_ADDRESS_2);
+    var userCity = document.querySelector(SELECTORS.USER_CITY);
+    var userZip = document.querySelector(SELECTORS.USER_ZIP);
     var userEmail = document.querySelector(SELECTORS.USER_EMAIL);
     var mapImage = document.querySelector(SELECTORS.MAP_IMAGE);
     var loadingOverlay = document.querySelector(SELECTORS.LOADING_OVERLAY);
@@ -374,8 +385,10 @@
                 shipToggleBtn.classList.toggle(CLASSES$1.ACTIVE_SHIPPICK_BTN), sessionStorageAvailable && setObjectInSessionStorage("delivery_method", "pickup"), 
                 updateUI();
             }), shipToggleBtn.addEventListener("click", function(event) {
-                STATE.deliveryMethod = "ship", pickupToggleBtn.classList.toggle(CLASSES$1.ACTIVE_SHIPPICK_BTN), 
-                shipToggleBtn.classList.toggle(CLASSES$1.ACTIVE_SHIPPICK_BTN), sessionStorageAvailable && setObjectInSessionStorage("delivery_method", "ship"), 
+                /Decathlon/.test(company.value) && (company.value = "", userAddress1.value = "", 
+                userAddress2.value = "", userCity.value = "", userZip.value = ""), STATE.deliveryMethod = "ship", 
+                pickupToggleBtn.classList.toggle(CLASSES$1.ACTIVE_SHIPPICK_BTN), shipToggleBtn.classList.toggle(CLASSES$1.ACTIVE_SHIPPICK_BTN), 
+                sessionStorageAvailable && setObjectInSessionStorage("delivery_method", "ship"), 
                 updateUI();
             }), null !== STATE.pickupStore && (mapImage.src = "" + ASSET_BASE_URL + STATE.pickupStore + ".jpg?v=4");
             var paymentBtnCont = document.querySelector(SELECTORS.PICKUP_CONTINUE_BTN_CONTAINER);
@@ -446,7 +459,7 @@
             }), function(locations) {
                 for (var _isArray = Array.isArray(_iterator = [ {
                     id: "adr_sf",
-                    name: "San Francisco",
+                    name: "Decathlon - San Francisco",
                     company: "Decathlon",
                     street1: "735 Market St",
                     street2: "",
