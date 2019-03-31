@@ -23,15 +23,14 @@ const updateShippingMethod = () => {
       }
     }
   }
+  hideElements([
+    document.querySelector(SELECTORS.PICKUP_SHIPPING_METHOD).parentNode
+  ]);
 };
 
 const bindUI = () => {
-  console.log(SELECTORS.PICKUP_SHIPPING_METHOD);
   hideElements([loadingOverlay, loadingImage]);
   if (STATE.deliveryMethod === DELIVERY_METHODS.SHIP) {
-    hideElements([
-      document.querySelector(SELECTORS.PICKUP_SHIPPING_METHOD).parentNode
-    ]);
     document.querySelector('.content-box__row:nth-child(3)').style.borderTop =
       'none';
     if (document.querySelector(SELECTORS.PICKUP_SHIPPING_METHOD)) {

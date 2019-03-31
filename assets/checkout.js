@@ -240,6 +240,7 @@
                 }
             }
         }
+        hideElements([ document.querySelector(CUSTOM_UI_SELECTORS$1.PICKUP_SHIPPING_METHOD).parentNode ]);
     };
     var SHOPIFY_UI_SELECTORS$1 = {
         BILLING_ADDRESS_CHOICES: {
@@ -362,6 +363,7 @@
         returnToCartLink.innerHTML = '<svg focusable="false" aria-hidden="true" class="icon-svg icon-svg--color-accent icon-svg--size-10 previous-link__icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><path d="M8 1L7 0 3 4 2 5l1 1 4 4 1-1-4-4"></path></svg><span class="step__footer__previous-link-content">Return to cart</span>', 
         document.querySelector("." + STEP_FOOTER).appendChild(returnToCartLink);
     };
+    window.NodeList && !NodeList.prototype.forEach && (NodeList.prototype.forEach = Array.prototype.forEach), 
     document.addEventListener("page:load", function() {
         var stepFooter;
         STATE.deliveryMethod = "pickup" === getObjectFromSessionStorage("delivery_method") ? "pickup" : "ship", 
@@ -494,9 +496,8 @@
                     }(currentLocation);
                 });
             }();
-        }(), STATE.checkoutStep === CHECKOUT_STEPS.SHIPPING_METHOD && (console.log(CUSTOM_UI_SELECTORS$1.PICKUP_SHIPPING_METHOD), 
-        hideElements([ loadingOverlay$1, loadingImage$1 ]), "ship" === STATE.deliveryMethod && (hideElements([ document.querySelector(CUSTOM_UI_SELECTORS$1.PICKUP_SHIPPING_METHOD).parentNode ]), 
-        document.querySelector(".content-box__row:nth-child(3)").style.borderTop = "none", 
+        }(), STATE.checkoutStep === CHECKOUT_STEPS.SHIPPING_METHOD && (hideElements([ loadingOverlay$1, loadingImage$1 ]), 
+        "ship" === STATE.deliveryMethod && (document.querySelector(".content-box__row:nth-child(3)").style.borderTop = "none", 
         document.querySelector(CUSTOM_UI_SELECTORS$1.PICKUP_SHIPPING_METHOD) ? updateShippingMethod$1() : new MutationObserver(function(mutations) {
             mutations.forEach(function(mutation) {
                 updateShippingMethod$1();
