@@ -10,7 +10,7 @@
 					{% if settings.blue_band__yellowgram_icon != blank %}
   	   					<img src="{{ settings.blue_band__yellowgram_icon | img_url: 'master' }}" alt="{{ settings.blue_band__yellowgram_text }}" />
   	   				{% else %}
-  	   			  		<i class="ico ico--100"></i>
+  	   			  		<i class="ico ico--star"></i>
   	   				{% endif %}
 		   		 </div>
 		   		 <div class="yellowgram-content">
@@ -30,7 +30,7 @@
         {% endif %}
 			<div class="blue-band-icon">
 
-			  	<i class="ico{% if settings.blue_band__fact_one_icon == blank %} ico--100{% endif %}">
+			  	<i class="ico{% if settings.blue_band__fact_one_icon == blank %} ico--star{% endif %}">
 					{% if settings.blue_band__fact_one_icon != blank %}
 						<img src="{{ settings.blue_band__fact_one_icon | img_url: 'master' }}" alt="{{ settings.blue_band__fact_one_text }}" />
 					{% endif %}
@@ -50,7 +50,7 @@
         {% endif %}
           <div class="blue-band-icon">
 
-            <i class="ico{% if settings.blue_band__fact_two_icon == blank %} ico--365{% endif %}">
+            <i class="ico{% if settings.blue_band__fact_two_icon == blank %} ico--star{% endif %}">
 				{% if settings.blue_band__fact_two_icon != blank %}
 					  <img src="{{ settings.blue_band__fact_two_icon | img_url: 'master' }}" alt="{{ settings.blue_band__fact_two_text }}" />
 				{% endif %}
@@ -90,7 +90,7 @@
         {% endif %}
           <div class="blue-band-icon">
 
-             <i class="ico{% if settings.blue_band__fact_four_icon == blank %} ico--dollar{% endif %}">
+             <i class="ico{% if settings.blue_band__fact_four_icon == blank %} ico--star{% endif %}">
 				{% if settings.blue_band__fact_four_icon != blank %}
 				  <img src="{{ settings.blue_band__fact_four_icon | img_url: 'master' }}" alt="{{ settings.blue_band__fact_four_text }}" />
 				 {% endif %}
