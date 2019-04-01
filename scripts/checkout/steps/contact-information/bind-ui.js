@@ -134,7 +134,7 @@ const buildStoreList = locations => {
     const locationNode = document.createElement('li');
     locationNode.classList.add('de-u-size1of2');
     locationNode.innerHTML = `
-      <div class="js-de-pickup-location de-pickup-location ${
+      <div class="js-de-pickup-location de-pickup-location de-u-spaceEnds02 ${
         activeCard ? CLASSES.ACTIVE_PICKUP_LOCATION : ''
       }"
       data-id="${location.id}"
@@ -307,7 +307,8 @@ const bindUI = () => {
   });
 
   shipToggleBtn.addEventListener('click', event => {
-    const regexDEC = new RegExp(/Decathlon/);
+    // Will find a better way here when location API is finalized
+    const regexDEC = new RegExp(/San Francisco|Emeryville/);
     if (regexDEC.test(company.value)) {
       clearShippingForm();
     }
@@ -400,7 +401,7 @@ const bindUI = () => {
     data: [
       {
         id: 'adr_sf',
-        name: 'Decathlon - SF',
+        name: 'San Francisco',
         company: 'Decathlon',
         street1: '735 Market St',
         street2: '',
@@ -415,25 +416,25 @@ const bindUI = () => {
         address_type: null,
         validated: false,
         code: '135'
+      },
+      {
+        id: 'adr_emery',
+        name: 'Emeryville',
+        company: 'Decathlon',
+        street1: '3938 Horton St',
+        street2: null,
+        city: 'Emeryville',
+        state: 'CA',
+        zip: '94608',
+        country: 'US',
+        phone_number: null,
+        email: null,
+        is_residential: false,
+        is_warehouse: false,
+        address_type: null,
+        validated: false,
+        code: null
       }
-      // {
-      //   id: 'adr_emery',
-      //   name: 'Decathlon - Emeryville',
-      //   company: 'Decathlon',
-      //   street1: '3938 Horton St',
-      //   street2: null,
-      //   city: 'Emeryville',
-      //   state: 'CA',
-      //   zip: '94608',
-      //   country: 'US',
-      //   phone_number: null,
-      //   email: null,
-      //   is_residential: false,
-      //   is_warehouse: false,
-      //   address_type: null,
-      //   validated: false,
-      //   code: null
-      // }
     ]
   };
   buildStoreList(sampleData);

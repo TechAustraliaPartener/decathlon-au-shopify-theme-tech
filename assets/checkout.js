@@ -391,7 +391,7 @@
                 shipToggleBtn.classList.toggle(CLASSES$1.ACTIVE_SHIPPICK_BTN), sessionStorageAvailable && setObjectInSessionStorage("delivery_method", "pickup"), 
                 updateUI();
             }), shipToggleBtn.addEventListener("click", function(event) {
-                /Decathlon/.test(company.value) && clearShippingForm(), STATE.deliveryMethod = "ship", 
+                /San Francisco|Emeryville/.test(company.value) && clearShippingForm(), STATE.deliveryMethod = "ship", 
                 pickupToggleBtn.classList.toggle(CLASSES$1.ACTIVE_SHIPPICK_BTN), shipToggleBtn.classList.toggle(CLASSES$1.ACTIVE_SHIPPICK_BTN), 
                 sessionStorageAvailable && setObjectInSessionStorage("delivery_method", "ship"), 
                 updateUI();
@@ -464,7 +464,7 @@
             }), function(locations) {
                 for (var _isArray = Array.isArray(_iterator = [ {
                     id: "adr_sf",
-                    name: "Decathlon - SF",
+                    name: "San Francisco",
                     company: "Decathlon",
                     street1: "735 Market St",
                     street2: "",
@@ -479,6 +479,23 @@
                     address_type: null,
                     validated: !1,
                     code: "135"
+                }, {
+                    id: "adr_emery",
+                    name: "Emeryville",
+                    company: "Decathlon",
+                    street1: "3938 Horton St",
+                    street2: null,
+                    city: "Emeryville",
+                    state: "CA",
+                    zip: "94608",
+                    country: "US",
+                    phone_number: null,
+                    email: null,
+                    is_residential: !1,
+                    is_warehouse: !1,
+                    address_type: null,
+                    validated: !1,
+                    code: null
                 } ]), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator](); ;) {
                     var _ref;
                     if (_isArray) {
@@ -491,7 +508,7 @@
                     var location = _ref;
                     var activeCard = location.id === STATE.pickupStore || !1;
                     var locationNode = document.createElement("li");
-                    locationNode.classList.add("de-u-size1of2"), locationNode.innerHTML = '\n      <div class="js-de-pickup-location de-pickup-location ' + (activeCard ? CLASSES$1.ACTIVE_PICKUP_LOCATION : "") + '"\n      data-id="' + location.id + '"\n      data-name="' + location.name + '"\n      data-street1="' + location.street1 + '"\n      data-street2="' + location.street2 + '"\n      data-city="' + location.city + '"\n      data-state="' + location.state + '"\n      data-zip="' + location.zip + '">\n      <p class="de-pickup-location-time de-u-textBlack de-u-textSemibold de-u-textGrow1">Pickup Tomorrow</p>\n      <p><span class="de-pickup-location-name de-u-textSemibold de-u-textBlack">' + location.name + "</span> " + location.street1 + " " + (null === location.street2 ? "" : location.street2) + '</p>\n\n      <p class="de-pickup-location-hours de-u-textShrink2">9:00 AM - 8:00 PM</p>\n    </div>', 
+                    locationNode.classList.add("de-u-size1of2"), locationNode.innerHTML = '\n      <div class="js-de-pickup-location de-pickup-location de-u-spaceEnds02 ' + (activeCard ? CLASSES$1.ACTIVE_PICKUP_LOCATION : "") + '"\n      data-id="' + location.id + '"\n      data-name="' + location.name + '"\n      data-street1="' + location.street1 + '"\n      data-street2="' + location.street2 + '"\n      data-city="' + location.city + '"\n      data-state="' + location.state + '"\n      data-zip="' + location.zip + '">\n      <p class="de-pickup-location-time de-u-textBlack de-u-textSemibold de-u-textGrow1">Pickup Tomorrow</p>\n      <p><span class="de-pickup-location-name de-u-textSemibold de-u-textBlack">' + location.name + "</span> " + location.street1 + " " + (null === location.street2 ? "" : location.street2) + '</p>\n\n      <p class="de-pickup-location-hours de-u-textShrink2">9:00 AM - 8:00 PM</p>\n    </div>', 
                     pickupLocationList.appendChild(locationNode);
                 }
                 document.querySelectorAll(SELECTORS.PICKUP_LOCATION).forEach(function(location) {
