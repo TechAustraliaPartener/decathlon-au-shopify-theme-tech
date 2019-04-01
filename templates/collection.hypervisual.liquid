@@ -1,0 +1,48 @@
+{% if collection.image %}
+    <div class="collectionImage" style="background-image:url('{{ collection.image | img_url: '1024x' }}'); " data-background-image="{{ collection.image | img_url: '1024x' }}">
+        <div class="wrapper">
+            {% include 'breadcrumb', adtl_classes: ' breadcrumb--overImage' %}
+
+            <h1 class="collectionImage-header text-center">{{ collection.title }}</h1>
+			<h5 class="text-center"><i>Shop By Category</i></h5>
+        </div>
+    </div>
+{% endif %}
+
+
+<div class="wrapper{% if collection.image %} wrapper--collectionWithBanner u-paddingTopBottom4x{% else %} u-marginBottom4x{% endif %}">
+    {% include 'find-top-level-collection' %}
+    {% unless collection.image %}
+		{% include 'create-breadcrumbs' %}
+    {% endunless %}
+
+            {% comment %}
+            Different markup if a collection description exists
+            {% endcomment %}
+                {% unless collection.image %}
+                <header class="section-header">
+                    {%- unless collection.image -%}
+                        <h1 class="section-header__title section-header__left">{{ collection.title }}</h1>
+                    {%- endunless -%}
+                </header>
+                <hr>
+                {% endunless %}
+				{% for link in linklists.running.links %}
+				{% cycle '<div class="grid">', '', '' %}
+				<div class="grid__item large--one-third text-center">
+				<a href="{{ link.url }}">
+				{% if link.object.image %}
+				<img src="{{ link.object.image | img_url: '600x' }}">
+				{% else %}
+				<p>{{ link.title }}</p>
+				{% endif %}
+				</a>
+				</div>
+				{% cycle '', '', '</div>' %}
+				{% endfor %}
+				{% if collection.description != blank %}
+                    <div class="rte rte--header">
+                        {{ collection.description }}
+                    </div>
+                {% endif %}
+</div>
