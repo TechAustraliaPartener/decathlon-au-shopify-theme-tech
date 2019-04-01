@@ -1,0 +1,18 @@
+<!-- snippets/store-finder.liquid -->
+
+{% comment %}
+  Store Finder CSS
+{% endcomment %}
+{{ 'store-finder.scss.css' | asset_url | stylesheet_tag }}
+
+{% comment %}
+  Store Finder Component
+{% endcomment %}
+<div id='js-StoreFinder'></div>
+
+{% comment %}
+  Store Finder Script
+{% endcomment %}
+{{ 'store-finder.js' | asset_url | script_tag }}
+
+<!-- End snippets/store-finder.liquid -->

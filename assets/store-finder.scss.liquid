@@ -1,0 +1,195 @@
+/*
+  Variable definitions
+*/
+$color-black: #2a2b2c;
+$color-blue: #0082c3;
+$color-darkgray: #464646;
+$color-gray: #acb3b8;
+$color-lime: #cbfb00;
+$color-silver: #f3f3f3;
+$color-white: #fff;
+$color-red: #e53322;
+$size-unit: .25rem;
+$max-icon-width: 17px;
+
+
+/*
+  Utilities
+*/
+.de-u-spaceLeft07 {
+  margin-left: $size-unit;
+}
+
+.de-u-cursorPointer {
+  cursor: pointer;
+}
+
+.de-blue-hr {
+  height: calc(#{$size-unit} / 2);
+  border: none;
+  margin-bottom: calc(#{$size-unit} * 5);
+}
+
+.de-u-iconContainer {
+  max-width: 17px;
+}
+
+/*
+  Components
+*/
+.de-StoreFinder {
+  min-height: 676px;
+}
+
+.de-StoreMap {
+  height: 300px;
+}
+
+.de-StoreController {
+  min-height: 375px;
+  background: white;
+  border-bottom: calc(#{$size-unit} / 2) solid $color-lime;
+}
+
+.de-StoreController-loader {
+  height: 192px;
+}
+
+.de-StoreController-loaderImage {
+
+}
+
+.de-StoreSearch-inputWrapper {
+  position: relative;
+  border: 2px solid $color-silver;
+}
+
+.de-StoreSearch-inputWrapper:hover,
+.de-StoreSearch-inputWrapper.isFocused {
+  border-color: $color-blue;
+}
+
+.de-StoreSearch-input,
+.de-StoreSearch-input:hover,
+.de-StoreSearch-input:focus {
+  background: transparent;
+  border: unset;
+  width: calc(100% - 46px);
+  padding-right: calc(#{$size-unit} * 9);
+}
+
+.de-StoreSearch-clear {
+  position: absolute;
+  top: 50%;
+  right: calc(#{$size-unit} * 11);
+  width: calc(#{$size-unit} * 6);
+  height: calc(#{$size-unit} * 6);
+  transform: translate(-50%, -50%);
+}
+
+.de-StoreSearch-submit {
+  color: $color-black;
+}
+
+.de-StoreSearch-submit .de-Icon {
+  width: 24px;
+  height: 24px;
+}
+
+.de-StoreSearch-submit.isFocused {
+  color: $color-white;
+  background-color: $color-blue;
+}
+
+.de-StoreTile {
+  width: 100%;
+  text-align: left;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  border: 2px solid $color-white;
+  border-top: 2px solid $color-silver;
+  outline: 0;
+  margin-top: 2px;
+}
+
+.de-StoreTile.de-is-active {
+  border-color: $color-blue;
+}
+
+.de-StoreTile-address {
+  margin-top: $size-unit;
+}
+
+.de-StoreTile-actionsButton:first-child {
+  margin-left: auto;
+}
+
+.de-StoreNoLocations-inputWrapper {
+  position: relative;
+}
+
+.de-StoreNoLocations-input,
+.de-StoreNoLocations-input:hover,
+.de-StoreNoLocations-input:focus {
+  border: 2px solid $color-silver;
+  border-right: unset;
+  width: calc(100% - 80px);
+}
+
+.de-StoreNoLocations-input:hover,
+.de-StoreNoLocations-input:focus {
+  border-color: $color-blue;
+}
+
+.de-StoreNoLocations-submit {
+  color: $color-white;
+  width: 80px;
+}
+
+.de-StoreNoLocations-checkbox {
+  border: 1px solid $color-blue;
+  border-radius: $size-unit;
+  color: $color-white;
+  width: 20px;
+  height: 20px;
+}
+
+.de-StoreNoLocations-checkbox .de-Icon {
+  width: 10px;
+}
+
+
+
+
+/*
+  Media queries
+*/
+@media (min-width: 1000px) {
+  .de-StoreFinder {
+    position: relative;
+    min-height: 665px;
+  }
+
+  .de-StoreController {
+    position: absolute;
+    top: 100px;
+    left: 40px;
+    width: 350px;
+    max-width: 404px;
+    z-index: 10;
+  }
+
+  .de-StoreMap {
+    height: 665px;
+  }
+}
+
+
+/*
+  Remove extra margin on footer (only effects '/pages/store-finder')
+*/
+.blue-band--footer {
+  margin-top: unset;
+}
