@@ -243,7 +243,7 @@
     var loadingOverlay$1 = document.querySelector(CUSTOM_UI_SELECTORS$1.LOADING_OVERLAY);
     var loadingImage$1 = document.querySelector(CUSTOM_UI_SELECTORS$1.LOADING_IMAGE);
     var updateShippingMethod$1 = function() {
-        if (document.querySelector(CUSTOM_UI_SELECTORS$1.PICKUP_SHIPPING_METHOD + " input").checked) {
+        if (elementExists(document.querySelector(CUSTOM_UI_SELECTORS$1.PICKUP_SHIPPING_METHOD + " input")) && document.querySelector(CUSTOM_UI_SELECTORS$1.PICKUP_SHIPPING_METHOD + " input").checked) {
             var radios = document.querySelectorAll(".input-radio");
             var pickupMethod = document.querySelector(CUSTOM_UI_SELECTORS$1.PICKUP_SHIPPING_METHOD).getAttribute("data-shipping-method");
             for (var i = 0, length = radios.length; i < length; i++) if (pickupMethod !== radios[i].value) {

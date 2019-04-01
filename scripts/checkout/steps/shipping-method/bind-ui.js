@@ -2,10 +2,13 @@ import { loadingOverlay, loadingImage } from './ui-elements';
 import STATE from '../../state';
 import SELECTORS from './selectors';
 import { DELIVERY_METHODS } from '../../constants';
-import { hideElements } from '../../ui-helpers';
+import { hideElements, elementExists } from '../../ui-helpers';
 
 const updateShippingMethod = () => {
   if (
+    elementExists(
+      document.querySelector(`${SELECTORS.PICKUP_SHIPPING_METHOD} input`)
+    ) &&
     document.querySelector(`${SELECTORS.PICKUP_SHIPPING_METHOD} input`).checked
   ) {
     const radios = document.querySelectorAll('.input-radio');
