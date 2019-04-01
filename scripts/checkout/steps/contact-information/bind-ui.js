@@ -282,6 +282,13 @@ const updateShippingMethod = (checkoutGID, checkoutKey) => {
 };
 
 const bindUI = () => {
+  if (STATE.deliveryMethod === DELIVERY_METHODS.SHIP) {
+    const regexDEC = new RegExp(/Decathlon/);
+    if (regexDEC.test(company.value)) {
+      clearShippingForm();
+    }
+  }
+
   // Clear form if store data is pre-populating
 
   /**
@@ -393,7 +400,7 @@ const bindUI = () => {
     data: [
       {
         id: 'adr_sf',
-        name: 'Decathlon - San Francisco',
+        name: 'Decathlon - SF',
         company: 'Decathlon',
         street1: '735 Market St',
         street2: '',

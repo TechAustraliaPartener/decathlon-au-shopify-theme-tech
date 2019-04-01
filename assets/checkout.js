@@ -224,6 +224,10 @@
         return res.json();
     });
     var CLASSES$1 = config_CLASSES, ASSET_BASE_URL = "//cdn.shopify.com/s/files/1/1752/4727/t/84/assets/";
+    var clearShippingForm = function() {
+        company.value = "", userAddress1.value = "", userAddress2.value = "", userCity.value = "", 
+        userZip.value = "";
+    };
     var contactInformation_updateUI = updateUI;
     var CUSTOM_UI_SELECTORS$1 = {
         PICKUP_SHIPPING_METHOD_BLOCKS: [ "shopify-Pickup%20Method-0.00", "empty-test" ].map(function(selector) {
@@ -240,18 +244,19 @@
     var loadingImage$1 = document.querySelector(CUSTOM_UI_SELECTORS$1.LOADING_IMAGE);
     var updateShippingMethod$1 = function() {
         if (document.querySelector(CUSTOM_UI_SELECTORS$1.PICKUP_SHIPPING_METHOD + " input").checked) {
-            console.log("here2");
             var radios = document.querySelectorAll(".input-radio");
             var pickupMethod = document.querySelector(CUSTOM_UI_SELECTORS$1.PICKUP_SHIPPING_METHOD).getAttribute("data-shipping-method");
-            for (var i = 0, length = radios.length; i < length; i++) {
-                var currentMethod = radios[i].value;
-                if (console.log(currentMethod), pickupMethod !== currentMethod) {
-                    radios[i].checked = !0, hideElements([ document.querySelector(".review-block:nth-child(3)") ]);
-                    break;
-                }
+            for (var i = 0, length = radios.length; i < length; i++) if (pickupMethod !== radios[i].value) {
+                radios[i].checked = !0, hideElements([ document.querySelector(".review-block:nth-child(3)") ]);
+                break;
             }
         }
         hideElements([ document.querySelector(CUSTOM_UI_SELECTORS$1.PICKUP_SHIPPING_METHOD).parentNode ]);
+    };
+    var hideShippingMethods = function() {
+        var radios = document.querySelectorAll(".radio-wrapper");
+        var pickupMethod = document.querySelector(CUSTOM_UI_SELECTORS$1.PICKUP_SHIPPING_METHOD).getAttribute("data-shipping-method");
+        for (var i = 0, length = radios.length; i < length; i++) pickupMethod !== radios[i].getAttribute("data-shipping-method") && (radios[i].parentNode.style.display = "none");
     };
     var SHOPIFY_UI_SELECTORS$1 = {
         BILLING_ADDRESS_CHOICES: {
@@ -355,7 +360,7 @@
         },
         STOREFRONT_API: {
             HEADER_NAME: "X-Shopify-Storefront-Access-Token",
-            KEY: "f6c7c4e4db56de88295c2ba45762a331"
+            KEY: "d5d7d74c65c818a0d63d8926a9d7ec01"
         },
         NO_CACHE_HEADERS: {
             "cache-control": "no-store",
@@ -380,13 +385,13 @@
         STATE.deliveryMethod = "pickup" === getObjectFromSessionStorage("delivery_method") ? "pickup" : "ship", 
         getObjectFromSessionStorage("pickup_store") && (STATE.pickupStore = getObjectFromSessionStorage("pickup_store")), 
         STATE.checkoutStep === CHECKOUT_STEPS.CONTACT_INFORMATION && function() {
+            "ship" === STATE.deliveryMethod && /Decathlon/.test(company.value) && clearShippingForm(), 
             pickupToggleBtn.addEventListener("click", function(event) {
                 event.preventDefault(), STATE.deliveryMethod = "pickup", pickupToggleBtn.classList.toggle(CLASSES$1.ACTIVE_SHIPPICK_BTN), 
                 shipToggleBtn.classList.toggle(CLASSES$1.ACTIVE_SHIPPICK_BTN), sessionStorageAvailable && setObjectInSessionStorage("delivery_method", "pickup"), 
                 updateUI();
             }), shipToggleBtn.addEventListener("click", function(event) {
-                /Decathlon/.test(company.value) && (company.value = "", userAddress1.value = "", 
-                userAddress2.value = "", userCity.value = "", userZip.value = ""), STATE.deliveryMethod = "ship", 
+                /Decathlon/.test(company.value) && clearShippingForm(), STATE.deliveryMethod = "ship", 
                 pickupToggleBtn.classList.toggle(CLASSES$1.ACTIVE_SHIPPICK_BTN), shipToggleBtn.classList.toggle(CLASSES$1.ACTIVE_SHIPPICK_BTN), 
                 sessionStorageAvailable && setObjectInSessionStorage("delivery_method", "ship"), 
                 updateUI();
@@ -459,7 +464,7 @@
             }), function(locations) {
                 for (var _isArray = Array.isArray(_iterator = [ {
                     id: "adr_sf",
-                    name: "Decathlon - San Francisco",
+                    name: "Decathlon - SF",
                     company: "Decathlon",
                     street1: "735 Market St",
                     street2: "",
@@ -515,14 +520,19 @@
                 });
             }();
         }(), STATE.checkoutStep === CHECKOUT_STEPS.SHIPPING_METHOD && (hideElements([ loadingOverlay$1, loadingImage$1 ]), 
-        "ship" === STATE.deliveryMethod && (document.querySelector(".content-box__row:nth-child(3)").style.borderTop = "none", 
-        document.querySelector(CUSTOM_UI_SELECTORS$1.PICKUP_SHIPPING_METHOD) ? updateShippingMethod$1() : new MutationObserver(function(mutations) {
+        "ship" === STATE.deliveryMethod ? document.querySelector(CUSTOM_UI_SELECTORS$1.PICKUP_SHIPPING_METHOD) ? updateShippingMethod$1() : new MutationObserver(function(mutations) {
             mutations.forEach(function(mutation) {
                 updateShippingMethod$1();
             });
         }).observe(document.querySelector(".section__content"), {
             childList: !0
-        }))), STATE.checkoutStep === CHECKOUT_STEPS.PAYMENT_METHOD && (hideElements([ loadingOverlay$2, loadingImage$2 ]), 
+        }) : document.querySelector(CUSTOM_UI_SELECTORS$1.PICKUP_SHIPPING_METHOD) ? hideShippingMethods() : new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                hideShippingMethods();
+            });
+        }).observe(document.querySelector(".section__content"), {
+            childList: !0
+        })), STATE.checkoutStep === CHECKOUT_STEPS.PAYMENT_METHOD && (hideElements([ loadingOverlay$2, loadingImage$2 ]), 
         "pickup" === STATE.deliveryMethod && (hideElements(billingAddressChoices), hideElements([ shipToMap ]), 
         shipToLabel.innerHTML = "Pickup at")), STATE.checkoutStep === CHECKOUT_STEPS.THANK_YOU && function() {
             if (hideElements([ loadingOverlay$3, loadingImage$3 ]), "pickup" === STATE.deliveryMethod) {

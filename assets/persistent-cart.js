@@ -40,15 +40,12 @@
     var STAGING_DOMAINS = [ "testing-decathlon-usa.myshopify.com" ];
     var config = {
         get API_URL() {
-            var persistentCartUrl = "http://localhost:8080";
             var hostname = window.location.hostname;
             return STAGING_DOMAINS.some(function(domain) {
                 return hostname.match(RegExp(domain));
-            }) && (persistentCartUrl = "https://persistent-cart-decathlonusa-s.herokuapp.com"), 
-            PRODUCTION_DOMAINS.some(function(domain) {
+            }), PRODUCTION_DOMAINS.some(function(domain) {
                 return hostname.match(RegExp(domain));
-            }) && (persistentCartUrl = "https://persistent-cart-decathlonusa.herokuapp.com"), 
-            persistentCartUrl + "/shopify/graphql";
+            }), "https://persistent-cart-decathlonusa-s.herokuapp.com/shopify/graphql";
         },
         STORAGE: {
             PREFIX: "de_pc_",
@@ -161,7 +158,7 @@
         },
         STOREFRONT_API: {
             HEADER_NAME: "X-Shopify-Storefront-Access-Token",
-            KEY: "f6c7c4e4db56de88295c2ba45762a331"
+            KEY: "d5d7d74c65c818a0d63d8926a9d7ec01"
         },
         NO_CACHE_HEADERS: {
             "cache-control": "no-store",
