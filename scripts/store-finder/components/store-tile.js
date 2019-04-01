@@ -24,7 +24,10 @@ export const storeTile = {
               class='de-u-spaceLeft06 de-u-textShrink1 de-u-textBlue de-u-textMedium'
             ></a>
           </div>
-          <p class='de-u-spaceNone de-u-textDarkGray de-u-textShrink2 de-u-textMedium'>Open until 11:00 pm</p>
+          <p
+            v-text='store.street2'
+            class='de-u-spaceNone de-u-textDarkGray de-u-textShrink2 de-u-textMedium'
+          ></p>
         </div>
         <div class='de-StoreTile-actions de-u-size2of6 de-u-textShrink2 de-u-flex'>
           <a
@@ -47,8 +50,8 @@ export const storeTile = {
             @click='$emit("store-info-nav", store)'
             class='de-StoreTile-actionsButton de-u-flex de-u-flexCol de-u-flexAlignItemsCenter de-u-flexJustifyCenter'
           >
-            <span 
-              v-html='icons.information' 
+            <span
+              v-html='icons.information'
                class='de-u-iconContainer'
             ></span>
             <span class='de-u-textBlue de-u-textMedium de-u-textShrink1'>Info</span>

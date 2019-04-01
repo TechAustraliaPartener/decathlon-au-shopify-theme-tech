@@ -31,8 +31,8 @@ export const app = {
 
         <store-finder-search-form
           v-model.trim='searchInput'
-          @blur='isSearchInputFocused = false'
-          @focus='isSearchInputFocused = true'
+          @blur='handleSearchFormBlur'
+          @focus='handleSearchFormFocus'
           @form-submit='handleSearchFormSubmit'
           @clear-search-input='clearSearchInput'
           @get-user-geolocation='getUserGeolocation'
@@ -102,11 +102,14 @@ export const app = {
       mapsInitialized: Boolean(window.google),
       stores: [],
       storeDistances: [],
+      isStoreDistanceFetch: false,
       isFavoritedStore: null,
       isSelectedStore: null,
       isSearchInputFocused: false,
+      isSearchInputCleared: false,
       searchInput: '',
       searchInputPlaceholder: '',
+      searchInputPrevious: '',
       emailInput: '',
       emailInputPlaceholder: 'youremail@domain.com',
       isEmailCheckboxActive: false,
@@ -125,36 +128,23 @@ export const app = {
     },
 
     showStoreTiles() {
-      return !this.isStoresOutOfArea;
-    },
-
-    showNoLocations() {
-      return this.isStoresInitialized && this.isStoresOutOfArea;
+      return (
+        this.isStoresInitialized &&
+        !this.isStoreDistanceFetch &&
+        !this.isStoresOutOfArea
+      );
     },
 
     showLoader() {
-      return (
-        !this.isSearchInputFocused &&
-        !this.showStoreTiles &&
-        !this.showNoLocations
-      );
-    }
-  },
-  watch: {
-    searchInput(searchInput) {
-      if (searchInput.length === 0 && !this.isSearchInputFocused) {
-        console.log('watch searchInput');
-        this.getDistance(this.searchInputPlaceholder);
-        this.noLocationCopy = this.searchInput;
-      }
+      return !this.isStoresInitialized || this.isStoreDistanceFetch;
     },
 
-    isSearchInputFocused(isSearchInputFocused) {
-      if (this.searchInput.length === 0 && !isSearchInputFocused) {
-        console.log('watch searchInput');
-        this.getDistance(this.searchInputPlaceholder);
-        this.noLocationCopy = this.searchInput;
-      }
+    showNoLocations() {
+      return (
+        this.isStoresInitialized &&
+        !this.isStoreDistanceFetch &&
+        this.isStoresOutOfArea
+      );
     }
   },
   beforeMount() {
@@ -243,6 +233,7 @@ export const app = {
 
         if (city && state) {
           this.searchInputPlaceholder = `${city}, ${state}`;
+          this.noLocationCopy = `${city}, ${state}`;
           this.clearSearchInput();
           await this.getDistance(this.searchInputPlaceholder);
         }
@@ -258,6 +249,7 @@ export const app = {
 
     async getDistance(origin) {
       try {
+        this.isStoreDistanceFetch = true;
         const destinations = this.stores.map(store =>
           formatStoreAddress(store)
         );
@@ -266,25 +258,46 @@ export const app = {
         return distances;
       } catch (error) {
         console.error(error);
+      } finally {
+        this.isStoreDistanceFetch = false;
       }
     },
 
     async handleSearchFormSubmit() {
-      console.log('--> ', this.searchInput);
       if (!this.searchInput) return;
-      console.log('passed');
       try {
+        // Store input for the event of no distance results
         this.noLocationCopy = this.searchInput;
-        this.storeDistances = [];
+        this.searchInputPrevious = this.searchInput;
         const origin = this.searchInput;
-        const distances = await this.getDistance(origin);
-        console.log('distances: ', distances);
+        await this.getDistance(origin);
       } catch (error) {
         console.error(error);
       }
     },
 
+    handleSearchFormBlur() {
+      this.isSearchInputFocused = false;
+      if (
+        this.searchInput.length === 0 &&
+        this.searchInput !== this.searchInputPrevious
+      ) {
+        this.getDistance(this.searchInputPlaceholder);
+        this.noLocationCopy = this.searchInput;
+        this.isSearchInputCleared = false;
+      }
+    },
+
+    handleSearchFormFocus() {
+      this.isSearchInputFocused = true;
+      if (!this.isSearchInputCleared) {
+        this.searchInputPrevious = this.searchInput;
+      }
+    },
+
     clearSearchInput() {
+      this.isSearchInputCleared = true;
+      this.searchInputPrevious = this.searchInput;
       this.searchInput = '';
     },
 
@@ -297,7 +310,7 @@ export const app = {
         this.emailInput = '';
 
         const url = 'https://decathlon-proxy.herokuapp.com/api/mailchimp';
-        const response = await fetch(url, {
+        await fetch(url, {
           method: 'POST',
           body: JSON.stringify({
             emailAddress,
@@ -315,8 +328,6 @@ export const app = {
         setTimeout(() => {
           this.emailInputPlaceholder = 'youremail@domain.com';
         }, 3000);
-
-        console.log('response: ', response);
       } catch (error) {
         console.error(error);
         this.emailInput = emailAddress;
@@ -324,17 +335,14 @@ export const app = {
     },
 
     handleEmailCheckboxToggle(checkboxState) {
-      console.log(checkboxState);
       this.isEmailCheckboxActive = checkboxState;
     },
 
     setSelectedStore(store) {
       this.isSelectedStore = store;
-      console.log('isSelectedStore: ', store);
     },
 
     setFavoritedStore(store) {
-      console.log('setFavoritedStore: ', store);
       if (this.isFavoritedStore && this.isFavoritedStore.id === store.id) {
         this.deleteFavoritedStore();
       } else {
@@ -373,12 +381,10 @@ export const app = {
     },
 
     goToStoreDirection(store) {
-      console.log('store: ', store);
       const directions = {
         origin: this.searchInput || this.searchInputPlaceholder,
         destination: formatStoreAddress(store)
       };
-      console.log('directions: ', directions);
       const url = `https://www.google.com/maps/dir/?api=1&${objectToParams(
         directions
       )}`;
