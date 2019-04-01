@@ -33,7 +33,7 @@ export default () =>
         phone_number: '1234567890',
         state: 'CA',
         street1: '3938 Horton St',
-        street2: 'Open until 10:00 pm',
+        street2: 'Grand Opening April 12th 9am',
         validated: false,
         zip: '94608'
       }
