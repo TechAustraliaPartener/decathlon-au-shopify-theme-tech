@@ -172,7 +172,9 @@
       {% include 'ajax-cart--drawer' %}
     {% endif %}
 
+	{% if template == "index" %}
     {% include 'gateway' %}
+	{% endif %}
 
     {% comment %} <div id="PageContainer" class="is-moved-by-drawer"> {% endcomment %}
     <div class="de-PageWrap-main">
@@ -287,7 +289,7 @@
 	  window.onload = function() {
 		  var bannerBillboard = document.querySelector('.slick-active .banner--billboard'),
 		      bannerOverlay= document.getElementById('bannerOverlay'),
-			  bannerLoading = document.querySelectorAll('.loading');
+			  bannerLoading = document.querySelector('.loading');
           if (bannerBillboard) {
               bannerBillboard.classList.remove('loading');
           }
@@ -295,9 +297,7 @@
               bannerOverlay.classList.remove('loading');
           }
 		  if (bannerLoading) {
-		    bannerLoading.forEach(function(i) {
-              i.classList.remove('loading');
-			});
+		      bannerLoading.classList.remove('loading');
           }
 	  };
 	  var mouseflowCrossDomainSupport = true;

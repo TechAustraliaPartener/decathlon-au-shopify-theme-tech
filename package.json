@@ -1,6 +1,6 @@
 {
   "name": "decathlon",
-  "version": "1.5.7",
+  "version": "1.7.0",
   "description": "Minify and Concat CSS and JS files, run jshint for all script files.",
   "repository": {
     "type": "git",
@@ -14,8 +14,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "theme watch & gulp",
     "dev:heroku:staging": "DECATHLON_PERSISTENT_CART_URL=https://persistent-cart-decathlonusa-s.herokuapp.com STOREFRONT_API_KEY=d5d7d74c65c818a0d63d8926a9d7ec01 npm run dev",
-    "build:heroku:staging": "DECATHLON_PERSISTENT_CART_URL=https://persistent-cart-decathlonusa-s.herokuapp.com STOREFRONT_API_KEY=d5d7d74c65c818a0d63d8926a9d7ec01 npm run build",
-    "build:heroku:production": "DECATHLON_PERSISTENT_CART_URL=https://persistent-cart-decathlonusa-p.herokuapp.com STOREFRONT_API_KEY=f6c7c4e4db56de88295c2ba45762a331 npm run build",
+    "build:heroku:staging": "NODE_ENV=production DECATHLON_PERSISTENT_CART_URL=https://persistent-cart-decathlonusa-s.herokuapp.com STOREFRONT_API_KEY=d5d7d74c65c818a0d63d8926a9d7ec01 npm run build",
+    "build:heroku:production": "NODE_ENV=production DECATHLON_PERSISTENT_CART_URL=https://persistent-cart-decathlonusa-p.herokuapp.com STOREFRONT_API_KEY=f6c7c4e4db56de88295c2ba45762a331 npm run build",
     "build": "gulp build",
     "get-schema": "graphql get-schema",
     "check-lint": "eslint '{scripts,cypress/integration/persistent-cart}/**/*.js' && prettier --list-different '{scripts,cypress/integration/persistent-cart}/**/*.js'",
@@ -78,6 +78,7 @@
     "js-cookie": "^2.2.0",
     "lodash.isplainobject": "^4.0.6",
     "promise-polyfill": "^8.1.0",
-    "unfetch": "^4.0.1"
+    "unfetch": "^4.0.1",
+    "vue": "^2.6.10"
   }
 }

@@ -1,0 +1,37 @@
+{% assign meetDecathlonMenu = linklists["meet-decathlon"] %}
+
+<!-- "Meet Decathlon" menu START -->
+<nav
+  class="de-PageWrap-wideMenuInner de-MeetDecathlonMenu"
+  id="meet-decathlon"
+  data-de-page-wrap-cancel>
+  <div class="de-u-pad2 de-u-textSemibold de-MeetDecathlonMenu-mission">
+    <p class="de-u-spaceNone">{{ settings.meet_decathlon_mission }}</p>
+  </div>
+
+  <div class="de-u-borderTopSm de-u-borderGray50 de-u-pad2 de-u-padBottomNone">
+    <div class="de-MeetDecathlonMenu-sectionWrapper de-Grid de-Grid--withGutter de-u-flexJustifyBetween">
+
+      {% comment %} Creates each of the "Meet Decathlon" menu sections {% endcomment %}
+      {% for section in meetDecathlonMenu.links %}
+        <section class="de-MeetDecathlonMenu-section de-u-size1of3 de-u-flex de-u-flexCol">
+          <h3 class="de-u-textGrow1 de-u-textSemibold de-u-spaceBottom06">{{ section.title }}</h3>
+
+          {% comment %} See "Meet Decathon" theme `settings_schema.json` {% endcomment %}
+          {% assign statementId = 'meet_decathlon_statement_' | append: forloop.index %}
+          <p class="de-MeetDecathlonMenu-statement de-u-textShrink de-u-lineHeight2 de-u-spaceBottom06">{{ settings[statementId] }}</p>
+
+          <ul class="de-u-listReset de-u-spaceNone de-u-spaceTop1 de-u-textShrink1 de-u-lineHeight3">
+            {% for sectionLink in section.links %}
+              <li>
+                <a href="{{ sectionLink.url }}" class="de-u-linkClean">{{ sectionLink.title }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </section>
+      {% endfor %}
+    </div>
+  </div>
+  <img class="de-MeetDecathlonMenu-graphic de-u-block" src="{{ settings.meet_decathlon_image | img_url: '1906x' }}" alt="">
+</nav>
+<!-- "Meet Decathlon" menu END -->

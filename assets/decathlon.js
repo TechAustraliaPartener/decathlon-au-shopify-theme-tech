@@ -50,6 +50,58 @@ var allowedStates = {
     "WY": "Wyoming"
 }
 
+var countryURL = {
+"AU": "https://www.decathlon.com.au/",
+"AT": "https://www.decathlon.at/",
+"BE": "https://www.decathlon.be/",
+"BR": "http://www.decathlon.com.br/",
+"BG": "https://www.decathlon.bg/",
+"KH": "https://www.decathlon.com.kh/en/",
+"CA": "https://www.decathlon.ca/",
+"CL": "https://www.decathlon.cl/",
+"CO": "https://www.decathlon.com.co/",
+"HR": "https://www.decathlon.hr/",
+"CZ": "https://www.decathlon.cz/",
+"CD": "http://www.decathlon-rdc.com/",
+"EG": "https://www.decathlon.eg/",
+"FR": "https://www.decathlon.fr/",
+"DE": "https://www.decathlon.de/",
+"GH": "https://www.decathlon.com.gh/",
+"CN": "https://www.decathlon.com.cn/",
+"HU": "https://www.decathlon.hu/",
+"IN": "https://www.decathlon.in/",
+"ID": "https://www.decathlon.co.id/",
+"IL": "https://www.decathlon.co.il/",
+"IT": "https://www.decathlon.it/",
+"CI": "http://www.decathlon.ci/",
+"KE": "https://www.decathlon.co.ke/",
+"LT": "https://www.decathlon.lt/lt_en/",
+"MY": "https://www.decathlon.my/",
+"MX": "https://www.decathlon.com.mx/",
+"MA": "https://www.decathlon.ma/",
+"NL": "https://www.decathlon.nl/",
+"PH": "https://www.decathlon.ph/",
+"PL": "https://www.decathlon.pl/",
+"PT": "https://www.decathlon.pt/",
+"RO": "https://www.decathlon.ro/",
+"RU": "https://www.decathlon.ru/",
+"SN": "https://www.decathlon.sn/",
+"SG": "https://www.decathlon.sg/",
+"SK": "https://www.decathlon.sk/",
+"SI": "https://www.decathlon.si/",
+"ZA": "https://www.decathlon-sports.co.za/",
+"KR": "https://www.decathlon.co.kr/kr_ko/",
+"ES": "https://www.decathlon.es/",
+"LK": "http://decathlonsrilanka.com/",
+"SE": "https://www.decathlon.se/",
+"CH": "https://www.decathlon.ch/",
+"TH": "https://www.decathlon.co.th/",
+"TN": "https://www.decathlon.tn/",
+"TR": "https://www.decathlon.com.tr/",
+"GB": "https://www.decathlon.co.uk/",
+"US": "US"
+}
+
 function isProductPage() {
     var thisUrl = window.location.href
     var pages = thisUrl.split('/')
@@ -791,6 +843,21 @@ function(e, t, i, n, o) {
                 return allowedStates[syncResult.data.region_code];
             return true; // by default don't show overlay
         }
+		function getCountry(T) {
+			// Try to get country from cookie data
+			var loc = T.getData("locale");
+            if (loc) {
+              return [ countryURL[loc.country_code], loc.country_name ];
+            }
+			// Try to get country from geolocation API call
+            var syncResult = getLocaleSync(t, 'country check')
+            if (syncResult.error)
+              return ""; // by default don't show overlay
+            if (syncResult.data.country_code)
+				// return 2 element array with country URL and country name
+                return [ countryURL[syncResult.data.country_code], syncResult.data.country_name ];
+            return ""; // by default don't show overlay
+        }
         T.getLocale(), T.fullscreen({
             offsetHeight: Math.floor(t(".js-de-PageWrap-header").outerHeight())
         }), t(e).bind("pageshow", function() {
@@ -834,15 +901,42 @@ function(e, t, i, n, o) {
             // t("#customer_login_link").parent().hide(),
             // t("#customer_register_link").parent().hide(),
             // t("#NavDrawer .drawer__title").addClass("h5").removeClass("h3").html('<a href="/account"><i class="ico ico--account mobileHeader-accountIcon"></i>My Account</a>'),
+			
+			// Get Country
+			country = getCountry(T),
+			// Check if not mobile device, only homepage, and outside of US (removed check for 'seenGateway' cookie)
+			(!isMobileDevice() && !isProductPage() && country[0] != "US") && t("#gateway").length && (t("body").hasClass("template-index") ? t("#gateway").addClass("gateway--home") : t("#PageContainer").css({
+                "-o-filter": "blur(5px)",
+                "-moz-filter": "blur(5px)",
+                "-webkit-filter": "blur(5px)",
+                "-ms-filter": "\"progid:DXImageTransform.Microsoft.Blur(PixelRadius='5')\"",
+                filter: "blur(5px)"
+			// Show gateway splash screen
+            }), t("#gateway").show(), (function() {
+			        // Remove email signup form, add buttons
+					t('#gateway form').remove();
+					t('#gateway .banner-subtitle').text('You are visiting Decathlon USA.');
+					t('#gateway .gateway-content').append('<div><a class="btn btn--text js-closePopup hide-on-success" href="#PageContainer">Enter U.S. Site</a></div>');
+					if (country[1] && country[1] != "undefined") {
+					  t('#hello-state').text('Hello ' + country[1] + '!');
+					} else {
+					  t('#hello-state').text('Hello!');
+					}
+					// If Country has website, show link to website
+					if (country[0]) {
+						t('#gateway .gateway-content').append('<div><a class="btn btn--text" href="' + country[0] + '">Enter ' + country[1] + ' Site</a></div>');
+					}
+            }()), t("#gateway #contact_form").css("height", t("#gateway #contact_form").innerHeight()), T.getData("seenBanner") || t(".popup .banner-content").hide(), t(e).on("scroll", d), t("#gateway").on("touchmove", u), t("#gateway .close-popup-btn").on("click", f), t("#gateway .js-closePopup").on("click", function(e) {
+                e.preventDefault(), f()
+            })),
 
-            (!isMobileDevice() && !isProductPage() && !fromAllowedState(T) && !T.getData("seenGateway") && !nativeAppCookie.getData("noGateway")) && t("#gateway").length && (t("body").hasClass("template-index") ? t("#gateway").addClass("gateway--home") : t("#PageContainer").css({
+            (!isMobileDevice() && !isProductPage() && !fromAllowedState(T) && country[0] == "US" && !T.getData("seenGateway") && !nativeAppCookie.getData("noGateway")) && t("#gateway").length && (t("body").hasClass("template-index") ? t("#gateway").addClass("gateway--home") : t("#PageContainer").css({
                 "-o-filter": "blur(5px)",
                 "-moz-filter": "blur(5px)",
                 "-webkit-filter": "blur(5px)",
                 "-ms-filter": "\"progid:DXImageTransform.Microsoft.Blur(PixelRadius='5')\"",
                 filter: "blur(5px)"
             }), t("#gateway").show(), (function() {
-
                 var gatewayRegion = T.getUserRegion()
                 if (gatewayRegion)
                 	t('#hello-state').text('Hello ' + gatewayRegion + '!');
@@ -850,7 +944,6 @@ function(e, t, i, n, o) {
                   	t('#hello-state').text('Hello!');
                 t('#sel-state option:contains(' + gatewayRegion + ')').prop({selected: true}),
                 t('#sel-state').addClass( "is-selected" )
-
             }()), t("#gateway #contact_form").css("height", t("#gateway #contact_form").innerHeight()), T.getData("seenBanner") || t(".popup .banner-content").hide(), t(e).on("scroll", d), t("#gateway").on("touchmove", u), t("#gateway .close-popup-btn").on("click", f), t("#gateway .js-closePopup").on("click", function(e) {
                 e.preventDefault(), f()
             }), t("#gateway form select").on("change", function(e) {

@@ -57,6 +57,14 @@
 		<ul class="de-MenuList">
 			{% include 'navigation-menu-list', list: linklists["brand-menu"] %}
 		</ul>
+		<ul class="de-MenuList">
+			{% for list-item in linklists["store-finder"].links %}
+				{% include 'navigation-menu-list-item',
+					item: list-item,
+					showLabel: true,
+					listClass: 'de-u-spaceNone de-u-textBold' %}
+			{% endfor %}
+		</ul>
 	</section>
 	<section class="de-SlideViews-view js-de-SlideViews-view" id="menu-list-all-sports">
 	    <ul class="de-MenuList">
