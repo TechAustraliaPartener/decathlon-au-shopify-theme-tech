@@ -223,7 +223,7 @@
     var getCurrentLocation = fetch("https://api.ipstack.com/check?access_key=23cb2745b5ee35580d6f00373f14f868&legacy=1").then(function(res) {
         return res.json();
     });
-    var CLASSES$1 = config_CLASSES, STORE_BASE_URL = "https://testing-decathlon-usa.myshopify.com";
+    var CLASSES$1 = config_CLASSES, STORE_BASE_URL = "https://www.decathlon.com";
     var clearShippingForm = function() {
         company.value = "", userAddress1.value = "", userAddress2.value = "", userCity.value = "", 
         userZip.value = "";
@@ -450,7 +450,7 @@
                                     }).then(function(res) {
                                         return res.json();
                                     }).then(function(data) {
-                                        var checkoutURL = STORE_BASE_URL + "/17524727/checkouts/" + window.Shopify.Checkout.token + "?key=" + checkoutKey;
+                                        var checkoutURL = STORE_BASE_URL + "/13306287/checkouts/" + window.Shopify.Checkout.token + "?key=" + checkoutKey;
                                         window.location.href = checkoutURL;
                                     });
                                 }(checkoutGID, checkoutKey);

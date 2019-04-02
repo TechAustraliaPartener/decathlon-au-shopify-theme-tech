@@ -12,8 +12,8 @@ const config = {
     SHIPPING_ADDRESS_HEADING: 'Shipping address',
     PICKUP_ADDRESS_HEADING: 'Pickup address'
   },
-  STORE_BASE_URL: 'https://testing-decathlon-usa.myshopify.com',
-  SHOP_ID: '17524727'
+  STORE_BASE_URL: 'https://www.decathlon.com',
+  SHOP_ID: '13306287'
 };
 
 export default config;
