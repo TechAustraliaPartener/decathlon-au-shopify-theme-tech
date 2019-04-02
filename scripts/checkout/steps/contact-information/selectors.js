@@ -7,13 +7,24 @@
  */
 const SHOPIFY_UI_SELECTORS = {
   CONTINUE_BTN: '.step__footer__continue-btn',
+  SHIPPING_ADDRESS_HEADER: '.section--shipping-address .section__header h2',
   DELIVERY_INPUTS: {
-    addressInput: '[data-address-field="address1"]',
+    address1Input: '[data-address-field="address1"]',
+    address2Input: '[data-address-field="address2"]',
     cityInput: '[data-address-field="city"]',
     countryInput: '[data-address-field="country"]',
     provinceInput: '[data-address-field="province"]',
     zipInput: '[data-address-field="zip"]'
-  }
+  },
+  USER_ADDRESS_LIST: '#checkout_shipping_address_id',
+  COMPANY: '#checkout_shipping_address_company',
+  USER_FIRST_NAME: '#checkout_shipping_address_first_name',
+  USER_LAST_NAME: '#checkout_shipping_address_last_name',
+  USER_ADDRESS_1: '#checkout_shipping_address_address1',
+  USER_ADDRESS_2: '#checkout_shipping_address_address2',
+  USER_CITY: '#checkout_shipping_address_city',
+  USER_ZIP: '#checkout_shipping_address_zip',
+  USER_EMAIL: '#checkout_email'
 };
 
 /**
@@ -25,7 +36,14 @@ const CUSTOM_UI_SELECTORS = {
   TOGGLE_SHIPPING: '.js-de-toggle-shipping',
   TOGGLE_PICKUP: '.js-de-toggle-pickup',
   PICKUP_CONTENT: '.js-de-pickup-content',
-  STORE_INPUT: '[name="store"]'
+  PICKUP_LOCATIONS: '.js-de-pickup-locations',
+  PICKUP_LOCATION: '.js-de-pickup-location',
+  ACTIVE_PICKUP_LOCATION: '.js-de-active-location',
+  PICKUP_CONTINUE_BTN_CONTAINER: '.js-de-payment-continue-container',
+  PICKUP_CONTINUE_BTN: '.js-de-payment-continue',
+  MAP_IMAGE: '.js-de-pickup-location-map-img',
+  LOADING_OVERLAY: '.de-loading-overlay',
+  LOADING_IMAGE: '.de-checkout-loader'
 };
 
 export default {

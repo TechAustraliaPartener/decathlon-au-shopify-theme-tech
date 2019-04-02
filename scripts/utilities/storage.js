@@ -40,6 +40,11 @@ const storageAvailableTest = type => {
 export const localStorageAvailable = storageAvailableTest('localStorage');
 
 /**
+ * Helper testing for sessionStorage availability
+ */
+export const sessionStorageAvailable = storageAvailableTest('sessionStorage');
+
+/**
  * Test the client's ability to set and get cookies (unset after testing)
  * @param {string} test - A string to test setting and getting on a the document.cookie
  * @returns {boolean} - Whether the test passed
@@ -79,3 +84,26 @@ export const getObjectFromLocalStorage = name =>
  * @param {string} item The item to remove from localStorage
  */
 export const removeItemFromLocalStorage = item => localStorage.removeItem(item);
+
+/**
+ * Helper to set an object in sessionStorage
+ * @param {string} name
+ * @param {Object} value
+ */
+export const setObjectInSessionStorage = (name, value) =>
+  sessionStorage.setItem(name, JSON.stringify(value));
+
+/**
+ * Helper to get an object from its stringified representation in sessionStorage
+ * @param {string} name
+ * @returns {Object} - Parsed object contained in sessionStorage as a string
+ */
+export const getObjectFromSessionStorage = name =>
+  JSON.parse(sessionStorage.getItem(name));
+
+/**
+ * Helper to remove an item from sessionStorage
+ * @param {string} item The item to remove from sessionStorage
+ */
+export const removeItemFromSessionStorage = item =>
+  sessionStorage.removeItem(item);

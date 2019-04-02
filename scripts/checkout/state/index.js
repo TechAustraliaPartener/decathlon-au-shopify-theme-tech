@@ -3,6 +3,9 @@
  * @todo: Can this be configured via environment variable?
  * Set to `false` for `production`.
  */
+const Shopify = window.Shopify;
+const checkoutStep = Shopify && Shopify.Checkout && Shopify.Checkout.step;
+const checkoutPage = Shopify && Shopify.Checkout && Shopify.Checkout.page;
 const DEBUG_STATE = true;
 
 const logState = () => {
@@ -17,7 +20,11 @@ const logState = () => {
 const STATE = {
   _deliveryMethod: null,
   _pickupStore: null,
-  _checkoutStep: null,
+  /**
+   * For the purposes of steps and pages, don't use setters and getters
+   */
+  checkoutStep,
+  checkoutPage,
   /**
    * Getters/Setters
    */
@@ -27,19 +34,12 @@ const STATE = {
   get pickupStore() {
     return this._pickupStore;
   },
-  get checkoutStep() {
-    return this._checkoutStep;
-  },
   set deliveryMethod(method) {
     this._deliveryMethod = method;
     logState();
   },
   set pickupStore(store) {
     this._pickupStore = store;
-    logState();
-  },
-  set checkoutStep(step) {
-    this._checkoutStep = step;
     logState();
   }
 };

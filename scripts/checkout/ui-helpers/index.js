@@ -4,6 +4,14 @@
 const HIDDEN = 'de-u-hidden';
 
 /**
+ * Checks if HTML element exists in the DOM
+ * @param {Element} element The HTML element to check
+ */
+export const elementExists = element => {
+  return Boolean(element);
+};
+
+/**
  * Hides HTML element by adding CSS class
  * @param {Element} element The HTML element to hide
  */

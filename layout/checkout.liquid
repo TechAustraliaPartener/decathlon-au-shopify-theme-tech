@@ -9,9 +9,12 @@
     <title>{{ page_title }}</title>
 
     {{ content_for_header }}
-
-    {{ checkout_stylesheets }}
     {{ 'patterns-toolkit.css' | asset_url | stylesheet_tag }}
+    {{ checkout_stylesheets }}
+
+    <script>
+      window.checkoutID = {{ checkout.id }};
+    </script>
     {{ checkout_scripts }}
   </head>
   <body>
@@ -40,6 +43,9 @@
     <div class="content" data-content>
       <div class="wrap">
         <div class="main" role="main">
+          <div class="js-de-loading-overlay de-loading-overlay">
+            <img src="{{ 'decathlon-loader.gif' | asset_url }}" class="de-checkout-loader" />
+          </div>
           <div class="main__header">
             {{ content_for_logo }}
             {{ breadcrumb }}
@@ -51,41 +57,37 @@
               The checkout JS (scripts/checkout/index.js)
               will show and add UI functionality.
             {% endcomment %}
-            <div class="de-u-spaceEnds02">
-              <button class="btn js-de-toggle-shipping de-u-hidden">
-                <span class="btn__content">Ship</span>
-              </button>
-              <button class="btn js-de-toggle-pickup de-u-hidden">
-                <span class="btn__content">Pickup</span>
-              </button>
+            <div class="de-Grid de-Grid--withGutter">
+              <div class="de-pickship-btn-container de-u-size1of2 de-u-spaceBottom">
+                <button class="btn js-de-toggle-shipping de-pickship-btn de-u-hidden">
+                  <span class="btn__content">{% include 'ship-icon' %} Ship to Home</span>
+                </button>
+              </div>
+              <div class="de-pickship-btn-container de-u-size1of2 de-u-spaceBottom">
+                <button class="btn js-de-toggle-pickup de-pickship-btn de-u-hidden">
+                  <span class="btn__content">{% include 'pickup-icon' %} Pickup in Store</span>
+                </button>
+              </div>
             </div>
 
-            <div class="js-de-pickup-content de-u-hidden">
-              <p>Pickup your order in-store within 24 to 48Hr.<br/>You will receive an email when your order is ready for pickup.</p>
-
-              <ul class="de-u-spaceEnds02">
-                <li>
-                  <label>
-                    <input class="input-radio" type="radio" name="store" value="first-store">
-                    <span>First Store</span>
-                  </label>
-                </li>
-                <li>
-                  <label>
-                    <input class="input-radio" type="radio" name="store" value="second-store">
-                    <span>Second Store</span>
-                  </label>
-                </li>
-                <li>
-                  <label>
-                    <input class="input-radio" type="radio" name="store" value="third-store">
-                    <span>Third Store</span>
-                  </label>
-                </li>
-              </ul>
+            <div class="js-de-pickup-content de-pickup-content de-u-hidden">
+              <div class="js-de-pickup-location-map de-pickup-location-map">
+                <img src="{{ 'no-selection-map2.jpg' | asset_url }}" class="js-de-pickup-location-map-img de-pickup-location-map-img" alt="">
+              </div>
+              <h2 class="de-location-heading de-u-spaceTop2">Select location</h2>
+              <hr class="de-u-bgBlue de-location-hr de-u-spaceEnds2">
+              <ul class="js-de-pickup-locations de-pickup-locations de-Grid de-Grid--withGutter"></ul>
+              <hr class="de-u-bgLime de-location-hr de-u-spaceEnds2">
             </div>
 
             {{ content_for_layout }}
+            <div class="de-visit-cal-container de-u-hidden de-u-spaceTop de-u-textShrink3">Planning to be in San Francisco? <a href="#"class="de-visit-cal-btn">Try Pickup in Store</a></div>
+            <span class="js-de-payment-continue-container">
+              <a href="#" class="btn js-de-payment-continue de-payment-continue de-u-hidden">
+                <span class="js-de-payment-continue-copy">Continue to Payment</span>
+                <svg class="icon-svg icon-svg--size-18 btn__spinner icon-svg--spinner-button js-de-payment-continue-spinner" aria-hidden="true" focusable="false"> <use xlink:href="#spinner-button"></use> </svg>
+              </a>
+            </span>
           </div>
           <div class="main__footer">
             {{ content_for_footer }}
