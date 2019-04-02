@@ -28,7 +28,7 @@ import { getCurrentLocation } from '../../../utilities/location';
 import { showElements, hideElements } from '../../ui-helpers';
 import config from '../../config';
 
-const { CLASSES, ASSET_BASE_URL } = config;
+const { CLASSES, STORE_BASE_URL, SHOP_ID, PICKUP_SHIPPING_METHOD } = config;
 
 const clearShippingForm = () => {
   company.value = '';
@@ -76,7 +76,9 @@ const bindLocations = () => {
         }
 
         // Update map image
-        mapImage.src = `${ASSET_BASE_URL}${pickupStore}.jpg?v=4`;
+        // mapImage.src = `${ASSET_BASE_URL}${pickupStore}?v=4`;
+        console.log(pickupStore);
+        mapImage.src = window[pickupStore];
       }
     });
   });
@@ -200,7 +202,7 @@ const updateCheckout = () => {
   );
 
   // Graphql update
-  fetch('https://testing-decathlon-usa.myshopify.com/api/graphql', {
+  fetch(`${STORE_BASE_URL}/api/graphql`, {
     method: 'POST',
     headers: {
       'x-shopify-storefront-access-token': '8e681070902104a65649736d6b1f7bd0',
@@ -234,7 +236,7 @@ const updateCheckout = () => {
  * @return calls next step in graphql chain: updateShippingMethod
  */
 const updateEmail = (checkoutGID, checkoutKey) => {
-  fetch('https://testing-decathlon-usa.myshopify.com/api/graphql', {
+  fetch(`${STORE_BASE_URL}/api/graphql`, {
     method: 'POST',
     headers: {
       'x-shopify-storefront-access-token': '8e681070902104a65649736d6b1f7bd0',
@@ -262,19 +264,19 @@ const updateEmail = (checkoutGID, checkoutKey) => {
  * for each store.
  */
 const updateShippingMethod = (checkoutGID, checkoutKey) => {
-  fetch('https://testing-decathlon-usa.myshopify.com/api/graphql', {
+  fetch(`${STORE_BASE_URL}/api/graphql`, {
     method: 'POST',
     headers: {
       'x-shopify-storefront-access-token': '8e681070902104a65649736d6b1f7bd0',
       'content-type': 'application/json'
     },
     /* eslint-disable graphql/template-strings, no-useless-escape */
-    body: `{\"query\":\"mutation checkoutShippingLineUpdate($checkoutId: ID!, $shippingRateHandle: String!) {\\n  checkoutShippingLineUpdate(checkoutId: $checkoutId, shippingRateHandle: $shippingRateHandle) {\\n    checkout {\\n      id\\n      webUrl\\n    }\\n    checkoutUserErrors {\\n      code\\n      field\\n      message\\n    }\\n  }\\n}\",\"variables\":{\"checkoutId\":\"${checkoutGID}\",\"shippingRateHandle\":\"shopify-Pickup%20Method-0.00\"},\"operationName\":\"checkoutShippingLineUpdate\"}`
+    body: `{\"query\":\"mutation checkoutShippingLineUpdate($checkoutId: ID!, $shippingRateHandle: String!) {\\n  checkoutShippingLineUpdate(checkoutId: $checkoutId, shippingRateHandle: $shippingRateHandle) {\\n    checkout {\\n      id\\n      webUrl\\n    }\\n    checkoutUserErrors {\\n      code\\n      field\\n      message\\n    }\\n  }\\n}\",\"variables\":{\"checkoutId\":\"${checkoutGID}\",\"shippingRateHandle\":\"${PICKUP_SHIPPING_METHOD}\"},\"operationName\":\"checkoutShippingLineUpdate\"}`
     /* eslint-enable */
   })
     .then(res => res.json())
     .then(data => {
-      const checkoutURL = `https://testing-decathlon-usa.myshopify.com/17524727/checkouts/${
+      const checkoutURL = `${STORE_BASE_URL}/${SHOP_ID}/checkouts/${
         window.Shopify.Checkout.token
       }?key=${checkoutKey}`;
       window.location.href = checkoutURL;
@@ -326,7 +328,7 @@ const bindUI = () => {
    * This probably needs to move.
    */
   if (STATE.pickupStore !== null) {
-    mapImage.src = `${ASSET_BASE_URL}${STATE.pickupStore}.jpg?v=4`;
+    mapImage.src = window[STATE.pickupStore];
   }
 
   /**
@@ -416,25 +418,25 @@ const bindUI = () => {
         address_type: null,
         validated: false,
         code: '135'
-      },
-      {
-        id: 'adr_emery',
-        name: 'Emeryville',
-        company: 'Decathlon',
-        street1: '3938 Horton St',
-        street2: null,
-        city: 'Emeryville',
-        state: 'CA',
-        zip: '94608',
-        country: 'US',
-        phone_number: null,
-        email: null,
-        is_residential: false,
-        is_warehouse: false,
-        address_type: null,
-        validated: false,
-        code: null
       }
+      // {
+      //   id: 'adr_emery',
+      //   name: 'Emeryville',
+      //   company: 'Decathlon',
+      //   street1: '3938 Horton St',
+      //   street2: null,
+      //   city: 'Emeryville',
+      //   state: 'CA',
+      //   zip: '94608',
+      //   country: 'US',
+      //   phone_number: null,
+      //   email: null,
+      //   is_residential: false,
+      //   is_warehouse: false,
+      //   address_type: null,
+      //   validated: false,
+      //   code: null
+      // }
     ]
   };
   buildStoreList(sampleData);
