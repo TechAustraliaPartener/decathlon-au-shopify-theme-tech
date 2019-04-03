@@ -13,9 +13,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "theme watch & gulp",
-    "dev:heroku:staging": "DECATHLON_PERSISTENT_CART_URL=https://persistent-cart-decathlonusa-s.herokuapp.com TESTING=true STOREFRONT_API_KEY=d5d7d74c65c818a0d63d8926a9d7ec01 npm run dev",
-    "build:heroku:staging": "NODE_ENV=production TESTING=true DECATHLON_PERSISTENT_CART_URL=https://persistent-cart-decathlonusa-s.herokuapp.com STOREFRONT_API_KEY=d5d7d74c65c818a0d63d8926a9d7ec01 npm run build",
-    "build:heroku:production": "NODE_ENV=production DECATHLON_PERSISTENT_CART_URL=https://persistent-cart-decathlonusa-p.herokuapp.com STOREFRONT_API_KEY=f6c7c4e4db56de88295c2ba45762a331 npm run build",
+    "dev:heroku:staging": "DECATHLON_PERSISTENT_CART_URL=https://persistent-cart-decathlonusa-s.herokuapp.com STOREFRONT_API_KEY=d5d7d74c65c818a0d63d8926a9d7ec01 npm run dev",
+    "build:heroku:staging": "NODE_ENV=production DECATHLON_PERSISTENT_CART_URL=https://persistent-cart-decathlonusa-s.herokuapp.com STOREFRONT_API_KEY=d5d7d74c65c818a0d63d8926a9d7ec01 npm run build",
+    "build:heroku:production": "NODE_ENV=production PROD_KEYS=true DECATHLON_PERSISTENT_CART_URL=https://persistent-cart-decathlonusa-p.herokuapp.com STOREFRONT_API_KEY=f6c7c4e4db56de88295c2ba45762a331 npm run build",
     "build": "gulp build",
     "get-schema": "graphql get-schema",
     "check-lint": "eslint '{scripts,cypress/integration/persistent-cart}/**/*.js' && prettier --list-different '{scripts,cypress/integration/persistent-cart}/**/*.js'",

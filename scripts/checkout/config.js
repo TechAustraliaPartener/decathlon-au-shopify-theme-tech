@@ -12,13 +12,10 @@ const config = {
     SHIPPING_ADDRESS_HEADING: 'Shipping address',
     PICKUP_ADDRESS_HEADING: 'Pickup address'
   },
-  STORE_BASE_URL: process.env.TESTING
-    ? 'https://testing-decathlon-usa.myshopify.com'
-    : 'https://www.decathlon.com',
-  SHOP_ID: process.env.TESTING ? '17524727' : '13306287',
-  STOREFRONT_API_KEY: process.env.TESTING
-    ? '8e681070902104a65649736d6b1f7bd0'
-    : 'f76765be5300c93b4689309b5a31e7eb'
+  SHOP_ID: process.env.PROD_KEYS ? '13306287' : '17524727',
+  STOREFRONT_API_KEY: process.env.PROD_KEYS
+    ? 'f76765be5300c93b4689309b5a31e7eb'
+    : '8e681070902104a65649736d6b1f7bd0'
 };
 
 export default config;

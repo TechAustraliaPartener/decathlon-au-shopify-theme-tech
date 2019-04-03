@@ -137,8 +137,8 @@ The Click and Collect feature enables shipping and pick-up-in-store options in c
 ### Building the C&C for Testing and Production
 
 1. To build for testing, run `npm run build:heroku:staging` (or `npm run dev:heroku:staging` to start a watch on your code with gulp tasks and Theme Kit)
-1. This sets a value in code, `TESTING=true`, used to set keys for C&C to work against a staging environment
 1. To build for production, run `npm run build:heroku:production`
+1. This sets a value in code, `PROD_KEYS=true`, used to set keys for C&C to work against a production environment
 
 ## Cypress tests
 
