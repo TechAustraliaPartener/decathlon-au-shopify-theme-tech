@@ -255,6 +255,19 @@
   From Shopify Timber Product template START BLOCK 2
 {% endcomment %}
 <script>
+  var productJSON = {{ product | json }},
+      colorOption = null,
+      selectCallbackInitialized = false,
+      activeColor;
+
+  productJSON.rating = '{{ product.metafields.ratings.product_rating }}';
+
+  for(option in productJSON.options) {
+    if (productJSON.options[option] === 'Color') {
+      colorOption = 'option'+ (parseInt(option) + 1);
+    }
+  }
+
   var selectCallback = function(variant, selector) {
     timber.productPage({
       money_format: "{{ shop.money_format }}",
