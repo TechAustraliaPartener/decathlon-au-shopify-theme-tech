@@ -130,16 +130,6 @@ There is a check for `window.location.hostname` to determine if the result is a 
 
 All of this logic can be overridden by using the `DECATHLON_PERSISTENT_CART_URL` environment variable as shown above.
 
-## Click and Collect (C&C)
-
-The Click and Collect feature enables shipping and pick-up-in-store options in checkout
-
-### Building the C&C for Testing and Production
-
-1. To build for testing, run `npm run build:heroku:staging` (or `npm run dev:heroku:staging` to start a watch on your code with gulp tasks and Theme Kit)
-1. To build for production, run `npm run build:heroku:production`
-1. This sets a value in code, `PROD_KEYS=true`, used to set keys for C&C to work against a production environment
-
 ## Cypress tests
 
 Cypress tests have been added to help test the Persistent Cart E2E flow.
