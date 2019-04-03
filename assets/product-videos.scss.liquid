@@ -1,0 +1,28 @@
+/**
+ * 1. Make the video appear square
+ */
+.de-copyVideo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(2); /* 1 */
+}
+
+.de-ProductPhoto {
+  position: relative;
+  overflow: hidden;
+}
+
+.de-watch-video-button {
+  cursor: pointer;
+  svg {
+    vertical-align: middle;
+  }
+}
+
+@media (min-width: 40em) {
+  .de-slick--videos {
+    max-width: 80%;
+    margin: auto;
+  }
+}

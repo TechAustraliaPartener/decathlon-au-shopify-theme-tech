@@ -102,6 +102,7 @@
     {% endcomment %}
     {{ 'product-buybox.scss.css' | asset_url | stylesheet_tag }}
     {{ 'product-carousel.scss.css' | asset_url | stylesheet_tag }}
+    {{ 'product-videos.scss.css' | asset_url | stylesheet_tag }}
   {% endif %}
 
   {% comment %}
@@ -283,6 +284,13 @@
 
   {{ 'decathlon.js' | asset_url | script_tag }}
   {{ 'patterns-toolkit.js' | asset_url | script_tag }}
+  {% if template == "product" %}
+    {% comment %}
+      The following files will only exist and be linked to during development
+      @todo: Remove the following javascript links
+    {% endcomment %}
+  {{ 'product-videos.js' | asset_url | script_tag }}
+  {% endif %}
 
   {% comment %}{% include 'decathlon-wishlist' %}{% endcomment %}
   {% comment %}{% include 'zendesk-chat' %}{% endcomment %}
