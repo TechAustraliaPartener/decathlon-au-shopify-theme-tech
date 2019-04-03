@@ -28,7 +28,13 @@ import { getCurrentLocation } from '../../../utilities/location';
 import { showElements, hideElements } from '../../ui-helpers';
 import config from '../../config';
 
-const { CLASSES, STORE_BASE_URL, SHOP_ID, PICKUP_SHIPPING_METHOD } = config;
+const {
+  CLASSES,
+  STORE_BASE_URL,
+  SHOP_ID,
+  PICKUP_SHIPPING_METHOD,
+  STOREFRONT_API_KEY
+} = config;
 
 const clearShippingForm = () => {
   company.value = '';
@@ -205,7 +211,7 @@ const updateCheckout = () => {
   fetch(`${STORE_BASE_URL}/api/graphql`, {
     method: 'POST',
     headers: {
-      'x-shopify-storefront-access-token': '8e681070902104a65649736d6b1f7bd0',
+      'x-shopify-storefront-access-token': STOREFRONT_API_KEY,
       'content-type': 'application/json'
     },
     /* eslint-disable graphql/template-strings, no-useless-escape */
@@ -239,7 +245,7 @@ const updateEmail = (checkoutGID, checkoutKey) => {
   fetch(`${STORE_BASE_URL}/api/graphql`, {
     method: 'POST',
     headers: {
-      'x-shopify-storefront-access-token': '8e681070902104a65649736d6b1f7bd0',
+      'x-shopify-storefront-access-token': STOREFRONT_API_KEY,
       'content-type': 'application/json'
     },
     /* eslint-disable graphql/template-strings, no-useless-escape */
@@ -267,7 +273,7 @@ const updateShippingMethod = (checkoutGID, checkoutKey) => {
   fetch(`${STORE_BASE_URL}/api/graphql`, {
     method: 'POST',
     headers: {
-      'x-shopify-storefront-access-token': '8e681070902104a65649736d6b1f7bd0',
+      'x-shopify-storefront-access-token': STOREFRONT_API_KEY,
       'content-type': 'application/json'
     },
     /* eslint-disable graphql/template-strings, no-useless-escape */

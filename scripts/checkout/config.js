@@ -13,7 +13,8 @@ const config = {
     PICKUP_ADDRESS_HEADING: 'Pickup address'
   },
   STORE_BASE_URL: 'https://www.decathlon.com',
-  SHOP_ID: '13306287'
+  SHOP_ID: '13306287',
+  STOREFRONT_API_KEY: 'f6c7c4e4db56de88295c2ba45762a331'
 };
 
 export default config;
