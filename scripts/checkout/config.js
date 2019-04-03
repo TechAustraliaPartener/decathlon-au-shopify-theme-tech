@@ -28,7 +28,7 @@ const config = {
   SHOP_ID: ifDev(['17524727', '13306287']),
   STOREFRONT_API_KEY: ifDev([
     '8e681070902104a65649736d6b1f7bd0',
-    'f76765be5300c93b4689309b5a31e7eb'
+    '7a1e00b184619ef7021a29119803ecbc'
   ])
 };
 
