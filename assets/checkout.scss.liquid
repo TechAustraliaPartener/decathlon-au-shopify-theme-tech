@@ -45,6 +45,17 @@
     font-weight: normal;
     font-style: normal;
 }
+@mixin prefix($property, $value) {
+  -webkit-#{$property}: #{$value};
+  -moz-#{$property}: #{$value};
+  -ms-#{$property}: #{$value};
+  -o-#{$property}: #{$value};
+  #{$property}: #{$value};
+}
+
+@mixin transition($transition: 0.1s all) {
+  @include prefix('transition', #{$transition});
+}
 .product-thumbnail::after,.btn,.field__input,.content-box,.input-checkbox {
 	border-radius: 0;
 }
@@ -61,12 +72,151 @@
       padding-top: 1em;
   }
 }
-@media (max-width: 999px) {
+@media (max-width: 1000px) {
   .banner {
- 	 padding: 10px 0 5px 0; 
+ 	 padding: 10px 0 5px 0;
    }
    .logo__image--small {
 	 height: 35px;
   	 max-height: 35px;
     }
+}
+
+.de-pickup-location {
+  padding: 13px;
+  box-sizing: border-box;
+  border: 1px solid #d9d9d9;
+  cursor: pointer;
+  &.js-de-active-location, &:hover {
+    border: 3px solid #1c82c3;
+    padding: 11px;
+  }
+}
+
+@media (max-width: 750px) {
+  .de-pickup-locations li {
+    width: 100% !important;
+  }
+}
+
+.de-pickup-location p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.de-pickship-btn {
+  width: 100%;
+  display: block;
+  border: 1px solid #1c82c3;
+  color: #1c82c3;
+  box-sizing: border-box;
+  background: #fff;
+  padding-left: 0.8em;
+  padding-right: 0.8em;
+  svg{
+    height:30px;
+    vertical-align: middle;
+    margin-right: .5rem;
+    .st0 {
+      @include transition(all 0.1s ease-in);
+      fill: none;
+      stroke:#1c82c3;
+      stroke-linecap:square;
+    }
+  	.st1 {
+      @include transition(all 0.1s ease-in);
+      fill: none;
+      stroke:#1c82c3;
+    }
+  }
+
+  &:hover, &.js-de-active-pickship-btn {
+    background:#1c82c3;
+    color: #fff;
+    .st0 {
+      fill: none;
+      stroke: #fff;
+      stroke-linecap: square;
+    }
+  	.st1 {
+      fill: none;
+      stroke: #fff;
+    }
+  }
+}
+
+.de-pickup-location-map-img {
+  width: 100%;
+}
+
+@media (min: 750px) {
+  .de-pickship-btn-container:nth-child(even), .de-pickup-locations li:nth-child(even) {
+    padding-right: 0;
+  }
+  .de-pickship-btn-container:nth-child(odd), .de-pickup-locations li:nth-child(odd) {
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 750px) {
+  .de-pickship-btn-container {
+    width: 100% !important;
+  }
+}
+
+.de-payment-continue {
+  float: right;
+}
+
+.de-visit-cal-container {
+  float: right;
+}
+
+// Matches Shopify style
+.de-location-heading {
+  color: #333;
+  font-size: 1.28571em;
+}
+
+.de-location-hr {
+  height: 3px;
+  border: none;
+}
+
+.section--contact-information .section__header {
+  margin-top: 20px;
+}
+
+.main {
+  position: relative;
+}
+
+.de-loading-overlay {
+  position: absolute;
+  width: 100%;
+  height:100%;
+  background: #fff;
+  z-index: 10;
+  top: 0;
+  left: -3px;
+}
+
+.de-checkout-loader {
+  position: absolute;
+  width: 50px;
+  top: 250px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+[data-address-field="company"] {
+  display: none;
+}
+
+.section--shipping-address {
+  padding-top: 0;
+}
+
+.section--shipping-address .section__title {
+  margin-top: 30px;
 }

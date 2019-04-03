@@ -1,6 +1,5 @@
-const Shopify = window.Shopify;
-
 const config = {
+  PROD_HOSTNAME: 'www.decathlon.com',
   SELECTORS: {
     PREFIX: '.js-de-',
     get CART() {
@@ -23,12 +22,6 @@ const config = {
         PAYMENT_METHOD: 'payment_method',
         PROCESSING: 'processing',
         REVIEW: 'review'
-      },
-      get STEP() {
-        return Shopify && Shopify.Checkout && Shopify.Checkout.step;
-      },
-      get PAGE() {
-        return Shopify && Shopify.Checkout && Shopify.Checkout.page;
       },
       URLS: {
         ROOT_URL: '/',

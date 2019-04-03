@@ -19,7 +19,7 @@ const STAGING_DOMAINS = process.env.STAGING_DOMAINS
  */
 const PRODUCTION_API_URL =
   process.env.PRODUCTION_API_URL ||
-  'https://persistent-cart-decathlonusa.herokuapp.com';
+  'https://persistent-cart-decathlonusa-p.herokuapp.com';
 
 /**
  * The staging Persistent Cart app API URL
