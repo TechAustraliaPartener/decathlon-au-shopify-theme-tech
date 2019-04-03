@@ -28,7 +28,7 @@ import { getCurrentLocation } from '../../../utilities/location';
 import { showElements, hideElements } from '../../ui-helpers';
 import config from '../../config';
 
-const { CLASSES, STORE_BASE_URL, SHOP_ID, PICKUP_SHIPPING_METHOD } = config;
+const { CLASSES, SHOP_ID, PICKUP_SHIPPING_METHOD, STOREFRONT_API_KEY } = config;
 
 const clearShippingForm = () => {
   company.value = '';
@@ -202,10 +202,10 @@ const updateCheckout = () => {
   );
 
   // Graphql update
-  fetch(`${STORE_BASE_URL}/api/graphql`, {
+  fetch(`/api/graphql`, {
     method: 'POST',
     headers: {
-      'x-shopify-storefront-access-token': '8e681070902104a65649736d6b1f7bd0',
+      'x-shopify-storefront-access-token': STOREFRONT_API_KEY,
       'content-type': 'application/json'
     },
     /* eslint-disable graphql/template-strings, no-useless-escape */
@@ -236,10 +236,10 @@ const updateCheckout = () => {
  * @return calls next step in graphql chain: updateShippingMethod
  */
 const updateEmail = (checkoutGID, checkoutKey) => {
-  fetch(`${STORE_BASE_URL}/api/graphql`, {
+  fetch(`/api/graphql`, {
     method: 'POST',
     headers: {
-      'x-shopify-storefront-access-token': '8e681070902104a65649736d6b1f7bd0',
+      'x-shopify-storefront-access-token': STOREFRONT_API_KEY,
       'content-type': 'application/json'
     },
     /* eslint-disable graphql/template-strings, no-useless-escape */
@@ -264,10 +264,10 @@ const updateEmail = (checkoutGID, checkoutKey) => {
  * for each store.
  */
 const updateShippingMethod = (checkoutGID, checkoutKey) => {
-  fetch(`${STORE_BASE_URL}/api/graphql`, {
+  fetch(`/api/graphql`, {
     method: 'POST',
     headers: {
-      'x-shopify-storefront-access-token': '8e681070902104a65649736d6b1f7bd0',
+      'x-shopify-storefront-access-token': STOREFRONT_API_KEY,
       'content-type': 'application/json'
     },
     /* eslint-disable graphql/template-strings, no-useless-escape */
@@ -276,7 +276,7 @@ const updateShippingMethod = (checkoutGID, checkoutKey) => {
   })
     .then(res => res.json())
     .then(data => {
-      const checkoutURL = `${STORE_BASE_URL}/${SHOP_ID}/checkouts/${
+      const checkoutURL = `/${SHOP_ID}/checkouts/${
         window.Shopify.Checkout.token
       }?key=${checkoutKey}`;
       window.location.href = checkoutURL;

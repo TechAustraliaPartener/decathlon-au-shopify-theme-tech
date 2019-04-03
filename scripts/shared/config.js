@@ -1,4 +1,5 @@
 const config = {
+  PROD_HOSTNAME: 'www.decathlon.com',
   SELECTORS: {
     PREFIX: '.js-de-',
     get CART() {
