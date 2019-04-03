@@ -1,0 +1,24 @@
+<h3>Size Swatches:</h3>
+<ul>
+  {% for product_option in product.options_with_values %}
+    <li>
+      <p>{{ product_option.position }} - {{ product_option.name }}</p>
+      <ul>
+        {% for value in product_option.values %}
+          <li>{{ value }}</li>
+        {% endfor %}
+      </ul>
+    </li>
+  {% endfor %}
+</ul>
+
+
+
+{% for variant in product.variants %}
+    <img src="{{ variant.image | img_url: 'compact' }}">
+    <p>option: <strong>{{ variant.option1 }}</strong></p>
+    <p>option: <strong>{{ variant.option2 }}</strong></p>
+    <p>option: <strong>{{ variant.option3 }}</strong></p>
+    {% comment %} <img src="{{ image.src | img_url: 'compact' }}"> {% endcomment %}
+    <p>variant: <strong>{{ variant.title }}</strong></p>
+{% endfor %}
