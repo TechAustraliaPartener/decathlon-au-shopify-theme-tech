@@ -15,6 +15,8 @@ const bindUI = () => {
     hideElements(billingAddressChoices);
     hideElements([shipToMap]);
     shipToLabel.innerHTML = 'Pickup at';
+  } else {
+    document.getElementById('checkout_different_billing_address_false').click();
   }
 };
 
