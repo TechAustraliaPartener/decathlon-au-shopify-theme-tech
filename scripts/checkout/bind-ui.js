@@ -4,6 +4,7 @@ import contactInformation from './steps/contact-information';
 import shippingMethod from './steps/shipping-method';
 import paymentMethod from './steps/payment-method';
 import thankYou from './steps/thank-you';
+import stockProblems from './stock-problems';
 
 const bindUI = () => {
   if (STATE.checkoutStep === CHECKOUT_STEPS.CONTACT_INFORMATION) {
@@ -18,8 +19,17 @@ const bindUI = () => {
     paymentMethod.bindUI();
   }
 
-  if (STATE.checkoutStep === CHECKOUT_STEPS.THANK_YOU) {
+  if (
+    STATE.checkoutStep === CHECKOUT_STEPS.THANK_YOU ||
+    (window.Shopify &&
+      window.Shopify.Checkout &&
+      window.Shopify.Checkout.isOrderStatusPage)
+  ) {
     thankYou.bindUI();
+  }
+
+  if (STATE.checkoutPage === 'stock_problems') {
+    stockProblems.bindUI();
   }
 };
 

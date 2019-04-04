@@ -7,7 +7,7 @@ import {
 } from './ui-elements';
 import STATE from '../../state';
 import { DELIVERY_METHODS } from '../../constants';
-import { hideElements } from '../../ui-helpers';
+import { hideElements, elementExists } from '../../ui-helpers';
 
 const bindUI = () => {
   hideElements([loadingOverlay, loadingImage]);
@@ -15,6 +15,13 @@ const bindUI = () => {
     hideElements(billingAddressChoices);
     hideElements([shipToMap]);
     shipToLabel.innerHTML = 'Pickup at';
+  } else {
+    const sameBillingShippingAddress = document.getElementById(
+      'checkout_different_billing_address_false'
+    );
+    if (elementExists(sameBillingShippingAddress)) {
+      sameBillingShippingAddress.click();
+    }
   }
 };
 
