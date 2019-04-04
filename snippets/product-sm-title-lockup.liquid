@@ -1,0 +1,48 @@
+{% comment %} Title Lockup {% endcomment %}
+<div class="de-Grid de-u-padTop de-u-md-padTopNone">
+  <div class="de-u-size1of2">
+    {% include 'product-logo-brand-rockrider' %}
+  </div>
+
+  {% comment %} {% assign product_rating = product.metafields.ratings.product_rating %}
+  {% assign rounded_rating = product_rating | round %}
+  <div class="productAggregateRating js-productAggregateRating">
+    <div class="de-starRating productDescription-rating">
+      <p class="de-starRating-score text-center hide"><span
+        class="de-starRating-avgNote">
+        {{ product_rating }}</span>&thinsp;/&thinsp;5
+      </p>
+      <p class="productRating u-marginBottom0x">
+        {% for i in (0..4) %} <span class="ico ico--star{% if i <
+        rounded_rating %} u-textYellow{% endif %}"></span>
+      {% endfor %}
+      </p>
+    </div>
+    <script id="productAggregateRating" type="text/template"
+      data-reviews="{{ product.metafields.reviews.recent_reviews | replace:
+    '"', '&#34;' }}">
+    <div class="de-starRating productDescription-rating">
+      <p class="de-starRating-score text-center hide"><span class="de-starRating-avgNote">{{ product_rating }}</span>&thinsp;/&thinsp;5</p>
+      <p class="productRating u-marginBottom0x">
+      {% for i in (0..4) %}
+        <span class="ico ico--star{% if i < rounded_rating %} u-textYellow{% endif %}"></span>
+      {% endfor %}
+      </p>
+      {% raw %}
+      <p class="de-starRating-count text-center">{{ total_item_count }} {{inflection total_item_count 'Review'}}</p>
+      {% endraw %}
+    </div>
+    </script>{% endcomment %}
+
+  <a class="de-u-size1of2 de-u-flex de-u-flexJustifyEnd">
+    <div class="de-StarRating de-u-spaceRight06">
+      <div class="de-StarRating-fill" style="width: 80%"></div>
+    </div>
+    <span class="de-u-textBlue">212 <span class="de-u-hidden de-u-md-inlineBlock">Reviews</span> </span>
+  </a>
+
+</div>
+
+<h1 class="de-u-textGrow2 de-u-textMedium" itemprop="name">
+  {{ product.title }}
+</h1>

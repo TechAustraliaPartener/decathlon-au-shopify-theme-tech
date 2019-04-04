@@ -9,6 +9,8 @@
 
 {% endcomment %}
 
+{% include 'section-clips' %}
+
 {% comment %}
   From existing Decathlon Product template START BLOCK 1
 {% endcomment %}
@@ -28,9 +30,11 @@
 	{% capture model_code %}{{ product.variants.first.option3 }}{% endcapture %}
 {% endif %}
 
+{% comment %} Product Flags {% endcomment %}
 {% if product.tags contains 'Innovation' %}
-  <span class="productFlag productFlag--productDetail">Innovation</span>
+  <span class="productFlagz productFlag--productDetailz">Innovation</span>
 {% endif %}
+
 {% comment %}
   From existing Decathlon Product template END BLOCK 1
 {% endcomment %}
@@ -39,7 +43,9 @@
   From existing Decathlon Product template START BLOCK 2
 {% endcomment %}
 <div id="ProductWrap"
-  class="timber-activeProduct {% if product.options.size < 2 %}product-singleOption{% endif %}{% if product.tags contains 'Innovation' %} has-productFlag{% endif %}"
+  class="timber-activeProduct {% if product.options.size < 2
+  %}product-singleOption{% endif %}{% if product.tags contains 'Innovation' %}
+  has-productFlag{% endif %}"
   itemscope
   itemtype="http://schema.org/Product">
 
@@ -51,11 +57,6 @@
   {% endcomment %}
   {% assign current_variant = product.selected_or_first_available_variant %}
 
-    <div class="breadcrumbsWrapper">
-      <div class="wrapper">
-        {% include 'breadcrumb' %}
-      </div>
-    </div>
 {% comment %}
   From existing Decathlon Product template END BLOCK 2
 {% endcomment %}
@@ -63,67 +64,34 @@
     {% comment %}
       From existing Decathlon Product template START BLOCK 3
     {% endcomment %}
-    <div class="wrapper">
-      <div class="product-single">
-        <div class="productDescription-container">
+    <div class="de-u-padSides">
 
-          {% include 'section-clips' %}
-
-          <h1 class="productTitle" itemprop="name">{{ product.title }}
-            {%- comment -%}in color1, color2, and color 3{%- endcomment -%}</h1>
-          <div class="product-description rte" itemprop="description">
-            {{ product_intro }}
-          </div>
-          <div class="addons-list">
-            <a class="u-textBold u-marginBottom0x">Included:</a>
-            <small class="addons-list__items"></small>
-          </div>
-
-          {% comment %}
-            {% include 'product-detail--collection-control' %}
-          {% endcomment %}
-
-        </div>
-
-        {% assign product_rating = product.metafields.ratings.product_rating %}
-        {% assign rounded_rating = product_rating | round %}
-        <div class="productAggregateRating js-productAggregateRating">
-            <div class="de-starRating productDescription-rating">
-              <p class="de-starRating-score text-center hide"><span class="de-starRating-avgNote">{{ product_rating }}</span>&thinsp;/&thinsp;5</p>
-
-              <p class="productRating u-marginBottom0x">
-              {% for i in (0..4) %}
-                <span class="ico ico--star{% if i < rounded_rating %} u-textYellow{% endif %}"></span>
-              {% endfor %}
-              </p>
-            </div>
-          <script id="productAggregateRating" type="text/template" data-reviews="{{ product.metafields.reviews.recent_reviews | replace: '"', '&#34;' }}">
-
-          Hello Worldz
-
-          <div class="de-starRating productDescription-rating">
-            <p class="de-starRating-score text-center hide"><span class="de-starRating-avgNote">{{ product_rating }}</span>&thinsp;/&thinsp;5</p>
-
-            <p class="productRating u-marginBottom0x">
-            {% for i in (0..4) %}
-              <span class="ico ico--star{% if i < rounded_rating %} u-textYellow{% endif %}"></span>
-            {% endfor %}
-            </p>
-            {% raw %}
-            <p class="de-starRating-count text-center">{{ total_item_count }} {{inflection total_item_count 'Review'}}</p>
-            {% endraw %}
-          </div>
-          </script>
+      {% comment %} Breadcrumbs {% endcomment %}
+      <div class="de-u-hidden de-u-md-block">
+        {% include 'breadcrumb' %}
       </div>
-        {% comment %}
-        {% include 'product-grid-item--rating',
-          rating_adtl_classes: ' productDescription-rating',
-          rating: product.metafields.ratings.product_rating
-          %}
-        {% endcomment %}
+
+      {% comment %} Small Screen Title Lockup {% endcomment %}
+      {% include 'product-sm-title-lockup' %}
+
+      {% comment %} <div class="product-description rte" itemprop="description">
+        {{ product_intro }}
+      </div> {% endcomment %}
+
+      <div class="addons-list">
+        <a class="u-textBold u-marginBottom0x">Included:</a>
+        <small class="addons-list__items"></small>
+      </div>
+
+      {% comment %}
+        {% include 'product-detail--collection-control' %}
+      {% endcomment %}
+
+
 
       </div>
     </div>{% comment %}/.wrapper{% endcomment %}
+
     {% comment %}
       From existing Decathlon Product template END BLOCK 3
     {% endcomment %}
@@ -149,10 +117,7 @@
     maxime fugiat ex aut maiores, aliquam sequi vel. Molestiae, quisquam
     nihil.</p>
   </div>
-  {% comment %} {%- assign start = product.description | split: '<p>---features---</p>' -%}
-  {%- assign end = start[1] | split: '<p>---/features---</p>' -%}
-  {%- assign product_features = end[0] -%}
-  {{ product_features }} {% endcomment %}
+  {% comment %} {{ product_features }} {% endcomment %}
 </div>
 
 <div class="de-ProductInfoSection de-ProductInfoSection--silver de-u-pad">
