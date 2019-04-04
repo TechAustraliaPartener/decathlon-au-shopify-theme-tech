@@ -1,0 +1,88 @@
+/**
+ * Color Palette
+ *
+ * Variable names are based on similar CSS extended color keyword values.
+ *
+ * @see https://www.w3.org/TR/2018/REC-css-color-3-20180619/#svg-color
+ */
+
+$color-black: #2a2b2c;
+$color-blue: #0082c3;
+$color-darkgray: #464646;
+$color-gray: #acb3b8;
+$color-lime: #cbfb00;
+$color-silver: #f3f3f3;
+$color-white: #fff;
+$color-red: #e53322;
+
+/**
+ * Border Width
+ */
+
+$border-width-sm: 1px;
+$border-width-md: 2px;
+$border-width-lg: 3px;
+
+.de-ReviewSummary {
+  border-bottom: $border-width-sm solid $color-silver;
+}
+
+/**
+ * @pattern StarRating
+ * Consider converting this into a pattern in the future.
+ */
+
+ .de-StarRating,
+ .de-StarRating-fill {
+   background-position: left;
+   background-repeat: no-repeat;
+   background-size: auto 100%;
+ }
+
+ .de-StarRating {
+   background-image: url("stars.svg");
+   height: 1.2em;
+   position: relative;
+   width: 6em;
+   margin: 0;
+ }
+
+ .de-StarRating-fill {
+   background-image: url("stars-fill.svg");
+   height: 100%;
+   left: 0;
+   position: absolute;
+   top: 0;
+   width: 100%;
+ }
+
+/**
+ * @pattern ReviewMatrix
+ * Consider converting this into a pattern in the future.
+ */
+
+.de-ReviewMatrix {
+
+}
+
+.de-ReviewMatrix-stars {
+  flex: 0 1 auto;
+}
+
+.de-ReviewMatrix-graph {
+  flex: 1;
+  height: 23px;
+}
+
+/**
+ * @pattern ReviewMatrix
+ * Consider converting this into a pattern in the future.
+ */
+
+.de-CustomerReview {
+  border-bottom: $border-width-sm solid $color-silver;
+}
+
+.de-CustomerReview:last-of-type {
+  border-bottom: 0;
+}

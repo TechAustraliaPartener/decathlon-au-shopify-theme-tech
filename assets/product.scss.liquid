@@ -3,3 +3,42 @@
 
   Any shared CSS styles can be added to this file from the beginning.
 {% endcomment %}
+
+/**
+ * Color Palette
+ *
+ * Variable names are based on similar CSS extended color keyword values.
+ *
+ * @see https://www.w3.org/TR/2018/REC-css-color-3-20180619/#svg-color
+ */
+
+$color-black: #2a2b2c;
+$color-blue: #0082c3;
+$color-darkgray: #464646;
+$color-gray: #acb3b8;
+$color-lime: #cbfb00;
+$color-silver: #f3f3f3;
+$color-white: #fff;
+$color-red: #e53322;
+
+/**
+ * Border Width
+ */
+
+$border-width-sm: 1px;
+$border-width-md: 2px;
+$border-width-lg: 3px;
+
+.de-ProductInfoSection {
+
+}
+
+.de-ProductInfoSection--silver {
+  background-color: #F3F3F3;
+}
+
+.de-ProductInfoTitle {
+  border-bottom: $border-width-lg solid $color-lime;
+  padding-bottom: 5px;
+  margin: 0;
+}
