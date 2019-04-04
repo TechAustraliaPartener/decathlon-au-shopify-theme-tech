@@ -184,7 +184,7 @@ const fixCustomCheckoutLinks = () => {
     buildCartBreadCrumb();
   }
 
-  if (isStockProblemsPage()) {
+  if (isStockProblemsPage() && needCartStepLink()) {
     /**
      * Also add return to cart link on the `stock_problems` page (aka, Out of Stock), so the user has a way
      * to get back to cart. For whatever reason, at least in testing, the breadcrumbs are output correctly
