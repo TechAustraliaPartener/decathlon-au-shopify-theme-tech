@@ -286,6 +286,7 @@
   {{ 'decathlon.js' | asset_url | script_tag }}
   {{ 'patterns-toolkit.js' | asset_url | script_tag }}
   {% if template == "product" %}
+    {{ 'product-page.js' | asset_url | script_tag }}
     {% comment %}
       The following files will only exist and be linked to during development
       @todo: Remove the following javascript links
