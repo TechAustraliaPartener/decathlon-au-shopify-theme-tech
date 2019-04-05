@@ -1,0 +1,23 @@
+{% comment %}
+See the older product-grid-item--rating.liquid for reference
+@TODO - Ask about Adept Mind parts of that snippet
+{% endcomment %}
+
+{% comment %}
+The rating variable should be a number between 0 and 5 inclusive.
+The number of stars filled in will be the ceiling integer of the rating.
+{% endcomment %}
+
+{% comment %}
+Add zero to convert the string to a number, which is stored as a string
+because metafields can't be floats
+{% endcomment %}
+{% assign product_rating = product.metafields.ratings.product_rating | plus: 0 %}
+{% assign rating_average = product_rating | times: 20 %}
+{% assign total_item_count = product.metafields.reviews.recent_reviews.total_item_count | plus: 0 %}
+<a class="de-u-size1of2 de-u-flex de-u-flexJustifyEnd">
+  <div class="de-StarRating de-u-spaceRight06">
+    <div class="de-StarRating-fill" style="width: {{ rating_average }}%"></div>
+  </div>
+  <span class="de-u-textBlue">{{ total_item_count }} <span class="de-u-hidden de-u-md-inlineBlock">{{ total_item_count | pluralize: 'Review', 'Reviews' }}</span> </span>
+</a>
