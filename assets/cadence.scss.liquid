@@ -1,4 +1,15 @@
-.anchorList-link--active, .anchorList-link--active:hover {
+.anchorList, .anchorList-item {
+  margin-bottom:0;
+}
+
+.anchorList-link {
+  text-transform: none;
+  letter-spacing: normal;
+  font-size: 18px!important;
+  color: #000000;
+}
+
+.anchorList-link--active, .anchorList-link--active:hover, .anchorList-link:hover {
   color: #0082c3;
   border-bottom: 2px solid #0082c3;
 }
@@ -8,12 +19,11 @@
   display:flex;
   justify-content:space-evenly;
   align-items:center;
-  margin-bottom:0;
 }
 
 .anchorList-item {
   padding:0;
-  margin-bottom:0;
+  line-height:1.4;
 }
 
 .anchorList-link {
