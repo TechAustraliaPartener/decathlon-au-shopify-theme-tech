@@ -284,8 +284,13 @@ const updateShippingMethod = (checkoutGID, checkoutKey) => {
 };
 
 const bindUI = () => {
+  /**
+   * On load checks hidden Company field for auto-populated pickup store data.
+   * If true, form clears
+   */
+
   if (STATE.deliveryMethod === DELIVERY_METHODS.SHIP) {
-    const regexDEC = new RegExp(/Decathlon/);
+    const regexDEC = new RegExp(/San Francisco|Emeryville/);
     if (regexDEC.test(company.value)) {
       clearShippingForm();
     }

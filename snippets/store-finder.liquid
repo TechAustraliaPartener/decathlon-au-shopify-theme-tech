@@ -11,8 +11,10 @@
 <div id='js-StoreFinder'></div>
 
 {% comment %}
-  Store Finder Script
+  Store Finder Script(s)
 {% endcomment %}
+{% include 'moment.js' %}
+{% include 'moment-timezone.js' %}
 {{ 'store-finder.js' | asset_url | script_tag }}
 
 <!-- End snippets/store-finder.liquid -->
