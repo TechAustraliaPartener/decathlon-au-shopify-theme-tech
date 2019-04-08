@@ -1,24 +1,44 @@
 <h3>Size Swatches:</h3>
-<ul>
+
+{% assign option_type = 'size' %}
+
+{% capture sizes %}
   {% for product_option in product.options_with_values %}
-    <li>
-      <p>{{ product_option.position }} - {{ product_option.name }}</p>
-      <ul>
-        {% for value in product_option.values %}
-          <li>{{ value }}</li>
-        {% endfor %}
-      </ul>
-    </li>
+    {% assign product_option_name = product_option.name | downcase %}
+    {% if product_option_name == option_type %}
+      {% for value in product_option.values %}
+        {{- value -}}
+        {%- unless forloop.last -%},{%- endunless -%}
+      {% endfor %}
+    {% endif %}
   {% endfor %}
-</ul>
+{% endcapture %}
 
+{% assign all_sizes = sizes | split: ',' %}
 
+<div class="wrapper">
+  <div class="de-u-flex de-u-flexAlignItemsCenter de-u-flexJustifyBetween">
+    <div>
+      <strong>Size: </strong>
+      <span class="de-u-textDarkGray de-u-textMedium js-de-SizeInfo">
+        Select a size
+      </span>
+    </div>
+    <button class="de-u-flex de-u-flexAlignItemsCenter de-u-textBlue de-u-textSizeBase de-u-textMedium">
+      {% include 'product-icon--ruler' %}
+      Size Guide
+    </button>
+  </div>
+</div>
 
-{% for variant in product.variants %}
-    <img src="{{ variant.image | img_url: 'compact' }}">
-    <p>option: <strong>{{ variant.option1 }}</strong></p>
-    <p>option: <strong>{{ variant.option2 }}</strong></p>
-    <p>option: <strong>{{ variant.option3 }}</strong></p>
-    {% comment %} <img src="{{ image.src | img_url: 'compact' }}"> {% endcomment %}
-    <p>variant: <strong>{{ variant.title }}</strong></p>
-{% endfor %}
+<div class="de-SwatchGrid js-de-SizeSwatches">
+  {% for size in all_sizes %}
+    {% assign cleanSize = size | strip %}
+    <div class="de-SwatchGrid-item">
+      <button
+        class="de-SwatchGrid-info de-u-textMedium js-de-SizeSwatches-option"
+        value="{{ cleanSize }}"
+      >{{ cleanSize }}</button>
+    </div>
+  {% endfor %}
+</div>
