@@ -1,17 +1,34 @@
-@media (min-width:640px) {
-.anchorList {
-  display:flex;
-  justify-content:space-evenly;
-  align-items:center;
-  margin-bottom:0;
-}
-
-.anchorList-item {
-  padding:0;
+.anchorList, .anchorList-item {
   margin-bottom:0;
 }
 
 .anchorList-link {
+  text-transform: none;
+  letter-spacing: normal;
+  font-size: 14px!important;
+  color: #000000;
+  font-family: avalonbold,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.anchorList-link--active, .anchorList-link--active:hover, .anchorList-link:hover {
+  color: #0082c3;
+  border-bottom: 2px solid #0082c3;
+}
+
+@media (min-width:600px) {
+.anchorList {
+  display:flex;
+  justify-content:space-evenly;
+  align-items:center;
+}
+
+.anchorList-item {
+  padding:0;
+  line-height:1.3;
+}
+
+.anchorList-link {
   padding: 0 0.5em;
+  font-size: 18px!important;
 }
 }
