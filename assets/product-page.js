@@ -7,17 +7,30 @@
     var $SizeSwatchesOptions = $SizeSwatches.find(".js-de-SizeSwatches-option");
     var $SizeInfo = $(".js-de-SizeInfo");
     var $$1 = window.jQuery;
-    $$1(".de-js-slick--videos").slick({
-        dots: !0,
-        arrows: !1
-    }), $$1(".de-js-watch-video-button").click(function() {
-        if ($$1(this).hasClass("de-js-toggle")) $$1(this).removeClass("de-js-toggle"), $$1(".de-js-watch-video.hide").removeClass("hide"), 
-        $$1(".de-js-view-images").addClass("hide"), $$1(".de-js-copyVideo").remove(); else {
-            $$1(this).addClass("de-js-toggle"), $$1(".de-js-view-images.hide").removeClass("hide"), 
-            $$1(".de-js-watch-video").addClass("hide");
-            var t = $$1(".de-js-firstVideo").clone().removeAttr("height").attr("height", "50%").removeAttr("id").addClass("de-copyVideo").addClass("de-js-copyVideo");
-            $$1(".de-js-ProductPhoto").append(t);
-        }
+    var $posterImages = $$1(".js-de-slick--videos .vjs-poster");
+    var $videoCarousel = $$1(".js-de-slick--videos");
+    var $thumbnailCarousel = $$1(".js-de-slick--videos-thumbnails");
+    var $toggleButton = $$1(".js-de-watch-video-button");
+    var $viewImagesCTA = $$1(".js-de-view-images");
+    var $watchVideoCTA = $$1(".js-de-watch-video");
+    var $copyVideo = $$1(".js-de-copyVideo");
+    $$1(window).on("load", function() {
+        $posterImages.each(function(index) {
+            $$1(".js-de-slick--videos-thumbnails .js-de-thumb-" + (index + 1)).attr("src", $$1(this).css("background-image").replace(/^url\(['"](.+)['"]\)/, "$1"));
+        }), $videoCarousel.slick({
+            asNavFor: $thumbnailCarousel,
+            arrows: !1
+        }), $thumbnailCarousel.slick({
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            asNavFor: $videoCarousel,
+            centerMode: !0,
+            focusOnSelect: !0
+        });
+    }), $toggleButton.click(function() {
+        $$1(this).hasClass("js-de-toggle") ? ($$1(this).removeClass("js-de-toggle"), $watchVideoCTA.removeClass("hide"), 
+        $viewImagesCTA.addClass("hide"), $copyVideo.addClass("hide")) : ($$1(this).addClass("js-de-toggle"), 
+        $viewImagesCTA.removeClass("hide"), $watchVideoCTA.addClass("hide"), $copyVideo.removeClass("hide"));
     }), ($SizeSwatchesOptions.on("click", function() {
         (function() {
             $SizeSwatches.trigger(SELECT_EVENT, {

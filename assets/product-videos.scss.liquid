@@ -1,11 +1,14 @@
 /**
  * 1. Make the video appear square
+ * 2. Make the poster appear square
  */
 .de-copyVideo {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%) scale(2); /* 1 */
+  .vjs-tech {
+    object-fit: cover; /* 1 */
+  }
+  .vjs-poster {
+    background-size: cover; /* 2 */
+  }
 }
 
 .de-ProductPhoto {
@@ -20,9 +23,16 @@
   }
 }
 
+.de-thumb {
+  padding: 10px;
+}
+
 @media (min-width: 40em) {
   .de-slick--videos {
     max-width: 80%;
     margin: auto;
+  }
+  .de-thumb {
+    padding: 40px 80px;
   }
 }
