@@ -1,10 +1,10 @@
 {% if collection.image %}
-    <div class="collectionImage" style="background-image:url('{{ collection.image | img_url: '1024x' }}'); " data-background-image="{{ collection.image | img_url: '1024x' }}">
+    <div class="collectionImage de-collectionImage" style="background-image:url('{{ collection.image | img_url: '1024x' }}'); " data-background-image="{{ collection.image | img_url: '1024x' }}">
         <div class="wrapper">
             {% include 'breadcrumb', adtl_classes: ' breadcrumb--overImage' %}
 
-            <h1 class="collectionImage-header text-center">{{ collection.title }}</h1>
-			<h5 class="text-center"><i>Shop By Category</i></h5>
+            <h1 class="de-collectionImage-header collectionImage-header text-center">{{ collection.title }}</h1>
+			<h5 class="de-collectionImage-subheader text-center"><i>Shop By Category</i></h5>
         </div>
     </div>
 {% endif %}
@@ -27,19 +27,19 @@
                 </header>
                 <hr>
                 {% endunless %}
+                <div class="grid">
 				{% for link in linklists.running.links %}
-				{% cycle '<div class="grid">', '', '' %}
-				<div class="grid__item large--one-third text-center">
+				<div class="grid__item large--one-third medium-down--one-half text-center">
 				<a href="{{ link.url }}">
 				{% if link.object.image %}
-				<img src="{{ link.object.image | img_url: '600x' }}">
+				<img class="de-collectionTileImage" src="{{ link.object.image | img_url: '600x' }}">
 				{% else %}
 				<p>{{ link.title }}</p>
 				{% endif %}
 				</a>
 				</div>
-				{% cycle '', '', '</div>' %}
 				{% endfor %}
+                </div>
 				{% if collection.description != blank %}
                     <div class="rte rte--header">
                         {{ collection.description }}
