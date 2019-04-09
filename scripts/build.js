@@ -37,11 +37,14 @@ module.exports = gulp => {
                 output: { beautify: !prod }
               })
             ],
-            external: ['jquery']
+            external: ['jquery', 'handlebars']
           },
           {
             format: 'iife',
-            globals: { jquery: 'jQuery' }
+            globals: {
+              jquery: 'jQuery',
+              handlebars: 'Handlebars'
+            }
           }
         )
       )

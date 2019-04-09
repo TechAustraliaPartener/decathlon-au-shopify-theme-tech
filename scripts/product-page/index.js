@@ -2,6 +2,9 @@ import './buybox';
 import './carousel';
 import SizeSwatches from './size-swatches';
 import './videos';
+import reviewsInit from './ratings-reviews';
+
+reviewsInit();
 
 // This is only an example of how you can bind to the sizeSwatches "select"
 // event to retrieve currently selected option

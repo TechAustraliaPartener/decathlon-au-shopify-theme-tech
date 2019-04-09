@@ -1,6 +1,6 @@
-!function($) {
+!function($, Handlebars) {
     "use strict";
-    $ = $ && $.hasOwnProperty("default") ? $.default : $;
+    $ = $ && $.hasOwnProperty("default") ? $.default : $, Handlebars = Handlebars && Handlebars.hasOwnProperty("default") ? Handlebars.default : Handlebars;
     var IS_ACTIVE_CLASS = "de-is-active";
     var SELECT_EVENT = "SizeSwatches:select";
     var $SizeSwatches = $(".js-de-SizeSwatches");
@@ -30,6 +30,36 @@
         $(this).hasClass("js-de-toggle") ? ($(this).removeClass("js-de-toggle"), $watchVideoCTA.removeClass("hide"), 
         $viewImagesCTA.addClass("hide"), $copyVideo.addClass("hide")) : ($(this).addClass("js-de-toggle"), 
         $viewImagesCTA.removeClass("hide"), $watchVideoCTA.addClass("hide"), $copyVideo.removeClass("hide"));
+    });
+    var tplEl = document.getElementById("de-ReviewMatrix-template");
+    var containerEl = document.getElementById("de-ReviewMatrix-container");
+    Handlebars && tplEl && containerEl && function(modelCode) {
+        if ("string" != typeof modelCode || "" === modelCode) throw Error("Cannot fetch product data, misssing model code");
+        return fetch(function(modelCode) {
+            return void 0 === modelCode && (modelCode = ""), "https://reviews.decathlon.com/api/en_US/review/list?site=1132&type=1&locales=en&nb=3&offer=" + modelCode;
+        }(modelCode)).then(function(res) {
+            return res.json();
+        });
+    }(tplEl.dataset && tplEl.dataset.modelCode).then(function(productReviewsData) {
+        var html = Handlebars.compile(tplEl.innerHTML)({
+            ratings: Object.keys(productReviewsData.notes).reverse().map(function(stars) {
+                return function(_ref) {
+                    var stars = _ref.stars, productReviewsData = _ref.productReviewsData;
+                    var starsCount = productReviewsData.notes[stars].count;
+                    return {
+                        starsFill: 20 * stars,
+                        starsCount: starsCount,
+                        starsPercentage: starsCount / productReviewsData.total_item_rating_count * 100
+                    };
+                }({
+                    stars: stars,
+                    productReviewsData: productReviewsData
+                });
+            })
+        });
+        containerEl.innerHTML = html;
+    }).catch(function(error) {
+        return console.error(error);
     }), ($SizeSwatchesOptions.on("click", function() {
         (function() {
             $SizeSwatches.trigger(SELECT_EVENT, {
@@ -43,4 +73,4 @@
     }), $SizeSwatches).on("SizeSwatches:select", function(e, sizeSwatchesData) {
         console.log("SELECTED:", sizeSwatchesData.value);
     });
-}(jQuery);
+}(jQuery, Handlebars);
