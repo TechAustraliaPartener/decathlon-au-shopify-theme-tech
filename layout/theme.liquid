@@ -4,6 +4,22 @@
 <!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
 
+  <!-- Qr redirect ================================================== -->
+  {% if shop.url == 'https://www.decathlon.com' %}
+    {% assign qrRedirectUrl = 'https://shopify-decathlon-proxy-p.herokuapp.com' %}
+  {% else %}
+    {% assign qrRedirectUrl = 'https://shopify-decathlon-proxy-s.herokuapp.com' %}
+  {% endif %}
+
+  <script type="text/javascript">
+  (function() {
+    var pathname = window.location.pathname;
+    if (pathname.substring(0, 3) === '/qr') {
+      window.location = "{{qrRedirectUrl}}" + pathname;
+    }
+  })();
+  </script>
+
   <!-- Basic page needs ================================================== -->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
