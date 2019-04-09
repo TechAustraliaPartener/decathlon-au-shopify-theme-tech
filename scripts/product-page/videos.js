@@ -1,4 +1,4 @@
-const $ = window.jQuery;
+import $ from 'jquery';
 
 const $posterImages = $('.js-de-slick--videos .vjs-poster');
 const $videoCarousel = $('.js-de-slick--videos');

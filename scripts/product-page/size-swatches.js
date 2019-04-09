@@ -3,9 +3,7 @@
  */
 
 import { IS_ACTIVE_CLASS, JS_PREFIX } from './constants';
-
-// @todo Configure to alias `$` to window.jQuery
-const $ = window.jQuery;
+import $ from 'jquery';
 
 /**
  * Module-specific constants
