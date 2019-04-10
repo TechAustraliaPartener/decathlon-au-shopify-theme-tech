@@ -29,14 +29,13 @@
                 {% endunless %}
                 <div class="grid">
 				{% for link in linklists.running.links %}
+                {% capture desktop-image %}{{ link.object.handle }}-desktop.jpg{% endcapture %}
+                {% capture mobile-image %}{{ link.object.handle }}-mobile.jpg{% endcapture %}
 				<div class="grid__item large--one-third medium-down--one-half text-center">
-				<a href="{{ link.url }}">
-				{% if link.object.image %}
-				<img class="de-collectionTileImage" src="{{ link.object.image | img_url: '600x' }}">
-				{% else %}
-				<p>{{ link.title }}</p>
-				{% endif %}
-				</a>
+				    <a href="{{ link.url }}">
+				        <img class="de-collectionTileImage medium-down--hide" src="{{ desktop-image | file_img_url: '600x' }}">
+                        <img class="de-collectionTileImage large--hide" src="{{ mobile-image | file_img_url: '300x' }}">
+				    </a>
 				</div>
 				{% endfor %}
                 </div>
