@@ -1,16 +1,76 @@
-!function() {
+!function($, Handlebars) {
     "use strict";
-    var $ = window.jQuery;
-    $(".de-js-slick--videos").slick({
-        dots: !0,
-        arrows: !1
-    }), $(".de-js-watch-video-button").click(function() {
-        if ($(this).hasClass("de-js-toggle")) $(this).removeClass("de-js-toggle"), $(".de-js-watch-video.hide").removeClass("hide"), 
-        $(".de-js-view-images").addClass("hide"), $(".de-js-copyVideo").remove(); else {
-            $(this).addClass("de-js-toggle"), $(".de-js-view-images.hide").removeClass("hide"), 
-            $(".de-js-watch-video").addClass("hide");
-            var t = $(".de-js-firstVideo").clone().removeAttr("height").attr("height", "50%").removeAttr("id").addClass("de-copyVideo").addClass("de-js-copyVideo");
-            $(".de-js-ProductPhoto").append(t);
-        }
+    $ = $ && $.hasOwnProperty("default") ? $.default : $, Handlebars = Handlebars && Handlebars.hasOwnProperty("default") ? Handlebars.default : Handlebars;
+    var IS_ACTIVE_CLASS = "de-is-active";
+    var SELECT_EVENT = "SizeSwatches:select";
+    var $SizeSwatches = $(".js-de-SizeSwatches");
+    var $SizeSwatchesOptions = $SizeSwatches.find(".js-de-SizeSwatches-option");
+    var $SizeInfo = $(".js-de-SizeInfo");
+    var $posterImages = $(".js-de-slick--videos .vjs-poster");
+    var $videoCarousel = $(".js-de-slick--videos");
+    var $thumbnailCarousel = $(".js-de-slick--videos-thumbnails");
+    var $toggleButton = $(".js-de-watch-video-button");
+    var $viewImagesCTA = $(".js-de-view-images");
+    var $watchVideoCTA = $(".js-de-watch-video");
+    var $copyVideo = $(".js-de-copyVideo");
+    $(window).on("load", function() {
+        $posterImages.each(function(index) {
+            $(".js-de-slick--videos-thumbnails .js-de-thumb-" + (index + 1)).attr("src", $(this).css("background-image").replace(/^url\(['"](.+)['"]\)/, "$1"));
+        }), $videoCarousel.slick({
+            asNavFor: $thumbnailCarousel,
+            arrows: !1
+        }), $thumbnailCarousel.slick({
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            asNavFor: $videoCarousel,
+            centerMode: !0,
+            focusOnSelect: !0
+        });
+    }), $toggleButton.click(function() {
+        $(this).hasClass("js-de-toggle") ? ($(this).removeClass("js-de-toggle"), $watchVideoCTA.removeClass("hide"), 
+        $viewImagesCTA.addClass("hide"), $copyVideo.addClass("hide")) : ($(this).addClass("js-de-toggle"), 
+        $viewImagesCTA.removeClass("hide"), $watchVideoCTA.addClass("hide"), $copyVideo.removeClass("hide"));
     });
-}();
+    var tplEl = document.getElementById("de-ReviewMatrix-template");
+    var containerEl = document.getElementById("de-ReviewMatrix-container");
+    Handlebars && tplEl && containerEl && function(modelCode) {
+        if ("string" != typeof modelCode || "" === modelCode) throw Error("Cannot fetch product data, misssing model code");
+        return fetch(function(modelCode) {
+            return void 0 === modelCode && (modelCode = ""), "https://reviews.decathlon.com/api/en_US/review/list?site=1132&type=1&locales=en&nb=3&offer=" + modelCode;
+        }(modelCode)).then(function(res) {
+            return res.json();
+        });
+    }(tplEl.dataset && tplEl.dataset.modelCode).then(function(productReviewsData) {
+        var html = Handlebars.compile(tplEl.innerHTML)({
+            ratings: Object.keys(productReviewsData.notes).reverse().map(function(stars) {
+                return function(_ref) {
+                    var stars = _ref.stars, productReviewsData = _ref.productReviewsData;
+                    var starsCount = productReviewsData.notes[stars].count;
+                    return {
+                        starsFill: 20 * stars,
+                        starsCount: starsCount,
+                        starsPercentage: starsCount / productReviewsData.total_item_rating_count * 100
+                    };
+                }({
+                    stars: stars,
+                    productReviewsData: productReviewsData
+                });
+            })
+        });
+        containerEl.innerHTML = html;
+    }).catch(function(error) {
+        return console.error(error);
+    }), ($SizeSwatchesOptions.on("click", function() {
+        (function() {
+            $SizeSwatches.trigger(SELECT_EVENT, {
+                value: $(this).val()
+            });
+        }).call(this), function() {
+            (function() {
+                $SizeSwatchesOptions.removeClass(IS_ACTIVE_CLASS), $(this).addClass(IS_ACTIVE_CLASS);
+            }).call(this), $SizeInfo.text($(this).val());
+        }.call(this);
+    }), $SizeSwatches).on("SizeSwatches:select", function(e, sizeSwatchesData) {
+        console.log("SELECTED:", sizeSwatchesData.value);
+    });
+}(jQuery, Handlebars);

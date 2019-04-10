@@ -1,35 +1,57 @@
-const $ = window.jQuery;
+import $ from 'jquery';
 
-// Create carousel with videos
-$('.de-js-slick--videos').slick({
-  dots: true,
-  arrows: false
+const $posterImages = $('.js-de-slick--videos .vjs-poster');
+const $videoCarousel = $('.js-de-slick--videos');
+const $thumbnailCarousel = $('.js-de-slick--videos-thumbnails');
+const $toggleButton = $('.js-de-watch-video-button');
+const $viewImagesCTA = $('.js-de-view-images');
+const $watchVideoCTA = $('.js-de-watch-video');
+const $copyVideo = $('.js-de-copyVideo');
+
+// Load poster images into DOM for slick slider navigation
+$(window).on('load', function() {
+  $posterImages.each(function(index) {
+    const count = index + 1;
+    $(`.js-de-slick--videos-thumbnails .js-de-thumb-${count}`).attr(
+      'src',
+      $(this)
+        .css('background-image')
+        .replace(/^url\(['"](.+)['"]\)/, '$1')
+    );
+  });
+
+  // Create carousel with videos
+  $videoCarousel.slick({
+    asNavFor: $thumbnailCarousel,
+    arrows: false
+  });
+
+  // Create carousel with video thumbnails
+  $thumbnailCarousel.slick({
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    asNavFor: $videoCarousel,
+    centerMode: true,
+    focusOnSelect: true
+  });
 });
-
-// Attach click event to 'Watch Videos' button to toggle between video and image
-$('.de-js-watch-video-button').click(toggleWatchVideo);
 
 // Function to toggle between 'Watch Videos' and 'View Images'
 function toggleWatchVideo() {
-  if ($(this).hasClass('de-js-toggle')) {
+  if ($(this).hasClass('js-de-toggle')) {
     // Remove Video, switch to Images
-    $(this).removeClass('de-js-toggle');
-    $('.de-js-watch-video.hide').removeClass('hide');
-    $('.de-js-view-images').addClass('hide');
-    $('.de-js-copyVideo').remove();
+    $(this).removeClass('js-de-toggle');
+    $watchVideoCTA.removeClass('hide');
+    $viewImagesCTA.addClass('hide');
+    $copyVideo.addClass('hide');
   } else {
     // Add Video
-    $(this).addClass('de-js-toggle');
-    $('.de-js-view-images.hide').removeClass('hide');
-    $('.de-js-watch-video').addClass('hide');
-    // Clone first video, remove id, add classes for styling, and change height to appear 'square'
-    const t = $('.de-js-firstVideo')
-      .clone()
-      .removeAttr('height')
-      .attr('height', '50%')
-      .removeAttr('id')
-      .addClass('de-copyVideo')
-      .addClass('de-js-copyVideo');
-    $('.de-js-ProductPhoto').append(t);
+    $(this).addClass('js-de-toggle');
+    $viewImagesCTA.removeClass('hide');
+    $watchVideoCTA.addClass('hide');
+    $copyVideo.removeClass('hide');
   }
 }
+
+// Attach click event to 'Watch Videos' button to toggle between video and image
+$toggleButton.click(toggleWatchVideo);

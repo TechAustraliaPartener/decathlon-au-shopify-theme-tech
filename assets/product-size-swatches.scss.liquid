@@ -1,0 +1,101 @@
+/**
+ * Color Palette
+ *
+ * @todo: These variables DO NOT need to be copied over to `product.scss.liquid`
+ * because they already exist there.
+ */
+
+$color-blue: #0082c3;
+$color-darkgray: #464646;
+$color-gray: #acb3b8;
+$color-silver: #f3f3f3;
+$color-white: #fff;
+
+/**
+ * Border Width
+ *
+ * @todo: These variables DO NOT need to be copied over to `product.scss.liquid`
+ * because they already exist there.
+ */
+
+$border-width-sm: 1px;
+$border-width-md: 2px;
+
+/**
+ * @todo: The following CSS will be manually copied/pasted into `product.scss.liquid`
+ * as a final step once work is complete.
+ */
+
+/**
+ * Size Swatches
+ */
+
+.de-SwatchGrid {
+  display: flex;
+  overflow-x: scroll;
+  padding: 0.35em 10px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.de-SwatchGrid::-webkit-scrollbar {
+  display: none;
+}
+
+.de-SwatchGrid-item {
+  height: 48px;
+  padding: 0 5px;
+}
+
+.de-SwatchGrid-item:last-of-type {
+  padding-right: 20px;
+}
+
+.de-SwatchGrid-info {
+  border: $border-width-sm solid $color-darkgray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+  position: relative;
+  height: 100%;
+  white-space: nowrap;
+  min-width: 78px;
+  cursor: pointer;
+}
+
+.de-SwatchGrid-info:focus {
+  outline: none;
+}
+
+.de-SwatchGrid-info:not(.de-is-active):focus {
+  outline: $border-width-md solid $color-blue;
+  outline-offset: -4px;
+}
+
+.de-is-soldout {
+  background-color: $color-white !important;
+  color: $color-gray !important;
+}
+
+.de-SwatchGrid-info.de-is-soldout:before {
+  content: '';
+  position: absolute;
+  left: -0.014em;
+  right: -0.14em;
+  top: 0.01em;
+  bottom: 0.03em;
+  background: linear-gradient(to left top, transparent 50.5%, currentColor 43.5%, currentColor 52.5%, transparent 45.5%);
+  pointer-events: none;
+}
+
+.de-SwatchGrid-info.de-is-active {
+  border: $border-width-md solid $color-blue !important;
+  color: $color-blue;
+}
+
+.de-SwatchGrid-info.de-is-outofstock {
+  border: $border-width-sm solid $color-gray;
+  color: $color-gray;
+  cursor: none;
+  background-color: $color-silver;
+}

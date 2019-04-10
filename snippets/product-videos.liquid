@@ -1,20 +1,30 @@
 {% if product_video.size > 0 %}
 <div class="productMedia">
   <div class="productVideos u-paddingTopBottom4x">
-    <h4 class="u-marginBottom1x">Videos</h4>
-	<div class="de-slick--videos de-js-slick--videos">
+	<div class="de-slick--videos js-de-slick--videos">
     {% for video_id in product_video %}
         <div class="embedWrapper">
 		  <div class="embedContainer">
-		    {% if forloop.first %}
-		      <iframe class="de-js-firstVideo" width="100%" height="100%" src="https://players.brightcove.net/3415345270001/S1PSLnzml_default/index.html?videoId=ref:{{ video_id }}_1&secureConnections=true&secureHTMLConnections=true" allowfullscreen webkitallowfullscreen mozallowfullscreen frameborder="0"></iframe>
-		    {% else %}
-              <iframe width="100%" height="100%" src="https://players.brightcove.net/3415345270001/rJxNjfhX_default/index.html?videoId=ref:{{ video_id }}_1&secureConnections=true&secureHTMLConnections=true" allowfullscreen webkitallowfullscreen mozallowfullscreen frameborder="0"></iframe>
-		    {% endif %}
+			<video data-account="3415345270001" 
+              data-player="rJxNjfhX" 
+              data-embed="default"
+              data-video-id="ref:{{ video_id }}_1"
+              class="video-js"
+              controls
+              playsinline>
+			</video>
           </div>
+        </div>
+    {% endfor %}
+	</div>
+	<div class="de-slick--videos-thumbnails js-de-slick--videos-thumbnails">
+    {% for video_id in product_video %}
+        <div>
+          <img class="de-thumb js-de-thumb-{{ forloop.index }}">
         </div>
     {% endfor %}
 	</div>
   </div>
 </div>
 {% endif %}
+<script src="https://players.brightcove.net/3415345270001/rJxNjfhX_default/index.min.js"></script>
