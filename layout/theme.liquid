@@ -106,7 +106,6 @@
   {{ 'skill-level.scss.css' | asset_url | stylesheet_tag }}
   {{ 'header.css' | asset_url | stylesheet_tag }}
   {{ 'adeptMind.scss.css' | asset_url | stylesheet_tag }}
-  {{ 'patterns-toolkit.css' | asset_url | stylesheet_tag }}
   {{ 'legacySupport.scss.css' | asset_url | stylesheet_tag }}
   {{ 'cadence.scss.css' | asset_url | stylesheet_tag }}
   {% if template == "product" %}
@@ -126,6 +125,8 @@
   {% comment %}
   {{ 'zoom.css' | asset_url | stylesheet_tag }}
   {% endcomment %}
+
+  {{ 'patterns-toolkit.css' | asset_url | stylesheet_tag }}
 
 
   <!-- Header hook for plugins ================================================== -->
