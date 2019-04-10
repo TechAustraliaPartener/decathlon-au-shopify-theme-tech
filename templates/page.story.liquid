@@ -17,9 +17,9 @@
   </div>
 </div>
 
-{% include 'anchor-links', links: 'Our Mission=#our-mission|Our Legacy=#our-legacy|Our Family=#our-family' %}
+{% include 'anchor-links', links: 'Our Values=#our-values|Our Legacy=#our-legacy|Our Family=#our-family' %}
 
-<div class="grid--full" id="our-mission">
+<div class="grid--full" id="our-values">
   {% for i in (1..8) %}
     {% assign blockName = 'story_split_full_content_' | append: i | append: '_'  %}
     {% assign blockImage = blockName | append: 'image.jpg'  %}
