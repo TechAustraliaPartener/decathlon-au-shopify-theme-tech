@@ -1,22 +1,41 @@
 {% comment %} Title Lockup {% endcomment %}
-<div class="de-Grid de-u-padTop de-u-md-padTopNone">
-  <div class="de-u-size1of2">
-    {% include 'product-logo-brand-rockrider' %}
+<div class="ProductTitleLockup de-u-lg-padBottom">
+
+  <div class="de-ProductLabel de-ProductLabel--red de-u-hidden
+    de-u-lg-inlineBlock de-u-textMedium">
+    Last Call
   </div>
 
-  {% comment %}
-    @TODO - remove - this was already commented out, but is a reference for
-    how this older snippet was to be included
+  <div class="de-Grid de-u-padTop de-u-md-padTopNone">
+    <div class="de-u-size1of2">
+      {% include 'product-logo-brand-rockrider' %}
+    </div>
 
-    {% include 'product-grid-item--rating',
-    rating_adtl_classes: ' productDescription-rating',
-    rating: product.metafields.ratings.product_rating
-    %}
-  {% endcomment %}
-  {% include 'product-rating--stars-total' %}
+    {% comment %}
+      @TODO - remove - this was already commented out, but is a reference for
+      how this older snippet was to be included
 
+      {% include 'product-grid-item--rating',
+      rating_adtl_classes: ' productDescription-rating',
+      rating: product.metafields.ratings.product_rating
+      %}
+    {% endcomment %}
+    <button class="ProductTitleLockup-rating de-u-size1of2
+      de-u-flex de-u-flexJustifyEnd">
+      {% include 'product-rating--stars-total' %}
+    </button>
+
+  </div>
+
+  <h1 class="de-u-textGrow2 de-u-textMedium" itemprop="name">
+    {{ product.title }}
+  </h1>
+
+  <div class="de-ProductPrice de-u-textMedium de-u-hidden
+    de-u-lg-flex de-u-flexAlignItemsEnd">
+    <div class="de-u-textGrow6 de-u-lineHeight1">$45.00</div>
+    <div class="de-u-textGrow2 de-u-padLeft de-u-lineHeight2">
+      <del>$57.00</del>
+    </div>
+  </div>
 </div>
-
-<h1 class="de-u-textGrow2 de-u-textMedium" itemprop="name">
-  {{ product.title }}
-</h1>

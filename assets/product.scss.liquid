@@ -29,6 +29,26 @@ $border-width-sm: 1px;
 $border-width-md: 2px;
 $border-width-lg: 3px;
 
+/**
+ * Product Page Wrapper
+ */
+
+.de-Wrapper {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (max-width: 40em) {
+  .de-Wrapper--fullwidth {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+  }
+}
+
 .de-ProductInfoSection {
 
 }
@@ -46,4 +66,12 @@ $border-width-lg: 3px;
 .de-LogoSportsBrand {
   height: 100%;
   max-height: 24px;
+}
+
+/**
+ * Utility
+ */
+
+.de-u-textRed {
+  color: $color-red !important;
 }
