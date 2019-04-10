@@ -61,42 +61,58 @@
   From existing Decathlon Product template END BLOCK 2
 {% endcomment %}
 
+  {% comment %}
+    From existing Decathlon Product template START BLOCK 3
+  {% endcomment %}
+  <div class="de-Wrapper de-u-lg-spaceBottom3">
+
+    {% comment %} Breadcrumbs {% endcomment %}
+    <div class="de-u-hidden de-u-md-block">
+      {% include 'breadcrumb' %}
+    </div>
+
+    <div class="de-u-lg-flex">
+
+      <div class="ProductGallery ProductGallery--large de-u-hidden
+        de-u-lg-flex">
+        <div class="ProductGallery-thumbnails">
+          {% for i in (1..16) %}
+            <img
+              class="ThumbnailImage de-u-block de-u-padBottom03"
+              src="https://cdn.shopify.com/s/files/1/1330/6287/products/00164127-432c-4479-b71b-04d30eae0301_400x400.jpg"
+              alt="">
+          {% endfor %}
+          <div class="Fade--bottom"></div>
+        </div>
+        <div class="ProductGallery-showcase">
+          <img
+            class="de-u-block"
+            src="https://cdn.shopify.com/s/files/1/1330/6287/products/cf438995-20ba-44e5-8afa-4d5eb628cfcd_1024x1024.jpg"
+            alt="">
+        </div>
+      </div>
+
+      <div class="ProductBuyBox">
+        {% include 'product-proto-buybox' %}
+      </div>
+    </div>
+
+    {% comment %} <div class="product-description rte" itemprop="description">
+      {{ product_intro }}
+    </div> {% endcomment %}
+
+    {% comment %} <div class="addons-list">
+      <a class="u-textBold u-marginBottom0x">Included:</a>
+      <small class="addons-list__items"></small>
+    </div> {% endcomment %}
+
     {% comment %}
-      From existing Decathlon Product template START BLOCK 3
-    {% endcomment %}
-    <div class="de-u-padSides">
-
-      {% comment %} Breadcrumbs {% endcomment %}
-      <div class="de-u-hidden de-u-md-block">
-        {% include 'breadcrumb' %}
-      </div>
-
-      {% comment %} Small Screen Title Lockup {% endcomment %}
-      {% include 'product-sm-title-lockup' %}
-
-      {% comment %} <div class="product-description rte" itemprop="description">
-        {{ product_intro }}
-      </div> {% endcomment %}
-
-      <div class="addons-list">
-        <a class="u-textBold u-marginBottom0x">Included:</a>
-        <small class="addons-list__items"></small>
-      </div>
-
-      {% comment %}
-        {% include 'product-detail--collection-control' %}
-      {% endcomment %}
-
-
-
-      </div>
-    </div>{% comment %}/.wrapper{% endcomment %}
-
-    {% comment %}
-      From existing Decathlon Product template END BLOCK 3
+      {% include 'product-detail--collection-control' %}
     {% endcomment %}
 
-  {% include 'product-single-timber' %}
+    </div>
+  </div>{% comment %}/.wrapper{% endcomment %}
+
 </div>
 
 <div class="de-ProductInfoSection de-ProductInfoSection--silver de-u-pad">
@@ -364,6 +380,12 @@
     {{ product_specs }}
   </div>
 </div>
+
+{% comment %}
+  From existing Decathlon Product template END BLOCK 3
+{% endcomment %}
+
+{% include 'product-single-timber' %}
 
 {% comment %}
   To take advantage of a callback on the select dropdown, add option_selection.js

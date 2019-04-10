@@ -1,0 +1,163 @@
+{% comment %} Small Screen Title Lockup {% endcomment %}
+{% include 'product-sm-title-lockup' %}
+
+<div class="ProductGallery-showcase de-Wrapper--fullwidth de-u-lg-hidden">
+  <div class="de-ProductLabel de-ProductLabel--red de-u-lg-hidden de-u-textMedium">
+    Last Call
+  </div>
+  <img src="https://cdn.shopify.com/s/files/1/1330/6287/products/cf438995-20ba-44e5-8afa-4d5eb628cfcd_1024x1024.jpg" alt="">
+</div>
+
+{% comment %} Small screen color swatches {% endcomment %}
+<div class="de-u-spaceTop03">
+  <strong>Color:</strong>
+  <span class="de-u-textDarkGray de-u-textMedium">Select a color</span>
+</div>
+
+{% comment %} Color Swatches {% endcomment %}
+<div class="de-SwatchContainer de-Wrapper--fullwidth de-u-padTop06 de-u-padBottom">
+  {% for i in (1..5) %}
+    <button class="de-SwatchColor-item">
+      <img
+        src="https://cdn.shopify.com/s/files/1/1330/6287/products/00164127-432c-4479-b71b-04d30eae0301.jpg"
+        alt="">
+    </button>
+  {% endfor %}
+</div>
+
+{% comment %} Sizes {% endcomment %}
+<div class="de-u-flex de-u-flexAlignItemsCenter de-u-flexJustifyBetween">
+  <div>
+    <strong>Size: </strong>
+    <span class="de-u-textDarkGray de-u-textMedium">
+      Select a size
+    </span>
+  </div> 
+  <button class="de-u-flex de-u-flexAlignItemsCenter de-u-textBlue
+    de-u-textSizeBase de-u-textMedium">
+    {% include 'product-icon--ruler' %}
+    Size Guide
+  </button>
+</div>
+
+{% comment %} Size Swatches {% endcomment %}
+<div class="de-SwatchGrid de-Wrapper--fullwidth">
+  <div class="de-SwatchGrid-item">
+    <button class="de-SwatchGrid-info de-u-textMedium">
+      XXS
+    </button>
+  </div>
+  <div class="de-SwatchGrid-item">
+    <button class="de-SwatchGrid-info de-u-textMedium">
+      XS
+    </button>
+  </div>
+  <div class="de-SwatchGrid-item">
+    <button class="de-SwatchGrid-info de-u-textMedium">
+      S
+    </button>
+  </div>
+  <div class="de-SwatchGrid-item">
+    <button class="de-SwatchGrid-info de-u-textMedium">
+      M
+    </button>
+  </div>
+  <div class="de-SwatchGrid-item">
+    <button class="de-SwatchGrid-info de-u-textMedium">
+      L
+    </button>
+  </div>
+  <div class="de-SwatchGrid-item">
+    <button class="de-SwatchGrid-info de-u-textMedium">
+      XL
+    </button>
+  </div>
+</div>
+
+{% comment %} Price / small screen placement only {% endcomment %}
+<div class="de-ProductPrice de-u-padBottom06 de-u-padTop de-u-textMedium
+  de-u-flex de-u-flexAlignItemsEnd">
+  <div class="de-u-flex de-u-lg-hidden de-u-flexAlignItemsEnd">
+    <div class="de-u-textGrow6 de-u-lineHeight1">$45.00</div>
+    <div class="de-u-textGrow2 de-u-padLeft de-u-lineHeight2">
+      <del>$57.00</del>
+    </div>
+  </div> 
+  <div class="de-u-textRed de-u-lineHeight2 de-u-textGrow2 de-u-padLeft2
+    de-u-lg-padLeftNone">
+    Only 1 left in Stock
+  </div>
+</div>
+
+{% comment %} Add to cart {% endcomment %}
+<div class="de-AddtoCart de-u-spaceBottom2 de-u-flex">
+  {% comment %} Quantity Input {% endcomment %}
+  {% comment %} <div class="de-u-hidden de-u-md-inlineBlock de-u-md-spaceRight2">
+    <input type="number" class="de-AddToCartQty-input">
+  </div> {% endcomment %}
+  <button class="btn btn--fill de-u-sizeFull de-u-textGrow3">
+    <span>Add to cart</span>
+  </button>
+</div>
+
+<div class="ProductMoreInfo">
+  <div class="de-u-padBottom">
+    <div class="de-u-flex de-u-padEnds06">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+        class="de-u-textBlack de-Icon de-u-textGrow6 de-u-spaceRight03">
+        <path d="M.656,18.41782l11.2192,4.5411h.20548l11.2055-4.52055a.31508.31508,0,0,0,.23288-.30137V4.726a.09587.09587,0,0,0,0-.04794h0a.14438.14438,0,0,0,0-.0411.34255.34255,0,0,0-.09589-.06849L19.17657,3.23971l-3.42466-.9726-3.63014-1.226h-.19864L.66284,5.274a.13012.13012,0,0,0-.06849.03425V5.3493h0v.04795h0L.47791,5.5v12.6644A.32875.32875,0,0,0,.656,18.41782Zm22.26716-.5h-.03424L12.3067,22.1918V9.4178h.03424L22.92316,5.24656ZM22.32726,4.8493,11.99848,8.88356h0L9.01217,7.9315l.13014-.0548,5.47946-2.19863L19.156,3.863ZM15.68342,2.85615l2.49315.71918-.137.05479L8.08066,7.637h0L6.1971,7.08218l.63014-.28082,8.84248-3.94521ZM7.79984,8.19177v3H7.73135l-2.1096-.73973v-2.911Zm4.19179-6.54795h0l2.80137.91781-3.35617,1.5137L5.30668,6.81506h0L1.656,5.54108ZM1.067,5.97259h.06849L5.019,7.34246v3.28767a.30139.30139,0,0,0,.20548.28083l2.78768.9863H8.2108a.28767.28767,0,0,0,.19178-.274V8.36986L11.69026,9.4178v12.774h-.0685L1.0738,17.94522Z"/><path d="M20.04644,15.32192a2.69864,2.69864,0,0,0-.75343-3.73973h0a.26029.26029,0,0,0-.21233-.0411.26713.26713,0,0,0-.17808.11644.2603.2603,0,0,0-.0411.21233.26715.26715,0,0,0,.11644.17809,2.13694,2.13694,0,0,1,.911,1.36986,2.178,2.178,0,0,1-.30822,1.60959,2.137,2.137,0,0,1-1.36986.90411,2.1027,2.1027,0,0,1-1.60275-.30822,2.14385,2.14385,0,0,1-.59589-2.96576,2.23277,2.23277,0,0,1,.63014-.60958l.10274-.0685-.23288.96576a.28767.28767,0,0,0,.20548.34246h.0685a.28766.28766,0,0,0,.274-.21233l.363-1.50685V11.4863a.39711.39711,0,0,0-.05479-.15068h0a.26719.26719,0,0,0-.137-.0822h-.03424l-1.5822-.363h-.06849a.29458.29458,0,0,0-.15069.0411.30133.30133,0,0,0-.12328.17808.32183.32183,0,0,0,0,.21233.274.274,0,0,0,.17808.12329l.80822.18493-.089.06849a2.70832,2.70832,0,1,0,3.84247,3.69864Z"/>
+      </svg>
+      <p class="de-u-spaceNone de-u-textMedium">
+        <span>class="de-u-textBold">Free</span> returns
+      </p>
+    </div>
+
+    <div class="de-u-flex de-u-padBottom06 de-u-padTop">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+        class="de-u-textBlack de-Icon de-u-textGrow6 de-u-spaceRight03">
+        <rect x="1.79024" y="5.71707" width="3.92683"
+        height="0.78537" /><rect x="3.36097" y="10.42927"
+        width="6.67561" height="0.78537" /><rect x="0.2195"
+        y="15.92683" width="4.31952" height="0.78537" /><rect
+        x="7.52326" y="15.92683" width="6.83284" height="0.78537"
+        /><path
+        d="M14.3561,18.28293H7.99455l-.16106-.75085a.24162.24162,0,0,0-.12616.20554,1.53457,1.53457,0,0,1-.02685-.24005,1.57073,1.57073,0,1,0-3.14146,0,.94976.94976,0,0,1-.06558.31138c-.0115.02454-.008-.0859-.08666-.1856l-.24044.18944v.47014H.2195V4.14634H14.3561Zm-5.89025-.78536h5.10488V4.9317H1.00487V17.49757h2.745l.00537-.02071a2.35537,2.35537,0,0,1,4.71066.02071Z"
+        /><path
+        d="M23.33949,18.28293H20.5608v-.78536a.28076.28076,0,0,0-.18254.1089.2878.2878,0,0,0-.06519.21475,1.09809,1.09809,0,0,1-.06672-.32365,1.57074,1.57074,0,1,0-3.14147,0,.88874.88874,0,0,1-.05292.2738c-.01227.02378-.0092-.07516-.079-.16336a.28164.28164,0,0,0-.18253-.11044v.78536h-3.2197V8.07317H19.8483l2.271,4.0553,1.66124,1.24592-.02838,3.87621Zm-2.77869-.78536v0Zm.47091,0h1.77552l.1879-.46862V13.76707l-1.52088-1.18265L19.38812,8.85853h-5.032v8.639h1.94808a2.36124,2.36124,0,0,1,2.37143-2.3561A2.33066,2.33066,0,0,1,21.03171,17.49757Zm-.47014,0Zm-3.77191,0Z"
+        /><path
+        d="M20.64593,12.78537H15.14147V9.6439H19.0752ZM15.92683,12h3.449l-.78537-1.57073H15.92683Z"
+        /><polygon points="7.971 13.677 7.39 13.15 9.494 10.835
+        7.403 8.743 7.958 8.188 10.579 10.809 7.971 13.677" /><path
+        d="M6.10975,19.85366a2.3561,2.3561,0,1,1,2.3561-2.35609A2.35867,2.35867,0,0,1,6.10975,19.85366Zm0-3.92683a1.57074,1.57074,0,1,0,1.57073,1.57074A1.57253,1.57253,0,0,0,6.10975,15.92683Z"
+        /><path
+        d="M18.67561,19.85366a2.3561,2.3561,0,1,1,2.3561-2.35609A2.314,2.314,0,0,1,18.67561,19.85366Zm0-.78536a1.57074,1.57074,0,1,0-1.57073-1.57073A1.57535,1.57535,0,0,0,18.67561,19.0683Z"
+        />
+      </svg>
+      <p class="de-u-spaceNone de-u-textMedium"><span
+      class="de-u-textBold">Free</span> shipping over $50</p>
+    </div>
+
+    <div class="de-u-flex de-u-flexAlignItemsCenter de-u-padEnds06">
+      <svg class="de-u-textBlack de-Icon de-u-textGrow6 de-u-spaceRight03" viewBox="0 0 31 20">
+        <g stroke-width="1" fill="none" stroke="currentColor">
+          <rect x="2.5" y="6.5" width="26" height="13"></rect>
+          <rect x="5" y="9.5" width="9.5" height="7"></rect>
+          <rect x="17" y="9.5" width="4.5" height="10"></rect>
+          <rect x="21.5" y="9.5" width="4.5" height="10"></rect>
+          <path d="M6.9,13.5 L9,11.4" stroke-linecap="square"></path>
+          <path d="M8.9,14.1 L9.6,13.4" stroke-linecap="square"></path>
+          <polygon points="2.1 0.5 0.5 5.5 1 6.5 30 6.5 30.5 5.4 28.9 0.5"></polygon>
+        </g>
+      </svg>
+      <div>
+        <p class="de-u-spaceNone de-u-textMedium"><span
+        class="de-u-textBold">Free</span> pickup tomorrow</p>
+        <p class="de-u-spaceNone">
+          <span class="de-u-textMedium"> San Francisco</span>, 735 Market
+          St. <a href="#" class="de-u-textMedium
+          de-u-spaceLeft06">Options</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
