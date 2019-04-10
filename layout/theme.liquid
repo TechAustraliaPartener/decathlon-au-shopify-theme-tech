@@ -4,6 +4,22 @@
 <!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
 
+  <!-- Qr redirect ================================================== -->
+  {% if shop.url == 'https://www.decathlon.com' %}
+    {% assign qrRedirectUrl = 'https://shopify-decathlon-proxy-p.herokuapp.com' %}
+  {% else %}
+    {% assign qrRedirectUrl = 'https://shopify-decathlon-proxy-s.herokuapp.com' %}
+  {% endif %}
+
+  <script type="text/javascript">
+  (function() {
+    var pathname = window.location.pathname;
+    if (pathname.substring(0, 3) === '/qr') {
+      window.location = "{{qrRedirectUrl}}" + pathname;
+    }
+  })();
+  </script>
+
   <!-- Basic page needs ================================================== -->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -80,7 +96,6 @@
   <!-- CSS ================================================== -->
 
   {{ 'fonts.scss.css' | asset_url | stylesheet_tag }}
-  {{ 'icomoon.scss.css' | asset_url | stylesheet_tag }}
   {% include 'slick-styles' %}
   {% if template == "index" %}
   {{ 'home.scss.css' | asset_url | stylesheet_tag }}
@@ -91,7 +106,6 @@
   {{ 'skill-level.scss.css' | asset_url | stylesheet_tag }}
   {{ 'header.css' | asset_url | stylesheet_tag }}
   {{ 'adeptMind.scss.css' | asset_url | stylesheet_tag }}
-  {{ 'patterns-toolkit.css' | asset_url | stylesheet_tag }}
   {{ 'legacySupport.scss.css' | asset_url | stylesheet_tag }}
   {{ 'cadence.scss.css' | asset_url | stylesheet_tag }}
   {% if template == "product" %}
@@ -111,6 +125,8 @@
   {% comment %}
   {{ 'zoom.css' | asset_url | stylesheet_tag }}
   {% endcomment %}
+
+  {{ 'patterns-toolkit.css' | asset_url | stylesheet_tag }}
 
 
   <!-- Header hook for plugins ================================================== -->
