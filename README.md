@@ -55,9 +55,17 @@ There's a task in gulp to create an SVG icon sprite, and to update the src/scss/
 * If you'd like to add additional sprites you can add them to createSprites object towards the top of the gulp file. The names you enter must match with the folder you create inside the SVG directory.
 * While **npm run dev** is going dropping new svgs into the folder will update the sprite.
 
-## Updating Patterns Submodule
+## Decathlon Patterns Submodule
+
+The `decathlonusa-patterns` repository is a submodule (checked out under the path `patterns/`) of this Shopify theme repo. It is important to note that any new `snippets/*` or `assets/*` files added to the Shopify theme repo are not named using the `patterns-` prefix. They will be deleted as part of the "Updating Patterns Submodule" below.
+
+__As a rule, avoid manually creating files with the prefix `patterns-`.__
+
+### Updating Patterns Submodule
 
 Do this any time updates were committed in the decathlon-patterns repo and merged into that repo's master branch.
+
+Images are copied from the `patterns/` submodule directory into the Shopify theme `assets/` directory and the filenames are prefixed with `patterns-`. HTML/SVG patterns are copied from the `patterns/` submodule directory into the Shopify theme `snippets/` directory and filenames are prefixed with `patterns-` as well.
 
 Here are the steps followed to create this PR:
 
@@ -108,7 +116,7 @@ This can be overridden via a `PRODUCTION_DOMAINS` environment variable consistin
 PRODUCTION_DOMAINS='foo.com,bar.com' npm run build
 ```
 
-Production API URL Default: `'https://persistent-cart-decathlonusa.herokuapp.com'` 
+Production API URL Default: `'https://persistent-cart-decathlonusa.herokuapp.com'`
 
 This can be overridden via a `PRODUCTION_API_URL` environment. Example:
 
@@ -126,7 +134,7 @@ This can be overridden via a `STAGING_DOMAINS` environment variable consisting o
 STAGING_DOMAINS='foo.com,bar.com' npm run build
 ```
 
-Staging API URL Default: `'https://persistent-cart-decathlonusa-s.herokuapp.com'` 
+Staging API URL Default: `'https://persistent-cart-decathlonusa-s.herokuapp.com'`
 
 This can be overridden via a `STAGING_API_URL` environment. Example:
 
