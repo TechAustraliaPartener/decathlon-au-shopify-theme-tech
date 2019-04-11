@@ -31,7 +31,7 @@ const getStoreOpenClose = ({ storeId, day }) => {
 };
 
 export default storeId => {
-  let hoursOfOperation = '';
+  const hoursOfOperation = {};
   moment.tz.add('America/Los_Angeles|PST PDT|80 70|0101|1Lzm0 1zb0 Op0');
   const date = moment().tz('America/Los_Angeles');
   const hour = parseInt(date.format('H'), 10);
@@ -44,22 +44,27 @@ export default storeId => {
   };
 
   if (hour >= store.today.open && hour < store.today.close) {
-    hoursOfOperation = `Open until ${militaryToStandardTime(
+    hoursOfOperation.today = `Open until ${militaryToStandardTime(
       store.today.close
     )}pm`;
   } else if (hour >= store.today.close && hour < 24) {
-    hoursOfOperation = `Open ${militaryToStandardTime(
+    hoursOfOperation.today = `Open ${militaryToStandardTime(
       store.tomorrow.open
     )}am to ${militaryToStandardTime(store.tomorrow.close)}pm`;
   } else if (hour >= 0 && hour < store.tomorrow.open) {
-    hoursOfOperation = `Open ${militaryToStandardTime(
+    hoursOfOperation.today = `Open ${militaryToStandardTime(
       store.today.open
     )}am to ${militaryToStandardTime(store.today.close)}pm`;
   }
 
+  hoursOfOperation.tomorrow = `Open ${militaryToStandardTime(
+    store.tomorrow.open
+  )}am to ${militaryToStandardTime(store.tomorrow.close)}pm`;
+
   // TEMPORARY: Can be deleted after Emeryville's opening
   if (Date.now() <= 1555084800000 && storeId === 'adr_K6s3Kaja') {
-    hoursOfOperation = 'Grand Opening April 12th 9am';
+    hoursOfOperation.today = 'Grand Opening April 12th 9am';
+    hoursOfOperation.tomorrow = 'Grand Opening April 12th 9am';
   }
 
   return hoursOfOperation;
