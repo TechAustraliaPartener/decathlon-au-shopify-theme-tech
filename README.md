@@ -1,10 +1,27 @@
 # SETUP README
 ## Project Setup
+1. Clone the project, making sure to also clone the `decathlonusa-patterns` submodule (which is checked out to the folder `/patterns` within the Shopify theme repo):
+   - Optimally (on Git 2.13+ - check using `git --version`),
+   ```
+   git clone --recurse-submodules -j2 https://github.com/decathlon-usa/shopify-theme-decathlonusa.git
+   ```
+   - Alternatively (on older Git),
+   ```
+   git clone --recursive https://github.com/decathlon-usa/shopify-theme-decathlonusa.git
+   ``` 
+   - If you forgot the flags on first clone, run 
+   ```
+   git submodule update --init
+   ```
+   - After anyone has updated the `decathlonusa-patterns` submodule within this repo and committed that change to a branch of `shopify-theme-decathlonusa`, be sure to locally run 
+   ```
+   git submodule update
+   ```
 1. In Mac Terminal navigate to your project's root folder.
-2. Make sure themekit is installed. If it's not go to https://shopify.github.io/themekit/
-3. There should be a config.yml.sample in the root of the project. Duplicate this file and name it config.yml. This will have the default api information for Shopify. If you're working on a cloned theme because multiple developers are on the project, this is where you'd update your theme id. Make sure config.yml is not being tracked in the repo.
-4. Type the command **npm install** and press enter. This will install all node dependencies for the project.
-5. Type **gulp** and press enter. This will run all project gulp tasks and also ensure that all dependencies are installed properly. If a dependency does not exist you'll see an error in terminal. If you see this error, install the missing dependency by typing the command **npm install *package_name* --save-dev**. After this make sure to commit your package.json file so that the next user has the dependencies they need.
+1. Make sure themekit is installed. If it's not go to https://shopify.github.io/themekit/
+1. There should be a config.yml.sample in the root of the project. Duplicate this file and name it config.yml. This will have the default api information for Shopify. If you're working on a cloned theme because multiple developers are on the project, this is where you'd update your theme id. Make sure config.yml is not being tracked in the repo.
+1. Type the command **npm install** and press enter. This will install all node dependencies for the project.
+1. Type **gulp** and press enter. This will run all project gulp tasks and also ensure that all dependencies are installed properly. If a dependency does not exist you'll see an error in terminal. If you see this error, install the missing dependency by typing the command **npm install *package_name* --save-dev**. After this make sure to commit your package.json file so that the next user has the dependencies they need.
 
 ## Gulp Config
 There is a file in the root directory called **gulp-config**. This file maintains the list of directories, stylesheets, sprites, and javascript files. All configuration for gulp should be here.
