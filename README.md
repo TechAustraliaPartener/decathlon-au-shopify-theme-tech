@@ -1,10 +1,27 @@
 # SETUP README
 ## Project Setup
+1. Clone the project, making sure to also clone the `decathlonusa-patterns` submodule (which is checked out to the folder `/patterns` within the Shopify theme repo):
+   - Optimally (on Git 2.13+ - check using `git --version`),
+   ```
+   git clone --recurse-submodules -j2 https://github.com/decathlon-usa/shopify-theme-decathlonusa.git
+   ```
+   - Alternatively (on older Git),
+   ```
+   git clone --recursive https://github.com/decathlon-usa/shopify-theme-decathlonusa.git
+   ``` 
+   - If you forgot the flags on first clone, run 
+   ```
+   git submodule update --init
+   ```
+   - After anyone has updated the `decathlonusa-patterns` submodule within this repo and committed that change to a branch of `shopify-theme-decathlonusa`, be sure to locally run 
+   ```
+   git submodule update
+   ```
 1. In Mac Terminal navigate to your project's root folder.
-2. Make sure themekit is installed. If it's not go to https://shopify.github.io/themekit/
-3. There should be a config.yml.sample in the root of the project. Duplicate this file and name it config.yml. This will have the default api information for Shopify. If you're working on a cloned theme because multiple developers are on the project, this is where you'd update your theme id. Make sure config.yml is not being tracked in the repo.
-4. Type the command **npm install** and press enter. This will install all node dependencies for the project.
-5. Type **gulp** and press enter. This will run all project gulp tasks and also ensure that all dependencies are installed properly. If a dependency does not exist you'll see an error in terminal. If you see this error, install the missing dependency by typing the command **npm install *package_name* --save-dev**. After this make sure to commit your package.json file so that the next user has the dependencies they need.
+1. Make sure themekit is installed. If it's not go to https://shopify.github.io/themekit/
+1. There should be a config.yml.sample in the root of the project. Duplicate this file and name it config.yml. This will have the default api information for Shopify. If you're working on a cloned theme because multiple developers are on the project, this is where you'd update your theme id. Make sure config.yml is not being tracked in the repo.
+1. Type the command **npm install** and press enter. This will install all node dependencies for the project.
+1. Type **gulp** and press enter. This will run all project gulp tasks and also ensure that all dependencies are installed properly. If a dependency does not exist you'll see an error in terminal. If you see this error, install the missing dependency by typing the command **npm install *package_name* --save-dev**. After this make sure to commit your package.json file so that the next user has the dependencies they need.
 
 ## Gulp Config
 There is a file in the root directory called **gulp-config**. This file maintains the list of directories, stylesheets, sprites, and javascript files. All configuration for gulp should be here.
@@ -38,9 +55,17 @@ There's a task in gulp to create an SVG icon sprite, and to update the src/scss/
 * If you'd like to add additional sprites you can add them to createSprites object towards the top of the gulp file. The names you enter must match with the folder you create inside the SVG directory.
 * While **npm run dev** is going dropping new svgs into the folder will update the sprite.
 
-## Updating Patterns Submodule
+## Decathlon Patterns Submodule
+
+The `decathlonusa-patterns` repository is a submodule (checked out under the path `patterns/`) of this Shopify theme repo. It is important to note that any new `snippets/*` or `assets/*` files added to the Shopify theme repo are not named using the `patterns-` prefix. They will be deleted as part of the "Updating Patterns Submodule" below.
+
+__As a rule, avoid manually creating files with the prefix `patterns-`.__
+
+### Updating Patterns Submodule
 
 Do this any time updates were committed in the decathlon-patterns repo and merged into that repo's master branch.
+
+Images are copied from the `patterns/` submodule directory into the Shopify theme `assets/` directory and the filenames are prefixed with `patterns-`. HTML/SVG patterns are copied from the `patterns/` submodule directory into the Shopify theme `snippets/` directory and filenames are prefixed with `patterns-` as well.
 
 Here are the steps followed to create this PR:
 
@@ -91,7 +116,7 @@ This can be overridden via a `PRODUCTION_DOMAINS` environment variable consistin
 PRODUCTION_DOMAINS='foo.com,bar.com' npm run build
 ```
 
-Production API URL Default: `'https://persistent-cart-decathlonusa.herokuapp.com'` 
+Production API URL Default: `'https://persistent-cart-decathlonusa.herokuapp.com'`
 
 This can be overridden via a `PRODUCTION_API_URL` environment. Example:
 
@@ -109,7 +134,7 @@ This can be overridden via a `STAGING_DOMAINS` environment variable consisting o
 STAGING_DOMAINS='foo.com,bar.com' npm run build
 ```
 
-Staging API URL Default: `'https://persistent-cart-decathlonusa-s.herokuapp.com'` 
+Staging API URL Default: `'https://persistent-cart-decathlonusa-s.herokuapp.com'`
 
 This can be overridden via a `STAGING_API_URL` environment. Example:
 

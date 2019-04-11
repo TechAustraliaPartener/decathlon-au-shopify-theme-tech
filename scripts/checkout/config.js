@@ -19,7 +19,8 @@ const config = {
     'Parcelify-decathlon%20san%20francisco%20store%20pickup-0.00',
   CLASSES: {
     ACTIVE_SHIPPICK_BTN: 'js-de-active-pickship-btn',
-    ACTIVE_PICKUP_LOCATION: 'js-de-active-location'
+    ACTIVE_PICKUP_LOCATION: 'js-de-active-location',
+    DISABLED_BUTTON: 'js-de-BtnDisabled'
   },
   COPY: {
     SHIPPING_ADDRESS_HEADING: 'Shipping address',
