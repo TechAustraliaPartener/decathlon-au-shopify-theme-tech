@@ -6,7 +6,8 @@
 
 import {
   GET_REVIEWS_BASE_URL,
-  STAR_RATING_PERCENTAGE_MULTIPLIER
+  STAR_RATING_PERCENTAGE_MULTIPLIER,
+  REVIEW_VOTE_CLASS
 } from './constants';
 import Handlebars from 'handlebars';
 const tplEl = document.getElementById('de-ReviewMatrix-template');
@@ -91,11 +92,23 @@ const getRatingsInit = () => {
   }
 };
 
+const voteLinkHandler = event => {
+  event.preventDefault();
+};
+
+const voteInit = () => {
+  const voteLinks = document.querySelectorAll(`.${REVIEW_VOTE_CLASS}`);
+  [...voteLinks].forEach(link =>
+    link.addEventListener('click', voteLinkHandler)
+  );
+};
+
 /**
  * Put all functions that need to run on product-page load here
  */
 const init = () => {
   getRatingsInit();
+  voteInit();
 };
 
 export default init;

@@ -21,6 +21,11 @@ export const JS_PREFIX = `js-${CSS_PREFIX}`;
 export const IS_ACTIVE_CLASS = `${CSS_PREFIX}is-active`;
 
 /**
+ * The CSS class used on links to upvote or downvote a review or answer
+ */
+export const REVIEW_VOTE_CLASS = `${JS_PREFIX}CustomerReviewVote`;
+
+/**
  * Reusable values
  */
 

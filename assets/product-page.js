@@ -37,6 +37,10 @@
     });
     var tplEl = document.getElementById("de-ReviewMatrix-template");
     var containerEl = document.getElementById("de-ReviewMatrix-container");
+    var voteLinkHandler = function(event) {
+        event.preventDefault();
+    };
+    var arr;
     Handlebars && tplEl && containerEl && function(modelCode) {
         if ("string" != typeof modelCode || "" === modelCode) throw Error("Cannot fetch product data, misssing model code");
         return fetch(function(modelCode) {
@@ -64,6 +68,17 @@
         containerEl.innerHTML = html;
     }).catch(function(error) {
         return console.error(error);
+    }), (arr = document.querySelectorAll(".js-de-CustomerReviewVote"), function(arr) {
+        if (Array.isArray(arr)) {
+            for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
+            return arr2;
+        }
+    }(arr) || function(iter) {
+        if (Symbol.iterator in Object(iter) || "[object Arguments]" === Object.prototype.toString.call(iter)) return Array.from(iter);
+    }(arr) || function() {
+        throw new TypeError("Invalid attempt to spread non-iterable instance");
+    }()).forEach(function(link) {
+        return link.addEventListener("click", voteLinkHandler);
     }), ($SizeSwatchesOptions.on("click", function() {
         (function() {
             $SizeSwatches.trigger(SELECT_EVENT$1, {
