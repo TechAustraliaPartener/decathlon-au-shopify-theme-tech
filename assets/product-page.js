@@ -2,7 +2,11 @@
     "use strict";
     $ = $ && $.hasOwnProperty("default") ? $.default : $, Handlebars = Handlebars && Handlebars.hasOwnProperty("default") ? Handlebars.default : Handlebars;
     var IS_ACTIVE_CLASS = "de-is-active";
-    var SELECT_EVENT = "SizeSwatches:select";
+    var SELECT_EVENT = "ColorSwatches:select";
+    var $ColorSwatches = $(".js-de-ColorSwatches");
+    var $ColorSwatchesOptions = $ColorSwatches.find(".js-de-ColorSwatches-option");
+    var $ColorInfo = $(".js-de-ColorInfo");
+    var SELECT_EVENT$1 = "SizeSwatches:select";
     var $SizeSwatches = $(".js-de-SizeSwatches");
     var $SizeSwatchesOptions = $SizeSwatches.find(".js-de-SizeSwatches-option");
     var $SizeInfo = $(".js-de-SizeInfo");
@@ -62,7 +66,7 @@
         return console.error(error);
     }), ($SizeSwatchesOptions.on("click", function() {
         (function() {
-            $SizeSwatches.trigger(SELECT_EVENT, {
+            $SizeSwatches.trigger(SELECT_EVENT$1, {
                 value: $(this).val()
             });
         }).call(this), function() {
@@ -72,5 +76,17 @@
         }.call(this);
     }), $SizeSwatches).on("SizeSwatches:select", function(e, sizeSwatchesData) {
         console.log("SELECTED:", sizeSwatchesData.value);
+    }), ($ColorSwatchesOptions.on("click", function() {
+        (function() {
+            $ColorSwatches.trigger(SELECT_EVENT, {
+                value: $(this).val()
+            });
+        }).call(this), function() {
+            (function() {
+                $ColorSwatchesOptions.removeClass(IS_ACTIVE_CLASS), $(this).addClass(IS_ACTIVE_CLASS);
+            }).call(this), $ColorInfo.text($(this).val());
+        }.call(this);
+    }), $ColorSwatches).on("ColorSwatches:select", function(e, colorSwatchesData) {
+        console.log("SELECTED:", colorSwatchesData.value);
     });
 }(jQuery, Handlebars);

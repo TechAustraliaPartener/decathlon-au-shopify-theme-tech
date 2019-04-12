@@ -10,7 +10,7 @@
       Video to be shown when 'Watch Video' button is clicked
       {% endcomment %}
       {% if product_video.size > 0 %}
-        <video data-account="3415345270001" 
+        <video data-account="3415345270001"
           data-player="rJxNjfhX"
           data-embed="default"
           data-video-id="ref:{{ product_video[0] }}_1"
@@ -53,7 +53,7 @@
   </span>
   </div>
   {% endif %}
-
+    {% include 'product-color-swatches' %}
     {% include 'product-size-swatches' %}
 
   </div>
