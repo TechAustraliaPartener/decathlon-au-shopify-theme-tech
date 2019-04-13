@@ -115,6 +115,7 @@
 
 </div>
 
+{% if product_video.size > 0 %}
 <div class="de-ProductInfoSection de-ProductInfoSection--silver de-u-pad">
   <h3 class="de-ProductInfoTitle de-u-md-textGrow3 de-u-lg-textGrow4 de-u-spaceNone
     de-u-hidden de-u-md-inlineBlock">
@@ -122,6 +123,7 @@
   </h3>
   {% include 'product-videos' %}
 </div>
+{% endif %}
 
 <div class="de-ProductInfoSection de-u-pad">
   <h3 class="de-ProductInfoTitle de-u-md-textGrow3 de-u-lg-textGrow4 de-u-spaceNone

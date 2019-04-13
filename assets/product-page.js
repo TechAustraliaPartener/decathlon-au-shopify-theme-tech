@@ -23,6 +23,8 @@
         }), $videoCarousel.slick({
             asNavFor: $thumbnailCarousel,
             arrows: !1
+        }), $videoCarousel.on("beforeChange", function(event, slick, currentSlide, nextSlide) {
+            currentSlide !== nextSlide && videojs(players[currentSlide + 1].id()).pause();
         }), $thumbnailCarousel.slick({
             slidesToShow: 4,
             slidesToScroll: 1,
@@ -31,10 +33,21 @@
             focusOnSelect: !0
         });
     }), $toggleButton.click(function() {
+        var firstVideoPlayer = videojs(players[0].id());
         $(this).hasClass("js-de-toggle") ? ($(this).removeClass("js-de-toggle"), $watchVideoCTA.removeClass("hide"), 
-        $viewImagesCTA.addClass("hide"), $copyVideo.addClass("hide")) : ($(this).addClass("js-de-toggle"), 
-        $viewImagesCTA.removeClass("hide"), $watchVideoCTA.addClass("hide"), $copyVideo.removeClass("hide"));
+        $viewImagesCTA.addClass("hide"), $copyVideo.addClass("hide"), firstVideoPlayer.pause()) : ($(this).addClass("js-de-toggle"), 
+        $viewImagesCTA.removeClass("hide"), $watchVideoCTA.addClass("hide"), $copyVideo.removeClass("hide"), 
+        firstVideoPlayer.play());
     });
+    var players = [];
+    var videoPlayerKeys = Object.keys(videojs.players);
+    for (var x = 0; x < videoPlayerKeys.length; x++) videojs(videoPlayerKeys[x]).ready(function() {
+        this.on("play", onPlay), players.push(this);
+    });
+    function onPlay(e) {
+        var id = e.target.id;
+        for (var i = 0; i < players.length; i++) players[i].id() !== id && videojs(players[i].id()).pause();
+    }
     var tplEl = document.getElementById("de-ReviewMatrix-template");
     var containerEl = document.getElementById("de-ReviewMatrix-container");
     var voteLinkHandler = function(event) {
