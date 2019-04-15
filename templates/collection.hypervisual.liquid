@@ -1,5 +1,5 @@
 {% if collection.image %}
-    <div class="collectionImage de-collectionImage" style="background-image:url('{{ collection.image | img_url: '1024x' }}'); " data-background-image="{{ collection.image | img_url: '1024x' }}">
+    <div class="collectionImage de-collectionImage" style="background-image:url('{{ collection.image | img_url: 'master' }}'); " data-background-image="{{ collection.image | img_url: 'master' }}">
         <div class="wrapper">
             {% include 'breadcrumb', adtl_classes: ' breadcrumb--overImage' %}
 
@@ -31,7 +31,7 @@
 				{% for link in linklists.running.links %}
                 {% capture desktop-image %}{{ link.object.handle }}-desktop.jpg{% endcapture %}
                 {% capture mobile-image %}{{ link.object.handle }}-mobile.jpg{% endcapture %}
-				<div class="grid__item large--one-third medium-down--one-half text-center">
+				<div class="grid__item large--one-third medium-down--one-half text-center u-marginBottom2x">
 				    <a href="{{ link.url }}">
 				        <img class="de-collectionTileImage medium-down--hide" src="{{ desktop-image | file_img_url: '600x' }}">
                         <img class="de-collectionTileImage large--hide" src="{{ mobile-image | file_img_url: '300x' }}">

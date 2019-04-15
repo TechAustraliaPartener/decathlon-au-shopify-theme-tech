@@ -5,7 +5,7 @@
 <style type="text/css">#bc-sf-filter-products .section-header__title { margin-left: 30px; }</style>
 
 {% if collection.image %}
-<div class="collectionImage" style="background-image:url('{{ collection.image | img_url: '1024x' }}'); " data-background-image="{{ collection.image | img_url: '1024x' }}">
+<div class="collectionImage" style="background-image:url('{{ collection.image | img_url: 'master' }}'); " data-background-image="{{ collection.image | img_url: 'master' }}">
     <div class="wrapper">
         {% include 'breadcrumb', adtl_classes: ' breadcrumb--overImage' %}
 
