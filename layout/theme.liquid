@@ -65,7 +65,7 @@
   <link rel="alternate" href="https://www.decathlon.com.hk/zh/" hreflang="zh-hk">
   <link rel="alternate" href="https://www.decathlon.com.hk/en/" hreflang="en-hk">
   {% endif %}
-  <link rel="alternate" href="{{ canonical_url }}" hreflang="en-us">
+  <link rel="alternate" href="https://{{ request.host }}{{ request.path }}" hreflang="en-us">
   <meta name="apple-mobile-web-app-title" content="Decathlon">
   <meta name="application-name" content="Decathlon">
   <meta name="msapplication-TileColor" content="#0080c4">
@@ -79,7 +79,7 @@
     </title>
   {% else %}
     <title>
-    {{ page_title }}{% if current_tags %}{% assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags }}{% endif %}{% if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} | {{ shop.name }}{% endunless %}
+    {{ page_title }}{% if current_tags %}{% assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags }}{% endif %}{% if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %} | {{ shop.name }}
     </title>
   {% endif %}
 
