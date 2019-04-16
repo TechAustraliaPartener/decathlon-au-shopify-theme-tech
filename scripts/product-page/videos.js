@@ -53,7 +53,7 @@ $(window).on('load', function() {
 
 // Function to toggle between 'Watch Videos' and 'View Images'
 function toggleWatchVideo() {
-  const firstVideoPlayer = videojs(players[0].id());  
+  const firstVideoPlayer = videojs(players[0].id());
   if ($(this).hasClass('js-de-toggle')) {
     // Remove Video, switch to Images
     $(this).removeClass('js-de-toggle');
@@ -98,7 +98,7 @@ for (let x = 0; x < videoPlayerKeys.length; x++) {
 
 /**
  * Handle all players' play event
- * 
+ *
  * @param {object} e The handler event object
  */
 function onPlay(e) {
