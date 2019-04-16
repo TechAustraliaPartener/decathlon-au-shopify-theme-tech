@@ -1,3 +1,6 @@
+// Allows reading of environment variables from `.env` file
+require('dotenv').config();
+
 // Imported/called by parent gulp task
 
 const rename = require('gulp-rename');
