@@ -1,5 +1,6 @@
 .de-collectionImage {
   background-position: top;
+  padding: 8em 0;
 }
 
 .de-collectionImage-header {
@@ -11,6 +12,24 @@
   font-family: 'avalonregular';
   font-size: 20px;
   line-height: 28px;
+}
+
+@media (max-width: 768px) {
+  .de-collectionImage {
+    background: none !important;
+    padding: 2em 0 0;
+  }
+
+  .de-collectionImage-header {
+    font-size: 26px;
+    line-height: 32.5px;
+    color: black;
+  }
+  .de-collectionImage-subheader {
+    font-size: 16px;
+    line-height: 23px;
+    color: black;
+  }
 }
 
 @media (min-width:640px) {

@@ -1,7 +1,7 @@
 {% if collection.image %}
     <div class="collectionImage de-collectionImage" style="background-image:url('{{ collection.image | img_url: 'master' }}'); " data-background-image="{{ collection.image | img_url: 'master' }}">
         <div class="wrapper">
-            {% include 'breadcrumb', adtl_classes: ' breadcrumb--overImage' %}
+            {% include 'breadcrumb', adtl_classes: ' breadcrumb--overImage medium-down--hide' %}
 
             <h1 class="de-collectionImage-header collectionImage-header text-center">{{ collection.title }}</h1>
 			<h5 class="de-collectionImage-subheader text-center"><i>Shop By Category</i></h5>
