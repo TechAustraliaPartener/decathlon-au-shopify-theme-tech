@@ -20,12 +20,13 @@ import STATE from '../../state';
 import SELECTORS from './selectors';
 import { DELIVERY_METHODS } from '../../constants';
 import updateUI from './update-ui';
+import fetchStores from '../../../store-finder/utilities/fetch-stores';
 import {
   sessionStorageAvailable,
   setObjectInSessionStorage
 } from '../../../utilities/storage';
 import { getCurrentLocation } from '../../../utilities/location';
-import { showElements, hideElements } from '../../ui-helpers';
+import { showElements, hideElements, elementExists } from '../../ui-helpers';
 import config from '../../config';
 
 const { CLASSES, SHOP_ID, PICKUP_SHIPPING_METHOD, STOREFRONT_API_KEY } = config;
@@ -76,16 +77,19 @@ const bindLocations = () => {
         }
 
         // Update map image
-        // mapImage.src = `${ASSET_BASE_URL}${pickupStore}?v=4`;
-        console.log(pickupStore);
-        mapImage.src = window[pickupStore];
+        if (elementExists(mapImage)) {
+          mapImage.src = window[pickupStore];
+        }
+
+        // Enable Continue Button
+        if (elementExists(document.querySelector('.js-de-payment-continue'))) {
+          document
+            .querySelector('.js-de-payment-continue')
+            .classList.remove(CLASSES.DISABLED_BUTTON);
+        }
       }
     });
   });
-
-  if (!document.querySelector(SELECTORS.ACTIVE_PICKUP_LOCATION)) {
-    document.querySelector(SELECTORS.PICKUP_LOCATION).click();
-  }
 };
 
 /**
@@ -128,7 +132,7 @@ const updateLocationUI = currentLocation => {
  * @param  {Object} locations data from ShipHawk
  */
 const buildStoreList = locations => {
-  for (const location of locations.data) {
+  for (const location of locations) {
     // Check to see if this is the active store so we can add active class
     const activeCard = location.id === STATE.pickupStore || false;
 
@@ -142,18 +146,17 @@ const buildStoreList = locations => {
       data-id="${location.id}"
       data-name="${location.name}"
       data-street1="${location.street1}"
-      data-street2="${location.street2}"
       data-city="${location.city}"
       data-state="${location.state}"
       data-zip="${location.zip}">
       <p class="de-pickup-location-time de-u-textBlack de-u-textSemibold de-u-textGrow1">Pickup Tomorrow</p>
       <p><span class="de-pickup-location-name de-u-textSemibold de-u-textBlack">${
         location.name
-      }</span> ${location.street1} ${
-      location.street2 === null ? '' : location.street2
-    }</p>
+      }</span> ${location.street1}</p>
 
-      <p class="de-pickup-location-hours de-u-textShrink2">9:00 AM - 8:00 PM</p>
+      <p class="de-pickup-location-hours de-u-textShrink2">${
+        location.tomorrow
+      }</p>
     </div>`;
 
     // Insert card
@@ -290,9 +293,11 @@ const bindUI = () => {
    */
 
   if (STATE.deliveryMethod === DELIVERY_METHODS.SHIP) {
-    const regexDEC = new RegExp(/San Francisco|Emeryville/);
-    if (regexDEC.test(company.value)) {
-      clearShippingForm();
+    const regexDEC = new RegExp(/San Francisco|Emeryville|Oakland/);
+    if (elementExists(company)) {
+      if (regexDEC.test(company.value)) {
+        clearShippingForm();
+      }
     }
   }
 
@@ -315,9 +320,11 @@ const bindUI = () => {
 
   shipToggleBtn.addEventListener('click', event => {
     // Will find a better way here when location API is finalized
-    const regexDEC = new RegExp(/San Francisco|Emeryville/);
-    if (regexDEC.test(company.value)) {
-      clearShippingForm();
+    const regexDEC = new RegExp(/San Francisco|Emeryville|Oakland/);
+    if (elementExists(company)) {
+      if (regexDEC.test(company.value)) {
+        clearShippingForm();
+      }
     }
     STATE.deliveryMethod = DELIVERY_METHODS.SHIP;
     pickupToggleBtn.classList.toggle(CLASSES.ACTIVE_SHIPPICK_BTN);
@@ -332,8 +339,12 @@ const bindUI = () => {
    * Update map if preferred store is selected on load.
    * This probably needs to move.
    */
-  if (STATE.pickupStore !== null) {
-    mapImage.src = window[STATE.pickupStore];
+  if (elementExists(mapImage)) {
+    if (STATE.pickupStore === null) {
+      mapImage.src = window.defaultMap;
+    } else {
+      mapImage.src = window[STATE.pickupStore];
+    }
   }
 
   /**
@@ -348,103 +359,82 @@ const bindUI = () => {
   paymentBtnCont.removeChild(paymentBtn);
   continueBtn.insertAdjacentHTML('afterend', paymentBtnHTML);
   paymentBtn = document.querySelector(SELECTORS.PICKUP_CONTINUE_BTN);
+  if (elementExists(paymentBtn)) {
+    paymentBtn.classList.add(CLASSES.DISABLED_BUTTON);
+  }
 
   paymentBtn.addEventListener('click', function(e) {
     e.preventDefault();
-    // @TODO create validtion function
-    if (!this.classList.contains('submitted')) {
-      if (
-        userFirstName.value === '' ||
-        userLastName.value === '' ||
-        userEmail.value === ''
-      ) {
-        if (userFirstName.value === '') {
-          userFirstName.parentNode.parentNode.classList.add('field--error');
-          userFirstName.addEventListener('blur', () => {
-            userFirstName.parentNode.parentNode.classList.remove(
-              'field--error'
-            );
-          });
+    if (document.querySelector(SELECTORS.ACTIVE_PICKUP_LOCATION)) {
+      // @TODO create validtion function
+      if (!this.classList.contains('submitted')) {
+        if (
+          userFirstName.value === '' ||
+          userLastName.value === '' ||
+          userEmail.value === ''
+        ) {
+          if (elementExists(userFirstName) && userFirstName.value === '') {
+            userFirstName.parentNode.parentNode.classList.add('field--error');
+            userFirstName.addEventListener('blur', () => {
+              userFirstName.parentNode.parentNode.classList.remove(
+                'field--error'
+              );
+            });
+          }
+          if (elementExists(userLastName) && userLastName.value === '') {
+            userLastName.parentNode.parentNode.classList.add('field--error');
+            userLastName.addEventListener('blur', () => {
+              userLastName.parentNode.parentNode.classList.remove(
+                'field--error'
+              );
+            });
+          }
+          if (elementExists(userEmail) && userEmail.value === '') {
+            userEmail.parentNode.parentNode.classList.add('field--error');
+            userEmail.addEventListener('blur', () => {
+              userEmail.parentNode.parentNode.classList.remove('field--error');
+            });
+          }
+        } else {
+          this.classList.add = 'submitted';
+          // Make button spin
+          if (
+            elementExists(
+              document.querySelector('.js-de-payment-continue-spinner')
+            )
+          ) {
+            document.querySelector(
+              '.js-de-payment-continue-spinner'
+            ).style.animation = 'rotate 0.5s linear infinite';
+            document.querySelector(
+              '.js-de-payment-continue-spinner'
+            ).style.opacity = '1';
+          }
+          if (
+            elementExists(
+              document.querySelector('.js-de-payment-continue-copy')
+            )
+          ) {
+            document.querySelector(
+              '.js-de-payment-continue-copy'
+            ).style.opacity = '0';
+          }
+          updateCheckout();
         }
-        if (userLastName.value === '') {
-          userLastName.parentNode.parentNode.classList.add('field--error');
-          userLastName.addEventListener('blur', () => {
-            userLastName.parentNode.parentNode.classList.remove('field--error');
-          });
-        }
-        if (userEmail.value === '') {
-          userEmail.parentNode.parentNode.classList.add('field--error');
-          userEmail.addEventListener('blur', () => {
-            userEmail.parentNode.parentNode.classList.remove('field--error');
-          });
-        }
-      } else {
-        this.classList.add = 'submitted';
-        // Make button spin
-        document.querySelector(
-          '.js-de-payment-continue-spinner'
-        ).style.animation = 'rotate 0.5s linear infinite';
-        document.querySelector(
-          '.js-de-payment-continue-spinner'
-        ).style.opacity = '1';
-        document.querySelector('.js-de-payment-continue-copy').style.opacity =
-          '0';
-        updateCheckout();
       }
     }
   });
 
-  // Fetch pickup locations from ShipHawk - temporarily using hard-coded data below
-  // fetch('https://decathlon-proxy.herokuapp.com/api/shiphawk')
-  //   .then(res => res.json())
-  //   .then(data => {
-  //     buildStoreList(sampleData);
-  //   });
+  async function fetchStoreList() {
+    try {
+      const stores = await fetchStores();
+      return stores;
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
-  /**
-   * Temporary location data - hard-coded until new endpoint is established
-   */
-  const sampleData = {
-    data: [
-      {
-        id: 'adr_sf',
-        name: 'San Francisco',
-        company: 'Decathlon',
-        street1: '735 Market St',
-        street2: '',
-        city: 'San Francisco',
-        state: 'CA',
-        zip: '94103',
-        country: 'US',
-        phone_number: '(123) 000 0000',
-        email: 'fakhar.nisa@decathlon.com',
-        is_residential: false,
-        is_warehouse: false,
-        address_type: null,
-        validated: false,
-        code: '135'
-      }
-      // {
-      //   id: 'adr_emery',
-      //   name: 'Emeryville',
-      //   company: 'Decathlon',
-      //   street1: '3938 Horton St',
-      //   street2: null,
-      //   city: 'Emeryville',
-      //   state: 'CA',
-      //   zip: '94608',
-      //   country: 'US',
-      //   phone_number: null,
-      //   email: null,
-      //   is_residential: false,
-      //   is_warehouse: false,
-      //   address_type: null,
-      //   validated: false,
-      //   code: null
-      // }
-    ]
-  };
-  buildStoreList(sampleData);
+  fetchStoreList().then(stores => buildStoreList(stores));
 };
 
 export default bindUI;
