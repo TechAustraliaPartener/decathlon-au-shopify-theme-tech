@@ -50,6 +50,8 @@
 			{% include 'navigation-menu-list-collection', list: linklists["womens"], menuChild: "menu-list" %}
 
 			{% include 'navigation-menu-list-collection', list: linklists["mens"], menuChild: "menu-list" %}
+
+			{% include 'navigation-menu-list-collection', list: linklists["kids"], menuChild: "menu-list" %}
 		</ul>
 		<ul class="de-MenuList">
 			{% include 'navigation-menu-list', list: linklists["additional-shopping"] %}
@@ -82,6 +84,12 @@
 		<ul class="de-MenuList">
 			{% include 'navigation-menu-mobile-crumb', slideTarget: "menu-narrow", linkLabel: "Home" %}
 			{% include 'navigation-menu-list', list: linklists["mens"], menuChild: "menu-list" %}
+	    </ul>
+	</section>
+	<section class="de-SlideViews-view js-de-SlideViews-view" id="menu-list-kids">
+		<ul class="de-MenuList">
+			{% include 'navigation-menu-mobile-crumb', slideTarget: "menu-narrow", linkLabel: "Home" %}
+			{% include 'navigation-menu-list', list: linklists["kids"], menuChild: "menu-list" %}
 	    </ul>
 	</section>
 	{% for link in linklists.activities.links %}
@@ -119,11 +127,30 @@
 		</ul>
 	</section>
 	{% endfor %}
+
 	{% for link in linklists.mens.links %}
 	{% assign menuCrumbLabel = linklists.mens.title | remove: "'s" | prepend: "For " %}
 	<section class="de-SlideViews-view js-de-SlideViews-view" id="menu-list-{{ link.handle }}">
 		<ul class="de-MenuList">
 			{% include 'navigation-menu-mobile-crumb', slideTarget: "menu-list-mens", linkLabel: menuCrumbLabel %}
+			<ul class="de-MenuList">
+			    {% for child_link in link.links %}
+			    <li class="de-u-spaceNone">
+			      <a class="de-MenuList-item" href= "{{ child_link.url }}">
+			        {{ child_link.title }}
+			      </a>
+			    </li>
+			    {% endfor %}
+		    </ul>
+		</ul>
+	</section>
+	{% endfor %}
+
+	{% for link in linklists.kids.links %}
+	{% assign menuCrumbLabel = linklists.kids.title | prepend: "For " %}
+	<section class="de-SlideViews-view js-de-SlideViews-view" id="menu-list-{{ link.handle }}">
+		<ul class="de-MenuList">
+			{% include 'navigation-menu-mobile-crumb', slideTarget: "menu-list-kids", linkLabel: menuCrumbLabel %}
 			<ul class="de-MenuList">
 			    {% for child_link in link.links %}
 			    <li class="de-u-spaceNone">
