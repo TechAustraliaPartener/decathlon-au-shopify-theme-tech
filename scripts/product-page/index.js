@@ -1,5 +1,6 @@
 import './buybox';
 import './carousel';
+import ColorSwatches from './color-swatches';
 import SizeSwatches from './size-swatches';
 import './videos';
 import reviewsInit from './ratings-reviews';
@@ -12,4 +13,9 @@ reviewsInit();
 const $sizeSwatches = SizeSwatches.init();
 $sizeSwatches.on('SizeSwatches:select', (e, sizeSwatchesData) => {
   console.log('SELECTED:', sizeSwatchesData.value);
+});
+
+const $colorSwatches = ColorSwatches.init();
+$colorSwatches.on('ColorSwatches:select', (e, colorSwatchesData) => {
+  console.log('SELECTED:', colorSwatchesData.value);
 });

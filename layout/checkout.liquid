@@ -14,8 +14,9 @@
 
     <script>
       window.checkoutID = {{ checkout.id }};
-      window.adr_sf = "{{ 'adr_sf.jpg' | asset_url }}";
-      window.adr_emery = "{{ 'adr_emery.jpg' | asset_url }}";
+      window.adr_GezSSC9M = "{{ 'adr_GezSSC9M.jpg' | asset_url }}";
+      window.adr_K6s3Kaja = "{{ 'adr_K6s3Kaja.jpg' | asset_url }}";
+      window.defaultMap = "{{ 'no-selection-map2.jpg' | asset_url }}";
     </script>
     {{ checkout_scripts }}
   </head>
@@ -105,6 +106,8 @@
         </div>
       </div>
     </div>
+    {% include 'moment.js' %}
+    {% include 'moment-timezone.js' %}
     {{ 'checkout.js' | asset_url | script_tag }}
     {{ tracking_code }}
   </body>

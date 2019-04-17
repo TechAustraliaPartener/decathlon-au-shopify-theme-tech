@@ -96,26 +96,18 @@
     side by the timber variant selector callback function.
     {% endcomment %}
 
-    {% if on_sale %}
-        <span style="color: #E53322;"><strong>{{ products.product.on_sale }}</strong>
-        {{ current_variant.price | money }}</span>
-    {% else %}
         {% if product.price_varies %}
-            {% assign price = current_variant.price | money %}
+            {% assign price = product.price_min | money %}
             {{ 'products.general.from_text_html' | t: price: price }}
         {% else %}
             {{ current_variant.price | money }}
         {% endif %}
-    {% endif %}
+
     {% comment %}
     {% if sold_out %}
     <br><strong>{{ 'products.product.sold_out' | t }}</strong>
     {% endif %}
     {% endcomment %}
-    {% if on_sale %}
-        <span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
-        <br><s>{{ product.compare_at_price | money }}</s>
-    {% endif %}
     </p>
 
     {% if show_add_to_cart == true %}
