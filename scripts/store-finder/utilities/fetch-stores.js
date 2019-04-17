@@ -8,7 +8,10 @@ export default async function() {
       const storeHours = getStoreHours(store.id);
       return {
         ...store,
-        street2: storeHours
+        // Street 2 field used for hours data in ShipHawk setup.
+        // @TODO When updating for final API decision from DE, change to 'today'
+        street2: storeHours.today,
+        tomorrow: storeHours.tomorrow
       };
     });
     return storesWithHours;

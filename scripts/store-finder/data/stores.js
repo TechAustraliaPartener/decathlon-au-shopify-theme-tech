@@ -29,7 +29,7 @@ export default () =>
         id: 'adr_K6s3Kaja',
         is_residential: false,
         is_warehouse: false,
-        name: 'Ashley Benson',
+        name: 'Emeryville',
         phone_number: '1234567890',
         state: 'CA',
         street1: '3938 Horton St',
