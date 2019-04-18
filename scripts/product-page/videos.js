@@ -1,7 +1,8 @@
 import $ from 'jquery';
+const videojs = window.videojs;
 
 // Test if video carousel exists
-if (window.videojs) {
+if (videojs) {
   const $posterImages = $('.js-de-slick--videos .vjs-poster');
   const $videoCarousel = $('.js-de-slick--videos');
   const $thumbnailCarousel = $('.js-de-slick--videos-thumbnails');
@@ -9,7 +10,7 @@ if (window.videojs) {
   const $viewImagesCTA = $('.js-de-view-images');
   const $watchVideoCTA = $('.js-de-watch-video');
   const $copyVideo = $('.js-de-copyVideo');
-  
+
   // Load poster images into DOM for slick slider navigation
   $(window).on('load', function() {
     $posterImages.each(function(index) {
@@ -21,13 +22,13 @@ if (window.videojs) {
           .replace(/^url\(['"](.+)['"]\)/, '$1')
       );
     });
-  
+
     // Create carousel with videos
     $videoCarousel.slick({
       asNavFor: $thumbnailCarousel,
       arrows: false
     });
-  
+
     // Pause video on current slide before slide change
     $videoCarousel.on('beforeChange', function(
       event,
@@ -40,7 +41,7 @@ if (window.videojs) {
         videojs(players[currentSlide + 1].id()).pause();
       }
     });
-  
+
     // Create carousel with video thumbnails
     $thumbnailCarousel.slick({
       slidesToShow: 4,
@@ -50,9 +51,9 @@ if (window.videojs) {
       focusOnSelect: true
     });
   });
-  
+
   // Function to toggle between 'Watch Videos' and 'View Images'
-  function toggleWatchVideo() {
+  const toggleWatchVideo = function() {
     const firstVideoPlayer = videojs(players[0].id());
     if ($(this).hasClass('js-de-toggle')) {
       // Remove Video, switch to Images
@@ -71,16 +72,34 @@ if (window.videojs) {
       // Play Video
       firstVideoPlayer.play();
     }
-  }
-  
+  };
+
   // Attach click event to 'Watch Videos' button to toggle between video and image
   $toggleButton.click(toggleWatchVideo);
-  
+
   // Create array for player IDs
   const players = [];
   // Video Player Keys
   const videoPlayerKeys = Object.keys(videojs.players);
-  
+
+  /**
+   * Handle all players' play event
+   *
+   * @param {object} e The handler event object
+   */
+  const onPlay = e => {
+    // Determine which player the event is coming from
+    const id = e.target.id;
+    // Loop through the array of players
+    for (let i = 0; i < players.length; i++) {
+      // Get the player(s) that did not trigger the play event
+      if (players[i].id() !== id) {
+        // Pause the other player(s)
+        videojs(players[i].id()).pause();
+      }
+    }
+  };
+
   // +++  Determine the available player IDs +++//
   for (let x = 0; x < videoPlayerKeys.length; x++) {
     // Assign the player name to setPlayer
@@ -94,23 +113,5 @@ if (window.videojs) {
       // Push the player to the players array
       players.push(myPlayer);
     });
-  }
-  
-  /**
-   * Handle all players' play event
-   *
-   * @param {object} e The handler event object
-   */
-  function onPlay(e) {
-    // Determine which player the event is coming from
-    const id = e.target.id;
-    // Loop through the array of players
-    for (let i = 0; i < players.length; i++) {
-      // Get the player(s) that did not trigger the play event
-      if (players[i].id() !== id) {
-        // Pause the other player(s)
-        videojs(players[i].id()).pause();
-      }
-    }
   }
 }
