@@ -1,12 +1,12 @@
 {% comment %} Title Lockup {% endcomment %}
-<div class="ProductTitleLockup de-u-lg-padBottom">
+<div class="de-ProductTitleLockup de-u-lg-padBottom">
 
   <div class="de-ProductLabel de-ProductLabel--red de-u-hidden
     de-u-lg-inlineBlock de-u-textMedium">
     Last Call
   </div>
 
-  <div class="de-Grid de-u-padTop de-u-md-padTopNone">
+  <div class="de-u-flex de-u-flexJustifyBetween de-u-padTop de-u-md-padTopNone">
     <div class="de-u-size1of2">
       {% include 'product-logo-brand-rockrider' %}
     </div>
@@ -20,7 +20,7 @@
       rating: product.metafields.ratings.product_rating
       %}
     {% endcomment %}
-    <button class="ProductTitleLockup-rating de-u-size1of2
+    <button class="de-ProductTitleLockup-rating de-u-size1of2
       de-u-flex de-u-flexJustifyEnd">
       {% include 'product-rating--stars-total' %}
     </button>
@@ -31,11 +31,12 @@
     {{ product.title }}
   </h1>
 
-  <div class="de-ProductPrice de-u-textMedium de-u-hidden
-    de-u-lg-flex de-u-flexAlignItemsEnd">
-    <div class="de-u-textGrow6 de-u-lineHeight1">$45.00</div>
-    <div class="de-u-textGrow2 de-u-padLeft de-u-lineHeight2">
-      <del>$57.00</del>
+  <div class="de-ProductTitleLockup-price de-u-hide de-u-lg-block">
+    <div class="de-ProductPrice de-u-textMedium de-u-flex de-u-flexAlignItemsEnd">
+      <div class="de-u-textGrow6 de-u-lineHeight1">$45.00</div>
+      <div class="de-u-textGrow2 de-u-padLeft de-u-lineHeight2">
+        <del>$57.00</del>
+      </div>
     </div>
   </div>
 </div>
