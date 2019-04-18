@@ -1,5 +1,5 @@
-{% comment %} 
-  This file is deprecated. 
+{% comment %}
+  This file is deprecated.
   It is superseded by product-rating--stars-total.liquid
   @TODO - Review the Adept Mind markup in this snippet for inclusion in the new version.
 {% endcomment %}
@@ -27,8 +27,8 @@ because metafields can't be floats
     {% if product_rating != 0 %}
       <div class="adept-product-rating__text">{{product_rating}}</div>
   {% endif %}
-  {% if product.metafields.reviews.recent_reviews %}
-      <div class="adept-product-rating__count">({{ product.metafields.reviews.recent_reviews | split: ',"items"' | first | split: '{"total_item_count":' }})</div>
+  {% if product.metafields.reviews.recent_reviews_object %}
+      <div class="adept-product-rating__count">({{ product.metafields.reviews.recent_reviews_object.total_item_count }})</div>
   {% endif %}
     </div>
 </div>
