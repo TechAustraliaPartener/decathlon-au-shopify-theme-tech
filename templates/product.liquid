@@ -31,9 +31,9 @@
 {% endif %}
 
 {% comment %} Product Flags {% endcomment %}
-{% if product.tags contains 'Innovation' %}
+{% comment %} {% if product.tags contains 'Innovation' %}
   <span class="productFlagz productFlag--productDetailz">Innovation</span>
-{% endif %}
+{% endif %} {% endcomment %}
 
 {% comment %}
   From existing Decathlon Product template END BLOCK 1
@@ -41,6 +41,7 @@
 
 {% comment %}
   From existing Decathlon Product template START BLOCK 2
+  @TODO: Future removal of product.tags conditional is desired
 {% endcomment %}
 <div id="ProductWrap"
   class="timber-activeProduct {% if product.options.size < 2
@@ -71,10 +72,8 @@
       {% include 'breadcrumb' %}
     </div>
 
-    <div class="de-u-lg-flex">
-
-      <div class="ProductGallery ProductGallery--large de-u-hidden
-        de-u-lg-flex">
+    <div class="de-u-lg-flex de-u-lg-flexJustifyBetween">
+      <div class="ProductGallery ProductGallery--large">
         <div class="ProductGallery-thumbnails">
           {% for i in (1..16) %}
             <img
@@ -82,16 +81,14 @@
               src="https://cdn.shopify.com/s/files/1/1330/6287/products/00164127-432c-4479-b71b-04d30eae0301_400x400.jpg"
               alt="">
           {% endfor %}
-          <div class="Fade--bottom"></div>
         </div>
         <div class="ProductGallery-showcase">
           <img
-            class="de-u-block"
+            class="GalleryImage de-u-block"
             src="https://cdn.shopify.com/s/files/1/1330/6287/products/cf438995-20ba-44e5-8afa-4d5eb628cfcd_1024x1024.jpg"
             alt="">
         </div>
       </div>
-
       <div class="ProductBuyBox">
         {% include 'product-proto-buybox' %}
       </div>
@@ -136,7 +133,13 @@
     maxime fugiat ex aut maiores, aliquam sequi vel. Molestiae, quisquam
     nihil.</p>
   </div>
-  {% comment %} {{ product_features }} {% endcomment %}
+  {% comment %} 
+    {{ product_features }}
+  {% endcomment %}
+  {%- assign start = product.description | split: '<p>---specs---</p>' -%}
+  {%- assign end = start[1] | split: '<p>---/specs---</p>' -%}
+  {%- assign product_specs = end[0] -%}
+  {{ product_specs }}
 </div>
 
 <div class="de-ProductInfoSection de-ProductInfoSection--silver de-u-pad">
@@ -151,228 +154,12 @@
     de-u-hidden de-u-md-inlineBlock">
     Customer Reviews
   </h3>
-
-  {% comment %}
-    Review Summary
+  {% comment %} 
+    Customer Reviews Prototype Markup
+    {% include 'product-proto-customer-reviews' %}
   {% endcomment %}
-
-  {% comment %}
-    The rating variable should be a number between 0 and 5 inclusive.
-    The number of stars filled in will be the ceiling integer of the rating.
-  {% endcomment %}
-
-  {% comment %}
-    Add zero to convert the string to a number, which is stored as a string
-    because metafields can't be floats
-  {% endcomment %}
-  {% assign product_rating = product.metafields.ratings.product_rating | plus: 0 %}
-  {% assign rating_average = product_rating | times: 20 %}
-  {% assign total_item_count = product.metafields.reviews.recent_reviews.total_item_count | plus: 0 %}
-  <div class="de-Grid de-u-padTop3">
-
-    <div class="de-u-md-size1of2 de-u-lg-size1of3 de-u-padSides
-      de-u-md-padSidesNone">
-      <div class="de-ReviewSummary de-u-padBottom06">
-        <div class="de-StarRating de-u-textGrow1">
-          <div class="de-StarRating-fill" style="width: {{ rating_average }}%"></div>
-        </div>
-
-        <div class="de-u-textGrow2 de-u-flex de-u-flexJustifyBetween
-          de-u-flexAlignItemsBaseline">
-          <div>
-            <span class="de-u-textBold">{{ product_rating }}</span> out of 5 stars
-          </div>
-          <div class="de-u-textNormal de-u-textAlignRight">{{ total_item_count }} <span class="de-u-hidden de-u-md-inlineBlock">{{ total_item_count | pluralize: 'Review', 'Reviews' }}</div>
-        </div>
-      </div>
-
-      {% comment %}
-        Review Matrix - Static version with no reviews
-      {% endcomment %}
-      <div class="de-ReviewMatrix de-u-padTop03">
-        <div class="de-u-flex" id="de-ReviewMatrix-container">
-          <div class="de-ReviewMatrix-stars-container">
-            {% for i in (0..4) %}
-            <div class="de-u-flex">
-              <div class="de-ReviewMatrix-stars de-u-flex de-u-padRight">
-                <div class="de-StarRating">
-                  <div class="de-StarRating-fill"
-                    style="width: {{ 5 | minus:i | times: 20 }}%">
-                  </div>
-                </div>
-                <div class="de-u-textDarkGray de-u-padLeft06"
-                  style="position: relative; bottom: 3px;">
-                  0
-                </div>
-              </div>
-            </div>
-            {% endfor %}
-          </div>
-          <div class="de-ReviewMatrix-graph-container de-u-flexAuto">
-            {% for i in (0..4) %}
-              <div class="de-ReviewMatrix-graph">
-                <svg height="10px" width="100%">
-                  <rect class="total"
-                    width="100%"
-                    height="7px"
-                    fill="#d8d8d8">
-                  </rect>
-                  <rect class="completed"
-                    width="0%"
-                    height="7px"
-                    fill="#0082c3">
-                  </rect>
-                </svg>
-              </div>
-            {% endfor %}
-          </div>
-        </div>
-      </div>
-      {% comment %}
-        Review Matrix - Dynamic version to be populated by Reviews API
-      {% endcomment %}
-      <script type="x-handlebars-template"
-        id="de-ReviewMatrix-template"
-        data-model-code="{{ model_code }}">
-        {% raw %}
-          <div class="de-ReviewMatrix-stars-container">
-            {{#each ratings}}
-              <div class="de-ReviewMatrix-stars de-u-flex de-u-padRight">
-                <div class="de-StarRating">
-                  <div class="de-StarRating-fill"
-                    style="width: {{ starsFill }}%">
-                  </div>
-                </div>
-                <div class="de-u-textDarkGray de-u-padLeft06"
-                   style="position: relative; bottom: 3px;">
-                  {{ starsCount }}
-                </div>
-              </div>
-            {{/each}}
-          </div>
-          <div class="de-ReviewMatrix-graph-container de-u-flexAuto">
-            {{#each ratings}}
-              <div class="de-ReviewMatrix-graph">
-                <svg height="10px" width="100%">
-                  <rect class="total"
-                    width="100%"
-                    height="7px"
-                    fill="#d8d8d8">
-                  </rect>
-                  <rect class="completed"
-                    width="{{ starsPercentage }}%"
-                    height="7px"
-                    fill="#0082c3">
-                  </rect>
-                </svg>
-              </div>
-            {{/each}}
-          </div>
-        {% endraw %}
-      </script>
-
-      <a class="btn btn--productReviews de-u-block de-u-spaceTop2
-        de-u-textGrow1 de-u-padEnds" href="{% if customer %}/account?view=review-products{% else %}/account/login?checkout_url=/account?view=review-products{% endif %}">
-        Write a Review
-      </a>
-
-      <img
-        src="{{ product.featured_image | img_url: 'large' }}"
-        class="de-u-spaceTop6 de-u-hidden de-u-md-block"
-        alt="{{ product.featured_image.alt }}">
-
-    </div>
-
-    {% comment %}
-    Customer Reviews
-    {% endcomment %}
-
-    <div class="de-u-md-size1of2 de-u-lg-size2of3 de-u-padTop6 de-u-md-padTopNone
-      de-u-padSides de-u-md-padRightNone de-u-md-padLeft6">
-
-      <div class="de-u-flex de-u-flexAlignItemsCenter de-u-spaceBottom6">
-        <div class="de-u-padRight de-u-textBold de-u-textSizeBase">Sort by</div>
-        <select name="ReviewSort" id="ReviewSort" class="de-u-textSizeBase">
-          <option value="Newest">Newest</option>
-          <option value="Newest">Oldest</option>
-        </select>
-      </div>
-
-      {% comment %}
-        Defaults to most recent X number of reviews sorted descending by posting date and time
-        Assigns a `looplimit` value at the top, which could come from a value set in a liquid variable
-      {% endcomment %}
-      {% assign looplimit = 5 %}
-      {% for review in product.metafields.reviews.recent_reviews.items %}
-        {% if forloop.index <= looplimit %}
-          {% assign rating_percentage = review.note | plus: 0 | times: 20 %}
-          <div class="de-CustomerReview de-u-padBottom3 de-u-spaceBottom3">
-            {% if review.note || review.title %}
-              <div class="de-u-flex de-u-flexAlignItemsBaseline de-u-flexCol de-u-lg-flexRow">
-                {% if review.note %}
-                  <div class="de-u-textGrow1 de-u-padRight06 de-u-padBottom06
-                    de-lg-padBottomNone de-u-flex de-u-flexAlignItemsCenter">
-                    <div class="de-StarRating">
-                      <div class="de-StarRating-fill" style="width: {{ rating_percentage }}%"></div>
-                    </div>
-                  </div>
-                {% endif %}
-                {% if review.title %}
-                  <div class="de-u-textGrow3 de-u-textMedium
-                    de-u-lineHeight2 de-u-padBottom06">
-                    {{ review.title }}
-                  </div>
-                {% endif %}
-              </div>
-            {% endif %}
-
-            <p class="de-u-spaceNone">
-              {{ review.body }}
-            </p>
-
-            <div class="de-Grid de-u-padTop06">
-              <div class="de-u-size4of6 de-u-textDarkGray">
-                {% if review.firstname %}
-                  <div class="de-u-textMedium">
-                    {{ review.firstname }}
-                  </div>
-                {% endif %}
-                {% comment %}
-                  @TODO - verify whether product variant information can be made available here
-                {% endcomment %}
-                {% comment %}
-                  <span class="de-u-textMedium">Size:</span>
-                    M |
-                  <span class="de-u-textMedium">
-                    Color:
-                  </span> chartreuse
-                {% endcomment %}
-                {% if review.purchase_checked %}
-                  <div class="de-u-flex de-u-flexAlignItemsCenter">
-                    {% include 'icon-checkmark-badge' with class: 'de-Icon de-u-textGrow5 de-u-padRight06' %}
-                    {% comment %}
-                      @TODO - Verify whether purchase date is can be made available here
-                    {% endcomment %}
-                    verified purchase
-                  </div>
-                {% endif %}
-              </div>
-
-              <div class="de-u-size2of6 de-u-flex de-u-flexJustifyEnd de-u-flexAlignItemsEnd">
-                <a class="de-u-textBlue de-u-textMedium de-CustomerReviewVote js-de-CustomerReviewVote" data-review-vote-url="{{review.url_vote}}" href="{{review.url_vote}}">
-                  Helpful?
-                  {% include 'icon-upvote-thumb' with class: 'de-Icon de-u-spaceLeft06 de-u-textGrow1' %}
-                </a>
-              </div>
-            </div>
-
-          </div>
-        {% endif %}
-      {% endfor %}
-
-    </div>
-
-  </div>
+  {% comment %} Dynamic Customer Reviews {% endcomment %}
+  {% include 'product-customer-reviews' %}
 </div>
 
 <div class="de-ProductInfoSection de-ProductInfoSection--silver de-u-pad">
@@ -381,11 +168,7 @@
     Product Information
   </h3>
   <div class="product-description rte" itemprop="description">
-    {% comment %} {{ product.description }} {% endcomment %}
-    {%- assign start = product.description | split: '<p>---specs---</p>' -%}
-    {%- assign end = start[1] | split: '<p>---/specs---</p>' -%}
-    {%- assign product_specs = end[0] -%}
-    {{ product_specs }}
+    {{ product.description }} 
   </div>
 </div>
 

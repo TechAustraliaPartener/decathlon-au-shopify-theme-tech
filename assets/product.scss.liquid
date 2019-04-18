@@ -1,8 +1,9 @@
-{% comment %}
-  @todo: The final Product Page CSS will be copied/pasted into this file
-
-  Any shared CSS styles can be added to this file from the beginning.
-{% endcomment %}
+/**
+ * @TODO
+ * The final Product Page CSS will be copied/pasted into this file
+ * 
+ * Any shared CSS styles can be added to this file from the beginning.
+ */
 
 /**
  * Color Palette
@@ -30,6 +31,12 @@ $border-width-md: 2px;
 $border-width-lg: 3px;
 
 /**
+ * Media Queries
+ */
+
+$breakpoint-lg: 60em;
+
+/**
  * Product Page Wrapper
  */
 
@@ -38,7 +45,14 @@ $border-width-lg: 3px;
   padding-right: 1rem;
 }
 
-@media (max-width: 40em) {
+/** 
+ * Full width Wrapper modifier 
+ *
+ * Full width container inside a limited width parents. No calc() needed. 
+ * @see https://css-tricks.com/full-width-containers-limited-width-parents/#article-header-id-6
+ */
+
+@media (max-width: $breakpoint-lg) {
   .de-Wrapper--fullwidth {
     width: 100vw;
     position: relative;
@@ -49,12 +63,12 @@ $border-width-lg: 3px;
   }
 }
 
-.de-ProductInfoSection {
-
-}
+/** 
+ * ProductInfoSection 
+ */
 
 .de-ProductInfoSection--silver {
-  background-color: #F3F3F3;
+  background-color: $color-silver;
 }
 
 .de-ProductInfoTitle {
@@ -63,34 +77,48 @@ $border-width-lg: 3px;
   margin: 0;
 }
 
+/**
+ * Sub brand logos
+ * 
+ * 1. Warning: Magic numbers at work. 
+ * 
+ * @TODO 
+ * Consider moving width and height values to SVG
+ */
+
 .de-LogoSportsBrand {
   height: 100%;
-  max-height: 24px;
+  height: 24px; //* 1 *//
+  width: 175px; //* 1 *//
 }
 
 /**
- * Utility
+ * Utilities
+ *
+ * @TODO
+ * 1. Update patterns library with this class
  */
 
-.de-u-textRed {
+.de-u-textRed { //* 1 *// 
   color: $color-red !important;
 }
 
 /**
  * Swatch Colors
+ * 
+ * 1. Used for prototyping purposes only 
  */
 
-.de-ColorSwatches-color--Yellow {
+.de-ColorSwatches-color--Yellow { //* 1 *//
   background-color: #f4ff46;
 }
 
 /**
- * Product Swatches
+ * Hacks
+ * 
+ * 1. Removes floating green email me button
  */
 
-.de-SwatchColor-item {
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  height: 80px;
+.bis-reset { //* 1 * //
+  display: none;
 }

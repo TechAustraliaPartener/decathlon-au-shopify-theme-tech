@@ -1,0 +1,19 @@
+<div class="de-u-spaceTop03">
+  <strong>Color:</strong>
+  <span class="de-u-textDarkGray de-u-textMedium">Select a color</span>
+</div>
+
+{% comment %} Color Swatches {% endcomment %}
+<div class="de-SwatchObjects de-Wrapper--fullwidth 
+  de-u-padTop06 de-u-padBottom">
+  {% for i in (1..8) %}
+    <button class="de-SwatchObjects-item de-SwatchObjects--color">
+      <img
+        src="https://cdn.shopify.com/s/files/1/1330/6287/products/00164127-432c-4479-b71b-04d30eae0301.jpg"
+        class="de-SwatchObjects-image de-u-block"
+        alt="">
+    </button>
+  {% endfor %}
+  {% comment %} <button class="de-SwatchObjects-item de-SwatchObjects--color de-ColorSwatches-color--Yellow">
+  </button> {% endcomment %}
+</div>
