@@ -115,24 +115,12 @@
 </div>
 {% endif %}
 
-<div class="de-ProductInfoSection de-u-pad">
-  <h3 class="de-ProductInfoTitle de-u-md-textGrow3 de-u-lg-textGrow4 de-u-spaceNone
-    de-u-hidden de-u-md-inlineBlock">
+<div class="de-ProductInfoSection de-u-pad2">
+  <h3 class="de-ProductInfoTitle de-u-md-textGrow3 de-u-lg-textGrow4 
+    de-u-spaceNone de-u-hidden de-u-md-inlineBlock">
     Features
   </h3>
-  <div>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet soluta
-    beatae quibusdam recusandae inventore vitae sapiente commodi iste eius
-    maxime fugiat ex aut maiores, aliquam sequi vel. Molestiae, quisquam
-    nihil.</p>
-  </div>
-  {% comment %}
-    {{ product_features }}
-  {% endcomment %}
-  {%- assign start = product.description | split: '<p>---specs---</p>' -%}
-  {%- assign end = start[1] | split: '<p>---/specs---</p>' -%}
-  {%- assign product_specs = end[0] -%}
-  {{ product_specs }}
+  {% include 'product-proto-features' %}
 </div>
 
 <div class="de-ProductInfoSection de-ProductInfoSection--silver de-u-pad">
