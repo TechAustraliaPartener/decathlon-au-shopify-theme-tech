@@ -30,23 +30,16 @@
 	{% capture model_code %}{{ product.variants.first.option3 }}{% endcapture %}
 {% endif %}
 
-{% comment %} Product Flags {% endcomment %}
-{% comment %} {% if product.tags contains 'Innovation' %}
-  <span class="productFlagz productFlag--productDetailz">Innovation</span>
-{% endif %} {% endcomment %}
-
 {% comment %}
   From existing Decathlon Product template END BLOCK 1
 {% endcomment %}
 
 {% comment %}
   From existing Decathlon Product template START BLOCK 2
-  @TODO: Future removal of product.tags conditional is desired
 {% endcomment %}
 <div id="ProductWrap"
   class="timber-activeProduct {% if product.options.size < 2
-  %}product-singleOption{% endif %}{% if product.tags contains 'Innovation' %}
-  has-productFlag{% endif %}"
+  %}product-singleOption{% endif %}
   itemscope
   itemtype="http://schema.org/Product">
 
