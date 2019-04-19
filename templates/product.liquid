@@ -30,23 +30,16 @@
 	{% capture model_code %}{{ product.variants.first.option3 }}{% endcapture %}
 {% endif %}
 
-{% comment %} Product Flags {% endcomment %}
-{% comment %} {% if product.tags contains 'Innovation' %}
-  <span class="productFlagz productFlag--productDetailz">Innovation</span>
-{% endif %} {% endcomment %}
-
 {% comment %}
   From existing Decathlon Product template END BLOCK 1
 {% endcomment %}
 
 {% comment %}
   From existing Decathlon Product template START BLOCK 2
-  @TODO: Future removal of product.tags conditional is desired
 {% endcomment %}
 <div id="ProductWrap"
   class="timber-activeProduct {% if product.options.size < 2
-  %}product-singleOption{% endif %}{% if product.tags contains 'Innovation' %}
-  has-productFlag{% endif %}"
+  %}product-singleOption{% endif %}
   itemscope
   itemtype="http://schema.org/Product">
 
@@ -133,7 +126,7 @@
     maxime fugiat ex aut maiores, aliquam sequi vel. Molestiae, quisquam
     nihil.</p>
   </div>
-  {% comment %} 
+  {% comment %}
     {{ product_features }}
   {% endcomment %}
   {%- assign start = product.description | split: '<p>---specs---</p>' -%}
@@ -149,12 +142,12 @@
   </h3>
 </div>
 
-<div class="de-ProductInfoSection de-u-padEnds de-u-md-padSides">
+<div class="de-ProductInfoSection de-u-padEnds de-u-md-padSides js-de-Reviews" data-model-code="{{model_code}}">
   <h3 class="de-ProductInfoTitle de-u-md-textGrow3 de-u-lg-textGrow4 de-u-spaceNone
     de-u-hidden de-u-md-inlineBlock">
     Customer Reviews
   </h3>
-  {% comment %} 
+  {% comment %}
     Customer Reviews Prototype Markup
     {% include 'product-proto-customer-reviews' %}
   {% endcomment %}
@@ -168,7 +161,7 @@
     Product Information
   </h3>
   <div class="product-description rte" itemprop="description">
-    {{ product.description }} 
+    {{ product.description }}
   </div>
 </div>
 
