@@ -16,6 +16,7 @@ const babelConfig = require('./babel.config');
 const taskName = 'jsC4Scripts';
 
 const prod = process.env.NODE_ENV === 'production';
+const BUILT_PREFIX = 'built-';
 
 module.exports = gulp => {
   gulp.task(taskName, () => {
@@ -54,7 +55,7 @@ module.exports = gulp => {
       .pipe(
         rename(path => {
           // Rename from /scripts/asdf/index.js to /scripts/asdf.js
-          path.basename = path.dirname;
+          path.basename = `${BUILT_PREFIX}${path.dirname}`;
           path.dirname = './';
         })
       )

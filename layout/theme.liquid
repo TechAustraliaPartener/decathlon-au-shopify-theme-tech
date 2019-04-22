@@ -221,7 +221,7 @@
 
   {{ 'timber.js' | asset_url | script_tag }}
 
-  {{ 'persistent-cart.js' | asset_url | script_tag }}
+  {{ 'built-persistent-cart.js' | asset_url | script_tag }}
 
   {% comment %}{% include '_live-search' %}{% endcomment %}
 
@@ -304,7 +304,7 @@
   {{ 'decathlon.js' | asset_url | script_tag }}
   {{ 'patterns-toolkit.js' | asset_url | script_tag }}
   {% if template == "product" %}
-    {{ 'product-page.js' | asset_url | script_tag }}
+    {{ 'built-product-page.js' | asset_url | script_tag }}
   {% endif %}
 
   {% comment %}{% include 'decathlon-wishlist' %}{% endcomment %}

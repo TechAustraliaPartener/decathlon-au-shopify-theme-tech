@@ -85,15 +85,15 @@ The following Decathlon USA JavaScript features are optimized and built by Rollu
 - Store Finder
 - Product Page
 
-The `scripts/` directory houses the source JavaScript files for these Rollup built features. Files named `index.js` in subdirectories of `scripts/` will be assumed to be bundle entry points. The output bundle will be transpiled from `scripts/<directory-name>/index.js` → `assets/<directory-name>.js` when `npm run build` is run. 
+The `scripts/` directory houses the source JavaScript files for these Rollup built features. Files named `index.js` in subdirectories of `scripts/` will be assumed to be bundle entry points. The output bundle will be transpiled from `scripts/<directory-name>/index.js` → `assets/built-<directory-name>.js` when `npm run build` is run. 
 
-**Important:** Make sure to add the compiled files (`assets/<directory-name>.js`) to the `.gitignore`, because they are built by DeployBot (see [Deployment via DeployBot](#deployment-via-deploybot)).
+All `assets/built-<directory-name>.js` JavaScript files are Git-ignored.
 
 You control whether or not files are optimized for production via the `NODE_ENV` environment variable in the `.env` file. Make sure the `NODE_ENV` environment variable is set to `production` for production DeployBot environments.
 
 | Environment Variable | Description|
 |----------------------|------------|
-| `NODE_ENV` | Using `production` will optimize the JS builds |
+| `NODE_ENV` | Use `production` to optimize the JS builds; use `development` for local development/debugging |
 
 
 ## SVG Icons
@@ -154,7 +154,7 @@ For local development, use "staging" values. For staging/production (in the Depl
 
 | Environment Variable | Description|
 |----------------------|------------|
-| `NODE_ENV` | Using `production` will optimize the JS build |
+| `NODE_ENV` | Use `production` to optimize the JS builds; use `development` for local development/debugging |
 | `DECATHLON_PERSISTENT_CART_URL` | The Decathlon USA Persistent Cart Heroku app URL |
 | `STOREFRONT_API_KEY` | The storefront API key used by Persistent Cart |
 
@@ -310,11 +310,17 @@ You can add a new `.env` configuration file via the "Configuration files" tab:
 
 ![Add configuration files](https://user-images.githubusercontent.com/459757/56154348-2d718880-5f6d-11e9-9bb6-329ff6f72512.png)
 
+Then add the environment variables (see [Building the client-side Persistent Cart JS](#building-the-client-side-persistent-cart-js)):
+
 ![Add environment variables to the .env file](https://user-images.githubusercontent.com/459757/56154420-54c85580-5f6d-11e9-88c5-2274ce3e55c7.png)
 
 ### Set Up the Build Command
 
-To allow DeployBot to automatically build source code, you tell it what command to run. In our case it is the `npm run build` command:
+To allow DeployBot to automatically build source code, you tell it to run the `build` NPM task. Add the following in the **Compile, compress, or minimize your code** section:
+
+```
+npm run build
+```
 
 ![DeployBot will build the source files and deploy them to your server automatically.](https://user-images.githubusercontent.com/459757/56155949-f309ea80-5f70-11e9-9761-3bcc91e525e2.png)
 
@@ -327,6 +333,13 @@ To make the deploys more efficient, take advantage of cached build commands:
 > A better option is to use Cached build commands option in advanced settings. Any script placed in this field will be executed only when the following files changed in your repository: Gemfile, Gemfile.lock, package.json, gulpfile.js, Gruntfile.js, project.clj, composer.json.
 
 - [Setting up and using Build Tools](https://support.deploybot.com/article/61-setting-up-and-using-build-tools)
+
+Add the following commands under the **Advanced options** > **Cached build commands**:
+```
+nvm install
+nvm use
+npm ci
+```
 
 ![Decathlon USA Shopify theme cached build commands](https://user-images.githubusercontent.com/459757/56155589-29933580-5f70-11e9-959c-b8104e39d05f.png)
 

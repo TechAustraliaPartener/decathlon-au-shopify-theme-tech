@@ -5,7 +5,4 @@ src/css/*
 .env
 
 # Compiled/bundled from /scripts/**
-/assets/checkout.js
-/assets/persistent-cart.js
-/assets/store-finder.js
-/assets/product-page.js
+/assets/built-*.js
