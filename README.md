@@ -85,9 +85,9 @@ The following Decathlon USA JavaScript features are optimized and built by Rollu
 - Store Finder
 - Product Page
 
-The `scripts/` directory houses the source JavaScript files for these Rollup built features. Files named `index.js` in subdirectories of `scripts/` will be assumed to be bundle entry points. The output bundle will be transpiled from `scripts/<directory-name>/index.js` → `assets/<directory-name>.js` when `npm run build` is run. 
+The `scripts/` directory houses the source JavaScript files for these Rollup built features. Files named `index.js` in subdirectories of `scripts/` will be assumed to be bundle entry points. The output bundle will be transpiled from `scripts/<directory-name>/index.js` → `assets/built-<directory-name>.js` when `npm run build` is run. 
 
-**Important:** Make sure to add the compiled files (`assets/<directory-name>.js`) to the `.gitignore`, because they are built by DeployBot (see [Deployment via DeployBot](#deployment-via-deploybot)).
+All `assets/built-<directory-name>.js` JavaScript files are Git-ignored.
 
 You control whether or not files are optimized for production via the `NODE_ENV` environment variable in the `.env` file. Make sure the `NODE_ENV` environment variable is set to `production` for production DeployBot environments.
 
