@@ -109,6 +109,7 @@ $breakpoint-lg: 60em;
  * fallback implementations of this pattern when `@supports (display: grid)` is
  * not available
  * 3. Required for the `de-is-soldout` styles to take effect
+ * 4. Disables ability to select text inside of a SwatchObject-item
  */
 
 .de-SwatchObjects-item {
@@ -119,6 +120,7 @@ $breakpoint-lg: 60em;
   margin-bottom: 8px;
   margin-right: 8px;
   position: relative; //* 3 *//
+  user-select: none; //* 4 *//
 }
 
 @supports (display: grid) {
@@ -199,9 +201,9 @@ $breakpoint-lg: 60em;
 /**
  * `.de-is-soldout` should be applied to `.de-SwatchObjects--size` when the size
  * variant is no longer available and will not be coming back in stock
- * 
+ *
  * 1. This is a unique CSS style block and the desired visual appearance
- * requires some magic numbers to display properly. 
+ * requires some magic numbers to display properly.
  */
 
 .de-is-soldout::before {
