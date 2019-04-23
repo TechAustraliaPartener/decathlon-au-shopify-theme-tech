@@ -4,6 +4,7 @@
 
 import { IS_ACTIVE_CLASS, JS_PREFIX } from './constants';
 import $ from 'jquery';
+import { updateOptionStates } from './option-states';
 
 /**
  * Module-specific constants
@@ -47,6 +48,7 @@ function notifyListeners() {
 function updateUI() {
   selectSize.call(this);
   $SizeInfo.text($(this).val());
+  updateOptionStates();
 }
 
 /**

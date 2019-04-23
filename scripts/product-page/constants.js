@@ -12,14 +12,24 @@ export const CSS_PREFIX = 'de-';
 export const JS_PREFIX = `js-${CSS_PREFIX}`;
 
 /**
+ * TAGS
+ */
+
+/**
+ * The product tag that indicates that the product will not be restocked
+ */
+export const IS_SOLD_OUT_TAG = 'EndOfLife';
+
+/**
  * CSS Classes
  */
 
 /**
- * The CSS class used to update the UI to an "active" state
+ * The CSS classes used to update the UI to an "active" or "unavailable" state
  */
 export const IS_ACTIVE_CLASS = `${CSS_PREFIX}is-active`;
-
+export const IS_OUT_OF_STOCK_CLASS = `${CSS_PREFIX}is-outofstock`;
+export const IS_SOLD_OUT_CLASS = `${CSS_PREFIX}is-soldout`;
 /**
  * The CSS class used on links to upvote or downvote a review or answer
  */
