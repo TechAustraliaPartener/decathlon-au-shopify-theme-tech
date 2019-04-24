@@ -4,7 +4,5 @@ node_modules/*
 src/css/*
 .env
 
-# Compiled/bundled from /scripts/persistent-cart
-# In lieu of an automated build step, remove scripts from .gitignore
-# /assets/persistent-cart.js
-# /assets/checkout.js
+# Compiled/bundled from /scripts/**
+/assets/built-*.js

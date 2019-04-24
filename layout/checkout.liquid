@@ -108,7 +108,7 @@
     </div>
     {% include 'moment.js' %}
     {% include 'moment-timezone.js' %}
-    {{ 'checkout.js' | asset_url | script_tag }}
+    {{ 'built-checkout.js' | asset_url | script_tag }}
     {{ tracking_code }}
   </body>
 </html>
