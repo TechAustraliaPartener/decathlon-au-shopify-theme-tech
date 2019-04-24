@@ -19,6 +19,10 @@
   letter-spacing: normal;
 }
 
+.yellowgram-icon .ico {
+    font-size: 2.3em;
+}
+
 .ico {
     font-family: "Font Awesome" !important;
     speak: none;
@@ -48,6 +52,49 @@
 
 .ico--de:before {
   content: url("{{ 'favicon-16x16.png' | asset_url }}");
+}
+
+.de-collectionImage {
+  background-position: top;
+  padding: 8em 0;
+}
+
+.de-collectionImage-header {
+  font-size: 40px;
+  line-height: 50px;
+}
+
+.de-collectionImage-subheader {
+  font-family: 'avalonregular';
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.de-wrapper {
+  padding:5px;
+}
+
+.de-collectionTile {
+  padding:5px !important;
+  line-height:0;
+}
+
+@media (max-width: 768px) {
+  .de-collectionImage {
+    background: none !important;
+    padding: 2em 0 0;
+  }
+
+  .de-collectionImage-header {
+    font-size: 26px;
+    line-height: 32.5px;
+    color: black;
+  }
+  .de-collectionImage-subheader {
+    font-size: 16px;
+    line-height: 23px;
+    color: black;
+  }
 }
 
 @media (min-width:600px) {
