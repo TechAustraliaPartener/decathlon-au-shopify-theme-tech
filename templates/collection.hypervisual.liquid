@@ -28,9 +28,10 @@
                 <hr>
                 {% endunless %}
                 <div class="grid--full">
-				{% for link in linklists.running.links %}
-                {% capture desktop-image %}{{ link.object.handle }}-desktop.jpg{% endcapture %}
-                {% capture mobile-image %}{{ link.object.handle }}-mobile.jpg{% endcapture %}
+                {% capture collection_handle %}{{ collection.handle }}{% endcapture %}
+				{% for link in linklists[collection_handle].links %}
+                {% capture desktop-image %}{{ collection.handle }}-{{ link.object.handle }}-desktop.jpg{% endcapture %}
+                {% capture mobile-image %}{{ collection.handle }}-{{ link.object.handle }}-mobile.jpg{% endcapture %}
 				<div class="grid__item large--one-third medium-down--one-half text-center de-collectionTile">
 				    <a href="{{ link.url }}">
 				        <img class="de-collectionTileImage medium-down--hide" src="{{ desktop-image | file_img_url: '600x' }}">
