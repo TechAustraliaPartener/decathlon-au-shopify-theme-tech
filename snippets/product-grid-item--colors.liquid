@@ -45,7 +45,7 @@
       {%- else -%}
         {%- assign activeClass = '' -%}
       {%- endif -%}
-      <span class="option option--color-{{ col[0] | handleize }} js-colorChip{{ activeClass }}" title="{{ col[0] }}" data-variant="{{ col[2] }}" data-color="{{ col[0] }}" data-image="{{ col[1] }}" data-price="{{ col[3] }}"{% if col[3] < col[4] %} data-compare="{{ col[4] }}{% endif %}"></span>
+      <span class="option option--color-{{ col[0] | handleize }} js-colorChip{{ activeClass }}" title="{{ col[0] }}" data-variant="{{ col[2] }}" data-color="{{ col[0] }}" data-image="{{ col[1] }}" data-price="{{ col[3] }}" data-compare="{{ col[4] }}"></span>
     {% endfor %}
     {%- if additionalColors > 0 -%}
       <span class="adept-product-display__color__extra">

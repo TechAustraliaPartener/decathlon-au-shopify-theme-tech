@@ -1,7 +1,7 @@
 {% include 'collection-header-js' %}
 
 {% if collection.image %}
-    <div class="collectionImage" style="background-image:url('{{ collection.image | img_url: 'master' }}'); " data-background-image="{{ collection.image | img_url: 'master' }}">
+    <div class="collectionImage" style="background-image:url('{{ collection.image | img_url: '1024x' }}'); " data-background-image="{{ collection.image | img_url: '1024x' }}">
         <div class="wrapper">
             {% include 'breadcrumb', adtl_classes: ' breadcrumb--overImage' %}
 
