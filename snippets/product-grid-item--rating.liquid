@@ -15,14 +15,21 @@ The number of stars filled in will be the ceiling integer of the rating.
     {% for i in (0..4) %}
     	<span class="ico ico--star{% if i < rounded_rating %} u-textYellow{% endif %}"></span>
     {% endfor %}
-      
+
     </div>
     <div class="adept-product-rating__info">
 	    {% if product_rating != 0 %}
         <div class="adept-product-rating__text">{{product_rating}}</div>
 		{% endif %}
+    {% comment %}
+      @TODO - Replace with 'json_string' version, when available: product.metafields.reviews.recent_reviews_object.total_item_count
+      Until metafields update with 'json_string' that does not need parsing,
+      parse the JSON (an actual string) to get just the value betwen "total_item_count:" and the following comma
+    {% endcomment %}
 		{% if product.metafields.reviews.recent_reviews %}
-        <div class="adept-product-rating__count">({{ product.metafields.reviews.recent_reviews | split: ',"items"' | first | split: '{"total_item_count":' }})</div>
+        {% assign split_at_total_item_count_label = product.metafields.reviews.recent_reviews | split: '"total_item_count":' %}
+        {% assign total_item_count = split_at_total_item_count_label[1] | split: ',' | first %}
+        <div class="adept-product-rating__count">({{ total_item_count | strip }})</div>
 		{% endif %}
       </div>
 	</div>

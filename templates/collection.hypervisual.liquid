@@ -1,0 +1,48 @@
+{% if collection.image %}
+    <div class="collectionImage de-collectionImage" style="background-image:url('{{ collection.image | img_url: 'master' }}'); " data-background-image="{{ collection.image | img_url: 'master' }}">
+        <div class="wrapper">
+            {% include 'breadcrumb', adtl_classes: ' breadcrumb--overImage medium-down--hide' %}
+
+            <h1 class="de-collectionImage-header collectionImage-header text-center">{{ collection.title }}</h1>
+			<h5 class="de-collectionImage-subheader text-center"><i>Shop By Category</i></h5>
+        </div>
+    </div>
+{% endif %}
+
+
+<div class="de-wrapper wrapper{% if collection.image %} wrapper--collectionWithBanner{% endif %}">
+    {% include 'find-top-level-collection' %}
+    {% unless collection.image %}
+		{% include 'create-breadcrumbs' %}
+    {% endunless %}
+
+            {% comment %}
+            Different markup if a collection description exists
+            {% endcomment %}
+                {% unless collection.image %}
+                <header class="section-header">
+                    {%- unless collection.image -%}
+                        <h1 class="section-header__title section-header__left">{{ collection.title }}</h1>
+                    {%- endunless -%}
+                </header>
+                <hr>
+                {% endunless %}
+                <div class="grid--full">
+                {% capture collection_handle %}{{ collection.handle }}{% endcapture %}
+				{% for link in linklists[collection_handle].links %}
+                {% capture desktop-image %}{{ collection.handle }}-{{ link.object.handle }}-desktop.jpg{% endcapture %}
+                {% capture mobile-image %}{{ collection.handle }}-{{ link.object.handle }}-mobile.jpg{% endcapture %}
+				<div class="grid__item large--one-third medium-down--one-half text-center de-collectionTile">
+				    <a href="{{ link.url }}">
+				        <img class="de-collectionTileImage medium-down--hide" src="{{ desktop-image | file_img_url: '600x' }}">
+                        <img class="de-collectionTileImage large--hide" src="{{ mobile-image | file_img_url: '300x' }}">
+				    </a>
+				</div>
+				{% endfor %}
+                </div>
+				{% if collection.description != blank %}
+                    <div class="rte rte--header">
+                        {{ collection.description }}
+                    </div>
+                {% endif %}
+</div>

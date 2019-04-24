@@ -5,7 +5,7 @@
 <style type="text/css">#bc-sf-filter-products .section-header__title { margin-left: 30px; }</style>
 
 {% if collection.image %}
-<div class="collectionImage" style="background-image:url('{{ collection.image | img_url: '1024x' }}'); " data-background-image="{{ collection.image | img_url: '1024x' }}">
+<div class="collectionImage" style="background-image:url('{{ collection.image | img_url: 'master' }}'); " data-background-image="{{ collection.image | img_url: 'master' }}">
     <div class="wrapper">
         {% include 'breadcrumb', adtl_classes: ' breadcrumb--overImage' %}
 
@@ -36,13 +36,13 @@
     {% endcomment %}
     {% if current_tags.size %}
         <header class="section-header">
-            <h1 class="section-header__title u-marginBottom0x">{{ tag_title }}</h2>
+            <h1 class="section-header__title u-marginBottom0x">{{ tag_title }}</h1>
         </header>
         <hr>
     {% else %}
     {% if collection.description != blank %}
         <header class="section-header">
-            <h1 class="section-header__title">{{ collection.title }}</h2>
+            <h1 class="section-header__title">{{ collection.title }}</h1>
             <div class="rte rte--header">
                 {{ collection.description }}
             </div>
@@ -58,7 +58,7 @@
 
     <header class="section-header">
         {%- unless collection.image -%}
-        <h1 class="section-header__title section-header__left">{{ collection.title }}</h2>
+        <h1 class="section-header__title section-header__left">{{ collection.title }}</h1>
         {%- endunless -%}
         <div class="section-header__right">
             {% comment %}<div id="bc-sf-filter-top-sorting"></div>{% endcomment %}
