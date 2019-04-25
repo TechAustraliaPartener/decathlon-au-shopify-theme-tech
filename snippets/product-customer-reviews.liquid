@@ -107,16 +107,23 @@
         <option value="Newest">Oldest</option>
       </select>
     </div>
-
     {% comment %}
-      Defaults to most recent X number of reviews sorted descending by posting date and time
-      Assigns a `looplimit` value at the top, which could come from a value set in a liquid variable
+      @TODO - Determine how default number of pre-loaded reviews is set and try
+      to ensure reviews_per_page is evenly divisible into that number (default now is 15)
+      @TODO - Document the above
     {% endcomment %}
-    {% assign looplimit = 5 %}
-    {% for review in product.metafields.reviews.recent_reviews_object.items %}
-      {% if forloop.index <= looplimit %}
+    {% assign total_prerendered_reviews = product.metafields.reviews.recent_reviews_object.items | size %}
+    {% assign reviews_per_page = 3 %}
+    <div class="js-de-CustomerReviews" id="de-CustomerReviews-container" data-model-code="{{model_code}}" data-reviews-per-page="{{ reviews_per_page }}" data-total-prerendered-reviews="{{ total_prerendered_reviews }}">
+      {% comment %}
+        Defaults to most recent X number of reviews sorted descending by posting date and time
+        Assigns a `looplimit` value at the top, which could come from a value set in a liquid variable
+      {% endcomment %}
+      {% assign looplimit = reviews_per_page %}
+      {% for review in product.metafields.reviews.recent_reviews_object.items %}
         {% assign rating_percentage = review.note | plus: 0 | times: 20 %}
-        <div class="de-CustomerReview de-u-padBottom3 de-u-spaceBottom3">
+        {% assign review_date = review.created_at | date: "%-m/%-e/%Y" %}
+        <div class="de-CustomerReview js-de-CustomerReview js-de-CustomerReview-preloaded de-u-padBottom3 de-u-spaceBottom3{% if (forloop.index > looplimit) %} de-u-hidden{% endif %}">
           {% if review.note || review.title %}
             <div class="de-u-flex de-u-flexAlignItemsBaseline de-u-flexCol de-u-lg-flexRow">
               {% if review.note %}
@@ -137,48 +144,158 @@
           {% endif %}
 
           <p class="de-u-spaceNone">
+            {% comment %} @TODO - review use of body vs bodyHTML and raw rendering of HTML {% endcomment %}
             {{ review.body }}
           </p>
 
           <div class="de-Grid de-u-padTop06">
             <div class="de-u-size4of6 de-u-textDarkGray">
-              {% if review.firstname %}
+              {% if review.firstname || review_date %}
                 <div class="de-u-textMedium">
-                  {{ review.firstname }}
+                  {% if review.firstname %}
+                    <span>{{ review.firstname }}</span>
+                  {% endif %}
+                  {% if review_date %}
+                    <span>{{ review_date }}</span>
+                  {% endif %}
                 </div>
               {% endif %}
-              {% comment %}
-                @TODO - verify whether product variant information can be made available here
-              {% endcomment %}
-              {% comment %}
-                <span class="de-u-textMedium">Size:</span>
-                  M |
-                <span class="de-u-textMedium">
-                  Color:
-                </span> chartreuse
-              {% endcomment %}
               {% if review.purchase_checked %}
                 <div class="de-u-flex de-u-flexAlignItemsCenter">
                   {% include 'icon-checkmark-badge' with class: 'de-Icon de-u-textGrow5 de-u-padRight06' %}
-                  {% comment %}
-                    @TODO - Verify whether purchase date is can be made available here
-                  {% endcomment %}
                   verified purchase
                 </div>
               {% endif %}
             </div>
 
             <div class="de-u-size2of6 de-u-flex de-u-flexJustifyEnd de-u-flexAlignItemsEnd">
-              <a class="de-u-textBlue de-u-textMedium de-CustomerReviewVote js-de-CustomerReviewVote" data-review-vote-url="{{review.url_vote}}" href="{{review.url_vote}}">
+              <a class="de-u-textBlue de-u-textMedium js-de-CustomerReview-vote" data-review-vote-url="{{review.url_vote}}" href="{{review.url_vote}}">
                 Helpful?
                 {% include 'icon-upvote-thumb' with class: 'de-Icon de-u-spaceLeft06 de-u-textGrow1' %}
               </a>
             </div>
           </div>
-
+          {% if review.answer %}
+            {% assign answer_date = review.answer.created_at | date: "%-m/%-e/%Y" %}
+            {% assign first_name = review.answer.author.firstname %}
+            <div>
+              <h6 class="u-textBold">
+                <i class="ico ico--de"></i>
+              </h6>
+              {% if answer_date || first_name %}
+                <div class="de-u-textMedium">
+                  {% if first_name %}
+                    <span>{{ review.answer.author.firstname }}</span>
+                  {% endif %}
+                  {% if answer_date %}
+                    <span>{{ answer_date }}</span>
+                  {% endif %}
+                </div>
+              {% endif %}
+              {{ review.answer.body }}
+              <div class="de-u-flex de-u-flexJustifyEnd de-u-flexAlignItemsEnd">
+                {% comment %} @TODO - modify review url for answers {% endcomment %}
+                <a class="de-u-textBlue de-u-textMedium js-de-CustomerReview-vote" data-review-vote-url="{{review.url_vote}}" href="{{review.url_vote}}">
+                  Helpful?
+                  {% include 'icon-upvote-thumb' with class: 'de-Icon de-u-spaceLeft06 de-u-textGrow1' %}
+                </a>
+              </div>
+            </div>
+          {% endif %}
         </div>
-      {% endif %}
-    {% endfor %}
+      {% endfor %}
+    </div>
+    <script type="x-handlebars-template" id="de-Icon-helpful-template">
+      {% include 'icon-upvote-thumb' with class: 'de-Icon de-u-spaceLeft06 de-u-textGrow1' %}
+    </script>
+    <script type="x-handlebars-template" id="de-Icon-verifiedPurchase-template">
+      {% include 'icon-checkmark-badge' with class: 'de-Icon de-u-textGrow5 de-u-padRight06' %}
+    </script>
+    <script type="x-handlebars-template" id="de-CustomerReviews-template">
+      {% raw %}
+      {{#each reviews}}
+        <div class="de-CustomerReview js-de-CustomerReview de-u-padBottom3 de-u-spaceBottom3">
+          {{!-- comment Using custom Hanldebars conditional helper --}}
+          {{#if_or note title}}
+            <div class="de-u-flex de-u-flexAlignItemsBaseline de-u-flexCol de-u-lg-flexRow">
+              {{#if note}}
+                <div class="de-u-textGrow1 de-u-padRight06 de-u-padBottom06
+                  de-lg-padBottomNone de-u-flex de-u-flexAlignItemsCenter">
+                  <div class="de-StarRating">
+                    <div class="de-StarRating-fill" style="width: {{ rating_percentage }}%"></div>
+                  </div>
+                </div>
+              {{/if}}
+              {{#if title}}
+                <div class="de-u-textGrow3 de-u-textMedium
+                  de-u-lineHeight2 de-u-padBottom06">
+                  {{ title }}
+                </div>
+              {{/if}}
+            </div>
+          {{/if_or}}
+
+          <p class="de-u-spaceNone">
+            {{!--  @TODO - review use of body vs bodyHTML and raw rendering of HTML --}}
+            {{ body }}
+          </p>
+
+          <div class="de-Grid de-u-padTop06">
+            <div class="de-u-size4of6 de-u-textDarkGray">
+              {{#if_or firstname created_at }}
+                <div class="de-u-textMedium">
+                  {{#if firstname}}
+                    <span>{{ firstname }}</span>
+                  {{/if}}
+                  {{#if created_at}}
+                    <span>{{date_format created_at }}</span>
+                  {{/if}}
+                </div>
+              {{/if_or}}
+              {{#if purchase_checked}}
+                <div class="de-u-flex de-u-flexAlignItemsCenter">
+                  {{> verified_purchase_icon }}
+                  verified purchase
+                </div>
+              {{/if}}
+            </div>
+
+            <div class="de-u-size2of6 de-u-flex de-u-flexJustifyEnd de-u-flexAlignItemsEnd">
+              <a class="de-u-textBlue de-u-textMedium js-de-CustomerReview-vote" data-review-vote-url="{{review.url_vote}}" href="{{review.url_vote}}">
+                Helpful?
+                {{> helpful_icon }}
+              </a>
+            </div>
+          </div>
+        {{#if answer}}
+          <div>
+            <h6 class="u-textBold">
+              <i class="ico ico--de"></i>
+            </h6>
+            {{#if_or answer.created_at answer.author.firstname }}
+              <div class="de-u-textMedium">
+                {{#if answer.author.firstname }}
+                  <span>{{ answer.author.firstname }}</span>
+                {{/if}}
+                {{#if answer.created_at }}
+                  <span>{{date_format answer.created_at }}</span>
+                {{/if}}
+              </div>
+            {{/if_or}}
+            {{{ answer.body }}}
+            <div class="de-u-flex de-u-flexJustifyEnd de-u-flexAlignItemsEnd">
+              {{!-- @TODO - modify review url for answers --}}
+              <a class="de-u-textBlue de-u-textMedium js-de-CustomerReview-vote" data-review-vote-url="{{review.url_vote}}" href="{{review.url_vote}}">
+                Helpful?
+                {{> helpful_icon }}
+              </a>
+            </div>
+          </div>
+        {{/if}}
+        </div>
+      {{/each}}
+    {% endraw %}
+    </script>
   </div>
   <div class="de-u-flex de-u-flexJustifyCenter">
     <button class="de-u-textBlue de-u-textSizeBase de-u-textMedium js-de-moreReviews">More reviews</button>
