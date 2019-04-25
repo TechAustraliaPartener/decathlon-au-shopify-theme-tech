@@ -14,9 +14,9 @@
 {% assign product_rating = product.metafields.ratings.product_rating | plus: 0 %}
 {% assign rating_average = product_rating | times: 20 %}
 {% assign total_item_count = product.metafields.reviews.recent_reviews_object.total_item_count | plus: 0 %}
-<div class="de-Grid de-u-padTop3">
+<div class="de-Grid de-u-md-padTop3">
 
-  <div class="de-u-md-size1of2 de-u-lg-size1of3 de-u-padSides
+  <div class="de-u-md-size1of2 de-u-lg-size1of3 de-u-lg-padSides
     de-u-md-padSidesNone">
     <div class="de-ReviewSummary de-u-padBottom06">
       <div class="de-StarRating de-u-textGrow1">
@@ -98,7 +98,7 @@
   {% endcomment %}
 
   <div class="de-u-md-size1of2 de-u-lg-size2of3 de-u-padTop6 de-u-md-padTopNone
-    de-u-padSides de-u-md-padRightNone de-u-md-padLeft6">
+    de-u-md-padSides de-u-md-padRightNone de-u-md-padLeft6">
 
     <div class="de-u-flex de-u-flexAlignItemsCenter de-u-spaceBottom6">
       <div class="de-u-padRight de-u-textBold de-u-textSizeBase">Sort by</div>

@@ -1,0 +1,92 @@
+/**
+ * @TODO
+ * This CSS will be copied/pasted into `product.scss.liquid` once this work
+ * is complete
+ */
+
+/**
+ * Color Palette
+ * Variable names are based on similar CSS extended color keyword values.
+ *
+ * @see https://www.w3.org/TR/2018/REC-css-color-3-20180619/#svg-color
+ */
+
+$color-black: #2a2b2c;
+$color-blue: #0082c3;
+$color-darkgray: #464646;
+$color-gray: #acb3b8;
+$color-lime: #cbfb00;
+$color-silver: #f3f3f3;
+$color-white: #fff;
+$color-red: #e53322;
+
+/**
+ * Border Width
+ */
+
+$border-width-sm: 1px;
+$border-width-md: 2px;
+$border-width-lg: 3px;
+$border-width-xl: 6px;
+
+/**
+ * Media Queries
+ */
+
+$breakpoint-sm: 30em;
+$breakpoint-md: 40em;
+$breakpoint-lg: 60em;
+$breakpoint-xl: 80em;
+
+/* Accordion */
+
+.Accordion-header {
+  align-items: center;
+  appearance: none;
+  background-color: $color-white;
+  border: 0;
+  cursor: pointer;
+  display: flex;
+  font: inherit;
+  font-family: avalon_mediumbold;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  text-align: left;
+  width: 100%;
+}
+
+@media (min-width: $breakpoint-md) {
+  .Accordion-header {
+    display: none;
+  }
+}
+
+.Accordion-header:focus {
+  outline: $border-width-md solid $color-blue;
+  outline-offset: -3px;
+}
+
+.Accordion-content {
+  padding: 0 1rem;
+}
+
+@media (min-width: $breakpoint-md) {
+  .Accordion-content {
+    padding: 0;
+  }
+}
+
+.Accordion:not(.is-open) .Accordion-content {
+  display: none;
+}
+
+.Accordion-indicator {
+  transform-origin: center;
+  transition: 0.2s linear transform;
+  font-size: calc(2msu * 1em);
+}
+
+.Accordion.is-open .Accordion-indicator {
+  transform: rotate(-45deg);
+}

@@ -101,55 +101,129 @@
     {% endcomment %}
 
     </div>
-  </div>{% comment %}/.wrapper{% endcomment %}
+  </div>
 
 </div>
 
-{% if product_video.size > 0 %}
-<div class="de-ProductInfoSection de-ProductInfoSection--silver de-u-pad">
-  <h3 class="de-ProductInfoTitle de-u-md-textGrow3 de-u-lg-textGrow4 de-u-spaceNone
-    de-u-hidden de-u-md-inlineBlock">
-    Videos
-  </h3>
-  {% include 'product-videos' %}
-</div>
-{% endif %}
+<div>
+  {% if product_video.size > 0 %}
+  <div class="de-ProductInfoSection de-ProductInfoSection--silver de-u-md-pad">
+    <h3 class="de-ProductInfoTitle de-u-md-textGrow3 de-u-lg-textGrow4
+      de-u-spaceNone de-u-hidden de-u-md-inlineBlock">
+      Videos
+    </h3>
+    <div class="Accordion js-Accordion is-open">
+      <button class="Accordion-header js-Accordion-header de-u-textGrow2">
+        Additional Videos
+        <span class="Accordion-indicator de-u-textGrow5 de-u-spaceRight06">
+          +
+        </span>
+      </button>
+      <div class="Accordion-content">
+        {% include 'product-videos' %}
+      </div>
+    </div>
+  </div>
+  {% endif %}
 
-<div class="de-ProductInfoSection de-u-pad2">
-  <h3 class="de-ProductInfoTitle de-u-md-textGrow3 de-u-lg-textGrow4 
-    de-u-spaceNone de-u-hidden de-u-md-inlineBlock">
-    Features
-  </h3>
-  {% include 'product-proto-features' %}
-</div>
+  <div class="de-ProductInfoSection de-u-md-pad2">
+    <h3 class="de-ProductInfoTitle de-u-md-textGrow3 de-u-lg-textGrow4
+      de-u-spaceNone de-u-hidden de-u-md-inlineBlock">
+      Features
+    </h3>
+    <div class="Accordion js-Accordion is-open">
+      <button class="Accordion-header js-Accordion-header de-u-textGrow2">
+        Features
+        <span class="Accordion-indicator de-u-textGrow5 de-u-spaceRight06">
+          +
+        </span>
+      </button>
+      <div class="Accordion-content">
+        {% include 'product-proto-features' %}
+      </div>
+    </div>
+  </div>
 
-<div class="de-ProductInfoSection de-ProductInfoSection--silver de-u-pad">
-  <h3 class="de-ProductInfoTitle de-u-md-textGrow3 de-u-lg-textGrow4 de-u-spaceNone
-    de-u-hidden de-u-md-inlineBlock">
-    Image Gallery
-  </h3>
-</div>
+  <div class="de-ProductInfoSection de-ProductInfoSection--silver de-u-md-pad">
+    <h3 class="de-ProductInfoTitle de-u-md-textGrow3 de-u-lg-textGrow4
+      de-u-spaceNone de-u-hidden de-u-md-inlineBlock">
+      Image Gallery
+    </h3>
+    <div class="Accordion js-Accordion">
+      <button class="Accordion-header js-Accordion-header de-u-textGrow2">
+        Image Gallery
+        <span class="Accordion-indicator de-u-textGrow5 de-u-spaceRight06">
+          +
+        </span>
+      </button>
+      <div class="Accordion-content">
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel natus
+        vitae dolorum dolorem tempora incidunt blanditiis recusandae ducimus,
+        mollitia ipsam molestiae error molestias possimus, laudantium perferendis
+        aspernatur ea? Ex, laboriosam.
+        </p>
+      </div>
+    </div>
+  </div>
 
-<div class="de-ProductInfoSection de-u-padEnds de-u-md-padSides>
-  <h3 class="de-ProductInfoTitle de-u-md-textGrow3 de-u-lg-textGrow4 de-u-spaceNone
-    de-u-hidden de-u-md-inlineBlock">
-    Customer Reviews
-  </h3>
-  {% comment %}
-    Customer Reviews Prototype Markup
-    {% include 'product-proto-customer-reviews' %}
-  {% endcomment %}
-  {% comment %} Dynamic Customer Reviews {% endcomment %}
-  {% include 'product-customer-reviews' %}
-</div>
+  <div class="de-ProductInfoSection de-u-md-padEnds de-u-md-padSides
+    de-u-md-hidden">
+    <div class="Accordion js-Accordion">
+      <button class="Accordion-header js-Accordion-header de-u-textGrow2">
+        Size & Fit
+        <span class="Accordion-indicator de-u-textGrow5 de-u-spaceRight06">
+          +
+        </span>
+      </button>
+      <div class="Accordion-content">
+      <p>Size and Fit information will go here</p>
+      </div>
+    </div>
+  </div>
 
-<div class="de-ProductInfoSection de-ProductInfoSection--silver de-u-pad">
-  <h3 class="de-ProductInfoTitle de-u-md-textGrow3 de-u-lg-textGrow4 de-u-spaceNone
-    de-u-hidden de-u-md-inlineBlock">
-    Product Information
-  </h3>
-  <div class="product-description rte" itemprop="description">
-    {{ product.description }}
+  <div class="de-ProductInfoSection de-u-md-padEnds de-u-md-padSides
+    js-de-Reviews" data-model-code="{{model_code}}">
+    <h3 class="de-ProductInfoTitle de-u-md-textGrow3 de-u-lg-textGrow4
+      de-u-spaceNone de-u-hidden de-u-md-inlineBlock">
+      Customer Reviews
+    </h3>
+    <div class="Accordion js-Accordion is-open">
+      <button class="Accordion-header js-Accordion-header de-u-textGrow2">
+        Customer Reviews
+        <span class="Accordion-indicator de-u-textGrow5 de-u-spaceRight06">
+          +
+        </span>
+      </button>
+      <div class="Accordion-content">
+        {% comment %}
+          Customer Reviews Prototype Markup
+          {% include 'product-proto-customer-reviews' %}
+        {% endcomment %}
+        {% comment %} Dynamic Customer Reviews {% endcomment %}
+        {% include 'product-customer-reviews' %}
+      </div>
+    </div>
+  </div>
+
+  <div class="de-ProductInfoSection
+    de-ProductInfoSection--silver de-u-md-pad">
+    <h3 class="de-ProductInfoTitle de-u-md-textGrow3 de-u-lg-textGrow4 de-u-spaceNone
+      de-u-hidden de-u-md-inlineBlock">
+      Product Information
+    </h3>
+    <div class="Accordion Accordion--last js-Accordion">
+      <button class="Accordion-header js-Accordion-header de-u-textGrow2">
+        Product Information
+        <span class="Accordion-indicator de-u-textGrow5 de-u-spaceRight06">
+          +
+        </span>
+      </button>
+      <div class="Accordion-content" itemprop="description">
+        {% comment %} {{ product.description }} {% endcomment %}
+        {{ product_specs }}
+      </div>
+    </div>
   </div>
 </div>
 

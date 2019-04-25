@@ -1,7 +1,7 @@
 /**
  * @TODO
  * The final Product Page CSS will be copied/pasted into this file
- * 
+ *
  * Any shared CSS styles can be added to this file from the beginning.
  */
 
@@ -29,12 +29,16 @@ $color-red: #e53322;
 $border-width-sm: 1px;
 $border-width-md: 2px;
 $border-width-lg: 3px;
+$border-width-xl: 6px;
 
 /**
  * Media Queries
  */
 
+$breakpoint-sm: 30em;
+$breakpoint-md: 40em;
 $breakpoint-lg: 60em;
+$breakpoint-xl: 80em;
 
 /**
  * Product Page Wrapper
@@ -45,10 +49,10 @@ $breakpoint-lg: 60em;
   padding-right: 1rem;
 }
 
-/** 
- * Full width Wrapper modifier 
+/**
+ * Full width Wrapper modifier
  *
- * Full width container inside a limited width parents. No calc() needed. 
+ * Full width container inside a limited width parents. No calc() needed.
  * @see https://css-tricks.com/full-width-containers-limited-width-parents/#article-header-id-6
  */
 
@@ -63,12 +67,32 @@ $breakpoint-lg: 60em;
   }
 }
 
-/** 
- * ProductInfoSection 
+/**
+ * ProductInfoSection
  */
 
+.de-ProductInfoSection {
+  border-top: $border-width-xl solid $color-silver;
+}
+
+.de-ProductInfoSection:last-of-type {
+  border-bottom: $border-width-xl solid $color-silver;
+}
+
+@media (min-width: $breakpoint-md) {
+  .de-ProductInfoSection {
+    border: 0;
+  }
+}
+
 .de-ProductInfoSection--silver {
-  background-color: $color-silver;
+  background-color: $color-white;
+}
+
+@media (min-width: $breakpoint-md) {
+  .de-ProductInfoSection--silver {
+    background-color: $color-silver;
+  }
 }
 
 .de-ProductInfoTitle {
@@ -79,10 +103,10 @@ $breakpoint-lg: 60em;
 
 /**
  * Sub brand logos
- * 
- * 1. Warning: Magic numbers at work. 
- * 
- * @TODO 
+ *
+ * 1. Warning: Magic numbers at work.
+ *
+ * @TODO
  * Consider moving width and height values to SVG
  */
 
@@ -99,14 +123,14 @@ $breakpoint-lg: 60em;
  * 1. Update patterns library with this class
  */
 
-.de-u-textRed { //* 1 *// 
+.de-u-textRed { //* 1 *//
   color: $color-red !important;
 }
 
 /**
  * Swatch Colors
- * 
- * 1. Used for prototyping purposes only 
+ *
+ * 1. Used for prototyping purposes only
  */
 
 .de-ColorSwatches-color--Yellow { //* 1 *//
@@ -119,10 +143,13 @@ $breakpoint-lg: 60em;
 
 /**
  * Hacks
- * 
+ *
  * 1. Removes floating green email me button
  */
 
-.bis-reset { //* 1 * //
-  display: none;
+.bis-reset,
+.bis-button,
+.bis-button.BIS_trigger { //* 1 * //
+  display: none !important;
+  opacity: 0;
 }

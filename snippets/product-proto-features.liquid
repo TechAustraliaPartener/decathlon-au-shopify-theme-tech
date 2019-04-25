@@ -1,24 +1,25 @@
-{% comment %} 
-  This is a an in-progress protoype markup file and does not reflect final, 
-  approved markup. 
+{% comment %}
+  This is a an in-progress protoype markup file and does not reflect final,
+  approved markup.
 {% endcomment %}
 
-<div class="FeaturesContainer de-Grid de-u-spaceTop3">
-  <div class="FeaturesContainer-banner de-u-padBottom de-u-spaceBottom de-u-md-padBottom6 de-u-md-spaceBottom6">
-    <div class="de-u-lg-size3of6">
-      {% comment %} 
-        @TODO 
+<div class="FeaturesContainer de-Grid de-u-lg-spaceTop3">
+  <div class="FeaturesContainer-banner de-u-padBottom de-u-spaceBottom
+    de-u-md-padBottom6 de-u-md-spaceBottom6">
+    <div class="de-u-lg-size5of6 de-u-xl-size4of6">
+      {% comment %}
+        @TODO
         1. what is the best schema.org rich snippet for this element?
       {% endcomment %}
-      <h5 class="de-u-textGrow6 de-u-spaceNone de-u-padBottom05 
-        de-u-lineHeight2" itemprop="description"> 
+      <h5 class="de-u-lg-textGrow6 de-u-spaceNone de-u-padBottom05
+        de-u-lineHeight2" itemprop="description">
         {{ product.title }} is designed for {{ product_made_for }}
       </h5>
-      {% comment %} 
-        @TODO 
+      {% comment %}
+        @TODO
         1. what is the best schema.org rich snippet for this element
       {% endcomment %}
-      <p class="de-u-spaceNone de-u-textGrow3 de-u-textDarkGray">
+      <p class="de-u-spaceNone de-u-lg-textGrow3 de-u-textDarkGray">
         {{product_catchline}}
       </p>
     </div>
@@ -35,20 +36,20 @@
       {% for i in (1..6) %}
         <div class="de-u-size1of1 de-u-md-size1of2 de-u-flex de-u-padRight de-u-padBottom">
           <div class="Feature-icon de-u-size1of5 de-u-md-size1of3 de-u-lg-size1of4">
-            <img 
+            <img
               class=""
               src="http://s3-eu-west-1.amazonaws.com/spid-media-cloud/pictoBu/89/d8/89d81036-fc0e-4d61-8b34-50c2ff3d0ef4.jpg"
               data-src="http://s3-eu-west-1.amazonaws.com/spid-media-cloud/pictoBu/89/d8/89d81036-fc0e-4d61-8b34-50c2ff3d0ef4.jpg">
           </div>
-          {% comment %} 
-            @TODO Is there an appropriate schema.org rich snippet for 
+          {% comment %}
+            @TODO Is there an appropriate schema.org rich snippet for
             this element?
           {% endcomment %}
           <div class="Feature-spec">
-            <h5>Cushioning</h5> 
+            <h5>Cushioning</h5>
             <p>
               Thanks to the Kalensole and CS foam, running shocks are reduced.
-            </p> 
+            </p>
           </div>
         </div>
       {% endfor %}
