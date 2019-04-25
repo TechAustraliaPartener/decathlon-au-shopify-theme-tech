@@ -257,7 +257,7 @@ npm run cypress:open
 
 ## Local Deployment
 
-1. Make sure your local `.env` file has the correct environment variables (see [Building the client-side Persistent Cart JS](building-the-client-side-persistent-cart-js))
+1. Make sure your local `.env` file has the correct environment variables (see [Building the client-side Persistent Cart JS](#building-the-client-side-persistent-cart-js))
 
 1. Build the files:
     ```
