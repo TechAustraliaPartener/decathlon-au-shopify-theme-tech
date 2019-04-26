@@ -169,10 +169,10 @@
             </div>
 
             <div class="de-u-size2of6 de-u-flex de-u-flexJustifyEnd de-u-flexAlignItemsEnd">
-              <a class="de-u-textBlue de-u-textMedium js-de-CustomerReview-vote" data-review-vote-url="{{review.url_vote}}" href="{{review.url_vote}}">
+              <button class="de-u-textBlue de-u-textMedium js-de-CustomerReview-vote" data-review-vote-url="{{review.url_vote}}">
                 Helpful?
                 {% include 'icon-upvote-thumb' with class: 'de-Icon de-u-spaceLeft06 de-u-textGrow1' %}
-              </a>
+              </button>
             </div>
           </div>
           {% if review.answer %}
@@ -195,10 +195,10 @@
               {{ review.answer.body }}
               <div class="de-u-flex de-u-flexJustifyEnd de-u-flexAlignItemsEnd">
                 {% comment %} @TODO - modify review url for answers {% endcomment %}
-                <a class="de-u-textBlue de-u-textMedium js-de-CustomerReview-vote" data-review-vote-url="{{review.url_vote}}" href="{{review.url_vote}}">
+                <button class="de-u-textBlue de-u-textMedium js-de-CustomerReview-vote" data-review-vote-url="{{review.url_vote}}">
                   Helpful?
                   {% include 'icon-upvote-thumb' with class: 'de-Icon de-u-spaceLeft06 de-u-textGrow1' %}
-                </a>
+                </button>
               </div>
             </div>
           {% endif %}
@@ -261,10 +261,10 @@
             </div>
 
             <div class="de-u-size2of6 de-u-flex de-u-flexJustifyEnd de-u-flexAlignItemsEnd">
-              <a class="de-u-textBlue de-u-textMedium js-de-CustomerReview-vote" data-review-vote-url="{{review.url_vote}}" href="{{review.url_vote}}">
+              <button class="de-u-textBlue de-u-textMedium js-de-CustomerReview-vote" data-review-vote-url="{{url_vote}}">
                 Helpful?
                 {{> helpful_icon }}
-              </a>
+              </button>
             </div>
           </div>
         {{#if answer}}
@@ -285,10 +285,10 @@
             {{{ answer.body }}}
             <div class="de-u-flex de-u-flexJustifyEnd de-u-flexAlignItemsEnd">
               {{!-- @TODO - modify review url for answers --}}
-              <a class="de-u-textBlue de-u-textMedium js-de-CustomerReview-vote" data-review-vote-url="{{review.url_vote}}" href="{{review.url_vote}}">
+              <button class="de-u-textBlue de-u-textMedium js-de-CustomerReview-vote" data-review-vote-url="{{url_vote}}">
                 Helpful?
                 {{> helpful_icon }}
-              </a>
+              </button>
             </div>
           </div>
         {{/if}}

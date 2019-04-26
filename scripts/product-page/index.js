@@ -4,7 +4,7 @@ import ColorSwatches from './color-swatches';
 import SizeSwatches from './size-swatches';
 import './videos';
 import './proto-accordion';
-import reviewsInit from './ratings-reviews';
+import { reviewsInit } from './ratings-reviews';
 import { updateOptionStates } from './option-states';
 
 reviewsInit();
