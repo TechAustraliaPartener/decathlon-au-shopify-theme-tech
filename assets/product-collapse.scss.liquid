@@ -81,6 +81,12 @@ $breakpoint-xl: 80em;
   display: none;
 }
 
+@media (min-width: $breakpoint-md) {
+  .Accordion-content {
+    display: block !important;
+  }
+}
+
 .Accordion-indicator {
   transform-origin: center;
   transition: 0.2s linear transform;
