@@ -215,11 +215,11 @@
                 {{ review.answer.body }}
               </div>
               {% if answer_date || first_name %}
-                {% comment %} {% if first_name %}
+                {% if first_name %}
                   <div class="de-u-textMedium">
                     {{ first_name }}
                   </div>
-                {% endif %} {% endcomment %}
+                {% endif %}
                 {% if answer_date %}
                   <div class="de-u-textShrink1 de-u-textDarkGray">
                     {{ answer_date }}
@@ -335,13 +335,11 @@
               {{{ answer.body }}}
             </div>
             {{#if_or answer.created_at answer.author.firstname }}
-              {{!--
               {{#if answer.author.firstname }}
                 <div class="de-u-textMedium">
                   {{ answer.author.firstname }}
                 </div>
               {{/if}}
-              --}}
               {{#if answer.created_at }}
                 <div class="de-u-textShrink1 de-u-textDarkGray">
                   {{date_format answer.created_at }}
