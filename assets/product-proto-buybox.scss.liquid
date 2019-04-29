@@ -28,15 +28,19 @@ $color-red: #e53322;
 $border-width-sm: 1px;
 $border-width-md: 2px;
 $border-width-lg: 3px;
+$border-width-xl: 6px;
 
 /**
  * Media Queries
  */
 
+$breakpoint-sm: 30em;
+$breakpoint-md: 40em;
 $breakpoint-lg: 60em;
+$breakpoint-xl: 80em;
 
-/* 
- * ProductTitleLockup 
+/*
+ * ProductTitleLockup
  */
 
 .de-ProductTitleLockup {
@@ -67,8 +71,8 @@ $breakpoint-lg: 60em;
   }
 }
 
-/* ProductLabel 
- * 
+/*
+ * ProductLabel
  */
 
 .de-ProductLabel {
@@ -87,8 +91,8 @@ $breakpoint-lg: 60em;
   color: $color-white;
 }
 
-/* 
- * ProductGallery 
+/*
+ * ProductGallery
  */
 
 .ProductGallery {
@@ -101,10 +105,11 @@ $breakpoint-lg: 60em;
 .ProductGallery--large {
   display: none;
 }
-@media (min-width: $breakpoint-lg) {
 
+@media (min-width: $breakpoint-lg) {
   .ProductGallery--large {
     display: flex;
+    flex: 0 1 auto;
   }
 }
 
@@ -136,18 +141,20 @@ $breakpoint-lg: 60em;
   width: 100%;
 }
 
-/** 
+/**
  * Product Buy Box
+ * 1. 43.333% is a magical number that allows the add to cart button to
+ * appear "above the fold" with a high percentage of perdicatability
+ * 2. `2.027rem` is the sixth step of the pattern library modular scale
  */
 
 @media (min-width: $breakpoint-lg) {
   .ProductBuyBox {
-    width: 43vw;
-    padding-left: 2.027rem;
+    flex: 1 0 43.333%; //* 1 *//
+    padding-left: 2.027rem; //* 2 *//
   }
 
   .ProductMoreInfo {
     border-bottom: $border-width-lg solid $color-lime;
   }
 }
-  
