@@ -137,7 +137,7 @@ const _handlebarsInit = () => {
   Handlebars.registerHelper('date_format', function(...args) {
     const timestamp = args[0];
     const date = new Date(timestamp);
-    return `${date.getDay() + 1}/${date.getMonth() + 1}/${date.getFullYear()}`;
+    return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
   });
 
   /**
