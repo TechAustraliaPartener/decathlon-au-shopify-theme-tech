@@ -5,7 +5,8 @@ import {
   REVIEWS_CONTAINER_SELECTOR,
   CONTAINER_SUFFIX,
   VERIFIED_PURCHASE_ICON_TEMPLATE_ID,
-  VOTING_ICON_TEMPLATE_ID
+  VOTING_ICON_TEMPLATE_ID,
+  LOGO_WITHOUT_BACKGROUND_TEMPLATE_ID
 } from './constants';
 import { addRatingsPercentage } from './helpers';
 
@@ -106,6 +107,9 @@ const _handlebarsInit = () => {
   const helpfulIconTplEl = document.getElementById(
     `${ICON_PREFIX}helpful${TEMPLATE_SUFFIX}`
   );
+  const logoNoBgEl = document.getElementById(
+    `${ICON_PREFIX}logoNoBg${TEMPLATE_SUFFIX}`
+  );
 
   /**
    * Register handlebars helpers
@@ -153,6 +157,12 @@ const _handlebarsInit = () => {
     Handlebars.registerPartial(
       VOTING_ICON_TEMPLATE_ID,
       helpfulIconTplEl.innerHTML
+    );
+  }
+  if (logoNoBgEl) {
+    Handlebars.registerPartial(
+      LOGO_WITHOUT_BACKGROUND_TEMPLATE_ID,
+      logoNoBgEl.innerHTML
     );
   }
 };

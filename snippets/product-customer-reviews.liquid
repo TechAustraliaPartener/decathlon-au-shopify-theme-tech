@@ -208,9 +208,7 @@
             {% assign answer_date = review.answer.created_at | date: "%-m/%-e/%Y" %}
             {% assign first_name = review.answer.author.firstname %}
             <div class="de-CustomerReviewResponse">
-              <h6 class="u-textBold">
-                <i class="ico ico--de"></i>
-              </h6>
+              {% include 'logo-no-bg' with class 'de-Icon' %}
               <div>
                 {{ review.answer.body }}
               </div>
@@ -253,9 +251,8 @@
       {% include 'icon-checkmark-badge'
         with class: 'de-Icon de-u-textGrow5 de-u-padRight06' %}
     </script>
-     <script type="x-handlebars-template" id="de-Icon-verifiedPurchase-template">
-      {% include 'icon-checkmark-badge'
-        with class: 'de-Icon de-u-textGrow5 de-u-padRight06' %}
+     <script type="x-handlebars-template" id="de-Icon-logoNoBg-template">
+      {% include 'logo-no-bg' with class: 'de-Icon' %}
     </script>
     <script type="x-handlebars-template" id="de-CustomerReviews-template">
       {% raw %}
@@ -328,9 +325,7 @@
           </div>
         {{#if answer}}
           <div class="de-CustomerReviewResponse">
-            <h6 class="u-textBold">
-              <i class="ico ico--de"></i>
-            </h6>
+            {{> logo_no_bg }}
             <div>
               {{{ answer.body }}}
             </div>

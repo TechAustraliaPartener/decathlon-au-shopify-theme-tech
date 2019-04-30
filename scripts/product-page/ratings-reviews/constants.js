@@ -68,3 +68,4 @@ export const REVIEWS_BASE_QUERY_PARAMS = {
 
 export const VERIFIED_PURCHASE_ICON_TEMPLATE_ID = 'verified_purchase_icon';
 export const VOTING_ICON_TEMPLATE_ID = 'helpful_icon';
+export const LOGO_WITHOUT_BACKGROUND_TEMPLATE_ID = 'logo_no_bg';
