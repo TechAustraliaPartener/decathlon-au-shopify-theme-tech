@@ -27,7 +27,8 @@ if (videojs) {
     // Create carousel with videos
     $videoCarousel.slick({
       asNavFor: $thumbnailCarousel,
-      arrows: false
+      arrows: false,
+      infinite: false
     });
 
     // Pause video on current slide before slide change
