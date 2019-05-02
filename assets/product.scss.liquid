@@ -142,6 +142,25 @@ $breakpoint-xl: 80em;
 }
 
 /**
+ * SizeGuide
+ */
+
+.SizeGuide-table {
+  overflow-x: scroll;
+}
+
+.SizeGuide-table::before {
+  content: '';
+  padding-right: 1rem;
+  width: 0;
+}
+.SizeGuide-table::after {
+  content: '';
+  padding-left: 1rem;
+  width: 0;
+}
+
+/**
  * Hacks
  *
  * 1. Removes floating green email me button
