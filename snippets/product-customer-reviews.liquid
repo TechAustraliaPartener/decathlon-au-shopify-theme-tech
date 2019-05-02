@@ -107,9 +107,12 @@
 
     <div class="de-u-flex de-u-flexAlignItemsCenter de-u-spaceBottom6">
       <div class="de-u-padRight de-u-textBold de-u-textSizeBase">Sort by</div>
-      <select name="ReviewSort" id="ReviewSort" class="de-u-textSizeBase">
-        <option value="Newest">Newest</option>
-        <option value="Newest">Oldest</option>
+      <select class="de-u-textSizeBase js-de-CustomerReview-sort">
+        <option value="date_desc" data-sort-direction="desc" data-sort-type="createdAt">Newest</option>
+        <option value="date_asc" data-sort-direction="asc" data-sort-type="createdAt">Oldest</option>
+        <option value="note_desc" data-sort-direction="desc" data-sort-type="note">Highest rating</option>
+        <option value="note_asc" data-sort-direction="asc" data-sort-type="note">Lowest rating</option>
+        <option value="utility_desc" data-sort-direction="desc" data-sort-type="utility">Most helpful</option>
       </select>
     </div>
     {% comment %}
@@ -247,8 +250,13 @@
       {% include 'icon-upvote-thumb'
         with class: 'de-Icon de-u-spaceLeft06 de-u-textGrow2' %}
     </script>
+    {% comment %}
+      This alternate badge for use with Handlebars has alternate IDs that don't
+      conflict with the ones in the original file. Solution (maybe temporary) for
+      rendering issues with Handlebars in some circumstances (sorting, e.g.)
+    {% endcomment %}
     <script type="x-handlebars-template" id="de-Icon-verifiedPurchase-template">
-      {% include 'icon-checkmark-badge'
+      {% include 'icon-checkmark-badge-alt'
         with class: 'de-Icon de-u-textGrow5 de-u-padRight06' %}
     </script>
      <script type="x-handlebars-template" id="de-Icon-logoNoBg-template">
@@ -304,8 +312,7 @@
                 {{/if}}
               {{/if_or}}
               {{#if purchase_checked}}
-                <div class="de-u-flex de-u-flexAlignItemsCenter
-                            de-u-spaceTop06">
+                <div class="de-u-flex de-u-flexAlignItemsCenter de-u-spaceTop06">
                   {{> verified_purchase_icon }}
                   verified purchase
                 </div>

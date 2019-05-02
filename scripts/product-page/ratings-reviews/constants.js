@@ -37,6 +37,11 @@ export const REVIEWS_CONTAINER_CLASS = `${JS_PREFIX}${CUSTOMER_REVIEW}s`;
 export const REVIEW_PRELOADED_CLASS = `${JS_PREFIX}${CUSTOMER_REVIEW}-preloaded`;
 
 /**
+ * The CSS class on the reviews sort select
+ */
+export const REVIEW_SORT_SELECT = `${JS_PREFIX}${CUSTOMER_REVIEW}-sort`;
+
+/**
  * The CSS ID on a reviews container block
  */
 export const REVIEWS_CONTAINER_SELECTOR = `${CSS_PREFIX}${CUSTOMER_REVIEW}s`;

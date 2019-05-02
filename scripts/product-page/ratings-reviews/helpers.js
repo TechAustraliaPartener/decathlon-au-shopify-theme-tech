@@ -1,3 +1,7 @@
+/**
+ * Helpers for querying and displaying ratings and reviews
+ */
+
 import { STAR_RATING_PERCENTAGE_MULTIPLIER } from './constants';
 
 /**

@@ -19,7 +19,7 @@ const voteLinkHandler = event => {
 /**
  * Entry point for review and answer up/down-voting
  */
-export const voteInit = () => {
+export const reviewsVoteInit = () => {
   document.addEventListener('click', function(event) {
     if (event.target.matches(`.${REVIEW_VOTE_CLASS}`)) {
       voteLinkHandler.call(event.target, event);
