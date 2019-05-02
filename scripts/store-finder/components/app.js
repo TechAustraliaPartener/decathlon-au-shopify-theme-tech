@@ -53,7 +53,7 @@ export const app = {
             @store-info-nav='goToStoreInfo'
             @store-direction-nav='goToStoreDirection'
             :store='store'
-            :distance='storeDistances[i]'
+            :distance='store.distance'
             :is-favorited-store='isFavoritedStore'
             :class='{ "de-is-active": isSelectedStore && isSelectedStore.id === store.id }'
           ></store-finder-store-tile>
@@ -101,7 +101,6 @@ export const app = {
       isStoresInitialized: false,
       mapsInitialized: Boolean(window.google),
       stores: [],
-      storeDistances: [],
       isStoreDistanceFetch: false,
       isFavoritedStore: null,
       isSelectedStore: null,
@@ -121,9 +120,8 @@ export const app = {
   },
   computed: {
     isStoresOutOfArea() {
-      return this.storeDistances.every(
-        distance =>
-          parseInt(distance.replace(/,/g, ''), 10) >= this.outOfAreaThreshold
+      return this.stores.every(
+        store => store.distanceFloat >= this.outOfAreaThreshold
       );
     },
 
@@ -182,7 +180,11 @@ export const app = {
     async fetchStoreList() {
       try {
         const stores = await fetchStores();
-        this.stores = stores.filter(store => store.street2);
+        this.stores = stores.map(store => ({
+          ...store,
+          distance: '',
+          distanceInt: ''
+        }));
       } catch (error) {
         console.error(error);
       }
@@ -254,7 +256,15 @@ export const app = {
           formatStoreAddress(store)
         );
         const distances = await getDistance({ origin, destinations });
-        if (distances.length > 0) this.storeDistances = distances;
+        if (distances.length > 0) {
+          this.stores = this.stores
+            .map((store, i) => ({
+              ...store,
+              distance: distances[i],
+              distanceFloat: parseFloat(distances[i].replace(/,/g, ''), 10)
+            }))
+            .sort((a, b) => a.distanceFloat - b.distanceFloat);
+        }
         return distances;
       } catch (error) {
         console.error(error);
