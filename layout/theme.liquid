@@ -118,6 +118,7 @@
     {{ 'product-proto-buybox.scss.css' | asset_url | stylesheet_tag }}
     {{ 'product-carousel.scss.css' | asset_url | stylesheet_tag }}
     {{ 'product-swatch-objects.scss.css' | asset_url | stylesheet_tag }}
+    {{ 'product-collapse.scss.css' | asset_url | stylesheet_tag }}
     {{ 'product-reviews.scss.css' | asset_url | stylesheet_tag }}
     {{ 'product-videos.scss.css' | asset_url | stylesheet_tag }}
   {% endif %}
@@ -221,7 +222,7 @@
 
   {{ 'timber.js' | asset_url | script_tag }}
 
-  {{ 'persistent-cart.js' | asset_url | script_tag }}
+  {{ 'built-persistent-cart.js' | asset_url | script_tag }}
 
   {% comment %}{% include '_live-search' %}{% endcomment %}
 
@@ -304,7 +305,7 @@
   {{ 'decathlon.js' | asset_url | script_tag }}
   {{ 'patterns-toolkit.js' | asset_url | script_tag }}
   {% if template == "product" %}
-    {{ 'product-page.js' | asset_url | script_tag }}
+    {{ 'built-product-page.js' | asset_url | script_tag }}
   {% endif %}
 
   {% comment %}{% include 'decathlon-wishlist' %}{% endcomment %}

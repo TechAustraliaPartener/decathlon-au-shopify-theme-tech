@@ -31,14 +31,12 @@
   </div>
 </div>
 
-<div class="de-SwatchGrid js-de-SizeSwatches">
+<div class="de-SwatchObjects de-Wrapper--fullwidth de-u-padTop06 de-u-padBottom js-de-SizeSwatches">
   {% for size in all_sizes %}
     {% assign cleanSize = size | strip %}
-    <div class="de-SwatchGrid-item">
       <button
-        class="de-SwatchGrid-info de-u-textMedium js-de-SizeSwatches-option"
+        class="de-SwatchObjects-item de-SwatchObjects--size de-u-textMedium js-de-SizeSwatches-option"
         value="{{ cleanSize }}"
       >{{ cleanSize }}</button>
-    </div>
   {% endfor %}
 </div>

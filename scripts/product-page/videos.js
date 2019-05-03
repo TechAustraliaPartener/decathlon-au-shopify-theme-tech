@@ -6,10 +6,11 @@ if (videojs) {
   const $posterImages = $('.js-de-slick--videos .vjs-poster');
   const $videoCarousel = $('.js-de-slick--videos');
   const $thumbnailCarousel = $('.js-de-slick--videos-thumbnails');
-  const $toggleButton = $('.js-de-watch-video-button');
+  const $toggleButton = $('.js-de-toggle-media');
   const $viewImagesCTA = $('.js-de-view-images');
   const $watchVideoCTA = $('.js-de-watch-video');
   const $copyVideo = $('.js-de-copyVideo');
+  const $productTagLabel = $('.js-de-ProductLabel');
 
   // Load poster images into DOM for slick slider navigation
   $(window).on('load', function() {
@@ -26,7 +27,8 @@ if (videojs) {
     // Create carousel with videos
     $videoCarousel.slick({
       asNavFor: $thumbnailCarousel,
-      arrows: false
+      arrows: false,
+      infinite: false
     });
 
     // Pause video on current slide before slide change
@@ -58,17 +60,19 @@ if (videojs) {
     if ($(this).hasClass('js-de-toggle')) {
       // Remove Video, switch to Images
       $(this).removeClass('js-de-toggle');
-      $watchVideoCTA.removeClass('hide');
-      $viewImagesCTA.addClass('hide');
-      $copyVideo.addClass('hide');
+      $watchVideoCTA.removeClass('de-u-hidden');
+      $viewImagesCTA.addClass('de-u-hidden');
+      $copyVideo.addClass('de-u-hidden');
+      $productTagLabel.removeClass('de-u-hidden');
       // Pause Video
       firstVideoPlayer.pause();
     } else {
       // Add Video
       $(this).addClass('js-de-toggle');
-      $viewImagesCTA.removeClass('hide');
-      $watchVideoCTA.addClass('hide');
-      $copyVideo.removeClass('hide');
+      $productTagLabel.addClass('de-u-hidden');
+      $viewImagesCTA.removeClass('de-u-hidden');
+      $watchVideoCTA.addClass('de-u-hidden');
+      $copyVideo.removeClass('de-u-hidden');
       // Play Video
       firstVideoPlayer.play();
     }

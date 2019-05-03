@@ -28,7 +28,7 @@
   </div>
 </div>
 
-<div class="de-SwatchContainer js-de-ColorSwatches de-Wrapper--fullwidth de-u-padTop06 de-u-padBottom">
+<div class="de-SwatchContainer js-de-ColorSwatches de-SwatchObjects de-Wrapper--fullwidth de-u-padTop06 de-u-padBottom">
   {% for color in all_colors %}
     {% assign option_thumb = false %}
     {% assign clean_color = color | strip %}
@@ -44,9 +44,10 @@
       {% if option_thumb != false %}{% break %}{% endif %}
     {% endfor %}
       <button
-        class="de-SwatchColor-item js-de-ColorSwatches-option de-ColorSwatches-color--{{ clean_color }}{% if option_thumb != false %} de-ColorSwatches-hasThumb{% endif %}"
-        value="{{ clean_color }}"
-        style="{% if option_thumb != false %}background-image:url({{ option_thumb }}){% endif %}"
-      ></button>
+        class="de-SwatchObjects-item de-SwatchObjects--color js-de-ColorSwatches-option de-ColorSwatches-color--{{ clean_color }}{% if option_thumb == false %} de-ColorSwatches-noThumb{% endif %}"
+        value="{{ clean_color }}">
+        <span class="de-u-hiddenVisually">Color: {{ clean_color }}</span>
+        {% if option_thumb != false %}<img src="{{ option_thumb }}" alt="">{% endif %}  
+      </button>
   {% endfor %}
 </div>

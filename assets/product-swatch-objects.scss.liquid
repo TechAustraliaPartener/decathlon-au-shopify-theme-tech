@@ -74,7 +74,7 @@ $breakpoint-lg: 60em;
     display: grid;
     grid-auto-flow: column;
     grid-auto-rows: 1fr; //* 1 *//
-    grid-template-columns: repeat(auto-fit, minmax(72px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(85px, 1fr));
     grid-gap: 8px;
   }
 
@@ -109,6 +109,7 @@ $breakpoint-lg: 60em;
  * fallback implementations of this pattern when `@supports (display: grid)` is
  * not available
  * 3. Required for the `de-is-soldout` styles to take effect
+ * 4. Disables ability to select text inside of a SwatchObject-item
  */
 
 .de-SwatchObjects-item {
@@ -119,6 +120,7 @@ $breakpoint-lg: 60em;
   margin-bottom: 8px;
   margin-right: 8px;
   position: relative; //* 3 *//
+  user-select: none; //* 4 *//
 }
 
 @supports (display: grid) {
@@ -128,7 +130,7 @@ $breakpoint-lg: 60em;
 }
 
 .de-SwatchObjects-item.de-is-active {
-  border: $border-width-md solid $color-blue;
+  border: $border-width-md solid $color-blue !important;
   color: $color-blue;
 }
 
@@ -151,13 +153,17 @@ $breakpoint-lg: 60em;
   padding: 0.5em;
 }
 
-.de-SwatchObjects--color:disabled .de-SwatchObjects-image {
-  opacity: 0.1;
-}
-
 .de-SwatchObjects--color:focus:not(.de-is-active) {
   outline: $border-width-md solid $color-blue;
   outline-offset: -4px;
+}
+
+/**
+ * SwatchObject State classes
+ */
+
+.de-SwatchObjects--color.de-is-outofstock * {
+  opacity: 0.23;
 }
 
 /**
@@ -166,6 +172,10 @@ $breakpoint-lg: 60em;
 
 .de-SwatchObjects-image {
   width: 100%;  //* 1 *//
+}
+
+.de-SwatchObjects-noimage {
+  width: 100%;
 }
 
 /**
@@ -187,24 +197,46 @@ $breakpoint-lg: 60em;
   white-space: nowrap;
 }
 
+/**
+ * This style block requires testing
+ */
+
 .de-SwatchObjects--size:not(.de-is-active):focus {
   outline: $border-width-md solid $color-blue;
   outline-offset: -4px;
 }
 
 /**
- * State classes
+ * `.de-is-outofstock` should be applied to `.de-SwatchObjects--size` when the
+ * size variant is temporarily out of stock.
  */
+
+.de-SwatchObjects--size.de-is-outofstock {
+  background-color: $color-silver;
+  border: $border-width-sm solid $color-gray;
+  color: $color-gray !important;
+}
 
 /**
  * `.de-is-soldout` should be applied to `.de-SwatchObjects--size` when the size
  * variant is no longer available and will not be coming back in stock
- * 
+ *
  * 1. This is a unique CSS style block and the desired visual appearance
- * requires some magic numbers to display properly. 
+ * requires some magic numbers to display properly.
  */
 
-.de-is-soldout::before {
+.de-SwatchObjects--size.de-is-soldout {
+  background-color: $color-silver !important;
+  border: $border-width-sm solid $color-gray;
+  color: $color-gray !important;
+}
+
+/**
+ * 1. This is a unique CSS style block and the desired visual appearance
+ * requires some magic numbers to display properly.
+ */
+
+.de-SwatchObjects--size.de-is-soldout::before {
   content: '';
   position: absolute;
   left: -0.014em; //* 1 *//
@@ -213,16 +245,4 @@ $breakpoint-lg: 60em;
   bottom: 0.03em; //* 1 *//
   background: linear-gradient(to left top, transparent 50.5%, currentColor 43.5%, currentColor 52.5%, transparent 45.5%);
   pointer-events: none;
-}
-
-/**
- * `.de-is-outofstock` should be applied to `.de-SwatchObjects--size` when the
- * size variant is temporarily out of stock.
- */
-
-.de-SwatchObjects--size:not(.de-is-active).de-is-outofstock {
-  border: $border-width-sm solid $color-gray;
-  color: $color-gray;
-  cursor: none;
-  background-color: $color-silver;
 }

@@ -3,17 +3,40 @@
   <span class="de-u-textDarkGray de-u-textMedium">Select a color</span>
 </div>
 
-{% comment %} Color Swatches {% endcomment %}
-<div class="de-SwatchObjects de-Wrapper--fullwidth 
-  de-u-padTop06 de-u-padBottom">
+{% comment %}
+  Color Swatches
+{% endcomment %}
+
+<div class="de-SwatchObjects de-Wrapper--fullwidth
+            de-u-padTop06 de-u-padBottom">
   {% for i in (1..8) %}
+
+    {% comment %}
+      The `SwatchObjects--color` modifier is intended to pair well with any
+      combination of the following style variants:
+      → `de-is-active`
+      → `de-is-outofstock`
+    {% endcomment %}
+
     <button class="de-SwatchObjects-item de-SwatchObjects--color">
       <img
         src="https://cdn.shopify.com/s/files/1/1330/6287/products/00164127-432c-4479-b71b-04d30eae0301.jpg"
-        class="de-SwatchObjects-image de-u-block"
+        class="de-SwatchObjects-image
+               de-u-block"
         alt="">
     </button>
   {% endfor %}
-  {% comment %} <button class="de-SwatchObjects-item de-SwatchObjects--color de-ColorSwatches-color--Yellow">
-  </button> {% endcomment %}
+
+  {% comment %}
+    For use with testing `de-SwatchObjects-noimage`
+  {% endcomment %}
+
+  {% comment %}
+  <button class="de-SwatchObjects-item de-SwatchObjects--color
+                 de-is-outofstock de-is-active">
+    <div class="de-SwatchObjects-noimage"
+         style="background-color: #f4ff46;">
+    </div>
+  </button>
+  {% endcomment %}
 </div>
