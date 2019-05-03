@@ -8,6 +8,17 @@ List any dependencies that are required for this change.
 
 Visual changes should include a screenshot.
 
+## Accessibility
+
+Consider:
+
+1. Adding a screenshot of the relevant sections from the Accessibility Tree
+2. Adding other relevant accessibility information (updates, audits, etc.)
+
+**Accessibility Tree References**
+- [Firefox Accessibility Tree](https://developer.mozilla.org/en-US/docs/Tools/Accessibility_inspector#Accessing_the_Accessibility_Inspector)
+- [Chrome Accessibility Tree](https://umaar.com/dev-tips/152-accessibility-tree)
+
 ## Testing
 
 1. instructions for reviewers
