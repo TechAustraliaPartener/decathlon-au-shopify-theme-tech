@@ -213,7 +213,16 @@
         </span>
       </button>
       <div class="Accordion-content" itemprop="description">
-        {{ product_specs }}
+        {% comment %}
+          Dynamic Product information content
+        {% endcomment %}
+        {% comment %} {{ product_specs }} {% endcomment %}
+        {% comment %}
+         Prototype product information content
+        {% endcomment %}
+        <div class="de-u-spaceTop6">
+          {% include 'product-proto-information' %}
+        </div>
       </div>
     </div>
   </section>

@@ -141,7 +141,27 @@ $breakpoint-xl: 80em;
 }
 
 /**
- * SizeGuide
+ * ProductInformation
+ */
+
+.ProductInformation {
+  columns: 370px 3;
+  column-gap: 36px;
+}
+
+.ProductInformation-entry {
+  break-inside: avoid;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: $breakpoint-md) {
+  .ProductInformation-entry:not(:first-of-type) {
+    margin-top: 3rem;
+  }
+}
+
+/**
+ * Size Guide
  */
 
 .SizeGuide-table {
@@ -153,6 +173,7 @@ $breakpoint-xl: 80em;
   padding-right: 1rem;
   width: 0;
 }
+
 .SizeGuide-table::after {
   content: '';
   padding-left: 1rem;
