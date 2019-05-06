@@ -17,17 +17,16 @@
 {% include 'product-sm-title-lockup' %}
 
 {% comment %} Small Screen ProductGallery {% endcomment %}
-<div class="ProductGallery-showcase de-Wrapper--fullwidth de-u-lg-hidden">
+<div class="de-ProductCarousel de-Wrapper--fullwidth de-u-lg-hidden">
+  {% include 'product-carousel' %}
   <div class="de-ProductLabel de-ProductLabel--red js-de-ProductLabel
     de-u-lg-hidden de-u-textMedium">
     Last Call
   </div>
-  <img
-    src="https://cdn.shopify.com/s/files/1/1330/6287/products/cf438995-20ba-44e5-8afa-4d5eb628cfcd_1024x1024.jpg"
-    class="de-u-block"
-    alt="">
-  {% comment %} 
-    Show video when 'Watch Video' action is clicked 
+</div>
+
+  {% comment %}
+    Show video when 'Watch Video' action is clicked
   {% endcomment %}
   {% if product_video.size > 0 %}
     <video data-account="3415345270001"
@@ -39,7 +38,6 @@
       playsinline>
     </video>
   {% endif %}
-</div>
 {% comment %} Toggle from image to video {% endcomment %}
 <div class="ProductGallery-controls de-Wrapper--fullwidth de-u-padEnds03
   de-u-bgSilver de-u-lg-hidden">

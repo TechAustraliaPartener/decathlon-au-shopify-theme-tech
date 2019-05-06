@@ -1,3 +1,105 @@
+/**
+ * Color Palette
+ *
+ * Variable names are based on similar CSS extended color keyword values.
+ *
+ * @see https://www.w3.org/TR/2018/REC-css-color-3-20180619/#svg-color
+ */
+
+$color-blue: #0082c3;
+
+/**
+ * Border Width
+ */
+
+$border-width-md: 2px;
+
+/**
+ * Media Queries
+ */
+
+$breakpoint-lg: 60em;
+
 {% comment %}
   @todo: This CSS will be copied/pasted into `product.scss.liquid` once this work is complete
 {% endcomment %}
+.de-ProductCarousel--large,
+.de-CarouselContainer,
+.de-CarouselThumbnail,
+.de-CarouselFeature-image[src=''] {
+  display: none;
+}
+
+.de-CarouselContainer.de-is-active,
+.de-CarouselFeature-image {
+  display: flex;
+}
+
+.de-CarouselFeature,
+.de-CarouselFeature-image {
+  width: 100%;
+}
+
+.de-CarouselContext {
+  display: flex;
+  overflow-x: auto;
+}
+
+@media (min-width: $breakpoint-lg) {
+  /**
+    * 1. Allows space for .ProductBuyBox,
+    *    which has a flex value of ~43% (ie 100 - 43 = 57).
+    */
+
+  .de-ProductCarousel--large {
+    display: unset;
+    width: 57%;  /* 1 */
+  }
+
+  .de-CarouselContainer.de-is-active {
+    position: relative;
+    justify-content: flex-end;
+  }
+
+  /**
+    * 1. Allows space for .de-CarouselThumbnail, plus a 1% gap.
+    */
+
+  .de-CarouselFeature {
+    padding-left: 17%; /* 1 */
+  }
+
+  .de-CarouselFeature-image {
+    width: unset;
+  }
+
+  /**
+    * 1. Allows height to match container's own,
+    *    with a width less than the padding of .de-CarouselFeature.
+    */
+
+  .de-CarouselThumbnail {
+    display: unset;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 16%; /* 1 */
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .de-CarouselThumbnail-image {
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    border: $border-width-md solid transparent;
+  }
+
+  .slick-vertical .slick-slide {
+    border: $border-width-md solid transparent;
+  }
+
+  .de-SlickSlide.slick-current {
+    border: $border-width-md solid $color-blue;
+  }
+}

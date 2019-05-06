@@ -1,5 +1,6 @@
 import './buybox';
-import './carousel';
+import { init as carouselInit, updateUI as updateCarouselUI } from './carousel';
+import { init as carouselContextInit } from './carousel-context';
 import {
   init as colorSwatchesInit,
   getState as getColorSwatchesState,
@@ -62,6 +63,7 @@ const updateUI = state => {
   }
 
   updateOptionStates(state);
+  updateCarouselUI(state);
 };
 
 /**
@@ -73,6 +75,8 @@ const init = () => {
   setUpListeners();
   updateUI(getCombinedState());
   reviewsInit();
+  carouselInit();
+  carouselContextInit();
 };
 
 init();

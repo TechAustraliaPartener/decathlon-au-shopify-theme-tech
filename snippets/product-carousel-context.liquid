@@ -1,0 +1,26 @@
+{% comment %}
+  Variable(s)
+{% endcomment %}
+{%- assign product_images = product.images -%}
+
+{% comment %}
+  Product context image(s)
+{% endcomment %}
+<div class='de-CarouselContext js-de-CarouselContext'>
+  {%- for product_image in product_images -%}
+    {%- capture image_srcset -%}
+      {{- product_image | img_url: "425x" -}} 320w,
+      {{- product_image | img_url: "840x" -}} 720w,
+      {{- product_image | img_url: "1080x" -}} 1020w,
+      {{- product_image | img_url: "1200x" -}} 1720w
+    {%- endcapture -%}
+    {%- capture image_sizes -%}
+      (max-width: 520px) 840px,
+      (max-width: 1000px) 1680px
+    {%- endcapture -%}
+    <img
+      class='de-CarouselContextSlide js-de-CarouselContextSlide'
+      data-srcset='{{ image_srcset }}'
+      data-sizes='{{ image_sizes }}'>
+  {%- endfor -%}
+</div>
