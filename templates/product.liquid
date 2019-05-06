@@ -38,9 +38,11 @@
     <meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
     {% comment %} Get first variant, or deep linked one {% endcomment %}
     {% assign current_variant = product.selected_or_first_available_variant %}
-    <h3 class="visually-hidden" id="Section-buybox">
-      Product Colors and Sizes
-    </h3>
+    <header>
+      <h3 class="visually-hidden" id="Section-buybox">
+        Product Colors and Sizes
+      </h3>
+    </header>
     <div class="de-u-hidden de-u-md-block">
       {% include 'breadcrumb' %}
     </div>
@@ -71,11 +73,13 @@
   <section class="de-ProductInfoSection de-ProductInfoSection--silver
                   de-u-md-pad"
            aria-labelledby="Section-videos">
-    <h3 class="de-ProductInfoTitle de-u-md-textGrow3 de-u-lg-textGrow4
-               de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
-        id="Section-videos">
-      <span class="visually-hidden">Product</span> Videos
-    </h3>
+    <header>
+      <h3 class="de-ProductInfoTitle de-u-md-textGrow3 de-u-lg-textGrow4
+                de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
+          id="Section-videos">
+        <span class="visually-hidden">Product</span> Videos
+      </h3>
+    </header>
     <div class="Accordion js-Accordion is-open">
       <button class="Accordion-header js-Accordion-header de-u-textGrow2">
         Additional Videos
@@ -92,11 +96,13 @@
 
   <section class="de-ProductInfoSection de-u-md-pad2"
            aria-labelledby="Section-features">
-    <h3 class="de-ProductInfoTitle de-u-md-textGrow3 de-u-lg-textGrow4
-               de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
-        id="Section-features">
-      <span class="visually-hidden">Product</span> Features
-    </h3>
+    <header>
+      <h3 class="de-ProductInfoTitle de-u-md-textGrow3 de-u-lg-textGrow4
+                de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
+          id="Section-features">
+        <span class="visually-hidden">Product</span> Features
+      </h3>
+    </header>
     <div class="Accordion js-Accordion is-open">
       <button class="Accordion-header js-Accordion-header de-u-textGrow2">
         Features
@@ -113,11 +119,13 @@
   <section class="de-ProductInfoSection de-ProductInfoSection--silver
                   de-u-md-pad"
            aria-labelledby="Section-lifestyle-images">
-    <h3 class="de-ProductInfoTitle de-u-md-textGrow3 de-u-lg-textGrow4
-               de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
-        id="Section-lifestyle-images">
-      <span class="visually-hidden">Product Lifestyle</span> Image Gallery
-    </h3>
+    <header>
+      <h3 class="de-ProductInfoTitle de-u-md-textGrow3 de-u-lg-textGrow4
+                de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
+          id="Section-lifestyle-images">
+        <span class="visually-hidden">Product Lifestyle</span> Image Gallery
+      </h3>
+    </header>
     <div class="Accordion js-Accordion">
       <button class="Accordion-header js-Accordion-header de-u-textGrow2">
         Image Gallery
@@ -139,9 +147,11 @@
   <section class="de-ProductInfoSection
                   de-u-md-padEnds de-u-md-padSides de-u-md-hidden"
            aria-labelledby="Section-sizeguide">
-    <h3 class="visually-hidden" id="Section-sizeguide">
-      Product Size and Fit Information
-    </h3>
+    <header>
+      <h3 class="visually-hidden" id="Section-sizeguide">
+        Product Size and Fit Information
+      </h3>
+    </header>
     <div class="Accordion js-Accordion">
       <button class="Accordion-header js-Accordion-header de-u-textGrow2">
         Size & Fit
@@ -170,15 +180,17 @@
   </section>
 
   <section class="de-ProductInfoSection
-              de-u-md-padEnds de-u-md-padSides
-              js-de-Reviews"
+                  de-u-md-padEnds de-u-md-padSides
+                  js-de-Reviews"
            aria-labelledby="Section-reviews"
            data-model-code="{{model_code}}">
-    <h3 class="de-ProductInfoTitle de-u-md-textGrow3 de-u-lg-textGrow4
-               de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
-        id="Section-reviews">
-      <span class="visually-hidden">Product </span>Customer Reviews
-    </h3>
+    <header>
+      <h3 class="de-ProductInfoTitle de-u-md-textGrow3 de-u-lg-textGrow4
+                de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
+          id="Section-reviews">
+        <span class="visually-hidden">Product </span>Customer Reviews
+      </h3>
+    </header>
     <div class="Accordion js-Accordion is-open">
       <button class="Accordion-header js-Accordion-header de-u-textGrow2">
         Customer Reviews
@@ -200,11 +212,13 @@
   <section class="de-ProductInfoSection
                   de-ProductInfoSection--silver de-u-md-pad"
            aria-labelledby="Section-additional-info">
-    <h3 class="de-ProductInfoTitle de-u-md-textGrow3 de-u-lg-textGrow4
-               de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
-        id="Section-additional-info">
-      <span class="visually-hidden">Additional </span>Product Information
-    </h3>
+    <header>
+      <h3 class="de-ProductInfoTitle de-u-md-textGrow3 de-u-lg-textGrow4
+                de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
+          id="Section-additional-info">
+        <span class="visually-hidden">Additional </span>Product Information
+      </h3>
+    </header>
     <div class="Accordion Accordion--last js-Accordion">
       <button class="Accordion-header js-Accordion-header de-u-textGrow2">
         Product Information

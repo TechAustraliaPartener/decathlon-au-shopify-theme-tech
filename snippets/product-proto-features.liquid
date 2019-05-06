@@ -1,58 +1,61 @@
-{% comment %}
-  This is a an in-progress protoype markup file and does not reflect final,
-  approved markup.
-{% endcomment %}
-
-<div class="FeaturesContainer de-Grid de-u-lg-spaceTop3">
+<section class="FeaturesContainer de-Grid de-u-lg-spaceTop3
+                de-u-spaceTop">
   <div class="FeaturesContainer-banner de-u-padBottom de-u-spaceBottom
-    de-u-md-padBottom6 de-u-md-spaceBottom6">
+    de-u-md-padBottom6 de-u-md-spaceBottomNone">
     <div class="de-u-lg-size5of6 de-u-xl-size4of6">
-      {% comment %}
-        @TODO
-        1. what is the best schema.org rich snippet for this element?
-      {% endcomment %}
       <h5 class="de-u-lg-textGrow6 de-u-spaceNone de-u-padBottom05
         de-u-lineHeight2" itemprop="description">
         {{ product.title }} is designed for {{ product_made_for }}
       </h5>
-      {% comment %}
-        @TODO
-        1. what is the best schema.org rich snippet for this element
-      {% endcomment %}
       <p class="de-u-spaceNone de-u-lg-textGrow3 de-u-textDarkGray">
         {{product_catchline}}
       </p>
     </div>
   </div>
-  <div class="FeaturesContainer-showcase de-u-lg-size1of3 de-u-hidden de-u-lg-block">
-    <img
-      src="https://decathlonusa-patterns.netlify.com/images/fpo/hiking3.jpg"
-      class="de-u-block"
-      alt="">
+  <div class="FeaturesContainer-showcase
+              de-u-lg-size1of3 de-u-hidden de-u-lg-block">
+    <figure>
+      <img
+        src="https://res.cloudinary.com/cloud-four/image/fetch/e_trim,q_auto:eco,f_auto/http://s3-eu-west-1.amazonaws.com/spid-media-cloud/packshot/d0/85/d085ff4e-dc4a-4a98-8059-d1d8a99fb140.jpg"
+        class="de-u-block"
+        alt="">
+        <figcaption class="de-u-hiddenVisually">
+          A photo of the product in use
+        </figcaption>
+    </figure>
   </div>
-  <div class="FeaturesContainer-info de-u-size1of1 de-u-lg-size2of3 de-u-lg-padLeft6">
-    {% comment %} {{ product_features }} {% endcomment %}
+  <div class="FeaturesContainer-info
+              de-u-size1of1 de-u-lg-size2of3 de-u-lg-padLeft6"
+       aria-labelledby="Section-features">
+    {% comment %}
+      {{ product_features }}
+    {% endcomment %}
     <div class="de-Grid">
       {% for i in (1..6) %}
-        <div class="de-u-size1of1 de-u-md-size1of2 de-u-flex de-u-padRight de-u-padBottom">
-          <div class="Feature-icon de-u-size1of5 de-u-md-size1of3 de-u-lg-size1of4">
+        <section class="ProductFeature de-u-size1of1 de-u-md-size1of2 de-u-flex
+                        de-u-padRight de-u-padBottom"
+                    aria-labelledby="ProductFeature-{{i}}"
+                    itemprop="additionalProperty"
+                    itemscope
+                    itemtype="http://schema.org/PropertyValue">
+          <div class="ProductFeature-icon de-u-spaceRight" aria-hidden="true">
             <img
-              class=""
               src="http://s3-eu-west-1.amazonaws.com/spid-media-cloud/pictoBu/89/d8/89d81036-fc0e-4d61-8b34-50c2ff3d0ef4.jpg"
-              data-src="http://s3-eu-west-1.amazonaws.com/spid-media-cloud/pictoBu/89/d8/89d81036-fc0e-4d61-8b34-50c2ff3d0ef4.jpg">
+              alt="">
           </div>
-          {% comment %}
-            @TODO Is there an appropriate schema.org rich snippet for
-            this element?
-          {% endcomment %}
           <div class="Feature-spec">
-            <h5>Cushioning</h5>
-            <p>
+            <header>
+              <h5 id="ProductFeature-{{i}}" itemprop="name"
+                  class="de-u-spaceBottomNone">
+                Cushioning
+              </h5>
+            </header>
+            <p itemprop="value" class="de-u-textDarkGray">
               Thanks to the Kalensole and CS foam, running shocks are reduced.
             </p>
           </div>
-        </div>
+        </section>
       {% endfor %}
     </div>
   </div>
-</div>
+</section>
