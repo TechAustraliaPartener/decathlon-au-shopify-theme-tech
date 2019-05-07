@@ -55,7 +55,13 @@ export const IS_SOLD_OUT_TAG = 'EndOfLife';
 export const IS_ACTIVE_CLASS = `${CSS_PREFIX}is-active`;
 export const IS_OUT_OF_STOCK_CLASS = `${CSS_PREFIX}is-outofstock`;
 export const IS_SOLD_OUT_CLASS = `${CSS_PREFIX}is-soldout`;
+
 /**
  * The CSS utility class for visibly hiding elements
  */
 export const IS_HIDDEN_CLASS = `${CSS_UTILITY_PREFIX}hidden`;
+
+/**
+ * CSS class that sets content to a fixed (no scroll) state
+ */
+export const FIXED_CLASS = `${CSS_PREFIX}content-is-fixed`;

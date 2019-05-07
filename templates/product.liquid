@@ -150,7 +150,7 @@
         Product Size and Fit Information
       </h3>
     </header>
-    <div class="Accordion js-Accordion">
+    <div id="size-and-fit" class="Accordion js-Accordion">
       <button class="Accordion-header js-Accordion-header de-u-textGrow2">
         Size & Fit
         <span class="Accordion-indicator de-u-textGrow5 de-u-spaceRight06">
@@ -259,6 +259,16 @@
 {% comment %}
   {% include 'product-detail--collection-control' %}
 {% endcomment %}
+
+{% comment %}
+  The "Size Guide" drawer
+{% endcomment %}
+{% include 'product-drawer--size-guide' %}
+
+{% comment %}
+  The "Reviews" drawer
+{% endcomment %}
+{% include 'product-drawer--reviews' %}
 
 {% comment %}
   To take advantage of a callback on the select dropdown, add option_selection.js

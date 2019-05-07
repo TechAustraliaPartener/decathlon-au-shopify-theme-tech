@@ -16,6 +16,7 @@ import './proto-accordion';
 import { reviewsInit } from './ratings-reviews';
 import { updateOptionStates } from './option-states';
 import { updateUI as updateMasterSelectUI } from './master-select';
+import { init as drawerInit } from './drawer';
 
 /**
  * Helper to get all of the child component states
@@ -75,6 +76,7 @@ const init = () => {
   setUpListeners();
   updateUI(getCombinedState());
   reviewsInit();
+  drawerInit();
   carouselInit();
   carouselContextInit();
 };

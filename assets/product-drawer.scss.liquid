@@ -1,0 +1,131 @@
+/**
+ * Color Palette
+ * Variable names are based on similar CSS extended color keyword values.
+ *
+ * @see https://www.w3.org/TR/2018/REC-css-color-3-20180619/#svg-color
+ */
+
+$color-gray: #ACB3b8;
+$color-light-gray: rgba(172, 179, 184, 0.5);
+$color-white: #FFF;
+
+/**
+ * Border Width
+ */
+
+$border-width-sm: 1px;
+
+/**
+ * Transitions
+ */
+
+$transition-speed-normal: 0.3s;
+$transition-easing-snappy: ease-in;
+$transition-easing-smooth: cubic-bezier(1.0, 0.5, 0.8, 1.0);
+
+/**
+ * Sizes
+ */
+
+$header-height: 46px;
+
+/**
+ * @TODO:
+ * The following CSS will be copied/pasted into `product.scss.liquid`
+ * once complete
+ */
+
+/*
+ * @pattern Slide-in Drawer
+ * Consider converting this into a pattern in the future.
+ *
+ * A slide-in overlay pattern, suitable for displaying additional content,
+ * equipped with `overflow-y` scrolling.
+ *
+ * Placing content inside of this pattern is often not the most appropriate
+ * choice for displaying content and can lead to poor user experiences when used
+ * improperly. Consider usage of this pattern wisely.
+ *
+ * 1. Ensures element is not overlapped by `Drawer-header`
+ * 2. Fixed positioning is required for both the `transform` and `overflow-y`
+ * scrolling to work properly.
+ * 3. Places the component off-canvas an equal distance to the available
+ * viewport width. Necessary for the "slide-in/slide-out" effect
+ *
+ * @TODO:
+ * 1. Complete: ~small screen 100vw via `transform: translateX(0);`~
+ * 2. Pending: large screen partial vw via transform
+ *
+ */
+
+.de-Drawer {
+  background-color: $color-white;
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  padding-top: $header-height; /* 1 */
+  position: fixed; /* 2 */
+  top: 0;
+  transition: all $transition-speed-normal $transition-easing-smooth;
+  transform: translateX(100vw); /* 3 */
+  width: 100vw;
+  z-index: 2000;
+}
+
+/*
+ * 1. When "active", slide the component into the viewport
+ */
+
+.de-Drawer.de-is-active {
+  opacity: 1;
+  transform: translateX(0); /* 1 */
+}
+
+.de-Drawer-header {
+  border-bottom: $border-width-sm solid $color-light-gray;
+  height: $header-height;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  z-index: 3000;
+}
+
+/*
+ * 1. Enables momentum-based scrolling, where the content continues to scroll
+ * for a while after finishing the scroll gesture and removing your finger from
+ * the touchscreen. The speed and duration of the continued scrolling is
+ * proportional to how vigorous the scroll gesture was. Also creates a new
+ * stacking context. Support: Safari iOS.
+ *
+ * @see https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-overflow-scrolling
+ */
+
+.de-Drawer-content {
+  height: 100%;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch; /* 1 */
+}
+
+/*
+ * 1. Ensures the last direct decendant of `Drawer-content` receives spacing at
+ * the bottom of the scrollable content equal to the height of `Drawer-header`
+ */
+
+.de-Drawer-content > *:last-child {
+  margin-bottom: 0; /* 1 */
+  padding-bottom: $header-height; /* 1 */
+}
+
+/*
+ * States
+ */
+
+/*
+ * 1. Prevents unwanted scrolling of content covered by `Drawer`
+ */
+
+.de-content-is-fixed {
+  overflow: hidden; /* 1 */
+  position: fixed; /* 1 */
+}

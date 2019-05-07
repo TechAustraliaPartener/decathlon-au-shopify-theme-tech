@@ -1,0 +1,19 @@
+<div
+  role="dialog"
+  id="{{ drawer_id }}"
+  class="de-Drawer js-de-Drawer"
+>
+  <header class="de-Drawer-header de-u-padSides de-u-padEnds06 de-u-spaceNone de-u-bgSilver">
+    <button
+      class="de-u-flex de-u-flexAlignItemsCenter de-u-textBold de-u-textGrow2 js-de-Drawer-toggle"
+      data-drawer-id="{{ drawer_id }}"
+      data-drawer-action="close"
+    >
+      {% include 'product-icon--chevron-left' %}
+      Back
+    </button>
+  </header>
+  <div class="de-Drawer-content de-u-pad">
+    {{ content }}
+  </div>
+</div>

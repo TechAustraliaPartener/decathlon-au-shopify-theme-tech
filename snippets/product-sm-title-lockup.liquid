@@ -25,10 +25,14 @@
       rating: product.metafields.ratings.product_rating
       %}
     {% endcomment %}
-    <button class="de-ProductTitleLockup-rating de-u-size1of2
-      de-u-flex de-u-flexJustifyEnd">
+    <a
+      href="#customer-reviews"
+      data-drawer-id="reviews-drawer"
+      data-drawer-action="open"
+      class="de-ProductTitleLockup-rating de-u-size1of2 de-u-flex de-u-flexJustifyEnd js-de-Drawer-toggle"
+    >
       {% include 'product-rating--stars-total' %}
-    </button>
+    </a>
 
   </div>
 

@@ -47,10 +47,11 @@ $breakpoint-lg: 60em;
  */
 
 .de-SwatchObjects {
-  display: flex; //* 1 *//
-  overflow-x: scroll; //* 2 *//
-  padding-left: 1rem; //* 3 *//
-  -webkit-overflow-scrolling: touch; //* 4 *//
+  display: flex; /* 1 */
+  overflow-x: scroll; /* 2 */
+  padding-left: 1rem; /* 3 */
+  -webkit-overflow-scrolling: touch; /* 4 */
+  z-index: 1;
 }
 
 /**
@@ -59,8 +60,8 @@ $breakpoint-lg: 60em;
 
 @media (min-width: $breakpoint-lg) {
   .de-SwatchObjects {
-    flex-wrap: wrap; //* 1 *//
-    overflow-x: visible; //* 1 *//
+    flex-wrap: wrap; /* 1 */
+    overflow-x: visible; /* 1 */
     padding-left: 0;
   }
 }
@@ -73,7 +74,7 @@ $breakpoint-lg: 60em;
   .de-SwatchObjects {
     display: grid;
     grid-auto-flow: column;
-    grid-auto-rows: 1fr; //* 1 *//
+    grid-auto-rows: 1fr; /* 1 */
     grid-template-columns: repeat(auto-fit, minmax(85px, 1fr));
     grid-gap: 8px;
   }
@@ -83,8 +84,8 @@ $breakpoint-lg: 60em;
    */
 
   .de-SwatchObjects::after {
-    content: ''; //* 1 *//
-    width: 0.5em; //* 1 *//
+    content: ''; /* 1 */
+    width: 0.5em; /* 1 */
   }
 
   @media (min-width: $breakpoint-lg){
@@ -98,7 +99,7 @@ $breakpoint-lg: 60em;
      */
 
     .de-SwatchObjects:after {
-      display: none; //* 1 *//
+      display: none; /* 1 */
     }
   }
 }
@@ -114,13 +115,13 @@ $breakpoint-lg: 60em;
 
 .de-SwatchObjects-item {
   cursor: pointer;
-  display: flex; //* 1 *//
-  flex-basis: 88px; //* 2 *//
-  min-width: 72px; //* 2 *//
+  display: flex; /* 1 */
+  flex-basis: 88px; /* 2 */
+  min-width: 72px; /* 2 */
   margin-bottom: 8px;
   margin-right: 8px;
-  position: relative; //* 3 *//
-  user-select: none; //* 4 *//
+  position: relative; /* 3 */
+  user-select: none; /* 4 */
 }
 
 @supports (display: grid) {
@@ -140,7 +141,7 @@ $breakpoint-lg: 60em;
  */
 
 .de-SwatchObjects-item:focus {
-  outline: none; //* 1 *//
+  outline: none; /* 1 */
 }
 
 /**
@@ -171,7 +172,7 @@ $breakpoint-lg: 60em;
  */
 
 .de-SwatchObjects-image {
-  width: 100%;  //* 1 *//
+  width: 100%;  /* 1 */
 }
 
 .de-SwatchObjects-noimage {
@@ -192,7 +193,7 @@ $breakpoint-lg: 60em;
   align-items: center;
   border: $border-width-sm solid $color-darkgray;
   display: flex;
-  height: 48px; //* 1 *//
+  height: 48px; /* 1 */
   justify-content: center;
   white-space: nowrap;
 }
@@ -239,10 +240,10 @@ $breakpoint-lg: 60em;
 .de-SwatchObjects--size.de-is-soldout::before {
   content: '';
   position: absolute;
-  left: -0.014em; //* 1 *//
-  right: -0.14em; //* 1 *//
-  top: 0.01em; //* 1 *//
-  bottom: 0.03em; //* 1 *//
+  left: -0.014em; /* 1 */
+  right: -0.14em; /* 1 */
+  top: 0.01em; /* 1 */
+  bottom: 0.03em; /* 1 */
   background: linear-gradient(to left top, transparent 50.5%, currentColor 43.5%, currentColor 52.5%, transparent 45.5%);
   pointer-events: none;
 }

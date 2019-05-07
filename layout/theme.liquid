@@ -121,6 +121,7 @@
     {{ 'product-collapse.scss.css' | asset_url | stylesheet_tag }}
     {{ 'product-reviews.scss.css' | asset_url | stylesheet_tag }}
     {{ 'product-videos.scss.css' | asset_url | stylesheet_tag }}
+    {{ 'product-drawer.scss.css' | asset_url | stylesheet_tag }}
   {% endif %}
 
   {% comment %}
@@ -195,7 +196,7 @@
 
   {% include 'google-tag-manager' %}
   {% comment %} {% include '_header--mobile-nav' %} {% endcomment %}
-  <div class="de-PageWrap js-de-PageWrap">
+  <div class="de-PageWrap js-de-PageWrap js-de-Drawer-wrap">
     {% include '_header' %}
 
     {% if settings.ajax_cart_method == "drawer" %}
