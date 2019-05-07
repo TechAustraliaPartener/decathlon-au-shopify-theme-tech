@@ -2,12 +2,8 @@
  * Handle different options for sorting product reviews
  */
 
-import { REVIEW_SORT_SELECT } from './constants';
-import {
-  setReviewsState,
-  getIsDefaultQuery,
-  originalReviewsState
-} from './state';
+import { reviewsSortSelect } from './query-ui';
+import { setReviewsStateForSort, getIsDefaultQuery } from './state';
 import {
   resetDefaultReviewsDisplay,
   getMoreReviews,
@@ -31,10 +27,9 @@ const reviewsSortHandler = event => {
    * Set the correct sort parameters on the state object
    * Also set the page back to the default, initial state
    */
-  setReviewsState({
+  setReviewsStateForSort({
     sort: selectedOption && selectedOption.dataset.sortType,
-    direction: selectedOption && selectedOption.dataset.sortDirection,
-    page: originalReviewsState.page
+    direction: selectedOption && selectedOption.dataset.sortDirection
   });
   /**
    * If the default sort is selected (compared with the page-load default state),
@@ -53,7 +48,6 @@ const reviewsSortHandler = event => {
  * Initialize the change listener for the reviews sorting select element
  */
 export const reviewsSortInit = () => {
-  const reviewsSortSelect = document.querySelector(`.${REVIEW_SORT_SELECT}`);
   reviewsSortSelect &&
     reviewsSortSelect.addEventListener('change', reviewsSortHandler);
 };

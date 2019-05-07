@@ -42,6 +42,11 @@ export const REVIEW_PRELOADED_CLASS = `${JS_PREFIX}${CUSTOMER_REVIEW}-preloaded`
 export const REVIEW_SORT_SELECT = `${JS_PREFIX}${CUSTOMER_REVIEW}-sort`;
 
 /**
+ * The CSS class on reviews rating elements (assigned a star-rating value)
+ */
+export const REVIEW_FILTER = `${JS_PREFIX}${CUSTOMER_REVIEW}-filter`;
+
+/**
  * The CSS ID on a reviews container block
  */
 export const REVIEWS_CONTAINER_SELECTOR = `${CSS_PREFIX}${CUSTOMER_REVIEW}s`;
@@ -74,3 +79,12 @@ export const REVIEWS_BASE_QUERY_PARAMS = {
 export const VERIFIED_PURCHASE_ICON_TEMPLATE_ID = 'verified_purchase_icon';
 export const VOTING_ICON_TEMPLATE_ID = 'helpful_icon';
 export const LOGO_WITHOUT_BACKGROUND_TEMPLATE_ID = 'logo_no_bg';
+
+/**
+ * Element dataset variables
+ */
+
+/**
+ * Star rating value from rows in the review matrix, for filtering
+ */
+export const STAR_RATING = 'starRating';

@@ -10,6 +10,7 @@ import { moreReviewsInit } from './update-ui';
 import { handlebarsInit } from './templating';
 import { reviewsSortInit } from './sorting';
 import { reviewsVoteInit } from './voting';
+import { reviewsFilteringInit } from './filtering';
 
 /**
  * Put all functions that need to run on product-page load here
@@ -24,4 +25,5 @@ export const reviewsInit = () => {
   moreReviewsInit();
   reviewsSortInit();
   reviewsVoteInit();
+  reviewsFilteringInit();
 };

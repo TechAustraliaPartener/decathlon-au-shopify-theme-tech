@@ -68,3 +68,26 @@ export const getIsDefaultQuery = () => {
     originalReviewsState.notes === notes
   );
 };
+
+/**
+ * Set up a query for getting filtered reviews
+ * Resets query pagination, sort, and direction, takes in a `notes` (aka, rating) value for the next query
+ * @param {string|number} notes - A value to use to query for reviews with a particular rating
+ */
+export const setReviewsStateForFilter = notes => {
+  const { sort, direction, page } = originalReviewsState;
+  setReviewsState({ notes, sort, direction, page });
+};
+
+/**
+ * Set up a query for getting sorted reviews
+ * Resets query pagination and notes (aka, ratings filter)
+ * and sets sort and direction variables for the next query
+ * @param {Object} params
+ * @param {string} params.sort - A sort type to set for the next query
+ * @param {string} params.direction - A direction to set for the next query
+ */
+export const setReviewsStateForSort = ({ sort, direction }) => {
+  const { page, notes } = originalReviewsState;
+  setReviewsState({ page, notes, sort, direction });
+};

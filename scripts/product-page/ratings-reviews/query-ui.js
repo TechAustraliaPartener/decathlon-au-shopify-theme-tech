@@ -2,7 +2,11 @@
  * Queries to get different sets of reviews
  */
 
-import { REVIEW_CLASS, REVIEW_PRELOADED_CLASS } from './constants';
+import {
+  REVIEW_CLASS,
+  REVIEW_PRELOADED_CLASS,
+  REVIEW_SORT_SELECT
+} from './constants';
 
 /**
  * Get the NodeList of server-rendered reviews (this will remain static,
@@ -14,7 +18,7 @@ export const prerenderedReviewList = document.querySelectorAll(
 
 /**
  * Get all reviews, loaded from the API or pre-rendered
- * @returns {Object} a NodeList of all reviews
+ * @returns {Object} A NodeList of all reviews
  */
 export const getAllReviews = () =>
   document.querySelectorAll(`.${REVIEW_CLASS}`);
@@ -25,3 +29,10 @@ export const getAllReviews = () =>
  */
 export const getLoadedReviews = () =>
   document.querySelectorAll(`.${REVIEW_CLASS}:not(.${REVIEW_PRELOADED_CLASS})`);
+
+/**
+ * Get the sort select
+ */
+export const reviewsSortSelect = document.querySelector(
+  `.${REVIEW_SORT_SELECT}`
+);

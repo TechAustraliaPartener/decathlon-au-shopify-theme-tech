@@ -7,7 +7,8 @@ import { MORE_REVIEWS_CONTAINER_CLASS, IS_HIDDEN_CLASS } from './constants';
 import {
   prerenderedReviewList,
   getAllReviews,
-  getLoadedReviews
+  getLoadedReviews,
+  reviewsSortSelect
 } from './query-ui';
 import { handlebarsCheck, templateNewReviews } from './templating';
 import { reviewsPerPage, validReviewNumbers } from './template-data';
@@ -187,4 +188,13 @@ export const moreReviewsInit = () => {
   );
   moreReviewsEl &&
     moreReviewsEl.addEventListener('click', moreReviewsRequestHandler);
+};
+
+/**
+ * Resets the review sorting select element to its first option
+ */
+export const resetSort = () => {
+  if (reviewsSortSelect) {
+    reviewsSortSelect.selectedIndex = 0;
+  }
 };

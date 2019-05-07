@@ -51,7 +51,12 @@
         <div class="de-ReviewMatrix-stars-container">
           {% for rating in ratings %}
             {% assign stars_fill = rating.number | times: STAR_RATING_PERCENTAGE_MULTIPLIER %}
-            <div class="de-ReviewMatrix-stars de-u-flex de-u-padRight">
+            {% comment %}
+              Make matrix "row" elements buttons, which will now enable filtering of reviews by rating
+              @TODO - is there anything to be done here for accessibility
+            {% endcomment %}
+            <button class="de-ReviewMatrix-stars js-de-CustomerReview-filter de-u-flex de-u-padRight"
+              data-star-rating="{{ rating.number }}">
               <div class="de-StarRating">
                 <div class="de-StarRating-fill"
                   style="width: {{ stars_fill }}%">
@@ -61,13 +66,14 @@
                   style="position: relative; bottom: 3px;">
                 {{ rating.count }}
               </div>
-            </div>
+            </button>
           {% endfor %}
         </div>
         <div class="de-ReviewMatrix-graph-container de-u-flexAuto">
           {% for rating in ratings %}
             {% assign stars_percentage = rating.count | divided_by: total_ratings_count | times: 100 %}
-            <div class="de-ReviewMatrix-graph">
+            <button class="de-ReviewMatrix-graph js-de-CustomerReview-filter"
+              data-star-rating="{{ rating.number }}">
               <svg height="10px" width="100%">
                 <rect class="total"
                   width="100%"
@@ -80,7 +86,7 @@
                   fill="#0082c3">
                 </rect>
               </svg>
-            </div>
+            </button>
           {% endfor %}
         </div>
       </div>
