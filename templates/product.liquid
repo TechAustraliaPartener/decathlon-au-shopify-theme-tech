@@ -19,59 +19,49 @@
   {%- if tag contains 'Size Chart: ' -%}
     {% assign product_has_size_chart = true %}
   {%- endif -%}
-
 {%- endfor -%}
 
 {% if model_code == blank %}
   {% capture model_code %}{{ product.variants.first.option3 }}{% endcapture %}
 {% endif %}
 
-{% comment %}
-  From existing Decathlon Product template END BLOCK 1
-{% endcomment %}
-
-{% comment %}
-  From existing Decathlon Product template START BLOCK 2
-{% endcomment %}
 <div id="ProductWrap"
-  class="timber-activeProduct {% if product.options.size < 2
-  %}product-singleOption{% endif %}
+     class="timber-activeProduct
+            {% if product.options.size < 2 %}product-singleOption{% endif %}
   itemscope
   itemtype="http://schema.org/Product">
 
   <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
   <meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
 
-  {% comment %}
-    Get first variant, or deep linked one
-  {% endcomment %}
+  {% comment %} Get first variant, or deep linked one {% endcomment %}
   {% assign current_variant = product.selected_or_first_available_variant %}
 
-{% comment %}
-  From existing Decathlon Product template END BLOCK 2
-{% endcomment %}
+  <section aria-labelledby="Section-buybox"
+           class="de-Wrapper de-u-lg-spaceBottom3">
 
-    {% comment %}
-      From existing Decathlon Product template START BLOCK 3
-    {% endcomment %}
-    <div class="de-Wrapper de-u-lg-spaceBottom3">
+    <header class="visually-hidden">
+      <h3 id="Section-buybox">
+        Product Colors and Sizes
+      </h3>
+    </header>
 
-      {% include 'section-clips' %}
+    {% comment %} Breadcrumbs {% endcomment %}
+    <div class="de-u-hidden de-u-md-block">
+      {% include 'breadcrumb' %}
+    </div>
 
-      {% comment %} Breadcrumbs {% endcomment %}
-      <div class="de-u-hidden de-u-md-block">
-        {% include 'breadcrumb' %}
-      </div>
+    <div class="de-u-lg-flex de-u-lg-flexJustifyBetween">
+      {% comment %} Derek's Buy Box markup {% endcomment %}
+      {% comment %} {% include 'product-proto-carousel' %} {% endcomment %}
+      {% comment %} Juma's Dynamic Product Carousel {% endcomment %}
+      {% include 'product-carousel' %}
 
-      <div class="de-u-lg-flex de-u-lg-flexJustifyBetween">
-        <div class="de-ProductCarousel de-ProductCarousel--large">
-          {% include 'product-carousel' %}
-        </div>
-        <div class="ProductBuyBox">
-          {% include 'product-proto-buybox' %}
-        </div>
+      <div class="ProductBuyBox">
+        {% include 'product-proto-buybox' %}
       </div>
     </div>
+
   </section>
 
   {% if product_video.size > 0 %}

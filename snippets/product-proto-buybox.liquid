@@ -1,28 +1,36 @@
+{% comment %} Product Flags {% endcomment %}
 {% comment %}
-  From existing Decathlon `product.liquid` Product template START BLOCK 1
+  {% if product.tags contains 'Innovation' %}
+    <span class="productFlag productFlag--productDetail">Innovation</span>
+  {% endif %}
 {% endcomment %}
 
-  {% comment %} Product Flags {% endcomment %}
-  {% comment %}
-    {% if product.tags contains 'Innovation' %}
-      <span class="productFlag productFlag--productDetail">Innovation</span>
-    {% endif %}
-  {% endcomment %}
-
-{% comment %}
-  From existing Decathlon `product.liquid` Product template END BLOCK 1
-{% endcomment %}
-
-{% comment %} Small Screen Title Lockup {% endcomment %}
+{% comment %} Product Title Lockup {% endcomment %}
 {% include 'product-sm-title-lockup' %}
 
 {% comment %} Small Screen ProductGallery {% endcomment %}
-<div class="de-ProductCarousel de-Wrapper--fullwidth de-u-lg-hidden">
-  {% include 'product-carousel' %}
+<div class="ProductGallery-showcase de-Wrapper--fullwidth de-u-lg-hidden">
   <div class="de-ProductLabel de-ProductLabel--red js-de-ProductLabel
     de-u-lg-hidden de-u-textMedium">
     Last Call
   </div>
+  <img
+    src="https://cdn.shopify.com/s/files/1/1330/6287/products/cf438995-20ba-44e5-8afa-4d5eb628cfcd_1024x1024.jpg"
+    class="de-u-block"
+    alt="">
+  {% comment %} 
+    Show video when 'Watch Video' action is clicked 
+  {% endcomment %}
+  {% if product_video.size > 0 %}
+    <video data-account="3415345270001"
+      data-player="rJxNjfhX"
+      data-embed="default"
+      data-video-id="ref:{{ product_video[0] }}_1"
+      class="video-js de-copyVideo js-de-copyVideo de-u-hidden"
+      controls
+      playsinline>
+    </video>
+  {% endif %}
 </div>
 
   {% comment %}
@@ -108,3 +116,4 @@
   de-u-padTop03">
   <p><span class="de-u-textMedium">Model</span>: 8492907</p>
 </div>
+

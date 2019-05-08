@@ -83,93 +83,105 @@
   {{- variant_option -}}
 {%- endcapture -%}
 
-{%- for images_indexes in all_colors_images_indexes_array -%}
-  {%- assign start_end_index_array = images_indexes | split: ',' -%}
-  {%- assign start_index = start_end_index_array[0] | plus: 0 -%}
-  {%- assign end_index = start_end_index_array[1] | plus: 0 -%}
-  {%- assign color = all_colors_array[forloop.index0] -%}
-  {% comment %}
-    Product images, grouped by color
-  {% endcomment %}
-  <div
-    data-color='{{- color -}}'
-    class='de-CarouselContainer js-de-SlickCarouselContainer {% if color == activeColor %}de-is-active{% endif %}'>
+<div class="de-ProductCarousel de-ProductCarousel--large">
+
+  {%- for images_indexes in all_colors_images_indexes_array -%}
+    {%- assign start_end_index_array = images_indexes | split: ',' -%}
+    {%- assign start_index = start_end_index_array[0] | plus: 0 -%}
+    {%- assign end_index = start_end_index_array[1] | plus: 0 -%}
+    {%- assign color = all_colors_array[forloop.index0] -%}
     {% comment %}
-      Featured image
-    {% endcomment %}
-    <div class='de-CarouselFeature js-de-SlickCarousel js-de-SlickCarouselFeature {% if color == activeColor %}de-is-active{% endif %}'>
-      {%- for product_image in product_images -%}
-        {% capture image_srcset %}
-          {{ product_image | img_url: "320x" }} 320w,
-          {{ product_image | img_url: "480x" }} 480w,
-          {{ product_image | img_url: "640x" }} 640w,
-          {{ product_image | img_url: "800x" }} 800w,
-          {{ product_image | img_url: "960x" }} 960w,
-          {{ product_image | img_url: "1120x" }} 1120w,
-          {{ product_image | img_url: "1280x" }} 1280w,
-          {{ product_image | img_url: "1440x" }} 1440w,
-          {{ product_image | img_url: "1800x" }} 1800w
-        {% endcapture %}
-        {% capture image_sizes %}
-          (max-width: 320px) 320px,
-          (max-width: 480px) 480px,
-          (max-width: 640px) 640px,
-          (max-width: 800px) 800px,
-          (max-width: 960px) 528px,
-          (max-width: 1120px) 640px,
-          (max-width: 1280px) 730px,
-          (max-width: 1440px) 820px,
-          (max-width: 2400px) 1250px
-        {% endcapture %}
-        {%- if forloop.index0 >= start_index and forloop.index0 < end_index -%}
-          <img
-            class='de-CarouselFeature-image js-de-SlickCarouselSlide'
-            {% if color == activeColor and forloop.index0 == start_index %}
-              srcset='{{ image_srcset }}'
-              sizes='{{ image_sizes }}'
-            {% endif %}
-            data-srcset='{{ image_srcset }}'
-            data-sizes='{{ image_sizes }}'
-            >
-        {%- endif -%}
-      {%- endfor -%}
-    </div>
-    {% comment %}
-      Thumbnail images
+      Product images, grouped by color
     {% endcomment %}
     <div
-      class='de-CarouselThumbnail js-de-SlickCarousel js-de-SlickCarouselThumbnail {% if color == activeColor %}de-is-active{% endif %}'
-      data-carousel-color='{{- all_colors_array[forloop.index0] -}}'>
-      {%- for product_image in product_images -%}
-        {% capture image_srcset %}
-          {{ product_image | img_url: "80x" }} 80w,
-          {{ product_image | img_url: "100x" }} 100w,
-          {{ product_image | img_url: "120x" }} 120w,
-          {{ product_image | img_url: "140x" }} 140w,
-          {{ product_image | img_url: "160x" }} 160w,
-          {{ product_image | img_url: "180x" }} 180w,
-          {{ product_image | img_url: "200x" }} 200w,
-          {{ product_image | img_url: "220x" }} 220w,
-          {{ product_image | img_url: "240x" }} 240w
-        {% endcapture %}
-        {% capture image_sizes %}
-          (max-width: 1000px) 80px,
-          (max-width: 1140px) 100px,
-          (max-width: 1300px) 120px,
-          (max-width: 1500px) 140px,
-          (max-width: 1650px) 160px,
-          (max-width: 1850px) 180px,
-          (max-width: 2000px) 200px,
-          (max-width: 2200px) 220px,
-          (max-width: 2400px) 240px
-        {% endcapture %}
-        {%- if forloop.index0 >= start_index and forloop.index0 < end_index -%}
-          <img
-            class='js-de-SlickCarouselSlide de-CarouselThumbnail-image de-SlickSlide de-u-spaceBottom03'
-            data-srcset='{{ image_srcset }}'
-            data-sizes='{{ image_sizes }}'>
-        {%- endif -%}
-      {%- endfor -%}
+      data-color="{{- color -}}"
+      class="de-CarouselContainer
+             {% if color == activeColor %}de-is-active{% endif %}
+             js-de-SlickCarouselContainer">
+      {% comment %}
+        Featured image
+      {% endcomment %}
+      <div class="de-CarouselFeature
+                  {% if color == activeColor %}de-is-active{% endif %}
+                  js-de-SlickCarousel js-de-SlickCarouselFeature">
+        {%- for product_image in product_images -%}
+          {% capture image_srcset %}
+            {{ product_image | img_url: "320x" }} 320w,
+            {{ product_image | img_url: "480x" }} 480w,
+            {{ product_image | img_url: "640x" }} 640w,
+            {{ product_image | img_url: "800x" }} 800w,
+            {{ product_image | img_url: "960x" }} 960w,
+            {{ product_image | img_url: "1120x" }} 1120w,
+            {{ product_image | img_url: "1280x" }} 1280w,
+            {{ product_image | img_url: "1440x" }} 1440w,
+            {{ product_image | img_url: "1800x" }} 1800w
+          {% endcapture %}
+          {% capture image_sizes %}
+            (max-width: 320px) 320px,
+            (max-width: 480px) 480px,
+            (max-width: 640px) 640px,
+            (max-width: 800px) 800px,
+            (max-width: 960px) 528px,
+            (max-width: 1120px) 640px,
+            (max-width: 1280px) 730px,
+            (max-width: 1440px) 820px,
+            (max-width: 2400px) 1250px
+          {% endcapture %}
+          {%- if forloop.index0 >= start_index and forloop.index0 < end_index -%}
+            <img
+              class="de-CarouselFeature-image js-de-SlickCarouselSlide"
+              {% if color == activeColor and forloop.index0 == start_index %}
+                srcset="{{ image_srcset }}"
+                sizes="{{ image_sizes }}"
+              {% endif %}
+              data-srcset="{{ image_srcset }}"
+              data-sizes="{{ image_sizes }}"
+              >
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+      {% comment %}
+        Thumbnail images
+      {% endcomment %}
+      <div
+        class="de-CarouselThumbnail
+               {% if color == activeColor %}de-is-active{% endif %}
+               js-de-SlickCarousel js-de-SlickCarouselThumbnail"
+        data-carousel-color="{{- all_colors_array[forloop.index0] -}}">
+        {%- for product_image in product_images -%}
+          {% capture image_srcset %}
+            {{ product_image | img_url: "80x" }} 80w,
+            {{ product_image | img_url: "100x" }} 100w,
+            {{ product_image | img_url: "120x" }} 120w,
+            {{ product_image | img_url: "140x" }} 140w,
+            {{ product_image | img_url: "160x" }} 160w,
+            {{ product_image | img_url: "180x" }} 180w,
+            {{ product_image | img_url: "200x" }} 200w,
+            {{ product_image | img_url: "220x" }} 220w,
+            {{ product_image | img_url: "240x" }} 240w
+          {% endcapture %}
+          {% capture image_sizes %}
+            (max-width: 1000px) 80px,
+            (max-width: 1140px) 100px,
+            (max-width: 1300px) 120px,
+            (max-width: 1500px) 140px,
+            (max-width: 1650px) 160px,
+            (max-width: 1850px) 180px,
+            (max-width: 2000px) 200px,
+            (max-width: 2200px) 220px,
+            (max-width: 2400px) 240px
+          {% endcapture %}
+          {%- if forloop.index0 >= start_index and forloop.index0 < end_index -%}
+            <img
+              class="de-CarouselThumbnail-image
+                     de-SlickSlide de-u-spaceBottom03
+                     js-de-SlickCarouselSlide"
+              data-srcset="{{ image_srcset }}"
+              data-sizes="{{ image_sizes }}">
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
     </div>
-  </div>
-{%- endfor -%}
+  {%- endfor -%}
+
+</div>
