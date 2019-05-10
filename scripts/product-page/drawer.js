@@ -105,19 +105,12 @@ const keyboardEventHandler = keyboardEvent => {
  *
  * @param {Object} state The state data object
  * @param {boolean} state.isOpen Whether the drawer is open or not
- * @param {string} state.drawerId The drawer ID to perform actions on
  */
-const updateKeyListeners = ({ isOpen, drawerId }) => {
-  const drawerEl = document.getElementById(drawerId);
-
-  if (!drawerEl) {
-    return;
-  }
-
+const updateKeyListeners = ({ isOpen }) => {
   if (isOpen) {
-    drawerEl.addEventListener(KEY_DOWN_EVENT, keyboardEventHandler);
+    document.addEventListener(KEY_DOWN_EVENT, keyboardEventHandler);
   } else {
-    drawerEl.removeEventListener(KEY_DOWN_EVENT, keyboardEventHandler);
+    document.removeEventListener(KEY_DOWN_EVENT, keyboardEventHandler);
   }
 };
 
