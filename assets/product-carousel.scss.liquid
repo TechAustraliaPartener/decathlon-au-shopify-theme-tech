@@ -47,13 +47,13 @@ $breakpoint-lg: 60em;
 
 @media (min-width: $breakpoint-lg) {
   /**
-    * 1. Allows space for .ProductBuyBox,
-    *    which has a flex value of ~43% (ie 100 - 43 = 57).
+    * 1. Allows space for .ProductBuyBox;
+    *    maintains sizing while .de-Drawer is open
     */
 
   .de-ProductCarousel--large {
     display: unset;
-    width: 57%;  /* 1 */
+    width: 55vw;  /* 1 */
   }
 
   .de-CarouselContainer.de-is-active {

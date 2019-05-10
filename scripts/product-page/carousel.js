@@ -118,10 +118,9 @@ const handleWindowResize = () => {
     timeout = setTimeout(() => {
       const $featureCarouselActive = $(FEATURE_CAROUSEL_ACTIVE_SELECTOR);
       const $thumbnailCarouselActive = $(THUMBNAIL_CAROUSEL_ACTIVE_SELECTOR);
-      // Force thumbails to repaint to prevent overflowing
-      $thumbnailCarouselActive.slick('resize');
       // Sync slide index when switching between carousels (desktop vs mobile carousels)
       $featureCarouselActive.slick('slickGoTo', activeSlideIndex);
+      $thumbnailCarouselActive.slick('slickGoTo', activeSlideIndex);
     }, 250);
   });
 };
