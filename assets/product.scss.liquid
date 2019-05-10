@@ -77,6 +77,7 @@ figure {
 
 .de-ProductInfoSection {
   border-top: $border-width-xl solid $color-silver;
+  overflow: hidden;
 }
 
 .de-ProductInfoSection:last-of-type {
@@ -135,6 +136,15 @@ figure {
 
 .de-u-textRed { //* 1 *//
   color: $color-red !important;
+}
+
+.de-u-fullwidth {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
 }
 
 /**

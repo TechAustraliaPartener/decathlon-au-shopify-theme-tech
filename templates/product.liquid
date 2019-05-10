@@ -6,6 +6,12 @@
   For more information on these Scheme.org tags, visit:
     - http://schema.org/docs/gs.html
 
+
+  @TODO: 
+  1. Design Review: review consistent and/or appropriate padding for
+     all sections.
+  2. Design: Introduce a max-width wrapper class or property to existing class.
+
 {% endcomment %}
 
 {% include 'section-clips' %}
@@ -112,28 +118,31 @@
   </section>
 
   <section class="de-ProductInfoSection de-ProductInfoSection--silver
-                  de-u-md-pad"
+                  de-u-pad2"
            aria-labelledby="Section-lifestyle-images">
     <h3 class="de-ProductInfoTitle de-u-md-textGrow3 de-u-lg-textGrow4
                de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
         id="Section-lifestyle-images">
       <span class="visually-hidden">Product Lifestyle</span> Image Gallery
     </h3>
-    <div class="Accordion js-Accordion is-open">
-      <button class="Accordion-header js-Accordion-header de-u-textGrow2">
+      <h3 class="de-u-textGrow2 de-u-md-hidden">
         Image Gallery
-        <span class="Accordion-indicator de-u-textGrow5 de-u-spaceRight06">
-          +
-        </span>
-      </button>
-      <div class="Accordion-content">
-        {% include 'product-carousel-context' %}
+      </h3>
+      <div class="ProductImageGallery de-u-fullwidth de-u-padEnds2">
+        {% comment %} 
+          Both files should exist until `product-image-gallery` has been
+          approved and passed design review. 
+
+          The ability to toggle between these two snippets will make forthcoming
+          reivews easier. 
+        {% endcomment %}
+        {% include 'product-proto-image-gallery' %}
+        {% comment %} {% include 'product-image-gallery' %} {% endcomment %}
       </div>
-    </div>
   </section>
 
   <section class="de-ProductInfoSection
-                  de-u-md-padEnds de-u-md-padSides de-u-md-hidden"
+                  de-u-md-pad de-u-md-hidden"
            aria-labelledby="Section-sizeguide">
     <header>
       <h3 class="visually-hidden" id="Section-sizeguide">
