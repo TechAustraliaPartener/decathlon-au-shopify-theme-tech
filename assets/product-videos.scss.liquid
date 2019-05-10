@@ -1,4 +1,11 @@
 /**
+ * Media Queries
+ */
+
+$breakpoint-lg: 60em;
+
+
+/**
  * 1. Make the video appear square
  * 2. Make the poster appear square
  */
@@ -34,5 +41,11 @@
   }
   .de-thumb {
     padding: 40px 80px;
+  }
+}
+
+@media (min-width: $breakpoint-lg) {
+  .de-copyVideo {
+    display: none;
   }
 }

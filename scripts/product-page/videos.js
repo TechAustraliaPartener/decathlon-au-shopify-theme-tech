@@ -1,5 +1,7 @@
 import $ from 'jquery';
 const videojs = window.videojs;
+// 960 roughly equates to the media query variable $breakpoint-lg
+const LARGE_BREAKPOINT = 960;
 
 // Test if video carousel exists
 if (videojs) {
@@ -118,4 +120,19 @@ if (videojs) {
       players.push(myPlayer);
     });
   }
+
+  /**
+   * Watch for window resize event (debounced), pause gallery video
+   */
+  let timeout = null;
+  $(window).resize(() => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      if ($(window).width() >= LARGE_BREAKPOINT) {
+        const firstVideoPlayer = videojs(players[0].id());
+        // Pause Video
+        firstVideoPlayer.pause();
+      }
+    }, 250);
+  });
 }

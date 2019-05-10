@@ -10,7 +10,7 @@
 
 {% comment %} Small Screen ProductGallery {% endcomment %}
 <div class="ProductGallery-showcase de-Wrapper--fullwidth de-u-lg-hidden">
-  <div class="de-ProductLabel de-ProductLabel--red js-de-ProductLabel
+  <div class="de-ProductLabel de-u-bgRed de-u-textWhite js-de-ProductLabel
     de-u-lg-hidden de-u-textMedium">
     Last Call
   </div>
@@ -18,21 +18,6 @@
     src="https://cdn.shopify.com/s/files/1/1330/6287/products/cf438995-20ba-44e5-8afa-4d5eb628cfcd_1024x1024.jpg"
     class="de-u-block"
     alt="">
-  {% comment %} 
-    Show video when 'Watch Video' action is clicked 
-  {% endcomment %}
-  {% if product_video.size > 0 %}
-    <video data-account="3415345270001"
-      data-player="rJxNjfhX"
-      data-embed="default"
-      data-video-id="ref:{{ product_video[0] }}_1"
-      class="video-js de-copyVideo js-de-copyVideo de-u-hidden"
-      controls
-      playsinline>
-    </video>
-  {% endif %}
-</div>
-
   {% comment %}
     Show video when 'Watch Video' action is clicked
   {% endcomment %}
@@ -46,6 +31,8 @@
       playsinline>
     </video>
   {% endif %}
+</div>
+
 {% comment %} Toggle from image to video {% endcomment %}
 <div class="ProductGallery-controls de-Wrapper--fullwidth de-u-padEnds03
   de-u-bgSilver de-u-lg-hidden">
@@ -116,4 +103,3 @@
   de-u-padTop03">
   <p><span class="de-u-textMedium">Model</span>: 8492907</p>
 </div>
-
