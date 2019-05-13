@@ -193,7 +193,31 @@ const toggleHandler = function(event) {
 };
 
 /**
- * Initializes Drawer functionality
+ * Initialize Drawer toggles
+ *
+ * @param {Element} toggle Drawer toggle element to initialize
+ */
+const initToggle = toggle => {
+  /**
+   * `<a>` toggle elements are progressively-enhanced by JS and should
+   * be treated as buttons when accessing the UI via screen readers.
+   */
+  if (toggle.tagName.toLowerCase() === 'a') {
+    toggle.setAttribute('role', 'button');
+  }
+  /**
+   * JS progressively-enhanced toggles have aria-labels added to them for
+   * a better UX when accessed via screen readers.
+   */
+  toggle.setAttribute('aria-label', toggle.dataset.drawerToggleAriaLabel);
+  // This is cleanup, no longer needed once JS takes over.
+  toggle.removeAttribute('data-drawer-toggle-aria-label');
+
+  toggle.addEventListener(CLICK_EVENT, toggleHandler);
+};
+
+/**
+ * Initialize Drawer
  */
 export const init = () => {
   moduleState.setState({
@@ -202,8 +226,6 @@ export const init = () => {
     wrapperEls: document.querySelectorAll(MAIN_CONTENT_WRAP_SELECTOR)
   });
 
-  // Set up toggles
-  [...document.querySelectorAll(TOGGLE_SELECTOR)].forEach(toggle => {
-    toggle.addEventListener(CLICK_EVENT, toggleHandler);
-  });
+  // Initialize toggles
+  [...document.querySelectorAll(TOGGLE_SELECTOR)].forEach(initToggle);
 };
