@@ -1,28 +1,30 @@
 <div class="productMedia">
   <div class="productVideos u-paddingTopBottom4x">
-	<div class="de-slick--videos js-de-slick--videos">
-    {% for video_id in product_video %}
-        <div class="embedWrapper">
-          <div class="embedContainer">
-            <video data-account="3415345270001" 
-              data-player="rJxNjfhX" 
-              data-embed="default"
-              data-video-id="ref:{{ video_id }}_1"
-              class="video-js"
-              controls
-              playsinline>
-            </video>
+  	<div class="de-slick--videos js-de-slick--videos">
+      {% for video_id in product_video %}
+          <div class="embedWrapper">
+            <div class="embedContainer">
+              <video data-account="3415345270001"
+                data-player="rJxNjfhX"
+                data-embed="default"
+                data-video-id="ref:{{ video_id }}_1"
+                class="video-js"
+                controls
+                playsinline>
+              </video>
+            </div>
           </div>
-        </div>
-    {% endfor %}
-	</div>
-	<div class="de-slick--videos-thumbnails js-de-slick--videos-thumbnails">
-    {% for video_id in product_video %}
-        <div>
-          <img class="de-thumb js-de-thumb-{{ forloop.index }}">
-        </div>
-    {% endfor %}
-	</div>
+      {% endfor %}
+  	</div>
+    {% if product_video.size > 1 %}
+    	<div class="de-slick--videos-thumbnails js-de-slick--videos-thumbnails">
+        {% for video_id in product_video %}
+          <div>
+            <img class="de-thumb js-de-thumb-{{ forloop.index }}">
+          </div>
+        {% endfor %}
+    	</div>
+    {% endif %}
   </div>
 </div>
 <script src="https://players.brightcove.net/3415345270001/rJxNjfhX_default/index.min.js"></script>
