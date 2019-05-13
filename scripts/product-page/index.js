@@ -12,7 +12,7 @@ import {
   $SizeSwatches
 } from './size-swatches';
 import './videos';
-import './proto-accordion';
+import { init as accordionInit } from './accordion';
 import { reviewsInit } from './ratings-reviews';
 import { updateOptionStates } from './option-states';
 import { updateUI as updateMasterSelectUI } from './master-select';
@@ -79,6 +79,7 @@ const init = () => {
   drawerInit();
   carouselInit();
   carouselContextInit();
+  accordionInit();
 };
 
 init();
