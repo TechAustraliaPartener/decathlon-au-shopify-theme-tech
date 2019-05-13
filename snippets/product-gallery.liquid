@@ -1,0 +1,51 @@
+{% comment %} Small Screen ProductGallery {% endcomment %}
+<div class="ProductGallery-showcase de-Wrapper--fullwidth de-u-lg-hidden">
+  <div class="de-ProductLabel de-ProductLabel--red js-de-ProductLabel
+    de-u-lg-hidden de-u-textMedium">
+    Last Call
+  </div>
+  <img
+    src="https://cdn.shopify.com/s/files/1/1330/6287/products/cf438995-20ba-44e5-8afa-4d5eb628cfcd_1024x1024.jpg"
+    class="de-u-block"
+    alt="">
+  {% comment %} 
+    Show video when 'Watch Video' action is clicked 
+  {% endcomment %}
+  {% if product_video.size > 0 %}
+    <video data-account="3415345270001"
+      data-player="rJxNjfhX"
+      data-embed="default"
+      data-video-id="ref:{{ product_video[0] }}_1"
+      class="video-js de-copyVideo js-de-copyVideo de-u-hidden"
+      controls
+      playsinline>
+    </video>
+  {% endif %}
+</div>
+{% comment %} Toggle from image to video {% endcomment %}
+<div class="ProductGallery-controls de-Wrapper--fullwidth de-u-padEnds03
+  de-u-bgSilver de-u-lg-hidden">
+  <div class="de-u-padSides de-u-textSizeBase de-u-flex
+    de-u-flexAlignItemsCenter de-u-flexJustifyBetween">
+    {% if product_video.size > 0 %}
+      <div class="js-de-toggle-media">
+        <button class="de-u-flex de-u-flexAlignItemsCenter de-u-textBlue js-de-watch-video">
+          {% include 'icon-media-play'
+            with class: 'de-Icon de-u-textGrow3 de-u-spaceRight06' %}
+          Watch Video
+        </button>
+        <button class="de-u-hidden de-u-flex
+        de-u-flexAlignItemsCenter de-u-textBlue js-de-view-images">
+          {% include 'icon-camera'
+            with class: 'de-Icon de-u-textGrow3 de-u-spaceRight06' %}
+          View Images
+        </button>
+      </div>
+    {% endif %}
+    <div class="ProductGallery-count de-u-flex de-u-flexAlignItemsCenter">
+      {% include 'icon-camera'
+        with class: 'de-Icon de-u-textGrow3 de-u-spaceRight06' %}
+      3/6
+    </div>
+  </div>
+</div>

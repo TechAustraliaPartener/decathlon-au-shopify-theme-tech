@@ -1,5 +1,3 @@
-<h3>Size Swatches:</h3>
-
 {% assign option_type = 'size' %}
 
 {% capture sizes %}
@@ -16,7 +14,6 @@
 
 {% assign all_sizes = sizes | split: ',' %}
 
-<div class="wrapper">
   <div class="de-u-flex de-u-flexAlignItemsCenter de-u-flexJustifyBetween">
     <div>
       <strong>Size: </strong>
@@ -34,7 +31,6 @@
       Size Guide
     </a>
   </div>
-</div>
 
 <div class="de-SwatchObjects de-Wrapper--fullwidth de-u-padTop06 de-u-padBottom js-de-SizeSwatches">
   {% for size in all_sizes %}

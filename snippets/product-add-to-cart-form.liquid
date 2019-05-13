@@ -1,0 +1,47 @@
+{% comment %}
+  ID addToCartForm is a selector for the ajax cart plugin
+{% endcomment %}
+<form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm" class="form-vertical">
+  {% comment %}
+    Add product variants as a dropdown.
+    - By default, each variant (or combination of variants) will display as its own <option>
+    - To separate these into multiple steps, which we suggest, use option_selection.js (see below)
+
+    You can leverage jQuery to add a callback on page load and each time the select element changes:
+    - Include option_selection.js (as seen at the bottom of this file)
+    - This allows you to use JavaScript anytime the variant dropdown changes
+    - This also separates out your variant options (ie. size, color, etc.) to separate select elements
+
+    For more information on products with multiple options, visit:
+    - http://docs.shopify.com/support/your-website/themes/can-i-make-my-theme-use-products-with-multiple-options#update-product-liquid
+  {% endcomment %}
+  <select name="id" id="productSelect" class="product-single__variants visually-hidden">
+    {% for variant in product.variants %}
+      {% if variant.available %}
+        {% comment %}
+          Note: if you use option_selection.js, your <select> tag will be overwritten, meaning what you have inside <option> will not reflect what you coded below.
+        {% endcomment %}
+        <option {% if variant == product.selected_or_first_available_variant %} selected {% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money_with_currency }}</option>
+      {% else %}
+        <option disabled>
+          {{ variant.title }} - {{ 'products.product.sold_out' | t }}
+        </option>
+      {% endif %}
+    {% endfor %}
+  </select>
+
+  {% comment %} Quantity Rocker {% endcomment %}
+  <div class="visually-hidden">
+    <label for="Quantity" class="quantity-selector">{{ 'products.product.quantity' | t }}</label>
+    <input type="number" id="Quantity" name="quantity" value="1" min="1" class="quantity-selector">
+  </div>
+
+  <div class="de-ProductPrice de-u-padBottom06 de-u-padTop de-u-textMedium de-u-flex de-u-flexAlignItemsEnd">
+    <span class="de-u-textRed de-u-lineHeight2 de-u-textGrow2 de-u-padLeft2 de-u-lg-padLeftNone js-de-validation-message"></span>
+  </div>
+  <div class="js-de-AddtoCart de-u-spaceBottom2 de-u-flex">
+    <button type="submit" name="add" id="AddToCart" class="btn js-de-AddtoCart-btn btn--fill de-u-sizeFull de-u-textGrow3">
+      <span id="AddToCartText" class="js-de-AddtoCart-text">{{ 'products.product.add_to_cart' | t }}</span>
+    </button>
+  </div>
+</form>

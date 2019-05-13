@@ -1,5 +1,3 @@
-<h3>Color Swatches:</h3>
-
 {% assign option_type = 'color' %}
 
 {% capture colors %}
@@ -17,18 +15,14 @@
 
 {% assign all_colors = colors | split: ',' %}
 
-<div class="wrapper">
-  <div class="de-u-flex de-u-flexAlignItemsCenter de-u-flexJustifyBetween">
-    <div>
-      <strong>Color: </strong>
-      <span class="de-u-textDarkGray de-u-textMedium js-de-ColorInfo">
-        Select a color
-      </span>
-    </div>
-  </div>
+<div class="de-u-spaceTop03">
+  <strong>Color: </strong>
+  <span class="de-u-textDarkGray de-u-textMedium js-de-ColorInfo">
+    Select a color
+  </span>
 </div>
 
-<div class="de-SwatchContainer js-de-ColorSwatches de-SwatchObjects de-Wrapper--fullwidth de-u-padTop06 de-u-padBottom">
+<div class="de-SwatchObjects de-Wrapper--fullwidth de-u-padTop06 de-u-padBottom js-de-ColorSwatches">
   {% for color in all_colors %}
     {% assign option_thumb = false %}
     {% assign clean_color = color | strip %}
@@ -44,10 +38,14 @@
       {% if option_thumb != false %}{% break %}{% endif %}
     {% endfor %}
       <button
-        class="de-SwatchObjects-item de-SwatchObjects--color js-de-ColorSwatches-option de-ColorSwatches-color--{{ clean_color }}{% if option_thumb == false %} de-ColorSwatches-noThumb{% endif %}"
+        class="de-SwatchObjects-item de-SwatchObjects--color js-de-ColorSwatches-option de-ColorSwatches-color"
         value="{{ clean_color }}">
         <span class="de-u-hiddenVisually">Color: {{ clean_color }}</span>
-        {% if option_thumb != false %}<img src="{{ option_thumb }}" alt="">{% endif %}  
+        {% if option_thumb != false %}
+          <img src="{{ option_thumb }}" alt="">
+        {% else %}
+          <div class="de-SwatchObjects-noimage option--color-{{ clean_color | downcase }}"></div>
+        {% endif %}
       </button>
   {% endfor %}
 </div>

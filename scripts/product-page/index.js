@@ -16,6 +16,11 @@ import { init as accordionInit } from './accordion';
 import { reviewsInit } from './ratings-reviews';
 import { updateOptionStates } from './option-states';
 import { updateUI as updateMasterSelectUI } from './master-select';
+import { updateUI as updatePriceUI } from './price';
+import {
+  init as addToCartInit,
+  updateUI as updateAddToCartUI
+} from './add-to-cart';
 import { init as drawerInit } from './drawer';
 
 /**
@@ -55,12 +60,16 @@ const updateUI = state => {
   const { color, size } = state;
 
   /**
-   * Only update the MasterSelect if both size & color have been set.
+   * Update the MasterSelect and UI displays if both size & color have been set.
    * The MasterSelect `<select>` input uses variant IDs as its values.
    * We can only get a variant ID when we have both size & color.
    */
   if (color && size) {
     updateMasterSelectUI(state);
+    updatePriceUI(state);
+    updateAddToCartUI(state);
+    // @todo create module to update product model code
+    // UpdateModelCodeUI(state);
   }
 
   updateOptionStates(state);
@@ -79,6 +88,7 @@ const init = () => {
   drawerInit();
   carouselInit();
   carouselContextInit();
+  addToCartInit();
   accordionInit();
 };
 

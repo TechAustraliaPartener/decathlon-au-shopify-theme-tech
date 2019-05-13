@@ -48,20 +48,38 @@ export const IS_SOLD_OUT_TAG = 'EndOfLife';
 /**
  * CSS Classes
  */
-
 /**
- * The CSS classes used to update the UI to an "active" or "unavailable" state
+ * The CSS classes used to update the UI on variant changes
  */
 export const IS_ACTIVE_CLASS = `${CSS_PREFIX}is-active`;
 export const IS_OUT_OF_STOCK_CLASS = `${CSS_PREFIX}is-outofstock`;
 export const IS_SOLD_OUT_CLASS = `${CSS_PREFIX}is-soldout`;
-
+export const VALIDATION_MESSAGE_CLASS = `${JS_PREFIX}validation-message`;
+export const ADD_TO_CART_CLASS = `${JS_PREFIX}AddtoCart`;
+export const PRICE_CLASS = `${JS_PREFIX}ProductPrice`;
+export const COMPARE_PRICE_CLASS = `${JS_PREFIX}ComparePrice-text`;
 /**
  * The CSS utility class for visibly hiding elements
  */
 export const IS_HIDDEN_CLASS = `${CSS_UTILITY_PREFIX}hidden`;
 
 /**
+ * TEXT CONSTANTS
+ */
+
+/**
+ * Text used to update UI elements
+ */
+
+export const PRODUCT_PAGE_COPY = {
+  ATC_AVAILABLE: 'Add to Cart',
+  ATC_SOLD_OUT: 'Sold Out',
+  ATC_OUT_OF_STOCK: 'Get Notified When Available',
+  VALIDATION_SOLD_OUT: 'Sold Out',
+  VALIDATION_OUT_OF_STOCK: 'Out of Stock'
+};
+
+/*
  * CSS class that sets content to a fixed (no scroll) state
  */
 export const FIXED_CLASS = `${CSS_PREFIX}content-is-fixed`;

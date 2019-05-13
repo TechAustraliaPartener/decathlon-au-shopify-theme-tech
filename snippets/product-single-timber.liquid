@@ -12,7 +12,7 @@
       Create thumbnails if we have more than one product image
     {% endcomment %}
     {% if product.images.size > 1 %}
-      <ul class="product-single__thumbnails grid-uniform" id="ProductThumbs">
+      <ul class="product-single__thumbnails grid-uniform visually-hidden" id="ProductThumbs">
 
         {% for image in product.images %}
           <li class="grid__item one-quarter">
@@ -24,16 +24,28 @@
 
       </ul>
     {% endif %}
+  </div>
+</div>
 
+<div class="ProductBuyBox">
+    <div class="de-ProductTitleLockup de-u-lg-padBottom">
+      <h1 class="de-u-textGrow2 de-u-textMedium" itemprop="name">{{ product.title }}</h1>
+      <div class="de-ProductTitleLockup-price de-u-hide de-u-lg-block">
+          <div class="de-ProductPrice de-u-textMedium de-u-flex de-u-flexAlignItemsEnd">
+            <span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
+            <div id="ProductPrice" class="de-u-textGrow6 de-u-lineHeight1" itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
+              {{ current_variant.price | money }}
+            </div>
+          
+            <span class="visually-hidden">{{ 'products.general.sale_price' | t }}</span>
+            <div id="ComparePrice" class="de-u-textGrow2 de-u-padLeft de-u-lineHeight2">
+              <del>{{ current_variant.compare_at_price | money }}</del>
+            </div>
+          </div>
+        </div>
+    </div>
     {% include 'product-color-swatches' %}
     {% include 'product-size-swatches' %}
-
-  </div>
-
-  <div class="">
-
-    <h1 itemprop="name">{{ product.title }}</h1>
-
     <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
       <meta itemprop="priceCurrency" content="{{ shop.currency }}">
 
@@ -60,12 +72,10 @@
         <select name="id" id="productSelect" class="product-single__variants">
           {% for variant in product.variants %}
             {% if variant.available %}
-
               {% comment %}
                 Note: if you use option_selection.js, your <select> tag will be overwritten, meaning what you have inside <option> will not reflect what you coded below.
               {% endcomment %}
               <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money_with_currency }}</option>
-
             {% else %}
               <option disabled="disabled">
                 {{ variant.title }} - {{ 'products.product.sold_out' | t }}
@@ -74,29 +84,21 @@
           {% endfor %}
         </select>
 
-        <span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
-        <span id="ProductPrice" class="h2" itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
-          {{ current_variant.price | money }}
-        </span>
-
-        {% if product.compare_at_price_max > product.price %}
-          <span class="visually-hidden">{{ 'products.general.sale_price' | t }}</span>
-          <p id="ComparePrice">
-            {{ 'products.product.compare_at' | t }} {{ current_variant.compare_at_price | money }}
-          </p>
-        {% endif %}
-
         <label for="Quantity" class="quantity-selector">{{ 'products.product.quantity' | t }}</label>
         <input type="number" id="Quantity" name="quantity" value="1" min="1" class="quantity-selector">
-
-        <button type="submit" name="add" id="AddToCart" class="btn">
-          <span id="AddToCartText">{{ 'products.product.add_to_cart' | t }}</span>
-        </button>
+        <div class="de-ProductPrice de-u-padBottom06 de-u-padTop de-u-textMedium de-u-flex de-u-flexAlignItemsEnd">
+          <div class="de-u-textRed de-u-lineHeight2 de-u-textGrow2 de-u-padLeft2 de-u-lg-padLeftNone js-de-validation-message"></div>
+        </div>
+        <div class="js-de-AddtoCart de-AddtoCart de-u-spaceBottom2 de-u-flex">
+          <button type="submit" name="add" id="AddToCart" class="btn btn--fill de-u-sizeFull de-u-textGrow3">
+            <span id="AddToCartText">{{ 'products.product.add_to_cart' | t }}</span>
+          </button>
+        </div>
       </form>
-
     </div>
   </div>
 </div>
+
 {% comment %}
   From Shopify Timber Product template END BLOCK 2
 {% endcomment %}

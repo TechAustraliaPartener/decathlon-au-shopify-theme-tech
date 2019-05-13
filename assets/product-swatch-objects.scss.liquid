@@ -149,14 +149,20 @@ $breakpoint-lg: 60em;
  */
 
 .de-SwatchObjects--color {
-  display: flex;
+  display: block;
   border: $border-width-sm solid $color-white;
+  height: 100%;
   padding: 0.5em;
 }
 
 .de-SwatchObjects--color:focus:not(.de-is-active) {
   outline: $border-width-md solid $color-blue;
   outline-offset: -4px;
+}
+
+.de-SwatchObjects-noimage {
+    width: 100%;
+    height: 100%; /* add this property*/
 }
 
 /**

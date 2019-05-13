@@ -61,13 +61,17 @@
       {% comment %} Derek's Buy Box markup {% endcomment %}
       {% comment %} {% include 'product-proto-carousel' %} {% endcomment %}
       {% comment %} Juma's Dynamic Product Carousel {% endcomment %}
-      {% include 'product-carousel' %}
-
-      <div class="ProductBuyBox">
-        {% include 'product-proto-buybox' %}
+        <div class="de-ProductCarousel de-ProductCarousel--large">
+          {% include 'product-carousel' %}
+        </div>
+        <div class="ProductBuyBox">
+          {% comment %}
+            TODO: Remove prototype reference when no longer needed for buy box dev
+            {% include 'product-proto-buybox' %}
+          {% endcomment %}
+          {% include 'product-buybox' %}
+        </div>
       </div>
-    </div>
-
   </section>
 
   {% if product_video.size > 0 %}
@@ -239,8 +243,6 @@
   </section>
 
 </div>
-
-{% include 'product-single-timber' %}
 
 {% comment %}
 <div class="product-description rte" itemprop="description">
