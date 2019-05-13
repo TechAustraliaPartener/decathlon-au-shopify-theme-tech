@@ -86,56 +86,6 @@ $breakpoint-xl: 80em;
   right: 0;
 }
 
-/*
- * ProductGallery
- */
-
-.ProductGallery {
-  display: flex;
-  height: 100%;
-  position: relative;
-  width: 100%;
-}
-
-.ProductGallery--large {
-  display: none;
-}
-
-@media (min-width: $breakpoint-lg) {
-  .ProductGallery--large {
-    display: flex;
-    flex: 0 1 auto;
-  }
-}
-
-.ProductGallery-thumbnails {
-  height: 100%;
-  overflow-y: scroll;
-  padding-right: 1rem;
-  position: absolute;
-  width: 16%;
-  -webkit-overflow-scrolling: touch;
-}
-
-.ProductGallery-thumbnails::-webkit-scrollbar {
-  display: none;
-}
-
-.ProductGallery-showcase {
-  position:relative;
-}
-
-@media (min-width:$breakpoint-lg) {
-  .ProductGallery-showcase {
-    margin-left: 17%;
-    width: 100%;
-  }
-}
-
-.GalleryImage {
-  width: 100%;
-}
-
 /**
  * Product Buy Box
  * 1. 43.333% is a magical number that allows the add to cart button to

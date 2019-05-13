@@ -1,0 +1,136 @@
+/**
+ * @TODO
+ * This CSS will be copied/pasted into `product.scss.liquid` once this work
+ * is complete
+ */
+
+/**
+ * Color Palette
+ *
+ * Variable names are based on similar CSS extended color keyword values.
+ *
+ * @see https://www.w3.org/TR/2018/REC-css-color-3-20180619/#svg-color
+ */
+
+$color-black: #2a2b2c;
+$color-blue: #0082c3;
+$color-darkgray: #464646;
+$color-gray: #acb3b8;
+$color-lime: #cbfb00;
+$color-silver: #f3f3f3;
+$color-white: #fff;
+$color-red: #e53322;
+
+/**
+ * Border Width
+ */
+
+$border-width-sm: 1px;
+$border-width-md: 2px;
+$border-width-lg: 3px;
+$border-width-xl: 6px;
+
+/**
+ * Media Queries
+ */
+
+$breakpoint-sm: 30em;
+$breakpoint-md: 40em;
+$breakpoint-lg: 60em;
+$breakpoint-xl: 80em;
+
+/**
+ * @pattern ProductImageViewer
+ * Consider converting this into a pattern in the future.
+ *
+ * @TODO:
+ * 1. Add comments and pattern description
+ * 
+ * 1. 48 pixels is an ideal touch target size for touch interfaces. 
+ *    @see https://developers.google.com/web/fundamentals/accessibility/accessible-styles
+ */
+
+$ProductImageViewer-controls-height: 48px;
+
+.de-ProductImageViewer {
+  display: flex;
+  flex: 0 1 auto;
+  height: 100%;
+  margin-bottom: $ProductImageViewer-controls-height;
+  position: relative;
+  width: 100%;
+}
+@media (min-width: $breakpoint-lg) {
+  .de-ProductImageViewer--simple {
+    display: none;
+  }
+}
+
+.de-ProductImageViewer--complex {
+  display: none;
+}
+
+@media (min-width: $breakpoint-lg) {
+  .de-ProductImageViewer--complex {
+    display: flex;
+  }
+
+  .de-ProductImageViewer--complex .de-ProductImageViewer-controls {
+    bottom: calc( 0 - $ProductImageViewer-controls-height);
+    position: absolute;
+    width: 100%;
+  }
+}
+
+/**
+ * 1. Remaining width after calculating with of `de-ProductImageViewer-spotlight`
+      and `ProductBuyBox`.
+ */
+
+.de-ProductImageViewer-thumbnails {
+  height: 100%;
+  overflow-y: scroll;
+  padding-right: 1rem;
+  position: absolute;
+  -webkit-overflow-scrolling: touch;
+  width: 16%; /* 1 */
+  z-index: 1; 
+}
+
+/**
+ * 1. The second step the the Decathlon pattern library modular scale
+ */
+
+.de-ProductImageViewer-source {
+  display: block;
+  margin-bottom: 1.46rem; /* 1 */
+}
+
+.de-ProductImageViewer-source:last-of-type {
+  margin-bottom: 0;
+}
+
+.de-ProductImageViewer-spotlight {
+  position: relative;
+}
+
+/** 
+ * 1. Positions element appropriately as to not overlap with the absolutely 
+ *    positioned `de-ProductImageViewer-thumbnails` element
+ */
+
+@media (min-width:$breakpoint-lg) {
+  .de-ProductImageViewer-spotlight {
+    margin-left: 17%; /* 1 */
+    width: 100%;
+  }
+}
+
+.de-ProductImageViewer-featuredImage {
+  display: block;
+  width: 100%;
+}
+
+.de-ProductImageViewer-controls {
+  height: $ProductImageViewer-controls-height;
+}
