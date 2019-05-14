@@ -12,19 +12,7 @@
       {% include brand_logo_filename
         with class: 'de-LogoSportsBrand' %}
     </div>
-
-    {% comment %}
-      @TODO - remove - this was already commented out, but is a reference for
-      how this older snippet was to be included
-
-      {% include 'product-grid-item--rating',
-      rating_adtl_classes: ' productDescription-rating',
-      rating: product.metafields.ratings.product_rating
-      %}
-    {% endcomment %}
-    <button class="de-ProductTitleLockup-rating de-u-size1of2 de-u-flex de-u-flexJustifyEnd">
-      {% include 'product-rating--stars-total' %}
-    </button>
+    {% include 'product-rating-reviews-link' %}
   </div>
   <h1 class="de-u-textGrow2 de-u-textMedium" itemprop="name">{{ product.title }}</h1>
   <div class="de-ProductTitleLockup-price">
