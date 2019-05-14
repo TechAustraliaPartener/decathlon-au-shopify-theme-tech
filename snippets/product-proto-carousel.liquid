@@ -3,31 +3,29 @@
   1. Improve VoiceOver navigation
   2. Improve keyboard navigation
 {% endcomment %}
-<div class="de-ProductImageViewer de-ProductImageViewer--complex">
-  <div class="de-ProductImageViewer-thumbnails">
-    {% for i in (1..16) %}
-      <img
-        class="de-ProductImageViewer-source"
-        src="https://cdn.shopify.com/s/files/1/1330/6287/products/00164127-432c-4479-b71b-04d30eae0301_400x400.jpg"
-        alt="">
-    {% endfor %}
+<div class="de-ProductImageViewer-thumbnails">
+  {% for i in (1..16) %}
+    <img
+      class="de-ProductImageViewer-source"
+      src="https://cdn.shopify.com/s/files/1/1330/6287/products/00164127-432c-4479-b71b-04d30eae0301_400x400.jpg"
+      alt="">
+  {% endfor %}
+</div>
+<div class="de-ProductImageViewer-spotlight">
+  <div>
+    <img
+      class="de-ProductImageViewer-featuredImage"
+      src="https://cdn.shopify.com/s/files/1/1330/6287/products/cf438995-20ba-44e5-8afa-4d5eb628cfcd_1024x1024.jpg"
+      alt="">
   </div>
-  <div class="de-ProductImageViewer-spotlight">
-    <div>
-      <img
-        class="de-ProductImageViewer-featuredImage"
-        src="https://cdn.shopify.com/s/files/1/1330/6287/products/cf438995-20ba-44e5-8afa-4d5eb628cfcd_1024x1024.jpg"
-        alt="">
-    </div>
-    <div class="de-ProductImageViewer-controls
-                de-u-flex de-u-flexAlignItemsCenter de-u-flexJustifyEnd">
-      <div class="de-ProductImageViewer-count 
-                  de-u-flex de-u-flexAlignItemsCenter
-                  de-u-textSizeBase">
-        {% include 'icon-camera'
-          with class: 'de-Icon de-u-textGrow3 de-u-spaceRight06' %}
-        3/6
-      </div>
+  <div class="de-ProductImageViewer-controls
+              de-u-flex de-u-flexAlignItemsCenter de-u-flexJustifyEnd">
+    <div class="de-ProductImageViewer-count 
+                de-u-flex de-u-flexAlignItemsCenter
+                de-u-textSizeBase">
+      {% include 'icon-camera'
+        with class: 'de-Icon de-u-textGrow3 de-u-spaceRight06' %}
+      3/6
     </div>
   </div>
 </div>
