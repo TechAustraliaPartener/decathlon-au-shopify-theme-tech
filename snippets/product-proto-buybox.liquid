@@ -10,15 +10,15 @@
 
 {% comment %} Small Screen ProductGallery {% endcomment %}
 <div class="de-ProductImageViewer--simple de-Wrapper--fullwidth">
-  <div class="de-ProductLabel 
+  <div class="de-ProductLabel
               de-u-bgRed de-u-textWhite de-u-lg-hidden de-u-textMedium
               js-de-ProductLabel">
     Last Call
   </div>
-  <img
-    src="https://cdn.shopify.com/s/files/1/1330/6287/products/cf438995-20ba-44e5-8afa-4d5eb628cfcd_1024x1024.jpg"
-    class="de-ProductImageViewer-featuredImage"
-    alt="">
+
+  {% comment %} Product Image Carousel {% endcomment %}
+  {% include 'product-carousel' %}
+
   {% comment %}
     Show video when 'Watch Video' action is clicked
   {% endcomment %}
@@ -35,21 +35,21 @@
 </div>
 
 {% comment %} Toggle from image to video {% endcomment %}
-<div class="de-ProductImageViewer-controls 
+<div class="de-ProductImageViewer-controls
             de-Wrapper de-Wrapper--fullwidth
             de-u-flex de-u-flexJustifyBetween
             de-u-bgSilver de-u-lg-hidden">
-  
+
     {% if product_video.size > 0 %}
       <div class="de-u-flex js-de-toggle-media">
-        <button class="de-u-flex de-u-flexAlignItemsCenter 
+        <button class="de-u-flex de-u-flexAlignItemsCenter
                        de-u-textBlue de-u-textMedium de-u-textSizeBase
                        js-de-watch-video">
           {% include 'icon-media-play'
             with class: 'de-Icon de-u-textGrow3 de-u-spaceRight06' %}
           Watch Video
         </button>
-        <button class="de-u-hidden de-u-flex de-u-flexAlignItemsCenter 
+        <button class="de-u-hidden de-u-flex de-u-flexAlignItemsCenter
                        de-u-textBlue de-u-textMedium de-u-textSizeBase
                        js-de-view-images">
           {% include 'icon-camera'
@@ -58,7 +58,7 @@
         </button>
       </div>
     {% endif %}
-    <div class="de-ProductImageViewer-count 
+    <div class="de-ProductImageViewer-count
                 de-u-flex de-u-flexAlignItemsCenter
                 de-u-textSizeBase">
       {% include 'icon-camera'
@@ -79,8 +79,8 @@
   @TODO - can I make de-ProductPrice more reusable (inventory not needed in
   title lockup usage)
 {% endcomment %}
-<div class="de-ProductPrice 
-            de-u-padBottom06 de-u-padTop de-u-textMedium 
+<div class="de-ProductPrice
+            de-u-padBottom06 de-u-padTop de-u-textMedium
             de-u-flex de-u-flexAlignItemsEnd">
   <div class="de-u-flex de-u-lg-hidden de-u-flexAlignItemsEnd">
     <div class="de-u-textGrow6 de-u-lineHeight1">$45.00</div>
@@ -99,7 +99,7 @@
   {% comment %} <div class="de-u-hidden de-u-md-inlineBlock de-u-md-spaceRight2">
     <input type="number" class="de-AddToCartQty-input">
   </div> {% endcomment %}
-  <button class="btn btn--fill 
+  <button class="btn btn--fill
                  de-u-sizeFull de-u-textGrow3">
     <span>Add to cart</span>
   </button>

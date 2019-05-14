@@ -4,12 +4,12 @@
     de-u-lg-hidden de-u-textMedium">
     Last Call
   </div>
-  <img
-    src="https://cdn.shopify.com/s/files/1/1330/6287/products/cf438995-20ba-44e5-8afa-4d5eb628cfcd_1024x1024.jpg"
-    class="de-u-block"
-    alt="">
-  {% comment %} 
-    Show video when 'Watch Video' action is clicked 
+
+  {% comment %} Product Image Carousel {% endcomment %}
+  {% include 'product-carousel' %}
+  
+  {% comment %}
+    Show video when 'Watch Video' action is clicked
   {% endcomment %}
   {% if product_video.size > 0 %}
     <video data-account="3415345270001"

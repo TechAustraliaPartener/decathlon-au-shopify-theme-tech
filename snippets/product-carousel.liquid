@@ -83,8 +83,8 @@
   {{- variant_option -}}
 {%- endcapture -%}
 
-<div class="de-ProductCarousel de-ProductCarousel--large">
 
+<div class="de-ProductCarousel {% if class %}{{ class }}{% endif %}">
   {%- for images_indexes in all_colors_images_indexes_array -%}
     {%- assign start_end_index_array = images_indexes | split: ',' -%}
     {%- assign start_index = start_end_index_array[0] | plus: 0 -%}
