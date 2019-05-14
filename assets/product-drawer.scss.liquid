@@ -5,7 +5,7 @@
  * @see https://www.w3.org/TR/2018/REC-css-color-3-20180619/#svg-color
  */
 
-$color-gray: #ACB3b8;
+$color-gray: ACB3B8;
 $color-light-gray: rgba(172, 179, 184, 0.5);
 $color-white: #FFF;
 
@@ -17,11 +17,15 @@ $border-width-sm: 1px;
 
 /**
  * Transitions
+ *
+ * 1. $transition-speed-normal value must match the value in
+ *    associated JS (in milliseconds, with setTimeout) for transition duration
+ *    @see scripts/product-page/drawer.js
  */
 
-$transition-speed-normal: 0.3s;
+$transition-speed-normal: 0.3s; /* 1 */
 $transition-easing-snappy: ease-in;
-$transition-easing-smooth: cubic-bezier(1.0, 0.5, 0.8, 1.0);
+$transition-easing-smooth: cubic-bezier(1, 0.5, 0.8, 1);
 
 /**
  * Sizes
@@ -58,7 +62,12 @@ $header-height: 46px;
  *
  */
 
-.de-Drawer {
+/**
+ * Apply these properties to drawer content that isn't currently being
+ * displayed in regular page flow
+ */
+
+.de-Drawer:not(.de-is-inPageFlow) {
   background-color: $color-white;
   height: 100%;
   left: 0;
@@ -72,6 +81,41 @@ $header-height: 46px;
   z-index: 2000;
 }
 
+/**
+ * Disable timed transitions for drawers that will show
+ * content also shown in regular page flow.
+ * The extra class applied to these drawers will be managed at the appropriate
+ * time by JavaScript
+ *
+ * Allows the "displays_in_page_flow" content option to transition smoothly when opening
+ * and closing, same as the standard drawer (whose position is never switched to
+ * "static")
+ *
+ * @TODO - Look at update to replace classname '.de-has-conditionalTransition'
+ * 1. A full set of drawer state classes ('is-closed,' 'is-opening,' 'is-open,' 'is-closing')
+ * 2. A meaningful modified drawer classname, e.g., '.de-Drawer--displays-in-page'
+ * .de-Drawer.de-Drawer--displays-in-page {
+ *   transition: all 0s;
+ *  }
+ * .de-Drawer.de-Drawer--displays-in-page.de-is-closing,
+ * .de-Drawer.de-Drawer--displays-in-page.de-is-open {
+ *   transition: all $transition-speed-normal;
+ * }
+ */
+
+.de-Drawer.de-has-conditionalTransition {
+  transition: all 0s;
+}
+
+/**
+ * Re-enable default transition duration for the "displays_in_page_flow" drawer
+ * option, when also in active (open) state
+ */
+
+.de-Drawer.de-has-conditionalTransition.de-is-active {
+  transition: all $transition-speed-normal;
+}
+
 /*
  * 1. When "active", slide the component into the viewport
  */
@@ -79,6 +123,15 @@ $header-height: 46px;
 .de-Drawer.de-is-active {
   opacity: 1;
   transform: translateX(0); /* 1 */
+}
+
+/*
+ * Switch to static positioning for keeping drawer content in page flow, when
+ * using the is-in-page-flow option
+ */
+
+.de-Drawer.de-is-inPageFlow {
+  position: static;
 }
 
 .de-Drawer-header {
@@ -92,6 +145,14 @@ $header-height: 46px;
 }
 
 /*
+ * Hide the header for content that is being displayed in page flow
+ */
+
+.de-Drawer.de-is-inPageFlow .de-Drawer-header {
+  display: none;
+}
+
+/*
  * 1. Enables momentum-based scrolling, where the content continues to scroll
  * for a while after finishing the scroll gesture and removing your finger from
  * the touchscreen. The speed and duration of the continued scrolling is
@@ -99,9 +160,12 @@ $header-height: 46px;
  * stacking context. Support: Safari iOS.
  *
  * @see https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-overflow-scrolling
+ *
+ * Applies only to drawer content displayed in an open drawer, not when diplayed
+ * in regular page flow
  */
 
-.de-Drawer-content {
+.de-Drawer:not(.de-is-inPageFlow) .de-Drawer-content {
   height: 100%;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch; /* 1 */
@@ -110,9 +174,11 @@ $header-height: 46px;
 /*
  * 1. Ensures the last direct decendant of `Drawer-content` receives spacing at
  * the bottom of the scrollable content equal to the height of `Drawer-header`
+ *
+ * @TODO - Consider any future ways to reduce specificity here
  */
 
-.de-Drawer-content > *:last-child {
+.de-Drawer:not(.de-is-inPageFlow) .de-Drawer-content > *:last-child {
   margin-bottom: 0; /* 1 */
   padding-bottom: $header-height; /* 1 */
 }

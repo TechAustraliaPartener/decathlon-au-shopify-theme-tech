@@ -185,6 +185,7 @@
                   js-de-Reviews"
            aria-labelledby="Section-reviews"
            data-model-code="{{model_code}}">
+    {% capture reviews_heading %}
     <header>
       <h3 class="de-ProductInfoTitle de-u-md-textGrow3 de-u-lg-textGrow4
                 de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
@@ -192,6 +193,7 @@
         <span class="visually-hidden">Product </span>Customer Reviews
       </h3>
     </header>
+    {% endcapture %}
     <div class="Accordion js-de-Accordion is-open">
       <button class="Accordion-header js-de-Accordion-header de-u-textGrow2">
         Customer Reviews
@@ -200,12 +202,18 @@
         </span>
       </button>
       <div class="Accordion-content">
-        {% comment %}
-          Customer Reviews Prototype Markup
-          {% include 'product-proto-customer-reviews' %}
-        {% endcomment %}
         {% comment %} Dynamic Customer Reviews {% endcomment %}
+        {% comment %}
+          Reviews
+          Capture to enable inserting content into the drawer
+        {% endcomment %}
+        {% capture reviews_content %}
         {% include 'product-customer-reviews' %}
+        {% endcapture %}
+        {% comment %}
+          Create a drawer for the captured content
+        {% endcomment %}
+        {% include 'product-drawer', drawer_id: "reviews-drawer", content: reviews_content, heading: reviews_heading, displays_in_page_flow: true %}
       </div>
     </div>
   </section>
@@ -265,11 +273,6 @@
   The "Size Guide" drawer
 {% endcomment %}
 {% include 'product-drawer--size-guide' %}
-
-{% comment %}
-  The "Reviews" drawer
-{% endcomment %}
-{% include 'product-drawer--reviews' %}
 
 {% comment %}
   To take advantage of a callback on the select dropdown, add option_selection.js

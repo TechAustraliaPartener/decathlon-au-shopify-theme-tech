@@ -96,3 +96,12 @@ $breakpoint-xl: 80em;
 .Accordion.is-open .Accordion-indicator {
   transform: rotate(-45deg);
 }
+
+/*
+ * Conditionally show accordion content when in a drawer
+ * @TODO - Consider any future ways to reduce specificity here
+ */
+
+.de-Drawer-wrap.de-content-is-fixed .Accordion:not(.is-open) .Accordion-content {
+  display: block;
+}

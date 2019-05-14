@@ -6,10 +6,11 @@
   - content: The captured content block to be rendered in the drawer
 {% endcomment %}
 <div
-  role="dialog"
+  {% unless displays_in_page_flow %}role="dialog"{% endunless %}
   id="{{ drawer_id }}"
   aria-label="{{ drawer_label }}"
-  class="de-Drawer js-de-Drawer"
+  class="de-Drawer{% if displays_in_page_flow %} de-is-inPageFlow de-has-conditionalTransition{% endif %} js-de-Drawer"
+  {% if displays_in_page_flow %}data-display-in-page-flow="true"{% endif %}
 >
   <header class="de-Drawer-header de-u-padSides de-u-padEnds06 de-u-spaceNone de-u-bgSilver">
     <button
@@ -22,7 +23,10 @@
       Back
     </button>
   </header>
-  <div class="de-Drawer-content de-u-pad">
+  <div class="de-Drawer-content">
+    {% if heading %}
+      {{ heading }}
+    {% endif %}
     {{ content }}
   </div>
 </div>

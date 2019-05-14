@@ -4,7 +4,54 @@
  * Controls the opening/closing of the drawer UI.
  */
 
-import { IS_ACTIVE_CLASS, JS_PREFIX, FIXED_CLASS } from './constants';
+import {
+  IS_ACTIVE_CLASS,
+  JS_PREFIX,
+  CSS_UTILITY_PREFIX,
+  FIXED_CLASS,
+  CSS_PREFIX
+} from './constants';
+
+import { toggleAttributeValue } from '../utilities/toggle-attribute-value';
+
+/**
+ * Module constants
+ */
+const CLICK_EVENT = 'click';
+const KEY_DOWN_EVENT = 'keydown';
+// @see https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values
+const ESCAPE_KEY_VALUE = 'escape';
+const OPEN_ACTION = 'open';
+const DRAWER_PREFIX = 'Drawer-';
+const TOGGLE_SELECTOR = `.${JS_PREFIX}${DRAWER_PREFIX}toggle`;
+const PAD_UTILITY_CLASS = `${CSS_UTILITY_PREFIX}pad`;
+const MAIN_CONTENT_WRAP_SELECTOR = `.${JS_PREFIX}${DRAWER_PREFIX}wrap`;
+const DRAWER_IN_FLOW_CLASS = `${CSS_PREFIX}is-inPageFlow`;
+const DRAWER_CONDITIONAL_TRANSITION_CLASS = `${CSS_PREFIX}has-conditionalTransition`;
+const DRAWER_CONTENT_CLASS = `${CSS_PREFIX}${DRAWER_PREFIX}content`;
+/**
+ * TRANSITION_DURATION value must match (in milliseconds) the value in associated
+ * CSS for transition duration ($transition-speed-normal)
+ *
+ * @see assets/product.scss.liquid
+ */
+const TRANSITION_DURATION = 300;
+
+/**
+ * Module state defaults
+ *
+ * @param {Object} state
+ * @param {boolean} state.isOpen Keeps track of drawer "open" state
+ + @param {Element} state.drawerEl The current drawer element to perform actions on
+ * @param {Element} state.lastOpenToggleEl Toggle that last opened the drawer
+ * @param {NodeList} state.wrapperEls Main content wrapper elements
+ */
+const DEFAULT_MODULE_STATE = {
+  isOpen: false,
+  drawerEl: null,
+  lastOpenToggleEl: null,
+  wrapperEls: null
+};
 
 /**
  * A module state helper
@@ -41,34 +88,6 @@ const moduleState = (() => {
     setState
   };
 })();
-
-/**
- * Module constants
- */
-const MODULE_NAME = 'Drawer';
-const CLICK_EVENT = 'click';
-const KEY_DOWN_EVENT = 'keydown';
-// @see https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values
-const ESCAPE_KEY_VALUE = 'escape';
-const OPEN_ACTION = 'open';
-const TOGGLE_SELECTOR = `.${JS_PREFIX}${MODULE_NAME}-toggle`;
-const MAIN_CONTENT_WRAP_SELECTOR = `.${JS_PREFIX}${MODULE_NAME}-wrap`;
-
-/**
- * Module state defaults
- *
- * @param {Object} state
- * @param {boolean} state.isOpen Keeps track of drawer "open" state
- * @param {string} state.drawerId ID of current drawer to perform actions on
- * @param {Element} state.lastOpenToggleEl Toggle that last opened the drawer
- * @param {NodeList} state.wrapperEls Main content wrapper elements
- */
-const DEFAULT_MODULE_STATE = {
-  isOpen: false,
-  drawerId: null,
-  lastOpenToggleEl: null,
-  wrapperEls: null
-};
 
 /**
  * Helper to confirm if the given action is "open"
@@ -115,49 +134,163 @@ const updateKeyListeners = ({ isOpen }) => {
 };
 
 /**
- * Handles UI updates for the drawer
+ * Toggle or update classes on the drawer when applied to content that also
+ * appears in page flow when the drawer is closed
  *
- * @param {Object} obj The new UI state
- * @param {boolean} obj.isOpen The new `isOpen` UI state
- * @param {string} obj.drawerId The drawer element ID to perform actions on
- * @param {Element} obj.lastOpenToggleEl The last toggle that opened the drawer
- * @param {NodeList} obj.wrapperEls A NodeList of main content wrapper elements
+ * @param {Object} params
+ * @param {HTMLElement} params.drawerEl - The drawer component element
+ * @param {boolean} params.isOpen - Whether the action being handled is to open the
+ * drawer
  */
-const updateUI = ({ isOpen, drawerId, lastOpenToggleEl, wrapperEls }) => {
-  const drawerEl = document.getElementById(drawerId);
+const inFlowDisplayStateChangeUpdates = ({ drawerEl, isOpen }) => {
+  drawerEl.classList.toggle(DRAWER_IN_FLOW_CLASS, !isOpen);
+  toggleAttributeValue({
+    el: drawerEl,
+    name: 'role',
+    value: 'dialog',
+    remove: !isOpen
+  });
+  !isOpen && drawerEl.classList.add(DRAWER_CONDITIONAL_TRANSITION_CLASS);
+};
 
-  // No need to run any further logic if we have no drawer to work with
-  if (!drawerEl) {
-    return;
-  }
-
-  // Add/remove CSS drawer transitions
-  drawerEl.classList.toggle(IS_ACTIVE_CLASS, isOpen);
-
-  // For better accessibility...
-  if (isOpen) {
-    // ...set the focus on the "close" toggle within the drawer
-    const closeToggle = document.querySelector(
-      `#${drawerId} ${TOGGLE_SELECTOR}`
-    );
-    if (closeToggle) {
-      closeToggle.focus();
-    }
-  } else if (lastOpenToggleEl) {
-    // ...or set the focus back onto the "open" toggle that opened the drawer
-    lastOpenToggleEl.focus();
-  }
-
-  // Update the content wrapper UI state
+/**
+ * Toggle or otherwise update classes on the drawer and drawer content
+ * @param {Object} params
+ * @param {Element} params.drawerEl - The drawer component element
+ * @param {boolean} params.isOpen - Whether the action being handled is to open the
+ * drawer
+ * @param {NodeList} params.wrapperEls A NodeList of main content wrapper elements
+ */
+const updateBaseDrawerClasses = ({ drawerEl, isOpen, wrapperEls }) => {
+  const drawerContentEl = drawerEl.querySelector(`.${DRAWER_CONTENT_CLASS}`);
+  /**
+   * Toggle fixed positioning on the wrapper(s) of the drawer, to prevent
+   * scrolling content outside the drawer
+   */
   [...wrapperEls].forEach(wrap => {
     wrap.classList.toggle(FIXED_CLASS, isOpen);
   });
+  /**
+   * Add or remove an active class to the drawer
+   */
+  drawerEl.classList.toggle(IS_ACTIVE_CLASS, isOpen);
+  /**
+   * Only when a drawer is open, remove a class that disables CSS transitions
+   * in other states. Used for drawer content that also displays in page flow
+   */
+  isOpen && drawerEl.classList.remove(DRAWER_CONDITIONAL_TRANSITION_CLASS);
+  /**
+   * Add padding to drawer content when the drawer is open
+   */
+  if (drawerContentEl) {
+    drawerContentEl.classList.toggle(PAD_UTILITY_CLASS, isOpen);
+  }
+};
+
+/**
+ * Updates for accessibility on opening and closing the drawer
+ * @param {Object} params
+ * @param {Element} params.drawerEl - The drawer component element
+ * @param {Element} params.lastOpenToggleEl The last toggle that opened the drawer
+ * @param {boolean} params.isOpen - Whether the action being handled is to open the
+ * drawer
+ */
+const updateAccessibilityState = ({ drawerEl, isOpen, lastOpenToggleEl }) => {
+  const closeToggle = document.querySelector(
+    `#${drawerEl.id} ${TOGGLE_SELECTOR}`
+  );
+  /**
+   * For accessibility, set the focus on the on the close toggle for an open
+   * drawer or the last-used drawer-open toggle if the drawer is closing
+   */
+  isOpen && closeToggle && closeToggle.focus();
+  !isOpen && lastOpenToggleEl && lastOpenToggleEl.focus();
+};
+
+/**
+ * Base updates needed on opening or closing the drawer, separate from those
+ * needed for a drawer with content that also displays in page flow
+ * @param {Object} state
+ * @param {Element} state.drawerEl - The drawer component element
+ * @param {boolean} state.isOpen - Whether the action being handled is to open the
+ * @param {Element} state.lastOpenToggleEl The last toggle that opened the drawer
+ * @param {NodeList} state.wrapperEls A NodeList of main content wrapper elements
+ * drawer
+ */
+const baseStateChangeUpdates = ({
+  drawerEl,
+  isOpen,
+  lastOpenToggleEl,
+  wrapperEls
+}) => {
+  updateBaseDrawerClasses({ drawerEl, isOpen, wrapperEls });
+  updateAccessibilityState({ drawerEl, isOpen, lastOpenToggleEl });
+};
+
+/**
+ * Handles UI updates for the drawer
+ * Forks behavior and staggers timing for updates with drawers that display
+ * content that is also shown in page flow
+ *
+ * @param {Object} state The new UI state
+ */
+const updateUI = state => {
+  const { isOpen, drawerEl } = state;
+  const displaysInPageFlow = drawerEl.dataset.displayInPageFlow;
+  /**
+   * If the drawer is opening ...
+   */
+  if (isOpen) {
+    /**
+     * ... and is set to show content that also appears in page flow ...
+     */
+    if (displaysInPageFlow) {
+      /**
+       * Toggle in-flow-display drawer classes, then use a timeout set to the
+       * default transition duration to apply other class updates to the drawer
+       * and its content ...
+       * @TODO - Look back at using `transitionend` here
+       * @see https://caniuse.com/#search=transitionend
+       */
+      inFlowDisplayStateChangeUpdates(state);
+      setTimeout(() => {
+        baseStateChangeUpdates(state);
+      }, TRANSITION_DURATION);
+    } else {
+      /**
+       * ... Otherwise, just update the base set of drawer classes ...
+       */
+      baseStateChangeUpdates(state);
+    }
+    /**
+     * ... or, if the drawer is closing ...
+     */
+  } else {
+    /**
+     * ... update the base set of drawer classes ...
+     */
+    baseStateChangeUpdates(state);
+    /**
+     * ... and if the drawer is set to show content that also appears in page
+     * flow ...
+     */
+    displaysInPageFlow &&
+      /**
+       * ... use a timeout set to the default transition duration to update
+       * in-flow-display drawer classes
+       */
+      setTimeout(
+        () => inFlowDisplayStateChangeUpdates(state),
+        TRANSITION_DURATION
+      );
+  }
 };
 
 /**
  * Handle all UI and listener updates based on the provided state
  *
  * @param {Object} state The state to render against
+ * @TODO - Decide whether to document destructured values here
  */
 const render = state => {
   updateUI(state);
@@ -174,11 +307,18 @@ const toggleHandler = function(event) {
 
   const { drawerAction, drawerId } = event.currentTarget.dataset;
 
+  const drawerEl = document.getElementById(drawerId);
+
+  // No need to run any further logic if we have no drawer to work with
+  if (!drawerEl) {
+    return;
+  }
+
   const isOpen = isActionOpen(drawerAction);
 
   const newState = {
     isOpen,
-    drawerId
+    drawerEl
   };
 
   if (isOpen) {
