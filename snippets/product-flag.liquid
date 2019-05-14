@@ -1,0 +1,49 @@
+{% comment %}
+  @TODO:
+  1. Review/approve proper logic for Last Call
+  2. Add logic for displaying multiple flags
+     - Innovation (product.tag)
+     - New Release (product.tag)
+     - Last Call (based on sale price / current_variant.price )
+
+     @see: https://app.gitbook.com/@decathlonusa/s/shopify/product-feature/product-page
+
+  3. Check suggestions/requirements for whitespace control
+  4. Confirm requirements for variant level flags (on_sale)
+  5. Ensure that only one ProductFlag is displayed at a time on small
+     screen devices
+
+  Variables
+  1. `content`: (`{% assign label = content %}`) represents a string and is the
+     paramater that can be passed to the pattern via liquid `include with`
+  2. `style`: is intended for holding utility classes used for styling the
+      ProductFlags. This variable is not used outside of this file.
+{% endcomment %}
+
+{% comment %}
+  Check if the product is on sale and set a variable to be used below.
+{% endcomment %}
+{%- assign on_sale = false -%}
+{%- if current_variant.compare_at_price > current_variant.price -%}
+  {%- assign on_sale = true -%}
+{%- endif -%}
+
+{% if product.tags contains 'Innovation' %}
+  {% assign label = 'Innovation' %}
+  {% assign style = 'de-u-bgLime de-u-textBlack' %}
+{% elsif product.tags contains 'New_Release' %}
+  {% assign label = 'New Release' %}
+  {% assign style = 'de-u-bgBlue de-u-textWhite' %}
+{% elsif on_sale %}
+  {% assign label = 'Last Call' %}
+  {% assign style = 'de-u-bgRed de-u-textWhite' %}
+{% else %}
+  {% assign label = content %}
+  {% assign style = class %}
+{% endif %}
+
+<span class="de-ProductLabel
+             de-u-hidden de-u-lg-inlineBlock de-u-textMedium
+             {{ style }}">
+  {{ label }}
+</span>

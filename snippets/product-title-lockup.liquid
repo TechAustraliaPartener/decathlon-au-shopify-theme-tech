@@ -1,8 +1,8 @@
 {% comment %} Title Lockup {% endcomment %}
 <div class="de-ProductTitleLockup de-u-lg-padBottom">
-  <span class="de-ProductLabel de-ProductLabel--red de-u-hidden de-u-lg-inlineBlock de-u-textMedium">
-    Last Call
-  </span>
+  {% include 'product-flag' with 
+    content: 'Custom Flag'
+    class: 'de-u-bgSilver de-u-textBlue' %}
 
   <div class="de-u-flex de-u-flexJustifyBetween de-u-padTop de-u-md-padTopNone">
     <div class="de-u-size1of2">
