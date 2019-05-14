@@ -57,21 +57,23 @@ $border-width-lg: 3px;
  }
 
 /**
- * @pattern ReviewMatrix
- * Consider converting this into a pattern in the future.
+ * ReviewMatrix
+ * @TODO
+ * 1. Consider refactoring/revising if `ReviewMatrix` has no styling
  */
-
-.de-ReviewMatrix {
-
-}
 
 .de-ReviewMatrix-stars {
   flex: 0 1 auto;
 }
 
+/**
+ * @TODO: 
+ * 1. Remove reliance on fixed pixel value
+ */
+
 .de-ReviewMatrix-graph {
   flex: 1;
-  height: 23px;
+  height: 25px; /* 1 */
 }
 
 /**
@@ -83,12 +85,16 @@ $border-width-lg: 3px;
   border-bottom: $border-width-sm solid $color-silver;
 }
 
-.de-CustomerReviewResponse {
-  margin-top: 1.424rem;
-  padding-left: 1.424rem;
-  border-left: $border-width-lg solid $color-lime;
-}
-
 .de-CustomerReview:last-of-type {
   border-bottom: 0;
+}
+
+/**
+ * 1. The second step in the Decathlon pattern library modular scale
+ */ 
+
+.de-CustomerReview-response {
+  margin-top: 1.424rem; /* 1 */
+  padding-left: 1.424rem; /* 1 */
+  border-left: $border-width-lg solid $color-lime;
 }

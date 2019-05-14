@@ -42,7 +42,8 @@
     {% endcomment %}
     {% assign ratings = product.metafields.reviews.recent_reviews_object.notes %}
     {% comment %}
-      Multiply the total_ratings_count by 1.0 so that stars_percentage will not be rounded (the result will be something between 0 and 100%)
+      Multiply the total_ratings_count by 1.0 so that stars_percentage will not 
+      be rounded (the result will be something between 0 and 100%)
     {% endcomment %}
     {% assign total_ratings_count = product.metafields.reviews.recent_reviews_object.total_item_rating_count | times: 1.0 %}
     {% assign STAR_RATING_PERCENTAGE_MULTIPLIER = 20 %}
@@ -52,18 +53,19 @@
           {% for rating in ratings %}
             {% assign stars_fill = rating.number | times: STAR_RATING_PERCENTAGE_MULTIPLIER %}
             {% comment %}
-              Make matrix "row" elements buttons, which will now enable filtering of reviews by rating
+              Make matrix "row" elements buttons, which will now enable 
+              filtering of reviews by rating
               @TODO - is there anything to be done here for accessibility
             {% endcomment %}
-            <button class="de-ReviewMatrix-stars js-de-CustomerReview-filter de-u-flex de-u-padRight"
+            <button class="de-ReviewMatrix-stars js-de-CustomerReview-filter 
+                           de-u-flex de-u-padRight de-u-padBottom06"
               data-star-rating="{{ rating.number }}">
               <div class="de-StarRating">
                 <div class="de-StarRating-fill"
                   style="width: {{ stars_fill }}%">
                 </div>
               </div>
-              <div class="de-u-textDarkGray de-u-padLeft06"
-                  style="position: relative; bottom: 3px;">
+              <div class="de-u-textDarkGray de-u-padLeft06 de-u-lineHeight2">
                 {{ rating.count }}
               </div>
             </button>
@@ -92,8 +94,9 @@
       </div>
     </div>
 
-    <a class="btn btn--productReviews de-u-block de-u-spaceTop2
-      de-u-textGrow1 de-u-padEnds" href="{% if customer %}/account?view=review-products{% else %}/account/login?checkout_url=/account?view=review-products{% endif %}">
+    <a class="btn btn--productReviews 
+              de-u-block de-u-spaceTop2 de-u-textGrow1 de-u-padEnds" 
+      href="{% if customer %}/account?view=review-products{% else %}/account/login?checkout_url=/account?view=review-products{% endif %}">
       Write a Review
     </a>
 
@@ -114,11 +117,30 @@
     <div class="de-u-flex de-u-flexAlignItemsCenter de-u-spaceBottom6">
       <div class="de-u-padRight de-u-textBold de-u-textSizeBase">Sort by</div>
       <select class="de-u-textSizeBase js-de-CustomerReview-sort">
-        <option value="date_desc" data-sort-direction="desc" data-sort-type="createdAt">Newest</option>
-        <option value="date_asc" data-sort-direction="asc" data-sort-type="createdAt">Oldest</option>
-        <option value="note_desc" data-sort-direction="desc" data-sort-type="note">Highest rating</option>
-        <option value="note_asc" data-sort-direction="asc" data-sort-type="note">Lowest rating</option>
-        <option value="utility_desc" data-sort-direction="desc" data-sort-type="utility">Most helpful</option>
+        <option value="date_desc" 
+                data-sort-direction="desc" 
+                data-sort-type="createdAt">
+          Newest
+        </option>
+        <option value="date_asc" 
+                data-sort-direction="asc" 
+                data-sort-type="createdAt">
+          Oldest
+        </option>
+        <option value="note_desc" 
+                data-sort-direction="desc" 
+                data-sort-type="note">
+          Highest rating</option>
+        <option value="note_asc" 
+                data-sort-direction="asc" 
+                data-sort-type="note">
+          Lowest rating
+        </option>
+        <option value="utility_desc" 
+                data-sort-direction="desc" 
+                data-sort-type="utility">
+          Most helpful
+        </option>
       </select>
     </div>
     {% comment %}
@@ -217,7 +239,8 @@
             {% assign answer_date = review.answer.created_at | date: "%-m/%-e/%Y" %}
             {% assign first_name = review.answer.author.firstname %}
             <div class="de-CustomerReviewResponse">
-              {% include 'logo-no-bg' with class 'de-Icon' %}
+              {% include 'logo-decathlon-chat' 
+                with class: 'de-DecathlonChatBubble' %}
               <div>
                 {{ review.answer.body }}
               </div>
@@ -258,15 +281,15 @@
     </script>
     {% comment %}
       This alternate badge for use with Handlebars has alternate IDs that don't
-      conflict with the ones in the original file. Solution (maybe temporary) for
-      rendering issues with Handlebars in some circumstances (sorting, e.g.)
+      conflict with the ones in the original file. Solution (maybe temporary) 
+      for rendering issues with Handlebars in some circumstances (sorting, e.g.)
     {% endcomment %}
     <script type="x-handlebars-template" id="de-Icon-verifiedPurchase-template">
       {% include 'icon-checkmark-badge-alt'
         with class: 'de-Icon de-u-textGrow5 de-u-padRight06' %}
     </script>
      <script type="x-handlebars-template" id="de-Icon-logoNoBg-template">
-      {% include 'logo-no-bg' with class: 'de-Icon' %}
+      {% include 'logo-decathlon-chat' with class: 'de-DecathlonChatBubble' %}
     </script>
     <script type="x-handlebars-template" id="de-CustomerReviews-template">
       {% raw %}
