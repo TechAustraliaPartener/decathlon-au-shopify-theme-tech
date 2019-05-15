@@ -1,7 +1,9 @@
 /**
  * Drawer Module
  *
- * Controls the opening/closing of the drawer UI.
+ * Controls the opening/closing of the drawer UI. For accessibility purposes,
+ * the Drawer module is treated as a Dialog.
+ * @see https://www.w3.org/TR/wai-aria-practices-1.1/#dialog_modal
  */
 
 import {
@@ -11,24 +13,33 @@ import {
   FIXED_CLASS,
   CSS_PREFIX
 } from './constants';
-
 import { toggleAttributeValue } from '../utilities/toggle-attribute-value';
+import {
+  updateFocusableEls,
+  trapFocus,
+  init as initFocusTrap
+} from './focus-trap';
 
 /**
  * Module constants
  */
-const CLICK_EVENT = 'click';
-const KEY_DOWN_EVENT = 'keydown';
-// @see https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values
-const ESCAPE_KEY_VALUE = 'escape';
-const OPEN_ACTION = 'open';
-const DRAWER_PREFIX = 'Drawer-';
+const MODULE_NAME = 'Drawer';
+
+const DRAWER_PREFIX = `${MODULE_NAME}-`;
 const TOGGLE_SELECTOR = `.${JS_PREFIX}${DRAWER_PREFIX}toggle`;
 const PAD_UTILITY_CLASS = `${CSS_UTILITY_PREFIX}pad`;
 const MAIN_CONTENT_WRAP_SELECTOR = `.${JS_PREFIX}${DRAWER_PREFIX}wrap`;
 const DRAWER_IN_FLOW_CLASS = `${CSS_PREFIX}is-inPageFlow`;
 const DRAWER_CONDITIONAL_TRANSITION_CLASS = `${CSS_PREFIX}has-conditionalTransition`;
 const DRAWER_CONTENT_CLASS = `${CSS_PREFIX}${DRAWER_PREFIX}content`;
+const CLICK_EVENT = 'click';
+const KEY_DOWN_EVENT = 'keydown';
+const OPEN_ACTION = 'open';
+/**
+ * @see https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values
+ * Using a lowercase version to test against, default values are uppercased.
+ */
+const ESCAPE_KEY_VALUE = 'escape';
 /**
  * TRANSITION_DURATION value must match (in milliseconds) the value in associated
  * CSS for transition duration ($transition-speed-normal)
@@ -41,12 +52,14 @@ const TRANSITION_DURATION = 300;
  * Module state defaults
  *
  * @param {Object} state
+ * @param {string} state.module The name of the module
  * @param {boolean} state.isOpen Keeps track of drawer "open" state
  + @param {Element} state.drawerEl The current drawer element to perform actions on
  * @param {Element} state.lastOpenToggleEl Toggle that last opened the drawer
  * @param {NodeList} state.wrapperEls Main content wrapper elements
  */
 const DEFAULT_MODULE_STATE = {
+  module: MODULE_NAME,
   isOpen: false,
   drawerEl: null,
   lastOpenToggleEl: null,
@@ -100,15 +113,25 @@ const moduleState = (() => {
 const isActionOpen = action => action.trim().toLowerCase() === OPEN_ACTION;
 
 /**
+ * Helper for detecting the "Escape" keyboard key
+ *
+ * @param {string} key A keyboard event `key`
+ * @returns {boolean}
+ */
+const isEscapeKey = key => key.toLowerCase() === ESCAPE_KEY_VALUE;
+
+/**
  * The keyboard event handler
  *
  * @param {KeyboardEvent} keyboardEvent
  */
 const keyboardEventHandler = keyboardEvent => {
+  const { key } = keyboardEvent;
+
   /**
    * For better accessibility, the drawer should close via the "escape" key
    */
-  if (keyboardEvent.key.toLowerCase() === ESCAPE_KEY_VALUE) {
+  if (isEscapeKey(key)) {
     // Update the module state to a "closed" state
     moduleState.setState({
       isOpen: false
@@ -117,15 +140,18 @@ const keyboardEventHandler = keyboardEvent => {
     // Render the UI with the new state
     render(moduleState.getState());
   }
+
+  // Handles trapping the tab focus within the open dialog
+  trapFocus(keyboardEvent);
 };
 
 /**
- * Updates the key event listeners depending on the state
+ * Updates the keyboard event listeners depending on the state
  *
  * @param {Object} state The state data object
  * @param {boolean} state.isOpen Whether the drawer is open or not
  */
-const updateKeyListeners = ({ isOpen }) => {
+const updateKeyboardListeners = ({ isOpen }) => {
   if (isOpen) {
     document.addEventListener(KEY_DOWN_EVENT, keyboardEventHandler);
   } else {
@@ -294,7 +320,7 @@ const updateUI = state => {
  */
 const render = state => {
   updateUI(state);
-  updateKeyListeners(state);
+  updateKeyboardListeners(state);
 };
 
 /**
@@ -323,6 +349,8 @@ const toggleHandler = function(event) {
 
   if (isOpen) {
     newState.lastOpenToggleEl = event.currentTarget;
+    // Let the FocusTrap module update the first/last focusable elements
+    updateFocusableEls(drawerId);
   }
 
   // Update the module state
@@ -368,4 +396,7 @@ export const init = () => {
 
   // Initialize toggles
   [...document.querySelectorAll(TOGGLE_SELECTOR)].forEach(initToggle);
+
+  // Initialize the FocusTrap module
+  initFocusTrap();
 };
