@@ -42,7 +42,7 @@
     {% endcomment %}
     {% assign ratings = product.metafields.reviews.recent_reviews_object.notes %}
     {% comment %}
-      Multiply the total_ratings_count by 1.0 so that stars_percentage will not 
+      Multiply the total_ratings_count by 1.0 so that stars_percentage will not
       be rounded (the result will be something between 0 and 100%)
     {% endcomment %}
     {% assign total_ratings_count = product.metafields.reviews.recent_reviews_object.total_item_rating_count | times: 1.0 %}
@@ -53,11 +53,11 @@
           {% for rating in ratings %}
             {% assign stars_fill = rating.number | times: STAR_RATING_PERCENTAGE_MULTIPLIER %}
             {% comment %}
-              Make matrix "row" elements buttons, which will now enable 
+              Make matrix "row" elements buttons, which will now enable
               filtering of reviews by rating
               @TODO - is there anything to be done here for accessibility
             {% endcomment %}
-            <button class="de-ReviewMatrix-stars js-de-CustomerReview-filter 
+            <button class="de-ReviewMatrix-stars js-de-CustomerReview-filter
                            de-u-flex de-u-padRight de-u-padBottom06"
               data-star-rating="{{ rating.number }}">
               <div class="de-StarRating">
@@ -94,8 +94,8 @@
       </div>
     </div>
 
-    <a class="btn btn--productReviews 
-              de-u-block de-u-spaceTop2 de-u-textGrow1 de-u-padEnds" 
+    <a class="btn btn--productReviews
+              de-u-block de-u-spaceTop2 de-u-textGrow1 de-u-padEnds"
       href="{% if customer %}/account?view=review-products{% else %}/account/login?checkout_url=/account?view=review-products{% endif %}">
       Write a Review
     </a>
@@ -117,27 +117,27 @@
     <div class="de-u-flex de-u-flexAlignItemsCenter de-u-spaceBottom6">
       <div class="de-u-padRight de-u-textBold de-u-textSizeBase">Sort by</div>
       <select class="de-u-textSizeBase js-de-CustomerReview-sort">
-        <option value="date_desc" 
-                data-sort-direction="desc" 
+        <option value="date_desc"
+                data-sort-direction="desc"
                 data-sort-type="createdAt">
           Newest
         </option>
-        <option value="date_asc" 
-                data-sort-direction="asc" 
+        <option value="date_asc"
+                data-sort-direction="asc"
                 data-sort-type="createdAt">
           Oldest
         </option>
-        <option value="note_desc" 
-                data-sort-direction="desc" 
+        <option value="note_desc"
+                data-sort-direction="desc"
                 data-sort-type="note">
           Highest rating</option>
-        <option value="note_asc" 
-                data-sort-direction="asc" 
+        <option value="note_asc"
+                data-sort-direction="asc"
                 data-sort-type="note">
           Lowest rating
         </option>
-        <option value="utility_desc" 
-                data-sort-direction="desc" 
+        <option value="utility_desc"
+                data-sort-direction="desc"
                 data-sort-type="utility">
           Most helpful
         </option>
@@ -222,24 +222,29 @@
                 </div>
               {% endif %}
             </div>
-
-            <div class="de-u-size2of6 de-u-flex de-u-flexJustifyEnd
-              de-u-flexAlignItemsEnd">
-              <button class="de-u-flex de-u-textBlue de-u-textMedium
-                        js-de-CustomerReview-vote"
-                data-review-vote-url="{{review.url_vote}}"
-                href="{{review.url_vote}}">
-                Helpful Review?
-                {% include 'icon-upvote-thumb'
-                  with class: 'de-Icon de-u-spaceLeft06 de-u-textGrow2' %}
-              </button>
-            </div>
+            {% comment %}
+              @TODO -
+              Reimplement when voting API becomes usable
+            {% endcomment %}
+            {% comment %}
+              <div class="de-u-size2of6 de-u-flex de-u-flexJustifyEnd
+                de-u-flexAlignItemsEnd">
+                <button class="de-u-flex de-u-textBlue de-u-textMedium
+                          js-de-CustomerReview-vote"
+                  data-review-vote-url="{{review.url_vote}}"
+                  href="{{review.url_vote}}">
+                  Helpful Review?
+                  {% include 'icon-upvote-thumb'
+                    with class: 'de-Icon de-u-spaceLeft06 de-u-textGrow2' %}
+                </button>
+              </div>
+            {% endcomment %}
           </div>
           {% if review.answer %}
             {% assign answer_date = review.answer.created_at | date: "%-m/%-e/%Y" %}
             {% assign first_name = review.answer.author.firstname %}
             <div class="de-CustomerReviewResponse">
-              {% include 'logo-decathlon-chat' 
+              {% include 'logo-decathlon-chat'
                 with class: 'de-DecathlonChatBubble' %}
               <div>
                 {{ review.answer.body }}
@@ -256,32 +261,39 @@
                   </div>
                 {% endif %}
               {% endif %}
-              <div class="de-u-flex de-u-flexJustifyStart">
-                {% comment %}
-                  @TODO
-                  modify review url for answers
-                {% endcomment %}
-                <button class="de-u-flex de-u-textBlue de-u-textMedium
-                          js-de-CustomerReview-vote"
-                    data-review-vote-url="{{review.url_vote}}"
-                    href="{{review.url_vote}}">
-                  Helpful Response?
-                  {% include 'icon-upvote-thumb'
-                    with class: 'de-Icon de-u-spaceLeft06 de-u-textGrow2' %}
-                </button>
-              </div>
+              {% comment %}
+                @TODO -
+                Reimplement when voting API becomes usable
+                Modify review url for answers
+              {% endcomment %}
+              {% comment %}
+                <div class="de-u-flex de-u-flexJustifyStart">
+                  <button class="de-u-flex de-u-textBlue de-u-textMedium
+                            js-de-CustomerReview-vote"
+                      data-review-vote-url="{{review.url_vote}}"
+                      href="{{review.url_vote}}">
+                    Helpful Response?
+                    {% include 'icon-upvote-thumb'
+                      with class: 'de-Icon de-u-spaceLeft06 de-u-textGrow2' %}
+                  </button>
+                </div>
+              {% endcomment %}
             </div>
           {% endif %}
         </div>
       {% endfor %}
     </div>
-    <script type="x-handlebars-template" id="de-Icon-helpful-template">
+    {% comment %}
+      @TODO -
+      Reimplement when voting API becomes usable
+    {% endcomment %}
+    {% comment %} <script type="x-handlebars-template" id="de-Icon-helpful-template">
       {% include 'icon-upvote-thumb'
         with class: 'de-Icon de-u-spaceLeft06 de-u-textGrow2' %}
-    </script>
+    </script> {% endcomment %}
     {% comment %}
       This alternate badge for use with Handlebars has alternate IDs that don't
-      conflict with the ones in the original file. Solution (maybe temporary) 
+      conflict with the ones in the original file. Solution (maybe temporary)
       for rendering issues with Handlebars in some circumstances (sorting, e.g.)
     {% endcomment %}
     <script type="x-handlebars-template" id="de-Icon-verifiedPurchase-template">
@@ -347,17 +359,22 @@
                 </div>
               {{/if}}
             </div>
-
-            <div class="de-u-size2of6 de-u-flex de-u-flexJustifyEnd
-                        de-u-flexAlignItemsEnd">
-              <button class="de-u-flex de-u-textBlue de-u-textMedium
-                        js-de-CustomerReview-vote"
-                 data-review-vote-url="{{review.url_vote}}"
-                 href="{{review.url_vote}}">
-                Helpful Review?
-                {{> helpful_icon }}
-              </button>
-            </div>
+            {{!--
+              @TODO:
+              Reimplement when voting API becomes usable
+            --}}
+            {{!--
+              <div class="de-u-size2of6 de-u-flex de-u-flexJustifyEnd
+                          de-u-flexAlignItemsEnd">
+                <button class="de-u-flex de-u-textBlue de-u-textMedium
+                          js-de-CustomerReview-vote"
+                  data-review-vote-url="{{review.url_vote}}"
+                  href="{{review.url_vote}}">
+                  Helpful Review?
+                  {{> helpful_icon }}
+                </button>
+              </div>
+             --}}
           </div>
         {{#if answer}}
           <div class="de-CustomerReviewResponse">
@@ -377,19 +394,22 @@
                 </div>
               {{/if}}
             {{/if_or}}
-            <div class="de-u-flex de-u-flexJustifyStart">
-              {{!--
-               @TODO
-               modify review url for answers
-               --}}
-              <button class="de-u-flex de-u-textBlue de-u-textMedium
-                        js-de-CustomerReview-vote"
-                 data-review-vote-url="{{review.url_vote}}"
-                 href="{{review.url_vote}}">
-                Helpful Response?
-                {{> helpful_icon }}
-              </button>
-            </div>
+            {{!--
+               @TODO:
+               Reimplement when voting API becomes usable
+               Modify review url for answers
+            --}}
+            {{!--
+              <div class="de-u-flex de-u-flexJustifyStart">
+                <button class="de-u-flex de-u-textBlue de-u-textMedium
+                          js-de-CustomerReview-vote"
+                  data-review-vote-url="{{review.url_vote}}"
+                  href="{{review.url_vote}}">
+                  Helpful Response?
+                  {{> helpful_icon }}
+                </button>
+              </div>
+            --}}
           </div>
         {{/if}}
         </div>

@@ -9,7 +9,6 @@ import { setPrerenderedReviewsOnState } from './state';
 import { moreReviewsInit } from './update-ui';
 import { handlebarsInit } from './templating';
 import { reviewsSortInit } from './sorting';
-import { reviewsVoteInit } from './voting';
 import { reviewsFilteringInit } from './filtering';
 
 /**
@@ -24,6 +23,5 @@ export const reviewsInit = () => {
   handlebarsInit();
   moreReviewsInit();
   reviewsSortInit();
-  reviewsVoteInit();
   reviewsFilteringInit();
 };
