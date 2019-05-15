@@ -40,6 +40,81 @@ const loadImages = () => {
 };
 
 /**
+ * Returns the slide count of Slick Carousel elements
+ *
+ * @return {Number} Total slide element count
+ */
+const getSlideCount = function() {
+  let slidesTraversed;
+  let swipedSlide;
+  const centerOffset =
+    this.options.centerMode === true
+      ? this.slideWidth * Math.floor(this.options.slidesToShow / 2)
+      : 0;
+  if (this.options.swipeToSlide === true) {
+    /**
+     * $slideTrack references the container element for the individual slides
+     */
+    this.$slideTrack.find('.slick-slide').each((index, slide) => {
+      let offsetPoint = slide.offsetLeft;
+      let outerSize = $(slide).outerWidth();
+      if (this.options.vertical === true) {
+        offsetPoint = slide.offsetTop;
+        outerSize = $(slide).outerHeight();
+      }
+      if (offsetPoint - centerOffset + outerSize / 2 > this.swipeLeft * -1) {
+        swipedSlide = slide;
+        return false;
+      }
+    });
+    slidesTraversed =
+      Math.abs($(swipedSlide).attr('data-slick-index') - this.currentSlide) ||
+      1;
+    return slidesTraversed;
+  }
+  return this.options.slidesToScroll;
+};
+
+/**
+ * Returns the available indexes of Slick Carousel slides
+ *
+ * @returns {Array} Collection of navigable slide indexes
+ */
+const getNavigableIndexes = function() {
+  let breakPoint = 0;
+  let counter = 0;
+  const indexes = [];
+  let max;
+  if (this.options.infinite === false) {
+    max = this.slideCount;
+  } else {
+    breakPoint = this.options.slideCount * -1;
+    counter = this.options.slideCount * -1;
+    max = this.slideCount * 2;
+  }
+  while (breakPoint < max) {
+    indexes.push(breakPoint);
+    breakPoint = counter + this.options.slidesToScroll;
+    counter +=
+      this.options.slidesToScroll <= this.options.slidesToShow
+        ? this.options.slidesToScroll
+        : this.options.slidesToShow;
+  }
+  return indexes;
+};
+
+/**
+ * Slick Carousel bugfix; allows swipeToSlide on vertical orientation
+ * @see https://github.com/kenwheeler/slick/issues/1962
+ */
+const improveCarouselSwipeResponse = () => {
+  $(THUMBNAIL_CAROUSEL_ACTIVE_SELECTOR).each(function() {
+    this.slick.getSlideCount = getSlideCount;
+    this.slick.getNavigableIndexes = getNavigableIndexes;
+  });
+};
+
+/**
  * Initialize carousel
  */
 const initCarousel = () => {
@@ -51,6 +126,10 @@ const initCarousel = () => {
   if (activeSlideIndex >= $featureCarouselActive.children().length) {
     activeSlideIndex = 0;
   }
+  /**
+   * Visit link for Slick configuration options
+   * @see https://kenwheeler.github.io/slick/
+   */
   const sharedConfig = {
     arrows: false,
     infinite: true,
@@ -65,7 +144,6 @@ const initCarousel = () => {
   $featureCarouselActive.slick({
     ...sharedConfig,
     asNavFor: $thumbnailCarouselActive,
-    fade: true,
     slidesToShow: 1
   });
   $thumbnailCarouselActive.slick({
@@ -74,8 +152,11 @@ const initCarousel = () => {
     focusOnSelect: true,
     slidesToShow: THUMB_SLIDES_TO_SHOW,
     vertical: true,
-    verticalSwiping: true
+    verticalSwiping: true,
+    swipeToSlide: true,
+    touchThreshold: 30
   });
+  improveCarouselSwipeResponse();
 };
 
 /**
