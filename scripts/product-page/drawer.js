@@ -19,6 +19,7 @@ import {
   trapFocus,
   init as initFocusTrap
 } from './focus-trap';
+import { createState } from './create-state';
 
 /**
  * Module constants
@@ -47,7 +48,6 @@ const ESCAPE_KEY_VALUE = 'escape';
  * @see assets/product.scss.liquid
  */
 const TRANSITION_DURATION = 300;
-
 /**
  * Module state defaults
  *
@@ -65,42 +65,12 @@ const DEFAULT_MODULE_STATE = {
   lastOpenToggleEl: null,
   wrapperEls: null
 };
-
 /**
- * A module state helper
- *
- * @todo Possibly abstract this into utility to be used by other modules?
+ * Reference to the `createState` helper. The `createState`
+ * helper assists to create, update and get module state.
+ * @see scripts/product-page/create-state.js
  */
-const moduleState = (() => {
-  /**
-   * Default empty state
-   */
-  let state = {};
-
-  /**
-   * Helper to access the module state
-   *
-   * @returns {Object} The module state
-   */
-  const getState = () => state;
-
-  /**
-   * Helper to update the module state
-   *
-   * @param {Object} newState The new state
-   */
-  const setState = newState => {
-    state = {
-      ...state,
-      ...newState
-    };
-  };
-
-  return {
-    getState,
-    setState
-  };
-})();
+let stateHelper;
 
 /**
  * Helper to confirm if the given action is "open"
@@ -133,12 +103,12 @@ const keyboardEventHandler = keyboardEvent => {
    */
   if (isEscapeKey(key)) {
     // Update the module state to a "closed" state
-    moduleState.setState({
+    stateHelper.updateState({
       isOpen: false
     });
 
     // Render the UI with the new state
-    render(moduleState.getState());
+    render(stateHelper.getState());
   }
 
   // Handles trapping the tab focus within the open dialog
@@ -354,10 +324,10 @@ const toggleHandler = function(event) {
   }
 
   // Update the module state
-  moduleState.setState(newState);
+  stateHelper.updateState(newState);
 
   // Render all UI updates based on new state
-  render(moduleState.getState());
+  render(stateHelper.getState());
 };
 
 /**
@@ -388,7 +358,7 @@ const initToggle = toggle => {
  * Initialize Drawer
  */
 export const init = () => {
-  moduleState.setState({
+  stateHelper = createState({
     ...DEFAULT_MODULE_STATE,
     // Get all content wrapper elements
     wrapperEls: document.querySelectorAll(MAIN_CONTENT_WRAP_SELECTOR)

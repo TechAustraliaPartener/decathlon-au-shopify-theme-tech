@@ -6,7 +6,13 @@ const DEBUG = false;
 /**
  * State helper module
  *
- * A factory pattern inspired helper to keep keep/set/get state.
+ * A factory pattern inspired helper to keep keep/update/get state. The state
+ * is scoped meaning each module that uses this helper will have its own
+ * individual state object to interact with.
+ */
+
+/**
+ * Creates a new scoped state object
  *
  * @param {Object} [initialState={}] The initial state
  * @returns {Object} API for interacting with state
