@@ -17,6 +17,7 @@ import { reviewsInit } from './ratings-reviews';
 import { updateOptionStates } from './option-states';
 import { updateUI as updateMasterSelectUI } from './master-select';
 import { updateUI as updatePriceUI } from './price';
+import { updateUI as updateModelCodeUI } from './model-code';
 import {
   init as addToCartInit,
   updateUI as updateAddToCartUI
@@ -68,8 +69,7 @@ const updateUI = state => {
     updateMasterSelectUI(state);
     updatePriceUI(state);
     updateAddToCartUI(state);
-    // @todo create module to update product model code
-    // UpdateModelCodeUI(state);
+    updateModelCodeUI(state);
   }
 
   updateOptionStates(state);

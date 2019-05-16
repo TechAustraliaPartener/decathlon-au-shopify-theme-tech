@@ -12,7 +12,9 @@
   {% if option_index == 1 %}{% assign current_model = product.selected_variant.option1 %}{% endif %}
   {% if option_index == 2 %}{% assign current_model = product.selected_variant.option2 %}{% endif %}
   {% if option_index == 3 %}{% assign current_model = product.selected_variant.option3 %}{% endif %}
-  <div class="de-u-flex de-u-lg-flexJustifyEnd de-u-textShrink1 de-u-textDarkGray de-u-padTop03">
-    <p><span class="de-u-textMedium">Model</span>: {{ current_model }}</p>
-  </div>
+{% else %}
+  {% assign current_model = '' %}
 {% endif %}
+<div class="de-u-flex de-u-lg-flexJustifyEnd de-u-textShrink1 de-u-textDarkGray de-u-padTop03 js-de-ModelCode{% if current_model == blank %} de-u-hidden{% endif %}">
+  <span class="de-u-textMedium de-u-textGrow1">Model: <span class="js-de-ModelCode-text" itemprop="model">{{ current_model }}</span></span>
+</div>

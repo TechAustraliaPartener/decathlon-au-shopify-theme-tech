@@ -10,8 +10,10 @@ const productsJSON = window.productJSON;
 const variantsJSON = productsJSON.variants;
 const COLOR_INDEX = productsJSON.options.indexOf('Color');
 const SIZE_INDEX = productsJSON.options.indexOf('Size');
+const MODEL_INDEX = productsJSON.options.indexOf('Model Code');
 const COLOR_OPTION = `option${COLOR_INDEX + 1}`;
 const SIZE_OPTION = `option${SIZE_INDEX + 1}`;
+const MODEL_OPTION = `option${MODEL_INDEX + 1}`;
 
 /**
  * Searches for a given tag in the product tags
@@ -40,6 +42,14 @@ export const getSelectedVariant = ({ size, color }) =>
  * @returns {boolean}
  */
 export const isSoldOut = () => isTagFound(IS_SOLD_OUT_TAG);
+
+/**
+ * Gets model code from variant
+ *
+ * @param {Object} variant The variant object
+ * @returns {string} Variant model code
+ */
+export const getModelCodeFromVariant = variant => variant[MODEL_OPTION];
 
 /**
  * Filters for available variants
