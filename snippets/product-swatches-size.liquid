@@ -26,18 +26,21 @@
       data-drawer-id="size-guide-drawer"
       data-drawer-toggle-aria-label="Open the size guide dialog."
       data-drawer-action="open"
-      class="de-u-flex de-u-flexAlignItemsCenter de-u-textBlue de-u-textSizeBase de-u-textMedium js-de-Drawer-toggle"
+      class="de-u-flex de-u-flexAlignItemsCenter de-u-textBlue de-u-textMedium
+             js-de-Drawer-toggle"
     >
       {% include 'product-icon--ruler' %}
       Size Guide
     </a>
   </div>
 
-<div class="de-SwatchObjects de-Wrapper--fullwidth de-u-padTop06 de-u-padBottom js-de-SizeSwatches">
+<div class="de-SwatchObjects de-Wrapper--fullwidth de-u-padTop06 de-u-padBottom
+            js-de-SizeSwatches">
   {% for size in all_sizes %}
     {% assign cleanSize = size | strip %}
       <button
-        class="de-SwatchObjects-item de-SwatchObjects--size de-u-textMedium js-de-SizeSwatches-option"
+        class="de-SwatchObjects-item de-SwatchObjects--size de-u-textMedium
+               js-de-SizeSwatches-option"
         value="{{ cleanSize }}"
       >{{ cleanSize }}</button>
   {% endfor %}
