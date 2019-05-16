@@ -12,7 +12,7 @@ if (videojs) {
   const $viewImagesCTA = $('.js-de-view-images');
   const $watchVideoCTA = $('.js-de-watch-video');
   const $copyVideo = $('.js-de-copyVideo');
-  const $productTagLabel = $('.js-de-ProductLabel');
+  const $productTagLabel = $('.js-de-ProductFlag');
 
   // Load poster images into DOM for slick slider navigation
   $(window).on('load', function() {

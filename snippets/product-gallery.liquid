@@ -1,13 +1,15 @@
 {% comment %} Small Screen ProductGallery {% endcomment %}
 <div class="ProductGallery-showcase de-Wrapper--fullwidth de-u-lg-hidden">
-  <div class="de-ProductLabel de-ProductLabel--red js-de-ProductLabel
-    de-u-lg-hidden de-u-textMedium">
-    Last Call
+
+  <div class="de-u-lg-hidden">
+    {% include 'product-flag' with
+      content: 'Custom Flag'
+      class: 'de-u-bgSilver de-u-textBlue' %}
   </div>
 
   {% comment %} Product Image Carousel {% endcomment %}
   {% include 'product-carousel' %}
-  
+
   {% comment %}
     Show video when 'Watch Video' action is clicked
   {% endcomment %}
