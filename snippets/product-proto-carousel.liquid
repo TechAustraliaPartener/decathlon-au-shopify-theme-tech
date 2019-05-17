@@ -1,12 +1,12 @@
-{% comment %} 
-  @TODO: 
+{% comment %}
+  @TODO:
   1. Improve VoiceOver navigation
   2. Improve keyboard navigation
 {% endcomment %}
 <div class="de-ProductImageViewer-thumbnails">
   {% for i in (1..16) %}
     <img
-      class="de-ProductImageViewer-source"
+      class="de-ProductImageViewer-thumbnail"
       src="https://cdn.shopify.com/s/files/1/1330/6287/products/00164127-432c-4479-b71b-04d30eae0301_400x400.jpg"
       alt="">
   {% endfor %}
@@ -20,7 +20,7 @@
   </div>
   <div class="de-ProductImageViewer-controls
               de-u-flex de-u-flexAlignItemsCenter de-u-flexJustifyEnd">
-    <div class="de-ProductImageViewer-count 
+    <div class="de-ProductImageViewer-count
                 de-u-flex de-u-flexAlignItemsCenter
                 de-u-textSizeBase">
       {% include 'icon-camera'
