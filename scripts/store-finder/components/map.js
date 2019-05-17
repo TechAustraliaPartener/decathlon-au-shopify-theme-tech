@@ -2,13 +2,14 @@ import getGeocode from '../utilities/get-geocode';
 import mapStyle from '../data/map-style';
 
 export const map = {
-  props: ['stores', 'isSelectedStore'],
+  props: ['initialStores', 'isSelectedStore'],
   template: `
     <div></div>
   `,
   data() {
     return {
       map: null,
+      stores: this.initialStores,
       storeMarkers: []
     };
   },
