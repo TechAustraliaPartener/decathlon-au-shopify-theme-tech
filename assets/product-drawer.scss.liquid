@@ -5,9 +5,9 @@
  * @see https://www.w3.org/TR/2018/REC-css-color-3-20180619/#svg-color
  */
 
-$color-gray: #ACB3B8;
+$color-gray: #acb3b8;
 $color-light-gray: rgba(172, 179, 184, 0.5);
-$color-white: #FFF;
+$color-white: #fff;
 
 /**
  * Border Width
@@ -71,12 +71,11 @@ $header-height: 46px;
   background-color: $color-white;
   height: 100%;
   left: 0;
-  opacity: 0;
   padding-top: $header-height; /* 1 */
   position: fixed; /* 2 */
   top: 0;
-  transition: all $transition-speed-normal $transition-easing-smooth;
   transform: translateX(100vw); /* 3 */
+  transition: transform $transition-speed-normal $transition-easing-smooth;
   width: 100vw;
   z-index: 2000;
 }
@@ -90,21 +89,11 @@ $header-height: 46px;
  * Allows the "displays_in_page_flow" content option to transition smoothly when opening
  * and closing, same as the standard drawer (whose position is never switched to
  * "static")
- *
- * @TODO - Look at update to replace classname '.de-has-conditionalTransition'
- * 1. A full set of drawer state classes ('is-closed,' 'is-opening,' 'is-open,' 'is-closing')
- * 2. A meaningful modified drawer classname, e.g., '.de-Drawer--displays-in-page'
- * .de-Drawer.de-Drawer--displays-in-page {
- *   transition: all 0s;
- *  }
- * .de-Drawer.de-Drawer--displays-in-page.de-is-closing,
- * .de-Drawer.de-Drawer--displays-in-page.de-is-open {
- *   transition: all $transition-speed-normal;
- * }
  */
 
-.de-Drawer.de-has-conditionalTransition {
-  transition: all 0s;
+.de-Drawer--contentFromPageFlow.de-is-closed,
+.de-Drawer--contentFromPageFlow.de-is-opening {
+  transition: transform 0s;
 }
 
 /**
@@ -112,8 +101,8 @@ $header-height: 46px;
  * option, when also in active (open) state
  */
 
-.de-Drawer.de-has-conditionalTransition.de-is-active {
-  transition: all $transition-speed-normal;
+.de-Drawer--contentFromPageFlow.de-is-open {
+  transition: transform $transition-speed-normal;
 }
 
 /*
@@ -121,7 +110,6 @@ $header-height: 46px;
  */
 
 .de-Drawer.de-is-active {
-  opacity: 1;
   transform: translateX(0); /* 1 */
 }
 
@@ -161,7 +149,7 @@ $header-height: 46px;
  *
  * @see https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-overflow-scrolling
  *
- * Applies only to drawer content displayed in an open drawer, not when diplayed
+ * Applies only to drawer content displayed in an open drawer, not when displayed
  * in regular page flow
  */
 
@@ -172,7 +160,7 @@ $header-height: 46px;
 }
 
 /*
- * 1. Ensures the last direct decendant of `Drawer-content` receives spacing at
+ * 1. Ensures the last direct descendant of `Drawer-content` receives spacing at
  * the bottom of the scrollable content equal to the height of `Drawer-header`
  *
  * @TODO - Consider any future ways to reduce specificity here

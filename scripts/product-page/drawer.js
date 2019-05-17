@@ -8,6 +8,7 @@
 
 import {
   IS_ACTIVE_CLASS,
+  IS_TRANSITIONING_CLASS,
   JS_PREFIX,
   CSS_UTILITY_PREFIX,
   FIXED_CLASS,
@@ -25,22 +26,25 @@ import { createState } from './create-state';
  * Module constants
  */
 const MODULE_NAME = 'Drawer';
-
-const DRAWER_PREFIX = `${MODULE_NAME}-`;
-const TOGGLE_SELECTOR = `.${JS_PREFIX}${DRAWER_PREFIX}toggle`;
-const PAD_UTILITY_CLASS = `${CSS_UTILITY_PREFIX}pad`;
-const MAIN_CONTENT_WRAP_SELECTOR = `.${JS_PREFIX}${DRAWER_PREFIX}wrap`;
-const DRAWER_IN_FLOW_CLASS = `${CSS_PREFIX}is-inPageFlow`;
-const DRAWER_CONDITIONAL_TRANSITION_CLASS = `${CSS_PREFIX}has-conditionalTransition`;
-const DRAWER_CONTENT_CLASS = `${CSS_PREFIX}${DRAWER_PREFIX}content`;
 const CLICK_EVENT = 'click';
 const KEY_DOWN_EVENT = 'keydown';
-const OPEN_ACTION = 'open';
 /**
  * @see https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values
  * Using a lowercase version to test against, default values are uppercased.
  */
 const ESCAPE_KEY_VALUE = 'escape';
+const OPEN_ACTION = 'open';
+const STATE_PREFIX = `${CSS_PREFIX}is-`;
+const DRAWER_PREFIX = `${MODULE_NAME}-`;
+const TOGGLE_SELECTOR = `.${JS_PREFIX}${DRAWER_PREFIX}toggle`;
+const PAD_UTILITY_CLASS = `${CSS_UTILITY_PREFIX}pad`;
+const MAIN_CONTENT_WRAP_SELECTOR = `.${JS_PREFIX}${DRAWER_PREFIX}wrap`;
+const DRAWER_IN_FLOW_CLASS = `${STATE_PREFIX}inPageFlow`;
+const IS_OPEN_CLASS = `${STATE_PREFIX}open`;
+const IS_OPENING_CLASS = `${STATE_PREFIX}opening`;
+const IS_CLOSED_CLASS = `${STATE_PREFIX}closed`;
+const IS_CLOSING_CLASS = `${STATE_PREFIX}closing`;
+const DRAWER_CONTENT_CLASS = `${CSS_PREFIX}${DRAWER_PREFIX}content`;
 /**
  * TRANSITION_DURATION value must match (in milliseconds) the value in associated
  * CSS for transition duration ($transition-speed-normal)
@@ -146,7 +150,6 @@ const inFlowDisplayStateChangeUpdates = ({ drawerEl, isOpen }) => {
     value: 'dialog',
     remove: !isOpen
   });
-  !isOpen && drawerEl.classList.add(DRAWER_CONDITIONAL_TRANSITION_CLASS);
 };
 
 /**
@@ -170,11 +173,6 @@ const updateBaseDrawerClasses = ({ drawerEl, isOpen, wrapperEls }) => {
    * Add or remove an active class to the drawer
    */
   drawerEl.classList.toggle(IS_ACTIVE_CLASS, isOpen);
-  /**
-   * Only when a drawer is open, remove a class that disables CSS transitions
-   * in other states. Used for drawer content that also displays in page flow
-   */
-  isOpen && drawerEl.classList.remove(DRAWER_CONDITIONAL_TRANSITION_CLASS);
   /**
    * Add padding to drawer content when the drawer is open
    */
@@ -208,7 +206,8 @@ const updateAccessibilityState = ({ drawerEl, isOpen, lastOpenToggleEl }) => {
  * needed for a drawer with content that also displays in page flow
  * @param {Object} state
  * @param {Element} state.drawerEl - The drawer component element
- * @param {boolean} state.isOpen - Whether the action being handled is to open the
+ * @param {boolean} state.isOpen - Whether the action being handled
+ * is to open the drawer
  * @param {Element} state.lastOpenToggleEl The last toggle that opened the drawer
  * @param {NodeList} state.wrapperEls A NodeList of main content wrapper elements
  * drawer
@@ -224,63 +223,135 @@ const baseStateChangeUpdates = ({
 };
 
 /**
+ * Timed updates of transition-related classes on the drawer
+ *
+ * IIFE wraps returned function and provides timeout placeholder variables
+ * in closure
+ *
+ * @param {Object} state
+ * @param {Element} state.drawerEl - The drawer component element
+ * @param {boolean} state.isOpen - Whether the action being handled
+ * is to open the drawer
+ */
+const setDrawerTransitionStates = (() => {
+  let openTimeout = null;
+  let closeTimeout = null;
+  const closeStateCssClasses = [IS_CLOSED_CLASS, IS_CLOSING_CLASS];
+  const openStateCssClasses = [IS_OPEN_CLASS, IS_OPENING_CLASS];
+  return function _setDrawerTransitionStates({ drawerEl, isOpen }) {
+    if (isOpen) {
+      closeTimeout && clearTimeout(closeTimeout);
+      drawerEl.classList.remove(...closeStateCssClasses, IS_OPEN_CLASS);
+      drawerEl.classList.add(IS_OPENING_CLASS);
+      openTimeout = setTimeout(() => {
+        drawerEl.classList.remove(IS_OPENING_CLASS, ...closeStateCssClasses);
+        drawerEl.classList.add(IS_OPEN_CLASS);
+      }, TRANSITION_DURATION);
+    } else {
+      openTimeout && clearTimeout(openTimeout);
+      drawerEl.classList.remove(...openStateCssClasses, IS_CLOSED_CLASS);
+      drawerEl.classList.add(IS_CLOSING_CLASS);
+      closeTimeout = setTimeout(() => {
+        drawerEl.classList.remove(IS_CLOSING_CLASS, ...openStateCssClasses);
+        drawerEl.classList.add(IS_CLOSED_CLASS);
+      }, TRANSITION_DURATION);
+    }
+  };
+})();
+
+/**
+ * Set or unset a class on UI wrapper elements indicating the drawer is
+ * in some state of transition
+ * @see `assets/product-collapse.scss.liquid`
+ * @param {Object} state - UI state
+ * @param {NodeList} state.wrapperEls - Wrappers that should be aware of drawer state
+ */
+const setDrawerInTransitionOnWrapper = (
+  { wrapperEls },
+  inTransition = true
+) => {
+  const classListMethod = inTransition ? 'add' : 'remove';
+  [...wrapperEls].forEach(el =>
+    el.classList[classListMethod](IS_TRANSITIONING_CLASS)
+  );
+};
+
+/**
+ * Helper to unset a class on UI wrapper elements indicating the drawer is
+ * no longer in some state of transition
+ * @param {Object} state
+ */
+const unsetDrawerInTransitionOnWrapper = state =>
+  setDrawerInTransitionOnWrapper(state, false);
+
+/**
  * Handles UI updates for the drawer
  * Forks behavior and staggers timing for updates with drawers that display
  * content that is also shown in page flow
  *
+ * IIFE wraps returned function and provides timeout placeholder variables
+ * in closure
+ *
  * @param {Object} state The new UI state
  */
-const updateUI = state => {
-  const { isOpen, drawerEl } = state;
-  const displaysInPageFlow = drawerEl.dataset.displayInPageFlow;
-  /**
-   * If the drawer is opening ...
-   */
-  if (isOpen) {
+const updateUI = (() => {
+  let baseStateChangeTimeout = null;
+  let inFlowDisplayStateChangeTimeout = null;
+  return function _updateUI(state) {
+    const { isOpen, drawerEl } = state;
+    const displaysInPageFlow = drawerEl.dataset.displayInPageFlow;
+    setDrawerTransitionStates(state);
     /**
-     * ... and is set to show content that also appears in page flow ...
+     * If the drawer is opening ...
      */
-    if (displaysInPageFlow) {
+    if (isOpen) {
+      setDrawerInTransitionOnWrapper(state);
+      inFlowDisplayStateChangeTimeout &&
+        clearTimeout(inFlowDisplayStateChangeTimeout);
       /**
-       * Toggle in-flow-display drawer classes, then use a timeout set to the
-       * default transition duration to apply other class updates to the drawer
-       * and its content ...
-       * @TODO - Look back at using `transitionend` here
-       * @see https://caniuse.com/#search=transitionend
+       * ... and is set to show content that also appears in page flow ...
        */
-      inFlowDisplayStateChangeUpdates(state);
-      setTimeout(() => {
+      if (displaysInPageFlow) {
+        /**
+         * Toggle in-flow-display drawer classes, then use a timeout set to the
+         * default transition duration to apply other class updates to the drawer
+         * and its content
+         */
+        inFlowDisplayStateChangeUpdates(state);
+        baseStateChangeTimeout = setTimeout(() => {
+          baseStateChangeUpdates(state);
+        }, TRANSITION_DURATION);
+      } else {
+        /**
+         * ... Otherwise, just update the base set of drawer classes ...
+         */
         baseStateChangeUpdates(state);
-      }, TRANSITION_DURATION);
-    } else {
+      }
       /**
-       * ... Otherwise, just update the base set of drawer classes ...
+       * ... or, if the drawer is closing ...
+       */
+    } else {
+      baseStateChangeTimeout && clearTimeout(baseStateChangeTimeout);
+      /**
+       * ... update the base set of drawer classes ...
        */
       baseStateChangeUpdates(state);
-    }
-    /**
-     * ... or, if the drawer is closing ...
-     */
-  } else {
-    /**
-     * ... update the base set of drawer classes ...
-     */
-    baseStateChangeUpdates(state);
-    /**
-     * ... and if the drawer is set to show content that also appears in page
-     * flow ...
-     */
-    displaysInPageFlow &&
       /**
-       * ... use a timeout set to the default transition duration to update
+       * ... and if the drawer is set to show content that also appears in page
+       * flow, use a timeout set to the default transition duration to update
        * in-flow-display drawer classes
        */
-      setTimeout(
-        () => inFlowDisplayStateChangeUpdates(state),
-        TRANSITION_DURATION
-      );
-  }
-};
+      if (displaysInPageFlow) {
+        inFlowDisplayStateChangeTimeout = setTimeout(() => {
+          inFlowDisplayStateChangeUpdates(state);
+          unsetDrawerInTransitionOnWrapper(state);
+        }, TRANSITION_DURATION);
+      } else {
+        unsetDrawerInTransitionOnWrapper(state);
+      }
+    }
+  };
+})();
 
 /**
  * Handle all UI and listener updates based on the provided state

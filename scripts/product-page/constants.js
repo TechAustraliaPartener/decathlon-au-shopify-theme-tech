@@ -52,6 +52,7 @@ export const IS_SOLD_OUT_TAG = 'EndOfLife';
  * The CSS classes used to update the UI on variant changes
  */
 export const IS_ACTIVE_CLASS = `${CSS_PREFIX}is-active`;
+export const IS_TRANSITIONING_CLASS = `${CSS_PREFIX}is-transitioning`;
 export const IS_OUT_OF_STOCK_CLASS = `${CSS_PREFIX}is-outofstock`;
 export const IS_SOLD_OUT_CLASS = `${CSS_PREFIX}is-soldout`;
 export const VALIDATION_MESSAGE_CLASS = `${JS_PREFIX}validation-message`;

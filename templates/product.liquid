@@ -157,7 +157,7 @@
   </section>
 
   <section class="de-ProductInfoSection
-                  de-u-md-pad de-u-md-hidden"
+                  de-u-md-pad"
            aria-labelledby="Section-sizeguide">
     <header>
       <h3 class="visually-hidden" id="Section-sizeguide">
@@ -172,6 +172,10 @@
         </span>
       </button>
       <div class="Accordion-content">
+        {% comment %}
+          The "Size Guide" drawer is captured here
+        {% endcomment %}
+        {% capture size_guide_content %}
         <div class="de-u-flex de-u-flexJustifyCenter">
           <img
             src="https://cdn.shopify.com/s/files/1/1330/6287/files/sizechart-womens-top-size-by-size_300x.jpg"
@@ -188,6 +192,16 @@
           <p class="de-u-padEnds06">1. Footnote</p>
         </div>
       </div>
+      {% endcapture %}
+      {% comment %}
+        Create a drawer for the captured content
+      {% endcomment %}
+      {% include 'product-drawer',
+        drawer_id: "size-guide-drawer",
+        drawer_label: "Size Guide",
+        content: size_guide_content
+        displays_in_page_flow: true
+      %}
     </div>
   </section>
 
@@ -197,13 +211,7 @@
            aria-labelledby="Section-reviews"
            data-model-code="{{model_code}}">
     {% capture reviews_heading %}
-    <header>
-      <h3 class="de-ProductInfoTitle de-u-md-textGrow3 de-u-lg-textGrow4
-                de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
-          id="Section-reviews">
-        <span class="visually-hidden">Product </span>Customer Reviews
-      </h3>
-    </header>
+      {% include 'product-customer-reviews-heading', hidden: true %}
     {% endcapture %}
     <div class="Accordion js-de-Accordion is-open">
       <button class="Accordion-header js-de-Accordion-header de-u-textGrow2">
@@ -284,11 +292,6 @@
 {% comment %}
   {% include 'product-detail--collection-control' %}
 {% endcomment %}
-
-{% comment %}
-  The "Size Guide" drawer
-{% endcomment %}
-{% include 'product-drawer--size-guide' %}
 
 {% comment %}
   To take advantage of a callback on the select dropdown, add option_selection.js

@@ -71,6 +71,15 @@ $breakpoint-xl: 80em;
   padding: 0 1rem;
 }
 
+/*
+ * Conditionally show accordion content when in a drawer
+ * @see scripts/product-page/drawer.js
+ */
+
+.de-is-transitioning .Accordion:not(.is-open) .Accordion-content {
+  display: block;
+}
+
 @media (min-width: $breakpoint-md) {
   .Accordion-content {
     padding: 0;
@@ -95,13 +104,4 @@ $breakpoint-xl: 80em;
 
 .Accordion.is-open .Accordion-indicator {
   transform: rotate(-45deg);
-}
-
-/*
- * Conditionally show accordion content when in a drawer
- * @TODO - Consider any future ways to reduce specificity here
- */
-
-.de-Drawer-wrap.de-content-is-fixed .Accordion:not(.is-open) .Accordion-content {
-  display: block;
 }

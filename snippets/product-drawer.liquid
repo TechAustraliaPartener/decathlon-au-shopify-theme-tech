@@ -9,7 +9,7 @@
   {% unless displays_in_page_flow %}role="dialog"{% endunless %}
   id="{{ drawer_id }}"
   aria-label="{{ drawer_label }}"
-  class="de-Drawer{% if displays_in_page_flow %} de-is-inPageFlow de-has-conditionalTransition{% endif %} js-de-Drawer"
+  class="de-Drawer{% if displays_in_page_flow %} de-is-inPageFlow de-Drawer--contentFromPageFlow{% endif %} js-de-Drawer"
   {% if displays_in_page_flow %}data-display-in-page-flow="true"{% endif %}
 >
   <header class="de-Drawer-header de-u-padSides de-u-padEnds06 de-u-spaceNone de-u-bgSilver">
