@@ -5,6 +5,7 @@
   - drawer_label (string): A string label for better accessibility ("Size Guide", "Reviews", etc.)
   - content: The captured content block to be rendered in the drawer
 {% endcomment %}
+
 <div
   {% unless displays_in_page_flow %}role="dialog"{% endunless %}
   id="{{ drawer_id }}"
@@ -12,21 +13,24 @@
   class="de-Drawer{% if displays_in_page_flow %} de-is-inPageFlow de-Drawer--contentFromPageFlow{% endif %} js-de-Drawer"
   {% if displays_in_page_flow %}data-display-in-page-flow="true"{% endif %}
 >
-  <header class="de-Drawer-header de-u-padSides de-u-padEnds06 de-u-spaceNone de-u-bgSilver">
-    <button
-      class="de-u-flex de-u-flexAlignItemsCenter de-u-textBold de-u-textGrow2 js-de-Drawer-toggle"
-      data-drawer-id="{{ drawer_id }}"
-      data-drawer-toggle-aria-label="Close the {{ drawer_label }} dialog."
-      data-drawer-action="close"
-    >
-      {% include 'product-icon--chevron-left' %}
-      Back
-    </button>
-  </header>
-  <div class="de-Drawer-content">
-    {% if heading %}
-      {{ heading }}
-    {% endif %}
-    {{ content }}
+  <div class="de-Drawer-overlay"></div>
+  <div class="de-Drawer-contentWrapper">
+    <header class="de-Drawer-header de-u-padSides de-u-padEnds06 de-u-spaceNone de-u-bgSilver">
+      <button
+        class="de-u-flex de-u-flexAlignItemsCenter de-u-textBold de-u-textGrow2 js-de-Drawer-toggle"
+        data-drawer-id="{{ drawer_id }}"
+        data-drawer-toggle-aria-label="Close the {{ drawer_label }} dialog."
+        data-drawer-action="close"
+      >
+        {% include 'product-icon--chevron-left' %}
+        Back
+      </button>
+    </header>
+    <div class="de-Drawer-content">
+      {% if heading %}
+        {{ heading }}
+      {% endif %}
+      {{ content }}
+    </div>
   </div>
 </div>
