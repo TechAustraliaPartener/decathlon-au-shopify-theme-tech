@@ -82,10 +82,10 @@ export const app = {
       </div>
 
       <store-finder-map
-        v-if='stores.length > 0 && mapsInitialized'
+        v-if='stores.length > 0 && mapsInitialized && isStoresInitialized'
         @set-selected-store='setSelectedStore'
         :is-selected-store='isSelectedStore'
-        :stores='stores'
+        :initialStores='stores'
         class='de-StoreMap'
       ></store-finder-map>
     </div>
