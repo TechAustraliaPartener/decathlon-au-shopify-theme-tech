@@ -243,9 +243,16 @@ $ProductBackToTop-height: 32px; /* 1 */
 $ProductBackToTop-border-radius: 1.75; /* 2 */
 
 .ProductBackToTop {
-  display: flex;
+  display: none;
   height: $ProductBackToTop-height;
+  justify-content: center;
   margin-top: $ProductBackToTop-height;
+}
+
+@media (min-width: $breakpoint-md) {
+  .ProductBackToTop {
+    display: flex;
+  }
 }
 
 .ProductBackToTop-middle {
