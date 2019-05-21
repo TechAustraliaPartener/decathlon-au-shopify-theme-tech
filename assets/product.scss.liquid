@@ -312,3 +312,18 @@ $ProductBackToTop-border-radius: 1.75; /* 2 */
   border-bottom-left-radius:
     ($ProductBackToTop-height / $ProductBackToTop-border-radius);
 }
+
+
+/** 
+ * Customer Fulfillment Options
+ */
+
+.de-ProductFulfillment {
+  border-bottom: 0;
+}
+
+@media (min-width: $breakpoint-lg) {
+  .de-ProductFulfillment   {
+    border-bottom: $border-width-lg solid $color-lime;
+  }
+}
