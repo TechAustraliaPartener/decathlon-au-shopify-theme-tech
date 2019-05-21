@@ -1,22 +1,7 @@
 /**
  * Media Queries
  */
-
-$breakpoint-lg: 60em;
-
-
-/**
- * 1. Make the video appear square
- * 2. Make the poster appear square
- */
-.de-copyVideo {
-  .vjs-tech {
-    object-fit: cover; /* 1 */
-  }
-  .vjs-poster {
-    background-size: cover; /* 2 */
-  }
-}
+$breakpoint-md: 40em;
 
 .de-ProductPhoto {
   position: relative;
@@ -34,18 +19,11 @@ $breakpoint-lg: 60em;
   padding: 10px;
 }
 
-@media (min-width: 40em) {
+@media (max-width: $breakpoint-md) {
   .de-slick--videos {
-    max-width: 80%;
     margin: auto;
   }
   .de-thumb {
     padding: 40px 80px;
-  }
-}
-
-@media (min-width: $breakpoint-lg) {
-  .de-copyVideo {
-    display: none;
   }
 }
