@@ -42,7 +42,7 @@ const MAIN_CONTENT_WRAP_SELECTOR = `.${JS_PREFIX}${DRAWER_PREFIX}wrap`;
 const DRAWER_IN_FLOW_CLASS = `${STATE_PREFIX}inPageFlow`;
 const IS_OPEN_CLASS = `${STATE_PREFIX}open`;
 const IS_OPENING_CLASS = `${STATE_PREFIX}opening`;
-const IS_CLOSED_CLASS = `${STATE_PREFIX}closed`;
+export const IS_CLOSED_CLASS = `${STATE_PREFIX}closed`;
 const IS_CLOSING_CLASS = `${STATE_PREFIX}closing`;
 const DRAWER_CONTENT_CLASS = `${CSS_PREFIX}${DRAWER_PREFIX}content`;
 /**

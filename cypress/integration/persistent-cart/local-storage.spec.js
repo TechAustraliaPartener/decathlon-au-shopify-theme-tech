@@ -1,4 +1,4 @@
-context('Persistent Cart', () => {
+context.skip('Persistent Cart', () => {
   beforeEach(() => {
     // Log in + allow to redirect to product page
     cy.visit(
