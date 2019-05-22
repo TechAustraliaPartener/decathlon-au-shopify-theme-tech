@@ -92,8 +92,10 @@ figure {
  *
  * 1. The height in pixels of the fixed position, `de-PageWrap-header` element,
  *    which is the element that this component must "stick" beneath.
- * 2. Sets an absurd `z-index` value to make it really hard for anything else
- *    to appear above this component.
+ * 2. Setting the `z-index` value to `1999` ensures the product menu will display
+ *    below the 'Drawer' overlay which has a z-index of `2000`, while at the 
+ *    same time making it more difficult for other elements to appear on top of
+ *    the sticky `ProductMenu` component.
  * 3. This component is not intended to be displayed for small screens. Setting
  *    display none here because of known "issue" with `de-u-hidden` not working
  *    well with responsive display flex utiltities.
@@ -111,7 +113,7 @@ figure {
   justify-content: center;
   position: sticky;
   top: 58px; /* 1 */
-  z-index: 9999; /* 2 */
+  z-index: 1999; /* 2 */
 }
 
 @media (min-width: $breakpoint-md) {
