@@ -107,4 +107,14 @@ $breakpoint-lg: 60em;
   .de-SlickSlide.slick-current {
     border: $border-width-md solid $color-blue;
   }
+
+  /*
+   * 1. The current slide/image already gets a custom outline, so this
+   *    is to remove the outline (for this slide only) now that the slides
+   *    get tab focus
+   */
+
+  .de-SlickSlide.slick-current .de-CarouselThumbnail-btn {
+    outline: none; /* 1 */
+  }
 }

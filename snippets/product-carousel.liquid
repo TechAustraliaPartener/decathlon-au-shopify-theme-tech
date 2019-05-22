@@ -91,17 +91,20 @@
   {% comment %}
     Product images, grouped by color
   {% endcomment %}
-  <div
+  <section
     data-color="{{- color -}}"
     class="de-CarouselContainer
-            {% if color == activeColor %}de-is-active{% endif %}
-            js-de-SlickCarouselContainer">
+    {% if color == activeColor %}de-is-active{% endif %}
+    js-de-SlickCarouselContainer"
+    aria-roledescription="carousel"
+    aria-label="Product Image Gallery">
     {% comment %}
       Featured image
     {% endcomment %}
     <div class="de-CarouselFeature
-                {% if color == activeColor %}de-is-active{% endif %}
-                js-de-SlickCarousel js-de-SlickCarouselFeature">
+         {% if color == activeColor %}de-is-active{% endif %}
+         js-de-SlickCarousel js-de-SlickCarouselFeature"
+         id="de-CarouselFeature">
       {%- for product_image in product_images -%}
         {% capture image_srcset %}
           {{ product_image | img_url: "320x" }} 320w,
@@ -126,15 +129,22 @@
           (max-width: 2400px) 1250px
         {% endcapture %}
         {%- if forloop.index0 >= start_index and forloop.index0 < end_index -%}
-          <img
-            class="de-CarouselFeature-image js-de-SlickCarouselSlide"
-            {% if color == activeColor and forloop.index0 == start_index %}
-              srcset="{{ image_srcset }}"
-              sizes="{{ image_sizes }}"
-            {% endif %}
-            data-srcset="{{ image_srcset }}"
-            data-sizes="{{ image_sizes }}"
-            >
+          <div class="de-CarouselFeature-slide"
+            aria-roledescription="slide"
+            role="group"
+            aria-label="{{ forloop.index | minus: start_index }} of {{ end_index | minus: start_index }}">
+            <button class="de-CarouselFeature-btn">
+              <img
+                class="de-CarouselFeature-image js-de-SlickCarouselSlide"
+                {% if color == activeColor and forloop.index0 == start_index %}
+                  srcset="{{ image_srcset }}"
+                  sizes="{{ image_sizes }}"
+                {% endif %}
+                data-srcset="{{ image_srcset }}"
+                data-sizes="{{ image_sizes }}"
+                >
+            </button>
+          </div>
         {%- endif -%}
       {%- endfor -%}
     </div>
@@ -170,14 +180,20 @@
           (max-width: 2400px) 240px
         {% endcapture %}
         {%- if forloop.index0 >= start_index and forloop.index0 < end_index -%}
-          <img
-            class="de-CarouselThumbnail-image
-                    de-SlickSlide de-u-spaceBottom03
-                    js-de-SlickCarouselSlide"
-            data-srcset="{{ image_srcset }}"
-            data-sizes="{{ image_sizes }}">
+          <div class="de-SlickSlide de-u-spaceBottom03
+            de-CarouselThumbnail-slide"
+            aria-controls="de-CarouselFeature"
+            aria-roledescription="slide"
+            role="group"
+            aria-label="{{ forloop.index | minus: start_index }} of {{ end_index | minus: start_index }}">
+            <button class="de-CarouselThumbnail-btn">
+              <img class="de-CarouselThumbnail-image js-de-SlickCarouselSlide"
+                data-srcset="{{ image_srcset }}"
+                data-sizes="{{ image_sizes }}">
+            </button>
+          </div>
         {%- endif -%}
       {%- endfor -%}
     </div>
-  </div>
+  </section>
 {%- endfor -%}
