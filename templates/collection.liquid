@@ -1,7 +1,7 @@
 {% include 'collection-header-js' %}
 
 {% if collection.image %}
-    <div class="collectionImage" style="background-image:url('{{ collection.image | img_url: 'master' }}'); " data-background-image="{{ collection.image | img_url: 'master' }}">
+    <div class="collectionImage medium-down--hide" style="background-image:url('{{ collection.image | img_url: 'master' }}'); " data-background-image="{{ collection.image | img_url: 'master' }}">
         <div class="wrapper">
             {% include 'breadcrumb', adtl_classes: ' breadcrumb--overImage' %}
 
@@ -10,14 +10,20 @@
     </div>
 {% endif %}
 
-
+<div class="de-padding10 de-u-textSizeBase large--hide">
+      {% include 'find-top-level-collection' %}
+      {% include 'create-breadcrumbs' %}
+      <h2 class="de-u-textBold de-u-textCapitalize de-u-textGrow de-u-spaceBottom06">{{ collection.title }}</h2>
+      <hr class="de-blue-hr de-u-bgBlue de-u-spaceNone">
+</div>
 <div class="wrapper{% if collection.image %} wrapper--collectionWithBanner u-paddingTopBottom4x{% else %} u-marginBottom4x{% endif %}">
-    {% include 'find-top-level-collection' %}
+    <div class="medium-down--hide">
     {% unless collection.image %}
 		{% include 'create-breadcrumbs' %}
     {% endunless %}
+    </div>
 
-    <div class="grid">
+    <div class="grid--full">
         <div class="grid__item large--one-quarter left">
             {% include 'nested-navigation' %}
             <!-- Adept Search Start -->
@@ -29,6 +35,7 @@
             {% comment %}
             Different markup if a collection description exists
             {% endcomment %}
+            <div class="medium-down--hide">
             {% if current_tags.size %}
                 <header class="section-header is-currentTag">
                     <h1 class="section-header__title u-marginBottom0x">{{ tag_title }}</h1>
@@ -53,6 +60,7 @@
                 <hr>
                 {% endif %}
             {% endif %}
+            </div>
 
 
             {% assign pageBy = 40 %}

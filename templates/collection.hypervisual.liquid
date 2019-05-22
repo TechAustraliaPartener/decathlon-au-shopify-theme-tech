@@ -1,5 +1,5 @@
 {% if collection.image %}
-    <div class="collectionImage de-collectionImage" style="background-image:url('{{ collection.image | img_url: 'master' }}'); " data-background-image="{{ collection.image | img_url: 'master' }}">
+    <div class="collectionImage de-collectionImage medium-down--hide" style="background-image:url('{{ collection.image | img_url: 'master' }}'); " data-background-image="{{ collection.image | img_url: 'master' }}">
         <div class="wrapper">
             {% include 'breadcrumb', adtl_classes: ' breadcrumb--overImage medium-down--hide' %}
 
@@ -9,7 +9,11 @@
     </div>
 {% endif %}
 
-
+<div class="de-padding10 de-u-padTop de-u-padBottomNone de-u-textSizeBase large--hide">
+    <h2 class="de-u-textBold de-u-textCapitalize de-u-textGrow de-u-spaceBottom06">{{ collection.title }}</h2>
+    <hr class="de-blue-hr de-u-bgBlue de-u-spaceNone">
+    <p class="de-u-textDarkGrasy de-u-spaceBottom06 de-u-textShrink1 de-u-spaceEnds06">Shop By Category</p>
+</div>
 <div class="de-wrapper wrapper{% if collection.image %} wrapper--collectionWithBanner{% endif %}">
     {% include 'find-top-level-collection' %}
     {% unless collection.image %}
@@ -20,7 +24,7 @@
             Different markup if a collection description exists
             {% endcomment %}
                 {% unless collection.image %}
-                <header class="section-header">
+                <header class="section-header medium-down--hide">
                     {%- unless collection.image -%}
                         <h1 class="section-header__title section-header__left">{{ collection.title }}</h1>
                     {%- endunless -%}
@@ -41,7 +45,7 @@
 				{% endfor %}
                 </div>
 				{% if collection.description != blank %}
-                    <div class="rte rte--header">
+                    <div>
                         {{ collection.description }}
                     </div>
                 {% endif %}
