@@ -5,7 +5,7 @@
 <style type="text/css">#bc-sf-filter-products .section-header__title { margin-left: 30px; }</style>
 
 {% if collection.image %}
-<div class="collectionImage" style="background-image:url('{{ collection.image | img_url: '1024x' }}'); " data-background-image="{{ collection.image | img_url: '1024x' }}">
+<div class="collectionImage medium-down--hide" style="background-image:url('{{ collection.image | img_url: 'master' }}'); " data-background-image="{{ collection.image | img_url: 'master' }}">
     <div class="wrapper">
         {% include 'breadcrumb', adtl_classes: ' breadcrumb--overImage' %}
 
@@ -14,13 +14,20 @@
 </div>
 {% endif %}
 
-<div class="wrapper{% if collection.image %} wrapper--collectionWithBanner u-paddingTopBottom4x{% else %} u-marginBottom4x{% endif %}">
-    {% include 'find-top-level-collection' %}
+<div class="de-padding10 de-u-textSizeBase large--hide">
+      {% include 'find-top-level-collection' %}
+      {% include 'create-breadcrumbs' %}
+      <h2 class="de-u-textBold de-u-textCapitalize de-u-textGrow de-u-spaceBottom06">{{ collection.title }}</h2>
+      <hr class="de-blue-hr de-u-bgBlue de-u-spaceNone">
+</div>
+<div class="wrapper{% if collection.image %} wrapper--collectionWithBanner u-paddingTopBottom4x de-mobile-nopadding{% endif %}">
+     <div class="medium-down--hide">
     {% unless collection.image %}
     {% include 'create-breadcrumbs' %}
     {% endunless %}
+    </div>
 
-    <div class="grid">
+    <div class="grid--full">
         <div class="grid__item large--one-quarter left">
             {% include 'nested-navigation' %}
 				<!-- Adept Search Start -->
@@ -34,6 +41,7 @@
     {% comment %}
     Different markup if a collection description exists
     {% endcomment %}
+    <div class="medium-down--hide">
     {% if current_tags.size %}
         <header class="section-header">
             <h1 class="section-header__title u-marginBottom0x">{{ tag_title }}</h2>
@@ -68,8 +76,13 @@
 
     {% endif %}
     {% endif %}
+    </div>
 
-    <div id="bc-sf-filter-products" class="grid-uniform adept-collection-products">
+    <div class="de-loading text-center">
+    <img src="{{ 'decathlon-loader.gif' | asset_url }}">
+    </div>
+
+    <div id="bc-sf-filter-products" class="de-collection-multi grid-uniform adept-collection-products">
 
         {% if current_tags.size %}
 
@@ -168,6 +181,21 @@
 
                 {% assign collection = link.object %}
 
+                <div class="large--hide">
+                  <a class="de-mobile-fullwidth" href="{{ collection.url }}">
+                    <div class="de-MenuList-item de-padding-5-10{% if forloop.first %} de-mobile-nobordertop{% endif %}{% if forloop.last %} de-mobile-noborderbottom{% endif %}">
+                      <div class="three-quarters de-minheight-68">
+                        <img class="de-collection-menu-image de-inline-block" src="{{ collection.products[0].featured_image.src | img_url: "200x" }}">
+                        <h5 class="de-MenuList-heading de-fontsize-14224 de-inline-block de-inline-header">{{ link.title }}</h5>
+                      </div>
+                      <div class="one-quarter text-right">
+                      {% unless collection.template_suffix contains 'multi' or collection.template_suffix contains 'hypervisual' %}<p class="de-MenuList-badge de-fontsize-14224 de-inline-block">{{ collection.all_products_count }}</p>{% endunless %}
+                      {% include 'patterns-icons-chevron', class: 'de-MenuList-icon de-inline-block', role: 'presentation' %}
+                      </div>
+                    </div>
+                  </a>
+                </div>
+                <div class="medium-down--hide">
                 <header class="section-header">
                     <h2 class="section-header__title">
                         {{ link.title }}
@@ -176,7 +204,7 @@
                         </a>
                     </h2>
                 </header>
-                <div {% comment %}class="grid-uniform"{% endcomment %}>
+                <div class="grid-uniform">
 
                     {% assign has_featured = false %}
                     {% assign path_items = link.url | split: '/' %}
@@ -309,6 +337,7 @@
                         {% endfor %}
                 {% endpaginate %}
                 </div>
+                </div>
             {% endfor %}
             </div>
         {% endif %}
@@ -316,5 +345,14 @@
         <div id="bc-sf-filter-bottom-pagination"></div>
     </div>
 </div>
+
+<script>
+if ($( window ).width() <= 768) {
+$( document ).ready(function() {
+  $('.de-loading').hide();
+  $('.de-collection-multi').css('opacity', 1);
+});
+}
+</script>
 
 {% include 'collection-footer-js' %}
