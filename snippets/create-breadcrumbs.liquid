@@ -2,20 +2,20 @@
 <nav class="breadcrumb" role="navigation" aria-label="breadcrumbs">
   {% comment %} Hiding "All Sports" per DEC-643
   <a href="/collections" title="All Sports">All Sports</a>
-  <span aria-hidden="true" class="breadcrumb__sep">&rsaquo;</span>
+  <span aria-hidden="true" class="breadcrumb__sep">/</span>
   {% endcomment %}
-  <a href="{{top_level.url}}" title="{{top_level.title}}">{{top_level.title}}</a>
+  <a href="{{shop.url}}/collections/{{top_level.handle}}"{% if top_level.title == collection.title %} class="mobile-hide"{% endif %} title="{{top_level.title}}">{{top_level.title}}</a>
   {% for link in top_level.links %}
   	{% if link.active or link.child_active %}
-  		<span aria-hidden="true" class="breadcrumb__sep">&rsaquo;</span>
- 		 <a href="{{link.url}}" title="{{link.title}}">{{link.title}}</a>
+  		<span aria-hidden="true" class="breadcrumb__sep{% if link.active %} mobile-hide{% endif %}">/</span>
+ 		 <a href="{{link.url}}"{% if link.url == collection.url %} class="mobile-hide"{% endif %} title="{{link.title}}">{{link.title}}</a>
   			{% if link.child_active %}
-  				<span aria-hidden="true" class="breadcrumb__sep">&rsaquo;</span>
+  				<span aria-hidden="true" class="breadcrumb__sep mobile-hide">/</span>
   			{% endif %}
  			{% if link.links != blank %}
   				{% for sub in link.links %}
   					{% if sub.active %}
-  						<a href="{{sub.url}}" title="{{sub.title}}">{{sub.title}}</a>
+  						<a href="{{sub.url}}" class="mobile-hide" title="{{sub.title}}">{{sub.title}}</a>
   					{% endif %}
   				{% endfor %}
   			{% endif %}
