@@ -85,10 +85,21 @@
     </div>
   </section>
 
+  {% comment %}
+    ProductMenu
+  {% endcomment %}
+  {% include 'product-menu' %}
+
   {% if product_video.size > 0 %}
   <section class="de-ProductInfoSection de-ProductInfoSection--silver
                   de-u-md-pad"
            aria-labelledby="Section-videos">
+    <span
+      id="product-videos"
+      class="de-ProductAnchor"
+      aria-hidden="true">
+    </span>
+
     <header>
       <h3 class="de-ProductInfoTitle de-u-md-textGrow3 de-u-lg-textGrow4
                 de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
@@ -112,6 +123,12 @@
 
   <section class="de-ProductInfoSection de-u-md-pad2"
            aria-labelledby="Section-features">
+    <span
+      id="product-features"
+      class="de-ProductAnchor"
+      aria-hidden="true">
+    </span>
+
     <header>
       <h3 class="de-ProductInfoTitle de-u-md-textGrow3 de-u-lg-textGrow4
                 de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
@@ -135,9 +152,16 @@
   {% comment %} Back to top anchor link {% endcomment %}
   {% include 'product-back-to-top' %}
 
+  <span
+    id="product-imageGallery"
+    class="de-ProductAnchor"
+    aria-hidden="true">
+  </span>
   <section class="de-ProductInfoSection de-ProductInfoSection--silver
                   de-u-pad2"
            aria-labelledby="Section-lifestyle-images">
+    
+
     <h3 class="de-ProductInfoTitle de-u-md-textGrow3 de-u-lg-textGrow4
                de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
         id="Section-lifestyle-images">
@@ -161,7 +185,8 @@
 
   <section class="de-ProductInfoSection
                   de-u-md-pad"
-           aria-labelledby="Section-sizeguide">
+           aria-labelledby="Section-sizeguide"
+           id="product-sizeGuide">
     <header>
       <h3 class="visually-hidden" id="Section-sizeguide">
         Product Size and Fit Information
@@ -213,6 +238,13 @@
                   js-de-Reviews"
            aria-labelledby="Section-reviews"
            data-model-code="{{model_code}}">
+
+    <span
+      id="product-reviews"
+      class="de-ProductAnchor"
+      aria-hidden="true">
+    </span>
+
     {% capture reviews_heading %}
       {% include 'product-customer-reviews-heading', hidden: true %}
     {% endcapture %}
@@ -248,9 +280,16 @@
   {% comment %} Back to top anchor link {% endcomment %}
   {% include 'product-back-to-top' %}
 
+
   <section class="de-ProductInfoSection
                   de-ProductInfoSection--silver de-u-md-pad"
            aria-labelledby="Section-additional-info">
+    <span
+      id="product-information"
+      class="de-ProductAnchor"
+      aria-hidden="true">
+    </span>
+
     <header>
       <h3 class="de-ProductInfoTitle de-u-md-textGrow3 de-u-lg-textGrow4
                 de-u-spaceNone de-u-hidden de-u-md-inlineBlock"

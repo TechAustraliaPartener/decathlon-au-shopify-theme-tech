@@ -58,6 +58,8 @@
  *    from the touchscreen. The speed and duration of the continued scrolling is
  *    proportional to how vigorous the scroll gesture was. Also creates a new
  *    stacking context. Support: Safari iOS.
+ *    Setting `z-index: 1;` ensures that horizontal scroll bars will not overlap
+ *    any position fixed, or sticky elements.
  */
 
 $product-gallery-spacing-xs: 0.5rem; /* 1 */
@@ -69,6 +71,7 @@ $product-gallery-spacing-md: 1.266rem; /* 1 */
   overflow-y: hidden; /* 2 */
   white-space: nowrap; /* 2 */
   -webkit-overflow-scrolling: touch; /* 5 */
+  z-index: 1;
 }
 
 .ProductImageGallery::before,

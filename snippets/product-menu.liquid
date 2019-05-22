@@ -1,0 +1,49 @@
+{% comment %}
+  ProductMenu
+
+  @TODO:
+  1. Hook up with dynamic active states on scroll
+  2. Revisit keyboard navigation experience
+{% endcomment %}
+
+<nav
+  aria-hidden="true"
+  class="de-ProductMenu
+         de-u-textSizeBase">
+
+  <ul class="de-MenuBar">
+    {% if product_video.size > 0 %}
+    <li
+      class="de-MenuBar-action de-u-textGrow1">
+      <a href="#product-videos" class="de-MenuBar-label de-u-linkClean">
+        Videos
+      </a>
+    </li>
+    {% endif %}
+    <li
+      class="de-MenuBar-action de-u-textGrow1">
+      <a href="#product-features" class="de-MenuBar-label de-u-linkClean">
+        Features
+      </a>
+    </li>
+    <li
+      class="de-MenuBar-action de-u-textGrow1">
+      <a href="#product-imageGallery" class="de-MenuBar-label de-u-linkClean">
+        Image Gallery
+      </a>
+    </li>
+    <li
+      class="de-MenuBar-action de-u-textGrow1">
+      <a href="#product-reviews" class="de-MenuBar-label de-u-linkClean">
+        Reviews
+      </a>
+    </li>
+    <li
+      class="de-MenuBar-action de-u-textGrow1">
+      <a href="#product-information" class="de-MenuBar-label de-u-linkClean">
+        Product Information
+      </a>
+    </li>
+  </ul>
+
+</nav>

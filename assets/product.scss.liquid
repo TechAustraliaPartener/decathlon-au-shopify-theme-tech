@@ -17,6 +17,7 @@ $color-black: #2a2b2c;
 $color-blue: #0082c3;
 $color-darkgray: #464646;
 $color-gray: #acb3b8;
+$color-gray50: rgba(172, 179, 184, 0.5);
 $color-lime: #cbfb00;
 $color-silver: #f3f3f3;
 $color-white: #fff;
@@ -87,12 +88,80 @@ figure {
 }
 
 /**
+ * ProductMenu
+ *
+ * 1. The height in pixels of the fixed position, `de-PageWrap-header` element,
+ *    which is the element that this component must "stick" beneath.
+ * 2. Sets an absurd `z-index` value to make it really hard for anything else
+ *    to appear above this component.
+ * 3. This component is not intended to be displayed for small screens. Setting
+ *    display none here because of known "issue" with `de-u-hidden` not working
+ *    well with responsive display flex utiltities.
+ * 
+ * Note: position sticky is not supported in IE11. This component will degrade
+ * gracefully and the non-sticky experience has been deemed acceptable for
+ * this component.
+ */
+
+.de-ProductMenu {
+  background-color: $color-white;
+  border-top: $border-width-sm solid $color-gray50;
+  border-bottom: $border-width-sm solid $color-gray50;
+  display: none; /* 3 */
+  justify-content: center;
+  position: sticky;
+  top: 58px; /* 1 */
+  z-index: 9999; /* 2 */
+}
+
+@media (min-width: $breakpoint-md) {
+  .de-ProductMenu {
+    display: flex;
+  }
+}
+
+/**
+ * 1. Using viewport width units provides an ideal flexibile padding between
+ *    menu items and padding is incremented as the browser width changes. The
+ *    numerical value is one of pure aestheic preference and may need to be
+ *    adjusted in the future.
+ */
+
+.de-ProductMenu .de-MenuBar-action {
+  padding-left: 4vw; /* 1 */
+  padding-right: 4vw; /* 1 */
+}
+
+/**
+ * A unique solution for anchor links for use when fixed or sticky menus are
+ * present. Adding this class to an element directly preceding the element, or
+ * as the first-child inside of the element you'd like to link to, will ensure
+ * the context does not become hidden behind the fixed/sticky header element.
+ *
+ * The method of assigning a negative integar for margin, and the same
+ * (non-negative) integar for padding ensures that a gap in the content does
+ * not exist.
+ *
+ * @see: https://css-tricks.com/hash-tag-links-padding
+ *
+ * 1. The value `180px` was determined by adding the height of both the primary
+ *    navigation and the product page sticky menu plus "a little extra" for a
+ *    more comfortable anchor navigation experience - making it a bit of a
+ *    magic number
+ *
+ */
+.de-ProductAnchor {
+  display: block;
+  margin-top: -180px;
+  padding-top: 180px;
+}
+
+/**
  * ProductInfoSection
  */
 
 .de-ProductInfoSection {
   border-top: $border-width-xl solid $color-silver;
-  overflow: hidden;
 }
 
 .de-ProductInfoSection:last-of-type {
