@@ -17,9 +17,16 @@ const MIN_QUANTITY_THRESHOLD = 5;
 const $ValidationMessage = $(`.${VALIDATION_MESSAGE_CLASS}`);
 const ADD_TO_CART_BTN_SELECTOR = `.${ADD_TO_CART_CLASS}-btn`;
 const ADD_TO_CART_TEXT_SELECTOR = `.${ADD_TO_CART_CLASS}-text`;
+const $AddToCartButtonContainer = $(`.${ADD_TO_CART_CLASS}`);
 const $AddToCartButton = $(ADD_TO_CART_BTN_SELECTOR);
 const $AddToCartButtonText = $(ADD_TO_CART_TEXT_SELECTOR);
-const unvailableStatus = {};
+const availabilityState = {
+  message: '',
+  atcCopy: PRODUCT_PAGE_COPY.ATC_AVAILABLE,
+  soldout: false
+};
+
+let currentVariant = null;
 
 /**
  * Check product attributes for the "End of Life" tag and specifies whether the
@@ -28,11 +35,32 @@ const unvailableStatus = {};
 
 export const init = () => {
   if (isSoldOut()) {
-    unvailableStatus.message = PRODUCT_PAGE_COPY.VALIDATION_SOLD_OUT;
-    unvailableStatus.atcCopy = PRODUCT_PAGE_COPY.ATC_SOLD_OUT;
+    availabilityState.message = PRODUCT_PAGE_COPY.VALIDATION_SOLD_OUT;
+    availabilityState.atcCopy = PRODUCT_PAGE_COPY.ATC_SOLD_OUT;
+    availabilityState.soldout = true;
   } else {
-    unvailableStatus.message = PRODUCT_PAGE_COPY.VALIDATION_OUT_OF_STOCK;
-    unvailableStatus.atcCopy = PRODUCT_PAGE_COPY.ATC_OUT_OF_STOCK;
+    availabilityState.message = PRODUCT_PAGE_COPY.VALIDATION_OUT_OF_STOCK;
+    availabilityState.atcCopy = PRODUCT_PAGE_COPY.ATC_OUT_OF_STOCK;
+    availabilityState.soldout = false;
+  }
+  /**
+   * Listener for Add to Cart button
+   */
+  $AddToCartButtonContainer.on('click', onAddToCartClick);
+};
+
+/**
+ * The handler for when Add to Cart is clicked
+ */
+const onAddToCartClick = () => {
+  if (
+    currentVariant &&
+    !currentVariant.available &&
+    !availabilityState.soldout
+  ) {
+    if (window.BISPopover) {
+      window.BISPopover.show();
+    }
   }
 };
 
@@ -55,7 +83,7 @@ const getQuantityLeftText = ({ inventory_quantity: quantity }) =>
  * @returns {string} Text for Add to Cart validation block
  */
 const getValidationText = variant =>
-  variant.available ? getQuantityLeftText(variant) : unvailableStatus.message;
+  variant.available ? getQuantityLeftText(variant) : availabilityState.message;
 
 /**
  * Returns text for Add to Cart button based on variant availability
@@ -65,21 +93,19 @@ const getValidationText = variant =>
  * @returns {string} Text to add to Add to Cart button
  */
 const getAddToCartButtonText = ({ available }) =>
-  available ? PRODUCT_PAGE_COPY.ATC_AVAILABLE : unvailableStatus.atcCopy;
+  available ? PRODUCT_PAGE_COPY.ATC_AVAILABLE : availabilityState.atcCopy;
 
 /**
  * Enables/disables and updates Add to Cart button with label and validation text
  * with correct states for currently selected variant.
- *
  *
  * @param {object} obj The state data object
  * @param {string} obj.size Value of the selected size option
  * @param {string} obj.color Value of the selected color option
  */
 export const updateUI = ({ size, color }) => {
-  const selectedVariant = getSelectedVariant({ size, color });
-
-  $AddToCartButton.attr('disabled', !selectedVariant.available);
-  $ValidationMessage.text(getValidationText(selectedVariant));
-  $AddToCartButtonText.text(getAddToCartButtonText(selectedVariant));
+  currentVariant = getSelectedVariant({ size, color });
+  $AddToCartButton.attr('disabled', !currentVariant.available);
+  $ValidationMessage.text(getValidationText(currentVariant));
+  $AddToCartButtonText.text(getAddToCartButtonText(currentVariant));
 };
