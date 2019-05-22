@@ -1,4 +1,5 @@
 import { IS_ACTIVE_CLASS, JS_PREFIX } from './constants';
+// @todo Consider removing jQuery dependency
 import $ from 'jquery';
 
 /**
@@ -11,6 +12,7 @@ const FEATURE_CAROUSEL_ACTIVE_SELECTOR = `${FEATURE_CAROUSEL_SELECTOR}.${IS_ACTI
 const THUMBNAIL_CAROUSEL_SELECTOR = `.${JS_PREFIX}SlickCarouselThumbnail`;
 const THUMBNAIL_CAROUSEL_ACTIVE_SELECTOR = `${THUMBNAIL_CAROUSEL_SELECTOR}.${IS_ACTIVE_CLASS}`;
 const SLIDE_CAROUSEL_SELECTOR = `.${JS_PREFIX}SlickCarouselSlide`;
+const $galleryCounter = $(`.${JS_PREFIX}ProductGallery-countValue`);
 
 /**
  * Global active carousel index
@@ -115,15 +117,39 @@ const improveCarouselSwipeResponse = () => {
 };
 
 /**
+ * Counter UI text format helper
+ *
+ * Formats the counter text for UI display.
+ *
+ * @param {Object} obj Counter data
+ * @param {Number} obj.currentIndex The active index of shown carousel slide
+ * @param {Number} obj.total The total count of the active carousel slides
+ * @returns {string} Formatted text for UI display
+ */
+const formatCounterText = ({ currentIndex, total }) =>
+  `${currentIndex + 1}/${total}`;
+
+/**
+ * Update carousel gallery counter value
+ * @param {Object} counterData An object containing counter data
+ */
+const updateGalleryCounter = counterData => {
+  $galleryCounter.text(formatCounterText(counterData));
+};
+
+/**
  * Initialize carousel
  */
 const initCarousel = () => {
   const $featureCarouselActive = $(FEATURE_CAROUSEL_ACTIVE_SELECTOR);
   const $thumbnailCarouselActive = $(THUMBNAIL_CAROUSEL_ACTIVE_SELECTOR);
+  const activeSlideTotal = $(
+    `${FEATURE_CAROUSEL_ACTIVE_SELECTOR}:first ${SLIDE_CAROUSEL_SELECTOR}:not(.slick-cloned)`
+  ).length;
   /**
    * Reset index when no image pair
    */
-  if (activeSlideIndex >= $featureCarouselActive.children().length) {
+  if (activeSlideIndex >= activeSlideTotal) {
     activeSlideIndex = 0;
   }
   /**
@@ -137,10 +163,24 @@ const initCarousel = () => {
   };
   /**
    * Keep activeSlideIndex in sync with active slide
+   * Keep gallery counter in sync with active slide value and slide total
    */
   $featureCarouselActive.on('afterChange', (event, slick, currentSlide) => {
     activeSlideIndex = currentSlide;
+    updateGalleryCounter({
+      currentIndex: activeSlideIndex,
+      total: slick.slideCount
+    });
   });
+  /**
+   * On Slick initialization, set gallery counter active slide value and slide total
+   */
+  $featureCarouselActive.on('init', () =>
+    updateGalleryCounter({
+      currentIndex: activeSlideIndex,
+      total: activeSlideTotal
+    })
+  );
   $featureCarouselActive.slick({
     ...sharedConfig,
     asNavFor: $thumbnailCarouselActive,

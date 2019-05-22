@@ -47,7 +47,10 @@
     <div class="ProductGallery-count de-u-flex de-u-flexAlignItemsCenter">
       {% include 'icon-camera'
         with class: 'de-Icon de-u-textGrow3 de-u-spaceRight06' %}
-      3/6
+      {% comment %}
+        @TODO: Consider accessibility best practice
+      {% endcomment %}
+      <span class="js-de-ProductGallery-countValue">0/0</span>
     </div>
   </div>
 </div>
