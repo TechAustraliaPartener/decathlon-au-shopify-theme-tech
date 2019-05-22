@@ -16,6 +16,8 @@
 {% assign total_item_count = product.metafields.reviews.recent_reviews_object.total_item_count | plus: 0 %}
 <div class="de-Grid de-u-md-padTop3">
 
+  <a class="de-u-hiddenVisually" href="#de-CustomerReviews-container">Skip to reviews</a>
+
   <div class="de-u-md-size1of2 de-u-lg-size1of3 de-u-lg-padSides
     de-u-md-padSidesNone">
     <div class="de-ReviewSummary de-u-padBottom06">
@@ -57,9 +59,11 @@
               filtering of reviews by rating
               @TODO - is there anything to be done here for accessibility
             {% endcomment %}
-            <button class="de-ReviewMatrix-stars js-de-CustomerReview-filter
-                           de-u-flex de-u-padRight de-u-padBottom06"
-              data-star-rating="{{ rating.number }}">
+            <button aria-label="Show {{rating.number}}-star reviews ({{rating.count}} total)."
+                aria-controls="de-CustomerReviews-container"
+                class="de-ReviewMatrix-stars js-de-CustomerReview-filter
+                de-CustomerReview-filter de-u-flex de-u-padRight de-u-padBottom06"
+                data-star-rating="{{ rating.number }}">
               <div class="de-StarRating">
                 <div class="de-StarRating-fill"
                   style="width: {{ stars_fill }}%">
@@ -74,7 +78,9 @@
         <div class="de-ReviewMatrix-graph-container de-u-flexAuto">
           {% for rating in ratings %}
             {% assign stars_percentage = rating.count | divided_by: total_ratings_count | times: 100 %}
-            <button class="de-ReviewMatrix-graph js-de-CustomerReview-filter"
+            <button aria-label="Show {{rating.number}}-star reviews ({{stars_percentage | round: 0 }} percent of total reviews)."
+              aria-controls="de-CustomerReviews-container"
+              class="de-ReviewMatrix-graph js-de-CustomerReview-filter"
               data-star-rating="{{ rating.number }}">
               <svg height="10px" width="100%">
                 <rect class="total"
@@ -115,30 +121,35 @@
     de-u-md-padSides de-u-md-padRightNone de-u-md-padLeft6">
 
     <div class="de-u-flex de-u-flexAlignItemsCenter de-u-spaceBottom6">
-      <div class="de-u-padRight de-u-textBold de-u-textSizeBase">Sort by</div>
-      <select class="de-u-textSizeBase js-de-CustomerReview-sort">
+      <label for="de-CustomerReviews-sort" class="de-u-padRight de-u-textBold de-u-textSizeBase">Sort<span class="de-u-hiddenVisually">reviews </span> by</label>
+      <select id="de-CustomerReviews-sort" class="de-u-textSizeBase js-de-CustomerReview-sort" aria-controls="de-CustomerReviews-container">
         <option value="date_desc"
                 data-sort-direction="desc"
-                data-sort-type="createdAt">
+                data-sort-type="createdAt"
+                aria-label="Sort reviews, most recent first.">
           Newest
         </option>
         <option value="date_asc"
                 data-sort-direction="asc"
-                data-sort-type="createdAt">
+                data-sort-type="createdAt"
+                aria-label="Sort reviews, oldest first.">
           Oldest
         </option>
         <option value="note_desc"
                 data-sort-direction="desc"
-                data-sort-type="note">
+                data-sort-type="note"
+                aria-label="Sort reviews by highest to lowest rating.">
           Highest rating</option>
         <option value="note_asc"
                 data-sort-direction="asc"
-                data-sort-type="note">
+                data-sort-type="note"
+                aria-label="Sort reviews by lowest to highest rating.">
           Lowest rating
         </option>
         <option value="utility_desc"
                 data-sort-direction="desc"
-                data-sort-type="utility">
+                data-sort-type="utility"
+                aria-label="Sort reviews, most helpful first.">
           Most helpful
         </option>
       </select>
@@ -152,10 +163,22 @@
     {% endcomment %}
     {% assign total_prerendered_reviews = product.metafields.reviews.recent_reviews_object.items | size %}
     {% assign reviews_per_page = 3 %}
-    <div class="js-de-CustomerReviews" id="de-CustomerReviews-container"
-         data-model-code="{{model_code}}"
-         data-reviews-per-page="{{ reviews_per_page }}"
-         data-total-prerendered-reviews="{{ total_prerendered_reviews }}">
+    {% comment %}
+      a11y references:
+      https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions#Advanced_live_regions
+      http://pauljadam.com/demos/aria-atomic-relevant.html
+      aria-relevant="additions text" and aria-atomic="true" seems to be the
+      combination that reads reviews on load, but not from the last loaded review
+    {% endcomment %}
+    <div class="js-de-CustomerReviews"
+        role="region"
+        id="de-CustomerReviews-container"
+        aria-live="polite"
+        aria-relevant="additions text"
+        aria-atomic="true"
+        data-model-code="{{model_code}}"
+        data-reviews-per-page="{{ reviews_per_page }}"
+        data-total-prerendered-reviews="{{ total_prerendered_reviews }}">
       {% comment %}
         Defaults to most recent X number of reviews sorted descending by posting
         date and time Assigns a `looplimit` value at the top, which could come
@@ -169,7 +192,8 @@
                     js-de-CustomerReview-preloaded de-u-padBottom3
                     de-u-spaceBottom3
                     {% if (forloop.index > looplimit) %} de-u-hidden{% endif %}"
-                    >
+             data-review-id="{{review.id}}"
+             tabindex="0">
           {% if review.note || review.title %}
             <div class="de-u-flex de-u-flexAlignItemsBaseline de-u-flexCol
                         de-u-lg-flexRow">
@@ -243,7 +267,9 @@
           {% if review.answer %}
             {% assign answer_date = review.answer.created_at | date: "%-m/%-e/%Y" %}
             {% assign first_name = review.answer.author.firstname %}
-            <div class="de-CustomerReviewResponse">
+            <div class="de-CustomerReviewResponse"
+              tabindex="0"
+              data-review-id="{{review.answer.id}}">
               {% include 'logo-decathlon-chat'
                 with class: 'de-DecathlonChatBubble' %}
               <div>
@@ -307,7 +333,9 @@
       {% raw %}
       {{#each reviews}}
         <div class="de-CustomerReview js-de-CustomerReview de-u-padBottom3
-                    de-u-spaceBottom3">
+                    de-u-spaceBottom3"
+              data-review-id="{{id}}"
+              tabindex="0">
           {{!-- comment Using custom Hanldebars conditional helper --}}
           {{#if_or note title}}
             <div class="de-u-flex de-u-flexAlignItemsBaseline de-u-flexCol
@@ -377,7 +405,9 @@
              --}}
           </div>
         {{#if answer}}
-          <div class="de-CustomerReviewResponse">
+          <div class="de-CustomerReviewResponse"
+            tabindex="0"
+            data-review-id="{{answer.id}}">
             {{> logo_no_bg }}
             <div>
               {{{ answer.body }}}
@@ -419,9 +449,11 @@
     <div class="de-u-flex de-u-padBottom3 de-u-lg-padEnds3">
       <button class="btn btn--fill
                      de-u-textMedium
-                     js-de-moreReviews">
-        More reviews
+                     js-de-moreReviews"
+              aria-controls="de-CustomerReviews-container">
+        <span class="de-u-hiddenVisually">Load </span>More Reviews
       </button>
+      <a class="de-u-hiddenVisually" href="#de-CustomerReviews-container">Skip to reviews</a>
     </div>
   </div>
 </div>
