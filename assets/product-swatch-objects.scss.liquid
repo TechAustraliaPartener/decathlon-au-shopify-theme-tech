@@ -46,6 +46,8 @@ $breakpoint-lg: 60em;
  * 4. Aligns content with container when Grid is not supported
  */
 
+$swatchObjects-item-unavailable-opacity: 0.4;
+
 .de-SwatchObjects {
   display: flex; /* 1 */
   overflow-x: scroll; /* 2 */
@@ -111,6 +113,7 @@ $breakpoint-lg: 60em;
  * not available
  * 3. Required for the `de-is-soldout` styles to take effect
  * 4. Disables ability to select text inside of a SwatchObject-item
+ * 5. Hides SoldOut styles from spilling out of the container
  */
 
 .de-SwatchObjects-item {
@@ -120,6 +123,7 @@ $breakpoint-lg: 60em;
   min-width: 72px; /* 2 */
   margin-bottom: 8px;
   margin-right: 8px;
+  overflow: hidden; /* 5 */
   position: relative; /* 3 */
   user-select: none; /* 4 */
 }
@@ -155,14 +159,36 @@ $breakpoint-lg: 60em;
   padding: 0.5em;
 }
 
+.de-SwatchObjects--color.de-is-soldout {
+  color: $color-gray;
+  border: $border-width-sm solid $color-gray;
+  opacity: $swatchObjects-item-unavailable-opacity;
+}
+
+/**
+ * 1. This is a unique CSS style block and the desired visual appearance
+ * requires some magic numbers to display properly.
+ */
+
+.de-SwatchObjects--color.de-is-soldout::before {
+  content: '';
+  position: absolute;
+  left: -1.3em; /* 1 */
+  right: -0.25em; /* 1 */
+  top: 0; /* 1 */
+  bottom: -1.65em; /* 1 */
+  background: linear-gradient(to left top, transparent 51.5%, currentColor 43.5%, currentColor 52%, transparent 45.5%);
+  pointer-events: none;
+}
+
 .de-SwatchObjects--color:focus:not(.de-is-active) {
   outline: $border-width-md solid $color-blue;
   outline-offset: -4px;
 }
 
 .de-SwatchObjects-noimage {
-    width: 100%;
-    height: 100%; /* add this property*/
+  width: 100%;
+  height: 100%;
 }
 
 /**
@@ -170,7 +196,7 @@ $breakpoint-lg: 60em;
  */
 
 .de-SwatchObjects--color.de-is-outofstock * {
-  opacity: 0.23;
+  opacity: $swatchObjects-item-unavailable-opacity;
 }
 
 /**
