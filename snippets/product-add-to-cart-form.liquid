@@ -30,9 +30,16 @@
     {% endfor %}
   </select>
 
-  {% comment %} Quantity Rocker {% endcomment %}
-  <div class="visually-hidden">
-    <label for="Quantity" class="quantity-selector">{{ 'products.product.quantity' | t }}</label>
+  {% comment %} Quantity Input {% endcomment %}
+  <div>
+    <label for="Quantity" class="quantity-selector">{{ 'products.product.quantity' | t }}
+        <span class="visually-hidden"> of items to add to the cart.</span>
+    </label>
+    {% comment %}
+      The class name 'quantity-selector' is used by JS to condition the appearance of quantity
+      inputs based on variant availability
+      @see, e.g., assets/timber.js.liquid
+    {% endcomment %}
     <input type="number" id="Quantity" name="quantity" value="1" min="1" class="quantity-selector">
   </div>
 
