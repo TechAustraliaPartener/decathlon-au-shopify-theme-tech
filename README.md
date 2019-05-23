@@ -244,7 +244,7 @@ Create a copy of the `.env.sample` file making sure to rename it to `.env`. Upda
 
 | Environment Variable | Description|
 |----------------------|------------|
-| `DEC_SHARED_PREVIEW_URL` | The [Cypress base URL](https://docs.cypress.io/guides/references/best-practices.html#Setting-a-global-baseUrl) used by all tests. This should be a [Shopify Shared Preview URL](https://help.shopify.com/en/manual/using-themes/adding-themes#share-a-theme-preview-with-others). |
+| `SHOPIFY_PREVIEW_URL` | The [Cypress base URL](https://docs.cypress.io/guides/references/best-practices.html#Setting-a-global-baseUrl) used by all tests. This should be a [Shopify Shared Preview URL](https://help.shopify.com/en/manual/using-themes/adding-themes#share-a-theme-preview-with-others). |
 | `DEC_USERNAME` | The username for the Decathlon test account. |
 | `DEC_PASSWORD` | The password for the Decathlon test account. |
 | `DEC_ONE_SIZE_PRODUCT_PATH` | Some Persistent Cart tests need a product to test against. This sets the path to that product. The product must not require a size selection ("one-size" products only). See `.env.sample` file for example. |

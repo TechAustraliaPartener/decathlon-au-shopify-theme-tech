@@ -37,6 +37,7 @@ const OPEN_ACTION = 'open';
 const STATE_PREFIX = `${CSS_PREFIX}is-`;
 const DRAWER_PREFIX = `${MODULE_NAME}-`;
 const TOGGLE_SELECTOR = `.${JS_PREFIX}${DRAWER_PREFIX}toggle`;
+const OVERLAY_SELECTOR = `.${JS_PREFIX}${DRAWER_PREFIX}overlay`;
 const PAD_UTILITY_CLASS = `${CSS_UTILITY_PREFIX}pad`;
 const MAIN_CONTENT_WRAP_SELECTOR = `.${JS_PREFIX}${DRAWER_PREFIX}wrap`;
 const DRAWER_IN_FLOW_CLASS = `${STATE_PREFIX}inPageFlow`;
@@ -193,8 +194,9 @@ const updateAccessibilityState = ({ drawerEl, isOpen, lastOpenToggleEl }) => {
   const closeToggle = document.querySelector(
     `#${drawerEl.id} ${TOGGLE_SELECTOR}`
   );
+
   /**
-   * For accessibility, set the focus on the on the close toggle for an open
+   * For accessibility, set the focus on the close toggle for an open
    * drawer or the last-used drawer-open toggle if the drawer is closing
    */
   isOpen && closeToggle && closeToggle.focus();
@@ -418,9 +420,12 @@ const initToggle = toggle => {
    * JS progressively-enhanced toggles have aria-labels added to them for
    * a better UX when accessed via screen readers.
    */
-  toggle.setAttribute('aria-label', toggle.dataset.drawerToggleAriaLabel);
-  // This is cleanup, no longer needed once JS takes over.
-  toggle.removeAttribute('data-drawer-toggle-aria-label');
+  const ariaLabel = toggle.dataset.drawerToggleAriaLabel;
+  if (ariaLabel) {
+    toggle.setAttribute('aria-label', ariaLabel);
+    // This is cleanup, no longer needed once JS takes over.
+    toggle.removeAttribute('data-drawer-toggle-aria-label');
+  }
 
   toggle.addEventListener(CLICK_EVENT, toggleHandler);
 };
@@ -436,7 +441,9 @@ export const init = () => {
   });
 
   // Initialize toggles
-  [...document.querySelectorAll(TOGGLE_SELECTOR)].forEach(initToggle);
+  [
+    ...document.querySelectorAll(`${TOGGLE_SELECTOR}, ${OVERLAY_SELECTOR}`)
+  ].forEach(initToggle);
 
   // Initialize the FocusTrap module
   initFocusTrap();

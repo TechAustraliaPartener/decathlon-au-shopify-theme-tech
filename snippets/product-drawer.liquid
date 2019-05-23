@@ -14,7 +14,12 @@
   {% if displays_in_page_flow %}data-display-in-page-flow="true"{% endif %}
   data-test="{{ drawer_id }}"
 >
-  <div class="de-Drawer-overlay"></div>
+  <div
+    class="de-Drawer-overlay js-de-Drawer-overlay"
+    data-drawer-id="{{ drawer_id }}"
+    data-drawer-action="close"
+    data-test="{{ drawer_id }}-overlay"
+  ></div>
   <div class="de-Drawer-contentWrapper">
     <header class="de-Drawer-header de-u-padSides de-u-padEnds06 de-u-spaceNone de-u-bgSilver">
       <button
