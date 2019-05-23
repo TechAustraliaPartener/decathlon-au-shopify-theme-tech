@@ -2,7 +2,7 @@
 <div class="de-ProductTitleLockup de-u-lg-padBottom">
 
   {% comment %} Product Flag(s) {% endcomment %}
-  <div class="de-u-hidden de-u-lg-inlineBlock">
+  <div class="de-u-hidden de-u-lg-block">
     {% include 'product-flag' with
       content: 'Custom Flag'
       class: 'de-u-bgSilver de-u-textBlue' %}
@@ -31,18 +31,32 @@
     </div>
     {% include 'product-rating-reviews-link' %}
   </div>
-  <h1 class="de-u-textGrow2 de-u-textMedium" itemprop="name">{{ product.title }}</h1>
+  <h1 class="de-u-textGrow2 de-u-textMedium" itemprop="name">
+    {{ product.title }}
+  </h1>
   <div class="de-ProductTitleLockup-price">
-    <div class="de-ProductPrice de-u-textMedium de-u-flex de-u-flexAlignItemsEnd">
-    <span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
-    <span id="ProductPrice" class="js-de-ProductPrice de-u-textGrow6 de-u-lineHeight1" itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
-      {{ current_variant.price | money }}
-    </span>
-
-    <span class="visually-hidden">{{ 'products.general.sale_price' | t }}</span>
-    <span id="ComparePrice" class="de-u-textGrow2 de-u-padLeft de-u-lineHeight2">
-      <del class="js-de-ComparePrice-text">{{ current_variant.compare_at_price | money }}</del>
-    </span>
+    <div class="de-ProductPrice 
+      de-u-textMedium de-u-flex de-u-flexAlignItemsEnd">
+      <span class="visually-hidden">
+        {{ 'products.general.regular_price' | t }}
+      </span>
+      <span 
+        class="js-de-ProductPrice de-u-textGrow6 de-u-lineHeight1"
+        content="{{ current_variant.price | divided_by: 100.00 }}"
+        id="ProductPrice"
+        itemprop="price">
+        {{ current_variant.price | money }}
+      </span>
+      <span class="visually-hidden">
+        {{ 'products.general.sale_price' | t }}
+      </span>
+      <span 
+        class="de-u-textGrow2 de-u-padLeft de-u-lineHeight2"
+        id="ComparePrice">
+        <del class="js-de-ComparePrice-text">
+          {{ current_variant.compare_at_price | money }}
+        </del>
+      </span>
     </div>
   </div>
 </div>
