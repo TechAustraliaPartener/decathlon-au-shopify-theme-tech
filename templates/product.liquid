@@ -160,7 +160,7 @@
   <section class="de-ProductInfoSection de-ProductInfoSection--silver
                   de-u-pad2"
            aria-labelledby="Section-lifestyle-images">
-    
+
 
     <h3 class="de-ProductInfoTitle de-u-md-textGrow3 de-u-lg-textGrow4
                de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
@@ -185,13 +185,10 @@
 
   <section class="de-ProductInfoSection
                   de-u-md-pad"
-           aria-labelledby="Section-sizeguide"
-           id="product-sizeGuide">
-    <header>
-      <h3 class="visually-hidden" id="Section-sizeguide">
-        Product Size and Fit Information
-      </h3>
-    </header>
+           aria-labelledby="Section-sizeguide">
+     {% capture size_guide_heading %}
+       {% include 'product-size-guide-heading', hidden: true %}
+     {% endcapture %}
     <div id="size-and-fit" class="Accordion js-de-Accordion">
       <button class="Accordion-header js-de-Accordion-header de-u-textGrow2">
         Size & Fit
@@ -204,30 +201,42 @@
           The "Size Guide" drawer is captured here
         {% endcomment %}
         {% capture size_guide_content %}
-        <div class="de-u-flex de-u-flexJustifyCenter">
-          <img
-            src="https://cdn.shopify.com/s/files/1/1330/6287/files/sizechart-womens-top-size-by-size_300x.jpg"
-            alt="">
-        </div>
-        <div class="SizeGuide">
-          <h5 class="de-u-padEnds de-u-spaceNone">
-            Size Guide
-          </h5>
-          <div class="SizeGuide-table de-Wrapper--fullwidth de-u-flex
-                      de-u-padBottom3">
-            {% include 'product-proto-size-guide' %}
-          </div>
-          <p class="de-u-padEnds06">1. Footnote</p>
-        </div>
+          {% comment %}
+            Derek's Size Guide Markup
+            @TODO:
+            1. Remove prototype reference when design review is complete
+          {% endcomment %}
+          {% comment %}
+            <div class="de-u-flex de-u-flexJustifyCenter">
+              <img
+                src="https://cdn.shopify.com/s/files/1/1330/6287/files/sizechart-womens-top-size-by-size_300x.jpg"
+                alt="">
+            </div>
+            <div class="SizeGuide">
+              <h5 class="de-u-padEnds de-u-spaceNone">
+                Size Guide
+              </h5>
+              <div class="SizeGuide-table de-Wrapper--fullwidth de-u-flex
+                          de-u-padBottom3">
+                {% include 'product-proto-size-guide' %}
+              </div>
+              <p class="de-u-padEnds06">1. Footnote</p>
+            </div>
+          {% endcomment %}
+          {% comment %}
+            Juma's Dynamic Size Guide
+          {% endcomment %}
+          {% include 'product-size-guide' %}
+        {% endcapture %}
       </div>
-      {% endcapture %}
       {% comment %}
         Create a drawer for the captured content
       {% endcomment %}
       {% include 'product-drawer',
         drawer_id: "size-guide-drawer",
         drawer_label: "Size Guide",
-        content: size_guide_content
+        content: size_guide_content,
+        heading: size_guide_heading,
         displays_in_page_flow: true
       %}
     </div>
