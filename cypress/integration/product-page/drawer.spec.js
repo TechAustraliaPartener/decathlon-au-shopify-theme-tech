@@ -19,7 +19,7 @@ const REVIEWS_CLOSE_LABEL = `Close the ${REVIEWS_LABEL} dialog.`;
  * An array to help us generate tests at different viewport sizes
  * @see https://docs.cypress.io/api/commands/viewport.html#Arguments
  */
-const VIEWPORT_SIZES = ['macbook-13','iphone-6+'];
+const VIEWPORT_SIZES = ['macbook-13', 'iphone-6+'];
 
 /**
  * Helper to generate the `data-test` attribute selector

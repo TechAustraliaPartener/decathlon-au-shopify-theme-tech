@@ -15,8 +15,8 @@
     "dev": "theme watch & gulp",
     "build": "gulp build",
     "get-schema": "graphql get-schema",
-    "check-lint": "eslint '{scripts,cypress/integration/persistent-cart}/**/*.js' && prettier --list-different '{scripts,cypress/integration/persistent-cart}/**/*.js'",
-    "lint": "eslint --fix '{scripts,cypress/integration/persistent-cart}/**/*.js' && prettier --write '{scripts,cypress/integration/persistent-cart}/**/*.js'",
+    "check-lint": "prettier --list-different '{scripts,cypress}/**/*.js' && eslint '{scripts,cypress}/**/*.js'",
+    "lint": "prettier --write '{scripts,cypress}/**/*.js' && eslint --fix '{scripts,cypress}/**/*.js'",
     "cypress:open": "cypress open"
   },
   "engines": {
