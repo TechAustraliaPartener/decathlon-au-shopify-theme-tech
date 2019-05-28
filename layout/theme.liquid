@@ -109,6 +109,8 @@
   {{ 'patterns-toolkit.css' | asset_url | stylesheet_tag }}
   {{ 'legacySupport.scss.css' | asset_url | stylesheet_tag }}
   {{ 'cadence.scss.css' | asset_url | stylesheet_tag }}
+  {% comment %} Temporary stylesheet to change the background color for clearance link {% endcomment %}
+  {{ 'temp-clearance.scss.css' | asset_url | stylesheet_tag }}
 
   {% comment %}
   {{ 'zoom.css' | asset_url | stylesheet_tag }}
