@@ -267,7 +267,7 @@
           {% if review.answer %}
             {% assign answer_date = review.answer.created_at | date: "%-m/%-e/%Y" %}
             {% assign first_name = review.answer.author.firstname %}
-            <div class="de-CustomerReviewResponse"
+            <div class="de-CustomerReview-response de-u-spaceTop6"
               tabindex="0"
               data-review-id="{{review.answer.id}}">
               {% include 'logo-decathlon-chat'
@@ -405,7 +405,7 @@
              --}}
           </div>
         {{#if answer}}
-          <div class="de-CustomerReviewResponse"
+          <div class="de-CustomerReview-response de-u-spaceTop6"
             tabindex="0"
             data-review-id="{{answer.id}}">
             {{> logo_no_bg }}
