@@ -107,17 +107,14 @@
         <span class="visually-hidden">Product</span> Videos
       </h3>
     </header>
-    <div class="Accordion js-de-Accordion is-open">
-      <button class="Accordion-header js-de-Accordion-header de-u-textGrow2">
-        Additional Videos
-        <span class="Accordion-indicator de-u-textGrow5 de-u-spaceRight06">
-          +
-        </span>
-      </button>
-      <div class="Accordion-content">
-        {% include 'product-videos' %}
-      </div>
-    </div>
+    {% capture additional_videos_accordion_content %}
+      {% include 'product-videos' %}
+    {% endcapture %}
+    {% include 'product-accordion'
+      is_open: true
+      accordion_heading: "Additional Videos"
+      accordion_content: additional_videos_accordion_content
+    %}
   </section>
   {% endif %}
 
@@ -136,31 +133,29 @@
         <span class="visually-hidden">Product</span> Features
       </h3>
     </header>
-    <div class="Accordion js-de-Accordion is-open">
-      <button class="Accordion-header js-de-Accordion-header de-u-textGrow2">
-        Features
-        <span class="Accordion-indicator de-u-textGrow5 de-u-spaceRight06">
-          +
-        </span>
-      </button>
-      <div class="Accordion-content">
-        {% include 'product-proto-features' %}
-      </div>
-    </div>
+    {% capture features_accordion_content %}
+      {% include 'product-proto-features' %}
+    {% endcapture %}
+    {% include 'product-accordion'
+      is_open: true
+      accordion_heading: "Features"
+      accordion_content: features_accordion_content
+    %}
   </section>
 
   {% comment %} Back to top anchor link {% endcomment %}
   {% include 'product-back-to-top' %}
 
-  <span
-    id="product-imageGallery"
-    class="de-ProductAnchor"
-    aria-hidden="true">
-  </span>
+
   <section class="de-ProductInfoSection de-ProductInfoSection--silver
                   de-u-pad2"
            aria-labelledby="Section-lifestyle-images">
 
+    <span
+      id="product-imageGallery"
+      class="de-ProductAnchor"
+      aria-hidden="true">
+    </span>
 
     <h3 class="de-ProductInfoTitle de-u-md-textGrow3 de-u-lg-textGrow4
                de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
@@ -185,61 +180,43 @@
 
   <section class="de-ProductInfoSection
                   de-u-md-pad"
-           aria-labelledby="Section-sizeguide">
-     {% capture size_guide_heading %}
+    aria-labelledby="Section-sizeguide"
+    id="product-sizeGuide"
+  >
+     {% capture size_and_fit_heading %}
        {% include 'product-size-guide-heading', hidden: true %}
      {% endcapture %}
-    <div id="size-and-fit" class="Accordion js-de-Accordion">
-      <button class="Accordion-header js-de-Accordion-header de-u-textGrow2">
-        Size & Fit
-        <span class="Accordion-indicator de-u-textGrow5 de-u-spaceRight06">
-          +
-        </span>
-      </button>
-      <div class="Accordion-content">
+    {% capture size_and_fit_accordion_content %}
+      {% capture size_and_fit_drawer_content %}
         {% comment %}
-          The "Size Guide" drawer is captured here
+          Juma's Dynamic Size Guide
         {% endcomment %}
-        {% capture size_guide_content %}
-          {% comment %}
-            Derek's Size Guide Markup
-            @TODO:
-            1. Remove prototype reference when design review is complete
-          {% endcomment %}
-          {% comment %}
-            <div class="de-u-flex de-u-flexJustifyCenter">
-              <img
-                src="https://cdn.shopify.com/s/files/1/1330/6287/files/sizechart-womens-top-size-by-size_300x.jpg"
-                alt="">
-            </div>
-            <div class="SizeGuide">
-              <h5 class="de-u-padEnds de-u-spaceNone">
-                Size Guide
-              </h5>
-              <div class="SizeGuide-table de-Wrapper--fullwidth de-u-flex
-                          de-u-padBottom3">
-                {% include 'product-proto-size-guide' %}
-              </div>
-              <p class="de-u-padEnds06">1. Footnote</p>
-            </div>
-          {% endcomment %}
-          {% comment %}
-            Juma's Dynamic Size Guide
-          {% endcomment %}
-          {% include 'product-size-guide' %}
-        {% endcapture %}
-      </div>
+        {% include 'product-size-guide' %}
+        {% comment %}
+          Derek's Size Guide Markup
+          @TODO:
+          1. Remove prototype reference when design review is complete
+        {% endcomment %}
+        {% comment %}
+          {% include 'product-proto-size-guide-content' %}
+        {% endcomment %}
+      {% endcapture %}
       {% comment %}
         Create a drawer for the captured content
       {% endcomment %}
       {% include 'product-drawer',
         drawer_id: "size-guide-drawer",
         drawer_label: "Size Guide",
-        content: size_guide_content,
-        heading: size_guide_heading,
+        content: size_and_fit_drawer_content,
+        heading: size_and_fit_heading,
         displays_in_page_flow: true
       %}
-    </div>
+    {% endcapture %}
+    {% include 'product-accordion'
+      is_open: false
+      accordion_heading: "Size & Fit"
+      accordion_content: size_and_fit_accordion_content
+    %}
   </section>
 
   <section class="de-ProductInfoSection
@@ -257,33 +234,30 @@
     {% capture reviews_heading %}
       {% include 'product-customer-reviews-heading', hidden: true %}
     {% endcapture %}
-    <div class="Accordion js-de-Accordion is-open">
-      <button class="Accordion-header js-de-Accordion-header de-u-textGrow2">
-        Customer Reviews
-        <span class="Accordion-indicator de-u-textGrow5 de-u-spaceRight06">
-          +
-        </span>
-      </button>
-      <div class="Accordion-content">
-        {% comment %} Dynamic Customer Reviews {% endcomment %}
-        {% comment %}
-          Reviews
-          Capture to enable inserting content into the drawer
-        {% endcomment %}
-        {% capture reviews_content %}
+    {% capture reviews_accordion_content %}
+      {% comment %} Dynamic Customer Reviews {% endcomment %}
+      {% comment %}
+        Reviews
+        Capture to enable inserting content into the drawer
+      {% endcomment %}
+      {% capture reviews_drawer_content %}
         {% include 'product-customer-reviews' %}
-        {% endcapture %}
-        {% comment %}
-          Create a drawer for the captured content
-        {% endcomment %}
-        {% include 'product-drawer',
-          drawer_id: "reviews-drawer",
-          drawer_label: "Customer Reviews",
-          content: reviews_content,
-          heading: reviews_heading,
-          displays_in_page_flow: true %}
-      </div>
-    </div>
+      {% endcapture %}
+      {% comment %}
+        Create a drawer for the captured content
+      {% endcomment %}
+      {% include 'product-drawer',
+        drawer_id: "reviews-drawer",
+        drawer_label: "Customer Reviews",
+        content: reviews_drawer_content,
+        heading: reviews_heading,
+        displays_in_page_flow: true %}
+    {% endcapture %}
+    {% include 'product-accordion'
+      is_open: true
+      accordion_heading: "Customer Reviews"
+      accordion_content: reviews_accordion_content
+    %}
   </section>
 
   {% comment %} Back to top anchor link {% endcomment %}
@@ -306,26 +280,23 @@
         <span class="visually-hidden">Additional </span>Product Information
       </h3>
     </header>
-    <div class="Accordion Accordion--last js-de-Accordion">
-      <button class="Accordion-header js-de-Accordion-header de-u-textGrow2">
-        Product Information
-        <span class="Accordion-indicator de-u-textGrow5 de-u-spaceRight06">
-          +
-        </span>
-      </button>
-      <div class="Accordion-content" itemprop="description">
-        {% comment %}
-          Dynamic Product information content
-        {% endcomment %}
-        {% comment %} {{ product_specs }} {% endcomment %}
-        {% comment %}
-         Prototype product information content
-        {% endcomment %}
-        <div class="de-u-spaceTop6">
-          {% include 'product-proto-information' %}
-        </div>
+    {% capture product_information_accordion_content %}
+      {% comment %}
+        Dynamic Product information content
+      {% endcomment %}
+      {% comment %} {{ product_specs }} {% endcomment %}
+      {% comment %}
+        Prototype product information content
+      {% endcomment %}
+      <div class="de-u-spaceTop6">
+        {% include 'product-proto-information' %}
       </div>
-    </div>
+    {% endcapture %}
+    {% include 'product-accordion'
+      is_open: false
+      accordion_heading: "Product Information"
+      accordion_content: product_information_accordion_content
+    %}
   </section>
 
 </div>

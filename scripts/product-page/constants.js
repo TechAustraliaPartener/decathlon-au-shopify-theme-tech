@@ -84,3 +84,8 @@ export const PRODUCT_PAGE_COPY = {
  * CSS class that sets content to a fixed (no scroll) state
  */
 export const FIXED_CLASS = `${CSS_PREFIX}content-is-fixed`;
+
+/**
+ * CSS class used by components that need an "open" state
+ */
+export const IS_OPEN = `${CSS_PREFIX}is-open`;

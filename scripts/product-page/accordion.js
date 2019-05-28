@@ -1,5 +1,5 @@
 import '../utilities/element-closest-polyfill';
-import { JS_PREFIX } from './constants';
+import { JS_PREFIX, IS_OPEN } from './constants';
 
 /**
  * Module-specific constants
@@ -7,7 +7,6 @@ import { JS_PREFIX } from './constants';
 const ACCORDION_SELECTOR = `.${JS_PREFIX}Accordion`;
 const ACCORDION_HEADER_SELECTOR = `${ACCORDION_SELECTOR}-header`;
 const CLICK_EVENT = 'click';
-const IS_OPEN = 'is-open';
 
 /**
  * Handler for when an accordion header button is clicked
@@ -16,7 +15,10 @@ const IS_OPEN = 'is-open';
  */
 const onButtonClick = function() {
   const accordion = this.closest(ACCORDION_SELECTOR);
-  accordion && accordion.classList.toggle(IS_OPEN);
+  if (accordion) {
+    const currentToggleState = accordion.classList.toggle(IS_OPEN);
+    this.setAttribute('aria-expanded', String(currentToggleState));
+  }
 };
 
 /**

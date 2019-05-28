@@ -40,7 +40,7 @@ $breakpoint-xl: 80em;
 
 /* Accordion */
 
-.Accordion-header {
+.de-Accordion-header {
   align-items: center;
   appearance: none;
   background-color: $color-white;
@@ -57,17 +57,17 @@ $breakpoint-xl: 80em;
 }
 
 @media (min-width: $breakpoint-md) {
-  .Accordion-header {
+  .de-Accordion-header {
     display: none;
   }
 }
 
-.Accordion-header:focus {
+.de-Accordion-header:focus {
   outline: $border-width-md solid $color-blue;
   outline-offset: -3px;
 }
 
-.Accordion-content {
+.de-Accordion-content {
   padding: 0 1rem;
 }
 
@@ -76,32 +76,32 @@ $breakpoint-xl: 80em;
  * @see scripts/product-page/drawer.js
  */
 
-.de-is-transitioning .Accordion:not(.is-open) .Accordion-content {
+.de-is-transitioning .de-Accordion:not(.de-is-open) .de-Accordion-content {
   display: block;
 }
 
 @media (min-width: $breakpoint-md) {
-  .Accordion-content {
+  .de-Accordion-content {
     padding: 0;
   }
 }
 
-.Accordion:not(.is-open) .Accordion-content {
+.de-Accordion:not(.de-is-open) .de-Accordion-content {
   display: none;
 }
 
 @media (min-width: $breakpoint-md) {
-  .Accordion-content {
+  .de-Accordion-content {
     display: block !important;
   }
 }
 
-.Accordion-indicator {
+.de-Accordion-indicator {
   transform-origin: center;
   transition: 0.2s linear transform;
   font-size: calc(2msu * 1em);
 }
 
-.Accordion.is-open .Accordion-indicator {
+.de-Accordion.de-is-open .de-Accordion-indicator {
   transform: rotate(-45deg);
 }
