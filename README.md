@@ -1,13 +1,14 @@
 # Decathlon USA Shopify Theme
 
 ## Table of Contents
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
 
 - [Project Setup](#project-setup)
 - [Gulp Config](#gulp-config)
 - [Watch](#watch)
+- [Working With Shopify Assets](#working-with-shopify-assets)
 - [Stylesheets](#stylesheets)
 - [JavaScript](#javascript)
 - [SVG Icons](#svg-icons)
@@ -20,6 +21,7 @@
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Project Setup
+
 1. Clone the project, making sure to also clone the `decathlonusa-patterns` submodule (which is checked out to the folder `/patterns` within the Shopify theme repo):
    - Optimally (on Git 2.13+ - check using `git --version`),
    ```
@@ -28,37 +30,47 @@
    - Alternatively (on older Git),
    ```
    git clone --recursive https://github.com/decathlon-usa/shopify-theme-decathlonusa.git
-   ``` 
-   - If you forgot the flags on first clone, run 
+   ```
+   - If you forgot the flags on first clone, run
    ```
    git submodule update --init
    ```
-   - After anyone has updated the `decathlonusa-patterns` submodule within this repo and committed that change to a branch of `shopify-theme-decathlonusa`, be sure to locally run 
+   - After anyone has updated the `decathlonusa-patterns` submodule within this repo and committed that change to a branch of `shopify-theme-decathlonusa`, be sure to locally run
    ```
    git submodule update
    ```
 1. In Mac Terminal navigate to your project's root folder.
 1. Make sure ThemeKit is installed. If it's not go to https://shopify.github.io/themekit/
-    - The latest version of ThemeKit will not deploy any Shopify-generated files (e.g. `timber.js.liquid` → `timber.js`) failing the deploy. If you run into this challenge, downgrade ThemeKit after installing:
-      ```
-      theme update --version=0.8.2-prerelease
-      ```
+   - The latest version of ThemeKit will not deploy any Shopify-generated files (e.g. `timber.js.liquid` → `timber.js`) failing the deploy. If you run into this challenge, downgrade ThemeKit after installing:
+     ```
+     theme update --version=0.8.2-prerelease
+     ```
 1. There should be a `config.yml.sample` in the root of the project. Duplicate this file and name it `config.yml`. This will have the default api information for Shopify. If you're working on a cloned theme because multiple developers are on the project, this is where you'd update your theme id. Make sure `config.yml` is not under version control.
 1. Create a copy of the `.env.sample` file making sure to rename it to `.env`. Update the environment variables removing the sample values. Make sure the `.env` file is not under version control.
 1. Type the command `npm install` and press enter. This will install all node dependencies for the project.
 1. Type `npx gulp` and press enter. This will run all project gulp tasks and also ensure that all dependencies are installed properly. If a dependency does not exist you'll see an error in terminal. If you see this error, install the missing dependency by typing the command `npm install <package_name> --save-dev`. After this make sure to commit your `package.json` file so that the next user has the dependencies they need.
 
 ## Gulp Config
+
 There is a file in the root directory called `gulp-config.json`. This file maintains the list of directories, stylesheets, sprites, and JavaScript files. All configuration for gulp should be here.
 
 ## Watch
+
 Typing `npm run dev` will watch a variety of directories for changes and then perform the needed gulp task. In addition to running gulp watch it will also run Themekit. You must have Shopify Themekit installed locally and the project connected in order for this to work.
 
-* If svgs are dropped into `src/svg/icons` sass and svg sprite will run.
-* If changes are made to any files in the `src/scss/**` folder then the `gulp sass` task will run which generates the css file, combines the media queries, and then converts it into a `style.css.liquid` file.
-* If changes are made to any file inside the `src/js/**` folder, `gulp uglify` will run which lints all JS files in that directory, concats and files that need it, and then minify all files.
+- If svgs are dropped into `src/svg/icons` sass and svg sprite will run.
+- If changes are made to any files in the `src/scss/**` folder then the `gulp sass` task will run which generates the css file, combines the media queries, and then converts it into a `style.css.liquid` file.
+- If changes are made to any file inside the `src/js/**` folder, `gulp uglify` will run which lints all JS files in that directory, concats and files that need it, and then minify all files.
+
+## Working With Shopify Assets
+
+Files in the Shopify theme's `assets` folder need to follow some special rules.
+
+1. Shopify processes all `.liquid`-suffixed files -- which can contain `liquid` tags and object references -- to their non-`.liquid` counterparts, processing `liquid` values and blocks along the way. Therefore, `assets` **_should never_** contain a pair of duplicate files, like `my-nifty-styles.scss` and `my-nifty-styles.scss.liquid`. Ideally, include only a `.liquid` version if you need to reference `liquid` values or use `liquid` tags. Otherwise, it is fine to include only a non-`.liquid` file. Just don't have both.
+1. The `assets` folder is a flat-file directory and must remain that way. Do not attempt to create subfolders within `assets`.
 
 ## Stylesheets
+
 In `gulp-config.json` is an array of stylesheets. Each item in the array should correlate with a `.scss` file in `src/scss/`. So for example if there's a node in the stylesheets array called "index", you'll need a file at `src/scss/index.scss` in order for that to generate a css file.
 
 If you need sub scss modules to be included in your stylesheet, simply create a folder that matches the name in the array and the watch task will watch those directories for changes. For instance if you had a `_hero.scss` snippet that you wanted to only call in the `index.scss` file, you could place the file in `src/scss/index/` and include the path in your `index.scss` sheet. After that if `npm run dev` is active any changes to `index.scss` and any of the files in the index folder will trigger a compilation.
@@ -71,7 +83,7 @@ If you need sub scss modules to be included in your stylesheet, simply create a 
 
 In the gulp-config file there is a large JS object. This object maintains a list of files to concat and then minify. The structure for this is a top level key denotes the name of the file that will be generated by the concat and minify tasks. The value for this top level key is another object which lists all the files that need to be concatenated into a single JavaScript file. Each node within this sub object must include the name of the file without the **.js** extension, and the directory where the file resides.
 
-While running `npm run dev` each file listed in this object will be watched for changes and only concatenate the block that's been changed, and then run through JSLint. Note that files inside the `src/js/plugins/` folder will not go through 
+While running `npm run dev` each file listed in this object will be watched for changes and only concatenate the block that's been changed, and then run through JSLint. Note that files inside the `src/js/plugins/` folder will not go through
 the JSLint task.
 
 **@todo:** Are the JS and CSS Gulp tasks still relevant/used?
@@ -85,27 +97,27 @@ The following Decathlon USA JavaScript features are optimized and built by Rollu
 - Store Finder
 - Product Page
 
-The `scripts/` directory houses the source JavaScript files for these Rollup built features. Files named `index.js` in subdirectories of `scripts/` will be assumed to be bundle entry points. The output bundle will be transpiled from `scripts/<directory-name>/index.js` → `assets/built-<directory-name>.js` when `npm run build` is run. 
+The `scripts/` directory houses the source JavaScript files for these Rollup built features. Files named `index.js` in subdirectories of `scripts/` will be assumed to be bundle entry points. The output bundle will be transpiled from `scripts/<directory-name>/index.js` → `assets/built-<directory-name>.js` when `npm run build` is run.
 
 All `assets/built-<directory-name>.js` JavaScript files are Git-ignored.
 
 You control whether or not files are optimized for production via the `NODE_ENV` environment variable in the `.env` file. Make sure the `NODE_ENV` environment variable is set to `production` for production DeployBot environments.
 
-| Environment Variable | Description|
-|----------------------|------------|
-| `NODE_ENV` | Use `production` to optimize the JS builds; use `development` for local development/debugging |
-
+| Environment Variable | Description                                                                                   |
+| -------------------- | --------------------------------------------------------------------------------------------- |
+| `NODE_ENV`           | Use `production` to optimize the JS builds; use `development` for local development/debugging |
 
 ## SVG Icons
-There's a task in gulp to create an SVG icon sprite, and to update the src/scss/globals/\_*spritename* .scss file with the appropriate classes to call the icon. If you would like to add new icons do the following:
 
-* To create new sprites add the name of your sprite to the gulp-config array under "sprites".
-* Upload your svg icon to **/src/svg/*spritename*/** With spritename matching the name you placed in the array in gulp-config.
-* Run the command **gulp sprites** in your root directory.
-* To add your icon to a html document use the classes ** icon icon--*filename* **
-* If you'd like to change the css that is output into **\_icons.scss** you do so by going to **src/scss/globals/mixins/_svg-template.scss**. The file is built using mustache templating.
-* If you'd like to add additional sprites you can add them to createSprites object towards the top of the gulp file. The names you enter must match with the folder you create inside the SVG directory.
-* While **npm run dev** is going dropping new svgs into the folder will update the sprite.
+There's a task in gulp to create an SVG icon sprite, and to update the src/scss/globals/\__spritename_ .scss file with the appropriate classes to call the icon. If you would like to add new icons do the following:
+
+- To create new sprites add the name of your sprite to the gulp-config array under "sprites".
+- Upload your svg icon to **/src/svg/_spritename_/** With spritename matching the name you placed in the array in gulp-config.
+- Run the command **gulp sprites** in your root directory.
+- To add your icon to a html document use the classes ** icon icon--_filename_ **
+- If you'd like to change the css that is output into **\_icons.scss** you do so by going to **src/scss/globals/mixins/\_svg-template.scss**. The file is built using mustache templating.
+- If you'd like to add additional sprites you can add them to createSprites object towards the top of the gulp file. The names you enter must match with the folder you create inside the SVG directory.
+- While **npm run dev** is going dropping new svgs into the folder will update the sprite.
 
 ## Decathlon Patterns Submodule
 
@@ -113,7 +125,7 @@ The `decathlonusa-patterns` repository is a submodule (checked out under the pat
 
 **Important:** Any new `snippets/*` or `assets/*` files added to the Shopify theme repo should not be named using the `patterns-` prefix. Files named using a `patterns-` prefix will be deleted as part of the "[Updating Patterns Submodule](#updating-patterns-submodule)" flow described below.
 
-__As a rule, avoid manually creating files with the prefix `patterns-`.__
+**As a rule, avoid manually creating files with the prefix `patterns-`.**
 
 ### Updating Patterns Submodule
 
@@ -148,15 +160,15 @@ The Persistent Cart feature is a combination of client-side code and a server-si
 
 ### Building the client-side Persistent Cart JS
 
-To properly build the client-side JS for Persistent Cart make sure to set the proper environment variable values for the specific environment in the `.env` file. 
+To properly build the client-side JS for Persistent Cart make sure to set the proper environment variable values for the specific environment in the `.env` file.
 
 For local development, use "staging" values. For staging/production (in the DeployBot environment `.env` files) use staging/production values per the environment. The `.env` file should have the following environment variables configured for a proper client-side Persistent Cart JS build:
 
-| Environment Variable | Description|
-|----------------------|------------|
-| `NODE_ENV` | Use `production` to optimize the JS builds; use `development` for local development/debugging |
-| `DECATHLON_PERSISTENT_CART_URL` | The Decathlon USA Persistent Cart Heroku app URL |
-| `STOREFRONT_API_KEY` | The storefront API key used by Persistent Cart |
+| Environment Variable            | Description                                                                                   |
+| ------------------------------- | --------------------------------------------------------------------------------------------- |
+| `NODE_ENV`                      | Use `production` to optimize the JS builds; use `development` for local development/debugging |
+| `DECATHLON_PERSISTENT_CART_URL` | The Decathlon USA Persistent Cart Heroku app URL                                              |
+| `STOREFRONT_API_KEY`            | The storefront API key used by Persistent Cart                                                |
 
 ### Where can I find the Decathlon USA Persistent Cart Heroku app URL?
 
@@ -242,12 +254,12 @@ You will need a Decathlon user account to be able to add items to cart and store
 
 Create a copy of the `.env.sample` file making sure to rename it to `.env`. Update the environment variables removing the sample values.
 
-| Environment Variable | Description|
-|----------------------|------------|
-| `SHOPIFY_PREVIEW_URL` | The [Cypress base URL](https://docs.cypress.io/guides/references/best-practices.html#Setting-a-global-baseUrl) used by all tests. This should be a [Shopify Shared Preview URL](https://help.shopify.com/en/manual/using-themes/adding-themes#share-a-theme-preview-with-others). |
-| `DEC_USERNAME` | The username for the Decathlon test account. |
-| `DEC_PASSWORD` | The password for the Decathlon test account. |
-| `DEC_ONE_SIZE_PRODUCT_PATH` | Some Persistent Cart tests need a product to test against. This sets the path to that product. The product must not require a size selection ("one-size" products only). See `.env.sample` file for example. |
+| Environment Variable        | Description                                                                                                                                                                                                                                                                       |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `SHOPIFY_PREVIEW_URL`       | The [Cypress base URL](https://docs.cypress.io/guides/references/best-practices.html#Setting-a-global-baseUrl) used by all tests. This should be a [Shopify Shared Preview URL](https://help.shopify.com/en/manual/using-themes/adding-themes#share-a-theme-preview-with-others). |
+| `DEC_USERNAME`              | The username for the Decathlon test account.                                                                                                                                                                                                                                      |
+| `DEC_PASSWORD`              | The password for the Decathlon test account.                                                                                                                                                                                                                                      |
+| `DEC_ONE_SIZE_PRODUCT_PATH` | Some Persistent Cart tests need a product to test against. This sets the path to that product. The product must not require a size selection ("one-size" products only). See `.env.sample` file for example.                                                                      |
 
 ### Cypress test dashboard
 
@@ -260,14 +272,15 @@ npm run cypress:open
 1. Make sure your local `.env` file has the correct environment variables (see [Building the client-side Persistent Cart JS](#building-the-client-side-persistent-cart-js))
 
 1. Build the files:
-    ```
-    npm run build
-    ```
+
+   ```
+   npm run build
+   ```
 
 1. Deploy the files from your local machine to your Shopify theme via ThemeKit:
-    ```
-    theme deploy
-    ```
+   ```
+   theme deploy
+   ```
 
 It's a good practice to deploy your local files via ThemeKit as a reset. From there, you can use the [Watch](#watch) setup to continue updating your Shopify theme as you work locally.
 
@@ -281,7 +294,7 @@ The `master` branch is _not_ automatically deployed.
 
 Automated builds have also been configured as part of the deployment via DeployBot.
 
-This means `npm run build` is executed by DeployBot when a deployment is triggered. This allows built files to not be committed into the repository (see "[JavaScript builds & optimization via Rollup](#javascript-builds--optimization-via-rollup)"). 
+This means `npm run build` is executed by DeployBot when a deployment is triggered. This allows built files to not be committed into the repository (see "[JavaScript builds & optimization via Rollup](#javascript-builds--optimization-via-rollup)").
 
 ### Configuring DeployBot Environment Automated Builds
 
@@ -329,12 +342,13 @@ npm run build
 To make the deploys more efficient, take advantage of cached build commands:
 
 > Sometimes your build script needs to install certain dependencies in order to be executed. You can do that right in the build script field, but that means every time your code is deployed the dependencies will be installed again, making the build slower.
-> 
+>
 > A better option is to use Cached build commands option in advanced settings. Any script placed in this field will be executed only when the following files changed in your repository: Gemfile, Gemfile.lock, package.json, gulpfile.js, Gruntfile.js, project.clj, composer.json.
 
 - [Setting up and using Build Tools](https://support.deploybot.com/article/61-setting-up-and-using-build-tools)
 
 Add the following commands under the **Advanced options** > **Cached build commands**:
+
 ```
 nvm install
 nvm use
