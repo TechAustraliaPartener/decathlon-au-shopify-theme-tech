@@ -47,8 +47,19 @@
     <span class="de-u-textRed de-u-lineHeight2 de-u-textGrow2 js-de-validation-message"></span>
   </div>
   <div class="js-de-AddtoCart de-u-spaceBottom2 de-u-flex">
-    <button type="submit" name="add" id="AddToCart" class="btn js-de-AddtoCart-btn btn--fill de-u-sizeFull de-u-textGrow3 addToCart">
-      <span id="AddToCartText" class="js-de-AddtoCart-text">{{ 'products.product.add_to_cart' | t }}</span>
+    <button
+      type="submit"
+      name="add"
+      id="AddToCart"
+      class="de-Button btn btn--fill
+             de-u-sizeFull de-u-textGrow3
+             addToCart
+             js-de-AddtoCart-btn">
+      <span
+        id="AddToCartText"
+        class="js-de-AddtoCart-text">
+          {{ 'products.product.add_to_cart' | t }}
+      </span>
     </button>
   </div>
 </form>

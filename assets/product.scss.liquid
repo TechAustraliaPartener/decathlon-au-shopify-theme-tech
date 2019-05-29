@@ -92,13 +92,13 @@ figure {
  * 1. The height in pixels of the fixed position, `de-PageWrap-header` element,
  *    which is the element that this component must "stick" beneath.
  * 2. Setting the `z-index` value to `1999` ensures the product menu will display
- *    below the 'Drawer' overlay which has a z-index of `2000`, while at the 
+ *    below the 'Drawer' overlay which has a z-index of `2000`, while at the
  *    same time making it more difficult for other elements to appear on top of
  *    the sticky `ProductMenu` component.
  * 3. This component is not intended to be displayed for small screens. Setting
  *    display none here because of known "issue" with `de-u-hidden` not working
  *    well with responsive display flex utiltities.
- * 
+ *
  * Note: position sticky is not supported in IE11. This component will degrade
  * gracefully and the non-sticky experience has been deemed acceptable for
  * this component.
@@ -384,7 +384,7 @@ $ProductBackToTop-border-radius: 1.75; /* 2 */
 }
 
 
-/** 
+/**
  * Customer Fulfillment Options
  */
 
@@ -396,4 +396,41 @@ $ProductBackToTop-border-radius: 1.75; /* 2 */
   .de-ProductFulfillment   {
     border-bottom: $border-width-lg solid $color-lime;
   }
+}
+
+/**
+ * Button
+ *
+ * There is a lack of consistency of button styles across decathlon.com and a
+ * button pattern does not exist in the pattern library. At some point a button
+ * pattern should be created.
+ *
+ * `de-Button` is being added to address some global concerns related to
+ * different styles associated with states such as `disabled`. At some point
+ * refactoring and introducing `de-Button` into the pattern library should
+ * be considered.
+ */
+
+$button-background-hover: #429dd7;
+
+.de-Button {
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  background-color: $color-blue;
+  border: $border-width-md solid $color-blue;
+  color: $color-white;
+  user-select: none;
+}
+
+.de-Button:hover {
+  background-color: $button-background-hover;
+  border-color: $button-background-hover;
+}
+
+.de-Button[disabled] {
+  background-color: $color-gray;
+  border-color: $color-gray;
+  color: $color-white;
+  cursor: not-allowed;
 }
