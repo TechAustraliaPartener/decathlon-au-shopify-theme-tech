@@ -126,6 +126,8 @@
     {{ 'vendor-brightcove-product.scss.css' | asset_url | stylesheet_tag }}
     {{ 'product-drawer.scss.css' | asset_url | stylesheet_tag }}
   {% endif %}
+  {% comment %} Temporary stylesheet to change the background color for clearance link {% endcomment %}
+  {{ 'temp-clearance.scss.css' | asset_url | stylesheet_tag }}
 
   {% comment %}
   {{ 'zoom.css' | asset_url | stylesheet_tag }}
