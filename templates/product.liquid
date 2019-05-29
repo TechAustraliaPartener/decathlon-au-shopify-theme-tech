@@ -71,6 +71,9 @@
       {% endcomment %}
       <div class="de-ProductCarousel de-ProductCarousel--large">
         {% include 'product-carousel' %}
+
+        {% include 'product-gallery-controls' with
+          display_toggle: false %}
       </div>
       <div class="ProductBuyBox">
         {% comment %}

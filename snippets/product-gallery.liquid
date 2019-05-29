@@ -24,33 +24,7 @@
     </video>
   {% endif %}
 </div>
-{% comment %} Toggle from image to video {% endcomment %}
-<div class="ProductGallery-controls de-Wrapper--fullwidth de-u-padEnds03
-  de-u-bgSilver de-u-lg-hidden">
-  <div class="de-u-padSides de-u-textSizeBase de-u-flex
-    de-u-flexAlignItemsCenter de-u-flexJustifyBetween">
-    {% if product_video.size > 0 %}
-      <div class="js-de-toggle-media">
-        <button class="de-u-flex de-u-flexAlignItemsCenter de-u-textBlue js-de-watch-video">
-          {% include 'icon-media-play'
-            with class: 'de-Icon de-u-textGrow3 de-u-spaceRight06' %}
-          Watch Video
-        </button>
-        <button class="de-u-hidden de-u-flex
-        de-u-flexAlignItemsCenter de-u-textBlue js-de-view-images">
-          {% include 'icon-camera'
-            with class: 'de-Icon de-u-textGrow3 de-u-spaceRight06' %}
-          View Images
-        </button>
-      </div>
-    {% endif %}
-    <div class="ProductGallery-count de-u-flex de-u-flexAlignItemsCenter">
-      {% include 'icon-camera'
-        with class: 'de-Icon de-u-textGrow3 de-u-spaceRight06' %}
-      {% comment %}
-        @TODO: Consider accessibility best practice
-      {% endcomment %}
-      <span class="js-de-ProductGallery-countValue">0/0</span>
-    </div>
-  </div>
-</div>
+
+{% include 'product-gallery-controls' with
+  class: 'de-u-bgSilver de-u-lg-hidden',
+  display_toggle: true %}
