@@ -70,7 +70,7 @@ $header-height: 46px;
  */
 
 $drawer-max-width: 61em; /* 1 */
-$drawer-transition: opacity .2s cubic-bezier(0.77, 0, 0.175, 1); /* 2 */
+$drawer-transition: opacity 0.2s cubic-bezier(0.77, 0, 0.175, 1); /* 2 */
 
 /**
  * Base Drawer overlay styles
@@ -83,14 +83,14 @@ $drawer-transition: opacity .2s cubic-bezier(0.77, 0, 0.175, 1); /* 2 */
   transition: $drawer-transition;
 }
 
- /**
+/**
   * Styles for the overlay behind the Drawer when it is open
   *
   * 1. This value is one below the .de-Drawer z-index to make sure the overlay
   *    falls beneath the Drawer content
   */
 
- .de-Drawer.de-is-active .de-Drawer-overlay {
+.de-Drawer.de-is-active .de-Drawer-overlay {
   height: 100%;
   left: 0;
   opacity: 1;
@@ -122,7 +122,8 @@ $drawer-transition: opacity .2s cubic-bezier(0.77, 0, 0.175, 1); /* 2 */
  * Drawer modifier, changes the transition from default RTL to custom LTR
  */
 
-.de-Drawer--transitionLeftToRight:not(.de-is-inPageFlow) .de-Drawer-contentWrapper {
+.de-Drawer--transitionLeftToRight:not(.de-is-inPageFlow)
+  .de-Drawer-contentWrapper {
   left: 0;
   transform: translateX(-100vw);
 }
@@ -190,12 +191,14 @@ $drawer-transition: opacity .2s cubic-bezier(0.77, 0, 0.175, 1); /* 2 */
 
 /*
  * 1. Enables momentum-based scrolling, where the content continues to scroll
- * for a while after finishing the scroll gesture and removing your finger from
- * the touchscreen. The speed and duration of the continued scrolling is
- * proportional to how vigorous the scroll gesture was. Also creates a new
- * stacking context. Support: Safari iOS.
+ *    for a while after finishing the scroll gesture and removing your finger from
+ *    the touchscreen. The speed and duration of the continued scrolling is
+ *    proportional to how vigorous the scroll gesture was. Also creates a new
+ *    stacking context. Support: Safari iOS.
  *
  * @see https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-overflow-scrolling
+ *
+ * 2. Matches the padding added when using the utility class '.de-u-pad'
  *
  * Applies only to drawer content displayed in an open drawer, not when displayed
  * in regular page flow
@@ -204,12 +207,22 @@ $drawer-transition: opacity .2s cubic-bezier(0.77, 0, 0.175, 1); /* 2 */
 .de-Drawer:not(.de-is-inPageFlow) .de-Drawer-content {
   height: 100%;
   overflow-y: scroll;
+  padding: 1rem; /* 2 */
   -webkit-overflow-scrolling: touch; /* 1 */
+}
+
+/**
+ * 1. Avoid double vertical scroll bars when drawer is open
+ *    by removing overflow on the root element
+ */
+
+html.de-is-drawerOpen {
+  overflow-y: hidden; /* 1 */
 }
 
 /*
  * 1. Ensures the last direct descendant of `Drawer-content` receives spacing at
- * the bottom of the scrollable content equal to the height of `Drawer-header`
+ *    the bottom of the scrollable content equal to the height of `Drawer-header`
  *
  * @TODO - Consider any future ways to reduce specificity here
  */

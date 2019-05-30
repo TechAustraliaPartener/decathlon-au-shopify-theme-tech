@@ -10,7 +10,6 @@ import {
   IS_ACTIVE_CLASS,
   IS_TRANSITIONING_CLASS,
   JS_PREFIX,
-  CSS_UTILITY_PREFIX,
   FIXED_CLASS,
   CSS_PREFIX
 } from './constants';
@@ -38,14 +37,13 @@ const STATE_PREFIX = `${CSS_PREFIX}is-`;
 const DRAWER_PREFIX = `${MODULE_NAME}-`;
 const TOGGLE_SELECTOR = `.${JS_PREFIX}${DRAWER_PREFIX}toggle`;
 const OVERLAY_SELECTOR = `.${JS_PREFIX}${DRAWER_PREFIX}overlay`;
-const PAD_UTILITY_CLASS = `${CSS_UTILITY_PREFIX}pad`;
 const MAIN_CONTENT_WRAP_SELECTOR = `.${JS_PREFIX}${DRAWER_PREFIX}wrap`;
 const DRAWER_IN_FLOW_CLASS = `${STATE_PREFIX}inPageFlow`;
 const IS_OPEN_CLASS = `${STATE_PREFIX}open`;
 const IS_OPENING_CLASS = `${STATE_PREFIX}opening`;
 export const IS_CLOSED_CLASS = `${STATE_PREFIX}closed`;
 const IS_CLOSING_CLASS = `${STATE_PREFIX}closing`;
-const DRAWER_CONTENT_CLASS = `${CSS_PREFIX}${DRAWER_PREFIX}content`;
+const IS_DRAWER_OPEN_CLASS = `${STATE_PREFIX}drawerOpen`;
 /**
  * TRANSITION_DURATION value must match (in milliseconds) the value in associated
  * CSS for transition duration ($transition-speed-normal)
@@ -68,7 +66,8 @@ const DEFAULT_MODULE_STATE = {
   isOpen: false,
   drawerEl: null,
   lastOpenToggleEl: null,
-  wrapperEls: null
+  wrapperEls: null,
+  htmlEl: null
 };
 /**
  * Reference to the `createState` helper. The `createState`
@@ -162,7 +161,6 @@ const inFlowDisplayStateChangeUpdates = ({ drawerEl, isOpen }) => {
  * @param {NodeList} params.wrapperEls A NodeList of main content wrapper elements
  */
 const updateBaseDrawerClasses = ({ drawerEl, isOpen, wrapperEls }) => {
-  const drawerContentEl = drawerEl.querySelector(`.${DRAWER_CONTENT_CLASS}`);
   /**
    * Toggle fixed positioning on the wrapper(s) of the drawer, to prevent
    * scrolling content outside the drawer
@@ -174,12 +172,6 @@ const updateBaseDrawerClasses = ({ drawerEl, isOpen, wrapperEls }) => {
    * Add or remove an active class to the drawer
    */
   drawerEl.classList.toggle(IS_ACTIVE_CLASS, isOpen);
-  /**
-   * Add padding to drawer content when the drawer is open
-   */
-  if (drawerContentEl) {
-    drawerContentEl.classList.toggle(PAD_UTILITY_CLASS, isOpen);
-  }
 };
 
 /**
@@ -232,6 +224,8 @@ const baseStateChangeUpdates = ({
  *
  * @param {Object} state
  * @param {Element} state.drawerEl - The drawer component element
+ * @param {Element} state.htmlEl - The HTML (root) element, which needs
+ * to have a class set when the drawer is open to avoid double y-axis scrollbars
  * @param {boolean} state.isOpen - Whether the action being handled
  * is to open the drawer
  */
@@ -240,7 +234,7 @@ const setDrawerTransitionStates = (() => {
   let closeTimeout = null;
   const closeStateCssClasses = [IS_CLOSED_CLASS, IS_CLOSING_CLASS];
   const openStateCssClasses = [IS_OPEN_CLASS, IS_OPENING_CLASS];
-  return function _setDrawerTransitionStates({ drawerEl, isOpen }) {
+  return function _setDrawerTransitionStates({ drawerEl, htmlEl, isOpen }) {
     if (isOpen) {
       closeTimeout && clearTimeout(closeTimeout);
       drawerEl.classList.remove(...closeStateCssClasses, IS_OPEN_CLASS);
@@ -248,7 +242,11 @@ const setDrawerTransitionStates = (() => {
       openTimeout = setTimeout(() => {
         drawerEl.classList.remove(IS_OPENING_CLASS, ...closeStateCssClasses);
         drawerEl.classList.add(IS_OPEN_CLASS);
+        htmlEl.classList.add(IS_DRAWER_OPEN_CLASS);
       }, TRANSITION_DURATION);
+      setTimeout(() => {
+        htmlEl.classList.add(IS_DRAWER_OPEN_CLASS);
+      }, TRANSITION_DURATION / 4);
     } else {
       openTimeout && clearTimeout(openTimeout);
       drawerEl.classList.remove(...openStateCssClasses, IS_CLOSED_CLASS);
@@ -257,6 +255,14 @@ const setDrawerTransitionStates = (() => {
         drawerEl.classList.remove(IS_CLOSING_CLASS, ...openStateCssClasses);
         drawerEl.classList.add(IS_CLOSED_CLASS);
       }, TRANSITION_DURATION);
+      /**
+       * Modify the point at which `overflow-y: scroll` is added back to
+       * the `html` (root) element, to avoid visible repositioning of page
+       * elements when the page scrollbar reappears
+       */
+      setTimeout(() => {
+        htmlEl.classList.remove(IS_DRAWER_OPEN_CLASS);
+      }, TRANSITION_DURATION / 4);
     }
   };
 })();
@@ -359,7 +365,6 @@ const updateUI = (() => {
  * Handle all UI and listener updates based on the provided state
  *
  * @param {Object} state The state to render against
- * @TODO - Decide whether to document destructured values here
  */
 const render = state => {
   updateUI(state);
@@ -437,7 +442,8 @@ export const init = () => {
   stateHelper = createState({
     ...DEFAULT_MODULE_STATE,
     // Get all content wrapper elements
-    wrapperEls: document.querySelectorAll(MAIN_CONTENT_WRAP_SELECTOR)
+    wrapperEls: document.querySelectorAll(MAIN_CONTENT_WRAP_SELECTOR),
+    htmlEl: document.querySelector('html')
   });
 
   // Initialize toggles
