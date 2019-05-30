@@ -27,7 +27,7 @@
   </div>
 </div>
 
-<div class="ProductBuyBox">
+<div class="de-ProductBuyBox">
     <div class="de-ProductTitleLockup de-u-lg-padBottom">
       <h1 class="de-u-textGrow2 de-u-textMedium" itemprop="name">{{ product.title }}</h1>
       <div class="de-ProductTitleLockup-price de-u-hide de-u-lg-block">
@@ -36,7 +36,7 @@
             <div id="ProductPrice" class="de-u-textGrow6 de-u-lineHeight1" itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
               {{ current_variant.price | money }}
             </div>
-          
+
             <span class="visually-hidden">{{ 'products.general.sale_price' | t }}</span>
             <div id="ComparePrice" class="de-u-textGrow2 de-u-padLeft de-u-lineHeight2">
               <del>{{ current_variant.compare_at_price | money }}</del>
