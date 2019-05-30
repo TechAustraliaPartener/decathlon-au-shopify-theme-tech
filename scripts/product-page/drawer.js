@@ -244,9 +244,6 @@ const setDrawerTransitionStates = (() => {
         drawerEl.classList.add(IS_OPEN_CLASS);
         htmlEl.classList.add(IS_DRAWER_OPEN_CLASS);
       }, TRANSITION_DURATION);
-      setTimeout(() => {
-        htmlEl.classList.add(IS_DRAWER_OPEN_CLASS);
-      }, TRANSITION_DURATION / 4);
     } else {
       openTimeout && clearTimeout(openTimeout);
       drawerEl.classList.remove(...openStateCssClasses, IS_CLOSED_CLASS);
