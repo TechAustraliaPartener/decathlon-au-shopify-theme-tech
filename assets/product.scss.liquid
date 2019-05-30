@@ -76,7 +76,7 @@ figure {
  * ProductFlag
  */
 
- .de-ProductFlag {
+.de-ProductFlag {
   line-height: 1.2;
   text-transform: uppercase;
   padding: 0.38125em 0.75375em;
@@ -223,7 +223,8 @@ figure {
  * 1. Update patterns library with this class
  */
 
-.de-u-textRed { //* 1 *//
+.de-u-textRed {
+  //* 1 *//
   color: $color-red !important;
 }
 
@@ -272,13 +273,13 @@ figure {
 }
 
 .SizeGuide-table::before {
-  content: '';
+  content: "";
   padding-right: 1rem;
   width: 0;
 }
 
 .SizeGuide-table::after {
-  content: '';
+  content: "";
   padding-left: 1rem;
   width: 0;
 }
@@ -291,7 +292,8 @@ figure {
 
 .bis-reset,
 .bis-button,
-.bis-button.BIS_trigger { //* 1 * //
+.bis-button.BIS_trigger {
+  //* 1 * //
   display: none !important;
   opacity: 0;
 }
@@ -327,8 +329,7 @@ $ProductBackToTop-border-radius: 1.75; /* 2 */
 
 .ProductBackToTop-middle {
   background: $color-silver;
-  border-radius:
-    ($ProductBackToTop-height / $ProductBackToTop-border-radius)
+  border-radius: ($ProductBackToTop-height / $ProductBackToTop-border-radius)
     ($ProductBackToTop-height / $ProductBackToTop-border-radius) 0 0;
   color: $color-blue;
   cursor: pointer;
@@ -350,7 +351,7 @@ $ProductBackToTop-border-radius: 1.75; /* 2 */
 .ProductBackToTop-middle:focus::after {
   bottom: $border-width-lg;
   border-bottom: $border-width-lg solid $color-darkgray;
-  content: '';
+  content: "";
   display: block;
   margin: 0 auto;
   position: relative;
@@ -365,7 +366,7 @@ $ProductBackToTop-border-radius: 1.75; /* 2 */
   width: $ProductBackToTop-height;
 
   &::before {
-    content: '';
+    content: "";
     background: $color-white;
     display: block;
     height: 100%;
@@ -374,15 +375,16 @@ $ProductBackToTop-border-radius: 1.75; /* 2 */
 }
 
 .ProductBackToTop-left::before {
-  border-bottom-right-radius:
-    ($ProductBackToTop-height / $ProductBackToTop-border-radius);
+  border-bottom-right-radius: (
+    $ProductBackToTop-height / $ProductBackToTop-border-radius
+  );
 }
 
 .ProductBackToTop-right::before {
-  border-bottom-left-radius:
-    ($ProductBackToTop-height / $ProductBackToTop-border-radius);
+  border-bottom-left-radius: (
+    $ProductBackToTop-height / $ProductBackToTop-border-radius
+  );
 }
-
 
 /**
  * Customer Fulfillment Options
@@ -393,7 +395,7 @@ $ProductBackToTop-border-radius: 1.75; /* 2 */
 }
 
 @media (min-width: $breakpoint-lg) {
-  .de-ProductFulfillment   {
+  .de-ProductFulfillment {
     border-bottom: $border-width-lg solid $color-lime;
   }
 }
@@ -436,11 +438,58 @@ $button-background-hover: #429dd7;
 }
 
 /**
- * Override exisiting style property with a higher level of specificity. 
+ * ProductQuantity
+ *
+ * 1. Adds `display: flex` for browsers (IE11) that don't support
+ *    `display: grid'
+ * 2. Adds `display: grid` for modern browsers
+ * 3. `72px` is the desired visual width for the quantity input
+ * 4. Allows the height of the input to match the button
+ * 5. Enables button to fill remaining space for browsers (IE11) that don't
+ *    support `display: grid`
+ * 6. `16px` is the desired visual gap between the quantity input and the
+ *    Add to Cart button. Also 2x the `SwatchObjects-item` gap
+ */
+
+@media (min-width: $breakpoint-md) {
+  .de-AddToCartActions {
+    display: flex; /* 1 */
+  }
+
+  @supports (display: grid) {
+    .de-AddToCartActions {
+      display: grid; /* 2 */
+      grid-template-columns: 72px 1fr; /* 4 */
+    }
+  }
+}
+
+.de-ProductQuantity {
+  flex: 0 1 72px; /* 3 */
+}
+
+.de-ProductQuantity-input {
+  border: $border-width-md solid $color-gray;
+  height: 100%; /* 4 */
+}
+
+.de-ProductAddToCart {
+  width: 100%;
+}
+
+@media (min-width: $breakpoint-md) {
+  .de-ProductAddToCart {
+    flex: 1 0 auto; /* 5 */
+    margin-left: 16px; /* 6 */
+  }
+}
+
+/*
+ * Override exisiting style property with a higher level of specificity.
  * A visual bug is present due to styles associated with styles attached to
  * `.template-product .addToCartForm::after` located in timber.scss.
  * We are overriding this style here with the `!important` tag as a last
- * resort effort to fix the issue without modifying the offending stylesheet 
+ * resort effort to fix the issue without modifying the offending stylesheet
  * with our own prefixed class name.
  */
 

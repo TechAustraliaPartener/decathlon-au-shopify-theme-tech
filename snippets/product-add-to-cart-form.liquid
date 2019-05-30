@@ -1,11 +1,11 @@
 {% comment %}
   ID addToCartForm is a selector for the ajax cart plugin
 {% endcomment %}
-<form 
-  action="/cart/add" 
-  method="post" 
-  enctype="multipart/form-data" 
-  id="AddToCartForm" 
+<form
+  action="/cart/add"
+  method="post"
+  enctype="multipart/form-data"
+  id="AddToCartForm"
   class="form-vertical addToCartForm de-addToCartForm">
   {% comment %}
     Add product variants as a dropdown.
@@ -35,19 +35,6 @@
     {% endfor %}
   </select>
 
-  {% comment %} Quantity Input {% endcomment %}
-  <div>
-    <label for="Quantity" class="quantity-selector">{{ 'products.product.quantity' | t }}
-        <span class="visually-hidden"> of items to add to the cart.</span>
-    </label>
-    {% comment %}
-      The class name 'quantity-selector' is used by JS to condition the appearance of quantity
-      inputs based on variant availability
-      @see, e.g., assets/timber.js.liquid
-    {% endcomment %}
-    <input type="number" id="Quantity" name="quantity" value="1" min="1" class="quantity-selector">
-  </div>
-
   <div class="de-ProductPrice de-u-padBottom06 de-u-padTop de-u-textMedium de-u-flex de-u-flexAlignItemsEnd">
     <div class="de-ProductPrice
       de-u-textMedium de-u-flex de-u-flexAlignItemsEnd de-u-lg-hidden">
@@ -71,20 +58,44 @@
     </div>
     <span class="de-u-textRed de-u-lineHeight2 de-u-textGrow2 js-de-validation-message"></span>
   </div>
-  <div class="js-de-AddtoCart de-u-spaceBottom2 de-u-flex">
-    <button
-      type="submit"
-      name="add"
-      id="AddToCart"
-      class="de-Button btn btn--fill
-             de-u-sizeFull de-u-textGrow3
-             addToCart
-             js-de-AddtoCart-btn">
-      <span
-        id="AddToCartText"
-        class="js-de-AddtoCart-text">
+  <div
+    class="de-AddToCartActions de-u-spaceBottom2">
+
+    {% comment %} Quantity Input {% endcomment %}
+    <div class="de-ProductQuantity de-u-hidden de-u-md-block">
+      <label for="Quantity" class="quantity-selector visually-hidden">
+          {{ 'products.product.quantity' | t }} of items to add to the cart.
+      </label>
+      {% comment %}
+        The class name 'quantity-selector' is used by JS to condition the
+        appearance of quantity inputs based on variant availability
+
+        @see: assets/timber.js.liquid
+      {% endcomment %}
+      <input
+        class="de-ProductQuantity-input
+              de-u-textSizeBase quantity-selector"
+        id="Quantity"
+        type="number"
+        name="quantity"
+        value="1"
+        min="1">
+    </div>
+
+    <div
+      class="de-ProductAddToCart js-de-AddtoCart">
+      <button
+        type="submit"
+        name="add"
+        id="AddToCart"
+        class="de-Button btn btn--fill
+              de-u-sizeFull de-u-textGrow3
+              js-de-AddtoCart-btn">
+        <span id="AddToCartText" class="js-de-AddtoCart-text">
           {{ 'products.product.add_to_cart' | t }}
-      </span>
-    </button>
+        </span>
+      </button>
+    </div>
+
   </div>
 </form>
