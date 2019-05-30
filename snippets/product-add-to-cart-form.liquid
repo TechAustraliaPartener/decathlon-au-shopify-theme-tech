@@ -49,6 +49,26 @@
   </div>
 
   <div class="de-ProductPrice de-u-padBottom06 de-u-padTop de-u-textMedium de-u-flex de-u-flexAlignItemsEnd">
+    <div class="de-ProductPrice
+      de-u-textMedium de-u-flex de-u-flexAlignItemsEnd de-u-lg-hidden">
+      <span class="visually-hidden">
+        {{ 'products.general.regular_price' | t }}
+      </span>
+      <span
+        class="js-de-ProductPrice de-u-textGrow6 de-u-lineHeight1"
+        content="{{ current_variant.price | divided_by: 100.00 }}"
+        itemprop="price">
+        {{ current_variant.price | money }}
+      </span>
+      <span class="visually-hidden">
+        {{ 'products.general.sale_price' | t }}
+      </span>
+      <span class="de-u-textGrow2 de-u-padLeft de-u-lineHeight2">
+        <del class="js-de-ComparePrice-text">
+          {{ current_variant.compare_at_price | money }}
+        </del>
+      </span>
+    </div>
     <span class="de-u-textRed de-u-lineHeight2 de-u-textGrow2 js-de-validation-message"></span>
   </div>
   <div class="js-de-AddtoCart de-u-spaceBottom2 de-u-flex">
