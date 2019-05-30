@@ -1,7 +1,12 @@
 {% comment %}
   ID addToCartForm is a selector for the ajax cart plugin
 {% endcomment %}
-<form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm" class="form-vertical addToCartForm">
+<form 
+  action="/cart/add" 
+  method="post" 
+  enctype="multipart/form-data" 
+  id="AddToCartForm" 
+  class="form-vertical addToCartForm de-addToCartForm">
   {% comment %}
     Add product variants as a dropdown.
     - By default, each variant (or combination of variants) will display as its own <option>

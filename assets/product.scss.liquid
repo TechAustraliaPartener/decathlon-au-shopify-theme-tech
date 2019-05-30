@@ -434,3 +434,16 @@ $button-background-hover: #429dd7;
   color: $color-white;
   cursor: not-allowed;
 }
+
+/**
+ * Override exisiting style property with a higher level of specificity. 
+ * A visual bug is present due to styles associated with styles attached to
+ * `.template-product .addToCartForm::after` located in timber.scss.
+ * We are overriding this style here with the `!important` tag as a last
+ * resort effort to fix the issue without modifying the offending stylesheet 
+ * with our own prefixed class name.
+ */
+
+.de-addToCartForm::after {
+  display: none !important;
+}
