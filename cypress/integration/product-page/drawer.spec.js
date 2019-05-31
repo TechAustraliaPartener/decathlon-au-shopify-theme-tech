@@ -38,8 +38,6 @@ const dataTestSelector = attributeValue => `[data-test=${attributeValue}]`;
 /**
  * Some basic tests to make sure the custom Drawer UI works. Also verifies
  * some of the accessibility efforts.
- *
- * @todo Can we test keyboard accessiblity efforts (e.g. focus)?
  */
 describe('Drawer', () => {
   /**
@@ -74,19 +72,14 @@ describe('Drawer', () => {
         .should('have.attr', 'aria-label', SIZE_GUIDE_LABEL)
         .and('have.attr', 'role', 'dialog');
 
-      // Make sure the "Close" button is focused
-      cy.focused()
-        .should('have.attr', 'aria-label', SIZE_GUIDE_CLOSE_LABEL)
-        .and('have.attr', 'data-drawer-id', SIZE_GUIDE_DRAWER)
-        .and('match', 'button');
-
       /**
        * Use the toggle to know if the Drawer is hidden after clicking "close".
-       * Since the Drawer content is still visible on the page, we can't rely
-       * on the Drawer itself to check if it's not visible.
+       * Since the Drawer content can still be visible on the page within the
+       * Accordion, we can't rely on the Drawer visibilty to know if it's closed.
        */
       cy.get(dataTestSelector(`${SIZE_GUIDE_DRAWER}-close-toggle`))
         .should('be.visible')
+        .and('have.focus')
         .and('have.attr', 'aria-label', SIZE_GUIDE_CLOSE_LABEL)
         .click()
         .should('not.be.visible');
@@ -140,19 +133,14 @@ describe('Drawer', () => {
         .should('have.attr', 'aria-label', REVIEWS_LABEL)
         .and('have.attr', 'role', 'dialog');
 
-      // Make sure the "Close" button is focused
-      cy.focused()
-        .should('have.attr', 'aria-label', REVIEWS_CLOSE_LABEL)
-        .and('have.attr', 'data-drawer-id', REVIEWS_DRAWER)
-        .and('match', 'button');
-
       /**
        * Use the toggle to know if the Drawer is hidden after clicking "close"
-       * Since the Drawer content is still visible on the page, we can't rely
-       * on the Drawer itself to check if it's not visible.
+       * Since the Drawer content can still be visible on the page within the
+       * Accordion, we can't rely on the Drawer visibilty to know if it's closed.
        */
       cy.get(dataTestSelector(`${REVIEWS_DRAWER}-close-toggle`))
         .should('be.visible')
+        .and('have.focus')
         .and('have.attr', 'aria-label', REVIEWS_CLOSE_LABEL)
         .click()
         .should('not.be.visible');
