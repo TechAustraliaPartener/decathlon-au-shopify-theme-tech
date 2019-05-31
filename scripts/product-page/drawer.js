@@ -50,7 +50,7 @@ const IS_DRAWER_OPEN_CLASS = `${STATE_PREFIX}drawerOpen`;
  *
  * @see assets/product.scss.liquid
  */
-const TRANSITION_DURATION = 300;
+const TRANSITION_DURATION = 200;
 /**
  * Module state defaults
  *

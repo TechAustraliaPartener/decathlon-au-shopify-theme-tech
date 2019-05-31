@@ -29,9 +29,8 @@ $border-width-sm: 1px;
  *    @see scripts/product-page/drawer.js
  */
 
-$transition-speed-normal: 0.3s; /* 1 */
-$transition-easing-snappy: ease-in;
-$transition-easing-smooth: cubic-bezier(1, 0.5, 0.8, 1);
+$transition-speed-normal: 0.2s; /* 1 */
+$transition-easing-smooth: cubic-bezier(0.77, 0, 0.175, 1);
 
 /**
  * Sizes
@@ -72,11 +71,9 @@ $header-height: 46px;
  * Drawer variables
  *
  * 1. A reasonable width to allow the Reviews to have a layout that feels right
- * 2. Intended to match the Main Nav smaller viewport transition
  */
 
 $drawer-max-width: 61em; /* 1 */
-$drawer-transition: opacity 0.2s cubic-bezier(0.77, 0, 0.175, 1); /* 2 */
 
 /**
  * Base Drawer overlay styles
@@ -86,7 +83,7 @@ $drawer-transition: opacity 0.2s cubic-bezier(0.77, 0, 0.175, 1); /* 2 */
   background-color: rgba(172, 179, 184, 0.8);
   opacity: 0;
   position: absolute;
-  transition: $drawer-transition;
+  transition: opacity $transition-speed-normal $transition-easing-smooth;
 }
 
 /**
