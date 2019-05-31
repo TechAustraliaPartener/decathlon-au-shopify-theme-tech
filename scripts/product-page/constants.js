@@ -85,6 +85,11 @@ export const PRODUCT_PAGE_COPY = {
  */
 export const FIXED_CLASS = `${CSS_PREFIX}content-is-fixed`;
 
+/*
+ * CSS class that indicates an element should hide vertical overflow
+ */
+export const HIDE_OVERFLOW_Y_CLASS = `${CSS_UTILITY_PREFIX}overflowYHidden`;
+
 /**
  * CSS class used by components that need an "open" state
  */

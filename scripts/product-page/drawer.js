@@ -8,7 +8,7 @@
 
 import {
   IS_ACTIVE_CLASS,
-  IS_TRANSITIONING_CLASS,
+  HIDE_OVERFLOW_Y_CLASS,
   JS_PREFIX,
   FIXED_CLASS,
   CSS_PREFIX
@@ -242,7 +242,11 @@ const setDrawerTransitionStates = (() => {
       openTimeout = setTimeout(() => {
         drawerEl.classList.remove(IS_OPENING_CLASS, ...closeStateCssClasses);
         drawerEl.classList.add(IS_OPEN_CLASS);
-        htmlEl.classList.add(IS_DRAWER_OPEN_CLASS);
+        /**
+         * Avoid double vertical scroll bars when drawer is open
+         * by removing overflow on the root element
+         */
+        htmlEl.classList.add(HIDE_OVERFLOW_Y_CLASS);
       }, TRANSITION_DURATION);
     } else {
       openTimeout && clearTimeout(openTimeout);
@@ -258,7 +262,7 @@ const setDrawerTransitionStates = (() => {
        * elements when the page scrollbar reappears
        */
       setTimeout(() => {
-        htmlEl.classList.remove(IS_DRAWER_OPEN_CLASS);
+        htmlEl.classList.remove(HIDE_OVERFLOW_Y_CLASS);
       }, TRANSITION_DURATION / 4);
     }
   };
@@ -277,7 +281,7 @@ const setDrawerInTransitionOnWrapper = (
 ) => {
   const classListMethod = inTransition ? 'add' : 'remove';
   [...wrapperEls].forEach(el =>
-    el.classList[classListMethod](IS_TRANSITIONING_CLASS)
+    el.classList[classListMethod](IS_DRAWER_OPEN_CLASS)
   );
 };
 

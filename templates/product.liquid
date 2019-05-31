@@ -187,7 +187,7 @@
     id="product-sizeGuide"
   >
      {% capture size_and_fit_heading %}
-       {% include 'product-size-guide-heading', hidden: true %}
+       {% include 'product-size-guide-heading' %}
      {% endcapture %}
     {% capture size_and_fit_accordion_content %}
       {% capture size_and_fit_drawer_content %}
@@ -235,7 +235,7 @@
     </span>
 
     {% capture reviews_heading %}
-      {% include 'product-customer-reviews-heading', hidden: true %}
+      {% include 'product-customer-reviews-heading' %}
     {% endcapture %}
     {% capture reviews_accordion_content %}
       {% comment %} Dynamic Customer Reviews {% endcomment %}
