@@ -28,7 +28,7 @@
 {% include 'collection-header-js' %}
 
 {% if collection.image %}
-    <div class="collectionImage" style="background-image:url('{{ collection.image | img_url: '1024x' }}'); " data-background-image="{{ collection.image | img_url: '1024x' }}">
+    <div class="collectionImage medium-down--hide" style="background-image:url('{{ collection.image | img_url: 'master' }}'); " data-background-image="{{ collection.image | img_url: 'master' }}">
         <div class="wrapper">
             {% include 'breadcrumb', adtl_classes: ' breadcrumb--overImage' %}
 
@@ -37,8 +37,13 @@
     </div>
 {% endif %}
 
-
+<div class="de-padding10 de-u-textSizeBase large--hide">
+      {% include 'create-breadcrumbs' %}
+      <h2 class="de-u-textBold de-u-textCapitalize de-u-textGrow de-u-spaceBottom06">{{ collection.title }}</h2>
+      <hr class="de-blue-hr de-u-bgBlue de-u-spaceNone">
+</div>
 <div class="wrapper{% if collection.image %} wrapper--collectionWithBanner u-paddingTopBottom4x{% else %} u-marginBottom4x{% endif %}">
+    <div class="medium-down--hide">
     {% unless collection.image %}
 		<!-- Create Breadcrumbs Start -->
 		<nav class="breadcrumb" role="navigation" aria-label="breadcrumbs">
@@ -49,10 +54,10 @@
             <a href="{{shop.url}}/collections/{{top_level.handle}}" title="{{top_level.title}}">{{top_level.title}}</a>
 			{% for link in top_level.links %}
 				{% if link.active or link.child_active %}
-				<span aria-hidden="true" class="breadcrumb__sep">&rsaquo;</span>
+				<span aria-hidden="true" class="breadcrumb__sep">/</span>
 				<a href="{{link.url}}" title="{{link.title}}">{{link.title}}</a>
 					{% if link.child_active %}
-						<span aria-hidden="true" class="breadcrumb__sep">&rsaquo;</span>
+						<span aria-hidden="true" class="breadcrumb__sep">/</span>
 					{% endif %}
 					{% if link.links != blank %}
 						{% for sub in link.links %}
@@ -66,8 +71,9 @@
 		</nav>
 		<!-- Create Breadcrumbs End -->
     {% endunless %}
+    </div>
 
-    <div class="grid">
+    <div class="grid--full">
         <div class="grid__item large--one-quarter left">
 
 			<!-- Start Nested Nav -->
@@ -107,6 +113,7 @@
             {% comment %}
             Different markup if a collection description exists
             {% endcomment %}
+            <div class="medium-down--hide">
             {% if current_tags.size %}
                 <header class="section-header is-currentTag">
                     <h1 class="section-header__title u-marginBottom0x">{{ tag_title }}</h1>
@@ -131,6 +138,7 @@
                 <hr>
                 {% endif %}
             {% endif %}
+            </div>
 
 
             {% assign pageBy = 40 %}
