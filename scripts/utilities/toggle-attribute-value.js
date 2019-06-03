@@ -1,7 +1,8 @@
 /**
  * Remove or add a role from an element
  * @param {Object} params
- * @param {HTMLElement} params.el - The element to add or remove a role on
+ * @param {HTMLElement} params.el - The element on which to add or remove an
+ * attribute / attribute + value
  * @param {string} params.name - The name of the attribute to be changed, added,
  * or removed
  * @param {string} params.value - The value to add or remove from a particular
@@ -15,8 +16,8 @@ export const toggleAttributeValue = ({ el, name, value, remove }) => {
   }
   let attrValues = el.getAttribute(name);
   /**
-   * If there are no existing roles set on the element, either return or if
-   * the role is to be added, just set it directly
+   * If there are no existing values for the given attribute set on the element,
+   * just return. If the attribute is to be set, just set it directly and return.
    */
   if (!attrValues) {
     if (remove) {
@@ -26,27 +27,27 @@ export const toggleAttributeValue = ({ el, name, value, remove }) => {
     return;
   }
   /**
-   * Make an array of roles
+   * Make an array of attribute values
    */
   attrValues = attrValues.split(' ');
   /**
-   * If there are existing roles, either filter out the role to be removed or
-   * add it to
+   * If there are existing values, either filter out the value to be removed or
+   * add the new one, if it isn't already in the list of values
    */
   if (remove) {
     attrValues = attrValues.filter(val => val !== value);
-  } else {
+  } else if (!attrValues.some(val => val === value)) {
     attrValues.push(value);
   }
   /**
-   * If there are no longer any roles, remove the attribute
+   * If there are no longer any values, remove the attribute
    */
   if (attrValues.length === 0) {
     el.removeAttribute(name);
     return;
   }
   /**
-   * Convert roles back to a string and set on the element
+   * Convert values back to a string and set the attribute on the element
    */
   attrValues = attrValues.join(' ');
   el.setAttribute(name, attrValues);

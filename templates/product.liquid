@@ -306,7 +306,15 @@
       accordion_content: product_information_accordion_content
     %}
   </section>
-
+  {% capture 'fulfillment_drawer_content' %}
+    {% include 'store-finder' %}
+  {% endcapture %}
+  {% include 'product-drawer',
+    drawer_id: "store-pickup-options-drawer",
+    drawer_label: "Store Pickup Options",
+    content: fulfillment_drawer_content,
+    displays_in_page_flow: false
+  %}
 </div>
 
 {% comment %}
