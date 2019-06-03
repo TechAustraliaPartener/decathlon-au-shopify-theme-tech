@@ -23,6 +23,15 @@ $border-width-sm: 1px;
 $border-width-md: 2px;
 $border-width-lg: 3px;
 
+/**
+ * Media Queries
+ */
+
+$breakpoint-sm: 30em;
+$breakpoint-md: 40em;
+$breakpoint-lg: 60em;
+$breakpoint-xl: 80em;
+
 .de-ReviewSummary {
   border-bottom: $border-width-sm solid $color-silver;
 }
@@ -96,4 +105,60 @@ $border-width-lg: 3px;
 .de-CustomerReview-response {
   padding-left: 1.424rem; /* 1 */
   border-left: $border-width-lg solid $color-lime;
+}
+
+.de-CustomerReview-title {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+
+.de-is-inPageFlow .de-CustomerReview-title {
+  @media (min-width: $breakpoint-lg) {
+    flex-direction: row;
+  }
+}
+
+.de-is-inPageFlow .de-ReviewsContainer-reviewSummary {
+  @media (min-width: $breakpoint-md) {
+    flex-basis: auto;
+    width: 50%;
+  }
+  @media (min-width: $breakpoint-lg) {
+    width: 33.33333%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/**
+ * 1. `2.0227` is the sixth step in the modular scale in use by the pattern library.
+ */
+.de-ReviewsContainer-reviews {
+  padding-top: 2.027rem; /* 1 */
+}
+
+/**
+ * 1. `2.0227` is the sixth step in the modular scale in use by the pattern library.
+ */
+.de-is-inPageFlow .de-ReviewsContainer-reviews {
+  @media (min-width: $breakpoint-md) {
+    flex-basis: auto;
+    width: 50%;
+    padding-top: 0;
+    padding-left: 2.027rem; /* 1 */
+  }
+  @media (min-width: $breakpoint-lg) {
+    width: 66.66667%;
+  }
+}
+
+.de-ReviewsContainer-featuredImage {
+  display: none;
+}
+
+.de-is-inPageFlow .de-ReviewsContainer-featuredImage {
+  @media (min-width: $breakpoint-md) {
+    display: block;
+  }
 }
