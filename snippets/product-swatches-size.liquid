@@ -26,7 +26,7 @@
       data-drawer-id="size-guide-drawer"
       data-drawer-toggle-aria-label="Open the size guide dialog."
       data-drawer-action="open"
-      class="de-u-flex de-u-flexAlignItemsCenter 
+      class="de-u-flex de-u-flexAlignItemsCenter
              de-u-textBlue de-u-textMedium de-u-textSelectNone
              js-de-Drawer-toggle"
       data-test="size-and-fit-toggle"
@@ -36,7 +36,8 @@
     </a>
   </div>
 
-<div class="de-SwatchObjects de-Wrapper--fullwidth de-u-padTop06 de-u-padBottom
+<div class="de-SwatchObjects
+            de-Wrapper--fullwidth de-u-padEnds06
             js-de-SizeSwatches">
   {% for size in all_sizes %}
     {% assign cleanSize = size | strip %}

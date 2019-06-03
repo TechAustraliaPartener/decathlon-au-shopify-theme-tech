@@ -1,5 +1,5 @@
 {% comment %} Title Lockup {% endcomment %}
-<div class="de-ProductTitleLockup de-u-lg-padBottom">
+<div class="de-ProductTitleLockup de-u-lg-padBottom06">
 
   {% comment %} Product Flag(s) {% endcomment %}
   <div class="de-u-hidden de-u-lg-block">
@@ -14,16 +14,16 @@
     </div>
     {% include 'product-rating-reviews-link' %}
   </div>
-  <h1 class="de-u-textGrow2 de-u-textMedium" itemprop="name">
+  <h1 class="de-u-textGrow1 de-u-md-textGrow2 de-u-textMedium" itemprop="name">
     {{ product.title }}
   </h1>
   <div class="de-ProductTitleLockup-price">
-    <div class="de-ProductPrice 
+    <div class="de-ProductPrice
       de-u-textMedium de-u-flex de-u-flexAlignItemsEnd">
       <span class="visually-hidden">
         {{ 'products.general.regular_price' | t }}
       </span>
-      <span 
+      <span
         class="js-de-ProductPrice de-u-textGrow6 de-u-lineHeight1"
         content="{{ current_variant.price | divided_by: 100.00 }}"
         id="ProductPrice"
@@ -33,7 +33,7 @@
       <span class="visually-hidden">
         {{ 'products.general.sale_price' | t }}
       </span>
-      <span 
+      <span
         class="de-u-textGrow2 de-u-padLeft de-u-lineHeight2"
         id="ComparePrice">
         <del class="js-de-ComparePrice-text">

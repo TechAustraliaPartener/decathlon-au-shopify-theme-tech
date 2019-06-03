@@ -35,9 +35,13 @@
     {% endfor %}
   </select>
 
-  <div class="de-ProductPrice de-u-padBottom06 de-u-padTop de-u-textMedium de-u-flex de-u-flexAlignItemsEnd">
-    <div class="de-ProductPrice
-      de-u-textMedium de-u-flex de-u-flexAlignItemsEnd de-u-lg-hidden">
+  <div
+    class="de-ProductPrice
+           de-u-padBottom06 de-u-textMedium
+           de-u-flex de-u-flexAlignItemsEnd">
+    <div
+      class="de-u-flex de-u-flexAlignItemsEnd
+             de-u-lg-hidden">
       <span class="visually-hidden">
         {{ 'products.general.regular_price' | t }}
       </span>
@@ -50,13 +54,16 @@
       <span class="visually-hidden">
         {{ 'products.general.sale_price' | t }}
       </span>
-      <span class="de-u-textGrow2 de-u-padLeft de-u-lineHeight2">
+      <span class="de-u-textGrow2 de-u-padSides de-u-lineHeight2">
         <del class="js-de-ComparePrice-text">
           {{ current_variant.compare_at_price | money }}
         </del>
       </span>
     </div>
-    <span class="de-u-textRed de-u-lineHeight2 de-u-textGrow2 js-de-validation-message"></span>
+    <span
+      class="de-u-textRed de-u-lineHeight2 de-u-textGrow2
+             js-de-validation-message">
+    </span>
   </div>
   <div
     class="de-AddToCartActions de-u-spaceBottom2">

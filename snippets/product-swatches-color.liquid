@@ -15,7 +15,7 @@
 
 {% assign all_colors = colors | split: ',' %}
 
-<div class="de-u-spaceTop03">
+<div class="de-u-spaceTop06">
   <strong>Color: </strong>
   <span class="de-u-textDarkGray de-u-textMedium
                js-de-ColorInfo">
@@ -23,8 +23,8 @@
   </span>
 </div>
 
-<div class="de-SwatchObjects de-Wrapper--fullwidth 
-            de-u-padTop06 de-u-padBottom 
+<div class="de-SwatchObjects de-SwatchObjects--sm-rowGap de-Wrapper--fullwidth
+            de-u-padEnds06
             js-de-ColorSwatches">
   {% for color in all_colors %}
     {% assign option_thumb = false %}
@@ -41,15 +41,15 @@
       {% if option_thumb != false %}{% break %}{% endif %}
     {% endfor %}
       <button
-        class="de-SwatchObjects-item de-ColorSwatches-color 
-               de-SwatchObjects--color 
+        class="de-SwatchObjects-item de-ColorSwatches-color
+               de-SwatchObjects--color
                js-de-ColorSwatches-option "
         value="{{ clean_color }}">
         <span class="de-u-hiddenVisually">Color: {{ clean_color }}</span>
         {% if option_thumb != false %}
           <img class="de-u-block" src="{{ option_thumb }}" alt="">
         {% else %}
-          <div class="de-SwatchObjects-noimage 
+          <div class="de-SwatchObjects-noimage
                       option--color-{{ clean_color | downcase }}">
           </div>
         {% endif %}
