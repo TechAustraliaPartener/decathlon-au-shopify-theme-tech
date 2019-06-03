@@ -21,19 +21,21 @@
         Select a size
       </span>
     </div>
-    <a
-      href="#size-and-fit"
-      data-drawer-id="size-guide-drawer"
-      data-drawer-toggle-aria-label="Open the size guide dialog."
-      data-drawer-action="open"
-      class="de-u-flex de-u-flexAlignItemsCenter
-             de-u-textBlue de-u-textMedium de-u-textSelectNone
-             js-de-Drawer-toggle"
-      data-test="size-and-fit-toggle"
-    >
-      {% include 'product-icon--ruler' %}
-      Size Guide
-    </a>
+    {%- if product_has_size_chart -%}
+      <a
+        href="#size-and-fit"
+        data-drawer-id="size-guide-drawer"
+        data-drawer-toggle-aria-label="Open the size guide dialog."
+        data-drawer-action="open"
+        class="de-u-flex de-u-flexAlignItemsCenter
+              de-u-textBlue de-u-textMedium de-u-textSelectNone
+              js-de-Drawer-toggle"
+        data-test="size-and-fit-toggle"
+      >
+        {% include 'product-icon--ruler' %}
+        Size Guide
+      </a>
+    {%- endif -%}
   </div>
 
 <div class="de-SwatchObjects

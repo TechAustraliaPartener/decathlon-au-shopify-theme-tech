@@ -221,47 +221,52 @@
       accordion_content: reviews_accordion_content
     %}
   </section>
-
-  <section class="de-ProductInfoSection
-                  de-u-md-pad"
-    aria-labelledby="Section-sizeguide"
-    id="product-sizeGuide"
-  >
-    {% capture size_and_fit_heading %}
-      {% include 'product-size-guide-heading' %}
-    {% endcapture %}
-    {% capture size_and_fit_accordion_content %}
-      {% capture size_and_fit_drawer_content %}
-        {% comment %}
-          Juma's Dynamic Size Guide
-        {% endcomment %}
-        {% include 'product-size-guide' %}
-        {% comment %}
-          Derek's Size Guide Markup
-          @TODO:
-          1. Remove prototype reference when design review is complete
-        {% endcomment %}
-        {% comment %}
-          {% include 'product-proto-size-guide-content' %}
-        {% endcomment %}
+  {%- if product_has_size_chart -%}
+    <section class="de-ProductInfoSection
+                    de-u-md-pad"
+      aria-labelledby="Section-sizeguide"
+    >
+      <span
+        id="product-sizeGuide"
+        class="de-ProductAnchor"
+        aria-hidden="true">
+      </span>
+      {% capture size_and_fit_heading %}
+        {% include 'product-size-guide-heading' %}
       {% endcapture %}
-      {% comment %}
-        Create a drawer for the captured content
-      {% endcomment %}
-      {% include 'product-drawer',
-        drawer_id: "size-guide-drawer",
-        drawer_label: "Size Guide",
-        content: size_and_fit_drawer_content,
-        heading: size_and_fit_heading,
-        displays_in_page_flow: true
+      {% capture size_and_fit_accordion_content %}
+        {% capture size_and_fit_drawer_content %}
+          {% comment %}
+            Juma's Dynamic Size Guide
+          {% endcomment %}
+          {% include 'product-size-guide' %}
+          {% comment %}
+            Derek's Size Guide Markup
+            @TODO:
+            1. Remove prototype reference when design review is complete
+          {% endcomment %}
+          {% comment %}
+            {% include 'product-proto-size-guide-content' %}
+          {% endcomment %}
+        {% endcapture %}
+        {% comment %}
+          Create a drawer for the captured content
+        {% endcomment %}
+        {% include 'product-drawer',
+          drawer_id: "size-guide-drawer",
+          drawer_label: "Size Guide",
+          content: size_and_fit_drawer_content,
+          heading: size_and_fit_heading,
+          displays_in_page_flow: true
+        %}
+      {% endcapture %}
+      {% include 'product-accordion'
+        is_open: false
+        accordion_heading: "Size Guide"
+        accordion_content: size_and_fit_accordion_content
       %}
-    {% endcapture %}
-    {% include 'product-accordion'
-      is_open: false
-      accordion_heading: "Size Guide"
-      accordion_content: size_and_fit_accordion_content
-    %}
-  </section>
+    </section>
+  {%- endif -%}
 
   {% comment %} Back to top anchor link {% endcomment %}
   {% include 'product-back-to-top' %}
