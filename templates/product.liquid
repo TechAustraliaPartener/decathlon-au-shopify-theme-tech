@@ -182,47 +182,6 @@
   </section>
 
   <section class="de-ProductInfoSection
-                  de-u-md-pad"
-    aria-labelledby="Section-sizeguide"
-    id="product-sizeGuide"
-  >
-     {% capture size_and_fit_heading %}
-       {% include 'product-size-guide-heading' %}
-     {% endcapture %}
-    {% capture size_and_fit_accordion_content %}
-      {% capture size_and_fit_drawer_content %}
-        {% comment %}
-          Juma's Dynamic Size Guide
-        {% endcomment %}
-        {% include 'product-size-guide' %}
-        {% comment %}
-          Derek's Size Guide Markup
-          @TODO:
-          1. Remove prototype reference when design review is complete
-        {% endcomment %}
-        {% comment %}
-          {% include 'product-proto-size-guide-content' %}
-        {% endcomment %}
-      {% endcapture %}
-      {% comment %}
-        Create a drawer for the captured content
-      {% endcomment %}
-      {% include 'product-drawer',
-        drawer_id: "size-guide-drawer",
-        drawer_label: "Size Guide",
-        content: size_and_fit_drawer_content,
-        heading: size_and_fit_heading,
-        displays_in_page_flow: true
-      %}
-    {% endcapture %}
-    {% include 'product-accordion'
-      is_open: false
-      accordion_heading: "Size & Fit"
-      accordion_content: size_and_fit_accordion_content
-    %}
-  </section>
-
-  <section class="de-ProductInfoSection
                   de-u-md-padEnds de-u-md-padSides
                   js-de-Reviews"
            aria-labelledby="Section-reviews"
@@ -260,6 +219,47 @@
       is_open: true
       accordion_heading: "Customer Reviews"
       accordion_content: reviews_accordion_content
+    %}
+  </section>
+
+  <section class="de-ProductInfoSection
+                  de-u-md-pad"
+    aria-labelledby="Section-sizeguide"
+    id="product-sizeGuide"
+  >
+    {% capture size_and_fit_heading %}
+      {% include 'product-size-guide-heading' %}
+    {% endcapture %}
+    {% capture size_and_fit_accordion_content %}
+      {% capture size_and_fit_drawer_content %}
+        {% comment %}
+          Juma's Dynamic Size Guide
+        {% endcomment %}
+        {% include 'product-size-guide' %}
+        {% comment %}
+          Derek's Size Guide Markup
+          @TODO:
+          1. Remove prototype reference when design review is complete
+        {% endcomment %}
+        {% comment %}
+          {% include 'product-proto-size-guide-content' %}
+        {% endcomment %}
+      {% endcapture %}
+      {% comment %}
+        Create a drawer for the captured content
+      {% endcomment %}
+      {% include 'product-drawer',
+        drawer_id: "size-guide-drawer",
+        drawer_label: "Size Guide",
+        content: size_and_fit_drawer_content,
+        heading: size_and_fit_heading,
+        displays_in_page_flow: true
+      %}
+    {% endcapture %}
+    {% include 'product-accordion'
+      is_open: false
+      accordion_heading: "Size Guide"
+      accordion_content: size_and_fit_accordion_content
     %}
   </section>
 
