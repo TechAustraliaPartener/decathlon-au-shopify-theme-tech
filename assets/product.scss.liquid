@@ -61,7 +61,10 @@ figure {
  * @see https://css-tricks.com/full-width-containers-limited-width-parents/#article-header-id-6
  */
 
-@media (max-width: $breakpoint-lg) {
+/*
+ * 1. Offset by .01 so that media query range does not overlap with other media queries
+ */
+@media (max-width: $breakpoint-lg - .01 /* 1 */) {
   .de-Wrapper--fullwidth {
     width: 100vw;
     position: relative;
