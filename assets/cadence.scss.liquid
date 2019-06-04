@@ -297,8 +297,19 @@
   }
   body.template-collection .adept-filter-mobile__toggle-container {
     right: 0 !important;
-    top: 30px !important;
+    top: auto !important;
+    margin-top: -40px;
     width: auto !important;
+    .adept-filter-mobile__toggle {
+      color: #0082c3 !important;
+      font-size: 14px !important;
+      line-height: 1.6 !important;
+      font-family: avalonmedium,Helvetica Neue,Helvetica,Arial,sans-serif!important;
+      font-weight: 400!important;
+      &:before {
+      content: none !important;
+      }
+    }
   }
   #bc-sf-filter-products {
     margin-left: -15px;
@@ -317,13 +328,5 @@
     img {
     width:48px;
     }
-  }
-}
-
-@media (min-width:640px) and (max-width: 768px) {
-  body.template-collection .adept-filter-mobile__toggle-container {
-    right: 0 !important;
-    top: 43px !important;
-    width: auto !important;
   }
 }
