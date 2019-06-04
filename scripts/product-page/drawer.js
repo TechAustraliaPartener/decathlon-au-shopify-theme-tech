@@ -67,7 +67,8 @@ const DEFAULT_MODULE_STATE = {
   drawerEl: null,
   lastOpenToggleEl: null,
   wrapperEls: null,
-  htmlEl: null
+  htmlEl: null,
+  windowScrollPosition: 0
 };
 /**
  * Reference to the `createState` helper. The `createState`
@@ -150,6 +151,32 @@ const inFlowDisplayStateChangeUpdates = ({ drawerEl, isOpen }) => {
     value: 'dialog',
     remove: !isOpen
   });
+};
+
+/**
+ * Get the window y-axis scroll position, storing to state
+ */
+const updateWindowScrollPosition = () =>
+  stateHelper.updateState({
+    windowScrollPosition: window.pageYOffset
+  });
+
+/**
+ * Set the window y-axis scroll position from state
+ *
+ * Note the conditional use of `document.documentElement`, `document.body`, or `window.scrollTo`
+ * `document.documentElement.scrollTop` is for IE
+ * `document.body.scrollTop` is for Chrome, Safari, and Opera
+ * `window.scrollTo` is for Firefox
+ */
+const setWindowScrollPosition = () => {
+  const { windowScrollPosition } = stateHelper.getState();
+  if (typeof window.scrollTo === 'function') {
+    window.scrollTo(0, windowScrollPosition);
+  } else {
+    const scrollEl = document.documentElement || document.body;
+    scrollEl.scrollTop = windowScrollPosition;
+  }
 };
 
 /**
@@ -263,6 +290,8 @@ const setDrawerTransitionStates = (() => {
        */
       setTimeout(() => {
         htmlEl.classList.remove(HIDE_OVERFLOW_Y_CLASS);
+        // Sets the window scroll position, referenced from state
+        setWindowScrollPosition();
       }, TRANSITION_DURATION / 4);
     }
   };
@@ -400,6 +429,8 @@ const toggleHandler = function(event) {
     newState.lastOpenToggleEl = event.currentTarget;
     // Let the FocusTrap module update the first/last focusable elements
     updateFocusableEls(drawerId);
+    // Captures the window scroll position, saving it to state
+    updateWindowScrollPosition();
   }
 
   // Update the module state
