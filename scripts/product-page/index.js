@@ -23,6 +23,7 @@ import {
   updateUI as updateAddToCartUI
 } from './add-to-cart';
 import { init as drawerInit } from './drawer';
+import { init as storePickupInit } from './store-pickup';
 
 /**
  * Helper to get all of the child component states
@@ -90,6 +91,7 @@ const init = () => {
   carouselContextInit();
   addToCartInit();
   accordionInit();
+  storePickupInit();
 };
 
 init();
