@@ -22,7 +22,7 @@ let activeSlideIndex = 0;
 /**
  * Partial carousel settings
  */
-const THUMB_SLIDES_TO_SHOW = 9;
+const THUMB_SLIDES_TO_SHOW = 5;
 
 /**
  * Load carousel images
