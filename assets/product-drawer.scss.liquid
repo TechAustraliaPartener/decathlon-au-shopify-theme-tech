@@ -20,6 +20,18 @@ $color-white: #fff;
  */
 
 $border-width-sm: 1px;
+$border-width-md: 2px;
+$border-width-lg: 3px;
+$border-width-xl: 6px;
+ 
+/**
+ * Media Queries
+ */
+ 
+$breakpoint-sm: 30em;
+$breakpoint-md: 40em;
+$breakpoint-lg: 60em;
+$breakpoint-xl: 80em;
 
 /**
  * Transitions
@@ -70,17 +82,18 @@ $header-height: 46px;
 /**
  * Drawer variables
  *
- * 1. A reasonable width to allow the Reviews to have a layout that feels right
+ * 1. Width matches the width of the Buy Box - which is the desired width of
+ *    of the active drawer - no more, no less.
  */
 
-$drawer-max-width: 61em; /* 1 */
+$drawer-max-width: 43.333%; /* 1 */
 
 /**
  * Base Drawer overlay styles
  */
 
 .de-Drawer-overlay {
-  background-color: rgba(172, 179, 184, 0.8);
+  background-color: rgba(172, 179, 184, 0.5);
   opacity: 0;
   position: absolute;
   transition: opacity $transition-speed-normal $transition-easing-smooth;
@@ -110,7 +123,7 @@ $drawer-max-width: 61em; /* 1 */
 .de-Drawer:not(.de-is-inPageFlow) .de-Drawer-contentWrapper {
   background-color: $color-white;
   height: 100%;
-  max-width: $drawer-max-width;
+  max-width: 90%;
   right: 0;
   padding-top: $header-height; /* 1 */
   position: fixed; /* 2 */
@@ -119,6 +132,19 @@ $drawer-max-width: 61em; /* 1 */
   transition: transform $transition-speed-normal $transition-easing-smooth;
   width: 100vw;
   z-index: 2000;
+}
+
+
+@media (min-width: $breakpoint-md) {
+  .de-Drawer:not(.de-is-inPageFlow) .de-Drawer-contentWrapper {
+    max-width: 70%;
+  }
+}
+
+@media (min-width: $breakpoint-lg) {
+  .de-Drawer:not(.de-is-inPageFlow) .de-Drawer-contentWrapper {
+    max-width: $drawer-max-width;
+  }
 }
 
 /**
@@ -175,9 +201,10 @@ $drawer-max-width: 61em; /* 1 */
 
 .de-Drawer-header {
   border-bottom: $border-width-sm solid $color-light-gray;
+  display: flex;
   height: $header-height;
   left: 0;
-  max-width: $drawer-max-width;
+  letter-spacing: 0.5px;
   position: absolute;
   top: 0;
   width: 100%;
