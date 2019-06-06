@@ -125,15 +125,25 @@ figure {
 }
 
 /**
- * 1. Using viewport width units provides an ideal flexibile padding between
- *    menu items and padding is incremented as the browser width changes. The
- *    numerical value is one of pure aestheic preference and may need to be
- *    adjusted in the future.
+ * Using viewport width units provides an ideal flexibile padding between
+ * menu items and padding is incremented as the browser width changes. The
+ * numerical value is one of pure aestheic preference and may need to be
+ * adjusted in the future.
  */
 
 .de-ProductMenu .de-MenuBar-action {
-  padding-left: 4vw; /* 1 */
-  padding-right: 4vw; /* 1 */
+  padding-left: 2vw;
+  padding-right: 2vw;
+  
+  @media (min-width: $breakpoint-lg) {
+    padding-left: 3vw;
+    padding-right: 3vw;
+  }
+  
+  @media (min-width: $breakpoint-xl) {
+    padding-left: 4vw;
+    padding-right: 4vw;
+  }
 }
 
 /**
