@@ -23,6 +23,8 @@ import {
   updateUI as updateAddToCartUI
 } from './add-to-cart';
 import { init as drawerInit } from './drawer';
+import { getUrlVariant } from './query-string';
+import { variantOptions } from './product-data';
 import { init as storePickupInit } from './store-pickup';
 
 /**
@@ -78,6 +80,28 @@ const updateUI = state => {
 };
 
 /**
+ * Updates UI to reflect variant in URL
+ */
+const selectUrlVariant = () => {
+  const urlVariant = getUrlVariant();
+  if (urlVariant) {
+    const activeOptions = variantOptions(urlVariant);
+    const targetColorSwatch = document.querySelector(
+      `.js-de-ColorSwatches-option[value='${activeOptions.color}']`
+    );
+    const targetSizeSwatch = document.querySelector(
+      `.js-de-SizeSwatches-option[value='${activeOptions.size}']`
+    );
+    if (targetColorSwatch) {
+      targetColorSwatch.click();
+    }
+    if (targetColorSwatch) {
+      targetSizeSwatch.click();
+    }
+  }
+};
+
+/**
  * Initialize
  */
 const init = () => {
@@ -91,6 +115,7 @@ const init = () => {
   carouselContextInit();
   addToCartInit();
   accordionInit();
+  selectUrlVariant();
   storePickupInit();
 };
 

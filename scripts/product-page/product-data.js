@@ -100,3 +100,24 @@ export const getAvailableSizesFromColor = color => {
     return accArray;
   }, []);
 };
+
+/**
+ * Returns the options of a variant by ID using global variantsJSON array
+ * derived from global productJSON
+ *
+ * @param {string} VariantId The variant ID
+ * @returns {Object[]} An object containing options
+ */
+export const variantOptions = variantId => {
+  const options = { size: null, color: null, model: null };
+  if (Array.isArray(variantsJSON)) {
+    const variant = variantsJSON.find(variant => variant.id === variantId);
+    if (variant) {
+      options.size = variant[SIZE_OPTION];
+      options.color = variant[COLOR_OPTION];
+      options.model = variant[MODEL_OPTION];
+    }
+  }
+
+  return options;
+};
