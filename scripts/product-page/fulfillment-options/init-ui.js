@@ -37,6 +37,7 @@ const verifyElements = () => {
   for (const el in pickupOptionsEls) {
     if (!pickupOptionsEls[el]) {
       pickupOptionsEls = null;
+      break;
     }
   }
   return () => {
