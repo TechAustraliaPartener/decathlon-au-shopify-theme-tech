@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import { $ColorSwatches } from './color-swatches';
 const videojs = window.videojs;
 // 960 roughly equates to the media query variable $breakpoint-lg
 const LARGE_BREAKPOINT = 960;
@@ -56,29 +57,40 @@ if (videojs) {
     });
   });
 
+  const getFirstVideoPlayer = () => videojs(players[0].id());
+
+  const switchToImages = () => {
+    // Remove Video, switch to Images
+    $(this).removeClass('js-de-toggle');
+    $watchVideoCTA.removeClass('de-u-hidden');
+    $viewImagesCTA.addClass('de-u-hidden');
+    $copyVideo.addClass('de-u-hidden');
+    $productTagLabel.removeClass('de-u-hidden');
+    // Pause Video
+    getFirstVideoPlayer().pause();
+  };
+
+  const switchToVideo = () => {
+    // Add Video
+    $(this).addClass('js-de-toggle');
+    $productTagLabel.addClass('de-u-hidden');
+    $viewImagesCTA.removeClass('de-u-hidden');
+    $watchVideoCTA.addClass('de-u-hidden');
+    $copyVideo.removeClass('de-u-hidden');
+    // Play Video
+    getFirstVideoPlayer().play();
+  };
+
   // Function to toggle between 'Watch Videos' and 'View Images'
   const toggleWatchVideo = function() {
-    const firstVideoPlayer = videojs(players[0].id());
     if ($(this).hasClass('js-de-toggle')) {
-      // Remove Video, switch to Images
-      $(this).removeClass('js-de-toggle');
-      $watchVideoCTA.removeClass('de-u-hidden');
-      $viewImagesCTA.addClass('de-u-hidden');
-      $copyVideo.addClass('de-u-hidden');
-      $productTagLabel.removeClass('de-u-hidden');
-      // Pause Video
-      firstVideoPlayer.pause();
+      switchToImages();
     } else {
-      // Add Video
-      $(this).addClass('js-de-toggle');
-      $productTagLabel.addClass('de-u-hidden');
-      $viewImagesCTA.removeClass('de-u-hidden');
-      $watchVideoCTA.addClass('de-u-hidden');
-      $copyVideo.removeClass('de-u-hidden');
-      // Play Video
-      firstVideoPlayer.play();
+      switchToVideo();
     }
   };
+
+  $ColorSwatches.on('ColorSwatches:select', switchToImages);
 
   // Attach click event to 'Watch Videos' button to toggle between video and image
   $toggleButton.click(toggleWatchVideo);
@@ -129,9 +141,8 @@ if (videojs) {
     clearTimeout(timeout);
     timeout = setTimeout(() => {
       if ($(window).width() >= LARGE_BREAKPOINT) {
-        const firstVideoPlayer = videojs(players[0].id());
         // Pause Video
-        firstVideoPlayer.pause();
+        getFirstVideoPlayer().pause();
       }
     }, 250);
   });
