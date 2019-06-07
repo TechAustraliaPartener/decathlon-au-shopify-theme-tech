@@ -1,4 +1,4 @@
-import { IS_ACTIVE_CLASS, JS_PREFIX } from './constants';
+import { IS_ACTIVE_CLASS, CSS_UTILITY_PREFIX, JS_PREFIX } from './constants';
 // @todo Consider removing jQuery dependency
 import $ from 'jquery';
 
@@ -23,6 +23,16 @@ let activeSlideIndex = 0;
  * Partial carousel settings
  */
 const THUMB_SLIDES_TO_SHOW = 5;
+
+/**
+ * Number of thumbnails that fit within view
+ */
+const THUMB_SLIDES_SCROLL_GATE = 5;
+
+/**
+ * Utility class that adds cursor: grab;
+ */
+const THUMB_CURSOR_GRAB_CLASS = `${CSS_UTILITY_PREFIX}cursorGrab`;
 
 /**
  * Load carousel images
@@ -138,6 +148,19 @@ const updateGalleryCounter = counterData => {
 };
 
 /**
+ * Adjust cursor for thumbnails to indicate scrolling when available
+ * @param {Number} thumbnailCount The active thumbnail total
+ */
+const updateThumbnailCursors = thumbnailCount => {
+  const buttonElements = $(`${THUMBNAIL_CAROUSEL_ACTIVE_SELECTOR} button`);
+  if (thumbnailCount > THUMB_SLIDES_SCROLL_GATE) {
+    buttonElements.addClass(THUMB_CURSOR_GRAB_CLASS);
+  } else {
+    buttonElements.removeClass(THUMB_CURSOR_GRAB_CLASS);
+  }
+};
+
+/**
  * Initialize carousel
  */
 const initCarousel = () => {
@@ -175,12 +198,13 @@ const initCarousel = () => {
   /**
    * On Slick initialization, set gallery counter active slide value and slide total
    */
-  $featureCarouselActive.on('init', () =>
+  $featureCarouselActive.on('init', () => {
     updateGalleryCounter({
       currentIndex: activeSlideIndex,
       total: activeSlideTotal
-    })
-  );
+    });
+    updateThumbnailCursors(activeSlideTotal);
+  });
   $featureCarouselActive.slick({
     ...sharedConfig,
     asNavFor: $thumbnailCarouselActive,
