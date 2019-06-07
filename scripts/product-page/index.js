@@ -25,7 +25,7 @@ import {
 import { init as drawerInit } from './drawer';
 import { getUrlVariant } from './query-string';
 import { variantOptions } from './product-data';
-import { init as storePickupInit } from './store-pickup';
+import { init as storePickupInit } from './fulfillment-options';
 
 /**
  * Helper to get all of the child component states
