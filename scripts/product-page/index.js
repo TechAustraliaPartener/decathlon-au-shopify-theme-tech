@@ -18,6 +18,7 @@ import { updateOptionStates } from './option-states';
 import { updateUI as updateMasterSelectUI } from './master-select';
 import { updateUI as updatePriceUI } from './price';
 import { updateUI as updateModelCodeUI } from './model-code';
+import { updateUI as updateProductFlagsUI } from './product-flags';
 import {
   init as addToCartInit,
   updateUI as updateAddToCartUI
@@ -74,6 +75,7 @@ const updateUI = state => {
     updatePriceUI(state);
     updateAddToCartUI(state);
     updateModelCodeUI(state);
+    updateProductFlagsUI(state);
   }
 
   updateOptionStates(state);

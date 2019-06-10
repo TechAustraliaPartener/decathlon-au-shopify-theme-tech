@@ -28,15 +28,23 @@
   {%- assign on_sale = true -%}
 {%- endif -%}
 
-{% if product.tags contains 'Innovation' %}
+{% comment %}
+  IF YOU UPDATE THIS
+  You must also update the corresponding JS code for client updating
+  ./scripts/product-page/product-flags.js
+{% endcomment %}
+{% if on_sale %}
+  {% comment %}
+    Last call flag needs to take priority over other flags
+  {% endcomment %}
+  {% assign label = 'Last Call' %}
+  {% assign style = 'de-u-bgRed de-u-textWhite' %}
+{% elsif product.tags contains 'Innovation' %}
   {% assign label = 'Innovation' %}
   {% assign style = 'de-u-bgLime de-u-textBlack' %}
 {% elsif product.tags contains 'New_Release' %}
   {% assign label = 'New Release' %}
   {% assign style = 'de-u-bgBlue de-u-textWhite' %}
-{% elsif on_sale %}
-  {% assign label = 'Last Call' %}
-  {% assign style = 'de-u-bgRed de-u-textWhite' %}
 {% else %}
   {% assign label = content %}
   {% assign style = class %}
