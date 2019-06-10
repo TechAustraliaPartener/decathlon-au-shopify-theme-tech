@@ -44,6 +44,13 @@ $breakpoint-lg: 60em;
 }
 
 /**
+ * 1. Prevent play button from appearing slightly out of view
+ */
+.bc-player-rJxNjfhX_default.vjs-has-started.vjs-user-inactive .vjs-control-bar {
+  margin: 0; /* 1 */
+}
+
+/**
  * 1. Hide controller component on smaller viewports
  */
  @media (max-width: $breakpoint-xs) {
