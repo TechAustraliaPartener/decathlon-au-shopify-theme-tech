@@ -23,11 +23,11 @@ $border-width-sm: 1px;
 $border-width-md: 2px;
 $border-width-lg: 3px;
 $border-width-xl: 6px;
- 
+
 /**
  * Media Queries
  */
- 
+
 $breakpoint-sm: 30em;
 $breakpoint-md: 40em;
 $breakpoint-lg: 60em;
@@ -48,7 +48,8 @@ $transition-easing-smooth: cubic-bezier(0.77, 0, 0.175, 1);
  * Sizes
  */
 
-$header-height: 46px;
+$header-height-sm: 46px;
+$header-height-md: 52px;
 
 /**
  * @TODO:
@@ -125,7 +126,7 @@ $drawer-max-width: 43.333%; /* 1 */
   height: 100%;
   max-width: 90%;
   right: 0;
-  padding-top: $header-height; /* 1 */
+  padding-top: $header-height-sm; /* 1 */
   position: fixed; /* 2 */
   top: 0;
   transform: translateX(100vw); /* 3 */
@@ -202,13 +203,19 @@ $drawer-max-width: 43.333%; /* 1 */
 .de-Drawer-header {
   border-bottom: $border-width-sm solid $color-light-gray;
   display: flex;
-  height: $header-height;
+  height: $header-height-sm;
   left: 0;
   letter-spacing: 0.5px;
   position: absolute;
   top: 0;
   width: 100%;
   z-index: 3000;
+}
+
+@media (min-width: $breakpoint-md) {
+  .de-Drawer-header {
+    height: $header-height-md;
+  }
 }
 
 /*
@@ -250,7 +257,7 @@ $drawer-max-width: 43.333%; /* 1 */
 
 .de-Drawer:not(.de-is-inPageFlow) .de-Drawer-content > *:last-child {
   margin-bottom: 0; /* 1 */
-  padding-bottom: $header-height; /* 1 */
+  padding-bottom: $header-height-sm; /* 1 */
 }
 
 /*
