@@ -262,7 +262,6 @@
           </div>
           {% if review.answer %}
             {% assign answer_date = review.answer.created_at | date: "%-m/%-e/%Y" %}
-            {% assign first_name = review.answer.author.firstname %}
             <div class="de-CustomerReview-response de-u-spaceTop6"
               tabindex="0"
               data-review-id="{{review.answer.id}}">
@@ -271,17 +270,10 @@
               <div>
                 {{ review.answer.body }}
               </div>
-              {% if answer_date || first_name %}
-                {% if first_name %}
-                  <div class="de-u-textMedium">
-                    {{ first_name }}
-                  </div>
-                {% endif %}
-                {% if answer_date %}
-                  <div class="de-u-textShrink1 de-u-textDarkGray">
-                    {{ answer_date }}
-                  </div>
-                {% endif %}
+              {% if answer_date %}
+                <div class="de-u-textShrink1 de-u-textDarkGray">
+                  {{ answer_date }}
+                </div>
               {% endif %}
               {% comment %}
                 @TODO -
@@ -408,18 +400,11 @@
             <div>
               {{{ answer.body }}}
             </div>
-            {{#if_or answer.created_at answer.author.firstname }}
-              {{#if answer.author.firstname }}
-                <div class="de-u-textMedium">
-                  {{ answer.author.firstname }}
-                </div>
-              {{/if}}
-              {{#if answer.created_at }}
-                <div class="de-u-textShrink1 de-u-textDarkGray">
-                  {{date_format answer.created_at }}
-                </div>
-              {{/if}}
-            {{/if_or}}
+            {{#if answer.created_at }}
+              <div class="de-u-textShrink1 de-u-textDarkGray">
+               {{date_format answer.created_at }}
+              </div>
+            {{/if}}
             {{!--
                @TODO:
                Reimplement when voting API becomes usable
