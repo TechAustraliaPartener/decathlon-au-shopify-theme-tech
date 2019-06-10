@@ -242,6 +242,32 @@ figure {
 }
 
 /**
+ * StorePickup
+ *
+ * This CSS is in-progress and will be improved upon and commented on in
+ * a follow-up PR
+ */
+
+.StorePickup-header {
+  border-bottom: $border-width-md solid $color-silver;
+}
+
+.StorePickup-thumbnail {
+  flex: 0 0 80px;
+}
+
+.StorePickup-tile {
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: $border-width-sm solid $color-silver;
+}
+
+.StorePickup-tile:last-of-type {
+  border-bottom: $border-width-md solid $color-lime;
+  margin-bottom: 0;
+}
+
+/**
  * Utilities
  *
  * @TODO
@@ -276,6 +302,22 @@ figure {
 .de-u-cursorGrab {
   cursor: grab;
 }
+
+/**
+ * Duplicate utility exists in store-finder.scss
+ *
+ * 1. Consolidate by moving to pattern library utility before launching
+ *    product page.
+ */
+
+.de-u-cursorPointer {
+  cursor: pointer; /* 1 */
+}
+
+.de-u-textUnderline {
+  text-decoration: underline !important;
+}
+
 
 /**
  * ProductInformation
@@ -511,6 +553,15 @@ $button-background-hover: #429dd7;
     flex: 1 0 auto; /* 5 */
     margin-left: 16px; /* 6 */
   }
+}
+
+.ContentHeading {
+  border-bottom: $border-width-md solid $color-silver;
+  margin-bottom: 1rem;
+}
+
+.ContentHeading--blue {
+  border-color: $color-blue;
 }
 
 /**

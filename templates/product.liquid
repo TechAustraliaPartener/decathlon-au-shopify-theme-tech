@@ -104,7 +104,7 @@
     </span>
 
     <header>
-      <h3 class="de-ProductInfoTitle 
+      <h3 class="de-ProductInfoTitle
                  de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4
                  de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
           id="Section-videos">
@@ -131,7 +131,7 @@
     </span>
 
     <header>
-      <h3 class="de-ProductInfoTitle 
+      <h3 class="de-ProductInfoTitle
                  de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4
                  de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
           id="Section-features">
@@ -162,7 +162,7 @@
       aria-hidden="true">
     </span>
 
-    <h3 class="de-ProductInfoTitle 
+    <h3 class="de-ProductInfoTitle
                de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4
                de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
         id="Section-lifestyle-images">
@@ -285,7 +285,7 @@
     </span>
 
     <header>
-      <h3 class="de-ProductInfoTitle 
+      <h3 class="de-ProductInfoTitle
                  de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4
                  de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
           id="Section-additional-info">
@@ -311,7 +311,14 @@
     %}
   </section>
   {% capture 'fulfillment_drawer_content' %}
-    {% include 'product-store-pickup' %}
+    {% comment %}
+      Dynamic Store Pickup Content
+    {% endcomment %}
+    {% comment %} {% include 'product-store-pickup' %} {% endcomment %}
+    {% comment %}
+      Sample Markup Store Pickup Content
+    {% endcomment %}
+    {% include 'product-proto-store-pickup' %}
   {% endcapture %}
   {% include 'product-drawer',
     drawer_id: "store-pickup-options-drawer",
