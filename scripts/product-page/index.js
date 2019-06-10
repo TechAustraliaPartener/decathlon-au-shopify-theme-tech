@@ -25,6 +25,7 @@ import {
 import { init as drawerInit } from './drawer';
 import { getUrlVariant } from './query-string';
 import { variantOptions } from './product-data';
+import { init as stickyInit } from './sticky-nav';
 import { init as storePickupInit } from './fulfillment-options';
 
 /**
@@ -117,6 +118,7 @@ const init = () => {
   accordionInit();
   selectUrlVariant();
   storePickupInit();
+  stickyInit();
 };
 
 init();

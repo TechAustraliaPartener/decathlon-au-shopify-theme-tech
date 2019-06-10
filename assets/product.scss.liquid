@@ -100,7 +100,7 @@ figure {
  *    the sticky `ProductMenu` component.
  * 3. This component is not intended to be displayed for small screens. Setting
  *    display none here because of known "issue" with `de-u-hidden` not working
- *    well with responsive display flex utiltities.
+ *    well with responsive display flex utilities.
  *
  * Note: position sticky is not supported in IE11. This component will degrade
  * gracefully and the non-sticky experience has been deemed acceptable for
@@ -125,9 +125,9 @@ figure {
 }
 
 /**
- * Using viewport width units provides an ideal flexibile padding between
+ * Using viewport width units provides an ideal flexible padding between
  * menu items and padding is incremented as the browser width changes. The
- * numerical value is one of pure aestheic preference and may need to be
+ * numerical value is one of pure aesthetic preference and may need to be
  * adjusted in the future.
  */
 
@@ -146,14 +146,26 @@ figure {
   }
 }
 
+.de-ProductMenu .de-MenuBar-action.de-is-active {
+  color: $color-blue;
+}
+
+/**
+ * Pseudo-element for underline
+ */
+
+.de-ProductMenu .de-MenuBar-action.de-is-active:after {
+  display: block;
+}
+
 /**
  * A unique solution for anchor links for use when fixed or sticky menus are
  * present. Adding this class to an element directly preceding the element, or
  * as the first-child inside of the element you'd like to link to, will ensure
  * the context does not become hidden behind the fixed/sticky header element.
  *
- * The method of assigning a negative integar for margin, and the same
- * (non-negative) integar for padding ensures that a gap in the content does
+ * The method of assigning a negative integer for margin, and the same
+ * (non-negative) integer for padding ensures that a gap in the content does
  * not exist.
  *
  * @see: https://css-tricks.com/hash-tag-links-padding
@@ -506,7 +518,7 @@ $button-background-hover: #429dd7;
  */
 
 /*
- * Override exisiting style property with a higher level of specificity.
+ * Override existing style property with a higher level of specificity.
  * A visual bug is present due to styles associated with styles attached to
  * `.template-product .addToCartForm::after` located in timber.scss.
  * We are overriding this style here with the `!important` tag as a last
