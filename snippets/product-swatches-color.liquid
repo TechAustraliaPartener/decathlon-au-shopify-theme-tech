@@ -35,7 +35,7 @@
       {% if option_index == 3 %}{% assign current_color = variant.option3 %}{% endif %}
       {% if current_color == clean_color %}
         {% if variant.image.src %}
-          {% assign option_thumb = variant.image.src | img_url %}
+          {% assign option_thumb = variant.image.src %}
         {% endif %}
       {% endif %}
       {% if option_thumb != false %}{% break %}{% endif %}
@@ -47,7 +47,17 @@
         value="{{ clean_color }}">
         <span class="de-u-hiddenVisually">Color: {{ clean_color }}</span>
         {% if option_thumb != false %}
-          <img class="de-u-block" src="{{ option_thumb }}" alt="">
+          {% capture image_srcset %}
+            {{ option_thumb | img_url: "100x" }} 1x,
+            {{ option_thumb | img_url: "150x" }} 1.5x,
+            {{ option_thumb | img_url: "200x" }} 2x,
+          {% endcapture %}
+          <img
+            class="de-u-block"
+            src="{{ option_thumb | img_url }}"
+            srcset="{{ image_srcset }}"
+            alt=""
+          >
         {% else %}
           <div class="de-SwatchObjects-noimage
                       option--color-{{ clean_color | downcase }}">
