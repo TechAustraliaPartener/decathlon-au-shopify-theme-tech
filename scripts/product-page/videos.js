@@ -61,7 +61,7 @@ if (videojs) {
 
   const switchToImages = () => {
     // Remove Video, switch to Images
-    $(this).removeClass('js-de-toggle');
+    $toggleButton.removeClass('js-de-toggle');
     $watchVideoCTA.removeClass('de-u-hidden');
     $viewImagesCTA.addClass('de-u-hidden');
     $copyVideo.addClass('de-u-hidden');
@@ -72,7 +72,7 @@ if (videojs) {
 
   const switchToVideo = () => {
     // Add Video
-    $(this).addClass('js-de-toggle');
+    $toggleButton.addClass('js-de-toggle');
     $productTagLabel.addClass('de-u-hidden');
     $viewImagesCTA.removeClass('de-u-hidden');
     $watchVideoCTA.addClass('de-u-hidden');
@@ -81,19 +81,16 @@ if (videojs) {
     getFirstVideoPlayer().play();
   };
 
-  // Function to toggle between 'Watch Videos' and 'View Images'
-  const toggleWatchVideo = function() {
-    if ($(this).hasClass('js-de-toggle')) {
+  $ColorSwatches.on('ColorSwatches:select', switchToImages);
+
+  // Attach click event to 'Watch Videos' button to toggle between video and image
+  $toggleButton.click(function() {
+    if ($toggleButton.hasClass('js-de-toggle')) {
       switchToImages();
     } else {
       switchToVideo();
     }
-  };
-
-  $ColorSwatches.on('ColorSwatches:select', switchToImages);
-
-  // Attach click event to 'Watch Videos' button to toggle between video and image
-  $toggleButton.click(toggleWatchVideo);
+  });
 
   // Create array for player IDs
   const players = [];
