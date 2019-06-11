@@ -31,7 +31,7 @@
   >
     <button class="de-UpdateLocation">
       Your location:
-      <span class="de-u-textUnderline de-u-textBlue">
+      <span id="js-de-StorePickup-zipcode" class="de-u-textUnderline de-u-textBlue">
         97223
       </span>
     </button>
@@ -154,5 +154,12 @@
       647.5 mi
     </div>
   </div>
+
+  /**
+   * In the working, but unfinished, implementation, this is the container
+   * for dynamically-generated store tiles.
+   * This id and element are necessary for the module to work.
+   */
+  <ul id="js-de-StorePickup-list" class="de-u-hidden"></ul>
 
 </div>
