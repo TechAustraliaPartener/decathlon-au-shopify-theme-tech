@@ -60,20 +60,29 @@ export const availableVariants = () =>
   variantsJSON.filter(variant => variant.available);
 
 /**
- * Returns the available colors given a size
+ * Returns all options (option1) that share a variant with given option (option2)
  *
- * @param {string} size A size option
- * @returns {Array} Available colors
+ * @param {Object} params An object
+ * @param {string} params.searchOption Title of option to find matches in
+ * @param {string} params.findOption Title of option to match
+ * @param {string} params.value Value of option to find matches in
+ * @param {Array} params.variants Array of variants to filter on
+ * @returns {Array} Options with matches to given option
  */
-export const getAvailableColorsFromSize = size => {
-  return availableVariants().reduce((accArray, variant) => {
-    if (!accArray.includes(variant[COLOR_OPTION])) {
-      if (size) {
-        if (size === variant[SIZE_OPTION]) {
-          accArray.push(variant[COLOR_OPTION]);
+const getOptionCombinations = ({
+  searchOption,
+  findOption,
+  value,
+  variants
+}) => {
+  return variants.reduce((accArray, variant) => {
+    if (!accArray.includes(variant[searchOption])) {
+      if (value) {
+        if (value === variant[findOption]) {
+          accArray.push(variant[searchOption]);
         }
       } else {
-        accArray.push(variant[COLOR_OPTION]);
+        accArray.push(variant[searchOption]);
       }
     }
     return accArray;
@@ -81,25 +90,60 @@ export const getAvailableColorsFromSize = size => {
 };
 
 /**
- * Returns the available sizes given a color
+ * Gets existing colors from size
  *
- * @param {string} color A color option
- * @returns {Object[]} Available sizes
+ * @param {string} size A size value
+ * @returns {Array} Existing colors
  */
-export const getAvailableSizesFromColor = color => {
-  return availableVariants().reduce((accArray, variant) => {
-    if (!accArray.includes(variant[SIZE_OPTION])) {
-      if (color) {
-        if (color === variant[COLOR_OPTION]) {
-          accArray.push(variant[SIZE_OPTION]);
-        }
-      } else {
-        accArray.push(variant[SIZE_OPTION]);
-      }
-    }
-    return accArray;
-  }, []);
-};
+export const getExistingColorsFromSize = size =>
+  getOptionCombinations({
+    searchOption: COLOR_OPTION,
+    findOption: SIZE_OPTION,
+    value: size,
+    variants: variantsJSON
+  });
+
+/**
+ * Gets existing sizes from color
+ *
+ * @param {string} color A color value
+ * @returns {Array} Existing sizes
+ */
+export const getExistingSizesFromColor = color =>
+  getOptionCombinations({
+    searchOption: SIZE_OPTION,
+    findOption: COLOR_OPTION,
+    value: color,
+    variants: variantsJSON
+  });
+
+/**
+ * Gets available colors from size
+ *
+ * @param {string} size A size value
+ * @returns {Array} Available colors
+ */
+export const getAvailableColorsFromSize = size =>
+  getOptionCombinations({
+    searchOption: COLOR_OPTION,
+    findOption: SIZE_OPTION,
+    value: size,
+    variants: availableVariants()
+  });
+
+/**
+ * Gets available sizes from color
+ *
+ * @param {string} color A color value
+ * @returns {Array} Available sizes
+ */
+export const getAvailableSizesFromColor = color =>
+  getOptionCombinations({
+    searchOption: SIZE_OPTION,
+    findOption: COLOR_OPTION,
+    value: color,
+    variants: availableVariants()
+  });
 
 /**
  * Returns the options of a variant by ID using global variantsJSON array

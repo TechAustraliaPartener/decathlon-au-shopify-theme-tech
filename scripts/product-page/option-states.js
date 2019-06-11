@@ -8,12 +8,15 @@
 import {
   IS_OUT_OF_STOCK_CLASS,
   IS_SOLD_OUT_CLASS,
+  IS_HIDDEN_CLASS,
   JS_PREFIX
 } from './constants';
 import {
   isSoldOut,
   getAvailableColorsFromSize,
-  getAvailableSizesFromColor
+  getAvailableSizesFromColor,
+  getExistingColorsFromSize,
+  getExistingSizesFromColor
 } from './product-data';
 import $ from 'jquery';
 
@@ -51,6 +54,19 @@ const updateOptionUnavailableState = (optionCssClassName, enabledOptions) => {
 };
 
 /**
+ * Updates the "exists" state by adding/removing a CSS class
+ *
+ * @param {string} optionCssClassName The options CSS class name
+ * @param {Array} enabledOptions The enabled options to check against
+ */
+const updateOptionExistentState = (optionCssClassName, existingOptions) => {
+  $(optionCssClassName).each(function() {
+    const nonexistent = !existingOptions.includes($(this).val());
+    $(this).toggleClass(IS_HIDDEN_CLASS, nonexistent);
+  });
+};
+
+/**
  * Updates the color & size options "available" states
  *
  * @todo Consider moving this logic to `ColorSwatches` & `SizeSwatches` modules
@@ -60,12 +76,22 @@ const updateOptionUnavailableState = (optionCssClassName, enabledOptions) => {
  */
 export const updateOptionStates = ({ size, color }) => {
   // Update swatches with classes to display state in UI
+  updateOptionExistentState(
+    sizeSwatchesSelector,
+    getExistingSizesFromColor(color)
+  );
+  updateOptionExistentState(
+    colorSwatchesSelector,
+    getExistingColorsFromSize(size)
+  );
   updateOptionUnavailableState(
     sizeSwatchesSelector,
+    getExistingSizesFromColor(color),
     getAvailableSizesFromColor(color)
   );
   updateOptionUnavailableState(
     colorSwatchesSelector,
+    getExistingColorsFromSize(size),
     getAvailableColorsFromSize(size)
   );
 };

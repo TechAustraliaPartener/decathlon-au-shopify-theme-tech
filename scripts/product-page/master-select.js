@@ -16,8 +16,8 @@ import $ from 'jquery';
 export const $MasterSelect = $('#productSelect');
 
 /**
- * We want to keep the master `<select>` input up-do-date with
- * the selection size/color combination.
+ * We want to keep the master `<select>` input  and the URL up-do-date with the
+ * selection size/color combination.
  *
  * @param {object} obj A data object
  * @param {string} obj.size Value of the selected size option
@@ -30,6 +30,6 @@ export const updateUI = ({ size, color }) => {
   if (selectedVariant) {
     // @todo Consider removing jQuery dependency
     $MasterSelect.val(selectedVariant.id);
+    updateUrlVariant(selectedVariant.id);
   }
-  updateUrlVariant(selectedVariant.id);
 };
