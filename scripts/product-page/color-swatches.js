@@ -78,6 +78,10 @@ const updateColorUiState = selectedOption => {
   $(selectedOption).addClass(IS_ACTIVE_CLASS);
 };
 
+export const selectFirstSwatch = () => {
+  $ColorSwatchesOptions.first().click();
+};
+
 /**
  * Handles UI updates for the Color Swatches component
  *

@@ -4,6 +4,7 @@ import { init as carouselContextInit } from './carousel-context';
 import {
   init as colorSwatchesInit,
   getState as getColorSwatchesState,
+  selectFirstSwatch as selectFirstColorSwatch,
   $ColorSwatches
 } from './color-swatches';
 import {
@@ -101,6 +102,8 @@ const selectUrlVariant = () => {
     if (targetColorSwatch) {
       targetSizeSwatch.click();
     }
+  } else {
+    selectFirstColorSwatch();
   }
 };
 
