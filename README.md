@@ -5,17 +5,42 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
+
 - [Project Setup](#project-setup)
+- [Type Checking](#type-checking)
 - [Gulp Config](#gulp-config)
 - [Watch](#watch)
 - [Working With Shopify Assets](#working-with-shopify-assets)
 - [Stylesheets](#stylesheets)
 - [JavaScript](#javascript)
+  - [JavaScript optimization via Gulp](#javascript-optimization-via-gulp)
+  - [JavaScript builds & optimization via Rollup](#javascript-builds--optimization-via-rollup)
 - [SVG Icons](#svg-icons)
 - [Decathlon Patterns Submodule](#decathlon-patterns-submodule)
+  - [Updating Patterns Submodule](#updating-patterns-submodule)
 - [Persistent Cart (PC)](#persistent-cart-pc)
+  - [Building the client-side Persistent Cart JS](#building-the-client-side-persistent-cart-js)
+  - [Where can I find the Decathlon USA Persistent Cart Heroku app URL?](#where-can-i-find-the-decathlon-usa-persistent-cart-heroku-app-url)
+    - [Staging URL](#staging-url)
+    - [Production URL](#production-url)
+  - [Where can I find the Storefront API key?](#where-can-i-find-the-storefront-api-key)
+    - [Staging API key](#staging-api-key)
+    - [Production API key](#production-api-key)
+  - [Default Domains & API URLs](#default-domains--api-urls)
+    - [Production Default Domains & API URLs](#production-default-domains--api-urls)
+    - [Staging Default Domains & API URLs](#staging-default-domains--api-urls)
+    - [How are the default Domain & API URLs used?](#how-are-the-default-domain--api-urls-used)
+  - [Cypress tests](#cypress-tests)
+    - [Requirements](#requirements)
+    - [Setup](#setup)
+  - [Cypress test dashboard](#cypress-test-dashboard)
 - [Local Deployment](#local-deployment)
 - [Deployment via DeployBot](#deployment-via-deploybot)
+  - [Automated Builds](#automated-builds)
+  - [Configuring DeployBot Environment Automated Builds](#configuring-deploybot-environment-automated-builds)
+  - [Add `.env` Configuration File](#add-env-configuration-file)
+  - [Set Up the Build Command](#set-up-the-build-command)
+  - [Set Up and Cache Build Commands](#set-up-and-cache-build-commands)
 - [Updating README Table of Contents](#updating-readme-table-of-contents)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -49,6 +74,9 @@
 1. Create a copy of the `.env.sample` file making sure to rename it to `.env`. Update the environment variables removing the sample values. Make sure the `.env` file is not under version control.
 1. Type the command `npm install` and press enter. This will install all node dependencies for the project.
 1. Type `npx gulp` and press enter. This will run all project gulp tasks and also ensure that all dependencies are installed properly. If a dependency does not exist you'll see an error in terminal. If you see this error, install the missing dependency by typing the command `npm install <package_name> --save-dev`. After this make sure to commit your `package.json` file so that the next user has the dependencies they need.
+
+## Type Checking
+The TypeScript language server can highlight jsdoc and type issues in JS files. In every JS file that you want checked, add `// @ts-check` as the first line. It is generally a good idea to enable checking for new JS files you create and for existing files you are updating. If you are using VSCode or another editor with TS LSP support for JS files, it will automatically start checking once you add that line. You can run `npm run type` or `npm run type:watch` to find all errors in opted-in files from the command line.
 
 ## Gulp Config
 

@@ -1,6 +1,6 @@
 {
   "name": "decathlon",
-  "version": "1.13.4",
+  "version": "1.14.1",
   "description": "Minify and Concat CSS and JS files, run jshint for all script files.",
   "repository": {
     "type": "git",
@@ -17,6 +17,8 @@
     "get-schema": "graphql get-schema",
     "check-lint": "prettier --list-different '{scripts,cypress}/**/*.js' && eslint '{scripts,cypress}/**/*.js'",
     "lint": "prettier --write '{scripts,cypress}/**/*.js' && eslint --fix '{scripts,cypress}/**/*.js'",
+    "type": "tsc -p jsconfig.json",
+    "type:watch": "tsc -p jsconfig.json -w",
     "cypress:open": "cypress open"
   },
   "engines": {
@@ -67,7 +69,8 @@
     "rollup-plugin-babel": "^4.2.0",
     "rollup-plugin-commonjs": "^9.2.0",
     "rollup-plugin-node-resolve": "^4.0.0",
-    "rollup-plugin-terser": "^4.0.1"
+    "rollup-plugin-terser": "^4.0.1",
+    "typescript": "^3.5.1"
   },
   "dependencies": {
     "fast-deep-equal": "^2.0.1",
