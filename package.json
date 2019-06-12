@@ -17,6 +17,8 @@
     "get-schema": "graphql get-schema",
     "check-lint": "eslint '{scripts,cypress/integration/persistent-cart}/**/*.js' && prettier --list-different '{scripts,cypress/integration/persistent-cart}/**/*.js'",
     "lint": "eslint --fix '{scripts,cypress/integration/persistent-cart}/**/*.js' && prettier --write '{scripts,cypress/integration/persistent-cart}/**/*.js'",
+    "type": "tsc -p jsconfig.json",
+    "type:watch": "tsc -p jsconfig.json -w",
     "cypress:open": "cypress open"
   },
   "engines": {
@@ -67,7 +69,8 @@
     "rollup-plugin-babel": "^4.2.0",
     "rollup-plugin-commonjs": "^9.2.0",
     "rollup-plugin-node-resolve": "^4.0.0",
-    "rollup-plugin-terser": "^4.0.1"
+    "rollup-plugin-terser": "^4.0.1",
+    "typescript": "^3.5.1"
   },
   "dependencies": {
     "fast-deep-equal": "^2.0.1",
