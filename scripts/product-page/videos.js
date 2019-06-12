@@ -57,7 +57,18 @@ if (videojs) {
     });
   });
 
-  const getFirstVideoPlayer = () => videojs(players[0].id());
+  const getFirstVideoPlayer = () =>
+    players[0] && 'id' in players[0] ? videojs(players[0].id()) : null;
+
+  const controlFirstVideoPlayer = action => {
+    if (!/^play|pause$/.test(action)) return;
+    const player = getFirstVideoPlayer();
+    player && player[action]();
+  };
+
+  const pauseFirstVideoPlayer = () => controlFirstVideoPlayer('pause');
+
+  const playFirstVideoPlayer = () => controlFirstVideoPlayer('play');
 
   const switchToImages = () => {
     // Remove Video, switch to Images
@@ -67,7 +78,7 @@ if (videojs) {
     $copyVideo.addClass('de-u-hidden');
     $productTagLabel.removeClass('de-u-hidden');
     // Pause Video
-    getFirstVideoPlayer().pause();
+    pauseFirstVideoPlayer();
   };
 
   const switchToVideo = () => {
@@ -78,7 +89,7 @@ if (videojs) {
     $watchVideoCTA.addClass('de-u-hidden');
     $copyVideo.removeClass('de-u-hidden');
     // Play Video
-    getFirstVideoPlayer().play();
+    playFirstVideoPlayer();
   };
 
   $ColorSwatches.on('ColorSwatches:select', switchToImages);
