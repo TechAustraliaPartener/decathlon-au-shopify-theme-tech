@@ -24,17 +24,43 @@ const MODEL_OPTION = `option${MODEL_INDEX + 1}`;
 const isTagFound = tag => productsJSON.tags.includes(tag);
 
 /**
- * Helper to get the variant based on the selected color & size
+ * Helper to get the variant based on a color & size or ID
  *
  * @param {Object} obj The selected options data
- * @param {string} obj.size The selected size option
- * @param {string} obj.color The selected color option
+ * @param {string} [obj.size] The selected size option
+ * @param {string} [obj.color] The selected color option
+ * @param {string} [obj.id] A product variant ID
+ * @param {Array} [source = variantsJSON] The array to filter to find a
+ * product variant
  * @returns {Object|undefined} A product variant object
  */
-export const getSelectedVariant = ({ size, color }) =>
-  variantsJSON.find(
-    variant => variant[SIZE_OPTION] === size && variant[COLOR_OPTION] === color
+export const getSelectedVariant = ({
+  size,
+  color,
+  id,
+  source = variantsJSON
+} = {}) => {
+  if (!Array.isArray(source) || (!id && (!color || !size))) {
+    return;
+  }
+  return source.find(
+    variant =>
+      (variant[SIZE_OPTION] === size && variant[COLOR_OPTION] === color) ||
+      variant.id === id
   );
+};
+
+/**
+ * Helper to get an available variant based on color & size or ID
+ *
+ * @param {Object} obj The selected options data
+ * @param {string} [obj.size] The selected size option
+ * @param {string} [obj.color] The selected color option
+ * @param {string} [obj.id] A product variant ID
+ * @returns {Object|undefined} A product variant object
+ */
+export const getAvailableSelectedVariant = ({ size, id, color }) =>
+  getSelectedVariant({ size, color, id, source: availableVariants() });
 
 /**
  * Helper to get if product has "sold out" tag

@@ -30,6 +30,8 @@ import { variantOptions } from './product-data';
 import { init as stickyInit } from './sticky-nav';
 import { init as storePickupInit } from './fulfillment-options';
 
+let updateFulfillmentOptionsUI = null;
+
 /**
  * Helper to get all of the child component states
  *
@@ -65,7 +67,6 @@ const onOptionSelect = () => {
  */
 const updateUI = state => {
   const { color, size } = state;
-
   /**
    * Update the MasterSelect and UI displays if both size & color have been set.
    * The MasterSelect `<select>` input uses variant IDs as its values.
@@ -77,6 +78,11 @@ const updateUI = state => {
     updateAddToCartUI(state);
     updateModelCodeUI(state);
     updateProductFlagsUI(state);
+    /**
+     * The updateFulfillmentOptionsUI function will be undefined on page load,
+     * but will update on subsequent page actions
+     */
+    updateFulfillmentOptionsUI && updateFulfillmentOptionsUI(state);
   }
 
   updateOptionStates(state);
@@ -105,12 +111,13 @@ const selectUrlVariant = () => {
   } else {
     selectFirstColorSwatch();
   }
+  return urlVariant;
 };
 
 /**
  * Initialize
  */
-const init = () => {
+const init = async () => {
   sizeSwatchesInit();
   colorSwatchesInit();
   setUpListeners();
@@ -121,9 +128,18 @@ const init = () => {
   carouselContextInit();
   addToCartInit();
   accordionInit();
-  selectUrlVariant();
-  storePickupInit();
+  const urlVariant = selectUrlVariant();
   stickyInit();
+  // Suggest leaving the async setup for fulfillment options to last
+  updateFulfillmentOptionsUI = await storePickupInit();
+  /**
+   * The updateFulfillmentOptionsUI function will be undefined in the master
+   * updateUI function on page load, so call here as soon as it's defined
+   */
+  updateFulfillmentOptionsUI({ id: urlVariant });
 };
 
-init();
+// Call the async init to return the Promise and log errors
+init()
+  .then(() => console.log('Product page initialized.'))
+  .catch(error => console.error(error.message));
