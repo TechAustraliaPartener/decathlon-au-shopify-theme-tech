@@ -1,7 +1,7 @@
 {% comment %} Customer Fulfillment Information {% endcomment %}
 <div class="de-ProductFulfillment">
   <div class="de-u-padBottom06">
-    <div class="de-u-flex de-u-padEnds06">
+    <div class="de-u-flex de-ProductFulfillment-option">
       {% include 'icon-free-returns'
         with class: 'de-u-textBlack de-Icon de-u-textGrow6 de-u-spaceRight03' %}
       <p class="de-u-spaceNone de-u-textMedium">
@@ -9,14 +9,14 @@
       </p>
     </div>
 
-    <div class="de-u-flex de-u-padBottom06 de-u-padTop">
+    <div class="de-u-flex de-ProductFulfillment-option">
     {% include 'ship-icon'
       with class: 'de-u-textBlack de-Icon de-u-textGrow6 de-u-spaceRight03' %}
       <p class="de-u-spaceNone de-u-textMedium"><span
       class="de-u-textBold">Free</span> shipping over $50</p>
     </div>
 
-    <div class="de-u-flex de-u-flexAlignItemsCenter de-u-padEnds06 js-de-ProductFulfillment-pickupOptions de-u-hidden">
+    <div class="de-u-flex de-u-flexAlignItemsCenter js-de-ProductFulfillment-pickupOptions de-u-ProductFulfillment-option de-u-hidden">
       {% include 'pickup-icon'
         with class: 'de-u-textBlack de-Icon de-u-textGrow6 de-u-spaceRight03' %}
       <div>
@@ -37,7 +37,7 @@
             Options
           </a>
         </p>
-        <p class="js-de-ProductFulfillment-selectForOptionsMessage">Select an available color and size to see options.</p>
+        <p class="js-de-ProductFulfillment-selectForOptionsMessage de-u-spaceNone">Select an available color and size to see options.</p>
       </div>
     </div>
   </div>
