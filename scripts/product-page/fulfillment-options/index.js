@@ -1,3 +1,5 @@
+// @ts-check
+
 import {
   loadGoogleMaps,
   fetchUserLocationData,
@@ -25,6 +27,11 @@ export const init = async () => {
   if (!pickupOptionsEls) {
     throw new Error('Did not get all required DOM elements');
   }
+  /**
+   * The loading of the Google Maps API is required for related APIs
+   * to work (e.g. getDistanceData's google.maps.DistanceMatrixService)
+   */
+  await loadGoogleMaps();
   // Get stores and user's location to proceed with display logic
   const [stores, zipcode] = await Promise.all([
     /**
@@ -33,12 +40,7 @@ export const init = async () => {
      */
     fetchStoreList(),
     // Determine the user's location
-    fetchUserLocationData(),
-    /**
-     * The loading of the Google Maps API is required for related APIs
-     * to work (e.g. getDistanceData's google.maps.DistanceMatrixService)
-     */
-    loadGoogleMaps()
+    fetchUserLocationData()
   ]);
   // Calculate the distance from the user to the store(s)
   const distances = await getDistanceData({ origin: zipcode, stores });

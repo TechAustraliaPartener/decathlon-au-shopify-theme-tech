@@ -1,3 +1,5 @@
+// @ts-check
+
 /**
  * Build a list of stores for pickup, to be displayed in the fulfillment
  * options drawer (or anywhere)

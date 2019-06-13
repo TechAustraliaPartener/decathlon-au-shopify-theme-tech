@@ -1,3 +1,5 @@
+// @ts-check
+
 import { TOMORROW, IS_HIDDEN_CLASS, REMOVE, ADD } from './constants';
 import { buildStoreTile, setClosestStoreInfo } from './build-ui';
 import { getAvailableSelectedVariant } from '../product-data';
@@ -9,15 +11,8 @@ import { getAvailableSelectedVariant } from '../product-data';
  * @param {boolean} params.hide - Whether to show or hide pickup details, also
  * toggles display of the select product options message, which should show when
  * pickup details are hidden, or vice versa
- * @param {Object.<string, Element>} params.pickupOptionsEls - All of the elements for
+ * @param {import('./init-ui').PickupOptionsEls} params.pickupOptionsEls - All of the elements for
  * this module
- * @param {Element} params.pickupOptionsEls.storePickupDetailsEl - The element that
- * shows store details
- * @param {Element} params.pickupOptionsEls.pickupDayEl - The element for showing
- * next available pickup day
- * @param {Element} params.pickupOptionsEls.selectForPickupOptionsMessageEl - The
- * element that contains the prompt to select product options before showing
- * pickup options
  */
 const togglePickupStoreDetails = ({
   hide,
@@ -42,7 +37,7 @@ const togglePickupStoreDetails = ({
 /**
  * Hide pickup store details and show a message to select a valid product
  * variant
- * @param {Object.<string, Element>} pickupOptionsEls - All of the elements for
+ * @param {import('./init-ui').PickupOptionsEls} pickupOptionsEls - All of the elements for
  * this module
  */
 const hidePickupStoreDetails = pickupOptionsEls =>
@@ -54,7 +49,7 @@ const hidePickupStoreDetails = pickupOptionsEls =>
 /**
  * Show pickup store details and hide a message to select a valid product
  * variant
- * @param {Object.<string, Element>} pickupOptionsEls - All of the elements for
+ * @param {import('./init-ui').PickupOptionsEls} pickupOptionsEls - All of the elements for
  * this module
  */
 const showPickupStoreDetails = pickupOptionsEls =>
@@ -65,7 +60,7 @@ const showPickupStoreDetails = pickupOptionsEls =>
 
 /**
  * Toggle the fulfillment (store pickup) options block
- * @param {Element} storePickupOptionsEl - The fulfillment/store-pickup options
+ * @param {HTMLElement} storePickupOptionsEl - The fulfillment/store-pickup options
  * element
  */
 const showPickupOption = storePickupOptionsEl => {
@@ -78,12 +73,8 @@ const showPickupOption = storePickupOptionsEl => {
  * @param {Object} params The Decathlon stores and user's location
  * @param {Array} params.stores A collection of store data
  * @param {string} params.zipcode User's zipcode
- * @param {Object.<string, Element>} params.pickupOptionsEls All of the elements for
+ * @param {import('./init-ui').PickupOptionsEls} params.pickupOptionsEls - All of the elements for
  * this module
- * @param {Element} params.pickupOptionsEls.storeTileListEl The store details blocks
- * for display in the drawer
- * @param {Element} params.pickupOptionsEls.userLocationZipcodeEl The element for displaying the user's
- * detected Zip Code
  * @param {Object | null} [params.selectedVariant] A selected product variant
  */
 const updateDrawerUI = ({
@@ -111,14 +102,8 @@ const updateDrawerUI = ({
  * Update product fulfillment (store pickup) page UI elements
  * @param {Object} params
  * @param {Array} params.stores - A collection of store data
- * @param {Object.<string, Element>} params.pickupOptionsEls - All of the elements for
+ * @param {import('./init-ui').PickupOptionsEls} params.pickupOptionsEls - All of the elements for
  * this module
- * @param {Element} params.pickupOptionsEls.storeAddress1El - The element for a store
- * address
- * @param {Element} params.pickupOptionsEls.storeCityEl - The element for a store city
- * @param {Element} params.pickupOptionsEls.pickupDayEl - The element for a pickup day
- * @param {Element} params.pickupOptionsEls.storePickupOptionsEl - The element that
- * contains all pickup options
  * @param {Object | null} [params.selectedVariant] A selected product variant
  */
 const updatePageUI = ({
@@ -161,7 +146,7 @@ const updatePageUI = ({
  * @param {Object} params
  * @param {Array} params.stores - A collection of store data
  * @param {string} params.zipcode - User's zipcode
- * @param {Object.<string, Element>} params.pickupOptionsEls - All of the elements for
+ * @param {import('./init-ui').PickupOptionsEls} params.pickupOptionsEls - All of the elements for
  * this module
  */
 export const initUpdateUI = ({ stores, zipcode, pickupOptionsEls }) =>

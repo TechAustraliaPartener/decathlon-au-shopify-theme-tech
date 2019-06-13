@@ -34,7 +34,7 @@ const getStoresWithinDistanceThreshold = ({ stores, threshold }) =>
  * @param {Object} data The Decathlon stores and corresponding distances
  * @param {Array} data.stores A collection of store locations
  * @param {Array} data.distances A collection of distance calculations
- * @param {number} data.threshold A value to gauge whether a store is within
+ * @param {string | number} data.threshold A value to gauge whether a store is within
  * allowed radius of a customer to be displayed as a pickup option
  * @returns {Array} A collection of stores, sorted by distance
  */
