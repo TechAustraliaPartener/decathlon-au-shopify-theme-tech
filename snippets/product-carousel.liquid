@@ -135,7 +135,7 @@
             aria-label="{{ forloop.index | minus: start_index }} of {{ end_index | minus: start_index }}">
             <button class="de-CarouselFeature-btn">
               <img
-                class="de-CarouselFeature-image js-de-SlickCarouselSlide"
+                class="de-CarouselFeature-image de-u-bgSilver js-de-SlickCarouselSlide"
                 {% if color == activeColor and forloop.index0 == start_index %}
                   srcset="{{ image_srcset }}"
                   sizes="{{ image_sizes }}"
@@ -187,7 +187,7 @@
             role="group"
             aria-label="{{ forloop.index | minus: start_index }} of {{ end_index | minus: start_index }}">
             <button class="de-CarouselThumbnail-btn de-u-block">
-              <img class="de-CarouselThumbnail-image js-de-SlickCarouselSlide"
+              <img class="de-CarouselThumbnail-image de-u-bgSilver js-de-SlickCarouselSlide"
                 data-srcset="{{ image_srcset }}"
                 data-sizes="{{ image_sizes }}">
             </button>

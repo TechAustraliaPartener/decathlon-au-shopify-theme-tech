@@ -38,17 +38,23 @@ const THUMB_CURSOR_GRAB_CLASS = `${CSS_UTILITY_PREFIX}cursorGrab`;
  * Load carousel images
  */
 const loadImages = () => {
-  $(SLIDE_CAROUSEL_SELECTOR).each(function() {
-    const $slide = $(this);
-    if (!$slide.attr('srcset')) {
-      const srcset = $slide.data('srcset');
-      $slide.attr('srcset', srcset);
+  $(`${CONTAINER_CAROUSEL_ACTIVE_SELECTOR} ${SLIDE_CAROUSEL_SELECTOR}`).each(
+    function() {
+      const $slide = $(this);
+      // Remove placeholder background color once image has loaded
+      $slide.on('load', function() {
+        $slide.removeClass(`${CSS_UTILITY_PREFIX}bgSilver`);
+      });
+      if (!$slide.attr('srcset')) {
+        const srcset = $slide.data('srcset');
+        $slide.attr('srcset', srcset);
+      }
+      if (!$slide.attr('sizes')) {
+        const sizes = $slide.data('sizes');
+        $slide.attr('sizes', sizes);
+      }
     }
-    if (!$slide.attr('sizes')) {
-      const sizes = $slide.data('sizes');
-      $slide.attr('sizes', sizes);
-    }
-  });
+  );
 };
 
 /**
@@ -203,6 +209,7 @@ const initCarousel = () => {
       currentIndex: activeSlideIndex,
       total: activeSlideTotal
     });
+    loadImages();
     updateThumbnailCursors(activeSlideTotal);
   });
   $featureCarouselActive.slick({
@@ -288,7 +295,6 @@ export const updateUI = ({ color }) => {
  * Put all functions that need to run on product-page load here
  */
 export const init = () => {
-  loadImages();
   initCarousel();
   handleWindowResize();
 };
