@@ -28,10 +28,10 @@ $breakpoint-lg: 60em;
 }
 
 /**
- * 1. Show controller component
+ * 1. Show controller component when video player is within viewport
  * 2. Override the Brightcove default "none"
  */
-.video-js.js-cube.vjs-user-inactive #cube-control-bar.vjs-control-bar {
+.de-is-intersecting .video-js.js-cube.vjs-user-inactive #cube-control-bar.vjs-control-bar {
   transform: translateY(0); /* 1 */
   display: flex; /* 2 */
 }
@@ -58,6 +58,19 @@ $breakpoint-lg: 60em;
      display: none !important; /* 1 */
    }
  }
+
+@media (min-width: $breakpoint-xs) {
+  .vjs-big-play-button {
+   transition: opacity .75s .75s;
+  }
+
+  /**
+  * 1. Hide play button when video player is within viewport
+  */
+  .de-is-intersecting .vjs-big-play-button {
+   opacity: 0; /* 1 */
+  }
+}
 
  /**
   * 1. Override Brightcove default hiding behavior

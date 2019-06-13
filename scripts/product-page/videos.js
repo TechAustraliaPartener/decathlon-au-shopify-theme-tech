@@ -1,8 +1,12 @@
 import $ from 'jquery';
+import { CSS_PREFIX } from './constants';
 import { $ColorSwatches } from './color-swatches';
 const videojs = window.videojs;
 // 960 roughly equates to the media query variable $breakpoint-lg
 const LARGE_BREAKPOINT = 960;
+
+// When element is within viewport
+const IS_INTERSECTING = `${CSS_PREFIX}is-intersecting`;
 
 // Test if video carousel exists
 if (videojs) {
@@ -154,4 +158,31 @@ if (videojs) {
       }
     }, 250);
   });
+
+  /**
+   * Determine when element is within viewport
+   * Confirm IntersectionObserver is available
+   */
+  if (window.IntersectionObserver) {
+    /**
+     * Trigger function when a video player componenet is within viewport
+     * @see IntersectionObserver https://css-tricks.com/a-few-functional-uses-for-intersection-observer-to-know-when-an-element-is-in-view/
+     */
+    const observerOptions = {
+      rootMargin: `0px 0px -${$videoCarousel.height()}px 0px`
+    };
+    // Toggle class that shows or hides controller bar/play button
+    const handleObserver = entries =>
+      entries.forEach(entry =>
+        entry.isIntersecting
+          ? entry.target.classList.add(IS_INTERSECTING)
+          : entry.target.classList.remove(IS_INTERSECTING)
+      );
+    // Create new Observer instance
+    const observer = new IntersectionObserver(handleObserver, observerOptions);
+    // Add a watcher to each video player component
+    $videoCarousel.each((index, videoElement) =>
+      observer.observe(videoElement)
+    );
+  }
 }
