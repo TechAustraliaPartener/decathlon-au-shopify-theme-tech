@@ -25,6 +25,8 @@
   {% endif %}
 </div>
 
+{% if product_video.size > 0 %}
 {% include 'product-gallery-controls' with
   class: 'de-u-bgSilver de-u-lg-hidden',
   display_toggle: true %}
+{% endif %}

@@ -195,5 +195,12 @@
         {%- endif -%}
       {%- endfor -%}
     </div>
+
+    {% if product_video.size < 1 %}
+      {% include 'product-gallery-controls' with
+        class: 'de-CarouselControls--overlay de-u-lg-hidden',
+        display_toggle: false %}
+    {% endif %}
+
   </section>
 {%- endfor -%}

@@ -20,9 +20,14 @@ $border-width-md: 2px;
 
 $breakpoint-lg: 60em;
 
-{% comment %}
-  @todo: This CSS will be copied/pasted into `product.scss.liquid` once this work is complete
-{% endcomment %}
+/**
+  * @TODO
+  * 1. Move into `product.scss.liquid` once this work is complete
+ */
+
+.de-CarouselContainer {
+  position: relative;
+}
 
 .de-ProductCarousel--large,
 .de-CarouselContainer,
@@ -56,6 +61,7 @@ $breakpoint-lg: 60em;
 }
 
 @media (min-width: $breakpoint-lg) {
+
   /**
     * 1. Allows space for .de-ProductBuyBox;
     *    maintains sizing while .de-Drawer is open
@@ -67,8 +73,8 @@ $breakpoint-lg: 60em;
   }
 
   .de-CarouselContainer.de-is-active {
-    position: relative;
     justify-content: flex-end;
+    position: relative;
   }
 
   /**
@@ -104,12 +110,12 @@ $breakpoint-lg: 60em;
 
   .de-CarouselThumbnail {
     display: unset;
-    position: absolute;
+    height: 100%;
     left: 0;
+    overflow: hidden;
+    position: absolute;
     top: 0;
     width: 16%; /* 1 */
-    height: 100%;
-    overflow: hidden;
   }
 
   /**
@@ -120,11 +126,11 @@ $breakpoint-lg: 60em;
     */
 
   .de-CarouselThumbnail-image {
-    width: 8.8vw; /* 1 */
+    border: $border-width-md solid transparent;
     height: 8.8vw; /* 1 */
     object-fit: cover;
     object-position: center;
-    border: $border-width-md solid transparent;
+    width: 8.8vw; /* 1 */
   }
 
   .slick-vertical .slick-slide {
@@ -144,4 +150,9 @@ $breakpoint-lg: 60em;
   .de-SlickSlide.slick-current .de-CarouselThumbnail-btn {
     outline: none; /* 1 */
   }
+}
+
+.de-CarouselControls--overlay {
+  bottom: 0;
+  position: absolute;
 }
