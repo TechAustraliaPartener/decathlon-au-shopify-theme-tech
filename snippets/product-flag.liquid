@@ -50,9 +50,7 @@
   {% assign style = class %}
 {% endif %}
 
-<span class="de-ProductFlag
-             de-u-textMedium
-             js-de-ProductFlag
-             {{ style }}">
+<span class="de-ProductFlag de-u-textMedium js-de-ProductFlag
+  {% unless label %}de-u-hidden{% endunless %} {{ style }}">
   {{ label }}
 </span>

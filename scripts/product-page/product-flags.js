@@ -4,7 +4,8 @@ import { JS_PREFIX, CSS_UTILITY_PREFIX } from './constants';
 const isFlagClass = c =>
   // IE doesn't support string#startsWith, so we are using a regex instead of polyfill
   c.match(new RegExp(`^${CSS_UTILITY_PREFIX}bg`)) ||
-  c.match(new RegExp(`^${CSS_UTILITY_PREFIX}text(?:White|Black)`));
+  c.match(new RegExp(`^${CSS_UTILITY_PREFIX}text(?:White|Black)`)) ||
+  c.match(new RegExp(`^${CSS_UTILITY_PREFIX}hidden`));
 
 /**
  * Updates product flags
@@ -43,5 +44,7 @@ export const updateUI = ({ size, color }) => {
     updateFlag('Innovation', 'de-u-bgLime de-u-textBlack');
   } else if (product.tags.includes('New_Release')) {
     updateFlag('New Release', 'de-u-bgBlue de-u-textWhite');
+  } else {
+    productFlagEl.classList.add(`${CSS_UTILITY_PREFIX}hidden`);
   }
 };
