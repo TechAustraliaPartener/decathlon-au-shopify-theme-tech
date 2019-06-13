@@ -56,7 +56,6 @@ if (videojs) {
       slidesToShow: 4,
       slidesToScroll: 1,
       asNavFor: $videoCarousel,
-      centerMode: true,
       focusOnSelect: true
     });
   });
