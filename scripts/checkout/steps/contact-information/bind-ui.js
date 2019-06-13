@@ -149,7 +149,7 @@ const buildStoreList = locations => {
       data-city="${location.city}"
       data-state="${location.state}"
       data-zip="${location.zip}">
-      <p class="de-pickup-location-time de-u-textBlack de-u-textSemibold de-u-textGrow1">Pickup Tomorrow</p>
+      <p class="de-pickup-location-time de-u-textBlack de-u-textSemibold de-u-textGrow1">Free Pickup Tomorrow</p>
       <p><span class="de-pickup-location-name de-u-textSemibold de-u-textBlack">${
         location.name
       }</span> ${location.street1}</p>
