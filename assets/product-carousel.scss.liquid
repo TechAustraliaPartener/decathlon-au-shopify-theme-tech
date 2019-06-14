@@ -60,6 +60,20 @@ $breakpoint-lg: 60em;
   overflow-x: auto;
 }
 
+/* Fix for "sliver" of next image showing in product image carousel */
+
+.de-ProductCarousel {
+  overflow: hidden;
+}
+
+.de-CarouselFeature {
+  .slick-slide {
+    position: relative;
+    padding-right: 2px;
+    right: -1px;
+  }
+}
+
 @media (min-width: $breakpoint-lg) {
 
   /**
