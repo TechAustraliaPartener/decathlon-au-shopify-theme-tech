@@ -28,9 +28,7 @@ export const $SizeSwatches = $(`.${JS_PREFIX}SizeSwatches`);
 /**
  * Children elements
  */
-const $SizeSwatchesOptions = $SizeSwatches.find(
-  `.${JS_PREFIX}SizeSwatches-option`
-);
+const $SizeSwatchesOptions = $(`.${JS_PREFIX}SizeSwatches-option`);
 const $SizeInfo = $(`.${JS_PREFIX}SizeInfo`);
 
 /**
@@ -112,6 +110,15 @@ const onSizeSelect = function() {
 };
 
 /**
+ * Single size options are selected by default
+ */
+const selectSingleSizeOptions = () => {
+  if ($SizeSwatchesOptions.length === 1) {
+    $SizeSwatchesOptions[0].click();
+  }
+};
+
+/**
  * Helper to retrieve the module state
  *
  * @returns {Object} The module state
@@ -125,4 +132,5 @@ export const getState = () => state;
  */
 export const init = () => {
   $SizeSwatchesOptions.on(CLICK_EVENT, onSizeSelect);
+  selectSingleSizeOptions();
 };

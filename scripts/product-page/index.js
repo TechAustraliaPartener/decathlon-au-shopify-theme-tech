@@ -121,7 +121,6 @@ const init = async () => {
   sizeSwatchesInit();
   colorSwatchesInit();
   setUpListeners();
-  updateUI(getCombinedState());
   reviewsInit();
   drawerInit();
   carouselInit();
@@ -137,9 +136,13 @@ const init = async () => {
    * updateUI function on page load, so call here as soon as it's defined
    */
   updateFulfillmentOptionsUI({ id: urlVariant });
+  /**
+   * Keep `updateUI()` last allowing all other initializations first
+   */
+  updateUI(getCombinedState());
 };
 
 // Call the async init to return the Promise and log errors
 init()
   .then(() => console.log('Product page initialized.'))
-  .catch(error => console.error(error.message));
+  .catch(error => console.error(error));

@@ -28,9 +28,7 @@ export const $ColorSwatches = $(`.${JS_PREFIX}ColorSwatches`);
 /**
  * Children elements
  */
-const $ColorSwatchesOptions = $ColorSwatches.find(
-  `.${JS_PREFIX}ColorSwatches-option`
-);
+const $ColorSwatchesOptions = $(`.${JS_PREFIX}ColorSwatches-option`);
 const $ColorInfo = $(`.${JS_PREFIX}ColorInfo`);
 
 /**
@@ -123,10 +121,20 @@ const onColorSelect = function() {
 export const getState = () => state;
 
 /**
+ * Single color options are selected by default
+ */
+const selectSingleColorOptions = () => {
+  if ($ColorSwatchesOptions.length === 1) {
+    $ColorSwatchesOptions[0].click();
+  }
+};
+
+/**
  * Initializes functionality by setting up event binding
  *
  * @todo Consider removing jQuery dependency
  */
 export const init = () => {
   $ColorSwatchesOptions.on(CLICK_EVENT, onColorSelect);
+  selectSingleColorOptions();
 };

@@ -25,7 +25,7 @@
 
 <div class="de-SwatchObjects de-SwatchObjects--sm-rowGap de-Wrapper--fullwidth
             de-u-padEnds06
-            js-de-ColorSwatches">
+            js-de-ColorSwatches{% if all_colors.size == 1 %} de-u-hidden{% endif %}">
   {% for color in all_colors %}
     {% assign option_thumb = false %}
     {% assign clean_color = color | strip %}
