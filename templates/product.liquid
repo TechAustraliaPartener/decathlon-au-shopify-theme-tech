@@ -314,11 +314,7 @@
     {% comment %}
       Dynamic Store Pickup Content
     {% endcomment %}
-    {% comment %} {% include 'product-store-pickup' %} {% endcomment %}
-    {% comment %}
-      Sample Markup Store Pickup Content
-    {% endcomment %}
-    {% include 'product-proto-store-pickup' %}
+    {% include 'product-store-pickup' %}
   {% endcapture %}
   {% include 'product-drawer',
     drawer_id: "store-pickup-options-drawer",

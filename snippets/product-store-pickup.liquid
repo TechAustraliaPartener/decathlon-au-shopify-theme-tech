@@ -1,10 +1,92 @@
-<!-- snippets/product-store-pickup.liquid -->
-
 {% comment %}
   Store Pickup Component
 {% endcomment %}
-<div id="js-de-StorePickup">
-  <p>Your location: <span id="js-de-StorePickup-zipcode"></span></p>
-  <ul id="js-de-StorePickup-list"></ul>
+
+<!-- snippets/product-store-pickup.liquid -->
+<div class="StorePickup js-de-StorePickup">
+
+  <div
+    class="StorePickup-header
+           de-u-flex de-u-padBottom03 de-u-spaceBottom03">
+    <div class="StorePickup-thumbnail">
+      <img
+        alt=""
+        class="de-u-block js-de-StorePickup-thumbnailImage"
+        src="https://cdn.shopify.com/s/files/1/1752/4727/products/8bdfc1a5-64b0-409c-bffd-80152d762d79_100x.jpg"
+      >
+    </div>
+    <div class="de-u-padLeft03">
+      <h3
+        class="de-u-textGrow1 de-u-md-textGrow2 de-u-textMedium
+               de-u-spaceBottomNone"
+        itemprop="name">
+        {{ product.title }}
+      </h3>
+      <div class="de-u-textDarkGray">
+        <span class="js-de-StorePickup-variantSize">Large</span> <span>|</span> <span class="js-de-StorePickup-variantColor">Electric Blue</span>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="de-UseMyLocation de-js-UseMyLocation
+           de-u-flex de-u-flexAlignItemsCenter de-u-flexJustifyBetween
+           de-u-textSizeBase
+           de-u-spaceBottom06"
+  >
+    <button class="de-UpdateLocation js-de-StorePickup-locationInputToggle">
+      Your location:
+      <span id="js-de-StorePickup-zipcode" class="de-u-textUnderline de-u-textBlue">
+        97223
+      </span>
+    </button>
+
+    <button
+      class="de-u-flex de-u-flexAlignItemsCenter de-u-cursorPointer
+             de-u-textBlue js-de-StorePickup-useGeolocation">
+      <span
+        class="de-u-flex de-u-flexAlignItemsCenter de-u-flexJustifyCenter
+               de-u-padRight06">
+        {% include 'icon-crosshairs' with class: 'de-Icon' %}
+      </span>
+      <span class="de-u-spaceLeft07 de-u-textMedium">
+        Use my location
+      </span>
+    </button>
+  </div>
+
+  {% comment %}
+    For placement only
+  {% endcomment %}
+
+  <div class="StorePickup-customerLocation js-de-StorePickup-customerLocation de-u-hidden">
+    <label class="de-u-textDarkGray de-u-spaceBottom06 de-u-textShrink1">
+      Enter a city or zipcode
+    </label>
+    <form class="de-SingleInputForm">
+      <div class="de-u-flex de-u-bgSilver de-u-spaceEnds06">
+        <input
+          placeholder="Your location: Portland, OR"
+          class="de-Input de-StoreSearch-input de-SingleInputForm-input
+                de-u-textShrink1 de-u-bgSilver">
+        <button
+          class="de-SingleInputForm-action
+                de-u-flex de-u-flexAlignItemsCenter de-u-flexJustifyCenter ">
+          {% include 'icon-magnifying-glass' with class: 'de-Icon' %}
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <h5
+    class="ContentHeading ContentHeading--blue
+           de-u-textGrow1 de-u-lineHeight3">
+    Order online for
+  </h5>
+
+  {% comment %} The container for dynamically added store tiles {% endcomment %}
+  <ul id="js-de-StorePickup-list" class="de-u-spaceBottomNone de-u-spaceLeftNone"></ul>
+
 </div>
+
 <!-- End snippets/product-store-pickup.liquid -->

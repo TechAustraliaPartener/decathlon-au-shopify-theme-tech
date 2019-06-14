@@ -17,9 +17,14 @@ export const SELECT_FOR_PICKUP_OPTIONS_MESSAGE = `${JS_PRODUCT_FULFILLMENT_PREFI
 /**
  * Drawer store-list and location selectors
  */
-
 export const STORE_PICKUP_LIST_SELECTOR = `${STORE_PICKUP_PREFIX}list`;
 export const STORE_PICKUP_ZIPCODE_SELECTOR = `${STORE_PICKUP_PREFIX}zipcode`;
+export const STORE_PICKUP_LOCATION_INPUT_TOGGLE = `${STORE_PICKUP_PREFIX}locationInputToggle`;
+export const STORE_PICKUP_USE_GEOLOCATION = `${STORE_PICKUP_PREFIX}useGeolocation`;
+export const STORE_PICKUP_CUSTOMER_LOCATION = `${STORE_PICKUP_PREFIX}customerLocation`;
+export const STORE_PICKUP_THUMBNAIL_IMAGE = `${STORE_PICKUP_PREFIX}thumbnailImage`;
+export const STORE_PICKUP_VARIANT_SIZE = `${STORE_PICKUP_PREFIX}variantSize`;
+export const STORE_PICKUP_VARIANT_COLOR = `${STORE_PICKUP_PREFIX}variantColor`;
 
 /**
  * Acceptable radius gate of user's location to store locations (in miles)

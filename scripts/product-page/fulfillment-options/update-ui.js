@@ -1,7 +1,11 @@
 // @ts-check
 
 import { TOMORROW, IS_HIDDEN_CLASS, REMOVE, ADD } from './constants';
-import { buildStoreTile, setClosestStoreInfo } from './build-ui';
+import {
+  buildStoreTile,
+  setClosestStoreInfo,
+  updateProductInDrawer
+} from './build-ui';
 import { getAvailableSelectedVariant } from '../product-data';
 
 /**
@@ -81,6 +85,7 @@ const updateDrawerUI = ({
   stores,
   zipcode,
   pickupOptionsEls: { storeTileListEl, userLocationZipcodeEl },
+  pickupOptionsEls,
   selectedVariant
 }) => {
   if (stores.length === 0) {
@@ -94,7 +99,7 @@ const updateDrawerUI = ({
     userLocationZipcodeEl.innerText = zipcode;
   }
   if (selectedVariant) {
-    // @TODO - implement
+    updateProductInDrawer({ selectedVariant, ...pickupOptionsEls });
   }
 };
 

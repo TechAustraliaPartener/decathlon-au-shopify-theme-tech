@@ -18,6 +18,18 @@
  * @property {HTMLElement} selectForPickupOptionsMessageEl - The
  * element that contains the prompt to select product options before showing
  * pickup options
+ * @property {HTMLElement} locationInputToggle - Toggle for opening the location
+ * input in the drawer
+ * @property {HTMLElement} useGeolocationEl - Affordance for the user to choose
+ * to use geolocation
+ * @property {HTMLElement} customerLocationEl - Toggleable container for the
+ * customer location input/form
+ * @property {HTMLElement} thumbnailImageEl - Image element for displaying the
+ * thumbnail of the currently selected product variant in the drawer
+ * @property {HTMLElement} variantColorEl - Element for displaying currently
+ * selected product color
+ * @property {HTMLElement} variantSizeEl - Element for displaying currently
+ * selected product size
  */
 
 import {
@@ -28,7 +40,13 @@ import {
   PICKUP_DAY,
   STORE_PICKUP_DETAILS,
   STORE_PICKUP_OPTIONS,
-  SELECT_FOR_PICKUP_OPTIONS_MESSAGE
+  SELECT_FOR_PICKUP_OPTIONS_MESSAGE,
+  STORE_PICKUP_LOCATION_INPUT_TOGGLE,
+  STORE_PICKUP_USE_GEOLOCATION,
+  STORE_PICKUP_CUSTOMER_LOCATION,
+  STORE_PICKUP_THUMBNAIL_IMAGE,
+  STORE_PICKUP_VARIANT_COLOR,
+  STORE_PICKUP_VARIANT_SIZE
 } from './constants';
 
 /**
@@ -45,7 +63,17 @@ const initUI = () => ({
   storePickupDetailsEl: document.querySelector(`.${STORE_PICKUP_DETAILS}`),
   selectForPickupOptionsMessageEl: document.querySelector(
     `.${SELECT_FOR_PICKUP_OPTIONS_MESSAGE}`
-  )
+  ),
+  locationInputToggle: document.querySelector(
+    `.${STORE_PICKUP_LOCATION_INPUT_TOGGLE}`
+  ),
+  useGeolocationEl: document.querySelector(`.${STORE_PICKUP_USE_GEOLOCATION}`),
+  customerLocationEl: document.querySelector(
+    `.${STORE_PICKUP_CUSTOMER_LOCATION}`
+  ),
+  thumbnailImageEl: document.querySelector(`.${STORE_PICKUP_THUMBNAIL_IMAGE}`),
+  variantColorEl: document.querySelector(`.${STORE_PICKUP_VARIANT_COLOR}`),
+  variantSizeEl: document.querySelector(`.${STORE_PICKUP_VARIANT_SIZE}`)
 });
 
 /**
@@ -56,6 +84,7 @@ const verifyElements = () => {
   let pickupOptionsEls = initUI();
   for (const el in pickupOptionsEls) {
     if (!pickupOptionsEls[el]) {
+      console.error(`Missing required element ${el}`);
       pickupOptionsEls = null;
       break;
     }
