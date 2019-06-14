@@ -107,15 +107,15 @@
          id="de-CarouselFeature">
       {%- for product_image in product_images -%}
         {% capture image_srcset %}
-          {{ product_image | img_url: "320x" }} 320w,
-          {{ product_image | img_url: "480x" }} 480w,
-          {{ product_image | img_url: "640x" }} 640w,
-          {{ product_image | img_url: "800x" }} 800w,
-          {{ product_image | img_url: "960x" }} 960w,
-          {{ product_image | img_url: "1120x" }} 1120w,
-          {{ product_image | img_url: "1280x" }} 1280w,
-          {{ product_image | img_url: "1440x" }} 1440w,
-          {{ product_image | img_url: "1800x" }} 1800w
+          {{ product_image | img_url: "320x", format: "pjpg" }} 320w,
+          {{ product_image | img_url: "480x", format: "pjpg" }} 480w,
+          {{ product_image | img_url: "640x", format: "pjpg" }} 640w,
+          {{ product_image | img_url: "800x", format: "pjpg" }} 800w,
+          {{ product_image | img_url: "960x", format: "pjpg" }} 960w,
+          {{ product_image | img_url: "1120x", format: "pjpg" }} 1120w,
+          {{ product_image | img_url: "1280x", format: "pjpg" }} 1280w,
+          {{ product_image | img_url: "1440x", format: "pjpg" }} 1440w,
+          {{ product_image | img_url: "1800x", format: "pjpg" }} 1800w
         {% endcapture %}
         {% capture image_sizes %}
           (max-width: 320px) 320px,
@@ -158,15 +158,15 @@
       data-carousel-color="{{- all_colors_array[forloop.index0] -}}">
       {%- for product_image in product_images -%}
         {% capture image_srcset %}
-          {{ product_image | img_url: "80x" }} 80w,
-          {{ product_image | img_url: "100x" }} 100w,
-          {{ product_image | img_url: "120x" }} 120w,
-          {{ product_image | img_url: "140x" }} 140w,
-          {{ product_image | img_url: "160x" }} 160w,
-          {{ product_image | img_url: "180x" }} 180w,
-          {{ product_image | img_url: "200x" }} 200w,
-          {{ product_image | img_url: "220x" }} 220w,
-          {{ product_image | img_url: "240x" }} 240w
+          {{ product_image | img_url: "80x", format: "pjpg" }} 80w,
+          {{ product_image | img_url: "100x", format: "pjpg" }} 100w,
+          {{ product_image | img_url: "120x", format: "pjpg" }} 120w,
+          {{ product_image | img_url: "140x", format: "pjpg" }} 140w,
+          {{ product_image | img_url: "160x", format: "pjpg" }} 160w,
+          {{ product_image | img_url: "180x", format: "pjpg" }} 180w,
+          {{ product_image | img_url: "200x", format: "pjpg" }} 200w,
+          {{ product_image | img_url: "220x", format: "pjpg" }} 220w,
+          {{ product_image | img_url: "240x", format: "pjpg" }} 240w
         {% endcapture %}
         {% capture image_sizes %}
           (max-width: 1000px) 80px,

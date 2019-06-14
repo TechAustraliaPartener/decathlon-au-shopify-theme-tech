@@ -46,6 +46,7 @@ $breakpoint-lg: 60em;
   width: 100%;
 }
 
+.de-CarouselFeature-slide,
 .de-CarouselFeature-image {
   cursor: grab;
 }
@@ -62,7 +63,8 @@ $breakpoint-lg: 60em;
 
 /* Fix for "sliver" of next image showing in product image carousel */
 
-.de-ProductCarousel {
+.de-ProductCarousel,
+.de-CarouselContainer {
   overflow: hidden;
 }
 
@@ -71,6 +73,33 @@ $breakpoint-lg: 60em;
     position: relative;
     padding-right: 2px;
     right: -1px;
+  }
+}
+
+@media (max-width: $breakpoint-lg) {
+  /**
+    * 1. Preserves the sqaure aspect ratio of while loading,
+    *    improving the loading experience.
+    * 2. Restricts image sizes from becoming too large;
+    *    a preventive measure to help buybox remains above-the-fold
+    */
+
+  .de-CarouselContainer,
+  .de-CarouselFeature-btn,
+  .de-CarouselFeature-image {
+    width: 100%; /* 1 */
+    height: 100vw; /* 1 */
+    max-width: 528px; /* 2 */
+    max-height: 528px; /* 2 */
+  }
+
+  /**
+    * 1. Setting and unsetting of this property is to take advantage
+    *    the shared properties `.de-CarouselFeature-btn`, `.de-CarouselFeature-image`
+    */
+
+  .de-CarouselContainer {
+    max-width: unset; /* 1 */
   }
 }
 
