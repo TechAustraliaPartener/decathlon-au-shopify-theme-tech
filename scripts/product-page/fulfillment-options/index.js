@@ -35,7 +35,7 @@ export const init = async () => {
      */
     await loadGoogleMaps();
     // Get stores and user's location to proceed with display logic
-    const [stores, zipcode] = await Promise.all([
+    const [stores, userLocationData] = await Promise.all([
       /**
        * Retrieve the store list
        * @see stores.js ./scripts/store-finder/data/stores.js
@@ -45,7 +45,10 @@ export const init = async () => {
       fetchUserLocationData()
     ]);
     // Calculate the distance from the user to the store(s)
-    const distances = await getDistanceData({ origin: zipcode, stores });
+    const distances = await getDistanceData({
+      origin: userLocationData.zipcode,
+      stores
+    });
     // Adds the distance values to each store's object data
     const storeList = getDistanceSortedStores({
       stores,
@@ -66,7 +69,7 @@ export const init = async () => {
      */
     const updateUI = initUpdateUI({
       stores: storeList,
-      zipcode,
+      userLocationData,
       pickupOptionsEls
     });
     // Bind needed event handlers

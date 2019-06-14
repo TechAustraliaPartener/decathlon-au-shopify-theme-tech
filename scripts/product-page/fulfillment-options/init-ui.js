@@ -4,8 +4,10 @@
  * @typedef {Object} PickupOptionsEls
  * @property {HTMLElement} storeTileListEl - The store details blocks
  * for display in the drawer
- * @property {HTMLElement} userLocationZipcodeEl - The element for displaying the user's
- * detected Zip Code
+ * @property {HTMLElement} userLocationCityEl - The element for displaying
+ * the user's detected city
+ * @property {HTMLElement} userLocationStateEl - The element for displaying
+ * the user's detected state code (abbreviation)
  * @property {HTMLElement} storeAddress1El -The element for a store
  * address
  * @property {HTMLElement} storeCityEl - The element for a store city
@@ -22,6 +24,9 @@
  * input in the drawer
  * @property {HTMLElement} useGeolocationEl - Affordance for the user to choose
  * to use geolocation
+ * @property {HTMLElement} useMyLocationTextEl - Text for use geolocation
+ * @property {HTMLElement} loadingLocationTextEl - Text to indicate loading
+ * location data
  * @property {HTMLElement} customerLocationEl - Toggleable container for the
  * customer location input/form
  * @property {HTMLElement} thumbnailImageEl - Image element for displaying the
@@ -34,7 +39,8 @@
 
 import {
   STORE_PICKUP_LIST_SELECTOR,
-  STORE_PICKUP_ZIPCODE_SELECTOR,
+  STORE_PICKUP_USER_CITY_SELECTOR,
+  STORE_PICKUP_USER_STATE_SELECTOR,
   STORE_PICKUP_ADDRESS,
   STORE_PICKUP_CITY,
   PICKUP_DAY,
@@ -43,6 +49,8 @@ import {
   SELECT_FOR_PICKUP_OPTIONS_MESSAGE,
   STORE_PICKUP_LOCATION_INPUT_TOGGLE,
   STORE_PICKUP_USE_GEOLOCATION,
+  STORE_PICKUP_USE_MY_LOCATION,
+  STORE_PICKUP_LOADING_LOCATION,
   STORE_PICKUP_CUSTOMER_LOCATION,
   STORE_PICKUP_THUMBNAIL_IMAGE,
   STORE_PICKUP_VARIANT_COLOR,
@@ -54,8 +62,13 @@ import {
  * @returns {PickupOptionsEls} All elements for the module
  */
 const initUI = () => ({
-  storeTileListEl: document.getElementById(STORE_PICKUP_LIST_SELECTOR),
-  userLocationZipcodeEl: document.getElementById(STORE_PICKUP_ZIPCODE_SELECTOR),
+  storeTileListEl: document.querySelector(`.${STORE_PICKUP_LIST_SELECTOR}`),
+  userLocationCityEl: document.querySelector(
+    `.${STORE_PICKUP_USER_CITY_SELECTOR}`
+  ),
+  userLocationStateEl: document.querySelector(
+    `.${STORE_PICKUP_USER_STATE_SELECTOR}`
+  ),
   storeAddress1El: document.querySelector(`.${STORE_PICKUP_ADDRESS}`),
   storeCityEl: document.querySelector(`.${STORE_PICKUP_CITY}`),
   pickupDayEl: document.querySelector(`.${PICKUP_DAY}`),
@@ -68,6 +81,12 @@ const initUI = () => ({
     `.${STORE_PICKUP_LOCATION_INPUT_TOGGLE}`
   ),
   useGeolocationEl: document.querySelector(`.${STORE_PICKUP_USE_GEOLOCATION}`),
+  useMyLocationTextEl: document.querySelector(
+    `.${STORE_PICKUP_USE_MY_LOCATION}`
+  ),
+  loadingLocationTextEl: document.querySelector(
+    `.${STORE_PICKUP_LOADING_LOCATION}`
+  ),
   customerLocationEl: document.querySelector(
     `.${STORE_PICKUP_CUSTOMER_LOCATION}`
   ),

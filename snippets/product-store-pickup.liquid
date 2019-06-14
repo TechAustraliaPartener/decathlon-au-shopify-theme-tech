@@ -36,9 +36,11 @@
   >
     <button class="de-UpdateLocation js-de-StorePickup-locationInputToggle">
       Your location:
-      <span id="js-de-StorePickup-zipcode" class="de-u-textUnderline de-u-textBlue">
-        97223
+      <span class="de-u-textUnderline de-u-textBlue">
+        <span class="js-de-StorePickup-city">City</span>,&nbsp;
+        <span class="js-de-StorePickup-stateCode">ST</span>
       </span>
+
     </button>
 
     <button
@@ -50,7 +52,8 @@
         {% include 'icon-crosshairs' with class: 'de-Icon' %}
       </span>
       <span class="de-u-spaceLeft07 de-u-textMedium">
-        Use my location
+        <span class="js-de-StorePickup-useMyLocationText">Use my location</span>
+        <span class="js-de-StorePickup-loadingLocationText de-u-hidden">Location&hellip;</span>
       </span>
     </button>
   </div>
@@ -85,7 +88,7 @@
   </h5>
 
   {% comment %} The container for dynamically added store tiles {% endcomment %}
-  <ul id="js-de-StorePickup-list" class="de-u-spaceBottomNone de-u-spaceLeftNone"></ul>
+  <ul class="js-de-StorePickup-list de-u-spaceBottomNone de-u-spaceLeftNone"></ul>
 
 </div>
 

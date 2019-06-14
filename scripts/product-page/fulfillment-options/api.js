@@ -1,7 +1,17 @@
 // @ts-check
 
+/**
+ * @typedef {Object} UserLocationData
+ * @property {string} zipcode
+ * @property {string} city
+ * @property {string} stateCode
+ */
+
 import fetchStores from '../../store-finder/utilities/fetch-stores';
-import { checkPermissionsAndFetchUserLocation } from '../../store-finder/utilities/fetch-user-location';
+import {
+  checkPermissionsAndFetchUserLocation,
+  getLocationInfoFromReverseGeocodedCurrentPosition
+} from '../../store-finder/utilities/fetch-user-location';
 import formatStoreAddress from '../../store-finder/utilities/format-store-address';
 import getDistance from '../../store-finder/utilities/get-distance';
 import loadGoogleMaps from '../../store-finder/services/load-google-maps';
@@ -23,11 +33,14 @@ export const fetchStoreList = async () => {
 };
 
 /**
- * Fetches the user's approximate location based on their IP address
+ * Fetches the user's approximate location based on their IP address or
+ * geolocation, depending on permissions or flag passed in
  *
- * @returns {Promise<string>} User's zipcode
+ * @param {Object} [options]
+ * @param {boolean} [options.useGeolocation] - Whether to immediately use geolocation
+ * @returns {Promise<UserLocationData>} User's location information
  */
-export const fetchUserLocationData = async () => {
+export const fetchUserLocationData = async ({ useGeolocation } = {}) => {
   /**
    * Make use of the geolocation API, order of precedence:
    * 1) If geolocation hasn't already been allowed, use IP-based location
@@ -39,8 +52,14 @@ export const fetchUserLocationData = async () => {
    * @see https://stackoverflow.com/questions/10077606/check-if-geolocation-was-allowed-and-get-lat-lon
    * @see get-user-geolocation.js scripts/store-finder/utilities/get-user-geolocation.js
    */
-  const { zip_code: zipcode } = await checkPermissionsAndFetchUserLocation();
-  return zipcode;
+  const {
+    zip_code: zipcode,
+    city,
+    region_code: stateCode
+  } = await (useGeolocation
+    ? getLocationInfoFromReverseGeocodedCurrentPosition()
+    : checkPermissionsAndFetchUserLocation());
+  return { zipcode, city, stateCode };
 };
 
 /**

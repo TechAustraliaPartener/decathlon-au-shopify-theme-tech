@@ -3,8 +3,10 @@
 import getReverseGeocode from './get-reverse-geocode';
 
 /**
- * @typedef {Object} ZipLocation
+ * @typedef {Object} LocationInfo
  * @property {string} zip_code - A user's Zip Code
+ * @property {string} city - A user's city name
+ * @property {string} region_code - A user's state abbr, usually
  */
 
 /**
@@ -17,7 +19,28 @@ import getReverseGeocode from './get-reverse-geocode';
 /**
  * Get a user's location via IP, using ipstack
  * @see https://apilayer.com
- * @returns {Promise<ZipLocation>}
+ * @returns {Promise<LocationInfo>}
+ *
+ * @TODO - This function was originally included for Store Finder and was
+ * repurposed for use with Product Fulfillment Options, via the function
+ * `fetchUserLocationData`.
+ * @see //scripts/product-page/fulfillment-options/api.js
+ *
+ * The shape of typedef `LocationInfo` (`fetchUserLocation`) and
+ * typedef `UserLocationData` (`fetchUserLocationData`) is nearly identical.
+ * Here, it is what is returned by ipstack. Elsewhere, we return the same
+ * shape from reverse geocoding, to match.
+ *
+ * If we can modify `fetchUserLocation` to return the same shape as we consume
+ * in the ui (camelCased properties, renamed as needed), and use throughout the
+ * code, we can potentially reduce the number of functions needed and clean
+ * things up.
+ *
+ * It was decided to not do this during review of PRs related to
+ * Product Fulfillment, since it could result in time lost and regressions in
+ * Store Finder, but should be considered a possible technical debt task.
+ *
+ * @see https://github.com/decathlon-usa/shopify-theme-decathlonusa/pull/516
  */
 const fetchUserLocation = async () => {
   try {
@@ -61,32 +84,45 @@ const getReverseGeocodedFromCurrentPosition = async () => {
 };
 
 /**
- * Get a user's Zip Code from reverse-geocode object
- * The return object is modified to match Zip-Code-related output from ipstack
+ * Get a user's Location details from reverse-geocode object
+ * The return object is modified to match City-, State-, and
+ * Zip-Code-related output from ipstack
  * @param {Object} reverseGeocoded - The return object from a revers-geocode
  * request to Google Maps
  * @see https://developers.google.com/maps/documentation/javascript/geocoding#ReverseGeocoding
- * @returns {ZipLocation}
+ * @returns {LocationInfo}
  */
-const getGeoLocationZipCode = reverseGeocoded => {
-  const postalCodeObj = reverseGeocoded.address_components.find(component =>
-    component.types.includes('postal_code')
-  );
-  return { zip_code: postalCodeObj.long_name };
+export const getReverseGeocodedLocationInfo = reverseGeocoded => {
+  return reverseGeocoded.address_components.reduce((
+    /** @type {Object} */ acc,
+    /** @type {Object} */ curr
+  ) => {
+    if (curr.types.includes('postal_code')) {
+      return { ...acc, zip_code: curr.long_name };
+    }
+    if (curr.types.includes('locality')) {
+      return { ...acc, city: curr.long_name };
+    }
+    if (curr.types.includes('administrative_area_level_1')) {
+      return { ...acc, region_code: curr.short_name };
+    }
+    return acc;
+  }, {});
 };
 
 /**
- * Get a user's Zip Code from reverse-geolocated output of user's current position
+ * Get a user's location info from reverse-geolocated output of user's
+ * current position
  * @see https://developers.google.com/maps/documentation/javascript/geocoding#ReverseGeocoding
- * @returns {Promise<ZipLocation>}
+ * @returns {Promise<LocationInfo>}
  */
-const getZipFromReverseGeocodedCurrentPosition = async () => {
+export const getLocationInfoFromReverseGeocodedCurrentPosition = async () => {
   try {
     const reverseGeocoded = await getReverseGeocodedFromCurrentPosition();
-    return getGeoLocationZipCode(reverseGeocoded);
+    return getReverseGeocodedLocationInfo(reverseGeocoded);
   } catch (error) {
     console.error(
-      'Error getting Zip Code via reverse-geocoded geolocation: ',
+      'Error getting location info via reverse-geocoded geolocation: ',
       error.message
     );
     throw error;
@@ -94,10 +130,10 @@ const getZipFromReverseGeocodedCurrentPosition = async () => {
 };
 
 /**
- * Get a user's Zip Code via geolocation, if already allowed, or using IP,
+ * Get a user's Location Info via geolocation, if already allowed, or using IP,
  * if geolocation permissions not granted (or if the navigator permissions
  * API is not available)
- * @returns {Promise<ZipLocation>}
+ * @returns {Promise<LocationInfo>}
  */
 export const checkPermissionsAndFetchUserLocation = async () => {
   try {
@@ -106,7 +142,7 @@ export const checkPermissionsAndFetchUserLocation = async () => {
         name: 'geolocation'
       });
       if (permission.state === 'granted') {
-        return await getZipFromReverseGeocodedCurrentPosition();
+        return await getLocationInfoFromReverseGeocodedCurrentPosition();
       }
     }
     return await fetchUserLocation();

@@ -7,6 +7,7 @@ import {
   updateProductInDrawer
 } from './build-ui';
 import { getAvailableSelectedVariant } from '../product-data';
+import { getUIElements } from './init-ui';
 
 /**
  * Toggle the pickup option details (closest store for pickup) and the message
@@ -72,19 +73,52 @@ const showPickupOption = storePickupOptionsEl => {
 };
 
 /**
+ * Update the user location portion of the drawer
+ * @param {import('./api').UserLocationData} userLocationData
+ * @param {import('./init-ui').PickupOptionsEls} [pickupOptionsEls] - All
+ * of the elements for this module. If not provided, they will be gotten
+ * (post-initialization)
+ */
+export const updateUserLocationUI = ({ stateCode, city }, pickupOptionsEls) => {
+  const { userLocationCityEl, userLocationStateEl } =
+    pickupOptionsEls || getUIElements();
+  if (stateCode) {
+    userLocationStateEl.innerText = stateCode;
+  }
+  if (city) {
+    userLocationCityEl.innerText = city;
+  }
+};
+
+/**
+ * Toggle the Use My Location button to show "waiting" text
+ * @param {boolean} [hide] - Whether to hide the waiting version and show the
+ * Use My Location button again
+ */
+export const showWaitingForLocation = hide => {
+  const useGeolocationAction = hide ? 'remove' : 'add';
+  const waitingForLocationAction = hide ? 'add' : 'remove';
+  const { useMyLocationTextEl, loadingLocationTextEl } = getUIElements();
+  useMyLocationTextEl.classList[useGeolocationAction](IS_HIDDEN_CLASS);
+  loadingLocationTextEl.classList[waitingForLocationAction](IS_HIDDEN_CLASS);
+};
+
+export const hideWaitingForLocation = () => showWaitingForLocation(true);
+
+/**
  * Update product fulfillment (store pickup) drawer UI elements
  *
  * @param {Object} params The Decathlon stores and user's location
  * @param {Array} params.stores A collection of store data
- * @param {string} params.zipcode User's zipcode
+ * @param {import('./api').UserLocationData} params.userLocationData
  * @param {import('./init-ui').PickupOptionsEls} params.pickupOptionsEls - All of the elements for
  * this module
  * @param {Object | null} [params.selectedVariant] A selected product variant
  */
 const updateDrawerUI = ({
   stores,
-  zipcode,
-  pickupOptionsEls: { storeTileListEl, userLocationZipcodeEl },
+  userLocationData,
+  pickupOptionsEls: { storeTileListEl },
   pickupOptionsEls,
   selectedVariant
 }) => {
@@ -95,9 +129,7 @@ const updateDrawerUI = ({
   if (stores.length > 0) {
     storeTileListEl.innerHTML = buildStoreTile(stores);
   }
-  if (zipcode) {
-    userLocationZipcodeEl.innerText = zipcode;
-  }
+  updateUserLocationUI(userLocationData, pickupOptionsEls);
   if (selectedVariant) {
     updateProductInDrawer({ selectedVariant, ...pickupOptionsEls });
   }
@@ -150,11 +182,11 @@ const updatePageUI = ({
  * return a function that takes in variant info to update the UI
  * @param {Object} params
  * @param {Array} params.stores - A collection of store data
- * @param {string} params.zipcode - User's zipcode
+ * @param {import('./api').UserLocationData} params.userLocationData
  * @param {import('./init-ui').PickupOptionsEls} params.pickupOptionsEls - All of the elements for
  * this module
  */
-export const initUpdateUI = ({ stores, zipcode, pickupOptionsEls }) =>
+export const initUpdateUI = ({ stores, userLocationData, pickupOptionsEls }) =>
   /**
    * Master function for updating product fulfillment options block in buybox
    * and the drawer content
@@ -176,7 +208,7 @@ export const initUpdateUI = ({ stores, zipcode, pickupOptionsEls }) =>
     updatePageUI({ stores, pickupOptionsEls, selectedVariant });
     updateDrawerUI({
       stores,
-      zipcode,
+      userLocationData,
       pickupOptionsEls,
       selectedVariant
     });
