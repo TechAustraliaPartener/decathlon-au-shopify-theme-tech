@@ -1,3 +1,4 @@
+// @ts-check
 /**
  * This module updates the state of all of the color and size swatches
  * to show availability of other options based on currently selected options.
@@ -42,13 +43,15 @@ const getUnavailableCssClass = () => {
  * Updates the "unavailable" state by adding/removing a CSS class
  *
  * @todo Can this logic be handled in the ColorSwatches/SizeSwatches modules?
- * @param {string} optionCssClassName The options CSS class name
- * @param {Array} enabledOptions The enabled options to check against
+ * @param {JQuery<HTMLElement>} $optionsElements
+ * @param {string[]} enabledOptions The enabled options to check against
  */
-const updateOptionUnavailableState = (optionCssClassName, enabledOptions) => {
+const updateOptionUnavailableState = ($optionsElements, enabledOptions) => {
   // @todo Consider moving this logic to `ColorSwatches` & `SizeSwatches` modules
-  $(optionCssClassName).each(function() {
-    const isUnavailable = !enabledOptions.includes($(this).val());
+  $optionsElements.each(function() {
+    const isUnavailable = !enabledOptions.includes(
+      /** @type {string} */ ($(this).val())
+    );
     $(this).toggleClass(getUnavailableCssClass(), isUnavailable);
   });
 };
@@ -56,12 +59,14 @@ const updateOptionUnavailableState = (optionCssClassName, enabledOptions) => {
 /**
  * Updates the "exists" state by adding/removing a CSS class
  *
- * @param {string} optionCssClassName The options CSS class name
- * @param {Array} enabledOptions The enabled options to check against
+ * @param {JQuery<HTMLElement>} $optionsElements
+ * @param {string[]} existingOptions The enabled options to check against
  */
-const updateOptionExistentState = (optionCssClassName, existingOptions) => {
-  $(optionCssClassName).each(function() {
-    const nonexistent = !existingOptions.includes($(this).val());
+const updateOptionExistentState = ($optionsElements, existingOptions) => {
+  $optionsElements.each(function() {
+    const nonexistent = !existingOptions.includes(
+      /** @type {string} */ ($(this).val())
+    );
     $(this).toggleClass(IS_HIDDEN_CLASS, nonexistent);
   });
 };
@@ -75,23 +80,12 @@ const updateOptionExistentState = (optionCssClassName, existingOptions) => {
  * @param {string} obj.color The currently selected color
  */
 export const updateOptionStates = ({ size, color }) => {
+  const colorSwatches = $(colorSwatchesSelector);
+  const sizeSwatches = $(sizeSwatchesSelector);
+
   // Update swatches with classes to display state in UI
-  updateOptionExistentState(
-    sizeSwatchesSelector,
-    getExistingSizesFromColor(color)
-  );
-  updateOptionExistentState(
-    colorSwatchesSelector,
-    getExistingColorsFromSize(size)
-  );
-  updateOptionUnavailableState(
-    sizeSwatchesSelector,
-    getExistingSizesFromColor(color),
-    getAvailableSizesFromColor(color)
-  );
-  updateOptionUnavailableState(
-    colorSwatchesSelector,
-    getExistingColorsFromSize(size),
-    getAvailableColorsFromSize(size)
-  );
+  updateOptionExistentState(sizeSwatches, getExistingSizesFromColor(color));
+  updateOptionExistentState(colorSwatches, getExistingColorsFromSize(size));
+  updateOptionUnavailableState(sizeSwatches, getAvailableSizesFromColor(color));
+  updateOptionUnavailableState(colorSwatches, getAvailableColorsFromSize(size));
 };
