@@ -1,16 +1,10 @@
 // @ts-check
 
-import {
-  loadGoogleMaps,
-  fetchUserLocationData,
-  fetchStoreList,
-  getDistanceData
-} from './api';
+import { loadGoogleMaps, fetchUserLocationData } from './api';
 import { initUpdateUI } from './update-ui';
 import { getUIElements } from './init-ui';
-import { getDistanceSortedStores } from './utilities';
-import { OUT_OF_AREA_THRESHOLD } from './constants';
 import { bindEventHandlers } from './events';
+import { getAvailablePickupStores } from './services';
 
 /**
  * Initialize the Fulfillment Options / Store Pickup (with drawer) module
@@ -34,27 +28,10 @@ export const init = async () => {
      * to work (e.g. getDistanceData's google.maps.DistanceMatrixService)
      */
     await loadGoogleMaps();
-    // Get stores and user's location to proceed with display logic
-    const [stores, userLocationData] = await Promise.all([
-      /**
-       * Retrieve the store list
-       * @see stores.js ./scripts/store-finder/data/stores.js
-       */
-      fetchStoreList(),
-      // Determine the user's location
-      fetchUserLocationData()
-    ]);
-    // Calculate the distance from the user to the store(s)
-    const distances = await getDistanceData({
-      origin: userLocationData.zipcode,
-      stores
-    });
-    // Adds the distance values to each store's object data
-    const storeList = getDistanceSortedStores({
-      stores,
-      distances,
-      threshold: OUT_OF_AREA_THRESHOLD
-    });
+    // Retrieve user location based on either IP address or geolocation (pending previous permission)
+    const userLocationData = await fetchUserLocationData();
+    // Retrieve ordered list of stores available within an acceptable distance
+    const storeList = await getAvailablePickupStores(userLocationData.zipcode);
     /**
      * Initialize the UI Updating module. Returns the `updateUI` function, to
      * be called from the product-page module's main with product variant
