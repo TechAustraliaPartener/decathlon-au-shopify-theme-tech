@@ -20,6 +20,10 @@
  * @property {HTMLElement} selectForPickupOptionsMessageEl - The
  * element that contains the prompt to select product options before showing
  * pickup options
+ * @property {HTMLElement} locationForm - The form element that allows users to
+ * search a location
+ * @property {HTMLElement} locationFormInput - The form input element for users
+ * to search a location
  * @property {HTMLElement} locationInputToggle - Toggle for opening the location
  * input in the drawer
  * @property {HTMLElement} useGeolocationEl - Affordance for the user to choose
@@ -47,6 +51,8 @@ import {
   STORE_PICKUP_DETAILS,
   STORE_PICKUP_OPTIONS,
   SELECT_FOR_PICKUP_OPTIONS_MESSAGE,
+  STORE_PICKUP_LOCATION_FORM,
+  STORE_PICKUP_LOCATION_FORM_INPUT,
   STORE_PICKUP_LOCATION_INPUT_TOGGLE,
   STORE_PICKUP_USE_GEOLOCATION,
   STORE_PICKUP_USE_MY_LOCATION,
@@ -76,6 +82,10 @@ const initUI = () => ({
   storePickupDetailsEl: document.querySelector(`.${STORE_PICKUP_DETAILS}`),
   selectForPickupOptionsMessageEl: document.querySelector(
     `.${SELECT_FOR_PICKUP_OPTIONS_MESSAGE}`
+  ),
+  locationForm: document.querySelector(`.${STORE_PICKUP_LOCATION_FORM}`),
+  locationFormInput: document.querySelector(
+    `.${STORE_PICKUP_LOCATION_FORM_INPUT}`
   ),
   locationInputToggle: document.querySelector(
     `.${STORE_PICKUP_LOCATION_INPUT_TOGGLE}`

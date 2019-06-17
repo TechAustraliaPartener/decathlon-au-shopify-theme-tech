@@ -8,6 +8,8 @@ import {
 } from './update-ui';
 
 const {
+  locationForm,
+  locationFormInput,
   locationInputToggle,
   customerLocationEl,
   useGeolocationEl
@@ -41,6 +43,18 @@ const handleUseGeolocationClick = () => {
     });
 };
 
+const handleLocationFormSubmit = event => {
+  // Prevents the form from refreshing the page
+  event.preventDefault();
+  // The user entered search value
+  const queryValue = locationFormInput.value;
+  console.log('User location query: ', queryValue);
+  // @TODO implement remaining work
+};
+
+const bindLocationForm = () =>
+  locationForm.addEventListener('submit', handleLocationFormSubmit);
+
 const bindLocationInputToggle = () =>
   locationInputToggle.addEventListener('click', handleLocationInputToggle);
 
@@ -50,4 +64,5 @@ const bindUseGeolocation = () =>
 export const bindEventHandlers = () => {
   bindLocationInputToggle();
   bindUseGeolocation();
+  bindLocationForm();
 };
