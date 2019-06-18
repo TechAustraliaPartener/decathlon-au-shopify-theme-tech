@@ -1,6 +1,13 @@
+// @ts-check
+
 import { getUIElements } from './init-ui';
-import { IS_HIDDEN_CLASS } from './constants';
+import {
+  IS_HIDDEN_CLASS,
+  UPDATE,
+  USER_LOCATION_DATA_UPDATE
+} from './constants';
 import { fetchUserLocationData } from './api';
+import { updateState, fulfillmentOptionsStateEmitter } from './state';
 import {
   updateUserLocationUI,
   showWaitingForLocation,
@@ -34,7 +41,13 @@ const handleUseGeolocationClick = () => {
     useGeolocation: true
   })
     .then(userLocationData => {
-      updateUserLocationUI(userLocationData);
+      updateState({ userLocationData });
+      /**
+       * @TODO
+       * 1. Get stores based on user location data,
+       * 2. Update stores state
+       * 3. Update stores from within custom event listener, below
+       */
       hideWaitingForLocation();
     })
     .catch(error => {
@@ -43,25 +56,61 @@ const handleUseGeolocationClick = () => {
     });
 };
 
+/**
+ * Handler for custom location form submission
+ * @param {Event} event - The form submission event object
+ */
 const handleLocationFormSubmit = event => {
   // Prevents the form from refreshing the page
   event.preventDefault();
   // The user entered search value
   const queryValue = locationFormInput.value;
+  // @TODO - Remove logs
   console.log('User location query: ', queryValue);
   // @TODO implement remaining work
 };
 
+/**
+ * Handler for state update events
+ * This will only be called when it's verified that state actually changed
+ * (e.g., user's location object or store list changed)
+ * @param {import('./state').StateUpdateEventObject} event - An event object
+ */
+const handleStateUpdate = event => {
+  if (event.type === USER_LOCATION_DATA_UPDATE) {
+    updateUserLocationUI(event.data);
+  }
+};
+
+/**
+ * Bind to the submit event of the location input form
+ */
 const bindLocationForm = () =>
   locationForm.addEventListener('submit', handleLocationFormSubmit);
 
+/**
+ * Bind to toggle showing the location input form
+ */
 const bindLocationInputToggle = () =>
   locationInputToggle.addEventListener('click', handleLocationInputToggle);
 
+/**
+ * Bind to the "Use My Location" button in the drawer
+ */
 const bindUseGeolocation = () =>
   useGeolocationEl.addEventListener('click', handleUseGeolocationClick);
 
+/**
+ * Bind to custom events emitted when module state is updated
+ */
+const bindStateUpdates = () =>
+  fulfillmentOptionsStateEmitter.on(UPDATE, handleStateUpdate);
+
+/**
+ * Bind all event handlers for the module
+ */
 export const bindEventHandlers = () => {
+  bindStateUpdates();
   bindLocationInputToggle();
   bindUseGeolocation();
   bindLocationForm();

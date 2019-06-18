@@ -20,9 +20,9 @@
  * @property {HTMLElement} selectForPickupOptionsMessageEl - The
  * element that contains the prompt to select product options before showing
  * pickup options
- * @property {HTMLElement} locationForm - The form element that allows users to
+ * @property {HTMLFormElement} locationForm - The form element that allows users to
  * search a location
- * @property {HTMLElement} locationFormInput - The form input element for users
+ * @property {HTMLInputElement} locationFormInput - The form input element for users
  * to search a location
  * @property {HTMLElement} locationInputToggle - Toggle for opening the location
  * input in the drawer

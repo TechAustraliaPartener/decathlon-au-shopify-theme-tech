@@ -1,3 +1,5 @@
+// @ts-check
+
 import { JS_PREFIX } from '../constants';
 
 const JS_PRODUCT_FULFILLMENT_PREFIX = `${JS_PREFIX}ProductFulfillment-`;
@@ -52,6 +54,14 @@ export const TOMORROW = 'tomorrow';
  */
 export const REMOVE = 'remove';
 export const ADD = 'add';
+
+/**
+ * Generic constant for event emitter state update
+ */
+export const UPDATE = 'update';
+
+export const STORES_UPDATE = 'storesUpdate';
+export const USER_LOCATION_DATA_UPDATE = 'userLocatinoDataUpdate';
 
 /**
  * Re-export all higher-level constants

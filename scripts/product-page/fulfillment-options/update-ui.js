@@ -1,6 +1,6 @@
 // @ts-check
 
-import { TOMORROW, IS_HIDDEN_CLASS, REMOVE, ADD } from './constants';
+import { IS_HIDDEN_CLASS, REMOVE, ADD } from './constants';
 import {
   buildStoreTile,
   setClosestStoreInfo,
@@ -8,27 +8,23 @@ import {
 } from './build-ui';
 import { getAvailableSelectedVariant } from '../product-data';
 import { getUIElements } from './init-ui';
+import { getState } from './state';
 
 /**
  * Toggle the pickup option details (closest store for pickup) and the message
  * that prompts for product variant selections before showing a pickup store
- * @param {Object} params
- * @param {boolean} params.hide - Whether to show or hide pickup details, also
+ * @param {boolean} [show] - Whether to show or hide pickup details, also
  * toggles display of the select product options message, which should show when
  * pickup details are hidden, or vice versa
- * @param {import('./init-ui').PickupOptionsEls} params.pickupOptionsEls - All of the elements for
- * this module
  */
-const togglePickupStoreDetails = ({
-  hide,
-  pickupOptionsEls: {
+const setPickupStoreDetailsVisibility = (show = true) => {
+  const {
     storePickupDetailsEl,
     pickupDayEl,
     selectForPickupOptionsMessageEl
-  }
-}) => {
-  const storeInfoClassListAction = hide ? ADD : REMOVE;
-  const productSelectionClassListAction = hide ? REMOVE : ADD;
+  } = getUIElements();
+  const storeInfoClassListAction = show ? REMOVE : ADD;
+  const productSelectionClassListAction = show ? ADD : REMOVE;
   // Toggle store pickup details
   storePickupDetailsEl.classList[storeInfoClassListAction](IS_HIDDEN_CLASS);
   // Toggle the pickup day
@@ -40,54 +36,102 @@ const togglePickupStoreDetails = ({
 };
 
 /**
- * Hide pickup store details and show a message to select a valid product
- * variant
- * @param {import('./init-ui').PickupOptionsEls} pickupOptionsEls - All of the elements for
- * this module
- */
-const hidePickupStoreDetails = pickupOptionsEls =>
-  togglePickupStoreDetails({
-    hide: true,
-    pickupOptionsEls
-  });
-
-/**
  * Show pickup store details and hide a message to select a valid product
  * variant
- * @param {import('./init-ui').PickupOptionsEls} pickupOptionsEls - All of the elements for
- * this module
  */
-const showPickupStoreDetails = pickupOptionsEls =>
-  togglePickupStoreDetails({
-    hide: false,
-    pickupOptionsEls
-  });
+const showPickupStoreDetails = () => setPickupStoreDetailsVisibility(true);
+
+/**
+ * Hide pickup store details and show a message to select a valid product
+ * variant
+ */
+const hidePickupStoreDetails = () => setPickupStoreDetailsVisibility(false);
 
 /**
  * Toggle the fulfillment (store pickup) options block
- * @param {HTMLElement} storePickupOptionsEl - The fulfillment/store-pickup options
- * element
+ * @param {boolean} [show] - Set to true to hide pickup options
  */
-const showPickupOption = storePickupOptionsEl => {
-  storePickupOptionsEl.classList.remove(IS_HIDDEN_CLASS);
+const setPickupOptionVisibility = (show = true) => {
+  const { storePickupOptionsEl } = getUIElements();
+  const classListAction = show ? REMOVE : ADD;
+  storePickupOptionsEl.classList[classListAction](IS_HIDDEN_CLASS);
 };
+
+/**
+ * Show the fulfillment (store pickup) options block
+ */
+const showPickupOption = () => setPickupOptionVisibility(true);
+
+/**
+ * Hide the fulfillment (store pickup) options block
+ */
+const hidePickupOption = () => setPickupOptionVisibility(false);
 
 /**
  * Update the user location portion of the drawer
  * @param {import('./api').UserLocationData} userLocationData
- * @param {import('./init-ui').PickupOptionsEls} [pickupOptionsEls] - All
- * of the elements for this module. If not provided, they will be gotten
- * (post-initialization)
  */
-export const updateUserLocationUI = ({ stateCode, city }, pickupOptionsEls) => {
-  const { userLocationCityEl, userLocationStateEl } =
-    pickupOptionsEls || getUIElements();
+export const updateUserLocationUI = ({ stateCode, city }) => {
+  const { userLocationCityEl, userLocationStateEl } = getUIElements();
   if (stateCode) {
     userLocationStateEl.innerText = stateCode;
   }
   if (city) {
     userLocationCityEl.innerText = city;
   }
+};
+
+/**
+ * Update store list in drawer, at or after module initialization
+ * @param {Object[]} stores - An array of one or more store objects
+ */
+export const updateStoreList = stores => {
+  const { storeTileListEl } = getUIElements();
+  storeTileListEl.innerHTML = buildStoreTile(stores);
+};
+
+/**
+ * @TODO - Implement a helper function that toggles a message in the drawer
+ * if an updated location is
+ * 1. Too far from stores
+ * 2. Invalid
+ */
+
+/**
+ * Update closest store information in buybox, at or after module
+ * initialization
+ * @param {Object[]} stores - An array of one or more store objects
+ */
+export const updateClosestStore = stores => {
+  // Get the first store (they are sorted closest first)
+  const closestStore = stores[0];
+  // If there is no pickup store within range, hide the pickup option and return
+  if (!closestStore) {
+    /**
+     * @TODO - Determine whether this function should stay
+     * There seems to be no reason to re-hide the pickup option block if it
+     * was shown on page load, even if the user changes location within
+     * the drawer. Saving for the moment.
+     */
+    hidePickupOption();
+    return;
+  }
+  setClosestStoreInfo(closestStore);
+  /**
+   * Show the pickup options block (Showing store details is controlled by
+   * swatch selection)
+   */
+  showPickupOption();
+};
+
+/**
+ * Update store information in both buybox and drawer, at or after module
+ * initialization
+ * @param {Object[]} stores - An array of one or more store objects
+ */
+export const updateStoreInfo = stores => {
+  updateStoreList(stores);
+  updateClosestStore(stores);
 };
 
 /**
@@ -111,27 +155,16 @@ export const hideWaitingForLocation = () => showWaitingForLocation(true);
  * @param {Object} params The Decathlon stores and user's location
  * @param {Array} params.stores A collection of store data
  * @param {import('./api').UserLocationData} params.userLocationData
- * @param {import('./init-ui').PickupOptionsEls} params.pickupOptionsEls - All of the elements for
- * this module
  * @param {Object | null} [params.selectedVariant] A selected product variant
  */
-const updateDrawerUI = ({
-  stores,
-  userLocationData,
-  pickupOptionsEls: { storeTileListEl },
-  pickupOptionsEls,
-  selectedVariant
-}) => {
+const updateDrawerUI = ({ stores, userLocationData, selectedVariant }) => {
   if (stores.length === 0) {
-    // @TODO No stores are within range, remove pickup "options", prevent pickup drawer altogether
     return;
   }
-  if (stores.length > 0) {
-    storeTileListEl.innerHTML = buildStoreTile(stores);
-  }
-  updateUserLocationUI(userLocationData, pickupOptionsEls);
+  updateStoreList(stores);
+  updateUserLocationUI(userLocationData);
   if (selectedVariant) {
-    updateProductInDrawer({ selectedVariant, ...pickupOptionsEls });
+    updateProductInDrawer(selectedVariant);
   }
 };
 
@@ -139,77 +172,43 @@ const updateDrawerUI = ({
  * Update product fulfillment (store pickup) page UI elements
  * @param {Object} params
  * @param {Array} params.stores - A collection of store data
- * @param {import('./init-ui').PickupOptionsEls} params.pickupOptionsEls - All of the elements for
- * this module
  * @param {Object | null} [params.selectedVariant] A selected product variant
  */
-const updatePageUI = ({
-  stores,
-  pickupOptionsEls,
-  pickupOptionsEls: {
-    storeAddress1El,
-    storeCityEl,
-    pickupDayEl,
-    storePickupOptionsEl
-  },
-  selectedVariant
-}) => {
+const updatePageUI = ({ stores, selectedVariant }) => {
   if (stores.length === 0) {
     // No stores are within range, do not display fulfillment (pickup) options
     return;
   }
-  // Get the first store (they are sorted closest first)
-  const closestStore = stores[0];
-  // Update the store info in the fulfillment section of the page
-  setClosestStoreInfo({
-    store: closestStore,
-    storeAddress1El,
-    storeCityEl
-  });
-  pickupDayEl.innerHTML = TOMORROW;
-  showPickupOption(storePickupOptionsEl);
+  updateClosestStore(stores);
   if (selectedVariant) {
     // If an available product variant has been selected, show store details
-    showPickupStoreDetails(pickupOptionsEls);
+    showPickupStoreDetails();
   } else {
     // Otherwise, hide store details
-    hidePickupStoreDetails(pickupOptionsEls);
+    hidePickupStoreDetails();
   }
 };
 
 /**
- * Initialize the updaters with store and location data, and DOM elements, and
- * return a function that takes in variant info to update the UI
+ * Master function for updating product fulfillment options block in buybox
+ * and the drawer content
  * @param {Object} params
- * @param {Array} params.stores - A collection of store data
- * @param {import('./api').UserLocationData} params.userLocationData
- * @param {import('./init-ui').PickupOptionsEls} params.pickupOptionsEls - All of the elements for
- * this module
+ * @param {string} [params.id] - A variant ID
+ * @param {string} [params.color] - A variant color
+ * @param {string} [params.size] - A variant size
  */
-export const initUpdateUI = ({ stores, userLocationData, pickupOptionsEls }) =>
-  /**
-   * Master function for updating product fulfillment options block in buybox
-   * and the drawer content
-   * @param {Object} params
-   * @param {string} [params.id] - A variant ID
-   * @param {string} [params.color] - A variant color
-   * @param {string} [params.size] - A variant size
-   */
-  ({ id, color, size }) => {
-    let selectedVariant = null;
-    if (!id && color && size) {
-      // Get selectedVariant object from color and size
-      selectedVariant = getAvailableSelectedVariant({ color, size });
-    }
-    if (id) {
-      // Get selectedVariant object from ID
-      selectedVariant = getAvailableSelectedVariant({ id });
-    }
-    updatePageUI({ stores, pickupOptionsEls, selectedVariant });
-    updateDrawerUI({
-      stores,
-      userLocationData,
-      pickupOptionsEls,
-      selectedVariant
-    });
-  };
+export const updateUI = ({ id, color, size }) => {
+  const { stores, userLocationData } = getState();
+  const selectedVariant =
+    color && size
+      ? getAvailableSelectedVariant({ color, size })
+      : id
+      ? getAvailableSelectedVariant({ id })
+      : null;
+  updatePageUI({ stores, selectedVariant });
+  updateDrawerUI({
+    stores,
+    userLocationData,
+    selectedVariant
+  });
+};

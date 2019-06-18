@@ -1,10 +1,11 @@
 // @ts-check
 
 import { loadGoogleMaps, fetchUserLocationData } from './api';
-import { initUpdateUI } from './update-ui';
+import { updateUI } from './update-ui';
 import { getUIElements } from './init-ui';
 import { bindEventHandlers } from './events';
 import { getAvailablePickupStores } from './services';
+import { updateState } from './state';
 
 /**
  * Initialize the Fulfillment Options / Store Pickup (with drawer) module
@@ -32,11 +33,14 @@ export const init = async () => {
     const userLocationData = await fetchUserLocationData();
     // Retrieve ordered list of stores available within an acceptable distance
     const storeList = await getAvailablePickupStores(userLocationData.zipcode);
+    // Bind needed event handlers
+    bindEventHandlers();
+    // Set stores and userLocationData in our state module
+    updateState({
+      stores: storeList,
+      userLocationData
+    });
     /**
-     * Initialize the UI Updating module. Returns the `updateUI` function, to
-     * be called from the product-page module's main with product variant
-     * selection values
-     *
      * @TODO - Consider updating this file, `update-ui`, and the main product-page
      * `index` to invert the async initialization responsibilities:
      * The goal would be to do all async initialization in this module *after* the
@@ -44,13 +48,6 @@ export const init = async () => {
      * This module would still need to expose an updateUI function for controlling
      * fulfillment options updates on product selection.
      */
-    const updateUI = initUpdateUI({
-      stores: storeList,
-      userLocationData,
-      pickupOptionsEls
-    });
-    // Bind needed event handlers
-    bindEventHandlers();
     // Return the updateUI method to be used when product selection changes
     return updateUI;
   } catch (error) {

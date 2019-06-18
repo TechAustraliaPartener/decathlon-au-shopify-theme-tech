@@ -2,6 +2,7 @@
 
 import { TOMORROW } from './constants';
 import { getThumbnailImageSrc } from '../../utilities/get-thumbnail-image-src';
+import { getUIElements } from './init-ui';
 
 /**
  * Build a list of stores for pickup, to be displayed in the fulfillment
@@ -47,19 +48,10 @@ export const buildStoreTile = stores =>
 
 /**
  * Updates the selected product variant details in the fulfillment options drawer
- * @param {Object} params
- * @param {Object} params.selectedVariant - The details of the selected product variant
- * @param {HTMLElement} params.variantColorEl - The product variant color element
- * @param {HTMLElement} params.variantSizeEl - The product variant size element
- * @param {HTMLElement} params.thumbnailImageEl - The image element that displays
- * the thumbnnail in the drawer
+ * @param {Object} selectedVariant - The details of the selected product variant
  */
-export const updateProductInDrawer = ({
-  selectedVariant,
-  variantColorEl,
-  variantSizeEl,
-  thumbnailImageEl
-}) => {
+export const updateProductInDrawer = selectedVariant => {
+  const { variantColorEl, variantSizeEl, thumbnailImageEl } = getUIElements();
   if (selectedVariant.option1)
     variantSizeEl.innerText = selectedVariant.option1;
   if (selectedVariant.option2)
@@ -74,18 +66,13 @@ export const updateProductInDrawer = ({
 /**
  * Sets a story city and address for display in fulfillment options on the
  * page (in buybox)
- * @param {Object} params
- * @param {Object} params.store - The data for the store closest to a user
+ * @param {Object} store - The data for the store closest to a user
  * (determined prior to passing in here)
- * @param {HTMLElement} params.storeCityEl - The element for showing a store's city
- * @param {HTMLElement} params.storeAddress1El - The element for showing a store's
- * primary address
  */
-export const setClosestStoreInfo = ({
-  store,
-  storeCityEl,
-  storeAddress1El
-}) => {
+export const setClosestStoreInfo = store => {
+  const { storeCityEl, storeAddress1El, pickupDayEl } = getUIElements();
   storeCityEl.innerHTML = store.city;
   storeAddress1El.innerHTML = store.street1;
+  // @TODO - Pass in a day to be set instead of getting as constant
+  pickupDayEl.innerText = TOMORROW;
 };
