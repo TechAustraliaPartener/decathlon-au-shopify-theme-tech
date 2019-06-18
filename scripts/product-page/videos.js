@@ -1,64 +1,69 @@
 import $ from 'jquery';
-import { CSS_PREFIX } from './constants';
+import { CSS_PREFIX, JS_PREFIX } from './constants';
 import { $ColorSwatches } from './color-swatches';
-const videojs = window.videojs;
+let videojs = window.videojs;
 // 960 roughly equates to the media query variable $breakpoint-lg
 const LARGE_BREAKPOINT = 960;
 
 // When element is within viewport
 const IS_INTERSECTING = `${CSS_PREFIX}is-intersecting`;
 
-// Test if video carousel exists
-if (videojs) {
+// Create array for player IDs
+const players = [];
+
+const $videoCarousel = $('.js-de-slick--videos');
+const $thumbnailCarousel = $('.js-de-slick--videos-thumbnails');
+
+// Load poster images into DOM for slick slider navigation
+$(window).on('load', function() {
   const $posterImages = $('.js-de-slick--videos .vjs-poster');
-  const $videoCarousel = $('.js-de-slick--videos');
-  const $thumbnailCarousel = $('.js-de-slick--videos-thumbnails');
+  $posterImages.each(function(index) {
+    const count = index + 1;
+    $(`.js-de-slick--videos-thumbnails .js-de-thumb-${count}`).attr(
+      'src',
+      $(this)
+        .css('background-image')
+        .replace(/^url\(['"](.+)['"]\)/, '$1')
+    );
+  });
+
+  // Create carousel with videos
+  $videoCarousel.slick({
+    asNavFor: $thumbnailCarousel,
+    arrows: false,
+    infinite: false
+  });
+
+  // Pause video on current slide before slide change
+  $videoCarousel.on('beforeChange', function(
+    event,
+    slick,
+    currentSlide,
+    nextSlide
+  ) {
+    if (currentSlide !== nextSlide && videojs) {
+      // Pause video (currentSlide+1 to skip over square video, which is first element in players[])
+      videojs(players[currentSlide + 1].id()).pause();
+    }
+  });
+
+  // Create carousel with video thumbnails
+  $thumbnailCarousel.slick({
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    asNavFor: $videoCarousel,
+    focusOnSelect: true
+  });
+});
+
+const initializeVideoJS = () => {
+  videojs = window.videojs;
+
   const $toggleButton = $('.js-de-toggle-media');
   const $viewImagesCTA = $('.js-de-view-images');
   const $watchVideoCTA = $('.js-de-watch-video');
   const $copyVideo = $('.js-de-copyVideo');
   const $productTagLabel = $('.js-de-ProductFlag');
-
-  // Load poster images into DOM for slick slider navigation
-  $(window).on('load', function() {
-    $posterImages.each(function(index) {
-      const count = index + 1;
-      $(`.js-de-slick--videos-thumbnails .js-de-thumb-${count}`).attr(
-        'src',
-        $(this)
-          .css('background-image')
-          .replace(/^url\(['"](.+)['"]\)/, '$1')
-      );
-    });
-
-    // Create carousel with videos
-    $videoCarousel.slick({
-      asNavFor: $thumbnailCarousel,
-      arrows: false,
-      infinite: false
-    });
-
-    // Pause video on current slide before slide change
-    $videoCarousel.on('beforeChange', function(
-      event,
-      slick,
-      currentSlide,
-      nextSlide
-    ) {
-      if (currentSlide !== nextSlide) {
-        // Pause video (currentSlide+1 to skip over square video, which is first element in players[])
-        videojs(players[currentSlide + 1].id()).pause();
-      }
-    });
-
-    // Create carousel with video thumbnails
-    $thumbnailCarousel.slick({
-      slidesToShow: 4,
-      slidesToScroll: 1,
-      asNavFor: $videoCarousel,
-      focusOnSelect: true
-    });
-  });
 
   const getFirstVideoPlayer = () =>
     players[0] && 'id' in players[0] ? videojs(players[0].id()) : null;
@@ -106,8 +111,6 @@ if (videojs) {
     }
   });
 
-  // Create array for player IDs
-  const players = [];
   // Video Player Keys
   const videoPlayerKeys = Object.keys(videojs.players);
 
@@ -153,7 +156,7 @@ if (videojs) {
     timeout = setTimeout(() => {
       if ($(window).width() >= LARGE_BREAKPOINT) {
         // Pause Video
-        getFirstVideoPlayer().pause();
+        pauseFirstVideoPlayer();
       }
     }, 250);
   });
@@ -183,5 +186,19 @@ if (videojs) {
     $videoCarousel.each((index, videoElement) =>
       observer.observe(videoElement)
     );
+  }
+};
+
+if (videojs) {
+  initializeVideoJS();
+} else {
+  // Test if video carousel exists
+  const script = document.querySelector(`.${JS_PREFIX}brightcove-script`);
+  if (script) {
+    script.addEventListener('load', () => {
+      if (window.videojs) {
+        initializeVideoJS();
+      }
+    });
   }
 }
