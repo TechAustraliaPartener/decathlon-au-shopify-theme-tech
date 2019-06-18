@@ -1,0 +1,51 @@
+{% comment %}
+  Information on `itemprop="additionalProperty"`
+  @see https://schema.org/additionalProperty
+{% endcomment %}
+
+
+{% comment %}
+ @TODO:
+ 1. Remove the fallback to the stub data (product-proto-information) and the conditional
+{% endcomment %}
+
+{% assign productinfo = product.metafields.global['product_info'] %}
+
+{% comment %}
+Check to see if new metafield is present
+{% endcomment %}
+
+{% if productinfo != blank %}
+
+<section class="ProductInformation">
+
+  {% for specs in productinfo %}
+    {% assign spec = specs[1] %}
+
+    {% comment %}
+    Check to see if the spec is an empty array and check for specs that like 'Guarantee' 
+    and "Care Instructions" that have hardcoded `names` but don't have an associated description.
+    {% endcomment %}
+
+    {% unless spec == blank or spec['description'] == blank %}
+      <section class="ProductInformation-entry de-u-spaceBottom6"
+          aria-labelledby="ProductInfo-{forloop.index}}"
+          itemprop="additionalProperty"
+          itemscope
+          itemtype="http://schema.org/PropertyValue">
+        <header>
+          <h3 class="de-u-textGrow2"
+              id="ProductInfo-{forloop.index}}"
+              itemprop="name">
+            {{ spec['name'] }}
+          </h3>
+        </header>
+        <p class="de-u-spaceNone" itemprop="value">{{ spec['description'] }}</p>
+      </section>
+    {% endunless %}
+  {% endfor %}
+</section>
+
+{% else %}
+  {% include 'product-proto-information' %}
+{% endif %}

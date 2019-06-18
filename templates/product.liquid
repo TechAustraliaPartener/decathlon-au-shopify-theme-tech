@@ -139,7 +139,17 @@
       </h2>
     </header>
     {% capture features_accordion_content %}
+      {% comment %}
+      Features section protoype code
+      {% endcomment %}
+      {% comment %}
       {% include 'product-proto-features' %}
+      {% endcomment %}
+
+      {% comment %}
+      Product features wired to metafields
+      {% endcomment %}
+      {% include 'product-features' %}
     {% endcapture %}
     {% include 'product-accordion'
       is_open: true
@@ -301,7 +311,18 @@
         Prototype product information content
       {% endcomment %}
       <div class="de-u-spaceTop6">
+        {% comment %}
+        Product information prototype snippet
+        {% endcomment %}
+        {% comment %}
         {% include 'product-proto-information' %}
+        {% endcomment %}
+
+        {% comment %}
+        Product information wired to metafields
+        {% endcomment %}
+        {% include 'product-information' %}
+
       </div>
     {% endcapture %}
     {% include 'product-accordion'

@@ -1,0 +1,83 @@
+{% assign features = product.metafields.global['features'] %}
+{% assign madefor = product.metafields.global.made_for %}
+{% assign catchline = product.metafields.global.catchline %}
+
+{% comment %}
+ @TODO:
+ 1. Remove the fallback to the stub data (product-proto-features) and the conditional
+ 2. Replace the photo with something product specific.
+{% endcomment %}
+
+{% if features != blank %}
+{% comment %}
+The easiest way to check for the existence of the new meta fields.
+If new metafields are not present, we fallback to the proto feature snippet to
+make sure that products without the fields don't break.
+{% endcomment %}
+
+  <section class="FeaturesContainer de-Grid de-u-lg-spaceTop3
+                  de-u-spaceTop">
+    <div class="FeaturesContainer-banner de-u-padBottom de-u-spaceBottom
+      de-u-md-padBottom6 de-u-md-spaceBottomNone">
+      <div class="de-u-lg-size5of6 de-u-xl-size4of6">
+        <h3 class="de-u-textGrow4 de-u-lg-textGrow6 de-u-spaceNone de-u-padBottom05
+          de-u-lineHeight2" itemprop="description">
+          {{ product.title }} is designed for {{ madefor }}
+        </h3>
+        <p class="de-u-spaceNone de-u-lg-textGrow3 de-u-textDarkGray">
+          {{ catchline }}
+        </p>
+      </div>
+    </div>
+    <div class="FeaturesContainer-showcase
+                de-u-lg-size1of3 de-u-hidden de-u-lg-block">
+      <figure>
+        <img
+          src="https://res.cloudinary.com/cloud-four/image/fetch/e_trim,q_auto:eco,f_auto/http://s3-eu-west-1.amazonaws.com/spid-media-cloud/packshot/d0/85/d085ff4e-dc4a-4a98-8059-d1d8a99fb140.jpg"
+          class="de-u-block"
+          alt="">
+          <figcaption class="de-u-hiddenVisually">
+            A photo of the {{ product.title }} in use
+          </figcaption>
+      </figure>
+    </div>
+    <div class="FeaturesContainer-info
+              de-u-size1of1 de-u-lg-size2of3 de-u-lg-padLeft6"
+       aria-labelledby="Section-features">
+    <div class="de-Grid">
+
+  {% for feature in features %}
+    {% assign featurearray = feature[1] %}
+    {% unless featurearray == blank %}
+        <section class="ProductFeature de-u-size1of1 de-u-md-size1of2 de-u-flex
+                        de-u-padRight de-u-padBottom"
+                    aria-labelledby="ProductFeature-{{ forloop.index }}"
+                    itemprop="additionalProperty"
+                    itemscope
+                    itemtype="http://schema.org/PropertyValue">
+          <div class="ProductFeature-icon de-u-spaceRight" aria-hidden="true">
+            <img
+              src="{{ featurearray['icon'] }}"
+              alt="">
+          </div>
+          <div class="Feature-spec">
+            <header>
+              <h3 id="ProductFeature-{{ forloop.index }}" itemprop="name"
+                  class="de-u-spaceBottomNone de-u-textGrow4 de-u-lineHeight3">
+                {{ featurearray['title'] }}
+              </h3>
+            </header>
+            <p itemprop="value" class="de-u-textDarkGray">
+              {{ featurearray['text'] }}
+            </p>
+          </div>
+        </section>
+    {% endunless %}
+  {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% else %}
+  {% include 'product-proto-features' %}
+{% endif %}
