@@ -80,17 +80,12 @@ $breakpoint-lg: 60em;
   /**
     * 1. Preserves the sqaure aspect ratio of while loading,
     *    improving the loading experience.
-    * 2. Restricts image sizes from becoming too large;
-    *    a preventive measure to help buybox remains above-the-fold
     */
 
   .de-CarouselContainer,
   .de-CarouselFeature-btn,
   .de-CarouselFeature-image {
     width: 100%; /* 1 */
-    height: 100vw; /* 1 */
-    max-width: 528px; /* 2 */
-    max-height: 528px; /* 2 */
   }
 
   /**
@@ -112,7 +107,7 @@ $breakpoint-lg: 60em;
 
   .de-ProductCarousel--large {
     display: unset;
-    width: 55vw;  /* 1 */
+    width: 50vw;  /* 1 */
   }
 
   .de-CarouselContainer.de-is-active {
@@ -128,22 +123,6 @@ $breakpoint-lg: 60em;
   .de-CarouselFeature.de-is-active {
     padding-left: 17%; /* 1 */
     overflow: hidden; /* 2 */
-  }
-
-  /**
-    * 1. Allows space for .de-CarouselThumbnail;
-    *    45.65vw is derived by (55vw - (55vw * 17%)).
-    *    55vw is the container size, 17% allows room for thumbnails.
-    *    Value is applied to height to respect sqaure aspect ratio.
-    *    Enforces height while image is loading.
-    * 2. Fill in available space.
-    */
-  .de-CarouselFeature.de-is-active,
-  .de-CarouselFeature-slide,
-  .de-CarouselFeature-btn,
-  .de-CarouselFeature-image {
-    height: 45.65vw; /* 1 */
-    width: 100%; /* 2 */
   }
 
   /**
@@ -163,17 +142,18 @@ $breakpoint-lg: 60em;
 
   /**
     * 1. Allows space for .de-CarouselFeature;
-    *    8.8vw is derived by 55vw * 16%.
-    *    55vw is the container size, 16% is permitted thumbnails width.
+    *    8vw is derived by 50vw * 0.16.
+    *    7.8vw helps maintain a more "squarish" ratio at smaller viewport widths
+    *    50vw is the container size, 16% is permitted thumbnails width.
     *    Value is applied to both width/height to respect sqaure aspect ratio.
     */
 
   .de-CarouselThumbnail-image {
     border: $border-width-md solid transparent;
-    height: 8.8vw; /* 1 */
+    height: 7.8vw; /* 1 */
     object-fit: cover;
     object-position: center;
-    width: 8.8vw; /* 1 */
+    width: 8vw; /* 1 */
   }
 
   .slick-vertical .slick-slide {
