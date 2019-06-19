@@ -9,6 +9,9 @@
  * attribute
  * @param {boolean} params.remove - Whether to remove the value. If false,
  * the value or attribute will be added
+ *
+ * @todo Consider a refactor using the MDN `Element.toggleAttribute()` polyfill
+ * @see https://developer.mozilla.org/en-US/docs/Web/API/Element/toggleAttribute#Polyfill
  */
 export const toggleAttributeValue = ({ el, name, value, remove }) => {
   if (!el || !el.getAttribute || !name || typeof remove !== 'boolean') {

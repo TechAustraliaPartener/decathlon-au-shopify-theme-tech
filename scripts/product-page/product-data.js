@@ -1,10 +1,12 @@
+// @ts-check
+
 /**
  * ProductJSON module
  *
  * Provides helpers for interacting with the window.productJSON data
  */
 
-import { IS_SOLD_OUT_TAG } from './constants';
+import { END_OF_LIFE_TAG } from './constants';
 
 const productsJSON = window.productJSON;
 const variantsJSON = productsJSON.variants;
@@ -30,7 +32,7 @@ const isTagFound = tag => productsJSON.tags.includes(tag);
  * @param {string} [obj.size] The selected size option
  * @param {string} [obj.color] The selected color option
  * @param {string} [obj.id] A product variant ID
- * @param {Array} [source = variantsJSON] The array to filter to find a
+ * @param {Array} [obj.source = variantsJSON] The array to filter to find a
  * product variant
  * @returns {Object|undefined} A product variant object
  */
@@ -63,16 +65,16 @@ export const getAvailableSelectedVariant = ({ size, id, color }) =>
   getSelectedVariant({ size, color, id, source: availableVariants() });
 
 /**
- * Helper to get if product has "sold out" tag
- *
+ * Helper to determine if a product is an "End Of Life" product
+ * @see https://app.gitbook.com/@decathlonusa/s/shopify/product-feature/product-page#sold-out-logic
  * @returns {boolean}
  */
-export const isSoldOut = () => isTagFound(IS_SOLD_OUT_TAG);
+export const isEndOfLifeProduct = () => isTagFound(END_OF_LIFE_TAG);
 
 /**
  * Gets model code from variant
  *
- * @param {Object} variant The variant object
+ * @param {Variant} variant
  * @returns {string} Variant model code
  */
 export const getModelCodeFromVariant = variant => variant[MODEL_OPTION];
@@ -82,8 +84,7 @@ export const getModelCodeFromVariant = variant => variant[MODEL_OPTION];
  *
  * @returns {Object[]} An array of available variants
  */
-export const availableVariants = () =>
-  variantsJSON.filter(variant => variant.available);
+export const availableVariants = () => variantsJSON.filter(isVariantAvailable);
 
 /**
  * Returns all options (option1) that share a variant with given option (option2)
@@ -175,8 +176,8 @@ export const getAvailableSizesFromColor = color =>
  * Returns the options of a variant by ID using global variantsJSON array
  * derived from global productJSON
  *
- * @param {string} VariantId The variant ID
- * @returns {Object[]} An object containing options
+ * @param {number} variantId The variant ID
+ * @returns {Object} An object containing options
  */
 export const variantOptions = variantId => {
   const options = { size: null, color: null, model: null };
@@ -191,3 +192,28 @@ export const variantOptions = variantId => {
 
   return options;
 };
+
+/**
+ * Helper to know if a product variant is available
+ * @param {Variant} variant
+ * @returns {boolean}
+ */
+export const isVariantAvailable = variant => variant && variant.available;
+
+/**
+ * Helper to know if a product variant is "out of stock"
+ * @see https://app.gitbook.com/@decathlonusa/s/shopify/product-feature/product-page#sold-out-logic
+ * @param {Variant} variant
+ * @returns {boolean}
+ */
+export const isVariantOutOfStock = variant =>
+  !isVariantAvailable(variant) && !isEndOfLifeProduct();
+
+/**
+ * Helper to know if a product variant is "sold out"
+ * @see https://app.gitbook.com/@decathlonusa/s/shopify/product-feature/product-page#sold-out-logic
+ * @param {Variant} variant
+ * @returns {boolean}
+ */
+export const isVariantSoldOut = variant =>
+  !isVariantAvailable(variant) && isEndOfLifeProduct();

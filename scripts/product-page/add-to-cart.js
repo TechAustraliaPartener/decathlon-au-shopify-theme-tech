@@ -1,3 +1,5 @@
+// @ts-check
+
 /**
  * Add to cart module
  *
@@ -8,7 +10,12 @@ import {
   ADD_TO_CART_CLASS,
   PRODUCT_PAGE_COPY
 } from './constants';
-import { getSelectedVariant, isSoldOut } from './product-data';
+import {
+  getSelectedVariant,
+  isEndOfLifeProduct,
+  isVariantOutOfStock,
+  isVariantSoldOut
+} from './product-data';
 import $ from 'jquery';
 /**
  * @todo Refactor to remove jQuery dependency
@@ -17,47 +24,41 @@ const MIN_QUANTITY_THRESHOLD = 5;
 const $ValidationMessage = $(`.${VALIDATION_MESSAGE_CLASS}`);
 const ADD_TO_CART_BTN_SELECTOR = `.${ADD_TO_CART_CLASS}-btn`;
 const ADD_TO_CART_TEXT_SELECTOR = `.${ADD_TO_CART_CLASS}-text`;
-const $AddToCartButtonContainer = $(`.${ADD_TO_CART_CLASS}`);
-const $AddToCartButton = $(ADD_TO_CART_BTN_SELECTOR);
 const $AddToCartButtonText = $(ADD_TO_CART_TEXT_SELECTOR);
+const addToCartButton = document.querySelector(ADD_TO_CART_BTN_SELECTOR);
 const availabilityState = {
   message: '',
-  atcCopy: PRODUCT_PAGE_COPY.ATC_AVAILABLE,
-  soldout: false
+  atcCopy: PRODUCT_PAGE_COPY.ATC_AVAILABLE
 };
 
 let currentVariant = null;
 
-/**
- * Check product attributes for the "End of Life" tag and specifies whether the
- * unavailable state is "sold out" or "out of stock."
- */
-
 export const init = () => {
-  if (isSoldOut()) {
+  /**
+   * Depending on "End Of Life" state, specifies the UI
+   * unavailable "sold out" or "out of stock" text
+   */
+  if (isEndOfLifeProduct()) {
     availabilityState.message = PRODUCT_PAGE_COPY.VALIDATION_SOLD_OUT;
     availabilityState.atcCopy = PRODUCT_PAGE_COPY.ATC_SOLD_OUT;
-    availabilityState.soldout = true;
   } else {
     availabilityState.message = PRODUCT_PAGE_COPY.VALIDATION_OUT_OF_STOCK;
     availabilityState.atcCopy = PRODUCT_PAGE_COPY.ATC_OUT_OF_STOCK;
-    availabilityState.soldout = false;
   }
+
   /**
    * Listener for Add to Cart button
    */
-  $AddToCartButtonContainer.on('click', onAddToCartClick);
+  if (addToCartButton) {
+    addToCartButton.addEventListener('click', onAddToCartClick);
+  }
 };
 
 /**
  * The handler for when Add to Cart is clicked
  */
 const onAddToCartClick = () => {
-  if (
-    currentVariant &&
-    !currentVariant.available &&
-    !availabilityState.soldout
-  ) {
+  if (isVariantOutOfStock(currentVariant)) {
     if (window.BISPopover) {
       window.BISPopover.show();
     }
@@ -74,7 +75,7 @@ const onAddToCartClick = () => {
  * @todo make "MIN_QUANTITY_THRESHOLD" threshold dynamic based on theme settings
  */
 const getQuantityLeftText = ({ inventory_quantity: quantity }) =>
-  quantity > MIN_QUANTITY_THRESHOLD ? '' : `Only ${quantity} left`;
+  Number(quantity) > MIN_QUANTITY_THRESHOLD ? '' : `Only ${quantity} left`;
 
 /**
  * Returns validation text for Add to Cart button based on variant availability
@@ -96,6 +97,22 @@ const getAddToCartButtonText = ({ available }) =>
   available ? PRODUCT_PAGE_COPY.ATC_AVAILABLE : availabilityState.atcCopy;
 
 /**
+ * Updates the `disabled` state for a given element
+ * @param {Object} obj
+ * @param {Element} obj.el The HTML element to set/remove the `disabled` attr upon
+ * @param {boolean} obj.isDisabled The disabled state to set for the given element
+ */
+const setElDisabledState = ({ el, isDisabled }) => {
+  if (el) {
+    if (isDisabled) {
+      el.setAttribute('disabled', '');
+    } else {
+      el.removeAttribute('disabled');
+    }
+  }
+};
+
+/**
  * Enables/disables and updates Add to Cart button with label and validation text
  * with correct states for currently selected variant.
  *
@@ -105,7 +122,12 @@ const getAddToCartButtonText = ({ available }) =>
  */
 export const updateUI = ({ size, color }) => {
   currentVariant = getSelectedVariant({ size, color });
-  $AddToCartButton.attr('disabled', !currentVariant.available);
+
+  setElDisabledState({
+    el: addToCartButton,
+    isDisabled: isVariantSoldOut(currentVariant)
+  });
+
   $ValidationMessage.text(getValidationText(currentVariant));
   $AddToCartButtonText.text(getAddToCartButtonText(currentVariant));
 };

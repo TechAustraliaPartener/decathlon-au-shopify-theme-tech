@@ -1,3 +1,5 @@
+// @ts-check
+
 /**
  * PREFIXES
  */
@@ -42,8 +44,9 @@ export const TEMPLATE_SUFFIX = '-template';
 
 /**
  * The product tag that indicates that the product will not be restocked
+ * @see https://app.gitbook.com/@decathlonusa/s/shopify/product-feature/product-page#sold-out-logic
  */
-export const IS_SOLD_OUT_TAG = 'EndOfLife';
+export const END_OF_LIFE_TAG = 'EndOfLife';
 
 /**
  * CSS Classes
@@ -56,7 +59,7 @@ export const IS_TRANSITIONING_CLASS = `${CSS_PREFIX}is-transitioning`;
 export const IS_OUT_OF_STOCK_CLASS = `${CSS_PREFIX}is-outofstock`;
 export const IS_SOLD_OUT_CLASS = `${CSS_PREFIX}is-soldout`;
 export const VALIDATION_MESSAGE_CLASS = `${JS_PREFIX}validation-message`;
-export const ADD_TO_CART_CLASS = `${JS_PREFIX}AddtoCart`;
+export const ADD_TO_CART_CLASS = `${JS_PREFIX}AddToCart`;
 export const PRICE_CLASS = `${JS_PREFIX}ProductPrice`;
 export const COMPARE_PRICE_CLASS = `${JS_PREFIX}ComparePrice-text`;
 /**
@@ -75,7 +78,7 @@ export const IS_HIDDEN_CLASS = `${CSS_UTILITY_PREFIX}hidden`;
 export const PRODUCT_PAGE_COPY = {
   ATC_AVAILABLE: 'Add to Cart',
   ATC_SOLD_OUT: 'Sold Out',
-  ATC_OUT_OF_STOCK: 'Get Notified When Available',
+  ATC_OUT_OF_STOCK: 'Email Me When In Stock',
   VALIDATION_SOLD_OUT: 'Sold Out',
   VALIDATION_OUT_OF_STOCK: 'Out of Stock'
 };

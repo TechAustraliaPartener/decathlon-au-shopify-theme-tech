@@ -1,4 +1,5 @@
 // @ts-check
+
 /**
  * This module updates the state of all of the color and size swatches
  * to show availability of other options based on currently selected options.
@@ -13,7 +14,7 @@ import {
   JS_PREFIX
 } from './constants';
 import {
-  isSoldOut,
+  isEndOfLifeProduct,
   getAvailableColorsFromSize,
   getAvailableSizesFromColor,
   getExistingColorsFromSize,
@@ -33,7 +34,7 @@ const sizeSwatchesSelector = `.${JS_PREFIX}SizeSwatches-option`;
  * @returns {string} A CSS class
  */
 const getUnavailableCssClass = () => {
-  if (isSoldOut()) {
+  if (isEndOfLifeProduct()) {
     return IS_SOLD_OUT_CLASS;
   }
   return IS_OUT_OF_STOCK_CLASS;
