@@ -106,6 +106,7 @@
          js-de-SlickCarousel js-de-SlickCarouselFeature"
          id="de-CarouselFeature">
       {%- for product_image in product_images -%}
+        {% assign image_src = product_image | img_url: "1280x", format: "pjpg" %}
         {% capture image_srcset %}
           {{ product_image | img_url: "320x", format: "pjpg" }} 320w,
           {{ product_image | img_url: "480x", format: "pjpg" }} 480w,
@@ -137,11 +138,14 @@
               <img
                 class="de-CarouselFeature-image de-u-bgSilver js-de-SlickCarouselSlide"
                 {% if color == activeColor and forloop.index0 == start_index %}
+                  src="{{ image_src }}"
                   srcset="{{ image_srcset }}"
                   sizes="{{ image_sizes }}"
+                {% else %}
+                  data-src="{{ image_src }}"
+                  data-srcset="{{ image_srcset }}"
+                  data-sizes="{{ image_sizes }}"
                 {% endif %}
-                data-srcset="{{ image_srcset }}"
-                data-sizes="{{ image_sizes }}"
                 >
             </button>
           </div>
@@ -188,6 +192,7 @@
             aria-label="{{ forloop.index | minus: start_index }} of {{ end_index | minus: start_index }}">
             <button class="de-CarouselThumbnail-btn de-u-block">
               <img class="de-CarouselThumbnail-image de-u-bgSilver js-de-SlickCarouselSlide"
+                src="{{ product_image | img_url "240x" }}"
                 data-srcset="{{ image_srcset }}"
                 data-sizes="{{ image_sizes }}">
             </button>

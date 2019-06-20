@@ -53,6 +53,10 @@ const loadImages = () => {
         const sizes = $slide.data('sizes');
         $slide.attr('sizes', sizes);
       }
+      if (!$slide.attr('src')) {
+        const src = $slide.data('src');
+        $slide.attr('src', src);
+      }
     }
   );
 };

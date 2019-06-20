@@ -29,7 +29,7 @@ module.exports = gulp => {
             plugins: [
               rollupNodeResolve(),
               rollupCommonJs(),
-              babel({ babelrc: false, ...babelConfig }),
+              babel({ babelrc: false, ...babelConfig, exclude: [/core-js/] }),
               terser({
                 compress: {
                   passes: 4,
