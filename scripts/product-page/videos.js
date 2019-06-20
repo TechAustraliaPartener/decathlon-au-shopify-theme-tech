@@ -64,6 +64,7 @@ const initializeVideoJS = () => {
   const $watchVideoCTA = $('.js-de-watch-video');
   const $copyVideo = $('.js-de-copyVideo');
   const $productTagLabel = $('.js-de-ProductFlag');
+  const $imageCount = $('.js-de-ProductGallery-count');
 
   const getFirstVideoPlayer = () =>
     players[0] && 'id' in players[0] ? videojs(players[0].id()) : null;
@@ -85,6 +86,7 @@ const initializeVideoJS = () => {
     $viewImagesCTA.addClass('de-u-hidden');
     $copyVideo.addClass('de-u-hidden');
     $productTagLabel.removeClass('de-u-hidden');
+    $imageCount.removeClass('de-u-hidden');
     // Pause Video
     pauseFirstVideoPlayer();
   };
@@ -93,6 +95,7 @@ const initializeVideoJS = () => {
     // Add Video
     $toggleButton.addClass('js-de-toggle');
     $productTagLabel.addClass('de-u-hidden');
+    $imageCount.addClass('de-u-hidden');
     $viewImagesCTA.removeClass('de-u-hidden');
     $watchVideoCTA.addClass('de-u-hidden');
     $copyVideo.removeClass('de-u-hidden');
