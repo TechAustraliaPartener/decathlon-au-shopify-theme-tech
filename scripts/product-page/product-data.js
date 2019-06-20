@@ -82,7 +82,7 @@ export const getModelCodeFromVariant = variant => variant[MODEL_OPTION];
 /**
  * Filters for available variants
  *
- * @returns {Object[]} An array of available variants
+ * @returns {Variant[]} An array of available variants
  */
 export const availableVariants = () => variantsJSON.filter(isVariantAvailable);
 
@@ -173,24 +173,37 @@ export const getAvailableSizesFromColor = color =>
   });
 
 /**
+ * @typedef {Object} VariantOptions
+ * @property {string | null} size
+ * @property {string | null} color
+ * @property {string | null} model
+ */
+
+/**
+ * @param {Variant} variant
+ * @returns {VariantOptions}
+ */
+export const getVariantOptions = variant => ({
+  size: variant[SIZE_OPTION],
+  color: variant[COLOR_OPTION],
+  model: variant[MODEL_OPTION]
+});
+
+/**
  * Returns the options of a variant by ID using global variantsJSON array
  * derived from global productJSON
  *
  * @param {number} variantId The variant ID
- * @returns {Object} An object containing options
  */
 export const variantOptions = variantId => {
-  const options = { size: null, color: null, model: null };
   if (Array.isArray(variantsJSON)) {
     const variant = variantsJSON.find(variant => variant.id === variantId);
     if (variant) {
-      options.size = variant[SIZE_OPTION];
-      options.color = variant[COLOR_OPTION];
-      options.model = variant[MODEL_OPTION];
+      return getVariantOptions(variant);
     }
   }
 
-  return options;
+  return { size: null, color: null, model: null };
 };
 
 /**

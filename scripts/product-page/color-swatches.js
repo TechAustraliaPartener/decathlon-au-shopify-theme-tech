@@ -1,3 +1,5 @@
+// @ts-check
+
 /**
  * Color Swatches "component"
  */
@@ -5,6 +7,7 @@
 import { IS_ACTIVE_CLASS, JS_PREFIX } from './constants';
 // @todo Consider removing jQuery dependency
 import $ from 'jquery';
+import { availableVariants, getVariantOptions } from './product-data';
 
 /**
  * Module state
@@ -27,6 +30,7 @@ export const $ColorSwatches = $(`.${JS_PREFIX}ColorSwatches`);
 
 /**
  * Children elements
+ * @type {JQuery<HTMLButtonElement>}
  */
 const $ColorSwatchesOptions = $(`.${JS_PREFIX}ColorSwatches-option`);
 const $ColorInfo = $(`.${JS_PREFIX}ColorInfo`);
@@ -77,7 +81,12 @@ const updateColorUiState = selectedOption => {
 };
 
 export const selectFirstSwatch = () => {
-  $ColorSwatchesOptions.first().click();
+  const firstAvailableVariant = availableVariants()[0];
+  const { color } = getVariantOptions(firstAvailableVariant);
+  const firstAvailableVariantSwatch = $ColorSwatchesOptions
+    .toArray()
+    .find(el => el.value === color);
+  firstAvailableVariantSwatch.click();
 };
 
 /**
@@ -85,7 +94,7 @@ export const selectFirstSwatch = () => {
  *
  * @param {Object} obj
  * @param {Object} obj.state The current state
- * @param {Element} obj.selectedOption The selected option HTML element
+ * @param {HTMLElement} obj.selectedOption The selected option HTML element
  */
 const updateUI = ({ state, selectedOption }) => {
   // We need to update the selected color option UI state
@@ -98,7 +107,7 @@ const updateUI = ({ state, selectedOption }) => {
  * Handler for when a color choice is made
  *
  * @todo Consider removing jQuery dependency
- * @this $ColorSwatchesOptions The triggered color swatch option element
+ * @this {HTMLElement} The triggered color swatch option element
  */
 const onColorSelect = function() {
   const newState = updateState({
