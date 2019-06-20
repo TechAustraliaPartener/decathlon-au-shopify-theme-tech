@@ -11,290 +11,289 @@
  * @see https://www.w3.org/TR/2018/REC-css-color-3-20180619/#svg-color
  */
 
- $color-black: #2a2b2c;
- $color-blue: #0082c3;
- $color-darkgray: #464646;
- $color-gray: #acb3b8;
- $color-lime: #cbfb00;
- $color-silver: #f3f3f3;
- $color-white: #fff;
- $color-red: #e53322;
- 
- /**
-  * Border Width
-  */
- 
- $border-width-sm: 1px;
- $border-width-md: 2px;
- $border-width-lg: 3px;
- 
- /**
-  * Media Queries
-  */
- 
- $breakpoint-sm: 30em;
- $breakpoint-md: 40em;
- $breakpoint-lg: 60em;
- $breakpoint-xl: 80em;
- 
- /**
-  * @pattern SwatchObjects
-  * Consider converting this into a pattern in the future.
-  */
- 
- /**
-  * 1. Provides suitable layout for browsers that do not support Grid
-  * 2. Creates overflow scrolling for small screens
-  * 3. Makes scrolling buttery smooth
-  * 4. Aligns content with container when Grid is not supported
-  */
- 
- $swatchObjects-item-unavailable-opacity: 0.4;
- 
- .de-SwatchObjects {
-   display: flex; /* 1 */
-   overflow-x: scroll; /* 2 */
-   padding-left: 1rem; /* 3 */
-   -webkit-overflow-scrolling: touch; /* 4 */
-   z-index: 1;
- }
- 
- /**
-  * 1. Provides suitable fallback for browsers that do not support Grid
-  */
- 
- @media (min-width: $breakpoint-lg) {
-   .de-SwatchObjects {
-     flex-wrap: wrap; /* 1 */
-     overflow-x: visible; /* 1 */
-     padding-left: 0;
-   }
- }
- 
- /**
-  * 1. Enables equal height for all new rows
-  */
- 
- @supports (display: grid) {
-   .de-SwatchObjects {
-     display: grid;
-     grid-auto-flow: column;
-     grid-auto-rows: 1fr; /* 1 */
-     grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
-     grid-gap: 8px;
-   }
- 
-   /**
-    * 1. Creates optimal extra space at end or overflow scrolling row
+$color-black: #2a2b2c;
+$color-blue: #0082c3;
+$color-darkgray: #464646;
+$color-gray: #acb3b8;
+$color-lime: #cbfb00;
+$color-silver: #f3f3f3;
+$color-white: #fff;
+$color-red: #e53322;
+
+/**
+ * Border Width
+ */
+
+$border-width-sm: 1px;
+$border-width-md: 2px;
+$border-width-lg: 3px;
+
+/**
+ * Media Queries
+ */
+
+$breakpoint-sm: 30em;
+$breakpoint-md: 40em;
+$breakpoint-lg: 60em;
+$breakpoint-xl: 80em;
+
+/**
+ * @pattern SwatchObjects
+ * Consider converting this into a pattern in the future.
+ */
+
+/**
+ * 1. Provides suitable layout for browsers that do not support Grid
+ * 2. Creates overflow scrolling for small screens
+ * 3. Makes scrolling buttery smooth
+ * 4. Aligns content with container when Grid is not supported
+ */
+
+$swatchObjects-item-unavailable-opacity: 0.4;
+
+.de-SwatchObjects {
+  display: flex; /* 1 */
+  overflow-x: scroll; /* 2 */
+  padding-left: 1rem; /* 3 */
+  -webkit-overflow-scrolling: touch; /* 4 */
+  z-index: 1;
+}
+
+/**
+ * 1. Provides suitable fallback for browsers that do not support Grid
+ */
+
+@media (min-width: $breakpoint-lg) {
+  .de-SwatchObjects {
+    flex-wrap: wrap; /* 1 */
+    overflow-x: visible; /* 1 */
+    padding-left: 0;
+  }
+}
+
+/**
+ * 1. Enables equal height for all new rows
+ */
+
+@supports (display: grid) {
+  .de-SwatchObjects {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-rows: 1fr; /* 1 */
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+    grid-gap: 8px;
+  }
+
+  /**
+   * 1. Creates optimal extra space at end or overflow scrolling row
+   */
+
+  .de-SwatchObjects::after {
+    content: ''; /* 1 */
+    width: 0.5em; /* 1 */
+  }
+
+  @media (min-width: $breakpoint-lg) {
+    .de-SwatchObjects {
+      grid-auto-flow: row;
+      grid-template-columns: repeat(auto-fill, minmax(65px, 1fr));
+    }
+
+    .de-SwatchObjects::after {
+      display: none;
+    }
+  }
+
+  @media (min-width: $breakpoint-xl) {
+    .de-SwatchObjects {
+      grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+    }
+
+    /**
+    * 1. Removes extra space from layout when Grid is supported
     */
- 
-   .de-SwatchObjects::after {
-     content: ''; /* 1 */
-     width: 0.5em; /* 1 */
-   }
- 
-   @media (min-width: $breakpoint-lg) {
-     .de-SwatchObjects {
-       grid-auto-flow: row;
-       grid-template-columns: repeat(auto-fill, minmax(65px, 1fr));
-     }
- 
-     .de-SwatchObjects::after {
-       display: none;
-     }
-   }
- 
-   @media (min-width: $breakpoint-xl) {
-     .de-SwatchObjects {
-       grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
-     }
- 
-     /**
-      * 1. Removes extra space from layout when Grid is supported
-      */
- 
-     .de-SwatchObjects:after {
-       display: none; /* 1 */
-     }
- 
-     .de-SwatchObjects--sm-rowGap {
-       grid-row-gap: 4px;
-     }
-   }
- }
- 
- /**
-  * 1. Improves positioning of content inside element
-  * 2. Warning: Magic Number at work. Provides desirable sizing for flexbox
-  * fallback implementations of this pattern when `@supports (display: grid)` is
-  * not available
-  * 3. Required for the `de-is-soldout` styles to take effect
-  * 4. Disables ability to select text inside of a SwatchObject-item
-  * 5. Hides SoldOut styles from spilling out of the container
-  */
- 
- .de-SwatchObjects-item {
-   cursor: pointer;
-   display: flex; /* 1 */
-   flex-basis: 88px; /* 2 */
-   min-width: 72px; /* 2 */
-   margin-bottom: 8px;
-   margin-right: 8px;
-   overflow: hidden; /* 5 */
-   position: relative; /* 3 */
-   user-select: none; /* 4 */
- }
- 
- @supports (display: grid) {
-   .de-SwatchObjects-item {
-     margin: 0;
-   }
- }
- 
- .de-SwatchObjects-item.de-is-active {
-   border: $border-width-md solid $color-blue !important;
-   color: $color-blue;
- }
- 
- /**
-  * 1. Default `:focus` should never be removed without adding suitable atlernate
-  * styles. This element's `:focus` is being removed here, but styled elsewhere.
-  */
- 
- .de-SwatchObjects-item:focus {
-   outline: none; /* 1 */
- }
- 
- /**
-  * Color swatch modifier
-  */
- 
- .de-SwatchObjects--color {
-   display: block;
-   border: $border-width-sm solid $color-white;
-   height: 100%;
-   margin: 0 auto;
-   padding: 0.5em;
- }
- 
- .de-SwatchObjects--color.de-is-soldout {
-   color: $color-gray;
-   border: $border-width-sm solid $color-gray;
-   opacity: $swatchObjects-item-unavailable-opacity;
- }
- 
- /**
-  * 1. This is a unique CSS style block and the desired visual appearance
-  * requires some magic numbers to display properly.
-  */
- 
- .de-SwatchObjects--color.de-is-soldout::before {
-   content: '';
-   position: absolute;
-   left: -1.3em; /* 1 */
-   right: -0.25em; /* 1 */
-   top: 0; /* 1 */
-   bottom: -1.65em; /* 1 */
-   background: linear-gradient(to left top, transparent 51.5%, currentColor 43.5%, currentColor 52%, transparent 45.5%);
-   pointer-events: none;
- }
- 
- .de-SwatchObjects--color:focus:not(.de-is-active) {
-   outline: $border-width-md solid $color-blue;
-   outline-offset: -4px;
- }
- 
- .de-SwatchObjects-noimage {
-   width: 100%;
-   height: 100%;
- }
- 
- /**
-  * SwatchObject State classes
-  */
- 
- .de-SwatchObjects--color.de-is-outofstock * {
-   opacity: $swatchObjects-item-unavailable-opacity;
- }
- 
- /**
-  * 1. Required for images to be displayed in IE11
-  */
- 
- .de-SwatchObjects-image {
-   width: 100%;  /* 1 */
- }
- 
- .de-SwatchObjects-noimage {
-   width: 100%;
- }
- 
- /**
-  * Size swatch modifier
-  *
-  * 1. The desired height for the element. A minimum recommended touch target
-  * size is around 48 device independent pixels on a site with a properly set
-  * mobile viewport.
-  *
-  * @see https://developers.google.com/web/fundamentals/accessibility/accessible-styles
-  */
- 
- .de-SwatchObjects--size {
-   align-items: center;
-   border: $border-width-sm solid $color-darkgray;
-   display: flex;
-   height: 48px; /* 1 */
-   line-height: 1.2;
-   justify-content: center;
- }
- 
- /**
-  * This style block requires testing
-  */
- 
- .de-SwatchObjects--size:not(.de-is-active):focus {
-   outline: $border-width-md solid $color-blue;
-   outline-offset: -4px;
- }
- 
- /**
-  * `.de-is-outofstock` should be applied to `.de-SwatchObjects--size` when the
-  * size variant is temporarily out of stock.
-  */
- 
- .de-SwatchObjects--size.de-is-outofstock {
-   background-color: $color-silver;
-   border: $border-width-sm solid $color-gray;
-   color: $color-gray !important;
- }
- 
- /**
-  * `.de-is-soldout` should be applied to `.de-SwatchObjects--size` when the size
-  * variant is no longer available and will not be coming back in stock
-  *
-  * 1. This is a unique CSS style block and the desired visual appearance
-  * requires some magic numbers to display properly.
-  */
- 
- .de-SwatchObjects--size.de-is-soldout {
-   background-color: $color-silver !important;
-   border: $border-width-sm solid $color-gray;
-   color: $color-gray !important;
- }
- 
- /**
-  * 1. This is a unique CSS style block and the desired visual appearance
-  * requires some magic numbers to display properly.
-  */
- 
- .de-SwatchObjects--size.de-is-soldout::before {
-   content: '';
-   position: absolute;
-   left: -0.014em; /* 1 */
-   right: -0.14em; /* 1 */
-   top: 0.01em; /* 1 */
-   bottom: 0.03em; /* 1 */
-   background: linear-gradient(to left top, transparent 50.5%, currentColor 43.5%, currentColor 52.5%, transparent 45.5%);
-   pointer-events: none;
- }
- 
+
+    .de-SwatchObjects:after {
+      display: none; /* 1 */
+    }
+
+    .de-SwatchObjects--sm-rowGap {
+      grid-row-gap: 4px;
+    }
+  }
+}
+
+/**
+ * 1. Improves positioning of content inside element
+ * 2. Warning: Magic Number at work. Provides desirable sizing for flexbox
+ * fallback implementations of this pattern when `@supports (display: grid)` is
+ * not available
+ * 3. Required for the `de-is-soldout` styles to take effect
+ * 4. Disables ability to select text inside of a SwatchObject-item
+ * 5. Hides SoldOut styles from spilling out of the container
+ */
+
+.de-SwatchObjects-item {
+  cursor: pointer;
+  display: flex; /* 1 */
+  flex-basis: 88px; /* 2 */
+  min-width: 72px; /* 2 */
+  margin-bottom: 8px;
+  margin-right: 8px;
+  overflow: hidden; /* 5 */
+  position: relative; /* 3 */
+  user-select: none; /* 4 */
+}
+
+@supports (display: grid) {
+  .de-SwatchObjects-item {
+    margin: 0;
+  }
+}
+
+.de-SwatchObjects-item.de-is-active {
+  border: $border-width-md solid $color-blue !important;
+  color: $color-blue;
+}
+
+/**
+ * 1. Default `:focus` should never be removed without adding suitable atlernate
+ * styles. This element's `:focus` is being removed here, but styled elsewhere.
+ */
+
+.de-SwatchObjects-item:focus {
+  outline: none; /* 1 */
+}
+
+/**
+ * Color swatch modifier
+ */
+
+.de-SwatchObjects--color {
+  display: block;
+  border: $border-width-sm solid $color-white;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0.5em;
+}
+
+.de-SwatchObjects--color.de-is-soldout {
+  color: $color-gray;
+  border: $border-width-sm solid $color-gray;
+  opacity: $swatchObjects-item-unavailable-opacity;
+}
+
+/**
+ * 1. This is a unique CSS style block and the desired visual appearance
+ * requires some magic numbers to display properly.
+ */
+
+.de-SwatchObjects--color.de-is-soldout::before {
+  content: '';
+  position: absolute;
+  left: -1.3em; /* 1 */
+  right: -0.25em; /* 1 */
+  top: 0; /* 1 */
+  bottom: -1.65em; /* 1 */
+  background: linear-gradient(to left top, transparent 51.5%, currentColor 43.5%, currentColor 52%, transparent 45.5%);
+  pointer-events: none;
+}
+
+.de-SwatchObjects--color:focus:not(.de-is-active) {
+  outline: $border-width-md solid $color-blue;
+  outline-offset: -4px;
+}
+
+.de-SwatchObjects-noimage {
+  width: 100%;
+  height: 100%;
+}
+
+/**
+ * SwatchObject State classes
+ */
+
+.de-SwatchObjects--color.de-is-outofstock * {
+  opacity: $swatchObjects-item-unavailable-opacity;
+}
+
+/**
+* 1. Required for images to be displayed in IE11
+*/
+
+.de-SwatchObjects-image {
+  width: 100%;  /* 1 */
+}
+
+.de-SwatchObjects-noimage {
+  width: 100%;
+}
+
+/**
+ * Size swatch modifier
+ *
+ * 1. The desired height for the element. A minimum recommended touch target
+ * size is around 48 device independent pixels on a site with a properly set
+ * mobile viewport.
+ *
+ * @see https://developers.google.com/web/fundamentals/accessibility/accessible-styles
+ */
+
+.de-SwatchObjects--size {
+  align-items: center;
+  border: $border-width-sm solid $color-darkgray;
+  display: flex;
+  height: 48px; /* 1 */
+  line-height: 1.2;
+  justify-content: center;
+}
+
+/**
+ * This style block requires testing
+ */
+
+.de-SwatchObjects--size:not(.de-is-active):focus {
+  outline: $border-width-md solid $color-blue;
+  outline-offset: -4px;
+}
+
+/**
+ * `.de-is-outofstock` should be applied to `.de-SwatchObjects--size` when the
+ * size variant is temporarily out of stock.
+ */
+
+.de-SwatchObjects--size.de-is-outofstock {
+  background-color: $color-silver;
+  border: $border-width-sm solid $color-gray;
+  color: $color-gray !important;
+}
+
+/**
+ * `.de-is-soldout` should be applied to `.de-SwatchObjects--size` when the size
+ * variant is no longer available and will not be coming back in stock
+ *
+ * 1. This is a unique CSS style block and the desired visual appearance
+ * requires some magic numbers to display properly.
+ */
+
+.de-SwatchObjects--size.de-is-soldout {
+  background-color: $color-silver !important;
+  border: $border-width-sm solid $color-gray;
+  color: $color-gray !important;
+}
+
+/**
+ * 1. This is a unique CSS style block and the desired visual appearance
+ * requires some magic numbers to display properly.
+ */
+
+.de-SwatchObjects--size.de-is-soldout::before {
+  content: '';
+  position: absolute;
+  left: -0.014em; /* 1 */
+  right: -0.14em; /* 1 */
+  top: 0.01em; /* 1 */
+  bottom: 0.03em; /* 1 */
+  background: linear-gradient(to left top, transparent 50.5%, currentColor 43.5%, currentColor 52.5%, transparent 45.5%);
+  pointer-events: none;
+}

@@ -12,90 +12,89 @@
  * @see https://www.w3.org/TR/2018/REC-css-color-3-20180619/#svg-color
  */
 
- $color-black: #2a2b2c;
- $color-blue: #0082c3;
- $color-darkgray: #464646;
- $color-gray: #acb3b8;
- $color-lime: #cbfb00;
- $color-silver: #f3f3f3;
- $color-white: #fff;
- $color-red: #e53322;
- 
- /**
-  * Border Width
-  */
- 
- $border-width-sm: 1px;
- $border-width-md: 2px;
- $border-width-lg: 3px;
- $border-width-xl: 6px;
- 
- /**
-  * Media Queries
-  */
- 
- $breakpoint-sm: 30em;
- $breakpoint-md: 40em;
- $breakpoint-lg: 60em;
- $breakpoint-xl: 80em;
- 
- /*
-  * ProductTitleLockup
-  */
- 
- .de-ProductTitleLockup {
-   position: relative;
- }
- 
- @media (min-width: $breakpoint-lg) {
-   .de-ProductTitleLockup {
-     border-bottom: $border-width-sm solid $color-silver;
-   }
- }
- 
- @media (min-width: $breakpoint-lg) {
-   .de-ProductTitleLockup-rating {
-     bottom: 15px;
-     position: absolute;
-     right: 0;
-   }
- }
- 
- .de-ProductTitleLockup-price {
-   display: none;
- }
- 
- @media (min-width: $breakpoint-lg) {
-   .de-ProductTitleLockup-price {
-     display: flex;
-   }
- }
- 
- /**
-  * Product Buy Box
-  * 1. 50vw is a magical number that allows the add to cart button to
-  * appear "above the fold" with a high percentage of perdicatability
-  */
- 
- @media (min-width: $breakpoint-lg) {
-   .de-ProductBuyBox {
-     flex: 1 0 50vw;
-     padding-left: 2rem;
-   }
- 
-   .ProductMoreInfo {
-     border-bottom: $border-width-lg solid $color-lime;
-   }
- }
- 
- /**
-  * 1. 43.333% is a magical number that allows the add to cart button to
-  * appear "above the fold" with a high percentage of perdicatability
-  */
- 
- @media (min-width: $breakpoint-xl) {
-   .de-ProductBuyBox {
-     flex: 1 0 43.333%; /* 1 */
-   }
- }
- 
+$color-black: #2a2b2c;
+$color-blue: #0082c3;
+$color-darkgray: #464646;
+$color-gray: #acb3b8;
+$color-lime: #cbfb00;
+$color-silver: #f3f3f3;
+$color-white: #fff;
+$color-red: #e53322;
+
+/**
+ * Border Width
+ */
+
+$border-width-sm: 1px;
+$border-width-md: 2px;
+$border-width-lg: 3px;
+$border-width-xl: 6px;
+
+/**
+ * Media Queries
+ */
+
+$breakpoint-sm: 30em;
+$breakpoint-md: 40em;
+$breakpoint-lg: 60em;
+$breakpoint-xl: 80em;
+
+/*
+ * ProductTitleLockup
+ */
+
+.de-ProductTitleLockup {
+  position: relative;
+}
+
+@media (min-width: $breakpoint-lg) {
+  .de-ProductTitleLockup {
+    border-bottom: $border-width-sm solid $color-silver;
+  }
+}
+
+@media (min-width: $breakpoint-lg) {
+  .de-ProductTitleLockup-rating {
+    bottom: 15px;
+    position: absolute;
+    right: 0;
+  }
+}
+
+.de-ProductTitleLockup-price {
+  display: none;
+}
+
+@media (min-width: $breakpoint-lg) {
+  .de-ProductTitleLockup-price {
+    display: flex;
+  }
+}
+
+/**
+ * Product Buy Box
+ * 1. 50vw is a magical number that allows the add to cart button to
+ * appear "above the fold" with a high percentage of perdicatability
+ */
+
+@media (min-width: $breakpoint-lg) {
+  .de-ProductBuyBox {
+    flex: 1 0 50vw;
+    padding-left: 2rem;
+  }
+
+  .ProductMoreInfo {
+    border-bottom: $border-width-lg solid $color-lime;
+  }
+}
+
+/**
+ * 1. 43.333% is a magical number that allows the add to cart button to
+ * appear "above the fold" with a high percentage of perdicatability
+ */
+
+@media (min-width: $breakpoint-xl) {
+  .de-ProductBuyBox {
+    flex: 1 0 43.333%; /* 1 */
+  }
+}
