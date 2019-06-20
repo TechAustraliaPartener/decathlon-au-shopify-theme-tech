@@ -1,3 +1,5 @@
+import { IS_HIDDEN_CLASS } from './constants';
+
 /**
  * Add distance-related fields to store objects
  *
@@ -47,4 +49,35 @@ export const getDistanceSortedStores = ({ stores, distances, threshold }) => {
     // Rearrange the stores from nearest to farthest
     (a, b) => a.distanceFloat - b.distanceFloat
   );
+};
+
+/**
+ * Format a city and state code (abbreviation) from userLocationData
+ * @param {import('./api').UserLocationData} userLocationData
+ * @returns {string} - Formatted City, ST or one or the other
+ */
+export const getFormattedCityState = ({ city, stateCode }) => {
+  return city && stateCode
+    ? `${city}, ${stateCode}`
+    : city || (stateCode || '');
+};
+
+/**
+ * Show an element and return it for additional DOM method chaining
+ * @param {HTMLElement} element
+ * @returns {HTMLElement} The same element
+ */
+export const showElement = element => {
+  element.classList.remove(IS_HIDDEN_CLASS);
+  return element;
+};
+
+/**
+ * Hide an element and return it for additional DOM method chaining
+ * @param {HTMLElement} element
+ * @returns {HTMLElement} The same element
+ */
+export const hideElement = element => {
+  element.classList.add(IS_HIDDEN_CLASS);
+  return element;
 };

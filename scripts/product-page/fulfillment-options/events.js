@@ -4,14 +4,19 @@ import { getUIElements } from './init-ui';
 import {
   IS_HIDDEN_CLASS,
   UPDATE,
-  USER_LOCATION_DATA_UPDATE
+  USER_LOCATION_DATA_UPDATE,
+  STORES_UPDATE
 } from './constants';
 import { fetchUserLocationData } from './api';
+import { getAvailablePickupStores } from './services';
 import { updateState, fulfillmentOptionsStateEmitter } from './state';
 import {
   updateUserLocationUI,
+  updateStoreInfo,
   showWaitingForLocation,
-  hideWaitingForLocation
+  hideWaitingForLocation,
+  showLocationUpdateMessage,
+  hideLocationUpdateMessage
 } from './update-ui';
 
 const {
@@ -42,12 +47,6 @@ const handleUseGeolocationClick = () => {
   })
     .then(userLocationData => {
       updateState({ userLocationData });
-      /**
-       * @TODO
-       * 1. Get stores based on user location data,
-       * 2. Update stores state
-       * 3. Update stores from within custom event listener, below
-       */
       hideWaitingForLocation();
     })
     .catch(error => {
@@ -78,7 +77,27 @@ const handleLocationFormSubmit = event => {
  */
 const handleStateUpdate = event => {
   if (event.type === USER_LOCATION_DATA_UPDATE) {
-    updateUserLocationUI(event.data);
+    if (event.data.zipcode) {
+      getAvailablePickupStores(event.data.zipcode)
+        .then(stores => {
+          if (stores && stores.length > 0) {
+            updateState({ stores });
+            /**
+             * Update the user location in the UI
+             * @TODO - Question - should this only happen after verifying
+             * there are stores within range?
+             */
+            updateUserLocationUI(event.data);
+          } else {
+            showLocationUpdateMessage(event.data);
+          }
+        })
+        .catch(error => console.error(error));
+    }
+  }
+  if (event.type === STORES_UPDATE) {
+    hideLocationUpdateMessage();
+    updateStoreInfo(event.data);
   }
 };
 

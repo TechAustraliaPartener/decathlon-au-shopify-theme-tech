@@ -2,9 +2,8 @@
   "compilerOptions": {
     "lib": ["dom", "esnext"],
     "target": "es6",
-    "checkJs": false
+    "checkJs": false,
+    "moduleResolution": "node"
   },
-  "include": [
-    "scripts/**/*"
-  ]
+  "include": ["scripts/**/*"]
 }

@@ -4,11 +4,13 @@ import { IS_HIDDEN_CLASS, REMOVE, ADD } from './constants';
 import {
   buildStoreTile,
   setClosestStoreInfo,
-  updateProductInDrawer
+  updateProductInDrawer,
+  getNoStoresNearLocationMessage
 } from './build-ui';
 import { getAvailableSelectedVariant } from '../product-data';
 import { getUIElements } from './init-ui';
 import { getState } from './state';
+import { getFormattedCityState, showElement, hideElement } from './utilities';
 
 /**
  * Toggle the pickup option details (closest store for pickup) and the message
@@ -74,12 +76,58 @@ const hidePickupOption = () => setPickupOptionVisibility(false);
 export const updateUserLocationUI = ({ stateCode, city }) => {
   const { userLocationCityEl, userLocationStateEl } = getUIElements();
   if (stateCode) {
-    userLocationStateEl.innerText = stateCode;
+    userLocationStateEl.textContent = stateCode;
   }
   if (city) {
-    userLocationCityEl.innerText = city;
+    userLocationCityEl.textContent = city;
   }
 };
+
+/**
+ * Toggle the location input message in the drawer
+ * @param {boolean} [show] - Set to true to hide pickup options
+ * @param {string} [locationString] - Optional string to put in the message
+ */
+const setLocationUpdateMessageVisibility = (show = true, locationString) => {
+  const {
+    locationUpdateMessageEl,
+    defaultLocationUpdateMessageEl,
+    locationUpdateMessageContentEl
+  } = getUIElements();
+  const classListAction = show ? REMOVE : ADD;
+  if (locationString) {
+    hideElement(defaultLocationUpdateMessageEl);
+    /**
+     * @TODO - If this could be refactored to only
+     * do `textContent` on a separate `span`, might be better
+     */
+    showElement(
+      locationUpdateMessageContentEl
+    ).innerHTML = getNoStoresNearLocationMessage(locationString);
+  } else {
+    hideElement(locationUpdateMessageContentEl);
+    showElement(defaultLocationUpdateMessageEl);
+  }
+  locationUpdateMessageEl.classList[classListAction](IS_HIDDEN_CLASS);
+};
+
+/**
+ * Show the location input message
+ * @param {import('./api').UserLocationData} [userLocationData] - Optional
+ * location data to show in the message
+ */
+export const showLocationUpdateMessage = userLocationData => {
+  setLocationUpdateMessageVisibility(
+    true,
+    userLocationData ? getFormattedCityState(userLocationData) : null
+  );
+};
+
+/**
+ * Hide the location input message
+ */
+export const hideLocationUpdateMessage = () =>
+  setLocationUpdateMessageVisibility(false);
 
 /**
  * Update store list in drawer, at or after module initialization

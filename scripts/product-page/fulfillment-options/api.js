@@ -21,7 +21,7 @@ export { loadGoogleMaps };
 /**
  * Fetches a list of stores, with accompanying data (address, hours, etc)
  *
- * @returns {Promise<Array>} A collection of Decathlon stores
+ * @returns {Promise<Object[]>} A collection of Decathlon store objects
  */
 export const fetchStoreList = async () => {
   const stores = await fetchStores();

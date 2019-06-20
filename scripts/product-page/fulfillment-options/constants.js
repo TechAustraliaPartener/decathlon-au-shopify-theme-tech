@@ -33,6 +33,12 @@ export const STORE_PICKUP_CUSTOMER_LOCATION = `${STORE_PICKUP_PREFIX}customerLoc
 export const STORE_PICKUP_THUMBNAIL_IMAGE = `${STORE_PICKUP_PREFIX}thumbnailImage`;
 export const STORE_PICKUP_VARIANT_SIZE = `${STORE_PICKUP_PREFIX}variantSize`;
 export const STORE_PICKUP_VARIANT_COLOR = `${STORE_PICKUP_PREFIX}variantColor`;
+export const STORE_PICKUP_LOCATION_UPDATE_MESSAGE = `${STORE_PICKUP_PREFIX}locationUpdateMessage`;
+export const STORE_PICKUP_DEFAULT_LOCATION_UPDATE_MESSAGE = `${STORE_PICKUP_PREFIX}defaultLocationUpdateMessage`;
+export const STORE_PICKUP_LOCATION_UPDATE_MESSAGE_CONTENT = `${STORE_PICKUP_PREFIX}locationUpdateMessageContent`;
+
+export const DYNAMIC_LOCATION_MESSAGE_CONTENT =
+  "We currently don't have a store in";
 
 /**
  * Acceptable radius gate of user's location to store locations (in miles)

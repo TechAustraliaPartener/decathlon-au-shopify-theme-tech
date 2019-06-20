@@ -42,7 +42,7 @@ const emitStateUpdate = stateUpdateEventObject => {
 /**
  * Export the original getState from the `create-state` module
  */
-export const getState = getFulfillmentOptionState;
+export { getFulfillmentOptionState as getState };
 
 /**
  * Wrapper for updating state
@@ -51,16 +51,20 @@ export const getState = getFulfillmentOptionState;
  *   a. Updates state using the function from the `create-state` module
  *   b. Emits an event with a `type` and `data`, which can be listened for
  *      to trigger UI updates
- * @param {Object} stateUpdate - An update to the existing state, which may or
- * may not differ from current values
+ * @param {Object} stateUpdate - An update to the existing state, which may
+ * or may not differ from current values
+ * @param {import('./api').UserLocationData} [stateUpdate.userLocationData] - A
+ * user location data update
+ * @param {Object[]} [stateUpdate.stores] - An update to the list of stores
  */
 export const updateState = stateUpdate => {
   const { stores, userLocationData } = stateUpdate;
   const {
     stores: existingStores,
     userLocationData: existingUserLocationData
-  } = getState();
-  if (stores && !equal(stores, existingStores)) {
+  } = getFulfillmentOptionState();
+  // Do not update stores if an empty array is passed
+  if (stores && stores.length > 0 && !equal(stores, existingStores)) {
     updateFulfillmentOptionState({ stores });
     emitStateUpdate({ type: STORES_UPDATE, data: stores });
   }

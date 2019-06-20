@@ -39,6 +39,12 @@
  * selected product color
  * @property {HTMLElement} variantSizeEl - Element for displaying currently
  * selected product size
+ * @property {HTMLElement} locationUpdateMessageEl - Element for displaying
+ * a message when user location input does not return a list of stores
+ * @property {HTMLElement} locationUpdateMessageContentEl - Element for displaying
+ * a message when user location input does not return a list of stores
+ * @property {HTMLElement} defaultLocationUpdateMessageEl - Element for displaying
+ * a message when user location input does not return a list of stores
  */
 
 import {
@@ -60,7 +66,10 @@ import {
   STORE_PICKUP_CUSTOMER_LOCATION,
   STORE_PICKUP_THUMBNAIL_IMAGE,
   STORE_PICKUP_VARIANT_COLOR,
-  STORE_PICKUP_VARIANT_SIZE
+  STORE_PICKUP_VARIANT_SIZE,
+  STORE_PICKUP_LOCATION_UPDATE_MESSAGE,
+  STORE_PICKUP_LOCATION_UPDATE_MESSAGE_CONTENT,
+  STORE_PICKUP_DEFAULT_LOCATION_UPDATE_MESSAGE
 } from './constants';
 
 /**
@@ -102,7 +111,16 @@ const initUI = () => ({
   ),
   thumbnailImageEl: document.querySelector(`.${STORE_PICKUP_THUMBNAIL_IMAGE}`),
   variantColorEl: document.querySelector(`.${STORE_PICKUP_VARIANT_COLOR}`),
-  variantSizeEl: document.querySelector(`.${STORE_PICKUP_VARIANT_SIZE}`)
+  variantSizeEl: document.querySelector(`.${STORE_PICKUP_VARIANT_SIZE}`),
+  locationUpdateMessageEl: document.querySelector(
+    `.${STORE_PICKUP_LOCATION_UPDATE_MESSAGE}`
+  ),
+  locationUpdateMessageContentEl: document.querySelector(
+    `.${STORE_PICKUP_LOCATION_UPDATE_MESSAGE_CONTENT}`
+  ),
+  defaultLocationUpdateMessageEl: document.querySelector(
+    `.${STORE_PICKUP_DEFAULT_LOCATION_UPDATE_MESSAGE}`
+  )
 });
 
 /**

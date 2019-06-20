@@ -1,6 +1,6 @@
 // @ts-check
 
-import { TOMORROW } from './constants';
+import { TOMORROW, DYNAMIC_LOCATION_MESSAGE_CONTENT } from './constants';
 import { getThumbnailImageSrc } from '../../utilities/get-thumbnail-image-src';
 import { getUIElements } from './init-ui';
 
@@ -53,9 +53,9 @@ export const buildStoreTile = stores =>
 export const updateProductInDrawer = selectedVariant => {
   const { variantColorEl, variantSizeEl, thumbnailImageEl } = getUIElements();
   if (selectedVariant.option1)
-    variantSizeEl.innerText = selectedVariant.option1;
+    variantSizeEl.textContent = selectedVariant.option1;
   if (selectedVariant.option2)
-    variantColorEl.innerText = selectedVariant.option2;
+    variantColorEl.textContent = selectedVariant.option2;
   if (selectedVariant.featured_image && selectedVariant.featured_image.src)
     thumbnailImageEl.setAttribute(
       'src',
@@ -74,5 +74,12 @@ export const setClosestStoreInfo = store => {
   storeCityEl.innerHTML = store.city;
   storeAddress1El.innerHTML = store.street1;
   // @TODO - Pass in a day to be set instead of getting as constant
-  pickupDayEl.innerText = TOMORROW;
+  pickupDayEl.textContent = TOMORROW;
 };
+
+/**
+ * Create a no-location message from a formatted city/state string
+ * @param {string} cityStateString
+ */
+export const getNoStoresNearLocationMessage = cityStateString =>
+  `${DYNAMIC_LOCATION_MESSAGE_CONTENT}&nbsp;<span class="de-u-textBold de-u-textShrink1">${cityStateString}</span>.`;
