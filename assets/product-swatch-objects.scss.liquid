@@ -38,6 +38,12 @@ $breakpoint-lg: 60em;
 $breakpoint-xl: 80em;
 
 /**
+ * Default width for each swatch selector. Used for flex fallback and in grid
+ * layout used on small and medium screens
+ */
+$swatchObjects-basis-value: 88px;
+
+/**
  * @pattern SwatchObjects
  * Consider converting this into a pattern in the future.
  */
@@ -77,11 +83,58 @@ $swatchObjects-item-unavailable-opacity: 0.4;
 
 @supports (display: grid) {
   .de-SwatchObjects {
+    $grid-gap: 8px;
     display: grid;
     grid-auto-flow: column;
     grid-auto-rows: 1fr; /* 1 */
-    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
-    grid-gap: 8px;
+    grid-gap: $grid-gap;
+
+    /*
+     * How much of the last item should peek onto the page
+     * With an offset of 0px, N items will fit on the page,
+     * and the N+1 item will be hidden just past the screen edge
+     */
+    $offset: 50px;
+    // $offset: 0px;
+
+    /*
+     * Default Swatch Sizing for large screens
+     */
+    @media (max-width: $breakpoint-lg - .01) {
+      grid-auto-columns: minmax(70px, 1fr);
+    }
+
+    /*
+     * It is actually specified in rems, but we can't use calc in media queries
+     * so this is the px approximation
+     */
+    $container-padding-left: 16px;
+
+    $min: 2;
+
+    // More than 9 is not necessary because then it switches to the large screen breakpoint
+    $max: 9;
+
+    /*
+     * Generate a bunch of media queries to fully show N items plus a partial item
+     * This allows us to show a different number of items depending on the screen width
+     */
+    @for $i from $min through $max {
+      // Sass won't let me loop from max to min, so this is my workaround
+      $n: $max + $min - $i;
+
+      // The max width is when N+1 items can fit in the provided space
+      @media (max-width: $container-padding-left + ($swatchObjects-basis-value + $grid-gap) * ($n + 1) + $offset) {
+        /*
+         * Grid-auto-columns defines the width of each item.
+         * The first part is the base size of the elements. It allows there to fit N items
+         * The 2nd part subtracts the grid gap, because each item has a corresponding gap
+         * The last part shrinks all the items by the space required to have the N+1
+         * item peek past onto the screen by the $offset amount.
+         */
+        grid-auto-columns: calc(#{percentage(1 / $n)} - #{$grid-gap + $offset / $n});
+      }
+    }
   }
 
   /**
@@ -127,16 +180,20 @@ $swatchObjects-item-unavailable-opacity: 0.4;
  * 1. Improves positioning of content inside element
  * 2. Warning: Magic Number at work. Provides desirable sizing for flexbox
  * fallback implementations of this pattern when `@supports (display: grid)` is
- * not available
+ * not available. This is different from the `min-width` value because on non-grid
+ * browsers we often want the swatches to be larger than the minimum size but smaller
+ * than their intrinsic size
  * 3. Required for the `de-is-soldout` styles to take effect
  * 4. Disables ability to select text inside of a SwatchObject-item
  * 5. Hides SoldOut styles from spilling out of the container
+ * 6. `min-width` gets triggered for large screens that are just barely larger
+ *    than the breakpoint
  */
 
 .de-SwatchObjects-item {
   cursor: pointer;
   display: flex; /* 1 */
-  flex-basis: 88px; /* 2 */
+  flex-basis: $swatchObjects-basis-value; /* 2 */
   min-width: 72px; /* 2 */
   margin-bottom: 8px;
   margin-right: 8px;
@@ -157,7 +214,7 @@ $swatchObjects-item-unavailable-opacity: 0.4;
 }
 
 /**
- * 1. Default `:focus` should never be removed without adding suitable atlernate
+ * 1. Default `:focus` should never be removed without adding suitable alternate
  * styles. This element's `:focus` is being removed here, but styled elsewhere.
  */
 
