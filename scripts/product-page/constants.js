@@ -79,8 +79,8 @@ export const PRODUCT_PAGE_COPY = {
   ATC_AVAILABLE: 'Add to Cart',
   ATC_SOLD_OUT: 'Sold Out',
   ATC_OUT_OF_STOCK: 'Email Me When In Stock',
-  VALIDATION_SOLD_OUT: 'Sold Out',
-  VALIDATION_OUT_OF_STOCK: 'Out of Stock'
+  VALIDATION_SOLD_OUT: 'New model in design',
+  VALIDATION_OUT_OF_STOCK: 'Out of stock'
 };
 
 /*
