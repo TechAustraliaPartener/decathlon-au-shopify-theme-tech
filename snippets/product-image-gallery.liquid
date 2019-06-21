@@ -3,22 +3,34 @@
 {% endcomment %}
 {%- assign product_images = product.images -%}
 {%- assign context_photo_delimiter = '[[contextphoto]]' -%}
+{%- assign cloudinary_transform = 'https://res.cloudinary.com/cloud-four/image/fetch/e_trim,q_auto:eco,f_auto/https:' -%}
 
 {% comment %}
   Product context image(s)
 {% endcomment %}
 {%- for product_image in product_images -%}
   {%- if product_image.alt contains context_photo_delimiter -%}
-    {%- capture image_srcset -%}
-      {{- product_image | img_url: "425x" -}} 320w,
-      {{- product_image | img_url: "840x" -}} 720w,
-      {{- product_image | img_url: "1080x" -}} 1020w,
-      {{- product_image | img_url: "1200x" -}} 1720w
-    {%- endcapture -%}
-    {%- capture image_sizes -%}
-      (max-width: 520px) 840px,
-      (max-width: 1000px) 1680px
-    {%- endcapture -%}
+    {% capture image_srcset %}
+      {{ product_image | img_url: "320x" | prepend: cloudinary_transform }} 320w,
+      {{ product_image | img_url: "375x" | prepend: cloudinary_transform }} 375w,
+      {{ product_image | img_url: "680x" | prepend: cloudinary_transform }} 680w,
+      {{ product_image | img_url: "780x" | prepend: cloudinary_transform }} 780w,
+      {{ product_image | img_url: "880x" | prepend: cloudinary_transform }} 880w,
+      {{ product_image | img_url: "980x" | prepend: cloudinary_transform }} 980w,
+      {{ product_image | img_url: "1080x" | prepend: cloudinary_transform }} 1080w,
+      {{ product_image | img_url: "1280x" | prepend: cloudinary_transform }} 1280w,
+      {{ product_image | img_url: "1480x" | prepend: cloudinary_transform }} 1480w
+    {% endcapture %}
+    {% capture image_sizes %}
+      (max-width: 320px) 320px,
+      (max-width: 480px) 375px,
+      (max-width: 980px) 680px,
+      (max-width: 1080px) 780px,
+      (max-width: 1480px) 880px,
+      (max-width: 1880px) 980px,
+      (max-width: 2080px) 1080px,
+      (max-width: 2580px) 1280px
+    {% endcapture %}
     <img
       class='ProductImageGallery-item js-de-CarouselContextSlide'
       data-srcset='{{ image_srcset }}'
