@@ -14,28 +14,38 @@
 {% assign product_rating = product.metafields.ratings.product_rating | plus: 0 %}
 {% assign rating_average = product_rating | times: 20 %}
 {% assign total_item_count = product.metafields.reviews.recent_reviews_object.total_item_count | plus: 0 %}
+{%- capture write_a_review_url -%}
+{% if customer %}/account?view=review-products{% else %}/account/login?checkout_url=/account?view=review-products{% endif %}
+{%- endcapture -%}
+
 <section class="ReviewsContainer de-Grid de-u-lg-spaceTop3
                 de-u-spaceTop">
-  <a class="de-u-hiddenVisually" href="#de-CustomerReviews-container">Skip to reviews</a>
+  {% unless total_item_count == 0 %}
+    <a class="de-u-hiddenVisually" href="#de-CustomerReviews-container">Skip to reviews</a>
+  {% endunless %}
 
   <div class="de-ReviewsContainer-reviewSummary">
     <div class="de-ReviewSummary de-u-padBottom06">
-      <div class="de-StarRating de-u-textGrow1 productRating">
-        <div class="de-StarRating-fill" style="width: {{ rating_average }}%"></div>
-      </div>
+      {% if total_item_count == 0 %}
+        <p>Be the first to leave a review</p>
+      {% else %}
+        <div class="de-StarRating de-u-textGrow1 productRating">
+          <div class="de-StarRating-fill" style="width: {{ rating_average }}%"></div>
+        </div>
 
-      <div class="de-u-textGrow2 de-u-flex de-u-flexJustifyBetween
-        de-u-flexAlignItemsBaseline">
-        <div>
-          <span class="de-u-textBold">{{ product_rating }}</span> out of 5 stars
+        <div class="de-u-textGrow2 de-u-flex de-u-flexJustifyBetween
+          de-u-flexAlignItemsBaseline">
+          <div>
+            <span class="de-u-textBold">{{ product_rating }}</span> out of 5 stars
+          </div>
+          <div class="de-u-textNormal de-u-textAlignRight">
+            {{ total_item_count }}
+            <span class="de-u-inlineBlock">
+              {{ total_item_count | pluralize: 'Review', 'Reviews' }}
+            </span>
+          </div>
         </div>
-        <div class="de-u-textNormal de-u-textAlignRight">
-          {{ total_item_count }}
-          <span class="de-u-inlineBlock">
-            {{ total_item_count | pluralize: 'Review', 'Reviews' }}
-          </span>
-        </div>
-      </div>
+      {% endif %}
     </div>
 
     {% comment %}
@@ -101,14 +111,16 @@
 
     <a class="de-ReviewMatrix-reviewBtn btn btn--productReviews de-u-spaceTop2
               de-u-textGrow1 de-u-padEnds"
-      href="{% if customer %}/account?view=review-products{% else %}/account/login?checkout_url=/account?view=review-products{% endif %}">
+      href="{{ write_a_review_url }}">
       Write a Review
     </a>
 
-    <img
-      src="{{ product.featured_image | img_url: 'large' }}"
-      class="de-ReviewsContainer-featuredImage de-u-spaceTop6"
-      alt="{{ product.featured_image.alt }}">
+    {% unless total_item_count == 0 %}
+      <img
+        src="{{ product.featured_image | img_url: 'large' }}"
+        class="de-ReviewsContainer-featuredImage de-u-spaceTop6"
+        alt="{{ product.featured_image.alt }}">
+    {% endunless %}
 
   </div>
 
@@ -117,40 +129,42 @@
   {% endcomment %}
 
   <div class="de-ReviewsContainer-reviews de-u-md-padRightNone">
-    <div class="de-u-flex de-u-flexAlignItemsCenter de-u-spaceBottom6">
-      <label for="de-CustomerReviews-sort" class="de-u-padRight de-u-textBold de-u-textSizeBase">Sort<span class="de-u-hiddenVisually">reviews </span> by</label>
-      <select id="de-CustomerReviews-sort" class="de-u-textSizeBase js-de-CustomerReview-sort" aria-controls="de-CustomerReviews-container">
-        <option value="date_desc"
-                data-sort-direction="desc"
-                data-sort-type="createdAt"
-                aria-label="Sort reviews, most recent first.">
-          Newest
-        </option>
-        <option value="date_asc"
-                data-sort-direction="asc"
-                data-sort-type="createdAt"
-                aria-label="Sort reviews, oldest first.">
-          Oldest
-        </option>
-        <option value="note_desc"
-                data-sort-direction="desc"
-                data-sort-type="note"
-                aria-label="Sort reviews by highest to lowest rating.">
-          Highest rating</option>
-        <option value="note_asc"
-                data-sort-direction="asc"
-                data-sort-type="note"
-                aria-label="Sort reviews by lowest to highest rating.">
-          Lowest rating
-        </option>
-        <option value="utility_desc"
-                data-sort-direction="desc"
-                data-sort-type="utility"
-                aria-label="Sort reviews, most helpful first.">
-          Most helpful
-        </option>
-      </select>
-    </div>
+    {% unless total_item_count == 0 %}
+      <div class="de-u-flex de-u-flexAlignItemsCenter de-u-spaceBottom6">
+        <label for="de-CustomerReviews-sort" class="de-u-padRight de-u-textBold de-u-textSizeBase">Sort<span class="de-u-hiddenVisually">reviews </span> by</label>
+        <select id="de-CustomerReviews-sort" class="de-u-textSizeBase js-de-CustomerReview-sort" aria-controls="de-CustomerReviews-container">
+          <option value="date_desc"
+                  data-sort-direction="desc"
+                  data-sort-type="createdAt"
+                  aria-label="Sort reviews, most recent first.">
+            Newest
+          </option>
+          <option value="date_asc"
+                  data-sort-direction="asc"
+                  data-sort-type="createdAt"
+                  aria-label="Sort reviews, oldest first.">
+            Oldest
+          </option>
+          <option value="note_desc"
+                  data-sort-direction="desc"
+                  data-sort-type="note"
+                  aria-label="Sort reviews by highest to lowest rating.">
+            Highest rating</option>
+          <option value="note_asc"
+                  data-sort-direction="asc"
+                  data-sort-type="note"
+                  aria-label="Sort reviews by lowest to highest rating.">
+            Lowest rating
+          </option>
+          <option value="utility_desc"
+                  data-sort-direction="desc"
+                  data-sort-type="utility"
+                  aria-label="Sort reviews, most helpful first.">
+            Most helpful
+          </option>
+        </select>
+      </div>
+    {% endunless %}
     {% comment %}
       @TODO
       1. Determine how default number of pre-loaded reviews is set and try to
@@ -324,7 +338,7 @@
                     de-u-spaceBottom3"
               data-review-id="{{id}}"
               tabindex="0">
-          {{!-- comment Using custom Hanldebars conditional helper --}}
+          {{! Using custom Handlebars conditional helper }}
           {{#if_or note title}}
             <div class="de-u-flex de-u-flexAlignItemsBaseline de-u-flexCol
                         de-u-lg-flexRow">
@@ -427,14 +441,16 @@
       {{/each}}
     {% endraw %}
     </script>
-    <div class="de-u-flex de-u-padBottom3 de-u-lg-padEnds3">
-      <button class="btn btn--fill
-                     de-u-textMedium
-                     js-de-moreReviews"
-              aria-controls="de-CustomerReviews-container">
-        <span class="de-u-hiddenVisually">Load </span>More Reviews
-      </button>
-      <a class="de-u-hiddenVisually" href="#de-CustomerReviews-container">Skip to reviews</a>
-    </div>
+    {% unless total_item_count == 0 %}
+      <div class="de-u-flex de-u-padBottom3 de-u-lg-padEnds3">
+        <button class="btn btn--fill
+                      de-u-textMedium
+                      js-de-moreReviews"
+                aria-controls="de-CustomerReviews-container">
+          <span class="de-u-hiddenVisually">Load </span>More Reviews
+        </button>
+        <a class="de-u-hiddenVisually" href="#de-CustomerReviews-container">Skip to reviews</a>
+      </div>
+    {% endunless %}
   </div>
 </section>
