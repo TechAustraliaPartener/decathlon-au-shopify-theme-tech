@@ -20,6 +20,11 @@ const $galleryCounter = $(`.${JS_PREFIX}ProductGallery-countValue`);
 let activeSlideIndex = 0;
 
 /**
+ * Boolean check that all carousel slide totals are equal
+ */
+let allSlideTotalsMatch = true;
+
+/**
  * Partial carousel settings
  */
 const THUMB_SLIDES_TO_SHOW = 5;
@@ -59,6 +64,21 @@ const loadImages = () => {
       }
     }
   );
+};
+
+/**
+ * Checks whether all variant slide totals are equal
+ */
+const initAllSlideTotalsMatch = () => {
+  let previousSlideTotal = null;
+  $(FEATURE_CAROUSEL_SELECTOR).each((index, featureCarousel) => {
+    const slideTotal = $(featureCarousel).children().length;
+    if (previousSlideTotal !== null && slideTotal !== previousSlideTotal) {
+      allSlideTotalsMatch = false;
+      return false;
+    }
+    previousSlideTotal = slideTotal;
+  });
 };
 
 /**
@@ -180,9 +200,9 @@ const initCarousel = () => {
     `${FEATURE_CAROUSEL_ACTIVE_SELECTOR}:first ${SLIDE_CAROUSEL_SELECTOR}:not(.slick-cloned)`
   ).length;
   /**
-   * Reset index when no image pair
+   * Reset index when all slides do not match in length
    */
-  if (activeSlideIndex >= activeSlideTotal) {
+  if (!allSlideTotalsMatch) {
     activeSlideIndex = 0;
   }
   /**
@@ -299,6 +319,7 @@ export const updateUI = ({ color }) => {
  * Put all functions that need to run on product-page load here
  */
 export const init = () => {
+  initAllSlideTotalsMatch();
   initCarousel();
   handleWindowResize();
 };
