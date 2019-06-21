@@ -20,19 +20,11 @@
  * @property {HTMLElement} selectForPickupOptionsMessageEl - The
  * element that contains the prompt to select product options before showing
  * pickup options
- * @property {HTMLFormElement} locationForm - The form element that allows users to
- * search a location
- * @property {HTMLInputElement} locationFormInput - The form input element for users
- * to search a location
- * @property {HTMLElement} locationInputToggle - Toggle for opening the location
- * input in the drawer
  * @property {HTMLElement} useGeolocationEl - Affordance for the user to choose
  * to use geolocation
  * @property {HTMLElement} useMyLocationTextEl - Text for use geolocation
  * @property {HTMLElement} loadingLocationTextEl - Text to indicate loading
  * location data
- * @property {HTMLElement} customerLocationEl - Toggleable container for the
- * customer location input/form
  * @property {HTMLElement} thumbnailImageEl - Image element for displaying the
  * thumbnail of the currently selected product variant in the drawer
  * @property {HTMLElement} variantColorEl - Element for displaying currently
@@ -57,13 +49,9 @@ import {
   STORE_PICKUP_DETAILS,
   STORE_PICKUP_OPTIONS,
   SELECT_FOR_PICKUP_OPTIONS_MESSAGE,
-  STORE_PICKUP_LOCATION_FORM,
-  STORE_PICKUP_LOCATION_FORM_INPUT,
-  STORE_PICKUP_LOCATION_INPUT_TOGGLE,
   STORE_PICKUP_USE_GEOLOCATION,
   STORE_PICKUP_USE_MY_LOCATION,
   STORE_PICKUP_LOADING_LOCATION,
-  STORE_PICKUP_CUSTOMER_LOCATION,
   STORE_PICKUP_THUMBNAIL_IMAGE,
   STORE_PICKUP_VARIANT_COLOR,
   STORE_PICKUP_VARIANT_SIZE,
@@ -92,22 +80,12 @@ const initUI = () => ({
   selectForPickupOptionsMessageEl: document.querySelector(
     `.${SELECT_FOR_PICKUP_OPTIONS_MESSAGE}`
   ),
-  locationForm: document.querySelector(`.${STORE_PICKUP_LOCATION_FORM}`),
-  locationFormInput: document.querySelector(
-    `.${STORE_PICKUP_LOCATION_FORM_INPUT}`
-  ),
-  locationInputToggle: document.querySelector(
-    `.${STORE_PICKUP_LOCATION_INPUT_TOGGLE}`
-  ),
   useGeolocationEl: document.querySelector(`.${STORE_PICKUP_USE_GEOLOCATION}`),
   useMyLocationTextEl: document.querySelector(
     `.${STORE_PICKUP_USE_MY_LOCATION}`
   ),
   loadingLocationTextEl: document.querySelector(
     `.${STORE_PICKUP_LOADING_LOCATION}`
-  ),
-  customerLocationEl: document.querySelector(
-    `.${STORE_PICKUP_CUSTOMER_LOCATION}`
   ),
   thumbnailImageEl: document.querySelector(`.${STORE_PICKUP_THUMBNAIL_IMAGE}`),
   variantColorEl: document.querySelector(`.${STORE_PICKUP_VARIANT_COLOR}`),

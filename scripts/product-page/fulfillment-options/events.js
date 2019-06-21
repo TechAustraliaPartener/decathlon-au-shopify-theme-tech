@@ -1,12 +1,7 @@
 // @ts-check
 
 import { getUIElements } from './init-ui';
-import {
-  IS_HIDDEN_CLASS,
-  UPDATE,
-  USER_LOCATION_DATA_UPDATE,
-  STORES_UPDATE
-} from './constants';
+import { UPDATE, USER_LOCATION_DATA_UPDATE, STORES_UPDATE } from './constants';
 import { fetchUserLocationData } from './api';
 import { getAvailablePickupStores } from './services';
 import { updateState, fulfillmentOptionsStateEmitter } from './state';
@@ -19,21 +14,7 @@ import {
   hideLocationUpdateMessage
 } from './update-ui';
 
-const {
-  locationForm,
-  locationFormInput,
-  locationInputToggle,
-  customerLocationEl,
-  useGeolocationEl
-} = getUIElements();
-
-/**
- * Toggles the visibility of the input/form for allowing a user to put in their
- * own location (zip or city/state)
- */
-const handleLocationInputToggle = () => {
-  customerLocationEl.classList.toggle(IS_HIDDEN_CLASS);
-};
+const { useGeolocationEl } = getUIElements();
 
 /**
  * Bind the Use My Location button. If the user isn't already using geolocation,
@@ -53,20 +34,6 @@ const handleUseGeolocationClick = () => {
       hideWaitingForLocation();
       console.error(error);
     });
-};
-
-/**
- * Handler for custom location form submission
- * @param {Event} event - The form submission event object
- */
-const handleLocationFormSubmit = event => {
-  // Prevents the form from refreshing the page
-  event.preventDefault();
-  // The user entered search value
-  const queryValue = locationFormInput.value;
-  // @TODO - Remove logs
-  console.log('User location query: ', queryValue);
-  // @TODO implement remaining work
 };
 
 /**
@@ -102,18 +69,6 @@ const handleStateUpdate = event => {
 };
 
 /**
- * Bind to the submit event of the location input form
- */
-const bindLocationForm = () =>
-  locationForm.addEventListener('submit', handleLocationFormSubmit);
-
-/**
- * Bind to toggle showing the location input form
- */
-const bindLocationInputToggle = () =>
-  locationInputToggle.addEventListener('click', handleLocationInputToggle);
-
-/**
  * Bind to the "Use My Location" button in the drawer
  */
 const bindUseGeolocation = () =>
@@ -130,7 +85,5 @@ const bindStateUpdates = () =>
  */
 export const bindEventHandlers = () => {
   bindStateUpdates();
-  bindLocationInputToggle();
   bindUseGeolocation();
-  bindLocationForm();
 };
