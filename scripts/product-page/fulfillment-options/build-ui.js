@@ -82,4 +82,4 @@ export const setClosestStoreInfo = store => {
  * @param {string} cityStateString
  */
 export const getNoStoresNearLocationMessage = cityStateString =>
-  `${DYNAMIC_LOCATION_MESSAGE_CONTENT}&nbsp;<span class="de-u-textBold de-u-textShrink1">${cityStateString}</span>.`;
+  `${DYNAMIC_LOCATION_MESSAGE_CONTENT}&nbsp;<span class="de-u-textBold de-u-textShrink1">${cityStateString}</span>`;
