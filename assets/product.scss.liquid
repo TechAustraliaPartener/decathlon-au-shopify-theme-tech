@@ -13,10 +13,17 @@
  * @see https://www.w3.org/TR/2018/REC-css-color-3-20180619/#svg-color
  */
 
+/**
+ * @TODO
+ * 1. Find and replace duplicate colors with different names
+ *    $color-light-gray and $color
+ */
+
 $color-black: #2a2b2c;
 $color-blue: #0082c3;
 $color-darkgray: #464646;
 $color-gray: #acb3b8;
+$color-light-gray: rgba(172, 179, 184, 0.5);
 $color-gray50: rgba(172, 179, 184, 0.5);
 $color-lime: #cbfb00;
 $color-silver: #f3f3f3;
@@ -40,6 +47,24 @@ $breakpoint-sm: 30em;
 $breakpoint-md: 40em;
 $breakpoint-lg: 60em;
 $breakpoint-xl: 80em;
+
+/**
+ * Transitions
+ *
+ * 1. $transition-speed-normal value must match the value in
+ *    associated JS (in milliseconds, with setTimeout) for transition duration
+ *    @see scripts/product-page/drawer.js
+ */
+
+$transition-speed-normal: 0.2s; /* 1 */
+$transition-easing-smooth: cubic-bezier(0.77, 0, 0.175, 1);
+
+/**
+ * Sizes
+ */
+
+$header-height-sm: 46px;
+$header-height-md: 52px;
 
 figure {
   margin: 0;
@@ -631,4 +656,546 @@ $button-background-hover: #429dd7;
 .template-product .addToCart {
   float: none;
   margin-right: 0;
+}
+
+
+/*
+ * ProductTitleLockup
+ */
+
+ .de-ProductTitleLockup {
+  position: relative;
+}
+
+@media (min-width: $breakpoint-lg) {
+  .de-ProductTitleLockup {
+    border-bottom: $border-width-sm solid $color-silver;
+  }
+}
+
+@media (min-width: $breakpoint-lg) {
+  .de-ProductTitleLockup-rating {
+    bottom: 15px;
+    position: absolute;
+    right: 0;
+  }
+}
+
+.de-ProductTitleLockup-price {
+  display: none;
+}
+
+@media (min-width: $breakpoint-lg) {
+  .de-ProductTitleLockup-price {
+    display: flex;
+  }
+}
+
+/**
+ * Product Buy Box
+ * 1. 50vw is a magical number that allows the add to cart button to
+ * appear "above the fold" with a high percentage of perdicatability
+ */
+
+@media (min-width: $breakpoint-lg) {
+  .de-ProductBuyBox {
+    flex: 1 0 50vw;
+    padding-left: 2rem;
+  }
+
+  .ProductMoreInfo {
+    border-bottom: $border-width-lg solid $color-lime;
+  }
+}
+
+/**
+ * 1. 43.333% is a magical number that allows the add to cart button to
+ * appear "above the fold" with a high percentage of perdicatability
+ */
+
+@media (min-width: $breakpoint-xl) {
+  .de-ProductBuyBox {
+    flex: 1 0 43.333%; /* 1 */
+  }
+}
+
+/* Accordion */
+
+.de-Accordion-header {
+  align-items: center;
+  appearance: none;
+  background-color: $color-white;
+  border: 0;
+  cursor: pointer;
+  display: flex;
+  font: inherit;
+  font-family: avalon_mediumbold;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  text-align: left;
+  width: 100%;
+}
+
+@media (min-width: $breakpoint-md) {
+  .de-Accordion-header {
+    display: none;
+  }
+}
+
+.de-Accordion-header:focus {
+  outline: $border-width-md solid $color-blue;
+  outline-offset: -3px;
+}
+
+.de-Accordion-content {
+  padding: 0 1rem;
+}
+
+/*
+ * 1. Conditionally show accordion content when in a drawer
+ *    @see scripts/product-page/drawer.js
+ */
+
+.de-is-drawerOpen .de-Accordion:not(.de-is-open) .de-Accordion-content {
+  display: block; /* 1 */
+}
+
+/*
+ * 1. Display the title that is normally hidden at small viewport widths whenever
+ *    the drawer is open. The drawer and accordion are coupled because the drawer
+ *    may display the same content that is included as an accordion section. The
+ *    dynamic class 'de-is-drawerOpen' is added to a parent, wrapper element.
+ */
+
+.de-is-drawerOpen .de-ProductInfoTitle {
+  display: inline-block !important; /* 1 */
+}
+
+@media (min-width: $breakpoint-md) {
+  .de-Accordion-content {
+    padding: 0;
+  }
+}
+
+.de-Accordion:not(.de-is-open) .de-Accordion-content {
+  display: none;
+}
+
+@media (min-width: $breakpoint-md) {
+  .de-Accordion-content {
+    display: block !important;
+  }
+}
+
+.de-Accordion-indicator {
+  transform-origin: center;
+  transition: 0.2s linear transform;
+  font-size: calc(2msu * 1em);
+}
+
+.de-Accordion.de-is-open .de-Accordion-indicator {
+  transform: rotate(-45deg);
+}
+
+
+.de-ReviewSummary {
+  border-bottom: $border-width-sm solid $color-silver;
+}
+
+/**
+ * @pattern StarRating
+ * Consider converting this into a pattern in the future.
+ */
+
+ .de-StarRating,
+ .de-StarRating-fill {
+   background-position: left;
+   background-repeat: no-repeat;
+   background-size: auto 100%;
+ }
+
+ .de-StarRating {
+   background-image: url("stars.svg");
+   height: 1.2em;
+   position: relative;
+   width: 6em;
+   margin: 0;
+ }
+
+ .de-StarRating-fill {
+   background-image: url("stars-fill.svg");
+   height: 100%;
+   left: 0;
+   position: absolute;
+   top: 0;
+   width: 100%;
+ }
+
+/**
+ * ReviewMatrix
+ * @TODO
+ * 1. Consider refactoring/revising if `ReviewMatrix` has no styling
+ */
+
+.de-ReviewMatrix-stars {
+  flex: 0 1 auto;
+}
+
+/**
+ * @TODO:
+ * 1. Remove reliance on fixed pixel value
+ */
+
+.de-ReviewMatrix-graph {
+  display: block;
+  height: 25px; /* 1 */
+  width: 100%;
+}
+
+/**
+ * @pattern ReviewMatrix
+ * Consider converting this into a pattern in the future.
+ */
+
+.de-CustomerReview {
+  border-bottom: $border-width-sm solid $color-silver;
+}
+
+.de-CustomerReview:last-of-type {
+  border-bottom: 0;
+}
+
+/**
+ * 1. The second step in the Decathlon pattern library modular scale
+ */
+
+.de-CustomerReview-response {
+  padding-left: 1.424rem; /* 1 */
+  border-left: $border-width-lg solid $color-lime;
+}
+
+.de-CustomerReview-title {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+
+.de-is-inPageFlow .de-CustomerReview-title {
+  @media (min-width: $breakpoint-lg) {
+    flex-direction: row;
+  }
+}
+
+.de-is-inPageFlow .de-ReviewsContainer-reviewSummary {
+  @media (min-width: $breakpoint-md) {
+    flex-basis: auto;
+    width: 50%;
+  }
+  @media (min-width: $breakpoint-lg) {
+    width: 33.33333%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/**
+ * 1. `2.0227` is the sixth step in the modular scale in use by the pattern library.
+ */
+
+.de-ReviewsContainer-reviews {
+  padding-top: 2.027rem; /* 1 */
+}
+
+/**
+ * 1. `2.0227` is the sixth step in the modular scale in use by the pattern library.
+ */
+
+.de-is-inPageFlow .de-ReviewsContainer-reviews {
+  @media (min-width: $breakpoint-md) {
+    flex-basis: auto;
+    width: 50%;
+    padding-top: 0;
+    padding-left: 2.027rem; /* 1 */
+  }
+  @media (min-width: $breakpoint-lg) {
+    width: 66.66667%;
+  }
+}
+
+.de-ReviewsContainer-featuredImage {
+  display: none;
+}
+
+.de-is-inPageFlow .de-ReviewsContainer-featuredImage {
+  @media (min-width: $breakpoint-md) {
+    display: block;
+  }
+}
+
+.de-is-inPageFlow .de-ReviewMatrix-reviewBtn {
+  display: block;
+}
+.de-is-drawerOpen .de-ReviewMatrix-reviewBtn {
+  display: none;
+}
+
+/**
+ * @TODO
+ * 1. since this is related to videos, there is probably a better name for
+ *    `de-ProductPhoto`. Perhaps `de-ProductVideoPoster`.
+ */
+
+ .de-ProductPhoto {
+  position: relative;
+  overflow: hidden;
+}
+
+.de-watch-video-button {
+  cursor: pointer;
+  svg {
+    vertical-align: middle;
+  }
+}
+
+/**
+ * @TODO
+ * 1. since this is related to videos, there is probably a better name for
+ *    `de-thumb`. Perhaps `de-ProductVideoThumb`.
+ */
+
+.de-thumb {
+  padding: 10px;
+}
+
+.de-slick--videos-thumbnails {
+  margin-left: -10px;
+}
+
+@media (max-width: $breakpoint-md) {
+  .de-slick--videos {
+    margin: auto;
+  }
+  .de-slick--videos-thumbnails {
+    display: none;
+  }
+  .de-thumb {
+    padding: 40px 80px;
+  }
+}
+
+/*
+ * @pattern Slide-in Drawer
+ * Consider converting this into a pattern in the future.
+ *
+ * A slide-in overlay pattern, suitable for displaying additional content,
+ * equipped with `overflow-y` scrolling.
+ *
+ * Placing content inside of this pattern is often not the most appropriate
+ * choice for displaying content and can lead to poor user experiences when used
+ * improperly. Consider usage of this pattern wisely.
+ *
+ * 1. Ensures element is not overlapped by `Drawer-header`
+ * 2. Fixed positioning is required for both the `transform` and `overflow-y`
+ * scrolling to work properly.
+ * 3. Places the component off-canvas an equal distance to the available
+ * viewport width. Necessary for the "slide-in/slide-out" effect
+ *
+ * @TODO:
+ * 1. Complete: ~small screen 100vw via `transform: translateX(0);`~
+ * 2. Pending: large screen partial vw via transform
+ *
+ */
+
+/**
+ * Drawer variables
+ *
+ * 1. Width matches the width of the Buy Box - which is the desired width of
+ *    of the active drawer - no more, no less.
+ */
+
+$drawer-max-width: 43.333%; /* 1 */
+
+/**
+ * Base Drawer overlay styles
+ */
+
+.de-Drawer-overlay {
+  background-color: rgba(172, 179, 184, 0.5);
+  opacity: 0;
+  position: absolute;
+  transition: opacity $transition-speed-normal $transition-easing-smooth;
+}
+
+/**
+ * Styles for the overlay behind the Drawer when it is open
+ *
+ * 1. This value is one below the .de-Drawer z-index to make sure the overlay
+ *    falls beneath the Drawer content
+ */
+
+.de-Drawer.de-is-active .de-Drawer-overlay {
+  height: 100%;
+  left: 0;
+  opacity: 1;
+  top: 0;
+  width: 100%;
+  z-index: 1999; /* 1 */
+}
+
+/**
+ * Apply these properties to drawer content that isn't currently being
+ * displayed in regular page flow
+ */
+
+.de-Drawer:not(.de-is-inPageFlow) .de-Drawer-contentWrapper {
+  background-color: $color-white;
+  height: 100%;
+  max-width: 90%;
+  right: 0;
+  padding-top: $header-height-sm; /* 1 */
+  position: fixed; /* 2 */
+  top: 0;
+  transform: translateX(100vw); /* 3 */
+  transition: transform $transition-speed-normal $transition-easing-smooth;
+  width: 100vw;
+  z-index: 2000;
+}
+
+
+@media (min-width: $breakpoint-md) {
+  .de-Drawer:not(.de-is-inPageFlow) .de-Drawer-contentWrapper {
+    max-width: 70%;
+  }
+}
+
+@media (min-width: $breakpoint-lg) {
+  .de-Drawer:not(.de-is-inPageFlow) .de-Drawer-contentWrapper {
+    max-width: $drawer-max-width;
+  }
+}
+
+/**
+ * Drawer modifier, changes the transition from default RTL to custom LTR
+ */
+
+.de-Drawer--transitionLeftToRight:not(.de-is-inPageFlow)
+  .de-Drawer-contentWrapper {
+  left: 0;
+  transform: translateX(-100vw);
+}
+
+/**
+ * Disable timed transitions for drawers that will show
+ * content also shown in regular page flow.
+ * The extra class applied to these drawers will be managed at the appropriate
+ * time by JavaScript
+ *
+ * Allows the "displays_in_page_flow" content option to transition smoothly when opening
+ * and closing, same as the standard drawer (whose position is never switched to
+ * "static")
+ */
+
+.de-Drawer--contentFromPageFlow.de-is-closed .de-Drawer-contentWrapper,
+.de-Drawer--contentFromPageFlow.de-is-opening .de-Drawer-contentWrapper {
+  transition: transform 0s;
+}
+
+/**
+ * Re-enable default transition duration for the "displays_in_page_flow" drawer
+ * option, when also in active (open) state
+*/
+
+.de-Drawer--contentFromPageFlow.de-is-open .de-Drawer-contentWrapper {
+  transition: transform $transition-speed-normal;
+}
+
+/*
+ * 1. When "active", slide the component into the viewport
+ */
+
+.de-Drawer.de-is-active .de-Drawer-contentWrapper {
+  transform: translateX(0); /* 1 */
+}
+
+/*
+ * Switch to static positioning for keeping drawer content in page flow, when
+ * using the is-in-page-flow option
+ */
+
+.de-Drawer.de-is-inPageFlow .de-Drawer-contentWrapper {
+  position: static;
+}
+
+.de-Drawer-header {
+  border-bottom: $border-width-sm solid $color-light-gray;
+  display: flex;
+  height: $header-height-sm;
+  left: 0;
+  letter-spacing: 0.5px;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 3000;
+}
+
+@media (min-width: $breakpoint-md) {
+  .de-Drawer-header {
+    height: $header-height-md;
+  }
+}
+
+/*
+ * Hide the header for content that is being displayed in page flow
+ */
+
+.de-Drawer.de-is-inPageFlow .de-Drawer-header {
+  display: none;
+}
+
+/*
+ * 1. Enables momentum-based scrolling, where the content continues to scroll
+ *    for a while after finishing the scroll gesture and removing your finger from
+ *    the touchscreen. The speed and duration of the continued scrolling is
+ *    proportional to how vigorous the scroll gesture was. Also creates a new
+ *    stacking context. Support: Safari iOS.
+ *
+ * @see https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-overflow-scrolling
+ *
+ * 2. Matches the padding added when using the utility class '.de-u-pad'
+ *
+ * Applies only to drawer content displayed in an open drawer, not when displayed
+ * in regular page flow
+ */
+
+.de-Drawer:not(.de-is-inPageFlow) .de-Drawer-content {
+  height: 100%;
+  overflow-y: scroll;
+  padding: 1rem; /* 2 */
+  -webkit-overflow-scrolling: touch; /* 1 */
+}
+
+/*
+ * 1. Ensures the last direct descendant of `Drawer-content` receives spacing at
+ *    the bottom of the scrollable content equal to the height of `Drawer-header`
+ *
+ * @TODO - Consider any future ways to reduce specificity here
+ */
+
+.de-Drawer:not(.de-is-inPageFlow) .de-Drawer-content > *:last-child {
+  margin-bottom: 0; /* 1 */
+  padding-bottom: $header-height-sm; /* 1 */
+}
+
+/*
+ * States
+ */
+
+/*
+ * 1. Prevents unwanted scrolling of content covered by `Drawer`
+ */
+
+.de-content-is-fixed {
+  overflow: hidden; /* 1 */
+  position: fixed; /* 1 */
 }
