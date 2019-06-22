@@ -193,7 +193,7 @@
               aria-controls="de-CarouselFeature"
               aria-roledescription="slide"
               role="group"
-              aria-label="{{ forloop.index | minus: start_index }} of {{ end_index | minus: start_index }}">
+              aria-label="Product thumbnail image {{ forloop.index | minus: start_index }} of {{ end_index | minus: start_index }}">
               <button class="de-CarouselThumbnail-btn de-u-block">
                 <img class="de-CarouselThumbnail-image de-u-bgSilver js-de-SlickCarouselSlide"
                   src="{{ product_image | img_url "240x" }}"

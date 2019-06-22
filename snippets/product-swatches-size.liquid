@@ -47,6 +47,14 @@
         class="de-SwatchObjects-item de-SwatchObjects--size de-u-textMedium
                js-de-SizeSwatches-option"
         value="{{ cleanSize }}"
-      >{{ cleanSize }}</button>
+      >
+        <span class="de-u-hiddenVisually">
+          Select the size {{ cleanSize }} before adding this product to 
+          your cart.
+        </span>
+        <span aria-hidden>
+          {{ cleanSize }}
+        </span>
+      </button>
   {% endfor %}
 </div>

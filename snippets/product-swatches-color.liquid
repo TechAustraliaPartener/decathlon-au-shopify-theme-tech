@@ -45,7 +45,10 @@
                de-SwatchObjects--color
                js-de-ColorSwatches-option "
         value="{{ clean_color }}">
-        <span class="de-u-hiddenVisually">Color: {{ clean_color }}</span>
+        <span class="de-u-hiddenVisually">
+          Select the {{ clean_color }} color before adding this product to 
+          your cart.
+        </span>
         {% if option_thumb != false %}
           {% capture image_srcset %}
             {{ option_thumb | img_url: "100x" }} 1x,
