@@ -34,7 +34,7 @@ const isTagFound = tag => productsJSON.tags.includes(tag);
  * @param {string} [obj.id] A product variant ID
  * @param {Array} [obj.source = variantsJSON] The array to filter to find a
  * product variant
- * @returns {Object|undefined} A product variant object
+ * @returns {Variant | undefined} A product variant object
  */
 export const getSelectedVariant = ({
   size,

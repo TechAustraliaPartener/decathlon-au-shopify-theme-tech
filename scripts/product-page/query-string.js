@@ -21,7 +21,7 @@ export const getUrlVariant = () => {
 /**
  * Updates the variant id in the URL when a new variant is selected
  *
- * @param {string} variantId The variant ID
+ * @param {string | number} variantId The variant ID
  */
 export const updateUrlVariant = variantId => {
   const updatedUrl = addOrReplaceParam(
@@ -37,7 +37,7 @@ export const updateUrlVariant = variantId => {
  *
  * @param {string} fullUrl The url to update or add parameter to
  * @param {string} paramKey The name of the parameter
- * @param {string} paramValue The value of the parameter
+ * @param {string | number} paramValue The value of the parameter
  *
  * @returns {string} The updated URL
  */

@@ -1,8 +1,10 @@
+// @ts-check
+
 /**
  * Size Swatches "component"
  */
 
-import { IS_ACTIVE_CLASS, JS_PREFIX } from './constants';
+import { IS_ACTIVE_CLASS, JS_PREFIX, CSS_UTILITY_PREFIX } from './constants';
 // @todo Consider removing jQuery dependency
 import $ from 'jquery';
 
@@ -24,6 +26,9 @@ const CLICK_EVENT = 'click';
  * Root element
  */
 export const $SizeSwatches = $(`.${JS_PREFIX}SizeSwatches`);
+
+const DEFAULT_TEXT_COLOR = `${CSS_UTILITY_PREFIX}textDarkGray`;
+const ERROR_TEXT_COLOR = `${CSS_UTILITY_PREFIX}textRed`;
 
 /**
  * Children elements
@@ -94,7 +99,7 @@ const updateUI = ({ state, selectedOption }) => {
  * Handler for when a size choice is made
  *
  * @todo Consider removing jQuery dependency
- * @this $SizeSwatchesOptions The triggered size swatch option element
+ * @this HTMLElement The triggered size swatch option element
  */
 const onSizeSelect = function() {
   const newState = updateState({
@@ -107,6 +112,7 @@ const onSizeSelect = function() {
     state: newState,
     selectedOption: this
   });
+  updateSizeInfoColor(false);
 };
 
 /**
@@ -124,6 +130,25 @@ const selectSingleSizeOptions = () => {
  * @returns {Object} The module state
  */
 export const getState = () => state;
+
+/**
+ * @param {boolean} hasError
+ */
+const updateSizeInfoColor = hasError => {
+  if (hasError) {
+    $SizeInfo.removeClass(DEFAULT_TEXT_COLOR);
+    $SizeInfo.addClass(ERROR_TEXT_COLOR);
+  } else {
+    $SizeInfo.removeClass(ERROR_TEXT_COLOR);
+    $SizeInfo.addClass(DEFAULT_TEXT_COLOR);
+  }
+};
+
+export const handleAddToCartAttempt = () => {
+  // Can't add to cart if no size is selected
+  const hasError = getState().size === null;
+  updateSizeInfoColor(hasError);
+};
 
 /**
  * Initializes functionality by setting up event binding

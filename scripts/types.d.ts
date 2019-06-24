@@ -2,7 +2,7 @@ interface Window {
   productJSON: ProductJSON;
 
   BISPopover: {
-    show: function
+    show: () => void;
   };
 }
 
@@ -28,7 +28,7 @@ interface ProductJSON {
   variants: Variant[];
   images: string[];
   featured_image: string;
-  options: string[],
+  options: string[];
   content: string;
   rating: string;
 }
@@ -57,7 +57,7 @@ interface Variant {
 }
 
 interface FeaturedImage {
-  id:  number;
+  id: number;
   product_id: number;
   position: number;
   created_at: Date;

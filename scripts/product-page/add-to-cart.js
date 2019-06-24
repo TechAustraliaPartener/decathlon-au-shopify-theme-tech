@@ -17,6 +17,7 @@ import {
   isVariantSoldOut
 } from './product-data';
 import $ from 'jquery';
+import { handleAddToCartAttempt } from './size-swatches';
 /**
  * @todo Refactor to remove jQuery dependency
  */
@@ -31,6 +32,7 @@ const availabilityState = {
   atcCopy: PRODUCT_PAGE_COPY.ATC_AVAILABLE
 };
 
+/** @type {Variant | null} */
 let currentVariant = null;
 
 export const init = () => {
@@ -57,8 +59,15 @@ export const init = () => {
 /**
  * The handler for when Add to Cart is clicked
  */
-const onAddToCartClick = () => {
-  if (isVariantOutOfStock(currentVariant)) {
+/**
+ * @param {Event} e
+ */
+const onAddToCartClick = e => {
+  if (!currentVariant) {
+    // Prevent Add To Cart form submit from going through
+    e.preventDefault();
+    handleAddToCartAttempt();
+  } else if (isVariantOutOfStock(currentVariant)) {
     if (window.BISPopover) {
       window.BISPopover.show();
     }
