@@ -82,12 +82,12 @@ const updateColorUiState = selectedOption => {
 
 export const selectFirstSwatch = () => {
   const firstAvailableVariant = availableVariants()[0];
-  if (!firstAvailableVariant) return;
-  const { color } = getVariantOptions(firstAvailableVariant);
-  const firstAvailableVariantSwatch = $ColorSwatchesOptions
-    .toArray()
-    .find(el => el.value === color);
-  if (firstAvailableVariantSwatch) firstAvailableVariantSwatch.click();
+  const color =
+    firstAvailableVariant && getVariantOptions(firstAvailableVariant).color;
+  const firstSwatch =
+    (color && $ColorSwatchesOptions.toArray().find(el => el.value === color)) ||
+    $ColorSwatchesOptions.get(0);
+  if (firstSwatch) firstSwatch.click();
 };
 
 /**
