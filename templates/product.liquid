@@ -31,6 +31,24 @@
   {% capture model_code %}{{ product.variants.first.option3 }}{% endcapture %}
 {% endif %}
 
+
+{%- assign product_images = product.images -%}
+{%- assign context_photo_delimiter = '[[contextphoto]]' -%}
+{%- assign has_context_photo = false -%}
+{%- assign feature_photo = false -%}
+
+{%- for product_image in product_images -%}
+  {% if product_image.alt contains context_photo_delimiter %}
+    {% comment %} The first context image gets used for the feature photo {% endcomment %}
+    {% if feature_photo %}
+      {% assign has_context_photo = true %}
+      {% break %}
+    {% else %}
+      {% assign feature_photo = product_image %}
+    {% endif %}
+  {% endif %}
+{%- endfor -%}
+
 <div id="ProductWrap"
      class="timber-activeProduct
             {% if product.options.size < 2 %}product-singleOption{% endif %}
@@ -91,7 +109,8 @@
   {% comment %}
     ProductMenu
   {% endcomment %}
-  {% include 'product-menu' %}
+  {% include 'product-menu' with
+    has_context_photo: has_context_photo %}
 
   {% if product_video.size > 0 %}
   <section class="de-ProductInfoSection de-ProductInfoSection--silver
@@ -158,41 +177,43 @@
     %}
   </section>
 
-  {% comment %} Back to top anchor link {% endcomment %}
-  {% include 'product-back-to-top' %}
+  {% if has_context_photo %}
 
+    {% comment %} Back to top anchor link {% endcomment %}
+    {% include 'product-back-to-top' %}
 
-  <section class="de-ProductInfoSection de-ProductInfoSection--silver
-                  de-u-pad2 de-u-overflowXNone"
-           aria-labelledby="Section-lifestyle-images">
+    <section class="de-ProductInfoSection de-ProductInfoSection--silver
+                    de-u-pad2 de-u-overflowXNone"
+            aria-labelledby="Section-lifestyle-images">
 
-    <span
-      id="product-imageGallery"
-      class="de-ProductAnchor"
-      aria-hidden="true">
-    </span>
+      <span
+        id="product-imageGallery"
+        class="de-ProductAnchor"
+        aria-hidden="true">
+      </span>
 
-    <h2 class="de-ProductInfoTitle
-               de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4
-               de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
-        id="Section-lifestyle-images">
-      <span class="visually-hidden">Product Lifestyle</span> Image Gallery
-    </h2>
-      <h2 class="de-u-textGrow2 de-u-md-hidden">
-        Image Gallery
+      <h2 class="de-ProductInfoTitle
+                de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4
+                de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
+          id="Section-lifestyle-images">
+        <span class="visually-hidden">Product Lifestyle</span> Image Gallery
       </h2>
-      <div class="ProductImageGallery de-u-fullwidth de-u-padEnds2">
-        {% comment %}
-          Both files should exist until `product-image-gallery` has been
-          approved and passed design review.
+        <h2 class="de-u-textGrow2 de-u-md-hidden">
+          Image Gallery
+        </h2>
+        <div class="ProductImageGallery de-u-fullwidth de-u-padEnds2">
+          {% comment %}
+            Both files should exist until `product-image-gallery` has been
+            approved and passed design review.
 
-          The ability to toggle between these two snippets will make forthcoming
-          reivews easier.
-        {% endcomment %}
-        {% comment %} {% include 'product-proto-image-gallery' %} {% endcomment %}
-        {% include 'product-image-gallery' %}
-      </div>
-  </section>
+            The ability to toggle between these two snippets will make forthcoming
+            reivews easier.
+          {% endcomment %}
+          {% comment %} {% include 'product-proto-image-gallery' %} {% endcomment %}
+          {% include 'product-image-gallery' %}
+        </div>
+    </section>
+  {% endif %}
 
   <section class="de-ProductInfoSection
                   de-u-md-padEnds de-u-md-padSides
