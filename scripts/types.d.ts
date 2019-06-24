@@ -1,5 +1,6 @@
 interface Window {
   productJSON: ProductJSON;
+  realReplaceState: typeof window.history.replaceState;
 
   BISPopover: {
     show: () => void;

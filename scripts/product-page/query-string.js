@@ -1,3 +1,5 @@
+// @ts-check
+
 /**
  * Query string module
  *
@@ -29,8 +31,26 @@ export const updateUrlVariant = variantId => {
     'variant',
     variantId
   );
-  window.history.pushState(null, null, updatedUrl);
+  updateUrl(updatedUrl);
 };
+
+/**
+ * @param {string} newUrl
+ */
+export const updateUrl = newUrl => {
+  window.realReplaceState({}, null, newUrl);
+};
+
+/**
+ * @param {string} newHash
+ */
+export const updateHash = newHash =>
+  // If the new hash is '#' or '', remove it entirely
+  updateUrl(
+    newHash.replace(/#$/, '') === ''
+      ? window.location.href.replace(window.location.hash, '') // URL without hash
+      : newHash
+  );
 
 /**
  * Updates or adds a parameter to a url string

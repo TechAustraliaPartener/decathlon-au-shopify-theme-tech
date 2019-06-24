@@ -1,4 +1,6 @@
+// @ts-check
 import { IS_ACTIVE_CLASS } from './constants';
+import { updateHash } from './query-string';
 
 /**
  * Throttles a function to only be called a certain interval. Does not pass
@@ -6,7 +8,6 @@ import { IS_ACTIVE_CLASS } from './constants';
  * @param {() => any} cb
  * @param {Number} interval
  * @returns {() => void}
- * @template T
  */
 const throttle = (cb, interval) => {
   let runThisTime = false;
@@ -76,7 +77,7 @@ export const init = () => {
     // Using pushState instead of window.location.hash because we don't want it to jump
     if (lastHash !== newHash) {
       lastHash = newHash;
-      window.history.pushState(null, null, lastHash);
+      updateHash(newHash);
     }
     updateLinksState();
   };

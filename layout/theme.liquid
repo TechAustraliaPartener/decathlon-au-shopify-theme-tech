@@ -173,6 +173,12 @@
 </script>
 {% endif %}
 
+<script>
+  // Adeptmind script overrides the global replaceState with a new one that only
+  // intermittently works, so this script preserves the original
+  window.realReplaceState = history.replaceState.bind(window.history)
+</script>
+
 {% comment %} {{ 'bc-sf-filter.css' | asset_url | stylesheet_tag }}{% endcomment %}
   <!-- pinterest -->
   <meta name="p:domain_verify" content="15f1bb70fdfd58ef2b29026440052233"/>
