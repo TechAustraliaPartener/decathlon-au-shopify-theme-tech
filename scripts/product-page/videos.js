@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import { CSS_PREFIX, JS_PREFIX } from './constants';
 import { $ColorSwatches } from './color-swatches';
+import { hideProductFlags, showProductFlags } from './product-flags';
 let videojs = window.videojs;
 // 960 roughly equates to the media query variable $breakpoint-lg
 const LARGE_BREAKPOINT = 960;
@@ -63,7 +64,6 @@ const initializeVideoJS = () => {
   const $viewImagesCTA = $('.js-de-view-images');
   const $watchVideoCTA = $('.js-de-watch-video');
   const $copyVideo = $('.js-de-copyVideo');
-  const $productTagLabel = $('.js-de-ProductFlag');
   const $imageCount = $('.js-de-ProductGallery-count');
 
   const getFirstVideoPlayer = () =>
@@ -85,7 +85,7 @@ const initializeVideoJS = () => {
     $watchVideoCTA.removeClass('de-u-hidden');
     $viewImagesCTA.addClass('de-u-hidden');
     $copyVideo.addClass('de-u-hidden');
-    $productTagLabel.removeClass('de-u-hidden');
+    showProductFlags();
     $imageCount.removeClass('de-u-hidden');
     // Pause Video
     pauseFirstVideoPlayer();
@@ -94,7 +94,7 @@ const initializeVideoJS = () => {
   const switchToVideo = () => {
     // Add Video
     $toggleButton.addClass('js-de-toggle');
-    $productTagLabel.addClass('de-u-hidden');
+    hideProductFlags();
     $imageCount.addClass('de-u-hidden');
     $viewImagesCTA.removeClass('de-u-hidden');
     $watchVideoCTA.addClass('de-u-hidden');
@@ -160,6 +160,7 @@ const initializeVideoJS = () => {
       if ($(window).width() >= LARGE_BREAKPOINT) {
         // Pause Video
         pauseFirstVideoPlayer();
+        showProductFlags();
       }
     }, 250);
   });
