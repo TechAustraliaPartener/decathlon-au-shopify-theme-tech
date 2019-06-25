@@ -59,7 +59,9 @@ export const IS_TRANSITIONING_CLASS = `${CSS_PREFIX}is-transitioning`;
 export const IS_OUT_OF_STOCK_CLASS = `${CSS_PREFIX}is-outofstock`;
 export const IS_SOLD_OUT_CLASS = `${CSS_PREFIX}is-soldout`;
 export const VALIDATION_MESSAGE_CLASS = `${JS_PREFIX}validation-message`;
-export const ADD_TO_CART_CLASS = `${JS_PREFIX}AddToCart`;
+/**
+ * @todo Move module-only constants to specific module
+ */
 export const PRICE_CLASS = `${JS_PREFIX}ProductPrice`;
 export const COMPARE_PRICE_CLASS = `${JS_PREFIX}ComparePrice-text`;
 /**
@@ -76,11 +78,27 @@ export const IS_HIDDEN_CLASS = `${CSS_UTILITY_PREFIX}hidden`;
  */
 
 export const PRODUCT_PAGE_COPY = {
-  ATC_AVAILABLE: 'Add to Cart',
-  ATC_SOLD_OUT: 'Sold Out',
-  ATC_OUT_OF_STOCK: 'Email Me When In Stock',
-  VALIDATION_SOLD_OUT: 'New model in design',
-  VALIDATION_OUT_OF_STOCK: 'Out of stock'
+  ADD_TO_CART: 'Add to Cart',
+  SOLD_OUT: 'Sold Out',
+  EMAIL_ME_WHEN_IN_STOCK: 'Email Me When In Stock',
+  OUT_OF_STOCK: 'Out of Stock',
+  NEW_MODEL_IN_DESIGN: 'New model in design',
+  OUT_OF_STOCK_RECENTLY_CHANGED: 'Out of stock. Inventory recently changed.',
+  INVENTORY_RECENTLY_CHANGED: 'Inventory recently changed',
+  ALL_AVAILABLE_PRODUCTS_IN_CART: 'All available products are in your cart.',
+  /**
+   * @param {string | number} quantity
+   * @returns {string}
+   */
+  allInStockProductsInYourCart: quantity =>
+    `All in stock products are now in your cart. ${quantity} ${
+      Number(quantity) === 1 ? 'was' : 'were'
+    } added.`,
+  /**
+   * @param {string | number} quantity
+   * @returns {string}
+   */
+  limitedQuantityLeft: quantity => `Only ${quantity} left`
 };
 
 /*

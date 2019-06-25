@@ -283,7 +283,10 @@ var ajaxCart = (function(module, $) {
 
     if (!!data.message) {
       if (data.status == 422) {
-        $formContainer.after('<div class="errors qty-error">'+ data.description +'</div>')
+        /**
+         * @todo Can we remove the jQuery dependency?
+         */
+        $body.trigger('addItemError.ajaxCart', data);
       }
     }
   };

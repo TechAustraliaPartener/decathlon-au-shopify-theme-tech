@@ -18,6 +18,11 @@ const SIZE_OPTION = `option${SIZE_INDEX + 1}`;
 const MODEL_OPTION = `option${MODEL_INDEX + 1}`;
 
 /**
+ * @todo Make `MIN_QUANTITY_THRESHOLD` threshold dynamic based on theme settings
+ */
+const MIN_QUANTITY_THRESHOLD = 5;
+
+/**
  * Searches for a given tag in the product tags
  *
  * @param {string} tag The tag to search for
@@ -230,3 +235,11 @@ export const isVariantOutOfStock = variant =>
  */
 export const isVariantSoldOut = variant =>
   !isVariantAvailable(variant) && isEndOfLifeProduct();
+
+/**
+ * Helper to determine if a given variant has quantity above the minimum threshold
+ * @param {Variant} variant
+ * @returns {boolean}
+ */
+export const variantHasSufficientQuantity = variant =>
+  variant.inventory_quantity >= MIN_QUANTITY_THRESHOLD;
