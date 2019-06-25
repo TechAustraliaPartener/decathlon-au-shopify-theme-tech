@@ -1,3 +1,4 @@
+// @ts-check
 /**
  * Set to `true` to debug state helper module
  */
@@ -14,40 +15,55 @@ const DEBUG = false;
 /**
  * Creates a new scoped state object
  *
- * @param {Object} [initialState={}] The initial state
- * @returns {Object} API for interacting with state
+ * @template T
+ * @param {T} initialState The initial state
  */
-export const createState = (initialState = {}) => {
+export const createState = initialState => {
   /**
    * Set initial state
    */
   let state = initialState;
 
+  /** @typedef {(newState: T) => void} CallBack */
+
+  /** @type {CallBack[]} */
+  const listeners = [];
+
   DEBUG && console.log('INITIAL state:', state);
 
   /**
-   * Retreives the module state
+   * Retrieves the module state
    *
-   * @returns {Object} The module state
+   * @returns {T} The module state
    */
   const getState = () => state;
 
   /**
    * Updates the module state
    *
-   * @param {Object} [newState={}] The updated state
+   * @param {Partial<T>} newState The updated state
    */
-  const updateState = (newState = {}) => {
+  const updateState = newState => {
     state = {
       ...state,
       ...newState
     };
 
+    listeners.forEach(listener => listener(state));
+
     DEBUG && console.log('NEW state', state);
+  };
+
+  /**
+   * @param {CallBack} cb
+   */
+  const onChange = cb => {
+    listeners.push(cb);
   };
 
   return {
     getState,
-    updateState
+    updateState,
+    onChange
   };
 };

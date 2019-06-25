@@ -71,7 +71,7 @@ const hidePickupOption = () => setPickupOptionVisibility(false);
 
 /**
  * Update the user location portion of the drawer
- * @param {import('./api').UserLocationData} userLocationData
+ * @param {Partial<import('./api').UserLocationData>} userLocationData
  */
 export const updateUserLocationUI = ({ stateCode, city }) => {
   const { userLocationCityEl, userLocationStateEl } = getUIElements();
@@ -202,7 +202,7 @@ export const hideWaitingForLocation = () => showWaitingForLocation(true);
  *
  * @param {Object} params The Decathlon stores and user's location
  * @param {Array} params.stores A collection of store data
- * @param {import('./api').UserLocationData} params.userLocationData
+ * @param {import('./api').UserLocationData | {}} params.userLocationData
  * @param {Object | null} [params.selectedVariant] A selected product variant
  */
 const updateDrawerUI = ({ stores, userLocationData, selectedVariant }) => {
@@ -241,7 +241,7 @@ const updatePageUI = ({ stores, selectedVariant }) => {
  * Master function for updating product fulfillment options block in buybox
  * and the drawer content
  * @param {Object} params
- * @param {string} [params.id] - A variant ID
+ * @param {number} [params.id] - A variant ID
  * @param {string} [params.color] - A variant color
  * @param {string} [params.size] - A variant size
  */

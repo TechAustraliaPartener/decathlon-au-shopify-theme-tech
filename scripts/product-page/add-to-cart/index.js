@@ -10,11 +10,7 @@
  * Updates Add to cart button state, title and validation message
  */
 import { VALIDATION_MESSAGE_CLASS, JS_PREFIX } from '../constants';
-import {
-  getSelectedVariant,
-  isVariantOutOfStock,
-  getVariantOptions
-} from '../product-data';
+import { isVariantOutOfStock } from '../product-data';
 import { createState } from '../create-state';
 import {
   getUIState,
@@ -26,6 +22,7 @@ import { handleAddToCartAttempt } from '../size-swatches';
  * @todo Refactor to remove jQuery dependency
  */
 import $ from 'jquery';
+import { isErrorScenario1 } from './error-scenarios';
 
 const MODULE_NAME = 'AddToCart';
 
@@ -82,42 +79,45 @@ const DEFAULT_MODULE_STATE = {
 // Create the module state
 const state = createState(DEFAULT_MODULE_STATE);
 
-/**
- * Helper to type the `state.getState()` return as a `ModuleState` type
- *
- * @todo Refactor to remove wrapper function
- * @see  https://github.com/decathlon-usa/shopify-theme-decathlonusa/pull/400#discussion_r296424124
- * @returns {ModuleState}
- */
-const getModuleState = () => state.getState();
+/** @typedef {() => void} CallBack */
+/** @type {CallBack[]} */
+const variantModificationListeners = [];
 
 /**
- * Helper to type the `newState` param as a `ModuleState` type
- *
- * @todo Refactor to remove wrapper function
- * @see  https://github.com/decathlon-usa/shopify-theme-decathlonusa/pull/400#discussion_r296424124
- * @param {ModuleState} newState
+ * Subscribe to modifications to the global productJSON.variants
+ * In this case the modifications are changes in variant quantities
+ * @param {CallBack} cb
  */
-const setModuleState = newState => state.updateState(newState);
+export const onVariantModification = cb =>
+  variantModificationListeners.push(cb);
+
+const handleVariantModification = () => {
+  variantModificationListeners.forEach(listener => listener());
+};
 
 /**
  * @todo Remove jQuery dependency, if possible
  */
 $('body').on('addItemError.ajaxCart', function(e, { description }) {
-  const currentVariant = getModuleState().currentVariant;
+  const currentVariant = state.getState().currentVariant;
 
-  if (!description || !currentVariant) {
-    return;
-  }
+  if (!description || !currentVariant) return;
 
   // Update the state with the proper error message/UI state
-  setModuleState({
+  state.updateState({
     ...DEFAULT_MODULE_STATE,
     ...getShopifyErrorUIState(description),
     currentVariant
   });
 
-  updateUI(getVariantOptions(currentVariant));
+  if (isErrorScenario1(description)) {
+    // Entirely sold out
+    currentVariant.available = false;
+    currentVariant.inventory_quantity = 0;
+    handleVariantModification();
+  }
+
+  render(state.getState());
 });
 
 /**
@@ -125,7 +125,7 @@ $('body').on('addItemError.ajaxCart', function(e, { description }) {
  * @param {Event} event
  */
 const onAddToCartClick = event => {
-  const { currentVariant } = getModuleState();
+  const { currentVariant } = state.getState();
 
   if (!currentVariant) {
     // Prevent Add To Cart form submit from going through
@@ -140,60 +140,39 @@ const onAddToCartClick = event => {
     }
   }
 
-  // We need to update the UI anytime the ATC button is clicked
-  updateUI(getVariantOptions(currentVariant));
+  // Reset the state to the default for that variant
+  // (clears out ajax shopify error state)
+  state.updateState(getUIState(currentVariant));
 };
 
 /**
- * Updates the Add To Cart UI
- *
- * Updates the ATC button and validation (error) messages.
- * Depends on the current size/color combination.
- * Will be triggered if size or color changes.
- * Will also be called when a user clicks the ATC button.
- *
- * @todo Consider a refactor to take in a `Variant` as the argument.
- * This would apply to all UI modules + the `product-page/index` module
- * @see https://github.com/decathlon-usa/shopify-theme-decathlonusa/pull/400#discussion_r296427385
- *
- * @todo Is `updateUI()` being called too many times unnecessarily?
- * @see https://testing-decathlon-usa.myshopify.com/products/10-l-fast-hiking-backpack-helium?variant=12571110015048
- *
- * @param {object} obj The state data object
- * @param {string} obj.size Value of the selected size option
- * @param {string} obj.color Value of the selected color option
+ * To be called when a different variant is selected.
+ * Resets the state, including resetting ajax error messages
+ * @param {Variant} newVariant
  */
-export const updateUI = ({ size, color }) => {
-  const currentVariant = getSelectedVariant({ size, color });
-  const { isInAddToCartErrorState } = getModuleState();
+export const onVariantSelect = newVariant => {
+  state.updateState({
+    ...DEFAULT_MODULE_STATE,
+    ...getUIState(newVariant),
+    currentVariant: newVariant
+  });
+};
 
-  // Only update state if the ATC is not an AJAX error state.
-  // When in an ATC AJAX error state, allow UI to reflect the error state.
-  if (!isInAddToCartErrorState) {
-    setModuleState({
-      ...DEFAULT_MODULE_STATE,
-      ...getUIState(currentVariant),
-      currentVariant
-    });
-  }
-
-  const {
-    isAddToCartButtonDisabled,
-    validationText,
-    addToCartButtonText
-  } = getModuleState();
-
-  // Update the ATC UI visual state based off module state
+/**
+ * Makes the DOM reflect the state
+ * @param {ModuleState} state
+ */
+const render = ({
+  isAddToCartButtonDisabled,
+  validationText,
+  addToCartButtonText
+}) => {
   addToCartButtonEl.disabled = isAddToCartButtonDisabled;
   validationTextEl.textContent = validationText;
   addToCartButtonTextEl.textContent = addToCartButtonText;
-
-  // Finally reset the error states
-  setModuleState({
-    ...DEFAULT_MODULE_STATE,
-    currentVariant
-  });
 };
+
+state.onChange(render);
 
 /**
  * Initialize the ATC UI

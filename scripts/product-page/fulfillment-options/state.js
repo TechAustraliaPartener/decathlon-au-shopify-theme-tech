@@ -19,15 +19,23 @@ import { UPDATE, STORES_UPDATE, USER_LOCATION_DATA_UPDATE } from './constants';
 export const fulfillmentOptionsStateEmitter = new Mitt();
 
 /**
+ * @typedef FulfillmentOptionsState
+ * @property {Object[]} stores
+ * @property {Partial<import('./api').UserLocationData>} userLocationData
+ */
+
+/**
  * Module for storing, updating, and retrieving store and user location data
  */
 const {
   getState: getFulfillmentOptionState,
   updateState: updateFulfillmentOptionState
-} = createState({
-  stores: [],
-  userLocationData: {}
-});
+} = createState(
+  /** @type {FulfillmentOptionsState} */ ({
+    stores: [],
+    userLocationData: {}
+  })
+);
 
 /**
  * Dispatch an event when a state update has been submitted and a portion of

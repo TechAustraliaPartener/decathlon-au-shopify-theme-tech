@@ -1,3 +1,4 @@
+// @ts-check
 import './buybox';
 import { init as carouselInit, updateUI as updateCarouselUI } from './carousel';
 import { init as carouselContextInit } from './carousel-context';
@@ -20,13 +21,10 @@ import { updateUI as updateMasterSelectUI } from './master-select';
 import { updateUI as updatePriceUI } from './price';
 import { updateUI as updateModelCodeUI } from './model-code';
 import { updateUI as updateProductFlagsUI } from './product-flags';
-import {
-  init as addToCartInit,
-  updateUI as updateAddToCartUI
-} from './add-to-cart';
+import * as addToCart from './add-to-cart';
 import { init as drawerInit } from './drawer';
 import { getUrlVariant } from './query-string';
-import { variantOptions } from './product-data';
+import { variantOptions, getSelectedVariant } from './product-data';
 import { init as stickyInit } from './sticky-nav';
 import { init as storePickupInit } from './fulfillment-options';
 
@@ -48,7 +46,11 @@ const getCombinedState = () => ({
 const setUpListeners = () => {
   $SizeSwatches.on('SizeSwatches:select', onOptionSelect);
   $ColorSwatches.on('ColorSwatches:select', onOptionSelect);
+  addToCart.onVariantModification(() => updateUI(getCombinedState()));
 };
+
+/** @type {Variant | null} */
+let prevVariant = null;
 
 /**
  * The handler for when an option is selected
@@ -58,6 +60,13 @@ const onOptionSelect = () => {
   console.log('New State', getCombinedState());
   // Keep the UI up to date
   updateUI(getCombinedState());
+  const newVariant = getSelectedVariant(getCombinedState());
+  const variantHasChanged =
+    (prevVariant && prevVariant.id) !== (newVariant && newVariant.id);
+  if (variantHasChanged) {
+    addToCart.onVariantSelect(newVariant);
+  }
+  prevVariant = newVariant;
 };
 
 /**
@@ -75,7 +84,6 @@ const updateUI = state => {
   if (color && size) {
     updateMasterSelectUI(state);
     updatePriceUI(state);
-    updateAddToCartUI(state);
     updateModelCodeUI(state);
     updateProductFlagsUI(state);
     /**
@@ -96,9 +104,11 @@ const selectUrlVariant = () => {
   const urlVariant = getUrlVariant();
   if (urlVariant) {
     const activeOptions = variantOptions(urlVariant);
+    /** @type {HTMLElement} */
     const targetColorSwatch = document.querySelector(
       `.js-de-ColorSwatches-option[value='${activeOptions.color}']`
     );
+    /** @type {HTMLElement} */
     const targetSizeSwatch = document.querySelector(
       `.js-de-SizeSwatches-option[value='${activeOptions.size}']`
     );
@@ -125,7 +135,7 @@ const init = async () => {
   drawerInit();
   carouselInit();
   carouselContextInit();
-  addToCartInit();
+  addToCart.init();
   accordionInit();
   const urlVariant = selectUrlVariant();
   stickyInit();
@@ -135,7 +145,7 @@ const init = async () => {
    * The updateFulfillmentOptionsUI function will be undefined in the master
    * updateUI function on page load, so call here as soon as it's defined
    */
-  updateFulfillmentOptionsUI({ id: urlVariant });
+  if (urlVariant) updateFulfillmentOptionsUI({ id: urlVariant });
   /**
    * Keep `updateUI()` last allowing all other initializations first
    */

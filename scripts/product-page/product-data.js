@@ -36,7 +36,7 @@ const isTagFound = tag => productsJSON.tags.includes(tag);
  * @param {Object} obj The selected options data
  * @param {string} [obj.size] The selected size option
  * @param {string} [obj.color] The selected color option
- * @param {string} [obj.id] A product variant ID
+ * @param {number} [obj.id] A product variant ID
  * @param {Array} [obj.source = variantsJSON] The array to filter to find a
  * product variant
  * @returns {Variant | undefined} A product variant object
@@ -63,7 +63,7 @@ export const getSelectedVariant = ({
  * @param {Object} obj The selected options data
  * @param {string} [obj.size] The selected size option
  * @param {string} [obj.color] The selected color option
- * @param {string} [obj.id] A product variant ID
+ * @param {number} [obj.id] A product variant ID
  * @returns {Object|undefined} A product variant object
  */
 export const getAvailableSelectedVariant = ({ size, id, color }) =>
