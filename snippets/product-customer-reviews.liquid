@@ -116,8 +116,31 @@
     </a>
 
     {% unless total_item_count == 0 %}
+      {% assign product_image = product.featured_image %}
+      {% capture image_srcset %}
+        {{ product_image | img_url: "20x", format: "pjpg" }} 20w,
+        {{ product_image | img_url: "380x", format: "pjpg" }} 380w,
+        {{ product_image | img_url: "420x", format: "pjpg" }} 420w,
+        {{ product_image | img_url: "500x", format: "pjpg" }} 500w,
+        {{ product_image | img_url: "560x", format: "pjpg" }} 560w,
+        {{ product_image | img_url: "660x", format: "pjpg" }} 660w,
+        {{ product_image | img_url: "720x", format: "pjpg" }} 720w
+      {% endcapture %}
+      {% capture image_sizes %}
+        (max-width: 639px) 20px,
+        (max-width: 780px) 420px,
+        (max-width: 960px) 500px,
+        (max-width: 1080px) 380px,
+        (max-width: 1280px) 420px,
+        (max-width: 1480px) 500px,
+        (max-width: 1680px) 560px,
+        (max-width: 2080px) 660px,
+        (max-width: 2400px) 720px
+      {% endcapture %}
       <img
         src="{{ product.featured_image | img_url: 'large' }}"
+        srcset="{{ image_srcset }}"
+        sizes="{{ image_sizes }}"
         class="de-ReviewsContainer-featuredImage de-u-spaceTop6"
         alt="{{ product.featured_image.alt }}">
     {% endunless %}
