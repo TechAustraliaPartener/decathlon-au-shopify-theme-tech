@@ -17,6 +17,8 @@ const COLOR_OPTION = `option${COLOR_INDEX + 1}`;
 const SIZE_OPTION = `option${SIZE_INDEX + 1}`;
 const MODEL_OPTION = `option${MODEL_INDEX + 1}`;
 
+export { variantsJSON as variants };
+
 /**
  * @todo Make `MIN_QUANTITY_THRESHOLD` threshold dynamic based on theme settings
  */

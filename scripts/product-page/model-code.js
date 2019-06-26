@@ -1,3 +1,4 @@
+// @ts-check
 /**
  * Model code module
  *
@@ -5,7 +6,12 @@
  */
 
 import { JS_PREFIX, IS_HIDDEN_CLASS } from './constants';
-import { getSelectedVariant, getModelCodeFromVariant } from './product-data';
+import {
+  getSelectedVariant,
+  getModelCodeFromVariant,
+  variants,
+  getVariantOptions
+} from './product-data';
 
 // Cache the Model Code DOM elements and array
 const modelCodeEls = document.querySelectorAll(`.${JS_PREFIX}ModelCode`);
@@ -24,7 +30,9 @@ const modelCodeTextElsArray = [...modelCodeTextEls];
  */
 export const updateUI = ({ size, color }) => {
   const modelCode = getModelCodeFromVariant(
-    getSelectedVariant({ size, color })
+    color && size
+      ? getSelectedVariant({ size, color })
+      : variants.find(v => getVariantOptions(v).color === color)
   );
 
   if (modelCode) {

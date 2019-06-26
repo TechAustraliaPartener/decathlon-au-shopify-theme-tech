@@ -19,7 +19,7 @@ import { reviewsInit } from './ratings-reviews';
 import { updateOptionStates } from './option-states';
 import { updateUI as updateMasterSelectUI } from './master-select';
 import { updateUI as updatePriceUI } from './price';
-import { updateUI as updateModelCodeUI } from './model-code';
+import * as modelCode from './model-code';
 import { updateUI as updateProductFlagsUI } from './product-flags';
 import * as addToCart from './add-to-cart';
 import { init as drawerInit } from './drawer';
@@ -76,6 +76,10 @@ const onOptionSelect = () => {
  */
 const updateUI = state => {
   const { color, size } = state;
+
+  // Model code can be updated without size
+  modelCode.updateUI(state);
+
   /**
    * Update the MasterSelect and UI displays if both size & color have been set.
    * The MasterSelect `<select>` input uses variant IDs as its values.
@@ -84,7 +88,6 @@ const updateUI = state => {
   if (color && size) {
     updateMasterSelectUI(state);
     updatePriceUI(state);
-    updateModelCodeUI(state);
     updateProductFlagsUI(state);
     /**
      * The updateFulfillmentOptionsUI function will be undefined on page load,

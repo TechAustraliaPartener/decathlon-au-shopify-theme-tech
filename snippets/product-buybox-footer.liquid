@@ -8,10 +8,10 @@
   {% endif %}
 {% endfor %}
 
-{% if product.selected_variant and option_index != blank %}
-  {% if option_index == 1 %}{% assign current_model = product.selected_variant.option1 %}{% endif %}
-  {% if option_index == 2 %}{% assign current_model = product.selected_variant.option2 %}{% endif %}
-  {% if option_index == 3 %}{% assign current_model = product.selected_variant.option3 %}{% endif %}
+{% if product.selected_or_first_available_variant and option_index != blank %}
+  {% if option_index == 1 %}{% assign current_model = product.selected_or_first_available_variant.option1 %}{% endif %}
+  {% if option_index == 2 %}{% assign current_model = product.selected_or_first_available_variant.option2 %}{% endif %}
+  {% if option_index == 3 %}{% assign current_model = product.selected_or_first_available_variant.option3 %}{% endif %}
 {% else %}
   {% assign current_model = '' %}
 {% endif %}
