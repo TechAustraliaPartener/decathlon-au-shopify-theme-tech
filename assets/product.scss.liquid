@@ -1,11 +1,4 @@
 /**
- * @TODO
- * The final Product Page CSS will be copied/pasted into this file
- *
- * Any shared CSS styles can be added to this file from the beginning.
- */
-
-/**
  * Color Palette
  *
  * Variable names are based on similar CSS extended color keyword values.
@@ -13,18 +6,11 @@
  * @see https://www.w3.org/TR/2018/REC-css-color-3-20180619/#svg-color
  */
 
-/**
- * @TODO
- * 1. Find and replace duplicate colors with different names
- *    $color-light-gray and $color
- */
-
 $color-black: #2a2b2c;
 $color-blue: #0082c3;
 $color-darkgray: #464646;
 $color-gray: #acb3b8;
 $color-light-gray: rgba(172, 179, 184, 0.5);
-$color-gray50: rgba(172, 179, 184, 0.5);
 $color-lime: #cbfb00;
 $color-silver: #f3f3f3;
 $color-white: #fff;
@@ -91,12 +77,12 @@ figure {
  */
 @media (max-width: $breakpoint-lg - .01 /* 1 */) {
   .de-Wrapper--fullwidth {
-    width: 100vw;
-    position: relative;
     left: 50%;
-    right: 50%;
     margin-left: -50vw;
     margin-right: -50vw;
+    position: relative;
+    right: 50%;
+    width: 100vw;
   }
 }
 
@@ -106,12 +92,12 @@ figure {
 
 .de-ProductFlag {
   line-height: 1.2;
-  text-transform: uppercase;
   padding: 0.38125em 0.75375em;
-  z-index: 1;
   position: absolute;
-  top: 0;
   right: 0;
+  text-transform: uppercase;
+  top: 0;
+  z-index: 1;
 }
 
 /**
@@ -134,8 +120,8 @@ figure {
 
 .de-ProductMenu {
   background-color: $color-white;
-  border-top: $border-width-sm solid $color-gray50;
-  border-bottom: $border-width-sm solid $color-gray50;
+  border-bottom: $border-width-sm solid $color-light-gray;
+  border-top: $border-width-sm solid $color-light-gray;
   display: none; /* 3 */
   justify-content: center;
   position: sticky;
@@ -236,8 +222,8 @@ figure {
 
 .de-ProductInfoTitle {
   border-bottom: $border-width-lg solid $color-lime;
-  padding-bottom: 5px;
   margin: 0;
+  padding-bottom: 5px;
 }
 
 /**
@@ -282,9 +268,9 @@ figure {
 }
 
 .StorePickup-tile {
+  border-bottom: $border-width-sm solid $color-silver;
   margin-bottom: 0.75rem;
   padding-bottom: 0.75rem;
-  border-bottom: $border-width-sm solid $color-silver;
 }
 
 .StorePickup-tile:last-of-type {
@@ -311,25 +297,27 @@ figure {
 .de-u-textSelectNone {
   -moz-user-select: none !important;
   -ms-user-select: none !important;
-  user-select: none !important;
   -webkit-user-select: none !important;
+  user-select: none !important;
 }
 
+/**
+ * @TODO
+ * 1. This probably doesn't need to be a utilty class any more. Find usage
+ *    and investigate if `de-Wrapper--fullwidth` can be used instead.
+ */
+
 .de-u-fullwidth {
-  width: 100vw;
-  position: relative;
   left: 50%;
-  right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
+  position: relative;
+  right: 50%;
+  width: 100vw;
 }
 
 .de-u-overflowYHidden {
   overflow-y: hidden !important;
-}
-
-.de-u-cursorGrab {
-  cursor: grab;
 }
 
 .de-u-overflowXNone {
@@ -347,10 +335,13 @@ figure {
   cursor: pointer; /* 1 */
 }
 
+.de-u-cursorGrab {
+  cursor: grab;
+}
+
 .de-u-textUnderline {
   text-decoration: underline !important;
 }
-
 
 /**
  * ProductInformation
@@ -402,6 +393,12 @@ figure {
   .esc-size-guide--heading {
     text-transform: uppercase;
   }
+
+  /**
+   * @TODO
+   * 1. It it best to avoid tag selectors when possible. Investigate
+   * opportunities for replacing `p` with class name selector
+   */
 
   p,
   .esc-size-guide--title,
@@ -474,8 +471,8 @@ $ProductBackToTop-border-radius: 1.75; /* 2 */
 }
 
 .ProductBackToTop-middle:focus::after {
-  bottom: $border-width-lg;
   border-bottom: $border-width-lg solid $color-darkgray;
+  bottom: $border-width-lg;
   content: "";
   display: block;
   margin: 0 auto;
@@ -668,7 +665,7 @@ $button-background-hover: #429dd7;
  * ProductTitleLockup
  */
 
- .de-ProductTitleLockup {
+.de-ProductTitleLockup {
   position: relative;
 }
 
@@ -794,15 +791,14 @@ $button-background-hover: #429dd7;
 }
 
 .de-Accordion-indicator {
+  font-size: calc(2msu * 1em);
   transform-origin: center;
   transition: 0.2s linear transform;
-  font-size: calc(2msu * 1em);
 }
 
 .de-Accordion.de-is-open .de-Accordion-indicator {
   transform: rotate(-45deg);
 }
-
 
 .de-ReviewSummary {
   border-bottom: $border-width-sm solid $color-silver;
@@ -813,29 +809,29 @@ $button-background-hover: #429dd7;
  * Consider converting this into a pattern in the future.
  */
 
- .de-StarRating,
- .de-StarRating-fill {
-   background-position: left;
-   background-repeat: no-repeat;
-   background-size: auto 100%;
- }
+.de-StarRating,
+.de-StarRating-fill {
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+}
 
- .de-StarRating {
-   background-image: url("stars.svg");
-   height: 1.2em;
-   position: relative;
-   width: 6em;
-   margin: 0;
- }
+.de-StarRating {
+  background-image: url("stars.svg");
+  height: 1.2em;
+  position: relative;
+  margin: 0;
+  width: 6em;
+}
 
- .de-StarRating-fill {
-   background-image: url("stars-fill.svg");
-   height: 100%;
-   left: 0;
-   position: absolute;
-   top: 0;
-   width: 100%;
- }
+.de-StarRating-fill {
+  background-image: url("stars-fill.svg");
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
 
 /**
  * ReviewMatrix
@@ -876,14 +872,14 @@ $button-background-hover: #429dd7;
  */
 
 .de-CustomerReview-response {
-  padding-left: 1.424rem; /* 1 */
   border-left: $border-width-lg solid $color-lime;
+  padding-left: 1.424rem; /* 1 */
 }
 
 .de-CustomerReview-title {
+  align-items: baseline;
   display: flex;
   flex-direction: column;
-  align-items: baseline;
 }
 
 .de-is-inPageFlow .de-CustomerReview-title {
@@ -897,9 +893,10 @@ $button-background-hover: #429dd7;
     flex-basis: auto;
     width: 50%;
   }
+
   @media (min-width: $breakpoint-lg) {
-    width: 33.33333%;
     padding-right: 1rem;
+    width: 33.33333%;
   }
 }
 
@@ -918,10 +915,11 @@ $button-background-hover: #429dd7;
 .de-is-inPageFlow .de-ReviewsContainer-reviews {
   @media (min-width: $breakpoint-md) {
     flex-basis: auto;
-    width: 50%;
-    padding-top: 0;
     padding-left: 2.027rem; /* 1 */
+    padding-top: 0;
+    width: 50%;
   }
+
   @media (min-width: $breakpoint-lg) {
     width: 66.66667%;
   }
@@ -952,12 +950,19 @@ $button-background-hover: #429dd7;
  */
 
  .de-ProductPhoto {
-  position: relative;
   overflow: hidden;
+  position: relative;
 }
 
 .de-watch-video-button {
   cursor: pointer;
+
+  /**
+   * @TODO
+   * 1. It it best to avoid tag selectors when possible. Investigate
+   * opportunities for replacing `svg` with class name selector
+   */
+
   svg {
     vertical-align: middle;
   }
@@ -1057,16 +1062,15 @@ $drawer-max-width: 43.333%; /* 1 */
   background-color: $color-white;
   height: 100%;
   max-width: 90%;
-  right: 0;
   padding-top: $header-height-sm; /* 1 */
   position: fixed; /* 2 */
+  right: 0;
   top: 0;
   transform: translateX(100vw); /* 3 */
   transition: transform $transition-speed-normal $transition-easing-smooth;
   width: 100vw;
   z-index: 2000;
 }
-
 
 @media (min-width: $breakpoint-md) {
   .de-Drawer:not(.de-is-inPageFlow) .de-Drawer-contentWrapper {
@@ -1193,11 +1197,11 @@ $drawer-max-width: 43.333%; /* 1 */
 }
 
 /*
- * States
+ * State Classes
  */
 
 /*
- * 1. Prevents unwanted scrolling of content covered by `Drawer`
+ * 1. Prevents unwanted scrolling of content
  */
 
 .de-content-is-fixed {

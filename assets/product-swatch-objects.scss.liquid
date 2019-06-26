@@ -41,14 +41,13 @@ $breakpoint-xl: 80em;
  * Default width for each swatch selector. Used for flex fallback and in grid
  * layout used on small and medium screens
  */
+
 $swatchObjects-basis-value: 88px;
 
 /**
  * @pattern SwatchObjects
  * Consider converting this into a pattern in the future.
- */
-
-/**
+ *
  * 1. Provides suitable layout for browsers that do not support Grid
  * 2. Creates overflow scrolling for small screens
  * 3. Makes scrolling buttery smooth
@@ -58,10 +57,10 @@ $swatchObjects-basis-value: 88px;
 $swatchObjects-item-unavailable-opacity: 0.4;
 
 .de-SwatchObjects {
+  -webkit-overflow-scrolling: touch; /* 4 */
   display: flex; /* 1 */
   overflow-x: scroll; /* 2 */
   padding-left: 1rem; /* 3 */
-  -webkit-overflow-scrolling: touch; /* 4 */
   z-index: 1;
 }
 
@@ -94,12 +93,13 @@ $swatchObjects-item-unavailable-opacity: 0.4;
      * With an offset of 0px, N items will fit on the page,
      * and the N+1 item will be hidden just past the screen edge
      */
+
     $offset: 50px;
-    // $offset: 0px;
 
     /*
      * Default Swatch Sizing for large screens
      */
+
     @media (max-width: $breakpoint-lg - .01) {
       grid-auto-columns: minmax(70px, 1fr);
     }
@@ -108,17 +108,24 @@ $swatchObjects-item-unavailable-opacity: 0.4;
      * It is actually specified in rems, but we can't use calc in media queries
      * so this is the px approximation
      */
+
     $container-padding-left: 16px;
 
     $min: 2;
 
-    // More than 9 is not necessary because then it switches to the large screen breakpoint
+    /**
+    * More than 9 is not necessary because then it switches to the
+    * large screen breakpoint
+    */
+
     $max: 9;
 
     /*
-     * Generate a bunch of media queries to fully show N items plus a partial item
-     * This allows us to show a different number of items depending on the screen width
+     * Generate a bunch of media queries to fully show N items plus a partial
+     * item. This allows us to show a different number of items depending
+     * on the screen width
      */
+
     @for $i from $min through $max {
       // Sass won't let me loop from max to min, so this is my workaround
       $n: $max + $min - $i;
@@ -194,9 +201,9 @@ $swatchObjects-item-unavailable-opacity: 0.4;
   cursor: pointer;
   display: flex; /* 1 */
   flex-basis: $swatchObjects-basis-value; /* 2 */
-  min-width: 72px; /* 2 */
   margin-bottom: 8px;
   margin-right: 8px;
+  min-width: 72px; /* 2 */
   overflow: hidden; /* 5 */
   position: relative; /* 3 */
   user-select: none; /* 4 */
@@ -227,16 +234,16 @@ $swatchObjects-item-unavailable-opacity: 0.4;
  */
 
 .de-SwatchObjects--color {
-  display: block;
   border: $border-width-sm solid $color-white;
+  display: block;
   height: 100%;
   margin: 0 auto;
   padding: 0.5em;
 }
 
 .de-SwatchObjects--color.de-is-soldout {
-  color: $color-gray;
   border: $border-width-sm solid $color-gray;
+  color: $color-gray;
   opacity: $swatchObjects-item-unavailable-opacity;
 }
 
@@ -246,14 +253,14 @@ $swatchObjects-item-unavailable-opacity: 0.4;
  */
 
 .de-SwatchObjects--color.de-is-soldout::before {
+  background: linear-gradient(to left top, transparent 51.5%, currentColor 43.5%, currentColor 52%, transparent 45.5%);
+  bottom: -1.65em; /* 1 */
   content: '';
-  position: absolute;
   left: -1.3em; /* 1 */
+  pointer-events: none;
+  position: absolute;
   right: -0.25em; /* 1 */
   top: 0; /* 1 */
-  bottom: -1.65em; /* 1 */
-  background: linear-gradient(to left top, transparent 51.5%, currentColor 43.5%, currentColor 52%, transparent 45.5%);
-  pointer-events: none;
 }
 
 .de-SwatchObjects--color:focus:not(.de-is-active) {
@@ -262,8 +269,8 @@ $swatchObjects-item-unavailable-opacity: 0.4;
 }
 
 .de-SwatchObjects-noimage {
-  width: 100%;
   height: 100%;
+  width: 100%;
 }
 
 /**
@@ -301,8 +308,8 @@ $swatchObjects-item-unavailable-opacity: 0.4;
   border: $border-width-sm solid $color-darkgray;
   display: flex;
   height: 48px; /* 1 */
-  line-height: 1.2;
   justify-content: center;
+  line-height: 1.2;
 }
 
 /**
