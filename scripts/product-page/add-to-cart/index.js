@@ -15,6 +15,7 @@ import { createState } from '../create-state';
 import {
   getUIState,
   getShopifyErrorUIState,
+  getQuantityFromMessage,
   DEFAULT_UI_STATE
 } from './ui-state';
 import { handleAddToCartAttempt } from '../size-swatches';
@@ -22,31 +23,27 @@ import { handleAddToCartAttempt } from '../size-swatches';
  * @todo Refactor to remove jQuery dependency
  */
 import $ from 'jquery';
-import { isErrorScenario1 } from './error-scenarios';
+import { isErrorScenario1, isErrorScenario2 } from './error-scenarios';
 
 const MODULE_NAME = 'AddToCart';
+const ADD_TO_CART_PREFIX = `.${JS_PREFIX}${MODULE_NAME}-`;
 
 /**
  * UI elements
  */
 
-/**
- * @type {HTMLElement}
- */
+/** @type {HTMLInputElement} */
+const quantityInputEl = document.querySelector(`${ADD_TO_CART_PREFIX}quantity`);
+
+/** @type {HTMLElement} */
 const validationTextEl = document.querySelector(`.${VALIDATION_MESSAGE_CLASS}`);
 
-/**
- * @type {HTMLButtonElement}
- */
-const addToCartButtonEl = document.querySelector(
-  `.${JS_PREFIX}${MODULE_NAME}-btn`
-);
+/** @type {HTMLButtonElement} */
+const addToCartButtonEl = document.querySelector(`${ADD_TO_CART_PREFIX}btn`);
 
-/**
- * @type {HTMLElement}
- */
+/** @type {HTMLElement} */
 const addToCartButtonTextEl = document.querySelector(
-  `.${JS_PREFIX}${MODULE_NAME}-btn-text`
+  `${ADD_TO_CART_PREFIX}btn-text`
 );
 
 /**
@@ -65,6 +62,7 @@ const addToCartButtonTextEl = document.querySelector(
  * @property {boolean} isAddToCartButtonDisabled
  * @property {boolean} isInAddToCartErrorState
  * @property {string | null} shopifyErrorMessage
+ * @property {boolean} isProgrammaticAddToCart
  */
 
 /**
@@ -73,6 +71,7 @@ const addToCartButtonTextEl = document.querySelector(
 const DEFAULT_MODULE_STATE = {
   module: MODULE_NAME,
   currentVariant: null,
+  isProgrammaticAddToCart: false,
   ...DEFAULT_UI_STATE
 };
 
@@ -93,6 +92,25 @@ export const onVariantModification = cb =>
 
 const handleVariantModification = () => {
   variantModificationListeners.forEach(listener => listener());
+};
+
+/**
+ * Adds a given quantity of the current variant to cart programmatically
+ * @param {string | number} quantity
+ */
+const addToCartProgrammatically = quantity => {
+  /** Update the state */
+  state.updateState({
+    isProgrammaticAddToCart: true
+  });
+  /** Set up the quantity input with the available quantity value */
+  quantityInputEl.value = String(quantity);
+  /**
+   * We are clicking the UI button instead of performing an AJAX request or
+   * submitting the form directly because we want to make sure the
+   * Persistent Cart logic comes into play.
+   */
+  addToCartButtonEl.click();
 };
 
 /**
@@ -117,6 +135,14 @@ $('body').on('addItemError.ajaxCart', function(e, { description }) {
     handleVariantModification();
   }
 
+  if (isErrorScenario2(description)) {
+    /**
+     * Add available items for current variant to cart programmatically using
+     * the Shopify error message to provide the quantity
+     */
+    addToCartProgrammatically(getQuantityFromMessage(description));
+  }
+
   render(state.getState());
 });
 
@@ -125,7 +151,7 @@ $('body').on('addItemError.ajaxCart', function(e, { description }) {
  * @param {Event} event
  */
 const onAddToCartClick = event => {
-  const { currentVariant } = state.getState();
+  const { currentVariant, isProgrammaticAddToCart } = state.getState();
 
   if (!currentVariant) {
     // Prevent Add To Cart form submit from going through
@@ -138,6 +164,18 @@ const onAddToCartClick = event => {
     if (window.BISPopover) {
       window.BISPopover.show();
     }
+  }
+
+  /**
+   * If the ATC action was completed programmatically, then reset only the
+   * `isProgrammaticAddToCart` flag and hold off resetting the UI state. This allows
+   * the AJAX custom error to stay visible.
+   */
+  if (isProgrammaticAddToCart) {
+    state.updateState({
+      isProgrammaticAddToCart: false
+    });
+    return;
   }
 
   // Reset the state to the default for that variant

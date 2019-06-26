@@ -41,7 +41,7 @@ export const DEFAULT_UI_STATE = {
  * @param {string} message A Shopify error `description` value
  * @returns {string}
  */
-const getQuantityFromMessage = message =>
+export const getQuantityFromMessage = message =>
   message.split(/\s/g).find(word => /\d/g.test(word)) || '';
 
 /**
