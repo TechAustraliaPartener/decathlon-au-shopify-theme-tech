@@ -43,6 +43,7 @@
         if (defaultTitleIndex > -1) {
           context.variant_options.splice(defaultTitleIndex, 1);
         }
+        context.added_quantity = /quantity=(\d+)/.exec(obj.data)[1] || 1
 
         /* if subtotal is empty then the cart needs to be loaded */
         if (!context.subtotal) {
