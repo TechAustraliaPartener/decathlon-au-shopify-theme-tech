@@ -43,19 +43,6 @@
   (max-width: 2680px) 900px
 {% endcapture %}
 
-{% comment %}
- @TODO:
- 1. Remove the fallback to the stub data (product-proto-features) and the conditional
- 2. Replace the photo with something product specific.
-{% endcomment %}
-
-{% if features != blank %}
-{% comment %}
-The easiest way to check for the existence of the new meta fields.
-If new metafields are not present, we fallback to the proto feature snippet to
-make sure that products without the fields don't break.
-{% endcomment %}
-
   <section class="FeaturesContainer de-Grid de-u-lg-spaceTop3
                   de-u-spaceTop">
     <div class="FeaturesContainer-banner de-u-padBottom de-u-spaceBottom
@@ -94,7 +81,8 @@ make sure that products without the fields don't break.
   {% for feature in features %}
     {% assign featurearray = feature[1] %}
     {% assign featureicon = featurearray['icon'] %}
-    {% unless featurearray == blank %}
+    {% assign featuretitle = featurearray['title'] %}
+    {% unless featurearray == blank or featuretitle == 'Environmental impact' %}
         <section
           class="ProductFeature de-u-size1of1 de-u-md-size1of2 de-u-flex
                  de-u-padRight de-u-padBottom"
@@ -115,7 +103,7 @@ make sure that products without the fields don't break.
             <header>
               <h3 id="ProductFeature-{{ forloop.index }}" itemprop="name"
                   class="de-u-spaceBottomNone de-u-textGrow2 de-u-lineHeight3">
-                {{ featurearray['title'] }}
+                {{ featuretitle }}
               </h3>
             </header>
             <p
@@ -130,7 +118,3 @@ make sure that products without the fields don't break.
     </div>
   </div>
 </section>
-
-{% else %}
-  {% include 'product-proto-features' %}
-{% endif %}
