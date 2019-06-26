@@ -108,7 +108,7 @@
   {{ 'adeptMind.scss.css' | asset_url | stylesheet_tag }}
   {{ 'legacySupport.scss.css' | asset_url | stylesheet_tag }}
   {{ 'cadence.scss.css' | asset_url | stylesheet_tag }}
-  {% if template == "product" %}
+  {% if template == "product" and product.metafields.global.features != blank %}
     {{ 'product.scss.css' | asset_url | stylesheet_tag }}
     {% comment %}
       The following files will only exist and be linked to during development
@@ -310,7 +310,7 @@
 
   {{ 'decathlon.js' | asset_url | script_tag }}
   {{ 'patterns-toolkit.js' | asset_url | script_tag }}
-  {% if template == "product" %}
+  {% if template == "product" and product.metafields.global.features != blank%}
     {% comment %}
       Store Pickup Script(s)
       @TODO Install as npm packages. With the current rollup configuration,

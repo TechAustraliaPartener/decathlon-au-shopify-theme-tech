@@ -1,0 +1,429 @@
+{% comment %}
+
+  Rich snippets (itemscope, itemtype, etc.) for products are a theme requirement,
+  and allow search engines to easily understand what the content is.
+
+  For more information on these Scheme.org tags, visit:
+    - http://schema.org/docs/gs.html
+
+
+  @TODO:
+  1. Design Review: review consistent and/or appropriate padding for
+     all sections.
+  2. Design: Introduce a max-width wrapper class or property to existing class.
+
+{% endcomment %}
+
+{% include 'section-clips' %}
+
+{% assign product_has_size_chart = false %}
+{%- for tag in product.tags -%}
+  {%- if tag contains 'Model Code: ' -%}
+    {%- assign model_code_tag = tag | split: 'Model Code: ' -%}
+    {%- assign model_code = model_code_tag[1] -%}
+  {%- endif -%}
+  {%- if tag contains 'Size Chart: ' -%}
+    {% assign product_has_size_chart = true %}
+  {%- endif -%}
+{%- endfor -%}
+
+{% if model_code == blank %}
+  {% capture model_code %}{{ product.variants.first.option3 }}{% endcapture %}
+{% endif %}
+
+
+{%- assign product_images = product.images -%}
+{%- assign context_photo_delimiter = '[[contextphoto]]' -%}
+{%- assign has_context_photo = false -%}
+{%- assign feature_photo = false -%}
+
+{%- for product_image in product_images -%}
+  {% if product_image.alt contains context_photo_delimiter %}
+    {% comment %} The first context image gets used for the feature photo {% endcomment %}
+    {% if feature_photo %}
+      {% assign has_context_photo = true %}
+      {% break %}
+    {% else %}
+      {% assign feature_photo = product_image %}
+    {% endif %}
+  {% endif %}
+{%- endfor -%}
+
+<div id="ProductWrap"
+     class="timber-activeProduct
+            {% if product.options.size < 2 %}product-singleOption{% endif %}
+  itemscope
+  itemtype="http://schema.org/Product">
+
+  <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
+  <meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
+
+  {% comment %} Get first variant, or deep linked one {% endcomment %}
+  {% assign current_variant = product.selected_or_first_available_variant %}
+
+  <section aria-labelledby="Section-buybox"
+           class="de-Wrapper de-u-spaceBottom3">
+
+    <header class="visually-hidden">
+      <h2 id="Section-buybox">
+        Product Colors and Sizes
+      </h2>
+    </header>
+
+    {% comment %} Breadcrumbs {% endcomment %}
+    <div class="de-u-hidden de-u-md-block">
+      {% include 'breadcrumb' %}
+    </div>
+
+    <div class="de-u-lg-flex de-u-lg-flexJustifyBetween">
+      {% comment %}
+        Derek's Buy Box markup
+      {% endcomment %}
+      {% comment %}
+        <div class="de-ProductImageViewer de-ProductImageViewer--complex">
+          {% include 'product-proto-carousel' %}
+        </div>
+      {% endcomment %}
+      {% comment %}
+        Juma's Dynamic Product Carousel
+      {% endcomment %}
+      <div class="de-ProductCarousel de-ProductCarousel--large">
+        {% include 'product-carousel' %}
+
+        {% include 'product-gallery-controls' with
+          display_toggle: false %}
+      </div>
+      <div class="de-ProductBuyBox">
+        {% comment %}
+          @TODO:
+          1. Remove prototype reference when design review is complete
+        {% endcomment %}
+        {% comment %}
+          {% include 'product-proto-buybox' %}
+        {% endcomment %}
+        {% include 'product-buybox' %}
+      </div>
+    </div>
+  </section>
+
+  {% comment %}
+    ProductMenu
+  {% endcomment %}
+  {% include 'product-menu' with
+    has_context_photo: has_context_photo %}
+
+  {% if product_video.size > 0 %}
+  <section class="de-ProductInfoSection de-ProductInfoSection--silver
+                  de-u-md-pad"
+           aria-labelledby="Section-videos">
+    <span
+      id="product-videos"
+      class="de-ProductAnchor"
+      aria-hidden="true">
+    </span>
+
+    <header>
+      <h2 class="de-ProductInfoTitle
+                 de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4
+                 de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
+          id="Section-videos">
+        <span class="visually-hidden">Product</span> Videos
+      </h2>
+    </header>
+    {% capture additional_videos_accordion_content %}
+      {% include 'product-videos' %}
+    {% endcapture %}
+    {% include 'product-accordion'
+      is_open: true
+      accordion_heading: "Additional Videos"
+      accordion_content: additional_videos_accordion_content
+    %}
+  </section>
+  {% endif %}
+
+  <section class="de-ProductInfoSection de-u-md-pad2"
+           aria-labelledby="Section-features">
+    <span
+      id="product-features"
+      class="de-ProductAnchor"
+      aria-hidden="true">
+    </span>
+
+    <header>
+      <h2 class="de-ProductInfoTitle
+                 de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4
+                 de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
+          id="Section-features">
+        <span class="visually-hidden">Product</span> Features
+      </h2>
+    </header>
+    {% capture features_accordion_content %}
+      {% comment %}
+      Features section protoype code
+      {% endcomment %}
+      {% comment %}
+      {% include 'product-proto-features' %}
+      {% endcomment %}
+
+      {% comment %}
+      Product features wired to metafields
+      {% endcomment %}
+      {% include 'product-features' %}
+    {% endcapture %}
+    {% include 'product-accordion'
+      is_open: true
+      accordion_heading: "Features"
+      accordion_content: features_accordion_content
+    %}
+  </section>
+
+  {% if has_context_photo %}
+
+    {% comment %} Back to top anchor link {% endcomment %}
+    {% include 'product-back-to-top' %}
+
+    <section class="de-ProductInfoSection de-ProductInfoSection--silver
+                    de-u-pad2 de-u-overflowXNone"
+            aria-labelledby="Section-lifestyle-images">
+
+      <span
+        id="product-imageGallery"
+        class="de-ProductAnchor"
+        aria-hidden="true">
+      </span>
+
+      <h2 class="de-ProductInfoTitle
+                de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4
+                de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
+          id="Section-lifestyle-images">
+        <span class="visually-hidden">Product Lifestyle</span> Image Gallery
+      </h2>
+        <h2 class="de-u-textGrow2 de-u-md-hidden">
+          Image Gallery
+        </h2>
+        <div class="ProductImageGallery de-u-fullwidth de-u-padEnds2">
+          {% comment %}
+            Both files should exist until `product-image-gallery` has been
+            approved and passed design review.
+
+            The ability to toggle between these two snippets will make forthcoming
+            reivews easier.
+          {% endcomment %}
+          {% comment %} {% include 'product-proto-image-gallery' %} {% endcomment %}
+          {% include 'product-image-gallery' %}
+        </div>
+    </section>
+  {% endif %}
+
+  <section class="de-ProductInfoSection
+                  de-u-md-padEnds de-u-md-padSides
+                  js-de-Reviews"
+           aria-labelledby="Section-reviews"
+           data-model-code="{{model_code}}">
+
+    <span
+      id="product-reviews"
+      class="de-ProductAnchor"
+      aria-hidden="true">
+    </span>
+
+    {% capture reviews_heading %}
+      {% include 'product-customer-reviews-heading' %}
+    {% endcapture %}
+    {% capture reviews_accordion_content %}
+      {% comment %} Dynamic Customer Reviews {% endcomment %}
+      {% comment %}
+        Reviews
+        Capture to enable inserting content into the drawer
+      {% endcomment %}
+      {% capture reviews_drawer_content %}
+        {% include 'product-customer-reviews' %}
+      {% endcapture %}
+      {% comment %}
+        Create a drawer for the captured content
+      {% endcomment %}
+      {% include 'product-drawer',
+        drawer_id: "reviews-drawer",
+        drawer_label: "Customer Reviews",
+        content: reviews_drawer_content,
+        heading: reviews_heading,
+        displays_in_page_flow: true %}
+    {% endcapture %}
+    {% include 'product-accordion'
+      is_open: true
+      accordion_heading: "Customer Reviews"
+      accordion_content: reviews_accordion_content
+    %}
+  </section>
+  {%- if product_has_size_chart -%}
+    <section class="de-ProductInfoSection de-SizeGuide
+                    de-u-md-pad"
+      aria-labelledby="Section-sizeguide"
+    >
+      <span
+        id="product-sizeGuide"
+        class="de-ProductAnchor"
+        aria-hidden="true">
+      </span>
+      {% capture size_and_fit_heading %}
+        {% include 'product-size-guide-heading' %}
+      {% endcapture %}
+      {% capture size_and_fit_accordion_content %}
+        {% capture size_and_fit_drawer_content %}
+          {% comment %}
+            Juma's Dynamic Size Guide
+          {% endcomment %}
+          {% include 'product-size-guide' %}
+          {% comment %}
+            Derek's Size Guide Markup
+            @TODO:
+            1. Remove prototype reference when design review is complete
+          {% endcomment %}
+          {% comment %}
+            {% include 'product-proto-size-guide-content' %}
+          {% endcomment %}
+        {% endcapture %}
+        {% comment %}
+          Create a drawer for the captured content
+        {% endcomment %}
+        {% include 'product-drawer',
+          drawer_id: "size-guide-drawer",
+          drawer_label: "Size Guide",
+          content: size_and_fit_drawer_content,
+          heading: size_and_fit_heading,
+          displays_in_page_flow: true
+        %}
+      {% endcapture %}
+      {% include 'product-accordion'
+        is_open: false
+        accordion_heading: "Size Guide"
+        accordion_content: size_and_fit_accordion_content
+      %}
+    </section>
+  {%- endif -%}
+
+  {% comment %} Back to top anchor link {% endcomment %}
+  {% include 'product-back-to-top' %}
+
+
+  <section class="de-ProductInfoSection
+                  de-ProductInfoSection--silver de-u-md-pad"
+           aria-labelledby="Section-additional-info">
+    <span
+      id="product-information"
+      class="de-ProductAnchor"
+      aria-hidden="true">
+    </span>
+
+    <header>
+      <h2 class="de-ProductInfoTitle
+                 de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4
+                 de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
+          id="Section-additional-info">
+        <span class="visually-hidden">Additional </span>Product Information
+      </h2>
+    </header>
+    {% capture product_information_accordion_content %}
+      {% comment %}
+        Dynamic Product information content
+      {% endcomment %}
+      {% comment %} {{ product_specs }} {% endcomment %}
+      {% comment %}
+        Prototype product information content
+      {% endcomment %}
+      <div class="de-u-spaceTop6">
+        {% comment %}
+        Product information prototype snippet
+        {% endcomment %}
+        {% comment %}
+        {% include 'product-proto-information' %}
+        {% endcomment %}
+
+        {% comment %}
+        Product information wired to metafields
+        {% endcomment %}
+        {% include 'product-information' %}
+
+      </div>
+    {% endcapture %}
+    {% include 'product-accordion'
+      is_open: false
+      accordion_heading: "Product Information"
+      accordion_content: product_information_accordion_content
+    %}
+  </section>
+  {% capture 'fulfillment_drawer_content' %}
+    {% comment %}
+      Dynamic Store Pickup Content
+    {% endcomment %}
+    {% include 'product-store-pickup' %}
+  {% endcapture %}
+  {% include 'product-drawer',
+    drawer_id: "store-pickup-options-drawer",
+    drawer_label: "Store Pickup Options",
+    content: fulfillment_drawer_content,
+    displays_in_page_flow: false
+  %}
+</div>
+
+{% comment %}
+<div class="product-description rte" itemprop="description">
+  {{ product_intro }}
+</div>
+{% endcomment %}
+
+{% comment %}
+<div class="addons-list">
+  <a class="u-textBold u-marginBottom0x">Included:</a>
+  <small class="addons-list__items"></small>
+</div>
+{% endcomment %}
+
+{% comment %}
+  {% include 'product-detail--collection-control' %}
+{% endcomment %}
+
+{% comment %}
+  To take advantage of a callback on the select dropdown, add option_selection.js
+  and customize the JS in timber.productPage as needed.
+
+  Currently, timber.productPage does the following:
+    - Hides your <select> tag from above
+    - Breaks out the product variants into separate product options, if more
+      than one exists
+    - Generates a <select> tag for each product option
+    - Enables/disables elements based on variant availability
+
+  Callback notes:
+    - Keep the callback available to the global scope (window.selectCallback)
+      so that advanced addons can override it.
+      * E.g. multiple currencies http://docs.shopify.com/manual/configuration/store-customization/currencies-and-translations/currencies/how-to-toggle-between-two-currencies
+{% endcomment %}
+
+{{ 'option_selection.js' | shopify_asset_url | script_tag }}
+
+<script>
+  var productJSON = {{ product | json }},
+      colorOption = null,
+      selectCallbackInitialized = false,
+      activeColor;
+
+  productJSON.rating = '{{ product.metafields.ratings.product_rating }}';
+
+  for(option in productJSON.options) {
+    if (productJSON.options[option] === 'Color') {
+      colorOption = 'option'+ (parseInt(option) + 1);
+    }
+  }
+
+  var selectCallback = function(variant, selector) {
+    timber.productPage({
+      money_format: "{{ shop.money_format }}",
+      variant: variant,
+      selector: selector
+    });
+  };
+</script>
+
+{% include 'sizechart' %}
+{% include 'ajax-cart-init' %}
