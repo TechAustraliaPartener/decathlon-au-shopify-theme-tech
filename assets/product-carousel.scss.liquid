@@ -81,16 +81,18 @@ $breakpoint-lg: 60em;
   }
 }
 
-@media (max-width: $breakpoint-lg) {
+/* .01em is to prevent this media query from overlapping with min-width media queries */
+@media (max-width: $breakpoint-lg - .01em) {
   /**
-    * 1. Preserves the sqaure aspect ratio of while loading,
+    * 1. Preserves the square aspect ratio of while loading,
     *    improving the loading experience.
     */
 
   .de-CarouselContainer,
   .de-CarouselFeature-btn,
   .de-CarouselFeature-image {
-    width: 100%; /* 1 */
+    width: 100%;
+    height: 100vw; /* 1 */
   }
 
   /**
