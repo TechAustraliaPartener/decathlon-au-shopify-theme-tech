@@ -3,9 +3,15 @@
 {% endcomment %}
 {%- assign current_variant = product.selected_or_first_available_variant -%}
 {%- assign featured_image = current_variant.image | default: product.featured_image -%}
+{% comment %}
+  @TODO - Can be made available more globally by moving to `templates/product.liquid`
+{% endcomment %}
 {%- assign product_images = product.images -%}
 {%- assign option_type = 'color' -%}
 {%- assign option_type_position = null -%}
+{% comment %}
+  @TODO - Can be made available more globally by moving to `templates/product.liquid`
+{% endcomment %}
 {%- assign context_photo_delimiter = '[[contextphoto]]' -%}
 
 {% comment %}
