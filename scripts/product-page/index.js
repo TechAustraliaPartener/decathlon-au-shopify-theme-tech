@@ -63,7 +63,7 @@ const onOptionSelect = () => {
   const newVariant = getSelectedVariant(getCombinedState());
   const variantHasChanged =
     (prevVariant && prevVariant.id) !== (newVariant && newVariant.id);
-  if (variantHasChanged) {
+  if (newVariant && variantHasChanged) {
     addToCart.onVariantSelect(newVariant);
   }
   prevVariant = newVariant;
