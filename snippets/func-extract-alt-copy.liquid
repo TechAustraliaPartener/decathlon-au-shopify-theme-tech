@@ -1,0 +1,14 @@
+{%- comment -%}
+  * Extracts the alt copy from the metadata stored in an image's alt tag.
+  * Example of raw image alt tag: {* [[contextphoto]] [["index":0]] *} A purple jacket
+  *
+  * @param {string} alt - An image's alt tag content, with metadata.
+  * @returns {string} - Only the alt copy
+{%- endcomment -%}
+{%- assign delimiter = '*}' -%}
+{%- if alt contains delimiter -%}
+  {%- assign alt_array = alt | split: delimiter -%}
+  {{- alt_array[1] | strip -}}
+{%- else -%}
+  {{- alt | strip -}}
+{%- endif -%}

@@ -116,6 +116,7 @@
     </a>
 
     {% unless total_item_count == 0 %}
+      {% assign alt = product.featured_image.alt %}
       {% assign product_image = product.featured_image %}
       {% capture image_srcset %}
         {{ product_image | img_url: "20x", format: "pjpg" }} 20w,
@@ -142,7 +143,7 @@
         srcset="{{ image_srcset }}"
         sizes="{{ image_sizes }}"
         class="de-ReviewsContainer-featuredImage de-u-spaceTop6"
-        alt="{{ product.featured_image.alt }}">
+        alt="{% include 'func-extract-alt-copy' with alt %}">
     {% endunless %}
 
   </div>

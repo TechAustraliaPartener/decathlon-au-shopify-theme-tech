@@ -115,6 +115,7 @@
       {%- for product_image in product_images -%}
         {%- unless product_image.alt contains context_photo_delimiter %}
           {% assign image_src = product_image | img_url: "1280x", format: "pjpg" %}
+          {% assign alt = product_image.alt %}
           {% capture image_srcset %}
             {{ product_image | img_url: "320x", format: "pjpg" }} 320w,
             {{ product_image | img_url: "480x", format: "pjpg" }} 480w,
@@ -154,7 +155,7 @@
                     data-srcset="{{ image_srcset }}"
                     data-sizes="{{ image_sizes }}"
                   {% endif %}
-                  >
+                  alt="{% include 'func-extract-alt-copy' with alt %}">
               </button>
             </div>
           {%- endif -%}
@@ -204,7 +205,8 @@
                 <img class="de-CarouselThumbnail-image de-u-bgSilver js-de-SlickCarouselSlide"
                   src="{{ product_image | img_url "240x" }}"
                   data-srcset="{{ image_srcset }}"
-                  data-sizes="{{ image_sizes }}">
+                  data-sizes="{{ image_sizes }}"
+                  alt="">
               </button>
             </div>
           {%- endif -%}

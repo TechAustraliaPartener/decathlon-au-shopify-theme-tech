@@ -15,6 +15,7 @@
 {% endcomment %}
 {%- for product_image in product_images -%}
   {%- if product_image.alt contains context_photo_delimiter -%}
+    {% assign alt = product_image.alt %}
     {% capture image_srcset %}
       {{ product_image | img_url: "320x" }} 320w,
       {{ product_image | img_url: "380x" }} 380w,
@@ -40,6 +41,7 @@
     <img
       class='ProductImageGallery-item js-de-CarouselContextSlide'
       data-srcset='{{ image_srcset }}'
-      data-sizes='{{ image_sizes }}'>
+      data-sizes='{{ image_sizes }}'
+      alt="{% include 'func-extract-alt-copy' with alt %}">
   {%- endif -%}
 {%- endfor -%}
