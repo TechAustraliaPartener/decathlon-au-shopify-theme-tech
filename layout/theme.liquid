@@ -110,17 +110,6 @@
   {{ 'cadence.scss.css' | asset_url | stylesheet_tag }}
   {% if template == "product" and product.metafields.global.features != blank %}
     {{ 'product.scss.css' | asset_url | stylesheet_tag }}
-    {% comment %}
-      The following files will only exist and be linked to during development
-      @todo: Remove the following stylesheet links
-    {% endcomment %}
-    {{ 'product-carousel.scss.css' | asset_url | stylesheet_tag }}
-    {{ 'product-proto-image-gallery.scss.css' | asset_url | stylesheet_tag }}
-    {{ 'product-swatch-objects.scss.css' | asset_url | stylesheet_tag }}
-    {% comment %}
-      The following files will are intended to override vendor specific CSS
-      It may be desirable to keep these styles separate from product.scss
-    {% endcomment %}
     {{ 'vendor-brightcove-product.scss.css' | asset_url | stylesheet_tag }}
   {% endif %}
 
