@@ -99,6 +99,7 @@ const handleVariantModification = () => {
  * @param {string | number} quantity
  */
 const addToCartProgrammatically = quantity => {
+  if (!quantityInputEl || !addToCartButtonEl) return;
   /** Update the state */
   state.updateState({
     isProgrammaticAddToCart: true
@@ -205,8 +206,18 @@ const render = ({
   validationText,
   addToCartButtonText
 }) => {
+  /**
+   * Give priority to the error messages. This ensures the UI gets updated
+   * regardless of the availability of `addToCartButtonEl` or `addToCartButtonTextEl`
+   */
+  if (validationTextEl) {
+    validationTextEl.textContent = validationText;
+  }
+  /**
+   * From a UX perspective, group the button and button text check together
+   */
+  if (!addToCartButtonEl || !addToCartButtonTextEl) return;
   addToCartButtonEl.disabled = isAddToCartButtonDisabled;
-  validationTextEl.textContent = validationText;
   addToCartButtonTextEl.textContent = addToCartButtonText;
 };
 
