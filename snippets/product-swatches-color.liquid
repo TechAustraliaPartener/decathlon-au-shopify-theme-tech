@@ -54,13 +54,13 @@
         </span>
         {% if option_thumb != false %}
           {% capture image_srcset %}
-            {{ option_thumb | img_url: "100x" }} 1x,
-            {{ option_thumb | img_url: "150x" }} 1.5x,
-            {{ option_thumb | img_url: "200x" }} 2x,
+            {{ option_thumb | img_url: "100x", format: "pjpg" }} 1x,
+            {{ option_thumb | img_url: "150x", format: "pjpg" }} 1.5x,
+            {{ option_thumb | img_url: "200x", format: "pjpg" }} 2x,
           {% endcapture %}
           <img
             class="de-u-block"
-            src="{{ option_thumb | img_url }}"
+            src="{{ option_thumb | img_url: "100x", format: "pjpg" }}"
             srcset="{{ image_srcset }}"
             alt=""
           >

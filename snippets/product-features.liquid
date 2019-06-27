@@ -21,26 +21,14 @@
 {%- endfor -%}
 
 {% capture feature_photo_srcset %}
-  {{ feature_photo | img_url: "20x", format: "pjpg" }} 20w,
-  {{ feature_photo | img_url: "380x", format: "pjpg" }} 380w,
+  {{ feature_photo | img_url: "320x", format: "pjpg" }} 320w,
   {{ feature_photo | img_url: "440x", format: "pjpg" }} 440w,
-  {{ feature_photo | img_url: "500x", format: "pjpg" }} 500w,
-  {{ feature_photo | img_url: "580x", format: "pjpg" }} 580w,
-  {{ feature_photo | img_url: "620x", format: "pjpg" }} 620w,
-  {{ feature_photo | img_url: "700x", format: "pjpg" }} 700w,
-  {{ feature_photo | img_url: "820x", format: "pjpg" }} 820w,
-  {{ feature_photo | img_url: "900x", format: "pjpg" }} 900w
-{% endcapture %}
+  {{ feature_photo | img_url: "518x", format: "pjpg" }} 518w,
+  {{ feature_photo | img_url: "596x", format: "pjpg" }} 596w,
+  {{ feature_photo | img_url: "640x", format: "pjpg" }} 640w
+ {% endcapture %}
 {% capture feature_photo_sizes %}
-  (max-width: 959px) 20px,
-  (max-width: 1080px) 380px,
-  (max-width: 1280px) 440px,
-  (max-width: 1480px) 500px,
-  (max-width: 1680px) 580px,
-  (max-width: 1880px) 620px,
-  (max-width: 2080px) 700px,
-  (max-width: 2480px) 820px,
-  (max-width: 2680px) 900px
+  (min-width: 60em) 33vw
 {% endcapture %}
 
   <section class="FeaturesContainer de-Grid de-u-lg-spaceTop3

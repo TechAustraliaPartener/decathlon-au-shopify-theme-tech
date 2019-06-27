@@ -114,29 +114,23 @@
          js-de-SlickCarousel js-de-SlickCarouselFeature"
          id="de-CarouselFeature">
       {%- for product_image in product_images -%}
+        {% assign image_src = product_image | img_url: "318x", format: "pjpg" %}
         {% assign alt = product_image.alt %}
-        {% assign image_src = product_image | img_url: "1280x", format: "pjpg" %}
         {% capture image_srcset %}
-          {{ product_image | img_url: "320x", format: "pjpg" }} 320w,
-          {{ product_image | img_url: "480x", format: "pjpg" }} 480w,
-          {{ product_image | img_url: "640x", format: "pjpg" }} 640w,
-          {{ product_image | img_url: "800x", format: "pjpg" }} 800w,
-          {{ product_image | img_url: "960x", format: "pjpg" }} 960w,
-          {{ product_image | img_url: "1120x", format: "pjpg" }} 1120w,
-          {{ product_image | img_url: "1280x", format: "pjpg" }} 1280w,
-          {{ product_image | img_url: "1440x", format: "pjpg" }} 1440w,
-          {{ product_image | img_url: "1800x", format: "pjpg" }} 1800w
+          {{ product_image | img_url: "318x", format: "pjpg" }} 318w,
+          {{ product_image | img_url: "422x", format: "pjpg" }} 422w,
+          {{ product_image | img_url: "510x", format: "pjpg" }} 510w,
+          {{ product_image | img_url: "595x", format: "pjpg" }} 595w,
+          {{ product_image | img_url: "670x", format: "pjpg" }} 670w,
+          {{ product_image | img_url: "740x", format: "pjpg" }} 740w,
+          {{ product_image | img_url: "812x", format: "pjpg" }} 812w,
+          {{ product_image | img_url: "882x", format: "pjpg" }} 882w,
+          {{ product_image | img_url: "942x", format: "pjpg" }} 942w,
+          {{ product_image | img_url: "960x", format: "pjpg" }} 960w
         {% endcapture %}
         {% capture image_sizes %}
-          (max-width: 320px) 320px,
-          (max-width: 480px) 480px,
-          (max-width: 640px) 640px,
-          (max-width: 800px) 800px,
-          (max-width: 960px) 528px,
-          (max-width: 1120px) 640px,
-          (max-width: 1280px) 730px,
-          (max-width: 1440px) 820px,
-          (max-width: 2400px) 1250px
+          (max-width: 60em) 100vw,
+          42vw
         {% endcapture %}
         {%- if forloop.index0 >= start_index and forloop.index0 < end_index -%}
           {%- unless product_image.alt contains context_photo_delimiter %}
@@ -172,27 +166,20 @@
               js-de-SlickCarousel js-de-SlickCarouselThumbnail"
       data-carousel-color="{{- all_colors_array[forloop.index0] -}}">
       {%- for product_image in product_images -%}
+        {% assign image_src = product_image | img_url: "150x", format: "pjpg" %}
         {% capture image_srcset %}
-          {{ product_image | img_url: "80x", format: "pjpg" }} 80w,
+          {{ product_image | img_url: "75x", format: "pjpg" }} 75w,
           {{ product_image | img_url: "100x", format: "pjpg" }} 100w,
-          {{ product_image | img_url: "120x", format: "pjpg" }} 120w,
-          {{ product_image | img_url: "140x", format: "pjpg" }} 140w,
-          {{ product_image | img_url: "160x", format: "pjpg" }} 160w,
-          {{ product_image | img_url: "180x", format: "pjpg" }} 180w,
+          {{ product_image | img_url: "150x", format: "pjpg" }} 150w,
           {{ product_image | img_url: "200x", format: "pjpg" }} 200w,
-          {{ product_image | img_url: "220x", format: "pjpg" }} 220w,
-          {{ product_image | img_url: "240x", format: "pjpg" }} 240w
+          {{ product_image | img_url: "240x", format: "pjpg" }} 240w,
+          {{ product_image | img_url: "350x", format: "pjpg" }} 350w,
+          {{ product_image | img_url: "451x", format: "pjpg" }} 451w,
+          {{ product_image | img_url: "550x", format: "pjpg" }} 550w,
+          {{ product_image | img_url: "600x", format: "pjpg" }} 600w
         {% endcapture %}
         {% capture image_sizes %}
-          (max-width: 1000px) 80px,
-          (max-width: 1140px) 100px,
-          (max-width: 1300px) 120px,
-          (max-width: 1500px) 140px,
-          (max-width: 1650px) 160px,
-          (max-width: 1850px) 180px,
-          (max-width: 2000px) 200px,
-          (max-width: 2200px) 220px,
-          (max-width: 2400px) 240px
+          7.8vw
         {% endcapture %}
         {%- if forloop.index0 >= start_index and forloop.index0 < end_index -%}
           {%- unless product_image.alt contains context_photo_delimiter %}
@@ -204,9 +191,15 @@
               aria-label="Product thumbnail image {{ forloop.index | minus: start_index }} of {{ end_index | minus: start_index }}">
               <button class="de-CarouselThumbnail-btn de-u-block">
                 <img class="de-CarouselThumbnail-image de-u-bgSilver js-de-SlickCarouselSlide"
-                  data-carousel-src="{{ product_image | img_url "240x" }}"
+                {% if color == activeColor %}
+                  src="{{ image_src }}"
+                  srcset="{{ image_srcset }}"
+                  sizes="{{ image_sizes }}"
+                {% else %}
+                  data-carousel-src="{{ image_src }}"
                   data-srcset="{{ image_srcset }}"
                   data-sizes="{{ image_sizes }}"
+                {% endif %}
                   alt="">
               </button>
             </div>

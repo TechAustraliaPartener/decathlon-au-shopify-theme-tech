@@ -17,26 +17,21 @@
   {%- if product_image.alt contains context_photo_delimiter -%}
     {% assign alt = product_image.alt %}
     {% capture image_srcset %}
-      {{ product_image | img_url: "320x" }} 320w,
-      {{ product_image | img_url: "380x" }} 380w,
-      {{ product_image | img_url: "480x" }} 480w,
-      {{ product_image | img_url: "580x" }} 580w,
-      {{ product_image | img_url: "680x" }} 680w,
-      {{ product_image | img_url: "780x" }} 780w,
-      {{ product_image | img_url: "880x" }} 880w,
-      {{ product_image | img_url: "1080x" }} 1080w,
-      {{ product_image | img_url: "1280x" }} 1280w
+      {{ product_image | img_url: "160x", format: "pjpg" }} 160w,
+      {{ product_image | img_url: "285x", format: "pjpg" }} 285w,
+      {{ product_image | img_url: "320x", format: "pjpg" }} 320w,
+      {{ product_image | img_url: "380x", format: "pjpg" }} 380w,
+      {{ product_image | img_url: "450x", format: "pjpg" }} 450w,
+      {{ product_image | img_url: "525x", format: "pjpg" }} 525w,
+      {{ product_image | img_url: "590x", format: "pjpg" }} 590w,
+      {{ product_image | img_url: "650x", format: "pjpg" }} 650w,
+      {{ product_image | img_url: "700x", format: "pjpg" }} 700w,
+      {{ product_image | img_url: "760x", format: "pjpg" }} 760w,
+      {{ product_image | img_url: "800x", format: "pjpg" }} 800w
     {% endcapture %}
     {% capture image_sizes %}
-      (max-width: 480px) 320px,
-      (max-width: 580px) 380px,
-      (max-width: 880px) 480px,
-      (max-width: 1280px) 580px,
-      (max-width: 1480px) 680px,
-      (max-width: 1880px) 780px,
-      (max-width: 2080px) 880px,
-      (max-width: 2580px) 1080px,
-      (max-width: 3080px) 1280px
+      (min-width: 40em) 36vw,
+      50vw
     {% endcapture %}
     <img
       class='ProductImageGallery-item js-de-CarouselContextSlide'
