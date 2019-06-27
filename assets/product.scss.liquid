@@ -170,9 +170,9 @@ figure {
 }
 
 /**
- * 1. This is overriding a patterns/toolkit property. 
+ * 1. This is overriding a patterns/toolkit property.
  *
- * @TODO: 
+ * @TODO:
  * - move to MenuBar patterns
  */
 
@@ -1734,3 +1734,68 @@ $swatchObjects-item-unavailable-opacity: 0.4;
   background: linear-gradient(to left top, transparent 50.5%, currentColor 43.5%, currentColor 52.5%, transparent 45.5%);
   pointer-events: none;
 }
+
+/**
+ * ProductImageGallery
+ *
+ * 1. `1.266rem` is equal to the second step of the modular scale in use by the
+ *    Decathlon pattern library
+ * 2. Required for enabling the desired `overflow-x` scrolling effect
+ * 3. Enables photos with various widths to pair well together and maintain a
+ *    consistent height while flexing their widths ~ Resulting in image true to
+ *    their original aspect ratio
+ * 4. `ProductImageGallery` inherits styles from `de-u-fullwidth`, which enables
+ *    a full width container inside a limited width parents. This additional
+ *    padding creates a desirable gap before and after the first and last
+ *    children which improves the overflow scrolling experience.
+ * 5. Enables momentum-based scrolling, where the content continues to scroll
+ *    for a while after finishing the scroll gesture and removing your finger
+ *    from the touchscreen. The speed and duration of the continued scrolling is
+ *    proportional to how vigorous the scroll gesture was. Also creates a new
+ *    stacking context. Support: Safari iOS.
+ *    Setting `z-index: 1;` ensures that horizontal scroll bars will not overlap
+ *    any position fixed, or sticky elements.
+ */
+
+ $product-gallery-spacing-xs: 0.5rem; /* 1 */
+ $product-gallery-spacing-sm: 1rem; /* 1 */
+ $product-gallery-spacing-md: 1.266rem; /* 1 */
+
+ .ProductImageGallery {
+   overflow-x: auto; /* 2 */
+   overflow-y: hidden; /* 2 */
+   white-space: nowrap; /* 2 */
+   -webkit-overflow-scrolling: touch; /* 5 */
+   z-index: 1;
+ }
+
+ .ProductImageGallery::before,
+ .ProductImageGallery::after {
+   content: ''; /* 4 */
+   display: inline-block; /* 4 */
+   width: $product-gallery-spacing-sm; /* 4 */
+ }
+
+ @media (min-width: $breakpoint-md) {
+   .ProductImageGallery::before,
+   .ProductImageGallery::after {
+     width: $product-gallery-spacing-md; /* 4 */
+   }
+ }
+
+ .ProductImageGallery-item {
+   display: inline-block;
+   margin-right: $product-gallery-spacing-xs;
+   height: 50vw; /* 3 */
+ }
+
+ @media (min-width: $breakpoint-md) {
+   .ProductImageGallery-item {
+     height: 36vw; /* 3 */
+     margin-right: $product-gallery-spacing-sm;
+   }
+ }
+
+ .ProductImageGallery-item:last-of-type {
+   margin-right: 0;
+ }

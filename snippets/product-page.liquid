@@ -6,12 +6,6 @@
   For more information on these Scheme.org tags, visit:
     - http://schema.org/docs/gs.html
 
-
-  @TODO:
-  1. Design Review: review consistent and/or appropriate padding for
-     all sections.
-  2. Design: Introduce a max-width wrapper class or property to existing class.
-
 {% endcomment %}
 
 {% include 'section-clips' %}
@@ -31,7 +25,6 @@
   {% capture model_code %}{{ product.variants.first.option3 }}{% endcapture %}
 {% endif %}
 
-
 {%- assign product_images = product.images -%}
 {%- assign context_photo_delimiter = '[[contextphoto]]' -%}
 {%- assign has_context_photo = false -%}
@@ -43,11 +36,13 @@
   {% endif %}
 {%- endfor -%}
 
-<div id="ProductWrap"
-     class="timber-activeProduct
-            {% if product.options.size < 2 %}product-singleOption{% endif %}
+<div
+  id="ProductWrap"
+  class="timber-activeProduct
+         {% if product.options.size < 2 %} product-singleOption{% endif %}"
   itemscope
-  itemtype="http://schema.org/Product">
+  itemtype="http://schema.org/Product"
+>
 
   <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
   <meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
@@ -55,8 +50,10 @@
   {% comment %} Get first variant, or deep linked one {% endcomment %}
   {% assign current_variant = product.selected_or_first_available_variant %}
 
-  <section aria-labelledby="Section-buybox"
-           class="de-Wrapper de-u-spaceBottom3">
+  <section
+    aria-labelledby="Section-buybox"
+    class="de-Wrapper de-u-spaceBottom3"
+  >
 
     <header class="visually-hidden">
       <h2 id="Section-buybox">
@@ -70,57 +67,37 @@
     </div>
 
     <div class="de-u-lg-flex de-u-lg-flexJustifyBetween">
-      {% comment %}
-        Derek's Buy Box markup
-      {% endcomment %}
-      {% comment %}
-        <div class="de-ProductImageViewer de-ProductImageViewer--complex">
-          {% include 'product-proto-carousel' %}
-        </div>
-      {% endcomment %}
-      {% comment %}
-        Juma's Dynamic Product Carousel
-      {% endcomment %}
       <div class="de-ProductCarousel de-ProductCarousel--large">
         {% include 'product-carousel' %}
-
-        {% include 'product-gallery-controls' with
-          display_toggle: false %}
+        {% include 'product-gallery-controls' with display_toggle: false %}
       </div>
       <div class="de-ProductBuyBox">
-        {% comment %}
-          @TODO:
-          1. Remove prototype reference when design review is complete
-        {% endcomment %}
-        {% comment %}
-          {% include 'product-proto-buybox' %}
-        {% endcomment %}
         {% include 'product-buybox' %}
       </div>
     </div>
   </section>
 
-  {% comment %}
-    ProductMenu
-  {% endcomment %}
-  {% include 'product-menu' with
-    has_context_photo: has_context_photo %}
+  {% comment %} ProductMenu {% endcomment %}
+  {% include 'product-menu' with has_context_photo: has_context_photo %}
 
   {% if product_video.size > 0 %}
-  <section class="de-ProductInfoSection de-ProductInfoSection--silver
-                  de-u-md-pad"
-           aria-labelledby="Section-videos">
+  <section
+    class="de-ProductInfoSection de-ProductInfoSection--silver
+           de-u-md-pad"
+    aria-labelledby="Section-videos"
+  >
     <span
       id="product-videos"
       class="de-ProductAnchor"
       aria-hidden="true">
     </span>
-
     <header>
-      <h2 class="de-ProductInfoTitle
-                 de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4
-                 de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
-          id="Section-videos">
+      <h2
+        class="de-ProductInfoTitle
+               de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4
+               de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
+          id="Section-videos"
+      >
         <span class="visually-hidden">Product</span> Videos
       </h2>
     </header>
@@ -135,33 +112,26 @@
   </section>
   {% endif %}
 
-  <section class="de-ProductInfoSection de-u-md-pad2"
-           aria-labelledby="Section-features">
+  <section
+    class="de-ProductInfoSection de-u-md-pad2"
+    aria-labelledby="Section-features"
+  >
     <span
       id="product-features"
       class="de-ProductAnchor"
       aria-hidden="true">
     </span>
-
     <header>
-      <h2 class="de-ProductInfoTitle
-                 de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4
-                 de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
-          id="Section-features">
+      <h2
+        class="de-ProductInfoTitle
+               de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4
+              de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
+        id="Section-features"
+      >
         <span class="visually-hidden">Product</span> Features
       </h2>
     </header>
     {% capture features_accordion_content %}
-      {% comment %}
-      Features section protoype code
-      {% endcomment %}
-      {% comment %}
-      {% include 'product-proto-features' %}
-      {% endcomment %}
-
-      {% comment %}
-      Product features wired to metafields
-      {% endcomment %}
       {% include 'product-features' %}
     {% endcapture %}
     {% include 'product-accordion'
@@ -173,44 +143,39 @@
 
   {% if has_context_photo %}
 
-    <section class="de-ProductInfoSection de-ProductInfoSection--withBorderTop
-                    de-u-pad2 de-u-overflowXNone"
-            aria-labelledby="Section-lifestyle-images">
-
+    <section
+      class="de-ProductInfoSection de-ProductInfoSection--silver
+             de-u-pad2 de-u-overflowXNone"
+      aria-labelledby="Section-lifestyle-images"
+    >
       <span
         id="product-imageGallery"
         class="de-ProductAnchor"
         aria-hidden="true">
       </span>
-
-      <h2 class="de-ProductInfoTitle
-                de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4
-                de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
-          id="Section-lifestyle-images">
+      <h2
+        class="de-ProductInfoTitle
+               de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4
+               de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
+        id="Section-lifestyle-images"
+      >
         <span class="visually-hidden">Product Lifestyle</span> Image Gallery
       </h2>
         <h2 class="de-u-textGrow2 de-u-md-hidden">
           Image Gallery
         </h2>
         <div class="ProductImageGallery de-u-fullwidth de-u-padEnds2">
-          {% comment %}
-            Both files should exist until `product-image-gallery` has been
-            approved and passed design review.
-
-            The ability to toggle between these two snippets will make forthcoming
-            reivews easier.
-          {% endcomment %}
-          {% comment %} {% include 'product-proto-image-gallery' %} {% endcomment %}
           {% include 'product-image-gallery' %}
         </div>
     </section>
   {% endif %}
 
-  <section class="de-ProductInfoSection de-ProductInfoSection--withBorderTop
-                  de-u-md-padEnds de-u-md-padSides
-                  js-de-Reviews"
-           aria-labelledby="Section-reviews"
-           data-model-code="{{model_code}}"
+  <section
+    class="de-ProductInfoSection de-ProductInfoSection--withBorderTop
+           de-u-md-padEnds de-u-md-padSides
+           js-de-Reviews"
+    aria-labelledby="Section-reviews"
+    data-model-code="{{model_code}}"
   >
     <span
       id="product-reviews"
@@ -221,7 +186,6 @@
       {% include 'product-customer-reviews-heading' %}
     {% endcapture %}
     {% capture reviews_accordion_content %}
-      {% comment %} Dynamic Customer Reviews {% endcomment %}
       {% comment %}
         Reviews
         Capture to enable inserting content into the drawer
@@ -260,18 +224,7 @@
       {% endcapture %}
       {% capture size_and_fit_accordion_content %}
         {% capture size_and_fit_drawer_content %}
-          {% comment %}
-            Juma's Dynamic Size Guide
-          {% endcomment %}
           {% include 'product-size-guide' %}
-          {% comment %}
-            Derek's Size Guide Markup
-            @TODO:
-            1. Remove prototype reference when design review is complete
-          {% endcomment %}
-          {% comment %}
-            {% include 'product-proto-size-guide-content' %}
-          {% endcomment %}
         {% endcapture %}
         {% comment %}
           Create a drawer for the captured content
@@ -292,8 +245,8 @@
     </section>
   {%- endif -%}
 
-  <section 
-    class="de-ProductInfoSection de-ProductInfoSection--silver 
+  <section
+    class="de-ProductInfoSection de-ProductInfoSection--silver
            de-u-md-pad"
     aria-labelledby="Section-additional-info"
   >
@@ -303,31 +256,19 @@
       aria-hidden="true">
     </span>
     <header>
-      <h2 class="de-ProductInfoTitle
-                 de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4
-                 de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
-          id="Section-additional-info">
+      <h2
+        class="de-ProductInfoTitle
+               de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4
+               de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
+        id="Section-additional-info"
+      >
         <span class="visually-hidden">Additional </span>Product Information
       </h2>
     </header>
     {% capture product_information_accordion_content %}
-      {% comment %}
-        Dynamic Product information content
-      {% endcomment %}
-      {% comment %} {{ product_specs }} {% endcomment %}
-      {% comment %}
-        Prototype product information content
-      {% endcomment %}
       <div class="de-u-spaceTop6">
         {% comment %}
-        Product information prototype snippet
-        {% endcomment %}
-        {% comment %}
-        {% include 'product-proto-information' %}
-        {% endcomment %}
-
-        {% comment %}
-        Product information wired to metafields
+          Product information wired to metafields
         {% endcomment %}
         {% include 'product-information' %}
 
@@ -340,9 +281,6 @@
     %}
   </section>
   {% capture 'fulfillment_drawer_content' %}
-    {% comment %}
-      Dynamic Store Pickup Content
-    {% endcomment %}
     {% include 'product-store-pickup' %}
   {% endcapture %}
   {% include 'product-drawer',
