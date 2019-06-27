@@ -57,7 +57,7 @@
         </div>
       </div>
     {% endif %}
-      
+
 
     {% comment %}
       Link to your product with the 'within: collection' filter for the link to be aware of the collection.
@@ -73,9 +73,10 @@
     {% endcomment %}
 
     {% assign current_variant = product.selected_or_first_available_variant %}
+    {% assign alt = current_variant.image.alt %}
     <div class="u-block">
       <a href="{{ product.url | within: collection }}" class="grid__image collectionProduct-imageLink js-shopNow">
-        <img class="collectionProduct-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="{{ current_variant.image.src | img_url: 'large' }}" alt="{{ current_variant.image.alt | escape }}">
+        <img class="collectionProduct-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="{{ current_variant.image.src | img_url: 'large' }}" alt="{% include 'func-extract-alt-copy' with alt %}">
       </a>
 
       {% include 'product-grid-item--colors' %}
@@ -119,7 +120,7 @@
 	                <p class="collectionProduct-hoverBox-description">
                       {{ product.metafields.global.description_tag }}
                     </p>
-					
+
                     {% include 'product-grid-item--options' %}
 
                     {% if settings.is_lookbook == true %}
