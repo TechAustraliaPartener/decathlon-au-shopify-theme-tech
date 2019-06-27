@@ -170,6 +170,21 @@ figure {
 }
 
 /**
+ * 1. This is overriding a patterns/toolkit property. 
+ *
+ * @TODO: 
+ * - move to MenuBar patterns
+ */
+
+ .de-ProductMenu .de-MenuBar--noAction:after {
+  display: none !important;
+}
+
+.de-ProductMenu .de-MenuBar--noAction:focus {
+  color: inherit;
+}
+
+/**
  * A unique solution for anchor links for use when fixed or sticky menus are
  * present. Adding this class to an element directly preceding the element, or
  * as the first-child inside of the element you'd like to link to, will ensure
@@ -217,6 +232,17 @@ figure {
 @media (min-width: $breakpoint-md) {
   .de-ProductInfoSection--silver {
     background-color: $color-silver;
+  }
+}
+
+.de-ProductInfoSection--withBorderTop {
+  border: 0
+}
+
+@media (min-width: $breakpoint-md) {
+
+  .de-ProductInfoSection--withBorderTop {
+    border-top: $border-width-md solid $color-silver;
   }
 }
 
@@ -889,6 +915,7 @@ $button-background-hover: #429dd7;
 }
 
 .de-is-inPageFlow .de-ReviewsContainer-reviewSummary {
+
   @media (min-width: $breakpoint-md) {
     flex-basis: auto;
     width: 50%;
@@ -913,6 +940,7 @@ $button-background-hover: #429dd7;
  */
 
 .de-is-inPageFlow .de-ReviewsContainer-reviews {
+
   @media (min-width: $breakpoint-md) {
     flex-basis: auto;
     padding-left: 2.027rem; /* 1 */

@@ -179,10 +179,7 @@
 
   {% if has_context_photo %}
 
-    {% comment %} Back to top anchor link {% endcomment %}
-    {% include 'product-back-to-top' %}
-
-    <section class="de-ProductInfoSection de-ProductInfoSection--silver
+    <section class="de-ProductInfoSection de-ProductInfoSection--withBorderTop
                     de-u-pad2 de-u-overflowXNone"
             aria-labelledby="Section-lifestyle-images">
 
@@ -215,18 +212,17 @@
     </section>
   {% endif %}
 
-  <section class="de-ProductInfoSection
+  <section class="de-ProductInfoSection de-ProductInfoSection--withBorderTop
                   de-u-md-padEnds de-u-md-padSides
                   js-de-Reviews"
            aria-labelledby="Section-reviews"
-           data-model-code="{{model_code}}">
-
+           data-model-code="{{model_code}}"
+  >
     <span
       id="product-reviews"
       class="de-ProductAnchor"
       aria-hidden="true">
     </span>
-
     {% capture reviews_heading %}
       {% include 'product-customer-reviews-heading' %}
     {% endcapture %}
@@ -302,19 +298,16 @@
     </section>
   {%- endif -%}
 
-  {% comment %} Back to top anchor link {% endcomment %}
-  {% include 'product-back-to-top' %}
-
-
-  <section class="de-ProductInfoSection
-                  de-ProductInfoSection--silver de-u-md-pad"
-           aria-labelledby="Section-additional-info">
+  <section 
+    class="de-ProductInfoSection de-ProductInfoSection--silver 
+           de-u-md-pad"
+    aria-labelledby="Section-additional-info"
+  >
     <span
       id="product-information"
       class="de-ProductAnchor"
       aria-hidden="true">
     </span>
-
     <header>
       <h2 class="de-ProductInfoTitle
                  de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4

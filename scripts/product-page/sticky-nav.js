@@ -24,7 +24,7 @@ const throttle = (cb, interval) => {
  * Sets up active state of the active item in the sticky nav
  */
 export const init = () => {
-  const links = document.querySelectorAll('.de-ProductMenu .de-MenuBar-action');
+  const links = document.querySelectorAll('.de-js-StickyMenuItem');
 
   const targets = [...links].map(link =>
     document.getElementById(link.getAttribute('href').replace(/^#/, ''))
