@@ -1,0 +1,14 @@
+<section class="ProductInformation-entry de-u-spaceBottom6"
+         aria-labelledby="ProductInfo-{{forloop.index}}"
+         itemprop="additionalProperty"
+         itemscope
+         itemtype="http://schema.org/PropertyValue">
+  <header>
+    <h3 class="de-u-textGrow2"
+        id="ProductInfo-{{forloop.index}}"
+        itemprop="name">
+      {{ spec['name'] }}
+    </h3>
+  </header>
+  <p class="de-u-spaceNone" itemprop="value">{{ spec['description'] }}</p>
+</section>
