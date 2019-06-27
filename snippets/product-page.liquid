@@ -35,17 +35,11 @@
 {%- assign product_images = product.images -%}
 {%- assign context_photo_delimiter = '[[contextphoto]]' -%}
 {%- assign has_context_photo = false -%}
-{%- assign feature_photo = false -%}
 
 {%- for product_image in product_images -%}
   {% if product_image.alt contains context_photo_delimiter %}
-    {% comment %} The first context image gets used for the feature photo {% endcomment %}
-    {% if feature_photo %}
-      {% assign has_context_photo = true %}
-      {% break %}
-    {% else %}
-      {% assign feature_photo = product_image %}
-    {% endif %}
+    {% assign has_context_photo = true %}
+    {% break %}
   {% endif %}
 {%- endfor -%}
 
