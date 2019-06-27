@@ -23,6 +23,12 @@ const loadImages = () => {
       const sizes = $slide.data('sizes');
       $slide.attr('sizes', sizes);
     }
+    if (!$slide.attr('src')) {
+      // This is called data-carousel-src because there is a global script which
+      // modifies data-src
+      const srcset = $slide.data('carousel-src');
+      $slide.attr('src', srcset);
+    }
   });
 };
 

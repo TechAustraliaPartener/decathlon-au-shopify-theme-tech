@@ -152,7 +152,7 @@
                     srcset="{{ image_srcset }}"
                     sizes="{{ image_sizes }}"
                   {% else %}
-                    data-src="{{ image_src }}"
+                    data-carousel-src="{{ image_src }}"
                     data-srcset="{{ image_srcset }}"
                     data-sizes="{{ image_sizes }}"
                   {% endif %}
@@ -204,7 +204,7 @@
               aria-label="Product thumbnail image {{ forloop.index | minus: start_index }} of {{ end_index | minus: start_index }}">
               <button class="de-CarouselThumbnail-btn de-u-block">
                 <img class="de-CarouselThumbnail-image de-u-bgSilver js-de-SlickCarouselSlide"
-                  src="{{ product_image | img_url "240x" }}"
+                  data-carousel-src="{{ product_image | img_url "240x" }}"
                   data-srcset="{{ image_srcset }}"
                   data-sizes="{{ image_sizes }}"
                   alt="">

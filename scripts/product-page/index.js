@@ -1,7 +1,7 @@
 // @ts-check
 import './buybox';
-import { init as carouselInit, updateUI as updateCarouselUI } from './carousel';
-import { init as carouselContextInit } from './carousel-context';
+import * as carousel from './carousel';
+import * as carouselContext from './carousel-context';
 import {
   init as colorSwatchesInit,
   getState as getColorSwatchesState,
@@ -97,7 +97,7 @@ const updateUI = state => {
   }
 
   updateOptionStates(state);
-  updateCarouselUI(state);
+  carousel.updateUI(state);
 };
 
 /**
@@ -136,8 +136,8 @@ const init = async () => {
   setUpListeners();
   reviewsInit();
   drawerInit();
-  carouselInit();
-  carouselContextInit();
+  carousel.init();
+  carouselContext.init();
   addToCart.init();
   accordionInit();
   const urlVariant = selectUrlVariant();

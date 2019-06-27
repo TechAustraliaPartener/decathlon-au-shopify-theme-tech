@@ -1,3 +1,4 @@
+// @ts-check
 import { IS_ACTIVE_CLASS, CSS_UTILITY_PREFIX, JS_PREFIX } from './constants';
 // @todo Consider removing jQuery dependency
 import $ from 'jquery';
@@ -59,7 +60,9 @@ const loadImages = () => {
         $slide.attr('sizes', sizes);
       }
       if (!$slide.attr('src')) {
-        const src = $slide.data('src');
+        // This is called data-carousel-src because there is a global script which
+        // modifies data-src
+        const src = $slide.data('carousel-src');
         $slide.attr('src', src);
       }
     }
@@ -110,8 +113,9 @@ const getSlideCount = function() {
       }
     });
     slidesTraversed =
-      Math.abs($(swipedSlide).attr('data-slick-index') - this.currentSlide) ||
-      1;
+      Math.abs(
+        Number($(swipedSlide).attr('data-slick-index')) - this.currentSlide
+      ) || 1;
     return slidesTraversed;
   }
   return this.options.slidesToScroll;
@@ -151,7 +155,9 @@ const getNavigableIndexes = function() {
  */
 const improveCarouselSwipeResponse = () => {
   $(THUMBNAIL_CAROUSEL_ACTIVE_SELECTOR).each(function() {
+    // @ts-ignore
     this.slick.getSlideCount = getSlideCount;
+    // @ts-ignore
     this.slick.getNavigableIndexes = getNavigableIndexes;
   });
 };
@@ -304,7 +310,7 @@ const handleWindowResize = () => {
 
 /**
  * Reset active carousel to represent new color
- * @param {string} color A product variant color value
+ * @param {{color: string}} options
  */
 export const updateUI = ({ color }) => {
   if (color) {

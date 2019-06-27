@@ -74,6 +74,7 @@
     "typescript": "^3.5.1"
   },
   "dependencies": {
+    "@types/slick-carousel": "^1.6.33",
     "fast-deep-equal": "^2.0.1",
     "formdata-polyfill": "^3.0.15",
     "js-cookie": "^2.2.0",
