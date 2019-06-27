@@ -1,3 +1,10 @@
+{%- assign pageUsesAppMate = settings.app_wk_enabled -%}
+{%- if template == 'index' or template contains 'collection.' or template == 'search' or template == 'cart' -%}
+  {%- assign pageUsesAppMate = false -%}
+{%- elsif template == 'product' and product.metafields.global.features != blank -%}
+  {% comment %} New Product Page {% endcomment %}
+  {% assign pageUsesAppMate = false %}
+{%- endif -%}
 <!doctype html>
 <!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!--[if IE 9 ]><html class="ie9 no-js" lang="en"> <![endif]-->
@@ -136,7 +143,7 @@
   {% endif %}
 
   {% comment %} wishlist {% endcomment %}
-  {% if settings.app_wk_enabled %}
+  {% if pageUsesAppMate %}
     {% include 'appmate-wishlist-king' %}
   {% endif %}
 
@@ -269,28 +276,30 @@
   {{ 'slick.min.js' | asset_url | script_tag }}
   {{ 'js.cookie.min.js' | asset_url | script_tag }}
 
-  <script>
-  ;(function(window, $, Cookies) {
-  $(function() {
+  {% if pageUsesAppMate %}
+    <script>
+    ;(function(window, $, Cookies) {
+    $(function() {
 
-    // Alan - 030618 - added for native app to clear localStorage
-    if (Cookies.get('noLocalStorage')) {
-      localStorage.clear();
-      Cookies.remove('noLocalStorage');
-    }
+      // Alan - 030618 - added for native app to clear localStorage
+      if (Cookies.get('noLocalStorage')) {
+        localStorage.clear();
+        Cookies.remove('noLocalStorage');
+      }
 
-  try {
-    Appmate.wk.ready(function(data) {
-      Cookies.set('helpdesk', {
-        cartCount: {{ cart.item_count }},
-        wishlistCount: Appmate.wk.collection.items.length
-      }, { domain: '.decathlon.com' });
+    try {
+      Appmate.wk.ready(function(data) {
+        Cookies.set('helpdesk', {
+          cartCount: {{ cart.item_count }},
+          wishlistCount: Appmate.wk.collection.items.length
+        }, { domain: '.decathlon.com' });
+      });
+    } catch(e) {}
+
     });
-  } catch(e) {}
-
-  });
-  })(window, jQuery, Cookies);
-  </script>
+    })(window, jQuery, Cookies);
+    </script>
+  {% endif %}
 
   {% comment %}
   {{ 'zoom.js' | asset_url | script_tag }}
