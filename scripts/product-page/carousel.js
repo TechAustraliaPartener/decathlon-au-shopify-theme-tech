@@ -239,7 +239,8 @@ const initCarousel = () => {
   $featureCarouselActive.slick({
     ...sharedConfig,
     asNavFor: $thumbnailCarouselActive,
-    slidesToShow: 1
+    slidesToShow: 1,
+    waitForAnimate: false
   });
   $thumbnailCarouselActive.slick({
     ...sharedConfig,
