@@ -5,13 +5,17 @@
 {%- assign product_images = product.images -%}
 {%- assign context_photo_delimiter = '[[contextphoto]]' -%}
 {%- assign feature_photo = false -%}
+{%- comment -%}
+  `product_image_index` is the position of the product image to show
+{%- endcomment -%}
+{%- assign product_image_position = 3 -%}
+{%- assign product_images_loop_count = 0 -%}
 
 {%- for product_image in product_images -%}
   {% unless product_image.alt contains context_photo_delimiter %}
-    {% if feature_photo == false %}
-      {% assign feature_photo = product_images[forloop.index0] %}
-    {% else %}
-      {% assign feature_photo = product_images[forloop.index0] %}
+    {%- assign product_images_loop_count = product_images_loop_count | plus: 1 -%}
+    {% if product_images_loop_count == product_image_position %}
+      {% assign feature_photo = product_image %}
       {% break %}
     {% endif %}
   {% endunless %}
