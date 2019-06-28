@@ -1,5 +1,5 @@
 {% if collection.image %}
-    <div class="collectionImage de-collectionImage medium-down--hide" style="background-image:url('{{ collection.image | img_url: 'master' }}'); " data-background-image="{{ collection.image | img_url: 'master' }}">
+    <div class="collectionImage de-collectionImage medium-down--hide" style="background-image:url('{{ collection.image | img_url: '200x', format: 'pjpg' }}'); " data-background-image="{{ collection.image | img_url: 'master', format: 'pjpg' }}">
         <div class="wrapper">
             {% include 'breadcrumb', adtl_classes: ' breadcrumb--overImage medium-down--hide' %}
 
@@ -38,8 +38,8 @@
                 {% capture mobile-image %}{{ collection.handle }}-{{ link.object.handle }}-mobile.jpg{% endcapture %}
 				<div class="grid__item large--one-third medium-down--one-half text-center de-collectionTile">
 				    <a href="{{ link.url }}">
-				        <img class="de-collectionTileImage medium-down--hide" alt="{{ link.object.title }}" src="{{ desktop-image | file_img_url: '1200x' }}">
-                        <img class="de-collectionTileImage large--hide" alt="{{ link.object.title }}" src="{{ mobile-image | file_img_url: '800x' }}">
+				        <img class="de-collectionTileImage medium-down--hide" alt="{{ link.object.title }}" src="{{ desktop-image | file_img_url: '200x', format: 'pjpg' }}" data-src="{{ desktop-image | file_img_url: '1200x', format: 'pjpg' }}">
+                        <img class="de-collectionTileImage large--hide" alt="{{ link.object.title }}" src="{{ mobile-image | file_img_url: '200x', format: 'pjpg' }}" data-src="{{ mobile-image | file_img_url: '800x', format: 'pjpg' }}">
 				    </a>
 				</div>
 				{% endfor %}
