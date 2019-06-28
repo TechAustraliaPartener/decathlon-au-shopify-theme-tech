@@ -11,13 +11,16 @@
       {%- assign spec = specs[1] -%}
 
       {% comment %}
-      Check to see if the spec is an empty array and check for specs like "Guarantee"
-      and "Care Instructions" that have hardcoded `names` but don't have an associated description.
+        Check to see if the spec is an empty array and check for specs like
+        "Guarantee"and "Care Instructions" that have hardcoded `names` but don't
+        have an associated description.
       {% endcomment %}
 
       {%- unless spec == blank or spec['description'] == blank -%}
         {%- if spec['name'] == 'Composition' -%}
-          {% comment %} Capture the composition item because it needs to be displayed first {% endcomment%}
+          {% comment %}
+            Capture the composition item because it needs to be displayed first
+          {% endcomment%}
           {%- capture composition -%}
             {%- include 'product-information-entry' with spec -%}
           {%- endcapture -%}
