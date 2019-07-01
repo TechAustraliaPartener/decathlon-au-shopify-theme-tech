@@ -21,6 +21,39 @@ const throttle = (cb, interval) => {
 };
 
 /**
+ * Determine which section should be shown in the URL hash based on the scroll position
+ * Loops through the headings, bottom to top
+ * to find the section that is visible at the cutoff of the top ~third of the screen
+ * I _would_ use IntersectionObserver but it isn't supported in IE11 and this is way tinier than a polyfill.
+ * Uses `reduceRight` because we want to _end_ on the items closer to the top
+ * because they should have priority over items lower down
+ * Since it doesn't know where the sections end,
+ * it finds the section that is _right before_ the heading that is highest up but still below the cutoff
+ * @param {HTMLElement[]} targets
+ */
+const getMatchingTarget = targets => {
+  const screenHeight = window.innerHeight;
+  const isAtPageBottom =
+    screenHeight + document.documentElement.scrollTop >=
+    document.documentElement.scrollHeight;
+  // If we have scrolled all the way to the bottom, it should auto-select the last item
+  if (isAtPageBottom) return targets[targets.length - 1];
+  return targets.reduceRight((bestTarget, thisTarget, i) => {
+    // The bottom of the target is the top of the corresponding heading
+    const { bottom } = thisTarget.getBoundingClientRect();
+    // 0.3 is the cutoff of where it is looking for the active section, it is
+    // the % of the way down the screen where it is looking
+    const thisItemIsTooLow = bottom > 0.3 * screenHeight;
+    if (thisItemIsTooLow) {
+      // The next item higher up must be a better choice than any of the items
+      // we have seen so far
+      return targets[i - 1];
+    }
+    return bestTarget;
+  }, targets[targets.length - 1]);
+};
+
+/**
  * Sets up active state of the active item in the sticky nav
  */
 export const init = () => {
@@ -45,36 +78,14 @@ export const init = () => {
     });
   };
 
-  const screenHeight = window.innerHeight;
-
   /**
    * Updates the URL hash and links if the user have scrolled to a different
    * section
    */
   const updateScrollState = () => {
-    // I _would_ use IntersectionObserver but it isn't supported in IE11 and
-    // this is way tinier than a polyfill.
-    // reduceRight because we want to _end_ on the items closer to the top
-    // because they should have priority over items lower down
-    // Loops through the headings, bottom to top, to find the section that is
-    // visible at the cutoff of the top ~third of the screen. Since it doesn't
-    // know where the sections end, it finds the section that is _right before_
-    // the heading that is highest up but still below the cutoff
-    const matchingTarget = targets.reduceRight((bestTarget, thisTarget, i) => {
-      // The bottom of the target is the top of the corresponding heading
-      const { bottom } = thisTarget.getBoundingClientRect();
-      // 0.3 is the cutoff of where it is looking for the active section, it is
-      // the % of the way down the screen where it is looking
-      const thisItemIsTooLow = bottom > 0.3 * screenHeight;
-      if (thisItemIsTooLow) {
-        // The next item higher up must be a better choice than any of the items
-        // we have seen so far
-        return targets[i - 1];
-      }
-      return bestTarget;
-    }, targets[targets.length - 1]);
+    const matchingTarget = getMatchingTarget(targets);
     const newHash = `#${matchingTarget ? matchingTarget.id : ''}`;
-    // Using pushState instead of window.location.hash because we don't want it to jump
+    // Using replaceState instead of window.location.hash because we don't want it to jump
     if (lastHash !== newHash) {
       lastHash = newHash;
       updateHash(newHash);
