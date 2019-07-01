@@ -49,7 +49,9 @@ const loadImages = () => {
       const $slide = $(this);
       // Remove placeholder background color once image has loaded
       $slide.on('load', function() {
-        $slide.removeClass(`${CSS_UTILITY_PREFIX}bgSilver`);
+        $slide.removeClass(
+          `${CSS_UTILITY_PREFIX}bgSilver ${CSS_UTILITY_PREFIX}bgWhite`
+        );
       });
       if (!$slide.attr('srcset')) {
         const srcset = $slide.data('srcset');

@@ -1276,13 +1276,46 @@ $drawer-max-width: 43.333%; /* 1 */
 }
 
 .de-CarouselFeature-btn {
-  display: block;
+  display: flex;
   margin: 0 auto;
+  position: relative;
+  width: 100%;
 }
 
 .de-CarouselContext {
   display: flex;
   overflow-x: auto;
+}
+
+.de-CarouselFeature-image {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+/**
+ * 1. Hides all carousel slides on initial page load,
+ *    preventing them from overflowing down the page
+ * 2. Shows the first carousel while page is loading
+ */
+
+.de-CarouselFeature-slide {
+  display: none; /* 1 */
+  &:first-child {
+    display: block; /* 2 */
+  }
+}
+
+/**
+ * 1. Once Slick Carousel has initialized, allow all slides to show
+ */
+
+.de-CarouselFeature.slick-initialized {
+  .de-CarouselFeature-slide {
+    display: block; /* 1 */
+  }
 }
 
 /* Fix for "sliver" of next image showing in product image carousel */
@@ -1308,15 +1341,12 @@ $drawer-max-width: 43.333%; /* 1 */
 @media (max-width: $breakpoint-lg - .01em) {
 
   /**
-   * 1. Preserves the square aspect ratio of while loading,
-   *    improving the loading experience.
+   * 1. Restricts image sizes from becoming too large;
+   *    a preventive measure to help buybox remains above-the-fold
    */
 
-  .de-CarouselContainer,
-  .de-CarouselFeature-btn,
-  .de-CarouselFeature-image {
-    width: 100%;
-    height: 100vw; /* 1 */
+  .de-CarouselFeature-btn {
+    max-width: 528px; /* 1 */
   }
 
   /**

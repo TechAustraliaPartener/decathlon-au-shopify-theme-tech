@@ -151,6 +151,8 @@
                     data-sizes="{{ image_sizes }}"
                   {% endif %}
                   alt="{% include 'func-extract-alt-copy' with alt %}">
+                  <svg class="de-u-sizeFull"
+                    viewbox="0 0 {{ product_image.aspect_ratio }} 1"></svg>
               </button>
             </div>
           {%- endunless -%}
