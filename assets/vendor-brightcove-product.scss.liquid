@@ -46,7 +46,7 @@ $breakpoint-lg: 60em;
 /**
  * 1. Prevent play button from appearing slightly out of view
  */
-.bc-player-rJxNjfhX_default.vjs-has-started.vjs-user-inactive .vjs-control-bar {
+.bc-player-jQMS54WMw_default.vjs-has-started.vjs-user-inactive .vjs-control-bar {
   margin: 0; /* 1 */
 }
 
@@ -78,7 +78,7 @@ $breakpoint-lg: 60em;
   * 3. Hide time progress bar
   */
 @media (max-width: $breakpoint-md) {
-  .bc-player-rJxNjfhX_default:not(.vjs-has-started) .vjs-control-bar {
+  .bc-player-jQMS54WMw_default:not(.vjs-has-started) .vjs-control-bar {
     visibility: unset; /* 1 */
   }
   .video-js .vjs-time-divider {
@@ -93,4 +93,13 @@ $breakpoint-lg: 60em;
   .de-copyVideo {
     display: none;
   }
+}
+
+/* Added video-js CSS because upgrading Brightcove video player caused sizing issues */
+.video-js {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
