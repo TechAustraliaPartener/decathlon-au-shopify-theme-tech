@@ -32,7 +32,8 @@ $(window).on('load', function() {
   $videoCarousel.slick({
     asNavFor: $thumbnailCarousel,
     arrows: false,
-    infinite: false
+    infinite: false,
+    swipe: false
   });
 
   // Pause video on current slide before slide change
