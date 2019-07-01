@@ -40,8 +40,8 @@ const getMatchingTarget = targets => {
   const firstHeadingBelowCutoff = targets.findIndex(thisTarget => {
     // The bottom of the target is the top of the corresponding heading
     const headingTop = thisTarget.getBoundingClientRect().bottom;
-    // 0.3 is the cutoff of where it is looking for the active section, it is
-    // the % of the way down the screen where it is looking
+    // 0.3 is the cutoff of where it is looking for the active section
+    // It is the % of the distance down from the top of the screen where it is looking
     const isBelowCutoff = headingTop > 0.3 * screenHeight;
     return isBelowCutoff;
   });
