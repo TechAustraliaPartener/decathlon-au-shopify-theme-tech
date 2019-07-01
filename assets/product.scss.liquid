@@ -42,6 +42,7 @@ $breakpoint-xl: 80em;
  *    @see scripts/product-page/drawer.js
  */
 
+$transition-speed-fast: 0.1s;
 $transition-speed-normal: 0.2s; /* 1 */
 $transition-easing-smooth: cubic-bezier(0.77, 0, 0.175, 1);
 
@@ -988,6 +989,26 @@ $button-background-hover: #429dd7;
 
 .de-thumb {
   padding: 10px;
+}
+
+/**
+ * 1. Hides the element until it is initialized/loaded 
+ * 2. Required so the element doesn't collapse on itself during loading
+ */
+
+.de-slick--videos {
+  opacity: 0; /* 1 */
+  height: 100%; /* 2 */
+}
+
+/**
+ * 1. Displays the element once initialized 
+ * 2. Adding a quick transitions makes the experience less jaring
+ */
+
+.de-slick--videos.slick-initialized {
+  opacity: 1; /* 1 */
+  transition: opacity $transition-speed-fast ease-in; /* 2 */
 }
 
 .de-slick--videos-thumbnails {
