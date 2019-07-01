@@ -22,8 +22,7 @@ const throttle = (cb, interval) => {
 
 /**
  * Determine which section should be shown in the URL hash based on the scroll position
- * Loops through the headings, bottom to top
- * to find the section that is visible at the cutoff of the top ~third of the screen
+ * Loops through the headings to find the section that is visible at the cutoff of the top ~third of the screen
  * I _would_ use IntersectionObserver but it isn't supported in IE11 and this is way tinier than a polyfill.
  * Since it doesn't know where the sections end,
  * it finds the section that is _right before_ the heading that is highest up but still below the cutoff
