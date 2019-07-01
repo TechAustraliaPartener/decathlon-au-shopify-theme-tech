@@ -44,8 +44,11 @@ const getMatchingTarget = targets => {
     const isBelowCutoff = headingTop > 0.3 * screenHeight;
     return isBelowCutoff;
   });
+  // If all of the headings are above the cutoff, return the last heading
+  if (firstHeadingBelowCutoff === -1) return targets[targets.length - 1];
   // We want to select the target for the section that is right above the first heading below the cutoff
   // The section that is at the cutoff is the section right before the first section below the cutoff
+  // if firstHeadingBelowCutoff is zero, this returns undefined because all of the sections are too low
   return targets[firstHeadingBelowCutoff - 1];
 };
 
