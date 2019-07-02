@@ -42,14 +42,14 @@
             de-Wrapper--fullwidth de-u-padEnds06
             js-de-SizeSwatches{% if all_sizes.size == 1 %} de-u-hidden{% endif %}">
   {% for size in all_sizes %}
-    {% assign cleanSize = size | strip %}
+    {% assign cleanSize = size | strip | escape %}
       <button
         class="de-SwatchObjects-item de-SwatchObjects--size de-u-textMedium
                js-de-SizeSwatches-option"
         value="{{ cleanSize }}"
       >
         <span class="de-u-hiddenVisually">
-          Select the size {{ cleanSize }} before adding this product to 
+          Select the size {{ cleanSize }} before adding this product to
           your cart.
         </span>
         <span aria-hidden>

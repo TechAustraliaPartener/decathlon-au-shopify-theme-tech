@@ -15,7 +15,7 @@
 
 {% assign all_colors = colors | split: ',' %}
 
-<div 
+<div
   class="de-u-spaceTop06
          de-u-lineHeight1
         {% if all_colors.size == 1 %} de-u-spaceBottom2{% endif %}">
@@ -31,7 +31,7 @@
             js-de-ColorSwatches{% if all_colors.size == 1 %} de-u-hidden{% endif %}">
   {% for color in all_colors %}
     {% assign option_thumb = false %}
-    {% assign clean_color = color | strip %}
+    {% assign clean_color = color | strip | escape %}
     {% for variant in product.variants %}
       {% if option_index == 1 %}{% assign current_color = variant.option1 %}{% endif %}
       {% if option_index == 2 %}{% assign current_color = variant.option2 %}{% endif %}
@@ -49,7 +49,7 @@
                js-de-ColorSwatches-option "
         value="{{ clean_color }}">
         <span class="de-u-hiddenVisually">
-          Select the {{ clean_color }} color before adding this product to 
+          Select the {{ clean_color }} color before adding this product to
           your cart.
         </span>
         {% if option_thumb != false %}
