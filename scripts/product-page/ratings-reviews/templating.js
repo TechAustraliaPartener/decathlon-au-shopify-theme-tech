@@ -1,3 +1,5 @@
+// @ts-check
+
 import Handlebars from 'handlebars';
 import {
   ICON_PREFIX,
@@ -9,6 +11,7 @@ import {
   LOGO_WITHOUT_BACKGROUND_TEMPLATE_ID
 } from './constants';
 import { addRatingsPercentage } from './helpers';
+import { createDateObject } from '../../utilities/create-date-object';
 
 /**
  * A wrapper to check the existence of Handlebars before running code that expects it (an unchecked external gloabal defined in Rollup)
@@ -134,14 +137,16 @@ const _handlebarsInit = () => {
 
   /**
    * Output a date timestamp formatted as d/m/YYYY
-   * @params {string} Timestamp string
+   * If the date object is not created, output an empty string
+   * @params {string} timestamp - Timestamp string
    * Example usage:
    * {{date_format some_date_timestamp}}
    */
-  Handlebars.registerHelper('date_format', function(...args) {
-    const timestamp = args[0];
-    const date = new Date(timestamp);
-    return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+  Handlebars.registerHelper('date_format', function(timestamp) {
+    const date = createDateObject(timestamp);
+    return date
+      ? `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`
+      : '';
   });
 
   /**

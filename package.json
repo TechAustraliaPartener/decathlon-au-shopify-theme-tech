@@ -29,7 +29,9 @@
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.2.3",
     "@cloudfour/eslint-plugin": "^2.0.1",
+    "@types/handlebars": "^4.1.0",
     "@types/jquery": "^3.3.29",
+    "@types/slick-carousel": "^1.6.33",
     "babel-plugin-transform-inline-environment-variables": "^0.4.3",
     "browser-sync": "^2.11.1",
     "css-mqpacker": "^5.0.1",
@@ -74,7 +76,6 @@
     "typescript": "^3.5.1"
   },
   "dependencies": {
-    "@types/slick-carousel": "^1.6.33",
     "fast-deep-equal": "^2.0.1",
     "formdata-polyfill": "^3.0.15",
     "js-cookie": "^2.2.0",
