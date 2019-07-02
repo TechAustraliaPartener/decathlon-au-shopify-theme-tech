@@ -44,10 +44,10 @@
           class="de-u-textGrow3 de-u-spaceNone de-u-lineHeight2"
           itemprop="description"
         >
-          {{ product.title }} is designed for {{ madefor }}
+          {{ product.title | escape }} is designed for {{ madefor | escape }}
         </h3>
         <p class="de-u-spaceNone de-u-textSizeBase de-u-textDarkGray">
-          {{ catchline }}
+          {{ catchline | escape }}
         </p>
       </div>
     </div>
@@ -61,7 +61,7 @@
           class="de-u-block"
           alt="">
           <figcaption class="de-u-hiddenVisually">
-            A photo of the {{ product.title }} in use
+            A photo of the {{ product.title | escape }} in use
           </figcaption>
       </figure>
     </div>
@@ -95,13 +95,13 @@
             <header>
               <h3 id="ProductFeature-{{ forloop.index }}" itemprop="name"
                   class="de-u-spaceBottomNone de-u-textGrow2 de-u-lineHeight3">
-                {{ featuretitle }}
+                {{ featuretitle | escape }}
               </h3>
             </header>
             <p
               itemprop="value"
               class="de-u-textDarkGray de-u-textSizeBase">
-              {{ featurearray['text'] }}
+              {{ featurearray['text'] | escape }}
             </p>
           </div>
         </section>
