@@ -1603,6 +1603,46 @@
     ]
   },
   {
+    "name": "Shop Menu",
+    "settings": [
+      {
+        "id": "shop_menu_image",
+        "type": "image_picker",
+        "label": "Shop Menu Image",
+        "info": "Width-to-height ratio: 4:3"
+      },
+      {
+        "id": "shop_menu_title",
+        "type": "text",
+        "label": "Shop Menu Title",
+        "default": "Meet Decathlon"
+      },
+      {
+        "id": "shop_menu_subtitle",
+        "type": "text",
+        "label": "Shop Menu Subtitle",
+        "default": "Our Mission, Our Story"
+      },
+      {
+        "id": "shop_menu_link",
+        "type": "url",
+        "label": "Shop Menu Link"
+      },
+      {
+        "id": "shop_menu_text_color",
+        "type": "color",
+        "label": "Shop Menu Title & Subtitle Text Color",
+        "default": "#ffffff"
+      },
+      {
+        "id": "shop_menu_bg_color",
+        "type": "color",
+        "label": "Shop Menu Title & Subtitle BG Color",
+        "default": "#0082c3"
+      }
+    ]
+  },
+  {
     "name": "Meet Decathlon",
     "settings": [
       {

@@ -3,13 +3,13 @@
 		<ul class="de-MenuList">
 			{% include 'navigation-menu-mobile-account' %}
 			<li class="de-u-spaceNone">
-				<a class="de-MenuList-item de-MenuList-item--brand" href="/pages/our-story">
+				<a class="de-MenuList-item de-MenuList-item--brand de-ShopMenu" href="{% if settings.shop_menu_link %}{{ settings.shop_menu_link }}{% else %}/pages/our-story{% endif %}">
 				<div class="de-MenuList-content">
-					<h5 class="de-MenuList-heading">Meet Decathlon</h5>
-					<p class="de-MenuList-summary">Our Mission, Our Story</p>
+					<h5 class="de-MenuList-heading de-ShopMenu-title">{{ settings.shop_menu_title }}</h5>
+					<p class="de-MenuList-summary de-ShopMenu-subtitle">{{ settings.shop_menu_subtitle }}</p>
 				</div>
 				{% include 'patterns-icons-chevron',
-					class: "de-MenuList-icon"
+					class: "de-MenuList-icon de-ShopMenu-icon"
 					role: 'presentation' %}
 				</a>
 			</li>
