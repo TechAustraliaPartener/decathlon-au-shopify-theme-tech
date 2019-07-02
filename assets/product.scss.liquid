@@ -992,7 +992,7 @@ $button-background-hover: #429dd7;
 }
 
 /**
- * 1. Hides the element until it is initialized/loaded 
+ * 1. Hides the element until it is initialized/loaded
  * 2. Required so the element doesn't collapse on itself during loading
  */
 
@@ -1002,7 +1002,7 @@ $button-background-hover: #429dd7;
 }
 
 /**
- * 1. Displays the element once initialized 
+ * 1. Displays the element once initialized
  * 2. Adding a quick transitions makes the experience less jaring
  */
 
@@ -1043,21 +1043,7 @@ $button-background-hover: #429dd7;
  * scrolling to work properly.
  * 3. Places the component off-canvas an equal distance to the available
  * viewport width. Necessary for the "slide-in/slide-out" effect
- *
- * @TODO:
- * 1. Complete: ~small screen 100vw via `transform: translateX(0);`~
- * 2. Pending: large screen partial vw via transform
- *
  */
-
-/**
- * Drawer variables
- *
- * 1. Width matches the width of the Buy Box - which is the desired width of
- *    of the active drawer - no more, no less.
- */
-
-$drawer-max-width: 43.333%; /* 1 */
 
 /**
  * Base Drawer overlay styles
@@ -1113,18 +1099,19 @@ $drawer-max-width: 43.333%; /* 1 */
 
 @media (min-width: $breakpoint-lg) {
   .de-Drawer:not(.de-is-inPageFlow) .de-Drawer-contentWrapper {
-    max-width: $drawer-max-width;
+    max-width: 50%;
   }
 }
 
 /**
- * Drawer modifier, changes the transition from default RTL to custom LTR
+ * 1. A magic number is being used to acheive a specific visual goal of
+ *    exactly covering another element, no-more, no-less.
  */
 
-.de-Drawer--transitionLeftToRight:not(.de-is-inPageFlow)
-  .de-Drawer-contentWrapper {
-  left: 0;
-  transform: translateX(-100vw);
+@media (min-width: $breakpoint-xl) {
+  .de-Drawer:not(.de-is-inPageFlow) .de-Drawer-contentWrapper {
+    max-width: 48.5%; /* 1 */
+  }
 }
 
 /**
@@ -1133,9 +1120,9 @@ $drawer-max-width: 43.333%; /* 1 */
  * The extra class applied to these drawers will be managed at the appropriate
  * time by JavaScript
  *
- * Allows the "displays_in_page_flow" content option to transition smoothly when opening
- * and closing, same as the standard drawer (whose position is never switched to
- * "static")
+ * Allows the "displays_in_page_flow" content option to transition smoothly
+ * when opening and closing, same as the standard drawer
+ * (whose position is never switched to "static")
  */
 
 .de-Drawer--contentFromPageFlow.de-is-closed .de-Drawer-contentWrapper,
@@ -1197,17 +1184,17 @@ $drawer-max-width: 43.333%; /* 1 */
 
 /*
  * 1. Enables momentum-based scrolling, where the content continues to scroll
- *    for a while after finishing the scroll gesture and removing your finger from
- *    the touchscreen. The speed and duration of the continued scrolling is
- *    proportional to how vigorous the scroll gesture was. Also creates a new
- *    stacking context. Support: Safari iOS.
+ *    for a while after finishing the scroll gesture and removing your finger
+ *    from the touchscreen. The speed and duration of the continued scrolling
+ *    is proportional to how vigorous the scroll gesture was. Also creates a
+ *    new stacking context. Support: Safari iOS.
  *
- * @see https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-overflow-scrolling
+ * @see https://developer.mozilla.org/en-US/docs/Web/CSS -webkit-overflow-scrolling
  *
  * 2. Matches the padding added when using the utility class '.de-u-pad'
  *
- * Applies only to drawer content displayed in an open drawer, not when displayed
- * in regular page flow
+ * Applies only to drawer content displayed in an open drawer, not when
+ * displayed in regular page flow
  */
 
 .de-Drawer:not(.de-is-inPageFlow) .de-Drawer-content {
@@ -1219,7 +1206,8 @@ $drawer-max-width: 43.333%; /* 1 */
 
 /*
  * 1. Ensures the last direct descendant of `Drawer-content` receives spacing at
- *    the bottom of the scrollable content equal to the height of `Drawer-header`
+ *    the bottom of the scrollable content equal to the height
+ *    of`Drawer-header`
  *
  * @TODO - Consider any future ways to reduce specificity here
  */
