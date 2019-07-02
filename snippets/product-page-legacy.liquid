@@ -44,7 +44,10 @@
   <div class="productHeight100vh">
     <div class="breadcrumbsWrapper u-block">
         <div class="wrapper">
-            {% include 'breadcrumb' %}
+            {% if collection %}
+            {% include 'find-top-level-collection' %}
+            {% include 'create-breadcrumbs' %}
+            {% endif %}
         </div>
     </div>
       {% comment %}
