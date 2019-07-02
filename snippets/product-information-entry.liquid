@@ -14,5 +14,15 @@
       {{ spec['name'] | capitalize }}
     </h3>
   </header>
-  <p class="de-u-spaceNone" itemprop="value">{{ spec['description'] }}</p>
+  {%- assign description_words = spec['description'] | split: ' ' -%}
+  <p class="de-u-spaceNone" itemprop="value">
+    {%- for word in description_words -%}
+      {%- assign protocol = word | split: '://' -%}
+      {%- if protocol[0] == 'http' or protocol[0] == 'https' -%}
+        {{ ' ' }}<a href="{{ word }}">{{ word }}</a>
+      {%- else -%}
+        {{ ' ' }}{{- word -}}
+      {%- endif -%}
+    {%- endfor -%}
+  </p>
 </section>
