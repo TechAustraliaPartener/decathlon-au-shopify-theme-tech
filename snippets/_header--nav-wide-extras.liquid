@@ -1,16 +1,16 @@
 <div class="de-u-sizeFull">
   <div class="de-FlexEmbed">
     <div class="de-FlexEmbed-ratio de-FlexEmbed-ratio--4by3"></div>
-    <img class="de-FlexEmbed-content" src="{{ 'story_split_full_content_1_image.jpg' | asset_url }}" alt="">
+    <img class="de-FlexEmbed-content" src="{% if settings.shop_menu_image %}{{ settings.shop_menu_image | img_url: "master" }}{% else %}{{ 'story_split_full_content_1_image.jpg' | asset_url }}{% endif %}" alt="">
   </div>
   <ul class="de-MenuList">
     <li>
-      <a class="de-MenuList-item de-MenuList-item--brand de-u-padSides2" href="/pages/our-story">
+      <a class="de-MenuList-item de-MenuList-item--brand de-ShopMenu de-u-padSides2" href="{% if settings.shop_menu_link %}{{ settings.shop_menu_link }}{% else %}/pages/our-story{% endif %}">
         <div class="de-MenuList-content">
-          <h5 class="de-MenuList-heading">Meet Decathlon</h5>
-          <p class="de-MenuList-summary">Our Mission, Our Story</p>
+          <h5 class="de-MenuList-heading de-ShopMenu-title">{{ settings.shop_menu_title }}</h5>
+          <p class="de-MenuList-summary de-ShopMenu-subtitle">{{ settings.shop_menu_subtitle }}</p>
         </div>
-        {% include 'patterns-icons-chevron', class: 'de-MenuList-icon', role: 'presentation' %}
+        {% include 'patterns-icons-chevron', class: 'de-MenuList-icon de-ShopMenu-icon', role: 'presentation' %}
       </a>
     </li>
     {% comment %} <li>
