@@ -2,7 +2,7 @@
 {% comment %} {% include 'promo-band' %} {% endcomment %}
 
 <h1 style="display:none">{{ shop.name }}</h1>
-<div id="bannerHero" class="banner banner--slideshow js-slick--attr loading" data-slick='{ "dots": true,
+<div id="bannerHero" class="banner banner--slideshow js-slick--attr js-de-banner-loading de-banner-loading" data-slick='{ "dots": true,
   "infinite": true,
   "autoplay": true,
   "autoplaySpeed": 7000,
@@ -290,6 +290,6 @@
 
 <script>
 $(window).load(function(){
-  $('.loading').removeClass('loading');
+  $('.js-de-banner-loading').removeClass('de-banner-loading');
 });
 </script>
