@@ -4,8 +4,20 @@
 {% endcomment %}
 
 {% assign productinfo = product.metafields.global['product_info'] %}
+{% assign iterator = 0 %}
 
-<section class="ProductInformation">
+{% comment %}
+  Determine whether there is more than one spec section, in order
+  to control column layout
+{% endcomment %}
+{% for specs in productinfo %}
+  {% assign spec = specs[1] %}
+  {% unless spec == blank or spec['description'] == blank %}
+    {% assign iterator = iterator | plus: 1 %}
+  {% endunless %}
+{% endfor %}
+
+<section class="ProductInformation{% if iterator > 1 %} ProductInformation--multispec{% endif %}">
   {%- capture content -%}
     {%- for specs in productinfo -%}
       {%- assign spec = specs[1] -%}
