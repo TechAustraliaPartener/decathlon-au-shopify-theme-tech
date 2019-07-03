@@ -58,56 +58,58 @@
     {% endcomment %}
     {% assign total_ratings_count = product.metafields.reviews.recent_reviews_object.total_item_rating_count | times: 1.0 %}
     {% assign STAR_RATING_PERCENTAGE_MULTIPLIER = 20 %}
-    <div class="de-ReviewMatrix de-u-padTop03">
-      <div class="de-u-flex" id="de-ReviewMatrix-container">
-        <div class="de-ReviewMatrix-stars-container">
-          {% for rating in ratings %}
-            {% assign stars_fill = rating.number | times: STAR_RATING_PERCENTAGE_MULTIPLIER %}
-            {% comment %}
-              Make matrix "row" elements buttons, which will now enable
-              filtering of reviews by rating
-              @TODO - is there anything to be done here for accessibility
-            {% endcomment %}
-            <button aria-label="Show {{rating.number}}-star reviews ({{rating.count}} total)."
-                aria-controls="de-CustomerReviews-container"
-                class="de-ReviewMatrix-stars js-de-CustomerReview-filter
-                de-CustomerReview-filter de-u-flex de-u-padRight de-u-padBottom06"
-                data-star-rating="{{ rating.number }}">
-              <div class="de-StarRating">
-                <div class="de-StarRating-fill"
-                  style="width: {{ stars_fill }}%">
+    {% unless total_item_count == 0 %}
+      <div class="de-ReviewMatrix de-u-padTop03">
+        <div class="de-u-flex" id="de-ReviewMatrix-container">
+          <div class="de-ReviewMatrix-stars-container">
+            {% for rating in ratings %}
+              {% assign stars_fill = rating.number | times: STAR_RATING_PERCENTAGE_MULTIPLIER %}
+              {% comment %}
+                Make matrix "row" elements buttons, which will now enable
+                filtering of reviews by rating
+                @TODO - is there anything to be done here for accessibility
+              {% endcomment %}
+              <button aria-label="Show {{rating.number}}-star reviews ({{rating.count}} total)."
+                  aria-controls="de-CustomerReviews-container"
+                  class="de-ReviewMatrix-stars js-de-CustomerReview-filter
+                  de-CustomerReview-filter de-u-flex de-u-padRight de-u-padBottom06"
+                  data-star-rating="{{ rating.number }}">
+                <div class="de-StarRating">
+                  <div class="de-StarRating-fill"
+                    style="width: {{ stars_fill }}%">
+                  </div>
                 </div>
-              </div>
-              <div class="de-u-textDarkGray de-u-padLeft06 de-u-lineHeight2">
-                {{ rating.count }}
-              </div>
-            </button>
-          {% endfor %}
-        </div>
-        <div class="de-ReviewMatrix-graph-container de-u-flexAuto">
-          {% for rating in ratings %}
-            {% assign stars_percentage = rating.count | divided_by: total_ratings_count | times: 100 %}
-            <button aria-label="Show {{rating.number}}-star reviews ({{stars_percentage | round: 0 }} percent of total reviews)."
-              aria-controls="de-CustomerReviews-container"
-              class="de-ReviewMatrix-graph js-de-CustomerReview-filter"
-              data-star-rating="{{ rating.number }}">
-              <svg height="10px" width="100%">
-                <rect class="total"
-                  width="100%"
-                  height="7px"
-                  fill="#d8d8d8">
-                </rect>
-                <rect class="completed"
-                  width="{{ stars_percentage }}%"
-                  height="7px"
-                  fill="#0082c3">
-                </rect>
-              </svg>
-            </button>
-          {% endfor %}
+                <div class="de-u-textDarkGray de-u-padLeft06 de-u-lineHeight2">
+                  {{ rating.count }}
+                </div>
+              </button>
+            {% endfor %}
+          </div>
+          <div class="de-ReviewMatrix-graph-container de-u-flexAuto">
+            {% for rating in ratings %}
+              {% assign stars_percentage = rating.count | divided_by: total_ratings_count | times: 100 %}
+              <button aria-label="Show {{rating.number}}-star reviews ({{stars_percentage | round: 0 }} percent of total reviews)."
+                aria-controls="de-CustomerReviews-container"
+                class="de-ReviewMatrix-graph js-de-CustomerReview-filter"
+                data-star-rating="{{ rating.number }}">
+                <svg height="10px" width="100%">
+                  <rect class="total"
+                    width="100%"
+                    height="7px"
+                    fill="#d8d8d8">
+                  </rect>
+                  <rect class="completed"
+                    width="{{ stars_percentage }}%"
+                    height="7px"
+                    fill="#0082c3">
+                  </rect>
+                </svg>
+              </button>
+            {% endfor %}
+          </div>
         </div>
       </div>
-    </div>
+    {% endunless %}
 
     <a class="de-ReviewMatrix-reviewBtn btn btn--productReviews de-u-spaceTop2
               de-u-textGrow1 de-u-padEnds"
