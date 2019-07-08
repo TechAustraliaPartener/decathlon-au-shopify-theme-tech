@@ -114,7 +114,7 @@
          js-de-SlickCarousel js-de-SlickCarouselFeature"
          id="de-CarouselFeature">
       {%- for product_image in product_images -%}
-        {% assign image_src = product_image | img_url: "318x", format: "pjpg" %}
+        {% assign image_src = product_image | img_url: "675x", format: "pjpg" %}
         {% assign alt = product_image.alt %}
         {% capture image_srcset %}
           {{ product_image | img_url: "318x", format: "pjpg" }} 318w,
@@ -151,7 +151,7 @@
                     data-sizes="{{ image_sizes }}"
                   {% endif %}
                   alt="{% include 'func-extract-alt-copy' with alt %}">
-                  <svg class="de-u-sizeFull"
+                  <svg class="de-u-sizeFull de-CarouselFeature-svg"
                     viewbox="0 0 {{ product_image.aspect_ratio }} 1"></svg>
               </button>
             </div>
@@ -191,7 +191,7 @@
               aria-roledescription="slide"
               role="group"
               aria-label="Product thumbnail image {{ forloop.index | minus: start_index }} of {{ end_index | minus: start_index }}">
-              <button class="de-CarouselThumbnail-btn de-u-block">
+              <button class="de-CarouselThumbnail-btn de-u-flex">
                 <img class="de-CarouselThumbnail-image de-u-bgSilver js-de-SlickCarouselSlide"
                 {% if color == activeColor %}
                   src="{{ image_src }}"
