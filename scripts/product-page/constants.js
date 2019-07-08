@@ -109,7 +109,7 @@ export const FIXED_CLASS = `${CSS_PREFIX}content-is-fixed`;
 /*
  * CSS class that indicates an element should hide vertical overflow
  */
-export const HIDE_OVERFLOW_Y_CLASS = `${CSS_UTILITY_PREFIX}overflowYHidden`;
+export const HIDE_OVERFLOW_Y_CLASS = `${CSS_UTILITY_PREFIX}overflowYNone`;
 
 /**
  * CSS class used by components that need an "open" state
