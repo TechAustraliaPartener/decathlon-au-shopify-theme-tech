@@ -1,3 +1,10 @@
+{%- assign pageUsesAppMate = settings.app_wk_enabled -%}
+{%- if template == 'index' or template contains 'collection.' or template == 'search' or template == 'cart' -%}
+  {%- assign pageUsesAppMate = false -%}
+{%- elsif template == 'product' and product.metafields.global.features != blank -%}
+  {% comment %} New Product Page {% endcomment %}
+  {% assign pageUsesAppMate = false %}
+{%- endif -%}
 <!doctype html>
 <!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!--[if IE 9 ]><html class="ie9 no-js" lang="en"> <![endif]-->
@@ -79,7 +86,7 @@
     </title>
   {% else %}
     <title>
-    {{ page_title }}{% if current_tags %}{% assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags }}{% endif %}{% if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless template.name == "index" %} | {{ shop.name }}{% endunless %}
+    {{ page_title }}{% if current_tags %}{% assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags }}{% endif %}{% if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %} | {{ shop.name }}
     </title>
   {% endif %}
 
@@ -106,14 +113,20 @@
   {{ 'skill-level.scss.css' | asset_url | stylesheet_tag }}
   {{ 'header.css' | asset_url | stylesheet_tag }}
   {{ 'adeptMind.scss.css' | asset_url | stylesheet_tag }}
-  {{ 'patterns-toolkit.css' | asset_url | stylesheet_tag }}
   {{ 'legacySupport.scss.css' | asset_url | stylesheet_tag }}
   {{ 'cadence.scss.css' | asset_url | stylesheet_tag }}
+  {% if template == "product" and product.metafields.global.features != blank %}
+    {{ 'product.scss.css' | asset_url | stylesheet_tag }}
+    {{ 'vendor-brightcove-product.scss.css' | asset_url | stylesheet_tag }}
+  {% endif %}
 
   {% comment %}
-  {{ 'zoom.css' | asset_url | stylesheet_tag }}
+    @TODO
+    1. Determine when this was commented out and why.
+    {{ 'zoom.css' | asset_url | stylesheet_tag }}
   {% endcomment %}
 
+  {{ 'patterns-toolkit.css' | asset_url | stylesheet_tag }}
 
   <!-- Header hook for plugins ================================================== -->
   {{ content_for_header }}
@@ -130,7 +143,7 @@
   {% endif %}
 
   {% comment %} wishlist {% endcomment %}
-  {% if settings.app_wk_enabled %}
+  {% if pageUsesAppMate %}
     {% include 'appmate-wishlist-king' %}
   {% endif %}
 
@@ -156,6 +169,12 @@
 </script>
 {% endif %}
 
+<script>
+  // Adeptmind script overrides the global replaceState with a new one that only
+  // intermittently works, so this script preserves the original
+  window.realReplaceState = history.replaceState.bind(window.history)
+</script>
+
 {% comment %} {{ 'bc-sf-filter.css' | asset_url | stylesheet_tag }}{% endcomment %}
   <!-- pinterest -->
   <meta name="p:domain_verify" content="15f1bb70fdfd58ef2b29026440052233"/>
@@ -180,7 +199,7 @@
 
   {% include 'google-tag-manager' %}
   {% comment %} {% include '_header--mobile-nav' %} {% endcomment %}
-  <div class="de-PageWrap js-de-PageWrap">
+  <div class="de-PageWrap de-Drawer-wrap js-de-PageWrap js-de-Drawer-wrap">
     {% include '_header' %}
 
     {% if settings.ajax_cart_method == "drawer" %}
@@ -202,8 +221,6 @@
     </div>
   </div>
 
-
-  {{ 'fastclick.min.js' | asset_url | script_tag }}
 
   {{ 'timber.js' | asset_url | script_tag }}
 
@@ -259,28 +276,30 @@
   {{ 'slick.min.js' | asset_url | script_tag }}
   {{ 'js.cookie.min.js' | asset_url | script_tag }}
 
-  <script>
-  ;(function(window, $, Cookies) {
-  $(function() {
+  {% if pageUsesAppMate %}
+    <script>
+    ;(function(window, $, Cookies) {
+    $(function() {
 
-    // Alan - 030618 - added for native app to clear localStorage
-    if (Cookies.get('noLocalStorage')) {
-      localStorage.clear();
-      Cookies.remove('noLocalStorage');
-    }
+      // Alan - 030618 - added for native app to clear localStorage
+      if (Cookies.get('noLocalStorage')) {
+        localStorage.clear();
+        Cookies.remove('noLocalStorage');
+      }
 
-  try {
-    Appmate.wk.ready(function(data) {
-      Cookies.set('helpdesk', {
-        cartCount: {{ cart.item_count }},
-        wishlistCount: Appmate.wk.collection.items.length
-      }, { domain: '.decathlon.com' });
+    try {
+      Appmate.wk.ready(function(data) {
+        Cookies.set('helpdesk', {
+          cartCount: {{ cart.item_count }},
+          wishlistCount: Appmate.wk.collection.items.length
+        }, { domain: '.decathlon.com' });
+      });
+    } catch(e) {}
+
     });
-  } catch(e) {}
-
-  });
-  })(window, jQuery, Cookies);
-  </script>
+    })(window, jQuery, Cookies);
+    </script>
+  {% endif %}
 
   {% comment %}
   {{ 'zoom.js' | asset_url | script_tag }}
@@ -289,6 +308,17 @@
 
   {{ 'decathlon.js' | asset_url | script_tag }}
   {{ 'patterns-toolkit.js' | asset_url | script_tag }}
+  {% if template == "product" and product.metafields.global.features != blank%}
+    {% comment %}
+      Store Pickup Script(s)
+      @TODO Install as npm packages. With the current rollup configuration,
+      'moment-timezone.js' throws an error, requiring the use of 'rollup-plugin-json'.
+      @see https://github.com/decathlon-usa/shopify-theme-decathlonusa/pull/441#discussion_r290511357
+    {% endcomment %}
+    {% include 'moment.js' %}
+    {% include 'moment-timezone.js' %}
+    {{ 'built-product-page.js' | asset_url | script_tag }}
+  {% endif %}
 
   {% comment %}{% include 'decathlon-wishlist' %}{% endcomment %}
   {% comment %}{% include 'zendesk-chat' %}{% endcomment %}

@@ -35,7 +35,8 @@
       <div class="grid__item large--one-half large--display-table-cell">
         <a href="{{ product.url }}" class="product-single__photos">
           {% assign featured_image = product.featured_image %}
-          <img src="{{ featured_image | img_url: '1024x1024' }}" alt="{{ featured_image.alt | escape }}">
+          {% assign alt = featured_image.alt %}
+          <img src="{{ featured_image | img_url: '1024x1024' }}" alt="{% include 'func-extract-alt-copy' with alt %}">
         </a>
       </div>
 

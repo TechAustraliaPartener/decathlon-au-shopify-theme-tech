@@ -4,6 +4,7 @@ module.exports = {
       '@babel/preset-env',
       {
         loose: true,
+        useBuiltIns: 'usage',
         exclude: ['transform-regenerator', 'transform-async-to-generator']
       }
     ]
@@ -18,6 +19,7 @@ module.exports = {
           noRuntime: true
         }
       }
-    ]
+    ],
+    require.resolve('./babel-plugin-transform-remove-regex-polyfill')
   ]
 };
