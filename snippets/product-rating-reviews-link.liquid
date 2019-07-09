@@ -1,0 +1,25 @@
+{%- capture write_a_review_url -%}
+  {% if customer %}/account?view=review-products{% else %}/account/login?checkout_url=/account?view=review-products{% endif %}
+{%- endcapture -%}
+
+{% assign total_item_count = product.metafields.reviews.recent_reviews_object.total_item_count | plus: 0 %}
+
+{% if total_item_count == 0 %}
+  <a
+    href="{{ write_a_review_url }}"
+    class="de-ProductTitleLockup-rating de-u-textBlue de-u-textMedium de-u-textSelectNone"
+  >
+    Be the first to leave a review
+  </a>
+{% else %}
+  <a
+    href="#customer-reviews"
+    data-drawer-id="reviews-drawer"
+    data-drawer-toggle-aria-label="Open the reviews dialog."
+    data-drawer-action="open"
+    class="de-ProductTitleLockup-rating de-u-size1of2 de-u-flex de-u-flexJustifyEnd js-de-Drawer-toggle"
+    data-test="customer-reviews-toggle"
+  >
+    {% include 'product-rating--stars-total' %}
+  </a>
+{% endif %}

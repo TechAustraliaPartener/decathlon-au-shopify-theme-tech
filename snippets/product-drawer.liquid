@@ -1,0 +1,53 @@
+{% comment %}
+  The Drawer has the following data requirements:
+
+  - drawer_id (string): The ID of the drawer, must be unique
+    ("size-guide-drawer", "reviews-drawer", etc.)
+  - drawer_label (string): A string label for better accessibility
+    ("Size Guide", "Reviews", etc.)
+  - content: The captured content block to be rendered in the drawer
+{% endcomment %}
+
+<div
+  {% unless displays_in_page_flow %}role="dialog"{% endunless %}
+  id="{{ drawer_id }}"
+  aria-label="{{ drawer_label }}"
+  class="de-Drawer
+        {% if displays_in_page_flow %}
+        de-is-inPageFlow de-Drawer--contentFromPageFlow
+        {% endif %}
+        js-de-Drawer"
+  {% if displays_in_page_flow %}data-display-in-page-flow="true"{% endif %}
+  data-test="{{ drawer_id }}"
+>
+  <div
+    class="de-Drawer-overlay js-de-Drawer-overlay"
+    data-drawer-id="{{ drawer_id }}"
+    data-drawer-action="close"
+    data-test="{{ drawer_id }}-overlay"
+  ></div>
+  <div class="de-Drawer-contentWrapper">
+    <header class="de-Drawer-header
+                   de-u-bgSilver
+                   de-u-padSides de-u-padEnds06 de-u-spaceNone">
+      <button
+        class="de-u-flex de-u-flexAlignItemsCenter
+               de-u-textMedium de-u-textGrow1
+               js-de-Drawer-toggle"
+        data-drawer-id="{{ drawer_id }}"
+        data-drawer-toggle-aria-label="Close the {{ drawer_label }} dialog."
+        data-drawer-action="close"
+        data-test="{{ drawer_id }}-close-toggle"
+      >
+        {% include 'icon-close' with class: 'de-Icon de-u-spaceRight06' %}
+        CLOSE
+      </button>
+    </header>
+    <div class="de-Drawer-content">
+      {% if heading %}
+        {{ heading }}
+      {% endif %}
+      {{ content }}
+    </div>
+  </div>
+</div>

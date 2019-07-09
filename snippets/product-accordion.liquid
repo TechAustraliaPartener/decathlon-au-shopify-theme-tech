@@ -1,0 +1,27 @@
+{% comment %}
+  The Accordion snippet accepts the following arguments:
+  • is_open (boolean): Set to `true` if the accordion should be open by default
+  • accordion_heading (string): The accordion heading (e.g. "Features")
+  • accordion_content: The captured content block to hide/show
+{% endcomment %}
+<div
+  class="de-Accordion js-de-Accordion{% if is_open %} de-is-open{% endif %}"
+>
+  <h2 class="de-u-textGrow2 de-u-lineHeight4 de-u-spaceNone">
+    <button
+      class="de-Accordion-header js-de-Accordion-header"
+      aria-expanded="{{ is_open }}"
+    >
+      {{ accordion_heading }}
+      <span
+        class="de-Accordion-indicator de-u-textGrow5 de-u-spaceRight06"
+        aria-hidden="true"
+      >
+        +
+      </span>
+    </button>
+  </h2>
+  <div class="de-Accordion-content">
+    {{ accordion_content }}
+  </div>
+</div>

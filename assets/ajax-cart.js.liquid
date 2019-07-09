@@ -193,7 +193,13 @@ var ajaxCart = (function(module, $) {
       cartCostSelector   : null,
       moneyFormat        : '${{amount}}',
       disableAjaxCart    : false,
-      enableQtySelectors : true
+      /**
+       * `shopify-theme-decathlonusa` PR #395
+       * Desire to remove all styling and behavior modifications from inputs
+       * type="number". Leaving code as is except for this setting, which
+       * enables the script that makes these modifications
+       */
+      enableQtySelectors : false
     };
 
     // Override defaults with arguments
@@ -277,7 +283,10 @@ var ajaxCart = (function(module, $) {
 
     if (!!data.message) {
       if (data.status == 422) {
-        $formContainer.after('<div class="errors qty-error">'+ data.description +'</div>')
+        /**
+         * @todo Can we remove the jQuery dependency?
+         */
+        $body.trigger('addItemError.ajaxCart', data);
       }
     }
   };

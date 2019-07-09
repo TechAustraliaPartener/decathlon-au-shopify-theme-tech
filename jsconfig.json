@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
+    "lib": ["dom", "esnext", "dom.iterable"],
     "target": "es6",
-    "checkJs": false
+    "checkJs": false,
+    "moduleResolution": "node"
   },
-  "include": [
-    "scripts/**/*"
-  ]
+  "include": ["scripts/**/*"]
 }

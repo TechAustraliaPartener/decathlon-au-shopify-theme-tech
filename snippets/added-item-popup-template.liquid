@@ -2,11 +2,13 @@
 <script id="AddedItemTemplate" type="text/template">
 {% raw %}
 <div id="AddedItemPopup" class="de-AddedItemPopup {{#if multiple_products}}itemPopup--multipleProducts{{/if}}{{#if isWishlist}} itemPopup--wishlist{{/if}}">
-  <div class="close-itemPopup-btn"></div>
+  <div class="close-itemPopup-btn de-u-textBlack de-u-pad06 de-u-flex">
+    {% endraw %}{% include 'icon-close' with class: 'de-Icon de-u-textGrow1' %}{% raw %}
+  </div>
   <div class="wrapper">
     <div class="u-flex-list u-flex-list--line">
       <div class="u-flex-listItem itemPopup-headerFlex">
-        <h4 class="itemPopup-header">Added to {{#if isWishlist}}wishlist{{else}}cart{{/if}}:</h4>
+        <h4 class="itemPopup-header de-u-textBlack">Added to {{#if isWishlist}}wishlist{{else}}cart{{/if}}:</h4>
       </div>
       <div class="u-flex-listItem itemPopup-productFlex">
         <div class="itemPopup-productCenter">
@@ -14,25 +16,22 @@
             <p class="itemPopup-title">{{this}}</p>
           {{/each}}
           {{#unless multiple_products}}
-          <img class="itemPopup-image" src="{{image}}" alt="{{product_title}}" />
+            <img class="itemPopup-image" src="{{image}}" alt="{{product_title}}" />
 
-          <div class="starRating itemPopup-rating">
-          {{{rating}}}
-          </div>
+            <h3 class="de-u-textGrow1 de-u-md-textGrow2 de-u-textMedium de-u-spaceBottomNone de-u-lineHeight1">{{product_title}}</h3>
 
-          <p class="itemPopup-title">{{product_title}}</p>
-
-          <p class="itemPopup-details">
-            <span class="itemPopup-options">
-            {{#each variant_options}}
-              <span class="itemPopup-option">{{this}}</span>
-            {{/each}}
-            </span>
-            <span class="itemPopup-nowrap">
-              <span class="itemPopup-qty">Qty: 1</span>
-              <span class="itemPopup-price">{{price_dollars}}</span>
-            </span>
-          </p>
+            <div class="itemPopup-details">
+              <div class="de-u-textDarkGray">
+              {{#each variant_options_without_model_code}}
+                <span>{{this}}</span>
+                {{#unless @last}}|{{/unless}}
+              {{/each}}
+              </div>
+              <div class="de-u-textGrow1 de-u-md-textGrow2 de-u-textMedium de-u-spaceTop05">
+                <span>Qty: {{added_quantity}}</span>
+                <span>{{price_dollars}} ea</span>
+              </div>
+            </div>
           {{/unless}}
         </div>
       </div>
@@ -40,15 +39,15 @@
         <div class="itemPopup-image"></div>
         <div class="itemPopup-infoWrap u-block">
           {{#unless isWishlist}}
-          <h5 class="itemPopup-subtotal">Subtotal: {{subtotal}}</h5>
-          <p class="itemPopup-shipInfo">Shipping &amp; taxes calculated at checkout</p>
+          <h5 class="de-u-textGrow1 de-u-md-textGrow2 de-u-textMedium de-u-spaceBottomNone de-u-lineHeight1">Cart subtotal: {{subtotal}}</h5>
+          <p class="de-u-textDarkGray de-u-spaceTopNone de-u-textShrink">Shipping &amp; taxes calculated at checkout</p>
           {{/unless}}
           <p>
             {{#if isWishlist}}
             <a class="itemPopup-submitCart btn btn--full" href="/pages/wishlist">View Wishlist</a>
             {{else}}
             <a class="itemPopup-viewCart btn" href="/cart">View Cart</a>
-            <a class="itemPopup-submitCart btn js-submitCart js-de-checkout" href="/checkout">Checkout</a>
+            <a class="itemPopup-submitCart btn btn--fill js-submitCart js-de-checkout" href="/checkout">Checkout</a>
             {{/if}}
           </p>
         </div>

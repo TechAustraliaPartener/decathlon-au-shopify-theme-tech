@@ -1,0 +1,30 @@
+{% comment %} Small Screen ProductGallery {% endcomment %}
+<div class="ProductGallery-showcase de-Wrapper--fullwidth de-u-lg-hidden">
+
+  <div class="de-u-lg-hidden">
+    {% include 'product-flag' with class: 'de-u-bgSilver de-u-textBlue' %}
+  </div>
+
+  {% comment %} Product Image Carousel {% endcomment %}
+  {% include 'product-carousel' %}
+
+  {% comment %}
+    Show video when 'Watch Video' action is clicked
+  {% endcomment %}
+  {% if product_video.size > 0 %}
+    <video data-account="3415345270001"
+      data-player="jQMS54WMw"
+      data-embed="default"
+      data-video-id="ref:{{ product_video[0] }}_1"
+      class="video-js de-copyVideo js-de-copyVideo de-u-hidden"
+      controls
+      playsinline>
+    </video>
+  {% endif %}
+</div>
+
+{% if product_video.size > 0 %}
+{% include 'product-gallery-controls' with
+  class: 'de-u-bgSilver de-u-lg-hidden',
+  display_toggle: true %}
+{% endif %}

@@ -1,8 +1,8 @@
 <li class="de-TextGrid-cell de-u-spaceNone">
   <h3 class="de-u-textGrow1 de-u-textSemibold de-u-lineHeight3 de-u-spaceNone">
     {% if 'item.url' %}
-      {% comment %}Removing "Women's", "Men's" and "Kids'" to avoid redundancy in For Women and For Men menu category headings{% endcomment %}
-      <a class="de-u-linkClean" href="{{ item.url }}">{{ item.title | remove: "Women's "  | remove: "Men's " | remove: "Kids' " }}</a>
+      {% comment %}Removing "Women's" and "Men's" to avoid redundancy in For Women and For Men menu category headings{% endcomment %}
+      <a class="de-u-linkClean" href="{{ item.url }}">{{ item.title | remove: "Women's "  | remove: "Men's " }}</a>
     {% else %}
       {{ item.title }}
     {% endif %}

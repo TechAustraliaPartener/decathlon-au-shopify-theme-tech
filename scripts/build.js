@@ -29,7 +29,7 @@ module.exports = gulp => {
             plugins: [
               rollupNodeResolve(),
               rollupCommonJs(),
-              babel({ babelrc: false, ...babelConfig }),
+              babel({ babelrc: false, ...babelConfig, exclude: [/core-js/] }),
               terser({
                 compress: {
                   passes: 4,
@@ -41,11 +41,14 @@ module.exports = gulp => {
                 output: { beautify: !prod }
               })
             ],
-            external: ['jquery']
+            external: ['jquery', 'handlebars']
           },
           {
             format: 'iife',
-            globals: { jquery: 'jQuery' }
+            globals: {
+              jquery: 'jQuery',
+              handlebars: 'Handlebars'
+            }
           }
         )
       )
