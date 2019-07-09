@@ -32,7 +32,6 @@ $(window).on('load', function() {
   $videoCarousel.slick({
     asNavFor: $thumbnailCarousel,
     arrows: false,
-    infinite: false,
     swipe: false
   });
 
@@ -54,7 +53,9 @@ $(window).on('load', function() {
     slidesToShow: 4,
     slidesToScroll: 1,
     asNavFor: $videoCarousel,
-    focusOnSelect: true
+    focusOnSelect: true,
+    swipeToSlide: true,
+    touchThreshold: 30
   });
 });
 
