@@ -7,12 +7,12 @@
 
 
 - [Project Setup](#project-setup)
-- [Type Checking](#type-checking)
 - [Gulp Config](#gulp-config)
 - [Watch](#watch)
 - [Working With Shopify Assets](#working-with-shopify-assets)
 - [Stylesheets](#stylesheets)
 - [JavaScript](#javascript)
+  - [Type Checking](#type-checking)
   - [JavaScript optimization via Gulp](#javascript-optimization-via-gulp)
   - [JavaScript builds & optimization via Rollup](#javascript-builds--optimization-via-rollup)
 - [SVG Icons](#svg-icons)
@@ -75,9 +75,6 @@
 1. Type the command `npm install` and press enter. This will install all node dependencies for the project.
 1. Type `npx gulp` and press enter. This will run all project gulp tasks and also ensure that all dependencies are installed properly. If a dependency does not exist you'll see an error in terminal. If you see this error, install the missing dependency by typing the command `npm install <package_name> --save-dev`. After this make sure to commit your `package.json` file so that the next user has the dependencies they need.
 
-## Type Checking
-The TypeScript language server can highlight jsdoc and type issues in JS files. In every JS file that you want checked, add `// @ts-check` as the first line. It is generally a good idea to enable checking for new JS files you create and for existing files you are updating. If you are using VSCode or another editor with TS LSP support for JS files, it will automatically start checking once you add that line. You can run `npm run type` or `npm run type:watch` to find all errors in opted-in files from the command line.
-
 ## Gulp Config
 
 There is a file in the root directory called `gulp-config.json`. This file maintains the list of directories, stylesheets, sprites, and JavaScript files. All configuration for gulp should be here.
@@ -104,6 +101,11 @@ In `gulp-config.json` is an array of stylesheets. Each item in the array should 
 If you need sub scss modules to be included in your stylesheet, simply create a folder that matches the name in the array and the watch task will watch those directories for changes. For instance if you had a `_hero.scss` snippet that you wanted to only call in the `index.scss` file, you could place the file in `src/scss/index/` and include the path in your `index.scss` sheet. After that if `npm run dev` is active any changes to `index.scss` and any of the files in the index folder will trigger a compilation.
 
 ## JavaScript
+
+### Type Checking
+The TypeScript language server can highlight jsdoc and type issues in JS files. In every JS file that you want checked, add `// @ts-check` as the first line. It is generally a good idea to enable checking for new JS files you create and for existing files you are updating. If you are using VSCode or another editor with TS LSP support for JS files, it will automatically start checking once you add that line. You can run `npm run type` or `npm run type:watch` to find all errors in opted-in files from the command line.
+
+You can read up on writing type annotations [here](https://www.typescriptlang.org/docs/handbook/type-checking-javascript-files.html#supported-jsdoc).
 
 ### JavaScript optimization via Gulp
 
