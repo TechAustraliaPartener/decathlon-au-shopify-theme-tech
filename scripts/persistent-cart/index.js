@@ -178,9 +178,7 @@ const shouldReconcileCarts = () => {
    */
   if (!existingCustomer || !shopifyCart.token) {
     throw new Error(
-      `Checking whether carts should be reconciled failed because ${
-        cache.customerID
-      } or a Shopify cart ID could not be found.`
+      `Checking whether carts should be reconciled failed because ${cache.customerID} or a Shopify cart ID could not be found.`
     );
   }
   // Check existingCustomer.cartID against shopifyCart token value
@@ -236,9 +234,7 @@ const assignCartIfNew = (shopifyCart = getStoredShopifyCart()) => {
   }
   // If none of the above conditions passes, there's a problem
   throw new Error(
-    `Customer ${
-      cache.customerID
-    } should already have been set in the database, but has not been.`
+    `Customer ${cache.customerID} should already have been set in the database, but has not been.`
   );
 };
 
@@ -428,9 +424,7 @@ const pcInit = customer => {
         ? handleReconciliationAndExpiration()
         : `${
             cache.setNewCustomerOrCart
-              ? `A customer was just created or updated: ' ${
-                  cache.customer.customerID
-                }`
+              ? `A customer was just created or updated: ' ${cache.customer.customerID}`
               : "There's no saved customer, or the saved customer has no cart, and the Shopify cart is empty, so ending"
           }`
     );

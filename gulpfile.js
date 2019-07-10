@@ -1,15 +1,8 @@
 /**
- * Polyfills
- */
-require('es6-promise').polyfill();
-
-/**
  * Plugins
  */
 var clean = require('gulp-clean'),
 	concat = require('gulp-concat'),
- 	cp = require('child_process'),
- 	del = require('del'),
  	fs	= require('fs'),
  	gulp = require('gulp'),
  	jshint = require('gulp-jshint'),
@@ -20,13 +13,10 @@ var clean = require('gulp-clean'),
 	replace = require('gulp-replace'),
  	sass = require('gulp-sass'),
 	sequence = require('gulp-sequence'),
- 	size = require('gulp-size'),
- 	sourcemaps = require('gulp-sourcemaps'),
 	spawn = require('cross-spawn'),
  	svgSprite = require('gulp-svg-sprite'),
  	uglify = require('gulp-uglify'),
- 	util = require('gulp-util'),
-	watch = require('gulp-watch');
+ 	util = require('gulp-util')
 
 const c4ScriptsTask = require('./scripts/build')(gulp);
 

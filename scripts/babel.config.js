@@ -5,6 +5,7 @@ module.exports = {
       {
         loose: true,
         useBuiltIns: 'usage',
+        corejs: 3,
         exclude: ['transform-regenerator', 'transform-async-to-generator']
       }
     ]
