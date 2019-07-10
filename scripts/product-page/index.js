@@ -20,7 +20,7 @@ import { updateOptionStates } from './option-states';
 import { updateUI as updateMasterSelectUI } from './master-select';
 import { updateUI as updatePriceUI } from './price';
 import * as modelCode from './model-code';
-import { updateUI as updateProductFlagsUI } from './product-flags';
+import * as productFlags from './product-flags';
 import * as addToCart from './add-to-cart';
 import { init as drawerInit } from './drawer';
 import { getUrlVariant } from './query-string';
@@ -65,6 +65,7 @@ const onOptionSelect = () => {
     (prevVariant && prevVariant.id) !== (newVariant && newVariant.id);
   if (newVariant && variantHasChanged) {
     addToCart.onVariantSelect(newVariant);
+    productFlags.onVariantSelect(newVariant);
   }
   prevVariant = newVariant;
 };
@@ -88,7 +89,6 @@ const updateUI = state => {
   if (color && size) {
     updateMasterSelectUI(state);
     updatePriceUI(state);
-    updateProductFlagsUI(state);
     /**
      * The updateFulfillmentOptionsUI function will be undefined on page load,
      * but will update on subsequent page actions
