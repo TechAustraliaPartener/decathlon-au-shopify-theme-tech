@@ -7,7 +7,6 @@
  */
 
 import { getSelectedVariant } from './product-data';
-import { updateUrlVariant } from './query-string';
 // @todo Consider removing jQuery dependency
 import $ from 'jquery';
 
@@ -32,6 +31,5 @@ export const updateUI = ({ size, color }) => {
   if (selectedVariant) {
     // @todo Consider removing jQuery dependency
     $MasterSelect.val(selectedVariant.id);
-    updateUrlVariant(selectedVariant.id);
   }
 };

@@ -7,7 +7,6 @@
 
 import { JS_PREFIX, IS_HIDDEN_CLASS } from './constants';
 import {
-  getSelectedVariant,
   getModelCodeFromVariant,
   variants,
   getVariantOptions
@@ -24,15 +23,12 @@ const modelCodeTextElsArray = [...modelCodeTextEls];
 /**
  * Updates the UI with the variant's model code
  *
- * @param {object} obj The state data object
- * @param {string} obj.size Value of the selected size option
- * @param {string} obj.color Value of the selected color option
+ * @param {import('.').State} state
  */
-export const updateUI = ({ size, color }) => {
+export const updateUI = ({ variant, color }) => {
   const modelCode = getModelCodeFromVariant(
-    color && size
-      ? getSelectedVariant({ size, color })
-      : variants.find(v => getVariantOptions(v).color === color)
+    variant ||
+      variants.find(variant => getVariantOptions(variant).color === color)
   );
 
   if (modelCode) {

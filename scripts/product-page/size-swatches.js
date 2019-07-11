@@ -4,16 +4,31 @@
  * Size Swatches "component"
  */
 
-import { IS_ACTIVE_CLASS, JS_PREFIX, CSS_UTILITY_PREFIX } from './constants';
+import {
+  IS_ACTIVE_CLASS,
+  JS_PREFIX,
+  CSS_UTILITY_PREFIX,
+  PRODUCT_PAGE_COPY
+} from './constants';
 // @todo Consider removing jQuery dependency
 import $ from 'jquery';
+import { createState } from './create-state';
 
 /**
- * Module state
+ * @typedef State
+ * @property {string | null} size
+ * @property {HTMLElement} selectedOption
+ * @property {Variant | null} variant
  */
-let state = {
-  size: null
+
+/** @type State */
+const initialState = {
+  size: null,
+  selectedOption: null,
+  variant: null
 };
+
+const state = createState(initialState);
 
 /**
  * Module-specific constants
@@ -25,7 +40,7 @@ const CLICK_EVENT = 'click';
 /**
  * Root element
  */
-export const $SizeSwatches = $(`.${JS_PREFIX}SizeSwatches`);
+export const $Swatches = $(`.${JS_PREFIX}SizeSwatches`);
 
 const DEFAULT_TEXT_COLOR = `${CSS_UTILITY_PREFIX}textDarkGray`;
 const ERROR_TEXT_COLOR = `${CSS_UTILITY_PREFIX}textRed`;
@@ -35,22 +50,6 @@ const ERROR_TEXT_COLOR = `${CSS_UTILITY_PREFIX}textRed`;
  */
 const $SizeSwatchesOptions = $(`.${JS_PREFIX}SizeSwatches-option`);
 const $SizeInfo = $(`.${JS_PREFIX}SizeInfo`);
-
-/**
- * Updates the module state
- *
- * @param {Object} newState The new state
- * @returns {Object} The up-to-date state
- */
-const updateState = newState => {
-  // Assign the new state to the old state
-  state = {
-    ...state,
-    ...newState
-  };
-  // For convenience, return the updated state
-  return state;
-};
 
 /**
  * Trigger $SizeSwatches specific events
@@ -66,7 +65,7 @@ const notifyListeners = state => {
    * @type {object}
    * @property {string} size The size value selected
    */
-  $SizeSwatches.trigger(SELECT_EVENT, state);
+  $Swatches.trigger(SELECT_EVENT, state);
 };
 
 /**
@@ -82,18 +81,17 @@ const updateSizeUiState = selectedOption => {
 };
 
 /**
- * Handles UI updates for the Size Swatches component
- *
- * @param {Object} obj
- * @param {Object} obj.state The current state
- * @param {Element} obj.selectedOption The selected option HTML element
+ * Makes the DOM match the state
+ * @param {State} state
  */
-const updateUI = ({ state, selectedOption }) => {
+const render = ({ selectedOption, size, variant }) => {
   // We need to update the selected color option UI state
   updateSizeUiState(selectedOption);
   // We need to update the selected color text
-  $SizeInfo.text(state.size);
+  $SizeInfo.text(variant ? size : PRODUCT_PAGE_COPY.SELECT_A_SIZE);
 };
+
+state.onChange(render);
 
 /**
  * Handler for when a size choice is made
@@ -102,17 +100,23 @@ const updateUI = ({ state, selectedOption }) => {
  * @this HTMLElement The triggered size swatch option element
  */
 const onSizeSelect = function() {
-  const newState = updateState({
+  const newState = state.updateState({
     // @todo Consider removing jQuery dependency
-    size: $(this).val()
+    // @ts-ignore
+    size: $(this).val(),
+    selectedOption: this
   });
 
   notifyListeners(newState);
-  updateUI({
-    state: newState,
-    selectedOption: this
-  });
-  updateSizeInfoColor(false);
+  resetMissingSizeInfo();
+};
+
+/**
+ * @param {Variant} variant
+ */
+export const onVariantSelect = variant => {
+  state.updateState({ variant });
+  resetMissingSizeInfo();
 };
 
 /**
@@ -125,29 +129,24 @@ const selectSingleSizeOptions = () => {
 };
 
 /**
- * Helper to retrieve the module state
- *
- * @returns {Object} The module state
+ * Retrieves the currently selected size
+ * @returns {string}
  */
-export const getState = () => state;
+export const getSelected = () => state.getState().size;
 
-/**
- * @param {boolean} hasError
- */
-const updateSizeInfoColor = hasError => {
-  if (hasError) {
-    $SizeInfo.removeClass(DEFAULT_TEXT_COLOR);
-    $SizeInfo.addClass(ERROR_TEXT_COLOR);
-  } else {
-    $SizeInfo.removeClass(ERROR_TEXT_COLOR);
-    $SizeInfo.addClass(DEFAULT_TEXT_COLOR);
-  }
+const showMissingSizeInfo = () => {
+  $SizeInfo.removeClass(DEFAULT_TEXT_COLOR);
+  $SizeInfo.addClass(ERROR_TEXT_COLOR);
 };
 
-export const handleAddToCartAttempt = () => {
+const resetMissingSizeInfo = () => {
+  $SizeInfo.removeClass(ERROR_TEXT_COLOR);
+  $SizeInfo.addClass(DEFAULT_TEXT_COLOR);
+};
+
+export const handleAddToCartAttemptWithNoVariant = () => {
   // Can't add to cart if no size is selected
-  const hasError = getState().size === null;
-  updateSizeInfoColor(hasError);
+  showMissingSizeInfo();
 };
 
 /**

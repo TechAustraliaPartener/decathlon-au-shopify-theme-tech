@@ -18,7 +18,7 @@ import {
   getQuantityFromMessage,
   DEFAULT_UI_STATE
 } from './ui-state';
-import { handleAddToCartAttempt } from '../size-swatches';
+import { handleAddToCartAttemptWithNoVariant } from '../size-swatches';
 /**
  * @todo Refactor to remove jQuery dependency
  */
@@ -157,7 +157,7 @@ const onAddToCartClick = event => {
   if (!currentVariant) {
     // Prevent Add To Cart form submit from going through
     event.preventDefault();
-    handleAddToCartAttempt();
+    handleAddToCartAttemptWithNoVariant();
     return;
   }
 

@@ -62,6 +62,7 @@
     "jshint": "^2.10.2",
     "jshint-stylish": "^2.2.1",
     "prettier": "^1.18.2",
+    "qss": "^2.0.3",
     "rollup": "^1.16.7",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.0.1",

@@ -7,50 +7,53 @@ import 'core-js/modules/es.array.from';
 import './buybox';
 import * as carousel from './carousel';
 import * as carouselContext from './carousel-context';
-import {
-  init as colorSwatchesInit,
-  getState as getColorSwatchesState,
-  selectFirstSwatch as selectFirstColorSwatch,
-  $ColorSwatches
-} from './color-swatches';
-import {
-  init as sizeSwatchesInit,
-  getState as getSizeSwatchesState,
-  $SizeSwatches
-} from './size-swatches';
+import * as colorSwatches from './color-swatches';
+import * as sizeSwatches from './size-swatches';
 import './videos';
-import { init as accordionInit } from './accordion';
+import * as accordion from './accordion';
 import { reviewsInit } from './ratings-reviews';
 import { updateOptionStates } from './option-states';
-import { updateUI as updateMasterSelectUI } from './master-select';
-import { updateUI as updatePriceUI } from './price';
+import * as masterSelect from './master-select';
+import * as price from './price';
 import * as modelCode from './model-code';
 import * as productFlags from './product-flags';
 import * as addToCart from './add-to-cart';
-import { init as drawerInit } from './drawer';
-import { getUrlVariant } from './query-string';
+import * as drawer from './drawer';
+import { getUrlVariant, updateUrlVariant } from './query-string';
 import { variantOptions, getSelectedVariant } from './product-data';
-import { init as stickyInit } from './sticky-nav';
-import { init as storePickupInit } from './fulfillment-options';
+import * as stickyNav from './sticky-nav';
+import * as storePickup from './fulfillment-options';
 
 let updateFulfillmentOptionsUI = null;
 
 /**
+ * @typedef State
+ * @property {string | undefined} color
+ * @property {string | undefined} size
+ * @property {Variant | undefined} variant
+ */
+
+/**
  * Helper to get all of the child component states
  *
- * @returns {Object} The current UI state
+ * @returns {State} The current UI state
  */
-const getCombinedState = () => ({
-  ...getColorSwatchesState(),
-  ...getSizeSwatchesState()
-});
+const getCombinedState = () => {
+  const color = colorSwatches.getSelected();
+  const size = sizeSwatches.getSelected();
+  return {
+    color,
+    size,
+    variant: color && size && getSelectedVariant({ color, size })
+  };
+};
 
 /**
  * Sets up listeners for custom UI components
  */
 const setUpListeners = () => {
-  $SizeSwatches.on('SizeSwatches:select', onOptionSelect);
-  $ColorSwatches.on('ColorSwatches:select', onOptionSelect);
+  sizeSwatches.$Swatches.on('SizeSwatches:select', onOptionSelect);
+  colorSwatches.$Swatches.on('ColorSwatches:select', onOptionSelect);
   addToCart.onVariantModification(() => updateUI(getCombinedState()));
 };
 
@@ -61,16 +64,18 @@ let prevVariant = null;
  * The handler for when an option is selected
  */
 const onOptionSelect = () => {
+  const combinedState = getCombinedState();
   // @todo Remove for production
-  console.log('New State', getCombinedState());
+  console.log('New State', combinedState);
   // Keep the UI up to date
-  updateUI(getCombinedState());
-  const newVariant = getSelectedVariant(getCombinedState());
+  updateUI(combinedState);
+  const newVariant = getSelectedVariant(combinedState);
   const variantHasChanged =
     (prevVariant && prevVariant.id) !== (newVariant && newVariant.id);
-  if (newVariant && variantHasChanged) {
+  if (variantHasChanged) {
     addToCart.onVariantSelect(newVariant);
     productFlags.onVariantSelect(newVariant);
+    sizeSwatches.onVariantSelect(newVariant);
   }
   prevVariant = newVariant;
 };
@@ -78,22 +83,20 @@ const onOptionSelect = () => {
 /**
  * Updates all Product page custom UI components
  *
- * @param {Object} state The UI state object
+ * @param {State} state The UI state object
  */
 const updateUI = state => {
-  const { color, size } = state;
-
   // Model code can be updated without size
   modelCode.updateUI(state);
 
-  /**
-   * Update the MasterSelect and UI displays if both size & color have been set.
-   * The MasterSelect `<select>` input uses variant IDs as its values.
-   * We can only get a variant ID when we have both size & color.
-   */
-  if (color && size) {
-    updateMasterSelectUI(state);
-    updatePriceUI(state);
+  updateUrlVariant(state.variant && state.variant.id);
+
+  if (state.variant) {
+    // MasterSelect requires a full variant to update
+    masterSelect.updateUI(state);
+    // Price currently only gets updated if there is a full variant selected
+    // @TODO: Should this be updated even if there is no complete variant? To what?
+    price.updateUI(state);
     /**
      * The updateFulfillmentOptionsUI function will be undefined on page load,
      * but will update on subsequent page actions
@@ -109,7 +112,7 @@ const updateUI = state => {
  * Updates UI to reflect variant in URL
  */
 const selectUrlVariant = () => {
-  const urlVariant = getUrlVariant();
+  const urlVariant = Number(getUrlVariant());
   if (urlVariant) {
     const activeOptions = variantOptions(urlVariant);
     /** @type {HTMLElement} */
@@ -127,7 +130,7 @@ const selectUrlVariant = () => {
       targetSizeSwatch.click();
     }
   } else {
-    selectFirstColorSwatch();
+    colorSwatches.selectFirstSwatch();
   }
   return urlVariant;
 };
@@ -136,19 +139,19 @@ const selectUrlVariant = () => {
  * Initialize
  */
 const init = async () => {
-  sizeSwatchesInit();
-  colorSwatchesInit();
+  sizeSwatches.init();
+  colorSwatches.init();
   setUpListeners();
   reviewsInit();
-  drawerInit();
+  drawer.init();
   carousel.init();
   carouselContext.init();
   addToCart.init();
-  accordionInit();
+  accordion.init();
   const urlVariant = selectUrlVariant();
-  stickyInit();
+  stickyNav.init();
   // Suggest leaving the async setup for fulfillment options to last
-  updateFulfillmentOptionsUI = await storePickupInit();
+  updateFulfillmentOptionsUI = await storePickup.init();
   /**
    * The updateFulfillmentOptionsUI function will be undefined in the master
    * updateUI function on page load, so call here as soon as it's defined

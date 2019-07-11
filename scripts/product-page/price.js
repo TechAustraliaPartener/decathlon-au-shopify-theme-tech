@@ -5,7 +5,6 @@
  */
 
 import { PRICE_CLASS, COMPARE_PRICE_CLASS } from './constants';
-import { getSelectedVariant } from './product-data';
 import $ from 'jquery';
 /**
  * @todo Refactor to remove jQuery dependency
@@ -26,19 +25,16 @@ const formatPrice = price => `$${(price / 100).toFixed(2)}`;
  * Updates the price display with price and sale price if necessary
  *
  * @param {object} obj The state data object
- * @param {string} obj.size Value of the selected size option
- * @param {string} obj.color Value of the selected color option
+ * @param {Variant} obj.variant The selected variant
  */
-export const updateUI = ({ size, color }) => {
-  const selectedVariant = getSelectedVariant({ size, color });
-
+export const updateUI = ({ variant }) => {
   // Update Price
-  $ProductPrice.text(formatPrice(selectedVariant.price));
+  $ProductPrice.text(formatPrice(variant.price));
 
   // Update Compare Price
-  if (selectedVariant.compare_at_price === null) {
+  if (variant.compare_at_price === null) {
     $ComparePrice.text('');
   } else {
-    $ComparePrice.text(formatPrice(selectedVariant.compare_at_price));
+    $ComparePrice.text(formatPrice(variant.compare_at_price));
   }
 };

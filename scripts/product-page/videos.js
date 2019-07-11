@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import { CSS_PREFIX, JS_PREFIX } from './constants';
-import { $ColorSwatches } from './color-swatches';
+import { $Swatches } from './color-swatches';
 import { hideProductFlags, showProductFlags } from './product-flags';
 let videojs = window.videojs;
 // 960 roughly equates to the media query variable $breakpoint-lg
@@ -105,7 +105,7 @@ const initializeVideoJS = () => {
     playFirstVideoPlayer();
   };
 
-  $ColorSwatches.on('ColorSwatches:select', switchToImages);
+  $Swatches.on('ColorSwatches:select', switchToImages);
 
   // Attach click event to 'Watch Videos' button to toggle between video and image
   $toggleButton.click(function() {

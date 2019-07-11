@@ -78,6 +78,7 @@ export const IS_HIDDEN_CLASS = `${CSS_UTILITY_PREFIX}hidden`;
  */
 
 export const PRODUCT_PAGE_COPY = {
+  SELECT_A_SIZE: 'Select a size',
   ADD_TO_CART: 'Add to Cart',
   SOLD_OUT: 'Sold Out',
   EMAIL_ME_WHEN_IN_STOCK: 'Email Me When In Stock',
