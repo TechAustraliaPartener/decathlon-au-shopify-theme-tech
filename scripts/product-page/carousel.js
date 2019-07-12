@@ -26,6 +26,11 @@ let activeSlideIndex = 0;
 let allSlideTotalsMatch = true;
 
 /**
+ * The value of the color set when updateUI is called
+ */
+let previousColor = null;
+
+/**
  * Partial carousel settings
  */
 const THUMB_SLIDES_TO_SHOW = 5;
@@ -315,7 +320,8 @@ const handleWindowResize = () => {
  * @param {{color: string}} options
  */
 export const updateUI = ({ color }) => {
-  if (color) {
+  if (color && previousColor !== color) {
+    previousColor = color;
     const colorLowerCase = color.toLowerCase();
     const containerClass = `${CONTAINER_CAROUSEL_SELECTOR}[data-color="${colorLowerCase}"]`;
     destroyCarousel();
