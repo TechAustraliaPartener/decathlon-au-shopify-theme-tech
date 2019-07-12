@@ -22,7 +22,15 @@
       {% assign slideShowCTAImage = slideName | append: 'show_cta_product'  %}
       {% assign slideCTAImage = slideName | append: 'cta_product_image.png' %}
 
-      {% assign banner_bg_image = slideImage | asset_url %}
+      {% comment %}
+        * When making updates to any of the following variables:
+        * [slideName, slideImage, banner_bg_image_size, banner_bg_image]
+        * make sure to also update the same variables present within
+        * layout/theme.liquid <head> block.
+        * The reason for the repeated use is to enable preloading of these images.
+      {% endcomment %}
+      {% assign banner_bg_image_size = '1600x' %}
+      {% assign banner_bg_image = slideImage | asset_img_url: banner_bg_image_size, format: 'pjpg' %}
 
       {% if settings[slideShowCTAImage] %}
         {% assign button_cta_image = slideCTAImage | asset_url %}
