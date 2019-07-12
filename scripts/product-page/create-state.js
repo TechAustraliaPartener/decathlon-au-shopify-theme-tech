@@ -31,6 +31,8 @@ export const createState = initialState => {
 
   DEBUG && console.log('INITIAL state:', state);
 
+  let listenersQueued = false;
+
   /**
    * Retrieves the module state
    *
@@ -49,7 +51,21 @@ export const createState = initialState => {
       ...newState
     };
 
-    listeners.forEach(listener => listener(state));
+    listenersQueued = true;
+
+    // We are batching the listeners to prevent the listeners from being called multiple times per tick
+    // For example if we do
+    // state.updateState({foo: 'bar'});
+    // state.updateState({asdf: '1234'})
+    // then the listeners on that state will now only get fired once in that tick
+    // Promise.resolve().then(cb) enqueues a microtask to run the cb
+    // See the step by step demo here: https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/
+    Promise.resolve().then(() => {
+      if (listenersQueued) {
+        listeners.forEach(listener => listener(state));
+        listenersQueued = false;
+      }
+    });
 
     DEBUG && console.log('NEW state', state);
   };

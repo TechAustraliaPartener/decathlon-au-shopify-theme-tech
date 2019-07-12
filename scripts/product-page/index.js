@@ -57,8 +57,11 @@ const setUpListeners = () => {
   addToCart.onVariantModification(() => updateUI(getCombinedState()));
 };
 
-/** @type {Variant | null} */
-let prevVariant = null;
+/** @type Variant | null | undefined */
+let prevVariant;
+
+/** @type string | null | undefined */
+let prevColor;
 
 /**
  * The handler for when an option is selected
@@ -77,7 +80,12 @@ const onOptionSelect = () => {
     productFlags.onVariantSelect(newVariant);
     sizeSwatches.onVariantSelect(newVariant);
   }
+  const color = combinedState.color;
+  if (color !== prevColor) {
+    sizeSwatches.onColorSelect(color);
+  }
   prevVariant = newVariant;
+  prevColor = color;
 };
 
 /**

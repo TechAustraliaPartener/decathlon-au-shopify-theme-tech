@@ -8,24 +8,28 @@ import {
   IS_ACTIVE_CLASS,
   JS_PREFIX,
   CSS_UTILITY_PREFIX,
-  PRODUCT_PAGE_COPY
+  PRODUCT_PAGE_COPY,
+  IS_HIDDEN_CLASS
 } from './constants';
 // @todo Consider removing jQuery dependency
 import $ from 'jquery';
 import { createState } from './create-state';
+import { getExistingSizesFromColor } from './product-data';
 
 /**
  * @typedef State
- * @property {string | null} size
+ * @property {string | null | undefined} size
  * @property {HTMLElement} selectedOption
- * @property {Variant | null} variant
+ * @property {Variant | null | undefined} variant
+ * @property {string | null | undefined} color
  */
 
 /** @type State */
 const initialState = {
   size: null,
   selectedOption: null,
-  variant: null
+  variant: null,
+  color: null
 };
 
 const state = createState(initialState);
@@ -47,6 +51,7 @@ const ERROR_TEXT_COLOR = `${CSS_UTILITY_PREFIX}textRed`;
 
 /**
  * Children elements
+ * @type JQuery<HTMLButtonElement>
  */
 const $SizeSwatchesOptions = $(`.${JS_PREFIX}SizeSwatches-option`);
 const $SizeInfo = $(`.${JS_PREFIX}SizeInfo`);
@@ -84,7 +89,11 @@ const updateSizeUiState = selectedOption => {
  * Makes the DOM match the state
  * @param {State} state
  */
-const render = ({ selectedOption, size, variant }) => {
+const render = ({ selectedOption, size, variant, color }) => {
+  $Swatches.toggleClass(
+    IS_HIDDEN_CLASS,
+    getExistingSizesFromColor(color).length === 1
+  );
   // We need to update the selected color option UI state
   updateSizeUiState(selectedOption);
   // We need to update the selected color text
@@ -92,6 +101,24 @@ const render = ({ selectedOption, size, variant }) => {
 };
 
 state.onChange(render);
+
+/**
+ * @param {string | undefined} color
+ */
+export const onColorSelect = color => {
+  const existingSizes = getExistingSizesFromColor(color);
+  // If there is only one size for the currently selected color, select that size
+  if (existingSizes.length === 1) {
+    const onlyApplicableSize = existingSizes[0];
+    if (onlyApplicableSize !== state.getState().size) {
+      const target = $SizeSwatchesOptions
+        .filter((_index, el) => el.value === onlyApplicableSize)
+        .get(0);
+      onSizeSelect.bind(target)();
+    }
+  }
+  state.updateState({ color });
+};
 
 /**
  * Handler for when a size choice is made
@@ -117,15 +144,6 @@ const onSizeSelect = function() {
 export const onVariantSelect = variant => {
   state.updateState({ variant });
   resetMissingSizeInfo();
-};
-
-/**
- * Single size options are selected by default
- */
-const selectSingleSizeOptions = () => {
-  if ($SizeSwatchesOptions.length === 1) {
-    $SizeSwatchesOptions[0].click();
-  }
 };
 
 /**
@@ -156,5 +174,4 @@ export const handleAddToCartAttemptWithNoVariant = () => {
  */
 export const init = () => {
   $SizeSwatchesOptions.on(CLICK_EVENT, onSizeSelect);
-  selectSingleSizeOptions();
 };
