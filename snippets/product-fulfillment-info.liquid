@@ -1,4 +1,14 @@
 {% comment %} Customer Fulfillment Information {% endcomment %}
+
+{% comment %} Check if product contains a tag for bulk shipping {% endcomment %}
+{% assign bulk_shipping = false %}
+{% for tag in product.tags %}
+  {% if tag contains 'Shipping: Bulk' %}
+    {% assign bulk_shipping = true %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
 <div class="de-ProductFulfillment">
   <div class="de-u-padBottom06">
     <div class="de-u-flex de-ProductFulfillment-option">
@@ -12,8 +22,13 @@
     <div class="de-u-flex de-ProductFulfillment-option">
     {% include 'icon-delivery-truck'
       with class: 'de-u-textBlack de-Icon de-u-textGrow6 de-u-spaceRight03' %}
-      <p class="de-u-spaceNone de-u-textMedium"><span
-      class="de-u-textBold">Free</span> shipping over $50</p>
+      <p class="de-u-spaceNone de-u-textMedium">
+        {% if bulk_shipping %}
+          See shipping rate at checkout
+        {% else %}
+          <span class="de-u-textBold">Free</span> shipping over $50
+        {% endif %}
+      </p>
     </div>
 
     <div class="de-u-flex de-u-flexAlignItemsCenter js-de-ProductFulfillment-pickupOptions de-u-ProductFulfillment-option de-u-hidden">
