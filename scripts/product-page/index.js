@@ -83,6 +83,7 @@ const onOptionSelect = () => {
   const color = combinedState.color;
   if (color !== prevColor) {
     sizeSwatches.onColorSelect(color);
+    carousel.onColorSelect(color);
   }
   prevVariant = newVariant;
   prevColor = color;
@@ -113,7 +114,6 @@ const updateUI = state => {
   }
 
   updateOptionStates(state);
-  carousel.updateUI(state);
 };
 
 /**
