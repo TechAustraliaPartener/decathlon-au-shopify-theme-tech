@@ -62,7 +62,9 @@ const addClasses = (el, ...classes) =>
 const render = ({ variant, isShown }) => {
   const product = window.productJSON;
 
-  const isOnSale = variant && variant.compare_at_price > variant.price;
+  const isOnSale = variant
+    ? variant.compare_at_price > variant.price
+    : product.compare_at_price > product.price;
   const productFlagEls = document.querySelectorAll(`.${JS_PREFIX}ProductFlag`);
   if (!productFlagEls) return;
 
