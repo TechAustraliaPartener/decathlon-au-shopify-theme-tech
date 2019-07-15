@@ -1631,7 +1631,7 @@ $swatchObjects-item-unavailable-opacity: 0.4;
   @media (min-width: $breakpoint-lg) {
     .de-SwatchObjects {
       grid-auto-flow: row;
-      grid-template-columns: repeat(auto-fill, minmax(65px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
     }
 
     .de-SwatchObjects::after {
@@ -1688,6 +1688,15 @@ $swatchObjects-item-unavailable-opacity: 0.4;
   .de-SwatchObjects-item {
     margin: 0;
   }
+}
+
+/**
+ * 1. Prevents content within the size swatch from touching the else of the
+ *    containing element.
+ */
+
+.de-SwatchObjects-item span:nth-child(2) {
+  width: 90%; /* 1 */
 }
 
 .de-SwatchObjects-item.de-is-active {
@@ -1772,8 +1781,8 @@ $swatchObjects-item-unavailable-opacity: 0.4;
  * Size swatch modifier
  *
  * 1. The desired height for the element. A minimum recommended touch target
- * size is around 48 device independent pixels on a site with a properly set
- * mobile viewport.
+ * size is typically a minimum of 48 device independent pixels on a site with a
+ * properly set mobile viewport.
  *
  * @see https://developers.google.com/web/fundamentals/accessibility/accessible-styles
  */
@@ -1782,7 +1791,7 @@ $swatchObjects-item-unavailable-opacity: 0.4;
   align-items: center;
   border: $border-width-sm solid $color-darkgray;
   display: flex;
-  height: 48px; /* 1 */
+  height: 56px; /* 1 */
   justify-content: center;
   line-height: 1.2;
 }
