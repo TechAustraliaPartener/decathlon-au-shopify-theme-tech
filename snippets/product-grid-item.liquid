@@ -96,19 +96,28 @@
     The p contents here are essentially a fallback, since this text is set client
     side by the timber variant selector callback function.
     {% endcomment %}
-
+    
+    {% if current_variant.price < current_variant.compare_at_price %}
+        <span style="color: #E53322;"><strong>{{ products.product.on_sale }}</strong>
+        {{ current_variant.price | money }}</span>
+    {% else %}      
         {% if product.price_varies %}
             {% assign price = product.price_min | money %}
             {{ 'products.general.from_text_html' | t: price: price }}
         {% else %}
             {{ current_variant.price | money }}
         {% endif %}
+    {% endif %}
 
     {% comment %}
     {% if sold_out %}
     <br><strong>{{ 'products.product.sold_out' | t }}</strong>
     {% endif %}
     {% endcomment %}
+    {% if current_variant.price < current_variant.compare_at_price %}
+        <span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
+        <br><s>{{ current_variant.compare_at_price | money }}</s>
+    {% endif %}
     </p>
 
     {% if show_add_to_cart == true %}
