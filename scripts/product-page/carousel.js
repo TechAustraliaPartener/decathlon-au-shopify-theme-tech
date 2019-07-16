@@ -26,11 +26,6 @@ let activeSlideIndex = 0;
 let allSlideTotalsMatch = true;
 
 /**
- * The value of the color set when updateUI is called
- */
-let previousColor = null;
-
-/**
  * Partial carousel settings
  */
 const THUMB_SLIDES_TO_SHOW = 5;
@@ -317,17 +312,18 @@ const handleWindowResize = () => {
 
 /**
  * Reset active carousel to represent new color
- * @param {{color: string}} options
+ * @param {string} color
  */
-export const updateUI = ({ color }) => {
-  if (color && previousColor !== color) {
-    previousColor = color;
-    const colorLowerCase = color.toLowerCase();
-    const containerClass = `${CONTAINER_CAROUSEL_SELECTOR}[data-color="${colorLowerCase}"]`;
+export const onColorSelect = color => {
+  const containerClass = `${CONTAINER_CAROUSEL_SELECTOR}[data-color="${color.toLowerCase()}"]`;
+  // Breaking up the work into separate tasks because Slick clogs the main thread a lot
+  setTimeout(() => {
     destroyCarousel();
     prepCarousel(containerClass);
+  });
+  setTimeout(() => {
     initCarousel();
-  }
+  });
 };
 
 /**

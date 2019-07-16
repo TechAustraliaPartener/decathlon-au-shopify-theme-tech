@@ -99,7 +99,7 @@ export const availableVariants = () => variantsJSON.filter(isVariantAvailable);
  * @param {Object} params An object
  * @param {string} params.searchOption Title of option to find matches in
  * @param {string} params.findOption Title of option to match
- * @param {string} params.value Value of option to find matches in
+ * @param {string | undefined} params.value Value of option to find matches in
  * @param {Array} params.variants Array of variants to filter on
  * @returns {Array} Options with matches to given option
  */

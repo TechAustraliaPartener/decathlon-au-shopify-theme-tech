@@ -70,9 +70,7 @@ const config = {
           DATA_TREKKIE_ID: {
             TREKKIE_NAME: 'data-trekkie-id',
             get TREKKIE_VALUE() {
-              return `${
-                config.SELECTORS.CHECKOUT.CLASSES.BREADCRUMBS.BC_ROOT
-              }_cart_link`;
+              return `${config.SELECTORS.CHECKOUT.CLASSES.BREADCRUMBS.BC_ROOT}_cart_link`;
             }
           }
         }

@@ -28,6 +28,7 @@ import {
 import { getCurrentLocation } from '../../../utilities/location';
 import { showElements, hideElements, elementExists } from '../../ui-helpers';
 import config from '../../config';
+import fetch from 'unfetch';
 
 const { CLASSES, SHOP_ID, PICKUP_SHIPPING_METHOD, STOREFRONT_API_KEY } = config;
 
@@ -212,17 +213,7 @@ const updateCheckout = () => {
       'content-type': 'application/json'
     },
     /* eslint-disable graphql/template-strings, no-useless-escape */
-    body: `{\"query\":\"\\n\\nmutation checkoutShippingAddressUpdateV2($shippingAddress: MailingAddressInput!, $checkoutId: ID!) {\\n  checkoutShippingAddressUpdateV2(shippingAddress: $shippingAddress, checkoutId: $checkoutId) {\\n    checkoutUserErrors {\\n      code\\n      field\\n      message\\n    }\\n    checkout {\\n      id\\n      webUrl\\n      shippingAddress {\\n        company\\n        firstName\\n        lastName\\n        address1\\n        province\\n        country\\n        zip\\n      }\\n    }\\n  }\\n}\",\"variables\":{\"shippingAddress\":{\"company\":\"${
-      selectedStoreData.name
-    }\",\"lastName\":\"${selectedStoreData.lastName}\",\"firstName\":\"${
-      selectedStoreData.firstName
-    }\",\"address1\":\"${selectedStoreData.street1}\",\"province\":\"${
-      selectedStoreData.state
-    }\",\"country\":\"United States\",\"zip\":\"${
-      selectedStoreData.zip
-    }\",\"city\":\"${
-      selectedStoreData.city
-    }\"},\"checkoutId\":\"${checkoutGID}\"},\"operationName\":\"checkoutShippingAddressUpdateV2\"}`
+    body: `{\"query\":\"\\n\\nmutation checkoutShippingAddressUpdateV2($shippingAddress: MailingAddressInput!, $checkoutId: ID!) {\\n  checkoutShippingAddressUpdateV2(shippingAddress: $shippingAddress, checkoutId: $checkoutId) {\\n    checkoutUserErrors {\\n      code\\n      field\\n      message\\n    }\\n    checkout {\\n      id\\n      webUrl\\n      shippingAddress {\\n        company\\n        firstName\\n        lastName\\n        address1\\n        province\\n        country\\n        zip\\n      }\\n    }\\n  }\\n}\",\"variables\":{\"shippingAddress\":{\"company\":\"${selectedStoreData.name}\",\"lastName\":\"${selectedStoreData.lastName}\",\"firstName\":\"${selectedStoreData.firstName}\",\"address1\":\"${selectedStoreData.street1}\",\"province\":\"${selectedStoreData.state}\",\"country\":\"United States\",\"zip\":\"${selectedStoreData.zip}\",\"city\":\"${selectedStoreData.city}\"},\"checkoutId\":\"${checkoutGID}\"},\"operationName\":\"checkoutShippingAddressUpdateV2\"}`
     /* eslint-enable */
   })
     .then(res => res.json())
@@ -246,9 +237,7 @@ const updateEmail = (checkoutGID, checkoutKey) => {
       'content-type': 'application/json'
     },
     /* eslint-disable graphql/template-strings, no-useless-escape */
-    body: `{\"query\":\"mutation checkoutEmailUpdateV2($checkoutId: ID!, $email: String!) {\\n  checkoutEmailUpdateV2(checkoutId: $checkoutId, email: $email) {\\n    checkout {\\n      id\\n      webUrl\\n    }\\n    checkoutUserErrors {\\n      code\\n      field\\n      message\\n    }\\n  }\\n}\",\"variables\":{\"email\":\"${
-      userEmail.value
-    }\",\"checkoutId\":\"${checkoutGID}\"},\"operationName\":\"checkoutEmailUpdateV2\"}`
+    body: `{\"query\":\"mutation checkoutEmailUpdateV2($checkoutId: ID!, $email: String!) {\\n  checkoutEmailUpdateV2(checkoutId: $checkoutId, email: $email) {\\n    checkout {\\n      id\\n      webUrl\\n    }\\n    checkoutUserErrors {\\n      code\\n      field\\n      message\\n    }\\n  }\\n}\",\"variables\":{\"email\":\"${userEmail.value}\",\"checkoutId\":\"${checkoutGID}\"},\"operationName\":\"checkoutEmailUpdateV2\"}`
     /* eslint-enable */
   })
     .then(res => res.json())
@@ -279,9 +268,7 @@ const updateShippingMethod = (checkoutGID, checkoutKey) => {
   })
     .then(res => res.json())
     .then(data => {
-      const checkoutURL = `/${SHOP_ID}/checkouts/${
-        window.Shopify.Checkout.token
-      }?key=${checkoutKey}`;
+      const checkoutURL = `/${SHOP_ID}/checkouts/${window.Shopify.Checkout.token}?key=${checkoutKey}`;
       window.location.href = checkoutURL;
     });
 };

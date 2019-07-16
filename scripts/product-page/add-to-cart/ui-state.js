@@ -115,14 +115,14 @@ export const getShopifyErrorUIState = shopifyErrorMessage => {
 /**
  * Returns the appropriate UI state depending on the `variant`
  *
- * @param {Variant} variant
+ * @param {Variant | undefined} variant
  * @returns {UIState}
  */
 export const getUIState = variant => {
-  /**
-   * Then worry about "sold out" and "out of stock" states
-   * @todo Will `variant` ever be `null`, as in, should I guard against that?
-   */
+  if (!variant) {
+    return DEFAULT_UI_STATE;
+  }
+
   if (isVariantSoldOut(variant)) {
     return {
       ...DEFAULT_UI_STATE,

@@ -1,3 +1,5 @@
+import fetch from 'unfetch';
+
 /**
  * Get user's current location from ipStack
  * @returns Promise

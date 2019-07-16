@@ -41,34 +41,29 @@ const getUnavailableCssClass = () => {
 };
 
 /**
- * Updates the "unavailable" state by adding/removing a CSS class
- *
  * @todo Can this logic be handled in the ColorSwatches/SizeSwatches modules?
- * @param {JQuery<HTMLElement>} $optionsElements
- * @param {string[]} enabledOptions The enabled options to check against
+ * @param {JQuery<HTMLButtonElement>} elements
+ * @param {Object} opts
+ * @param {string[]} opts.existingOptions
+ * @param {string} opts.nonexistentClass
+ * @param {string[]} opts.availableOptions
+ * @param {string} opts.unavailableClass
  */
-const updateOptionUnavailableState = ($optionsElements, enabledOptions) => {
-  // @todo Consider moving this logic to `ColorSwatches` & `SizeSwatches` modules
-  $optionsElements.each(function() {
-    const isUnavailable = !enabledOptions.includes(
-      /** @type {string} */ ($(this).val())
-    );
-    $(this).toggleClass(getUnavailableCssClass(), isUnavailable);
-  });
-};
-
-/**
- * Updates the "exists" state by adding/removing a CSS class
- *
- * @param {JQuery<HTMLElement>} $optionsElements
- * @param {string[]} existingOptions The enabled options to check against
- */
-const updateOptionExistentState = ($optionsElements, existingOptions) => {
-  $optionsElements.each(function() {
-    const nonexistent = !existingOptions.includes(
-      /** @type {string} */ ($(this).val())
-    );
-    $(this).toggleClass(IS_HIDDEN_CLASS, nonexistent);
+const updateOptions = (elements, opts) => {
+  elements.each(function() {
+    const element = this;
+    const value = element.value;
+    // Reset the classes on the element
+    element.classList.remove(opts.nonexistentClass);
+    element.classList.remove(opts.unavailableClass);
+    // Then reapply them as needed
+    // Removing and adding are done separately because the nonexistent class and unavailable class could be the same thing
+    if (!opts.existingOptions.includes(value)) {
+      element.classList.add(opts.nonexistentClass);
+    }
+    if (!opts.availableOptions.includes(value)) {
+      element.classList.add(opts.unavailableClass);
+    }
   });
 };
 
@@ -76,17 +71,35 @@ const updateOptionExistentState = ($optionsElements, existingOptions) => {
  * Updates the color & size options "available" states
  *
  * @todo Consider moving this logic to `ColorSwatches` & `SizeSwatches` modules
- * @param {Object} obj The state object
- * @param {string} obj.size The currently selected size
- * @param {string} obj.color The currently selected color
+ * @param {import('.').State} state
  */
-export const updateOptionStates = ({ size, color }) => {
+export const updateOptionStates = ({ size, color, variant }) => {
+  /** @type JQuery<HTMLButtonElement> */
   const colorSwatches = $(colorSwatchesSelector);
+  /** @type JQuery<HTMLButtonElement> */
   const sizeSwatches = $(sizeSwatchesSelector);
 
   // Update swatches with classes to display state in UI
-  updateOptionExistentState(sizeSwatches, getExistingSizesFromColor(color));
-  updateOptionExistentState(colorSwatches, getExistingColorsFromSize(size));
-  updateOptionUnavailableState(sizeSwatches, getAvailableSizesFromColor(color));
-  updateOptionUnavailableState(colorSwatches, getAvailableColorsFromSize(size));
+  updateOptions(sizeSwatches, {
+    existingOptions: getExistingSizesFromColor(color),
+    nonexistentClass: IS_HIDDEN_CLASS,
+    availableOptions: getAvailableSizesFromColor(color),
+    unavailableClass: getUnavailableCssClass()
+  });
+  updateOptions(colorSwatches, {
+    existingOptions: getExistingColorsFromSize(
+      // If there is a variant selected, then grey out the variants that don't exist for the current size
+      // if there is no variant selected (meaning either size is not selected, or the selected size doesn't exist for this color)
+      // then we display them all as not-greyed-out
+      variant && size
+    ),
+    nonexistentClass: IS_OUT_OF_STOCK_CLASS,
+    availableOptions: getAvailableColorsFromSize(
+      // If there is a variant selected, then grey out the variants that aren't available for the current size
+      // if there is no variant selected (meaning either size is not selected, or the selected size doesn't exist for this color)
+      // then we display them all as not-greyed-out
+      variant && size
+    ),
+    unavailableClass: getUnavailableCssClass()
+  });
 };

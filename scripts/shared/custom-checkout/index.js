@@ -2,6 +2,7 @@ import scriptsConfig from '../../shared/config';
 import createCheckout from './queries';
 import 'formdata-polyfill';
 import '../../utilities/element-matches-polyfill';
+import fetch from 'unfetch';
 
 const {
   SELECTORS: { CART }

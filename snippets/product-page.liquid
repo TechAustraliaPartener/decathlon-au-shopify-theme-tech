@@ -64,8 +64,11 @@
     </header>
 
     {% comment %} Breadcrumbs {% endcomment %}
-    <div class="de-u-hidden de-u-md-block">
-      {% include 'breadcrumb' %}
+    <div class="de-u-hidden de-u-md-block {% unless collection %}de-u-spaceBottom{% endunless %}">
+      {% if collection %}
+        {% include 'find-top-level-collection' %}
+        {% include 'create-breadcrumbs' %}
+      {% endif %}
     </div>
 
     <div class="de-u-lg-flex de-u-lg-flexJustifyBetween">

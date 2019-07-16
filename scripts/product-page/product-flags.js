@@ -1,6 +1,6 @@
 // @ts-check
-import { getSelectedVariant } from './product-data';
 import { JS_PREFIX, CSS_UTILITY_PREFIX, IS_HIDDEN_CLASS } from './constants';
+import { createState } from './create-state';
 
 /**
  * @param {string} c
@@ -18,30 +18,27 @@ const isFlagClass = c =>
  */
 
 /** @type {State} */
-let state = {
+const initialState = {
   isShown: true,
   variant: null
 };
 
+const state = createState(initialState);
+
 /**
  * Updates product flags UI when variant changes
- * @param {Object} options
- * @param {string} options.size The selected size option
- * @param {string} options.color The selected color option
+ * @param {Variant} variant
  */
-export const updateUI = ({ size, color }) => {
-  state = { ...state, variant: getSelectedVariant({ size, color }) };
-  rerender(state);
+export const onVariantSelect = variant => {
+  state.updateState({ variant });
 };
 
 export const showProductFlags = () => {
-  state = { ...state, isShown: true };
-  rerender(state);
+  state.updateState({ isShown: true });
 };
 
 export const hideProductFlags = () => {
-  state = { ...state, isShown: false };
-  rerender(state);
+  state.updateState({ isShown: false });
 };
 
 /**
@@ -62,10 +59,12 @@ const addClasses = (el, ...classes) =>
  * Updates the DOM to match the state
  * @param {State} state
  */
-export const rerender = ({ variant, isShown }) => {
+const render = ({ variant, isShown }) => {
   const product = window.productJSON;
 
-  const isOnSale = variant && variant.compare_at_price > variant.price;
+  const isOnSale = variant
+    ? variant.compare_at_price > variant.price
+    : product.compare_at_price > product.price;
   const productFlagEls = document.querySelectorAll(`.${JS_PREFIX}ProductFlag`);
   if (!productFlagEls) return;
 
@@ -96,3 +95,5 @@ export const rerender = ({ variant, isShown }) => {
     updateFlag(null, ''); // The flag will hide
   }
 };
+
+state.onChange(render);

@@ -26,7 +26,7 @@ const CLICK_EVENT = 'click';
 /**
  * Root element
  */
-export const $ColorSwatches = $(`.${JS_PREFIX}ColorSwatches`);
+export const $Swatches = $(`.${JS_PREFIX}ColorSwatches`);
 
 /**
  * Children elements
@@ -65,7 +65,7 @@ const notifyListeners = state => {
    * @type {object}
    * @property {string} color The color value selected
    */
-  $ColorSwatches.trigger(SELECT_EVENT, state);
+  $Swatches.trigger(SELECT_EVENT, state);
 };
 
 /**
@@ -124,11 +124,10 @@ const onColorSelect = function() {
 };
 
 /**
- * Helper to retrieve the module state
- *
- * @returns {Object} The module state
+ * Retrieves the currently selected color
+ * @returns {string}
  */
-export const getState = () => state;
+export const getSelected = () => state.color;
 
 /**
  * Single color options are selected by default
