@@ -1,39 +1,21 @@
-{% if collection.image %}
-    <div class="collectionImage de-collectionImage medium-down--hide" style="background-image:url('{{ collection.image | img_url: '200x', format: 'pjpg' }}'); " data-background-image="{{ collection.image | img_url: 'master', format: 'pjpg' }}">
-        <div class="wrapper">
-            {% include 'breadcrumb', adtl_classes: ' breadcrumb--overImage medium-down--hide' %}
-
-            <h1 class="de-collectionImage-header collectionImage-header text-center">{{ collection.title }}</h1>
-			<h5 class="de-collectionImage-subheader text-center"><i>Shop By Category</i></h5>
-        </div>
-    </div>
-{% endif %}
-
-<div class="de-padding10 de-u-padTop de-u-padBottomNone de-u-textSizeBase large--hide">
-    <h2 class="de-u-textBold de-u-textCapitalize de-u-textGrow de-u-spaceBottom06">{{ collection.title }}</h2>
+<div class="de-padding10 de-u-padTop de-u-padBottomNone de-u-textSizeBase">
+    <h1 class="de-u-textBold de-u-textCapitalize de-u-textGrow de-u-spaceBottom06">{{ collection.title }}</h2>
     <hr class="de-blue-hr de-u-bgBlue de-u-spaceNone">
     <p class="de-u-textDarkGrasy de-u-spaceBottom06 de-u-textShrink1 de-u-spaceEnds06">Shop By Category</p>
 </div>
 <div class="de-wrapper wrapper{% if collection.image %} wrapper--collectionWithBanner{% endif %}">
+    {% comment %}
     {% include 'find-top-level-collection' %}
     {% unless collection.image %}
 		{% include 'create-breadcrumbs' %}
     {% endunless %}
-
-            {% comment %}
-            Different markup if a collection description exists
-            {% endcomment %}
-                {% unless collection.image %}
-                <header class="section-header medium-down--hide">
-                    {%- unless collection.image -%}
-                        <h1 class="section-header__title section-header__left">{{ collection.title }}</h1>
-                    {%- endunless -%}
-                </header>
-                <hr>
-                {% endunless %}
+    {% endcomment %}
                 <div class="grid--full">
                 {% capture collection_handle %}{{ collection.handle }}{% endcapture %}
 				{% for link in linklists[collection_handle].links %}
+                {% if forloop.first %}
+                {% assign subbrand = link.object %}
+                {% endif %}
                 {% capture desktop-image %}{{ collection.handle }}-{{ link.object.handle }}-desktop.jpg{% endcapture %}
                 {% capture mobile-image %}{{ collection.handle }}-{{ link.object.handle }}-mobile.jpg{% endcapture %}
 				<div class="grid__item large--one-third medium-down--one-half text-center de-collectionTile">
@@ -44,9 +26,22 @@
 				</div>
 				{% endfor %}
                 </div>
+                <div class="de-collectionSubBrandLogo">
+                {% include 'collection-sub-brand-logo' %}
+                </div>
 				{% if collection.description != blank %}
-                    <div>
-                        {{ collection.description }}
+                    {%- assign hypervisual = collection.description | split: '<p>---section2---</p>' -%}
+                    <div class="de-hypervisualCollectionDescription">
+                        {{ hypervisual[0] }}
                     </div>
+                    {% if hypervisual[1] %}
+                    <div class="de-hypervisualCollectionSection2">
+                        {{ hypervisual[1] }}
+                    </div>
+                    {% endif %}
                 {% endif %}
+                
+{% if collection.image %}
+    <img class="de-collectionHeroImage" alt="{{ collection.title }}" src="{{ collection.image | img_url: '200x', format: 'pjpg' }}" data-src="{{ collection.image | img_url: 'master', format: 'pjpg' }}">
+{% endif %}
 </div>
