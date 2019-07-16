@@ -1,23 +1,9 @@
 // @ts-check
 
 /**
- * PREFIXES
+ * Import shared prefixes
  */
-
-/**
- * All styling CSS classes should have the CSS_PREFIX
- */
-export const CSS_PREFIX = 'de-';
-
-/**
- * All utility classes should have the CSS_UTILITY_PREFIX
- */
-export const CSS_UTILITY_PREFIX = `${CSS_PREFIX}u-`;
-
-/**
- * All JS-bound CSS classes should have the JS_PREFIX
- */
-export const JS_PREFIX = `js-${CSS_PREFIX}`;
+import { CSS_PREFIX, CSS_UTILITY_PREFIX, JS_PREFIX } from '../shared/constants';
 
 /**
  * Icon prefix
@@ -64,10 +50,6 @@ export const VALIDATION_MESSAGE_CLASS = `${JS_PREFIX}validation-message`;
  */
 export const PRICE_CLASS = `${JS_PREFIX}ProductPrice`;
 export const COMPARE_PRICE_CLASS = `${JS_PREFIX}ComparePrice-text`;
-/**
- * The CSS utility class for visibly hiding elements
- */
-export const IS_HIDDEN_CLASS = `${CSS_UTILITY_PREFIX}hidden`;
 
 /**
  * TEXT CONSTANTS
@@ -116,3 +98,8 @@ export const HIDE_OVERFLOW_Y_CLASS = `${CSS_UTILITY_PREFIX}overflowYNone`;
  * CSS class used by components that need an "open" state
  */
 export const IS_OPEN = `${CSS_PREFIX}is-open`;
+
+/**
+ * Re-export shared constants
+ */
+export * from '../shared/constants';

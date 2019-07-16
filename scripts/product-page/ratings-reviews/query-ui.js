@@ -33,6 +33,7 @@ export const getLoadedReviews = () =>
 /**
  * Get the sort select
  */
+/** @type HTMLSelectElement */
 export const reviewsSortSelect = document.querySelector(
   `.${REVIEW_SORT_SELECT}`
 );

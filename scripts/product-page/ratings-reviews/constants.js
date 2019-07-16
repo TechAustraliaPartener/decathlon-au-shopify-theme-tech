@@ -1,3 +1,5 @@
+// @ts-check
+
 import { JS_PREFIX, CSS_PREFIX } from '../constants';
 
 /**
@@ -19,7 +21,27 @@ export const REVIEW_VOTE_CLASS = `${JS_PREFIX}${CUSTOMER_REVIEW}-vote`;
 /**
  * The CSS class on the button used to get more reviews
  */
-export const MORE_REVIEWS_CONTAINER_CLASS = `${JS_PREFIX}moreReviews`;
+export const MORE_REVIEWS_BUTTON_CLASS = `${JS_PREFIX}moreReviewsButton`;
+
+/**
+ * The CSS class on the button used to get more reviews
+ */
+export const MORE_REVIEWS_BUTTON_TEXT_CLASS = `${MORE_REVIEWS_BUTTON_CLASS}-text`;
+
+/**
+ * The CSS class on the button used to get more reviews
+ */
+export const MORE_REVIEWS_BUTTON_LOADING_TEXT_CLASS = `${MORE_REVIEWS_BUTTON_CLASS}-loadingText`;
+
+/**
+ * The CSS class on the button used to get more reviews
+ */
+export const REVIEWS_LOADING_CLASS = `${JS_PREFIX}LoadingReviews`;
+
+/**
+ * Timeout for delaying showing loading state after calls to the revies API
+ */
+export const REVIEWS_LOADING_TIMEOUT = 200;
 
 /**
  * The CSS class on a review block

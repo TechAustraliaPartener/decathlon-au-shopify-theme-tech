@@ -1,7 +1,9 @@
+// @ts-check
+
 import { REVIEW_FILTER, STAR_RATING } from './constants';
 import { delegateEvent } from '../../utilities/event-delegator';
 import { setReviewsStateForFilter } from './state';
-import { getMoreReviews, resetReviews, resetSort } from './update-ui';
+import { loadNewReviews, resetSort } from './update-ui';
 
 /**
  * Handler for clicks on rows in the Reviews Ratings Matrix
@@ -13,14 +15,14 @@ import { getMoreReviews, resetReviews, resetSort } from './update-ui';
  * @TODO - Analyze for any accessiblity improvements
  */
 const reviewFilterHandler = function() {
+  /** @type {string} */
   const rating = this.dataset && this.dataset[STAR_RATING];
   if (!rating) {
     return;
   }
   setReviewsStateForFilter(rating);
   resetSort();
-  resetReviews();
-  getMoreReviews();
+  loadNewReviews();
 };
 
 /**

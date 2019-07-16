@@ -1,14 +1,12 @@
+// @ts-check
+
 /**
  * Handle different options for sorting product reviews
  */
 
 import { reviewsSortSelect } from './query-ui';
 import { setReviewsStateForSort, getIsDefaultQuery } from './state';
-import {
-  resetDefaultReviewsDisplay,
-  getMoreReviews,
-  resetReviews
-} from './update-ui';
+import { resetDefaultReviewsDisplay, loadNewReviews } from './update-ui';
 
 /**
  * Takes sorting parameters from data attributes on the sort select's options
@@ -39,8 +37,7 @@ const reviewsSortHandler = event => {
   if (getIsDefaultQuery()) {
     resetDefaultReviewsDisplay();
   } else {
-    resetReviews();
-    getMoreReviews();
+    loadNewReviews();
   }
 };
 

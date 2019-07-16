@@ -2,7 +2,7 @@
 /**
  * Set to `true` to debug state helper module
  */
-const DEBUG = false;
+const DEBUG = process.env.DEBUG === 'true';
 
 /**
  * State helper module

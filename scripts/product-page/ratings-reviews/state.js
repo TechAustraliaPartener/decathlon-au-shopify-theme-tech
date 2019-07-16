@@ -1,3 +1,21 @@
+// @ts-check
+
+/**
+ * @typedef {Object} ReviewsState
+ * @property {number} page - The page to set for for a reviews API query
+ * @property {number | undefined} reviewsPerPage - How many reviews should be
+ * shown or requested in each API call
+ * @property {number} prerenderedReviews - How many reviews will be server-side
+ * rendered (maximum)
+ * @property {string} sort - A sort type to set for for a reviews API query
+ * @property {string} direction  - The direction to set for for a reviews API query
+ * @property {string} notes - A rating to set for a reviews API query
+ * @property {boolean} loading - Whether the UI should be in a loading state
+ * (during an API request)
+ * @property {boolean} isMoreReviewRequest - Is a request for additional reviews
+ * (rather than a new sort or filter request)
+ */
+
 /**
  * Objects and functions for managing state to control
  * product review loading, fetching, sorting, and filtering
@@ -5,11 +23,13 @@
 
 import { reviewsPerPage } from './template-data';
 import { prerenderedReviewList } from './query-ui';
+import { createState } from '../create-state';
 
 /**
  * This will be used for holding state to control load/sort/filter interactions
+ * @type {ReviewsState}
  */
-export const originalReviewsState = {
+const originalReviewsState = {
   page: 1,
   reviewsPerPage,
   // The number of pre-rendered reviews will be set when the main script runs
@@ -19,28 +39,16 @@ export const originalReviewsState = {
   // The default sort direction, to be used on page load
   direction: 'desc',
   // The ratings filter, which is none on page load
-  notes: ''
+  notes: '',
+  loading: false,
+  isMoreReviewRequest: false
 };
 
-/**
- * Create an initial reviews state object as a clone of the default
- */
-let _reviewsState = { ...originalReviewsState };
-
-/**
- * Update the reviews state object with one or more new values
- * @param {Object} updateObj Whatever property of the reviews state object needs updating
- */
-export const setReviewsState = updateObj => {
-  // @TODO - Remove comments for production
-  console.log('Updating state with the following value(s): ', updateObj);
-  _reviewsState = { ..._reviewsState, ...updateObj };
-};
-
-/**
- * Getter for retrieving the latest reviewsState object
- */
-export const getReviewsState = () => _reviewsState;
+export const {
+  updateState: setReviewsState,
+  getState: getReviewsState,
+  onChange: onReviewsStateChange
+} = createState(originalReviewsState);
 
 /**
  * Sets the number of prerendered reviews on the reviews state object
@@ -72,7 +80,7 @@ export const getIsDefaultQuery = () => {
 /**
  * Set up a query for getting filtered reviews
  * Resets query pagination, sort, and direction, takes in a `notes` (aka, rating) value for the next query
- * @param {string|number} notes - A value to use to query for reviews with a particular rating
+ * @param {string} notes - A value to use to query for reviews with a particular rating
  */
 export const setReviewsStateForFilter = notes => {
   const { sort, direction, page } = originalReviewsState;
@@ -84,8 +92,9 @@ export const setReviewsStateForFilter = notes => {
  * Resets query pagination and notes (aka, ratings filter)
  * and sets sort and direction variables for the next query
  * @param {Object} params
- * @param {string} params.sort - A sort type to set for the next query
- * @param {string} params.direction - A direction to set for the next query
+ * @param {string | undefined} params.sort - Sort to use for next API query
+ * @param {string | undefined} params.direction - Direction to use for next
+ * API query
  */
 export const setReviewsStateForSort = ({ sort, direction }) => {
   const { page, notes } = originalReviewsState;
