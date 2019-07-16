@@ -12,6 +12,9 @@ const IS_INTERSECTING = `${CSS_PREFIX}is-intersecting`;
 // Create array for player IDs
 const players = [];
 
+// Create array for error video IDs
+const errorVideoIds = [];
+
 const $videoCarousel = $('.js-de-slick--videos');
 const $thumbnailCarousel = $('.js-de-slick--videos-thumbnails');
 
@@ -137,6 +140,27 @@ const initializeVideoJS = () => {
     }
   };
 
+  /**
+   * Handle all players' error event
+   *
+   * @param {object} e The handler event object
+   */
+  const onError = e => {
+    // Extract the video id
+    const videoId = e.target.dataset.videoId.replace(/ref:|_1/g, '');
+    // Build the product URL
+    const productURL = window.location.host + window.location.pathname;
+    // Send an event to Google Analytics
+    if (errorVideoIds.includes(videoId)) {
+      window.dataLayer.push({
+        event: 'video-is-broken',
+        videoId,
+        productURL
+      });
+      errorVideoIds.push(videoId);
+    }
+  };
+
   // +++  Determine the available player IDs +++//
   for (let x = 0; x < videoPlayerKeys.length; x++) {
     // Assign the player name to setPlayer
@@ -149,6 +173,8 @@ const initializeVideoJS = () => {
       myPlayer.on('play', onPlay);
       // Push the player to the players array
       players.push(myPlayer);
+      // Assign an event listener for error event
+      myPlayer.on('error', onError);
     });
   }
 
