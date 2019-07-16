@@ -178,6 +178,14 @@ Here are the steps followed to create this PR:
 1. Commit the changes: `git commit -m "Update patterns to latest"`
 1. Push to the remote: `git push -u origin chore/update-patterns`
 
+## Product Page Fulfillment Options
+
+If you are outside of the SF area, you can set the `OUT_OF_AREA_THRESHOLD` environment variable to a large number to make the "Pickup in store" option appear, for testing.
+
+| Environment Variable    | Description                                                                                      |
+| ----------------------- | ------------------------------------------------------------------------------------------------ |
+| `OUT_OF_AREA_THRESHOLD` | The max distance from a Decathlon store (in miles) before the "Pickup in store" option is hidden |
+
 ## Persistent Cart (PC)
 
 The Persistent Cart feature is a combination of client-side code and a server-side application with a database, that together do the following:
