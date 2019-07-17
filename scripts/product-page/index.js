@@ -20,7 +20,7 @@ import * as productFlags from './product-flags';
 import * as addToCart from './add-to-cart';
 import * as drawer from './drawer';
 import { getUrlVariant, updateUrlVariant } from './query-string';
-import { variantOptions, getSelectedVariant } from './product-data';
+import { getSelectedVariant, getVariantOptions } from './product-data';
 import * as stickyNav from './sticky-nav';
 import * as storePickup from './fulfillment-options';
 
@@ -120,16 +120,17 @@ const updateUI = state => {
  * Updates UI to reflect variant in URL
  */
 const selectUrlVariant = () => {
-  const urlVariant = Number(getUrlVariant());
-  if (urlVariant) {
-    const activeOptions = variantOptions(urlVariant);
+  const urlVariantId = Number(getUrlVariant());
+  const variant = getSelectedVariant({ id: urlVariantId });
+  if (variant) {
+    const options = getVariantOptions(variant);
     /** @type {HTMLElement} */
     const targetColorSwatch = document.querySelector(
-      `.js-de-ColorSwatches-option[value='${activeOptions.color}']`
+      `.js-de-ColorSwatches-option[value='${options.color}']`
     );
     /** @type {HTMLElement} */
     const targetSizeSwatch = document.querySelector(
-      `.js-de-SizeSwatches-option[value='${activeOptions.size}']`
+      `.js-de-SizeSwatches-option[value='${options.size}']`
     );
     if (targetColorSwatch) {
       targetColorSwatch.click();
@@ -140,7 +141,7 @@ const selectUrlVariant = () => {
   } else {
     colorSwatches.selectFirstSwatch();
   }
-  return urlVariant;
+  if (variant) return urlVariantId;
 };
 
 /**

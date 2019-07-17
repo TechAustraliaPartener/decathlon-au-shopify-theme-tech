@@ -66,7 +66,7 @@ export const getSelectedVariant = ({
  * @param {string} [obj.size] The selected size option
  * @param {string} [obj.color] The selected color option
  * @param {number} [obj.id] A product variant ID
- * @returns {Object|undefined} A product variant object
+ * @returns {Variant | undefined} A product variant object
  */
 export const getAvailableSelectedVariant = ({ size, id, color }) =>
   getSelectedVariant({ size, color, id, source: availableVariants() });
@@ -195,23 +195,6 @@ export const getVariantOptions = variant => ({
   color: variant[COLOR_OPTION],
   model: variant[MODEL_OPTION]
 });
-
-/**
- * Returns the options of a variant by ID using global variantsJSON array
- * derived from global productJSON
- *
- * @param {number} variantId The variant ID
- */
-export const variantOptions = variantId => {
-  if (Array.isArray(variantsJSON)) {
-    const variant = variantsJSON.find(variant => variant.id === variantId);
-    if (variant) {
-      return getVariantOptions(variant);
-    }
-  }
-
-  return { size: null, color: null, model: null };
-};
 
 /**
  * Helper to know if a product variant is available
