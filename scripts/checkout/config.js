@@ -15,7 +15,7 @@ const config = {
   PICKUP_SHIPPING_METHODS: ['shopify-Pickup-0.00'],
   PICKUP_SHIPPING_METHOD: 'shopify-Pickup-0.00',
   CLASSES: {
-    ACTIVE_SHIPPICK_BTN: 'js-de-active-pickship-btn',
+    ACTIVE_SHIPPICK_BTN: 'de-is-active',
     ACTIVE_PICKUP_LOCATION: 'js-de-active-location',
     DISABLED_BUTTON: 'js-de-BtnDisabled'
   },
