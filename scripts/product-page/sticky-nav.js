@@ -68,7 +68,7 @@ export const init = () => {
    * Sets the correct classes on all the sticky nav items
    */
   const updateLinksState = () => {
-    [...links].forEach(link => {
+    links.forEach(link => {
       if (link.getAttribute('href') === window.location.hash) {
         link.classList.add(IS_ACTIVE_CLASS);
       } else {

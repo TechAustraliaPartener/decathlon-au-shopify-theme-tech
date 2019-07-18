@@ -192,7 +192,7 @@ const updateBaseDrawerClasses = ({ drawerEl, isOpen, wrapperEls }) => {
    * Toggle fixed positioning on the wrapper(s) of the drawer, to prevent
    * scrolling content outside the drawer
    */
-  [...wrapperEls].forEach(wrap => {
+  wrapperEls.forEach(wrap => {
     wrap.classList.toggle(FIXED_CLASS, isOpen);
   });
   /**
@@ -309,9 +309,7 @@ const setDrawerInTransitionOnWrapper = (
   inTransition = true
 ) => {
   const classListMethod = inTransition ? 'add' : 'remove';
-  [...wrapperEls].forEach(el =>
-    el.classList[classListMethod](IS_DRAWER_OPEN_CLASS)
-  );
+  wrapperEls.forEach(el => el.classList[classListMethod](IS_DRAWER_OPEN_CLASS));
 };
 
 /**

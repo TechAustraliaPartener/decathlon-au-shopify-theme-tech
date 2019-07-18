@@ -14,11 +14,9 @@ import {
 
 // Cache the Model Code DOM elements and array
 const modelCodeEls = document.querySelectorAll(`.${JS_PREFIX}ModelCode`);
-const modelCodeElsArray = [...modelCodeEls];
 const modelCodeTextEls = document.querySelectorAll(
   `.${JS_PREFIX}ModelCode-text`
 );
-const modelCodeTextElsArray = [...modelCodeTextEls];
 
 /**
  * Updates the UI with the variant's model code
@@ -33,17 +31,17 @@ export const updateUI = ({ variant, color }) => {
 
   if (modelCode) {
     // Update the model code in the UI
-    modelCodeTextElsArray.forEach(modelCodeTextEl => {
+    modelCodeTextEls.forEach(modelCodeTextEl => {
       modelCodeTextEl.textContent = modelCode;
     });
 
     // Then make sure any hidden model code wrappers are shown
-    modelCodeElsArray.forEach(modelCodeEl => {
+    modelCodeEls.forEach(modelCodeEl => {
       modelCodeEl.classList.remove(IS_HIDDEN_CLASS);
     });
   } else {
     // No need to show model code wrappers if no model code exists
-    modelCodeElsArray.forEach(modelCodeEl => {
+    modelCodeEls.forEach(modelCodeEl => {
       modelCodeEl.classList.add(IS_HIDDEN_CLASS);
     });
   }

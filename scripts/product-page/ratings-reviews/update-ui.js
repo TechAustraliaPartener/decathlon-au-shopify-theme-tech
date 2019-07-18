@@ -46,7 +46,7 @@ let wasLoading = false;
  * @TODO - A11y analysis here
  */
 const hideAllReviews = () =>
-  [...getAllReviews()].forEach(review => review.classList.add(IS_HIDDEN_CLASS));
+  getAllReviews().forEach(review => review.classList.add(IS_HIDDEN_CLASS));
 
 /**
  * Unhide a set number of reviews (based on the `reviewsPerPage` value obtained
@@ -84,9 +84,7 @@ const showMoreReviews = (
  * with the page)
  */
 const clearLoadedReviews = () => {
-  [...getLoadedReviews()].forEach(review =>
-    review.parentNode.removeChild(review)
-  );
+  getLoadedReviews().forEach(review => review.parentNode.removeChild(review));
 };
 
 /**
@@ -295,18 +293,18 @@ export const resetSort = () => {
  * data is returned from an API request
  */
 const addUnloadingStyleToReviews = () => {
-  [...document.querySelectorAll(`.${REVIEW_CLASS}`)].forEach(review =>
-    review.classList.add(IS_TRANSITIONING_CLASS)
-  );
+  document
+    .querySelectorAll(`.${REVIEW_CLASS}`)
+    .forEach(review => review.classList.add(IS_TRANSITIONING_CLASS));
 };
 
 /**
  * Visually unmarks reviews after data is returned from an API request
  */
 const removeUnloadingStyleFromReviews = () => {
-  [...document.querySelectorAll(`.${REVIEW_CLASS}`)].forEach(review =>
-    review.classList.remove(IS_TRANSITIONING_CLASS)
-  );
+  document
+    .querySelectorAll(`.${REVIEW_CLASS}`)
+    .forEach(review => review.classList.remove(IS_TRANSITIONING_CLASS));
 };
 
 /**
