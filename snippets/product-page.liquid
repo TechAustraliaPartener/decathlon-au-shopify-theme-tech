@@ -295,6 +295,24 @@
     content: fulfillment_drawer_content,
     displays_in_page_flow: false
   %}
+
+  {% capture 'returns_policy_drawer_content' %}
+    {% include 'product-heavy-returns-policy' %}
+  {% endcapture %}
+  {% capture 'returns_policy_drawer_heading' %}
+    <h3 class="de-ProductInfoTitle
+              de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4
+              de-u-spaceNone de-u-hidden de-u-md-inlineBlock">
+      Heavy products return policy
+    </h3>
+  {% endcapture %}
+  {% include 'product-drawer',
+    drawer_id: "returns-policy-drawer",
+    drawer_label: "Heavy product returns policy",
+    heading: returns_policy_drawer_heading,
+    content: returns_policy_drawer_content,
+    displays_in_page_flow: false
+  %}
 </div>
 
 {% comment %}

@@ -12,11 +12,27 @@
 <div class="de-ProductFulfillment">
   <div class="de-u-padBottom06">
     <div class="de-u-flex de-ProductFulfillment-option">
-      {% include 'icon-free-returns'
+      {% include 'icon-returns'
         with class: 'de-u-textBlack de-Icon de-u-textGrow6 de-u-spaceRight03' %}
-      <p class="de-u-spaceNone de-u-textMedium">
-        <span class="de-u-textBold">Free</span> returns
-      </p>
+      {% if bulk_shipping %}
+        <p class="de-u-spaceNone de-u-textMedium">
+          See our
+          <a href="https://help.decathlon.com/hc/en-us/articles/115000588629-Returns-Instructions"
+              class="de-u-textMedium de-u-textSelectNone js-de-Drawer-toggle"
+              data-drawer-id="returns-policy-drawer"
+              data-drawer-toggle-aria-label="Open the returns policy dialog."
+              data-drawer-action="open"
+              data-test="returns-policy-toggle"
+            >
+            return policy
+          </a>
+          for heavy products
+        </p>
+      {% else %}
+        <p class="de-u-spaceNone de-u-textMedium">
+          <span class="de-u-textBold">Free</span> returns
+        </p>
+      {% endif %}
     </div>
 
     <div class="de-u-flex de-ProductFulfillment-option">
