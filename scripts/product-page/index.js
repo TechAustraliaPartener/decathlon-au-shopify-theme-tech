@@ -24,6 +24,7 @@ import { getUrlVariant, updateUrlVariant } from './query-string';
 import { getSelectedVariant, getVariantOptions } from './product-data';
 import * as stickyNav from './sticky-nav';
 import * as storePickup from './fulfillment-options';
+import * as modal from './modal';
 
 let updateFulfillmentOptionsUI = null;
 
@@ -160,6 +161,7 @@ const init = async () => {
   accordion.init();
   const urlVariant = selectUrlVariant();
   stickyNav.init();
+  modal.init();
   // Suggest leaving the async setup for fulfillment options to last
   updateFulfillmentOptionsUI = await storePickup.init();
   /**
