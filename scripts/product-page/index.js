@@ -126,13 +126,11 @@ const selectUrlVariant = () => {
   const variant = getSelectedVariant({ id: urlVariantId });
   if (variant) {
     const options = getVariantOptions(variant);
-    /** @type {HTMLElement} */
-    const targetColorSwatch = document.querySelector(
-      `.js-de-ColorSwatches-option[value='${options.color}']`
+    const targetColorSwatch = [...colorSwatches.swatchOptionEls].find(
+      swatch => swatch.value === options.color
     );
-    /** @type {HTMLElement} */
-    const targetSizeSwatch = document.querySelector(
-      `.js-de-SizeSwatches-option[value='${options.size}']`
+    const targetSizeSwatch = [...sizeSwatches.swatchOptionEls].find(
+      swatch => swatch.value === options.size
     );
     if (targetColorSwatch) {
       targetColorSwatch.click();

@@ -49,11 +49,11 @@ export const $Swatches = $(`.${JS_PREFIX}SizeSwatches`);
 const DEFAULT_TEXT_COLOR = `${CSS_UTILITY_PREFIX}textDarkGray`;
 const ERROR_TEXT_COLOR = `${CSS_UTILITY_PREFIX}textRed`;
 
-/**
- * Children elements
- * @type JQuery<HTMLButtonElement>
- */
-const $SizeSwatchesOptions = $(`.${JS_PREFIX}SizeSwatches-option`);
+/** @type {NodeListOf<HTMLButtonElement>} */
+export const swatchOptionEls = document.querySelectorAll(
+  `.${JS_PREFIX}SizeSwatches-option`
+);
+const $SizeSwatchesOptions = $(swatchOptionEls);
 const $SizeInfo = $(`.${JS_PREFIX}SizeInfo`);
 
 /**
