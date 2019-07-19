@@ -1523,6 +1523,13 @@ function getLocaleSync(t, str) {
                 }),
             t("#gateway").show(),
             (function() {
+              // Add background image
+              t("[data-gateway-background-image]").each(function() {
+                t(this).css(
+                  "background-image",
+                  "url(" + t(this).data("gatewayBackgroundImage") + ")"
+                );
+              }),
               // Remove email signup form, add buttons
               t("#gateway form").remove();
               t("#gateway .banner-subtitle").text(
