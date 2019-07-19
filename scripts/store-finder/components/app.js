@@ -382,7 +382,8 @@ export const app = {
     goToStoreInfo(store) {
       const storeUrlMap = {
         adr_GezSSC9M: 'https://www.decathlon.com/pages/san-francisco',
-        adr_K6s3Kaja: 'https://www.decathlon.com/pages/emeryville'
+        adr_K6s3Kaja: 'https://www.decathlon.com/pages/emeryville',
+        adr_sfpotrero: 'https://www.decathlon.com/pages/sf-potrero-hill'
       };
       const { id } = store;
       const url = storeUrlMap[id];

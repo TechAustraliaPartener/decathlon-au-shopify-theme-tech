@@ -61,10 +61,10 @@ export default storeId => {
     store.tomorrow.open
   )}am to ${militaryToStandardTime(store.tomorrow.close)}pm`;
 
-  // TEMPORARY: Can be deleted after Emeryville's opening
-  if (Date.now() <= 1555084800000 && storeId === 'adr_K6s3Kaja') {
-    hoursOfOperation.today = 'Grand Opening April 12th 9am';
-    hoursOfOperation.tomorrow = 'Grand Opening April 12th 9am';
+  // TEMPORARY: Can be deleted after SF Potrero's opening AND hours updated
+  if (storeId === 'adr_sfpotrero') {
+    hoursOfOperation.today = 'Opening November 2019';
+    hoursOfOperation.tomorrow = 'Opening November 2019';
   }
 
   return hoursOfOperation;
