@@ -100,14 +100,15 @@ const updateUI = state => {
   // Model code can be updated without size
   modelCode.updateUI(state);
 
+  // Price can be updated even if no variant (color + size) has been selected
+  // @see: https://app.gitbook.com/@decathlonusa/s/shopify/product-feature/product-page#price
+  price.updateUI(state);
+
   updateUrlVariant(state.variant && state.variant.id);
 
   if (state.variant) {
     // MasterSelect requires a full variant to update
     masterSelect.updateUI(state);
-    // Price currently only gets updated if there is a full variant selected
-    // @TODO: Should this be updated even if there is no complete variant? To what?
-    price.updateUI(state);
     /**
      * The updateFulfillmentOptionsUI function will be undefined on page load,
      * but will update on subsequent page actions

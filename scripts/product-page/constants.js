@@ -49,7 +49,7 @@ export const VALIDATION_MESSAGE_CLASS = `${JS_PREFIX}validation-message`;
  * @todo Move module-only constants to specific module
  */
 export const PRICE_CLASS = `${JS_PREFIX}ProductPrice`;
-export const COMPARE_PRICE_CLASS = `${JS_PREFIX}ComparePrice-text`;
+export const COMPARE_PRICE_CLASS = `${JS_PREFIX}ComparePrice`;
 
 /**
  * TEXT CONSTANTS

@@ -79,6 +79,14 @@ export const getAvailableSelectedVariant = ({ size, id, color }) =>
 export const isEndOfLifeProduct = () => isTagFound(END_OF_LIFE_TAG);
 
 /**
+ * Helper to determine if a product has varied prices
+ *
+ * @returns {boolean}
+ */
+export const isProductPricingVaried = () =>
+  productsJSON.price_varies || productsJSON.compare_at_price_varies;
+
+/**
  * Gets model code from variant
  *
  * @param {Variant} variant
