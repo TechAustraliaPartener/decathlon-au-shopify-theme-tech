@@ -1,8 +1,6 @@
 // @ts-check
-/**
- * Set to `true` to debug state helper module
- */
-const DEBUG = process.env.DEBUG === 'true';
+
+import { DEBUG } from '../shared/config';
 
 /**
  * State helper module

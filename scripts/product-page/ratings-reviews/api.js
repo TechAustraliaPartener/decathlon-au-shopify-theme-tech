@@ -8,11 +8,7 @@ import { stringify } from 'query-string';
 import fetch from 'unfetch';
 import { REVIEWS_BASE_URL, REVIEWS_BASE_QUERY_PARAMS } from './constants';
 import { modelCode } from './template-data';
-
-/**
- * Set to `true` to debug state helper module
- */
-const DEBUG = process.env.DEBUG === 'true';
+import { DEBUG } from '../../shared/config';
 
 /**
  * Get product review data for a product by model code

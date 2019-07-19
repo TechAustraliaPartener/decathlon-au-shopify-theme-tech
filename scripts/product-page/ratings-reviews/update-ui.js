@@ -31,8 +31,7 @@ import {
 } from './state';
 import { fetchReviews } from './api';
 import { show, hide } from '../../utilities/hide-or-show-element';
-
-const DEBUG = process.env.DEBUG === 'true';
+import { DEBUG } from '../../shared/config';
 
 let moreReviewsEl;
 let defaultButtonTextEl;
