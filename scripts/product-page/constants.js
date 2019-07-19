@@ -64,7 +64,9 @@ export const PRODUCT_PAGE_COPY = {
   ADD_TO_CART: 'Add to Cart',
   SOLD_OUT: 'Sold Out',
   EMAIL_ME_WHEN_IN_STOCK: 'Email Me When In Stock',
-  OUT_OF_STOCK: 'Out of Stock',
+  OUT_OF_STOCK: 'Out of stock',
+  ALL_SIZES_OUT_OF_STOCK:
+    'Out of stock. Select a size to get in stock email notification.',
   NEW_MODEL_IN_DESIGN: 'New model in design',
   OUT_OF_STOCK_RECENTLY_CHANGED: 'Out of stock. Inventory recently changed.',
   INVENTORY_RECENTLY_CHANGED: 'Inventory recently changed',

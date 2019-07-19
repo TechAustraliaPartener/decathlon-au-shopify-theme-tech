@@ -60,10 +60,10 @@ const setUpListeners = () => {
 };
 
 /** @type Variant | null | undefined */
-let prevVariant;
+let prevVariant = null;
 
 /** @type string | null | undefined */
-let prevColor;
+let prevColor = null;
 
 /**
  * The handler for when an option is selected
@@ -141,6 +141,8 @@ const selectUrlVariant = () => {
     }
   } else {
     colorSwatches.selectFirstSwatch();
+    // Trigger onOptionSelect to update all the modules with initial state of no variant being selected
+    onOptionSelect();
   }
   if (variant) return urlVariantId;
 };

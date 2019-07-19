@@ -187,7 +187,7 @@ const onAddToCartClick = event => {
 /**
  * To be called when a different variant is selected.
  * Resets the state, including resetting ajax error messages
- * @param {Variant} newVariant
+ * @param {Variant | undefined} newVariant
  */
 export const onVariantSelect = newVariant => {
   state.updateState({
