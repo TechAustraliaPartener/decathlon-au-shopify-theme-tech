@@ -4,7 +4,7 @@
  * Functions related to fetching product ratings and reviews data from the OpenVoice API
  */
 
-import { stringify } from 'query-string';
+import { encode } from 'qss';
 import fetch from 'unfetch';
 import { REVIEWS_BASE_URL, REVIEWS_BASE_QUERY_PARAMS } from './constants';
 import { modelCode } from './template-data';
@@ -26,9 +26,7 @@ const fetchProductReviewsData = ({ modelCode, queryParams }) => {
     ...REVIEWS_BASE_QUERY_PARAMS,
     ...queryParams
   };
-  return fetch(`${REVIEWS_BASE_URL}?${stringify(params)}`).then(res =>
-    res.json()
-  );
+  return fetch(`${REVIEWS_BASE_URL}?${encode(params)}`).then(res => res.json());
 };
 
 /**

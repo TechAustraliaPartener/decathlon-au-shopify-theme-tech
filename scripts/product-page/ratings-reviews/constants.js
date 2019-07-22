@@ -103,7 +103,11 @@ export const REVIEWS_BASE_URL =
  */
 export const REVIEWS_BASE_QUERY_PARAMS = {
   site: 1132,
-  type: 1
+  type: 1,
+  // Origin is not a real parameter for the API.
+  // We are using it to force the API to use a separate cache for separate domains.
+  // Otherwise it will return the cached access-control-allow-origin header when you switch domains
+  origin: location.origin
 };
 
 /**
