@@ -13,7 +13,11 @@ import {
   REVIEWS_LOADING_TIMEOUT,
   IS_TRANSITIONING_CLASS,
   REVIEW_CLASS,
-  IS_HIDDEN_CLASS
+  IS_HIDDEN_CLASS,
+  REVIEW_FILTER,
+  STAR_RATING,
+  REVIEW_FILTER_STATUS,
+  REVIEW_FILTER_STAR_VALUE
 } from './constants';
 import {
   prerenderedReviewList,
@@ -31,12 +35,19 @@ import {
 } from './state';
 import { fetchReviews } from './api';
 import { show, hide } from '../../utilities/hide-or-show-element';
+import { IS_ACTIVE_CLASS } from '../constants';
 import { DEBUG } from '../../shared/config';
 
 let moreReviewsEl;
 let defaultButtonTextEl;
 let loadingButtonTextEl;
 let loadingReviewsEl;
+/** @type {HTMLElement[]} */
+let reviewFilterEls;
+/** @type {HTMLElement} */
+let reviewFilterStatusEl;
+/** @type {HTMLElement} */
+let reviewFilterStarValueEl;
 let loadingTimeout = null;
 let wasLoading = false;
 
@@ -124,7 +135,7 @@ const setLoadingState = () => {
  */
 export const loadNewReviews = isMoreReviewRequest => {
   /**
-   * Tragger a loading state, with timeout
+   * Trigger a loading state, with timeout
    */
   setLoadingState();
   /**
@@ -276,6 +287,12 @@ export const moreReviewsInit = () => {
   loadingReviewsEl = document.querySelector(`.${REVIEWS_LOADING_CLASS}`);
   moreReviewsEl &&
     moreReviewsEl.addEventListener('click', moreReviewsRequestHandler);
+  // @ts-ignore
+  reviewFilterEls = [...document.querySelectorAll(`button.${REVIEW_FILTER}`)];
+  reviewFilterStatusEl = document.querySelector(`.${REVIEW_FILTER_STATUS}`);
+  reviewFilterStarValueEl = document.querySelector(
+    `.${REVIEW_FILTER_STAR_VALUE}`
+  );
 };
 
 /**
@@ -356,3 +373,24 @@ const renderLoading = ({ loading, isMoreReviewRequest }) => {
  * from `create-state.js`
  */
 onReviewsStateChange(renderLoading);
+
+/**
+ * @param {import('./state').ReviewsState} state
+ */
+const renderFilterUI = ({ notes, loading }) => {
+  reviewFilterEls.forEach(el => {
+    if (el.dataset[STAR_RATING] === notes) {
+      el.classList.add(IS_ACTIVE_CLASS);
+    } else {
+      el.classList.remove(IS_ACTIVE_CLASS);
+    }
+  });
+  if (notes) {
+    reviewFilterStarValueEl.textContent = ` ${notes} star`;
+    show(reviewFilterStatusEl);
+  } else {
+    hide(reviewFilterStatusEl);
+  }
+};
+
+onReviewsStateChange(renderFilterUI);

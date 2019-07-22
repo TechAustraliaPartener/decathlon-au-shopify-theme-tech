@@ -848,8 +848,25 @@ $button-background-hover: #429dd7;
  * 1. Consider refactoring/revising if `ReviewMatrix` has no styling
  */
 
-.de-ReviewMatrix-stars {
-  flex: 0 1 auto;
+.de-ReviewMatrix {
+  width: 100%;
+}
+
+.de-CustomerReview-filter {
+  align-items: center;
+  display: flex;
+  width: 100%;
+  border: 1px 0 transparent;
+}
+
+.de-CustomerReview-filter.de-is-active {
+  box-shadow: 0 $border-width-sm 0 #d8d8d8,
+              0 (-$border-width-sm) 0 #d8d8d8;
+  font-weight: bold;
+}
+
+.de-CustomerReview-filter:focus {
+  outline: none;
 }
 
 /**
@@ -858,7 +875,8 @@ $button-background-hover: #429dd7;
  */
 
 .de-ReviewMatrix-graph {
-  display: block;
+  display: flex;
+  align-items: center;
   height: 25px; /* 1 */
   width: 100%;
 }
@@ -878,6 +896,34 @@ $button-background-hover: #429dd7;
 
 .de-CustomerReview:last-of-type {
   border-bottom: 0;
+}
+
+/**
+ * ReviewsViewControls
+ * A container for controlling presentation of filter attributes and sorting UI
+ */
+
+@media (min-width: $breakpoint-lg) {
+  .de-ReviewsViewControls {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.de-ReviewsViewControls-sort {
+  align-items: center;
+  display: flex;
+}
+
+.de-CustomerReviews-starContainer {
+  align-items: center;
+  display: flex;
+}
+
+.de-CustomerReviews-count {
+  align-items: center;
+  display: flex;
+  width: 48px;
 }
 
 /**
@@ -912,14 +958,6 @@ $button-background-hover: #429dd7;
     padding-right: 1rem;
     width: 33.33333%;
   }
-}
-
-/**
- * 1. `2.0227` is the sixth step in the modular scale in use by the pattern library.
- */
-
-.de-ReviewsContainer-reviews {
-  padding-top: 2.027rem; /* 1 */
 }
 
 /**

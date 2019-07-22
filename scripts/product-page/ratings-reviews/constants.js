@@ -68,6 +68,18 @@ export const REVIEW_SORT_SELECT = `${JS_PREFIX}${CUSTOMER_REVIEW}-sort`;
  */
 export const REVIEW_FILTER = `${JS_PREFIX}${CUSTOMER_REVIEW}-filter`;
 
+/** The CSS class on the element that displays the current filter if it exists */
+export const REVIEW_FILTER_STATUS = `${JS_PREFIX}${CUSTOMER_REVIEW}-filterStatus`;
+
+/** The CSS class on the element within the filter status that shows the number of stars */
+export const REVIEW_FILTER_STAR_VALUE = `${JS_PREFIX}${CUSTOMER_REVIEW}-filterStarValue`;
+
+/** The CSS class on the clear filter button */
+export const REVIEW_CLEAR_FILTER = `${JS_PREFIX}${CUSTOMER_REVIEW}-clearFilter`;
+
+/** The CSS class on the review summary text (N out of 5 stars). This gets used as a clear button as well */
+export const REVIEW_SUMMARY_CLEAR_FILTER = `${JS_PREFIX}ReviewSummary-starsSummary`;
+
 /**
  * The CSS ID on a reviews container block
  */

@@ -25,21 +25,25 @@ import { reviewsPerPage } from './template-data';
 import { prerenderedReviewList } from './query-ui';
 import { createState } from '../create-state';
 
+const originalReviewsSortFilterState = {
+  // The default sort, to be used on page load
+  sort: 'createdAt',
+  page: 1,
+  // The default sort direction, to be used on page load
+  direction: 'desc',
+  // The ratings filter, which is none on page load
+  notes: ''
+};
+
 /**
  * This will be used for holding state to control load/sort/filter interactions
  * @type {ReviewsState}
  */
 const originalReviewsState = {
-  page: 1,
+  ...originalReviewsSortFilterState,
   reviewsPerPage,
   // The number of pre-rendered reviews will be set when the main script runs
   prerenderedReviews: 0,
-  // The default sort, to be used on page load
-  sort: 'createdAt',
-  // The default sort direction, to be used on page load
-  direction: 'desc',
-  // The ratings filter, which is none on page load
-  notes: '',
   loading: false,
   isMoreReviewRequest: false
 };
@@ -83,8 +87,12 @@ export const getIsDefaultQuery = () => {
  * @param {string} notes - A value to use to query for reviews with a particular rating
  */
 export const setReviewsStateForFilter = notes => {
-  const { sort, direction, page } = originalReviewsState;
-  setReviewsState({ notes, sort, direction, page });
+  setReviewsState({ ...originalReviewsSortFilterState, notes });
+};
+
+export const clearFilter = () => {
+  // Reset both filter and sort, per client request
+  setReviewsState(originalReviewsSortFilterState);
 };
 
 /**
@@ -97,6 +105,5 @@ export const setReviewsStateForFilter = notes => {
  * API query
  */
 export const setReviewsStateForSort = ({ sort, direction }) => {
-  const { page, notes } = originalReviewsState;
-  setReviewsState({ page, notes, sort, direction });
+  setReviewsState({ ...originalReviewsSortFilterState, sort, direction });
 };
