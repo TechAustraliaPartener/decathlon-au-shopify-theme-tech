@@ -390,3 +390,17 @@
 
 {% include 'sizechart' %}
 {% include 'ajax-cart-init' %}
+
+<script>
+(function () {
+  // create global object
+  window.Shopify = window.Shopify || {};
+
+  // assign customer object to shopify
+  {% if customer %}
+    Shopify.customer = {
+      email: {{ customer.email | json }}
+    };
+  {% endif %}
+})();
+</script>

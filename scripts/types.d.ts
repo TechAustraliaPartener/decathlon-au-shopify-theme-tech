@@ -3,7 +3,13 @@ interface Window {
   realReplaceState: typeof window.history.replaceState;
 
   BISPopover: {
-    show: () => void;
+    show: (opts?: { variantId: number }) => void;
+  };
+
+  Shopify: {
+    customer?: {
+      email: string;
+    };
   };
 }
 
