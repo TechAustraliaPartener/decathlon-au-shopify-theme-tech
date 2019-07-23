@@ -116,8 +116,7 @@
   {{ 'legacySupport.scss.css' | asset_url | stylesheet_tag }}
   {{ 'cadence.scss.css' | asset_url | stylesheet_tag }}
   {% if template == "product" and product.metafields.global.features != blank %}
-    {{ 'product.scss.css' | asset_url | stylesheet_tag }}
-    {{ 'vendor-brightcove-product.scss.css' | asset_url | stylesheet_tag }}
+    {{ 'built-product-page.css' | asset_url | stylesheet_tag }}
   {% endif %}
 
   {% comment %}

@@ -6,3 +6,5 @@ src/css/*
 
 # Compiled/bundled from /scripts/**
 /assets/built-*.js
+# Built from /styles/**
+/assets/built-*.css

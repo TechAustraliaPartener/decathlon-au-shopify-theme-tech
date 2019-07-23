@@ -1,0 +1,90 @@
+/* ProductBackToTop is not being used! */
+
+/**
+ * ProductBackToTop
+ *
+ * 1. The desired visual height for the element. Visually dependant on this
+ *    component's border-radius value.
+ * 2. The desired border-radius value for the component. Visually dependant on
+ *    this component's height value. Border-radius does not accept unitless
+ *    values however this value is being used in calc() function, so the
+ *    unitless value is required.
+ * 3. Ensures the underlined focus style does not touch the elements
+ *    left and right edges.
+ *
+ */
+
+ $ProductBackToTop-height: 32px; /* 1 */
+ $ProductBackToTop-border-radius: 1.75; /* 2 */
+
+ .ProductBackToTop {
+   display: none;
+   height: $ProductBackToTop-height;
+   justify-content: center;
+   margin-top: $ProductBackToTop-height;
+ }
+
+ @media (min-width: $breakpoint-md) {
+   .ProductBackToTop {
+     display: flex;
+   }
+ }
+
+ .ProductBackToTop-middle {
+   background: $color-silver;
+   border-radius: ($ProductBackToTop-height / $ProductBackToTop-border-radius)
+     ($ProductBackToTop-height / $ProductBackToTop-border-radius) 0 0;
+   color: $color-blue;
+   cursor: pointer;
+   display: inline-block;
+   height: $ProductBackToTop-height;
+   line-height: $ProductBackToTop-height;
+   padding: 0 $ProductBackToTop-height;
+   user-select: none;
+ }
+
+ .ProductBackToTop-middle:hover {
+   color: $color-darkgray;
+ }
+
+ .ProductBackToTop-middle:focus {
+   outline: none;
+ }
+
+ .ProductBackToTop-middle:focus::after {
+   border-bottom: $border-width-lg solid $color-darkgray;
+   bottom: $border-width-lg;
+   content: "";
+   display: block;
+   margin: 0 auto;
+   position: relative;
+   width: 96%; /* 3 */
+ }
+
+ .ProductBackToTop-left,
+ .ProductBackToTop-right {
+   background: $color-silver;
+   display: inline-block;
+   height: $ProductBackToTop-height;
+   width: $ProductBackToTop-height;
+
+   &::before {
+     content: "";
+     background: $color-white;
+     display: block;
+     height: 100%;
+     width: 100%;
+   }
+ }
+
+ .ProductBackToTop-left::before {
+   border-bottom-right-radius: (
+     $ProductBackToTop-height / $ProductBackToTop-border-radius
+   );
+ }
+
+ .ProductBackToTop-right::before {
+   border-bottom-left-radius: (
+     $ProductBackToTop-height / $ProductBackToTop-border-radius
+   );
+ }

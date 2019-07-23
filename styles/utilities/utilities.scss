@@ -1,0 +1,68 @@
+/**
+ * Utilities
+ *
+ * @TODO
+ * 1. Update patterns library with this class
+ */
+
+.de-u-textRed {
+  /* 1 */
+  color: $color-red !important;
+}
+
+.de-u-textLower {
+  text-transform: lowercase !important;
+}
+
+.de-u-textSelectNone {
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  -webkit-user-select: none !important;
+  user-select: none !important;
+}
+
+/**
+ * @TODO
+ * 1. This probably doesn't need to be a utilty class any more. Find usage
+ *    and investigate if `de-Wrapper--fullwidth` can be used instead.
+ */
+
+.de-u-fullwidth {
+  left: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  position: relative;
+  right: 50%;
+  width: 100vw;
+}
+
+.de-u-overflowYNone {
+  overflow-y: hidden !important;
+}
+
+.de-u-overflowXNone {
+  overflow-x: hidden !important;
+}
+
+.de-u-overflowXAuto {
+  overflow-x: auto !important;
+}
+
+/**
+ * Duplicate utility exists in store-finder.scss
+ *
+ * 1. Consolidate by moving to pattern library utility before launching
+ *    product page.
+ */
+
+.de-u-cursorPointer {
+  cursor: pointer; /* 1 */
+}
+
+.de-u-cursorGrab {
+  cursor: grab;
+}
+
+.de-u-textUnderline {
+  text-decoration: underline !important;
+}

@@ -1,0 +1,84 @@
+/* Accordion */
+
+.de-Accordion-header {
+  align-items: center;
+  appearance: none;
+  background-color: $color-white;
+  border: 0;
+  cursor: pointer;
+  display: flex;
+  font: inherit;
+  font-family: avalon_mediumbold;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  text-align: left;
+  width: 100%;
+}
+
+@media (min-width: $breakpoint-md) {
+  .de-Accordion-header {
+    display: none;
+  }
+}
+
+.de-Accordion-header:focus {
+  outline: $border-width-md solid $color-blue;
+  outline-offset: -3px;
+}
+
+.de-Accordion-content {
+  padding: 0 1rem;
+}
+
+/*
+ * 1. Conditionally show accordion content when in a drawer
+ *    @see scripts/product-page/drawer.js
+ */
+
+.de-is-drawerOpen .de-Accordion:not(.de-is-open) .de-Accordion-content {
+  display: block; /* 1 */
+}
+
+/*
+ * 1. Display the title that is normally hidden at small viewport
+ *    widths whenever
+ *    the drawer is open. The drawer and accordion are coupled because
+ *    the drawer
+ *    may display the same content that is included as an accordion section. The
+ *    dynamic class 'de-is-drawerOpen' is added to a parent, wrapper element.
+ */
+
+.de-is-drawerOpen .de-ProductInfoTitle {
+  display: inline-block !important; /* 1 */
+}
+
+@media (min-width: $breakpoint-md) {
+  .de-Accordion-content {
+    padding: 0;
+  }
+}
+
+.de-Accordion:not(.de-is-open) .de-Accordion-content {
+  display: none;
+}
+
+@media (min-width: $breakpoint-md) {
+  .de-Accordion-content {
+    display: block !important;
+  }
+}
+
+.de-Accordion-indicator {
+  font-size: calc(2msu * 1em);
+  transform-origin: center;
+  transition: 0.2s linear transform;
+}
+
+.de-Accordion.de-is-open .de-Accordion-indicator {
+  transform: rotate(-45deg);
+}
+
+.de-ReviewSummary {
+  border-bottom: $border-width-sm solid $color-silver;
+}

@@ -1,0 +1,44 @@
+/**
+ * StorePickup
+ *
+ * This CSS is in-progress and will be improved upon and commented on in
+ * a follow-up PR
+ *
+ * @TODO
+ * 1. Refactor to include the `de-prefix`
+ */
+
+ .StorePickup-header {
+  border-bottom: $border-width-md solid $color-silver;
+}
+
+.StorePickup-thumbnail {
+  flex: 0 0 80px;
+}
+
+.StorePickup-tile {
+  border-bottom: $border-width-sm solid $color-silver;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.StorePickup-tile:last-of-type {
+  border-bottom: $border-width-md solid $color-lime;
+  margin-bottom: 0;
+}
+
+/**
+ * @TODO
+ * 1. `ContentHeading` appears to only be used with the Store Pickup component.
+ *    Consider refactoring/renaming to something more appropriate. Additionally,
+ *    `ContentHeading` might be able to be replaced with utility classes.
+ */
+
+ .ContentHeading {
+  border-bottom: $border-width-md solid $color-silver;
+  margin-bottom: 1rem;
+}
+
+.ContentHeading--blue {
+  border-color: $color-blue;
+}

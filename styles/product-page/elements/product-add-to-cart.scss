@@ -1,0 +1,16 @@
+/**
+ * Add to cart actions
+ */
+
+@media (min-width: $breakpoint-md) {
+  .de-AddToCartActions {
+    display: flex; /* 1 */
+  }
+
+  @supports (display: grid) {
+    .de-AddToCartActions {
+      display: grid; /* 2 */
+      grid-template-columns: 72px 1fr; /* 4 */
+    }
+  }
+}

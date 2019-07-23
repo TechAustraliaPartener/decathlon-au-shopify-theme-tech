@@ -1,0 +1,80 @@
+/**
+ * ProductMenu
+ *
+ * 1. The height in pixels of the fixed position, `de-PageWrap-header` element,
+ *    which is the element that this component must "stick" beneath.
+ * 2. Setting the `z-index` value to `1999` ensures the product menu will display
+ *    below the 'Drawer' overlay which has a z-index of `2000`, while at the
+ *    same time making it more difficult for other elements to appear on top of
+ *    the sticky `ProductMenu` component.
+ * 3. This component is not intended to be displayed for small screens. Setting
+ *    display none here because of known "issue" with `de-u-hidden` not working
+ *    well with responsive display flex utilities.
+ *
+ * Note: position sticky is not supported in IE11. This component will degrade
+ * gracefully and the non-sticky experience has been deemed acceptable for
+ * this component.
+ */
+
+ .de-ProductMenu {
+  background-color: $color-white;
+  border-bottom: $border-width-sm solid $color-light-gray;
+  border-top: $border-width-sm solid $color-light-gray;
+  display: none; /* 3 */
+  justify-content: center;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 58px; /* 1 */
+  z-index: 1999; /* 2 */
+}
+
+@media (min-width: $breakpoint-md) {
+  .de-ProductMenu {
+    display: flex;
+  }
+}
+
+/**
+ * Using viewport width units provides an ideal flexible padding between
+ * menu items and padding is incremented as the browser width changes. The
+ * numerical value is one of pure aesthetic preference and may need to be
+ * adjusted in the future.
+ */
+
+.de-ProductMenu .de-MenuBar-action {
+  padding-left: 2vw;
+  padding-right: 2vw;
+
+  @media (min-width: $breakpoint-lg) {
+    padding-left: 3vw;
+    padding-right: 3vw;
+  }
+
+  @media (min-width: $breakpoint-xl) {
+    padding-left: 4vw;
+    padding-right: 4vw;
+  }
+}
+
+.de-ProductMenu .de-MenuBar-action.de-is-active {
+  color: $color-blue;
+}
+
+/**
+ * Pseudo-element for underline
+ */
+
+.de-ProductMenu .de-MenuBar-action.de-is-active:after {
+  display: block;
+}
+
+/**
+ * 1. This is overriding a patterns/toolkit property.
+ *
+ * @TODO:
+ * - move to MenuBar patterns
+ */
+
+ .de-ProductMenu .de-MenuBar--noAction:after {
+  display: none !important;
+}

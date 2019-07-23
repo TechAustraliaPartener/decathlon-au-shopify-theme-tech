@@ -47,6 +47,7 @@
     "gulp-better-rollup": "^4.0.1",
     "gulp-changed": "^4.0.0",
     "gulp-clean": "^0.3.2",
+    "gulp-dart-sass": "^0.9.1",
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.5.4",
     "gulp-sequence": "^1.0.0",

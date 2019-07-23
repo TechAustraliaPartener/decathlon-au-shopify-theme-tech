@@ -1,0 +1,54 @@
+/**
+ * Color Palette
+ *
+ * Variable names are based on similar CSS extended color keyword values.
+ *
+ * @see https://www.w3.org/TR/2018/REC-css-color-3-20180619/#svg-color
+ */
+
+ $color-black: #2a2b2c;
+ $color-blue: #0082c3;
+ $color-darkgray: #464646;
+ $color-gray: #acb3b8;
+ $color-light-gray: rgba(172, 179, 184, 0.5);
+ $color-lime: #cbfb00;
+ $color-silver: #f3f3f3;
+ $color-white: #fff;
+ $color-red: #e53322;
+
+ /**
+  * Border Width
+  */
+
+ $border-width-sm: 1px;
+ $border-width-md: 2px;
+ $border-width-lg: 3px;
+ $border-width-xl: 6px;
+
+ /**
+  * Media Queries
+  */
+
+ $breakpoint-sm: 30em;
+ $breakpoint-md: 40em;
+ $breakpoint-lg: 60em;
+ $breakpoint-xl: 80em;
+
+ /**
+  * Transitions
+  *
+  * 1. $transition-speed-normal value must match the value in
+  *    associated JS (in milliseconds, with setTimeout) for transition duration
+  *    @see scripts/product-page/drawer.js
+  */
+
+ $transition-speed-fast: 0.1s;
+ $transition-speed-normal: 0.2s; /* 1 */
+ $transition-easing-smooth: cubic-bezier(0.77, 0, 0.175, 1);
+
+ /**
+  * Sizes
+  */
+
+ $header-height-sm: 46px;
+ $header-height-md: 52px;

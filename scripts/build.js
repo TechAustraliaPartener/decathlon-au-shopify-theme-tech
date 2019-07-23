@@ -57,7 +57,7 @@ module.exports = gulp => {
         )
         .pipe(
           rename(path => {
-            // Rename from /scripts/asdf/index.js to /scripts/built-asdf.js
+            // Rename from asdf/index.js to built-asdf.js
             path.basename = `${BUILT_PREFIX}${path.dirname}`;
             path.dirname = './';
           })

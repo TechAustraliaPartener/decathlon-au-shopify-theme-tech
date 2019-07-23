@@ -1,0 +1,37 @@
+/**
+ * ProductInformation
+ *
+ * @TODO
+ * 1. Refactor to include the `de-` prefix
+ */
+
+ .ProductInformation {
+  columns: 370px 3;
+  column-gap: 36px;
+}
+
+/**
+ * 1. For a single spec section, avoid splitting content across columns by
+ *    adding dispaly: inline-block
+ */
+
+.ProductInformation-entry {
+  break-inside: avoid;
+  display: inline-block; /* 1 */
+  margin-bottom: 2rem;
+}
+
+/**
+ * 1. To preserve 3-column layout for multiple spec sections, set sections back
+ *    to display: block
+ */
+
+.ProductInformation--multispec .ProductInformation-entry {
+  display: block; /* 1 */
+}
+
+@media (min-width: $breakpoint-md) {
+  .ProductInformation-entry:not(:first-of-type) {
+    margin-top: 3rem;
+  }
+}

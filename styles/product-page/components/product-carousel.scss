@@ -1,0 +1,292 @@
+/**
+ * Product Carousel
+ *
+ * 1. Fixes issue in Edge (and probably IE) where it would overflow its parent
+ *
+ * @TODO
+ * 1. Improve the adherence of this compoent the Cloud Four CSS guides
+ */
+
+.de-CarouselContainer {
+  position: relative;
+  width: 100%; /* 1 */
+}
+
+.de-ProductCarousel--large,
+.de-CarouselContainer,
+.de-CarouselThumbnail,
+.de-CarouselFeature-image[src=''] {
+  display: none;
+}
+
+.de-CarouselContainer.de-is-active,
+.de-CarouselFeature-image {
+  display: flex;
+}
+
+.de-CarouselFeature,
+.de-CarouselFeature-image {
+  width: 100%;
+}
+
+.de-CarouselFeature-slide,
+.de-CarouselFeature-image {
+  cursor: grab;
+}
+
+.de-CarouselFeature-btn {
+  display: flex;
+  margin: 0 auto;
+  position: relative;
+  width: 100%;
+}
+
+.de-CarouselContext {
+  display: flex;
+  overflow-x: auto;
+}
+
+.de-CarouselFeature-image {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+/**
+ * 1. Hides all carousel slides on initial page load,
+ *    preventing them from overflowing down the page
+ * 2. Shows the first carousel while page is loading
+ */
+
+.de-CarouselFeature-slide {
+  display: none; /* 1 */
+  &:first-child {
+    display: block; /* 2 */
+  }
+}
+
+/**
+ * 1. Once Slick Carousel has initialized, allow all slides to show
+ */
+
+.de-CarouselFeature.slick-initialized {
+  .de-CarouselFeature-slide {
+    display: block; /* 1 */
+  }
+}
+
+/* Fix for "sliver" of next image showing in product image carousel */
+
+.de-ProductCarousel,
+.de-CarouselContainer {
+  overflow: hidden;
+}
+
+.de-CarouselFeature {
+  .slick-slide {
+    position: relative;
+    padding-right: 2px;
+    right: -1px;
+  }
+}
+
+/**
+ * .01em is to prevent this media query from overlapping with
+ * min-width media queries
+ */
+
+@media (max-width: $breakpoint-lg - .01em) {
+
+  /**
+   * 1. Restricts image sizes from becoming too large;
+   *    a preventive measure to help buybox remains above-the-fold
+   */
+
+  .de-CarouselFeature-btn {
+    max-width: 528px; /* 1 */
+  }
+
+  /**
+   * 1. Setting and unsetting of this property is to take advantage
+   *    the shared properties `.de-CarouselFeature-btn`, `.de-CarouselFeature-image`
+   */
+
+  .de-CarouselContainer {
+    max-width: unset; /* 1 */
+  }
+}
+
+@media (min-width: $breakpoint-lg) {
+
+  /**
+   * 1. Allows space for .de-ProductBuyBox;
+   *    maintains sizing while .de-Drawer is open
+   */
+
+  .de-ProductCarousel--large {
+    display: block;
+    width: 50vw;  /* 1 */
+  }
+
+  .de-CarouselContainer.de-is-active {
+    justify-content: flex-end;
+    position: relative;
+  }
+
+  /**
+   * 1. Allows space for .de-CarouselThumbnail, plus a 1% gap.
+   * 2. Prevents slides to show before Slick Carousel is initiated.
+   */
+
+  .de-CarouselFeature.de-is-active {
+    padding-left: 17%; /* 1 */
+    overflow: hidden; /* 2 */
+  }
+
+  /**
+   * 1. Allows height to match container's own,
+   *    with a width less than the padding of .de-CarouselFeature.
+   */
+
+  .de-CarouselThumbnail {
+    display: block;
+    height: 100%;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    width: 16%; /* 1 */
+  }
+
+  /**
+   * 1. Allows space for .de-CarouselFeature;
+   *    8vw is derived by 50vw * 0.16.
+   *    7.8vw helps maintain a more "squarish" ratio at smaller viewport widths
+   *    50vw is the container size, 16% is permitted thumbnails width.
+   *    Value is applied to both width/height to respect square aspect ratio.
+   */
+
+  .de-CarouselThumbnail-image {
+    border: $border-width-md solid transparent;
+    height: 7.8vw; /* 1 */
+    object-fit: cover;
+    object-position: center;
+    width: 7.8vw; /* 1 */
+  }
+
+  .slick-vertical .slick-slide {
+    border: $border-width-md solid transparent;
+  }
+
+  .de-SlickSlide.slick-current {
+    border: $border-width-md solid $color-blue;
+  }
+
+  /*
+   * 1. The current slide/image already gets a custom outline, so this
+   *    is to remove the outline (for this slide only) now that the slides
+   *    get tab focus
+   */
+
+  .de-SlickSlide.slick-current .de-CarouselThumbnail-btn {
+    outline: none; /* 1 */
+  }
+}
+
+/**
+  * Target only IE10+
+  */
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) and (max-width: $breakpoint-lg - .01em) {
+  /**
+    * 1. Preserves the square aspect ratio of while loading,
+    *    improving the loading experience. On modern browsers,
+    *    this is handled by taking advantage of the SVG's viewBox
+    *    property which enforces aspect ratio. IE11 does not render
+    *    viewBox aspect ratio correctly.
+    * 2. Restricts image sizes from becoming too large;
+    *    a preventive measure to help buybox remain above-the-fold.
+    *    Both max-width/max-height must to be set on IE11 to ensure
+    *    a square aspect ratio is enforeced.
+    */
+
+  .de-CarouselContainer,
+  .de-CarouselFeature-btn,
+  .de-CarouselFeature-image {
+    height: 100vw; /* 1 */
+    margin: 0 auto;
+    max-height: 528px; /* 2 */
+    max-width: 528px; /* 2 */
+    width: 100%; /* 1 */
+  }
+}
+
+/**
+  * Target only IE10+
+  */
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) and (min-width: $breakpoint-lg) {
+  /**
+    * 1. Allows space for .de-CarouselThumbnail;
+    *    41.65vw is derived by (55vw - (55vw * 17%) - 2rem).
+    *    55vw is the container size, 17% allows room for thumbnails,
+    *    and 2rem is the padding-left applied to buybox.
+    *    Value is applied to height and width to respect sqaure aspect ratio.
+    *    Enforces height while image is loading.
+    */
+
+  .de-CarouselFeature-btn,
+  .de-CarouselFeature-image {
+    height: 41.65vw; /* 1 */
+    width: 41.65vw; /* 1 */
+  }
+
+  .de-CarouselFeature-btn,
+  .de-CarouselFeature-image {
+    height: auto;
+    position: relative;
+    width: 100%;
+  }
+
+  /**
+    * 1. IE11 doesn't respect svg viewbox aspect ratio,
+    *    it is "removed" since image's position changes
+    *    from absolute to relative.
+    */
+
+  .de-CarouselFeature-svg {
+    display: none; /* 1 */
+  }
+
+  /**
+    * 1. (6.8vw) is derived by -1vw from the previously
+    *    set width/height value. Prevents thumbnails from overflowing.
+    */
+
+  .de-CarouselThumbnail-image {
+    height: 6.8vw; /* 1 */
+    width: 6.8vw; /* 1 */
+  }
+}
+
+/**
+  * Target only IE10+
+  */
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) and (min-width: $breakpoint-xl) {
+  /**
+    * 1. Returns to previously set values.
+    */
+
+  .de-CarouselThumbnail-image {
+    height: 7.8vw; /* 1 */
+    width: 7.8vw; /* 1 */
+  }
+}
+
+.de-CarouselControls--overlay {
+  bottom: 0;
+  position: absolute;
+}

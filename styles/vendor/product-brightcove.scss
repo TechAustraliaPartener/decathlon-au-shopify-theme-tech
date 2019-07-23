@@ -1,0 +1,105 @@
+/**
+ * Override Brightcove inject video player styling
+ * In general, high specificity is a bad practice.
+ * The degree of specificity used here is to match and
+ * override the CSS from Brightcove's plugin.
+ * @see https://www.brightcove.com/en/player
+ */
+
+/**
+ * Media Queries
+ */
+ $breakpoint-xs: 22em;
+ $breakpoint-md: 40em;
+ $breakpoint-lg: 60em;
+
+
+ /**
+  * 1. Make the video appear square
+  * 2. Make the poster appear square
+  */
+ .de-copyVideo {
+   .vjs-tech {
+     object-fit: cover; /* 1 */
+   }
+   .vjs-poster {
+     background-size: cover; /* 2 */
+   }
+ }
+
+ /**
+  * 1. Show controller component when video player is within viewport
+  * 2. Override the Brightcove default "none"
+  */
+ .de-is-intersecting .video-js.js-cube.vjs-user-inactive #cube-control-bar.vjs-control-bar {
+   transform: translateY(0); /* 1 */
+   display: flex; /* 2 */
+ }
+
+ /**
+  * 1. Hide controller component when video is playing
+  */
+ .vjs-playing.video-js.js-cube.vjs-user-inactive #cube-control-bar.vjs-control-bar {
+   transform: translateY(4em); /* 1 */
+ }
+
+ /**
+  * 1. Prevent play button from appearing slightly out of view
+  */
+ .bc-player-jQMS54WMw_default.vjs-has-started.vjs-user-inactive .vjs-control-bar {
+   margin: 0; /* 1 */
+ }
+
+ /**
+  * 1. Hide controller component on smaller viewports
+  */
+  @media (max-width: $breakpoint-xs) {
+    .video-js #cube-control-bar.vjs-control-bar {
+      display: none !important; /* 1 */
+    }
+  }
+
+ @media (min-width: $breakpoint-xs) {
+   .vjs-big-play-button {
+    transition: opacity .75s .75s;
+   }
+
+   /**
+   * 1. Hide play button when video player is within viewport
+   */
+   .de-is-intersecting .vjs-big-play-button {
+    opacity: 0; /* 1 */
+   }
+ }
+
+  /**
+   * 1. Override Brightcove default hiding behavior
+   * 2. Force time divider to remain visible
+   * 3. Hide time progress bar
+   */
+ @media (max-width: $breakpoint-md) {
+   .bc-player-jQMS54WMw_default:not(.vjs-has-started) .vjs-control-bar {
+     visibility: unset; /* 1 */
+   }
+   .video-js .vjs-time-divider {
+     display: block !important; /* 2 */
+   }
+   .video-js .vjs-progress-control {
+     display: none !important; /* 3 */
+   }
+ }
+
+ @media (min-width: $breakpoint-lg) {
+   .de-copyVideo {
+     display: none;
+   }
+ }
+
+ /* Added video-js CSS because upgrading Brightcove video player caused sizing issues */
+ .video-js {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+ }
