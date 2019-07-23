@@ -25,7 +25,7 @@ import { reviewsPerPage } from './template-data';
 import { prerenderedReviewList } from './query-ui';
 import { createState } from '../create-state';
 
-const originalReviewsSortFilterState = {
+export const originalReviewsSortFilterState = {
   // The default sort, to be used on page load
   sort: 'createdAt',
   page: 1,

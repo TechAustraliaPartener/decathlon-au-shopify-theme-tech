@@ -31,7 +31,8 @@ import {
   getReviewsState,
   setReviewsState,
   getIsDefaultQuery,
-  onReviewsStateChange
+  onReviewsStateChange,
+  originalReviewsSortFilterState
 } from './state';
 import { fetchReviews } from './api';
 import { show, hide } from '../../utilities/hide-or-show-element';
@@ -187,7 +188,7 @@ export const loadNewReviews = isMoreReviewRequest => {
   fetchReviews({ page, sort, direction, notes, nb: reviewsPerPage })
     .then(data => {
       if (!data || !Array.isArray(data.items)) {
-        throw new Error('Review data not succesfully retrieved from the API');
+        throw new Error('Review data not successfully retrieved from the API');
       }
       if (!isMoreReviewRequest) {
         resetReviews();
@@ -296,15 +297,6 @@ export const moreReviewsInit = () => {
 };
 
 /**
- * Resets the review sorting select element to its first option
- */
-export const resetSort = () => {
-  if (reviewsSortSelect) {
-    reviewsSortSelect.selectedIndex = 0;
-  }
-};
-
-/**
  * Visually marks reviews that will be replaced by a new set of reviews after
  * data is returned from an API request
  */
@@ -377,7 +369,16 @@ onReviewsStateChange(renderLoading);
 /**
  * @param {import('./state').ReviewsState} state
  */
-const renderFilterUI = ({ notes, loading }) => {
+const renderSortFilterUI = ({ notes, sort, direction }) => {
+  // Switch the sort dropdown back to the original value if the state matches the original sort
+  if (
+    reviewsSortSelect &&
+    sort === originalReviewsSortFilterState.sort &&
+    direction === originalReviewsSortFilterState.direction
+  ) {
+    reviewsSortSelect.selectedIndex = 0;
+  }
+
   reviewFilterEls.forEach(el => {
     if (el.dataset[STAR_RATING] === notes) {
       el.classList.add(IS_ACTIVE_CLASS);
@@ -393,4 +394,28 @@ const renderFilterUI = ({ notes, loading }) => {
   }
 };
 
-onReviewsStateChange(renderFilterUI);
+onReviewsStateChange(renderSortFilterUI);
+
+let lastState = getReviewsState();
+
+onReviewsStateChange(state => {
+  // Skip if the filter/sort has not changed
+  if (
+    lastState.sort === state.sort &&
+    lastState.direction === state.direction &&
+    lastState.notes === state.notes
+  ) {
+    return;
+  }
+  lastState = state;
+  /**
+   * If the default sort is selected (compared with the page-load default state),
+   * call to reset the default display, using pre-loaded reviews. Otherwise,
+   * reset the UI and call to get new reviews using a different sort query.
+   */
+  if (getIsDefaultQuery()) {
+    resetDefaultReviewsDisplay();
+  } else {
+    loadNewReviews();
+  }
+});
