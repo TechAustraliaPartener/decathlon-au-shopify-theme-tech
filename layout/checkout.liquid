@@ -5,13 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, user-scalable=0">
     <meta name="referrer" content="origin">
-
     <title>{{ page_title }}</title>
-
     {{ content_for_header }}
     {{ 'patterns-toolkit.css' | asset_url | stylesheet_tag }}
     {{ checkout_stylesheets }}
-
     <script>
       window.checkoutID = {{ checkout.id }};
       window.adr_GezSSC9M = "{{ 'adr_GezSSC9M.jpg' | asset_url }}";
@@ -22,32 +19,31 @@
   </head>
   <body>
     {{ skip_to_content_link }}
-
     {% include 'google-tag-manager' %}
-
     <div class="banner" data-header>
       <div class="wrap">
         {{ content_for_logo }}
       </div>
-  {% comment %}
-    script for Minubo
-  {% endcomment %}
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    dataLayer.push({
-      'random': Math.random().toString(36).substr(2,9),
-      'timestamp': new Date().getTime()
-    });
-  </script>
+      {% comment %}
+        script for Minubo
+      {% endcomment %}
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+          'random': Math.random().toString(36).substr(2,9),
+          'timestamp': new Date().getTime()
+        });
+      </script>
     </div>
-
     {{ order_summary_toggle }}
-
     <div class="content" data-content>
       <div class="wrap">
         <div class="main" role="main">
           <div class="js-de-loading-overlay de-loading-overlay">
-            <img src="{{ 'decathlon-loader.gif' | asset_url }}" class="de-checkout-loader" />
+            <img
+              src="{{ 'decathlon-loader.gif' | asset_url }}"
+              class="de-checkout-loader"
+            >
           </div>
           <div class="main__header">
             {{ content_for_logo }}
@@ -61,34 +57,78 @@
               will show and add UI functionality.
             {% endcomment %}
             <div class="de-Grid de-Grid--withGutter">
-              <div class="de-pickship-btn-container de-u-size1of2 de-u-spaceBottom">
-                <button class="btn js-de-toggle-shipping de-pickship-btn de-u-hidden">
-                  <span class="btn__content">{% include 'ship-icon' %} Ship to Home</span>
+              <div
+                class="de-pickship-btn-container
+                       de-u-size1of2 de-u-spaceBottom"
+              >
+                <button
+                  class="btn de-pickship-btn
+                         de-u-hidden
+                         js-de-toggle-shipping"
+                >
+                  {% include 'icon-delivery-truck' 
+                      with class: 'de-Pickship-icon de-Icon de-u-spaceRight03'
+                  %}
+                  Ship to Home
                 </button>
               </div>
-              <div class="de-pickship-btn-container de-u-size1of2 de-u-spaceBottom">
-                <button class="btn js-de-toggle-pickup de-pickship-btn de-u-hidden">
-                  <span class="btn__content">{% include 'pickup-icon' %} Pickup in Store</span>
+              <div 
+                class="de-pickship-btn-container 
+                       de-u-size1of2 de-u-spaceBottom">
+                <button
+                  class="btn de-pickship-btn
+                         de-u-hidden
+                         js-de-toggle-pickup"
+                > 
+                  {% include 'icon-store' 
+                      with class: 'de-Pickship-icon de-Icon de-u-spaceRight03'
+                  %} Pickup in Store
                 </button>
               </div>
             </div>
-
-            <div class="js-de-pickup-content de-pickup-content de-u-hidden">
-              <div class="js-de-pickup-location-map de-pickup-location-map">
-                <img src="{{ 'no-selection-map2.jpg' | asset_url }}" class="js-de-pickup-location-map-img de-pickup-location-map-img" alt="">
+            <div class="de-pickup-content de-u-hidden js-de-pickup-content">
+              <div class="de-pickup-location-map js-de-pickup-location-map">
+                <img
+                  src="{{ 'no-selection-map2.jpg' | asset_url }}"
+                  class="js-de-pickup-location-map-img"
+                  alt="">
               </div>
               <h2 class="de-location-heading de-u-spaceTop2">Select location</h2>
               <hr class="de-u-bgBlue de-location-hr de-u-spaceEnds2">
               <ul class="js-de-pickup-locations de-pickup-locations de-Grid de-Grid--withGutter"></ul>
               <hr class="de-u-bgLime de-location-hr de-u-spaceEnds2">
             </div>
-
             {{ content_for_layout }}
-            <div class="de-visit-cal-container de-u-hidden de-u-spaceTop de-u-textShrink3">Planning to be in San Francisco? <a href="#"class="de-visit-cal-btn">Try Pickup in Store</a></div>
+            <div
+              class="de-visit-cal-container
+                     de-u-hidden de-u-spaceTop de-u-textShrink3"
+            >
+              <span>
+                Planning to be in San Francisco?
+                <button href="#"class="de-visit-cal-btn de-u-textBlue">
+                  Try Pickup in Store
+                </button>
+              </span>
+            </div>
             <span class="js-de-payment-continue-container">
-              <a href="#" class="btn js-de-payment-continue de-payment-continue de-u-hidden">
-                <span class="js-de-payment-continue-copy">Continue to Payment</span>
-                <svg class="icon-svg icon-svg--size-18 btn__spinner icon-svg--spinner-button js-de-payment-continue-spinner" aria-hidden="true" focusable="false"> <use xlink:href="#spinner-button"></use> </svg>
+              <a
+                href="#"
+                class="btn de-payment-continue
+                       de-u-hidden
+                       js-de-payment-continue"
+              >
+                <span class="js-de-payment-continue-copy">
+                  Continue to Payment
+                </span>
+                <svg
+                  class="btn__spinner
+                         icon-svg icon-svg--size-18 icon-svg--spinner-button
+                         js-de-payment-continue-spinner"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <use xlink:href="#spinner-button"></use>
+                </svg>
               </a>
             </span>
           </div>

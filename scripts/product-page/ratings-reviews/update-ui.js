@@ -1,9 +1,24 @@
+// @ts-check
+
 /**
  * A collection of functions for loading, showing,
  * and hiding/resetting reviews
  */
 
-import { MORE_REVIEWS_CONTAINER_CLASS, IS_HIDDEN_CLASS } from './constants';
+import {
+  MORE_REVIEWS_BUTTON_CLASS,
+  MORE_REVIEWS_BUTTON_LOADING_TEXT_CLASS,
+  MORE_REVIEWS_BUTTON_TEXT_CLASS,
+  REVIEWS_LOADING_CLASS,
+  REVIEWS_LOADING_TIMEOUT,
+  IS_TRANSITIONING_CLASS,
+  REVIEW_CLASS,
+  IS_HIDDEN_CLASS,
+  REVIEW_FILTER,
+  STAR_RATING,
+  REVIEW_FILTER_STATUS,
+  REVIEW_FILTER_STAR_VALUE
+} from './constants';
 import {
   prerenderedReviewList,
   getAllReviews,
@@ -12,21 +27,44 @@ import {
 } from './query-ui';
 import { handlebarsCheck, templateNewReviews } from './templating';
 import { reviewsPerPage, validReviewNumbers } from './template-data';
-import { getReviewsState, setReviewsState, getIsDefaultQuery } from './state';
-import { getReviews } from './api';
+import {
+  getReviewsState,
+  setReviewsState,
+  getIsDefaultQuery,
+  onReviewsStateChange
+} from './state';
+import { fetchReviews } from './api';
+import { show, hide } from '../../utilities/hide-or-show-element';
+import { IS_ACTIVE_CLASS } from '../constants';
+import { DEBUG } from '../../shared/config';
+
+let moreReviewsEl;
+let defaultButtonTextEl;
+let loadingButtonTextEl;
+let loadingReviewsEl;
+/** @type {HTMLElement[]} */
+let reviewFilterEls;
+/** @type {HTMLElement} */
+let reviewFilterStatusEl;
+/** @type {HTMLElement} */
+let reviewFilterStarValueEl;
+let loadingTimeout = null;
+let wasLoading = false;
 
 /**
  * Hides all reviews that aren't currently hidden
  * @TODO - A11y analysis here
  */
 const hideAllReviews = () =>
-  [...getAllReviews()].forEach(review => review.classList.add(IS_HIDDEN_CLASS));
+  getAllReviews().forEach(review => review.classList.add(IS_HIDDEN_CLASS));
 
 /**
- * Unhide a set number of reviews (based on the `reviewsPerPage` value obtained from the template)
+ * Unhide a set number of reviews (based on the `reviewsPerPage` value obtained
+ * from the template)
  * @param {Object} params
  * @param {Object[]} [params.reviews=[]] Array of review elements
- * @param {boolean} params.reset Whether to reset to hiding all reviews before showing the initial set
+ * @param {boolean} [params.reset] Whether to reset to hiding all reviews before
+ * showing the initial set
  */
 const showMoreReviews = (
   { reviews, reset } = { reviews: [], reset: false }
@@ -52,20 +90,64 @@ const showMoreReviews = (
 };
 
 /**
- * Fully remove all reviews that were dynamically loaded (i.e., not pre-loaded with the page)
+ * Fully remove all reviews that were dynamically loaded (i.e., not pre-loaded
+ * with the page)
  */
 const clearLoadedReviews = () => {
-  [...getLoadedReviews()].forEach(review =>
-    review.parentNode.removeChild(review)
+  getLoadedReviews().forEach(review => review.parentNode.removeChild(review));
+};
+
+/**
+ * Removes all dynamically loaded reviews and then hides
+ * all reviews
+ * To be used before fetching new reviews from the API, with
+ * updated query parameters (e.g., on changing sort type)
+ */
+const resetReviews = () => {
+  clearLoadedReviews();
+  hideAllReviews();
+};
+
+/**
+ * Cancel a trigger to set loading state
+ */
+const cancelLoadingState = () => {
+  if (loadingTimeout) clearTimeout(loadingTimeout);
+  loadingTimeout = null;
+};
+
+/**
+ * Set loading state after a timeout
+ */
+const setLoadingState = () => {
+  cancelLoadingState();
+  loadingTimeout = setTimeout(
+    () => setReviewsState({ loading: true }),
+    REVIEWS_LOADING_TIMEOUT
   );
 };
 
 /**
- * Fetches reviews from the API and renders the data to the page using a Handlebars templating function
+ * Fetches reviews from the API and renders the data to the page using a
+ * Handlebars templating function
+ * @param {boolean} [isMoreReviewRequest] - Is a request for additional reviews
+ * (rather than a new sort or filter request)
  */
-export const getMoreReviews = () => {
+export const loadNewReviews = isMoreReviewRequest => {
   /**
-   * Get the list of all reviews currently rendered (dynamically loaded and server-rendered)
+   * Trigger a loading state, with timeout
+   */
+  setLoadingState();
+  /**
+   * Set state to reflect whether this is a request for additional reviews, or
+   * a sort or filter
+   */
+  setReviewsState({
+    isMoreReviewRequest: Boolean(isMoreReviewRequest)
+  });
+  /**
+   * Get the list of all reviews currently rendered (dynamically loaded and
+   * server-rendered)
    */
   const renderedReviewList = getAllReviews();
   /**
@@ -79,9 +161,11 @@ export const getMoreReviews = () => {
   let { page } = currentState;
   /**
    * If there are server-rendered reviews on the page, and not yet any
-   * dynamically loaded reviews, set the reviewsState object, page value for the upcoming API call.
+   * dynamically loaded reviews, set the `reviewsState` object, page value for
+   * the upcoming API call.
    * This number will be the total number of pre-rendered reviews divided
-   * by the default paginated value (used in every API call), plus one (the next page)
+   * by the default paginated value (used in every API call), plus one
+   * (the next page)
    */
   if (
     getIsDefaultQuery() &&
@@ -97,18 +181,36 @@ export const getMoreReviews = () => {
   }
   /**
    * Get more reviews from the API to display, setting the page value for the call
-   * Set the query parameter (nb) for number of reviews to request from the API to the value from the template
+   * Set the query parameter (nb) for number of reviews to request from the API
+   * to the value from the template
    */
-  getReviews({ page, sort, direction, notes, nb: reviewsPerPage })
+  fetchReviews({ page, sort, direction, notes, nb: reviewsPerPage })
     .then(data => {
       if (!data || !Array.isArray(data.items)) {
         throw new Error('Review data not succesfully retrieved from the API');
       }
+      if (!isMoreReviewRequest) {
+        resetReviews();
+      }
       return templateNewReviews(data.items);
     })
-    // After successfully updating the template, increment reviewsState.page for the subsequent request
-    .then(setReviewsState({ page: getReviewsState().page + 1 }))
-    .catch(error => console.error(error));
+    /**
+     * After successfully updating the template, increment `reviewsState.page`
+     * for the subsequent request
+     */
+    /**
+     * Unset loading state, no matter what happens
+     * `Promise.finally` may not be available, so unset in both `then` and `catch`
+     */
+    .then(() => {
+      cancelLoadingState();
+      setReviewsState({ page: getReviewsState().page + 1, loading: false });
+    })
+    .catch(error => {
+      console.error(error);
+      cancelLoadingState();
+      setReviewsState({ loading: false });
+    });
 };
 
 /**
@@ -117,8 +219,7 @@ export const getMoreReviews = () => {
  * On page load, this begins by displaying more (hidden) server-rendered reviews,
  * then transitions to loading more from the API.
  * On sorted and filtered lists, will need to immediately go to the API.
- * @todo Implement revisions based on sort and filter state
- * @param {Object} event
+ * @param {Event} event
  */
 const moreReviewsRequestHandler = event => {
   event.preventDefault();
@@ -140,21 +241,25 @@ const moreReviewsRequestHandler = event => {
     showMoreReviews({ reviews: prerenderedReviewListArray });
   } else {
     /**
-     * See `validReviewNumbers`. If the total number of pre-rendered reviews (> 0) is not evenly divisible by
-     * the default number of reviews per page to load, do not try to make paginated requests for more
-     * reviews, and output an error to the console
+     * See `validReviewNumbers`. If the total number of pre-rendered reviews
+     * (> 0) is not evenly divisible by the default number of reviews per page
+     * to load, do not try to make paginated requests for more reviews, and
+     * output an error to the console
      */
     if (!validReviewNumbers) {
       console.error(
-        'Total number of pre-rendered reviews and reviews-per-page are not in sync. Cannot dynamically calculate paginated requests for more reviews.'
+        `Total number of pre-rendered reviews and reviews-per-page are not in
+        sync. Cannot dynamically calculate paginated requests for more reviews.`
       );
       return;
     }
     /**
      * Need to load and dynamically display reviews after calling the API
-     * Passed to the handlebarsCheck helper to ensure errors aren't thrown
+     * Passed to the `handlebarsCheck` helper to ensure errors aren't thrown.
+     * In this case, inform `loadNewReviews` that this is a request for
+     * more reviews, not a sort or filter event.
      */
-    handlebarsCheck(getMoreReviews)();
+    handlebarsCheck(loadNewReviews)(true);
   }
 };
 
@@ -169,25 +274,25 @@ export const resetDefaultReviewsDisplay = () => {
 };
 
 /**
- * Removes all dynamically loaded reviews and then hides
- * all reviews
- * To be used before fetching new reviews from the API, with
- * updated query parameters (e.g., on changing sort type)
- */
-export const resetReviews = () => {
-  clearLoadedReviews();
-  hideAllReviews();
-};
-
-/**
  * Entry point for initializing 'Get more reviews' functionality
  */
 export const moreReviewsInit = () => {
-  const moreReviewsEl = document.querySelector(
-    `.${MORE_REVIEWS_CONTAINER_CLASS}`
+  moreReviewsEl = document.querySelector(`.${MORE_REVIEWS_BUTTON_CLASS}`);
+  defaultButtonTextEl = document.querySelector(
+    `.${MORE_REVIEWS_BUTTON_TEXT_CLASS}`
   );
+  loadingButtonTextEl = document.querySelector(
+    `.${MORE_REVIEWS_BUTTON_LOADING_TEXT_CLASS}`
+  );
+  loadingReviewsEl = document.querySelector(`.${REVIEWS_LOADING_CLASS}`);
   moreReviewsEl &&
     moreReviewsEl.addEventListener('click', moreReviewsRequestHandler);
+  // @ts-ignore
+  reviewFilterEls = [...document.querySelectorAll(`button.${REVIEW_FILTER}`)];
+  reviewFilterStatusEl = document.querySelector(`.${REVIEW_FILTER_STATUS}`);
+  reviewFilterStarValueEl = document.querySelector(
+    `.${REVIEW_FILTER_STAR_VALUE}`
+  );
 };
 
 /**
@@ -198,3 +303,94 @@ export const resetSort = () => {
     reviewsSortSelect.selectedIndex = 0;
   }
 };
+
+/**
+ * Visually marks reviews that will be replaced by a new set of reviews after
+ * data is returned from an API request
+ */
+const addUnloadingStyleToReviews = () => {
+  document
+    .querySelectorAll(`.${REVIEW_CLASS}`)
+    .forEach(review => review.classList.add(IS_TRANSITIONING_CLASS));
+};
+
+/**
+ * Visually unmarks reviews after data is returned from an API request
+ */
+const removeUnloadingStyleFromReviews = () => {
+  document
+    .querySelectorAll(`.${REVIEW_CLASS}`)
+    .forEach(review => review.classList.remove(IS_TRANSITIONING_CLASS));
+};
+
+/**
+ * Show various loading state updates in the UI, depending on the type of API
+ * request being made.
+ * @param {boolean} isMoreReviewRequest - Is a request for additional reviews
+ * (rather than a new sort or filter request)
+ */
+const showLoadingState = isMoreReviewRequest => {
+  DEBUG && console.log(`👀 showLoadingState called.`);
+  wasLoading = true;
+  moreReviewsEl && moreReviewsEl.setAttribute('disabled', '');
+  show(loadingButtonTextEl);
+  hide(defaultButtonTextEl);
+  if (!isMoreReviewRequest) {
+    show(loadingReviewsEl);
+    addUnloadingStyleToReviews();
+  }
+};
+
+/**
+ * Remove loading state updates from the UI
+ */
+const removeLoadingState = () => {
+  DEBUG && console.log(`🚀 removeLoadingState called.`);
+  wasLoading = false;
+  moreReviewsEl && moreReviewsEl.removeAttribute('disabled');
+  hide(loadingButtonTextEl);
+  show(defaultButtonTextEl);
+  hide(loadingReviewsEl);
+  removeUnloadingStyleFromReviews();
+};
+
+/**
+ * Render function for updating the UI during loading of new reviews
+ * Triggers loading state only after a pre-defined, short timeout
+ * @param {import('./state').ReviewsState} reviewsState
+ */
+const renderLoading = ({ loading, isMoreReviewRequest }) => {
+  if (loading) {
+    return showLoadingState(isMoreReviewRequest);
+  }
+  if (wasLoading) {
+    removeLoadingState();
+  }
+};
+
+/**
+ * The UI-loading render function is passed to the state change function returned
+ * from `create-state.js`
+ */
+onReviewsStateChange(renderLoading);
+
+/**
+ * @param {import('./state').ReviewsState} state
+ */
+const renderFilterUI = ({ notes, loading }) => {
+  reviewFilterEls.forEach(el => {
+    if (el.dataset[STAR_RATING] === notes) {
+      el.classList.add(IS_ACTIVE_CLASS);
+    } else {
+      el.classList.remove(IS_ACTIVE_CLASS);
+    }
+  });
+  if (notes) {
+    reviewFilterStarValueEl.textContent = ` ${notes} star`;
+    show(reviewFilterStatusEl);
+  } else {
+    hide(reviewFilterStatusEl);
+  }
+};
+
+onReviewsStateChange(renderFilterUI);

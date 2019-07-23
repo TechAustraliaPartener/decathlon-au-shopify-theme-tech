@@ -74,7 +74,7 @@ const render = ({ variant, isShown }) => {
    * @param {string} newClasses The css classes to apply to the flag
    */
   const updateFlag = (label, newClasses) =>
-    [...productFlagEls].forEach(el => {
+    productFlagEls.forEach(el => {
       const classesToRemove = [...el.classList].filter(isFlagClass);
       removeClasses(el, ...classesToRemove);
       if (newClasses) addClasses(el, ...newClasses.split(/\s+/g));

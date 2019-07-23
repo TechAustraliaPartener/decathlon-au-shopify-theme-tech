@@ -1,3 +1,5 @@
+// @ts-check
+
 import { JS_PREFIX, CSS_PREFIX } from '../constants';
 
 /**
@@ -19,7 +21,27 @@ export const REVIEW_VOTE_CLASS = `${JS_PREFIX}${CUSTOMER_REVIEW}-vote`;
 /**
  * The CSS class on the button used to get more reviews
  */
-export const MORE_REVIEWS_CONTAINER_CLASS = `${JS_PREFIX}moreReviews`;
+export const MORE_REVIEWS_BUTTON_CLASS = `${JS_PREFIX}moreReviewsButton`;
+
+/**
+ * The CSS class on the button used to get more reviews
+ */
+export const MORE_REVIEWS_BUTTON_TEXT_CLASS = `${MORE_REVIEWS_BUTTON_CLASS}-text`;
+
+/**
+ * The CSS class on the button used to get more reviews
+ */
+export const MORE_REVIEWS_BUTTON_LOADING_TEXT_CLASS = `${MORE_REVIEWS_BUTTON_CLASS}-loadingText`;
+
+/**
+ * The CSS class on the button used to get more reviews
+ */
+export const REVIEWS_LOADING_CLASS = `${JS_PREFIX}LoadingReviews`;
+
+/**
+ * Timeout for delaying showing loading state after calls to the revies API
+ */
+export const REVIEWS_LOADING_TIMEOUT = 200;
 
 /**
  * The CSS class on a review block
@@ -46,6 +68,18 @@ export const REVIEW_SORT_SELECT = `${JS_PREFIX}${CUSTOMER_REVIEW}-sort`;
  */
 export const REVIEW_FILTER = `${JS_PREFIX}${CUSTOMER_REVIEW}-filter`;
 
+/** The CSS class on the element that displays the current filter if it exists */
+export const REVIEW_FILTER_STATUS = `${JS_PREFIX}${CUSTOMER_REVIEW}-filterStatus`;
+
+/** The CSS class on the element within the filter status that shows the number of stars */
+export const REVIEW_FILTER_STAR_VALUE = `${JS_PREFIX}${CUSTOMER_REVIEW}-filterStarValue`;
+
+/** The CSS class on the clear filter button */
+export const REVIEW_CLEAR_FILTER = `${JS_PREFIX}${CUSTOMER_REVIEW}-clearFilter`;
+
+/** The CSS class on the review summary text (N out of 5 stars). This gets used as a clear button as well */
+export const REVIEW_SUMMARY_CLEAR_FILTER = `${JS_PREFIX}ReviewSummary-starsSummary`;
+
 /**
  * The CSS ID on a reviews container block
  */
@@ -69,7 +103,11 @@ export const REVIEWS_BASE_URL =
  */
 export const REVIEWS_BASE_QUERY_PARAMS = {
   site: 1132,
-  type: 1
+  type: 1,
+  // Origin is not a real parameter for the API.
+  // We are using it to force the API to use a separate cache for separate domains.
+  // Otherwise it will return the cached access-control-allow-origin header when you switch domains
+  origin: location.origin
 };
 
 /**

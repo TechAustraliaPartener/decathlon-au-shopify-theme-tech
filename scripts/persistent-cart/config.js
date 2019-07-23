@@ -72,7 +72,8 @@ const config = {
   },
   SHOPIFY_API: {
     GET_CART: '/cart.js',
-    UPDATE_CART: '/cart/update.js'
+    UPDATE_CART: '/cart/update.js',
+    ADD_TO_CART: '/cart/add.js'
   },
   COOKIES: {
     CART: 'cart',

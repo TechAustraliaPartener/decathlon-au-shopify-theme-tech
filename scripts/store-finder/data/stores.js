@@ -36,6 +36,24 @@ export default () =>
         street2: 'Grand Opening April 12th 9am',
         validated: false,
         zip: '94608'
+      },
+      {
+        address_type: null,
+        city: 'San Francisco',
+        code: null,
+        company: 'Decathlon',
+        country: 'US',
+        email: 'customer.service@decathlon.com',
+        id: 'adr_sfpotrero',
+        is_residential: false,
+        is_warehouse: false,
+        name: 'SF Potrero',
+        phone_number: '1234567890',
+        state: 'CA',
+        street1: '2300 16th St',
+        street2: 'Opening November 2019',
+        validated: false,
+        zip: '94103'
       }
     ];
 

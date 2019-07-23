@@ -5,7 +5,8 @@ import {
   isVariantOutOfStock,
   isVariantSoldOut,
   isEndOfLifeProduct,
-  variantHasSufficientQuantity
+  variantHasSufficientQuantity,
+  variants
 } from '../product-data';
 import {
   isErrorScenario1,
@@ -120,6 +121,13 @@ export const getShopifyErrorUIState = shopifyErrorMessage => {
  */
 export const getUIState = variant => {
   if (!variant) {
+    if (variants.every(isVariantOutOfStock)) {
+      return {
+        ...DEFAULT_UI_STATE,
+        addToCartButtonText: PRODUCT_PAGE_COPY.EMAIL_ME_WHEN_IN_STOCK,
+        validationText: PRODUCT_PAGE_COPY.ALL_SIZES_OUT_OF_STOCK
+      };
+    }
     return DEFAULT_UI_STATE;
   }
 

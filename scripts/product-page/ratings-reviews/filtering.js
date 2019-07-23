@@ -1,7 +1,18 @@
-import { REVIEW_FILTER, STAR_RATING } from './constants';
+// @ts-check
+
+import {
+  REVIEW_FILTER,
+  STAR_RATING,
+  REVIEW_CLEAR_FILTER,
+  REVIEW_SUMMARY_CLEAR_FILTER
+} from './constants';
 import { delegateEvent } from '../../utilities/event-delegator';
-import { setReviewsStateForFilter } from './state';
-import { getMoreReviews, resetReviews, resetSort } from './update-ui';
+import { setReviewsStateForFilter, clearFilter } from './state';
+import {
+  loadNewReviews,
+  resetSort,
+  resetDefaultReviewsDisplay
+} from './update-ui';
 
 /**
  * Handler for clicks on rows in the Reviews Ratings Matrix
@@ -10,7 +21,8 @@ import { getMoreReviews, resetReviews, resetSort } from './update-ui';
  * 3. Resets any previous sort selection
  * 4. Clears out previously loaded reviews and hides the page-loaded reviews
  * 5. Makes a query to get new, filtered-by-rating reviews and update the UI
- * @TODO - Analyze for any accessiblity improvements
+ * @TODO - Analyze for any accessibility improvements
+ * @this HTMLDivElement
  */
 const reviewFilterHandler = function() {
   const rating = this.dataset && this.dataset[STAR_RATING];
@@ -19,8 +31,7 @@ const reviewFilterHandler = function() {
   }
   setReviewsStateForFilter(rating);
   resetSort();
-  resetReviews();
-  getMoreReviews();
+  loadNewReviews();
 };
 
 /**
@@ -35,4 +46,16 @@ const filterEventDelegationSettings = {
 
 export const reviewsFilteringInit = () => {
   delegateEvent(filterEventDelegationSettings);
+  const clearReviewFilterButtons = document.querySelectorAll(
+    `.${REVIEW_CLEAR_FILTER},.${REVIEW_SUMMARY_CLEAR_FILTER}`
+  );
+  clearReviewFilterButtons.forEach(btn =>
+    btn.addEventListener('click', () => {
+      clearFilter();
+      // ClearFilter also resets the sort,
+      // so it will always match the reviews that were shown on page load,
+      // so we show those
+      resetDefaultReviewsDisplay();
+    })
+  );
 };

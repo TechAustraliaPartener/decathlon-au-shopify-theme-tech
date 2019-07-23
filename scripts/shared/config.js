@@ -92,4 +92,6 @@ const config = {
   }
 };
 
+export const DEBUG = process.env.DEBUG === 'true';
+
 export default config;

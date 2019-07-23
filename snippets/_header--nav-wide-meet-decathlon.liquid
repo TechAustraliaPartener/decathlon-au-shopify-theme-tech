@@ -32,6 +32,18 @@
       {% endfor %}
     </div>
   </div>
-  <img class="de-MeetDecathlonMenu-graphic de-u-block" src="{{ settings.meet_decathlon_image | img_url: '1906x' }}" alt="">
+  <picture>
+    <source media="(min-width:960px)" sizes="100vw" srcset="
+      {{ settings.meet_decathlon_image | img_url: '960x', format: 'pjpg' }} 960w,
+      {{ settings.meet_decathlon_image | img_url: '1065x', format: 'pjpg' }} 1065w,
+      {{ settings.meet_decathlon_image | img_url: '1160x', format: 'pjpg' }} 1160w,
+      {{ settings.meet_decathlon_image | img_url: '1260x', format: 'pjpg' }} 1260w,
+      {{ settings.meet_decathlon_image | img_url: '1340x', format: 'pjpg' }} 1340w,
+      {{ settings.meet_decathlon_image | img_url: '1430x', format: 'pjpg' }} 1430w,
+      {{ settings.meet_decathlon_image | img_url: '1510x', format: 'pjpg' }} 1510w,
+      {{ settings.meet_decathlon_image | img_url: '1600x', format: 'pjpg' }} 1600w"
+    >
+      <img class="de-MeetDecathlonMenu-graphic de-u-block" src="" alt="">
+  </picture>
 </nav>
 <!-- "Meet Decathlon" menu END -->

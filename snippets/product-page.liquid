@@ -10,6 +10,20 @@
 
 {% include 'section-clips' %}
 
+{% comment %} `product.metafields.global.videos` returns a hash list {% endcomment %}
+{% assign video_hash_list = product.metafields.global.videos %}
+{% comment %} Get a string of all the video IDs {% endcomment %}
+{% capture video_id_string_list %}
+  {% for video_hash in video_hash_list  %}
+    {% assign video_obj = video_hash[1] %}
+    {% if video_obj.id %}
+      {{video_obj.id}},
+    {% endif %}
+  {% endfor %}
+{% endcapture %}
+{% comment %} Create an array of the video IDs {% endcomment %}
+{% assign product_video = video_id_string_list | strip | split: ',' %}
+
 {% assign product_has_size_chart = false %}
 {%- for tag in product.tags -%}
   {%- if tag contains 'Model Code: ' -%}
@@ -376,3 +390,17 @@
 
 {% include 'sizechart' %}
 {% include 'ajax-cart-init' %}
+
+<script>
+(function () {
+  // create global object
+  window.Shopify = window.Shopify || {};
+
+  // assign customer object to shopify
+  {% if customer %}
+    Shopify.customer = {
+      email: {{ customer.email | json }}
+    };
+  {% endif %}
+})();
+</script>

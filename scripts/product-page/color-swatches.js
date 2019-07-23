@@ -28,11 +28,11 @@ const CLICK_EVENT = 'click';
  */
 export const $Swatches = $(`.${JS_PREFIX}ColorSwatches`);
 
-/**
- * Children elements
- * @type {JQuery<HTMLButtonElement>}
- */
-const $ColorSwatchesOptions = $(`.${JS_PREFIX}ColorSwatches-option`);
+/** @type {NodeListOf<HTMLButtonElement>} */
+export const swatchOptionEls = document.querySelectorAll(
+  `.${JS_PREFIX}ColorSwatches-option`
+);
+const $ColorSwatchesOptions = $(swatchOptionEls);
 const $ColorInfo = $(`.${JS_PREFIX}ColorInfo`);
 
 /**

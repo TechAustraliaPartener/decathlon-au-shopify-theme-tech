@@ -161,9 +161,19 @@ const onAddToCartClick = event => {
     return;
   }
 
-  if (isVariantOutOfStock(currentVariant)) {
-    if (window.BISPopover) {
-      window.BISPopover.show();
+  if (isVariantOutOfStock(currentVariant) && window.BISPopover) {
+    // Show modal, with current variant selected
+    window.BISPopover.show({ variantId: currentVariant.id });
+    // Set modal email input with customer's email
+    /** @type {HTMLIFrameElement} */
+    const BISPopoverEl = document.querySelector('#BIS_frame');
+    /** @type {HTMLInputElement} */
+    const BISPopoverEmailInputEl = BISPopoverEl.contentDocument.querySelector(
+      '#email_address'
+    );
+    const customer = window.Shopify.customer;
+    if (BISPopoverEmailInputEl && customer) {
+      BISPopoverEmailInputEl.value = customer.email;
     }
   }
 
@@ -187,7 +197,7 @@ const onAddToCartClick = event => {
 /**
  * To be called when a different variant is selected.
  * Resets the state, including resetting ajax error messages
- * @param {Variant} newVariant
+ * @param {Variant | undefined} newVariant
  */
 export const onVariantSelect = newVariant => {
   state.updateState({

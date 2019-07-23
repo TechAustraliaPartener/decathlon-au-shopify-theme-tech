@@ -4,6 +4,7 @@
 // but core-js is using it, and we aren't automatically injecting polyfills for core-js's own files,
 // otherwise we'd have circular dependency issues
 import 'core-js/modules/es.array.from';
+import 'nodelist-foreach-polyfill';
 import './buybox';
 import * as carousel from './carousel';
 import * as carouselContext from './carousel-context';
@@ -20,9 +21,10 @@ import * as productFlags from './product-flags';
 import * as addToCart from './add-to-cart';
 import * as drawer from './drawer';
 import { getUrlVariant, updateUrlVariant } from './query-string';
-import { variantOptions, getSelectedVariant } from './product-data';
+import { getSelectedVariant, getVariantOptions } from './product-data';
 import * as stickyNav from './sticky-nav';
 import * as storePickup from './fulfillment-options';
+import * as modal from './modal';
 
 let updateFulfillmentOptionsUI = null;
 
@@ -58,10 +60,10 @@ const setUpListeners = () => {
 };
 
 /** @type Variant | null | undefined */
-let prevVariant;
+let prevVariant = null;
 
 /** @type string | null | undefined */
-let prevColor;
+let prevColor = null;
 
 /**
  * The handler for when an option is selected
@@ -98,14 +100,15 @@ const updateUI = state => {
   // Model code can be updated without size
   modelCode.updateUI(state);
 
+  // Price can be updated even if no variant (color + size) has been selected
+  // @see: https://app.gitbook.com/@decathlonusa/s/shopify/product-feature/product-page#price
+  price.updateUI(state);
+
   updateUrlVariant(state.variant && state.variant.id);
 
   if (state.variant) {
     // MasterSelect requires a full variant to update
     masterSelect.updateUI(state);
-    // Price currently only gets updated if there is a full variant selected
-    // @TODO: Should this be updated even if there is no complete variant? To what?
-    price.updateUI(state);
     /**
      * The updateFulfillmentOptionsUI function will be undefined on page load,
      * but will update on subsequent page actions
@@ -120,16 +123,15 @@ const updateUI = state => {
  * Updates UI to reflect variant in URL
  */
 const selectUrlVariant = () => {
-  const urlVariant = Number(getUrlVariant());
-  if (urlVariant) {
-    const activeOptions = variantOptions(urlVariant);
-    /** @type {HTMLElement} */
-    const targetColorSwatch = document.querySelector(
-      `.js-de-ColorSwatches-option[value='${activeOptions.color}']`
+  const urlVariantId = Number(getUrlVariant());
+  const variant = getSelectedVariant({ id: urlVariantId });
+  if (variant) {
+    const options = getVariantOptions(variant);
+    const targetColorSwatch = [...colorSwatches.swatchOptionEls].find(
+      swatch => swatch.value === options.color
     );
-    /** @type {HTMLElement} */
-    const targetSizeSwatch = document.querySelector(
-      `.js-de-SizeSwatches-option[value='${activeOptions.size}']`
+    const targetSizeSwatch = [...sizeSwatches.swatchOptionEls].find(
+      swatch => swatch.value === options.size
     );
     if (targetColorSwatch) {
       targetColorSwatch.click();
@@ -139,8 +141,10 @@ const selectUrlVariant = () => {
     }
   } else {
     colorSwatches.selectFirstSwatch();
+    // Trigger onOptionSelect to update all the modules with initial state of no variant being selected
+    onOptionSelect();
   }
-  return urlVariant;
+  if (variant) return urlVariantId;
 };
 
 /**
@@ -158,6 +162,7 @@ const init = async () => {
   accordion.init();
   const urlVariant = selectUrlVariant();
   stickyNav.init();
+  modal.init();
   // Suggest leaving the async setup for fulfillment options to last
   updateFulfillmentOptionsUI = await storePickup.init();
   /**

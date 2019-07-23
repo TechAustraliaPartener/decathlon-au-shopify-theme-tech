@@ -18,14 +18,14 @@ export const prerenderedReviewList = document.querySelectorAll(
 
 /**
  * Get all reviews, loaded from the API or pre-rendered
- * @returns {Object} A NodeList of all reviews
+ * @returns A NodeList of all reviews
  */
 export const getAllReviews = () =>
   document.querySelectorAll(`.${REVIEW_CLASS}`);
 
 /**
  * Get all reviews that have been loaded from the API (i.e., were not pre-rendered on page load)
- * @returns {Object} a NodeList of all non-preloaded reviews
+ * @returns A NodeList of all non-preloaded reviews
  */
 export const getLoadedReviews = () =>
   document.querySelectorAll(`.${REVIEW_CLASS}:not(.${REVIEW_PRELOADED_CLASS})`);
@@ -33,6 +33,7 @@ export const getLoadedReviews = () =>
 /**
  * Get the sort select
  */
+/** @type HTMLSelectElement */
 export const reviewsSortSelect = document.querySelector(
   `.${REVIEW_SORT_SELECT}`
 );

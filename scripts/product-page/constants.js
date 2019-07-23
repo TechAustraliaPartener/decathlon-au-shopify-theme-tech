@@ -1,23 +1,9 @@
 // @ts-check
 
 /**
- * PREFIXES
+ * Import shared prefixes
  */
-
-/**
- * All styling CSS classes should have the CSS_PREFIX
- */
-export const CSS_PREFIX = 'de-';
-
-/**
- * All utility classes should have the CSS_UTILITY_PREFIX
- */
-export const CSS_UTILITY_PREFIX = `${CSS_PREFIX}u-`;
-
-/**
- * All JS-bound CSS classes should have the JS_PREFIX
- */
-export const JS_PREFIX = `js-${CSS_PREFIX}`;
+import { CSS_PREFIX, CSS_UTILITY_PREFIX, JS_PREFIX } from '../shared/constants';
 
 /**
  * Icon prefix
@@ -63,11 +49,7 @@ export const VALIDATION_MESSAGE_CLASS = `${JS_PREFIX}validation-message`;
  * @todo Move module-only constants to specific module
  */
 export const PRICE_CLASS = `${JS_PREFIX}ProductPrice`;
-export const COMPARE_PRICE_CLASS = `${JS_PREFIX}ComparePrice-text`;
-/**
- * The CSS utility class for visibly hiding elements
- */
-export const IS_HIDDEN_CLASS = `${CSS_UTILITY_PREFIX}hidden`;
+export const COMPARE_PRICE_CLASS = `${JS_PREFIX}ComparePrice`;
 
 /**
  * TEXT CONSTANTS
@@ -82,7 +64,9 @@ export const PRODUCT_PAGE_COPY = {
   ADD_TO_CART: 'Add to Cart',
   SOLD_OUT: 'Sold Out',
   EMAIL_ME_WHEN_IN_STOCK: 'Email Me When In Stock',
-  OUT_OF_STOCK: 'Out of Stock',
+  OUT_OF_STOCK: 'Out of stock',
+  ALL_SIZES_OUT_OF_STOCK:
+    'Out of stock. Select a size to get in stock email notification.',
   NEW_MODEL_IN_DESIGN: 'New model in design',
   OUT_OF_STOCK_RECENTLY_CHANGED: 'Out of stock. Inventory recently changed.',
   INVENTORY_RECENTLY_CHANGED: 'Inventory recently changed',
@@ -116,3 +100,8 @@ export const HIDE_OVERFLOW_Y_CLASS = `${CSS_UTILITY_PREFIX}overflowYNone`;
  * CSS class used by components that need an "open" state
  */
 export const IS_OPEN = `${CSS_PREFIX}is-open`;
+
+/**
+ * Re-export shared constants
+ */
+export * from '../shared/constants';

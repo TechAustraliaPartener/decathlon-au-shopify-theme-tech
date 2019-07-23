@@ -1,50 +1,107 @@
+/**
+ * Color Palette
+ *
+ * Variable names are based on similar CSS extended color keyword values.
+ *
+ * @see https://www.w3.org/TR/2018/REC-css-color-3-20180619/#svg-color
+ */
+
+$color-black: #2a2b2c;
+$color-blue: #0082c3;
+$color-darkgray: #464646;
+$color-gray: #acb3b8;
+$color-light-gray: rgba(172, 179, 184, 0.5);
+$color-lime: #cbfb00;
+$color-silver: #f3f3f3;
+$color-white: #ffffff;
+$color-red: #e53322;
+
+/**
+ * Border Width
+ */
+
+$border-width-sm: 1px;
+$border-width-md: 2px;
+$border-width-lg: 3px;
+$border-width-xl: 6px;
+
+/**
+ * Media Queries
+ */
+
+$breakpoint-sm: 30em;
+$breakpoint-md: 40em;
+$breakpoint-lg: 60em;
+$breakpoint-xl: 80em;
+
+/**
+ * Transitions
+ *
+ * 1. $transition-speed-normal value must match the value in
+ *    associated JS (in milliseconds, with setTimeout) for transition duration
+ *    @see scripts/product-page/drawer.js
+ */
+
+$transition-speed-fast: 0.1s;
+$transition-speed-normal: 0.2s; /* 1 */
+$transition-easing-smooth: cubic-bezier(0.77, 0, 0.175, 1);
+$transition-easing-ease: ease;
+
+/**
+ * Sizes
+ */
+
+$header-height-sm: 46px;
+$header-height-md: 52px;
+
 @font-face {
-    font-family: 'avalon_mediumbold';
-    src: url('Avalon-Bold-webfont.eot');
-    src: url('Avalon-Bold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('Avalon-Bold-webfont.woff2') format('woff2'),
-         url('Avalon-Bold-webfont.woff') format('woff'),
-         url('Avalon-Bold-webfont.ttf') format('truetype'),
-         url('Avalon-Bold-webfont.svg#avalon_mediumbold') format('svg');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'avalon_mediumbold';
+  src: url('Avalon-Bold-webfont.eot');
+  src: url('Avalon-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+        url('Avalon-Bold-webfont.woff2') format('woff2'),
+        url('Avalon-Bold-webfont.woff') format('woff'),
+        url('Avalon-Bold-webfont.ttf') format('truetype'),
+        url('Avalon-Bold-webfont.svg#avalon_mediumbold') format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'avalonregular';
-    src: url('Avalon-Book-webfont.eot');
-    src: url('Avalon-Book-webfont.eot?#iefix') format('embedded-opentype'),
-         url('Avalon-Book-webfont.woff2') format('woff2'),
-         url('Avalon-Book-webfont.woff') format('woff'),
-         url('Avalon-Book-webfont.ttf') format('truetype'),
-         url('Avalon-Book-webfont.svg#avalonregular') format('svg');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'avalonregular';
+  src: url('Avalon-Book-webfont.eot');
+  src: url('Avalon-Book-webfont.eot?#iefix') format('embedded-opentype'),
+        url('Avalon-Book-webfont.woff2') format('woff2'),
+        url('Avalon-Book-webfont.woff') format('woff'),
+        url('Avalon-Book-webfont.ttf') format('truetype'),
+        url('Avalon-Book-webfont.svg#avalonregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'avalonbold';
-    src: url('Avalon-Demi-webfont.eot');
-    src: url('Avalon-Demi-webfont.eot?#iefix') format('embedded-opentype'),
-         url('Avalon-Demi-webfont.woff2') format('woff2'),
-         url('Avalon-Demi-webfont.woff') format('woff'),
-         url('Avalon-Demi-webfont.ttf') format('truetype'),
-         url('Avalon-Demi-webfont.svg#avalonbold') format('svg');
-    font-weight: normal;
-    font-style: normal;
+font-family: 'avalonbold';
+src: url('Avalon-Demi-webfont.eot');
+src: url('Avalon-Demi-webfont.eot?#iefix') format('embedded-opentype'),
+      url('Avalon-Demi-webfont.woff2') format('woff2'),
+      url('Avalon-Demi-webfont.woff') format('woff'),
+      url('Avalon-Demi-webfont.ttf') format('truetype'),
+      url('Avalon-Demi-webfont.svg#avalonbold') format('svg');
+font-weight: normal;
+font-style: normal;
 }
 
 @font-face {
-    font-family: 'avalonmedium';
-    src: url('Avalon-Medium-webfont.eot');
-    src: url('Avalon-Medium-webfont.eot?#iefix') format('embedded-opentype'),
-         url('Avalon-Medium-webfont.woff2') format('woff2'),
-         url('Avalon-Medium-webfont.woff') format('woff'),
-         url('Avalon-Medium-webfont.ttf') format('truetype'),
-         url('Avalon-Medium-webfont.svg#avalonmedium') format('svg');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'avalonmedium';
+  src: url('Avalon-Medium-webfont.eot');
+  src: url('Avalon-Medium-webfont.eot?#iefix') format('embedded-opentype'),
+        url('Avalon-Medium-webfont.woff2') format('woff2'),
+        url('Avalon-Medium-webfont.woff') format('woff'),
+        url('Avalon-Medium-webfont.ttf') format('truetype'),
+        url('Avalon-Medium-webfont.svg#avalonmedium') format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
+
 @mixin prefix($property, $value) {
   -webkit-#{$property}: #{$value};
   -moz-#{$property}: #{$value};
@@ -53,42 +110,62 @@
   #{$property}: #{$value};
 }
 
-@mixin transition($transition: 0.1s all) {
+@mixin transition($transition: $transition-speed-fast all) {
   @include prefix('transition', #{$transition});
 }
-.product-thumbnail::after,.btn,.field__input,.content-box,.input-checkbox {
-	border-radius: 0;
+
+/**
+ * Checkout styles
+ */
+
+.btn,
+.field__input,
+.content-box,
+.input-checkbox,
+.product-thumbnail::after {
+  border-radius: 0;
 }
+
 .btn {
-	font-size: 14.4px;
-	text-transform: uppercase;
-  	font-family: "avalonbold","HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif;
-  	font-weight: normal;
-    letter-spacing: 2px;
-  	-webkit-font-smoothing: antialiased;
+  font-family:
+    "avalonbold","HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  font-weight: normal;
+  letter-spacing: $border-width-md;
+  text-transform: uppercase;
+  -webkit-font-smoothing: antialiased;
 }
+
 @media (min-width: 1000px) {
-  .page--no-banner .main, .page--no-banner .sidebar {
-      padding-top: 1em;
+  .page--no-banner .main, 
+  .page--no-banner .sidebar {
+    padding-top: 1em;
   }
 }
+
 @media (max-width: 1000px) {
   .banner {
- 	 padding: 10px 0 5px 0;
-   }
-   .logo__image--small {
-	 height: 35px;
-  	 max-height: 35px;
-    }
+    padding: 10px 0 5px 0;
+  }
+  .logo__image--small {
+    height: 35px;
+    max-height: 35px;
+  }
 }
 
 .de-pickup-location {
-  padding: 13px;
-  box-sizing: border-box;
-  border: 1px solid #d9d9d9;
+  border: $border-width-sm solid $color-light-gray;
   cursor: pointer;
-  &.js-de-active-location, &:hover {
-    border: 3px solid #1c82c3;
+  padding: 12px;
+
+  /**
+   * @TODO
+   * 1. Don't use `js-` selctors for styling
+   */
+
+  &.js-de-active-location,
+  &:hover {
+    border: $border-width-lg solid $color-blue;
     padding: 11px;
   }
 }
@@ -100,60 +177,41 @@
 }
 
 .de-pickup-location p {
-  margin-top: 0;
   margin-bottom: 0;
+  margin-top: 0;
 }
 
 .de-pickship-btn {
-  width: 100%;
-  display: block;
-  border: 1px solid #1c82c3;
-  color: #1c82c3;
+  @include transition( 
+    background-color color $transition-speed-fast $transition-easing-ease );
+  align-items: center;
+  background: $color-white;
+  border: $border-width-sm solid $color-blue;
   box-sizing: border-box;
-  background: #fff;
-  padding-left: 0.8em;
-  padding-right: 0.8em;
-  svg{
-    height:30px;
-    vertical-align: middle;
-    margin-right: .5rem;
-    .st0 {
-      @include transition(all 0.1s ease-in);
-      fill: none;
-      stroke:#1c82c3;
-      stroke-linecap:square;
-    }
-  	.st1 {
-      @include transition(all 0.1s ease-in);
-      fill: none;
-      stroke:#1c82c3;
-    }
-  }
-
-  &:hover, &.js-de-active-pickship-btn {
-    background:#1c82c3;
-    color: #fff;
-    .st0 {
-      fill: none;
-      stroke: #fff;
-      stroke-linecap: square;
-    }
-  	.st1 {
-      fill: none;
-      stroke: #fff;
-    }
-  }
-}
-
-.de-pickup-location-map-img {
+  color: $color-blue;
+  display: flex;
+  justify-content: center;
+  padding: 0.8em;
   width: 100%;
+
+  .de-Pickship-icon {
+    font-size: 2.8em;
+  }
+
+  &:hover,
+  &.de-is-active {
+    background-color: $color-blue;
+    color: $color-white;
+  }
 }
 
 @media (min: 750px) {
-  .de-pickship-btn-container:nth-child(even), .de-pickup-locations li:nth-child(even) {
+  .de-pickship-btn-container:nth-child(even),
+  .de-pickup-locations li:nth-child(even) {
     padding-right: 0;
   }
-  .de-pickship-btn-container:nth-child(odd), .de-pickup-locations li:nth-child(odd) {
+  .de-pickship-btn-container:nth-child(odd),
+  .de-pickup-locations li:nth-child(odd) {
     padding-left: 0;
   }
 }
@@ -179,8 +237,8 @@
 }
 
 .de-location-hr {
-  height: 3px;
   border: none;
+  height: $border-width-lg;
 }
 
 .section--contact-information .section__header {
@@ -192,21 +250,21 @@
 }
 
 .de-loading-overlay {
-  position: absolute;
-  width: 100%;
+  background: $color-white;
   height:100%;
-  background: #fff;
-  z-index: 10;
-  top: 0;
   left: -3px;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 10;
 }
 
 .de-checkout-loader {
-  position: absolute;
-  width: 50px;
-  top: 250px;
   left: 50%;
+  position: absolute;
+  top: 250px;
   transform: translateX(-50%);
+  width: 50px;
 }
 
 [data-address-field="company"] {
@@ -222,5 +280,5 @@
 }
 
 .btn.js-de-BtnDisabled:hover{
-  background-color: #1c82c3;
+  background-color: $color-blue;
 }
