@@ -25,11 +25,16 @@ export { loadGoogleMaps };
  */
 export const fetchStoreList = async () => {
   const stores = await fetchStores();
-  return stores.map(store => ({
-    ...store,
-    distance: '',
-    distanceFloat: ''
-  }));
+  return (
+    stores
+      // @TODO: Remove when SF Potrero is opened
+      .filter(store => store.id !== 'adr_sfpotrero')
+      .map(store => ({
+        ...store,
+        distance: '',
+        distanceFloat: ''
+      }))
+  );
 };
 
 /**
