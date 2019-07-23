@@ -229,6 +229,7 @@ const render = ({
   if (!addToCartButtonEl || !addToCartButtonTextEl) return;
   addToCartButtonEl.disabled = isAddToCartButtonDisabled;
   addToCartButtonTextEl.textContent = addToCartButtonText;
+  addToCartButtonTextEl.setAttribute('aria-label', addToCartButtonText);
 };
 
 state.onChange(render);
