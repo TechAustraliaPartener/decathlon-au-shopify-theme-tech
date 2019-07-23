@@ -30,83 +30,114 @@
   {{ feature_photo | img_url: "518x", format: "pjpg" }} 518w,
   {{ feature_photo | img_url: "596x", format: "pjpg" }} 596w,
   {{ feature_photo | img_url: "640x", format: "pjpg" }} 640w
- {% endcapture %}
+{% endcapture %}
 {% capture feature_photo_sizes %}
   (min-width: 60em) 33vw
 {% endcapture %}
 
-  <section class="FeaturesContainer de-Grid de-u-lg-spaceTop3
-                  de-u-spaceTop">
-    <div class="FeaturesContainer-banner de-u-padBottom de-u-spaceBottom
-      de-u-md-padBottom6 de-u-md-spaceBottomNone">
-      <div class="de-u-lg-size5of6 de-u-xl-size4of6">
-       <h3
-          class="de-u-textGrow3 de-u-spaceNone de-u-lineHeight2"
-          itemprop="description"
-        >
-          {{ product.title | escape }} is designed for {{ madefor | escape }}
-        </h3>
-        <p class="de-u-spaceNone de-u-textSizeBase de-u-textDarkGray">
-          {{ catchline | escape }}
-        </p>
-      </div>
-    </div>
-    <div class="FeaturesContainer-showcase
-                de-u-lg-size1of3 de-u-hidden de-u-lg-block">
-      <figure>
-        <img
-          src="{{ feature_photo | img_url: '500x' }}"
-          srcset='{{ feature_photo_srcset }}'
-          sizes='{{ feature_photo_sizes }}'
-          class="de-u-block"
-          alt="">
-          <figcaption class="de-u-hiddenVisually">
-            A photo of the {{ product.title | escape }} in use
-          </figcaption>
-      </figure>
-    </div>
-    <div class="FeaturesContainer-info
-              de-u-size1of1 de-u-lg-size2of3 de-u-lg-padLeft6"
-       aria-labelledby="Section-features">
-    <div class="de-Grid">
-
+{% capture product_features %}
   {% for feature in features %}
     {% assign featurearray = feature[1] %}
     {% assign featureicon = featurearray['icon'] %}
     {% assign featuretitle = featurearray['title'] %}
     {% unless featurearray == blank or featuretitle == 'Environmental impact' %}
-        <section
-          class="ProductFeature de-u-size1of1 de-u-md-size1of2 de-u-flex
-                 de-u-padRight de-u-padBottom"
-          aria-labelledby="ProductFeature-{{ forloop.index }}"
-          itemprop="additionalProperty"
-          itemscope
-          itemtype="http://schema.org/PropertyValue">
-          <div class="ProductFeature-icon de-u-spaceRight" aria-hidden="true">
-
-            {% if featureicon contains '.jpg'|'.png' %}
-            <img
-              src="{{ featureicon | replace: 'http://', 'https://'}}"
-              alt=""
-            >
-            {% endif %}
-          </div>
-          <div class="Feature-spec">
-            <header>
-              <h3 id="ProductFeature-{{ forloop.index }}" itemprop="name"
-                  class="de-u-spaceBottomNone de-u-textGrow2 de-u-lineHeight3">
-                {{ featuretitle | escape }}
-              </h3>
-            </header>
-            <p
-              itemprop="value"
-              class="de-u-textDarkGray de-u-textSizeBase">
-              {{ featurearray['text'] | escape }}
-            </p>
-          </div>
-        </section>
+    {%- assign product_features_qty = product_features_qty | plus: 1 -%}
+      <section
+        class="ProductFeature de-u-size1of1 de-u-md-size1of2 de-u-lg-size3of6
+               de-u-flex de-u-padRight de-u-padBottom"
+        aria-labelledby="ProductFeature-{{ forloop.index }}"
+        itemprop="additionalProperty"
+        itemscope
+        itemtype="http://schema.org/PropertyValue"
+      >
+        <div class="ProductFeature-icon de-u-spaceRight" aria-hidden="true">
+          {% if featureicon contains '.jpg'|'.png' %}
+          <img
+            src="{{ featureicon | replace: 'http://', 'https://'}}"
+            alt=""
+          >
+          {% endif %}
+        </div>
+        <div class="Feature-spec">
+          <header>
+            <h3 id="ProductFeature-{{ forloop.index }}" itemprop="name"
+                class="de-u-spaceBottomNone de-u-textGrow2 de-u-lineHeight3">
+              {{ featuretitle | escape }}
+            </h3>
+          </header>
+          <p
+            itemprop="value"
+            class="de-u-textDarkGray de-u-textSizeBase">
+            {{ featurearray['text'] | escape }}
+          </p>
+        </div>
+      </section>
     {% endunless %}
   {% endfor %}
+{% endcapture %}
+
+{% capture product_features_header %}
+  <div
+    class="FeaturesContainer-banner de-u-padBottom de-u-spaceBottom
+           de-u-md-padBottom6 de-u-md-spaceBottomNone"
+  >
+    <div
+      class="de-u-lg-size5of6{% if product_features_qty >= 6 %}
+             de-u-xl-size4of6{%endif%}"
+    >
+      <h3
+        class="de-u-textGrow3 de-u-lg-textGrow4 de-u-spaceNone de-u-lineHeight2 de-u-padBottom06"
+        itemprop="description"
+      >
+        {{ product.title | escape }} is designed for {{ madefor | escape }}
+      </h3>
+      <p class="de-u-spaceNone de-u-textSizeBase de-u-textDarkGray">
+        {{ catchline | escape }}
+      </p>
     </div>
+  </div>
+{% endcapture %}
+
+<section
+  class="FeaturesContainer de-Grid
+         de-u-lg-spaceTop3 de-u-spaceTop"
+>
+
+  {% comment %} Product Features title/sub-title  {% endcomment %}
+  {% if product_features_qty >= 6 %}
+    {{ product_features_header }}
+  {% endif %}
+
+  <div
+    class="FeaturesContainer-showcase
+           de-u-lg-size1of3 de-u-hidden de-u-lg-block"
+  >
+    <figure>
+      <img
+        src="{{ feature_photo | img_url: '500x' }}"
+        srcset='{{ feature_photo_srcset }}'
+        sizes='{{ feature_photo_sizes }}'
+        class="de-u-block"
+        alt="">
+        <figcaption class="de-u-hiddenVisually">
+          A photo of the {{ product.title | escape }} in use
+        </figcaption>
+    </figure>
+  </div>
+  <div
+    class="FeaturesContainer-info
+           de-u-size1of1 de-u-lg-size2of3 de-u-lg-padLeft6"
+    aria-labelledby="Section-features"
+  >
+      {% if product_features_qty < 6 %}
+        {{ product_features_header }}
+      {% endif %}
+      <div
+        class="{% if product_features_qty < 4 %}
+               de-u-block {% else%} de-Grid {% endif %}"
+      >
+        {% comment %} Product Features {% endcomment %}
+        {{ product_features }}
+      </div>
   </div>
 </section>
