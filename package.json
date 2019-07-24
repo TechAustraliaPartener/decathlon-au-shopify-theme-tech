@@ -1,6 +1,6 @@
 {
   "name": "decathlon",
-  "version": "1.17.1",
+  "version": "1.18.1",
   "description": "Minify and Concat CSS and JS files, run jshint for all script files.",
   "repository": {
     "type": "git",

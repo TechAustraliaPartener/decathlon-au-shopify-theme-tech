@@ -415,7 +415,8 @@ const bindUI = () => {
   async function fetchStoreList() {
     try {
       const stores = await fetchStores();
-      return stores;
+      // @TODO: Remove when SF Potrero is opened
+      return stores.filter(store => store.id !== 'adr_sfpotrero');
     } catch (error) {
       console.error(error);
     }

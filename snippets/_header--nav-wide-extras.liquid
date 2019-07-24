@@ -2,7 +2,7 @@
   <div class="de-FlexEmbed">
     <div class="de-FlexEmbed-ratio de-FlexEmbed-ratio--4by3"></div>
     <picture>
-      <source media="(min-width:960px)" srcset="{% if settings.shop_menu_image %}{{ settings.shop_menu_image | img_url: "master", '400x', format: 'pjpg' }}{% else %}{{ 'story_split_full_content_1_image.jpg' | asset_img_url: '400x', format 'pjpg' }}{% endif %} 400w" sizes="20vw">
+      <source media="(min-width:960px)" srcset="{% if settings.shop_menu_image %}{{ settings.shop_menu_image | img_url: '400x', format: 'pjpg' }}{% else %}{{ 'story_split_full_content_1_image.jpg' | asset_img_url: '400x', format 'pjpg' }}{% endif %} 400w" sizes="20vw">
       <img class="de-FlexEmbed-content" src="" alt="">
     </picture>
   </div>
