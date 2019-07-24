@@ -84,11 +84,13 @@
   overflow: hidden;
 }
 
-.de-CarouselFeature {
-  .slick-slide {
-    position: relative;
-    padding-right: 2px;
-    right: -1px;
+@media (min-width: $breakpoint-md) {
+  .de-CarouselFeature {
+    .slick-slide {
+      position: relative;
+      padding-right: 2px;
+      right: -1px;
+    }
   }
 }
 
