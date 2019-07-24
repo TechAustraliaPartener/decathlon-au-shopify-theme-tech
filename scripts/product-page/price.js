@@ -13,9 +13,6 @@ import {
   getVariantOptions
 } from './product-data';
 
-let lastSelectedColor;
-let lastVariantSku;
-
 // Multiple price elements exist in the DOM because there
 // are different ones for smaller vs larger viewports, use `querySelectorAll`
 const productPriceEls = document.querySelectorAll(`.${PRICE_CLASS}`);
@@ -83,14 +80,7 @@ const render = ({ priceEls, displayPrice }) => {
  * @param {Variant} variant
  */
 const handleVariantSelection = variant => {
-  const { sku, price, compare_at_price: compareAtPrice } = variant;
-
-  if (sku === lastVariantSku) {
-    // Do nothing if the same variant was selected
-    return;
-  }
-
-  lastVariantSku = sku;
+  const { price, compare_at_price: compareAtPrice } = variant;
 
   render({
     priceEls: productPriceEls,
@@ -109,13 +99,6 @@ const handleVariantSelection = variant => {
  * @param {string} color
  */
 const handleColorSelection = color => {
-  if (color === lastSelectedColor) {
-    // Do nothing if the same color is selected
-    return;
-  }
-
-  lastSelectedColor = color;
-
   const prices = getPricesByVariantColor(color);
   const minPrice = Math.min(...prices);
   const maxPrice = Math.max(...prices);
