@@ -274,11 +274,12 @@ var ajaxCart = (function(module, $) {
   itemAddedCallback = function (product) {
     $addToCart.removeClass('is-adding').addClass('is-added');
 
+    $body.trigger('addItemSuccess.ajaxCart');
     ShopifyAPI.getCart(cartUpdateCallback);
   };
 
   itemErrorCallback = function (XMLHttpRequest, textStatus) {
-    var data = eval('(' + XMLHttpRequest.responseText + ')');
+    var data = JSON.parse(XMLHttpRequest.responseText)
     $addToCart.removeClass('is-adding is-added');
 
     if (!!data.message) {

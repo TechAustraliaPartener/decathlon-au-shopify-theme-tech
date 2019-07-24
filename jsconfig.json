@@ -3,7 +3,8 @@
     "lib": ["dom", "esnext", "dom.iterable"],
     "target": "es6",
     "checkJs": false,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "noUnusedLocals": true
   },
   "include": ["scripts/**/*"]
 }
