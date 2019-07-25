@@ -79,9 +79,10 @@ const render = ({ priceEls, displayPrice }) => {
  *
  * @param {Variant} variant
  */
-const handleVariantSelection = variant => {
-  const { price, compare_at_price: compareAtPrice } = variant;
-
+const handleVariantSelection = ({
+  price,
+  compare_at_price: compareAtPrice
+}) => {
   render({
     priceEls: productPriceEls,
     displayPrice: formatPrice(price)
