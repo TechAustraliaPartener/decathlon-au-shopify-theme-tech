@@ -21,12 +21,11 @@ const modelCodeTextEls = document.querySelectorAll(
 /**
  * Updates the UI with the variant's model code
  *
- * @param {import('.').State} state
+ * @param {string | null} color
  */
-export const updateUI = ({ variant, color }) => {
+export const onColorSelect = color => {
   const modelCode = getModelCodeFromVariant(
-    variant ||
-      variants.find(variant => getVariantOptions(variant).color === color)
+    variants.find(variant => getVariantOptions(variant).color === color)
   );
 
   if (modelCode) {

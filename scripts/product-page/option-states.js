@@ -71,7 +71,10 @@ const updateOptions = (elements, opts) => {
  * Updates the color & size options "available" states
  *
  * @todo Consider moving this logic to `ColorSwatches` & `SizeSwatches` modules
- * @param {import('.').State} state
+ * @param {Object} state
+ * @param {string | undefined} state.size
+ * @param {string | undefined} state.color
+ * @param {Variant | undefined} state.variant
  */
 export const updateOptionStates = ({ size, color, variant }) => {
   /** @type JQuery<HTMLButtonElement> */

@@ -396,26 +396,18 @@ const renderSortFilterUI = ({ notes, sort, direction }) => {
 
 onReviewsStateChange(renderSortFilterUI);
 
-let lastState = getReviewsState();
-
-onReviewsStateChange(state => {
-  // Skip if the filter/sort has not changed
-  if (
-    lastState.sort === state.sort &&
-    lastState.direction === state.direction &&
-    lastState.notes === state.notes
-  ) {
-    return;
-  }
-  lastState = state;
-  /**
-   * If the default sort is selected (compared with the page-load default state),
-   * call to reset the default display, using pre-loaded reviews. Otherwise,
-   * reset the UI and call to get new reviews using a different sort query.
-   */
-  if (getIsDefaultQuery()) {
-    resetDefaultReviewsDisplay();
-  } else {
-    loadNewReviews();
-  }
-});
+onReviewsStateChange(
+  () => {
+    /**
+     * If the default sort is selected (compared with the page-load default state),
+     * call to reset the default display, using pre-loaded reviews. Otherwise,
+     * reset the UI and call to get new reviews using a different sort query.
+     */
+    if (getIsDefaultQuery()) {
+      resetDefaultReviewsDisplay();
+    } else {
+      loadNewReviews();
+    }
+  },
+  state => [state.sort, state.direction, state.notes]
+);

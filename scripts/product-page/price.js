@@ -123,10 +123,10 @@ const handleColorSelection = color => {
  * Updates the price display with price and sale price if necessary
  *
  * @param {object} obj The state data object
- * @param {string} obj.color Currently selector color
- * @param {Variant} obj.variant Currently selected variant
+ * @param {string | undefined} obj.color Currently selector color
+ * @param {Variant | undefined} obj.variant Currently selected variant
  */
-export const updateUI = ({ color, variant }) => {
+export const onSwatchChange = ({ color, variant }) => {
   if (!isProductPricingVaried()) {
     // Do nothing if product variant prices do not vary.
     // Whatever is rendered from the server is the correct price
