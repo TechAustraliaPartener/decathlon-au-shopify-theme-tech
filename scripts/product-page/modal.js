@@ -1,3 +1,4 @@
+// @ts-check
 import { JS_PREFIX } from './constants';
 
 /**
@@ -31,7 +32,6 @@ const isEscapeKey = key => key.toLowerCase() === ESCAPE_KEY_VALUE;
  * The keyboard event handler
  *
  * @param {KeyboardEvent} keyboardEvent
- * @param {string} keyboardEvent.key Value of the key pressed by the user
  */
 const keyboardEventHandler = ({ key }) => {
   /**
@@ -42,13 +42,24 @@ const keyboardEventHandler = ({ key }) => {
   }
 };
 
+/** @type {HTMLElement | undefined} */
+let lastFocusedElement;
+
 /**
  * Handle ATC click event
  */
 const onAddToCartClick = () => {
+  // Store the element that was focused before the modal was opened. It will be focused after the modal is closed
+  lastFocusedElement = /** @type {HTMLElement} */ (document.activeElement);
   if (!isListenerInitialized) {
     // Add keydown listener to document
     bindDocumentKeyDown();
+    const originalHideFunction = window.BISPopover.form.hide;
+    // Intercept hide to re-focus where the user focus was before opening the modal
+    window.BISPopover.form.hide = () => {
+      originalHideFunction();
+      lastFocusedElement.focus();
+    };
     isListenerInitialized = true;
   }
 };
@@ -57,6 +68,7 @@ const onAddToCartClick = () => {
  * Add event listener to document
  */
 const bindDocumentKeyDown = () => {
+  /** @type {HTMLIFrameElement} */
   const BISPopeverEl = document.querySelector('#BIS_frame');
   if (BISPopeverEl) {
     BISPopeverEl.contentDocument.addEventListener(

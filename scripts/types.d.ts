@@ -4,6 +4,11 @@ interface Window {
 
   BISPopover: {
     show: (opts?: { variantId: number }) => void;
+    hide: () => void;
+    form: {
+      show: (opts?: { variantId: number }) => void;
+      hide: () => void;
+    };
   };
 
   Shopify: {
