@@ -1,11 +1,8 @@
 /**
  * ProductInformation
- *
- * @TODO
- * 1. Refactor to include the `de-` prefix
  */
 
- .ProductInformation {
+ .de-ProductInformation {
   columns: 370px 3;
   column-gap: 36px;
 }
@@ -15,7 +12,7 @@
  *    adding dispaly: inline-block
  */
 
-.ProductInformation-entry {
+.de-ProductInformation-entry {
   break-inside: avoid;
   display: inline-block; /* 1 */
   margin-bottom: 2rem;
@@ -26,12 +23,12 @@
  *    to display: block
  */
 
-.ProductInformation--multispec .ProductInformation-entry {
+.de-ProductInformation--multispec .de-ProductInformation-entry {
   display: block; /* 1 */
 }
 
 @media (min-width: $breakpoint-md) {
-  .ProductInformation-entry:not(:first-of-type) {
+  .de-ProductInformation-entry:not(:first-of-type) {
     margin-top: 3rem;
   }
 }

@@ -18,7 +18,7 @@ export const buildStoreTile = stores =>
   stores
     .map(store => {
       return `
-          <li class="StorePickup-tile de-u-flex de-u-flexJustifyBetween">
+          <li class="de-StorePickup-tile de-u-flex de-u-flexJustifyBetween">
             <div>
               <h6
                 class="de-u-spaceBottomNone

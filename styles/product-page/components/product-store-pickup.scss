@@ -3,26 +3,23 @@
  *
  * This CSS is in-progress and will be improved upon and commented on in
  * a follow-up PR
- *
- * @TODO
- * 1. Refactor to include the `de-prefix`
  */
 
- .StorePickup-header {
+ .de-StorePickup-header {
   border-bottom: $border-width-md solid $color-silver;
 }
 
-.StorePickup-thumbnail {
+.de-StorePickup-thumbnail {
   flex: 0 0 80px;
 }
 
-.StorePickup-tile {
+.de-StorePickup-tile {
   border-bottom: $border-width-sm solid $color-silver;
   margin-bottom: 0.75rem;
   padding-bottom: 0.75rem;
 }
 
-.StorePickup-tile:last-of-type {
+.de-StorePickup-tile:last-of-type {
   border-bottom: $border-width-md solid $color-lime;
   margin-bottom: 0;
 }
@@ -34,11 +31,11 @@
  *    `ContentHeading` might be able to be replaced with utility classes.
  */
 
- .ContentHeading {
+.de-ContentHeading {
   border-bottom: $border-width-md solid $color-silver;
   margin-bottom: 1rem;
 }
 
-.ContentHeading--blue {
+.de-ContentHeading--blue {
   border-color: $color-blue;
 }
