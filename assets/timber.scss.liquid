@@ -3756,7 +3756,7 @@ body.is-rollingUpBanner .popup { margin-top: -100vh; }
   @include prefixer(transform, skew(-15deg), ms moz spec webkit);
   background-color: $colorSecondary;
   right: -20px;
-  width: 50px;
+  width: 30px;
 }
 
 .bluegram {
@@ -8941,7 +8941,13 @@ h1.banner-title {
   top: -99px;
   width: 355px;
 }
-.blue-band--footer.blue-band .grid__item:first-child { display: inline-block; width: 28%; }
+.blue-band--footer.blue-band .grid__item:first-child { 
+  display: inline-block; 
+  width: 28%; 
+  @media only screen and (min-width: $blueband) {
+    width: 22%;
+  }
+}
 .template-customers-login .blue-band--footer { margin-top: 8em;}
 
 .newsletterSignupForm.input-group {
@@ -9679,9 +9685,6 @@ body:first-of-type .header-cartWrapper {
 .blue-band-content { display: inline-block; vertical-align: middle; width: 55%; text-align: left;}
 .blue-band .u-flex-listItem {display: flex; justify-content: center; flex-direction: column; text-align: center;}
 .blue-band--footer { padding: 0; }
-.blue-band--footer .large--one-fifth { width: 19%; }
-.blue-band--footer .blue-band--footer-logo { width: 24%; }
-.blue-band--footer.blue-band .grid__item:first-child { width: 24%; }
 
 .storeInfo-hoursFlex { width: 25%; }
 .storeInfo-visitFlex,
@@ -10252,9 +10255,9 @@ tr.cart__row--addon {
 	.yellowgram {
 		align-items: center;
 		display: flex;
-		width: 90%;
+		//width: 90%;
 		height: 58px;
-		padding: 0 $space*3 0 0;
+		padding: 0 $space 0 0;
 
 		.yellowgram-item-wrapper {
 			color: #0082C3;
@@ -10265,6 +10268,9 @@ tr.cart__row--addon {
 		.yellowgram-icon {
 			align-items: center;
 			display: flex;
+            @media only screen and (min-width: $blueband) {
+              width: 33%;
+            }
 
 			img {
 				max-height: 33px;
