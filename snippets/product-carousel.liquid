@@ -137,7 +137,7 @@
             <div class="de-CarouselFeature-slide"
               aria-roledescription="slide"
               role="group"
-              aria-label="{{ forloop.index | minus: start_index }} of {{ end_index | minus: start_index }}">
+            >
               <button class="de-CarouselFeature-btn">
                 <img
                   class="de-CarouselFeature-image de-u-bgWhite js-de-SlickCarouselSlide"
@@ -150,7 +150,7 @@
                     data-srcset="{{ image_srcset }}"
                     data-sizes="{{ image_sizes }}"
                   {% endif %}
-                  alt="{% include 'func-extract-alt-copy' with alt %}">
+                  alt="{% include 'func-extract-alt-copy' with alt %}, photo {{ forloop.index | minus: start_index }} of {{ end_index | minus: start_index }}">
                   <svg class="de-u-sizeFull de-CarouselFeature-svg"
                     viewbox="0 0 {{ product_image.aspect_ratio }} 1"></svg>
               </button>
@@ -190,7 +190,7 @@
               aria-controls="de-CarouselFeature"
               aria-roledescription="slide"
               role="group"
-              aria-label="Product thumbnail image {{ forloop.index | minus: start_index }} of {{ end_index | minus: start_index }}">
+            >
               <button class="de-CarouselThumbnail-btn de-u-flex">
                 <img class="de-CarouselThumbnail-image de-u-bgSilver js-de-SlickCarouselSlide"
                 {% if color == activeColor %}
@@ -202,7 +202,7 @@
                   data-srcset="{{ image_srcset }}"
                   data-sizes="{{ image_sizes }}"
                 {% endif %}
-                  alt="">
+                  alt="Product thumbnail {{ forloop.index | minus: start_index }} of {{ end_index | minus: start_index }}">
               </button>
             </div>
           {%- endunless -%}
