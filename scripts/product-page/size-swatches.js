@@ -132,7 +132,7 @@ export const onVariantSelect = variant => {
 };
 
 const showMissingSizeInfo = () => {
-  if (validationTextEl) {  
+  if (validationTextEl) {
     validationTextEl.textContent = PRODUCT_PAGE_COPY.SELECT_A_SIZE;
   }
 };
