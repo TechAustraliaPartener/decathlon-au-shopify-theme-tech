@@ -25,28 +25,30 @@ import { getSelectedVariant, getVariantOptions } from './product-data';
 import * as stickyNav from './sticky-nav';
 import * as storePickup from './fulfillment-options';
 import * as modal from './modal';
+import { createState } from './create-state';
 
 let updateFulfillmentOptionsUI = null;
 
 /**
  * @typedef State
- * @property {string | undefined} color
- * @property {string | undefined} size
- * @property {Variant | undefined} variant
+ * @property {string} [color]
+ * @property {string} [size]
  */
 
+const state = createState(/** @type {State} */ ({}));
+
+/** @param {State} state */
+const getVariantFromState = ({ color, size }) =>
+  color && size && getSelectedVariant({ color, size });
+
 /**
- * Helper to get all of the child component states
- *
- * @returns {State} The current UI state
+ * @param {State} state The current UI state
  */
-const getCombinedState = () => {
-  const color = colorSwatches.getSelected();
-  const size = sizeSwatches.getSelected();
+const getComputedState = state => {
   return {
-    color,
-    size,
-    variant: color && size && getSelectedVariant({ color, size })
+    color: state.color,
+    size: state.size,
+    variant: getVariantFromState(state)
   };
 };
 
@@ -54,70 +56,61 @@ const getCombinedState = () => {
  * Sets up listeners for custom UI components
  */
 const setUpListeners = () => {
-  sizeSwatches.$Swatches.on('SizeSwatches:select', onOptionSelect);
-  colorSwatches.$Swatches.on('ColorSwatches:select', onOptionSelect);
-  addToCart.onVariantModification(() => updateUI(getCombinedState()));
+  sizeSwatches.handleSizeSelect(size => {
+    state.updateState({ size });
+  });
+  colorSwatches.handleColorSelect(color => {
+    state.updateState({ color });
+  });
+  addToCart.onVariantModification(() => {
+    const fullState = getComputedState(state.getState());
+    updateOptionStates(fullState);
+  });
 };
 
-/** @type Variant | null | undefined */
-let prevVariant = null;
+// When the variant changes
+state.onChange(
+  state => {
+    const variant = getVariantFromState(state);
+    addToCart.onVariantSelect(variant);
+    productFlags.onVariantSelect(variant);
+    sizeSwatches.onVariantSelect(variant);
+    updateUrlVariant(variant && variant.id);
+    if (variant) {
+      // MasterSelect requires a full variant to update
+      masterSelect.onVariantSelect(variant);
+      // The updateFulfillmentOptionsUI function will be undefined on page load,
+      // but will update on subsequent page actions
+      updateFulfillmentOptionsUI && updateFulfillmentOptionsUI(state);
+    }
+  },
+  state => [getVariantFromState(state)]
+);
 
-/** @type string | null | undefined */
-let prevColor = null;
-
-/**
- * The handler for when an option is selected
- */
-const onOptionSelect = () => {
-  const combinedState = getCombinedState();
-  // @todo Remove for production
-  console.log('New State', combinedState);
-  // Keep the UI up to date
-  updateUI(combinedState);
-  const newVariant = getSelectedVariant(combinedState);
-  const variantHasChanged =
-    (prevVariant && prevVariant.id) !== (newVariant && newVariant.id);
-  if (variantHasChanged) {
-    addToCart.onVariantSelect(newVariant);
-    productFlags.onVariantSelect(newVariant);
-    sizeSwatches.onVariantSelect(newVariant);
-  }
-  const color = combinedState.color;
-  if (color !== prevColor) {
+// When the color changes
+state.onChange(
+  ({ color }) => {
+    if (!color) return;
     sizeSwatches.onColorSelect(color);
     carousel.onColorSelect(color);
-  }
-  prevVariant = newVariant;
-  prevColor = color;
-};
+    // Model code can be updated without size
+    modelCode.onColorSelect(color);
+  },
+  state => [state.color]
+);
 
-/**
- * Updates all Product page custom UI components
- *
- * @param {State} state The UI state object
- */
-const updateUI = state => {
-  // Model code can be updated without size
-  modelCode.updateUI(state);
-
-  // Price can be updated even if no variant (color + size) has been selected
-  // @see: https://app.gitbook.com/@decathlonusa/s/shopify/product-feature/product-page#price
-  price.updateUI(state);
-
-  updateUrlVariant(state.variant && state.variant.id);
-
-  if (state.variant) {
-    // MasterSelect requires a full variant to update
-    masterSelect.updateUI(state);
-    /**
-     * The updateFulfillmentOptionsUI function will be undefined on page load,
-     * but will update on subsequent page actions
-     */
-    updateFulfillmentOptionsUI && updateFulfillmentOptionsUI(state);
-  }
-
-  updateOptionStates(state);
-};
+// When a swatch changes (color _or_ size)
+state.onChange(
+  state => {
+    const { color, size } = state;
+    const variant = getVariantFromState(state);
+    updateOptionStates({ color, size, variant });
+    // Price can be updated even if no variant (color + size) has been selected
+    // @see: https://app.gitbook.com/@decathlonusa/s/shopify/product-feature/product-page#price
+    price.onSwatchChange({ color, variant });
+  },
+  state => [state.size, state.color]
+);
 
 /**
  * Updates UI to reflect variant in URL
@@ -141,8 +134,6 @@ const selectUrlVariant = () => {
     }
   } else {
     colorSwatches.selectFirstSwatch();
-    // Trigger onOptionSelect to update all the modules with initial state of no variant being selected
-    onOptionSelect();
   }
   if (variant) return urlVariantId;
 };
@@ -170,10 +161,6 @@ const init = async () => {
    * updateUI function on page load, so call here as soon as it's defined
    */
   if (urlVariant) updateFulfillmentOptionsUI({ id: urlVariant });
-  /**
-   * Keep `updateUI()` last allowing all other initializations first
-   */
-  updateUI(getCombinedState());
 };
 
 // Call the async init to return the Promise and log errors

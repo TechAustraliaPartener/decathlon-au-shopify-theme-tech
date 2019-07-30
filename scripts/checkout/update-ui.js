@@ -97,12 +97,13 @@ const needCartStepLink = () => {
  */
 const cartBreadcrumbLinkExists = () => {
   const breadcrumbLinks = document.querySelectorAll(`.${BC_LINK}`);
-  for (const link of breadcrumbLinks) {
+  let hasLink = false;
+  breadcrumbLinks.forEach(link => {
     if (link.href.indexOf(CART_URL) > -1) {
-      return true;
+      hasLink = true;
     }
-  }
-  return false;
+  });
+  return hasLink;
 };
 
 /**
@@ -152,9 +153,9 @@ const buildCartBreadCrumb = () => {
 // Update logo links to link to the "home" page
 const setLogoLinkHome = () => {
   const logos = document.querySelectorAll(`.${LOGO}`);
-  for (const logo of logos) {
+  logos.forEach(logo => {
     logo.href = ROOT_URL;
-  }
+  });
 };
 
 /**

@@ -1,0 +1,12 @@
+/*
+ * State Classes
+ */
+
+/*
+ * 1. Prevents unwanted scrolling of content
+ */
+
+.de-content-is-fixed {
+  overflow: hidden; /* 1 */
+  position: fixed; /* 1 */
+}

@@ -1,9 +1,9 @@
+import 'nodelist-foreach-polyfill';
 import { DELIVERY_METHODS } from './constants';
 import STATE from './state';
 import bindUI from './bind-ui';
 import updateUI from './update-ui';
 import { getObjectFromSessionStorage } from '../utilities/storage';
-import '../utilities/foreach-polyfill';
 
 /**
  * Initialize custom JS functionality

@@ -1,0 +1,31 @@
+/*
+ * ProductTitleLockup
+ */
+
+ .de-ProductTitleLockup {
+  position: relative;
+}
+
+@media (min-width: $breakpoint-lg) {
+  .de-ProductTitleLockup {
+    border-bottom: $border-width-sm solid $color-silver;
+  }
+}
+
+@media (min-width: $breakpoint-lg) {
+  .de-ProductTitleLockup-rating {
+    bottom: 15px;
+    position: absolute;
+    right: 0;
+  }
+}
+
+.de-ProductTitleLockup-price {
+  display: none;
+}
+
+@media (min-width: $breakpoint-lg) {
+  .de-ProductTitleLockup-price {
+    display: flex;
+  }
+}

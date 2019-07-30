@@ -1,0 +1,14 @@
+/**
+ * The reusability of this element could be greatly improved.
+ * 1. Rename to something more generic
+ * 2. Consider moving the grayscale property to a modifier
+ * 3. Refactor to include `de-` prefix
+ */
+
+.ProductFeature-icon {
+  filter: grayscale(1);
+  flex: 0 1 content;
+  max-width: 40px;
+  min-width: 40px;
+  width: 40px;
+}

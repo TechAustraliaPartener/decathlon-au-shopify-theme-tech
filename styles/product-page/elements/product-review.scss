@@ -1,0 +1,166 @@
+/**
+ * ReviewMatrix
+ * @TODO
+ * 1. Consider refactoring/revising if `ReviewMatrix` has no styling
+ */
+
+.de-ReviewMatrix {
+  width: 100%;
+}
+
+.de-CustomerReview-filter {
+  align-items: center;
+  display: flex;
+  width: 100%;
+  border: 1px 0 transparent;
+}
+
+// color vars
+.de-CustomerReview-filter.de-is-active {
+  box-shadow: 0 $border-width-sm 0 #d8d8d8,
+              0 (-$border-width-sm) 0 #d8d8d8;
+  font-weight: bold;
+}
+
+.de-CustomerReview-filter:focus {
+  outline: none;
+}
+
+
+/**
+ * @TODO:
+ * 1. Remove reliance on fixed pixel value
+ */
+
+.de-ReviewMatrix-graph {
+  display: flex;
+  align-items: center;
+  height: 25px; /* 1 */
+  width: 100%;
+}
+
+/**
+ * ReviewsViewControls
+ * A container for controlling presentation of filter attributes and sorting UI
+ */
+
+ @media (min-width: $breakpoint-lg) {
+  .de-ReviewsViewControls {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.de-ReviewsViewControls-sort {
+  align-items: center;
+  display: flex;
+}
+
+.de-CustomerReviews-starContainer {
+  align-items: center;
+  display: flex;
+}
+
+.de-CustomerReviews-count {
+  align-items: center;
+  display: flex;
+  width: 48px;
+}
+
+/**
+ * @pattern ReviewMatrix
+ * Consider converting this into a pattern in the future.
+ */
+
+.de-CustomerReview {
+  border-bottom: $border-width-sm solid $color-silver;
+}
+
+.de-CustomerReview.de-is-transitioning {
+  opacity: 0.5;
+}
+
+.de-CustomerReview:last-of-type {
+  border-bottom: 0;
+}
+
+/**
+ * 1. The second step in the Decathlon pattern library modular scale
+ */
+
+.de-CustomerReview-response {
+  border-left: $border-width-lg solid $color-lime;
+  padding-left: 1.424rem; /* 1 */
+}
+
+.de-CustomerReview-title {
+  align-items: baseline;
+  display: flex;
+  flex-direction: column;
+}
+
+.de-is-inPageFlow .de-CustomerReview-title {
+  @media (min-width: $breakpoint-lg) {
+    flex-direction: row;
+  }
+}
+
+.de-is-inPageFlow .de-ReviewsContainer-reviewSummary {
+
+  @media (min-width: $breakpoint-md) {
+    flex-basis: auto;
+    width: 50%;
+  }
+
+  @media (min-width: $breakpoint-lg) {
+    padding-right: 1rem;
+    width: 33.33333%;
+  }
+}
+
+/**
+ * 1. `2.0227` is the sixth step in the modular scale in use by the pattern library.
+ */
+
+.de-is-inPageFlow .de-ReviewsContainer-reviews {
+
+  @media (min-width: $breakpoint-md) {
+    flex-basis: auto;
+    padding-left: 2.027rem; /* 1 */
+    padding-top: 0;
+    width: 50%;
+  }
+
+  @media (min-width: $breakpoint-lg) {
+    width: 66.66667%;
+  }
+}
+
+.de-ReviewsContainer-featuredImage {
+  display: none;
+}
+
+.de-is-inPageFlow .de-ReviewsContainer-featuredImage {
+  @media (min-width: $breakpoint-md) {
+    display: block;
+    width: 100%;
+  }
+}
+
+.de-is-inPageFlow .de-ReviewMatrix-reviewBtn {
+  display: block;
+}
+.de-is-drawerOpen .de-ReviewMatrix-reviewBtn {
+  display: none;
+}
+
+/*
+ * Requires attention
+ *
+ * @TODO
+ * 1. Investiage opportunities for eliminating this class
+ */
+
+ .de-DecathlonChatBubble {
+  width: 124px;
+}

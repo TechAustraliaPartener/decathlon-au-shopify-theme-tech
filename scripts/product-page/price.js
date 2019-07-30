@@ -13,9 +13,6 @@ import {
   getVariantOptions
 } from './product-data';
 
-let lastSelectedColor;
-let lastVariantSku;
-
 // Multiple price elements exist in the DOM because there
 // are different ones for smaller vs larger viewports, use `querySelectorAll`
 const productPriceEls = document.querySelectorAll(`.${PRICE_CLASS}`);
@@ -82,16 +79,10 @@ const render = ({ priceEls, displayPrice }) => {
  *
  * @param {Variant} variant
  */
-const handleVariantSelection = variant => {
-  const { sku, price, compare_at_price: compareAtPrice } = variant;
-
-  if (sku === lastVariantSku) {
-    // Do nothing if the same variant was selected
-    return;
-  }
-
-  lastVariantSku = sku;
-
+const handleVariantSelection = ({
+  price,
+  compare_at_price: compareAtPrice
+}) => {
   render({
     priceEls: productPriceEls,
     displayPrice: formatPrice(price)
@@ -109,13 +100,6 @@ const handleVariantSelection = variant => {
  * @param {string} color
  */
 const handleColorSelection = color => {
-  if (color === lastSelectedColor) {
-    // Do nothing if the same color is selected
-    return;
-  }
-
-  lastSelectedColor = color;
-
   const prices = getPricesByVariantColor(color);
   const minPrice = Math.min(...prices);
   const maxPrice = Math.max(...prices);
@@ -139,10 +123,10 @@ const handleColorSelection = color => {
  * Updates the price display with price and sale price if necessary
  *
  * @param {object} obj The state data object
- * @param {string} obj.color Currently selector color
- * @param {Variant} obj.variant Currently selected variant
+ * @param {string | undefined} obj.color Currently selector color
+ * @param {Variant | undefined} obj.variant Currently selected variant
  */
-export const updateUI = ({ color, variant }) => {
+export const onSwatchChange = ({ color, variant }) => {
   if (!isProductPricingVaried()) {
     // Do nothing if product variant prices do not vary.
     // Whatever is rendered from the server is the correct price

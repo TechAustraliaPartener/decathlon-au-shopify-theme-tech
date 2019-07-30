@@ -1,0 +1,32 @@
+/**
+ * Product Buy Box
+ * 1. 50vw is a magical number that allows the add to cart button to
+ * appear "above the fold" with a high percentage of predictability
+ *
+ * @TODO
+ * 1. This can probably be refactored into something "smarter" that takes into
+ *    account other product "top shelf components" such as the Product
+ *    carousel. `ProductTopShelf` might be a more appropriate approach.
+ */
+
+ @media (min-width: $breakpoint-lg) {
+  .de-ProductBuyBox {
+    flex: 1 0 50vw;
+    padding-left: 2rem;
+  }
+
+  .ProductMoreInfo {
+    border-bottom: $border-width-lg solid $color-lime;
+  }
+}
+
+/**
+ * 1. 43.333% is a magical number that allows the add to cart button to
+ * appear "above the fold" with a high percentage of predictability
+ */
+
+@media (min-width: $breakpoint-xl) {
+  .de-ProductBuyBox {
+    flex: 1 0 43.333%; /* 1 */
+  }
+}

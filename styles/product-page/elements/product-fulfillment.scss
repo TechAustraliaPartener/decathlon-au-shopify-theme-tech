@@ -1,0 +1,21 @@
+/**
+ * Product Fulfillment Options
+ *
+ * @TODO
+ * 1. All of this could likely be achieved with utility classes. Consider
+ *    refactoring the markup to eliminate the need for these selectors.
+ */
+
+ .de-ProductFulfillment {
+  border-bottom: 0;
+}
+
+@media (min-width: $breakpoint-lg) {
+  .de-ProductFulfillment {
+    border-bottom: $border-width-lg solid $color-lime;
+  }
+}
+
+.de-ProductFulfillment-option {
+  padding: 0.35rem 0;
+}

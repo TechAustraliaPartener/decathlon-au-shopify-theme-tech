@@ -63,6 +63,7 @@ const addToCartButtonTextEl = document.querySelector(
  * @property {boolean} isInAddToCartErrorState
  * @property {string | null} shopifyErrorMessage
  * @property {boolean} isProgrammaticAddToCart
+ * @property {boolean} isLoading Whether the add to cart submit is loading
  */
 
 /**
@@ -72,6 +73,7 @@ const DEFAULT_MODULE_STATE = {
   module: MODULE_NAME,
   currentVariant: null,
   isProgrammaticAddToCart: false,
+  isLoading: false,
   ...DEFAULT_UI_STATE
 };
 
@@ -114,10 +116,14 @@ const addToCartProgrammatically = quantity => {
   addToCartButtonEl.click();
 };
 
+$('body').on('addItemSuccess.ajaxCart', () => {
+  state.updateState({ isLoading: false });
+});
+
 /**
  * @todo Remove jQuery dependency, if possible
  */
-$('body').on('addItemError.ajaxCart', function(e, { description }) {
+$('body').on('addItemError.ajaxCart', (e, { description }) => {
   const currentVariant = state.getState().currentVariant;
 
   if (!description || !currentVariant) return;
@@ -126,7 +132,8 @@ $('body').on('addItemError.ajaxCart', function(e, { description }) {
   state.updateState({
     ...DEFAULT_MODULE_STATE,
     ...getShopifyErrorUIState(description),
-    currentVariant
+    currentVariant,
+    isLoading: false
   });
 
   if (isErrorScenario1(description)) {
@@ -143,8 +150,6 @@ $('body').on('addItemError.ajaxCart', function(e, { description }) {
      */
     addToCartProgrammatically(getQuantityFromMessage(description));
   }
-
-  render(state.getState());
 });
 
 /**
@@ -175,6 +180,11 @@ const onAddToCartClick = event => {
     if (BISPopoverEmailInputEl && customer) {
       BISPopoverEmailInputEl.value = customer.email;
     }
+  } else {
+    setTimeout(() => {
+      // Display loading state, but only after click event has propagated
+      state.updateState({ isLoading: true });
+    });
   }
 
   /**
@@ -214,7 +224,8 @@ export const onVariantSelect = newVariant => {
 const render = ({
   isAddToCartButtonDisabled,
   validationText,
-  addToCartButtonText
+  addToCartButtonText,
+  isLoading
 }) => {
   /**
    * Give priority to the error messages. This ensures the UI gets updated
@@ -227,8 +238,11 @@ const render = ({
    * From a UX perspective, group the button and button text check together
    */
   if (!addToCartButtonEl || !addToCartButtonTextEl) return;
-  addToCartButtonEl.disabled = isAddToCartButtonDisabled;
-  addToCartButtonTextEl.textContent = addToCartButtonText;
+  addToCartButtonEl.disabled = isAddToCartButtonDisabled || isLoading;
+  const buttonText = isLoading ? 'Adding to cart' : addToCartButtonText;
+  addToCartButtonTextEl.textContent = buttonText;
+  // We are setting aria-label so that screen readers do not read the all-caps text as individual characters
+  addToCartButtonTextEl.setAttribute('aria-label', buttonText);
 };
 
 state.onChange(render);

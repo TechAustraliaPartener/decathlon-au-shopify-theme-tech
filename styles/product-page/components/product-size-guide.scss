@@ -1,0 +1,43 @@
+/**
+ * Size Guide
+ */
+
+ @media (min-width: $breakpoint-md) {
+  .de-SizeGuide .de-is-inPageFlow {
+    display: none;
+  }
+}
+
+.SizeGuide-table {
+  overflow-x: auto;
+
+  .esc-size-guide--row:first-child {
+    background: $color-silver;
+    font-family: "avalon_mediumbold","HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+
+  .esc-size-guide--row:nth-child(2n+3) {
+    background: #f9f9f9;
+  }
+
+  .esc-size-guide--cell,
+  .esc-size-guide--heading {
+    text-align: center;
+  }
+
+  .esc-size-guide--heading {
+    text-transform: uppercase;
+  }
+
+  /**
+   * @TODO
+   * 1. It it best to avoid tag selectors when possible. Investigate
+   * opportunities for replacing `p` with class name selector
+   */
+
+  p,
+  .esc-size-guide--title,
+  .esc-size-guide--cell-type--text {
+    font-size: 16px;
+  }
+}

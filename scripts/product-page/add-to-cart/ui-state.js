@@ -26,9 +26,7 @@ import {
  * @property {string | null} shopifyErrorMessage
  */
 
-/**
- * @type {UIState}
- */
+/** @type {UIState} */
 export const DEFAULT_UI_STATE = {
   addToCartButtonText: PRODUCT_PAGE_COPY.ADD_TO_CART,
   validationText: '',

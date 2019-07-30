@@ -1,0 +1,29 @@
+/**
+ * Product Page Wrapper
+ */
+
+ .de-Wrapper {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/**
+ * Full width Wrapper modifier
+ *
+ * Full width container inside a limited width parents. No calc() needed.
+ * @see https://css-tricks.com/full-width-containers-limited-width-parents/#article-header-id-6
+ *
+ * 1. Offset by .01 so that media query range does not overlap with other
+ *    media queries
+ */
+
+@media (max-width: $breakpoint-lg - .01 /* 1 */) {
+  .de-Wrapper--fullwidth {
+    left: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    position: relative;
+    right: 50%;
+    width: 100vw;
+  }
+}

@@ -62,7 +62,12 @@
     </div>
     <span
       class="de-u-textRed de-u-lineHeight2 de-u-textGrow2
-             js-de-validation-message">
+             js-de-validation-message"
+      aria-live="polite"
+    >
+      {% comment %}
+        Validation messaging updated via JS
+      {% endcomment %}
     </span>
   </div>
   <div
@@ -99,10 +104,12 @@
         class="de-Button btn btn--fill
               de-u-sizeFull de-u-textSizeBase
               js-de-AddToCart-btn addToCart">
-        <span class="de-u-hiddenVisually de-u-textLower">
-          Add this product to your cart.
-        </span>
-        <span id="AddToCartText" class="js-de-AddToCart-btn-text" aria-hidden="true">
+        <span
+          id="AddToCartText"
+          class="js-de-AddToCart-btn-text"
+          aria-live="assertive"
+          aria-label="{{ 'products.product.add_to_cart' | t }}"
+        >
           {{ 'products.product.add_to_cart' | t }}
         </span>
       </button>

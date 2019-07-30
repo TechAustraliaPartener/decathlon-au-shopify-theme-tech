@@ -1,0 +1,29 @@
+/**
+ * ProductQuantity
+ *
+ * 1. Adds `display: flex` for browsers (IE11) that don't support
+ *    `display: grid'
+ * 2. Adds `display: grid` for modern browsers
+ * 3. `72px` is the desired visual width for the quantity input
+ * 4. Allows the height of the input to match the button
+ * 5. Enables button to fill remaining space for browsers (IE11) that don't
+ *    support `display: grid`
+ * 6. `16px` is the desired visual gap between the quantity input and the
+ *    Add to Cart button. Also 2x the `SwatchObjects-item` gap
+ */
+
+ .de-ProductQuantity {
+  flex: 0 1 72px; /* 3 */
+}
+
+.de-ProductQuantity-input {
+  border: $border-width-md solid $color-gray;
+  height: 100%; /* 4 */
+}
+
+@media (min-width: $breakpoint-md) {
+  .de-ProductAddToCart {
+    flex: 1 0 auto; /* 5 */
+    margin-left: 16px; /* 6 */
+  }
+}

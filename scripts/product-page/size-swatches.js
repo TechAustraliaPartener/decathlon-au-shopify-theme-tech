@@ -19,7 +19,7 @@ import { getExistingSizesFromColor } from './product-data';
 /**
  * @typedef State
  * @property {string | null | undefined} size
- * @property {HTMLElement} selectedOption
+ * @property {HTMLElement | undefined} selectedOption
  * @property {Variant | null | undefined} variant
  * @property {string | null | undefined} color
  */
@@ -37,8 +37,6 @@ const state = createState(initialState);
 /**
  * Module-specific constants
  */
-const MODULE_NAME = 'SizeSwatches';
-const SELECT_EVENT = `${MODULE_NAME}:select`;
 const CLICK_EVENT = 'click';
 
 /**
@@ -55,23 +53,6 @@ export const swatchOptionEls = document.querySelectorAll(
 );
 const $SizeSwatchesOptions = $(swatchOptionEls);
 const $SizeInfo = $(`.${JS_PREFIX}SizeInfo`);
-
-/**
- * Trigger $SizeSwatches specific events
- *
- * @param {Object} state The current state
- * @fires SizeSwatches:select
- */
-const notifyListeners = state => {
-  /**
-   * The SizeSwatches "select" event
-   *
-   * @event SizeSwatches:select
-   * @type {object}
-   * @property {string} size The size value selected
-   */
-  $Swatches.trigger(SELECT_EVENT, state);
-};
 
 /**
  * Updates the selected size UI state
@@ -120,6 +101,10 @@ export const onColorSelect = color => {
   state.updateState({ color });
 };
 
+/** @param {(size: string) => void} cb */
+export const handleSizeSelect = cb =>
+  state.onChange(({ size }) => cb(size), state => [state.size]);
+
 /**
  * Handler for when a size choice is made
  *
@@ -127,14 +112,13 @@ export const onColorSelect = color => {
  * @this HTMLElement The triggered size swatch option element
  */
 const onSizeSelect = function() {
-  const newState = state.updateState({
+  state.updateState({
     // @todo Consider removing jQuery dependency
     // @ts-ignore
     size: $(this).val(),
     selectedOption: this
   });
 
-  notifyListeners(newState);
   resetMissingSizeInfo();
 };
 
@@ -145,12 +129,6 @@ export const onVariantSelect = variant => {
   state.updateState({ variant });
   resetMissingSizeInfo();
 };
-
-/**
- * Retrieves the currently selected size
- * @returns {string}
- */
-export const getSelected = () => state.getState().size;
 
 const showMissingSizeInfo = () => {
   $SizeInfo.removeClass(DEFAULT_TEXT_COLOR);

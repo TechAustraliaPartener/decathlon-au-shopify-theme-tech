@@ -5,8 +5,7 @@
  */
 
 import { reviewsSortSelect } from './query-ui';
-import { setReviewsStateForSort, getIsDefaultQuery } from './state';
-import { resetDefaultReviewsDisplay, loadNewReviews } from './update-ui';
+import { setReviewsStateForSort } from './state';
 
 /**
  * Takes sorting parameters from data attributes on the sort select's options
@@ -29,16 +28,6 @@ const reviewsSortHandler = event => {
     sort: selectedOption && selectedOption.dataset.sortType,
     direction: selectedOption && selectedOption.dataset.sortDirection
   });
-  /**
-   * If the default sort is selected (compared with the page-load default state),
-   * call to reset the default display, using pre-loaded reviews. Otherwise,
-   * reset the UI and call to get new reviews using a different sort query.
-   */
-  if (getIsDefaultQuery()) {
-    resetDefaultReviewsDisplay();
-  } else {
-    loadNewReviews();
-  }
 };
 
 /**

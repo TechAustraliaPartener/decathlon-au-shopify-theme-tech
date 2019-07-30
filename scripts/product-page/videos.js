@@ -23,7 +23,9 @@ $(window).on('load', function() {
   const $posterImages = $('.js-de-slick--videos .vjs-poster');
   $posterImages.each(function(index) {
     const count = index + 1;
-    $(`.js-de-slick--videos-thumbnails .js-de-thumb-${count}`).attr(
+    $(
+      `.js-de-slick--videos-thumbnails .js-de-AdditionalVideos-thumb-${count}`
+    ).attr(
       'src',
       $(this)
         .css('background-image')

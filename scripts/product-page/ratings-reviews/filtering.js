@@ -8,11 +8,6 @@ import {
 } from './constants';
 import { delegateEvent } from '../../utilities/event-delegator';
 import { setReviewsStateForFilter, clearFilter } from './state';
-import {
-  loadNewReviews,
-  resetSort,
-  resetDefaultReviewsDisplay
-} from './update-ui';
 
 /**
  * Handler for clicks on rows in the Reviews Ratings Matrix
@@ -30,8 +25,6 @@ const reviewFilterHandler = function() {
     return;
   }
   setReviewsStateForFilter(rating);
-  resetSort();
-  loadNewReviews();
 };
 
 /**
@@ -50,12 +43,6 @@ export const reviewsFilteringInit = () => {
     `.${REVIEW_CLEAR_FILTER},.${REVIEW_SUMMARY_CLEAR_FILTER}`
   );
   clearReviewFilterButtons.forEach(btn =>
-    btn.addEventListener('click', () => {
-      clearFilter();
-      // ClearFilter also resets the sort,
-      // so it will always match the reviews that were shown on page load,
-      // so we show those
-      resetDefaultReviewsDisplay();
-    })
+    btn.addEventListener('click', clearFilter)
   );
 };

@@ -1,0 +1,34 @@
+/**
+ * Legacy style overrides
+ */
+
+/*
+ * Override existing style property with a higher level of specificity.
+ * A visual bug is present due to styles associated with styles attached to
+ * `.template-product .addToCartForm::after` located in timber.scss.
+ * We are overriding this style here with the `!important` tag as a last
+ * resort effort to fix the issue without modifying the offending stylesheet
+ * with our own prefixed class name.
+ */
+
+ .template-product .de-addToCartForm::after {
+  display: none;
+}
+
+/*
+ * Legacy breadcrumb styles
+ *
+ * 1. The legacy breadcrumb styles inherit an undesirable margin-bottom
+ *    property when in use on product pages. The following `1em` value sets
+ *    the desired visual gap between the breadcrumb component and the buy box.
+ */
+
+.template-product .breadcrumb {
+  margin-bottom: 1em;
+}
+
+.template-product .addToCart {
+  float: none;
+  margin-right: 0;
+}
+

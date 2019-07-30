@@ -1,0 +1,39 @@
+/**
+ * ProductInfoSection
+ */
+
+ .de-ProductInfoSection {
+  border-top: $border-width-xl solid $color-silver;
+}
+
+.de-ProductInfoSection:last-of-type {
+  border-bottom: $border-width-xl solid $color-silver;
+}
+
+@media (min-width: $breakpoint-md) {
+  .de-ProductInfoSection {
+    border: 0;
+  }
+}
+
+.de-ProductInfoSection--silver {
+  background-color: $color-white;
+}
+
+@media (min-width: $breakpoint-md) {
+  .de-ProductInfoSection--silver {
+    background-color: $color-silver;
+  }
+}
+
+@media (min-width: $breakpoint-md) {
+  .de-ProductInfoSection--withBorderTop {
+    border-top: $border-width-md solid $color-silver;
+  }
+}
+
+.de-ProductInfoSection-title {
+  border-bottom: $border-width-lg solid $color-lime;
+  margin: 0;
+  padding-bottom: 5px;
+}

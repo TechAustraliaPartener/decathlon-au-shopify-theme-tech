@@ -1,4 +1,5 @@
 /** @prettier */
+// @ts-nocheck
 const clean = require('gulp-clean');
 const gulp = require('gulp');
 const path = require('path');
@@ -6,12 +7,15 @@ const rename = require('gulp-rename');
 const replace = require('gulp-replace');
 const sequence = require('gulp-sequence');
 const spawn = require('cross-spawn');
+const sass = require('gulp-dart-sass');
 
-const c4ScriptsTask = require('./scripts/build')(gulp);
+const scriptsTask = require('./scripts/build')(gulp);
 
 const PATTERNS_PATH = 'patterns/';
 const ASSETS_PATH = 'assets/';
 const SNIPPETS_PATH = 'snippets/';
+const STYLES_PATH = 'styles/';
+const BUILT_PREFIX = 'built-';
 
 const patternCwd = path.join(__dirname, PATTERNS_PATH);
 
@@ -152,19 +156,32 @@ gulp.task(
   )
 );
 
-/**
- * watch task
- */
+gulp.task('styles', function() {
+  return gulp
+    .src([`${STYLES_PATH}/product-page/index.scss`], { base: STYLES_PATH })
+    .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
+    .pipe(
+      rename(path => {
+        // Rename from styles/asdf/something.scss to built-asdf-styles.css
+        path.basename = `${BUILT_PREFIX}${path.dirname}`;
+        path.extname = '.css';
+        path.dirname = './';
+      })
+    )
+    .pipe(gulp.dest(ASSETS_PATH));
+});
+
 gulp.task('watch', function() {
-  gulp.watch('scripts/**/*.js', [c4ScriptsTask]);
+  gulp.watch('scripts/**/*.js', [scriptsTask]);
+  gulp.watch(`${STYLES_PATH}**/*.scss`, ['styles']);
 });
 
 /**
- * default gulp task - activates all watch tasks
+ * Default gulp task - activates all watch tasks
  */
 gulp.task('default', ['watch']);
 
 /**
- * build task - builds all sprites, sass, and javascript
+ * Build task - activates all build tasks
  */
-gulp.task('build', [c4ScriptsTask]);
+gulp.task('build', [scriptsTask, 'styles']);

@@ -17,7 +17,7 @@
   {% endunless %}
 {% endfor %}
 
-<section class="ProductInformation{% if iterator > 1 %} ProductInformation--multispec{% endif %}">
+<section class="de-ProductInformation{% if iterator > 1 %} de-ProductInformation--multispec{% endif %}">
   {%- capture content -%}
     {%- for specs in productinfo -%}
       {%- assign spec = specs[1] -%}

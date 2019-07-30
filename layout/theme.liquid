@@ -31,7 +31,6 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-
   {% comment %}Favicon{% endcomment %}
   <link rel="apple-touch-icon" sizes="180x180" href="{{ 'apple-touch-icon.png' | asset_url }}">
   <link rel="icon" type="image/png" href="{{ 'favicon-32x32.png' | asset_url }}" sizes="32x32">
@@ -79,7 +78,7 @@
   <meta name="theme-color" content="#0080c4">
 
 
-  <!-- Title and description ================================================== -->
+  <!-- Title and description ============================================= -->
   {% if page_title == 'order-newstore' %}
     <title>
     Order | {{shop.name}}
@@ -101,7 +100,6 @@
   <meta name="theme-color" content="{{ settings.color_primary }}">
 
   <!-- CSS ================================================== -->
-
   {{ 'fonts.scss.css' | asset_url | stylesheet_tag }}
   {% include 'slick-styles' %}
   {% if template == "index" %}
@@ -109,23 +107,17 @@
   {% else %}
   {{ 'timber.scss.css' | asset_url | stylesheet_tag }}
   {% endif %}
-  {{ 'fancybox.scss.css' | asset_url | stylesheet_tag }}
-  {{ 'skill-level.scss.css' | asset_url | stylesheet_tag }}
-  {{ 'header.css' | asset_url | stylesheet_tag }}
   {{ 'adeptMind.scss.css' | asset_url | stylesheet_tag }}
   {{ 'legacySupport.scss.css' | asset_url | stylesheet_tag }}
   {{ 'cadence.scss.css' | asset_url | stylesheet_tag }}
   {% if template == "product" and product.metafields.global.features != blank %}
-    {{ 'product.scss.css' | asset_url | stylesheet_tag }}
-    {{ 'vendor-brightcove-product.scss.css' | asset_url | stylesheet_tag }}
+    {{ 'built-product-page.css' | asset_url | stylesheet_tag }}
   {% endif %}
-
   {% comment %}
     @TODO
     1. Determine when this was commented out and why.
     {{ 'zoom.css' | asset_url | stylesheet_tag }}
   {% endcomment %}
-
   {{ 'patterns-toolkit.css' | asset_url | stylesheet_tag }}
 
   <!-- Header hook for plugins ================================================== -->
@@ -242,7 +234,6 @@
 
 
   {{ 'timber.js' | asset_url | script_tag }}
-
   {{ 'built-persistent-cart.js' | asset_url | script_tag }}
 
   {% comment %}{% include '_live-search' %}{% endcomment %}
@@ -265,8 +256,6 @@
   {% endcomment %}
   {% if settings.ajax_cart_method == "drawer" %}
     {{ 'handlebars.min.js' | asset_url | script_tag }}
-    {{ 'fancybox.js' | asset_url | script_tag }}
-    {{ 'jquery.fancybox-media.js' | asset_url | script_tag }}
     {% include 'ajax-cart-template' %}
     {{ 'ajax-cart.js' | asset_url | script_tag }}
     <script>
