@@ -15,6 +15,7 @@
       <div class="input-group newsletterSignupForm">
         <div class="footerNewsletter-dropdown-wrap input-group-field">
           {% include 'state-dropdown', dropdown_list: true %}
+          {% include 'icon-down-arrow' with class: 'de-newsletter-arrow' %}
         </div>
 
         <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ 'general.newsletter_form.newsletter_email' | t }}" name="EMAIL" id="mail" class="input-group-field" aria-label="{{ 'general.newsletter_form.newsletter_email' | t }}" autocorrect="off" autocapitalize="off">

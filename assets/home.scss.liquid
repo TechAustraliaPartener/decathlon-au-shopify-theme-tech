@@ -155,28 +155,8 @@ $baseFontSize: 14px; // Henceforth known as 1em
 $buttonFontStack: 'avalonbold','HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $secondaryFontStack: $buttonFontStack;
 
-@font-face {
-  font-family: 'icons';
-  src: url('{{ "icons.eot" | asset_url }}');
-  src: url('{{ "icons.eot" | asset_url }}#iefix') format("embedded-opentype"),
-       url('{{ "icons.woff" | asset_url }}') format("woff"),
-       url('{{ "icons.ttf" | asset_url }}') format("truetype"),
-       url('{{ "icons.svg" | asset_url }}#timber-icons') format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
 $socialIconFontStack: 'icons';
 
-@font-face {
-  font-family: 'Font Awesome';
-  src: url('{{ "fontawesome-webfont.eot" | asset_url }}');
-  src: url('{{ "fontawesome-webfont.eot" | asset_url }}#iefix') format("embedded-opentype"),
-       url('{{ "fontawesome-webfont.woff" | asset_url }}') format("woff"),
-       url('{{ "fontawesome-webfont.ttf" | asset_url }}') format("truetype"),
-       url('{{ "fontawesome-webfont.svg" | asset_url }}#timber-icons') format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
 $fontAwesome: 'Font Awesome';
 
 
@@ -2248,22 +2228,21 @@ body.is-rollingUpBanner .popup { margin-top: -100vh; }
 }
 .blue-band .grid__item:first-child { display: block; width: 100%; }
 .blue-band .grid__item { width: 25%; }
-.blue-band .grid__item .blue-band-icon i { opacity: 0.5; @include transition(); }
-.blue-band .grid__item:hover .blue-band-icon i { opacity: 0.8; }
-.blue-band .grid__item .blue-band-icon i:after {
-  content: '\f0d8';
+.blue-band .grid__item .blue-band-icon { opacity: 0.5; @include transition(); }
+.blue-band .grid__item:hover .blue-band-icon { opacity: 0.8; }
+.blue-band .grid__item .blue-band-icon:after {
+  content: url('{{ 'icon-up-triangle.svg' | asset_url }}');
+  width: 24px;
   position: absolute;
-  left: 18%;
   bottom: -2em;
   z-index: 100;
-  font-family: $fontAwesome;
   color: darken($blue, 10%);
   font-size: 50px;
   opacity: 0;
  //@include transition(all 1s ease-in-out);
   z-index: 0;
 }
-.blue-band .grid__item.active .blue-band-icon i {
+.blue-band .grid__item.active .blue-band-icon {
   position: relative;
   opacity: 1;
   &:after {
@@ -2602,15 +2581,39 @@ body.is-rollingUpBanner .popup { margin-top: -100vh; }
 .slick-next {
   right: 0;
   &:before {
-    content: '\f105';
+    content: url('{{ 'icon-slick-arrow.svg' | asset_url }}');
+    transform: rotateY(180deg);
+    position: absolute;
+    top: 15%;
+    right:35%;
+    width: 15px;
   }
 }
 
 .slick-prev {
   left: 0;
   &:before {
-    content: '\f104';
+    content: url('{{ 'icon-slick-arrow.svg' | asset_url }}');
+    position: absolute;
+    top: 15%;
+    left:30%;
+    width: 15px;
   }
+}
+
+.banner--slideshow {
+.slick-next {
+  &:before {
+    content: url('{{ 'icon-slick-arrow-white.svg' | asset_url }}');
+    transform: rotateY(180deg);
+  }
+}
+
+.slick-prev {
+  &:before {
+    content: url('{{ 'icon-slick-arrow-white.svg' | asset_url }}');
+  }
+}
 }
 
 .banner--slideshow .slick-dots li.slick-active button:before,
@@ -2719,7 +2722,7 @@ body.js-drawer-open {
   max-width: 100%;
 }
 
-.slick-dots li button:before { font-size: 12px; }
+.slick-dots li button:before { font-size: 38px; }
 
 /* utility and flex */
 .u-displayNone { display: none; }
@@ -2951,8 +2954,8 @@ h6, .h6 { font-size: $space*1.4; }
 
 .instagramProductFeed-loadMore,
 .slick-arrow {
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   &:before { font-size: 50px; }
 }
 
@@ -3319,8 +3322,8 @@ body.is-shortNav .header-cartWrapper:before { height: 45px; }
 .blue-band .grid__item:first-child { display: inline-block; width: 20%; padding-bottom: 0; }
 .blue-band-content { display: inline-block; position: relative; background: transparent; }
 .blue-band .grid__item .blue-band-content, .blue-band .grid__item.active .blue-band-content  { display: inline-block; position: relative; background: transparent; opacity: 1; bottom: 0; }
-.blue-band .grid__item .blue-band-icon i,
-.blue-band .grid__item.active .blue-band-icon i  {
+.blue-band .grid__item .blue-band-icon,
+.blue-band .grid__item.active .blue-band-icon  {
   opacity: 1;
   &:after {
     content: '';
@@ -3328,7 +3331,7 @@ body.is-shortNav .header-cartWrapper:before { height: 45px; }
 }
 .blue-band .grid__item .blue-band-icon i.ico--100:before { position: relative;  }
 
-.blue-band .grid__item:hover .blue-band-icon i { opacity: 1; }
+.blue-band .grid__item:hover .blue-band-icon { opacity: 1; }
 .blue-band-icon {
   display: inline-block;
   vertical-align: middle;
@@ -3469,8 +3472,8 @@ body.is-shortNav .header-cartWrapper:before { height: 45px; }
 					opacity: 1;
 				}
 			}
-			.blue-band-icon i:after {
-				bottom: -34px;
+			.blue-band-icon:after {
+				bottom: -54px;
 
 			}
 
