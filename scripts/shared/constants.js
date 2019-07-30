@@ -1,6 +1,12 @@
 // @ts-check
 
 /**
+ * ENVIRONMENT
+ */
+
+export const PROD_HOSTNAME = 'www.decathlon.com';
+
+/**
  * PREFIXES
  */
 

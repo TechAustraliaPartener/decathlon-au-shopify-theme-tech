@@ -28,9 +28,16 @@ import {
 import { getCurrentLocation } from '../../../utilities/location';
 import { showElements, hideElements, elementExists } from '../../ui-helpers';
 import config from '../../config';
+import sharedConfig from '../../../shared/config';
 import fetch from 'unfetch';
 
-const { CLASSES, SHOP_ID, PICKUP_SHIPPING_METHOD, STOREFRONT_API_KEY } = config;
+const { CLASSES, SHOP_ID, PICKUP_SHIPPING_METHOD } = config;
+const { STOREFRONT_API } = sharedConfig;
+
+const gqlHeaders = {
+  'content-type': 'application/json',
+  [STOREFRONT_API.HEADER_NAME]: STOREFRONT_API.KEY
+};
 
 const clearShippingForm = () => {
   company.value = '';
@@ -208,10 +215,7 @@ const updateCheckout = () => {
   // Graphql update
   fetch(`/api/graphql`, {
     method: 'POST',
-    headers: {
-      'x-shopify-storefront-access-token': STOREFRONT_API_KEY,
-      'content-type': 'application/json'
-    },
+    headers: gqlHeaders,
     /* eslint-disable graphql/template-strings, no-useless-escape */
     body: `{\"query\":\"\\n\\nmutation checkoutShippingAddressUpdateV2($shippingAddress: MailingAddressInput!, $checkoutId: ID!) {\\n  checkoutShippingAddressUpdateV2(shippingAddress: $shippingAddress, checkoutId: $checkoutId) {\\n    checkoutUserErrors {\\n      code\\n      field\\n      message\\n    }\\n    checkout {\\n      id\\n      webUrl\\n      shippingAddress {\\n        company\\n        firstName\\n        lastName\\n        address1\\n        province\\n        country\\n        zip\\n      }\\n    }\\n  }\\n}\",\"variables\":{\"shippingAddress\":{\"company\":\"${selectedStoreData.name}\",\"lastName\":\"${selectedStoreData.lastName}\",\"firstName\":\"${selectedStoreData.firstName}\",\"address1\":\"${selectedStoreData.street1}\",\"province\":\"${selectedStoreData.state}\",\"country\":\"United States\",\"zip\":\"${selectedStoreData.zip}\",\"city\":\"${selectedStoreData.city}\"},\"checkoutId\":\"${checkoutGID}\"},\"operationName\":\"checkoutShippingAddressUpdateV2\"}`
     /* eslint-enable */
@@ -232,10 +236,7 @@ const updateCheckout = () => {
 const updateEmail = (checkoutGID, checkoutKey) => {
   fetch(`/api/graphql`, {
     method: 'POST',
-    headers: {
-      'x-shopify-storefront-access-token': STOREFRONT_API_KEY,
-      'content-type': 'application/json'
-    },
+    headers: gqlHeaders,
     /* eslint-disable graphql/template-strings, no-useless-escape */
     body: `{\"query\":\"mutation checkoutEmailUpdateV2($checkoutId: ID!, $email: String!) {\\n  checkoutEmailUpdateV2(checkoutId: $checkoutId, email: $email) {\\n    checkout {\\n      id\\n      webUrl\\n    }\\n    checkoutUserErrors {\\n      code\\n      field\\n      message\\n    }\\n  }\\n}\",\"variables\":{\"email\":\"${userEmail.value}\",\"checkoutId\":\"${checkoutGID}\"},\"operationName\":\"checkoutEmailUpdateV2\"}`
     /* eslint-enable */
@@ -258,10 +259,7 @@ const updateEmail = (checkoutGID, checkoutKey) => {
 const updateShippingMethod = (checkoutGID, checkoutKey) => {
   fetch(`/api/graphql`, {
     method: 'POST',
-    headers: {
-      'x-shopify-storefront-access-token': STOREFRONT_API_KEY,
-      'content-type': 'application/json'
-    },
+    headers: gqlHeaders,
     /* eslint-disable graphql/template-strings, no-useless-escape */
     body: `{\"query\":\"mutation checkoutShippingLineUpdate($checkoutId: ID!, $shippingRateHandle: String!) {\\n  checkoutShippingLineUpdate(checkoutId: $checkoutId, shippingRateHandle: $shippingRateHandle) {\\n    checkout {\\n      id\\n      webUrl\\n    }\\n    checkoutUserErrors {\\n      code\\n      field\\n      message\\n    }\\n  }\\n}\",\"variables\":{\"checkoutId\":\"${checkoutGID}\",\"shippingRateHandle\":\"${PICKUP_SHIPPING_METHOD}\"},\"operationName\":\"checkoutShippingLineUpdate\"}`
     /* eslint-enable */
