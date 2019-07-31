@@ -96,6 +96,16 @@
   {%- assign end_index = start_end_index_array[1] | plus: 0 -%}
   {%- assign color = all_colors_array[forloop.index0] -%}
 
+  {%- assign image_count = 0 -%}
+  {%- for product_image in product_images -%}
+    {%- if forloop.index0 >= start_index and forloop.index0 < end_index -%}
+      {%- unless product_image.alt contains context_photo_delimiter %}
+        {%- assign image_count = image_count | plus: 1 -%}
+      {%- endunless -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- assign image_index = 1 -%}
+
   {% comment %}
     Product images, grouped by color
   {% endcomment %}
@@ -150,11 +160,12 @@
                     data-srcset="{{ image_srcset }}"
                     data-sizes="{{ image_sizes }}"
                   {% endif %}
-                  alt="{% include 'func-extract-alt-copy' with alt %}, photo {{ forloop.index | minus: start_index }} of {{ end_index | minus: start_index }}">
+                  alt="{% include 'func-extract-alt-copy' with alt %}, photo {{ image_index }} of {{ image_count }}">
                   <svg class="de-u-sizeFull de-CarouselFeature-svg"
                     viewbox="0 0 {{ product_image.aspect_ratio }} 1"></svg>
               </div>
             </div>
+            {%- assign image_index = image_index | plus: 1 -%}
           {%- endunless -%}
         {%- endif -%}
       {%- endfor -%}
