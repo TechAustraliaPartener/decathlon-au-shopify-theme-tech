@@ -90,7 +90,8 @@ const config = {
       process.env.STOREFRONT_API_KEY ||
       (isDev
         ? 'd5d7d74c65c818a0d63d8926a9d7ec01'
-        : 'f6c7c4e4db56de88295c2ba45762a331')
+        : 'f6c7c4e4db56de88295c2ba45762a331'),
+    URL: '/api/graphql'
   },
   NO_CACHE_HEADERS: {
     'cache-control': 'no-store',

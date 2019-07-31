@@ -1,5 +1,5 @@
-import scriptsConfig from '../../shared/config';
-import createCheckout from './queries';
+import scriptsConfig, { DEBUG } from '../../shared/config';
+import { createCheckout } from './queries';
 import 'formdata-polyfill';
 import '../../utilities/element-matches-polyfill';
 import fetch from 'unfetch';
@@ -98,7 +98,7 @@ const customCheckoutCartSubmitHandler = function(event) {
  * In this way, the AJAX add-to-cart checkout form submit will be handled
  * even though it is not in the DOM on page load
  */
-const customCheckoutInit = () => {
+export const customCheckoutInit = () => {
   document.addEventListener('submit', function(e) {
     // Loop parent nodes from the target to the delegated node
     for (
@@ -112,6 +112,5 @@ const customCheckoutInit = () => {
       }
     }
   });
+  if (DEBUG) console.debug('💰 Custom checkout initialized');
 };
-
-export default customCheckoutInit;

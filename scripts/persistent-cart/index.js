@@ -1,6 +1,7 @@
 // @ts-check
 
 import { getCustomer, createOrUpdateCustomer } from './queries';
+import { testStorefrontAPI } from '../shared/custom-checkout/queries';
 import {
   getStoredShopifyCart,
   setStoredShopifyCart,
@@ -13,14 +14,14 @@ import {
 import { localStorageAvailable, cookiesAvailable } from '../utilities/storage';
 import pcConfig from './config';
 import scriptsConfig, { DEBUG } from '../shared/config';
-import cartReconciler from './cart-reconciler';
+import { cartReconciler } from './cart-reconciler';
 import fetch from 'unfetch';
 import 'promise-polyfill/src/polyfill';
 import { setCartCookie, getCartCookie, removeCartCookie } from './cart-cookies';
 import onCartAjaxUpdated from './add-to-cart';
 import updateCartUI from './update-cart-ui';
 import logoutHandlerInit from './logout';
-import customCheckoutInit from '../shared/custom-checkout';
+import { customCheckoutInit } from '../shared/custom-checkout';
 import getErrorMessage from '../utilities/logging';
 import { chainPromises } from '../utilities/chain-promises';
 
@@ -403,7 +404,7 @@ const persistCustomerCartExpired = expired => {
 };
 
 /**
- * Check whether Shopify has expired the cart associated with the cartID associcated with
+ * Check whether Shopify has expired the cart associated with the cartID associated with
  * a customer record in the database
  * @param {Cart} [masterShopifyCart] - The cart retrieved from Shopify after setting with the customer.cartID from the DB
  * @returns {boolean} -  Whether or not Shopify has expired the cart (should rarely be true, usually false)
@@ -553,11 +554,9 @@ const pcInit = customer => {
  * @param {Customer|null} customer - The customer value retrieved from the application DB (or null if no customer was yet in the DB)
  */
 const initWithCustomer = customer => {
-  console.log('Persistent Cart JS loaded');
+  if (DEBUG) console.debug('Persistent Cart 🛒 JS loaded');
   // Initialize logout handler for clearing storage and cart-related cookies on logout
   logoutHandlerInit();
-  // Initalize muilti-device checkout handling
-  customCheckoutInit();
   // Initialize the persistent cart flow
   pcInit(customer)
     .then(response => {
@@ -642,7 +641,7 @@ const pcCheckInit = () => {
   const cartCountEl = document.querySelector(CART_COUNT);
   /**
    * The value of currentCartCount may be "0" unless there are items in the
-   * cart at the time of login. PC unsets the cart cookie on logout, and it
+   * cart at the time of login. PC un-sets the cart cookie on logout, and it
    * will not be set again unless 1 or more items are added to the cart
    */
   cache.currentCartCount = parseInt(cartCountEl.value, 10);
@@ -655,9 +654,15 @@ const pcCheckInit = () => {
   // Test for a customer plus localStorage and cookie support (enabled), or do not proceed
   if (localStorageAvailable && cookiesAvailable) {
     if (cache.customerID) {
-      // @TODO set timer for health check here?
       getCustomer(cache.customerID)
         .then(customerResponse => {
+          /**
+           * Assuming
+           * - The Storefront API was successfully queried and
+           * - Either there's no customer in our DB yet or there is and Mongo
+           *   did not return an error
+           * Proceed
+           */
           if (
             !customerResponse ||
             (typeof customerResponse === 'object' &&
@@ -671,9 +676,8 @@ const pcCheckInit = () => {
           }
         })
         .catch(error => {
-          throw new Error(
-            `Persistent cart not responding: ${getErrorMessage(error)}`
-          );
+          console.error('Persistent cart cannot be initialized', error);
+          initWithoutCustomer();
         });
     } else {
       initWithoutCustomer();
@@ -682,6 +686,27 @@ const pcCheckInit = () => {
 };
 
 /**
- * Call initializing function on DOM Content Loaded
+ * Initialize on DOM Content Loaded:
+ * - Run a health-check request to the Shopify Storefront API
+ * - If that succeeds:
+ *     - Initialize custom checkouts (auth and guest users, so
+ *       with or without PC running)
+ *     - Kick off the PC check and initialize flow (which will run PC for auth
+ *       users, only, given other criteria are met)
+ * - If the query to the Storefront API fails
+ *     - Do not initialize custom checkouts
+ *     - Run a cleanup initialization for PC (same operations as happen when a
+ *       user logs out)
  */
-document.addEventListener('DOMContentLoaded', pcCheckInit);
+document.addEventListener('DOMContentLoaded', async () => {
+  const storefrontAPIWorks = await testStorefrontAPI();
+  if (storefrontAPIWorks) {
+    if (DEBUG) console.debug('Shopify 🏬 Storefront API test succeeded');
+    // Initialize custom checkout for all customers: Favro DEC-3130
+    customCheckoutInit();
+    pcCheckInit();
+  } else {
+    console.error('Shopify 🏬 Storefront API test failed');
+    initWithoutCustomer();
+  }
+});
