@@ -137,8 +137,8 @@
             <div class="de-CarouselFeature-slide"
               aria-roledescription="slide"
               role="group"
-            >
-              <button class="de-CarouselFeature-btn">
+              >
+              <div class="de-CarouselFeature-imageWrapper">
                 <img
                   class="de-CarouselFeature-image de-u-bgWhite js-de-SlickCarouselSlide"
                   {% if color == activeColor and forloop.index0 == start_index %}
@@ -153,7 +153,7 @@
                   alt="{% include 'func-extract-alt-copy' with alt %}, photo {{ forloop.index | minus: start_index }} of {{ end_index | minus: start_index }}">
                   <svg class="de-u-sizeFull de-CarouselFeature-svg"
                     viewbox="0 0 {{ product_image.aspect_ratio }} 1"></svg>
-              </button>
+              </div>
             </div>
           {%- endunless -%}
         {%- endif -%}
