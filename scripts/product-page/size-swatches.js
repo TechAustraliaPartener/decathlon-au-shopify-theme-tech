@@ -6,8 +6,8 @@
 
 import {
   IS_ACTIVE_CLASS,
+  VALIDATION_MESSAGE_CLASS,
   JS_PREFIX,
-  CSS_UTILITY_PREFIX,
   PRODUCT_PAGE_COPY,
   IS_HIDDEN_CLASS
 } from './constants';
@@ -44,13 +44,14 @@ const CLICK_EVENT = 'click';
  */
 export const $Swatches = $(`.${JS_PREFIX}SizeSwatches`);
 
-const DEFAULT_TEXT_COLOR = `${CSS_UTILITY_PREFIX}textDarkGray`;
-const ERROR_TEXT_COLOR = `${CSS_UTILITY_PREFIX}textRed`;
-
 /** @type {NodeListOf<HTMLButtonElement>} */
 export const swatchOptionEls = document.querySelectorAll(
   `.${JS_PREFIX}SizeSwatches-option`
 );
+
+/** @type {HTMLElement} */
+const validationTextEl = document.querySelector(`.${VALIDATION_MESSAGE_CLASS}`);
+
 const $SizeSwatchesOptions = $(swatchOptionEls);
 const $SizeInfo = $(`.${JS_PREFIX}SizeInfo`);
 
@@ -131,13 +132,15 @@ export const onVariantSelect = variant => {
 };
 
 const showMissingSizeInfo = () => {
-  $SizeInfo.removeClass(DEFAULT_TEXT_COLOR);
-  $SizeInfo.addClass(ERROR_TEXT_COLOR);
+  if (validationTextEl) {
+    validationTextEl.textContent = PRODUCT_PAGE_COPY.SELECT_A_SIZE;
+  }
 };
 
 const resetMissingSizeInfo = () => {
-  $SizeInfo.removeClass(ERROR_TEXT_COLOR);
-  $SizeInfo.addClass(DEFAULT_TEXT_COLOR);
+  if (validationTextEl) {
+    validationTextEl.textContent = '';
+  }
 };
 
 export const handleAddToCartAttemptWithNoVariant = () => {
