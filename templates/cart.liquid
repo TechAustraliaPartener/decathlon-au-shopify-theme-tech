@@ -191,7 +191,7 @@
               </td>
               <td data-label="Remove">
                 <a href="/cart/update?{{ addons_remove }}updates[{{ item.key }}]=0" class="cart__remove">
-                  <i class="ico ico--close"></i>
+                  {% include 'icon-x' with class: 'de-cart-remove' %}
                 </a>
               </td>
             </tr>

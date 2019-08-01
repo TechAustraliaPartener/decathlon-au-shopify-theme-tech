@@ -19,7 +19,11 @@ because metafields can't be floats
 <div class="starRating-container">
 <div class="starRating{{ rating_adtl_classes }}{% if product_rating == 0 %} starRating--noRating{% endif %}" data-rating="{{ product_rating }}">
   {% for i in (0..4) %}
-    <span class="ico ico--star{% if i < rounded_rating %} u-textYellow{% endif %}"></span>
+    {% if i < rounded_rating %}
+      {% include 'icon-star' with class: 'de-yellow-star' %}
+    {% else %}
+      {% include 'icon-star' with class: 'de-gray-star' %}
+    {% endif %}
   {% endfor %}
 
   </div>

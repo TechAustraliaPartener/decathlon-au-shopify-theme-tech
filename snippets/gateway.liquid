@@ -24,8 +24,10 @@
 
         <form action="#createCustomer" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" >
           <div class="gateway-inputWrap hide-on-success">
-            {% include 'state-dropdown', state_required: true, state_name: 'MMERGE1' %}
-            <span class="gateway-selectArrow"></span>
+            <div class="de-gateway-wrapper">
+              {% include 'state-dropdown', state_required: true, state_name: 'MMERGE1' %}
+              {% include 'icon-gateway-down-arrow' with class: 'de-gateway-arrow' %}
+            </div>
 
             <input type="email" id="GatewayFormEmail" name="EMAIL" placeholder="Email Address*" autocorrect="off" autocapitalize="off" required value="{% if form.email %}{{ form.email }}{% endif %}">
           </div>
@@ -39,7 +41,9 @@
 
     </div>
   </div>
-  <button type="button" class="close-popup-btn"></button>
+  <button type="button" class="close-popup-btn">
+    {% include 'icon-x' with class: 'de-gateway-close' %}
+  </button>
 
 {% comment %}
   {% if settings['is_lookbook'] == true %}

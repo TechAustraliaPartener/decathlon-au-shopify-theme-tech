@@ -1,158 +1,23 @@
-{% comment %} Move styles to css file, make responsive {% endcomment %}
-<style type="text/css">
-  .collectionPromo {
-    float: left; width: 100%; position:relative;
-    background: #0082c3;
-    overflow: hidden;
-    color: #FFF;
-    margin: 2em 0 4em 0;
-    background-size: cover;
-    background-position: center;
-  }
-
-  .collectionPromo-content {
-    float: left; width: 100%; position:relative;
-    padding: 3em;
-    width: 100%;
-  }
-
-  .collectionPromo-bg:before {
-    content: '';
-    background: rgba(28,130,195,0.8);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  .btn--rev { border-color: white; color: white; }
-
-  @media screen and (min-width: 600px) {
-    .collectionPromo-content { width: 50%; }
-    .collectionPromo-bg:before {
-      left: -45%;
-      transform: skew(-15deg);
-    }
-  }
-</style>
-
-
 <!-- /templates/list-collections.liquid -->
-<div class="collectionImage" data-background-image="{{ 'collections-homepage.jpg' | file_url }}">
-  <div class="wrapper">
-    {% include 'breadcrumb', adtl_classes: ' breadcrumb--overImage' %}
-    <h1 class="collectionImage-header text-center">What's Your Sport?</h1>
-  </div>
+
+<div class="de-padding10 de-u-padTop de-u-padBottomNone de-u-textSizeBase">
+    <h1 class="de-u-textBold de-u-textGrow de-u-spaceBottom06">We design, manufacture, and offer the best gear at the best prices for more than 80 sports</h1>
+    <hr class="de-blue-hr de-u-bgBlue de-u-spaceNone">
+    <p class="de-u-textDarkGrasy de-u-spaceBottom06 de-u-textShrink1 de-u-spaceEnds06">Shop By Sport</p>
 </div>
-
-<div class="u-block u-paddingTopBottom3x">
-  <div class="wrapper">
-    <div class="grid">
-
-      <div class="collectionSidebar grid__item large--one-quarter left">
-        <div class="collectionSidebar-toggle">
-          <h5><a href="#" class="collectionSidebar-toggle-link js-toggleCollectionSidebar">Filters</a></h5>
-        </div>
-
-        <!-- Nested Nav -->
-        {% assign top_level = linklists['shop-homepage'] %}
-        <div id="nested-nav">
-          <ul style='list-style: none'>
-            {% for link in top_level.links %}
-            <li>
-              <a class="list-collections-nav"
-                 href="{{link.url}}">{{link.title}}</a>
-            </li>
+<div class="template-collection">
+    <div class="de-wrapper wrapper">
+        <div class="grid--full">
+            {% for link in linklists['shop-homepage'].links %}
+                {% capture desktop-image %}{{ link.object.handle }}-desktop.jpg{% endcapture %}
+                {% capture mobile-image %}{{ link.object.handle }}-mobile.jpg{% endcapture %}
+                <div class="grid__item large--one-third medium-down--one-half text-center de-collectionTile">
+                    <a href="{{ link.url }}">
+                        <img class="de-collectionTileImage medium-down--hide" alt="{{ link.object.title }}" src="{{ desktop-image | file_img_url: '200x', format: 'pjpg' }}" data-src="{{ desktop-image | file_img_url: '1200x', format: 'pjpg' }}">
+                        <img class="de-collectionTileImage large--hide" alt="{{ link.object.title }}" src="{{ mobile-image | file_img_url: '200x', format: 'pjpg' }}" data-src="{{ mobile-image | file_img_url: '800x', format: 'pjpg' }}">
+                    </a>
+                </div>
             {% endfor %}
-          </ul>
         </div>
-        <!-- /Nested Nav -->
-
-        {% comment %}
-        <div class="collectionSidebar-filters">{% include 'collection-sidebar', hide_filters: false, hide_children: true %}</div>
-        {% endcomment %}
-      </div>
-
-      <div class="grid__item large--seven-tenths right">
-      {% for link in linklists['shop-homepage'].links %}
-        {% if link.type == 'product_link' %}
-          <div class="collectionPromo collectionPromo--product" data-background-image="{{ link.title | handleize | append: '-promo.jpg' | file_url }}">
-            <div class="collectionPromo-bg"></div>
-            <div class="collectionPromo-content">
-              <h4>{{ link.title }}</h4>
-              {% assign product = link.object %}
-              {% assign product_intro = product.description | split: '<p>---' %}
-              <p class="u-marginBottom2x">{{ product_intro[0] | strip_html }}</p>
-              {% if settings['is_lookbook'] == false %}
-              <p class="u-marginBottom0x"><a class="btn btn--rev" href="{{ link.url }}">
-                Buy
-                {% if product.price_varies %}
-                  {% assign price = product.price | money %}
-                  {{ 'products.general.from_text_html' | t: price: price }}
-                {% else %}
-                  for {{ product.price | money }}
-                {% endif %}
-              </a></p>
-              {% else %}
-              <p class="u-marginBottom0x"><a class="btn btn--rev" href="{{ link.url }}">
-              {% if settings['is_lookbook'] == false %}
-                Shop Now
-              {% else %}
-                Explore
-              {% endif %}
-              </a></p>
-
-              {% endif %}
-            </div>
-          </div>
-          {% continue %}
-        {% endif %}
-        {% assign collection = link.object %}
-        <header class="section-header">
-          <h1 class="section-header__title">
-            {{ collection.title }}
-            <a class="btn btn--text" href="/collections/{{ collection.handle }}" style="margin: 10px 0 0 10px;">
-              View All ({{ collection.products.size }})
-            </a>
-          </h1>
-        </header>
-        <div class="grid-uniform">
-          {% assign has_featured = false %}
-          {% for product in collection.products limit:6 %}
-            {% assign group_name = 'group' | append: collection.handle %}
-            {% capture featuredClass %}{% cycle group_name: '', ' collectionProduct--featured--middle', ' collectionProduct--featured--end js-adjustFeaturedContent' %}{% endcapture %}
-            {% if product.tags contains 'featured' and has_featured == false %}
-              {% assign default_giw = 'large--one-third one-half' %}
-              {% assign grid_item_width = default_giw | append: ' collectionProduct--featured' | append: featuredClass %}
-              {% assign has_featured = true %}
-            {% else %}
-              {% assign grid_item_width = defailt_giw %}
-            {% endif %}
-            {% include 'product-grid-item' %}
-          {% endfor %}
-        </div>
-      {% endfor %}
-      </div>
-
     </div>
-  </div>
 </div>
-
-{% capture product_json %}
-var productJSON = [
-  {% for link in linklists['shop-homepage'].links %}
-    {% assign collection = link.object %}
-    {% for product in collection.products limit:6 %}
-      {
-      {% if product.options.size == 1 and product.options.first != 'Title' %}
-        addLabel: '{{ product.options.first | escape }}',
-      {% endif %}
-        id: '{{ collection.handle }}-{{ product.id }}',
-        product: {{ product | json }}
-      },
-    {% endfor %}
-  {% endfor %}
-  ];
-{% endcapture %}
-{% include 'catalog-script' %}
