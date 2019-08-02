@@ -1,3 +1,5 @@
+// @ts-check
+
 import {
   getObjectFromLocalStorage,
   setObjectInLocalStorage,
@@ -20,12 +22,11 @@ export const getStoredShopifyCart = () =>
  * Sets a Shopify cart object in localStorage
  * @param {Object} cart - The cart object to be stored
  */
-export const setStoredShopifyCart = value =>
-  setObjectInLocalStorage(SHOPIFY_CART, value);
+export const setStoredShopifyCart = cart =>
+  setObjectInLocalStorage(SHOPIFY_CART, cart);
 
 /**
  * Removes a Shopify cart object in localStorage
- * @param {Object} cart - The cart object to be stored
  */
 export const removeStoredShopifyCart = () =>
   removeItemFromLocalStorage(SHOPIFY_CART);

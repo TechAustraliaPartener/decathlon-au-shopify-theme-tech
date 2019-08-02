@@ -1,7 +1,6 @@
 // @ts-check
 
 import { getCustomer, createOrUpdateCustomer } from './queries';
-import { testStorefrontAPI } from '../shared/custom-checkout/queries';
 import {
   getStoredShopifyCart,
   setStoredShopifyCart,
@@ -11,7 +10,12 @@ import {
   getWasLoggedIn,
   cache
 } from './storage';
-import { localStorageAvailable, cookiesAvailable } from '../utilities/storage';
+import { persistedStorefrontAPITest } from '../utilities/api-tester';
+import {
+  localStorageAvailable,
+  sessionStorageAvailable,
+  cookiesAvailable
+} from '../utilities/storage';
 import pcConfig from './config';
 import scriptsConfig, { DEBUG } from '../shared/config';
 import { cartReconciler } from './cart-reconciler';
@@ -632,11 +636,9 @@ const initWithoutCustomer = () => {
  * 2) localStorage is supported and usable - TBD whether this is necessary
  * 3) Cookies are enabled/usable
  * Catches and logs for the chain of request-making functions it calls.
+ * @param {string} customerID
  */
-const pcCheckInit = () => {
-  // Get cid from template
-  /** @type HTMLInputElement */
-  const cidEl = document.querySelector(CUSTOMER_ID);
+const pcCheckInit = customerID => {
   /** @type HTMLInputElement */
   const cartCountEl = document.querySelector(CART_COUNT);
   /**
@@ -650,7 +652,7 @@ const pcCheckInit = () => {
       `🛒 cache.currentCartCount on init: ${cache.currentCartCount}`
     );
   // Persist cid locally
-  cache.customerID = cidEl && cidEl.value ? cidEl.value : null;
+  cache.customerID = customerID;
   // Test for a customer plus localStorage and cookie support (enabled), or do not proceed
   if (localStorageAvailable && cookiesAvailable) {
     if (cache.customerID) {
@@ -677,7 +679,7 @@ const pcCheckInit = () => {
         })
         .catch(error => {
           console.error('Persistent cart cannot be initialized', error);
-          initWithoutCustomer();
+          removeStoredShopifyCart();
         });
     } else {
       initWithoutCustomer();
@@ -686,8 +688,23 @@ const pcCheckInit = () => {
 };
 
 /**
+ * Cleanup actions to take on initialzation failures, depending on whether or
+ * not a customer is logged in
+ * @param {string} customerID
+ */
+const initCleanup = customerID => {
+  if (customerID) {
+    removeStoredShopifyCart();
+  } else {
+    initWithoutCustomer();
+  }
+};
+
+/**
  * Initialize on DOM Content Loaded:
- * - Run a health-check request to the Shopify Storefront API
+ * - Run a health-check request to the Shopify Storefront API, and attempt to
+ *   persist this value to storage for future checks (with an expiration).
+ *   Conditionally runs cleanup if `sessionStorage` is not available
  * - If that succeeds:
  *     - Initialize custom checkouts (auth and guest users, so
  *       with or without PC running)
@@ -699,14 +716,24 @@ const pcCheckInit = () => {
  *       user logs out)
  */
 document.addEventListener('DOMContentLoaded', async () => {
-  const storefrontAPIWorks = await testStorefrontAPI();
-  if (storefrontAPIWorks) {
-    if (DEBUG) console.debug('Shopify 🏬 Storefront API test succeeded');
-    // Initialize custom checkout for all customers: Favro DEC-3130
-    customCheckoutInit();
-    pcCheckInit();
+  // Get cid from template
+  /** @type HTMLInputElement */
+  const cidEl = document.querySelector(CUSTOMER_ID);
+  const customerID = cidEl && cidEl.value ? cidEl.value : null;
+  if (sessionStorageAvailable) {
+    const storefrontAPIWorks = await persistedStorefrontAPITest();
+    if (storefrontAPIWorks) {
+      if (DEBUG) console.debug('Shopify 🏬 Storefront API test succeeded');
+      // Initialize custom checkout for all customers: Favro DEC-3130
+      customCheckoutInit();
+      pcCheckInit(customerID);
+    } else {
+      console.error('Shopify 🏬 Storefront API test failed');
+      initCleanup(customerID);
+    }
   } else {
-    console.error('Shopify 🏬 Storefront API test failed');
-    initWithoutCustomer();
+    console.error(`Session storage test failed, cannot persist Storefront API
+    health check results`);
+    initCleanup(customerID);
   }
 });
