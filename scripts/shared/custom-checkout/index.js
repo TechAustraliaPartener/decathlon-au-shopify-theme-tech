@@ -1,4 +1,7 @@
+// @ts-check
+
 import scriptsConfig, { DEBUG } from '../../shared/config';
+import { IS_CUSTOM_CHECKOUT } from '../../shared/constants';
 import { createCheckout } from './queries';
 import 'formdata-polyfill';
 import '../../utilities/element-matches-polyfill';
@@ -77,14 +80,45 @@ const customCheckoutCartSubmitHandler = function(event) {
     .then(makeGraphQLCheckoutPayload)
     .then(createCheckout)
     .then(res => {
-      // If the createCheckout method returns a checkout webURL, set it as the new location
-      if (res.checkout && res.checkout.webUrl) {
-        window.location.assign(res.checkout.webUrl);
+      if (DEBUG)
+        console.debug(
+          'Response when creating custom checkout 🛒',
+          JSON.stringify(res)
+        );
+      /**
+       * Combine error messages and throw error if there's no checkout with a
+       * `webURL` at this point
+       */
+      if (!res.checkout || !res.checkout.webUrl) {
+        const errors = res.checkoutUserErrors;
+        const messages = errors
+          ? errors.reduce((acc, curr) => `${acc}, ${curr.message}`, '')
+          : '';
+        throw new Error(
+          `Error attempting to create custom checkout 🛒. ${messages}`
+        );
       }
+      /**
+       * If the createCheckout method returns a checkout webURL, set it as the
+       * new location, and add a query-string flag to indicate that it was
+       * created using the Storefront API (for any checks within the checkout
+       * flow).
+       * @TODO - Decide whether the actual checkout id should be passed in some
+       * way. Is it a risk to pass in the URL? Is it needed (it would be needed
+       * to query the Storefront API again and verify a URL match within checkout)
+       */
+      window.location.assign(
+        `${res.checkout.webUrl}&${encodeURIComponent(IS_CUSTOM_CHECKOUT)}=true`
+      );
     })
     .catch(error => {
       console.error(error);
       // Reload the page in order to try to resolve issues with the last payload
+      /**
+       * @TODO - Look at rebuilding the cart here (and/or automatic retries).
+       * Rebuilding would involve using the methods in PC to hydrate a new cart
+       * (with a different token)
+       */
       window.location.reload();
     });
 };
@@ -104,8 +138,16 @@ export const customCheckoutInit = () => {
     for (
       let target = e.target;
       target && target !== this;
+      /**
+       * @todo Resolve TSLint issues
+       * TSLint problems here. Attempted to cast event.target to HTMLElement,
+       * but further issues with comparing current element to Document, so
+       * adding ts-ignore to lines in this function, which is known to work
+       */
+      // @ts-ignore
       target = target.parentNode
     ) {
+      // @ts-ignore
       if (target.matches(CART)) {
         customCheckoutCartSubmitHandler.call(target, e);
         break;

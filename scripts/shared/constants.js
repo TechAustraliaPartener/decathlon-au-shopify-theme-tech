@@ -35,6 +35,12 @@ export const IS_HIDDEN_CLASS = `${CSS_UTILITY_PREFIX}hidden`;
  */
 
 /**
+ * A flag to indicate that a checkout webURL was created
+ * using the Storefront API
+ */
+export const IS_CUSTOM_CHECKOUT = `${CSS_PREFIX}is-custom-checkout`;
+
+/**
  * Name for storing a Storefront API health check boolean
  */
 export const STOREFRONT_API_IS_TESTED = `${CSS_PREFIX}storefront-api-is-tested`;

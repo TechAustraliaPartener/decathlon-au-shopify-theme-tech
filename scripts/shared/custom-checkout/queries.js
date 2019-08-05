@@ -61,9 +61,26 @@ const createCheckoutRequest = ({ mutation, input }) => {
 };
 
 /**
+ * @see https://help.shopify.com/en/api/storefront-api/reference/object/checkoutusererror
+ * @typedef {Object} CheckoutUserError
+ * @property {string|number} [code]
+ * @property {string} field
+ * @property {string} message
+ */
+
+/**
+ * @see https://help.shopify.com/en/api/storefront-api/reference/object/checkout
+ * @typedef {Object} CreateCheckoutResponse
+ * @property {Object} checkout
+ * @property {string} checkout.id
+ * @property {string} checkout.webUrl
+ * @property {CheckoutUserError[]} [checkoutUserErrors]
+ */
+
+/**
  * Take an input object to be used to create a request to the Shopify Storefront API
  * @param {Object} input - The variables object to be passed to the query (mutation)
- * @returns {Promise<Object>} - A Shopify checkout object
+ * @returns {Promise<CreateCheckoutResponse>} - A Shopify checkout object
  */
 export const createCheckout = input =>
   createCheckoutRequest({ mutation: createCheckoutMutation, input });
