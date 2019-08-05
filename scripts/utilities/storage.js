@@ -1,4 +1,10 @@
+// @ts-check
+
 import Cookies from 'js-cookie';
+import {
+  STOREFRONT_API_IS_TESTED,
+  STOREFRONT_API_TEST_TIMEOUT_MINUTES
+} from '../shared/constants';
 
 // @TODO - test these storage tests!!
 
@@ -46,7 +52,6 @@ export const sessionStorageAvailable = storageAvailableTest('sessionStorage');
 
 /**
  * Test the client's ability to set and get cookies (unset after testing)
- * @param {string} test - A string to test setting and getting on a the document.cookie
  * @returns {boolean} - Whether the test passed
  */
 const cookiesAvailableTest = () => {
@@ -107,3 +112,56 @@ export const getObjectFromSessionStorage = name =>
  */
 export const removeItemFromSessionStorage = item =>
   sessionStorage.removeItem(item);
+
+/**
+ * @typedef {Object} ValueObjectWithExpiration
+ * @property {*} value
+ * @property {number} expires
+ */
+
+/**
+ * Helper to check whether a value (in a ValueObjectWithExpiration) is expired
+ * @param {ValueObjectWithExpiration} valueObj
+ * @returns {boolean} valueObj is not valid or is expired
+ */
+export const isValueObjectExpired = valueObj =>
+  new Date().getTime() > valueObj.expires;
+
+/**
+ * Sets a flag that indicating whether a call to test the Storefront API has
+ * succeeded or failed, with an expiration.
+ * No-op if `sessionStorage` is not available.
+ * @param {boolean} value
+ */
+export const setStorefrontAPITestedState = value => {
+  if (sessionStorageAvailable) {
+    // Expires in fifteen minutes
+    const expires =
+      new Date().getTime() + STOREFRONT_API_TEST_TIMEOUT_MINUTES * 60 * 1000;
+    setObjectInSessionStorage(
+      STOREFRONT_API_IS_TESTED,
+      /** @type {ValueObjectWithExpiration} */ {
+        value,
+        expires
+      }
+    );
+  }
+};
+
+/**
+ * Gets a flag that indicates whether a call to test the Storefront API has
+ * succeeded or failed.
+ * Checks against a stored value, which includes an expiration, in milliseconds.
+ * On expiration, nullifies the value - it must be set again to get a new
+ * expiration.
+ * @returns {boolean | null}
+ */
+export const getStorefrontAPITested = () => {
+  /** @type {ValueObjectWithExpiration | null} */
+  const valueObj = getObjectFromSessionStorage(STOREFRONT_API_IS_TESTED);
+  if (valueObj === null || isValueObjectExpired(valueObj)) {
+    removeItemFromSessionStorage(STOREFRONT_API_IS_TESTED);
+    return null;
+  }
+  return valueObj.value;
+};

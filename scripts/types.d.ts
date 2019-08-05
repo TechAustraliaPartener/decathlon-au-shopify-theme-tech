@@ -100,7 +100,8 @@ interface Cart {
   total_discount: number;
   total_weight: number;
   item_count: number;
-  items: Item[];
+  items?: Item[];
+  line_items?: Item[];
   requires_shipping: boolean;
   currency: string;
   items_subtotal_price: number;
