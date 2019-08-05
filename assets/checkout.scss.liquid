@@ -137,7 +137,7 @@ font-style: normal;
 }
 
 @media (min-width: 1000px) {
-  .page--no-banner .main, 
+  .page--no-banner .main,
   .page--no-banner .sidebar {
     padding-top: 1em;
   }
@@ -165,8 +165,8 @@ font-style: normal;
 
   &.js-de-active-location,
   &:hover {
-    border: $border-width-lg solid $color-blue;
-    padding: 11px;
+    box-shadow: 0 0 0 $border-width-lg $color-blue;
+    border-color: transparent;
   }
 }
 
@@ -182,7 +182,7 @@ font-style: normal;
 }
 
 .de-pickship-btn {
-  @include transition( 
+  @include transition(
     background-color color $transition-speed-fast $transition-easing-ease );
   align-items: center;
   background: $color-white;
