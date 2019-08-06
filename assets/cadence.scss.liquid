@@ -383,6 +383,10 @@
 }
 
 @media (min-width: 769px) {
+  .large--one-third:nth-child(3n+1),
+  .large--one-fifth:nth-child(5n+1)  {
+    clear: both;
+  }
   #bc-sf-filter-products {
     width: 100%;
   }
@@ -392,6 +396,9 @@
 }
 
 @media (max-width: 768px) {
+  .medium-down--one-half:nth-child(2n+1) {
+    clear: both;
+  }
   .collectionProduct {
     padding-left: 0;
   }
