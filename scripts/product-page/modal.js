@@ -47,19 +47,25 @@ let lastFocusedElement;
 
 /**
  * Handle ATC click event
+ *
+ * Sets up binding to allow BIS modal closing via Escape key
+ * and overrides BIS Modal "hide()" to reset focus on "Email Me" CTA button
+ * for better keyboard accessibility UX
  */
 const onAddToCartClick = () => {
-  // Store the element that was focused before the modal was opened. It will be focused after the modal is closed
-  lastFocusedElement = /** @type {HTMLElement} */ (document.activeElement);
-  if (!isListenerInitialized) {
-    // Add keydown listener to document
-    bindDocumentKeyDown();
-    const originalHideFunction = window.BISPopover.form.hide;
+  if (window.BISPopover) {
+    // Store the element that was focused before the modal was opened. It will be focused after the modal is closed
+    lastFocusedElement = /** @type {HTMLElement} */ (document.activeElement);
+    const originalHideFunction = window.BISPopover.hide.bind(window.BISPopover);
     // Intercept hide to re-focus where the user focus was before opening the modal
-    window.BISPopover.form.hide = () => {
+    window.BISPopover.hide = () => {
       originalHideFunction();
       lastFocusedElement.focus();
     };
+  }
+  if (!isListenerInitialized) {
+    // Add keydown listener to document
+    bindDocumentKeyDown();
     isListenerInitialized = true;
   }
 };

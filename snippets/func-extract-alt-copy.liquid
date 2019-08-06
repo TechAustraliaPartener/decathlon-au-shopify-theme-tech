@@ -6,9 +6,31 @@
   * @returns {string} - Only the alt copy
 {%- endcomment -%}
 {%- assign delimiter = '*}' -%}
+{% assign alt_value = '' %}
 {%- if alt contains delimiter -%}
   {%- assign alt_array = alt | split: delimiter -%}
-  {{- alt_array[1] | strip -}}
+  {% assign alt_value = alt_array[1] | strip %}
 {%- else -%}
-  {{- alt | strip -}}
+  {% assign alt_value = alt | strip %}
+{%- endif -%}
+
+{% comment %}
+  Provide a fallback alt value when none is provided.
+{% endcomment %}
+{% assign option_type = 'color' %}
+{% assign option_type_position = null %}
+
+{% for product_option in product.options_with_values %}
+  {% assign product_option_name = product_option.name | downcase %}
+  {% if product_option_name == option_type %}
+    {% assign option_type_position = product_option.position %}
+  {% endif %}
+{% endfor %
+
+{% assign color = product.option[option_type_position] %}
+
+{%- if alt_value == '' -%}
+  {{- product.title -}}, {{- color -}}
+{%- else -%}
+  {{- alt_value -}}
 {%- endif -%}

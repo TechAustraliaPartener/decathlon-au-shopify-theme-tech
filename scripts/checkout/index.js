@@ -29,7 +29,8 @@ const init = () => {
 };
 
 /**
- * Listen to Shopify Checkout `page:load` to initialize
+ * Listen to Shopify Checkout `page:load` and `page:change` to initialize
  * @see https://help.shopify.com/en/themes/development/layouts/checkout#page-events
  */
 document.addEventListener('page:load', init);
+document.addEventListener('page:change', init);

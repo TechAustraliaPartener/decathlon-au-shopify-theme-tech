@@ -96,6 +96,16 @@
   {%- assign end_index = start_end_index_array[1] | plus: 0 -%}
   {%- assign color = all_colors_array[forloop.index0] -%}
 
+  {%- assign image_count = 0 -%}
+  {%- for product_image in product_images -%}
+    {%- if forloop.index0 >= start_index and forloop.index0 < end_index -%}
+      {%- unless product_image.alt contains context_photo_delimiter %}
+        {%- assign image_count = image_count | plus: 1 -%}
+      {%- endunless -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- assign image_index = 1 -%}
+
   {% comment %}
     Product images, grouped by color
   {% endcomment %}
@@ -137,8 +147,8 @@
             <div class="de-CarouselFeature-slide"
               aria-roledescription="slide"
               role="group"
-              aria-label="{{ forloop.index | minus: start_index }} of {{ end_index | minus: start_index }}">
-              <button class="de-CarouselFeature-btn">
+              >
+              <div class="de-CarouselFeature-imageWrapper">
                 <img
                   class="de-CarouselFeature-image de-u-bgWhite js-de-SlickCarouselSlide"
                   {% if color == activeColor and forloop.index0 == start_index %}
@@ -150,11 +160,12 @@
                     data-srcset="{{ image_srcset }}"
                     data-sizes="{{ image_sizes }}"
                   {% endif %}
-                  alt="{% include 'func-extract-alt-copy' with alt %}">
+                  alt="{% include 'func-extract-alt-copy' with alt %}, photo {{ image_index }} of {{ image_count }}">
                   <svg class="de-u-sizeFull de-CarouselFeature-svg"
                     viewbox="0 0 {{ product_image.aspect_ratio }} 1"></svg>
-              </button>
+              </div>
             </div>
+            {%- assign image_index = image_index | plus: 1 -%}
           {%- endunless -%}
         {%- endif -%}
       {%- endfor -%}
@@ -190,7 +201,7 @@
               aria-controls="de-CarouselFeature"
               aria-roledescription="slide"
               role="group"
-              aria-label="Product thumbnail image {{ forloop.index | minus: start_index }} of {{ end_index | minus: start_index }}">
+            >
               <button class="de-CarouselThumbnail-btn de-u-flex">
                 <img class="de-CarouselThumbnail-image de-u-bgSilver js-de-SlickCarouselSlide"
                 {% if color == activeColor %}
@@ -202,7 +213,7 @@
                   data-srcset="{{ image_srcset }}"
                   data-sizes="{{ image_sizes }}"
                 {% endif %}
-                  alt="">
+                  alt="Product thumbnail {{ forloop.index | minus: start_index }} of {{ end_index | minus: start_index }}">
               </button>
             </div>
           {%- endunless -%}

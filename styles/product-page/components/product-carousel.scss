@@ -34,8 +34,7 @@
   cursor: grab;
 }
 
-.de-CarouselFeature-btn {
-  display: flex;
+.de-CarouselFeature-imageWrapper {
   margin: 0 auto;
   position: relative;
   width: 100%;
@@ -106,13 +105,13 @@
    *    a preventive measure to help buybox remains above-the-fold
    */
 
-  .de-CarouselFeature-btn {
+  .de-CarouselFeature-imageWrapper {
     max-width: 528px; /* 1 */
   }
 
   /**
    * 1. Setting and unsetting of this property is to take advantage
-   *    the shared properties `.de-CarouselFeature-btn`, `.de-CarouselFeature-image`
+   *    the shared properties `.de-CarouselFeature-imageWrapper`, `.de-CarouselFeature-image`
    */
 
   .de-CarouselContainer {
@@ -215,7 +214,7 @@
     */
 
   .de-CarouselContainer,
-  .de-CarouselFeature-btn,
+  .de-CarouselFeature-imageWrapper,
   .de-CarouselFeature-image {
     height: 100vw; /* 1 */
     margin: 0 auto;
@@ -239,13 +238,13 @@
     *    Enforces height while image is loading.
     */
 
-  .de-CarouselFeature-btn,
+  .de-CarouselFeature-imageWrapper,
   .de-CarouselFeature-image {
     height: 41.65vw; /* 1 */
     width: 41.65vw; /* 1 */
   }
 
-  .de-CarouselFeature-btn,
+  .de-CarouselFeature-imageWrapper,
   .de-CarouselFeature-image {
     height: auto;
     position: relative;

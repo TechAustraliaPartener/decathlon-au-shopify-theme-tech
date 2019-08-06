@@ -21,9 +21,13 @@
       {% include 'icon-camera'
         with class: 'de-Icon de-u-textGrow2 de-u-spaceRight06' %}
       {% comment %}
-        @TODO: Consider accessibility best practice
+        Hide from accessibility tree, duplicate content
       {% endcomment %}
-      <span class="js-de-ProductGallery-countValue">0/0</span>
+      <span
+        class="js-de-ProductGallery-countValue"
+        aria-hidden="true"
+        aria-live="off"
+      >0/0</span>
     </div>
   </div>
 </div>
