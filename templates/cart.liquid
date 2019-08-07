@@ -239,7 +239,11 @@
   {% endif %}
   </div>
 
-  {% include 'trending-products', show_add_to_cart: false %}
+  {% if cart.item_count > 0 %}
+    {% include 'product-recommendations', product: cart.items[0].product %}
+  {% else %}
+    {% include 'trending-products', show_add_to_cart: false %}
+  {% endif %}
 </div>
 {% else %}
   {% include '404' %}
