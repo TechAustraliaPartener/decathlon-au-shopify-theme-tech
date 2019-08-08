@@ -1,5 +1,6 @@
+import { isDev } from '../utilities/env-utils';
+
 const config = {
-  PROD_HOSTNAME: 'www.decathlon.com',
   SELECTORS: {
     PREFIX: '.js-de-',
     get CART() {
@@ -80,10 +81,17 @@ const config = {
   STOREFRONT_API: {
     HEADER_NAME: 'X-Shopify-Storefront-Access-Token',
     /**
-     * This key is public, and the fallback is here in case the project is built without a value passed in.
-     * Will not break the compiled asset file. The key would be accessible in either case.
+     * This key is public, and the fallback is here in case the project is built
+     * without a value passed in.
+     * Will not break the compiled asset file. The key would be accessible
+     * in either case.
      */
-    KEY: process.env.STOREFRONT_API_KEY || 'f6c7c4e4db56de88295c2ba45762a331'
+    KEY:
+      process.env.STOREFRONT_API_KEY ||
+      (isDev
+        ? 'd5d7d74c65c818a0d63d8926a9d7ec01'
+        : 'f6c7c4e4db56de88295c2ba45762a331'),
+    URL: '/api/graphql'
   },
   NO_CACHE_HEADERS: {
     'cache-control': 'no-store',

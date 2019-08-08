@@ -31,6 +31,19 @@ const createCheckoutMutation = gql`
 /* eslint-enable */
 
 /**
+ * Simple Storefront API GQL query to be used as a health check
+ */
+/* eslint-disable graphql/template-strings */
+const testStorefrontAPIQuery = gql`
+  query testStorefrontAPIQuery {
+    shop {
+      name
+    }
+  }
+`;
+/* eslint-enable */
+
+/**
  * Create a request for a new Shopify checkout from the Storefront API
  * Passes off to a wrapper over our generic makeShopifyStorefrontRequest function to issue a GraphQL
  * request to the passed-in URL with appropriate headers set for accessing the Storefront API
@@ -40,7 +53,7 @@ const createCheckoutMutation = gql`
  * @returns {Promise<Object>} - A Shopify checkout object
  */
 const createCheckoutRequest = ({ mutation, input }) => {
-  return makeShopifyStorefrontRequest(mutation, { input }, '/api/graphql')
+  return makeShopifyStorefrontRequest(mutation, { input })
     .then(data => data.checkoutCreate)
     .catch(error => {
       throw new Error(`Error getting customer from database: ${error.message}`);
@@ -48,11 +61,39 @@ const createCheckoutRequest = ({ mutation, input }) => {
 };
 
 /**
+ * @see https://help.shopify.com/en/api/storefront-api/reference/object/checkoutusererror
+ * @typedef {Object} CheckoutUserError
+ * @property {string|number} [code]
+ * @property {string} field
+ * @property {string} message
+ */
+
+/**
+ * @see https://help.shopify.com/en/api/storefront-api/reference/object/checkout
+ * @typedef {Object} CreateCheckoutResponse
+ * @property {Object} checkout
+ * @property {string} checkout.id
+ * @property {string} checkout.webUrl
+ * @property {CheckoutUserError[]} [checkoutUserErrors]
+ */
+
+/**
  * Take an input object to be used to create a request to the Shopify Storefront API
  * @param {Object} input - The variables object to be passed to the query (mutation)
- * @returns {Promise<Object>} - A Shopify checkout object
+ * @returns {Promise<CreateCheckoutResponse>} - A Shopify checkout object
  */
-const createCheckout = input =>
+export const createCheckout = input =>
   createCheckoutRequest({ mutation: createCheckoutMutation, input });
 
-export default createCheckout;
+/**
+ * Test that a request to the Storefront API GraphQL endpoint works and
+ * returns a value
+ * @returns {Promise<Boolean>} - The request succeeded
+ */
+export const testStorefrontAPI = () =>
+  makeShopifyStorefrontRequest(testStorefrontAPIQuery)
+    .then(data => Boolean(data.shop && data.shop.name))
+    .catch(error => {
+      console.error('Storefront API Test Request Failed:', error);
+      return false;
+    });

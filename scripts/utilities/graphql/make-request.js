@@ -22,8 +22,20 @@ export const makeRequest = (query, data, url, extraConfig = {}) =>
       ...extraConfig.headers
     }
   })
-    .then(response => response.json())
-    // GQL returns either only `data` or `data` (probably null) and `errors`, which is an array of objects
+    .then(response => {
+      if (!response.ok) {
+        const message = response.statusText;
+        throw new Error(
+          `Failed GQL request. Status: ${response.status}${message &&
+            `; message: ${message}`}`
+        );
+      }
+      return response.json();
+    })
+    /**
+     * GQL returns either only `data` or `errors`, which is an array of objects.
+     * `errors` are the result of a malformed request (not HTTP errors)
+     */
     .then(({ data, errors }) => {
       if (errors) {
         // Just reduce all error messages to a comma-delimited string (only one string if there's only one error)
@@ -59,13 +71,12 @@ export const makeUncachedRequest = (query, data, url, extraConfig = {}) => {
  * to the underlying `makeRequest` master GraphQL request function
  * @param {*} query - A tagged template literal that will be used to create a GraphQL request using passed-in data
  * @param {Object} data - The data to be passed to a GraphQL query
- * @param {*} url - A request URL to pass to the underlying `makeRequest` function
  * @returns {Promise<Object>} - Data returned from the GQL query or mutation
  */
-export const makeShopifyStorefrontRequest = (query, data, url) => {
+export const makeShopifyStorefrontRequest = (query, data) => {
   const headers = {};
   headers[STOREFRONT_API.HEADER_NAME] = STOREFRONT_API.KEY;
-  return makeUncachedRequest(query, data, url, {
+  return makeUncachedRequest(query, data, STOREFRONT_API.URL, {
     headers
   });
 };

@@ -202,11 +202,12 @@ To properly build the client-side JS for Persistent Cart make sure to set the pr
 
 For local development, use "staging" values. For staging/production (in the DeployBot environment `.env` files) use staging/production values per the environment. The `.env` file should have the following environment variables configured for a proper client-side Persistent Cart JS build:
 
-| Environment Variable            | Description                                                                                   |
-| ------------------------------- | --------------------------------------------------------------------------------------------- |
-| `NODE_ENV`                      | Use `production` to optimize the JS builds; use `development` for local development/debugging |
-| `DECATHLON_PERSISTENT_CART_URL` | The Decathlon USA Persistent Cart Heroku app URL                                              |
-| `STOREFRONT_API_KEY`            | The storefront API key used by Persistent Cart                                                |
+| Environment Variable                  | Description                                                                                                    |
+| ------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `NODE_ENV`                            | Use `production` to optimize the JS builds; use `development` for local development/debugging                  |
+| `DECATHLON_PERSISTENT_CART_URL`       | The Decathlon USA Persistent Cart Heroku app URL                                                               |
+| `STOREFRONT_API_KEY`                  | The storefront API key used by Persistent Cart                                                                 |
+| `STOREFRONT_API_TEST_TIMEOUT_MINUTES` | A timeout value, in minutes, between health-check calls to the Storefront API (default fallback is 15 minutes) |
 
 ### Where can I find the Decathlon USA Persistent Cart Heroku app URL?
 
