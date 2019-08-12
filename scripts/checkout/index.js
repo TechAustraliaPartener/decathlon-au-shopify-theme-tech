@@ -1,4 +1,3 @@
-import 'nodelist-foreach-polyfill';
 import { DELIVERY_METHODS } from './constants';
 import STATE from './state';
 import bindUI from './bind-ui';

@@ -1,4 +1,3 @@
-import '../utilities/element-closest-polyfill';
 import { JS_PREFIX, IS_OPEN } from './constants';
 
 /**

@@ -15,6 +15,7 @@
       window.adr_K6s3Kaja = "{{ 'adr_K6s3Kaja.jpg' | asset_url }}";
       window.defaultMap = "{{ 'no-selection-map2.jpg' | asset_url }}";
     </script>
+    {% include 'polyfills' %}
     {{ checkout_scripts }}
   </head>
   <body>
@@ -66,21 +67,21 @@
                          de-u-hidden
                          js-de-toggle-shipping"
                 >
-                  {% include 'icon-delivery-truck' 
+                  {% include 'icon-delivery-truck'
                       with class: 'de-Pickship-icon de-Icon de-u-spaceRight03'
                   %}
                   Ship to Home
                 </button>
               </div>
-              <div 
-                class="de-pickship-btn-container 
+              <div
+                class="de-pickship-btn-container
                        de-u-size1of2 de-u-spaceBottom">
                 <button
                   class="btn de-pickship-btn
                          de-u-hidden
                          js-de-toggle-pickup"
-                > 
-                  {% include 'icon-store' 
+                >
+                  {% include 'icon-store'
                       with class: 'de-Pickship-icon de-Icon de-u-spaceRight03'
                   %} Pickup in Store
                 </button>
@@ -148,7 +149,8 @@
     </div>
     {% include 'moment.js' %}
     {% include 'moment-timezone.js' %}
-    {{ 'built-checkout.js' | asset_url | script_tag }}
+    <script defer type="module" src="{{ 'built-checkout.js' | asset_url }}"></script>
+    <script defer nomodule src="{{ 'built-checkout-legacy.js' | asset_url }}"></script>
     {{ tracking_code }}
   </body>
 </html>

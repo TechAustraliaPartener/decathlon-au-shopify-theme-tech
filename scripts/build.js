@@ -3,16 +3,18 @@ require('dotenv').config();
 
 // Imported/called by parent gulp task
 
-const rename = require('gulp-rename');
-const gulpRollup = require('gulp-better-rollup');
+const gulpRollup = require('rollup-vinyl-stream2');
 const rollup = require('rollup');
 const rollupNodeResolve = require('rollup-plugin-node-resolve');
 const rollupCommonJs = require('rollup-plugin-commonjs');
-const babel = require('rollup-plugin-babel');
+const babel = require('@babel/core');
+const hasha = require('hasha');
 const { terser } = require('rollup-plugin-terser');
-const changed = require('gulp-changed');
-
-const babelConfig = require('./babel.config');
+const glob = require('glob');
+const path = require('path');
+const del = require('del');
+const mergeStreams = require('merge-stream');
+const virtual = require('rollup-plugin-virtual');
 
 const taskName = 'jsC4Scripts';
 
@@ -21,51 +23,103 @@ const BUILT_PREFIX = 'built-';
 
 const DESTINATION = './assets';
 
+/**
+ * In-memory babel cache to be shared between rebuilds.
+ * This is used because a new Rollup instance is created on each file change,
+ * so Rollup cannot know which files have changed since last time,
+ * so it runs all transforms on all files every time
+ * @type {Map<string, {inputHash: string, data: any }>}
+ */
+const babelCache = new Map();
+
 module.exports = gulp => {
   gulp.task(taskName, () => {
-    return (
-      gulp
-        .src('scripts/*/index.js')
-        .pipe(
-          gulpRollup(
-            {
-              rollup,
-              plugins: [
-                rollupNodeResolve(),
-                rollupCommonJs(),
-                babel({ babelrc: false, ...babelConfig, exclude: [/core-js/] }),
-                prod &&
-                  terser({
-                    compress: {
-                      passes: 4,
-                      unsafe: true,
-                      pure_getters: true
-                    },
-                    mangle: true
-                  })
-              ],
-              external: ['jquery', 'handlebars']
-            },
-            {
-              format: 'iife',
-              globals: {
-                jquery: 'jQuery',
-                handlebars: 'Handlebars'
-              }
+    // Creates an object like: { checkout: 'scripts/checkout/index.js' }
+    const entryModules = glob
+      .sync('scripts/*/index.js')
+      .reduce((entryModules, file) => {
+        // 'scripts/checkout/index.js' => 'scripts/checkout' => 'checkout'
+        const outputName = path.dirname(file).replace(/.*\//, '');
+        entryModules[outputName] = file;
+        return entryModules;
+      }, {});
+
+    del.sync(`assets/${BUILT_PREFIX}chunk-*`);
+
+    const createRollupConfig = (input, type) => {
+      const modern = type === 'modern';
+      return gulpRollup({
+        input,
+        output: {
+          format: modern ? 'esm' : 'iife',
+          chunkFileNames: modern
+            ? `${BUILT_PREFIX}[name]-[hash].js`
+            : `${BUILT_PREFIX}[name]-[hash]-legacy.js`,
+          entryFileNames: modern
+            ? `${BUILT_PREFIX}[name].js`
+            : `${BUILT_PREFIX}[name]-legacy.js`,
+          preferConst: true
+        },
+        rollup,
+        plugins: [
+          // When we import jquery or handlebars, rollup will change references to the global variables
+          // Rollup externals don't work with { format: 'esm' }
+          virtual({
+            jquery: 'export default jQuery',
+            handlebars: 'export default Handlebars'
+          }),
+          rollupNodeResolve(),
+          rollupCommonJs({ include: 'node_modules/**' }),
+          {
+            name: 'rollup-plugin-babel',
+            async transform(code, id) {
+              if (!id.endsWith('.js')) return null;
+              const envName = modern ? 'modern' : 'legacy';
+              // We are keeping 2 copies of each file in the cache,
+              // one for the modern output, and one for the legacy output
+              const filenameHash = hasha([id, envName]);
+              const inputHash = hasha(code);
+              const cachedValue = babelCache.get(filenameHash);
+              // If the file hasn't changed since last time it was transformed, use the result from last time
+              if (cachedValue && cachedValue.inputHash === inputHash)
+                return cachedValue.data;
+              const transformed = await babel.transformAsync(code, {
+                configFile: require.resolve('./babel.config.js'),
+                filename: id,
+                envName,
+                caller: {
+                  name: 'rollup-plugin-babel',
+                  supportsStaticESM: true,
+                  supportsDynamicImport: true
+                }
+              });
+              babelCache.set(filenameHash, { inputHash, data: transformed });
+              return transformed;
             }
-          )
-        )
-        .pipe(
-          rename(path => {
-            // Rename from asdf/index.js to built-asdf.js
-            path.basename = `${BUILT_PREFIX}${path.dirname}`;
-            path.dirname = './';
-          })
-        )
-        // We don't want files to be written to `assets` if they are not different.
-        // Otherwise themekit will re-upload them
-        .pipe(changed(DESTINATION, { hasChanged: changed.compareContents }))
-        .pipe(gulp.dest(DESTINATION))
+          },
+          prod &&
+            terser({
+              // With ecma set to 6+ terser will do some additional transforms to change things from es5 to smaller es6 equivalents
+              // for example {a: a} will get transformed to {a}
+              ecma: modern ? 6 : 5,
+              compress: {
+                passes: 4,
+                unsafe: true,
+                pure_getters: true
+              },
+              mangle: true
+            })
+        ],
+        experimentalOptimizeChunks: true,
+        chunkGroupingSize: 10000
+      }).pipe(gulp.dest(DESTINATION));
+    };
+
+    return mergeStreams(
+      createRollupConfig(entryModules, 'modern'),
+      ...Object.entries(entryModules).map(([outputName, inputPath]) => {
+        return createRollupConfig({ [outputName]: inputPath }, 'legacy');
+      })
     );
   });
 

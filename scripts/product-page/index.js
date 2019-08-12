@@ -1,10 +1,5 @@
 // @ts-check
 
-// this manual import is needed because we are not using Array.from directly,
-// but core-js is using it, and we aren't automatically injecting polyfills for core-js's own files,
-// otherwise we'd have circular dependency issues
-import 'core-js/modules/es.array.from';
-import 'nodelist-foreach-polyfill';
 import './buybox';
 import * as carousel from './carousel';
 import * as carouselContext from './carousel-context';

@@ -608,8 +608,8 @@
         function displayItemPopup() {
           $('#AddedItemPopup').remove();
           context.variant_options_without_model_code = context.options_with_values
-            .filter(o => o.name !== 'Model Code')
-            .map(o => o.value)
+            .filter(function (o) {return o.name !== 'Model Code'})
+            .map(function (o) {return o.value})
           $('body').append(itemPopupTemplate(context));
 
           $('#AddedItemPopup .close-itemPopup-btn').click(function(e) {

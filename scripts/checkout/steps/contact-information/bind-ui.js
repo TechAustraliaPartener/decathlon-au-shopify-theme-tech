@@ -29,7 +29,6 @@ import { getCurrentLocation } from '../../../utilities/location';
 import { showElements, hideElements, elementExists } from '../../ui-helpers';
 import config from '../../config';
 import sharedConfig from '../../../shared/config';
-import fetch from 'unfetch';
 
 const { CLASSES, SHOP_ID, PICKUP_SHIPPING_METHOD } = config;
 const { STOREFRONT_API } = sharedConfig;

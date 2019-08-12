@@ -19,8 +19,6 @@ import {
 import pcConfig from './config';
 import scriptsConfig, { DEBUG } from '../shared/config';
 import { cartReconciler } from './cart-reconciler';
-import fetch from 'unfetch';
-import 'promise-polyfill/src/polyfill';
 import { setCartCookie, getCartCookie, removeCartCookie } from './cart-cookies';
 import onCartAjaxUpdated from './add-to-cart';
 import updateCartUI from './update-cart-ui';

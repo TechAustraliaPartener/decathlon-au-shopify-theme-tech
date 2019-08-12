@@ -234,7 +234,9 @@
 
 
   {{ 'timber.js' | asset_url | script_tag }}
-  {{ 'built-persistent-cart.js' | asset_url | script_tag }}
+  {% include 'polyfills' %}
+  <script defer type="module" src="{{ 'built-persistent-cart.js' | asset_url }}"></script>
+  <script defer nomodule src="{{ 'built-persistent-cart-legacy.js' | asset_url }}"></script>
 
   {% comment %}{% include '_live-search' %}{% endcomment %}
 
@@ -325,7 +327,8 @@
     {% endcomment %}
     {% include 'moment.js' %}
     {% include 'moment-timezone.js' %}
-    {{ 'built-product-page.js' | asset_url | script_tag }}
+    <script defer type="module" src="{{ 'built-product-page.js' | asset_url }}"></script>
+    <script defer nomodule src="{{ 'built-product-page-legacy.js' | asset_url }}"></script>
   {% endif %}
 
   {% comment %}{% include 'decathlon-wishlist' %}{% endcomment %}
