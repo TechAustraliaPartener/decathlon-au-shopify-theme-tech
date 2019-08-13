@@ -15,7 +15,6 @@ import { searchForm } from './search-form';
 import { map } from './map';
 import { storeTile } from './store-tile';
 import { noLocations } from './no-locations';
-import fetch from 'unfetch';
 
 /**
  * Initialize Vue instance

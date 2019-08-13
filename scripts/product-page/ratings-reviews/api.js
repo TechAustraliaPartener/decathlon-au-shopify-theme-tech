@@ -5,7 +5,6 @@
  */
 
 import { encode } from 'qss';
-import fetch from 'unfetch';
 import { REVIEWS_BASE_URL, REVIEWS_BASE_QUERY_PARAMS } from './constants';
 import { modelCode } from './template-data';
 import { DEBUG } from '../../shared/config';

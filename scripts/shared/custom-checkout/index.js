@@ -4,8 +4,6 @@ import scriptsConfig, { DEBUG } from '../../shared/config';
 import { IS_CUSTOM_CHECKOUT } from '../../shared/constants';
 import { createCheckout } from './queries';
 import 'formdata-polyfill';
-import '../../utilities/element-matches-polyfill';
-import fetch from 'unfetch';
 
 const {
   SELECTORS: { CART }

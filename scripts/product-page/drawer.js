@@ -477,9 +477,10 @@ export const init = () => {
   });
 
   // Initialize toggles
-  [
-    ...document.querySelectorAll(`${TOGGLE_SELECTOR}, ${OVERLAY_SELECTOR}`)
-  ].forEach(initToggle);
+
+  document
+    .querySelectorAll(`${TOGGLE_SELECTOR}, ${OVERLAY_SELECTOR}`)
+    .forEach(initToggle);
 
   // Initialize the FocusTrap module
   initFocusTrap();

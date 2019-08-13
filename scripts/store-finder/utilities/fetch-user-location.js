@@ -1,7 +1,6 @@
 // @ts-check
 
 import getReverseGeocode from './get-reverse-geocode';
-import fetch from 'unfetch';
 
 /**
  * @typedef {Object} LocationInfo

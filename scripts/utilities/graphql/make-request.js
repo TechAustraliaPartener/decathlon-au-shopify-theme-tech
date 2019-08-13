@@ -1,6 +1,5 @@
 import pcConfig from '../../persistent-cart/config';
 import scriptsConfig from '../../shared/config';
-import fetch from 'unfetch';
 
 const { STOREFRONT_API, NO_CACHE_HEADERS } = scriptsConfig;
 
