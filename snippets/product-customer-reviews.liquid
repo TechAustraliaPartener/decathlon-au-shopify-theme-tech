@@ -308,7 +308,7 @@
                 {% endif %}
                 {% if review.purchase_checked %}
                   <div class="de-u-flex de-u-flexAlignItemsCenter de-u-spaceTop06">
-                    {% include 'icon-checkmark-badge'
+                    {% include 'assets-icons-checkmark-badge'
                       with class: 'de-Icon de-u-textGrow5 de-u-padRight06' %}
                     verified purchase
                   </div>
@@ -326,7 +326,7 @@
                     data-review-vote-url="{{review.url_vote}}"
                     href="{{review.url_vote}}">
                     Helpful Review?
-                    {% include 'icon-upvote-thumb'
+                    {% include 'assets-icons-upvote-thumb'
                       with class: 'de-Icon de-u-spaceLeft06 de-u-textGrow2' %}
                   </button>
                 </div>
@@ -359,7 +359,7 @@
                         data-review-vote-url="{{review.url_vote}}"
                         href="{{review.url_vote}}">
                       Helpful Response?
-                      {% include 'icon-upvote-thumb'
+                      {% include 'assets-icons-upvote-thumb'
                         with class: 'de-Icon de-u-spaceLeft06 de-u-textGrow2' %}
                     </button>
                   </div>
@@ -374,7 +374,7 @@
         Reimplement when voting API becomes usable
       {% endcomment %}
       {% comment %} <script type="x-handlebars-template" id="de-Icon-helpful-template">
-        {% include 'icon-upvote-thumb'
+        {% include 'assets-icons-upvote-thumb'
           with class: 'de-Icon de-u-spaceLeft06 de-u-textGrow2' %}
       </script> {% endcomment %}
       {% comment %}
@@ -383,7 +383,7 @@
         for rendering issues with Handlebars in some circumstances (sorting, e.g.)
       {% endcomment %}
       <script type="x-handlebars-template" id="de-Icon-verifiedPurchase-template">
-        {% include 'icon-checkmark-badge-alt'
+        {% include 'assets-icons-checkmark-badge-alt'
           with class: 'de-Icon de-u-textGrow5 de-u-padRight06' %}
       </script>
       <script type="x-handlebars-template" id="de-Icon-logoNoBg-template">

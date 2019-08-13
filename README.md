@@ -7,8 +7,11 @@
 
 
 - [Project Setup](#project-setup)
-- [Gulp Config](#gulp-config)
+- [NPM scripts and Gulp tasks](#npm-scripts-and-gulp-tasks)
+  - [NPM Scripts](#npm-scripts)
+  - [Gulp Tasks](#gulp-tasks)
 - [Watch](#watch)
+- [Working with Shopify snippets](#working-with-shopify-snippets)
 - [Working With Shopify Assets](#working-with-shopify-assets)
 - [Stylesheets](#stylesheets)
 - [JavaScript](#javascript)
@@ -78,9 +81,27 @@
 1. Type the command `npm install` and press enter. This will install all node dependencies for the project.
 1. Type `npx gulp` and press enter. This will run all project gulp tasks and also ensure that all dependencies are installed properly. If a dependency does not exist you'll see an error in terminal. If you see this error, install the missing dependency by typing the command `npm install <package_name> --save-dev`. After this make sure to commit your `package.json` file so that the next user has the dependencies they need.
 
-## Gulp Config
+## NPM scripts and Gulp tasks
 
-There is a file in the root directory called `gulp-config.json`. This file maintains the list of directories, stylesheets, sprites, and JavaScript files. All configuration for gulp should be here.
+This project has both Gulp tasks and NPM scripts. The Gulp tasks are executed via the NPM scripts.
+
+### NPM Scripts
+
+@TODO Document all NPM scripts.
+
+| NPM Script Name | Description |
+|---|---|
+| `npm run dev` | @TODO Add description |
+
+### Gulp Tasks
+
+@TODO Document all Gulp tasks.
+
+| Gulp Task Name | Description |
+|---|---|
+| `snippets:clean` | Deletes generated snippets from the `snippets/` directory. |
+| `snippets:copy` | Generates & copies snippets from `snippets-src/` into the `snippets/` directory. Renames files in the process (e.g. `snippets-src/some/path/hello-world.liquid` -> `snippets/some-path-hello-world.liquid`) |
+| `snippets` |  Runs `snippets:clean` then `snippets:copy` in sequence. |
 
 ## Watch
 
@@ -89,6 +110,10 @@ Typing `npm run dev` will watch a variety of directories for changes and then pe
 - If svgs are dropped into `src/svg/icons` sass and svg sprite will run.
 - If changes are made to any files in the `src/scss/**` folder then the `gulp sass` task will run which generates the css file, combines the media queries, and then converts it into a `style.css.liquid` file.
 - If changes are made to any file inside the `src/js/**` folder, `gulp uglify` will run which lints all JS files in that directory, concats and files that need it, and then minify all files.
+
+## Working with Shopify snippets
+
+For details regarding working with the `snippets/` directory files, see the [`snippets-src/` README](snippets-src/README.md). 
 
 ## Working With Shopify Assets
 
