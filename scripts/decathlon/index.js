@@ -1,4 +1,5 @@
-/* eslint-disable complexity, @cloudfour/no-param-reassign, no-undef, no-redeclare, eqeqeq, no-negated-condition, radix, block-scoped-var, no-var, no-alert, no-new, @cloudfour/unicorn/explicit-length-check, max-params, no-new-func */
+/* eslint-disable complexity, @cloudfour/no-param-reassign, no-redeclare, eqeqeq, no-negated-condition, radix, block-scoped-var, no-var, no-alert, no-new, @cloudfour/unicorn/explicit-length-check, max-params, no-new-func */
+/* global Handlebars, Cookies, jQuery, BlueLikeNeon, s3, DecathlonCustomer */
 function handlebarsSafeCompile(string) {
   if (string) {
     return Handlebars.compile(string);
@@ -864,12 +865,6 @@ function getLocaleSync($) {
   global.DecathlonCustomer = DecathlonCustomer;
 })(window, jQuery);
 ((global, $, BlueLikeNeon, Handlebars, DecathlonCustomer) => {
-  function a(t) {
-    t = t || global.event;
-    if (t.preventDefault) t.preventDefault();
-    t.returnValue = false;
-  }
-  const r = '//picshare.decathlon.com';
   const s = '//reviews.decathlon.com';
   const c = 768;
   const l = 1e3;
@@ -1006,14 +1001,6 @@ function getLocaleSync($) {
       .getFullYear()
       .toString()
       .substr(2)}`;
-  });
-  // Instagram template only, should be safe to remove
-  Handlebars.registerHelper('if_even', function(e, t) {
-    return e % 2 == 0 ? t.fn(this) : t.inverse(this);
-  });
-  // Instagram template only, should be safe to remove
-  Handlebars.registerHelper('if_odd', function(e, t) {
-    return e % 2 == 1 ? t.fn(this) : t.inverse(this);
   });
   $(() => {
     function scrollToTop() {
@@ -1159,22 +1146,6 @@ function getLocaleSync($) {
         if (3 * q >= Q.total_item_count) $('.js-loadReviews').hide();
         else $('.js-loadReviews').show();
       }
-    }
-
-    function b() {
-      if (window.reviewsflushlist) q = 0;
-      const e = ($('.js-productReviewsSort').val() || 'createdAt|desc').split(
-        '|'
-      );
-      const i = 3 * q;
-      q++;
-      if (!(!Q || i >= Q.total_item_count))
-        if (e[0] == 'createdAt' && e[1] == 'desc' && q <= 5)
-          w({
-            total_item_count: Q.total_item_count,
-            items: Q.items.slice(i, i + 3)
-          });
-        else $.get(`${J + M}&page=${q}&sort=${e[0]}&direction=${e[1]}`).then(w);
     }
 
     class CustomDropdown {
@@ -1555,122 +1526,7 @@ function getLocaleSync($) {
     if ($('body').hasClass('template-index')) {
       $(global).on('scroll', h);
       h();
-      var P = `${r}/api/v1/medias/recent?language[]=en&country[]=GB&limit=10`;
-      // I = handlebarsSafeCompile(t("#instagramPostTemplate").html()),
-      // O = handlebarsSafeCompile(t("#instagramLightBoxTemplate").html()),
-      var I = null;
-      var O = null;
-      var F = 0;
-      var A = null;
-      // R = t(".js-instagramFeed").data("instagram"),
-      var R = null;
-      var z = false;
-      var N = i => {
-        if (
-          (z ||
-            ($('body').append(
-              O({
-                photos: i,
-                INSTAGRAM_ROOT: r,
-                initialize: true
-              })
-            ),
-            $('.js-instagramSlick').slick({
-              slidesToShow: 1,
-              infinite: true,
-              autoplay: false,
-              dots: false,
-              arrows: true
-            }),
-            $('.js-stopPropagation').click(e => {
-              e.stopPropagation();
-            }),
-            $('.js-closeInstagramLightBox').click(() => {
-              $('.instagramLightBox').fadeOut(400);
-              $(global).off('wheel', a);
-              $(global).off('touchmove', a);
-            }),
-            (z = true)),
-          i.length < 10 &&
-            ((A = 10 * (F - 1) + i.length),
-            $('.js-loadInstagram').addClass('disabled'),
-            i.length == 0))
-        )
-          return Promise.resolve();
-        const n = I({
-          INSTAGRAM_ROOT: r,
-          photos: i,
-          hideLogo: true,
-          twoRow: true,
-          oddCount: i.length % 2 == 1
-        });
-        let o = null;
-        if ($('.js-instagramFeed').hasClass('slick-initialized')) {
-          const s = new Image();
-          o = new Promise((resolve, reject) => {
-            s.addEventListener('load', resolve);
-            s.addEventListener('error', reject);
-          });
-          s.src = r + i[0].file_data.high.url;
-          $('.js-instagramFeed').slick('slickAdd', n);
-          const c = O({
-            photos: i,
-            INSTAGRAM_ROOT: r
-          });
-          $('.js-instagramSlick').slick('slickAdd', c);
-        } else {
-          o = Promise.resolve();
-          $('.js-instagramFeed')
-            .append(n)
-            .parent()
-            .removeClass('hidden');
-        }
-
-        $('.instagramPost').click(function() {
-          const n = $('.js-instagramSlick');
-          const o =
-            2 *
-            $(this)
-              .parent()
-              .data('slick-index');
-          $('.instagramLightBox').fadeIn(400);
-          n.slick('slickGoTo', o + $(this).index(), true);
-          n.slick(
-            'slickSetOption',
-            'arrows',
-            n.slick('slickGetOption', 'arrows'),
-            true
-          );
-
-          $(global).on('wheel', a);
-          $(global).on('touchmove', a);
-        });
-        return o;
-      };
-      $('.js-loadInstagram').click(function() {
-        if (!$(this).hasClass('disabled')) {
-          const i = $('.js-instagramFeed .slick-slide').length;
-          const n =
-            parseInt(
-              $('.js-instagramFeed').slick('slickGetOption', 'slidesToShow')
-            ) - 1;
-          const index = $('.js-instagramFeed').slick('slickCurrentSlide') + n;
-          if (index != i - 1) $('.js-instagramFeed').slick('slickNext');
-        }
-      });
-      var E = (e, i, n, o) => {
-        const a = i.slickGetOption('slidesToShow') - 1;
-        if (A && 2 * (o + a) >= A - 1)
-          $('.js-loadInstagram').addClass('disabled');
-        else $('.js-loadInstagram').removeClass('disabled');
-      };
-      if (
-        ($('.js-instagramFeed').on('init', (e, t) => {
-          E(e, t, 0, 0);
-        }),
-        $('.js-instagramFeed').on('beforeChange', E),
-        !decathlon.getData('seenBanner') && $('.popup').length)
-      ) {
+      if (!decathlon.getData('seenBanner') && $('.popup').length) {
         const B = $(global).height();
         $('body').addClass('is-showingBanner');
         $('.popup').css('height', B);
@@ -1699,7 +1555,7 @@ function getLocaleSync($) {
           $('.popup').css('height', $(global).height());
         });
       }
-      var U = ($('.sportsSearch'), $('.sportsSearch .slick-slider'));
+      var U = $('.sportsSearch .slick-slider');
       if ($(global).width() > 1520) g();
     }
     if (!decathlon.getData('seenPromo')) {
@@ -1764,9 +1620,11 @@ function getLocaleSync($) {
     }
 
     if ($('body').hasClass('template-product')) {
+      const productWrap = $('#ProductWrap');
+      const modelCode = productWrap.data('modelCode');
       $(global).on('scroll', h);
       h();
-      if (!$('#ProductWrap').hasClass('product-singleOption'))
+      if (!productWrap.hasClass('product-singleOption'))
         decathlon.optionToSwatch().then(() => {
           $('.selector-wrapper--color .custom-variants').slick({
             slidesToShow: 5,
@@ -1899,180 +1757,7 @@ function getLocaleSync($) {
           .parents('.productFAQs-faq')
           .toggleClass('is-open');
       });
-      var M = $('.js-instagramFeed').data('modelCode');
-      if (M) {
-        var P = `${r}/api/v1/medias/recent?code=${M}&language[]=en&country[]=GB&limit=5`;
-        var I = handlebarsSafeCompile($('#instagramPostTemplate').html());
-        var O = handlebarsSafeCompile($('#instagramLightBoxTemplate').html());
-        var F = 0;
-        var A = null;
-        var R = $('.js-instagramFeed').data('instagram');
-        var z = false;
-        var N = i => {
-          if (!z) {
-            $('body').append(
-              O({
-                photos: i,
-                INSTAGRAM_ROOT: r,
-                initialize: true
-              })
-            );
-
-            $('.js-instagramSlick').slick({
-              slidesToShow: 1,
-              infinite: true,
-              autoplay: false,
-              dots: false,
-              arrows: true
-            });
-
-            $('.js-stopPropagation').click(e => {
-              e.stopPropagation();
-            });
-            $('.js-closeInstagramLightBox').click(() => {
-              $('.instagramLightBox').fadeOut(400);
-              $(global).off('wheel', a);
-              $(global).off('touchmove', a);
-            });
-            var o = true;
-            z = true;
-          }
-          if (
-            i.length < 5 &&
-            ((A = 5 * (F - 1) + i.length),
-            $('.js-loadInstagram').addClass('disabled'),
-            i.length == 0)
-          )
-            return Promise.resolve();
-          const s = I({
-            photos: i,
-            INSTAGRAM_ROOT: r,
-            modelCode: M,
-            firstRow: o
-          });
-          let c = null;
-          if ($('.js-instagramFeed').hasClass('slick-initialized')) {
-            const l = new Image();
-            c = new Promise((resolve, reject) => {
-              l.addEventListener('load', resolve);
-              l.addEventListener('error', reject);
-            });
-            l.src = r + i[0].file_data.high.url;
-            $('.js-instagramFeed').slick('slickAdd', s);
-            const d = O({
-              photos: i,
-              INSTAGRAM_ROOT: r
-            });
-            $('.js-instagramSlick').slick('slickAdd', d);
-          } else {
-            c = Promise.resolve();
-            $('.js-instagramFeed')
-              .append(s)
-              .parent()
-              .removeClass('hidden');
-            $('.js-picshareForm').click(i => {
-              if ((i.preventDefault(), !$('.picshare').length)) {
-                const o = handlebarsSafeCompile($('#picshareTemplate').html());
-
-                $('body').append(
-                  o({
-                    INSTAGRAM_ROOT: r,
-                    token: $('.js-instagramFeed').data('jwtToken'),
-                    modelCode: M,
-                    siteCode: 1132
-                  })
-                );
-                $('.inputWrap > select').on('change', updateInputEmptyClass);
-                $('.inputWrap > input, .inputWrap > textarea').on(
-                  'keyup',
-                  updateInputEmptyClass
-                );
-
-                $(global).on('wheel', a);
-                $(global).on('touchmove', a);
-                $('.js-closePicshare').click(() => {
-                  $('.picshare form')
-                    .get(0)
-                    .reset();
-                  $('.picshare').css('display', 'none');
-                  $(global).off('wheel', a);
-                  $(global).off('touchmove', a);
-                });
-                $('.picshare form').submit(function(e) {
-                  e.preventDefault();
-                  const i = $(this);
-                  $.post(
-                    i.attr('action'),
-                    JSON.stringify(i.serializeObject()),
-                    (e, i) => {
-                      if (i == 'success')
-                        $('.picshare form')
-                          .hide()
-                          .after('<p>Thank you for sharing!</p>');
-                      else console.log(i, e);
-                    },
-                    'json'
-                  );
-                });
-              }
-              $('.picshare').css('display', 'block');
-            });
-          }
-          $('.instagramPost').click(function() {
-            const n = $('.js-instagramSlick');
-            $('.instagramLightBox').fadeIn(400);
-            n.slick('slickGoTo', $(this).index(), true);
-            n.slick(
-              'slickSetOption',
-              'arrows',
-              n.slick('slickGetOption', 'arrows'),
-              true
-            );
-
-            $(global).on('wheel', a);
-            $(global).on('touchmove', a);
-          });
-          return c;
-        };
-        var L = e => {
-          var e = e || (() => {});
-          const i = 5 * F;
-          if (!(A && i >= A)) {
-            F++;
-            if (F <= 3) N(R.slice(i, i + 5)).then(e);
-            else
-              $.get(`${P}&page=${F}`)
-                .then(N)
-                .then(e);
-          }
-        };
-        L();
-        $('.js-loadInstagram').click(function() {
-          if (!$(this).hasClass('disabled')) {
-            const i = $('.js-instagramFeed .slick-slide').length;
-            const n =
-              parseInt(
-                $('.js-instagramFeed').slick('slickGetOption', 'slidesToShow')
-              ) - 1;
-            const index = $('.js-instagramFeed').slick('slickCurrentSlide') + n;
-            if (index == i - 1)
-              L(() => {
-                setTimeout(() => {
-                  $('.js-instagramFeed').slick('slickNext');
-                }, 500);
-              });
-            else $('.js-instagramFeed').slick('slickNext');
-          }
-        });
-        var E = (e, i, n, o) => {
-          const a = i.slickGetOption('slidesToShow') - 1;
-          if (A && o + a >= A - 1) $('.js-loadInstagram').addClass('disabled');
-          else $('.js-loadInstagram').removeClass('disabled');
-        };
-        $('.js-instagramFeed').on('init', (e, t) => {
-          E(e, t, 0, 0);
-        });
-        $('.js-instagramFeed').on('beforeChange', E);
+      if (modelCode) {
         const V = $('.js-loadProductVideo');
         if (V)
           $.ajax({
@@ -2133,52 +1818,34 @@ function getLocaleSync($) {
 
         window.reviewsflushlist = false;
         window.reviewsinitialized = false;
-        b();
+
+        const loadReviews = () => {
+          if (window.reviewsflushlist) q = 0;
+          const e = (
+            $('.js-productReviewsSort').val() || 'createdAt|desc'
+          ).split('|');
+          const i = 3 * q;
+          q++;
+          if (!(!Q || i >= Q.total_item_count))
+            if (e[0] == 'createdAt' && e[1] == 'desc' && q <= 5)
+              w({
+                total_item_count: Q.total_item_count,
+                items: Q.items.slice(i, i + 3)
+              });
+            else
+              $.get(
+                `${J + modelCode}&page=${q}&sort=${e[0]}&direction=${e[1]}`
+              ).then(w);
+        };
+
+        loadReviews();
         $('.js-loadReviews').click(e => {
           e.preventDefault();
-          b();
+          loadReviews();
         });
         $('.js-productReviewsSort').change(() => {
           window.reviewsflushlist = true;
-          b();
-        });
-        $('.js-writeReviewForm').click(e => {
-          if ((e.preventDefault(), !$('.writeReview').length)) {
-            const i = handlebarsSafeCompile($('#writeReviewTemplate').html());
-
-            $('body').append(
-              i({
-                REVIEWS_ROOT: s,
-                siteCode: 1132,
-                modelCode: M,
-                token: $('.js-instagramFeed').data('jwtToken')
-              })
-            );
-
-            $('.inputWrap > select').on('change', updateInputEmptyClass);
-            $('.inputWrap > input, .inputWrap > textarea').on(
-              'keyup',
-              updateInputEmptyClass
-            );
-            $('.js-closeWriteReview').click(() => {
-              $('.writeReview form')
-                .get(0)
-                .reset();
-              $('.writeReview').css('display', 'none');
-            });
-            $('.writeReview form').submit(function(e) {
-              e.preventDefault();
-              const i = $(this);
-              $.post(i.attr('action'), i.serialize(), (e, i) => {
-                if (i == 'success')
-                  $('.writeReview form')
-                    .hide()
-                    .after('<p>Thank you for sharing!</p>');
-                else console.log(i, e);
-              });
-            });
-          }
-          $('.writeReview').css('display', 'block');
+          loadReviews();
         });
       }
       const variantId = decathlon.getParam('variantid');

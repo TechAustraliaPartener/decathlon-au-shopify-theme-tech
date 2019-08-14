@@ -31,7 +31,7 @@
 {% endif %}
 
 
-<div id="ProductWrap" class="u-block timber-activeProduct {% if product.options.size < 2 %}product-singleOption{% endif %}{% if product.tags contains 'Innovation' %} has-productFlag{% endif %}" itemscope itemtype="http://schema.org/Product">
+<div id="ProductWrap" class="u-block timber-activeProduct {% if product.options.size < 2 %}product-singleOption{% endif %}{% if product.tags contains 'Innovation' %} has-productFlag{% endif %}" itemscope itemtype="http://schema.org/Product" data-model-code="{{ model_code }}">
 
   <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
   <meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
@@ -170,28 +170,6 @@
     <div class="productVideo js-loadProductVideo" data-video-id="{{ video_id }}" data-poster="{{ 'video-' | append: product.handle | append:'.jpg' | file_img_url: '1600x' }}"></div>
   </div>
   {% endif %}
-  <div class="hidden">
-    <div class="instagramProductFeed js-instagramFeed grid--full js-slick--attr" data-jwt-token="{{ shop.metafields.picshare.jwt_token }}" data-model-code="{{ model_code }}" data-instagram="{{ product.metafields.instagram.feed | replace: '"', '&#34;' }}" data-slick='{ "dots": false, "infinite": false, "autoplay": false, "slidesToShow": 1, "arrows": true, "adaptiveHeight": true, "slide": ".instagramPost", "mobileFirst": true, "responsive": [
-      {
-        "breakpoint": 1120,
-        "settings": { "slidesToShow": 5 }
-      },
-      {
-        "breakpoint": 900,
-        "settings": { "slidesToShow": 4 }
-      },
-      {
-        "breakpoint": 600,
-        "settings": { "slidesToShow": 3 }
-      },
-      {
-        "breakpoint": 400,
-        "settings": { "slidesToShow": 2 }
-      }
-    ]}'>
-      <button class="instagramProductFeed-loadMore js-loadInstagram" type="button">Next</button>
-    </div>
-  </div>
 </div>
 
 {% if callouts.size > 0 %}
@@ -1190,6 +1168,4 @@ $.extend(Shopify.OptionSelectors.prototype, {
 });
 </script>
 
-{% include 'instagram-template' %}
-{% include 'picshare-template' %}
 {% include 'sizechart' %}

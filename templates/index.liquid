@@ -163,42 +163,6 @@
 
 {% comment %} {% include 'trending-products' %} {% endcomment %}
 
-{% comment %}
-<div class="instagramFeed-wrapper u-block hidden">
-  <div class="wrapper wrapper--narrow">
-    <div class="instagramFeed-message instagramFeed-message--homepage">
-      <h3 class="instagramMessage-title text-center">
-        {% comment %}
-        <span class="footer-icon-instagram instagramFeed-icon"></span><br/>
-        Be part of our community&nbsp;on Instagram&nbsp;and #LiveDecathlon
-        {{ settings['homepage_instagram_banner_title'] }}
-        {% endcomment %}
-      </h3>
-    </div>
-  </div>
-  <div class="instagramFeed js-instagramFeed grid--full js-slick--attr" data-instagram="{{ shop.metafields.global.instagram_feed | replace: '"', '&#34;' }}" data-slick='{ "dots": false, "infinite": false, "autoplay": false, "slidesToShow": 1, "arrows": true, "adaptiveHeight": true, "slide": ".instagramColumn", "mobileFirst": true, "responsive": [
-      {
-        "breakpoint": 1120,
-        "settings": { "slidesToShow": 5 }
-      },
-      {
-        "breakpoint": 900,
-        "settings": { "slidesToShow": 4 }
-      },
-      {
-        "breakpoint": 600,
-        "settings": { "slidesToShow": 3 }
-      },
-      {
-        "breakpoint": 400,
-        "settings": { "slidesToShow": 2 }
-      }
-    ]}'>
-      <button class="instagramProductFeed-loadMore js-loadInstagram" type="button">Next</button>
-    </div>
-</div>
-{% endcomment %}
-
 {% comment %} {%- unless settings['is_lookbook'] -%}
 <!-- #DecathlonSF -->
 {%- endunless -%}
@@ -292,7 +256,6 @@
 </div> {% endcomment %}
 
 {% comment %} {% include 'videos-script' %} {% endcomment %}
-{% comment %} {% include 'instagram-template' %} {% endcomment %}
 
 {{ content_for_index }}
 
