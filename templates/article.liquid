@@ -149,10 +149,12 @@
         {% endpaginate %}
       {% endif %}
   
+      {% comment %}
       {% unless article.tags contains 'Job' %}
         <h4 class="text-center u-marginBottom2x">Comments</h4>
         {% include 'disqus' %}
       {% endunless %}
+      {% endcomment %}
     </article>
   </div>
 
