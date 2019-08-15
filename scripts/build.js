@@ -52,7 +52,10 @@ function globals(modules) {
       if (id.startsWith(PREFIX)) {
         const realId = id.slice(PREFIX.length).replace(/\?.*/, '');
         const globalName = modules[realId];
-        return `const ${globalName} = window.${globalName}; export default ${globalName}`;
+        // If this starts failing at some point in the future
+        // (Rollup might throw an error saying that the variable isn't defined)
+        // then this should be changed to `const ${globalName} = window.${globalName}; export default ${globalName}`
+        return `export default ${globalName}`;
       }
     }
   };
