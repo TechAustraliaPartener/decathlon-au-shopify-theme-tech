@@ -316,7 +316,12 @@
   {{ 'transition.js' | asset_url | script_tag }}
   {% endcomment %}
 
-  {{ 'built-decathlon.js' | asset_url | script_tag }}
+  {% comment %}
+  We are always loading the legacy version of decathlon.js
+  because it needs to be executed synchronously, blocking html parsing,
+  because inline scripts depend on it
+  {% endcomment %}
+  {{ 'built-decathlon-legacy.js' | asset_url | script_tag }}
   {{ 'patterns-toolkit.js' | asset_url | script_tag }}
   {% if template == "product" and product.metafields.global.features != blank%}
     {% comment %}

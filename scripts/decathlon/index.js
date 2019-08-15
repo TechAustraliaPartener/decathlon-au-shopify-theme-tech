@@ -1,3 +1,5 @@
+import $ from 'jquery';
+import { decode } from 'qss';
 /* eslint-disable complexity, @cloudfour/no-param-reassign, no-redeclare, eqeqeq, no-negated-condition, radix, block-scoped-var, no-var, no-alert, no-new, @cloudfour/unicorn/explicit-length-check, max-params, no-new-func */
 /* global Handlebars, Cookies, jQuery, BlueLikeNeon, s3, DecathlonCustomer */
 function handlebarsSafeCompile(string) {
@@ -17,6 +19,30 @@ function handlebarsSafeCompile(string) {
     return '';
   };
 }
+
+const loadImages = () => {
+  $('img[data-src]').each((i, el) => {
+    $(el).attr('src', $(el).attr('data-src'));
+  });
+  $('[data-background-image]').each((i, el) => {
+    $(el).css('background-image', `url(${$(el).data('backgroundImage')})`);
+  });
+};
+
+const slugify = e =>
+  e
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/[\s_-]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+
+/**
+ * @see https://gist.github.com/jed/982883
+ */
+const uuid = t =>
+  t
+    ? (t ^ ((16 * Math.random()) >> (t / 4))).toString(16)
+    : ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, uuid);
 
 const allowedStates = {
   AL: 'Alabama',
@@ -233,11 +259,8 @@ function getLocaleSync($) {
       const l = 'mousemove.zoom';
       if (!n.url) {
         const p = a.querySelector('img');
-        if (
-          (p && (n.url = p.getAttribute('data-src') || p.currentSrc || p.src),
-          !n.url)
-        )
-          return;
+        if (p) n.url = p.getAttribute('data-src') || p.currentSrc || p.src;
+        if (!n.url) return;
       }
       r.one(
         'zoom.destroy',
@@ -315,6 +338,59 @@ function getLocaleSync($) {
   $.fn.zoom.defaults = t;
 })(window.jQuery);
 ((global, Cookies, $) => {
+  class ImageGroups {
+    constructor(groupOn, productJSON) {
+      this.groupOn_ = groupOn || 'Color';
+      this.optionKey_ = null;
+      this.groups_ = [];
+      this.currentImage_ = '';
+      this.productJSON = productJSON || global.productJSON;
+      this.findOptionNumber_();
+      this.initGroups_();
+      this.buildGroups_();
+    }
+
+    findOptionNumber_() {
+      const e = this;
+      for (let i = 0; i < e.productJSON.options.length; i++)
+        if (e.productJSON.options[i] === e.groupOn_)
+          e.optionKey_ = `option${i + 1}`;
+      return e;
+    }
+
+    initGroups_() {
+      const e = this;
+      for (let i = 0; i < e.productJSON.variants.length; i++) {
+        const t = e.productJSON.variants[i];
+        if (e.currentImage_ !== t.featured_image.src) {
+          e.currentImage_ = t.featured_image.src;
+          e.groups_.push({
+            color: t[e.optionKey_],
+            images: [e.currentImage_]
+          });
+        }
+      }
+      return e;
+    }
+
+    buildGroups_() {
+      const e = this;
+      let t = 0;
+      for (let i = 0; i < e.productJSON.images.length; i++) {
+        const n = e.productJSON.images[i];
+        for (let j = 0; j < e.groups_.length; j++)
+          if (n === e.groups_[j].images[0].replace(/^https:/, '')) t = j;
+        if (n !== e.groups_[t].images[0].replace(/^https:/, ''))
+          e.groups_[t].images.push(n);
+      }
+      return e;
+    }
+
+    getGroups() {
+      return this.groups_;
+    }
+  }
+
   class BlueLikeNeon {
     constructor(cookieName) {
       this.cookieName_ = cookieName || 'bln';
@@ -322,7 +398,7 @@ function getLocaleSync($) {
       const i = new Date().getTime();
       if (!this.cookieData_.createdAt) {
         this.setData('createdAt', i);
-        this.setData('id', this.uuid());
+        this.setData('id', uuid());
       }
       this.setData('updatedAt', i);
     }
@@ -369,53 +445,9 @@ function getLocaleSync($) {
       return thisRegionResult.data.region_name;
     }
 
-    // Only used within this file
-    // Extract!
-    slugify_(e) {
-      return e
-        .toLowerCase()
-        .replace(/[^\w\s-]/g, '')
-        .replace(/[\s_-]+/g, '-')
-        .replace(/^-+|-+$/g, '');
-    }
-
-    // Only used within this file
-    // Extract!
-    uuid(t) {
-      return t
-        ? (t ^ ((16 * Math.random()) >> (t / 4))).toString(16)
-        : ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, this.uuid);
-    }
-
-    // Only used within this file
-    // Extract!
-    // Replace with qss?
-    getParam(paramName, url) {
-      if (!url) url = global.location.href;
-      paramName = paramName.replace(/[[\]]/g, '\\$&');
-      const matches = new RegExp(`[?&]${paramName}(=([^&#]*)|&|#|$)`).exec(url);
-      return matches
-        ? matches[2]
-          ? decodeURIComponent(matches[2].replace(/\+/g, ' '))
-          : ''
-        : null;
-    }
-
-    // Only called within this file
-    // Extract!
-    loadImages() {
-      $('img[data-src]').each((i, el) => {
-        $(el).attr('src', $(el).attr('data-src'));
-      });
-      $('[data-background-image]').each((i, el) => {
-        $(el).css('background-image', `url(${$(el).data('backgroundImage')})`);
-      });
-    }
-
     // Only called within this file
     // Legacy product page only?
     optionToSwatch() {
-      const self = this;
       const wrapperEl = $('.selector-wrapper');
 
       wrapperEl.find('label').each((i, labelEl) => {
@@ -424,7 +456,7 @@ function getLocaleSync($) {
         $(labelEl).text(text);
         $(labelEl)
           .parent()
-          .addClass(['selector-wrapper', this.slugify_(text)].join('--'));
+          .addClass(['selector-wrapper', slugify(text)].join('--'));
       });
       wrapperEl.each(function() {
         const options = [];
@@ -433,12 +465,12 @@ function getLocaleSync($) {
         const labelName =
           $(this)
             .find('label')
-            .data('title') || self.uuid().replace(/-/g, '');
+            .data('title') || uuid().replace(/-/g, '');
         n.find('option').each((i, optionEl) => {
           options.push(
-            `<a href="#" class="option option--${self.slugify_(
-              labelName
-            )}-${self.slugify_($(optionEl).val())}" data-value="${$(optionEl)
+            `<a href="#" class="option option--${slugify(labelName)}-${slugify(
+              $(optionEl).val()
+            )}" data-value="${$(optionEl)
               .val()
               .replace('"', '&quot;')}">${$(optionEl).text()}</a>`
           );
@@ -605,24 +637,23 @@ function getLocaleSync($) {
             }
             return;
           }
+          if ($(`${t.selector}--cloned`).length === 0) {
+            o.after(
+              `<div class="${o.attr(
+                'class'
+              )} ${r}--placeholder" style="height:${
+                o[0].getBoundingClientRect().height
+              }px"></div>`
+            );
 
-          if (
-            ($(`${t.selector}--cloned`).length === 0 &&
-              (o.after(
-                `<div class="${o.attr(
-                  'class'
-                )} ${r}--placeholder" style="height:${
-                  o[0].getBoundingClientRect().height
-                }px"></div>`
-              ),
-              o.addClass(`${r}--cloned is-fixed`).detach(),
-              $('body').append(o),
-              o.css({
-                top: c
-              }),
-              t.pinCallback && t.pinCallback(o)),
-            s.length)
-          ) {
+            o.addClass(`${r}--cloned is-fixed`).detach();
+            $('body').append(o);
+            o.css({
+              top: c
+            });
+            if (t.pinCallback) t.pinCallback(o);
+          }
+          if (s.length) {
             for (
               var a = null, d = 0;
               d < s.length && $(global).scrollTop() > s[d].top;
@@ -640,66 +671,134 @@ function getLocaleSync($) {
         return n;
       }
     }
+
+    imageGroups(groupOn, productJSON) {
+      return new ImageGroups(groupOn, productJSON);
+    }
+
+    // Only called in this file
+    anchorLinks(getHeaderHeight) {
+      $('.js-anchorLink').on('click', function(event) {
+        event.preventDefault();
+        $('.js-navRelative').addClass('is-hidden');
+        $(`#${event.currentTarget.href.split('#')[1]}`).removeClass(
+          'is-hidden'
+        );
+        $(this)
+          .parents('.anchorList')
+          .find('.anchorList-link')
+          .removeClass('anchorList-link--active');
+        $(this).addClass('anchorList-link--active');
+        $('html, body').scrollTop(
+          $($(this).attr('href')).offset().top - getHeaderHeight() - 30
+        );
+      });
+    }
+
+    // Only called in this file
+    getGoingPacks(e) {
+      $('.js-getGoingPack').each((i, getGoingPackEl) => {
+        const bannerHeight = $(getGoingPackEl)
+          .find('.getGoingPack-banner')
+          .outerHeight();
+        const currentProductWrapper = $(getGoingPackEl).find(
+          '.getGoingPack-currentProductWrapper'
+        );
+        const currentProductWrapperHeight = currentProductWrapper.height();
+        currentProductWrapper.outerHeight();
+        const productListHeight = $(getGoingPackEl)
+          .find('.getGoingPack-productList')
+          .outerHeight();
+        const padding = e
+          ? '0'
+          : `${Math.floor(
+              Math.max(
+                0,
+                (bannerHeight -
+                  currentProductWrapperHeight -
+                  productListHeight) /
+                  2
+              )
+            )}px 0`;
+        $(getGoingPackEl)
+          .find('.getGoingPack-currentProductWrapper')
+          .css({ padding });
+      });
+    }
+
+    // Used in appmate wishlist most likely
+    addPromo(e, i) {
+      $('.promo-band').remove();
+      $('body').append(
+        `<div class="promo-band is-fixed ${i}"><div class="wrapper">${e}</div><div class="promo-band__close" onclick="this.parentNode.parentNode.removeChild(this.parentNode);"></div></div>`
+      );
+    }
+
+    // Used in other files, Collections and search possibly?
+    wishlistSwap(i = global.addToWishlist) {
+      const o = $('body').hasClass('template-product');
+      const a = o && $('body').hasClass('is-sellableProduct');
+      if (i) {
+        if (a) return;
+        global.addToWishlist = true;
+        $('main').addClass('hide-wkCartButtons');
+        $('.addToCart .addToCartText, .js-addToWishlist .addToCartText').text(
+          'Add to Wishlist'
+        );
+
+        $('.addToCart, .js-addToWishlist').click(function(e) {
+          e.preventDefault();
+          if ($('body').hasClass('template-product'))
+            $('.timber-activeProduct')
+              .find('.wk-button-product')
+              .click();
+          else {
+            const i = $(e.currentTarget)
+              .parents('.timber-activeProduct')
+              .find('.wk-button-product');
+            i.trigger('click');
+            $(e.currentTarget)
+              .find('.addToCartText')
+              .text(
+                i.hasClass('wk-add-product')
+                  ? 'Remove from Wishlist'
+                  : 'Add to Wishlist'
+              );
+          }
+          $(this).blur();
+        });
+      } else {
+        if (global.shipStates.indexOf('all') !== -1) return;
+        if (global.shipStates.indexOf(this.getUserRegion()) === -1) {
+          if (a) {
+            $('body').addClass('is-wishlistOnly');
+            $('main').addClass('hide-wkCartButtons');
+            return;
+          }
+
+          global.addToWishlist = true;
+          $('body').addClass('is-wishlistOnly');
+          $('main').addClass('hide-wkCartButtons');
+          $('.addToCart .addToCartText').text('Add to Wishlist');
+          $('.addToCart').click(function(e) {
+            e.preventDefault();
+            if ($('body').hasClass('template-product'))
+              $('.wishlist .wk-add-product').click();
+            else
+              $(this)
+                .parents('.timber-activeProduct')
+                .find('.wk-add-product')
+                .click();
+            $(this).blur();
+          });
+        }
+      }
+    }
   }
 
   global.BlueLikeNeon = BlueLikeNeon;
 })(window, Cookies, jQuery);
-((global, BlueLikeNeon) => {
-  class ImageGroups {
-    constructor(t, i) {
-      this.groupOn_ = t || 'Color';
-      this.optionKey_ = null;
-      this.groups_ = [];
-      this.currentImage_ = '';
-      this.productJSON = i || global.productJSON;
-      this.findOptionNumber_();
-      this.initGroups_();
-      this.buildGroups_();
-    }
 
-    findOptionNumber_() {
-      const e = this;
-      for (let i = 0; i < e.productJSON.options.length; i++)
-        if (e.productJSON.options[i] === e.groupOn_)
-          e.optionKey_ = `option${i + 1}`;
-      return e;
-    }
-
-    initGroups_() {
-      const e = this;
-      for (let i = 0; i < e.productJSON.variants.length; i++) {
-        const t = e.productJSON.variants[i];
-        if (e.currentImage_ !== t.featured_image.src) {
-          e.currentImage_ = t.featured_image.src;
-          e.groups_.push({
-            color: t[e.optionKey_],
-            images: [e.currentImage_]
-          });
-        }
-      }
-      return e;
-    }
-
-    buildGroups_() {
-      const e = this;
-      let t = 0;
-      for (let i = 0; i < e.productJSON.images.length; i++) {
-        const n = e.productJSON.images[i];
-        for (let j = 0; j < e.groups_.length; j++)
-          if (n === e.groups_[j].images[0].replace(/^https:/, '')) t = j;
-        if (n !== e.groups_[t].images[0].replace(/^https:/, ''))
-          e.groups_[t].images.push(n);
-      }
-      return e;
-    }
-
-    getGroups() {
-      return this.groups_;
-    }
-  }
-
-  BlueLikeNeon.prototype.imageGroups = (e, t) => new ImageGroups(e, t);
-})(window, BlueLikeNeon);
 ((global, $) => {
   class DecathlonCustomer {
     constructor(e) {
@@ -868,117 +967,6 @@ function getLocaleSync($) {
   const s = '//reviews.decathlon.com';
   const c = 768;
   const l = 1e3;
-  // Only called in this file
-  BlueLikeNeon.prototype.anchorLinks = function(getHeaderHeight) {
-    $('.js-anchorLink').on('click', function(event) {
-      event.preventDefault();
-      $('.js-navRelative').addClass('is-hidden');
-      $(`#${event.currentTarget.href.split('#')[1]}`).removeClass('is-hidden');
-      $(this)
-        .parents('.anchorList')
-        .find('.anchorList-link')
-        .removeClass('anchorList-link--active');
-      $(this).addClass('anchorList-link--active');
-      $('html, body').scrollTop(
-        $($(this).attr('href')).offset().top - getHeaderHeight() - 30
-      );
-    });
-  };
-  BlueLikeNeon.prototype.getGoingPacks = function(e) {
-    $('.js-getGoingPack').each((i, getGoingPackEl) => {
-      const bannerHeight = $(getGoingPackEl)
-        .find('.getGoingPack-banner')
-        .outerHeight();
-      const currentProductWrapper = $(getGoingPackEl).find(
-        '.getGoingPack-currentProductWrapper'
-      );
-      const currentProductWrapperHeight = currentProductWrapper.height();
-      currentProductWrapper.outerHeight();
-      const productListHeight = $(getGoingPackEl)
-        .find('.getGoingPack-productList')
-        .outerHeight();
-      const padding = e
-        ? '0'
-        : `${Math.floor(
-            Math.max(
-              0,
-              (bannerHeight - currentProductWrapperHeight - productListHeight) /
-                2
-            )
-          )}px 0`;
-      $(getGoingPackEl)
-        .find('.getGoingPack-currentProductWrapper')
-        .css({ padding });
-    });
-  };
-  // Used in appmate wishlist most likely
-  BlueLikeNeon.prototype.addPromo = (e, i) => {
-    $('.promo-band').remove();
-    $('body').append(
-      `<div class="promo-band is-fixed ${i}"><div class="wrapper">${e}</div><div class="promo-band__close" onclick="this.parentNode.parentNode.removeChild(this.parentNode);"></div></div>`
-    );
-  };
-  // Used in other files, Collections and search possibly?
-  BlueLikeNeon.prototype.wishlistSwap = function(i) {
-    const self = this;
-    i = i || global.addToWishlist;
-    const o = $('body').hasClass('template-product');
-    const a = o && $('body').hasClass('is-sellableProduct');
-    if (i) {
-      if (a) return;
-      global.addToWishlist = true;
-      $('main').addClass('hide-wkCartButtons');
-      $('.addToCart .addToCartText, .js-addToWishlist .addToCartText').text(
-        'Add to Wishlist'
-      );
-
-      $('.addToCart, .js-addToWishlist').click(function(e) {
-        if ((e.preventDefault(), $('body').hasClass('template-product')))
-          $('.timber-activeProduct')
-            .find('.wk-button-product')
-            .click();
-        else {
-          const i = $(e.currentTarget)
-            .parents('.timber-activeProduct')
-            .find('.wk-button-product');
-          i.trigger('click');
-          $(e.currentTarget)
-            .find('.addToCartText')
-            .text(
-              i.hasClass('wk-add-product')
-                ? 'Remove from Wishlist'
-                : 'Add to Wishlist'
-            );
-        }
-        $(this).blur();
-      });
-    } else {
-      if (global.shipStates.indexOf('all') !== -1) return;
-      if (global.shipStates.indexOf(self.getUserRegion()) === -1) {
-        if (a) {
-          $('body').addClass('is-wishlistOnly');
-          $('main').addClass('hide-wkCartButtons');
-          return;
-        }
-
-        global.addToWishlist = true;
-        $('body').addClass('is-wishlistOnly');
-        $('main').addClass('hide-wkCartButtons');
-        $('.addToCart .addToCartText').text('Add to Wishlist');
-        $('.addToCart').click(function(e) {
-          e.preventDefault();
-          if ($('body').hasClass('template-product'))
-            $('.wishlist .wk-add-product').click();
-          else
-            $(this)
-              .parents('.timber-activeProduct')
-              .find('.wk-add-product')
-              .click();
-          $(this).blur();
-        });
-      }
-    }
-  };
   // Used in recently viewed? And legacy product page?
   Handlebars.registerHelper('ratings', e => {
     const t = [];
@@ -1282,7 +1270,7 @@ function getLocaleSync($) {
 
     decathlon.anchorLinks(getHeaderHeight);
     $(global).scroll();
-    decathlon.loadImages();
+    loadImages();
     let lastHeight = 0;
     const pageContainer = $('#PageContainer');
     setInterval(() => {
@@ -1458,11 +1446,9 @@ function getLocaleSync($) {
         const r = n.find('select');
         if (!(r.val() && r.val() != '')) a.push('Please select a state');
         const s = /\S+@\S+\.\S+/;
-        if (
-          (s.test(n.find('#GatewayFormEmail').val()) ||
-            a.push('Invalid email.'),
-          a.length)
-        ) {
+        if (!s.test(n.find('#GatewayFormEmail').val()))
+          a.push('Invalid email.');
+        if (a.length) {
           $('.gateway-inputWrap .errors').remove();
           $('.gateway-inputWrap').prepend(
             '<div class="errors" style="margin: 0 4px 1em 4px;"><ul class="no-bullets u-marginBottom0x"></ul></div>'
@@ -1777,12 +1763,10 @@ function getLocaleSync($) {
                 i.preventDefault();
                 const n = $(this).parents('.banner--video');
                 const o = $(this).attr('href');
-                if (
-                  (n.append(
-                    `<div id="bannerVideo"><div class="js-closeBannerVideo"></div><div class="embedWrapper"><div class="embedContainer"><iframe src="${o}" frameborder="0" allowfullscreen></iframe></div></div></div>`
-                  ),
-                  $(this).attr('data-videoButton'))
-                ) {
+                n.append(
+                  `<div id="bannerVideo"><div class="js-closeBannerVideo"></div><div class="embedWrapper"><div class="embedContainer"><iframe src="${o}" frameborder="0" allowfullscreen></iframe></div></div></div>`
+                );
+                if ($(this).attr('data-videoButton')) {
                   const a = JSON.parse($(this).attr('data-videoButton'));
                   $('#bannerVideo').append(
                     `<p class="bannerButton"><a class="btn" href="${a.url}">${a.text}</a></p>`
@@ -1848,7 +1832,7 @@ function getLocaleSync($) {
           loadReviews();
         });
       }
-      const variantId = decathlon.getParam('variantid');
+      const variantId = decode(location.search.substring(1));
       if (variantId) {
         const K = $(`option[value="${variantId}"]`).text();
         $('.selector-wrapper--color .option').each(function() {
@@ -1860,15 +1844,13 @@ function getLocaleSync($) {
       const X = /iPhone/.test(navigator.userAgent) && !global.MSStream;
       let Y = false;
       $('.js-sizechart').click(i => {
-        if (
-          (i.preventDefault(),
-          $(global).width() < 768 &&
-            $('html, body').css({
-              overflow: 'hidden',
-              position: 'fixed'
-            }),
-          !Y)
-        ) {
+        i.preventDefault();
+        if ($(global).width() < 768)
+          $('html, body').css({
+            overflow: 'hidden',
+            position: 'fixed'
+          });
+        if (!Y) {
           var n = setInterval(() => {
             if ($('.sizeGuide').html() != '') {
               const e = $('.esc-size-guide--title')
@@ -2049,19 +2031,17 @@ function getLocaleSync($) {
     const ie = te.getUTCDay();
     const ne = te.getUTCHours() - 8;
     let oe = false;
-    if (
-      ($('.js-storeOpen p[data-day-info]').each((e, i) => {
-        const n = $(i)
-          .data('dayInfo')
-          .split(',');
-        if (ie >= parseInt(n[0]) && ie <= parseInt(n[1])) {
-          $(i).addClass('is-active');
-          if (ne >= parseInt(n[2]) && ne < parseInt(n[3])) oe = true;
-        }
-      }),
-      oe && $('.js-storeOpen').addClass('storeHours--open'),
-      $('body').hasClass('template-customers-register'))
-    ) {
+    $('.js-storeOpen p[data-day-info]').each((e, i) => {
+      const n = $(i)
+        .data('dayInfo')
+        .split(',');
+      if (ie >= parseInt(n[0]) && ie <= parseInt(n[1])) {
+        $(i).addClass('is-active');
+        if (ne >= parseInt(n[2]) && ne < parseInt(n[3])) oe = true;
+      }
+    });
+    if (oe) $('.js-storeOpen').addClass('storeHours--open');
+    if ($('body').hasClass('template-customers-register')) {
       if (global.location.search) {
         const ae = global.location.search.substring(1).split('&');
         $(ae).each((e, i) => {
@@ -2078,7 +2058,7 @@ function getLocaleSync($) {
         const i = $(e.currentTarget).prop('files');
         const n = i[0];
         const o = n.name.split('.').pop();
-        const a = `images/${decathlon.uuid().replace(/-/g, '')}.${o}`;
+        const a = `images/${uuid().replace(/-/g, '')}.${o}`;
         s3.upload(
           {
             Key: a,
@@ -2120,14 +2100,14 @@ function getLocaleSync($) {
           .empty();
         e.preventDefault();
         let c = 'All fields are required';
-        if (
-          (i.find('input:not(.ignore)').each((e, i) => {
-            if ($(i).val() === '') a = true;
-          }),
-          /\S+@\S+\.\S+/.test($('input[name="customer[email]"]').val()) ||
-            ((c = 'Invalid email'), (a = true)),
-          a)
-        ) {
+        i.find('input:not(.ignore)').each((e, i) => {
+          if ($(i).val() === '') a = true;
+        });
+        if (!/\S+@\S+\.\S+/.test($('input[name="customer[email]"]').val())) {
+          c = 'Invalid email';
+          a = true;
+        }
+        if (a) {
           r.addClass('form-error').html(`<p>${c}</p>`);
           return;
         }
@@ -2197,147 +2177,147 @@ function getLocaleSync($) {
           });
       });
     }
-    if (
-      ($('body').hasClass('template-customers-account') &&
-        ($('.js-editProfileImage').on('click', e => {
-          e.preventDefault();
-          $('.imageUploadForm').removeClass('visually-hidden');
-          $(e.currentTarget).addClass('visually-hidden');
-        }),
-        $('#imageFiles').on('change', e => {
-          const i = $(e.currentTarget).prop('files');
-          const n = i[0];
-          const a = n.name.split('.').pop();
-          const r = `images/${decathlon.uuid().replace(/-/g, '')}.${a}`;
-          s3.upload(
-            {
-              Key: r,
-              Body: n,
-              ACL: 'public-read',
-              ContentType: `image/${a}`
-            },
-            (i, n) => {
-              if (i) {
-                console.log(i);
-                return alert('There was an error uploading your image.');
+    if ($('body').hasClass('template-customers-account')) {
+      $('.js-editProfileImage').on('click', e => {
+        e.preventDefault();
+        $('.imageUploadForm').removeClass('visually-hidden');
+        $(e.currentTarget).addClass('visually-hidden');
+      });
+      $('#imageFiles').on('change', e => {
+        const i = $(e.currentTarget).prop('files');
+        const n = i[0];
+        const a = n.name.split('.').pop();
+        const r = `images/${uuid().replace(/-/g, '')}.${a}`;
+        s3.upload(
+          {
+            Key: r,
+            Body: n,
+            ACL: 'public-read',
+            ContentType: `image/${a}`
+          },
+          (i, n) => {
+            if (i) {
+              console.log(i);
+              return alert('There was an error uploading your image.');
+            }
+
+            const a = $(e.currentTarget)
+              .parents('.js-updateCustomer')
+              .find('input[name="token"]')
+              .val();
+            const r = new DecathlonCustomer({
+              customer: {
+                token: a
               }
-
-              const a = $(e.currentTarget)
-                .parents('.js-updateCustomer')
-                .find('input[name="token"]')
-                .val();
-              const r = new DecathlonCustomer({
-                customer: {
-                  token: a
-                }
-              });
-              r.updateMetafield({
-                namespace: 'customers',
-                key: 'profile_image',
-                value: n.Location,
-                value_type: 'string'
-              }).then(e => {
-                $('.imageUpload, .js-editProfileImage').removeClass(
-                  'visually-hidden'
-                );
-
-                $('.profilePic').attr('src', e.metafield.value);
-                $('.imageUploadForm').addClass('visually-hidden');
-              });
-            }
-          );
-        }),
-        $('.js-updateCustomer').on('submit', e => {
-          e.preventDefault();
-          const i = new DecathlonCustomer({
-            customer: $(e.currentTarget).serializeObject()
-          });
-          const n = $(e.currentTarget).find('.notifications');
-          n.removeClass('form-success')
-            .removeClass('form-error')
-            .empty();
-          if (!i.userData.customer.accepts_marketing)
-            i.userData.customer.accepts_marketing = false;
-          i.updateCustomer()
-            .then(() => {
-              n.addClass('form-success').append('<p>Saved successfully!</p>');
-            })
-            .catch(error => {
-              const messages = [];
-              if (error.email) messages.push(`Email ${error.email[0]}`);
-              messages.forEach(e => {
-                n.addClass('form-error').append(`<p>${e}</p>`);
-              });
             });
-        })),
-      $('body').hasClass('template-customers-login') &&
-        (global.location.hash === '#recover' &&
-          ($('#RecoverPassword').trigger('click'),
-          global.location.search === '?redirect_to=/account' &&
-            $('#HideRecoverPasswordLink').on('click', () => {
-              global.location = '/account';
-            })),
-        $('#customer_login').on('submit', function(e) {
-          const i = $(this);
-          const n = $(this).serializeObject();
-          const a = new DecathlonCustomer({
-            customer: {
-              email: n['customer[email]']
-            }
+            r.updateMetafield({
+              namespace: 'customers',
+              key: 'profile_image',
+              value: n.Location,
+              value_type: 'string'
+            }).then(e => {
+              $('.imageUpload, .js-editProfileImage').removeClass(
+                'visually-hidden'
+              );
+
+              $('.profilePic').attr('src', e.metafield.value);
+              $('.imageUploadForm').addClass('visually-hidden');
+            });
+          }
+        );
+      });
+      $('.js-updateCustomer').on('submit', e => {
+        e.preventDefault();
+        const i = new DecathlonCustomer({
+          customer: $(e.currentTarget).serializeObject()
+        });
+        const n = $(e.currentTarget).find('.notifications');
+        n.removeClass('form-success')
+          .removeClass('form-error')
+          .empty();
+        if (!i.userData.customer.accepts_marketing)
+          i.userData.customer.accepts_marketing = false;
+        i.updateCustomer()
+          .then(() => {
+            n.addClass('form-success').append('<p>Saved successfully!</p>');
+          })
+          .catch(error => {
+            const messages = [];
+            if (error.email) messages.push(`Email ${error.email[0]}`);
+            messages.forEach(e => {
+              n.addClass('form-error').append(`<p>${e}</p>`);
+            });
           });
-          let r = false;
-          console.log(a);
-          e.preventDefault();
-          const $notifications = $(e.currentTarget).find('.notifications');
+      });
+    }
+    if ($('body').hasClass('template-customers-login')) {
+      if (global.location.hash === '#recover') {
+        $('#RecoverPassword').trigger('click');
+        if (global.location.search === '?redirect_to=/account')
+          $('#HideRecoverPasswordLink').on('click', () => {
+            global.location = '/account';
+          });
+      }
+      $('#customer_login').on('submit', function(e) {
+        const i = $(this);
+        const n = $(this).serializeObject();
+        const a = new DecathlonCustomer({
+          customer: {
+            email: n['customer[email]']
+          }
+        });
+        let r = false;
+        console.log(a);
+        e.preventDefault();
+        const $notifications = $(e.currentTarget).find('.notifications');
+        $notifications
+          .removeClass('form-success')
+          .removeClass('form-error')
+          .empty();
+        i.find('input').each((e, i) => {
+          if ($(i).val() === '') r = true;
+        });
+        if (r)
           $notifications
-            .removeClass('form-success')
-            .removeClass('form-error')
-            .empty();
-          i.find('input').each((e, i) => {
-            if ($(i).val() === '') r = true;
-          });
-          if (r)
+            .addClass('form-error')
+            .html('<p>All fields are required</p>');
+        a.checkEmail().then(e => {
+          if (e) {
+            if (e.state !== 'enabled') {
+              $notifications
+                .removeClass('form-error')
+                .addClass('form-success')
+                .html(
+                  `<p>Please <a href="/account/register?customer[email]=${e.email}">complete your profile</a></p>`
+                );
+            } else i.unbind('submit').submit();
+          } else
             $notifications
               .addClass('form-error')
-              .html('<p>All fields are required</p>');
-          a.checkEmail().then(e => {
-            if (e) {
-              if (e.state !== 'enabled') {
-                $notifications
-                  .removeClass('form-error')
-                  .addClass('form-success')
-                  .html(
-                    `<p>Please <a href="/account/register?customer[email]=${e.email}">complete your profile</a></p>`
-                  );
-              } else i.unbind('submit').submit();
-            } else
-              $notifications
-                .addClass('form-error')
-                .html('<p>No account found with that email.</p>');
-          });
-        })),
-      $('body').hasClass('template-customers-addresses') &&
-        (global.location.hash === '#add' &&
-          $('.js-addAddress').trigger('click'),
-        $('#address_form_new').submit(function(e) {
-          const i = $(this);
-          let n = true;
-          if (
-            (i.find('[required]').each(function() {
-              const e = $(this);
-              if (e.val() == '') {
-                e.css('border', '1px solid red');
-                n = false;
-              }
-            }),
-            !n)
-          ) {
-            e.preventDefault();
-            return false;
+              .html('<p>No account found with that email.</p>');
+        });
+      });
+    }
+    if ($('body').hasClass('template-customers-addresses')) {
+      if (global.location.hash === '#add') $('.js-addAddress').trigger('click');
+      $('#address_form_new').submit(function(e) {
+        const i = $(this);
+        let n = true;
+
+        i.find('[required]').each(function() {
+          const e = $(this);
+          if (e.val() == '') {
+            e.css('border', '1px solid red');
+            n = false;
           }
-        })),
-      $('body').hasClass('page-checkout'))
-    ) {
+        });
+        if (!n) {
+          e.preventDefault();
+          return false;
+        }
+      });
+    }
+    if ($('body').hasClass('page-checkout')) {
       const re = $('.main__content').data('userImg');
       if (re)
         $('.logged-in-customer-information__avatar').css({
@@ -2360,11 +2340,9 @@ function getLocaleSync($) {
           );
       });
       const o = /\S+@\S+\.\S+/;
-      if (
-        (o.test(i.find('input[type="email"]').val()) ||
-          n.push('Invalid email.'),
-        n.length)
-      ) {
+      if (!o.test(i.find('input[type="email"]').val()))
+        n.push('Invalid email.');
+      if (n.length) {
         $(e.currentTarget)
           .find('.form-vertical .notifications')
           .remove();
@@ -2407,12 +2385,11 @@ function getLocaleSync($) {
       } else i.find('.footerNewsletter-dropdown-wrap, select').css('border', '1px solid red');
       let r = true;
       const s = /\S+@\S+\.\S+/;
-      if (
-        (s.test(i.find('input[type="email"]').val()) ||
-          (i.find('input[type="email"]').css('border', '1px solid red'),
-          (r = false)),
-        !n)
-      ) {
+      if (!s.test(i.find('input[type="email"]').val())) {
+        i.find('input[type="email"]').css('border', '1px solid red');
+        r = false;
+      }
+      if (!n) {
         i.after(
           '<p class="newsLetterForm-response error">Please select a state.</p>'
         );
