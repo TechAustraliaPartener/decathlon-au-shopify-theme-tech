@@ -14,7 +14,6 @@ const glob = require('glob');
 const path = require('path');
 const del = require('del');
 const mergeStreams = require('merge-stream');
-const virtual = require('rollup-plugin-virtual');
 
 const taskName = 'jsC4Scripts';
 
@@ -31,6 +30,33 @@ const DESTINATION = './assets';
  * @type {Map<string, {inputHash: string, data: any }>}
  */
 const babelCache = new Map();
+
+function globals(modules) {
+  // The null character (\0) is used to prevent other plugins from interfering with this one
+  // Other rollup plugins will ignore module ids that start with \0 because they know they belong to other plugins
+  const PREFIX = `\0virtual:`;
+
+  // We are using a unique index for every import,
+  // so that re-importing the same global in multiple entry points does not result in it being added to a shared chunk
+  // because having it in a shared chunk provides no benefit and can result in unnecessary code loading
+  let index = 0;
+
+  return {
+    name: 'globals',
+
+    resolveId(id) {
+      if (id in modules) return `${PREFIX}${id}?${index++}`;
+    },
+
+    load(id) {
+      if (id.startsWith(PREFIX)) {
+        const realId = id.slice(PREFIX.length).replace(/\?.*/, '');
+        const globalName = modules[realId];
+        return `const ${globalName} = window.${globalName}; export default ${globalName}`;
+      }
+    }
+  };
+}
 
 module.exports = gulp => {
   gulp.task(taskName, () => {
@@ -63,10 +89,10 @@ module.exports = gulp => {
         rollup,
         plugins: [
           // When we import jquery or handlebars, rollup will change references to the global variables
-          // Rollup externals don't work with { format: 'esm' }
-          virtual({
-            jquery: 'export default jQuery',
-            handlebars: 'export default Handlebars'
+          // Rollup `externals` don't work with { format: 'esm' }
+          globals({
+            jquery: 'jQuery',
+            handlebars: 'Handlebars'
           }),
           rollupNodeResolve(),
           rollupCommonJs({ include: 'node_modules/**' }),
