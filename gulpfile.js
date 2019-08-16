@@ -188,7 +188,8 @@ gulp.task('snippets:clean', function() {
        * @todo Remove. This is temporary until all files within
        * the `snippets/` directory are sourced from `snippets-src/`.
        */
-      `${SNIPPETS_PATH}assets-*.liquid`
+      `${SNIPPETS_PATH}assets-*.liquid`,
+      `${SNIPPETS_PATH}compositions-*.liquid`
     ])
     .pipe(clean());
 });

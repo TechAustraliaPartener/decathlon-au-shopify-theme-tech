@@ -6,17 +6,29 @@
  * Handles price formatting and UI update logic
  */
 
-import { PRICE_CLASS, COMPARE_PRICE_CLASS } from './constants';
+import { JS_PREFIX } from './constants';
 import {
   variants,
   isProductPricingVaried,
   getVariantOptions
 } from './product-data';
+import { hide, show } from '../utilities/hide-or-show-element';
+
+const CURRENT_PRICE_CSS_CLASS = `${JS_PREFIX}CurrentPrice`;
+const CROSSED_OUT_PRICE_CSS_CLASS = `${JS_PREFIX}CrossedOutPrice`;
+const PRICE_LABEL_CSS_CLASS = `${JS_PREFIX}PriceLabel`;
+const PRICE_AMOUNT_LABEL_CSS_CLASS = `${JS_PREFIX}PriceAmount`;
 
 // Multiple price elements exist in the DOM because there
 // are different ones for smaller vs larger viewports, use `querySelectorAll`
-const productPriceEls = document.querySelectorAll(`.${PRICE_CLASS}`);
-const compareAtPriceEls = document.querySelectorAll(`.${COMPARE_PRICE_CLASS}`);
+/** @type {NodeListOf<HTMLElement>} */
+const currentPriceEls = document.querySelectorAll(
+  `.${CURRENT_PRICE_CSS_CLASS}`
+);
+/** @type {NodeListOf<HTMLElement>} */
+const crossedOutPriceEls = document.querySelectorAll(
+  `.${CROSSED_OUT_PRICE_CSS_CLASS}`
+);
 
 /**
  * Formats default Shopify price value, which is in cents,
@@ -62,15 +74,65 @@ const getPricesByVariantColor = color =>
     .map(variant => variant.price);
 
 /**
+ * Gets all `compare_at_price` values for a given variant color
+ *
+ * @todo Consider using transducers if variants quantity is larger
+ * @see: https://medium.com/javascript-scene/transducers-efficient-data-processing-pipelines-in-javascript-7985330fe73d
+ *
+ * @param {string} color A variant color
+ * @returns {Array} An array of `compare_at_price` values
+ */
+const getCompareAtPricesByColor = color =>
+  variants
+    .filter(variant => getVariantOptions(variant).color === color)
+    .map(variant => variant.compare_at_price);
+
+/**
+ * Helper to know if an HTML element is a crossed-out price element
+ *
+ * @param {HTMLElement} el
+ * @returns {Boolean}
+ */
+const isCrossedOutPriceEl = el =>
+  el.classList.contains(CROSSED_OUT_PRICE_CSS_CLASS);
+
+/**
  * Helper that renders the price for a given set of HTML elements
  *
- * @param {Object} obj
- * @param {NodeList} obj.priceEls The price elements list
- * @param {string} obj.displayPrice The price to render
+ * @param {Object} params
+ * @param {NodeListOf<HTMLElement>} params.priceEls The price elements list
+ * @param {string} [params.displayPrice=''] The price to render
+ * @param {Boolean} [params.compareAtPrice=false] Should display as sale price?
  */
-const render = ({ priceEls, displayPrice }) => {
+const render = ({ priceEls, displayPrice = '', compareAtPrice = false }) => {
   priceEls.forEach(priceEl => {
-    priceEl.textContent = displayPrice;
+    /** @type {HTMLElement | null} */
+    const labelEl = priceEl.querySelector(`.${PRICE_LABEL_CSS_CLASS}`);
+    /** @type {HTMLElement | null} */
+    const amountEl = priceEl.querySelector(`.${PRICE_AMOUNT_LABEL_CSS_CLASS}`);
+
+    // Handle the "compare" (crossed-out) logic to show/hide
+    if (isCrossedOutPriceEl(priceEl)) {
+      if (compareAtPrice) {
+        // Allow the crossed-out "original" price element to be visible
+        show(priceEl);
+      } else {
+        // Hide the crossed-out "original" price element, not needed
+        hide(priceEl);
+      }
+    }
+
+    // Handle the current price label logic
+    if (labelEl) {
+      labelEl.textContent = compareAtPrice
+        ? priceEl.dataset.salePriceLabel
+        : priceEl.dataset.regularPriceLabel;
+    }
+
+    // Regardless of if current price or crossed-out price, update the display price
+    if (amountEl) {
+      amountEl.textContent = displayPrice;
+    }
   });
 };
 
@@ -84,12 +146,14 @@ const handleVariantSelection = ({
   compare_at_price: compareAtPrice
 }) => {
   render({
-    priceEls: productPriceEls,
-    displayPrice: formatPrice(price)
+    priceEls: currentPriceEls,
+    displayPrice: formatPrice(price),
+    compareAtPrice: compareAtPrice !== null
   });
   render({
-    priceEls: compareAtPriceEls,
-    displayPrice: formatPrice(compareAtPrice)
+    priceEls: crossedOutPriceEls,
+    displayPrice: formatPrice(compareAtPrice),
+    compareAtPrice: compareAtPrice !== null
   });
 };
 
@@ -104,18 +168,24 @@ const handleColorSelection = color => {
   const minPrice = Math.min(...prices);
   const maxPrice = Math.max(...prices);
 
+  // Checks if at least one `compare_at_price` for all variants for the given `color` has
+  // a value. If so, assume a "sale" price display by setting `compareAtPrice` to `true`.
+  const isCompareAtPrice = getCompareAtPricesByColor(color).some(
+    compareAtPrice => compareAtPrice !== null
+  );
+
   render({
-    priceEls: productPriceEls,
+    priceEls: currentPriceEls,
     displayPrice: formatPriceRange({
       minPrice,
       maxPrice
-    })
+    }),
+    compareAtPrice: isCompareAtPrice
   });
-  // Render blank `compare_at_price` if only color is selected
-  // @todo Should the element be hidden instead?
+
+  // Don't pass in a display price, defaults to empty string
   render({
-    priceEls: compareAtPriceEls,
-    displayPrice: ''
+    priceEls: crossedOutPriceEls
   });
 };
 

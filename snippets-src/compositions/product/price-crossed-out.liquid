@@ -1,0 +1,10 @@
+<span class="de-u-textGrow2 de-u-padSides de-u-lineHeight2">
+  <del class="js-de-CrossedOutPrice {% unless variant.compare_at_price %} de-u-hidden{% endunless %} ">
+    <span class="de-u-hiddenVisually">
+      {{ 'products.general.regular_price' | t }}:
+    </span>
+    <span class="js-de-PriceAmount">
+      {{ variant.compare_at_price | money }}
+    </span>
+  </del>
+</span>
