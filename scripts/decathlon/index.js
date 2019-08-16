@@ -1,24 +1,6 @@
 import $ from 'jquery';
-import { decode } from 'qss';
 /* eslint-disable complexity, @cloudfour/no-param-reassign, no-redeclare, eqeqeq, no-negated-condition, radix, block-scoped-var, no-var, no-alert, no-new, @cloudfour/unicorn/explicit-length-check, max-params, no-new-func */
 /* global Handlebars, Cookies, jQuery, BlueLikeNeon, s3, DecathlonCustomer */
-function handlebarsSafeCompile(string) {
-  if (string) {
-    return Handlebars.compile(string);
-  }
-  return data => {
-    /**
-     * @TODO - remove logs for production
-     * This should be used to see what's trying to compile against elements
-     * that have been removed from the baseline template
-     */
-    console.debug(
-      'Data being passed to nonexistent string for Handlebars',
-      data
-    );
-    return '';
-  };
-}
 
 const loadImages = () => {
   $('img[data-src]').each((i, el) => {
@@ -29,13 +11,6 @@ const loadImages = () => {
   });
 };
 
-const slugify = e =>
-  e
-    .toLowerCase()
-    .replace(/[^\w\s-]/g, '')
-    .replace(/[\s_-]+/g, '-')
-    .replace(/^-+|-+$/g, '');
-
 /**
  * @see https://gist.github.com/jed/982883
  */
@@ -44,109 +19,7 @@ const uuid = t =>
     ? (t ^ ((16 * Math.random()) >> (t / 4))).toString(16)
     : ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, uuid);
 
-const allowedStates = {
-  AL: 'Alabama',
-  AZ: 'Arizona',
-  AR: 'Arkansas',
-  CA: 'California',
-  CO: 'Colorado',
-  CT: 'Connecticut',
-  DE: 'Delaware',
-  DC: 'District Of Columbia',
-  FL: 'Florida',
-  GA: 'Georgia',
-  ID: 'Idaho',
-  IL: 'Illinois',
-  IN: 'Indiana',
-  IA: 'Iowa',
-  KS: 'Kansas',
-  KY: 'Kentucky',
-  LA: 'Louisiana',
-  ME: 'Maine',
-  MD: 'Maryland',
-  MA: 'Massachusetts',
-  MI: 'Michigan',
-  MN: 'Minnesota',
-  MS: 'Mississippi',
-  MO: 'Missouri',
-  MT: 'Montana',
-  NE: 'Nebraska',
-  NV: 'Nevada',
-  NH: 'New Hampshire',
-  NJ: 'New Jersey',
-  NM: 'New Mexico',
-  NY: 'New York',
-  NC: 'North Carolina',
-  ND: 'North Dakota',
-  OH: 'Ohio',
-  OK: 'Oklahoma',
-  OR: 'Oregon',
-  PA: 'Pennsylvania',
-  RI: 'Rhode Island',
-  SC: 'South Carolina',
-  SD: 'South Dakota',
-  TN: 'Tennessee',
-  TX: 'Texas',
-  UT: 'Utah',
-  VT: 'Vermont',
-  VA: 'Virginia',
-  WA: 'Washington',
-  WV: 'West Virginia',
-  WI: 'Wisconsin',
-  WY: 'Wyoming'
-};
-
-const countryURL = {
-  AU: 'https://www.decathlon.com.au/',
-  AT: 'https://www.decathlon.at/',
-  BE: 'https://www.decathlon.be/',
-  BR: 'http://www.decathlon.com.br/',
-  BG: 'https://www.decathlon.bg/',
-  KH: 'https://www.decathlon.com.kh/en/',
-  CA: 'https://www.decathlon.ca/',
-  CL: 'https://www.decathlon.cl/',
-  CO: 'https://www.decathlon.com.co/',
-  HR: 'https://www.decathlon.hr/',
-  CZ: 'https://www.decathlon.cz/',
-  CD: 'http://www.decathlon-rdc.com/',
-  EG: 'https://www.decathlon.eg/',
-  FR: 'https://www.decathlon.fr/',
-  DE: 'https://www.decathlon.de/',
-  GH: 'https://www.decathlon.com.gh/',
-  CN: 'https://www.decathlon.com.cn/',
-  HU: 'https://www.decathlon.hu/',
-  IN: 'https://www.decathlon.in/',
-  ID: 'https://www.decathlon.co.id/',
-  IL: 'https://www.decathlon.co.il/',
-  IT: 'https://www.decathlon.it/',
-  CI: 'http://www.decathlon.ci/',
-  KE: 'https://www.decathlon.co.ke/',
-  LT: 'https://www.decathlon.lt/lt_en/',
-  MY: 'https://www.decathlon.my/',
-  MX: 'https://www.decathlon.com.mx/',
-  MA: 'https://www.decathlon.ma/',
-  NL: 'https://www.decathlon.nl/',
-  PH: 'https://www.decathlon.ph/',
-  PL: 'https://www.decathlon.pl/',
-  PT: 'https://www.decathlon.pt/',
-  RO: 'https://www.decathlon.ro/',
-  RU: 'https://www.decathlon.ru/',
-  SN: 'https://www.decathlon.sn/',
-  SG: 'https://www.decathlon.sg/',
-  SK: 'https://www.decathlon.sk/',
-  SI: 'https://www.decathlon.si/',
-  ZA: 'https://www.decathlon-sports.co.za/',
-  KR: 'https://www.decathlon.co.kr/kr_ko/',
-  ES: 'https://www.decathlon.es/',
-  LK: 'http://decathlonsrilanka.com/',
-  SE: 'https://www.decathlon.se/',
-  CH: 'https://www.decathlon.ch/',
-  TH: 'https://www.decathlon.co.th/',
-  TN: 'https://www.decathlon.tn/',
-  TR: 'https://www.decathlon.com.tr/',
-  GB: 'https://www.decathlon.co.uk/',
-  US: 'US'
-};
+window.uuid = uuid;
 
 function isProductPage() {
   const thisUrl = window.location.href;
@@ -161,6 +34,8 @@ function isProductPage() {
   }
   return false;
 }
+
+window.isProductPage = isProductPage;
 
 function getLocaleSync($) {
   // Alan
@@ -182,161 +57,8 @@ function getLocaleSync($) {
   return { error, data };
 }
 
-($ => {
-  const t = {
-    url: false,
-    callback: false,
-    target: false,
-    duration: 120,
-    on: 'mouseover',
-    touch: true,
-    onZoomIn: false,
-    onZoomOut: false,
-    magnify: 1
-  };
-  $.zoom = (t, i, n, o) => {
-    let a;
-    let r;
-    let s;
-    let c;
-    let l;
-    let d;
-    let u;
-    const p = $(t);
-    const f = p.css('position');
-    const h = $(i);
-    t.style.position = /(absolute|fixed)/.test(f) ? f : 'relative';
-    t.style.overflow = 'hidden';
-    n.style.width = '';
-    n.style.height = '';
-    $(n)
-      .addClass('zoomImg')
-      .css({
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        opacity: 0,
-        width: n.width * o,
-        height: n.height * o,
-        border: 'none',
-        maxWidth: 'none',
-        maxHeight: 'none'
-      })
-      .appendTo(t);
-    return {
-      init() {
-        r = p.outerWidth();
-        a = p.outerHeight();
-        if (i === t) {
-          c = r;
-          s = a;
-        } else {
-          c = h.outerWidth();
-          s = h.outerHeight();
-        }
-        l = (n.width - r) / c;
-        d = (n.height - a) / s;
-        u = h.offset();
-      },
-      move(e) {
-        let t = e.pageX - u.left;
-        let i = e.pageY - u.top;
-        i = Math.max(Math.min(i, s), 0);
-        t = Math.max(Math.min(t, c), 0);
-        n.style.left = `${t * -l}px`;
-        n.style.top = `${i * -d}px`;
-      }
-    };
-  };
-  $.fn.zoom = function(i) {
-    return this.each(function() {
-      const n = $.extend({}, t, i || {});
-      const o = (n.target && $(n.target)[0]) || this;
-      const a = this;
-      const r = $(a);
-      const s = document.createElement('img');
-      const c = $(s);
-      const l = 'mousemove.zoom';
-      if (!n.url) {
-        const p = a.querySelector('img');
-        if (p) n.url = p.getAttribute('data-src') || p.currentSrc || p.src;
-        if (!n.url) return;
-      }
-      r.one(
-        'zoom.destroy',
-        ((e, t) => {
-          r.off('.zoom');
-          o.style.position = e;
-          o.style.overflow = t;
-          s.addEventListener('load', null);
-          c.remove();
-        }).bind(this, o.style.position, o.style.overflow)
-      );
+window.getLocaleSync = getLocaleSync;
 
-      s.addEventListener('load', () => {
-        function t(t) {
-          p.init();
-          p.move(t);
-          c.stop().fadeTo(
-            $.support.opacity ? n.duration : 0,
-            1,
-            Boolean($.isFunction(n.onZoomIn)) && n.onZoomIn.call(s)
-          );
-        }
-
-        function i() {
-          c.stop().fadeTo(
-            n.duration,
-            0,
-            Boolean($.isFunction(n.onZoomOut)) && n.onZoomOut.call(s)
-          );
-        }
-        var p = $.zoom(o, a, s, n.magnify);
-        if (n.on === 'grab')
-          r.on('mousedown.zoom', n => {
-            if (n.which === 1) {
-              $(document).one('mouseup.zoom', () => {
-                i();
-                $(document).off(l, p.move);
-              });
-              t(n);
-              $(document).on(l, p.move);
-              n.preventDefault();
-            }
-          });
-        else if (n.on === 'click')
-          r.on('click.zoom', () => {
-            // Return d ? void 0 : (d = true, t(n), e(document).on(l, p.move), e(document).one("click.zoom", function() {
-            //     i(), d = false, e(document).off(l, p.move)
-            // }), false)
-          });
-        else if (n.on === 'toggle')
-          r.on('click.zoom', () => {
-            // D ? i() : t(e), d = !d
-          });
-        else if (n.on === 'mouseover') {
-          p.init();
-          r.on('mouseenter.zoom', t)
-            .on('mouseleave.zoom', i)
-            .on(l, p.move);
-        }
-        if (n.touch)
-          r.on('touchstart.zoom', () => {
-            // E.preventDefault(), u ? (u = false, i()) : (u = true, t(e.originalEvent.touches[0] || e.originalEvent.changedTouches[0]))
-          })
-            .on('touchmove.zoom', () => {
-              // E.preventDefault(), p.move(e.originalEvent.touches[0] || e.originalEvent.changedTouches[0])
-            })
-            .on('touchend.zoom', () => {
-              // E.preventDefault(), u && (u = false, i())
-            });
-        if ($.isFunction(n.callback)) n.callback.call(s);
-      });
-      s.src = n.url;
-    });
-  };
-  $.fn.zoom.defaults = t;
-})(window.jQuery);
 ((global, Cookies, $) => {
   class ImageGroups {
     constructor(groupOn, productJSON) {
@@ -443,77 +165,6 @@ function getLocaleSync($) {
       const thisRegionResult = getLocaleSync($);
       if (thisRegionResult.error) return;
       return thisRegionResult.data.region_name;
-    }
-
-    // Only called within this file
-    // Legacy product page only?
-    optionToSwatch() {
-      const wrapperEl = $('.selector-wrapper');
-
-      wrapperEl.find('label').each((i, labelEl) => {
-        const text = $(labelEl).text();
-        $(labelEl).data('title', text);
-        $(labelEl).text(text);
-        $(labelEl)
-          .parent()
-          .addClass(['selector-wrapper', slugify(text)].join('--'));
-      });
-      wrapperEl.each(function() {
-        const options = [];
-        // I don't think that `.single-option-selector` ever exists. Can the related logic be removed?
-        const n = $(this).find('.single-option-selector');
-        const labelName =
-          $(this)
-            .find('label')
-            .data('title') || uuid().replace(/-/g, '');
-        n.find('option').each((i, optionEl) => {
-          options.push(
-            `<a href="#" class="option option--${slugify(labelName)}-${slugify(
-              $(optionEl).val()
-            )}" data-value="${$(optionEl)
-              .val()
-              .replace('"', '&quot;')}">${$(optionEl).text()}</a>`
-          );
-        });
-        n.hide();
-        $(this).append(
-          `<div class="options" data-option="${n.data(
-            'option'
-          )}">${options.join('')}</div>`
-        );
-        if (labelName != 'Size') {
-          $(this)
-            .not('.selector-wrapper--size')
-            .find('.options .option')
-            .not('.disabled')
-            .first()
-            .addClass('option--active');
-        }
-        $(this)
-          .find('.options .option')
-          .on('click', function(e) {
-            e.preventDefault();
-            $(this)
-              .parent()
-              .find('.option')
-              .removeClass('option--active');
-            $(this).addClass('option--active');
-            $(this)
-              .parents('.selector-wrapper')
-              .find('label')
-              .addClass('is-selected')
-              .text($(e.currentTarget).data('value'));
-            n.val($(e.currentTarget).data('value')).change();
-          });
-        if ($(this).find('.options .option').length == 1) {
-          $(this)
-            .find('.options .option')
-            .first()
-            .click();
-        }
-      });
-      // Why does this return a promise?
-      return Promise.resolve();
     }
 
     // Only called within this file
@@ -735,11 +386,12 @@ function getLocaleSync($) {
     }
 
     // Used in other files, Collections and search possibly?
-    wishlistSwap(i = global.addToWishlist) {
-      const o = $('body').hasClass('template-product');
-      const a = o && $('body').hasClass('is-sellableProduct');
-      if (i) {
-        if (a) return;
+    wishlistSwap(addToWishlist = global.addToWishlist) {
+      const isLegacyProductPage = $('body').hasClass('template-product');
+      const isSellableProduct =
+        isLegacyProductPage && $('body').hasClass('is-sellableProduct');
+      if (addToWishlist) {
+        if (isSellableProduct) return;
         global.addToWishlist = true;
         $('main').addClass('hide-wkCartButtons');
         $('.addToCart .addToCartText, .js-addToWishlist .addToCartText').text(
@@ -748,7 +400,7 @@ function getLocaleSync($) {
 
         $('.addToCart, .js-addToWishlist').click(function(e) {
           e.preventDefault();
-          if ($('body').hasClass('template-product'))
+          if (isLegacyProductPage)
             $('.timber-activeProduct')
               .find('.wk-button-product')
               .click();
@@ -770,7 +422,7 @@ function getLocaleSync($) {
       } else {
         if (global.shipStates.indexOf('all') !== -1) return;
         if (global.shipStates.indexOf(this.getUserRegion()) === -1) {
-          if (a) {
+          if (isSellableProduct) {
             $('body').addClass('is-wishlistOnly');
             $('main').addClass('hide-wkCartButtons');
             return;
@@ -782,8 +434,7 @@ function getLocaleSync($) {
           $('.addToCart .addToCartText').text('Add to Wishlist');
           $('.addToCart').click(function(e) {
             e.preventDefault();
-            if ($('body').hasClass('template-product'))
-              $('.wishlist .wk-add-product').click();
+            if (isLegacyProductPage) $('.wishlist .wk-add-product').click();
             else
               $(this)
                 .parents('.timber-activeProduct')
@@ -877,21 +528,20 @@ function getLocaleSync($) {
     }
 
     checkEmail() {
-      const e = this;
       return new Promise(resolve => {
-        const o = e.userData.customer.email || e.userData['customer[email]'];
-        $.get([e.apiUrl, 'check-email', o].join('/')).success(t => {
+        const o =
+          this.userData.customer.email || this.userData['customer[email]'];
+        $.get([this.apiUrl, 'check-email', o].join('/')).success(t => {
           if (!t.customers.length) return resolve(false);
           const n = t.customers[0];
-          e.customerId = n.id;
+          this.customerId = n.id;
           resolve(n);
         });
       });
     }
 
     shopifyLogin() {
-      const i = this;
-      $.post('/account/login', i.userData)
+      $.post('/account/login', this.userData)
         .success((t, i) => {
           if (i === 'success') global.location = '/account';
         })
@@ -901,30 +551,29 @@ function getLocaleSync($) {
     }
 
     updateMetafield(e) {
-      const i = this;
       const n = e;
 
-      i.customerToken = i.userData.customer.token;
-      if (!i.customerToken) console.log('[Error]: Token missing');
+      this.customerToken = this.userData.customer.token;
+      if (!this.customerToken) console.log('[Error]: Token missing');
       return new Promise((resolve, reject) => {
         $.ajax({
-          url: [i.apiUrl, 'metafields'].join('/'),
+          url: [this.apiUrl, 'metafields'].join('/'),
           method: 'POST',
           headers: {
             'Content-type': 'application/json',
-            'X-Decathlon-CustomerAccessToken': i.customerToken
+            'X-Decathlon-CustomerAccessToken': this.customerToken
           },
           data: JSON.stringify(e)
         })
           .success(e => {
             if (e.errors) reject(e.errors);
             else if (e.errorType && e.errorType === 'TokenExpiredError')
-              i.updateToken().success(e => {
+              this.updateToken().success(e => {
                 if (e.errorMessage) alert(e.errorMessage);
                 else {
                   $('input[name="token"]').val(e.metafield.value);
-                  i.userData.customer.token = e.metafield.value;
-                  resolve(i.updateMetafield(n));
+                  this.userData.customer.token = e.metafield.value;
+                  resolve(this.updateMetafield(n));
                 }
               });
             else resolve(e);
@@ -934,28 +583,26 @@ function getLocaleSync($) {
     }
 
     registerExistingUser() {
-      const e = this;
-      const i = this.userData;
+      const userData = this.userData;
 
-      i.customer.id = e.customerId;
+      userData.customer.id = this.customerId;
       return $.ajax({
-        url: [e.apiUrl, 'register-existing-user'].join('/'),
+        url: [this.apiUrl, 'register-existing-user'].join('/'),
         method: 'POST',
         headers: {
           'Content-type': 'application/json'
         },
-        data: JSON.stringify(i)
+        data: JSON.stringify(userData)
       });
     }
 
     updateToken() {
-      const e = this;
       return $.ajax({
-        url: [e.apiUrl, '/customers/update-token'].join('/'),
+        url: [this.apiUrl, '/customers/update-token'].join('/'),
         method: 'POST',
         headers: {
           'Content-type': 'application/json',
-          'X-Decathlon-CustomerAccessToken': e.customerToken
+          'X-Decathlon-CustomerAccessToken': this.customerToken
         }
       });
     }
@@ -964,178 +611,8 @@ function getLocaleSync($) {
   global.DecathlonCustomer = DecathlonCustomer;
 })(window, jQuery);
 ((global, $, BlueLikeNeon, Handlebars, DecathlonCustomer) => {
-  const s = '//reviews.decathlon.com';
-  const c = 768;
-  const l = 1e3;
-  // Used in recently viewed? And legacy product page?
-  Handlebars.registerHelper('ratings', e => {
-    const t = [];
-    e = Math.floor(e);
-    for (let i = 0; i < 5; ++i)
-      if (i < e) t.push('<i class="ico ico--star u-textYellow"></i>');
-      else t.push('<i class="ico ico--star"></i>');
-    return new Handlebars.SafeString(t.join(''));
-  });
-  // Used in legacy product page
-  Handlebars.registerHelper('inflection', (e, t) => {
-    if (e !== 1) t += 's';
-    return t;
-  });
-  // Used in legacy product page, that is probably it
-  Handlebars.registerHelper('date', e => {
-    e = e.split('T')[0];
-    const t = new Date(e);
-    return `${String(t.getMonth() + 1)}/${t.getDate()}/${t
-      .getFullYear()
-      .toString()
-      .substr(2)}`;
-  });
+  const breakpoint = 768;
   $(() => {
-    function scrollToTop() {
-      global.scrollTo(0, 0);
-    }
-
-    function preventEventDefault(e) {
-      e.preventDefault();
-    }
-
-    function f() {
-      decathlon.setData('seenGateway', new Date().getTime());
-      $(global).off('scroll', scrollToTop);
-      $('#gateway').off('touchmove', preventEventDefault);
-      $('#gateway').fadeOut(750, () => {
-        if (!decathlon.getData('seenBanner'))
-          $('.popup .banner-content').fadeIn(750);
-      });
-      if (!$('body').hasClass('template-index'))
-        $('#PageContainer').css({
-          '-o-filter': 'none',
-          '-moz-filter': 'none',
-          '-webkit-filter': 'none',
-          '-ms-filter': 'none',
-          filter: 'none'
-        });
-    }
-
-    function m() {
-      $('body').removeClass('is-showingBanner is-rollingUpBanner');
-      $('.popup').remove();
-      global.scrollTo(0, 0);
-      decathlon.setData('seenBanner', new Date().getTime());
-    }
-
-    function g() {
-      const e = U.find('.slick-slide.slick-active');
-      U.css('width', e.first().outerWidth(true) * e.length);
-    }
-
-    function h() {
-      const n = $(global).width() > c ? 100 : 500;
-      if ($(global).scrollTop() > n) $('.js-sticky-btn').slideDown();
-      else $('.js-sticky-btn').slideUp();
-    }
-
-    function v(e) {
-      const currentSlide = $(e.currentTarget).find('.slick-current');
-      currentSlide.addClass('is-loadingZoom');
-      currentSlide.zoom({
-        url: currentSlide.find('img').data('original'),
-        callback() {
-          currentSlide.removeClass('is-loadingZoom');
-        }
-      });
-    }
-
-    function updateProductSlides() {
-      const currentIndex = $('.js-slick--products .slick-current').data(
-        'slick-index'
-      );
-      const numSlides = $(
-        '.js-slick--products .slick-slide:not(.slick-cloned)'
-      );
-      const productImages = $('.productImages');
-      if ($(global).width() <= c) {
-        productImages.css('margin-left', 0);
-      } else {
-        if (numSlides.length < 4 && currentIndex == 0)
-          productImages.css('margin-left', global.innerWidth / 3);
-        else if (numSlides.length == 3 && currentIndex == 2)
-          productImages.css('margin-left', -global.innerWidth / 3);
-        else productImages.css('margin-left', 0);
-        if (G) {
-          G = false;
-          setTimeout(() => {
-            $('.productImages').removeClass('is-instant');
-          }, 310);
-        }
-      }
-    }
-
-    function y() {
-      let i =
-        $(global).height() -
-        $('.js-de-PageWrap-header').height() -
-        $('.productOptions').height() -
-        182;
-      if (i > 500) {
-        const n = 0.5 * (i - 500);
-        $('.productImages').css({
-          padding: `${n}px 0`
-        });
-
-        i = 500;
-      } else
-        $('.productImages').css({
-          padding: 0
-        });
-      $('.productImage').height(i);
-    }
-
-    function w(e) {
-      if (window.reviewsflushlist) {
-        $('.js-reviews .productReview').remove();
-        window.reviewsflushlist = false;
-      }
-      if (e.total_item_count > 0) {
-        if (!window.reviewsinitialized) {
-          $('.js-reviewsContainer').removeClass('u-displayNone');
-          $('.js-productAggregateRating').html(window.starsTemplate(e));
-          $('.js-productAggregateRating').on('click', () => {
-            $(document).scrollTop($('#reviews').offset().top - 70);
-          });
-          window.reviewsinitialized = true;
-        }
-        $(e.items).each((e, t) => {
-          t.country = t.country_label[t.country];
-          t.helpfulUrl = t.url_vote.split('/');
-          t.helpfulUrl.splice(t.helpfulUrl.length - 1, 0, 'useful');
-          t.helpfulUrl = t.helpfulUrl
-            .join('/')
-            .replace('utility/view', 'utility/vote');
-          t.notHelpfulUrl = t.helpfulUrl.replace('useful', 'useless');
-          if (t.answer)
-            t.answer.helpfulUrl = t.helpfulUrl.replace(t.id, t.answer.id);
-        });
-        $('.js-reviews .productReview')
-          .last()
-          .addClass('u-marginBottom2x');
-        $('.js-reviews > .grid--full').append(
-          productReviewsTemplate({
-            reviews: e.items
-          })
-        );
-
-        $('.js-reviewFeedback').on('click', e => {
-          e.preventDefault();
-          $.get(e.currentTarget.href).then(e => {
-            console.log(e);
-          });
-        });
-        if (3 * q >= Q.total_item_count) $('.js-loadReviews').hide();
-        else $('.js-loadReviews').show();
-      }
-    }
-
     class CustomDropdown {
       constructor($elements) {
         this.dd = $elements;
@@ -1210,41 +687,6 @@ function getLocaleSync($) {
     if (new Function('/*@cc_on return document.documentMode===10@*/')())
       $('html').addClass('ie ie10');
     const decathlon = new BlueLikeNeon('decathlon_usa');
-    const nativeAppCookie = new BlueLikeNeon('native_app_cookie');
-    function isMobileDevice() {
-      return (
-        typeof window.orientation !== 'undefined' ||
-        navigator.userAgent.indexOf('IEMobile') !== -1
-      );
-    }
-    function fromAllowedState(blueLikeNeon) {
-      const loc = blueLikeNeon.getData('locale');
-      if (loc) {
-        return allowedStates[blueLikeNeon.getUserRegionCode()];
-      }
-      const syncResult = getLocaleSync($);
-      if (syncResult.error) return true; // By default don't show overlay
-      if (syncResult.data.region_code)
-        return allowedStates[syncResult.data.region_code];
-      return true; // By default don't show overlay
-    }
-    function getCountry(T) {
-      // Try to get country from cookie data
-      const loc = T.getData('locale');
-      if (loc) {
-        return [countryURL[loc.country_code], loc.country_name];
-      }
-      // Try to get country from geolocation API call
-      const syncResult = getLocaleSync($);
-      if (syncResult.error) return ''; // By default don't show overlay
-      if (syncResult.data.country_code)
-        // Return 2 element array with country URL and country name
-        return [
-          countryURL[syncResult.data.country_code],
-          syncResult.data.country_name
-        ];
-      return ''; // By default don't show overlay
-    }
     decathlon.getLocale();
     decathlon.fullscreen({
       offsetHeight: Math.floor($('.js-de-PageWrap-header').outerHeight())
@@ -1328,222 +770,6 @@ function getLocaleSync($) {
     // t("#customer_register_link").parent().hide();
     // t("#NavDrawer .drawer__title").addClass("h5").removeClass("h3").html('<a href="/account"><i class="ico ico--account mobileHeader-accountIcon"></i>My Account</a>');
 
-    // Get Country
-    const country = getCountry(decathlon);
-    if (
-      !isMobileDevice() &&
-      !isProductPage() &&
-      country[0] != 'US' &&
-      $('#gateway').length
-    ) {
-      if ($('body').hasClass('template-index'))
-        $('#gateway').addClass('gateway--home');
-      else
-        $('#PageContainer').css({
-          '-o-filter': 'blur(5px)',
-          '-moz-filter': 'blur(5px)',
-          '-webkit-filter': 'blur(5px)',
-          '-ms-filter':
-            '"progid:DXImageTransform.Microsoft.Blur(PixelRadius=\'5\')"',
-          filter: 'blur(5px)'
-          // Show gateway splash screen
-        });
-      $('#gateway').show();
-      (() => {
-        // Add background image
-        $('[data-gateway-background-image]').each(function() {
-          $(this).css(
-            'background-image',
-            `url(${$(this).data('gatewayBackgroundImage')})`
-          );
-        });
-        // Remove email signup form, add buttons
-        $('#gateway form').remove();
-        $('#gateway .banner-subtitle').text('You are visiting Decathlon USA.');
-
-        $('#gateway .gateway-content').append(
-          '<div><a class="btn btn--text js-closePopup hide-on-success" href="#PageContainer">Enter U.S. Site</a></div>'
-        );
-
-        if (country[1] && country[1] != 'undefined') {
-          $('#hello-state').text(`Hello ${country[1]}!`);
-        } else {
-          $('#hello-state').text('Hello!');
-        }
-        // If Country has website, show link to website
-        if (country[0]) {
-          $('#gateway .gateway-content').append(
-            `<div><a class="btn btn--text" href="${country[0]}">Enter ${
-              country[1]
-            } Site</a></div>`
-          );
-        }
-      })();
-      $('#gateway #contact_form').css(
-        'height',
-        $('#gateway #contact_form').innerHeight()
-      );
-      if (!decathlon.getData('seenBanner')) $('.popup .banner-content').hide();
-      $(global).on('scroll', scrollToTop);
-      $('#gateway').on('touchmove', preventEventDefault);
-      $('#gateway .close-popup-btn').on('click', f);
-      $('#gateway .js-closePopup').on('click', e => {
-        e.preventDefault();
-        f();
-      });
-    }
-    if (
-      !isMobileDevice() &&
-      !isProductPage() &&
-      !fromAllowedState(decathlon) &&
-      country[0] == 'US' &&
-      !decathlon.getData('seenGateway') &&
-      !nativeAppCookie.getData('noGateway') &&
-      $('#gateway').length
-    ) {
-      if ($('body').hasClass('template-index'))
-        $('#gateway').addClass('gateway--home');
-      else
-        $('#PageContainer').css({
-          '-o-filter': 'blur(5px)',
-          '-moz-filter': 'blur(5px)',
-          '-webkit-filter': 'blur(5px)',
-          '-ms-filter':
-            '"progid:DXImageTransform.Microsoft.Blur(PixelRadius=\'5\')"',
-          filter: 'blur(5px)'
-        });
-
-      $('#gateway').show();
-      (() => {
-        const gatewayRegion = decathlon.getUserRegion();
-        if (gatewayRegion) $('#hello-state').text(`Hello ${gatewayRegion}!`);
-        else $('#hello-state').text('Hello!');
-        $(`#sel-state option:contains(${gatewayRegion})`).prop({
-          selected: true
-        });
-
-        $('#sel-state').addClass('is-selected');
-      })();
-      $('#gateway #contact_form').css(
-        'height',
-        $('#gateway #contact_form').innerHeight()
-      );
-      if (!decathlon.getData('seenBanner')) $('.popup .banner-content').hide();
-      $(global).on('scroll', scrollToTop);
-      $('#gateway').on('touchmove', preventEventDefault);
-      $('#gateway .close-popup-btn').on('click', f);
-      $('#gateway .js-closePopup').on('click', e => {
-        e.preventDefault();
-        f();
-      });
-      $('#gateway form select').on('change', e => {
-        $(e.currentTarget).addClass('is-selected');
-      });
-      $('#gateway form').submit(function(i) {
-        i.preventDefault();
-        const n = $(this);
-        const a = [];
-        const r = n.find('select');
-        if (!(r.val() && r.val() != '')) a.push('Please select a state');
-        const s = /\S+@\S+\.\S+/;
-        if (!s.test(n.find('#GatewayFormEmail').val()))
-          a.push('Invalid email.');
-        if (a.length) {
-          $('.gateway-inputWrap .errors').remove();
-          $('.gateway-inputWrap').prepend(
-            '<div class="errors" style="margin: 0 4px 1em 4px;"><ul class="no-bullets u-marginBottom0x"></ul></div>'
-          );
-
-          $(a).each((e, i) => {
-            $('.gateway-inputWrap .errors ul').append(`<li>${i}</li>`);
-          });
-          return false;
-        }
-
-        const c = new DecathlonCustomer({
-          customer: {
-            email: $('#GatewayFormEmail').val(),
-            accepts_marketing: true,
-            addresses: [
-              {
-                province: r.val(),
-                country: 'US'
-              }
-            ]
-          }
-        });
-
-        c.createCustomer()
-          .then(() => {
-            $('#gateway .hide-on-success').hide();
-            $('#gatewayFormError').remove();
-            n.prepend(
-              '<h4 class="form-success">Thank you for signing up!</h4>'
-            );
-
-            decathlon.setData('userSetRegion', n.find('select').val());
-            setTimeout(f, 500);
-            if (decathlon.getUserRegion() !== 'CA') {
-              global.addToWishlist = true;
-              $('.addToCart .addToCartText').text('Add to Wishlist');
-              $('.addToCart').click(function(e) {
-                e.preventDefault();
-                $(this)
-                  .parents('.timber-activeProduct')
-                  .find('.wk-add-product')
-                  .click();
-                $(this).blur();
-              });
-            }
-          })
-          .catch(error => {
-            $('#gatewayFormError').remove();
-            n.prepend(
-              `<p id="gatewayFormError" class="form-error" style="color:white;background:transparent;max-width:580px;margin:10px auto;">${error.message}</p>`
-            );
-
-            $('#gatewayFormError a').attr('target', '_blank');
-          });
-      });
-      $('#gateway .easybreathCTA-link a').click(() => {
-        decathlon.setData('seenGateway', new Date().getTime());
-      });
-    }
-    if ($('body').hasClass('template-index')) {
-      $(global).on('scroll', h);
-      h();
-      if (!decathlon.getData('seenBanner') && $('.popup').length) {
-        const B = $(global).height();
-        $('body').addClass('is-showingBanner');
-        $('.popup').css('height', B);
-        setTimeout($('.popup-logo').fadeIn(500), 2e3);
-        setTimeout($('.popup-content').fadeIn(500), 3e3);
-        $('.popup .close-popup-btn').on('click', () => {
-          $('body').addClass('is-rollingUpBanner');
-          setTimeout(m, 1260);
-        });
-        $('.popup .js-closePopup').on('click', e => {
-          e.preventDefault();
-          $('body').addClass('is-rollingUpBanner');
-          setTimeout(m, 1260);
-        });
-        $('.js-seenBanner').on('click', () => {
-          decathlon.setData('seenBanner', new Date().getTime());
-        });
-        $(global).on('scroll', () => {
-          if (
-            $(global).scrollTop() > B &&
-            $('body').hasClass('is-showingBanner')
-          )
-            m();
-        });
-        $(global).on('resize', () => {
-          $('.popup').css('height', $(global).height());
-        });
-      }
-      var U = $('.sportsSearch .slick-slider');
-      if ($(global).width() > 1520) g();
-    }
     if (!decathlon.getData('seenPromo')) {
       $('.promo-band').removeClass('is-hidden');
       $('.promo-band__close').click(() => {
@@ -1569,7 +795,7 @@ function getLocaleSync($) {
       n.addClass('banner--videoActive');
       $('.js-closeBannerVideo').click(() => {
         n.removeClass('banner--videoActive');
-        if ($(global).width() >= c) $('#bannerVideo').remove();
+        if ($(global).width() >= breakpoint) $('#bannerVideo').remove();
         else
           setTimeout(() => {
             $('#bannerVideo').remove();
@@ -1602,289 +828,6 @@ function getLocaleSync($) {
         else r.splice(s, 1);
         const l = ['', c, r.join('+')].join(a).replace(/\/$/, '');
         $(this).attr('href', l);
-      });
-    }
-
-    if ($('body').hasClass('template-product')) {
-      const productWrap = $('#ProductWrap');
-      const modelCode = productWrap.data('modelCode');
-      $(global).on('scroll', h);
-      h();
-      if (!productWrap.hasClass('product-singleOption'))
-        decathlon.optionToSwatch().then(() => {
-          $('.selector-wrapper--color .custom-variants').slick({
-            slidesToShow: 5,
-            arrows: true,
-            infinite: false,
-            responsive: [
-              {
-                breakpoint: 1120,
-                settings: { slidesToShow: 3 }
-              },
-              {
-                breakpoint: 1e3,
-                settings: { slidesToShow: 5 }
-              },
-              {
-                breakpoint: 600,
-                settings: { slidesToShow: 3 }
-              },
-              {
-                breakpoint: 480,
-                settings: { slidesToShow: 5 }
-              }
-            ]
-          });
-        });
-      if (
-        decathlon.cookieData_.recentlyViewed &&
-        decathlon.cookieData_.recentlyViewed.length > 0
-      ) {
-        const W = handlebarsSafeCompile($('#recentlyViewedTemplate').html());
-        $('.js-recentlyViewed').html(
-          W({
-            products: decathlon.cookieData_.recentlyViewed
-          })
-        );
-      } else $('.recentlyViewed').remove();
-      decathlon.recentlyViewed({
-        url: `/products/${window.productJSON.handle}`,
-        title: window.productJSON.title,
-        price: `$${window.productJSON.price / 100}`,
-        featured_image: window.productJSON.featured_image,
-        id: window.productJSON.id,
-        rating: window.productJSON.rating
-      });
-
-      $('.js-slick--products')
-        .on('beforeChange', e => {
-          $(e.currentTarget)
-            .find('.slick-current')
-            .trigger('zoom.destroy');
-        })
-        .on('afterChange', v)
-        .on('init', v);
-      $('.js-slick--products').slick({
-        centerPadding: 0,
-        dots: true,
-        focusOnSelect: true,
-        infinite: true,
-        slidesToShow: 3,
-        centerMode: true,
-        lazyLoad: 'ondemand',
-        responsive: [
-          {
-            breakpoint: 769,
-            settings: {
-              slidesToShow: 1,
-              infinite: false,
-              dots: false
-            }
-          }
-        ]
-      });
-      var G = true;
-      $('.js-slick--products').on('afterChange', updateProductSlides);
-      $('.selector-wrapper--color .option').on('click', updateProductSlides);
-      $('.js-slick--products .productImage').click(updateProductSlides);
-      $(global).resize(updateProductSlides);
-      if ($(global).width() <= c)
-        $('.productImage.slick-slide img').removeAttr('data-action');
-      if ($(global).width() >= l) {
-        y();
-        $(global).resize(y);
-        decathlon.pinToHeader({
-          selector: '.js-pinProductOptions',
-          offset() {
-            return 0;
-          },
-          pinCallback() {
-            $(document.body).addClass('is-pinningForm');
-          },
-          unpinCallback() {
-            $(document.body).removeClass('is-pinningForm');
-          }
-        });
-      }
-
-      const H = decathlon.imageGroups().getGroups();
-      $(H).each((e, i) => {
-        $(i.images).each((e, n) => {
-          let o = n.replace(/^https:/, '').split('.jpg');
-          o = o.join('_large.jpg');
-          $(`.productImage img[data-lazy="${o}"]`)
-            .parent()
-            .attr('data-color', i.color);
-        });
-      });
-      $('.js-slick--products').on('reInit', function() {
-        $(this).removeClass('is-filtering');
-      });
-      $('.js-slick--products').slick('slickFilter', function() {
-        if ($(this).data('color') === H[0].color) return true;
-      });
-      $('.js-slick--products .slick-slide:not(.slick-cloned)').each((e, i) => {
-        $(i).attr('data-slick-index', e);
-      });
-
-      $('.productFAQs h4').each((e, i) => {
-        $(i).addClass('productFAQs-faq-title');
-        $(i)
-          .nextUntil('h4')
-          .addBack()
-          .wrapAll('<div class="productFAQs-faq" />');
-        $(i).append(
-          '<a class="productFAQs-faq-toggleLink js-toggleFAQ" href="#"></a>'
-        );
-      });
-      $('.js-toggleFAQ').on('click', function(e) {
-        e.preventDefault();
-        $(this)
-          .parents('.productFAQs-faq')
-          .toggleClass('is-open');
-      });
-      if (modelCode) {
-        const V = $('.js-loadProductVideo');
-        if (V)
-          $.ajax({
-            url: V.data('poster'),
-            type: 'HEAD'
-          })
-            .success(() => {
-              V.append(
-                `<div class="banner banner--video banner--billboard banner--centeredContent banner--productVideo" style="background-image: url(${V.data(
-                  'poster'
-                )})" ><div class="wrapper"><div class="banner-content"><h1 class="banner-title">See it in action</h1><a class="js-bannerVideo" href="//players.brightcove.net/3415345270001/rJxNjfhX_default/index.html?videoId=ref:${V.data(
-                  'videoId'
-                )}_1&secureConnections=true&secureHTMLConnections=true&autoplay=true" target="_blank"><i class="ico ico--play h2 u-marginBottom0x"></i></a></div></div></div>`
-              );
-
-              $('.js-bannerVideo').on('click', function(i) {
-                i.preventDefault();
-                const n = $(this).parents('.banner--video');
-                const o = $(this).attr('href');
-                n.append(
-                  `<div id="bannerVideo"><div class="js-closeBannerVideo"></div><div class="embedWrapper"><div class="embedContainer"><iframe src="${o}" frameborder="0" allowfullscreen></iframe></div></div></div>`
-                );
-                if ($(this).attr('data-videoButton')) {
-                  const a = JSON.parse($(this).attr('data-videoButton'));
-                  $('#bannerVideo').append(
-                    `<p class="bannerButton"><a class="btn" href="${a.url}">${a.text}</a></p>`
-                  );
-                }
-                n.addClass('banner--videoActive');
-                $('.js-closeBannerVideo').click(() => {
-                  n.removeClass('banner--videoActive');
-                  if ($(global).width() >= c) $('#bannerVideo').remove();
-                  else
-                    setTimeout(() => {
-                      $('#bannerVideo').remove();
-                    }, 750);
-                });
-              });
-            })
-            .fail(() => {
-              V.append(
-                `<div id="bannerVideo"><div class="embedWrapper"><div class="embedContainer"><iframe src="//players.brightcove.net/3415345270001/S1PSLnzml_default/index.html?videoId=ref:${V.data(
-                  'videoId'
-                )}_1&secureConnections=true&secureHTMLConnections=true" frameborder="0" allowfullscreen=""></iframe></div></div></div>`
-              );
-            });
-        var J = `${s}/api/en_US/review/list?site=1132&type=1&locales=en&nb=3&offer=`;
-        var productReviewsTemplate = handlebarsSafeCompile(
-          $('#productReviewsTemplate').html()
-        );
-        var q = 0;
-        var Q = $('#productAggregateRating').data('reviews');
-        window.starsTemplate = handlebarsSafeCompile(
-          $('#productAggregateRating').html()
-        );
-
-        window.reviewsflushlist = false;
-        window.reviewsinitialized = false;
-
-        const loadReviews = () => {
-          if (window.reviewsflushlist) q = 0;
-          const e = (
-            $('.js-productReviewsSort').val() || 'createdAt|desc'
-          ).split('|');
-          const i = 3 * q;
-          q++;
-          if (!(!Q || i >= Q.total_item_count))
-            if (e[0] == 'createdAt' && e[1] == 'desc' && q <= 5)
-              w({
-                total_item_count: Q.total_item_count,
-                items: Q.items.slice(i, i + 3)
-              });
-            else
-              $.get(
-                `${J + modelCode}&page=${q}&sort=${e[0]}&direction=${e[1]}`
-              ).then(w);
-        };
-
-        loadReviews();
-        $('.js-loadReviews').click(e => {
-          e.preventDefault();
-          loadReviews();
-        });
-        $('.js-productReviewsSort').change(() => {
-          window.reviewsflushlist = true;
-          loadReviews();
-        });
-      }
-      const variantId = decode(location.search.substring(1));
-      if (variantId) {
-        const K = $(`option[value="${variantId}"]`).text();
-        $('.selector-wrapper--color .option').each(function() {
-          const e = $(this);
-          if (K.indexOf(e.data('value')) > -1) e.click();
-        });
-      }
-      $('body').append($('.sizechart').detach());
-      const X = /iPhone/.test(navigator.userAgent) && !global.MSStream;
-      let Y = false;
-      $('.js-sizechart').click(i => {
-        i.preventDefault();
-        if ($(global).width() < 768)
-          $('html, body').css({
-            overflow: 'hidden',
-            position: 'fixed'
-          });
-        if (!Y) {
-          var n = setInterval(() => {
-            if ($('.sizeGuide').html() != '') {
-              const e = $('.esc-size-guide--title')
-                .text()
-                .replace(
-                  /\(.*\)/,
-                  e => `<br/><span style="font-size:60%">${e}</span>`
-                );
-              $('.sizechart-title').html(e);
-              $('.sizechart-measurements').html(
-                $('.esc-size-guide--table + p').html()
-              );
-
-              clearInterval(n);
-            }
-          }, 100);
-          Y = true;
-          if (X)
-            $('.sizechart .u-centerVertically').removeClass(
-              'u-centerVertically'
-            );
-        }
-        $('.sizechart').css('display', 'block');
-        $('html').addClass('is-showingSizeChart');
-      });
-      $('.js-closeSizechart').click(() => {
-        if ($(global).width() < 768)
-          $('html, body').css({
-            overflow: '',
-            position: ''
-          });
-
-        $('.sizechart').css('display', 'none');
-        $('html').removeClass('is-showingSizeChart');
       });
     }
     $('.js-slick--attr').slick();
@@ -1993,7 +936,7 @@ function getLocaleSync($) {
           .prev()
           .addClass('collectionProduct--nextIsEndFeatured');
     });
-    if ($(global).width() > c)
+    if ($(global).width() > breakpoint)
       $(
         '.getGoingPack-currentProductWrapper .slick-slide:first-of-type img'
       ).on('load', () => {
@@ -2003,7 +946,7 @@ function getLocaleSync($) {
       .first()
       .on('setPosition', () => {
         setTimeout(() => {
-          decathlon.getGoingPacks($(global).width() <= c);
+          decathlon.getGoingPacks($(global).width() <= breakpoint);
         }, 250);
       });
     $('body').append($('.appointment').detach());
@@ -2261,13 +1204,13 @@ function getLocaleSync($) {
       $('#customer_login').on('submit', function(e) {
         const i = $(this);
         const n = $(this).serializeObject();
-        const a = new DecathlonCustomer({
+        const customer = new DecathlonCustomer({
           customer: {
             email: n['customer[email]']
           }
         });
         let r = false;
-        console.log(a);
+        console.log(customer);
         e.preventDefault();
         const $notifications = $(e.currentTarget).find('.notifications');
         $notifications
@@ -2281,7 +1224,7 @@ function getLocaleSync($) {
           $notifications
             .addClass('form-error')
             .html('<p>All fields are required</p>');
-        a.checkEmail().then(e => {
+        customer.checkEmail().then(e => {
           if (e) {
             if (e.state !== 'enabled') {
               $notifications
