@@ -1,6 +1,10 @@
 {
-  "extends": "plugin:@cloudfour/recommended",
-  "plugins": ["graphql"],
+  "extends": [
+    "plugin:@cloudfour/recommended",
+    "plugin:jest/recommended",
+    "plugin:jest/style" // Contains rules like prefer-to-be-null
+  ],
+  "plugins": ["graphql", "jest"],
   "rules": {
     "graphql/template-strings": [
       "error",
@@ -15,6 +19,7 @@
   },
   "globals": {
     "google": true,
-    "moment": true
+    "moment": true,
+    "jest/globals": true
   }
 }
