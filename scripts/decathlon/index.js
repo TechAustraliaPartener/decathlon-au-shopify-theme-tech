@@ -1,6 +1,7 @@
 import $ from 'jquery';
+import './footer';
 /* eslint-disable complexity, @cloudfour/no-param-reassign, no-redeclare, eqeqeq, no-negated-condition, radix, block-scoped-var, no-var, no-alert, no-new, @cloudfour/unicorn/explicit-length-check, max-params, no-new-func */
-/* global Handlebars, Cookies, jQuery, BlueLikeNeon, s3, DecathlonCustomer */
+/* global Cookies, jQuery, BlueLikeNeon, s3, DecathlonCustomer */
 
 const loadImages = () => {
   $('img[data-src]').each((i, el) => {
@@ -60,59 +61,6 @@ function getLocaleSync($) {
 window.getLocaleSync = getLocaleSync;
 
 ((global, Cookies, $) => {
-  class ImageGroups {
-    constructor(groupOn, productJSON) {
-      this.groupOn_ = groupOn || 'Color';
-      this.optionKey_ = null;
-      this.groups_ = [];
-      this.currentImage_ = '';
-      this.productJSON = productJSON || global.productJSON;
-      this.findOptionNumber_();
-      this.initGroups_();
-      this.buildGroups_();
-    }
-
-    findOptionNumber_() {
-      const e = this;
-      for (let i = 0; i < e.productJSON.options.length; i++)
-        if (e.productJSON.options[i] === e.groupOn_)
-          e.optionKey_ = `option${i + 1}`;
-      return e;
-    }
-
-    initGroups_() {
-      const e = this;
-      for (let i = 0; i < e.productJSON.variants.length; i++) {
-        const t = e.productJSON.variants[i];
-        if (e.currentImage_ !== t.featured_image.src) {
-          e.currentImage_ = t.featured_image.src;
-          e.groups_.push({
-            color: t[e.optionKey_],
-            images: [e.currentImage_]
-          });
-        }
-      }
-      return e;
-    }
-
-    buildGroups_() {
-      const e = this;
-      let t = 0;
-      for (let i = 0; i < e.productJSON.images.length; i++) {
-        const n = e.productJSON.images[i];
-        for (let j = 0; j < e.groups_.length; j++)
-          if (n === e.groups_[j].images[0].replace(/^https:/, '')) t = j;
-        if (n !== e.groups_[t].images[0].replace(/^https:/, ''))
-          e.groups_[t].images.push(n);
-      }
-      return e;
-    }
-
-    getGroups() {
-      return this.groups_;
-    }
-  }
-
   class BlueLikeNeon {
     constructor(cookieName) {
       this.cookieName_ = cookieName || 'bln';
@@ -192,7 +140,6 @@ window.getLocaleSync = getLocaleSync;
             'padding-bottom': normalizedPadding
           });
       });
-      return this;
     }
 
     // Only called within this file
@@ -264,7 +211,6 @@ window.getLocaleSync = getLocaleSync;
         $('#PageContainer').resize(d);
         const u = () => {
           if (isProductPage()) {
-            // If (i(e).scrollTop() < (l - i('.js-de-PageWrap-header').css('height').split('px')[0])) return void(1 === i(t.selector + "--cloned").length && (o.detach(), o.removeClass(r + "--cloned is-fixed"), o.css({
             if ($(global).scrollTop() < l) {
               if ($(`${t.selector}--cloned`).length === 1) {
                 o.detach();
@@ -321,10 +267,6 @@ window.getLocaleSync = getLocaleSync;
         $('#PageContainer').resize(u);
         return n;
       }
-    }
-
-    imageGroups(groupOn, productJSON) {
-      return new ImageGroups(groupOn, productJSON);
     }
 
     // Only called in this file
@@ -452,33 +394,32 @@ window.getLocaleSync = getLocaleSync;
 
 ((global, $) => {
   class DecathlonCustomer {
-    constructor(e) {
+    constructor(userData) {
       this.apiUrl = $('#decathlon-customer-api').data('apiRoot');
       this.messages = [];
-      this.userData = e || {};
-      this.customerId = e['customer[id]'];
+      this.userData = userData || {};
+      this.customerId = userData['customer[id]'];
       this.userMetaData = {};
     }
 
     createCustomer() {
-      const i = this;
-      i.messages = [];
-      const n = i.userData;
+      this.messages = [];
+      const n = this.userData;
       return new Promise((resolve, reject) => {
-        i.checkEmail().then(a => {
+        this.checkEmail().then(a => {
           if (a && a.state === 'enabled') {
             const r = new Error(`${a.email} is already subscribed.`);
             r.code = 'USER_ENABLED';
             return reject(r);
           }
           if (a && a.state === 'disabled') {
-            i.customerId = a.id;
+            this.customerId = a.id;
             const r = new Error(`${a.email} is already subscribed.`);
             r.code = 'USER_NOT_ENABLED';
             return reject(r);
           }
           const s = {
-            url: [i.apiUrl, 'customers'].join('/'),
+            url: [this.apiUrl, 'customers'].join('/'),
             method: 'POST',
             headers: {
               'Content-type': 'application/json'
@@ -493,32 +434,31 @@ window.getLocaleSync = getLocaleSync;
     }
 
     updateCustomer(e) {
-      const i = this;
       var e = e || {};
       const n = e;
 
-      i.customerToken = i.userData.customer.token;
-      delete i.userData.customer.token;
-      if (!i.customerToken) console.log('[Error]: Token missing');
+      this.customerToken = this.userData.customer.token;
+      delete this.userData.customer.token;
+      if (!this.customerToken) console.log('[Error]: Token missing');
       return new Promise((resolve, reject) => {
         $.ajax({
-          url: [i.apiUrl, 'customers'].join('/'),
+          url: [this.apiUrl, 'customers'].join('/'),
           method: 'PUT',
           headers: {
             'Content-type': 'application/json',
-            'X-Decathlon-CustomerAccessToken': i.customerToken
+            'X-Decathlon-CustomerAccessToken': this.customerToken
           },
-          data: JSON.stringify(i.userData.customer)
+          data: JSON.stringify(this.userData.customer)
         })
           .success(a => {
             if (a.errors) reject(a.errors);
             else if (a.errorType && a.errorType === 'TokenExpiredError')
-              i.updateToken().success(o => {
+              this.updateToken().success(o => {
                 if (o.errorMessage) alert(o.errorMessage);
                 else {
                   $('input[name="token"]').val(o.metafield.value);
-                  i.userData.customer.token = o.metafield.value;
-                  resolve(i.updateCustomer(n));
+                  this.userData.customer.token = o.metafield.value;
+                  resolve(this.updateCustomer(n));
                 }
               });
             else resolve(a);
@@ -529,9 +469,9 @@ window.getLocaleSync = getLocaleSync;
 
     checkEmail() {
       return new Promise(resolve => {
-        const o =
+        const email =
           this.userData.customer.email || this.userData['customer[email]'];
-        $.get([this.apiUrl, 'check-email', o].join('/')).success(t => {
+        $.get([this.apiUrl, 'check-email', email].join('/')).success(t => {
           if (!t.customers.length) return resolve(false);
           const n = t.customers[0];
           this.customerId = n.id;
@@ -610,53 +550,9 @@ window.getLocaleSync = getLocaleSync;
 
   global.DecathlonCustomer = DecathlonCustomer;
 })(window, jQuery);
-((global, $, BlueLikeNeon, Handlebars, DecathlonCustomer) => {
+((global, $, BlueLikeNeon, DecathlonCustomer) => {
   const breakpoint = 768;
   $(() => {
-    class CustomDropdown {
-      constructor($elements) {
-        this.dd = $elements;
-        this.placeholder = this.dd.children('p');
-        this.opts = this.dd.find('ul > li');
-        this.val = '';
-        this.index = -1;
-        this.initEvents();
-      }
-
-      // T(e).on("resize", function(e) {
-      //     t(".site-nav__dropdown").css({
-      //         width: t(".js-de-PageWrap-header .wrapper").width()
-      //     })
-      // }),
-      initEvents() {
-        this.dd.on('click', function() {
-          $(this).toggleClass('active');
-          return false;
-        });
-        this.opts.on('click', function() {
-          const element = $(this);
-          element.siblings('input').prop('checked', true);
-          element.addClass('active');
-          element.siblings('li').removeClass('active');
-          element
-            .siblings('li')
-            .children('input')
-            .prop('checked', true);
-          this.val = element.text();
-          this.index = element.index();
-          this.placeholder.text(this.val);
-        });
-      }
-
-      getValue() {
-        return this.val;
-      }
-
-      getIndex() {
-        return this.index;
-      }
-    }
-
     function updateInputEmptyClass(event) {
       if ($(event.currentTarget).val())
         $(event.currentTarget)
@@ -739,7 +635,6 @@ window.getLocaleSync = getLocaleSync;
           .parent()
           .addClass('account-item');
     });
-    // T(".account-item").before('<li class="mobile-nav__item"><a href="/pages/wishlist" class="mobile-nav__link">My Wishlist</a></li>'),
     $('.mobile-nav__has-sublist .mobile-nav__link').on('click', e => {
       const parent = $(e.currentTarget).parent();
       if (!parent.hasClass('mobile-nav--expanded')) {
@@ -765,10 +660,6 @@ window.getLocaleSync = getLocaleSync;
         });
       }
     );
-
-    // T("#customer_login_link").parent().hide();
-    // t("#customer_register_link").parent().hide();
-    // t("#NavDrawer .drawer__title").addClass("h5").removeClass("h3").html('<a href="/account"><i class="ico ico--account mobileHeader-accountIcon"></i>My Account</a>');
 
     if (!decathlon.getData('seenPromo')) {
       $('.promo-band').removeClass('is-hidden');
@@ -1171,24 +1062,28 @@ window.getLocaleSync = getLocaleSync;
       });
       $('.js-updateCustomer').on('submit', e => {
         e.preventDefault();
-        const i = new DecathlonCustomer({
+        const customer = new DecathlonCustomer({
           customer: $(e.currentTarget).serializeObject()
         });
-        const n = $(e.currentTarget).find('.notifications');
-        n.removeClass('form-success')
+        const notificationsEl = $(e.currentTarget).find('.notifications');
+        notificationsEl
+          .removeClass('form-success')
           .removeClass('form-error')
           .empty();
-        if (!i.userData.customer.accepts_marketing)
-          i.userData.customer.accepts_marketing = false;
-        i.updateCustomer()
+        if (!customer.userData.customer.accepts_marketing)
+          customer.userData.customer.accepts_marketing = false;
+        customer
+          .updateCustomer()
           .then(() => {
-            n.addClass('form-success').append('<p>Saved successfully!</p>');
+            notificationsEl
+              .addClass('form-success')
+              .append('<p>Saved successfully!</p>');
           })
           .catch(error => {
             const messages = [];
             if (error.email) messages.push(`Email ${error.email[0]}`);
             messages.forEach(e => {
-              n.addClass('form-error').append(`<p>${e}</p>`);
+              notificationsEl.addClass('form-error').append(`<p>${e}</p>`);
             });
           });
       });
@@ -1260,13 +1155,6 @@ window.getLocaleSync = getLocaleSync;
         }
       });
     }
-    if ($('body').hasClass('page-checkout')) {
-      const re = $('.main__content').data('userImg');
-      if (re)
-        $('.logged-in-customer-information__avatar').css({
-          'background-image': `url(${re})`
-        });
-    }
     if (global.location.search === '?contact_posted=true')
       $('.hide-on-success').css('display', 'none');
     $('#contact_form').submit(function(e) {
@@ -1312,105 +1200,6 @@ window.getLocaleSync = getLocaleSync;
         'notifications form-success u-textCenter'
       );
 
-    $('.footerNewsletter-form, .blogNewsletter-form').submit(function(e) {
-      e.preventDefault();
-      const i = $(this);
-      $('.newsLetterForm-response').remove();
-      let n = true;
-      var a = i.find('.state-dropdown-list .active input');
-      if (a.length == 0) {
-        var a = i.find('select');
-        if (a.length == 0) n = false;
-      }
-      if (n) {
-        i.append('<input type="hidden" name="MMERGE1" />');
-        i.find('[name="MMERGE1"]').val(a.val());
-      } else i.find('.footerNewsletter-dropdown-wrap, select').css('border', '1px solid red');
-      let r = true;
-      const s = /\S+@\S+\.\S+/;
-      if (!s.test(i.find('input[type="email"]').val())) {
-        i.find('input[type="email"]').css('border', '1px solid red');
-        r = false;
-      }
-      if (!n) {
-        i.after(
-          '<p class="newsLetterForm-response error">Please select a state.</p>'
-        );
-        return false;
-      }
-
-      if (!r) {
-        i.after(
-          '<p class="newsLetterForm-response error">Please enter a valid email address.</p>'
-        );
-        return false;
-      }
-      const c = new DecathlonCustomer({
-        customer: {
-          email: i
-            .find('input[type="email"]')
-            .val()
-            .toLowerCase(),
-          accepts_marketing: true,
-          addresses: [
-            {
-              province: a.val(),
-              country: 'US'
-            }
-          ]
-        }
-      });
-      c.createCustomer()
-        .then(() => {
-          i.hide();
-          i.after(
-            '<p class="newsLetterForm-response success">Thank you for signing up!</p>'
-          );
-          if ($('body').hasClass('template-article')) {
-            $('.blog-article-newsletter-form .hide-on-success').hide();
-            $(
-              '.blog-article-newsletter-form .blog-article-newsletter-success'
-            ).css('display', 'block');
-          }
-        })
-        .catch(error => {
-          i.after(
-            `<p class="newsLetterForm-response error">${error.message}</p>`
-          );
-        });
-    });
-    if ($('.blue-band').length > 0) {
-      $('.blue-band').each(function() {
-        $(this)
-          .children()
-          .children()
-          .children('.grid__item')
-          .eq(1)
-          .addClass('active');
-      });
-      $('.blue-band-icon').click(function() {
-        $(this)
-          .parent()
-          .parent()
-          .addClass('active');
-        $(this)
-          .parent()
-          .parent()
-          .siblings()
-          .removeClass('active');
-      });
-    }
-    $('.blue-band-link').click(function(i) {
-      if ($(global).width() >= 1e3 || i.target.nodeName == 'P')
-        global.location.href = $(this).data('href');
-    });
-
-    $(() => {
-      new CustomDropdown($('.footerNewsletter-dropdown-wrap'));
-      $(document).click(() => {
-        $('.footerNewsletter-dropdown-wrap').removeClass('active');
-      });
-    });
     $('.inputWrap > input, .inputWrap > select, .inputWrap > textarea').each(
       (e, i) => {
         if ($(i).val())
@@ -1426,4 +1215,4 @@ window.getLocaleSync = getLocaleSync;
     );
     global.decathlon = decathlon;
   });
-})(window, jQuery, BlueLikeNeon, Handlebars, DecathlonCustomer);
+})(window, jQuery, BlueLikeNeon, DecathlonCustomer);

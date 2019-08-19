@@ -2,6 +2,7 @@ import { decode } from 'qss';
 import $ from 'jquery';
 import Handlebars from 'handlebars';
 import './zoom';
+import { ImageGroups } from './image-groups';
 
 const uuid = window.uuid;
 const slugify = e =>
@@ -279,7 +280,7 @@ $(document).ready(() => {
     });
   }
 
-  const imageGroups = decathlon.imageGroups().getGroups();
+  const imageGroups = new ImageGroups().getGroups();
   $(imageGroups).each((index, i) => {
     $(i.images).each((e, n) => {
       let o = n.replace(/^https:/, '').split('.jpg');

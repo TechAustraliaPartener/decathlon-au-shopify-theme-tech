@@ -163,68 +163,6 @@
 
 {% comment %} {% include 'trending-products' %} {% endcomment %}
 
-{% comment %} {%- unless settings['is_lookbook'] -%}
-<!-- #DecathlonSF -->
-{%- endunless -%}
-<div class="sportsSearch u-block u-bgLightGray">
-  <div class="wrapper">
-    <h3 class="text-center sportsSearch-search large--show">I'm looking for <input class="sportsSearch-searchInput js-search js-nobfcache" type="search" placeholder="my sport type" /><span class="icon"></span></h3>
-
-    <div class="sportsSearchResultsWrapper searchResults"></div>
-
-    <h3 class="medium-down--show large--hide text-center">Find Your Sport</h3>
-  </div>
-
-  <div class="js-slick--attr" data-slick='{ "dots": false, "arrows": true, "infinite": true, "centerMode": false, "centerPadding": "5%", "slidesToShow": 6, "autoplay": false, "responsive": [
-    {
-      "breakpoint": 1520,
-      "settings": { "slidesToShow": 6, "centerMode": false }
-    },
-    {
-      "breakpoint": 1390,
-      "settings": { "slidesToShow": 5, "centerMode": true, "centerPadding": "3%"  }
-    },
-    {
-      "breakpoint": 1060,
-      "settings": { "slidesToShow": 4, "centerMode": false }
-    },
-    {
-      "breakpoint": 810,
-      "settings": { "slidesToShow": 3, "centerMode": true, "centerPadding": "6%" }
-    },
-    {
-      "breakpoint": 650,
-      "settings": { "slidesToShow": 3, "centerMode": false }
-    },
-    {
-      "breakpoint": 500,
-      "settings": { "slidesToShow": 2, "centerMode": false }
-    },
-    {
-      "breakpoint": 430,
-      "settings": { "slidesToShow": 1, "centerMode": true, "centerPadding": "23%" }
-    }
-  ]}'>
-  {%- for link in linklists['featured-sports'].links -%}
-  <div class="sportsSearch-slide" data-sport="{{ link.object.title | downcase }}">
-      <a href="{{ link.object.url }}">
-        <img alt="{{ link.object.title | capitalize }}" src="{{ link.object.title | handleize | prepend: 'sportsSearch-' | append: '.jpg' | file_url }}" />
-        <div class="u-centerVertically sportsSearch-slide-vcenter">
-          <div class="u-centerVertically-ie">
-            <p class="sportsSearch-slide-title">{{ link.object.title | capitalize }}</p>
-          </div>
-        </div>
-        <p class="sportsSearch-slide-shop">Shop Now</p>
-      </a>
-    </div>
-  {%- endfor -%}
-  </div>
-
-  <div class="wrapper">
-    <p class="text-center"><a class="btn" href="/collections">All Sports</a></p>
-  </div>
-</div> {% endcomment %}
-
 {% comment %} <!-- blog cards -->
 <div class="blogCards">
   <div class="wrapper">
