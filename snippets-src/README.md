@@ -38,8 +38,18 @@ For more details, see the [Gulp Tasks Documentation](/README.md#gulp-tasks).
 The following tree graph shows the directory organization:
 ```
 snippets-src/
-└── assets
-    └── icons
+├── assets
+│   ├── icons
+│   └── logos
+│       └── brands
+├── components
+├── compositions
+│   └── product
+├── elements
+├── helpers
+├── layout
+├── legacy
+└── vendor
 ```
 
 Source files will be renamed via the `snippets` Gulp task to avoid naming conflicts. 

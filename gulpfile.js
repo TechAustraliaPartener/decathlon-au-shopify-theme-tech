@@ -189,7 +189,13 @@ gulp.task('snippets:clean', function() {
        * the `snippets/` directory are sourced from `snippets-src/`.
        */
       `${SNIPPETS_PATH}assets-*.liquid`,
-      `${SNIPPETS_PATH}compositions-*.liquid`
+      `${SNIPPETS_PATH}components-*.liquid`,
+      `${SNIPPETS_PATH}compositions-*.liquid`,
+      `${SNIPPETS_PATH}elements-*.liquid`,
+      `${SNIPPETS_PATH}helpers-*.liquid`,
+      `${SNIPPETS_PATH}layout-*.liquid`,
+      `${SNIPPETS_PATH}legacy-*.liquid`,
+      `${SNIPPETS_PATH}vendor-*.liquid`
     ])
     .pipe(clean());
 });
