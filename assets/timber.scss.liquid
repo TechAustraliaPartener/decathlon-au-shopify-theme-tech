@@ -4767,105 +4767,6 @@ body.is-rollingUpBanner .popup { margin-top: -100vh; }
 }
 
 /**
- * Sport Search
- */
-.sportsSearch {
-  padding: $space*2.5 0 $space*3;
-  h3 { margin-top: 1.2em; }
-}
-.sportsSearch .mobile-headline { display: block; }
-.sportsSearch-search {
-  display: none;
-  position: relative;
-
-  input {
-    width: 9em;
-    border: 1px solid transparent;
-    border-bottom: 1px solid $midGray;
-    background: transparent;
-    font-family: $secondaryFontStack;
-    font-size: 1em;
-    line-height: 1.2;
-    color: $midGray;
-    letter-spacing: 1px;
-    padding-left: 0;
-    margin-left: 10px;
-  }
-
-  .icon { position: relative; }
-  .icon::after {
-    font-family: $fontAwesome;
-    content: '\f002';
-    color: #919191;
-    font-size: .6em;
-    position: absolute;
-    right: .2em;
-    top: .4em;
-  }
-}
-.sportsSearch .slick-slider {
-  margin: 0 auto;
-  max-width: 100%;
-}
-.sportsSearch-slide {
-  background: $white;
-  padding: 0 10px;
-  margin: $space*2.2 1px $space*3.5;
-  opacity: 0.5;
-  a { outline: none !important; }
-  p { padding: 0 $space*.5; }
-  img { margin: 0 auto; }
-}
-.sportsSearch-slide.slick-active { opacity: 1; }
-.sportsSearch-slide-vcenter {
-  height: 46px;
-}
-.sportsSearch-slide-title {
-  color: $black;
-  font-family: $semiBoldFont;
-  font-size: .9rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  text-align: center;
-  margin-top: -$space*2;
-  margin-bottom: $space;
-}
-.sportsSearch-slide-shop {
-  display: none;
-  font-family: $semiBoldFont;
-  font-size: .9rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  text-align: center;
-  margin-top: -$space;
-  margin-bottom: $space*2.5;
-}
-.sportsSearchResultsWrapper {
-    top: 0;
-    margin: -20px auto 0;
-    width: 60%;
-    & .header-searchResults {
-      width: 100%;
-      max-width: 100%;
-      padding:0;
-      .header-searchResult--noResults {
-        padding: $space*1 $space*0.5;
-        font-size: 1.25em;
-      }
-      & a {
-        padding: $space*1 $space*0.5;
-        font-size: 1.25em;
-        display: block;
-        width: 100%;
-        //border-bottom: 1px solid $midGray;
-        &:hover {
-          background-color: lighten($lightGray, 2%);
-        }
-      }
-    }
-}
-
-/**
  * Blog Cards
  */
 .blogCards {
@@ -6259,207 +6160,6 @@ body.js-drawer-open {
 
 .slick-dots li button:before { font-size: 38px; }
 
-/* instagram posts */
-.template-index .instagramFeed {
-  display: none;
-}
-
-.instagramPost {
-  margin-bottom: 0;
-  cursor: pointer;
-}
-.instagramFeed-message { pointer-events: none; }
-.instagramMessage-title {
-  font-size: $space;
-  line-height: 1.2em;
-  text-align: center;
-
-  .instagramFeed-icon {
-    display: block;
-    margin-bottom: -0.7em;
-    font-size: 1em;
-  }
-  .instagramFeed-icon:before {
-    margin-top: -0.25em;
-    @include prefixer(transform, translateX(-50%), ms webkit moz spec);
-  }
-}
-.instagramPost-link {
-  background: no-repeat center;
-  background-size: cover;
-}
-
-.instagramPost-logo {
-  color: $white;
-  font-size: $space*1.25;
-  left: 50%;
-  margin: -29px 0 0 -8px;
-  position: absolute;
-  top: 50%;
-}
-
-.instagramPost-image { background: rgba(0,0,0,.2); }
-
-.instagramPost-descriptionBg {
-  background: rgba(28,130,195, .8);
-  content: '';
-  height: 100%;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  z-index: 1;
-}
-
-.instagramPost-description {
-  color: $white;
-  left: 0;
-  padding: $space;
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  z-index: 1;
-  display: table-cell;
-  vertical-align: middle;
-  @include prefixer(transform, translateY(-50%), ms webkit moz spec);
-  /*&:before {
-    font-family: $fontAwesome;
-    content: '\f16d';
-    color: white;
-    font-size: 30px;
-    display: block;
-    text-align: center;
-  }*/
-}
-
-.instagramPost-descriptionContainer {
-  display: none;
-}
-
-.instagramPost:hover .instagramPost-descriptionContainer {
-  display: block;
-}
-
-.template-index .instagramPost:hover .instagramPost-descriptionContainer {
-  display: none;
-}
-
-.instagramPost:hover .instagramPost-logo { display: none; }
-
-.instagramFeed-message {
-  @include prefixer(transform, translate(-50%, -50%), ms moz webkit spec);
-  color: $white;
-  left: 50%;
-  position: absolute;
-  top:50%;
-  width: auto;
-  z-index: 2;
-}
-
-.instagramLightBox {
-  z-index: 50;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-.instagramLightBox:after {
-  position: absolute;
-  display: block;
-  content: '';
-  z-index: -1;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #000;
-  opacity: 0.7;
-}
-.instagramLightBox .slick-prev,
-.instagramLightBox .slick-next {
-  top: 42%;
-  background-color: rgba(0, 0, 0, .3) !important;
-}
-.instagramLightBox .slick-prev:before,
-.instagramLightBox .slick-next:before {
-  color: rgba(255, 255, 255, .9) !important;
-}
-.instagramLightBox-vertical {
-  height: 100%;
-}
-.instagramLightBox-wrapper {
-  position: relative;
-  margin: 0 auto;
-  width: 600px;
-  max-width: 100%;
-  max-height: 100%;
-}
-.instagramLightBox-slide { position: relative; }
-.instagramLightBox-image {
-  @include block(600px);
-  max-width: 100%;
-  height: 715px;
-  max-height: 100vh;
-  padding-bottom: 170px;
-  background: center / cover no-repeat content-box scroll;
-}
-.template-index .instagramLightBox-image { padding-bottom: 135px; }
-.instagramLightBox-close {
-  position: absolute !important;
-  z-index: 5;
-  right: $space*1.4;
-  top: $space*1.7;
-  color: $white;
-  outline: none;
-  cursor: pointer;
-  text-align: center;
-  background-image: url({{ 'close.svg' | asset_url }});
-  width: 15px;
-  height: 15px;
-}
-.instagramLightBox-content {
-  @include block();
-  position: absolute;
-  bottom: 0;
-  padding: 0 $space*2.5;
-  min-height: 170px;
-  background: $white;
-}
-.template-index .instagramLightBox-content { min-height: 135px; }
-.instagramLightBox-info {
-  @include block(78%);
-  min-height: 170px;
-  padding-top: 10px;
-  padding-bottom: 35px;
-}
-.template-index .instagramLightBox-info { min-height: 135px; padding-bottom: 10px; }
-.instagramLightBox-author {
-  margin-bottom: 0;
-  font-family: $semiBoldFont;
-}
-.instagramLightBox-description {
-  margin-bottom: 0;
-  line-height: 1.4;
-}
-.instagramLightBox-social {
-  @include block(21.5%);
-  margin-top: 31px;
-}
-.instagramLightBox-social .icon-fallback-text {
-  display: block;
-  float: right;
-  width: 40px;
-  padding: 4px 0 1px;
-  text-align: center;
-  font-size: 20px;
-  line-height: 1.5;
-  border: 1px solid $lightGray;
-  color: $darkGray;
-  cursor: pointer;
-}
-.instagramLightBox-social .icon-fallback-text:hover { background-color: $darkGray; color: $lightGray; }
-
 /* utility and flex */
 .u-displayNone { display: none; }
 
@@ -6619,8 +6319,7 @@ body.js-drawer-open {
  * San Francisco
  */
 .sizechart,
-.appointment,
-.picshare {
+.appointment {
   display: none;
   position: fixed;
   top: 0;
@@ -6637,8 +6336,7 @@ body.js-drawer-open {
 }
 
 .sizechart-wrapper,
-.appointment-wrapper,
-.picshare-wrapper {
+.appointment-wrapper {
   position: relative;
   background: $white;
   text-align: center;
@@ -6836,28 +6534,6 @@ body.js-drawer-open {
 
     input[type="submit"] {
       padding: $space $space*1.1;
-    }
-  }
-}
-
-.picshare-wrapper {
-  padding: $space*3 $space*1.5;
-  background: $white;
-  overflow-y: auto;
-
-  h5 { margin-bottom: 1em; }
-
-  .formInput-inputWrapper {
-    input,
-    textarea {
-      padding-top: $space*.9;
-      padding-bottom: $space*.9;
-      margin: $space*.9 0;
-    }
-
-    label {
-      padding-top: $space*.9;
-      padding-bottom: $space*.9;
     }
   }
 }
@@ -7483,67 +7159,6 @@ body.js-drawer-open {
   background-color: lighten($lightGray, 2%);
 }
 
-.instagramProductFeed { padding-bottom: 44px; }
-.instagramProductFeed-submitPhoto {
-  float: right;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  background: $colorPrimary;
-  color: $white;
-  width: 100%;
-  z-index: 10;
-}
-
-.instagramProductFeed-submitPhoto:after {
-  content: '\203A';
-  font-size: $space*1.8;
-  margin: -$space*.4 0 0 $space*.37;
-  position: absolute;
-}
-.instagramProductFeed-submitPhoto:hover {
-  background: $white;
-  color: $colorPrimary;
-}
-.instagramProductFeed-loadMore {
-  @include transition();
-  display: block;
-  position: absolute;
-  top: 50%;
-  right: 0;
-  z-index: 110;
-  padding: 0;
-  width: 50px;
-  height: 50px;
-  background-image: url(timber.scss.css) !important;
-  text-align: center;
-  font-size: 0;
-  line-height: 0;
-  outline: none;
-  border: none;
-  cursor: pointer;
-  color: transparent;
-
-  -webkit-transform: translate(0, -50%);
-  -ms-transform: translate(0, -50%);
-  transform: translate(0, -50%);
-
-  &:before {
-    content: '\f105';
-    font-family: 'Font Awesome';
-    color: rgba(0, 0, 0, 0.6) !important;
-    line-height: 1;
-    opacity: .75;
-    -webkit-font-smoothing: antialiased;
-  }
-  &.disabled:before { opacity: .25; }
-
-  &:hover { background-color: rgba(0, 0, 0, 0.3); }
-  &.disabled:hover { background-color: transparent !important; }
-}
-.instagramProductFeed .slick-next { display: none; }
-.instagramFeed .slick-next { display: none; }
-
 .collectionSidebar-filters { @include block(); display: none; }
 
 .collectionSidebar-toggle { @include block(); margin-bottom: $space*2; }
@@ -7952,7 +7567,6 @@ body.has-itemsInCart .header-cartWrapper .wishlist-link-li { display: none; }
 .foo { } /* IE10 */
 *::-ms-backdrop, .behindHikers { z-index: 0; } /* IE11 */
 *::-ms-backdrop, .collectionProduct-hoverWrap { display: none !important; }
-*::-ms-backdrop, .instagramFeed-icon { margin-left: 50%; }
 
 }
 
@@ -8061,8 +7675,7 @@ body.has-itemsInCart .header-cartWrapper .wishlist-link-li { display: none; }
   #CartCount { display: inline; }
   /* .site-nav--mobile .site-nav__link { margin-top: -0.4em; } */
 
-  .appointment-wrapper,
-  .picshare-wrapper {
+  .appointment-wrapper {
     padding: $space*4;
   }
   .customr-field-text input,
@@ -8099,15 +7712,6 @@ body.has-itemsInCart .header-cartWrapper .wishlist-link-li { display: none; }
   .recentlyViewed { text-align: center; }
   .recentlyViewed .collectionProduct { float: none; display: inline-block; }
   .recentlyViewed .medium--one-half { width: 49.5%; }
-
-  .instagramLightBox-image { padding-bottom: 150px; }
-  .template-index .instagramLightBox-image { padding-bottom: 115px; }
-  .instagramLightBox-content,
-  .instagramLightBox-info { min-height: 150px; }
-  .template-index .instagramLightBox-content,
-  .template-index .instagramLightBox-info { min-height: 115px; }
-  .instagramLightBox-social { margin-top: 36px; }
-  .instagramMessage-title { font-size: $space*1.8; }
 
   .sizechart .esc-size-guide--heading,
   .sizechart .esc-size-guide--cell { padding: 10px 15px; }
@@ -8327,7 +7931,6 @@ h6, .h6 { font-size: $space*1.4; }
 
 /* .site-nav--mobile { margin-top: 5px; } */
 
-.instagramProductFeed-loadMore,
 .slick-arrow {
   width: 60px;
   height: 60px;
@@ -8942,9 +8545,9 @@ h1.banner-title {
   top: -99px;
   width: 355px;
 }
-.blue-band--footer.blue-band .grid__item:first-child { 
-  display: inline-block; 
-  width: 28%; 
+.blue-band--footer.blue-band .grid__item:first-child {
+  display: inline-block;
+  width: 28%;
   @media only screen and (min-width: $blueband) {
     width: 22%;
   }
@@ -9008,8 +8611,7 @@ h1.banner-title {
  * San Francisco
  */
 .sizechart-wrapper,
-.appointment-wrapper,
-.picshare-wrapper {
+.appointment-wrapper {
   height: auto;
 
   .close-appt-btn {
@@ -9047,27 +8649,6 @@ h1.banner-title {
   .grid__item + .grid__item { margin-top: 0; }
   p { margin-bottom: 15px; }
 }
-
-.instagramMessage-title {
-  font-size: $space*3;
-  line-height: $space*1.2;
-
-  .instagramFeed-icon {
-    font-size: $space*.85;
-    margin-bottom: -1.15em;
-  }
-}
-
-.instagramPost-logo {
-  font-size: $space*2.5;
-  margin: -55px 0 0 -29px;
-  margin-top: 0;
-}
-
-.instagramLightBox-image { padding-bottom: 115px; }
-.instagramLightBox-content,
-.instagramLightBox-info { min-height: 115px; }
-.instagramLightBox-info { padding-bottom: 10px; }
 
 .decathlonAddress .grid__item + .grid__item { margin-top: $space*0; }
 .storeHours p.u-uppercase { margin-bottom: 20px !important; }
@@ -9131,17 +8712,6 @@ h1.banner-title {
 
 .home-innovation-video-bg h2 { display: none; }
 .home-innovations-mobile-btns { display: none; }
-
-
-.sportsSearch .slick-slider { margin: $space*1.5 auto $space; }
-.sportsSearch-search { display: block; }
-.sportsSearch.mobile-headline { display: none; }
-.sportsSearch-slide:hover {
-  margin: 0 1px;
-  img { margin-top: $space*.6; }
-  .sportsSearch-slide-title { margin-bottom: $space*.5; }
-  .sportsSearch-slide-shop { display: block; }
-}
 
 #your-opinion-matters input[type="submit"] { margin-bottom: 0; }
 .blog-article-newsletter-form {
@@ -9857,9 +9427,6 @@ body.is-pinningForm .selector-wrapper.selector-wrapper--size:not(.selector-wrapp
 }
 
 .site-nav__dropdown a:hover { background: none; }
-
-.instagramProductFeed { padding-bottom: 0; }
-.instagramProductFeed-submitPhoto { width: 20%; }
 
 /*! mods for new product detail */
 .template-product {

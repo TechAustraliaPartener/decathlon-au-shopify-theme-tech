@@ -316,19 +316,35 @@
   {{ 'transition.js' | asset_url | script_tag }}
   {% endcomment %}
 
-  {{ 'decathlon.js' | asset_url | script_tag }}
+  {% comment %}
+  We are always loading the legacy version of decathlon.js
+  because it needs to be executed synchronously, blocking html parsing,
+  because inline scripts depend on it
+  {% endcomment %}
+  {{ 'built-decathlon-legacy.js' | asset_url | script_tag }}
   {{ 'patterns-toolkit.js' | asset_url | script_tag }}
-  {% if template == "product" and product.metafields.global.features != blank%}
-    {% comment %}
-      Store Pickup Script(s)
-      @TODO Install as npm packages. With the current rollup configuration,
-      'moment-timezone.js' throws an error, requiring the use of 'rollup-plugin-json'.
-      @see https://github.com/decathlon-usa/shopify-theme-decathlonusa/pull/441#discussion_r290511357
-    {% endcomment %}
-    {% include 'moment.js' %}
-    {% include 'moment-timezone.js' %}
-    <script defer type="module" src="{{ 'built-product-page.js' | asset_url }}"></script>
-    <script defer nomodule src="{{ 'built-product-page-legacy.js' | asset_url }}"></script>
+  {% if template == 'index' %}
+    <script defer type="module" src="{{ 'built-home.js' | asset_url }}"></script>
+    <script defer nomodule src="{{ 'built-home-legacy.js' | asset_url }}"></script>
+  {% endif %}
+  {% if template == "product" %}
+    {% if product.metafields.global.features == blank %}
+      {% comment %} Legacy Product Page {% endcomment %}
+      <script defer type="module" src="{{ 'built-legacy-product-page.js' | asset_url }}"></script>
+      <script defer nomodule src="{{ 'built-legacy-product-page-legacy.js' | asset_url }}"></script>
+    {% else %}
+      {% comment %} Modern Product Page {% endcomment %}
+      {% comment %}
+        Store Pickup Script(s)
+        @TODO Install as npm packages. With the current rollup configuration,
+        'moment-timezone.js' throws an error, requiring the use of 'rollup-plugin-json'.
+        @see https://github.com/decathlon-usa/shopify-theme-decathlonusa/pull/441#discussion_r290511357
+      {% endcomment %}
+      {% include 'moment.js' %}
+      {% include 'moment-timezone.js' %}
+      <script defer type="module" src="{{ 'built-product-page.js' | asset_url }}"></script>
+      <script defer nomodule src="{{ 'built-product-page-legacy.js' | asset_url }}"></script>
+    {% endif %}
   {% endif %}
 
   {% comment %}{% include 'decathlon-wishlist' %}{% endcomment %}

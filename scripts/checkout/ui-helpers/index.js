@@ -6,6 +6,7 @@ const HIDDEN = 'de-u-hidden';
 /**
  * Checks if HTML element exists in the DOM
  * @param {Element} element The HTML element to check
+ * @todo Delete. Adds unnecessary abstraction/cognitive load.
  */
 export const elementExists = element => {
   return Boolean(element);

@@ -42,23 +42,8 @@
     <div
       class="de-u-flex de-u-flexAlignItemsEnd
              de-u-lg-hidden">
-      <span class="visually-hidden">
-        {{ 'products.general.regular_price' | t }}
-      </span>
-      <span
-        class="js-de-ProductPrice de-u-textGrow6 de-u-lineHeight1"
-        content="{{ current_variant.price | divided_by: 100.00 }}"
-        itemprop="price">
-        {{ current_variant.price | money }}
-      </span>
-      <span class="visually-hidden">
-        {{ 'products.general.sale_price' | t }}
-      </span>
-      <span class="de-u-textGrow2 de-u-padSides de-u-lineHeight2">
-        <del class="js-de-ComparePrice">
-          {{ current_variant.compare_at_price | money }}
-        </del>
-      </span>
+      {% include 'compositions-product-price-current', variant: current_variant %}
+      {% include 'compositions-product-price-crossed-out', variant: current_variant %}
     </div>
     <span
       class="de-u-textRed de-u-lineHeight2 de-u-textGrow2

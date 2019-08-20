@@ -45,11 +45,6 @@ export const IS_TRANSITIONING_CLASS = `${CSS_PREFIX}is-transitioning`;
 export const IS_OUT_OF_STOCK_CLASS = `${CSS_PREFIX}is-outofstock`;
 export const IS_SOLD_OUT_CLASS = `${CSS_PREFIX}is-soldout`;
 export const VALIDATION_MESSAGE_CLASS = `${JS_PREFIX}validation-message`;
-/**
- * @todo Move module-only constants to specific module
- */
-export const PRICE_CLASS = `${JS_PREFIX}ProductPrice`;
-export const COMPARE_PRICE_CLASS = `${JS_PREFIX}ComparePrice`;
 
 /**
  * TEXT CONSTANTS

@@ -8,6 +8,7 @@ const replace = require('gulp-replace');
 const sequence = require('gulp-sequence');
 const spawn = require('cross-spawn');
 const sass = require('gulp-dart-sass');
+const changed = require('gulp-changed');
 
 const scriptsTask = require('./scripts/build')(gulp);
 
@@ -16,6 +17,7 @@ const ASSETS_PATH = 'assets/';
 const SNIPPETS_PATH = 'snippets/';
 const STYLES_PATH = 'styles/';
 const BUILT_PREFIX = 'built-';
+const SNIPPETS_SRC = 'snippets-src/';
 
 const patternCwd = path.join(__dirname, PATTERNS_PATH);
 
@@ -171,9 +173,56 @@ gulp.task('styles', function() {
     .pipe(gulp.dest(ASSETS_PATH));
 });
 
+gulp.task('snippets', sequence('snippets:clean', 'snippets:copy'));
+
+gulp.task('snippets:clean', function() {
+  return gulp
+    .src([
+      /**
+       * @todo In theory, `${SNIPPETS_PATH}*.liquid` should be used when all
+       * files within the `snippets/` directory are sourced from `snippets-src/`.
+       * Otherwise, legacy files will be deleted.
+       */
+      // `${SNIPPETS_PATH}*.liquid`
+      /**
+       * @todo Remove. This is temporary until all files within
+       * the `snippets/` directory are sourced from `snippets-src/`.
+       */
+      `${SNIPPETS_PATH}assets-*.liquid`,
+      `${SNIPPETS_PATH}components-*.liquid`,
+      `${SNIPPETS_PATH}compositions-*.liquid`,
+      `${SNIPPETS_PATH}elements-*.liquid`,
+      `${SNIPPETS_PATH}helpers-*.liquid`,
+      `${SNIPPETS_PATH}layout-*.liquid`,
+      `${SNIPPETS_PATH}legacy-*.liquid`,
+      `${SNIPPETS_PATH}vendor-*.liquid`
+    ])
+    .pipe(clean());
+});
+
+gulp.task('snippets:copy', function() {
+  return (
+    gulp
+      .src(`${SNIPPETS_SRC}/**/*.liquid`)
+      .pipe(
+        rename(path => {
+          path.basename = [...path.dirname.split(/[/\\]/g), path.basename].join(
+            '-'
+          );
+          path.dirname = './';
+        })
+      )
+      // We don't want files to be written to `snippets/` if they are not different.
+      // Otherwise themekit will re-upload them
+      .pipe(changed(SNIPPETS_PATH, { hasChanged: changed.compareContents }))
+      .pipe(gulp.dest(SNIPPETS_PATH))
+  );
+});
+
 gulp.task('watch', function() {
   gulp.watch('scripts/**/*.js', [scriptsTask]);
   gulp.watch(`${STYLES_PATH}**/*.scss`, ['styles']);
+  gulp.watch(`${SNIPPETS_SRC}**/*.liquid`, ['snippets:copy']);
 });
 
 /**
@@ -184,4 +233,4 @@ gulp.task('default', ['watch']);
 /**
  * Build task - activates all build tasks
  */
-gulp.task('build', [scriptsTask, 'styles']);
+gulp.task('build', [scriptsTask, 'styles', 'snippets']);

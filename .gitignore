@@ -8,3 +8,5 @@ src/css/*
 /assets/built-*.js
 # Built from /styles/**
 /assets/built-*.css
+# Built from /snippets-src/**
+/snippets/*.liquid

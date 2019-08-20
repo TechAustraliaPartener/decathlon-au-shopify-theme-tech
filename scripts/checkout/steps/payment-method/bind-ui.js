@@ -1,3 +1,5 @@
+// @ts-check
+
 import {
   billingAddressChoices,
   shipToLabel,
@@ -12,6 +14,13 @@ import {
 import STATE from '../../state';
 import { DELIVERY_METHODS } from '../../constants';
 import { hideElements, elementExists } from '../../ui-helpers';
+import selectors from './selectors';
+
+const {
+  BILLING_ADDRESS_CHOICES: { sameAsShipping }
+} = selectors;
+
+let sameBillingShippingAddressInput = null;
 
 /**
  * Clear auto-filled billing address fields
@@ -25,6 +34,21 @@ const clearBillingAddress = () => {
   });
 };
 
+/**
+ * Set the billing address to match shipping. Run only if the user hasn't
+ * selected pickup in store
+ */
+const setBillingSameAsShipping = () => {
+  /** @type {HTMLInputElement} */
+  sameBillingShippingAddressInput =
+    sameBillingShippingAddressInput ||
+    document.querySelector(`${sameAsShipping} [type="radio"]`);
+
+  if (sameBillingShippingAddressInput) {
+    sameBillingShippingAddressInput.click();
+  }
+};
+
 const bindUI = () => {
   // Clear auto-filled billing address fields
   clearBillingAddress();
@@ -34,12 +58,12 @@ const bindUI = () => {
     hideElements([shipToMap]);
     shipToLabel.innerHTML = 'Pickup at';
   } else {
-    const sameBillingShippingAddress = document.getElementById(
-      'checkout_different_billing_address_false'
-    );
-    if (elementExists(sameBillingShippingAddress)) {
-      sameBillingShippingAddress.click();
-    }
+    setBillingSameAsShipping();
+    /**
+     * Listen for a Shopify page change event due to 3rd-party tax calculations
+     * in the payment step
+     */
+    document.addEventListener('page:change', setBillingSameAsShipping);
   }
 };
 
