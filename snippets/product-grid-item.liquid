@@ -42,7 +42,7 @@
   {% assign show_add_to_cart = true %}
 {% endunless %}
 
-<div class="grid__item {{ grid_item_width }} collectionProduct js-bln-product" data-product-id="{{ product.id }}">
+<div class="{% unless template == "collection.hypervisual" %}grid__item {% endunless %}{{ grid_item_width }} collectionProduct js-bln-product" data-product-id="{{ product.id }}">
     <form action="/cart/add" method="post" enctype="multipart/form-data" class="addToCartForm collectionProduct-relative">
     {% if product.tags contains 'Innovation' %}
       <span class="productFlag collectionProduct-flag collectionProduct-flag--innovation">Innovation</span>
