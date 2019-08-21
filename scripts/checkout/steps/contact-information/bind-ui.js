@@ -12,10 +12,9 @@ import {
   userAddress2,
   userCity,
   userZip,
-  userEmail,
-  loadingImage,
-  loadingOverlay
+  userEmail
 } from './ui-elements';
+import { loadingImage, loadingOverlay } from '../../ui-elements';
 import STATE from '../../state';
 import SELECTORS from './selectors';
 import { DELIVERY_METHODS } from '../../constants';
@@ -26,7 +25,11 @@ import {
   setObjectInSessionStorage
 } from '../../../utilities/storage';
 import { getCurrentLocation } from '../../../utilities/location';
-import { showElements, hideElements, elementExists } from '../../ui-helpers';
+import {
+  showElements,
+  hideElements,
+  elementExists
+} from '../../../utilities/element-utils';
 import config from '../../config';
 import sharedConfig from '../../../shared/config';
 
@@ -340,7 +343,12 @@ const bindUI = () => {
   );
   let paymentBtn = document.querySelector(SELECTORS.PICKUP_CONTINUE_BTN);
   const paymentBtnHTML = paymentBtnCont.innerHTML;
-  paymentBtnCont.removeChild(paymentBtn);
+  if (paymentBtnCont)
+    paymentBtnCont.childNodes.forEach(node => {
+      if (node.isSameNode(paymentBtn)) {
+        paymentBtnCont.removeChild(node);
+      }
+    });
   continueBtn.insertAdjacentHTML('afterend', paymentBtnHTML);
   paymentBtn = document.querySelector(SELECTORS.PICKUP_CONTINUE_BTN);
   if (elementExists(paymentBtn)) {

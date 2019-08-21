@@ -50,3 +50,10 @@ export const STOREFRONT_API_IS_TESTED = `${CSS_PREFIX}storefront-api-is-tested`;
  */
 export const STOREFRONT_API_TEST_TIMEOUT_MINUTES =
   parseInt(process.env.STOREFRONT_API_TEST_TIMEOUT_MINUTES, 10) || 15;
+
+/**
+ * Flag to indicate that a checkout was created by the online store, and not
+ * the Shopify Storefront API
+ */
+
+export const IS_ONLINE_STORE_CHECKOUT = `is-online-store-checkout`;

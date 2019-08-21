@@ -5,8 +5,6 @@ const SHOPIFY_UI_SELECTORS = {
   },
   SHIP_TO_LABEL: '.review-block:nth-child(2) .review-block__label',
   SHIP_TO_MAP: '.map',
-  LOADING_OVERLAY: '.de-loading-overlay',
-  LOADING_IMAGE: '.de-checkout-loader',
   USER_ADDRESS_1: '#checkout_billing_address_address1',
   USER_ADDRESS_2: '#checkout_billing_address_address2',
   USER_CITY: '#checkout_billing_address_city',

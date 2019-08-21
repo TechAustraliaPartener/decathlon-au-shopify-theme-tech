@@ -11,6 +11,7 @@
   - [NPM Scripts](#npm-scripts)
   - [Gulp Tasks](#gulp-tasks)
 - [Watch](#watch)
+  - [Testing and development CLI flags](#testing-and-development-cli-flags)
 - [Working with Shopify snippets](#working-with-shopify-snippets)
 - [Working With Shopify Assets](#working-with-shopify-assets)
 - [Stylesheets](#stylesheets)
@@ -110,6 +111,13 @@ Typing `npm run dev` will watch a variety of directories for changes and then pe
 - If svgs are dropped into `src/svg/icons` sass and svg sprite will run.
 - If changes are made to any files in the `src/scss/**` folder then the `gulp sass` task will run which generates the css file, combines the media queries, and then converts it into a `style.css.liquid` file.
 - If changes are made to any file inside the `src/js/**` folder, `gulp uglify` will run which lints all JS files in that directory, concats and files that need it, and then minify all files.
+
+### Testing and development CLI flags
+
+| Environment Variable      | Description                                                                                   |
+| ------------------------- | --------------------------------------------------------------------------------------------- |
+| `DEBUG`                   | (Set `=true`) Output extra debug information using `console.debug` statements                 |
+| `DISABLE_CUSTOM_CHECKOUT` | (Set `=true`) Disables Shopify Storefront API custom checkout creation                        |
 
 ## Working with Shopify snippets
 
@@ -435,5 +443,5 @@ Notice the commands include `nvm install` and `nvm use`. This works in combinati
 The table of contents for this README was generated using [DocToc](https://github.com/thlorenz/doctoc). If new README sections are added and the table of contents needs to be updated, do not update manually, instead run the following command:
 
 ```
-npx doctoc --maxlevel 2 README.md
+npx doctoc --maxlevel 4 README.md
 ```

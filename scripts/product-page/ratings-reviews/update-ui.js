@@ -35,7 +35,7 @@ import {
   originalReviewsSortFilterState
 } from './state';
 import { fetchReviews } from './api';
-import { show, hide } from '../../utilities/hide-or-show-element';
+import { showElement, hideElement } from '../../utilities/element-utils';
 import { IS_ACTIVE_CLASS } from '../constants';
 import { DEBUG } from '../../shared/config';
 
@@ -325,10 +325,10 @@ const showLoadingState = isMoreReviewRequest => {
   DEBUG && console.log(`👀 showLoadingState called.`);
   wasLoading = true;
   moreReviewsEl && moreReviewsEl.setAttribute('disabled', '');
-  show(loadingButtonTextEl);
-  hide(defaultButtonTextEl);
+  showElement(loadingButtonTextEl);
+  hideElement(defaultButtonTextEl);
   if (!isMoreReviewRequest) {
-    show(loadingReviewsEl);
+    showElement(loadingReviewsEl);
     addUnloadingStyleToReviews();
   }
 };
@@ -340,9 +340,9 @@ const removeLoadingState = () => {
   DEBUG && console.log(`🚀 removeLoadingState called.`);
   wasLoading = false;
   moreReviewsEl && moreReviewsEl.removeAttribute('disabled');
-  hide(loadingButtonTextEl);
-  show(defaultButtonTextEl);
-  hide(loadingReviewsEl);
+  hideElement(loadingButtonTextEl);
+  showElement(defaultButtonTextEl);
+  hideElement(loadingReviewsEl);
   removeUnloadingStyleFromReviews();
 };
 
@@ -388,9 +388,9 @@ const renderSortFilterUI = ({ notes, sort, direction }) => {
   });
   if (notes) {
     reviewFilterStarValueEl.textContent = ` ${notes} star`;
-    show(reviewFilterStatusEl);
+    showElement(reviewFilterStatusEl);
   } else {
-    hide(reviewFilterStatusEl);
+    hideElement(reviewFilterStatusEl);
   }
 };
 
