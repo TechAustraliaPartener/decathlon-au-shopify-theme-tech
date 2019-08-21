@@ -132,9 +132,19 @@ Files in the Shopify theme's `assets` folder need to follow some special rules.
 
 ## Stylesheets
 
-In `gulp-config.json` is an array of stylesheets. Each item in the array should correlate with a `.scss` file in `src/scss/`. So for example if there's a node in the stylesheets array called "index", you'll need a file at `src/scss/index.scss` in order for that to generate a css file.
+⚠️ This section is out-of-date, needs to be updated! ⚠️
 
-If you need sub scss modules to be included in your stylesheet, simply create a folder that matches the name in the array and the watch task will watch those directories for changes. For instance if you had a `_hero.scss` snippet that you wanted to only call in the `index.scss` file, you could place the file in `src/scss/index/` and include the path in your `index.scss` sheet. After that if `npm run dev` is active any changes to `index.scss` and any of the files in the index folder will trigger a compilation.
+```
+styles/
+├── base
+├── components
+├── product-page
+│   ├── components
+│   ├── elements
+│   └── legacy
+├── utilities
+└── vendor
+```
 
 ## JavaScript
 
