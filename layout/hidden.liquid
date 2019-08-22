@@ -77,14 +77,14 @@
     {% include 'ajax-cart--drawer' %}
   {% endif %}
 
-  {% include '_header' %}
+  {% include 'compositions-header' %}
   <div id="PageContainer" class="is-moved-by-drawer">
 
     <main class="main-content" role="main">
       {{ content_for_layout }}
     </main>
 
-    {% include '_footer' %}
+    {% include 'compositions-footer' %}
   </div>
 
   {{ 'timber.js' | asset_url | script_tag }}

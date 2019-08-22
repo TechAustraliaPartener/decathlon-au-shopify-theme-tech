@@ -1,5 +1,5 @@
 {% include 'blue-band',
-  footer_blue_banner: true 
+  footer_blue_banner: true
 %}
 
 <!-- begin site-footer -->
@@ -8,7 +8,7 @@
 
     <div class="mobile-footer">
       {% if settings.footer_newsletter_enable %}
-          {% include 'footer-newsletter', adtl_newsletter_classes: ' large--one-third' %}
+          {% include 'compositions-footer-newsletter', adtl_newsletter_classes: ' large--one-third' %}
       {% endif %}
       <div class="footer-mobile-logo">
          <a href="/" itemprop="url">
@@ -16,7 +16,7 @@
           </a>
       </div>
       {% if settings.footer_social_enable %}
-        {% include 'footer-social', adtl_social_classes: ' large--one-third mobile-footer-social' %}
+        {% include 'compositions-footer-social', adtl_social_classes: ' large--one-third mobile-footer-social' %}
       {% endif %}
       <ul class="grid--full footerNav mobile-footer-nav u-paddingTopBottom4x">
         {% for link in linklists.footer.links %}
@@ -43,15 +43,15 @@
       </div>
 
       {% if settings.footer_newsletter_enable %}
-        {% include 'footer-newsletter', adtl_newsletter_classes: ' large--four-tenths' %}
+        {% include 'compositions-footer-newsletter', adtl_newsletter_classes: ' large--four-tenths' %}
       {% endif %}
 
-    </div> 
+    </div>
     <div class="grid desktop-footer">
       {% if settings.footer_social_enable %}
-        {% include 'footer-social', adtl_social_classes: ' large--one-half' %}
+        {% include 'compositions-footer-social', adtl_social_classes: ' large--one-half' %}
       {% endif %}
-      
+
       <div class="grid__item large--one-half u-textRight">
           <div class="footerCountriesLink u-marginTop2x">
             <a href="https://www.decathlon-united.com/en/about/" target="_blank">Explore Decathlon in other countries: <img class="u-marginLeft1x" src="{{ "footer-flag.png" | asset_url }}" alt="USA Flag"></a>
@@ -59,7 +59,7 @@
       </div>
     </div>
   </div>
-  
+
    <script type="text/javascript">
   (function() {
     var s = document.createElement('script');
@@ -71,7 +71,7 @@
   }
   )();
 </script>
-  
+
 </footer>
 
 <script>

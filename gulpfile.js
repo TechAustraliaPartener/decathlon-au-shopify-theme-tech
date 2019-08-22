@@ -206,9 +206,13 @@ gulp.task('snippets:copy', function() {
       .src(`${SNIPPETS_SRC}/**/*.liquid`)
       .pipe(
         rename(path => {
-          path.basename = [...path.dirname.split(/[/\\]/g), path.basename].join(
-            '-'
-          );
+          const nameParts = [
+            ...path.dirname.split(/[/\\]/g),
+            // If the filename is foo/bar/index.liquid,
+            // we want it to be called foo-bar rather than foo-bar-index
+            ...(path.basename === 'index' ? [] : [path.basename])
+          ];
+          path.basename = nameParts.join('-');
           path.dirname = './';
         })
       )

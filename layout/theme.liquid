@@ -210,7 +210,7 @@
 
   {% include 'google-tag-manager' %}
   <div class="de-PageWrap de-Drawer-wrap js-de-PageWrap js-de-Drawer-wrap">
-    {% include '_header' %}
+    {% include 'compositions-header' %}
 
     {% if settings.ajax_cart_method == "drawer" %}
       {% include 'ajax-cart--drawer' %}
@@ -226,7 +226,7 @@
         <main class="main-content" role="main">
           {{ content_for_layout }}
         </main>
-        {% include '_footer' %}
+        {% include 'compositions-footer' %}
       </div>
     </div>
   </div>
