@@ -562,7 +562,7 @@
     $(window).on('load', function(e) {
 		// console.log('hello!');
       var $optsHeight = $('.productOptions').height(),
-          $headerHeight = $('.site-header').height(),
+          $headerHeight = null,
           $images = $('.js-slick--products');
 
       var imgArea = $(window).height() - $optsHeight - $headerHeight,
@@ -600,9 +600,6 @@
           });
 
           $('body').addClass('has-itemsInCart');
-          $('.site-header__cart-toggle .ico')
-            .removeClass('ico--cart--empty')
-            .addClass('ico--cart');
 
           setTimeout(function() {
             $('#AddedItemPopup').remove();
