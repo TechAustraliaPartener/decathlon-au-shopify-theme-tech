@@ -1,7 +1,7 @@
 {% assign no_vendor_testing = 'testing-decathlon-usa' %}
 {% assign no_vendor_production = 'decathlon-usa' %}
 {% assign brand_logo_prefix = 'assets-logos-brands-' %}
-{% assign brand_logo_name = subbrand.products[0].vendor | downcase | | handleize | remove: "-" %}
+{% assign brand_logo_name = product.vendor | downcase | handleize | remove: "-" %}
 {% assign brand_logo_filename = brand_logo_prefix | append: brand_logo_name %}
 {% comment %}
   Notes for use of brand_logo_filename:
@@ -16,15 +16,15 @@
   Wed'ze
   WedZe
 {% endcomment %}
-{% comment %}{{ subbrand.products[0].vendor }}{% endcomment %}
+{% comment %} {{product.vendor}} {% endcomment %}
 {% capture logo %}
-{% if subbrand.products[0].vendor != no_vendor_testing and
-      subbrand.products[0].vendor != no_vendor_production %}
+{% if product.vendor != no_vendor_testing and
+      product.vendor != no_vendor_production %}
 {% include brand_logo_filename %}
 {% endif %}
 {% endcapture %}
-{% if subbrand.products[0].vendor == no_vendor_testing
-      or subbrand.products[0].vendor == no_vendor_production
+{% if product.vendor == no_vendor_testing
+      or product.vendor == no_vendor_production
       or logo contains 'Liquid error' %}
   {% include 'assets-logos-brands-decathlon' %}
 {% else %}
