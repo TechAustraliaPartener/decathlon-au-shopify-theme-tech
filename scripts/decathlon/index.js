@@ -618,48 +618,6 @@ window.getLocaleSync = getLocaleSync;
         lastHeight = height;
       }
     }, 50);
-    $('.header-search-mobile-btn').click(function() {
-      if (!$('.mobile-searchWrapper').hasClass('open')) {
-        $(this).addClass('search-open');
-        $('.mobile-searchWrapper').addClass('open');
-      }
-    });
-    $('.mobile-search__close').click(function() {
-      $(this).removeClass('search-open');
-      $('.header-search-mobile-btn').removeClass('search-open');
-      $('.mobile-searchWrapper').removeClass('open');
-    });
-    $('.mobile-nav__item a').each(function() {
-      if ($(this).attr('href') == '/account')
-        $(this)
-          .parent()
-          .addClass('account-item');
-    });
-    $('.mobile-nav__has-sublist .mobile-nav__link').on('click', e => {
-      const parent = $(e.currentTarget).parent();
-      if (!parent.hasClass('mobile-nav--expanded')) {
-        e.preventDefault();
-        parent.toggleClass('mobile-nav--expanded');
-      }
-    });
-    $('.mobile-nav__has-sublist > .mobile-nav__link:first-child').each(
-      function() {
-        if ($(this).text() === 'Get going packs') {
-          $(this)
-            .parent()
-            .find('.mobile-nav__toggle')
-            .remove();
-          $(this)
-            .parent()
-            .parent()
-            .find('.mobile-nav__sublist')
-            .remove();
-        }
-        $(this).on('click', e => {
-          global.location = $(e.currentTarget).attr('href');
-        });
-      }
-    );
 
     if (!decathlon.getData('seenPromo')) {
       $('.promo-band').removeClass('is-hidden');

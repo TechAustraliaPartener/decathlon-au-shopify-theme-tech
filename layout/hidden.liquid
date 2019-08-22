@@ -72,7 +72,6 @@
 <body id="404" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
 
   {% include 'google-tag-manager' %}
-  {% include '_header--mobile-nav' %}
 
   {% if settings.ajax_cart_method == "drawer" %}
     {% include 'ajax-cart--drawer' %}
