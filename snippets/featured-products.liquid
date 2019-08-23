@@ -29,7 +29,7 @@
 <div class="grid-uniform">
 
   {% for product in collections[featured].products limit: total_products %}
-    {% include 'product-grid-item' %}
+    {% include 'compositions-product-grid-item' %}
   {% else %}
     {% unless emptyState %}
       {{ 'theme-onboarding.css' | global_asset_url | stylesheet_tag }}

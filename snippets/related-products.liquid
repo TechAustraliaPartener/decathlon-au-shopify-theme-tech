@@ -25,7 +25,7 @@
       {% else %}
         {% unless current_product_found == false and forloop.last %}
           {% assign grid_item_width = 'large--one-quarter medium--one-quarter small--one-half' %}
-          {% include 'product-grid-item' %}
+          {% include 'compositions-product-grid-item' %}
         {% endunless %}
       {% endif %}
     {% endfor %}
