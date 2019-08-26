@@ -11,7 +11,7 @@
  */
 import { VALIDATION_MESSAGE_CLASS, JS_PREFIX } from '../constants';
 import { isVariantOutOfStock } from '../product-data';
-import { createState } from '../create-state';
+import { createState } from '../../utilities/create-state';
 import {
   getUIState,
   getShopifyErrorUIState,

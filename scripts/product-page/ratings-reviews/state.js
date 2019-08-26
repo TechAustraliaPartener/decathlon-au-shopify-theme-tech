@@ -23,7 +23,7 @@
 
 import { reviewsPerPage } from './template-data';
 import { prerenderedReviewList } from './query-ui';
-import { createState } from '../create-state';
+import { createState } from '../../utilities/create-state';
 
 export const originalReviewsSortFilterState = {
   // The default sort, to be used on page load

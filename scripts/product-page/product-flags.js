@@ -1,6 +1,6 @@
 // @ts-check
 import { JS_PREFIX, CSS_UTILITY_PREFIX, IS_HIDDEN_CLASS } from './constants';
-import { createState } from './create-state';
+import { createState } from '../utilities/create-state';
 
 /**
  * @param {string} c

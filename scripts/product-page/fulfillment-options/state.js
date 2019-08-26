@@ -7,7 +7,7 @@
  */
 
 import Mitt from 'mitt';
-import { createState } from '../create-state';
+import { createState } from '../../utilities/create-state';
 import equal from 'fast-deep-equal';
 import { UPDATE, STORES_UPDATE, USER_LOCATION_DATA_UPDATE } from './constants';
 

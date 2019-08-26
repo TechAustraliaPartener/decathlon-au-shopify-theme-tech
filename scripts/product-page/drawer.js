@@ -19,7 +19,7 @@ import {
   trapFocus,
   init as initFocusTrap
 } from './focus-trap';
-import { createState } from './create-state';
+import { createState } from '../utilities/create-state';
 
 /**
  * Module constants
@@ -73,7 +73,7 @@ const DEFAULT_MODULE_STATE = {
 /**
  * Reference to the `createState` helper. The `createState`
  * helper assists to create, update and get module state.
- * @see scripts/product-page/create-state.js
+ * @see scripts/utilities/create-state.js
  */
 let stateHelper;
 
