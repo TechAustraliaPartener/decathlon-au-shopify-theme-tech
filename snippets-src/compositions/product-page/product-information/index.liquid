@@ -34,10 +34,10 @@
             Capture the composition item because it needs to be displayed first
           {% endcomment%}
           {%- capture composition -%}
-            {%- include 'product-information-entry' with spec -%}
+            {%- include 'compositions-product-page-product-information-entry' with spec -%}
           {%- endcapture -%}
         {%- else -%}
-          {%- include 'product-information-entry' with spec -%}
+          {%- include 'compositions-product-page-product-information-entry' with spec -%}
         {%- endif -%}
       {%- endunless -%}
     {%- endfor -%}

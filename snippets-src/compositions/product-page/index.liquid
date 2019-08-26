@@ -87,17 +87,17 @@
 
     <div class="de-u-lg-flex de-u-lg-flexJustifyBetween">
       <div class="de-ProductCarousel de-ProductCarousel--large">
-        {% include 'product-carousel' %}
-        {% include 'product-gallery-controls' with display_toggle: false %}
+        {% include 'compositions-product-page-carousel' %}
+        {% include 'compositions-product-page-gallery-controls' with display_toggle: false %}
       </div>
       <div class="de-ProductBuyBox">
-        {% include 'compositions-product-buybox' %}
+        {% include 'compositions-product-page-buybox' %}
       </div>
     </div>
   </section>
 
   {% comment %} ProductMenu {% endcomment %}
-  {% include 'product-menu' with has_context_photo: has_context_photo %}
+  {% include 'compositions-product-page-menu' with has_context_photo: has_context_photo %}
 
   {% if product_video.size > 0 %}
   <section
@@ -121,9 +121,9 @@
       </h2>
     </header>
     {% capture additional_videos_accordion_content %}
-      {% include 'product-videos' %}
+      {% include 'compositions-product-page-videos' %}
     {% endcapture %}
-    {% include 'product-accordion'
+    {% include 'compositions-product-page-accordion'
       is_open: true
       accordion_heading: "Additional Videos"
       accordion_content: additional_videos_accordion_content
@@ -151,9 +151,9 @@
       </h2>
     </header>
     {% capture features_accordion_content %}
-      {% include 'product-features' %}
+      {% include 'compositions-product-page-features' %}
     {% endcapture %}
-    {% include 'product-accordion'
+    {% include 'compositions-product-page-accordion'
       is_open: true
       accordion_heading: "Features"
       accordion_content: features_accordion_content
@@ -184,7 +184,7 @@
           Image Gallery
         </h2>
         <div class="ProductImageGallery de-u-fullwidth de-u-padEnds2">
-          {% include 'product-image-gallery' %}
+          {% include 'compositions-product-page-image-gallery' %}
         </div>
     </section>
   {% endif %}
@@ -202,7 +202,7 @@
       aria-hidden="true">
     </span>
     {% capture reviews_heading %}
-      {% include 'product-customer-reviews-heading' %}
+      {% include 'compositions-product-page-customer-reviews-heading' %}
     {% endcapture %}
     {% capture reviews_accordion_content %}
       {% comment %}
@@ -210,19 +210,19 @@
         Capture to enable inserting content into the drawer
       {% endcomment %}
       {% capture reviews_drawer_content %}
-        {% include 'product-customer-reviews' %}
+        {% include 'compositions-product-page-customer-reviews' %}
       {% endcapture %}
       {% comment %}
         Create a drawer for the captured content
       {% endcomment %}
-      {% include 'product-drawer',
+      {% include 'compositions-product-page-drawer',
         drawer_id: "reviews-drawer",
         drawer_label: "Customer Reviews",
         content: reviews_drawer_content,
         heading: reviews_heading,
         displays_in_page_flow: true %}
     {% endcapture %}
-    {% include 'product-accordion'
+    {% include 'compositions-product-page-accordion'
       is_open: true
       accordion_heading: "Customer Reviews"
       accordion_content: reviews_accordion_content
@@ -239,16 +239,16 @@
         aria-hidden="true">
       </span>
       {% capture size_and_fit_heading %}
-        {% include 'product-size-guide-heading' %}
+        {% include 'compositions-product-page-size-guide-heading' %}
       {% endcapture %}
       {% capture size_and_fit_accordion_content %}
         {% capture size_and_fit_drawer_content %}
-          {% include 'product-size-guide' %}
+          {% include 'compositions-product-page-size-guide' %}
         {% endcapture %}
         {% comment %}
           Create a drawer for the captured content
         {% endcomment %}
-        {% include 'product-drawer',
+        {% include 'compositions-product-page-drawer',
           drawer_id: "size-guide-drawer",
           drawer_label: "Size Guide",
           content: size_and_fit_drawer_content,
@@ -256,7 +256,7 @@
           displays_in_page_flow: true
         %}
       {% endcapture %}
-      {% include 'product-accordion'
+      {% include 'compositions-product-page-accordion'
         is_open: false
         accordion_heading: "Size Guide"
         accordion_content: size_and_fit_accordion_content
@@ -289,11 +289,11 @@
         {% comment %}
           Product information wired to metafields
         {% endcomment %}
-        {% include 'product-information' %}
+        {% include 'compositions-product-page-product-information' %}
 
       </div>
     {% endcapture %}
-    {% include 'product-accordion'
+    {% include 'compositions-product-page-accordion'
       is_open: false
       accordion_heading: "Product Information"
       accordion_content: product_information_accordion_content
@@ -301,9 +301,9 @@
   </section>
 
   {% capture 'fulfillment_drawer_content' %}
-    {% include 'product-store-pickup' %}
+    {% include 'compositions-product-page-store-pickup' %}
   {% endcapture %}
-  {% include 'product-drawer',
+  {% include 'compositions-product-page-drawer',
     drawer_id: "store-pickup-options-drawer",
     drawer_label: "Store Pickup Options",
     content: fulfillment_drawer_content,
@@ -311,7 +311,7 @@
   %}
 
   {% capture 'returns_policy_drawer_content' %}
-    {% include 'product-heavy-returns-policy' %}
+    {% include 'compositions-product-page-heavy-returns-policy' %}
   {% endcapture %}
   {% capture 'returns_policy_drawer_heading' %}
     <h3 class="de-ProductInfoSection-title
@@ -320,7 +320,7 @@
       Heavy products return policy
     </h3>
   {% endcapture %}
-  {% include 'product-drawer',
+  {% include 'compositions-product-page-drawer',
     drawer_id: "returns-policy-drawer",
     drawer_label: "Heavy product returns policy",
     heading: returns_policy_drawer_heading,
@@ -343,7 +343,7 @@
 {% endcomment %}
 
 {% comment %}
-  {% include 'product-detail--collection-control' %}
+  {% include 'compositions-product-detail-collection-control' %}
 {% endcomment %}
 
 {% comment %}

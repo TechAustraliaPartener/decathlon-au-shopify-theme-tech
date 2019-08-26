@@ -6,7 +6,7 @@
   </div>
 
   {% comment %} Product Image Carousel {% endcomment %}
-  {% include 'product-carousel' %}
+  {% include 'compositions-product-page-carousel' %}
 
   {% comment %}
     Show video when 'Watch Video' action is clicked
@@ -24,7 +24,7 @@
 </div>
 
 {% if product_video.size > 0 %}
-{% include 'product-gallery-controls' with
+{% include 'compositions-product-page-gallery-controls' with
   class: 'de-u-bgSilver de-u-lg-hidden',
   display_toggle: true %}
 {% endif %}
