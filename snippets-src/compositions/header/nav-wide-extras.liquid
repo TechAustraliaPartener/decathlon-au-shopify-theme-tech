@@ -8,7 +8,10 @@
   </div>
   <ul class="de-MenuList">
     <li>
-      <a class="de-MenuList-item de-MenuList-item--brand de-ShopMenu de-u-padSides2" href="{% if settings.shop_menu_link %}{{ settings.shop_menu_link }}{% else %}/pages/our-story{% endif %}">
+      <a class="de-MenuList-item de-MenuList-item--brand de-ShopMenu de-u-padSides2"
+         style="{% if settings.shop_menu_bg_color %}background-color:{{settings.shop_menu_bg_color}};{% endif %}
+                {% if settings.shop_menu_text_color %} color:{{settings.shop_menu_text_color}};{% endif %}"
+         href="{% if settings.shop_menu_link %}{{ settings.shop_menu_link }}{% else %}/pages/our-story{% endif %}">
         <div class="de-MenuList-content">
           <h5 class="de-MenuList-heading de-ShopMenu-title">{{ settings.shop_menu_title }}</h5>
           <p class="de-MenuList-summary de-ShopMenu-subtitle">{{ settings.shop_menu_subtitle }}</p>
