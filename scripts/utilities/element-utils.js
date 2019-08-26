@@ -4,7 +4,7 @@ import { IS_HIDDEN_CLASS } from '../shared/constants';
 
 /**
  * Hide an element with utility class (display: none)
- * @param {HTMLElement | null | undefined} el
+ * @param {Element | null | undefined} el
  */
 export const hideElement = el => {
   if (el) el.classList.add(IS_HIDDEN_CLASS);
@@ -12,15 +12,15 @@ export const hideElement = el => {
 
 /**
  * Remove hiding utility class from an element
- * @param {HTMLElement | null | undefined} el
+ * @param {Element | null | undefined} el
  */
 export const showElement = el => {
   if (el) el.classList.remove(IS_HIDDEN_CLASS);
 };
 
 /**
- * Checks if HTML element exists in the DOM
- * @param {HTMLElement} element The HTML element to check
+ * Checks if an element exists in the DOM
+ * @param {Element} element The HTML element to check
  * @returns {Boolean}
  * @todo Delete. Adds unnecessary abstraction/cognitive load.
  */
@@ -29,23 +29,23 @@ export const elementExists = element => {
 };
 
 /**
- * Hides all HTML elements in array
- * @param {NodeListOf<HTMLElement> | HTMLElement[]} elements An array of HTML elements
+ * Hides all elements in array
+ * @param {NodeListOf<Element> | Element[]} elements An array of HTML elements
  */
 export const hideElements = elements => {
   elements.forEach(hideElement);
 };
 
 /**
- * Shows all HTML elements in array
- * @param {NodeListOf<HTMLElement> | HTMLElement[]} elements An array of HTML elements
+ * Shows all elements in array
+ * @param {NodeListOf<Element> | Element[]} elements An array of HTML elements
  */
 export const showElements = elements => {
   elements.forEach(showElement);
 };
 
 /**
- * Disables HTML input element
+ * Disables input element
  * @param {HTMLInputElement} input An HTML input element
  */
 export const disableInput = input => {
@@ -54,7 +54,7 @@ export const disableInput = input => {
 };
 
 /**
- * Enables HTML input element
+ * Enables input element
  * @param {HTMLInputElement} input An HTML input element
  */
 export const enableInput = input => {
