@@ -6,7 +6,7 @@
  * Provides helpers for interacting with the window.productJSON data
  */
 
-import { END_OF_LIFE_TAG } from './constants';
+import { NON_FOLLOWED_TAG } from './constants';
 
 const productsJSON = window.productJSON;
 const variantsJSON = productsJSON.variants;
@@ -76,7 +76,7 @@ export const getAvailableSelectedVariant = ({ size, id, color }) =>
  * @see https://app.gitbook.com/@decathlonusa/s/shopify/product-feature/product-page#sold-out-logic
  * @returns {boolean}
  */
-export const isEndOfLifeProduct = () => isTagFound(END_OF_LIFE_TAG);
+export const isNonFollowedProduct = () => isTagFound(NON_FOLLOWED_TAG);
 
 /**
  * Helper to determine if a product has varied prices
@@ -218,7 +218,7 @@ export const isVariantAvailable = variant => variant && variant.available;
  * @returns {boolean}
  */
 export const isVariantOutOfStock = variant =>
-  !isVariantAvailable(variant) && !isEndOfLifeProduct();
+  !isVariantAvailable(variant) && !isNonFollowedProduct();
 
 /**
  * Helper to know if a product variant is "sold out"
@@ -227,7 +227,7 @@ export const isVariantOutOfStock = variant =>
  * @returns {boolean}
  */
 export const isVariantSoldOut = variant =>
-  !isVariantAvailable(variant) && isEndOfLifeProduct();
+  !isVariantAvailable(variant) && isNonFollowedProduct();
 
 /**
  * Helper to determine if a given variant has quantity above the minimum threshold

@@ -30,9 +30,9 @@ export const TEMPLATE_SUFFIX = '-template';
 
 /**
  * The product tag that indicates that the product will not be restocked
- * @see https://app.gitbook.com/@decathlonusa/s/shopify/product-feature/product-page#sold-out-logic
+ * @see https://app.gitbook.com/@decathlonusa/s/shopify/implemented-features-documentation/product-page-v1#sold-out-logic
  */
-export const END_OF_LIFE_TAG = 'EndOfLife';
+export const NON_FOLLOWED_TAG = 'NonFollowed';
 
 /**
  * CSS Classes

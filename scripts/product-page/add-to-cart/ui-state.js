@@ -4,7 +4,7 @@ import { PRODUCT_PAGE_COPY } from '../constants';
 import {
   isVariantOutOfStock,
   isVariantSoldOut,
-  isEndOfLifeProduct,
+  isNonFollowedProduct,
   variantHasSufficientQuantity,
   variants
 } from '../product-data';
@@ -61,7 +61,7 @@ export const getShopifyErrorUIState = shopifyErrorMessage => {
    * @see https://app.gitbook.com/@decathlonusa/s/shopify/product-feature/product-page#inventory-cases
    */
   if (isErrorScenario1(shopifyErrorMessage)) {
-    if (isEndOfLifeProduct()) {
+    if (isNonFollowedProduct()) {
       return {
         ...defaultShopifyErrorUIState,
         addToCartButtonText: PRODUCT_PAGE_COPY.SOLD_OUT,
