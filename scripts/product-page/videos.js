@@ -1,7 +1,10 @@
+// @ts-check
+
 import $ from 'jquery';
 import { CSS_PREFIX, JS_PREFIX } from './constants';
 import { $Swatches } from './color-swatches';
 import { hideProductFlags, showProductFlags } from './product-flags';
+import { DEBUG } from '../shared/config';
 let videojs = window.videojs;
 // 960 roughly equates to the media query variable $breakpoint-lg
 const LARGE_BREAKPOINT = 960;
@@ -17,6 +20,93 @@ const errorVideoIds = [];
 
 const $videoCarousel = $('.js-de-slick--videos');
 const $thumbnailCarousel = $('.js-de-slick--videos-thumbnails');
+
+/** -- Helper functions -- */
+
+/**
+ * Handle all players' play event
+ *
+ * @param {Event} event The handler event object
+ */
+const onPlay = event => {
+  // Determine which player the event is coming from
+  const { id } = /** @type {HTMLElement} */ (event.target);
+  // Loop through the array of players
+  for (let i = 0; i < players.length; i++) {
+    // Get the player(s) that did not trigger the play event
+    if (players[i].id() !== id) {
+      // Pause the other player(s)
+      videojs(players[i].id()).pause();
+    }
+  }
+};
+
+/**
+ * Track all players' errors or error events
+ *
+ * @param {string} videoId - The ID of the video in error
+ */
+const trackVideosWithErrors = videoId => {
+  // Build the product URL
+  const productURL = window.location.host + window.location.pathname;
+  // Send an event to Google Analytics, only one per broken video
+  if (!errorVideoIds.includes(videoId)) {
+    window.dataLayer.push({
+      event: 'video-is-broken',
+      videoId,
+      productURL
+    });
+    if (DEBUG)
+      console.debug('🎬 Video error added to dataLayer', window.dataLayer);
+    errorVideoIds.push(videoId);
+  }
+};
+
+/**
+ * Return a trimmed version of the video player's `referenceId`
+ * @param {string} referenceId
+ */
+const trimVideoReferenceId = referenceId =>
+  referenceId.replace(/ref:|_1/g, '').trim();
+
+/**
+ * Get a video id from a video error event
+ *
+ * @param {HTMLElement} videoEl - A video error event
+ * @returns {string} - The video's id
+ */
+const getIDFromVideoElement = videoEl =>
+  trimVideoReferenceId(videoEl.dataset.videoId);
+
+/**
+ * Get the first video player
+ *
+ * @returns {Object|null}
+ */
+const getFirstVideoPlayer = () =>
+  players[0] && 'id' in players[0] ? videojs(players[0].id()) : null;
+
+/**
+ * Control the first video player
+ *
+ * @param {'play' | 'pause'} action
+ */
+const controlFirstVideoPlayer = action => {
+  const player = getFirstVideoPlayer();
+  player && player[action]();
+};
+
+/**
+ * Play the first video player
+ */
+const pauseFirstVideoPlayer = () => controlFirstVideoPlayer('pause');
+
+/**
+ * Pause the first video player
+ */
+const playFirstVideoPlayer = () => controlFirstVideoPlayer('play');
+
+/** -- Page load setup -- */
 
 // Load poster images into DOM for slick slider navigation
 $(window).on('load', function() {
@@ -64,6 +154,8 @@ $(window).on('load', function() {
   });
 });
 
+/** -- Video Initialization -- */
+
 const initializeVideoJS = () => {
   videojs = window.videojs;
 
@@ -72,19 +164,6 @@ const initializeVideoJS = () => {
   const $watchVideoCTA = $('.js-de-watch-video');
   const $copyVideo = $('.js-de-copyVideo');
   const $imageCount = $('.js-de-ProductGallery-count');
-
-  const getFirstVideoPlayer = () =>
-    players[0] && 'id' in players[0] ? videojs(players[0].id()) : null;
-
-  const controlFirstVideoPlayer = action => {
-    if (!/^play|pause$/.test(action)) return;
-    const player = getFirstVideoPlayer();
-    player && player[action]();
-  };
-
-  const pauseFirstVideoPlayer = () => controlFirstVideoPlayer('pause');
-
-  const playFirstVideoPlayer = () => controlFirstVideoPlayer('play');
 
   const switchToImages = () => {
     // Remove Video, switch to Images
@@ -122,46 +201,7 @@ const initializeVideoJS = () => {
   });
 
   // Video Player Keys
-  const videoPlayerKeys = Object.keys(videojs.players);
-
-  /**
-   * Handle all players' play event
-   *
-   * @param {object} e The handler event object
-   */
-  const onPlay = e => {
-    // Determine which player the event is coming from
-    const id = e.target.id;
-    // Loop through the array of players
-    for (let i = 0; i < players.length; i++) {
-      // Get the player(s) that did not trigger the play event
-      if (players[i].id() !== id) {
-        // Pause the other player(s)
-        videojs(players[i].id()).pause();
-      }
-    }
-  };
-
-  /**
-   * Handle all players' error event
-   *
-   * @param {object} e The handler event object
-   */
-  const onError = e => {
-    // Extract the video id
-    const videoId = e.target.dataset.videoId.replace(/ref:|_1/g, '');
-    // Build the product URL
-    const productURL = window.location.host + window.location.pathname;
-    // Send an event to Google Analytics
-    if (errorVideoIds.includes(videoId)) {
-      window.dataLayer.push({
-        event: 'video-is-broken',
-        videoId,
-        productURL
-      });
-      errorVideoIds.push(videoId);
-    }
-  };
+  const videoPlayerKeys = Object.keys(videojs.getPlayers());
 
   // +++  Determine the available player IDs +++//
   for (let x = 0; x < videoPlayerKeys.length; x++) {
@@ -171,12 +211,26 @@ const initializeVideoJS = () => {
     videojs(setPlayer).ready(function() {
       // Assign this player to a variable
       const myPlayer = this;
+      const videoLoadError =
+        myPlayer.error && myPlayer.error() && myPlayer.error().code;
+      const referenceId =
+        myPlayer.mediainfo &&
+        myPlayer.mediainfo.referenceId &&
+        trimVideoReferenceId(myPlayer.mediainfo.referenceId);
       // Assign and event listener for play event
       myPlayer.on('play', onPlay);
       // Push the player to the players array
       players.push(myPlayer);
-      // Assign an event listener for error event
-      myPlayer.on('error', onError);
+      // Handle videos that don't work on page load
+      if (videoLoadError && referenceId) {
+        trackVideosWithErrors(referenceId);
+      }
+      // Assign an event listener for a video player error event
+      myPlayer.on('error', event => {
+        trackVideosWithErrors(
+          getIDFromVideoElement(/** @type {HTMLElement} */ (event.target))
+        );
+      });
     });
   }
 
@@ -197,7 +251,7 @@ const initializeVideoJS = () => {
 
   /**
    * Determine when element is within viewport
-   * Confirm IntersectionObserver is available
+   * Confirm IntersectionObserver is available on the global object
    */
   if (window.IntersectionObserver) {
     /**
