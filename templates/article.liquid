@@ -48,6 +48,7 @@
       {%- if article.image -%}{{ article.image | img_url: '2000x' | img_tag: article.title, 'u-block' }}{%- endif -%}
   
       <div class="u-block u-paddingTopBottom3x" itemprop="articleBody">
+        {% include 'hypervisual' %}
         {{ article.content }}
       </div>
   
