@@ -3,7 +3,7 @@
 {% assign section_content = pages['get-going-pack-extra-sections'].content | split: start_tag %}
 {% if section_content.size == 2 %}
   {% assign section_content = section_content | last | split: end_tag | first | replace: '<p>---line_rule---</p>', '<hr/>' %}
-  
+
   {% assign curator_name = section_content | split: '<p>---curator_name---</p>' %}
   {% if curator_name.size == 2 %}
     {% assign curator_name = curator_name | last | split: '<p>---/curator_name---</p>' | first %}
@@ -63,7 +63,7 @@
     {% if intro_title %}<h4 class="packIntro-title">{{ intro_title | strip_html }}</h4>{% endif %}
     {% if intro_description %}<p class="packIntro-description">{{ intro_description | strip_html }}</p>{% endif %}
     <h6 class="text-center u-marginTop2x">Select your options for each product</h6>
-    
+
     {%- assign collection_total = 0 -%}
     {%- for product in collection.products -%}
       {%- assign collection_total = collection_total | plus: product.price_min -%}
@@ -77,7 +77,7 @@
 <div class="wrapper wrapper--midWidth">
   <div class="grid-uniform js-slick--attr" data-slick='{ "slidesToShow": 1, "infinite": true, "dots": true, "arrows": false, "mobileFirst": true, "responsive": [{ "breakpoint": 480, "settings": "unslick" }] }'>
   {% for product in collection.products %}
-    {% include 'product-grid-item', grid_item_width: 'large--one-quarter medium--one-half' %}
+    {% include 'compositions-product-grid-item', grid_item_width: 'large--one-quarter medium--one-half' %}
   {% endfor %}
   </div>
   {%- assign button_wrapper = 'u-block u-marginTop4x text-center' -%}
@@ -92,7 +92,7 @@
   <p class="u-marginTop2x packIntro-buttonWrap text-center">
     <a class="btn js-addAllToCart" data-item-class=".collectionProduct" href="{{ collection.url }}">{{ button_text }}</a>
   </p>
-  
+
 </div>
 </div>
 

@@ -1,5 +1,5 @@
-import { loadingOverlay, loadingImage } from './ui-elements';
-import { hideElements } from '../ui-helpers';
+import { loadingOverlay, loadingImage } from '../ui-elements';
+import { hideElements } from '../../utilities/element-utils';
 
 const bindUI = () => {
   hideElements([loadingOverlay, loadingImage]);

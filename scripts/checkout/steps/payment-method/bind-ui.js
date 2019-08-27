@@ -4,8 +4,6 @@ import {
   billingAddressChoices,
   shipToLabel,
   shipToMap,
-  loadingOverlay,
-  loadingImage,
   userAddress1,
   userAddress2,
   userCity,
@@ -13,7 +11,8 @@ import {
 } from './ui-elements';
 import STATE from '../../state';
 import { DELIVERY_METHODS } from '../../constants';
-import { hideElements, elementExists } from '../../ui-helpers';
+import { hideElements, elementExists } from '../../../utilities/element-utils';
+import { loadingOverlay, loadingImage } from '../../ui-elements';
 import selectors from './selectors';
 
 const {

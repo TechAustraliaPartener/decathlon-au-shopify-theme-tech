@@ -1,8 +1,9 @@
-import { loadingOverlay, loadingImage } from './ui-elements';
+import { loadingOverlay, loadingImage } from '../../ui-elements';
 import STATE from '../../state';
 import SELECTORS from './selectors';
 import { DELIVERY_METHODS } from '../../constants';
-import { hideElements, elementExists } from '../../ui-helpers';
+import { createShippingOptionsMutationObserver } from '../../utilities';
+import { hideElements, elementExists } from '../../../utilities/element-utils';
 
 const updateShippingMethod = () => {
   if (
@@ -51,38 +52,12 @@ const bindUI = () => {
     if (document.querySelector(SELECTORS.PICKUP_SHIPPING_METHOD)) {
       updateShippingMethod();
     } else {
-      const observer = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
-          updateShippingMethod();
-        });
-      });
-
-      const observerConfig = {
-        childList: true
-      };
-
-      observer.observe(
-        document.querySelector('.section__content'),
-        observerConfig
-      );
+      createShippingOptionsMutationObserver(updateShippingMethod);
     }
   } else if (document.querySelector(SELECTORS.PICKUP_SHIPPING_METHOD)) {
     hideShippingMethods();
   } else {
-    const observer = new MutationObserver(function(mutations) {
-      mutations.forEach(function(mutation) {
-        hideShippingMethods();
-      });
-    });
-
-    const observerConfig = {
-      childList: true
-    };
-
-    observer.observe(
-      document.querySelector('.section__content'),
-      observerConfig
-    );
+    createShippingOptionsMutationObserver(hideShippingMethods);
   }
 };
 

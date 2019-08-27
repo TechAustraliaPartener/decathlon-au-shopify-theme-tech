@@ -1,0 +1,80 @@
+<!-- snippets-src/compositions/header/index.liquid -->
+
+<header class="de-PageWrap-header js-de-PageWrap-header">
+  <div class="de-PageWrap-headerPrimary">
+    <div class="de-PageWrap-narrowMenuControl">
+      <div class="de-MenuBar">
+        <button class="de-MenuBar-action de-MenuBar-action--stack" id="data-MenuBar-narrow" data-de-page-wrap-action="toggleMenu" data-de-page-wrap-target="demo-side">
+          {% include 'patterns-icons-bars'
+            with class: 'de-MenuBar-icon' %}
+          <span class="de-MenuBar-label">Menu</span>
+        </button>
+      </div>
+    </div>
+    <div class="de-PageWrap-logo" itemscope itemtype="http://schema.org/Organization">
+      {% include 'patterns-branding-logo' with
+        titleId:'logo-title',
+        href: '/',
+        class: 'de-PageWrap-logoImage' %}
+    </div>
+    <div class="de-PageWrap-wideMenuControl">
+      <div class="de-MenuBar">
+        <button class="de-MenuBar-action de-u-textGrow1"
+          id="data-MenuBar-Wide"
+          data-de-page-wrap-action="toggleMenu"
+          data-de-page-wrap-target="demo-mega"
+          data-de-page-wrap-hover="true">
+          <span class="de-MenuBar-label">Shop</span>
+        </button>
+        <button class="de-MenuBar-action de-u-textGrow1"
+          data-de-page-wrap-action="toggleMenu"
+          data-de-page-wrap-target="meet-decathlon"
+          data-de-page-wrap-hover="true">
+          <span class="de-MenuBar-label">{{ linklists["meet-decathlon"].title }}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <nav class="de-PageWrap-headerSecondary">
+    <ul class="de-MenuBar">
+      <li class="de-PageWrap-headerTertiaryControl">
+        <button class="de-MenuBar-action"
+          data-de-page-wrap-action="toggleExpand"
+          data-de-page-wrap-target="demo-search">
+          {% include 'patterns-icons-search'
+              with class: 'de-MenuBar-icon' %}
+        </button>
+      </li>
+      <li class='de-u-hidden de-u-sm-block'>
+        {% include 'compositions-header-store-finder' %}
+      </li>
+      <li class="de-u-hidden de-u-sm-block">
+        {% include 'compositions-header-greeting' %}
+      </li>
+      <li>
+        {% include 'compositions-header-cart' %}
+      </li>
+    </ul>
+  </nav>
+  <div class="de-PageWrap-headerTertiary" id="demo-search">
+  <div class="de-SingleInputForm adept-autocomplete-search">
+    <form action="/search">
+      <input class="de-Input de-SingleInputForm-input" type="search" name="q" placeholder="{%- include 'search-placeholder' -%}">
+      <button class="de-SingleInputForm-action">
+        {% include 'patterns-icons-search', class: 'de-u-textGrow3', role: 'presentation' %}
+        <span class="de-u-hiddenVisually">Search</span>
+      </button>
+    </form>
+  </div>
+</div>
+</header>
+<div class="de-PageWrap-narrowMenu" data-de-page-wrap-action="closeMenu">
+	<nav class="de-PageWrap-narrowMenuInner" id="demo-side" data-de-page-wrap-cancel="" aria-hidden="false">
+	  {% include 'compositions-header-nav-narrow' %}
+	</nav>
+</div>
+<div class="de-PageWrap-wideMenu"
+  data-de-page-wrap-action="closeMenu">
+  {% include 'compositions-header-nav-wide' %}
+</div>
+<!-- End snippets-src/compositions/header/index.liquid -->

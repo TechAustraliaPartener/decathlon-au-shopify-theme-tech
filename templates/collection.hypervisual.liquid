@@ -28,16 +28,16 @@
                 </div>
                 <div class="grid--full de-padding10 de-u-padTop de-u-padBottomNone de-u-textSizeBase">
                     <h2 class="de-u-textBold de-u-textCapitalize de-u-textGrow de-u-spaceBottom06">Popular Products</h2>
-                </div>           
+                </div>
                 <div class="grid--full js-slick--attr" data-slick='{ "slidesToShow": 5, "slidesToScroll": 3, "dots": true, "responsive": [{ "breakpoint": 1000, "settings": { "slidesToShow": 3, "slidesToScroll": 3 }}, { "breakpoint": 767, "settings": { "slidesToShow": 2, "slidesToScroll": 2, "dots": false }}, { "breakpoint": 600, "settings": { "slidesToShow": 1, "slidesToScroll": 1, "dots": false }}] }'>
                   {% for product in collection.products %}
                     {%- if product.available -%}
-                      {% include 'product-grid-item', collection: collection %}
+                      {% include 'compositions-product-grid-item', collection: collection %}
                     {%- endif -%}
                   {% endfor %}
                 </div>
                 <div class="de-collectionSubBrandLogo">
-                {% include 'collection-sub-brand-logo' %}
+                {% include 'elements-product-sub-brand-logo', product: subbrand.products[0] %}
                 </div>
 				{% if collection.description != blank %}
                     {%- assign hypervisual = collection.description | split: '<p>---section2---</p>' -%}
@@ -50,7 +50,7 @@
                     </div>
                     {% endif %}
                 {% endif %}
-                
+
 {% if collection.image %}
     <img class="de-collectionHeroImage" alt="{{ collection.title }}" src="{{ collection.image | img_url: '200x', format: 'pjpg' }}" data-src="{{ collection.image | img_url: 'master', format: 'pjpg' }}">
 {% endif %}

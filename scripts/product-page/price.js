@@ -12,7 +12,7 @@ import {
   isProductPricingVaried,
   getVariantOptions
 } from './product-data';
-import { hide, show } from '../utilities/hide-or-show-element';
+import { hideElement, showElement } from '../utilities/element-utils';
 
 const CURRENT_PRICE_CSS_CLASS = `${JS_PREFIX}CurrentPrice`;
 const CROSSED_OUT_PRICE_CSS_CLASS = `${JS_PREFIX}CrossedOutPrice`;
@@ -115,10 +115,10 @@ const render = ({ priceEls, displayPrice = '', compareAtPrice = false }) => {
     if (isCrossedOutPriceEl(priceEl)) {
       if (compareAtPrice) {
         // Allow the crossed-out "original" price element to be visible
-        show(priceEl);
+        showElement(priceEl);
       } else {
         // Hide the crossed-out "original" price element, not needed
-        hide(priceEl);
+        hideElement(priceEl);
       }
     }
 

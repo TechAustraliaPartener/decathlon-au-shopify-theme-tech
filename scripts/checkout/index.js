@@ -1,3 +1,6 @@
+// @ts-check
+
+import { getIsOnlineStoreCheckout } from './utilities';
 import { DELIVERY_METHODS } from './constants';
 import STATE from './state';
 import bindUI from './bind-ui';
@@ -28,7 +31,23 @@ const init = () => {
 };
 
 /**
+ * Check if this is a fallback, online store checkout (not a custom checkout
+ * created using the Storefront API - necessary for both PC and Shipping vs Pickup
+ * customizations). Condition initialization actions accordingly.
+ * Also, evaluate the type of event. Only handle changes in an online store
+ * checkout if it's a page load event
+ */
+const initCheck = () => {
+  const isOnlineStoreCheckout = getIsOnlineStoreCheckout();
+  if (isOnlineStoreCheckout) {
+    updateUI({ isOnlineStoreCheckout });
+  } else {
+    init();
+  }
+};
+
+/**
  * Listen to Shopify Checkout `page:load` to initialize
  * @see https://help.shopify.com/en/themes/development/layouts/checkout#page-events
  */
-document.addEventListener('page:load', init);
+document.addEventListener('page:load', initCheck);

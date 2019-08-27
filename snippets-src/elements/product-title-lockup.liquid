@@ -1,0 +1,29 @@
+{% comment %} Title Lockup {% endcomment %}
+<div class="de-ProductTitleLockup de-u-lg-padBottom06">
+
+  {% comment %} Product Flag(s) {% endcomment %}
+  <div class="de-u-hidden de-u-lg-block">
+    {% include 'elements-product-flag' with class: 'de-u-bgSilver de-u-textBlue' %}
+  </div>
+
+  <div
+    class="de-u-flex de-u-flexJustifyBetween
+           de-u-padTop06 de-u-md-padTopNone">
+    <div class="de-u-size1of2 de-u-lineHeight2">
+     {% include 'elements-product-sub-brand-logo', product: product %}
+    </div>
+    {% include 'elements-product-rating-reviews-link' %}
+  </div>
+  <h1
+    class="de-u-textGrow1 de-u-md-textGrow2 de-u-textMedium de-u-spaceBottom06"
+    itemprop="name">
+    {{ product.title }}
+  </h1>
+  <div class="de-ProductTitleLockup-price">
+    <div class="de-ProductPrice
+      de-u-textMedium de-u-flex de-u-flexAlignItemsEnd">
+      {% include 'compositions-product-price-current', variant: current_variant %}
+      {% include 'compositions-product-price-crossed-out', variant: current_variant %}
+    </div>
+  </div>
+</div>

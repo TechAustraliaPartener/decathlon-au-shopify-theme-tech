@@ -112,7 +112,11 @@ const addToCartProgrammatically = quantity => {
    * We are clicking the UI button instead of performing an AJAX request or
    * submitting the form directly because we want to make sure the
    * Persistent Cart logic comes into play.
+   * We have to ensure the button is not disabled before clicking it
+   * The button is disabled before making this change
+   * because the component doesn't re-render until the next tick
    */
+  addToCartButtonEl.disabled = false;
   addToCartButtonEl.click();
 };
 

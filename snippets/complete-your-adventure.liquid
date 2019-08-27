@@ -13,7 +13,7 @@
     <div class="grid-uniform js-slick--attr" data-slick='{ "slidesToShow": 1, "infinite": true, "dots": true, "arrows": false, "mobileFirst": true, "responsive": [{ "breakpoint": 480, "settings": "unslick" }] }'>
     {% for collection_product in collection.products %}
       {% unless product.handle == collection_product.handle %}
-      {% include 'product-grid-item', product: collection_product, show_add_to_cart: false %}
+      {% include 'compositions-product-grid-item', product: collection_product, show_add_to_cart: false %}
       {% endunless %}
     {% endfor %}
     </div>

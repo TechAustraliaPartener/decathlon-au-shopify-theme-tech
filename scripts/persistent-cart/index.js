@@ -723,7 +723,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (storefrontAPIWorks) {
       if (DEBUG) console.debug('Shopify 🏬 Storefront API test succeeded');
       // Initialize custom checkout for all customers: Favro DEC-3130
-      customCheckoutInit();
+      if (process.env.DISABLE_CUSTOM_CHECKOUT !== 'true') {
+        customCheckoutInit();
+      }
       pcCheckInit(customerID);
     } else {
       console.error('Shopify 🏬 Storefront API test failed');

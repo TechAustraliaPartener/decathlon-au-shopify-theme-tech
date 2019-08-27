@@ -165,7 +165,21 @@
    window.dataLayer = window.dataLayer || [];
    dataLayer.push({
       'random': Math.random().toString(36).substr(2,9),
-      'timestamp': new Date().getTime()
+      'timestamp': new Date().getTime(),
+      'page_title': '{{ page_title }}',
+      'page_template': '{{template}}',
+      'product_id': '{{ product.id }}',
+      'product_price': '{{ product.price }}',
+      'product_type': '{{ product.type }}',
+      'product_collections': '{{ product.collections }}',
+      'product_available': '{{ product.available }}',
+      'email_user': '{{customer.email}}',
+      'customer_id': '{{customer.id}}',
+      'cart_amount': '{{cart.total_price}}',
+      'cart_products': '{{cart.items}}',
+      'order_id': '{{checkout.order_id}}',
+      'order_amount': '{{order.total_price}}',
+      'order_products': '{{order.line_items}}'
    });
   </script>
 
@@ -209,9 +223,8 @@
   {% section 'add-on-products' %}
 
   {% include 'google-tag-manager' %}
-  {% comment %} {% include '_header--mobile-nav' %} {% endcomment %}
   <div class="de-PageWrap de-Drawer-wrap js-de-PageWrap js-de-Drawer-wrap">
-    {% include '_header' %}
+    {% include 'compositions-header' %}
 
     {% if settings.ajax_cart_method == "drawer" %}
       {% include 'ajax-cart--drawer' %}
@@ -227,7 +240,7 @@
         <main class="main-content" role="main">
           {{ content_for_layout }}
         </main>
-        {% include '_footer' %}
+        {% include 'compositions-footer' %}
       </div>
     </div>
   </div>

@@ -1,0 +1,82 @@
+<div class="de-PageWrap-wideMenu"
+    data-de-page-wrap-action="closeMenu">
+    <nav class="de-PageWrap-wideMenuInner"
+      id="demo-mega"
+      data-de-page-wrap-cancel>
+      <div class="de-Grid de-Grid--equalHeight">
+        <div class="de-u-size4of5 de-u-xl-size5of6" id="mega-tabs">
+          <div class="de-u-sizeFull">
+            <div class="de-u-padSides2">
+              <div class="de-MenuBar">
+                <h2 class="de-MenuBar-heading">
+                  Shop All Sports…
+                </h2>
+                <ul class="de-MenuBar-list">
+                  <li>
+                    <button class="de-MenuBar-action"
+                      data-de-collapsible-target="mega-tab-activity"
+                      data-de-collapsible-action="show">
+                      By Activity
+                    </button>
+                  </li>
+                  <li>
+                    <button class="de-MenuBar-action"
+                      data-de-collapsible-target="mega-tab-alpha"
+                      data-de-collapsible-action="show">
+                      From A – Z
+                    </button>
+                  </li>
+                  <li>
+                    <button class="de-MenuBar-action"
+                      data-de-collapsible-target="mega-tab-women"
+                      data-de-collapsible-action="show">
+                      For Women
+                    </button>
+                  </li>
+                  <li>
+                    <button class="de-MenuBar-action"
+                      data-de-collapsible-target="mega-tab-men"
+                      data-de-collapsible-action="show">
+                      For Men
+                    </button>
+                  </li>
+                  <li>
+                    <button class="de-MenuBar-action"
+                      data-de-collapsible-target="mega-tab-kids"
+                      data-de-collapsible-action="show">
+                      For Kids
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="de-u-pad2 de-u-borderTopSm de-u-borderGray50 de-u-borderOverlapTopSm">
+              <div class="de-Collapsible js-de-Collapsible" data-parent="mega-tabs" id="mega-tab-activity">
+                {% include 'compositions-header-nav-wide-list',
+                  list: linklists["activities"] %}
+              </div>
+              <div class="de-Collapsible js-de-Collapsible" data-parent="mega-tabs" id="mega-tab-alpha">
+                {% include 'compositions-header-nav-wide-az' %}
+              </div>
+              <div class="de-Collapsible js-de-Collapsible" data-parent="mega-tabs" id="mega-tab-women">
+                {% include 'compositions-header-nav-wide-list',
+                  list: linklists["womens"] %}
+              </div>
+              <div class="de-Collapsible js-de-Collapsible" data-parent="mega-tabs" id="mega-tab-men">
+                {% include 'compositions-header-nav-wide-list',
+                  list: linklists["mens"] %}
+              </div>
+              <div class="de-Collapsible js-de-Collapsible" data-parent="mega-tabs" id="mega-tab-kids">
+                {% include 'compositions-header-nav-wide-list',
+                  list: linklists["kids"] %}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="de-u-size1of5 de-u-xl-size1of6 de-u-bgWhite">
+          {% include 'compositions-header-nav-wide-extras' %}
+        </div>
+      </div>
+    </nav>
+    {% include 'compositions-header-nav-wide-meet-decathlon' %}
+  </div>

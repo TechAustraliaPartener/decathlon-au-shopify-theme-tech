@@ -1,7 +1,8 @@
-import { shipToMap, loadingOverlay, loadingImage } from './ui-elements';
+import { shipToMap } from './ui-elements';
 import STATE from '../../state';
 import { DELIVERY_METHODS } from '../../constants';
-import { hideElements } from '../../ui-helpers';
+import { loadingOverlay, loadingImage } from '../../ui-elements';
+import { hideElements } from '../../../utilities/element-utils';
 
 const bindUI = () => {
   hideElements([loadingOverlay, loadingImage]);

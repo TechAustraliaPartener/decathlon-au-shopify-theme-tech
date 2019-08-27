@@ -72,20 +72,19 @@
 <body id="404" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
 
   {% include 'google-tag-manager' %}
-  {% include '_header--mobile-nav' %}
 
   {% if settings.ajax_cart_method == "drawer" %}
     {% include 'ajax-cart--drawer' %}
   {% endif %}
 
-  {% include '_header' %}
+  {% include 'compositions-header' %}
   <div id="PageContainer" class="is-moved-by-drawer">
 
     <main class="main-content" role="main">
       {{ content_for_layout }}
     </main>
 
-    {% include '_footer' %}
+    {% include 'compositions-footer' %}
   </div>
 
   {{ 'timber.js' | asset_url | script_tag }}

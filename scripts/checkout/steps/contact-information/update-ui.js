@@ -1,7 +1,7 @@
 import { DELIVERY_METHODS } from '../../constants';
 import STATE from '../../state';
 import SELECTORS from './selectors';
-import { showElements, hideElements } from '../../ui-helpers';
+import { showElements, hideElements } from '../../../utilities/element-utils';
 import {
   shipToggleBtn,
   pickupToggleBtn,

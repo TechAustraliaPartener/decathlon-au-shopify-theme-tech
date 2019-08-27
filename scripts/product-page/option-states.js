@@ -14,7 +14,7 @@ import {
   JS_PREFIX
 } from './constants';
 import {
-  isEndOfLifeProduct,
+  isNonFollowedProduct,
   getAvailableColorsFromSize,
   getAvailableSizesFromColor,
   getExistingColorsFromSize,
@@ -34,7 +34,7 @@ const sizeSwatchesSelector = `.${JS_PREFIX}SizeSwatches-option`;
  * @returns {string} A CSS class
  */
 const getUnavailableCssClass = () => {
-  if (isEndOfLifeProduct()) {
+  if (isNonFollowedProduct()) {
     return IS_SOLD_OUT_CLASS;
   }
   return IS_OUT_OF_STOCK_CLASS;

@@ -11,6 +11,7 @@
   - [NPM Scripts](#npm-scripts)
   - [Gulp Tasks](#gulp-tasks)
 - [Watch](#watch)
+  - [Testing and development CLI flags](#testing-and-development-cli-flags)
 - [Working with Shopify snippets](#working-with-shopify-snippets)
 - [Working With Shopify Assets](#working-with-shopify-assets)
 - [Stylesheets](#stylesheets)
@@ -111,6 +112,13 @@ Typing `npm run dev` will watch a variety of directories for changes and then pe
 - If changes are made to any files in the `src/scss/**` folder then the `gulp sass` task will run which generates the css file, combines the media queries, and then converts it into a `style.css.liquid` file.
 - If changes are made to any file inside the `src/js/**` folder, `gulp uglify` will run which lints all JS files in that directory, concats and files that need it, and then minify all files.
 
+### Testing and development CLI flags
+
+| Environment Variable      | Description                                                                                   |
+| ------------------------- | --------------------------------------------------------------------------------------------- |
+| `DEBUG`                   | (Set `=true`) Output extra debug information using `console.debug` statements                 |
+| `DISABLE_CUSTOM_CHECKOUT` | (Set `=true`) Disables Shopify Storefront API custom checkout creation                        |
+
 ## Working with Shopify snippets
 
 For details regarding working with the `snippets/` directory files, see the [`snippets-src/` README](snippets-src/README.md). 
@@ -124,9 +132,19 @@ Files in the Shopify theme's `assets` folder need to follow some special rules.
 
 ## Stylesheets
 
-In `gulp-config.json` is an array of stylesheets. Each item in the array should correlate with a `.scss` file in `src/scss/`. So for example if there's a node in the stylesheets array called "index", you'll need a file at `src/scss/index.scss` in order for that to generate a css file.
+⚠️ This section is out-of-date, needs to be updated! ⚠️
 
-If you need sub scss modules to be included in your stylesheet, simply create a folder that matches the name in the array and the watch task will watch those directories for changes. For instance if you had a `_hero.scss` snippet that you wanted to only call in the `index.scss` file, you could place the file in `src/scss/index/` and include the path in your `index.scss` sheet. After that if `npm run dev` is active any changes to `index.scss` and any of the files in the index folder will trigger a compilation.
+```
+styles/
+├── base
+├── components
+├── product-page
+│   ├── components
+│   ├── elements
+│   └── legacy
+├── utilities
+└── vendor
+```
 
 ## JavaScript
 
@@ -435,5 +453,5 @@ Notice the commands include `nvm install` and `nvm use`. This works in combinati
 The table of contents for this README was generated using [DocToc](https://github.com/thlorenz/doctoc). If new README sections are added and the table of contents needs to be updated, do not update manually, instead run the following command:
 
 ```
-npx doctoc --maxlevel 2 README.md
+npx doctoc --maxlevel 4 README.md
 ```

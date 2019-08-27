@@ -32,7 +32,15 @@
         window.dataLayer = window.dataLayer || [];
         dataLayer.push({
           'random': Math.random().toString(36).substr(2,9),
-          'timestamp': new Date().getTime()
+          'timestamp': new Date().getTime(),
+          'order_id': '{{checkout.order_id}}',
+          'order_amount': '{{order.total_price}}',
+          'order_products': '{{order.line_items}}',
+          'checkout_email': '{{checkout.email}}',
+          'checkout_items': '{{checkout.line_items}}',
+          'checkout_amount': '{{checkout.total_price}}',
+          'checkout_orderid': '{{checkout.order_id}}',
+          'checkout_optin': '{{checkout.buyer_accepts_marketing}}'
         });
       </script>
     </div>
@@ -43,7 +51,7 @@
           <div class="js-de-loading-overlay de-loading-overlay">
             <img
               src="{{ 'decathlon-loader.gif' | asset_url }}"
-              class="de-checkout-loader"
+              class="js-de-checkout-loader de-checkout-loader"
             >
           </div>
           <div class="main__header">

@@ -22,7 +22,7 @@
     </div>
 </div>
 </script>
-    
+
 <script>
 
 ;(function($) {
@@ -31,7 +31,7 @@
     function insertAfter(newNode, referenceNode) {
       return referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
     };
-        
+
     /*!
      * discount modifications
      */
@@ -40,7 +40,7 @@
         discountText = document.createElement('p');
 
     $('.order-summary__section--discount').addClass('hidden');
-    $('#checkout_reduction_code').attr('placeholder', 'Promotion Code');      
+    $('#checkout_reduction_code').attr('placeholder', 'Promotion Code');
 
     if (discountContainer) {
       discountText.innerHTML = 'Have a promotion code? <a href="#" class="js-toggleDiscount">Click here to enter it ></a>';
@@ -54,7 +54,7 @@
       discountText.classList.add('hidden');
       discountContainer.classList.remove('hidden');
     });
-    
+
     /*!
      * newsletter signup modifications
      */
@@ -75,23 +75,23 @@
     var storeLink = Shopify.shop || Shopify.Checkout.apiHost;
 
     if (storeLink !== 'decathlon-usa.myshopify.com') {
-      $('.footerNav-link, .site-nav__link, .site-nav__all-shop-link, .site-nav__shop-list, .site-header__logo-link, .mobile-nav__link').each(function(k,v) { 
-        $(v).attr('href', 'https://'+ storeLink + $(v).attr('href')); 
-      }); 
+      $('.footerNav-link, .site-nav__link, .site-nav__all-shop-link, .site-nav__shop-list, .mobile-nav__link').each(function(k,v) {
+        $(v).attr('href', 'https://'+ storeLink + $(v).attr('href'));
+      });
     }
 
     /*! https://goo.gl/BP0KiC */
 		function day(a) {
 		    var date = new Date();
 		    var hours = date.getHours();
-		
+
 		    // If after 3pm, add 1 day
 		    if (hours >= 15) a++;
-		
+
 		    var expectedDeliveryDate = addWeekdays(date, a);
 		    return expectedDeliveryDate;
 		}
-		
+
 		function addWeekdays(fromDate, days) {
 		    var count = 0;
 		    while (count < days) {
@@ -129,7 +129,7 @@
 
           clearInterval(waitForShippingMethods);
         }
-      }, 500);      
+      }, 500);
     }
 
   });
