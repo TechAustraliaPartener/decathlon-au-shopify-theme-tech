@@ -1,4 +1,4 @@
-{{ 'https://az814789.vo.msecnd.net/toolkit/1.2.16/appmate.js' | script_tag }}
+{{ 'appmate.js' | asset_url | script_tag }}
 
 {% assign wkShopName = shop.name | replace: '&amp;', '&' %}
 <script type="text/javascript">
@@ -48,27 +48,36 @@
       var product = this.getAttribute('data-wk-add-product');
 
       var variant = $(this).parents('.timber-activeProduct').find('.product-single__variants').val();
-
       if ($('body').hasClass('template-product')) {
         var variant = window.currentVariant.id;
-        $('.addToCartText').text('Remove from Wishlist');
-      } 
+      }
+
+      if (Appmate.wk.collection.containsProduct(product)) {
+        return;
+      }
 
       Appmate.wk.addProduct(product, variant);
-      {% include 'appmate-wishlist-notifier' %}
+
+      if (!window.addToWishlist) {
+        window.decathlon.addPromo('<p class="u-marginBottom0x"><a href="/pages/wishlist" class="u-textUppercase">Product added. View your wishlist</a></p>', 'js-wishlistBanner');
+      } else {
+        {% include 'compositions-appmate-wishlist-notifier' %}
+        if ($('body').hasClass('template-product') && window.addToWishlist) {
+          $('.addToCartText').text('Remove from wishlist');
+        }
+      }
 
     }),
     'click [data-wk-remove-product]': eventHandler(function(){
       var product = this.getAttribute('data-wk-remove-product');
       Appmate.wk.removeProduct(product);
 
-      if ($('body').hasClass('template-product')) {
-        $('.addToCartText').text('Add to Wishlist');
-      } else {
-      }
-
       $('js-wishlistBanner').remove();
       window.decathlon.addPromo('<p class="u-marginBottom0x"><a href="/pages/wishlist" class="u-textUppercase">Product removed. View your wishlist</a></p>', 'js-wishlistBanner');
+
+      if ($('body').hasClass('template-product') && window.addToWishlist) {
+        $('.addToCartText').text('Add to wishlist');
+      }
 
 
     }),
@@ -556,8 +565,6 @@
 
 <script>
 var appmateSelectCallback = function(variant, selector) {
-
-  console.log(variant, selector);
 
   var shop = Appmate.wk.globals.shop;
   var product = Appmate.wk.getProduct(variant.product_id);
