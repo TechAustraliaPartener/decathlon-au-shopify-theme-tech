@@ -227,7 +227,7 @@
     {% include 'compositions-header' %}
 
     {% if settings.ajax_cart_method == "drawer" %}
-      {% include 'ajax-cart--drawer' %}
+      {% include 'compositions-ajax-cart-drawer' %}
     {% endif %}
 
 	{% if template == "index" %}
@@ -271,7 +271,7 @@
   {% endcomment %}
   {% if settings.ajax_cart_method == "drawer" %}
     {{ 'handlebars.min.js' | asset_url | script_tag }}
-    {% include 'ajax-cart-template' %}
+    {% include 'compositions-ajax-cart-template' %}
     {{ 'ajax-cart.js' | asset_url | script_tag }}
     <script>
       jQuery(function($) {
