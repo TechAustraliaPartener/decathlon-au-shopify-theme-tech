@@ -14,7 +14,7 @@
       {%- endif -%}
 
       {%- if button_url -%}
-        {%- include 'button' -%}
+        {%- include 'elements-button' -%}
       {%- endif -%}
     </div>
   </div>

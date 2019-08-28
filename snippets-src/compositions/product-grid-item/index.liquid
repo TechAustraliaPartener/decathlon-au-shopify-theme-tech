@@ -164,7 +164,7 @@
             {% assign button_title = 'Explore' %}
         {% endif %}
         {% assign product_url = product.url | within: collection %}
-        {% include 'button', button_url: product_url, button_wrapper: 'btn--shopNow u-marginTop1x', button_adtl_classes: ' js-shopNow' %}
+        {% include 'elements-button', button_url: product_url, button_wrapper: 'btn--shopNow u-marginTop1x', button_adtl_classes: ' js-shopNow' %}
     {% endif %}
 
     <div class="hide">

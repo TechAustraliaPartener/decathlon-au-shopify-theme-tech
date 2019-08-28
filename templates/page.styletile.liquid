@@ -11,15 +11,15 @@
 
 <div class="grid--full">
   {%- assign banner_img = 'comp-bikeImage.jpg' | asset_url -%}
-  {%- include 'banner--half', 
-    banner_image: banner_img, 
+  {%- include 'banner--half',
+    banner_image: banner_img,
     banner_title: 'Hit the<br/>Road.',
     button_url: '/collections/bikes',
     button_title: 'Shop Bikes',
     button_wrapper: 'banner-btnContainer'
   -%}
-  {%- include 'banner--half', 
-    banner_image: banner_img, 
+  {%- include 'banner--half',
+    banner_image: banner_img,
     banner_title: 'Get Out<br/>and Run.',
     button_url: '/collections/running',
     button_title: 'Shop Running',
@@ -66,20 +66,20 @@
     <h6>H6 Title</h6>
     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</p>
 
-    {%- include 'button',
+    {%- include 'elements-button',
       button_link: '#',
       button_title: 'Primary button',
       button_wrapper: 'text-center'
     -%}
 
-    {%- include 'button', 
+    {%- include 'elements-button',
       button_link: '#',
       button_title: 'Add to Cart',
       button_wrapper: 'text-center',
       button_adtl_classes: ' btn--addToCart'
     -%}
 
-    {%- include 'button', 
+    {%- include 'elements-button',
       button_link: '#',
       button_title: 'Text button',
       button_wrapper: 'text-center',
@@ -101,7 +101,7 @@
 
   button_url: 'http://bluelikeneon.com',
   button_title: 'Testing',
-  button_wrapper: 'split-content-btn' 
+  button_wrapper: 'split-content-btn'
 %}
 
 {% include 'split-content',
@@ -114,7 +114,7 @@
 
   button_url: 'http://bluelikeneon.com',
   button_title: '$79.99 for Racket - Click Here',
-  button_wrapper: 'split-content-btn' 
+  button_wrapper: 'split-content-btn'
 %}
 
   </div>

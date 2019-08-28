@@ -25,7 +25,7 @@
           {% if form.posted_successfully? %}
             <div class="note form-success">
               <p class="text-center"> One of our team members will reach out shortly to coordinate with you.</p>
-              {% include 'button',
+              {% include 'elements-button',
                 button_wrapper: 'text-center u-marginTop2x',
                 button_url: '/collections',
                 button_title: 'Explore our products'
@@ -73,7 +73,7 @@
     <div class="grid">
       <div class="grid__item large--two-fifths">
         <p class="h4">735 market street<br/>San Francisco, CA&nbsp;94103</p>
-        {% include 'button',
+        {% include 'elements-button',
           button_adtl_classes: ' btn--text u-textWhite',
           button_url: 'https://www.google.com/maps/dir//735+Market+Street,+San+Francisco,+CA/@37.7861791,-122.4060072,16z/data=!4m8!4m7!1m0!1m5!1m1!1s0x808580887e6659bb:0x26d36241b76a9b50!2m2!1d-122.4041019!2d37.7865676',
           button_title: 'Get Directions'
