@@ -276,13 +276,13 @@ For local development, use "staging" values. For staging/production (in the Depl
 #### Staging API key
 
 1. Log into https://testing-decathlon-usa.myshopify.com/admin/apps/private
-1. Click into the "**CloudFour Persistent Cart**" private app
+1. Click into the "**Persistent Cart + Custom Checkout App**" private app
 1. In the "**Storefront API**" section, look for the "**Storefront access token**"
 
 #### Production API key
 
 1. Log into https://decathlon-usa.myshopify.com/admin/apps/private
-1. Click into the "**CloudFour Persistent Cart**" private app
+1. Click into the "**Persistent Cart + Custom Checkout App**" private app
 1. In the "**Storefront API**" section, look for the "**Storefront access token**"
 
 ### Default Domains & API URLs
