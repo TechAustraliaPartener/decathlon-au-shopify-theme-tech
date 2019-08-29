@@ -1,6 +1,6 @@
 {%- include 'styletile-divider', title: 'Banners' -%}
 
-{%- include 'banner--billboard',
+{%- include 'components-banner-billboard',
   banner_adtl_classes: ' js-fullscreen',
   banner_title: 'Sport For&nbsp;All.',
   banner_subtitle: 'Decathlon is building community through sports by creating innovative and accessibly priced gear so everyone can play.',
@@ -11,14 +11,14 @@
 
 <div class="grid--full">
   {%- assign banner_img = 'comp-bikeImage.jpg' | asset_url -%}
-  {%- include 'banner--half',
+  {%- include 'components-banner-half',
     banner_image: banner_img,
     banner_title: 'Hit the<br/>Road.',
     button_url: '/collections/bikes',
     button_title: 'Shop Bikes',
     button_wrapper: 'banner-btnContainer'
   -%}
-  {%- include 'banner--half',
+  {%- include 'components-banner-half',
     banner_image: banner_img,
     banner_title: 'Get Out<br/>and Run.',
     button_url: '/collections/running',
@@ -27,7 +27,7 @@
   -%}
 </div>
 
-{%- include 'banner--billboard',
+{%- include 'components-banner-billboard',
   banner_bg_image: '//picshare.decathlon.com/uploads/picshare/medias/600x600/ef/93/7868609adb84ff4729bac7d428783481a169.jpg',
   banner_adtl_classes: ' u-dimBg js-fullscreen',
   banner_intro: 'Innovation Spotlight',
@@ -38,14 +38,14 @@
   button_title: '$79.99 - Easybreath Snorkeling Mask'
 -%}
 
-{%- include 'banner--billboard',
+{%- include 'components-banner-billboard',
   banner_adtl_classes: ' banner--centeredContent',
   banner_title: 'When Work Is Play.',
   banner_title_adtl_classes: ' h2',
   banner_subtitle: "Whether a Decathlon team member works in product design or in a retail store, in France or in the US, whatever our role, our life's work is making sports available to more people. Luckily, we have a great time doing it."
 -%}
 
-{%- include 'banner--billboard',
+{%- include 'components-banner-billboard',
   banner_adtl_classes: ' banner--centeredContent',
   banner_title: 'Our Innovation Awards',
   banner_title_adtl_classes: ' h2',

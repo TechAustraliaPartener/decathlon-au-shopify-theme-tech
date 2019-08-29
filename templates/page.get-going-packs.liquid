@@ -4,7 +4,7 @@
 {%- assign packs = page_content[1] | strip_html | strip | split: ',' -%}
 {%- assign banner_bg_image = page.handle | append: '-banner-bg.jpg' | file_url -%}
 
-{% include 'banner--billboard',
+{% include 'components-banner-billboard',
   banner_adtl_classes: ' banner--centeredContent',
   banner_title: page.title,
   banner_subtitle: page_intro

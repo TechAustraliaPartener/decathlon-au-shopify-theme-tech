@@ -1,7 +1,7 @@
 {% assign main_banner_subtitle = page.content | strip_html %}
 
 {% assign banner_bg_image =  'story_main_banner_background_image.jpg' | asset_url %}
-{% include 'banner--video',
+{% include 'components-banner-video',
   banner_id: 'story-banner-video',
   banner_adtl_classes: ' banner--centeredContent banner-video--noPadding',
   banner_title: settings['story_main_banner_headline'],
@@ -38,7 +38,7 @@
 </div>
 
 {% assign banner_bg_image =  'story_banner_2_background_image.jpg' | asset_url %}
-{% include 'banner--billboard',
+{% include 'components-banner-billboard',
   banner_id: 'our-legacy',
   banner_adtl_classes: ' banner--centeredContent',
   banner_wrapper_adtl_classes: ' u-marginBottom4x',
@@ -78,7 +78,7 @@
 </div>
 
 {% assign banner_bg_image =  'story_banner_3_background_image.jpg' | asset_url %}
-{% include 'banner--billboard',
+{% include 'components-banner-billboard',
   banner_id: 'our-family',
   banner_adtl_classes: ' banner--centeredContent',
   banner_wrapper_adtl_classes: ' u-paddingTopBottom4x',

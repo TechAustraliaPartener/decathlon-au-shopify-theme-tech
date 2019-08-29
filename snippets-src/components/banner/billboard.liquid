@@ -1,4 +1,5 @@
-<div class="banner banner--billboard{{ banner_adtl_classes }} de-u-bgGray"{% if banner_bg_image %} data-background-image="{{ banner_bg_image }}"{% endif %}{% if banner_bg_position != blank %} style="background-position:{{ banner_bg_position }}"{% endif %}{% if banner_id %} id="{{banner_id}}"{% endif %}>
+<div class="banner banner--billboard{{ banner_adtl_classes }} de-u-bgGray"{% if banner_bg_image %}
+     data-background-image="{{ banner_bg_image }}"{% endif %}{% if banner_bg_position != blank %} style="background-position:{{ banner_bg_position }}"{% endif %}{% if banner_id %} id="{{banner_id}}"{% endif %}>
   {% comment %} <div id="bannerOverlay" class="banner--billboard__overlay loading"></div> {% endcomment %}
 
   <div class="wrapper{{ banner_wrapper_adtl_classes }}">

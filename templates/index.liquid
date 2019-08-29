@@ -40,7 +40,7 @@
 
       {% if settings[slideTitle] != blank %}
       <div class="banner--slide">
-        {% include 'banner--billboard',
+        {% include 'components-banner-billboard',
           banner_wrapper_adtl_classes: ' u-centerVertically',
           banner_bg_position: settings[slideBGPosition],
           banner_title: settings[slideTitle],
@@ -92,7 +92,7 @@
 
 {% comment %} <div class="grid--full medium-down--hide large--show">
   {% assign banner_img = 'homepage_half_banner_left_image.jpg' | asset_url %}
-  {% include 'banner--half',
+  {% include 'components-banner-half',
     banner_image: banner_img,
     banner_title: settings['homepage_half_banner_left_title'],
     button_wrapper: 'u-zindex1x',
@@ -101,7 +101,7 @@
     wrapper: 'banner-btnContainer'
   %}
   {% assign banner_img = 'homepage_half_banner_right_image.jpg' | asset_url %}
-  {% include 'banner--half',
+  {% include 'components-banner-half',
     banner_image: banner_img,
     banner_title: settings['homepage_half_banner_right_title'],
     button_wrapper: 'u-zindex1x',
@@ -145,7 +145,7 @@
 
       <!--{{ slideProduct.url }}-->
       <div class="banner--slide">
-        {% include 'banner--billboard',
+        {% include 'components-banner-billboard',
           banner_wrapper_adtl_classes: ' u-centerVertically',
           banner_bg_position: settings[slideBGPosition],
           banner_title: settings[slideTitle],
