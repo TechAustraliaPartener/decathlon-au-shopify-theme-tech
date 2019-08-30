@@ -112,6 +112,12 @@
   {{ 'cadence.scss.css' | asset_url | stylesheet_tag }}
   {% if template == "product" and product.metafields.global.features != blank %}
     {{ 'built-product-page.css' | asset_url | stylesheet_tag }}
+  {% else %}
+    {% comment %}
+      TODO - Remove IcoMoon CSS when remaining icons are refactored
+      Making conditional to not load on new product page, where it's not needed
+    {% endcomment %}
+    {{ 'icomoon.scss.css' | asset_url | stylesheet_tag }}
   {% endif %}
   {% comment %}
     @TODO
