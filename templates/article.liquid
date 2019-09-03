@@ -243,8 +243,8 @@
     {%- for article in featured_articles -%}
       {% if forloop.index > 4 %}{% break %}{% endif %}
       {%- unless article.id == current_article.id -%}
-        {% include 'get-blog-for-article', blogs: linklists['all-blogs'].links, article: article %}
-        {% include 'blog-grid-item', size_classes: 'large--one-third' %}
+        {% include 'compositions-blog-get-for-article', blogs: linklists['all-blogs'].links, article: article %}
+        {% include 'compositions-blog-grid-item', size_classes: 'large--one-third' %}
       {%- endunless -%}
     {%- endfor -%}
     </div>

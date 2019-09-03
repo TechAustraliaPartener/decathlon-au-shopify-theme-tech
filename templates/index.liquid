@@ -180,8 +180,8 @@
     {% assign featured_articles = featured_articles | sort: 'published_at' | reverse %}
     {%- for article in featured_articles -%}
       {% if forloop.index > 3 %}{% break %}{% endif %}
-      {% include 'get-blog-for-article', blogs: linklists['all-blogs'].links, article: article %}
-      {% include 'blog-grid-item', size_classes: 'large--one-third' %}
+      {% include 'compositions-blog-get-for-article', blogs: linklists['all-blogs'].links, article: article %}
+      {% include 'compositions-blog-grid-item', size_classes: 'large--one-third' %}
     {%- endfor -%}
 
     </div>

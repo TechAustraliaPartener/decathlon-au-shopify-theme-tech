@@ -3,12 +3,12 @@
   <h1 class="h2">{{ 'homepage.sections.news_title' | t }}</h1>
 </div>
 
-{% include 'blog_subnav' with linklists['all-blogs'] %}
+{% include 'compositions-blog-subnav' with linklists['all-blogs'] %}
 
 {% paginate blog.articles by 30 %}
 
 {% comment %}
-{% assign blogCategory = 'blog-list--' | append: blog.handle %}
+{% assign blogCategory = 'compositions-blog-list-' | append: blog.handle %}
 {% include blogCategory %}
 {% endcomment %}
 
@@ -22,8 +22,8 @@
 
       <div class="grid-uniform u-flex-list u-flex-list--line{% if blog.articles.size <= 2 %} u-centerCards{% endif %}">
       {%- for article in blog.articles -%}
-        {% include 'get-blog-for-article', blogs: linklists['all-blogs'].links, article: article %}
-        {% include 'blog-grid-item', size_classes: 'large--one-third medium--one-half', include_excerpt: true %}
+        {% include 'compositions-blog-get-for-article', blogs: linklists['all-blogs'].links, article: article %}
+        {% include 'compositions-blog-grid-item', size_classes: 'large--one-third medium--one-half', include_excerpt: true %}
       {%- endfor -%}
       </div>
       {% endif %}
@@ -34,9 +34,9 @@
 {% comment %}
 <div class="wrapper u-paddingTopBottom8x">
 {% if blog.handle == 'jobs' %}
-  {% include 'blog-list--jobs' %}
+  {% include 'compositions-blog-list-jobs' %}
 {% else %}
-  {% include 'blog-list--default' %}
+  {% include 'compositions-blog-list-default' %}
 {% endif %}
 </div>
 {% endcomment %}

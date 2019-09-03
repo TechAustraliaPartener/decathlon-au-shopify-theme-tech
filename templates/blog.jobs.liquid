@@ -10,7 +10,7 @@
 {% paginate blog.articles by 6 %}
 
 {% comment %}
-{% assign blogCategory = 'blog-list--' | append: blog.handle %}
+{% assign blogCategory = 'compositions-blog-list-' | append: blog.handle %}
 {% include blogCategory %}
 {% endcomment %}
 
@@ -84,9 +84,9 @@ widget({
 {% comment %}
 <div class="wrapper u-paddingTopBottom8x">
 {% if blog.handle == 'jobs' %}
-  {% include 'blog-list--jobs' %}
+  {% include 'compositions-blog-list-jobs' %}
 {% else %}
-  {% include 'blog-list--default' %}
+  {% include 'compositions-blog-list-default' %}
 {% endif %}
 </div>
 {% endcomment %}

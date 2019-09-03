@@ -1,8 +1,13 @@
+{% comment %}
+  TODO - Decide whether to remove this file,
+  as it appears to not be used anywhere
+{% endcomment %}
+
 <div class="grid--rev">
 
   <div class="grid__item large--three-quarters">
 
-    {% include 'blog-author-select' %}
+    {% include 'compositions-blog-author-select' %}
 
     {% if current_tags %}
       <h1 class="h2">{{ blog.title | link_to: blog.url }} &mdash; {{ current_tags.first }}</h1>
@@ -77,7 +82,7 @@
   </div>
 
   <div class="grid__item large--one-quarter">
-    {% include 'blog-sidebar' %}
+    {% include 'compositions-blog-sidebar' %}
   </div>
 
 </div>
