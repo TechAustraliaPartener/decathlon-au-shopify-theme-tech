@@ -24,7 +24,7 @@ uniq doesn't seem to work on the tag list, so I join/split it to force the tags 
       <div class="grid-uniform u-flex-list u-flex-list--line">
       {% assign featured_articles = featured_articles | sort: 'published_at' %}
       {%- for article in featured_articles -%}
-        {% include 'get-blog-for-article', blogs: linklists['jobs'].links, article: article %}
+        {% include 'compositions-blog-get-for-article', blogs: linklists['jobs'].links, article: article %}
         {% include 'job-grid-item', include_excerpt: true  %}
       {%- endfor -%}
       </div>

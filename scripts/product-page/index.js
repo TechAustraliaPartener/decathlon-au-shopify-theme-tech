@@ -20,7 +20,7 @@ import { getSelectedVariant, getVariantOptions } from './product-data';
 import * as stickyNav from './sticky-nav';
 import * as storePickup from './fulfillment-options';
 import * as modal from './modal';
-import { createState } from './create-state';
+import { createState } from '../utilities/create-state';
 
 let updateFulfillmentOptionsUI = null;
 

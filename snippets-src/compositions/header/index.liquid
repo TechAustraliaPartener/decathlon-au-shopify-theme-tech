@@ -4,7 +4,14 @@
   <div class="de-PageWrap-headerPrimary">
     <div class="de-PageWrap-narrowMenuControl">
       <div class="de-MenuBar">
-        <button class="de-MenuBar-action de-MenuBar-action--stack" id="data-MenuBar-narrow" data-de-page-wrap-action="toggleMenu" data-de-page-wrap-target="demo-side">
+        <button
+          class="de-MenuBar-action de-MenuBar-action--stack"
+          id="data-MenuBar-narrow"
+          data-gtm-event="customer-interaction"
+          data-gtm-id="Hamburger Menu"
+          data-gtm-category="Header"
+          data-de-page-wrap-action="toggleMenu"
+          data-de-page-wrap-target="demo-side">
           {% include 'patterns-icons-bars'
             with class: 'de-MenuBar-icon' %}
           <span class="de-MenuBar-label">Menu</span>
@@ -19,14 +26,22 @@
     </div>
     <div class="de-PageWrap-wideMenuControl">
       <div class="de-MenuBar">
-        <button class="de-MenuBar-action de-u-textGrow1"
+        <button
+          class="de-MenuBar-action de-u-textGrow1"
           id="data-MenuBar-Wide"
+          data-gtm-event="customer-interaction"
+          data-gtm-id="Shop"
+          data-gtm-category="Header"
           data-de-page-wrap-action="toggleMenu"
           data-de-page-wrap-target="demo-mega"
           data-de-page-wrap-hover="true">
           <span class="de-MenuBar-label">Shop</span>
         </button>
-        <button class="de-MenuBar-action de-u-textGrow1"
+        <button
+          class="de-MenuBar-action de-u-textGrow1"
+          data-gtm-event="customer-interaction"
+          data-gtm-id="Meet Decathlon"
+          data-gtm-category="Header"
           data-de-page-wrap-action="toggleMenu"
           data-de-page-wrap-target="meet-decathlon"
           data-de-page-wrap-hover="true">
@@ -38,7 +53,11 @@
   <nav class="de-PageWrap-headerSecondary">
     <ul class="de-MenuBar">
       <li class="de-PageWrap-headerTertiaryControl">
-        <button class="de-MenuBar-action"
+        <button
+          class="de-MenuBar-action"
+          data-gtm-event="customer-interaction"
+          data-gtm-id="Magnifying Glass"
+          data-gtm-category="Header"
           data-de-page-wrap-action="toggleExpand"
           data-de-page-wrap-target="demo-search">
           {% include 'patterns-icons-search'
@@ -59,8 +78,19 @@
   <div class="de-PageWrap-headerTertiary" id="demo-search">
   <div class="de-SingleInputForm adept-autocomplete-search">
     <form action="/search">
-      <input class="de-Input de-SingleInputForm-input" type="search" name="q" placeholder="{%- include 'search-placeholder' -%}">
-      <button class="de-SingleInputForm-action">
+      <input
+        class="de-Input de-SingleInputForm-input"
+        data-gtm-event="customer-interaction"
+        data-gtm-id="Search Bar"
+        data-gtm-category="Header"
+        type="search"
+        name="q"
+        placeholder="{%- include 'search-placeholder' -%}">
+      <button
+        class="de-SingleInputForm-action"
+        data-gtm-event="customer-interaction"
+        data-gtm-id="Magnifying Glass"
+        data-gtm-category="Header">
         {% include 'patterns-icons-search', class: 'de-u-textGrow3', role: 'presentation' %}
         <span class="de-u-hiddenVisually">Search</span>
       </button>

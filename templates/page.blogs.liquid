@@ -23,7 +23,7 @@ uniq doesn't seem to work on the tag list, so I join/split it to force the tags 
 {% endcomment %}
 {% assign featured_tags = featured_tags | join: ',' | split: ',' | uniq %}
 
-{% include 'blog_subnav' with linklists['all-blogs'] %}
+{% include 'compositions-blog-subnav' with linklists['all-blogs'] %}
 
 
 
@@ -31,15 +31,15 @@ uniq doesn't seem to work on the tag list, so I join/split it to force the tags 
 
   <div class="blogCards u-paddingTopBottom3x">
     <div class="wrapper">
-  
+
       <div class="grid-uniform u-flex-list u-flex-list--line">
       {% assign featured_articles = featured_articles | sort: 'published_at' | reverse %}
       {%- for article in featured_articles -%}
-        {% include 'get-blog-for-article', blogs: linklists['all-blogs'].links, article: article %}
-        {% include 'blog-grid-item', size_classes: 'large--one-third medium--one-half', include_excerpt: true  %}
+        {% include 'compositions-blog-get-for-article', blogs: linklists['all-blogs'].links, article: article %}
+        {% include 'compositions-blog-grid-item', size_classes: 'large--one-third medium--one-half', include_excerpt: true  %}
       {%- endfor -%}
       </div>
-  
+
     </div>
   </div>
 </div>

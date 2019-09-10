@@ -1,7 +1,12 @@
+{% comment %}
+  TODO - Decide whether to remove this file,
+  as it appears to not be used anywhere
+{% endcomment %}
+
 <div class="grid--full anchorLinks js-pinToHeader">
   <div class="wrapper">
     <ul class="anchorList">
-    {%- for link in blog_subnav.links -%}
+    {%- for link in compositions-blog-subnav.links -%}
       <li class="anchorList-item">
         <a class="anchorList-link{% if current_section == link.url %} anchorList-link--active{% endif %}" href="{{ link.url }}">{{ link.title }}</a>
       </li>

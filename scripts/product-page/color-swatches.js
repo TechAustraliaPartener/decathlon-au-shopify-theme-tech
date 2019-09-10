@@ -8,7 +8,7 @@ import { IS_ACTIVE_CLASS, JS_PREFIX } from './constants';
 // @todo Consider removing jQuery dependency
 import $ from 'jquery';
 import { availableVariants, getVariantOptions } from './product-data';
-import { createState } from './create-state';
+import { createState } from '../utilities/create-state';
 
 /**
  * @typedef State

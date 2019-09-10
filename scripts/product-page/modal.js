@@ -37,8 +37,8 @@ const keyboardEventHandler = ({ key }) => {
   /**
    * For better accessibility, the modal should close via the "escape" key
    */
-  if (isEscapeKey(key) && window.BISPopover) {
-    window.BISPopover.hide();
+  if (isEscapeKey(key) && window.BISPopover && window.BISPopover.form) {
+    window.BISPopover.form.hide();
   }
 };
 
@@ -53,13 +53,23 @@ let lastFocusedElement;
  * for better keyboard accessibility UX
  */
 const onAddToCartClick = () => {
-  if (window.BISPopover) {
-    // Store the element that was focused before the modal was opened. It will be focused after the modal is closed
+  if (window.BISPopover && window.BISPopover.form) {
+    /**
+     * Store the element that was focused before the modal was opened. It will
+     * be focused after the modal is closed
+     */
     lastFocusedElement = /** @type {HTMLElement} */ (document.activeElement);
-    const originalHideFunction = window.BISPopover.hide.bind(window.BISPopover);
-    // Intercept hide to re-focus where the user focus was before opening the modal
-    window.BISPopover.hide = () => {
-      originalHideFunction();
+    // Save popover-bound original `form.hide` function
+    const originalFormHideFunction = window.BISPopover.form.hide.bind(
+      window.BISPopover.form
+    );
+    /**
+     * Intercept `form.hide` (bound to the modal close button [x]) and also
+     * custom-bound to ESC keydown, to re-focus where the user focus was
+     * before opening the modal
+     */
+    window.BISPopover.form.hide = () => {
+      originalFormHideFunction();
       lastFocusedElement.focus();
     };
   }

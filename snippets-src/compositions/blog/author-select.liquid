@@ -1,3 +1,8 @@
+{% comment %}
+  TODO - Decide whether to remove this file,
+  as it appears to not be used anywhere
+{% endcomment %}
+
 {% assign author_prefix = 'Author: '%}
 
 {% if featured_tags %}
@@ -6,12 +11,12 @@
   {% assign tag_list = blog.all_tags %}
 {% endif %}
 
-  <select class="authorSelect right js-authorSelect">
-    <option value="{{ blog.url }}">AUTHOR: ALL</option>
+<select class="authorSelect right js-authorSelect">
+  <option value="{{ blog.url }}">AUTHOR: ALL</option>
   {% for tag in tag_list %}
     {% capture tag_url %}{{ blog.url }}/tagged/{{ tag | handleize }}{% endcapture %}
     {% if tag contains author_prefix %}
-    <option value="{{ tag_url }}">{{ tag | split: author_prefix }}</option>
+      <option value="{{ tag_url }}">{{ tag | split: author_prefix }}</option>
     {% endif %}
   {% endfor %}
-  </select>
+</select>

@@ -1,5 +1,5 @@
 {% assign banner_bg_image =  'in_store_pickup_banner_background_image.jpg' | asset_url %}
-{% include 'banner--billboard',
+{% include 'components-banner-billboard',
   banner_adtl_classes: ' banner--centeredContent',
   banner_title: 'In-Store Pickup',
 %}
@@ -25,7 +25,7 @@
         {% include 'tag' with 'pickup_icon_4' %}
       </div>
     </div>
-    {% include 'button',
+    {% include 'elements-button',
       button_url: '/collections',
       button_title: 'Shop Decathlon Now'
     %}
@@ -42,7 +42,7 @@
       </div>
       <div class="grid__item large--one-half">
         {% include 'tag' with 'feedback_section' %}
-        {% include 'button',
+        {% include 'elements-button',
           button_wrapper: 'feedbackButton',
           button_adtl_classes: ' btn--text',
           button_url: '/pages/contact-us',

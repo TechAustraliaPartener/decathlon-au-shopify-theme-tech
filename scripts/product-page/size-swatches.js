@@ -13,7 +13,7 @@ import {
 } from './constants';
 // @todo Consider removing jQuery dependency
 import $ from 'jquery';
-import { createState } from './create-state';
+import { createState } from '../utilities/create-state';
 import { getExistingSizesFromColor } from './product-data';
 
 /**

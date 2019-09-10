@@ -8,7 +8,7 @@
  * @see https://bitsofco.de/accessible-modal-dialog/#5whileopenpreventtabbingtooutsidethedialog
  */
 
-import { createState } from './create-state';
+import { createState } from '../utilities/create-state';
 
 /**
  * Module constants

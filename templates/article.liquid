@@ -19,14 +19,14 @@
 {% if comment and comment.created_at %}
   {% assign number_of_comments = article.comments_count | plus: 1 %}
 {% endif %}
- 
+
 <div class="wrapper">
 {% include 'breadcrumb' %}
 
 <div class="wrapper wrapper--midWidth">
 
   <div class="grid">
-  
+
     <article class="grid__item blogPost" itemscope itemtype="http://schema.org/Article">
 
       <header class="section-header text-center">
@@ -46,20 +46,20 @@
       </header>
 
       {%- if article.image -%}{{ article.image | img_url: '2000x' | img_tag: article.title, 'u-block' }}{%- endif -%}
-  
+
       <div class="u-block u-paddingTopBottom3x" itemprop="articleBody">
         {% include 'hypervisual' %}
         {{ article.content }}
       </div>
-  
-  
+
+
       {% if blog.comments_enabled? %}
         <hr>
-  
+
         <h3>{{ 'blogs.comments.with_count' | t: count: number_of_comments }}</h3>
-  
+
         <hr>
-  
+
         {% comment %}
           Just like blog.liquid page, define how many comments should be on each page.
         {% endcomment %}
@@ -68,7 +68,7 @@
             #comments is required, it is used as an anchor link by Shopify.
           {% endcomment %}
           <div id="comments">
-  
+
             {% if comment and comment.created_at %}
               <p class="note form-success">
                 {% if blog.moderated? %}
@@ -78,7 +78,7 @@
                 {% endif %}
               </p>
             {% endif %}
-  
+
             {% if number_of_comments > 0 %}
               <ul class="no-bullets">
                 {% comment %}
@@ -89,7 +89,7 @@
                     {% include 'comment' %}
                   </li>
                 {% endif %}
-  
+
                 {% comment %}
                   Showing the rest of the comments.
                 {% endcomment %}
@@ -97,59 +97,59 @@
                   <li id="{{ comment.id }}" class="comment{% unless number_of_comments > article.comments_count %}{% if forloop.first %} first{% endif %}{% endunless %}{% if forloop.last %} last {% endif %}">
                     {% include 'comment' %}
                   </li>
-  
+
                   {% unless forloop.last %}
                     <li><hr></li>
                   {% endunless %}
                 {% endfor %}
               </ul>
-  
+
               {% if paginate.pages > 1 %}
                 <hr>
                 <div class="pagination">
                   {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
                 </div>
               {% endif %}
-  
+
               <hr>
-  
+
             {% endif %}
-  
+
             <div class="form-vertical">
               {% form 'new_comment', article %}
                 <h3>{{ 'blogs.comments.title' | t }}</h3>
-  
+
                 {{ form.errors | default_errors }}
-  
+
                 <div class="grid">
-  
+
                   <div class="grid__item large--one-half">
                     <label for="CommentAuthor" class="hidden-label">{{ 'blogs.comments.name' | t }}</label>
                     <input type="text" name="comment[author]" id="CommentAuthor" class="input-full{% if form.errors contains 'author' %} error{% endif %}" placeholder="{{ 'blogs.comments.name' | t }}" value="{{ form.author }}" >
-  
+
                     <label for="CommentEmail" class="hidden-label">{{ 'blogs.comments.email' | t }}</label>
                     <input type="email" name="comment[email]" id="CommentEmail" class="input-full{% if form.errors contains 'email' %} error{% endif %}" placeholder="{{ 'blogs.comments.email' | t }}" value="{{ form.email }}" autocorrect="off" >
                   </div>
-  
+
                   <div class="grid__item large--one-half">
                     <label for="CommentBody" class="hidden-label">{{ 'blogs.comments.message' | t }}</label>
                     <textarea name="comment[body]" id="CommentBody" class="input-full{% if form.errors contains 'body' %} error{% endif %}" placeholder="{{ 'blogs.comments.message' | t }}">{{ form.body }}</textarea>
                   </div>
-  
+
                 </div>
-  
+
                 {% if blog.moderated? %}
                   <p>{{ 'blogs.comments.moderated' | t }}</p>
                 {% endif %}
-  
+
                 <input type="submit" class="btn" value="{{ 'blogs.comments.post' | t }}">
               {% endform %}
             </div>
-  
+
           </div>
         {% endpaginate %}
       {% endif %}
-  
+
       {% comment %}
       {% unless article.tags contains 'Job' %}
         <h4 class="text-center u-marginBottom2x">Comments</h4>
@@ -222,8 +222,8 @@
 
   {% if article.tags contains 'Job' %}
     {% assign button_url = blog.url %}
-    {% include 'button',  
-      button_wrapper: 'text-center u-block u-marginTop4x', 
+    {% include 'elements-button',
+      button_wrapper: 'text-center u-block u-marginTop4x',
       button_adtl_classes: ' btn--blog u-marginBottom6x',
       button_title: 'Explore Careers' %}
   {% else %}
@@ -244,16 +244,16 @@
     {%- for article in featured_articles -%}
       {% if forloop.index > 4 %}{% break %}{% endif %}
       {%- unless article.id == current_article.id -%}
-        {% include 'get-blog-for-article', blogs: linklists['all-blogs'].links, article: article %}
-        {% include 'blog-grid-item', size_classes: 'large--one-third' %}
+        {% include 'compositions-blog-get-for-article', blogs: linklists['all-blogs'].links, article: article %}
+        {% include 'compositions-blog-grid-item', size_classes: 'large--one-third' %}
       {%- endunless -%}
     {%- endfor -%}
     </div>
   </div>
 
   {% assign button_url = '/blogs/' | append: blog.handle %}
-    {% include 'button',  
-      button_wrapper: 'text-center u-block u-marginBottom4x', 
+    {% include 'elements-button',
+      button_wrapper: 'text-center u-block u-marginBottom4x',
       button_adtl_classes: ' btn--blog',
       button_title: 'Explore Our Playbook' %}
   {% endif %}
@@ -287,7 +287,7 @@
   AWS.config.credentials = new AWS.CognitoIdentityCredentials({
       IdentityPoolId: 'us-west-2:9f43914a-b302-49da-90f7-8505b82b918a',
   });
-  
+
   var s3 = new AWS.S3({
     apiVersion: '2006-03-01',
     endpoint: new AWS.Endpoint('s3.amazonaws.com'),
@@ -324,7 +324,7 @@ $(function() {
 
       $('input[name="S3File"]').val(data.Location);
       submitClean = true;
-      form.submit();  
+      form.submit();
     });
   });
 })

@@ -8,7 +8,14 @@
   - Documentation:  http://shopify.com/timber#ajax-cart
 {% endcomment %}
 
-<a href="/cart" class="de-MenuBar-action de-MenuBar-action--primary" aria-controls="CartDrawer" aria-expanded="false">
+<a
+  href="/cart"
+  class="de-MenuBar-action de-MenuBar-action--primary"
+  data-gtm-event="customer-interaction"
+  data-gtm-id="Cart"
+  data-gtm-category="Header"
+  aria-controls="CartDrawer"
+  aria-expanded="false">
   <span class="de-MenuBar-label de-u-textNormal js-cart-count" id="CartCount">{{ cart.item_count }}</span>
   {% if cart.item_count == 0 %}
     {% include 'patterns-icons-cart'

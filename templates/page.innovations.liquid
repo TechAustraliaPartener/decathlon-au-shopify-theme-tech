@@ -1,13 +1,13 @@
 {% assign main_banner_subtitle = page.content | strip_html %}
 
 {% assign banner_bg_image =  'innovations_main_banner_background_image.jpg' | asset_url %}
-{% include 'banner--billboard',
+{% include 'components-banner-billboard',
   banner_adtl_classes: ' banner--centeredContent banner--wide banner--centeredContent--narrowContent',
   banner_title_adtl_classes: ' u-marginBottom025x',
   banner_title: settings['innovations_main_banner_headline'],
   banner_subtitle: settings['innovations_main_banner_subheadline'],
 %}
- 
+
 
 <div class="u-block">
   <div class="wrapper u-paddingTopBottom6x">
@@ -30,7 +30,7 @@
 
       {% assign hideBtn = blockName | append: 'hide_btn' %}
 
-      {% capture split_content_adtl_classes %}{% cycle '', ' splitContent--swapped' %} u-block{% endcapture %} 
+      {% capture split_content_adtl_classes %}{% cycle '', ' splitContent--swapped' %} u-block{% endcapture %}
 
       <div class="grid{% cycle ' grid--rev', '' %} u-paddingTopBottom4x">
         <div class="grid__item large--one-half{% cycle ' text-right', '' %} innovation-circles">
@@ -47,10 +47,10 @@
           <h3>{{ settings[blockTitle] }}</h3>
           <div class="splitContent-description u-marginBottom3x"><p>{{ settings[blockDescription] | newline_to_br }}</p></div>
 
-          {% if settings[hideBtn] == false %}  
-            {% include 'button',
+          {% if settings[hideBtn] == false %}
+            {% include 'elements-button',
             button_url: blockProduct.url,
-            button_wrapper: 'split-content-btn' 
+            button_wrapper: 'split-content-btn'
             %}
           {% endif %}
         </div>
@@ -63,16 +63,16 @@
 
       button_url: settings[blockPageLink],
       button_title: settings[blockLinkText],
-      button_wrapper: 'split-content-btn' 
+      button_wrapper: 'split-content-btn'
       %}
       {% endcomment %}
     {% endfor %}
 
-  </div> 
+  </div>
 </div>
 
 {% assign banner_bg_image =  'innovations_banner_2_background_image.jpg' | asset_url %}
-{% include 'banner--billboard',
+{% include 'components-banner-billboard',
   banner_adtl_classes: ' banner--centeredContent banner--black-font behindHikers',
   banner_title: settings['innovations_banner_2_headline'],
   banner_title_adtl_classes: ' h4 u-paddingTopBottom1x',
@@ -85,7 +85,7 @@
 %}
 
 {% assign banner_bg_image =  'innovations_banner_3_background_image.jpg' | asset_url %}
-{% include 'banner--billboard',
+{% include 'components-banner-billboard',
   banner_adtl_classes: ' banner--centeredContent banner--black-font behindHikers',
   banner_title: settings['innovations_banner_3_headline'],
   banner_title_adtl_classes: ' h3 u-paddingTopBottom1x',

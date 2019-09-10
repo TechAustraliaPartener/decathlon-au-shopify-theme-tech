@@ -46,7 +46,7 @@
 {% endif %}
 
 {% assign banner_bg_image = collection.image | img_url: '2000x' %}
-{% include 'banner--billboard',
+{% include 'components-banner-billboard',
   banner_adtl_classes: ' banner--centeredContent banner--wide',
   banner_intro: 'Get Going Pack',
   banner_title: collection.title
@@ -107,7 +107,7 @@
         {{ resource_section[1] }}
       </div>
     </div>
-    {% include 'button' %}
+    {% include 'elements-button' %}
   </div>
 </div>
 {% endif %}

@@ -73,10 +73,6 @@
    ```
 1. In Mac Terminal navigate to your project's root folder.
 1. Make sure ThemeKit is installed. If it's not go to https://shopify.github.io/themekit/
-   - The latest version of ThemeKit will not deploy any Shopify-generated files (e.g. `timber.js.liquid` → `timber.js`) failing the deploy. If you run into this challenge, downgrade ThemeKit after installing:
-     ```
-     theme update --version=0.8.2-prerelease
-     ```
 1. There should be a `config.yml.sample` in the root of the project. Duplicate this file and name it `config.yml`. This will have the default api information for Shopify. If you're working on a cloned theme because multiple developers are on the project, this is where you'd update your theme id. Make sure `config.yml` is not under version control.
 1. Create a copy of the `.env.sample` file making sure to rename it to `.env`. Update the environment variables removing the sample values. Make sure the `.env` file is not under version control.
 1. Type the command `npm install` and press enter. This will install all node dependencies for the project.
@@ -276,13 +272,13 @@ For local development, use "staging" values. For staging/production (in the Depl
 #### Staging API key
 
 1. Log into https://testing-decathlon-usa.myshopify.com/admin/apps/private
-1. Click into the "**CloudFour Persistent Cart**" private app
+1. Click into the "**Persistent Cart + Custom Checkout App**" private app
 1. In the "**Storefront API**" section, look for the "**Storefront access token**"
 
 #### Production API key
 
 1. Log into https://decathlon-usa.myshopify.com/admin/apps/private
-1. Click into the "**CloudFour Persistent Cart**" private app
+1. Click into the "**Persistent Cart + Custom Checkout App**" private app
 1. In the "**Storefront API**" section, look for the "**Storefront access token**"
 
 ### Default Domains & API URLs

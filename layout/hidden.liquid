@@ -74,7 +74,7 @@
   {% include 'google-tag-manager' %}
 
   {% if settings.ajax_cart_method == "drawer" %}
-    {% include 'ajax-cart--drawer' %}
+    {% include 'compositions-ajax-cart-drawer' %}
   {% endif %}
 
   {% include 'compositions-header' %}
@@ -100,7 +100,7 @@
     {{ 'handlebars.min.js' | asset_url | script_tag }}
     {{ 'fancybox.js' | asset_url | script_tag }}
     {{ 'jquery.fancybox-media.js' | asset_url | script_tag }}
-    {% include 'ajax-cart-template' %}
+    {% include 'compositions-ajax-cart-template' %}
     {{ 'ajax-cart.js' | asset_url | script_tag }}
     <script>
         jQuery('body').on('ajaxCart.afterCartLoad', function(evt, cart) {
