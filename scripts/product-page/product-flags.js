@@ -8,7 +8,7 @@ import { createState } from '../utilities/create-state';
 const isFlagClass = c =>
   // IE doesn't support string#startsWith, so we are using a regex instead of polyfill
   c.match(new RegExp(`^${CSS_UTILITY_PREFIX}bg`)) ||
-  c.match(new RegExp(`^${CSS_UTILITY_PREFIX}text(?:White|Black)`)) ||
+  c.match(new RegExp(`^${CSS_UTILITY_PREFIX}text(?:White|Black|Blue)`)) ||
   c.match(new RegExp(`^${CSS_UTILITY_PREFIX}hidden`));
 
 /**

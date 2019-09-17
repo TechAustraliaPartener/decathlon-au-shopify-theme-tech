@@ -42,7 +42,7 @@
         {% if bulk_shipping %}
           See shipping rate at checkout
         {% else %}
-          <span class="de-u-textBold">Free</span> shipping over $50
+          {% include 'components-free-shipping-info' %}
         {% endif %}
       </p>
     </div>

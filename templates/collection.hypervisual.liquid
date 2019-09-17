@@ -1,3 +1,5 @@
+{% include 'helpers-template-name' %}
+
 <div class="de-padding10 de-u-padTop de-u-padBottomNone de-u-textSizeBase">
     <h1 class="de-u-textBold de-u-textCapitalize de-u-textGrow de-u-spaceBottom06">{{ collection.title }}</h1>
     <hr class="de-blue-hr de-u-bgBlue de-u-spaceNone">
@@ -44,13 +46,14 @@
                 <div class="grid--full de-padding10 de-u-padTop de-u-padBottomNone de-u-textSizeBase">
                     <h2 class="de-u-textBold de-u-textCapitalize de-u-textGrow de-u-spaceBottom06">Popular Products</h2>
                 </div>
-                <div class="grid--full js-slick--attr" data-slick='{ "slidesToShow": 5, "slidesToScroll": 3, "dots": true, "responsive": [{ "breakpoint": 1000, "settings": { "slidesToShow": 3, "slidesToScroll": 3 }}, { "breakpoint": 767, "settings": { "slidesToShow": 2, "slidesToScroll": 2, "dots": false }}, { "breakpoint": 600, "settings": { "slidesToShow": 1, "slidesToScroll": 1, "dots": false }}] }'>
-                  {% for product in collection.products %}
-                    {%- if product.available -%}
-                      {% include 'compositions-product-grid-item', collection: collection %}
-                    {%- endif -%}
-                  {% endfor %}
+
+                <div class="grid--full">
+                  {% assign products = collection.products %}
+                  {% include 'components-product-tile-carousel',
+                    products: products,
+                    limit: 20 %}
                 </div>
+
                 <div class="de-collectionSubBrandLogo">
                 {% include 'elements-product-sub-brand-logo', product: subbrand.products[0] %}
                 </div>
@@ -75,3 +78,8 @@
   float: left !important;
 }
 </style>
+
+<script type="module" src="{{ 'built-product-tile.js' | asset_url }}"></script>
+<script defer nomodule src="{{ 'built-product-tile-legacy.js' | asset_url }}"></script>
+<script type="module" src="{{ 'built-product-carousel.js' | asset_url }}"></script>
+<script defer nomodule src="{{ 'built-product-carousel-legacy.js' | asset_url }}"></script>

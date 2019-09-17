@@ -70,22 +70,31 @@ export const createState = initialState => {
     if (!listenersQueued) {
       listenersQueued = true;
       Promise.resolve().then(() => {
-        listeners.forEach(({ getDeps, lastDeps }, cb) => {
-          // GetDeps is optional, so if it doesn't exist we call cb on _every_ state change
-          if (!getDeps) return cb(state);
-          const newDeps = getDeps(state);
-          listeners.set(cb, {
-            getDeps,
-            lastDeps: newDeps
-          });
-          if (depsChanged(lastDeps, newDeps)) cb(state);
-        });
-        listenersQueued = false;
+        flushUpdates();
       });
     }
 
-    DEBUG && console.log('NEW state', state);
+    if (DEBUG) console.log('NEW state', state);
   };
+
+  /**
+   * Fires all the state listener callbacks which depend on state that has changed
+   */
+  const flushUpdates = () => {
+    listeners.forEach(({ getDeps, lastDeps }, cb) => {
+      // GetDeps is optional, so if it doesn't exist we call cb on _every_ state change
+      if (!getDeps) return cb(state);
+      const newDeps = getDeps(state);
+      listeners.set(cb, {
+        getDeps,
+        lastDeps: newDeps
+      });
+      if (depsChanged(lastDeps, newDeps)) cb(state);
+    });
+    listenersQueued = false;
+  };
+
+  updateFlushers.push(flushUpdates);
 
   /**
    * @param {CallBack} cb
@@ -102,4 +111,14 @@ export const createState = initialState => {
     updateState,
     onChange
   };
+};
+
+/** @type {(() => void)[]} */
+const updateFlushers = [];
+
+/**
+ * Synchronously flush all batched updates for all createState() instances. Useful for testing.
+ */
+export const flushAllUpdates = () => {
+  updateFlushers.forEach(flush => flush());
 };

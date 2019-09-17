@@ -1,0 +1,26 @@
+{% capture arrow_svg %}
+  {% include 'assets-icons-arrow-extended-right', class: 'de-ProductTileCarousel-svg' %}
+{% endcapture %}
+
+{% comment %}
+  @TODO:
+  Use translation keys for the aria-label value, "Product Collection"
+  @see https://www.shopify.com/partners/blog/translation-keys
+{% endcomment %}
+
+{% comment %} Product Tile Carousel {% endcomment %}
+<div class="de-ProductTileCarousel js-de-SlickProductTileCarousel"
+  aria-roledescription="carousel"
+  aria-label="Product Collection"
+  data-arrow-svg="{{ arrow_svg | escape }}">
+  {% for product in products limit:limit %}
+    {%- if product.available -%}
+      {% comment %} Product Tile Carousel Slide {% endcomment %}
+      <div class="de-ProductTileCarousel-slide"
+        aria-roledescription="slide"
+        role="group">
+        {% include 'components-product-tile', product: product %}
+      </div>
+    {%- endif -%}
+  {% endfor %}
+</div>

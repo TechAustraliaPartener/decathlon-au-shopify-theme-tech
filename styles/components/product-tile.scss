@@ -1,0 +1,47 @@
+.de-ProductTile {
+  padding: 1.125rem .5em;
+}
+
+@media (min-width: $breakpoint-md) {
+    .de-ProductTile {
+        padding:.5625rem
+    }
+}
+
+.de-ProductTile-showcase {
+  background-color: $color-white;
+  padding: 2.566rem .5625rem 0;
+  text-align: center;
+  position: relative;
+}
+
+@media (min-width: $breakpoint-md) {
+  .de-ProductTile-showcase {
+    padding: 2.566rem 1.602rem 0;
+  }
+}
+
+.de-ProductTile-showcase .de-ProductFlag {
+  left: 0;
+  right: auto;
+}
+
+.de-ProductTile-header {
+  border-top: $border-width-sm solid $color-light-gray;
+}
+
+/* 
+ * @TODO improve selector by adding a proper class name to SVG, so that we can remove
+ * the tag selector here
+ */
+.de-ProductTile svg {
+  height: 16px;
+  width: auto;
+}
+
+@media (min-width: $breakpoint-md) {
+  .de-ProductTile svg {
+    height: 18px;
+    width: auto;
+  }
+}
