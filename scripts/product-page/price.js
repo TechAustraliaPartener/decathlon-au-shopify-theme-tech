@@ -39,6 +39,7 @@ const crossedOutPriceEls = document.querySelectorAll(
  */
 const formatPrice = price => {
   if (price) {
+    // @TODO Use 'utilities/price-format' utility functions
     return `$${(price / 100).toFixed(2)}`;
   }
   return '';

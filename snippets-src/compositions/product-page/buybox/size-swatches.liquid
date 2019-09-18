@@ -1,4 +1,5 @@
 {% assign option_type = 'size' %}
+{% assign sizes_delimiter = '\,' %}
 
 {% capture sizes %}
   {% for product_option in product.options_with_values %}
@@ -6,13 +7,13 @@
     {% if product_option_name == option_type %}
       {% for value in product_option.values %}
         {{- value -}}
-        {%- unless forloop.last -%},{%- endunless -%}
+        {%- unless forloop.last -%}{{sizes_delimiter}}{%- endunless -%}
       {% endfor %}
     {% endif %}
   {% endfor %}
 {% endcapture %}
 
-{% assign all_sizes = sizes | split: ',' %}
+{% assign all_sizes = sizes | split: sizes_delimiter %}
 
   <div class="de-u-flex de-u-flexAlignItemsCenter de-u-flexJustifyBetween">
     <div

@@ -20,13 +20,13 @@
 {% capture logo %}
 {% if product.vendor != no_vendor_testing and
       product.vendor != no_vendor_production %}
-{% include brand_logo_filename %}
+{% include brand_logo_filename, class: class %}
 {% endif %}
 {% endcapture %}
 {% if product.vendor == no_vendor_testing
       or product.vendor == no_vendor_production
       or logo contains 'Liquid error' %}
-  {% include 'assets-logos-brands-decathlon' %}
+  {% include 'assets-logos-brands-decathlon', class: class %}
 {% else %}
 {{ logo }}
 {% endif %}

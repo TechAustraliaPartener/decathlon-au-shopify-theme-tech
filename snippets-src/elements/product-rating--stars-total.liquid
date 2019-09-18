@@ -16,12 +16,12 @@
 {% assign rating_average = product_rating | times: 20 %}
 {% assign total_item_count = product.metafields.reviews.recent_reviews_object.total_item_count | plus: 0 %}
 
-<span class="de-StarRating de-u-spaceRight06">
+<span class="de-StarRating de-u-spaceRight06 {{ star_rating_class }}">
   <span class="de-StarRating-fill" style="width: {{ rating_average }}%"></span>
 </span>
-<span class="de-u-textBlue de-u-textMedium de-u-textSelectNone">
+<span class="de-u-textMedium de-u-textSelectNone {{ item_count_class }}">
   {{ total_item_count }}
-  <span class="de-u-hidden de-u-md-inlineBlock">
+  <span class="de-u-hidden {{ reviews_text_class }}">
     {{ total_item_count | pluralize: 'Review', 'Reviews' }}
   </span>
 </span>

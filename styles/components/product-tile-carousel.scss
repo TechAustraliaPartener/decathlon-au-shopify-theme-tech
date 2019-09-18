@@ -1,0 +1,57 @@
+/**
+ * 1. Provide adequate spacing for prev/next arrows
+ */
+
+.de-ProductTileCarousel {
+  padding: 25px 40px; /* 1 */
+}
+
+/**
+ * 1. Indicates an inactive button state
+ * 2. Adjusts button to an acceptable size
+ */
+
+.de-ProductTileCarousel-button {
+  background: $color-silver;
+  border: $border-width-md solid $color-silver; /* 1 */
+  height: 42px; /* 2 */
+  width: 42px; /* 2 */
+}
+
+/**
+ * 1. Transforms the prev arrow svg to left orientation
+ */
+
+.de-ProductTileCarousel-button:first-child .de-ProductTileCarousel-svg {
+  transform: rotate(180deg); /* 1 */
+}
+
+/**
+ * 1. Forces background color to remain consistent by overriding
+ * Slick's default styling
+ * 2. Indicates an active button state
+ */
+
+.de-ProductTileCarousel-button:hover,
+.de-ProductTileCarousel-button:focus {
+  background: $color-silver !important; /* 1 */
+  border-color: $color-blue; /* 2 */
+}
+
+/**
+ * 1. Hide the default Slick arrow icon
+ */
+
+.de-ProductTileCarousel-button:before {
+  display: none; /* 1 */
+}
+
+/**
+ * 1. Provide adequate spacing for prev/next arrows
+ */
+
+@media (min-width: $breakpoint-lg) {
+  .de-ProductTileCarousel {
+    padding: 25px 50px; /* 1 */
+  }
+}

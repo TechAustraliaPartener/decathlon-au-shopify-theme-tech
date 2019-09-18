@@ -345,3 +345,94 @@ $swatchObjects-item-unavailable-opacity: 0.4;
   background: linear-gradient(to left top, transparent 50.5%, currentColor 43.5%, currentColor 52.5%, transparent 45.5%);
   pointer-events: none;
 }
+
+/**
+ * @TODO: These selectors could be better organized within this file
+ */
+
+.de-SwatchObjects--productTile {
+    align-items: center;
+    box-sizing: content-box;
+    display: flex;
+    grid-gap: 0;
+    overflow: hidden;
+    padding-left: 0
+}
+
+.de-SwatchObjects--productTile .de-SwatchObjects-item {
+    align-items: center;
+    border: 1.5px solid #fff;
+    border-radius: 50%;
+    display: flex;
+    flex-basis: auto;
+    height: 32px;
+    justify-content: center;
+    margin: 0;
+    min-width: 32px;
+    padding: .3em;
+    position: relative;
+    width: 32px
+}
+
+@media (min-width: $breakpoint-md) {
+    .de-SwatchObjects--productTile .de-SwatchObjects-item {
+        height:42px;
+        min-width: 42px;
+        padding: .4em;
+        width: 42px
+    }
+}
+
+@media (min-width: 1080px) {
+    .de-SwatchObjects--productTile .de-SwatchObjects-item {
+        height:48px;
+        min-width: 48px;
+        padding: .5em;
+        width: 48px
+    }
+}
+
+.de-SwatchObjects--productTile .de-SwatchObjects-item:not(:last-of-type) {
+    margin-right: 0
+}
+
+@media (min-width: 375px) {
+    .de-SwatchObjects--productTile .de-SwatchObjects-item:not(:last-of-type) {
+        margin-right:1px
+    }
+}
+
+@media (min-width: $breakpoint-lg) {
+    .de-SwatchObjects--productTile .de-SwatchObjects-item:not(:last-of-type) {
+        margin-right:4px
+    }
+}
+
+.de-SwatchObjects--productTile .de-SwatchObjects-item:focus,.de-SwatchObjects--productTile .de-SwatchObjects-item:hover {
+    border: 1.5px solid #0082c3;
+    outline: none
+}
+
+.de-SwatchObjects--productTile .de-SwatchObjects-item:after {
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 2px #fff;
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 600
+}
+
+.de-SwatchObjects--productTile .de-SwatchObject-image {
+    -webkit-transform: scale(1.32);
+    -webkit-transform-origin: center center;
+    transform: scale(1.32);
+    transform-origin: center center
+}
+
+.de-SwatchObjects--square .de-SwatchObjects-item,.de-SwatchObjects--square .de-SwatchObjects-item:after {
+    border-radius: 0
+}
+

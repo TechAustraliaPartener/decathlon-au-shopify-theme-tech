@@ -16,15 +16,18 @@
   Variables
   1. `content`: (`{% assign label = content %}`) represents a string and is the
      paramater that can be passed to the pattern via liquid `include with`
-  2. `style`: is intended for holding utility classes used for styling the
+  2. `style`: Intended for holding utility classes used for styling the
       ProductFlags. This variable is not used outside of this file.
+  3. `class`: Intended to allow utility CSS classes to be passed in as needed
+      to customize styling depending on context where product flag is included.
 {% endcomment %}
 
 {% comment %}
   Check if the product is on sale and set a variable to be used below.
 {% endcomment %}
 {%- assign on_sale = false -%}
-{%- if current_variant.compare_at_price > current_variant.price -%}
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+{%- if current_variant.compare_at_price -%}
   {%- assign on_sale = true -%}
 {%- endif -%}
 
@@ -47,10 +50,10 @@
   {% assign style = 'de-u-bgBlue de-u-textWhite' %}
 {% else %}
   {% assign label = content %}
-  {% assign style = class %}
+  {% assign style = '' %}
 {% endif %}
 
 <span class="de-ProductFlag de-u-textMedium js-de-ProductFlag
-  {% unless label %}de-u-hidden{% endunless %} {{ style }}">
-  {{ label }}
+  {% unless label %}de-u-hidden{% endunless %} {{ style }} {{ class }}">
+  <span class="de-u-hiddenVisually">Special product, </span>{{ label }}
 </span>

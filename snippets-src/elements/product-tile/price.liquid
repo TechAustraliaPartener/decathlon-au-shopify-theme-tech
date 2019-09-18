@@ -1,0 +1,30 @@
+{% capture price %}{{ product.price | money }}{% if product.price_varies %} — {{ product.price_max | money }}{% endif %}{% endcapture %}
+<div
+  itemprop="offers"
+  itemscope
+  itemtype="http://schema.org/Offer"
+>
+  <p
+    class="de-ProductTile-price
+           de-u-md-textGrow2 de-u-textMedium de-u-lineHeight4 de-u-spaceBottomNone
+           js-de-ProductTile-price"
+    content="{{ price }}"
+    id="ProductPrice"
+    itemprop="price"
+    aria-live="polite"
+  >
+    <span class="de-u-hiddenVisually">{% if product.price_varies or product.compare_at_price == blank %}Regular price{% else %}Sale price{% endif %},</span>
+    <span class="js-de-ProductTile-currentPrice">{{ price }}</span>
+      {% if 
+        product.price_varies == false and 
+        product.compare_at_price_varies == false and 
+        product.compare_at_price and 
+        product.price < product.compare_at_price 
+      %}
+        <del class="de-u-padLeft02 de-u-textShrink2">
+          <span class="de-u-hiddenVisually">Regular price, </span>
+          <span class="js-de-ProductTile-crossedOutPrice">{{ product.compare_at_price | money }}</span>
+        </del>
+      {% endif %}
+  </p>
+</div>

@@ -119,6 +119,9 @@
     {% endcomment %}
     {{ 'icomoon.scss.css' | asset_url | stylesheet_tag }}
   {% endif %}
+  {% if template == "cart" or template == "collection.hypervisual" %}
+    {{ 'built-product-tile.css' | asset_url | stylesheet_tag }}
+  {% endif %}
   {% comment %}
     @TODO
     1. Determine when this was commented out and why.
