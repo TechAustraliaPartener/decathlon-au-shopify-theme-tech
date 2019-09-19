@@ -13,7 +13,7 @@
     "logo_max_width": "450",
     "is_lookbook": false,
     "footer_social_enable": true,
-    "footer_newsletter_enable": true,
+    "footer_newsletter_enable": false,
     "newsletter_form_action": "",
     "blue_band__home_title": "Our Promise:",
     "blue_band__yellowgram_icon": "shopify:\/\/shop_images\/100_240x240_0b200dc6-eab2-4a1b-8e24-ac213001c146.png",
