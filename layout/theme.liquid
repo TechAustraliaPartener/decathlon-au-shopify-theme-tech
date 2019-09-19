@@ -240,9 +240,9 @@
       {% include 'compositions-ajax-cart-drawer' %}
     {% endif %}
 
-	{% if template == "index" %}
-    {% include 'gateway' %}
-	{% endif %}
+  	{% if settings.use_gateway == true and template == "index" %}
+      {% include 'gateway' %}
+  	{% endif %}
 
     {% comment %} <div id="PageContainer" class="is-moved-by-drawer"> {% endcomment %}
     <div class="de-PageWrap-main">

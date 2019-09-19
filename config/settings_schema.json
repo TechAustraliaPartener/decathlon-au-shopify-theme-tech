@@ -61,6 +61,12 @@
           }
         ],
         "default": "none"
+      },
+      {
+        "type": "checkbox",
+        "id": "use_gateway",
+        "label": "Use Gateway?",
+        "default": false
       }
     ]
   },
