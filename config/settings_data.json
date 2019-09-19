@@ -1,5 +1,6 @@
 {
   "current": {
+    "use_gateway": false,
     "color_primary": "#1c82c3",
     "color_secondary": "#ccfb00",
     "color_borders": "#e5e5e5",
