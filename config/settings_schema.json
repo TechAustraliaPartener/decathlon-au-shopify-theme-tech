@@ -22,6 +22,49 @@
     ]
   },
   {
+    "name": "Modules Config",
+    "settings": [
+      {
+        "type": "select",
+        "id": "inventory_type",
+        "label": "Inventory Type",
+        "options": [
+          {
+            "value": "single_location",
+            "label": "Single Location"
+          },
+          {
+            "value": "multi_location",
+            "label": "Multi-Location"
+          }
+        ],
+        "default": "single_location"
+      },
+      {
+        "type": "checkbox",
+        "id": "use_persistent_cart",
+        "label": "Use Persistent Cart?",
+        "default": false
+      },
+      {
+        "type": "select",
+        "id": "out_of_stock_handling",
+        "label": "Out of Stock Handling",
+        "options": [
+          {
+            "value": "back_in_stock",
+            "label": "Back In Stock App"
+          },
+          {
+            "value": "none",
+            "label": "Display 'Out of Stock'"
+          }
+        ],
+        "default": "none"
+      }
+    ]
+  },
+  {
     "name": "Colors",
     "settings": [
       {
