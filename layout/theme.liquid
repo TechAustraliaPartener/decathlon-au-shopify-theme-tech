@@ -378,7 +378,7 @@
 {% if shop.metafields.customers.api_endpoint %}
   <div id="decathlon-customer-api" data-api-root="{{ shop.metafields.customers.api_endpoint }}"></div>
 {% endif %}
-  <script>window.shipStates = [{{ shop.metafields.decathlon.ship_states }}];</script>
+  <script>window.shipStates = ['all'];</script>
 
   <script type="text/javascript">
 	  var mouseflowCrossDomainSupport = true;
