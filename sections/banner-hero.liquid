@@ -1,0 +1,103 @@
+<div id="bannerHero" class="banner banner--slideshow test js-slick--attr loading" data-slick='{ "dots": true,
+  "infinite": true,
+  "autoplay": true,
+  "autoplaySpeed": 7000,
+  "slidesToShow": 1,
+  "arrows": true,
+  "adaptiveHeight": false }'>
+
+    {% for block in section.blocks %}
+
+      {% if block.settings.banner_title != blank %}
+      <div class="banner--slide">
+        <div class="banner banner--billboard loading{{ banner_adtl_classes }}"{% if block.settings.banner_bg_image != blank %} data-background-image="{{ block.settings.banner_bg_image | img_url: 'master' }}"{% endif %}{% if banner_bg_position != blank %} style="background-position: {{ block.settings.banner_bg_position }}"{% endif %} id="banner-slide-{{ forloop.index }}">
+          {% comment %} <div id="bannerOverlay" class="banner--billboard__overlay loading"></div> {% endcomment %}
+
+          <div class="wrapper u-centerVertically">
+            <div class="banner-content">
+              {%- if block.settings.banner_intro != blank -%}
+                <p class="banner-intro">{{ block.settings.banner_intro }}</p>
+              {%- endif -%}
+
+              <h2 class="banner-title">{{ block.settings.banner_title }}</h2>
+
+              {%- if block.settings.banner_subtitle != blank -%}
+                <p class="banner-subtitle{% unless block.settings.button_url %} u-marginBottom0x{% endunless %}">{{ block.settings.banner_subtitle }}</p>
+              {%- endif -%}
+
+              {%- if block.settings.button_url != blank -%}
+                <p class="banner-btnContainer">
+                  <a class="btn" href="{{ block.settings.button_url }}" {% if block.settings.button_new_window == true %}target="_blank" {% endif %} title="{{ block.settings.button_title }}">
+                  {{ block.settings.button_title }}</a>
+                </p>
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+  {% endfor %}
+
+</div>
+
+{% schema %}
+{
+  "name": "Banner Hero",
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Banner Hero Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "banner_bg_image",
+          "label": "Select a background image"
+        },
+        {
+          "type": "text",
+          "id": "slide_bg_position",
+          "label": "Set the CSS position of your background",
+          "default": "75% -50px"
+        },
+        {
+          "type": "text",
+          "id": "banner_intro",
+          "label": "Add an intro for your slide"
+        },
+        {
+          "type": "text",
+          "id": "banner_title",
+          "label": "Add a title for your slide"
+        },
+        {
+          "type": "richtext",
+          "id": "banner_subtitle",
+          "label": "Add a subtitle for your slide"
+        },
+        {
+          "type": "checkbox",
+          "id": "button_new_window",
+          "label": "Do you want the button to open a new tab?"
+        },
+        {
+          "type": "text",
+          "id": "button_title",
+          "label": "Add a title for the button of your slide"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Add a link for the button of your slide"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Banner Hero",
+      "category": "Banner Hero"
+    }
+  ]
+}
+{% endschema %}

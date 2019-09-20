@@ -45,6 +45,7 @@
     "popup__subheadline": "Decathlon has been bringing the joy of sports to people across the world by developing innovative and affordably priced products and gear. Now, we're bringing the fun to San Francisco.",
     "popup__button_link": "https:\/\/www.decathlon.com\/",
     "popup__button_text": "COME PLAY WITH US",
+    "use_alternate_banner": true,
     "homepage_main_banner_1_background_position": "40% 30%",
     "homepage_main_banner_1_headline": "<h3>Sports For Anyone, <br> Anywhere<\/h3>",
     "homepage_main_banner_1_subheadline": "<br> <strong>Free Shipping Over $50 <\/strong>  \n<br> <a href=\"https:\/\/www.decathlon.com\/pages\/in-store-pickup\" style=\"color:white\"><strong>Free In-Store Pickup<\/strong><\/a>",
@@ -260,9 +261,61 @@
         "settings": {
           "enable": true
         }
+      },
+      "1568939434006": {
+        "type": "banner-hero",
+        "blocks": {
+          "1568939548889": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/14.png",
+              "slide_bg_position": "60%-80px",
+              "banner_intro": "",
+              "banner_title": "<br><br><br>Swim Smart Buys",
+              "banner_subtitle": "<p><strong>Up to 50% Off Swimming Gear Ends Sunday 29 September<\/strong><\/p>\n<p><\/p>",
+              "button_new_window": false,
+              "button_title": "SHOP NOW",
+              "button_url": "shopify:\/\/collections\/smart-buys-swim"
+            }
+          },
+          "1568939563080": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/13.png",
+              "slide_bg_position": "60%-80px",
+              "banner_intro": "",
+              "banner_title": "<br><br><br>Bike Smart Buys",
+              "banner_subtitle": "<p><strong>Up to 50% Off&nbsp;Bikes&nbsp;Ends Sunday 29 September<\/strong><\/p>",
+              "button_new_window": false,
+              "button_title": "SHOP NOW",
+              "button_url": "shopify:\/\/collections\/smart-buys-bike"
+            }
+          },
+          "1568939583060": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_5.png",
+              "slide_bg_position": "60%-80px",
+              "banner_intro": "",
+              "banner_title": "<br><br><br>Run Smart Buys",
+              "banner_subtitle": "<p><strong>Up to 50% Off&nbsp;Running Shoes Ends Sunday 29 September<\/strong><\/p>",
+              "button_new_window": false,
+              "button_title": "SHOP NOW",
+              "button_url": "shopify:\/\/collections\/smart-buys-run"
+            }
+          }
+        },
+        "block_order": [
+          "1568939548889",
+          "1568939563080",
+          "1568939583060"
+        ],
+        "settings": {}
       }
     },
-    "content_for_index": []
+    "content_for_index": [
+      "1568939434006"
+    ]
   },
   "presets": {
     "Default": {

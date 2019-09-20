@@ -396,6 +396,12 @@
     "name": "Homepage",
     "settings": [
       {
+        "type": "checkbox",
+        "id": "use_alternate_banner",
+        "label": "Use the alternate banner?",
+        "default": true
+      },
+      {
         "type": "header",
         "content": "Hero Slider Banner 1"
       },

@@ -2,59 +2,62 @@
 {% comment %} {% include 'promo-band' %} {% endcomment %}
 
 <h1 style="display:none">{{ shop.name }}</h1>
-<div id="bannerHero" class="banner banner--slideshow js-slick--attr js-de-banner-loading de-banner-loading" data-slick='{ "dots": true,
-  "infinite": true,
-  "autoplay": true,
-  "autoplaySpeed": 7000,
-  "slidesToShow": 1,
-  "arrows": true,
-  "adaptiveHeight": false }'>
 
-    {% for i in (1..3) %}
-      {% assign slideName = 'homepage_main_banner_' | append: i | append: '_'  %}
-      {% assign slideImage = slideName | append: 'background_image.jpg'  %}
-      {% assign slideBGPosition = slideName | append: 'background_position' %}
-      {% assign slideIntro = slideName | append: 'intro'  %}
-      {% assign slideTitle = slideName | append: 'headline'  %}
-      {% assign slideDescription = slideName | append: 'subheadline'  %}
-      {% assign slideLinkText = slideName | append: 'link_text'  %}
-      {% assign slideLink = slideName | append: 'page_link'  %}
-      {% assign slideShowCTAImage = slideName | append: 'show_cta_product'  %}
-      {% assign slideCTAImage = slideName | append: 'cta_product_image.png' %}
+{% if settings.use_alternate_banner == false %}
+  <div id="bannerHero" class="banner banner--slideshow js-slick--attr js-de-banner-loading de-banner-loading" data-slick='{ "dots": true,
+    "infinite": true,
+    "autoplay": true,
+    "autoplaySpeed": 7000,
+    "slidesToShow": 1,
+    "arrows": true,
+    "adaptiveHeight": false }'>
 
-      {% comment %}
-        * When making updates to any of the following variables:
-        * [slideName, slideImage, banner_bg_image_size, banner_bg_image]
-        * make sure to also update the same variables present within
-        * layout/theme.liquid <head> block.
-        * The reason for the repeated use is to enable preloading of these images.
-      {% endcomment %}
-      {% assign banner_bg_image_size = '1600x' %}
-      {% assign banner_bg_image = slideImage | asset_img_url: banner_bg_image_size, format: 'pjpg' %}
+      {% for i in (1..3) %}
+        {% assign slideName = 'homepage_main_banner_' | append: i | append: '_'  %}
+        {% assign slideImage = slideName | append: 'background_image.jpg'  %}
+        {% assign slideBGPosition = slideName | append: 'background_position' %}
+        {% assign slideIntro = slideName | append: 'intro'  %}
+        {% assign slideTitle = slideName | append: 'headline'  %}
+        {% assign slideDescription = slideName | append: 'subheadline'  %}
+        {% assign slideLinkText = slideName | append: 'link_text'  %}
+        {% assign slideLink = slideName | append: 'page_link'  %}
+        {% assign slideShowCTAImage = slideName | append: 'show_cta_product'  %}
+        {% assign slideCTAImage = slideName | append: 'cta_product_image.png' %}
 
-      {% if settings[slideShowCTAImage] %}
-        {% assign button_cta_image = slideCTAImage | asset_url %}
-      {% else %}
-        {% assign button_cta_image = null %}
-      {% endif %}
+        {% comment %}
+          * When making updates to any of the following variables:
+          * [slideName, slideImage, banner_bg_image_size, banner_bg_image]
+          * make sure to also update the same variables present within
+          * layout/theme.liquid <head> block.
+          * The reason for the repeated use is to enable preloading of these images.
+        {% endcomment %}
+        {% assign banner_bg_image_size = '1600x' %}
+        {% assign banner_bg_image = slideImage | asset_img_url: banner_bg_image_size, format: 'pjpg' %}
 
-      {% if settings[slideTitle] != blank %}
-      <div class="banner--slide">
-        {% include 'components-banner-billboard',
-          banner_wrapper_adtl_classes: ' u-centerVertically',
-          banner_bg_position: settings[slideBGPosition],
-          banner_title: settings[slideTitle],
-          banner_subtitle: settings[slideDescription],
-          button_wrapper: 'banner-btnContainer',
-          button_url: settings[slideLink],
-          button_title: settings[slideLinkText]
-        %}
-      </div>
-      {% endif %}
+        {% if settings[slideShowCTAImage] %}
+          {% assign button_cta_image = slideCTAImage | asset_url %}
+        {% else %}
+          {% assign button_cta_image = null %}
+        {% endif %}
 
-    {% endfor %}
+        {% if settings[slideTitle] != blank %}
+        <div class="banner--slide">
+          {% include 'components-banner-billboard',
+            banner_wrapper_adtl_classes: ' u-centerVertically',
+            banner_bg_position: settings[slideBGPosition],
+            banner_title: settings[slideTitle],
+            banner_subtitle: settings[slideDescription],
+            button_wrapper: 'banner-btnContainer',
+            button_url: settings[slideLink],
+            button_title: settings[slideLinkText]
+          %}
+        </div>
+        {% endif %}
 
-</div>
+      {% endfor %}
+
+  </div>
+{% endif %}
 
 {% assign button_cta_image = null %}
 
