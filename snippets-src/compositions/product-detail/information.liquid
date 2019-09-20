@@ -26,9 +26,14 @@
         <small class="addons-list__items"></small>
       </div>
       {% if product_has_size_chart %}
-      <div class="productOptions-sizeChart">
-        <a class="js-sizechart" href="/pages/size-chart">Size Chart</a>
-      </div>
+        <div class="productOptions-sizeChart">
+          <div data-app="eastsideco_sizeGuides"
+            data-shop="{{ shop.permanent_domain }}"
+            data-tags="{{ product.tags | join:',' | escape }}"
+            data-metafields="{{ product.metafields.esc-size-matters.tag }}"
+            data-popup="link">
+          </div>
+        </div>
       {% endif %}
     </div>
 
