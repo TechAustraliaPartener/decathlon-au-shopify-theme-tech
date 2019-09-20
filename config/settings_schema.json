@@ -181,6 +181,29 @@
     "name": "Footer",
     "settings": [
       {
+        "type": "header",
+        "content": "Products Slider"
+      },
+      {
+        "type": "checkbox",
+        "id": "footer_slider_products",
+        "label": "Show Products slider on homepage"
+      },
+      {
+        "type": "text",
+        "id": "footer_slider_products_title",
+        "label": "Replace slider title"
+      },
+      {
+        "type": "collection",
+        "id": "footer_slider_products_collection",
+        "label": "Choose slider collection"
+      },
+      {
+        "type": "header",
+        "content": "Main Footer"
+      },
+      {
         "type": "checkbox",
         "id": "footer_social_enable",
         "label": "Show social media icons"

@@ -124,6 +124,11 @@
   {% if template == "cart" or template == "collection.hypervisual" or template == "collection.multi" or template == "collection" or template == "collection.subcategory" %}
     {{ 'built-product-tile.css' | asset_url | stylesheet_tag }}
   {% endif %}
+  {% if template == "index" or template == "cart" %}
+    {% if settings.footer_trending_products %}
+      {{ 'product-carousel.scss.css' | asset_url | stylesheet_tag }}
+    {% endif %}
+  {% endif %}
   {% comment %}
     @TODO
     1. Determine when this was commented out and why.

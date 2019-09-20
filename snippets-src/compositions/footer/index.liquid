@@ -2,6 +2,11 @@
   footer_blue_banner: true
 %}
 
+<!-- Footer Products Slider -->
+{% if settings.footer_slider_products %}
+  {% include 'slider-products', show_add_to_cart: false %}
+{% endif %}
+
 <!-- begin site-footer -->
 <footer class="site-footer small--text-center" role="contentinfo">
   <div class="wrapper">
