@@ -15,6 +15,11 @@
 {% else %}
   {% assign current_model = '' %}
 {% endif %}
-<div class="de-u-flex de-u-lg-flexJustifyEnd de-u-textShrink1 de-u-textDarkGray de-u-padTop03 js-de-ModelCode{% if current_model == blank %} de-u-hidden{% endif %}">
-  <span class="de-u-textMedium de-u-textGrow1">Model: <span class="js-de-ModelCode-text" itemprop="model">{{ current_model }}</span></span>
+<div class="de-u-flex de-u-lg-flexJustifyBetween de-u-textShrink1 de-u-textDarkGray de-u-padTop03 js-de-ModelCode">
+  <div class="afterpay-block">
+    {% include 'components-afterpay_snippet' %}
+  </div>
+  <div class="{% if current_model == blank %} de-u-hidden{% endif %}">
+    <span class="de-u-textMedium de-u-textGrow1">Model: <span class="js-de-ModelCode-text" itemprop="model">{{ current_model }}</span></span>
+  </div>
 </div>

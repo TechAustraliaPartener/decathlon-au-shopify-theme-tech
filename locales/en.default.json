@@ -80,6 +80,8 @@
       "remove": "Remove",
       "note": "Special instructions for seller",
       "subtotal": "Subtotal",
+      "afterpay_msg": "Or 4 interest-free installments of",
+      "more_info": "More info",
       "shipping_at_checkout": "Shipping & taxes calculated at checkout",
       "update": "Update Cart",
       "checkout": "Check Out",

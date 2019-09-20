@@ -1,0 +1,176 @@
+<!-- Begin Afterpay Liquid Snippet for Shopify v2.5.1 -->
+{% assign afterpay_logo_theme = 'colour' %}
+{% assign afterpay_count_eligible_variants = 0 %}
+{% assign afterpay_supported_currencies = 'AUD, NZD, USD' | split: ', ' %}
+{% assign afterpay_maximum_value_in_cents = 100000 %}
+{% if shop.currency == 'USD' %}
+  {% assign afterpay_minimum_value_in_cents = 3500 %}
+  {% assign afterpay_terms_url = 'https://www.afterpay.com/purchase-payment-agreement' %}
+  {% assign afterpay_line_1 = 'or 4 installments of' %}
+  {% assign afterpay_line_2 = 'by' %}
+{% else %}
+  {% assign afterpay_minimum_value_in_cents = 4 %}
+  {% assign afterpay_terms_url = 'https://www.afterpay.com/terms' %}
+  {% assign afterpay_line_1 = 'make 4 interest-free payments of' %}
+  {% assign afterpay_line_2 = 'fortnightly with ' %}
+{% endif %}
+{% if afterpay_supported_currencies contains shop.currency %}
+  {% for afterpay_variant in product.variants %}
+    {% if afterpay_variant.available and afterpay_variant.price >= afterpay_minimum_value_in_cents and afterpay_variant.price <= afterpay_maximum_value_in_cents %}
+      {% assign afterpay_count_eligible_variants = afterpay_count_eligible_variants | plus: 1 %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+  <script type="text/javascript">
+    if (typeof Afterpay === 'undefined') {
+      var Afterpay = {products:[]};
+      Afterpay.loadScript = function(url, callback) {
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        if (script.readyState) { // I.E.
+          script.onreadystatechange = function() {
+            if (script.readyState == 'loaded' || script.readyState == 'complete') {
+              script.onreadystatechange = null;
+              callback();
+            }
+          };
+        } else { // Others
+          script.onload = function() {
+            callback();
+          };
+        }
+        script.src = url;
+        document.getElementsByTagName('head')[0].appendChild(script);
+      };
+      Afterpay.launchPopup = function($, event) {
+        event.preventDefault();
+
+        var $popup_wrapper, $popup_outer, $popup_inner, $a, $img, $close_button;
+
+        $popup_wrapper = $('#afterpay-popup-wrapper');
+
+        if ($popup_wrapper.length > 0) {
+          $popup_wrapper.show();
+        } else {
+          $popup_wrapper = $(document.createElement('div'))
+            .attr('id', 'afterpay-popup-wrapper')
+            .css({
+              'position': 'fixed',
+              'z-index': 999999999,
+              'left': 0,
+              'top': 0,
+              'right': 0,
+              'bottom': 0,
+              'overflow': 'auto'
+            })
+            .appendTo('body')
+            .on('click', function(event) {
+              Afterpay.closePopup($, event);
+            });
+
+          $popup_outer = $(document.createElement('div'))
+            .attr('id', 'afterpay-popup-outer')
+            .css({
+              'display': '-ms-flexbox',
+              'display': '-webkit-flex',
+              'display': 'flex',
+              '-webkit-justify-content': 'center',
+              '-ms-flex-pack': 'center',
+              'justify-content': 'center',
+              '-webkit-align-content': 'center',
+              '-ms-flex-line-pack': 'center',
+              'align-content': 'center',
+              '-webkit-align-items': 'center',
+              '-ms-flex-align': 'center',
+              'align-items': 'center',
+              'width': '100%',
+              'min-height': '100%',
+              'background-color': 'rgba(0, 0, 0, 0.80)'
+            })
+            .appendTo($popup_wrapper);
+
+          $popup_inner = $(document.createElement('div'))
+            .attr('id', 'afterpay-popup-inner')
+            .css({
+              'position': 'relative',
+              'background-color': '#fff'
+            })
+            .appendTo($popup_outer);
+
+          $a = $(document.createElement('a'));
+
+          {% if shop.currency == 'USD' %}
+            $a.attr('href', 'https://www.afterpay.com/purchase-payment-agreement');
+          {% else %}
+            $a.attr('href', 'https://www.afterpay.com/terms');
+          {% endif %}
+
+          $a
+            .attr('target', '_blank')
+            .css({
+              'display': 'block'
+            })
+            .appendTo($popup_inner);
+
+          $img = $(document.createElement('img'));
+
+          {% if shop.currency == 'USD' %}
+            if ($(window).width() > 640) {
+              $img.attr('src', 'https://static.afterpay.com/us-popup-medium.png');
+            } else {
+              $img.attr('src', 'https://static.afterpay.com/us-popup-small.png');
+            }
+          {% else %}
+            if ($(window).width() > 640) {
+              $img.attr('src', 'https://static.afterpay.com/lightbox-desktop.png');
+            } else {
+              $img.attr('src', 'https://static.afterpay.com/lightbox-mobile.png');
+            }
+          {% endif %}
+
+          $img
+            .css({
+              'display': 'block',
+              'width': '100%'
+            })
+            .appendTo($a)
+            .on('click', function(event) {
+              event.stopPropagation();
+            });
+
+          $close_button = $(document.createElement('a'))
+            .attr('href', '#')
+            .css({
+              'position': 'absolute',
+              'right': '8px',
+              'top': '8px'
+            })
+            .html('<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" version="1.1" width="32px" height="32px"><g id="surface1"><path style=" " d="M 16 3 C 8.832031 3 3 8.832031 3 16 C 3 23.167969 8.832031 29 16 29 C 23.167969 29 29 23.167969 29 16 C 29 8.832031 23.167969 3 16 3 Z M 16 5 C 22.085938 5 27 9.914063 27 16 C 27 22.085938 22.085938 27 16 27 C 9.914063 27 5 22.085938 5 16 C 5 9.914063 9.914063 5 16 5 Z M 12.21875 10.78125 L 10.78125 12.21875 L 14.5625 16 L 10.78125 19.78125 L 12.21875 21.21875 L 16 17.4375 L 19.78125 21.21875 L 21.21875 19.78125 L 17.4375 16 L 21.21875 12.21875 L 19.78125 10.78125 L 16 14.5625 Z "/></g></svg>')
+            .appendTo($popup_inner)
+            .on('click', function(event) {
+              Afterpay.closePopup($, event);
+            });
+        }
+      };
+      Afterpay.closePopup = function($, event) {
+        event.preventDefault();
+
+        $('#afterpay-popup-wrapper').hide();
+      };
+      Afterpay.init = function($) {
+        $('.afterpay-info a').on('click', function(event) {
+          Afterpay.launchPopup($, event);
+        });
+      };
+      if (typeof jQuery === 'undefined' || parseFloat(jQuery.fn.jquery) < 1.7) {
+        Afterpay.loadScript('https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js', function() {
+          var jQuery_1_12_4 = jQuery.noConflict(true);
+          Afterpay.init(jQuery_1_12_4);
+        });
+      } else {
+        Afterpay.init(jQuery);
+      }
+    }
+  </script>
+<!-- End Afterpay Liquid Snippet for Shopify v2.5.1 -->

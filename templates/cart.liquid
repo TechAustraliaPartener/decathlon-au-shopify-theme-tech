@@ -225,6 +225,7 @@
             {% endcomment %}
             <input type="submit" name="checkout" class="btn btn--fill checkout-btn js-de-checkout" value="{{ 'cart.general.checkout' | t }}">
           </p>
+          <div class="afterpay-info">{{ 'cart.general.afterpay_msg' | t }}&nbsp;<strong>{{ cart.total_price | divided_by: 4 | money }}</strong> by <img src="{{ 'logo-afterpay.svg' | asset_url }}" alt="Afterpay Logo">&nbsp;<a href="#" title="More info">{{ 'cart.general.more_info' | t }}</a></div>
         </div>
       </div>
     </form>
@@ -253,10 +254,10 @@
     </div>
   </div>
 </div>
+{% include 'components-afterpay_modal_snippet' %}
 {% else %}
   {% include '404' %}
 {% endif %}
-
 <script>
   (function(){
     // Assign money_format so formatMoney() works properly
