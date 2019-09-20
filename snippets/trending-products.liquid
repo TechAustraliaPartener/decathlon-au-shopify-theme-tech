@@ -4,19 +4,19 @@
 
 <div class="trendingProducts u-block">
   <h3 class="text-center">
-    {% if settings.footer_trending_products_title == blank %}
+    {% if settings.footer_slider_products_title == blank %}
       {% if settings['is_lookbook'] == true %}
         Popular Products
       {% else %}
         Trending Products
       {% endif %}
     {% else %}
-      {{ settings.footer_trending_products_title }}
+      {{ settings.footer_slider_products_title }}
     {% endif %}
   </h3>
 
   <div class="grid--full js-slick--attr" data-slick='{ "slidesToShow": 5, "slidesToScroll": 3, "dots": true, "responsive": [{ "breakpoint": 1000, "settings": { "slidesToShow": 3, "slidesToScroll": 3 }}, { "breakpoint": 767, "settings": { "slidesToShow": 2, "slidesToScroll": 2, "dots": false }}, { "breakpoint": 600, "settings": { "slidesToShow": 1, "slidesToScroll": 1, "dots": false }}] }'>
-  {% assign collection = settings.footer_trending_products_collection %}
+  {% assign collection = settings.footer_slider_products_collection %}
   {% for product in collections[collection].products limit:20 %}
     {%- if product.available -%}
       {% include 'compositions-product-grid-item', grid_item_width: 'trendingProducts-product', collection: collections[collection] %}

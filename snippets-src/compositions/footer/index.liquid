@@ -3,8 +3,8 @@
 %}
 
 <!-- Footer Products Slider -->
-{% if settings.footer_slider_products %}
-  {% include 'slider-products', show_add_to_cart: false %}
+{% if template == "index" and settings.footer_slider_products == true %}
+  {% include 'trending-products', show_add_to_cart: false %}
 {% endif %}
 
 <!-- begin site-footer -->
