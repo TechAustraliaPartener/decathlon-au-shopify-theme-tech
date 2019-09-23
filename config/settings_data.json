@@ -1,5 +1,8 @@
 {
   "current": {
+    "inventory_type": "single_location",
+    "use_persistent_cart": false,
+    "out_of_stock_handling": "none",
     "use_gateway": false,
     "color_primary": "#1c82c3",
     "color_secondary": "#ccfb00",
