@@ -57,3 +57,9 @@ export const STOREFRONT_API_TEST_TIMEOUT_MINUTES =
  */
 
 export const IS_ONLINE_STORE_CHECKOUT = `is-online-store-checkout`;
+
+/**
+ * Flag to indicate that checkout has been attempted. To be unset within
+ * checkout or detectable on Cart page if checkout transition fails
+ */
+export const IS_CHECKING_OUT = 'is-checking-out';

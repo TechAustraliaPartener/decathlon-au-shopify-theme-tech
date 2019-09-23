@@ -1,13 +1,12 @@
 // @ts-check
 
-import scriptsConfig, { DEBUG } from '../../shared/config';
+import { DEBUG } from '../../shared/config';
 import { IS_CUSTOM_CHECKOUT } from '../../shared/constants';
+import { onCheckout, cartFormSubmitEl } from '../checkout-helpers';
 import { createCheckout } from './queries';
 import 'formdata-polyfill';
 
-const {
-  SELECTORS: { CART }
-} = scriptsConfig;
+let removeCustomCheckoutCartSubmitHandler;
 
 /**
  * Build a payload object of cart items for creating a checkout
@@ -47,10 +46,16 @@ const handleFetchError = response => {
  * while persistent cart is active, trying to checkout on more than one device
  * using the standard form submission kicks the user back to the cart page.
  * @param {Object} event - The Event passed into this handler, triggered by an event listener on the `submit` event
+ * @param {Boolean} [shouldRetry] - Optional iterator for recursively re-running
+ * @this {Element} - The cart or ajax-cart form
  */
-const customCheckoutCartSubmitHandler = function(event) {
+export const customCheckoutCartSubmitHandler = function(
+  event,
+  shouldRetry = true
+) {
   event.preventDefault();
   event.stopPropagation();
+  /** @type {NodeListOf<HTMLInputElement>} */
   const updateInputs = this.querySelectorAll('[name="updates[]"]');
   // Create an array from the updates inputs
   const inputsArr = [...updateInputs];
@@ -101,9 +106,6 @@ const customCheckoutCartSubmitHandler = function(event) {
        * new location, and add a query-string flag to indicate that it was
        * created using the Storefront API (for any checks within the checkout
        * flow).
-       * @TODO - Decide whether the actual checkout id should be passed in some
-       * way. Is it a risk to pass in the URL? Is it needed (it would be needed
-       * to query the Storefront API again and verify a URL match within checkout)
        */
       window.location.assign(
         `${res.checkout.webUrl}&${encodeURIComponent(IS_CUSTOM_CHECKOUT)}=true`
@@ -111,13 +113,33 @@ const customCheckoutCartSubmitHandler = function(event) {
     })
     .catch(error => {
       console.error(error);
+      if (DEBUG)
+        console.debug(`Call to Shopify API failed in custom
+        checkout handler. Will ${shouldRetry ? '' : 'not '}retry.`);
+      /**
+       * Attempts to retry custom checkout creation one time, throttled a bit
+       * @see https://help.shopify.com/en/api/storefront-api/getting-started#storefront-api-rate-limits
+       */
+      if (shouldRetry) {
+        setTimeout(
+          () =>
+            customCheckoutCartSubmitHandler.call(event.target, event, false),
+          1000
+        );
+        return;
+      }
       // Reload the page in order to try to resolve issues with the last payload
       /**
-       * @TODO - Look at rebuilding the cart here (and/or automatic retries).
-       * Rebuilding would involve using the methods in PC to hydrate a new cart
-       * (with a different token)
+       * If getting a custom checkout fails, remove the handler that captures
+       * the submit event. This will set up the next submit to attempt using
+       * an online-store-generated checkout
        */
-      window.location.reload();
+      removeCustomCheckoutCartSubmitHandler();
+      /**
+       * Programmatically proceed to checkout (requires a programmatic click)
+       * @TODO - Evaluate any alternatives
+       */
+      if (cartFormSubmitEl) cartFormSubmitEl.click();
     });
 };
 
@@ -125,32 +147,10 @@ const customCheckoutCartSubmitHandler = function(event) {
  * Initialize our custom checkout workaround for persistent cart.
  * Hijacks the standard cart form submission and runs a series of queries
  * to generate and transition to a new checkout URL.
- * Delegate submit event handling from any cart form to the document,
- * which is listening for all submit events.
- * In this way, the AJAX add-to-cart checkout form submit will be handled
- * even though it is not in the DOM on page load
  */
 export const customCheckoutInit = () => {
-  document.addEventListener('submit', function(e) {
-    // Loop parent nodes from the target to the delegated node
-    for (
-      let target = e.target;
-      target && target !== this;
-      /**
-       * @todo Resolve TSLint issues
-       * TSLint problems here. Attempted to cast event.target to HTMLElement,
-       * but further issues with comparing current element to Document, so
-       * adding ts-ignore to lines in this function, which is known to work
-       */
-      // @ts-ignore
-      target = target.parentNode
-    ) {
-      // @ts-ignore
-      if (target.matches(CART)) {
-        customCheckoutCartSubmitHandler.call(target, e);
-        break;
-      }
-    }
-  });
+  removeCustomCheckoutCartSubmitHandler = onCheckout(
+    customCheckoutCartSubmitHandler
+  );
   if (DEBUG) console.debug('💰 Custom checkout initialized');
 };

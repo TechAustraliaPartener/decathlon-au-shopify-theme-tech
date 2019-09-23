@@ -10,8 +10,9 @@ export const setCartCookie = cartId => Cookies.set(CART_COOKIE, cartId);
 
 /**
  * Get the cart cookie value
+ * @returns {string|undefined}
  */
-export const getCartCookie = Cookies.get(CART_COOKIE);
+export const getCartCookie = () => Cookies.get(CART_COOKIE);
 
 /**
  * Remove the cart cookie
