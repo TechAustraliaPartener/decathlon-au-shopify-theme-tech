@@ -2145,9 +2145,6 @@ label.error {
   .js-qty {
     margin: 0 auto;
   }
-  .afterpay-info img {
-    margin-bottom: -5px;
-  }
 }
 
 .cart-table {
@@ -2202,6 +2199,16 @@ label.error {
 
 .cart__remove {
   display: block;
+}
+.cart__payments {
+  text-align: right;
+  .afterpay-info img {
+    margin-bottom: -5px;
+  }
+}
+#zip-cart-widget {
+  position: relative;
+  right: -45px;
 }
 
 @include at-query ($max, $small) {

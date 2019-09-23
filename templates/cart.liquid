@@ -225,15 +225,17 @@
             {% endcomment %}
             <input type="submit" name="checkout" class="btn btn--fill checkout-btn js-de-checkout" value="{{ 'cart.general.checkout' | t }}">
           </p>
-          <div class="afterpay-info">{{ 'cart.general.afterpay_msg' | t }}&nbsp;<strong>{{ cart.total_price | divided_by: 4 | money }}</strong> by <img src="{{ 'logo-afterpay.svg' | asset_url }}" alt="Afterpay Logo">&nbsp;<a href="#" title="More info">{{ 'cart.general.more_info' | t }}</a></div>
-          <!-- Zip WIDGET -->
-            {% include 'components-zip-widget'%}
-            <div id="zip-cart-widget" data-zm-asset="cartwidget" data-zm-widget="popup" data-zm-popup-asset="termsdialog"></div>
-          <!-- end Zip WIDGET -->
         </div>
       </div>
     </form>
-  {% else %}
+    <div class="grid--full cart__payments">
+      <div class="afterpay-info">{{ 'cart.general.afterpay_msg' | t }}&nbsp;<strong>{{ cart.total_price | divided_by: 4 | money }}</strong> by <img src="{{ 'logo-afterpay.svg' | asset_url }}" alt="Afterpay Logo">&nbsp;<a href="#" title="More info">{{ 'cart.general.more_info' | t }}</a></div>
+      <!-- Zip WIDGET -->
+        {% include 'components-zip-widget'%}
+        <div id="zip-cart-widget" data-zm-asset="cartwidget" data-zm-widget="popup" data-zm-popup-asset="termsdialog"></div>
+      <!-- end Zip WIDGET -->
+    </div>
+{% else %}
     {% comment %}
       The cart is empty
     {% endcomment %}
