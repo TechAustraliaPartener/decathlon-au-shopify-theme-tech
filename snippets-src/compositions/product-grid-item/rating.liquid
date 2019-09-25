@@ -16,16 +16,19 @@ because metafields can't be floats
 {% assign product_rating = product.metafields.ratings.product_rating | plus:0 %}
 {% assign review_count = product.metafields.ratings.review_count | plus:0 %}
 {% assign rounded_rating = product_rating | round %}
-<div class="starRating-container">
-<div class="starRating{{ rating_adtl_classes }}{% if product_rating == 0 %} starRating--noRating{% endif %}" data-rating="{{ product_rating }}">
-  {% for i in (0..4) %}
-    {% if i < rounded_rating %}
-      {% include 'icon-star' with class: 'de-yellow-star' %}
-    {% else %}
-      {% include 'icon-star' with class: 'de-gray-star' %}
-    {% endif %}
-  {% endfor %}
-
+<div class="starRating-container"
+  {% if data_gtm_event  %}data-gtm-event="{{ data_gtm_event }}"{% endif %}
+  {% if data_gtm_id %}data-gtm-id="{{ data_gtm_id }}"{% endif %}
+  {% if data_gtm_category %}data-gtm-category="{{ data_gtm_category }}"{% endif %}
+>
+  <div class="starRating{{ rating_adtl_classes }}{% if product_rating == 0 %} starRating--noRating{% endif %}" data-rating="{{ product_rating }}">
+    {% for i in (0..4) %}
+      {% if i < rounded_rating %}
+        {% include 'icon-star' with class: 'de-yellow-star' %}
+      {% else %}
+        {% include 'icon-star' with class: 'de-gray-star' %}
+      {% endif %}
+    {% endfor %}
   </div>
   <div class="adept-product-rating__info">
     {% if product_rating != 0 %}

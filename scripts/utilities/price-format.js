@@ -1,18 +1,17 @@
 // @ts-check
 
-const PRICE_DELIMITER = '==';
-
 /**
  * Converts a set of prices into an array by PRICE_DELIMITER
  *
  * @todo Consider accepting delimiter as an argument
  *
- * @param {string} prices e.g. '1000|499|5000'
+ * @param {string} prices e.g. '1000==499==5000'
+ * @param {string} delimiter The delimiter to split on
  * @returns {Array}
  */
-const getPriceList = prices => {
+const getPriceList = (prices, delimiter) => {
   if (!prices) return [];
-  return prices.split(PRICE_DELIMITER).filter(price => price !== '');
+  return prices.split(delimiter).filter(price => price !== '');
 };
 
 /**
@@ -31,13 +30,14 @@ export const convertToDecimal = price => {
  *
  * e.g. '$4.99 — $19.99'
  *
- * @param {string} prices A pipe-delimited set of prices, e.g. '3.99|4.99'
+ * @param {string} prices A delimited set of prices, e.g. '3.99|4.99'
+ * @param {string} [delimiter='=='] The prices list delimiter to split on
  * @returns {string}
  */
-export const formatPriceRange = prices => {
+export const formatPriceRange = (prices, delimiter = '==') => {
   if (!prices) return '';
 
-  const priceList = getPriceList(prices);
+  const priceList = getPriceList(prices, delimiter);
   const minPrice = Math.min(...priceList).toString();
   const maxPrice = Math.max(...priceList).toString();
 

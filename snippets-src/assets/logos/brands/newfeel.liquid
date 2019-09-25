@@ -1,4 +1,10 @@
-<svg viewBox="0 0 156.63917 24" width="156.63917" height="24" role="img" class="{{class}}">
+<svg viewBox="0 0 156.63917 24" width="156.63917" height="24" role="img" class="{{class}}" 
+  {% if data_gtm_event  %}data-gtm-event="{{ data_gtm_event }}"{% endif %}
+  {% if data_gtm_id %}data-gtm-id="{{ data_gtm_id }}"{% endif %}
+  {% if data_gtm_category %}data-gtm-category="{{ data_gtm_category }}"{% endif %}
+  {% if data_gtm_delegate %}data-gtm-delegate="{{ data_gtm_delegate }}"{% endif %}
+  {% if data_gtm_actions %}data-gtm-actions="{{ data_gtm_actions }}"{% endif %}
+>
   <title>Decathlon Newfeel</title>
   <path d="M92.94231,17.51l-6.22125-6.14914v5.84758H84.57739V6.35236l6.195,6.10325V6.65392h2.16989Z"/>
   <path d="M96.325,6.65392h6.85715v2.0519H98.5539v2.1699H102.638v2.0519H98.5539v2.22889h4.62825v2.0519H96.325Z"/>

@@ -1,4 +1,10 @@
-<svg viewBox="0 0 157.55695 24" width="157.55695" height="24" role="img" class="{{class}}">
+<svg viewBox="0 0 157.55695 24" width="157.55695" height="24" role="img" class="{{class}}" 
+  {% if data_gtm_event  %}data-gtm-event="{{ data_gtm_event }}"{% endif %}
+  {% if data_gtm_id %}data-gtm-id="{{ data_gtm_id }}"{% endif %}
+  {% if data_gtm_category %}data-gtm-category="{{ data_gtm_category }}"{% endif %}
+  {% if data_gtm_delegate %}data-gtm-delegate="{{ data_gtm_delegate }}"{% endif %}
+  {% if data_gtm_actions %}data-gtm-actions="{{ data_gtm_actions }}"{% endif %}
+>
   <title>Decathlon Offload</title>
   <path d="M89.81153,17.42475a5.24446,5.24446,0,0,1-5.34506-5.14191q-.00277-.14307.00226-.28612a5.3428,5.3428,0,1,1,10.67905-.37407q.00654.187,0,.37407A5.24447,5.24447,0,0,1,90.091,17.42237Q89.95131,17.42728,89.81153,17.42475Zm3.04179-5.428a3.05623,3.05623,0,1,0-6.09014,0,3.04422,3.04422,0,1,0,6.06392,0Z"/>
   <path d="M97.82245,6.71948h6.70636V8.77137h-4.47746v2.70091h3.93335v2.04534h-3.93335V17.274h-2.2289Z"/>

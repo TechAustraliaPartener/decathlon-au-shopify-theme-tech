@@ -1,4 +1,10 @@
-<svg viewBox="0 0 172.4578 24" width="172.4578" height="24" role="img" class="{{class}}">
+<svg viewBox="0 0 172.4578 24" width="172.4578" height="24" role="img" class="{{class}}" 
+  {% if data_gtm_event  %}data-gtm-event="{{ data_gtm_event }}"{% endif %}
+  {% if data_gtm_id %}data-gtm-id="{{ data_gtm_id }}"{% endif %}
+  {% if data_gtm_category %}data-gtm-category="{{ data_gtm_category }}"{% endif %}
+  {% if data_gtm_delegate %}data-gtm-delegate="{{ data_gtm_delegate }}"{% endif %}
+  {% if data_gtm_actions %}data-gtm-actions="{{ data_gtm_actions }}"{% endif %}
+>
   <title>Decathlon Outshock</title>
   <path d="M89.77908,17.35919a5.24447,5.24447,0,0,1-5.33863-5.14859q-.00253-.13972.00238-.27943A5.33625,5.33625,0,1,1,95.11532,11.926v.00514a5.24446,5.24446,0,0,1-5.05681,5.42564Q89.91885,17.36172,89.77908,17.35919Zm3.04834-5.428a3.05622,3.05622,0,1,0-6.09013,0,3.05622,3.05622,0,1,0,6.09013,0Z"/>
   <path d="M97.68511,13.0325V6.65392h2.23546V13.0325c0,1.50779.73422,2.21579,1.96668,2.21579s1.96667-.708,1.96667-2.21579V6.65392h2.2289V13.0325a3.97079,3.97079,0,0,1-4.2218,4.32669C99.29778,17.35919,97.68511,15.73341,97.68511,13.0325Z"/>

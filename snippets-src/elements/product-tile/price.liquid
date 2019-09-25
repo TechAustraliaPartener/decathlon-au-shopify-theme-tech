@@ -3,6 +3,11 @@
   itemprop="offers"
   itemscope
   itemtype="http://schema.org/Offer"
+  {% if data_gtm_event  %}data-gtm-event="{{ data_gtm_event }}"{% endif %}
+  {% if data_gtm_id %}data-gtm-id="{{ data_gtm_id }}"{% endif %}
+  {% if data_gtm_category %}data-gtm-category="{{ data_gtm_category }}"{% endif %}
+  {% if data_gtm_actions %}data-gtm-actions="{{ data_gtm_actions }}"{% endif %}
+  {% if data_gtm_delegate %}data-gtm-delegate="{{ data_gtm_delegate }}"{% endif %}
 >
   <p
     class="de-ProductTile-price
@@ -13,7 +18,7 @@
     itemprop="price"
     aria-live="polite"
   >
-    <span class="de-u-hiddenVisually">{% if product.price_varies or product.compare_at_price == blank %}Regular price{% else %}Sale price{% endif %},</span>
+    <span class="de-u-hiddenVisually">{% if product.price_varies or product.compare_at_price == blank %}{{ 'products.general.regular_price' | t }}{% else %}{{ 'products.general.sale_price' | t }}{% endif %},</span>
     <span class="js-de-ProductTile-currentPrice">{{ price }}</span>
       {% if 
         product.price_varies == false and 
@@ -22,7 +27,7 @@
         product.price < product.compare_at_price 
       %}
         <del class="de-u-padLeft02 de-u-textShrink2">
-          <span class="de-u-hiddenVisually">Regular price, </span>
+          <span class="de-u-hiddenVisually">{{ 'products.general.regular_price' | t }}, </span>
           <span class="js-de-ProductTile-crossedOutPrice">{{ product.compare_at_price | money }}</span>
         </del>
       {% endif %}

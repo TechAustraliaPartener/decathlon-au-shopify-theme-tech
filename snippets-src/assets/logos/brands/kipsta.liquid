@@ -1,4 +1,10 @@
-<svg viewBox="0 0 138.89976 24" width="138.89976" height="24" role="img" class="{{class}}">
+<svg viewBox="0 0 138.89976 24" width="138.89976" height="24" role="img" class="{{class}}" 
+  {% if data_gtm_event  %}data-gtm-event="{{ data_gtm_event }}"{% endif %}
+  {% if data_gtm_id %}data-gtm-id="{{ data_gtm_id }}"{% endif %}
+  {% if data_gtm_category %}data-gtm-category="{{ data_gtm_category }}"{% endif %}
+  {% if data_gtm_delegate %}data-gtm-delegate="{{ data_gtm_delegate }}"{% endif %}
+  {% if data_gtm_actions %}data-gtm-actions="{{ data_gtm_actions }}"{% endif %}
+>
   <title>Decathlon Kipsta</title>
   <path d="M88.3794,12.69237l-1.59966,1.92746V17.275H84.57038V6.71988h2.229V11.709l4.08437-4.9891h2.5306l-3.40255,4.25483L93.716,17.275H91.09356Z"/>
   <path d="M95.64342,6.71988H97.879V17.275H95.64342Z"/>

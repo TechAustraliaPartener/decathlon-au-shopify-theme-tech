@@ -1,4 +1,10 @@
-<svg viewBox="0 0 133.62906 24" width="133.62906" height="24" role="img" class="{{class}}">
+<svg viewBox="0 0 133.62906 24" width="133.62906" height="24" role="img" class="{{class}}" 
+  {% if data_gtm_event  %}data-gtm-event="{{ data_gtm_event }}"{% endif %}
+  {% if data_gtm_id %}data-gtm-id="{{ data_gtm_id }}"{% endif %}
+  {% if data_gtm_category %}data-gtm-category="{{ data_gtm_category }}"{% endif %}
+  {% if data_gtm_delegate %}data-gtm-delegate="{{ data_gtm_delegate }}"{% endif %}
+  {% if data_gtm_actions %}data-gtm-actions="{{ data_gtm_actions }}"{% endif %}
+>
   <title>Decathlon Itiwit</title>
   <path d="M84.50806,6.70636h2.22889V17.2543H84.50806Z"/>
   <path d="M88.91341,6.70636h8.76482V8.75171H94.40044V17.274H92.165V8.75171H88.88719Z"/>

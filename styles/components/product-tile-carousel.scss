@@ -1,13 +1,82 @@
 /**
- * 1. Provide adequate spacing for prev/next arrows
- */
+ * Product Tile Carousel 
+ * 
+ * 1. Adds momentum based scrolling for iOS devices
+ * 2. Creates a flex container allowing children to display inline and receive 
+ *    flex based sizing
+ * 3. Creates overflow scrolling on the x-axis
+ * 4. Without this property the entire page body will receive an un-wanted 
+ *    horizontal scroll bar. 
+ * 5. Allows this element to span the full width of the page regardless of it's
+ *    fixed with container. Necessary to provide the user with a meaningful 
+ *    overflow scrolling experience. 
+ */ 
 
 .de-ProductTileCarousel {
-  padding: 25px 40px; /* 1 */
+  -webkit-overflow-scrolling: touch; /* 1 */
+  display: flex; /* 2 */
+  overflow-x: auto; /* 3 */
+  position: relative; /* 4 */
+  left: 50%; /* 5 */ 
+  margin-left: -50vw; /* 5 */
+  margin-right: -50vw; /* 5 */
+  padding: 0.5em;
+  right: 50%; /* 5 */
+  width: 100vw; /* 5 */
 }
 
 /**
- * 1. Indicates an inactive button state
+ * 1. Resets the properties that previous made this element full width. 
+ *    This is desired because at larger breakpoints this element is no longer
+ *    intended to be a full width overflowing container.  
+ */
+
+@media (min-width: $breakpoint-md) {
+  .de-ProductTileCarousel {
+    left: initial; /* 1 */
+    margin-left: 0; /* 1 */
+    margin-right: 0; /* 1 */
+    right: initial; /* 1 */
+    width: 100%; /* 1 */
+  }
+}
+
+/**
+ * 1. Provide adequate spacing for prev/next arrows
+ */
+
+ @media (min-width: $breakpoint-md) {
+  .de-ProductTileCarousel {
+    padding: 25px 40px; /* 1 */
+  }
+}
+
+@media (min-width: $breakpoint-lg) {
+  .de-ProductTileCarousel {
+    padding: 25px 50px; /* 1 */
+  }
+}
+
+/**
+ * 1. Sizes carousel items for various small screen breakpoints when the 
+ *    parent is displayed as an overflow-x container. The goal of these flex 
+ *    sizes is to display two plus a sliver of a third carousel item. 
+ */
+
+@media (min-width: 320px) {
+  .de-ProductTileCarousel-item {
+    flex: 1 0 47vw; /* 1 */
+  }
+}
+
+@media (min-width: 375px) {
+  .de-ProductTileCarousel-item {
+    flex: 1 0 41vw; /* 1 */
+  }
+}
+
+/**
+ * 1. Indicates an inactive carousel (prev/next) button state
  * 2. Adjusts button to an acceptable size
  */
 
@@ -19,7 +88,8 @@
 }
 
 /**
- * 1. Transforms the prev arrow svg to left orientation
+ * 1. Transforms the prev arrow svg to left orientation. This is useful so that
+ *    the same svg asset can be used for both the previous and next buttons. 
  */
 
 .de-ProductTileCarousel-button:first-child .de-ProductTileCarousel-svg {
@@ -44,14 +114,4 @@
 
 .de-ProductTileCarousel-button:before {
   display: none; /* 1 */
-}
-
-/**
- * 1. Provide adequate spacing for prev/next arrows
- */
-
-@media (min-width: $breakpoint-lg) {
-  .de-ProductTileCarousel {
-    padding: 25px 50px; /* 1 */
-  }
 }

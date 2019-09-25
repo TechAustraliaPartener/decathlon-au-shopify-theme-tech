@@ -1,4 +1,10 @@
-<svg viewBox="0 0 144.30811 24" width="144.30811" height="24" role="img" class="{{class}}">
+<svg viewBox="0 0 144.30811 24" width="144.30811" height="24" role="img" class="{{class}}" 
+  {% if data_gtm_event  %}data-gtm-event="{{ data_gtm_event }}"{% endif %}
+  {% if data_gtm_id %}data-gtm-id="{{ data_gtm_id }}"{% endif %}
+  {% if data_gtm_category %}data-gtm-category="{{ data_gtm_category }}"{% endif %}
+  {% if data_gtm_delegate %}data-gtm-delegate="{{ data_gtm_delegate }}"{% endif %}
+  {% if data_gtm_actions %}data-gtm-actions="{{ data_gtm_actions }}"{% endif %}
+>
   <title>Decathlon Nabaiji</title>
   <path d="M92.932,17.51l-6.22125-6.14914v5.84758H84.56706V6.35236l6.2278,6.12292V6.65392h2.1699Z"/>
   <path d="M102.20814,15.8383h-4.2218L97.416,17.20841h-2.36l5.08058-10.856,5.08058,10.85605H102.8047Zm-.78667-1.90112-1.31111-3.08769-1.31112,3.08768Z"/>

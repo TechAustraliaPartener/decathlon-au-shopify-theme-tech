@@ -1,4 +1,10 @@
-<svg viewBox="0 0 128.92215 24" width="128.92215" height="24" role="img" class="{{class}}">
+<svg viewBox="0 0 128.92215 24" width="128.92215" height="24" role="img" class="{{class}}" 
+  {% if data_gtm_event  %}data-gtm-event="{{ data_gtm_event }}"{% endif %}
+  {% if data_gtm_id %}data-gtm-id="{{ data_gtm_id }}"{% endif %}
+  {% if data_gtm_category %}data-gtm-category="{{ data_gtm_category }}"{% endif %}
+  {% if data_gtm_delegate %}data-gtm-delegate="{{ data_gtm_delegate }}"{% endif %}
+  {% if data_gtm_actions %}data-gtm-actions="{{ data_gtm_actions }}"{% endif %}
+>
   <title>Decathlon Orao</title>
   <path d="M89.81239,17.42475a5.24446,5.24446,0,0,1-5.33862-5.14859q-.00253-.13973.00238-.27944a5.33625,5.33625,0,1,1,10.67249-.00513v.00513a5.24447,5.24447,0,0,1-5.05681,5.42565Q89.95217,17.42728,89.81239,17.42475Zm3.0418-5.428a3.05623,3.05623,0,1,0-6.09014,0,3.04422,3.04422,0,1,0,6.06392,0Z"/>
   <path d="M97.82332,6.71948h4.09724a3.5068,3.5068,0,0,1,3.81536,3.4679,3.23191,3.23191,0,0,1-1.96668,2.98279l2.48456,4.1038h-2.53045l-2.1109-3.55968h-1.56679V17.274H97.81677Zm2.2289,2.05189v2.891h1.96667a1.38319,1.38319,0,0,0,1.475-1.44223,1.38327,1.38327,0,0,0-1.475-1.44879Z"/>

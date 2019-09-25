@@ -350,11 +350,16 @@ $swatchObjects-item-unavailable-opacity: 0.4;
  * @TODO: These selectors could be better organized within this file
  */
 
+ /**
+  * 1. Ensures space doesn't collapse when no swatches are rendered
+  */
+
 .de-SwatchObjects--productTile {
     align-items: center;
     box-sizing: content-box;
     display: flex;
     grid-gap: 0;
+    min-height: 48px; /* 1 */
     overflow: hidden;
     padding-left: 0
 }
@@ -435,4 +440,3 @@ $swatchObjects-item-unavailable-opacity: 0.4;
 .de-SwatchObjects--square .de-SwatchObjects-item,.de-SwatchObjects--square .de-SwatchObjects-item:after {
     border-radius: 0
 }
-

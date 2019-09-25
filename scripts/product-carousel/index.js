@@ -14,9 +14,19 @@ import $ from 'jquery';
 const SLICK_PRODUCT_TILE_CAROUSEL = `${JS_PREFIX}SlickProductTileCarousel`;
 
 /**
+ * Product tile showcase selector
+ */
+const PRODUCUT_TILE_SHOWCASE = `${JS_PREFIX}ProductTile-showcase`;
+
+/**
  * Product tile carousel button arrow svg
  */
-const arrowSvg = $(`.${SLICK_PRODUCT_TILE_CAROUSEL}`).data('arrow-svg');
+const arrowPreviousButton = $(`.${SLICK_PRODUCT_TILE_CAROUSEL}`).data(
+  'arrow-previous-button'
+);
+const arrowNextButton = $(`.${SLICK_PRODUCT_TILE_CAROUSEL}`).data(
+  'arrow-next-button'
+);
 
 /**
  * Slick carousel default configuration
@@ -28,10 +38,51 @@ const DEFAULT_SLICK_CONFIG = {
 };
 
 /**
+ * The "mode" is the number that is repeated most often
+ *
+ * For example, the "mode" of [3, 5, 4, 4, 1, 1, 2, 3] is [1, 3, 4]
+ *
+ * @param {Array} numbers An array of numbers
+ * @returns {String} The mode of the specified numbers
+ */
+const findMode = numbers => {
+  const counted = numbers.reduce((acc, curr) => {
+    if (curr in acc) {
+      acc[curr]++;
+    } else {
+      acc[curr] = 1;
+    }
+
+    return acc;
+  }, {});
+
+  return Object.keys(counted).reduce((prev, curr) =>
+    counted[prev] > counted[curr] ? prev : curr
+  );
+};
+
+/**
+ * Sets all image containers to an equal height
+ */
+const standardizeImageContainers = () => {
+  const containers = [
+    ...document.querySelectorAll(`.${PRODUCUT_TILE_SHOWCASE}`)
+  ];
+  const mode = findMode(
+    containers.map(el => {
+      el.style.height = 'initial';
+      return el.offsetHeight;
+    })
+  );
+  // Set element height to mode value of siblings
+  containers.forEach(el => (el.style.height = `${mode}px`));
+};
+
+/**
  * Determines slidesToShow value
  *
  * @param {Number} windowWidth The width value of the window viewport
- * @return {Number} - How many slides to show
+ * @returns {Number} - How many slides to show
  */
 const calcSlidesToShow = windowWidth => {
   /**
@@ -47,7 +98,7 @@ const calcSlidesToShow = windowWidth => {
     {
       start: 0,
       end: 624,
-      slidesToShow: 1
+      slidesToShow: 0
     },
     {
       start: 625,
@@ -91,8 +142,8 @@ const initCarousels = () => {
     ...DEFAULT_SLICK_CONFIG,
     slidesToShow,
     slidesToScroll: slidesToShow,
-    prevArrow: `<button type="button" class="de-ProductTileCarousel-button slick-prev">${arrowSvg}</button>`,
-    nextArrow: `<button type="button" class="de-ProductTileCarousel-button slick-next">${arrowSvg}</button>`
+    prevArrow: arrowPreviousButton,
+    nextArrow: arrowNextButton
   };
 
   /**
@@ -109,6 +160,11 @@ const initCarousels = () => {
       .not('.slick-initialized')
       .slick(config);
   }
+
+  /**
+   * Sets all image container heights to their mode value
+   */
+  standardizeImageContainers();
 };
 
 /**

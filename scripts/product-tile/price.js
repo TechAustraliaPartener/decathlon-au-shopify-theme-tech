@@ -41,9 +41,9 @@ const getCrossedOutPriceElsForTile = productTileEl =>
  * @param {PriceData} state
  * @returns {string}
  */
-const formatPrice = ({ prices, priceVaries }) => {
+const formatPrice = ({ prices, pricesDelimiter, priceVaries }) => {
   if (priceVaries) {
-    return formatPriceRange(prices);
+    return formatPriceRange(prices, pricesDelimiter);
   }
 
   if (!prices) {
@@ -58,6 +58,7 @@ const formatPrice = ({ prices, priceVaries }) => {
 /**
  * @typedef {Object} PriceData
  * @property {string} [prices] The variant-level price values
+ * @property {string} [pricesDelimiter] The prices list delimiter
  * @property {boolean} [priceVaries] product-level value
  * @property {string} [compareAtPrice]
  * @property {boolean} [compareAtPriceVaries]

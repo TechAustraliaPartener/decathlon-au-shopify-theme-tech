@@ -128,12 +128,25 @@
   {% assign max_colors_to_display = real_max %}
 {% endif %}
 
+{% assign bulk_shipping = false %}
+{% if product.tags contains 'Shipping: Bulk' %}
+  {% assign bulk_shipping = true %}
+{% endif %}
+
 <div
   class="de-SwatchObjects de-SwatchObjects--productTile de-u-padEnds06 js-de-ColorSwatches"
   aria-label="Colors available"
 >
   {% for c in colors limit: max_colors_to_display %}
     {%- assign color_row = c | split: attribute_delimiter -%}
+    {% assign color_prices = color_row[7] | split: prices_delimiter %}
+    {% assign free_shipping = true %}
+    {% for price in color_prices %}
+      {% assign price_converted_to_number = price | plus: 0 %}
+      {% if price_converted_to_number < 5000 %}
+        {% assign free_shipping = false %}
+      {% endif %}
+    {% endfor %}
     {% comment %}
       TODO
       • Consider accessibility
@@ -162,8 +175,10 @@
       data-price-varies="{{ product.price_varies }}"
       data-compare-at-price="{{ product.compare_at_price }}"
       data-compare-at-price-varies="{{ product.compare_at_price_varies }}"
+      data-is-free-shipping="{{ free_shipping }}"
+      data-is-bulk-shipping="{{ bulk_shipping }}"
       data-gtm-event="customer-interaction"
-      data-gtm-id="{% if templateName %}{{ templateName }} - {% endif %}Swatch {{ forloop.index }} - Total {{ colors.size }}"
+      data-gtm-id="Swatch {{ forloop.index }} / {{ colors.size }} | {{ product.url }}"
       data-gtm-category="Tiles"
     >
       <img class="de-SwatchObject-image de-u-block" src="{{ color_row[1] | replace: '_large.', '_64x64.' }}" alt="{% include 'func-extract-alt-copy' with alt: color_row[9] %}">

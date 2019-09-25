@@ -1,4 +1,10 @@
-<svg viewBox="0 0 147.07457 24" width="147.07457" height="24" role="img" class="{{class}}">
+<svg viewBox="0 0 147.07457 24" width="147.07457" height="24" role="img" class="{{class}}" 
+  {% if data_gtm_event  %}data-gtm-event="{{ data_gtm_event }}"{% endif %}
+  {% if data_gtm_id %}data-gtm-id="{{ data_gtm_id }}"{% endif %}
+  {% if data_gtm_category %}data-gtm-category="{{ data_gtm_category }}"{% endif %}
+  {% if data_gtm_delegate %}data-gtm-delegate="{{ data_gtm_delegate }}"{% endif %}
+  {% if data_gtm_actions %}data-gtm-actions="{{ data_gtm_actions }}"{% endif %}
+>
   <title>Decathlon Kalenji</title>
   <path d="M88.43953,12.62887l-1.59917,1.92687v2.65435H84.612V6.65821h2.22835v4.99412l4.08311-4.99412H93.4533l-3.40151,4.25352,3.67679,6.29836H91.107Z"/>
   <path d="M101.59334,15.84031H97.37258l-.57675,1.36978H94.41674L99.49606,6.35673l5.07932,10.85336h-2.41185Zm-.78648-1.90065-1.31079-3.08691-1.31079,3.08691Z"/>

@@ -48,10 +48,15 @@
                 </div>
 
                 <div class="grid--full">
-                  {% assign products = collection.products %}
+                  {% comment %} 
+                    Customize Product Tile & Carousel component options for Sport page
+                  {% endcomment %}
                   {% include 'components-product-tile-carousel',
-                    products: products,
-                    limit: 20 %}
+                    inventory_status: false,
+                    delivery_options: true,
+                    products: collection.products,
+                    limit: 20
+                   %}
                 </div>
 
                 <div class="de-collectionSubBrandLogo">

@@ -20,13 +20,27 @@
 {% capture logo %}
 {% if product.vendor != no_vendor_testing and
       product.vendor != no_vendor_production %}
-{% include brand_logo_filename, class: class %}
+{% include brand_logo_filename, 
+  class: class,
+  data_gtm_event: data_gtm_event,
+  data_gtm_id: data_gtm_id,
+  data_gtm_category: data_gtm_category,
+  data_gtm_actions: data_gtm_actions,
+  data_gtm_delegate: data_gtm_delegate
+%}
 {% endif %}
 {% endcapture %}
 {% if product.vendor == no_vendor_testing
       or product.vendor == no_vendor_production
       or logo contains 'Liquid error' %}
-  {% include 'assets-logos-brands-decathlon', class: class %}
+  {% include 'assets-logos-brands-decathlon', 
+    class: class,
+    data_gtm_event: data_gtm_event,
+    data_gtm_id: data_gtm_id,
+    data_gtm_category: data_gtm_category,
+    data_gtm_actions: data_gtm_actions,
+    data_gtm_delegate: data_gtm_delegate
+  %}
 {% else %}
 {{ logo }}
 {% endif %}

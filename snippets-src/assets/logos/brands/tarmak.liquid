@@ -1,4 +1,10 @@
-<svg viewBox="0 0 149.93281 24" width="149.93281" height="24" role="img" class="{{class}}">
+<svg viewBox="0 0 149.93281 24" width="149.93281" height="24" role="img" class="{{class}}" 
+  {% if data_gtm_event  %}data-gtm-event="{{ data_gtm_event }}"{% endif %}
+  {% if data_gtm_id %}data-gtm-id="{{ data_gtm_id }}"{% endif %}
+  {% if data_gtm_category %}data-gtm-category="{{ data_gtm_category }}"{% endif %}
+  {% if data_gtm_delegate %}data-gtm-delegate="{{ data_gtm_delegate }}"{% endif %}
+  {% if data_gtm_actions %}data-gtm-actions="{{ data_gtm_actions }}"{% endif %}
+>
   <title>Decathlon Tarmak</title>
   <path d="M84.52772,6.71948h8.74515V8.77137H89.99508v8.52227H87.76619V8.77137h-3.2778Z"/>
   <path d="M100.58235,15.90385H96.36711L95.79678,17.274H93.4171l5.08058-10.856L103.57826,17.274h-2.4059Zm-.78012-1.90112L98.49111,10.9085,97.18,14.00273Z"/>

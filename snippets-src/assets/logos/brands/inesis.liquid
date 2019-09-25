@@ -1,4 +1,10 @@
-<svg viewBox="0 0 133.36028 24" width="133.36028" height="24" role="img" class="{{class}}">
+<svg viewBox="0 0 133.36028 24" width="133.36028" height="24" role="img" class="{{class}}" 
+  {% if data_gtm_event  %}data-gtm-event="{{ data_gtm_event }}"{% endif %}
+  {% if data_gtm_id %}data-gtm-id="{{ data_gtm_id }}"{% endif %}
+  {% if data_gtm_category %}data-gtm-category="{{ data_gtm_category }}"{% endif %}
+  {% if data_gtm_delegate %}data-gtm-delegate="{{ data_gtm_delegate }}"{% endif %}
+  {% if data_gtm_actions %}data-gtm-actions="{{ data_gtm_actions }}"{% endif %}
+>
   <title>Decathlon Inesis</title>
   <path d="M84.51839,6.70636h2.2289V17.2543h-2.2289Z"/>
   <path d="M98.52112,17.55586l-6.22125-6.14914V17.2543H90.13V6.40481l6.24747,6.11636V6.70636h2.1699Z"/>

@@ -1,4 +1,10 @@
-<svg viewBox="0 0 161.14285 24" width="161.14285" height="24" role="img" class="{{class}}">
+<svg viewBox="0 0 161.14285 24" width="161.14285" height="24" role="img" class="{{class}}" 
+  {% if data_gtm_event  %}data-gtm-event="{{ data_gtm_event }}"{% endif %}
+  {% if data_gtm_id %}data-gtm-id="{{ data_gtm_id }}"{% endif %}
+  {% if data_gtm_category %}data-gtm-category="{{ data_gtm_category }}"{% endif %}
+  {% if data_gtm_delegate %}data-gtm-delegate="{{ data_gtm_delegate }}"{% endif %}
+  {% if data_gtm_actions %}data-gtm-actions="{{ data_gtm_actions }}"{% endif %}
+>
   <title>Decathlon Quechua</title>
   <path d="M92.27848,16.83474l1.357,2.29446H91.08537l-.96367-1.71756a2.62432,2.62432,0,0,1-.32778,0,5.24447,5.24447,0,0,1-5.33863-5.14859q-.00254-.13972.00238-.27944a5.33625,5.33625,0,0,1,10.6725-.00513v.00513A5.29691,5.29691,0,0,1,92.27848,16.83474Zm.55723-4.838a3.05622,3.05622,0,1,0-6.09013,0,3.05622,3.05622,0,1,0,6.09013,0Z"/>
   <path d="M97.68684,13.11117V6.71948h2.2289v6.39169c0,1.50779.74078,2.21579,1.96667,2.21579s1.96668-.708,1.96668-2.21579V6.71948H106.078v6.39169a3.97231,3.97231,0,0,1-4.21524,4.32669C99.30607,17.43786,97.68684,15.79241,97.68684,13.11117Z"/>
