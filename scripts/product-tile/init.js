@@ -6,6 +6,7 @@ import { createState } from '../utilities/create-state';
 import * as colorSwatches from './color-swatches';
 import * as price from './price';
 import * as featureImage from './feature-image';
+import * as freeShipping from './free-shipping';
 
 /**
  * Module-specific type definitions
@@ -44,9 +45,11 @@ const PRODUCT_TILE_CSS_SELECTOR = `.${JS_PREFIX}ProductTile`;
  * @property {string} [image2] Sourced from `data-image2` attribute, the 2nd image for the selected color
  * @property {string} [image2Alt] Sourced from `data-image2-alt` attribute, the alt text for the 2nd image for the selected color
  * @property {string} [prices] Sourced from `data-prices` attribute, the variant-level price values
+ * @property {string} [pricesDelimiter] Sourced from `data-prices-delimiter` attribute, prices list delimiter
  * @property {boolean} [priceVaries] Sourced from Shopify `product.priceVaries`, product-level value
  * @property {string} [compareAtPrice] Sourced from Shopify `product.compare_at_price` value
  * @property {boolean} [compareAtPriceVaries] Sourced from Shopify `product.compare_at_price_varies` value
+ * @property {boolean} [isFreeShipping] Sourced from `data-is-free-shipping` attribute, whether a product qualifies for the "Free shipping" (price >= $50)
  */
 
 /**
@@ -91,13 +94,15 @@ export const initProductTile = productTileEl => {
         [dataset.color]: {
           productId: dataset.productId,
           prices: dataset.prices,
+          delimiter: dataset.pricesDelimiter,
           image1: dataset.image,
           image1Alt: dataset.imageAlt,
           image2: dataset.image2,
           image2Alt: dataset.image2Alt,
           compareAtPrice: dataset.compareAtPrice,
           priceVaries: dataset.priceVaries === 'true',
-          compareAtPriceVaries: dataset.compareAtPriceVaries === 'true'
+          compareAtPriceVaries: dataset.compareAtPriceVaries === 'true',
+          isFreeShipping: dataset.isFreeShipping === 'true'
         }
       };
     },
@@ -125,6 +130,7 @@ export const initProductTile = productTileEl => {
   // Initialize the child UI components first
   colorSwatches.init(productTileEl);
   const featureImageInstance = featureImage.init(productTileEl);
+  const freeShippingInstance = freeShipping.init(productTileEl);
   // Pass the initial images to the feature image component
   // in case the image gets hovered before a swatch gets selected
   featureImageInstance.updateImages(getImagesFromSwatchOptions());
@@ -143,6 +149,7 @@ export const initProductTile = productTileEl => {
       featureImageInstance.updateImages(
         getImagesFromSwatchOptions(matchingSwatchOptions)
       );
+      freeShippingInstance.updateFreeShipping(matchingSwatchOptions);
     },
     state => [state.chosenColor]
   );

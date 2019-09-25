@@ -1,0 +1,10 @@
+{% comment %} TODO Make use of translation text {% endcomment %}
+<p class="js-de-DeliveryOptions-freeShipping de-u-spaceNone de-u-textShrink1 de-u-textMedium{% if bulk_shipping %} de-u-hidden{% endif %}">
+  {% include 'components-free-shipping-info' %}
+</p>
+
+{% comment %} TODO Make use of translation text {% endcomment %}
+<p class="js-de-DeliveryOptions-seeShippingRate de-u-spaceNone de-u-textShrink1 de-u-textMedium{% unless bulk_shipping %} de-u-hidden{% endunless %}">See shipping rate at checkout</p>
+
+{% comment %} TODO Make use of translation text {% endcomment %}
+<p class="de-u-textShrink1 de-u-textMedium">Free pickup</p>

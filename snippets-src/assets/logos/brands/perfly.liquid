@@ -1,4 +1,10 @@
-<svg viewBox="0 0 141.29254 24" width="141.29254" height="24" role="img" class="{{class}}">
+<svg viewBox="0 0 141.29254 24" width="141.29254" height="24" role="img" class="{{class}}" 
+  {% if data_gtm_event  %}data-gtm-event="{{ data_gtm_event }}"{% endif %}
+  {% if data_gtm_id %}data-gtm-id="{{ data_gtm_id }}"{% endif %}
+  {% if data_gtm_category %}data-gtm-category="{{ data_gtm_category }}"{% endif %}
+  {% if data_gtm_delegate %}data-gtm-delegate="{{ data_gtm_delegate }}"{% endif %}
+  {% if data_gtm_actions %}data-gtm-actions="{{ data_gtm_actions }}"{% endif %}
+>
   <title>Decathlon Perfly</title>
   <path d="M84.56706,6.71948h3.87436a3.73583,3.73583,0,1,1,0,7.44714H86.796V17.274H84.56706ZM86.796,8.77137v3.34335h1.70445a1.593,1.593,0,0,0,1.6979-1.67167,1.5996,1.5996,0,0,0-1.6979-1.67168Z"/>
   <path d="M94.96422,6.71948h6.85715V8.77137H97.19313v2.1699h4.08412v2.0519H97.19313v2.2289h4.62824V17.274H94.96422Z"/>

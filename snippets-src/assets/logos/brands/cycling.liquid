@@ -1,4 +1,10 @@
-<svg viewBox="0 0 150.27369 24" width="150.27369" height="24" role="img" class="{{class}}">
+<svg viewBox="0 0 150.27369 24" width="150.27369" height="24" role="img" class="{{class}}" 
+  {% if data_gtm_event  %}data-gtm-event="{{ data_gtm_event }}"{% endif %}
+  {% if data_gtm_id %}data-gtm-id="{{ data_gtm_id }}"{% endif %}
+  {% if data_gtm_category %}data-gtm-category="{{ data_gtm_category }}"{% endif %}
+  {% if data_gtm_delegate %}data-gtm-delegate="{{ data_gtm_delegate }}"{% endif %}
+  {% if data_gtm_actions %}data-gtm-actions="{{ data_gtm_actions }}"{% endif %}
+>
   <title>Decathlon Cycling</title>
   <path d="M89.95608,6.55559A6.71934,6.71934,0,0,1,92.303,6.962v2.1109a5.75605,5.75605,0,0,0-2.2289-.40645,3.13355,3.13355,0,0,0-3.27779,3.34991,3.10736,3.10736,0,0,0,3.31712,3.27779,6.42433,6.42433,0,0,0,2.26168-.40645v2.15679a7.40768,7.40768,0,0,1-2.42557.40645A5.24448,5.24448,0,0,1,84.50358,12.416q-.007-.18008-.00174-.36032a5.28381,5.28381,0,0,1,5.06-5.49848Q89.75888,6.549,89.95608,6.55559Z"/>
   <path d="M99.81568,13.29473V17.274H97.58022V13.27506L93.84354,6.71948h2.45835l2.42556,4.30046,2.41245-4.30046h2.44524Z"/>

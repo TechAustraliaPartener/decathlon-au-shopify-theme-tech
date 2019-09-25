@@ -31,4 +31,6 @@ test('Price range format', () => {
   expect(formatPriceRange('5999==')).toEqual('$59.99');
   expect(formatPriceRange('')).toEqual('');
   expect(formatPriceRange(null)).toEqual('');
+  expect(formatPriceRange('1099|1299|499', '|')).toEqual('$4.99 — $12.99');
+  expect(formatPriceRange('1099|1099', '|')).toEqual('$10.99');
 });

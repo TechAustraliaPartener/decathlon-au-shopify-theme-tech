@@ -30,19 +30,21 @@ export const init = productTileEl => {
 
   const state = createState(initialState);
 
-  state.onChange(({ image1, image2, isHovered }) => {
-    const { url, alt } = isHovered ? image2 : image1;
-    imageEl.src = url;
-    imageEl.alt = alt;
-  });
+  if (imageEl) {
+    state.onChange(({ image1, image2, isHovered }) => {
+      const { url, alt } = isHovered ? image2 : image1;
+      imageEl.src = url;
+      imageEl.alt = alt;
+    });
 
-  imageEl.addEventListener('mouseenter', () =>
-    state.updateState({ isHovered: true })
-  );
+    imageEl.addEventListener('mouseenter', () =>
+      state.updateState({ isHovered: true })
+    );
 
-  imageEl.addEventListener('mouseleave', () =>
-    state.updateState({ isHovered: false })
-  );
+    imageEl.addEventListener('mouseleave', () =>
+      state.updateState({ isHovered: false })
+    );
+  }
 
   return {
     /**

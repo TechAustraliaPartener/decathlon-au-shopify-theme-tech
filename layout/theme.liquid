@@ -5,6 +5,8 @@
   {% comment %} New Product Page {% endcomment %}
   {% assign pageUsesAppMate = false %}
 {%- endif -%}
+{% comment %} For Google Tag Manager {% endcomment %}
+{% include 'helpers-template-name' %}
 <!doctype html>
 <!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!--[if IE 9 ]><html class="ie9 no-js" lang="en"> <![endif]-->
@@ -119,7 +121,7 @@
     {% endcomment %}
     {{ 'icomoon.scss.css' | asset_url | stylesheet_tag }}
   {% endif %}
-  {% if template == "cart" or template == "collection.hypervisual" %}
+  {% if template == "cart" or template == "collection.hypervisual" or template == "collection.multi" %}
     {{ 'built-product-tile.css' | asset_url | stylesheet_tag }}
   {% endif %}
   {% comment %}
@@ -225,7 +227,9 @@
 {% comment %}
   Add the page template as a class for easy page or template specific styling.
 {% endcomment %}
-<body id="{% if collection %}{{ collection.handle }}{% else %}{{ page_title | handle }}{% endif %}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }} is-shortNav{% if settings['is_lookbook'] == true %} is-wishlistOnly{% endif %}{% if cart.item_count > 0 %} has-itemsInCart{% endif %}{% if product and product.tags contains 'allow sale' %} is-sellableProduct{% endif %}">
+<body id="{% if collection %}{{ collection.handle }}{% else %}{{ page_title | handle }}{% endif %}"
+      class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }} is-shortNav{% if settings['is_lookbook'] == true %} is-wishlistOnly{% endif %}{% if cart.item_count > 0 %} has-itemsInCart{% endif %}{% if product and product.tags contains 'allow sale' %} is-sellableProduct{% endif %}"
+      {% if template_name %}data-gtm-template="{{template_name}}"{% endif %}>
   {% section 'add-on-products' %}
 
   {% include 'google-tag-manager' %}

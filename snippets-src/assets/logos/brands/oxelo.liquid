@@ -1,4 +1,10 @@
-<svg viewBox="0 0 136.1333 24" width="136.1333" height="24" role="img" class="{{class}}">
+<svg viewBox="0 0 136.1333 24" width="136.1333" height="24" role="img" class="{{class}}" 
+  {% if data_gtm_event  %}data-gtm-event="{{ data_gtm_event }}"{% endif %}
+  {% if data_gtm_id %}data-gtm-id="{{ data_gtm_id }}"{% endif %}
+  {% if data_gtm_category %}data-gtm-category="{{ data_gtm_category }}"{% endif %}
+  {% if data_gtm_delegate %}data-gtm-delegate="{{ data_gtm_delegate }}"{% endif %}
+  {% if data_gtm_actions %}data-gtm-actions="{{ data_gtm_actions }}"{% endif %}
+>
   <title>Decathlon Oxelo</title>
   <path d="M89.81239,17.42475a5.24446,5.24446,0,0,1-5.33862-5.14859q-.00255-.13973.00238-.27944a5.33625,5.33625,0,1,1,10.67249-.00513v.00513a5.24448,5.24448,0,0,1-5.05681,5.42565Q89.95217,17.42728,89.81239,17.42475Zm3.04179-5.428a3.05622,3.05622,0,1,0-6.09013,0,3.04422,3.04422,0,1,0,6.06392,0Z"/>
   <path d="M100.64222,13.64217l-2.1109,3.6318H96.08609l3.2778-5.46081L96.30243,6.71947h2.51734l1.86835,3.21224,1.96667-3.21224H105.1l-3.14012,4.98881,3.363,5.56569h-2.56324Z"/>

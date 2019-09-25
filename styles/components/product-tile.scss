@@ -3,9 +3,9 @@
 }
 
 @media (min-width: $breakpoint-md) {
-    .de-ProductTile {
-        padding:.5625rem
-    }
+  .de-ProductTile {
+      padding: 0.5625rem;
+  }
 }
 
 .de-ProductTile-showcase {
@@ -44,4 +44,8 @@
     height: 18px;
     width: auto;
   }
+}
+
+.de-ProductTile-showcaseImage {
+  width: 100%;
 }

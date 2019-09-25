@@ -1,4 +1,10 @@
-<svg viewBox="0 0 138.02786 24" width="138.02786" height="24" role="img" class="{{class}}">
+<svg viewBox="0 0 138.02786 24" width="138.02786" height="24" role="img" class="{{class}}" 
+  {% if data_gtm_event  %}data-gtm-event="{{ data_gtm_event }}"{% endif %}
+  {% if data_gtm_id %}data-gtm-id="{{ data_gtm_id }}"{% endif %}
+  {% if data_gtm_category %}data-gtm-category="{{ data_gtm_category }}"{% endif %}
+  {% if data_gtm_delegate %}data-gtm-delegate="{{ data_gtm_delegate }}"{% endif %}
+  {% if data_gtm_actions %}data-gtm-actions="{{ data_gtm_actions }}"{% endif %}
+>
   <title>Decathlon Allsix</title>
   <path d="M91.65848,15.98907H87.44325l-.5769,1.37012H84.48667L89.56725,6.50314l5.08058,10.85605H92.23537ZM90.87837,14.088l-1.31112-3.08768L88.25613,14.088Z"/>
   <path d="M103.57653,17.35919H96.74561V6.8047h2.242V15.327h4.58891Z"/>

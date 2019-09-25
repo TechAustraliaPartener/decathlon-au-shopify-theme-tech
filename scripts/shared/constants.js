@@ -27,6 +27,7 @@ export const JS_PREFIX = `js-${CSS_PREFIX}`;
 
 /**
  * The CSS utility class for visibly hiding elements
+ * @todo Refactor to `HIDDEN_CSS_CLASS`, `IS` is not needed, not a boolean
  */
 export const IS_HIDDEN_CLASS = `${CSS_UTILITY_PREFIX}hidden`;
 

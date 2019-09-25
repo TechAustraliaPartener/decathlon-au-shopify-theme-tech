@@ -1,4 +1,10 @@
-<svg viewBox="0 0 149.04125 24" width="149.04125" height="24" role="img" class="{{class}}">
+<svg viewBox="0 0 149.04125 24" width="149.04125" height="24" role="img" class="{{class}}" 
+  {% if data_gtm_event  %}data-gtm-event="{{ data_gtm_event }}"{% endif %}
+  {% if data_gtm_id %}data-gtm-id="{{ data_gtm_id }}"{% endif %}
+  {% if data_gtm_category %}data-gtm-category="{{ data_gtm_category }}"{% endif %}
+  {% if data_gtm_delegate %}data-gtm-delegate="{{ data_gtm_delegate }}"{% endif %}
+  {% if data_gtm_actions %}data-gtm-actions="{{ data_gtm_actions }}"{% endif %}
+>
   <title>Decathlon Atorka</title>
   <path d="M91.665,15.90385h-4.2218L86.8729,17.274H84.49322l5.08058-10.856L94.65438,17.274H92.24193Zm-.78012-1.90112L89.5738,10.91505l-1.31111,3.08768Z"/>
   <path d="M94.79205,6.71948h8.7386V8.77137h-3.27779v8.52227H98.0174V8.77137H94.73961Z"/>

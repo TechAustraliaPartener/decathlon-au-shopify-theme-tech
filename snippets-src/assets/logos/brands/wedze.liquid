@@ -1,4 +1,10 @@
-<svg viewBox="0 0 140.66976 24" width="140.66976" height="24" role="img" class="{{class}}">
+<svg viewBox="0 0 140.66976 24" width="140.66976" height="24" role="img" class="{{class}}" 
+  {% if data_gtm_event  %}data-gtm-event="{{ data_gtm_event }}"{% endif %}
+  {% if data_gtm_id %}data-gtm-id="{{ data_gtm_id }}"{% endif %}
+  {% if data_gtm_category %}data-gtm-category="{{ data_gtm_category }}"{% endif %}
+  {% if data_gtm_delegate %}data-gtm-delegate="{{ data_gtm_delegate }}"{% endif %}
+  {% if data_gtm_actions %}data-gtm-actions="{{ data_gtm_actions }}"{% endif %}
+>
   <title>Decathlon Wedze</title>
   <path d="M94.47255,17.66075l-3.04179-6.81126-3.04835,6.81126L84.56706,6.8047h2.27479l1.96667,5.44769,2.66813-5.74925,2.68123,5.71647L96.08523,6.8047h2.24856Z"/>
   <path d="M100.64136,6.8047h6.87025V8.8566H102.9227v2.1699h4.08412v2.08467H102.9227v2.2289h4.58891V17.392h-6.87025Z"/>

@@ -1,4 +1,10 @@
-<svg viewBox="0 0 155.77383 24" width="155.77383" height="24" role="img" class="{{class}}">
+<svg viewBox="0 0 155.77383 24" width="155.77383" height="24" role="img" class="{{class}}" 
+  {% if data_gtm_event  %}data-gtm-event="{{ data_gtm_event }}"{% endif %}
+  {% if data_gtm_id %}data-gtm-id="{{ data_gtm_id }}"{% endif %}
+  {% if data_gtm_category %}data-gtm-category="{{ data_gtm_category }}"{% endif %}
+  {% if data_gtm_delegate %}data-gtm-delegate="{{ data_gtm_delegate }}"{% endif %}
+  {% if data_gtm_actions %}data-gtm-actions="{{ data_gtm_actions }}"{% endif %}
+>
   <title>Decathlon Aptonia</title>
   <path d="M91.634,15.90385H87.41874L86.84185,17.274H84.46216l5.08058-10.8495L94.62332,17.274H92.21087Zm-.78012-1.90112-1.31112-3.08768-1.31111,3.08768Z"/>
   <path d="M96.72111,6.726h3.87435a3.73583,3.73583,0,1,1,0,7.44715H98.95V17.274H96.72112ZM98.95,8.77137v3.34991h1.71756A1.59956,1.59956,0,0,0,102.372,10.4496a1.59962,1.59962,0,0,0-1.70446-1.67823Z"/>

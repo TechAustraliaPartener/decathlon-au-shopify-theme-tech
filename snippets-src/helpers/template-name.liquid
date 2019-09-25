@@ -1,6 +1,6 @@
 {% comment %} Assign template names for GTM {% endcomment %}
-{% assign templateName = template.name | capitalize %}
+{% assign template_name = template.name | capitalize %}
 {% if template.suffix %}
-  {% assign templateSuffix = template.suffix | capitalize %}
-  {% assign templateName = templateName | append: ' ' | append: templateSuffix %}
+  {% assign template_suffix = template.suffix | capitalize %}
+  {% assign template_name = template_name | append: ' ' | append: template_suffix %}
 {% endif %}

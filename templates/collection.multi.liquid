@@ -207,139 +207,32 @@
                     </h2>
                 </header>
                 <div class="grid-uniform">
-
-                    {% assign has_featured = false %}
-                    {% assign path_items = link.url | split: '/' %}
-                    {% assign product_filter = path_items.last | replace: '-', ' '%}
-                    {% assign curIndex = 0 %}
-
-                {% paginate collection.products by 8 %}
-                    {% for product in collection.products %}
-
-                        {% comment %} using filter in active collection {% endcomment %}
-                        {% if product.tags contains product_filter %}
-
-                            {% if curIndex == 8 %}{% break %}{% endif %}
-
-                            {% assign group_name = 'group' | append: collection.handle %}
-                            {% capture featuredClass %}
-                                {% cycle group_name: '', ' collectionProduct--featured--middle', ' collectionProduct--featured--end js-adjustFeaturedContent' %}
-                            {% endcapture %}
-                            {% if product.tags contains 'featured' and has_featured == false %}
-                                {% assign default_giw = 'large--one-third one-half' %}
-                                {% assign grid_item_width = default_giw | append: ' collectionProduct--featured' | append: featuredClass %}
-                                {% assign has_featured = true %}
-                            {% else %}
-                                {% assign grid_item_width = defailt_giw %}
-                            {% endif %}
-                            {% include 'compositions-product-grid-item' %}
-                            {% assign curIndex = curIndex | plus: 1 %}
-
-                        {% else %}
-
-                            {% comment %}TODO! Filtering outside of active collection{% endcomment %}
-                            {% comment %}Regular collection{% endcomment %}
-
-                            {% if collection.url == link.url %}
-
-                                {% if curIndex == 8 %}{% break %}{% endif %}
-
-                                    {% assign group_name = 'group' | append: collection.handle %}
-                                    {% capture featuredClass %}
-                                        {% cycle group_name: '', ' collectionProduct--featured--middle', ' collectionProduct--featured--end js-adjustFeaturedContent' %}
-                                    {% endcapture %}
-                                    {% if product.tags contains 'featured' and has_featured == false %}
-                                        {% assign default_giw = 'large--one-third one-half' %}
-                                        {% assign grid_item_width = default_giw | append: ' collectionProduct--featured' | append: featuredClass %}
-                                        {% assign has_featured = true %}
-                                    {% else %}
-                                        {% assign grid_item_width = defailt_giw %}
-                                    {% endif %}
-                                    {% include 'compositions-product-grid-item' %}
-                                    {% assign curIndex = curIndex | plus: 1 %}
-
-                            {% else %}
-
-                                {% if collection.url == link.url %}
-
-                                    {% if curIndex == 8 %}{% break %}{% endif %}
-
-                                    {% assign group_name = 'group' | append: collection.handle %}
-                                    {% capture featuredClass %}
-                                        {% cycle group_name: '', ' collectionProduct--featured--middle', ' collectionProduct--featured--end js-adjustFeaturedContent' %}
-                                    {% endcapture %}
-                                    {% if product.tags contains 'featured' and has_featured == false %}
-                                        {% assign default_giw = 'large--one-third one-half' %}
-                                        {% assign grid_item_width = default_giw | append: ' collectionProduct--featured' | append: featuredClass %}
-                                        {% assign has_featured = true %}
-                                    {% else %}
-                                        {% assign grid_item_width = defailt_giw %}
-                                    {% endif %}
-                                    {% include 'compositions-product-grid-item' %}
-                                    {% assign curIndex = curIndex | plus: 1 %}
-
-                                {% else %}
-
-                                        {% assign cur_tag = link.url | replace: collection.url, '' | replace: '/','' %}
-
-                                        {% if cur_tag == '' %}
-
-                                            {% if curIndex == 8 %}{% break %}{% endif %}
-                                            {% assign group_name = 'group' | append: collection.handle %}
-                                            {% capture featuredClass %}
-                                                {% cycle group_name: '', ' collectionProduct--featured--middle', ' collectionProduct--featured--end js-adjustFeaturedContent' %}
-                                            {% endcapture %}
-                                            {% if product.tags contains 'featured' and has_featured == false %}
-                                                {% assign default_giw = 'large--one-third one-half' %}
-                                                {% assign grid_item_width = default_giw | append: ' collectionProduct--featured' | append: featuredClass %}
-                                                {% assign has_featured = true %}
-                                            {% else %}
-                                                {% assign grid_item_width = defailt_giw %}
-                                            {% endif %}
-                                            {% include 'compositions-product-grid-item' %}
-                                            {% assign curIndex = curIndex | plus: 1 %}
-
-                                        {% else %}
-
-                                            {% comment %}
-                                            Pick Active Product Tag for collection
-                                            {% endcomment %}
-
-                                            {% assign handled_cur_tag = cur_tag | handle %}
-                                            {% assign active_product_tag = '' %}
-                                            {% for tag in product.tags %}
-                                                {% assign tagged_handle = tag | handle %}
-                                                {% if tagged_handle == handled_cur_tag %}
-                                                    {% assign active_product_tag = tag %}
-                                                {% endif %}
-                                            {% endfor %}
-
-                                            {% if product.tags contains active_product_tag %}
-                                                {% if curIndex == 8 %}{% break %}{% endif %}
-
-                                                {% assign group_name = 'group' | append: collection.handle %}
-                                                {% capture featuredClass %}
-                                                    {% cycle group_name: '', ' collectionProduct--featured--middle', ' collectionProduct--featured--end js-adjustFeaturedContent' %}
-                                                {% endcapture %}
-                                                {% if product.tags contains 'featured' and has_featured == false %}
-                                                    {% assign default_giw = 'large--one-third one-half' %}
-                                                    {% assign grid_item_width = default_giw | append: ' collectionProduct--featured' | append: featuredClass %}
-                                                    {% assign has_featured = true %}
-                                                {% else %}
-                                                    {% assign grid_item_width = defailt_giw %}
-                                                {% endif %}
-                                                {% include 'compositions-product-grid-item' %}
-                                                {% assign curIndex = curIndex | plus: 1 %}
-                                            {% endif %}
-
-                                        {% endif %}
-                                    {% endif %}
-                                {% endif %}
-                            {% endif %}
-                        {% endfor %}
-                {% endpaginate %}
+                  {% for product in collection.products limit:8 %}
+                    <div class="grid__item extra-large--one-third one-half collectionProduct--mod">
+                      {% include 'components-product-tile',
+                        product: product,
+                        delivery_options: true,
+                        inventory_status: false %}
+                    </div>
+                  {% endfor %}
+                  {% comment %}
+                    @TODO Remove style applied below. This is a temporary fix.
+                    When product tiles are replaced by product tile carousels, remove code below.
+                  {% endcomment %}
+                  <style>
+                    @media only screen and (min-width: 1000px) {
+                      .extra-large--one-third  {
+                        width: 33.33%;
+                      }
+                    }
+                    @media only screen and (min-width: 1300px) {
+                      .collectionProduct--mod {
+                        width: 25%;
+                      }
+                    }
+                  </style>
                 </div>
-                </div>
+              </div>
             {% endfor %}
             </div>
         {% endif %}
@@ -356,3 +249,6 @@ $( window ).load(function() {
 </script>
 
 {% include 'collection-footer-js' %}
+
+<script type="module" src="{{ 'built-product-tile.js' | asset_url }}"></script>
+<script defer nomodule src="{{ 'built-product-tile-legacy.js' | asset_url }}"></script>
