@@ -52,19 +52,8 @@ const PRODUCT_TILE_CSS_SELECTOR = `.${JS_PREFIX}ProductTile`;
  * @property {boolean} [isFreeShipping] Sourced from `data-is-free-shipping` attribute, whether a product qualifies for the "Free shipping" (price >= $50)
  */
 
-/**
- * Helper to get the first color swatch color
- *
- * @param {HTMLElement} productTileEl
- * @returns {string|null} A SwatchOptions color key
- */
-const getFirstSwatchColorForTile = productTileEl => {
-  /** @type HTMLElement|null */
-  const firstColorSwatchEl = productTileEl.querySelector(
-    colorSwatches.COLOR_SWATCH_SELECTOR
-  );
-  return firstColorSwatchEl && firstColorSwatchEl.dataset.color;
-};
+// This value is not tied to the `data-prices-delimiter` attribute and can be anything
+const pricesDelimiter = '==';
 
 /**
  * Scoped Product Tile
@@ -94,7 +83,7 @@ export const initProductTile = productTileEl => {
         [dataset.color]: {
           productId: dataset.productId,
           prices: dataset.prices,
-          delimiter: dataset.pricesDelimiter,
+          pricesDelimiter: dataset.pricesDelimiter,
           image1: dataset.image,
           image1Alt: dataset.imageAlt,
           image2: dataset.image2,
@@ -110,12 +99,13 @@ export const initProductTile = productTileEl => {
   );
 
   const state = createState(productTileState);
+  const defaultColor = allSwatches[0].dataset.color;
 
   /**
    * @param {SwatchOptions | undefined} [swatchOptions]
    */
   const getImagesFromSwatchOptions = (
-    swatchOptions = allSwatchOptions[allSwatches[0].dataset.color]
+    swatchOptions = allSwatchOptions[defaultColor]
   ) => ({
     image1: {
       url: swatchOptions.image1,
@@ -141,15 +131,50 @@ export const initProductTile = productTileEl => {
     );
   }
 
+  /**
+   * Gets the price options for the selected color,
+   * or the price options for the entire product if there is no selected color
+   * @param {string | undefined} chosenColor
+   * @returns {import('./price').PriceData}
+   */
+  const getPriceOptions = chosenColor => {
+    if (chosenColor) return { ...allSwatchOptions[chosenColor], productTileEl };
+    // If no swatch is selected, we need to construct a price data object that encompasses _all_ swatch prices
+    const prices = Object.values(allSwatchOptions).flatMap(swatch =>
+      swatch.prices.split(swatch.pricesDelimiter)
+    );
+    const compareAtPrices = Object.values(allSwatchOptions).flatMap(swatch =>
+      swatch.compareAtPrice.split(swatch.pricesDelimiter)
+    );
+    const priceVaries = prices.some(price => price !== prices[0]);
+    const compareAtPriceVaries = compareAtPrices.some(
+      price => price !== compareAtPrices[0]
+    );
+    return {
+      prices: prices.join(pricesDelimiter),
+      priceVaries,
+      compareAtPrice: compareAtPrices.join(pricesDelimiter),
+      compareAtPriceVaries,
+      pricesDelimiter,
+      productTileEl
+    };
+  };
+
   state.onChange(
     ({ chosenColor }) => {
       const matchingSwatchOptions = allSwatchOptions[chosenColor];
       // Here, we can update any other UI elements via their appropriate modules
-      price.render({ ...matchingSwatchOptions, productTileEl });
+      price.render(getPriceOptions(chosenColor));
       featureImageInstance.updateImages(
         getImagesFromSwatchOptions(matchingSwatchOptions)
       );
-      freeShippingInstance.updateFreeShipping(matchingSwatchOptions);
+      freeShippingInstance.updateFreeShipping(
+        matchingSwatchOptions || {
+          isFreeShipping: Object.values(allSwatchOptions).every(
+            swatch => swatch.isFreeShipping
+          )
+        }
+      );
     },
     state => [state.chosenColor]
   );
@@ -161,13 +186,7 @@ export const initProductTile = productTileEl => {
 
   // Reset Product Tile state when hovering off of Product Tile
   productTileEl.addEventListener('mouseleave', () => {
-    const chosenColor = getFirstSwatchColorForTile(productTileEl);
-
-    if (chosenColor) {
-      state.updateState({
-        chosenColor
-      });
-    }
+    state.updateState({ chosenColor: undefined });
   });
 };
 
