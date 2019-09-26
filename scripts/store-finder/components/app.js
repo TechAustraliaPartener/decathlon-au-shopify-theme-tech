@@ -258,13 +258,16 @@ export const app = {
         const distances = await getDistance({ origin, destinations });
         if (distances.length > 0) {
           this.stores = this.stores
-            .map((store, i) => ({
-              ...store,
-              distance: distances[i],
-              distanceFloat: parseFloat(distances[i].replace(/,/g, ''), 10)
-            }))
+            .map((store, i) => {
+              return {
+                ...store,
+                distance: distances[i],
+                distanceFloat: parseFloat(distances[i].replace(/,/g, ''), 10)
+              };
+            })
             .sort((a, b) => a.distanceFloat - b.distanceFloat);
         }
+
         return distances;
       } catch (error) {
         console.error(error);
@@ -380,9 +383,11 @@ export const app = {
 
     goToStoreInfo(store) {
       const storeUrlMap = {
-        adr_GezSSC9M: 'https://www.decathlon.com/pages/san-francisco',
-        adr_K6s3Kaja: 'https://www.decathlon.com/pages/emeryville',
-        adr_sfpotrero: 'https://www.decathlon.com/pages/sf-potrero-hill'
+        adr_T6s3Kaja: '/pages/store-tempe',
+        adr_A6s3Kaja: '/pages/store-auburn',
+        adr_F6s3Kaja: '/pages/store-knoxfield',
+        adr_B6s3Kaja: '/pages/store-boxhill',
+        adr_17930001: '/pages/store-moorabbin'
       };
       const { id } = store;
       const url = storeUrlMap[id];

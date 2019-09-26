@@ -9,11 +9,10 @@ export const noLocations = {
   ],
   template: `
     <section class='de-StoreNoLocations de-u-textSizeBase de-u-spaceTop'>
-      <p class='de-u-textDarkGray de-u-spaceBottom de-u-textShrink1'>We currently don't have a store in <span class='de-u-textBold de-u-textShrink1'>{{ searchInput || searchInputPlaceholder }}</span>, but we're planning to grow! Enter your email below to let us know you are interested in having a Decathlon near you.</p>
-      <p class='de-u-textDarkGray de-u-spaceBottom de-u-textShrink1'>In the meantime, shop all our products online and enjoy free shipping over $50.</p>
+      <p class='de-u-textDarkGray de-u-spaceBottom de-u-textShrink1'>We don't have a store in <span class='de-u-textBold de-u-textShrink1'>{{ searchInput || searchInputPlaceholder }}</span> yet.</p>
       <form
         @submit.prevent='$emit("form-submit")'
-        class='de-SingleInputForm'
+        class='de-SingleInputForm display-none'
       >
         <p class='de-u-textDarkGray de-u-spaceNone de-u-textShrink1'>Enter an email address</p>
         <div class='de-StoreNoLocations-inputWrapper de-u-spaceEnds03 de-u-flex de-u-bgSilver'>

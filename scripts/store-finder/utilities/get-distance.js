@@ -13,10 +13,10 @@ const getDistanceMatrix = data =>
 export default async ({ origin, destinations }) => {
   try {
     const data = {
-      origins: [origin],
+      origins: [`POSTCODE ${origin} Australia`],
       destinations: [...destinations],
       travelMode: 'DRIVING',
-      unitSystem: google.maps.UnitSystem.IMPERIAL
+      unitSystem: google.maps.UnitSystem.METRIC
     };
     const result = await getDistanceMatrix(data);
     const elements = result.rows[0].elements;

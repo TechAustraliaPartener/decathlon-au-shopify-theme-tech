@@ -10,7 +10,7 @@ export const storeTile = {
       <div class='de-Grid de-u-textSizeBase'>
         <div class='de-StoreTile-info de-u-size4of6 de-u-padRight06'>
           <h3
-            v-text='store.name'
+            v-text='store.cityWithSuffix'
             class='de-StoreTile-name de-u-textGrow de-u-spaceNone de-u-textBold'
           ></h3>
           <div class='de-StoreTile-address de-u-flex'>

@@ -32,8 +32,10 @@ const getStoreOpenClose = ({ storeId, day }) => {
 
 export default storeId => {
   const hoursOfOperation = {};
-  moment.tz.add('America/Los_Angeles|PST PDT|80 70|0101|1Lzm0 1zb0 Op0');
-  const date = moment().tz('America/Los_Angeles');
+  moment.tz.add(
+    'Australia/ACT|AEDT AEST|-b0 -a0|01010101010101010101010|1C140 1cM0 1cM0 1cM0 1cM0 1fA0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1fA0 1cM0 1cM0 1cM0 1cM0'
+  );
+  const date = moment().tz('Australia/ACT');
   const hour = parseInt(date.format('H'), 10);
   const day = date.weekday();
 
@@ -50,21 +52,21 @@ export default storeId => {
   } else if (hour >= store.today.close && hour < 24) {
     hoursOfOperation.today = `Open ${militaryToStandardTime(
       store.tomorrow.open
-    )}am to ${militaryToStandardTime(store.tomorrow.close)}pm`;
+    )}am-${militaryToStandardTime(store.tomorrow.close)}pm`;
   } else if (hour >= 0 && hour < store.tomorrow.open) {
     hoursOfOperation.today = `Open ${militaryToStandardTime(
       store.today.open
-    )}am to ${militaryToStandardTime(store.today.close)}pm`;
+    )}am-${militaryToStandardTime(store.today.close)}pm`;
   }
 
-  hoursOfOperation.tomorrow = `Open ${militaryToStandardTime(
+  hoursOfOperation.today = `Open ${militaryToStandardTime(
     store.tomorrow.open
-  )}am to ${militaryToStandardTime(store.tomorrow.close)}pm`;
+  )}am-${militaryToStandardTime(store.tomorrow.close)}pm`;
 
-  // TEMPORARY: Can be deleted after SF Potrero's opening AND hours updated
-  if (storeId === 'adr_sfpotrero') {
-    hoursOfOperation.today = 'Opening November 2019';
-    hoursOfOperation.tomorrow = 'Opening November 2019';
+  // TEMPORARY: Can be deleted after Emeryville's opening
+  if (Date.now() <= 1555084800000 && storeId === 'adr_K6s3Kaja') {
+    hoursOfOperation.today = 'Grand Opening April 12th 9am';
+    hoursOfOperation.tomorrow = 'Grand Opening April 12th 9am';
   }
 
   return hoursOfOperation;

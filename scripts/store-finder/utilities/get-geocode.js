@@ -3,7 +3,7 @@ import formatStoreAddress from './format-store-address';
 const getGeocode = address =>
   new Promise((resolve, reject) => {
     const geocoder = new google.maps.Geocoder();
-    geocoder.geocode({ address }, (results, status) => {
+    geocoder.geocode({ address, region: 'AU' }, (results, status) => {
       if (status === 'OK') {
         resolve(results[0]);
       } else {
