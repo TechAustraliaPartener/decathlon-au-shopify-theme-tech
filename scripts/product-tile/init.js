@@ -141,10 +141,12 @@ export const initProductTile = productTileEl => {
     if (chosenColor) return { ...allSwatchOptions[chosenColor], productTileEl };
     // If no swatch is selected, we need to construct a price data object that encompasses _all_ swatch prices
     const prices = Object.values(allSwatchOptions).flatMap(swatch =>
-      swatch.prices.split(swatch.pricesDelimiter)
+      swatch.prices ? swatch.prices.split(swatch.pricesDelimiter) : []
     );
     const compareAtPrices = Object.values(allSwatchOptions).flatMap(swatch =>
-      swatch.compareAtPrice.split(swatch.pricesDelimiter)
+      swatch.compareAtPrice
+        ? swatch.compareAtPrice.split(swatch.pricesDelimiter)
+        : []
     );
     const priceVaries = prices.some(price => price !== prices[0]);
     const compareAtPriceVaries = compareAtPrices.some(
