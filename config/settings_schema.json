@@ -87,6 +87,22 @@
         "id": "use_adeptmind",
         "label": "Use Adeptmind?",
         "default": false
+      },
+      {
+        "type": "select",
+        "id": "extra_details",
+        "label": "Account Extra Details Mechanic",
+        "options": [
+          {
+            "value": "customer_fields",
+            "label": "Customer Fields App"
+          },
+          {
+            "value": "none",
+            "label": "None"
+          }
+        ],
+        "default": "none"
       }
     ]
   },

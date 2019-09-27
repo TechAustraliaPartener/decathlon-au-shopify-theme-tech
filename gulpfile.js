@@ -159,13 +159,11 @@ gulp.task(
 
 gulp.task('styles', function() {
   return gulp
-    .src(
-      [
-        `${STYLES_PATH}/product-page/index.scss`,
-        `${STYLES_PATH}/product-tile/index.scss`
-      ],
-      { base: STYLES_PATH }
-    )
+    .src([
+      `${STYLES_PATH}/product-page/index.scss`,
+      `${STYLES_PATH}/product-tile/index.scss`,
+      `${STYLES_PATH}/customer-fields/index.scss`
+    ], { base: STYLES_PATH })
     .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
     .pipe(
       rename(path => {
