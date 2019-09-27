@@ -1,7 +1,11 @@
 {% if template.directory == 'customers' %}
   {% if template.name == 'login' %}
-    <meta http-equiv="refresh" content="0; URL='{{ settings.login_portal_url }}'"/>
+    {% unless settings.login_portal_url contains '/account/login' %}
+      <meta http-equiv="refresh" content="0; URL='{{ settings.login_portal_url }}'"/>
+    {% endunless %}
   {% elsif template.name == 'register' %}
-    <meta http-equiv="refresh" content="0; URL='{{ settings.register_portal_url }}'"/>
+    {% unless settings.regsiter_portal_url contains '/account/register' %}
+      <meta http-equiv="refresh" content="0; URL='{{ settings.register_portal_url }}'"/>
+    {% endunless %}
   {% endif %}
 {% endif %}
