@@ -5,39 +5,43 @@
     <div class="u-block">
       <div class="">
         <div class="form-vertical">
-          <form class="customerForm updateCustomer js-updateCustomer">
+          {% if settings.extra_details == 'none' %}
+            <form class="customerForm updateCustomer js-updateCustomer">
 
-            <div class="notifications u-marginBottom1x text-center"></div>
+              <div class="notifications u-marginBottom1x text-center"></div>
 
-            <input type="hidden" name="token" value="{{ customer.metafields.customers.access_token }}">
-            <input type="hidden" name="accepts_marketing" value="{{ customer.accepts_marketing }}">
+              <input type="hidden" name="token" value="{{ customer.metafields.customers.access_token }}">
+              <input type="hidden" name="accepts_marketing" value="{{ customer.accepts_marketing }}">
 
-            <div class="inputWrap">
-              <label for="FirstName">{{ 'customer.register.first_name' | t }}</label>
-              <input type="text" name="first_name" id="FirstName" class="input-full" placeholder="{{ 'customer.register.first_name' | t }}" value="{{ customer.first_name }}" autofocus>
-            </div>
-        
-            <div class="inputWrap">
-              <label for="LastName">{{ 'customer.register.last_name' | t }}</label>
-              <input type="text" name="last_name" id="LastName" class="input-full" placeholder="{{ 'customer.register.last_name' | t }}" value="{{ customer.last_name }}" >
-            </div>
+              <div class="inputWrap">
+                <label for="FirstName">{{ 'customer.register.first_name' | t }}</label>
+                <input type="text" name="first_name" id="FirstName" class="input-full" placeholder="{{ 'customer.register.first_name' | t }}" value="{{ customer.first_name }}" autofocus>
+              </div>
+          
+              <div class="inputWrap">
+                <label for="LastName">{{ 'customer.register.last_name' | t }}</label>
+                <input type="text" name="last_name" id="LastName" class="input-full" placeholder="{{ 'customer.register.last_name' | t }}" value="{{ customer.last_name }}" >
+              </div>
 
-            <div class="imageUpload {% if customer.metafields.customers.profile_image == blank %}visually-hidden{% endif %}">
-              <img class="profilePic" src="{{ customer.metafields.customers.profile_image }}" />
-              <p class="text-center"><a class="btn btn--text js-editProfileImage" href="#">Edit Profile Pic</a></p>
-            </div>
-            
-            <div class="inputWrap inputWrap--imageUpload imageUploadForm {% if customer.metafields.customers.profile_image != blank %}visually-hidden{% endif %}">
+              <div class="imageUpload {% if customer.metafields.customers.profile_image == blank %}visually-hidden{% endif %}">
+                <img class="profilePic" src="{{ customer.metafields.customers.profile_image }}" />
+                <p class="text-center"><a class="btn btn--text js-editProfileImage" href="#">Edit Profile Pic</a></p>
+              </div>
+              
+              <div class="inputWrap inputWrap--imageUpload imageUploadForm {% if customer.metafields.customers.profile_image != blank %}visually-hidden{% endif %}">
 
-              <label for="imageFiles">Profile Pic</label>
-              <input type="file" accept="image/*" id="imageFiles" class="input-full" name="image_upload" autocorrect="off" value="{{ customer.metafields.customers.profile_image }}">
-            </div>
+                <label for="imageFiles">Profile Pic</label>
+                <input type="file" accept="image/*" id="imageFiles" class="input-full" name="image_upload" autocorrect="off" value="{{ customer.metafields.customers.profile_image }}">
+              </div>
 
-            <p>
-              <input type="submit" value="Update" class="btn btn--fill btn--full">
-            </p>
+              <p>
+                <input type="submit" value="Update" class="btn btn--fill btn--full">
+              </p>
 
-          </form>
+            </form>
+          {% elsif settings.extra_details == 'customer_fields' %}
+            {% include 'compositions-customer-fields-app' %}
+          {% endif %}
         </div>
       </div>
     </div>
