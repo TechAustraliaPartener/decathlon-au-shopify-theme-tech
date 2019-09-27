@@ -261,8 +261,10 @@
 
   {{ 'timber.js' | asset_url | script_tag }}
   {% include 'polyfills' %}
-  <script defer type="module" src="{{ 'built-persistent-cart.js' | asset_url }}"></script>
-  <script defer nomodule src="{{ 'built-persistent-cart-legacy.js' | asset_url }}"></script>
+  {% if settings.use_persistent_cart %}
+    <script defer type="module" src="{{ 'built-persistent-cart.js' | asset_url }}"></script>
+    <script defer nomodule src="{{ 'built-persistent-cart-legacy.js' | asset_url }}"></script>
+  {% endif %}
 
   {% comment %}{% include '_live-search' %}{% endcomment %}
 
