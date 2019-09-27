@@ -1,0 +1,7 @@
+{% if template.directory == 'customers' %}
+  {% if template.name == 'login' %}
+    <meta http-equiv="refresh" content="0; URL='{{ settings.login_portal_url }}'"/>
+  {% elsif template.name == 'register' %}
+    <meta http-equiv="refresh" content="0; URL='{{ settings.register_portal_url }}'"/>
+  {% endif %}
+{% endif %}
