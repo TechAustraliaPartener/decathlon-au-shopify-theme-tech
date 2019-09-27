@@ -208,20 +208,21 @@
    });
   </script>
 
-
-<script>
-  // Adeptmind script overrides the global replaceState with a new one that only
-  // intermittently works, so this script preserves the original
-  window.realReplaceState = history.replaceState.bind(window.history)
-</script>
-
-  {% comment %} adeptMind {% endcomment %}
-  <style id="adeptmind-css">.template-search main{opacity: 0; pointer-events:none}</style>
-  <link href="//s3.us-east-2.amazonaws.com/adept-shop-ui/production/dc2bc6f9-e0b9-4fa8-9678-3aacb9640f23/adeptmind-styles.css" rel="stylesheet" type="text/css" media="all" />
-  {% if shop.secure_url == "https://www.decathlon.com" %}
-    <script async id="adeptmind-js" src="https://s3.us-east-2.amazonaws.com/adept-shop-ui/prod/dc2bc6f9-e0b9-4fa8-9678-3aacb9640f23/EA5C467F-BD87-495F-ABAA-73473DA91574.js"></script>
-  {% else %}
-    <script async id="adeptmind-js" src="https://s3.us-east-2.amazonaws.com/adept-shop-ui/stage/dc2bc6f9-e0b9-4fa8-9678-3aacb9640f23/C6F81754-93AC-4B29-87C8-DDB7ADAFAB86.js""></script>
+  {% if settings.use_adeptmind %}
+    <script>
+      // Adeptmind script overrides the global replaceState with a new one that only
+      // intermittently works, so this script preserves the original
+      window.realReplaceState = history.replaceState.bind(window.history)
+    </script>
+    
+    {% comment %} adeptMind {% endcomment %}
+    <style id="adeptmind-css">.template-search main{opacity: 0; pointer-events:none}</style>
+    <link href="//s3.us-east-2.amazonaws.com/adept-shop-ui/production/dc2bc6f9-e0b9-4fa8-9678-3aacb9640f23/adeptmind-styles.css" rel="stylesheet" type="text/css" media="all" />
+    {% if shop.secure_url == "https://www.decathlon.com" %}
+      <script async id="adeptmind-js" src="https://s3.us-east-2.amazonaws.com/adept-shop-ui/prod/dc2bc6f9-e0b9-4fa8-9678-3aacb9640f23/EA5C467F-BD87-495F-ABAA-73473DA91574.js"></script>
+    {% else %}
+      <script async id="adeptmind-js" src="https://s3.us-east-2.amazonaws.com/adept-shop-ui/stage/dc2bc6f9-e0b9-4fa8-9678-3aacb9640f23/C6F81754-93AC-4B29-87C8-DDB7ADAFAB86.js""></script>
+    {% endif %}
   {% endif %}
 </head>
 

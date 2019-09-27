@@ -81,6 +81,12 @@
         "label": "Register Portal URL",
         "default": "\/account\/register",
         "info": "Theme default is '\/account\/register'"
+      },
+      {
+        "type": "checkbox",
+        "id": "use_adeptmind",
+        "label": "Use Adeptmind?",
+        "default": false
       }
     ]
   },
