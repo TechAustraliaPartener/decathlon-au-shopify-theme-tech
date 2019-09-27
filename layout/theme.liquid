@@ -357,11 +357,12 @@
   {% comment %}{% include 'decathlon-wishlist' %}{% endcomment %}
   {% comment %}{% include 'zendesk-chat' %}{% endcomment %}
 
-{% include 'add-to-cart-wishlist-swap' %}
+  {% include 'add-to-cart-wishlist-swap' %}
 
-{% if shop.metafields.customers.api_endpoint %}
-  <div id="decathlon-customer-api" data-api-root="{{ shop.metafields.customers.api_endpoint }}"></div>
-{% endif %}
+  {% if shop.metafields.customers.api_endpoint %}
+    <div id="decathlon-customer-api" data-api-root="{{ shop.metafields.customers.api_endpoint }}"></div>
+  {% endif %}
+
   <script>window.shipStates = ['all'];</script>
 
   <script type="text/javascript">
@@ -374,6 +375,7 @@
 		  document.getElementsByTagName("head")[0].appendChild(mf);
 	  })();
   </script>
+  
   {% comment %}
     Capture a customer ID (will be undefined if there's not a customer yet, but that's good).
     Used by Persistent Cart JS
