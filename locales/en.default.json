@@ -150,9 +150,24 @@
       "title": "My Account",
       "details": "Account Details",
       "view_addresses": "Manage your Addresses",
-      "return": "Return to Account Overview"
-    }
-    ,
+      "return": "Return to Account Overview",
+      "welcome_form_title": "Thank you for registering. We just need a few more details from you to complete your free membership!",
+      "marketing_optin": "Keep me up to date on news and exclusive offers",
+      "welcome_heading": "Thank you for signing up!",
+      "welcome_subheading": "Here are just some of the benefits you can enjoy by shopping with us",
+      "my_details": "My details",
+      "gender": "Gender: ",
+      "postcode": "Postcode: ",
+      "marketing_optin_choice": "Marketing Preference:",
+      "marketing_optin_disabled": "Do not keep me up to date on news and exclusive offers",
+      "details_update": "Update your details",
+      "marketing_change": "Change your marketing preferences",
+      "purchase_history": "Purchase History",
+      "view_history": "View order history",
+      "wishlist": "Wishlist",
+      "view_wishlist": "View wishlist",
+      "addresses": "Addresses"
+    },
     "activate_account": {
       "title": "Activate Account",
       "subtext": "Create your password to activate your account.",
