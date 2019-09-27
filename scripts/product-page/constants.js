@@ -25,6 +25,11 @@ export const CONTAINER_SUFFIX = '-container';
 export const TEMPLATE_SUFFIX = '-template';
 
 /**
+ * Global inventory type
+ */
+export const INVENTORY_TYPE = window.vars.inventoryType;
+
+/**
  * TAGS
  */
 

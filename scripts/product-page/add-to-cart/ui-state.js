@@ -1,6 +1,6 @@
 // @ts-check
 
-import { PRODUCT_PAGE_COPY } from '../constants';
+import { PRODUCT_PAGE_COPY, INVENTORY_TYPE } from '../constants';
 import {
   isVariantOutOfStock,
   isVariantSoldOut,
@@ -146,13 +146,15 @@ export const getUIState = variant => {
     };
   }
 
-  if (!variantHasSufficientQuantity(variant)) {
-    return {
-      ...DEFAULT_UI_STATE,
-      validationText: PRODUCT_PAGE_COPY.limitedQuantityLeft(
-        variant.inventory_quantity
-      )
-    };
+  if (INVENTORY_TYPE !== 'multi_location') {
+    if (!variantHasSufficientQuantity(variant)) {
+      return {
+        ...DEFAULT_UI_STATE,
+        validationText: PRODUCT_PAGE_COPY.limitedQuantityLeft(
+          variant.inventory_quantity
+        )
+      };
+    }
   }
 
   return DEFAULT_UI_STATE;
