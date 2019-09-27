@@ -17,6 +17,15 @@
     </script>
     {% include 'polyfills' %}
     {{ checkout_scripts }}
+
+    {% assign login_link_default = 'https://' | append: request.host | append: '/account/login?' %}
+    {% assign login_link_override = settings.login_portal_url %}
+    {% if login_link_override contains '?' %}
+      {% assign login_link_override = login_link_override | append: '&' %}
+    {% else %}
+      {% assign login_link_override = login_link_override | append: '?' %}
+    {% endif %}
+
   </head>
   <body>
     {{ skip_to_content_link }}
@@ -106,8 +115,11 @@
               <hr class="de-u-bgBlue de-location-hr de-u-spaceEnds2">
               <ul class="js-de-pickup-locations de-pickup-locations de-Grid de-Grid--withGutter"></ul>
               <hr class="de-u-bgLime de-location-hr de-u-spaceEnds2">
-            </div>
-            {{ content_for_layout }}
+            </div>      
+
+            {% capture layout_content %}{{ content_for_layout }}{% endcapture %}
+            {{ layout_content | replace: login_link_default, login_link_override }}
+
             <div
               class="de-visit-cal-container
                      de-u-hidden de-u-spaceTop de-u-textShrink3"
@@ -142,7 +154,8 @@
             </span>
           </div>
           <div class="main__footer">
-            {{ content_for_footer }}
+            {% capture footer_content %}{{ content_for_footer }}{% endcapture %}
+            {{ footer_content | replace: login_link_default, login_link_override }}
           </div>
         </div>
         <div class="sidebar" role="complementary">
@@ -150,7 +163,8 @@
             {{ content_for_logo }}
           </div>
           <div class="sidebar__content">
-            {{ content_for_order_summary }}
+            {% capture order_summary_content %}{{ content_for_order_summary }}{% endcapture %}
+            {{ order_summary_content | replace: login_link_default, login_link_override }}
           </div>
         </div>
       </div>

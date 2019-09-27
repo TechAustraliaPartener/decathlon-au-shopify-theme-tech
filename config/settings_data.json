@@ -4,6 +4,7 @@
     "use_persistent_cart": false,
     "out_of_stock_handling": "none",
     "use_gateway": false,
+    "login_portal_url": "https:\/\/api-eu.decathlon.net\/connect\/oauth\/authorize?response_type=code&client_id=e57b2db5-07ff-468e-a8da-85af418a1691&scope=openid+profile+email&redirect_uri=https%3A%2F%2F1fya2jw7u4.execute-api.ap-southeast-2.amazonaws.com%2FProd%2Flogin",
     "color_primary": "#1c82c3",
     "color_secondary": "#ccfb00",
     "color_borders": "#e5e5e5",

@@ -72,8 +72,8 @@
         "type": "text",
         "id": "login_portal_url",
         "label": "Login Portal URL",
-        "default": "/account/login?checkout_url=/",
-        "info": "Theme default is '/account/login?checkout_url=/'"
+        "default": "\/account\/login?checkout_url=\/",
+        "info": "Theme default is '\/account\/login?checkout_url=\/'"
       }
     ]
   },
