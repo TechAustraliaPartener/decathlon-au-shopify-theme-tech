@@ -939,10 +939,10 @@ window.getLocaleSync = getLocaleSync;
                     '<p>The email address you entered is already associated with a Decathlon account. Please log in to that account, or enter a different email address to create a new Decathlon account.</p>'
                   )
                   .after(
-                    '<p class="u-marginTop1x text-center"><a class="btn btn--text" href="/account/login">Sign In</a></p>'
+                    `<p class="u-marginTop1x text-center"><a class="btn btn--text" href="${window.vars.loginUrl}">Sign In</a></p>`
                   )
                   .after(
-                    '<p class="u-marginTop1x"><a class="btn btn--fill btn--full" href="/account/register">Create Account</a></p>'
+                    `<p class="u-marginTop1x"><a class="btn btn--fill btn--full" href="${window.vars.registerUrl}">Create Account</a></p>`
                   );
               else r.addClass('form-error').html('<p>Unknown Error</p>');
             } else {
@@ -963,7 +963,7 @@ window.getLocaleSync = getLocaleSync;
             if (error.code === 'USER_ENABLED') {
               i.find(':not(.notifications)').remove();
               r.addClass('form-success').append(
-                '<p>You already have an account, <a href="/account/login">please&nbsp;login</a></p>'
+                `<p>You already have an account, <a href="${window.vars.loginUrl}">please&nbsp;login</a></p>`
               );
             }
           });

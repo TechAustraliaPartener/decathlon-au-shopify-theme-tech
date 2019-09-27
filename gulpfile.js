@@ -197,6 +197,7 @@ gulp.task('snippets:clean', function() {
       `${SNIPPETS_PATH}elements-*.liquid`,
       `${SNIPPETS_PATH}helpers-*.liquid`,
       `${SNIPPETS_PATH}layout-*.liquid`,
+      `${SNIPPETS_PATH}js-*.liquid`,
       `${SNIPPETS_PATH}legacy-*.liquid`,
       `${SNIPPETS_PATH}vendor-*.liquid`
     ])
