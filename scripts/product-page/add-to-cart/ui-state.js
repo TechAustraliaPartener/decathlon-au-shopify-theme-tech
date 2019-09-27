@@ -1,6 +1,10 @@
 // @ts-check
 
-import { PRODUCT_PAGE_COPY, INVENTORY_TYPE } from '../constants';
+import {
+  PRODUCT_PAGE_COPY,
+  INVENTORY_TYPE,
+  OUT_OF_STOCK_HANDLING
+} from '../constants';
 import {
   isVariantOutOfStock,
   isVariantSoldOut,
@@ -72,7 +76,10 @@ export const getShopifyErrorUIState = shopifyErrorMessage => {
 
     return {
       ...defaultShopifyErrorUIState,
-      addToCartButtonText: PRODUCT_PAGE_COPY.EMAIL_ME_WHEN_IN_STOCK,
+      addToCartButtonText:
+        OUT_OF_STOCK_HANDLING === 'back_in_stock'
+          ? PRODUCT_PAGE_COPY.EMAIL_ME_WHEN_IN_STOCK
+          : PRODUCT_PAGE_COPY.OUT_OF_STOCK,
       validationText: PRODUCT_PAGE_COPY.OUT_OF_STOCK_RECENTLY_CHANGED
     };
   }
@@ -122,8 +129,12 @@ export const getUIState = variant => {
     if (variants.every(isVariantOutOfStock)) {
       return {
         ...DEFAULT_UI_STATE,
-        addToCartButtonText: PRODUCT_PAGE_COPY.EMAIL_ME_WHEN_IN_STOCK,
-        validationText: PRODUCT_PAGE_COPY.ALL_SIZES_OUT_OF_STOCK
+        addToCartButtonText:
+          OUT_OF_STOCK_HANDLING === 'back_in_stock'
+            ? PRODUCT_PAGE_COPY.EMAIL_ME_WHEN_IN_STOCK
+            : PRODUCT_PAGE_COPY.OUT_OF_STOCK,
+        validationText: PRODUCT_PAGE_COPY.ALL_SIZES_OUT_OF_STOCK,
+        isAddToCartButtonDisabled: OUT_OF_STOCK_HANDLING !== 'back_in_stock'
       };
     }
     return DEFAULT_UI_STATE;
@@ -141,8 +152,12 @@ export const getUIState = variant => {
   if (isVariantOutOfStock(variant)) {
     return {
       ...DEFAULT_UI_STATE,
-      addToCartButtonText: PRODUCT_PAGE_COPY.EMAIL_ME_WHEN_IN_STOCK,
-      validationText: PRODUCT_PAGE_COPY.OUT_OF_STOCK
+      addToCartButtonText:
+        OUT_OF_STOCK_HANDLING === 'back_in_stock'
+          ? PRODUCT_PAGE_COPY.EMAIL_ME_WHEN_IN_STOCK
+          : PRODUCT_PAGE_COPY.OUT_OF_STOCK,
+      validationText: PRODUCT_PAGE_COPY.OUT_OF_STOCK,
+      isAddToCartButtonDisabled: OUT_OF_STOCK_HANDLING !== 'back_in_stock'
     };
   }
 

@@ -28,6 +28,7 @@ export const TEMPLATE_SUFFIX = '-template';
  * Global inventory type
  */
 export const INVENTORY_TYPE = window.vars.inventoryType;
+export const OUT_OF_STOCK_HANDLING = window.vars.outOfStockHandling;
 
 /**
  * TAGS
