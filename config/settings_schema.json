@@ -74,6 +74,13 @@
         "label": "Login Portal URL",
         "default": "\/account\/login?checkout_url=\/",
         "info": "Theme default is '\/account\/login?checkout_url=\/'"
+      },
+      {
+        "type": "text",
+        "id": "register_portal_url",
+        "label": "Register Portal URL",
+        "default": "\/account\/register",
+        "info": "Theme default is '\/account\/register'"
       }
     ]
   },

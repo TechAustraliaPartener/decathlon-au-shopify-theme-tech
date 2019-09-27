@@ -57,7 +57,7 @@
           {% if shop.checkout.guest_login %}
           <div class="checkoutGuestLogin u-block u-marginTop1x">
             <p class="create-account">
-              <a href="/account/register" class="btn">{{ 'layout.customer.create_account' | t }}</a>
+              <a href="{{ settings.register_portal_url }}" class="btn">{{ 'layout.customer.create_account' | t }}</a>
             </p>
             <div class="guest-account">
             {% form 'guest_login' %}
@@ -67,7 +67,7 @@
           </div>
           {% else %}
             <p class="grid__item u-marginTop1x">
-              <a href="/account/register" class="btn">{{ 'layout.customer.create_account' | t }}</a>
+              <a href="{{ settings.register_portal_url }}" class="btn">{{ 'layout.customer.create_account' | t }}</a>
             </p>
 
           {% endif %}
