@@ -25,7 +25,7 @@
     {% endunless %}
     </div>
 
-    <div class="grid--full">
+    <div class="grid--full {% if settings.use_algolia %}algolia-wrapper{% endif %}">
         <div class="grid__item large--one-quarter left">
             {% include 'nested-navigation' %}
             <!-- Adept Search Start -->
