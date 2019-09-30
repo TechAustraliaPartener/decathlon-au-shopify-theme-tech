@@ -1,0 +1,264 @@
+(function (algolia) {
+  'use strict';
+
+  var _ = algolia._;
+
+  var TYPES_TO_WIDGET = {
+    slider: { name: 'rangeSlider', useDefault: true },
+    menu: { name: 'menu', params: { limit: 10 } },
+    conjunctive: { name: 'refinementList', params: { operator: 'and', limit: 18 } },
+    disjunctive: { name: 'refinementList', params: { operator: 'or', limit: 18 } },
+  };
+
+  var sortByRefined = function sortByRefined (sortFunction) {
+    return function (a, b) {
+      if (a.refined !== b.refined) {
+        if (a.refined) {
+          return -1;
+        }
+        if (b.refined) {
+          return 1;
+        }
+      }
+      return sortFunction(a, b);
+    };
+  };
+
+  /*
+   * Sorting functions : Allows to chose in which order you want to display the facets
+   * Algolia will always send you back the most relevant values for each facet (the ones
+   * with the highest count). These sorting functions won't change which results come back
+   * but how they are displayed. To retrieve more results, change the maxValuesPerFacet
+   * parameter in your Algolia Dashboard.
+   * The default sort function is refined > count > name.
+   */
+  algolia.facetSortFunctions = {
+    price_range: sortByRefined(function sortRanges (a, b) {
+      if (a.name.length === b.name.length) {
+        return a.name.localeCompare(b.name) || sortByActive(a, b);
+      }
+      return a.name.length - b.name.length || sortByActive(a, b);
+    }),
+    "options.size": function sortSizes(a, b) {
+      var sizesSortOrder = ['ONE SIZE', '3XS', '2XS', 'XS', 'XS/S', 'S', 'S/M', 'M', 'M/L', 'L', 'L/XL', 'XL', '2XL', '3XL'];
+
+      var aName = a.name.toUpperCase();
+      var bName = b.name.toUpperCase();
+
+      if (isNaN(a.name)) {
+        if (isNaN(b.name)) {
+
+          // If the options are present in the hardcoded array, order by that, otherwise, order alphabetically
+          if (sizesSortOrder.indexOf(aName) > -1) {
+            if (sizesSortOrder.indexOf(bName) > -1) {
+              return sizesSortOrder.indexOf(aName) - sizesSortOrder.indexOf(bName);
+            } else {
+              return 1;
+            }
+          } else {
+            if (sizesSortOrder.indexOf(bName) > -1) {
+              return -1;
+            } else {
+              return a.name.localeCompare(b.name);
+            }
+          }
+
+          // If the values are both words, use the hardcoded array above - NOT IN USE
+          /*
+          return sizesSortOrder.indexOf(aName) - sizesSortOrder.indexOf(bName);
+          */
+        } else {
+          // If a is a word and b is a number, show words before numbers
+          return -1;
+        }
+      } else {
+        if (isNaN(b.name)) {
+          // If b is a word and a is a number, show words before numbers
+          return 1;
+        } else {
+          // If the values are both numbers, show in ascending order
+          return a.name - b.name;
+
+          // Position decimals differently to integers - NOT IN USE
+          /*
+          if (a.name.indexOf('.') > -1) {
+            if (b.name.indexOf('.') > -1) {
+              return a.name - b.name;
+            } else {
+              return 1;
+            }
+          } else {
+            if (b.name.indexOf('.') > -1) {
+              return -1;
+            } else {
+              return a.name - b.name;
+            }
+          }
+          */
+
+        }
+      }
+    },
+    "options.colour": function noSort(a, b) {
+      return 0;
+    },
+    "options.color": function noSort(a, b) {
+      return 0;
+    },
+    "named_tags.gender": function sortGenders(a, b) {
+      var gendersSortOrder = ['Men', 'Women', 'Boy', 'Girl', 'Baby Boy', 'Baby Girl'];
+      return gendersSortOrder.indexOf(a.name) - gendersSortOrder.indexOf(b.name) || sortByActive(a, b);
+    },
+    "default": function sortByActive(a, b) {
+      return b.isRefined - a.isRefined;
+    }
+  };
+
+  function sortByActive(a, b) {
+    return b.isRefined - a.isRefined;
+  }
+
+  /*
+   * Display functions
+   * When the object sent back for a facet item doesn't match how you would want it to look
+   * like, use a function to reformat it how you want.
+   */
+  algolia.facetDisplayFunctions = {
+    price_range: function displayRange (value) {
+      var values = value.split(':');
+
+      return _.map(values, function (e) {
+        return algolia.formatMoney(+e * 100).replace(/\.\d+/, '');
+      }).join(' - ');
+    },
+    'named_tags.gender': function displayGender(value) {
+      var values = value.split(':');
+
+      return _.map(values, function (e) {
+        return filterMapping['named_tags.gender'][e];
+      }).join(' - ') || values;
+    },
+    'named_tags.sport': function displaySport(value) {
+      var values = value.split(':');
+
+      return _.map(values, function (e) {
+        return filterMapping['named_tags.sport'][e];
+      }).join(' - ') || values;
+    }
+  }
+
+  algolia.facetCssClasses = {
+    root: 'ais-facet',
+    header: 'ais-facet--header',
+    body: 'ais-facet--body',
+    item: 'ais-facet--item',
+    label: 'ais-facet--label',
+    checkbox: 'ais-facet--checkbox',
+    active: 'ais-facet--active',
+    count: 'ais-facet--count'
+  };
+
+  algolia.facetCssClassesExpandable = JSON.parse(JSON.stringify(algolia.facetCssClasses));
+  algolia.facetCssClassesExpandable.body = 'ais-facet--body filter-accordion';
+
+  var enabledFacets = _.filter(algolia.config.facets, function (facet) { return facet.enabled || parseInt(facet.enabled); });
+  algolia.facets = _.map(enabledFacets, function (facet) { return Object.assign({}, facet, { escapedName: encodeURIComponent(facet.name) }) });
+  algolia.shownFacets = _.filter(algolia.facets, function (facet) { return facet.type !== 'hidden' });
+  algolia.hiddenFacets = _.filter(algolia.config.facets, function (facet) { return facet.type === 'hidden'; });
+  algolia.facetTitles = {};
+  _.each(algolia.facets, function (facet) {
+    algolia.facetTitles[facet.name] = facet.title;
+  });
+  var facetToWidget = function (facet) {
+    var widget = TYPES_TO_WIDGET[facet.type],
+        params = _.cloneDeep(widget.params) || {};
+
+    params.container = "[class~='ais-facet-" + facet.escapedName + "']";
+    params.attributeName = facet.name;
+    params.templates = {};
+    params.cssClasses = algolia.facetCssClasses;
+    if (!(facet.name === 'options.color' || facet.name === 'options.size')) {
+      params.cssClasses = algolia.facetCssClassesExpandable;
+    }
+
+
+    if (facet.searchable) {
+      params.searchForFacetValues = {placeholder: 'Search for ' + facet.name, isAlwaysActive: true};
+      params.searchForFacetValues.templates = {noResults: '<div> No matching ' + facet.name + '</div>'};
+    }
+
+    params.templates.header = function () {
+      return facet.title;
+    }
+
+    if (!widget.useDefault) {
+      params.templates.item = algolia.getTemplate('instant_search_facet_item');
+    }
+
+    if (algolia.facetSortFunctions[facet.name]) {
+      params.sortBy = algolia.facetSortFunctions[facet.name];
+    } else {
+      params.sortBy = algolia.facetSortFunctions.default;
+    }
+
+    var displayFunction = algolia.facetDisplayFunctions[facet.name];
+    params.transformData = function (data) {
+      data.type = {};
+      data.type[facet.type] = true;
+      data.show = true;
+
+      data.untransformedName = JSON.parse(JSON.stringify(data.name));
+      if (displayFunction) {
+        data.name = displayFunction(data.name);
+        if (data.name[0] === data.untransformedName) {
+          data.show = false;
+        }
+      }
+
+      if (facet.name === 'options.color' || facet.name === 'options.size') {
+        data.swatch = true;
+      }
+      return data;
+    }
+
+    return {
+      name: widget.name,
+      params: params
+    };
+  }
+
+  // Try to fetch facets for current collection or fallback to collections default
+  const collection_facets =
+    algolia.current_collection_id &&
+    algolia.config.collection_facets[algolia.current_collection_id]
+      ? algolia.config.collection_facets[algolia.current_collection_id]
+      : algolia.config.collection_facets &&
+        algolia.config.collection_facets.default;
+
+  if (collection_facets) {
+    var enabledCollectionFacets = _.filter(collection_facets, function(facet) {
+      return facet.enabled || parseInt(facet.enabled);
+    });
+
+    algolia.collectionFacets = _.map(enabledCollectionFacets, function(facet) {
+      return Object.assign({}, facet, {
+        escapedName: encodeURIComponent(facet.name)
+      });
+    });
+    algolia.collectionShownFacets = _.filter(algolia.collectionFacets, function(
+      facet
+    ) {
+      return facet.type !== "hidden";
+    });
+    algolia.collectionHiddenFacets = _.filter(collection_facets, function(facet) {
+      return facet.type === "hidden";
+    });
+
+    algolia.collectionFacetsWidgets = _.map(
+      algolia.collectionShownFacets,
+      facetToWidget
+    );
+  }
+
+  algolia.facetsWidgets = _.map(algolia.shownFacets, facetToWidget);
+}(algoliaShopify));
