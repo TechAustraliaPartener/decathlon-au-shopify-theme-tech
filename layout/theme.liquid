@@ -107,10 +107,10 @@
   <meta name="theme-color" content="{{ settings.color_primary }}">
 
   <!-- pinterest -->
-  <meta name="p:domain_verify" content="15f1bb70fdfd58ef2b29026440052233"/>
+  {% if settings.pinterest_id %}<meta name="p:domain_verify" content="{{ settings.pinterest_id }}"/>{% endif %}
 
   <!-- google -->
-  <meta name="google-site-verification" content="6qKkKWLZThwdqmzBveUbaIA9-3z3DPevIUqf8LQ5B-0" />
+  {% if settings.google_site_id %}<meta name="google-site-verification" content="{{ settings.google_site_id }}"/>{% endif %}
 
   <!-- CSS ================================================== -->
   {{ 'fonts.scss.css' | asset_url | stylesheet_tag }}

@@ -108,6 +108,16 @@
         "type": "text",
         "id": "gtm_id",
         "label": "Google Tag Manager ID"
+      },
+      {
+        "type": "text",
+        "id": "google_site_id",
+        "label": "Google Site Verification ID"
+      },
+      {
+        "type": "text",
+        "id": "pinterest_id",
+        "label": "Pinterest Site Verification ID"
       }
     ]
   },
