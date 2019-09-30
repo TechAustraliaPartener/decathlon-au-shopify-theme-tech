@@ -1,0 +1,26 @@
+<script>
+  window.firstAccessed = false;
+  {% if first_time_accessed %}
+    window.firstAccessed = true;
+  {% endif %}
+</script>
+
+<script async src="https://t.cfjump.com/tag/59240"></script>
+
+{% if first_time_accessed %}
+  <script>
+    (function(a,b,c){a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments);};a[c]=a[b];})(window,"CommissionFactory","cf");
+
+    cf("set", "order", "{{ order.order_number }}");
+    cf("set", "amount", "{{ order.subtotal_price | money_without_currency }}");
+    cf("set", "currency", "{{ shop.currency }}");
+    {% if order.discounts %}cf("set", "coupon", "{{ order.discounts.first.code }}");{% endif %}
+    {% if order.customer %}cf("set", "customer", {% if order.customer.orders_count == 1 %}"new"{% else %}"return"{% endif %});{% endif %}
+
+    {% for line_item in order.line_items %}
+      cf("add", "items", { "sku": "{{ line_item.sku }}", "price": "{{ line_item.price | money_without_currency }}", "quantity": "{{ line_item.quantity }}" });
+    {% endfor %}
+
+    cf("track");
+  </script>
+{% endif %}
