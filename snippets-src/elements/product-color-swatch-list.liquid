@@ -28,7 +28,7 @@
   Build array of colors with important data attached
 {% endcomment %}
 {%- for variant in product.variants -%}
-  {%- if variant.available -%}
+  {%- if variant -%}
     {%- assign color_array = colors | split: color_delimiter -%}
     {%- assign color_exists = false -%}
     {%- for col in color_array -%}
@@ -153,7 +153,7 @@
       • Test via screen reader
     {% endcomment %}
     <a
-      class="de-SwatchObjects-item de-ColorSwatches-color js-de-ColorSwatchList-action"
+      class="de-SwatchObjects-item de-ColorSwatches-color js-de-ColorSwatchList-action {% if color_row[5] == 'false' %}de-u-hidden{% endif %}"
       title="{{ color_row[0] }}"
       href="{{ color_row[8] }}"
       data-variant="{{ color_row[2] }}"
