@@ -1,9 +1,10 @@
 /**
  * NOTE: The schema that is being used to validate these queries was pulled
- * using https://github.com/prisma/graphql-config at a point before we
+ * using https://github.com/Urigo/graphql-cli at a point before we
  * implemented a tighter CORS implementation on the Persistent Cart app.
- * As of this time, the schema cannot be automatically updated. If validations
- * fail at any time, see the PC app for changes to its schema, and update accordingly
+ * Now we aren't using graphql-cli anymore.
+ * If validations fail at any time, see the PC app for changes to its schema,
+ * and update accordingly
  */
 
 import gql from '../utilities/graphql/nanographql';
