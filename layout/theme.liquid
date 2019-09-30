@@ -31,6 +31,9 @@
 
   {% include 'layout-account-portal-redirects' %}
 
+  {% include 'js-gtm-datalayer-visit' %}
+  {% include 'js-gtm-head' %}
+
   <!-- Basic page needs ================================================== -->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -233,12 +236,12 @@
 {% comment %}
   Add the page template as a class for easy page or template specific styling.
 {% endcomment %}
-<body id="{% if collection %}{{ collection.handle }}{% else %}{{ page_title | handle }}{% endif %}"
-      class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }} is-shortNav{% if settings['is_lookbook'] == true %} is-wishlistOnly{% endif %}{% if cart.item_count > 0 %} has-itemsInCart{% endif %}{% if product and product.tags contains 'allow sale' %} is-sellableProduct{% endif %}"
-      {% if template_name %}data-gtm-template="{{template_name}}"{% endif %}>
-  {% section 'add-on-products' %}
+<body id="{% if collection %}{{ collection.handle }}{% else %}{{ page_title | handle }}{% endif %}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }} is-shortNav{% if settings['is_lookbook'] == true %} is-wishlistOnly{% endif %}{% if cart.item_count > 0 %} has-itemsInCart{% endif %}{% if product and product.tags contains 'allow sale' %} is-sellableProduct{% endif %}" {% if template_name %}data-gtm-template="{{template_name}}"{% endif %}>
 
-  {% include 'google-tag-manager' %}
+  {% include 'js-gtm-body' %}
+
+  {% section 'add-on-products' %}
+  
   <div class="de-PageWrap de-Drawer-wrap js-de-PageWrap js-de-Drawer-wrap">
     {% include 'compositions-header' %}
 

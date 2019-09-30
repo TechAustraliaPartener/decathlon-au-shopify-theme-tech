@@ -103,6 +103,11 @@
           }
         ],
         "default": "none"
+      },
+      {
+        "type": "text",
+        "id": "gtm_id",
+        "label": "Google Tag Manager ID"
       }
     ]
   },

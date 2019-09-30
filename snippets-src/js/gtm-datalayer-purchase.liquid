@@ -1,0 +1,54 @@
+<script>
+  var dataLayer = window.dataLayer || [];
+  console.log('Check Datalayer Purchase:', {
+    'transactionId': '{{ order.id }}',
+    'transactionTotal': '{{ order.total_price | money_without_currency | replace: '$', '' }}',
+    'transactionTax': '{{ order.tax_price | money_without_currency | replace: '$', '' }}',
+    'transactionShipping': '{{ order.shipping_price | money_without_currency | replace: '$', '' }}',
+    'promotionName': '',
+    'promotionCode': '{{ checkout.discount_applications | map: 'title' | join: ', ' }}',
+    'promotionType': '',
+    'quantityProduct': '{{ checkout.line_items.size }}',
+    'transactionCurrency': 'AUD',
+    'transactionPaymentType': '{{ checkout.transactions | map: 'gateway' | join: ', ' }}',
+    'transactionProducts': [
+      {% for item in order.line_items %}
+        {
+          'sku': '{{ item.sku }}',
+          'name': '{{ item.title }}',
+          'category': '{{ item.product.type }}',
+          'brand': '{{ item.vendor }}',
+          'price': '{{ item.final_price | money_without_currency | replace: '$', '' }}',
+          'quantity': '{{ item.quantity }}',
+        }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ]
+  });
+  // firstAccessed comes from the window, supplied by Additional Scripts
+  if (window.firstAccessed) {
+    dataLayer.push({
+      'transactionId': '{{ order.id }}',
+      'transactionTotal': '{{ order.total_price | money_without_currency | replace: '$', '' }}',
+      'transactionTax': '{{ order.tax_price | money_without_currency | replace: '$', '' }}',
+      'transactionShipping': '{{ order.shipping_price | money_without_currency | replace: '$', '' }}',
+      'promotionName': '',
+      'promotionCode': '{{ checkout.discount_applications | map: 'title' | join: ', ' }}',
+      'promotionType': '',
+      'quantityProduct': '{{ checkout.line_items.size }}',
+      'transactionCurrency': 'AUD',
+      'transactionPaymentType': '{{ checkout.transactions | map: 'gateway' | join: ', ' }}',
+      'transactionProducts': [
+        {% for item in order.line_items %}
+          {
+            'sku': '{{ item.sku }}',
+            'name': '{{ item.title }}',
+            'category': '{{ item.product.type }}',
+            'brand': '{{ item.vendor }}',
+            'price': '{{ item.final_price | money_without_currency | replace: '$', '' }}',
+            'quantity': '{{ item.quantity }}',
+          }{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+      ]
+    });
+  }
+</script>

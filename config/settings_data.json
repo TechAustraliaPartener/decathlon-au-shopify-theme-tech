@@ -8,6 +8,7 @@
     "register_portal_url": "https:\/\/account.decathlon.net\/account\/index.html?client_id=e57b2db5-07ff-468e-a8da-85af418a1691",
     "use_adeptmind": false,
     "extra_details": "customer_fields",
+    "gtm_id": "GTM-N7M3BZ",
     "color_primary": "#1c82c3",
     "color_secondary": "#ccfb00",
     "color_borders": "#e5e5e5",
