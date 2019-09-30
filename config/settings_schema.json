@@ -89,6 +89,12 @@
         "default": false
       },
       {
+        "type": "checkbox",
+        "id": "use_algolia",
+        "label": "Use Algolia?",
+        "default": false
+      },
+      {
         "type": "select",
         "id": "extra_details",
         "label": "Account Extra Details Mechanic",
