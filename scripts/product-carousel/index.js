@@ -16,7 +16,7 @@ const SLICK_PRODUCT_TILE_CAROUSEL = `${JS_PREFIX}SlickProductTileCarousel`;
 /**
  * Product tile showcase selector
  */
-const PRODUCUT_TILE_SHOWCASE = `${JS_PREFIX}ProductTile-showcase`;
+const PRODUCT_TILE_SHOWCASE = `${JS_PREFIX}ProductTile-showcase`;
 
 /**
  * Product tile carousel button arrow svg
@@ -65,9 +65,9 @@ const findMode = numbers => {
  * Sets all image containers to an equal height
  */
 const standardizeImageContainers = () => {
-  const containers = [
-    ...document.querySelectorAll(`.${PRODUCUT_TILE_SHOWCASE}`)
-  ];
+  const containers = /** @type {HTMLElement[]} */ ([
+    ...document.querySelectorAll(`.${PRODUCT_TILE_SHOWCASE}`)
+  ]);
   const mode = findMode(
     containers.map(el => {
       el.style.height = 'initial';
