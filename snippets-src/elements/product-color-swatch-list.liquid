@@ -63,7 +63,13 @@
           {%- endif -%}
         {%- endfor -%}
       {%- endcapture -%}
-      {%- assign available = variant.available -%}
+      {%- capture available -%}
+        {%- for product_variant in product.variants -%}
+          {%- if product_variant[opt] == obj -%}
+            {{- product_variant.available -}} {{- prices_delimiter -}}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endcapture -%}
       {% comment %}
         Find second image for color
       {% endcomment %}
@@ -152,8 +158,9 @@
       • Consider accessibility
       • Test via screen reader
     {% endcomment %}
+    {% assign color_availability = color_row[5] | split: prices_delimiter %}
     <a
-      class="de-SwatchObjects-item de-ColorSwatches-color js-de-ColorSwatchList-action {% if color_row[5] == 'false' %}de-u-hidden{% endif %}"
+      class="de-SwatchObjects-item de-ColorSwatches-color js-de-ColorSwatchList-action {% unless color_availability contains 'true' %}de-u-hidden{% endunless %}"
       title="{{ color_row[0] }}"
       href="{{ color_row[8] }}"
       data-variant="{{ color_row[2] }}"
