@@ -9,3 +9,34 @@
     opacity: 1;
   }
 }
+
+.inventory-locations {
+  background-color: $color-silver;
+  padding: 20px 30px;
+
+  table {
+    font-size: 12px;
+  }
+
+  td {
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+
+    padding-left: 10px;
+
+    &:first-of-type {
+      max-width: 105px;
+      padding-left: 0;
+    }
+    &:nth-of-type(2) {
+      
+    }
+    &:nth-of-type(3) {
+      
+    }
+    &:nth-of-type(4) {
+      
+    }
+  }
+}
