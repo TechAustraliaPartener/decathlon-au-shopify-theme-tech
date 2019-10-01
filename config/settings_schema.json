@@ -124,6 +124,23 @@
         "type": "text",
         "id": "pinterest_id",
         "label": "Pinterest Site Verification ID"
+      },
+      {
+        "type": "select",
+        "id": "pickup_display",
+        "label": "Product Pickup Mechanic",
+        "options": [
+          {
+            "value": "us",
+            "label": "US Style"
+          },
+          {
+            "value": "au",
+            "label": "AU Style"
+          }
+        ],
+        "default": "us",
+        "info": "Note: Make this more descriptive of the actual mechanic in the future"
       }
     ]
   },

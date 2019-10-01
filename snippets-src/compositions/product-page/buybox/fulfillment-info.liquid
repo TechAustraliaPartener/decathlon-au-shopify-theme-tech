@@ -47,29 +47,31 @@
       </p>
     </div>
 
-    <div class="de-u-flex de-u-flexAlignItemsCenter js-de-ProductFulfillment-pickupOptions de-u-ProductFulfillment-option de-u-hidden">
-      {% include 'assets-icons-store'
-        with class: 'de-u-textBlack de-Icon de-u-textGrow6 de-u-spaceRight03' %}
-      <div>
-        <p class="de-u-spaceNone de-u-textMedium"><span
-        class="de-u-textBold">Free</span> pickup <span class="js-de-ProductFulfillment-pickupDay"></span></p>
-        <p class="de-u-spaceNone js-de-ProductFulfillment-pickupDetails de-u-hidden">
-          <span class="js-de-ProductFulfillment-pickupStore">
-            <span class="de-u-textMedium js-de-ProductFulfillment-pickupCity">San Francisco</span>, <span class="js-de-ProductFulfillment-pickupAddress">735 Market St.</span>
-          </span>
-          <a href="/pages/store-finder"
-             class="de-u-textMedium de-u-textSelectNone
-                    de-u-spaceLeft06 js-de-Drawer-toggle"
-             data-drawer-id="store-pickup-options-drawer"
-             data-drawer-toggle-aria-label="Open the store pickup options dialog."
-             data-drawer-action="open"
-             data-test="store-pickup-options-toggle"
-            >
-            Options
-          </a>
-        </p>
-        <p class="js-de-ProductFulfillment-selectForOptionsMessage de-u-spaceNone">Select an available color and size to see options.</p>
+    {% if settings.pickup_display == 'us' %}
+      <div class="de-u-flex de-u-flexAlignItemsCenter js-de-ProductFulfillment-pickupOptions de-u-ProductFulfillment-option de-u-hidden">
+        {% include 'assets-icons-store'
+          with class: 'de-u-textBlack de-Icon de-u-textGrow6 de-u-spaceRight03' %}
+        <div>
+          <p class="de-u-spaceNone de-u-textMedium"><span
+          class="de-u-textBold">Free</span> pickup <span class="js-de-ProductFulfillment-pickupDay"></span></p>
+          <p class="de-u-spaceNone js-de-ProductFulfillment-pickupDetails de-u-hidden">
+            <span class="js-de-ProductFulfillment-pickupStore">
+              <span class="de-u-textMedium js-de-ProductFulfillment-pickupCity">San Francisco</span>, <span class="js-de-ProductFulfillment-pickupAddress">735 Market St.</span>
+            </span>
+            <a href="/pages/store-finder"
+               class="de-u-textMedium de-u-textSelectNone
+                      de-u-spaceLeft06 js-de-Drawer-toggle"
+               data-drawer-id="store-pickup-options-drawer"
+               data-drawer-toggle-aria-label="Open the store pickup options dialog."
+               data-drawer-action="open"
+               data-test="store-pickup-options-toggle"
+              >
+              Options
+            </a>
+          </p>
+          <p class="js-de-ProductFulfillment-selectForOptionsMessage de-u-spaceNone">Select an available color and size to see options.</p>
+        </div>
       </div>
-    </div>
+    {% endif %}
   </div>
 </div>

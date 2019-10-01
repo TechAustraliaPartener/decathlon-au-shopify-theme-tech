@@ -18,11 +18,12 @@ import * as drawer from './drawer';
 import { getUrlVariant, updateUrlVariant } from './query-string';
 import { getSelectedVariant, getVariantOptions } from './product-data';
 import * as stickyNav from './sticky-nav';
-import * as storePickup from './fulfillment-options';
+// Removed for AU
+// import * as storePickup from './fulfillment-options';
 import * as modal from './modal';
 import { createState } from '../utilities/create-state';
 
-let updateFulfillmentOptionsUI = null;
+const updateFulfillmentOptionsUI = null;
 
 /**
  * @typedef State
@@ -149,13 +150,17 @@ const init = async () => {
   const urlVariant = selectUrlVariant();
   stickyNav.init();
   modal.init();
+
+  return urlVariant;
+
+  // Removed for AU
   // Suggest leaving the async setup for fulfillment options to last
-  updateFulfillmentOptionsUI = await storePickup.init();
+  // updateFulfillmentOptionsUI = await storePickup.init();
   /**
    * The updateFulfillmentOptionsUI function will be undefined in the master
    * updateUI function on page load, so call here as soon as it's defined
    */
-  if (urlVariant) updateFulfillmentOptionsUI({ id: urlVariant });
+  // if (urlVariant) updateFulfillmentOptionsUI({ id: urlVariant });
 };
 
 // Call the async init to return the Promise and log errors
