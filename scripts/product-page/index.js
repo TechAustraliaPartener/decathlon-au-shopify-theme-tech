@@ -3,6 +3,7 @@
 import './buybox';
 import * as carousel from './carousel';
 import * as carouselContext from './carousel-context';
+import * as collapse from './collapse';
 import * as colorSwatches from './color-swatches';
 import * as sizeSwatches from './size-swatches';
 import './videos';
@@ -145,6 +146,7 @@ const init = async () => {
   drawer.init();
   carousel.init();
   carouselContext.init();
+  collapse.init();
   addToCart.init();
   accordion.init();
   const urlVariant = selectUrlVariant();
