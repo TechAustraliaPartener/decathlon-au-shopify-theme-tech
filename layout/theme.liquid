@@ -149,6 +149,7 @@
     {{ 'zoom.css' | asset_url | stylesheet_tag }}
   {% endcomment %}
   {{ 'patterns-toolkit.css' | asset_url | stylesheet_tag }}
+  {{ 'shogun-overrides.scss.css' | asset_url | stylesheet_tag }}
 
   <!-- Header hook for plugins ================================================== -->
   {{ content_for_header }}
@@ -247,7 +248,7 @@
   {% include 'js-gtm-body' %}
 
   {% section 'add-on-products' %}
-  
+
   <div class="de-PageWrap de-Drawer-wrap js-de-PageWrap js-de-Drawer-wrap">
     {% include 'compositions-header' %}
 
@@ -388,7 +389,7 @@
 		  document.getElementsByTagName("head")[0].appendChild(mf);
 	  })();
   </script>
-  
+
   {% comment %}
     Capture a customer ID (will be undefined if there's not a customer yet, but that's good).
     Used by Persistent Cart JS
