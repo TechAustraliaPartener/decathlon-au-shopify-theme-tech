@@ -11,26 +11,38 @@
  * be considered.
  */
 
- $button-background-hover: #429dd7;
+$button-background-hover: #429dd7;
+$button-background-hover-alt: #ecff9a;
 
- .de-Button {
-   -moz-user-select: none;
-   -ms-user-select: none;
-   -webkit-user-select: none;
-   background-color: $color-blue;
-   border: $border-width-md solid $color-blue;
-   color: $color-white;
-   user-select: none;
- }
+.de-Button {
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  background-color: $color-blue;
+  border: $border-width-md solid $color-blue;
+  color: $color-white;
+  user-select: none;
 
- .de-Button:hover {
-   background-color: $button-background-hover;
-   border-color: $button-background-hover;
- }
+  &:hover {
+    background-color: $button-background-hover;
+    border-color: $button-background-hover;
+  }
 
- .de-Button[disabled] {
-   background-color: $color-gray;
-   border-color: $color-gray;
-   color: $color-white;
-   cursor: not-allowed;
- }
+  &.alt {
+    background-color: $color-lime;
+    color: $color-black;
+    border: $border-width-md solid $color-lime;
+    &:hover {
+      background-color: $button-background-hover-alt;
+      border-color: $button-background-hover-alt;
+      color: $color-black;
+    }
+  }
+
+  &[disabled] {
+    background-color: $color-gray;
+    border-color: $color-gray;
+    color: $color-white;
+    cursor: not-allowed;
+  }
+}
