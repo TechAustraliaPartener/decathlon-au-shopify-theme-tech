@@ -5,7 +5,6 @@ const gulp = require('gulp');
 const path = require('path');
 const rename = require('gulp-rename');
 const replace = require('gulp-replace');
-const sequence = require('gulp-sequence');
 const spawn = require('cross-spawn');
 const sass = require('gulp-dart-sass');
 const changed = require('gulp-changed');
@@ -40,7 +39,7 @@ gulp.task('cleanPatternSnippets', function() {
 
 gulp.task(
   'cleanPatterns',
-  sequence('cleanPatternAssets', 'cleanPatternSnippets')
+  gulp.series('cleanPatternAssets', 'cleanPatternSnippets')
 );
 
 gulp.task('updatePatternsSubmodule', function(callback) {
@@ -120,7 +119,7 @@ gulp.task('patterns:copy:js', function() {
 
 gulp.task(
   'patterns:copy',
-  sequence('patterns:copy:css', 'patterns:copy:images', 'patterns:copy:js')
+  gulp.series('patterns:copy:css', 'patterns:copy:images', 'patterns:copy:js')
 );
 
 gulp.task('transformPatterns', function() {
@@ -148,7 +147,7 @@ gulp.task('transformPatterns', function() {
 
 gulp.task(
   'updatePatterns',
-  sequence(
+  gulp.series(
     'cleanPatterns',
     'updatePatternsSubmodule',
     'patterns:install',
@@ -160,10 +159,13 @@ gulp.task(
 
 gulp.task('styles', function() {
   return gulp
-    .src([
-      `${STYLES_PATH}/product-page/index.scss`,
-      `${STYLES_PATH}/product-tile/index.scss`
-    ], { base: STYLES_PATH })
+    .src(
+      [
+        `${STYLES_PATH}/product-page/index.scss`,
+        `${STYLES_PATH}/product-tile/index.scss`
+      ],
+      { base: STYLES_PATH }
+    )
     .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
     .pipe(
       rename(path => {
@@ -175,8 +177,6 @@ gulp.task('styles', function() {
     )
     .pipe(gulp.dest(ASSETS_PATH));
 });
-
-gulp.task('snippets', sequence('snippets:clean', 'snippets:copy'));
 
 gulp.task('snippets:clean', function() {
   return gulp
@@ -226,18 +226,20 @@ gulp.task('snippets:copy', function() {
   );
 });
 
+gulp.task('snippets', gulp.series('snippets:clean', 'snippets:copy'));
+
 gulp.task('watch', function() {
-  gulp.watch('scripts/**/*.js', [scriptsTask]);
-  gulp.watch(`${STYLES_PATH}**/*.scss`, ['styles']);
-  gulp.watch(`${SNIPPETS_SRC}**/*.liquid`, ['snippets:copy']);
+  gulp.watch('scripts/**/*.js', gulp.series([scriptsTask]));
+  gulp.watch(`${STYLES_PATH}**/*.scss`, gulp.series(['styles']));
+  gulp.watch(`${SNIPPETS_SRC}**/*.liquid`, gulp.series(['snippets:copy']));
 });
 
 /**
  * Default gulp task - activates all watch tasks
  */
-gulp.task('default', ['watch']);
+gulp.task('default', gulp.series(['watch']));
 
 /**
  * Build task - activates all build tasks
  */
-gulp.task('build', [scriptsTask, 'styles', 'snippets']);
+gulp.task('build', gulp.parallel([scriptsTask, 'styles', 'snippets']));

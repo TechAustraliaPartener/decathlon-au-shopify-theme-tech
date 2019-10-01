@@ -76,21 +76,30 @@
                 {% paginate collection.products by pageBy %}
 
                     {% for product in collection.products %}
-
-                        {% assign group_name = 'group' | append: collection.handle %}
-                        {% capture featuredClass %}
-                            {% cycle group_name: '', ' collectionProduct--featured--middle', ' collectionProduct--featured--end js-adjustFeaturedContent' %}
-                        {% endcapture %}
-                        {% assign default_giw = 'large--one-third one-half' %}
-                        {% if product.tags contains 'featured' %}
-                            {% assign grid_item_width = default_giw | append: ' collectionProduct--featured' | append: featuredClass %}
-                        {% else %}
-                            {% assign grid_item_width = default_giw %}
-                        {% endif %}
-
-                        {% include 'compositions-product-grid-item' %}
-
+                      <div class="grid__item extra-large--one-third one-half collectionProduct--mod">
+                        {% include 'components-product-tile',
+                          product: product,
+                          delivery_options: true,
+                          inventory_status: false %}
+                      </div>
                     {% endfor %}
+
+                    {% comment %}
+                      @TODO Remove style applied below. This is a temporary fix.
+                      When product tiles are replaced by product tile carousels, remove code below.
+                    {% endcomment %}
+                    <style>
+                      @media only screen and (min-width: 1000px) {
+                        .extra-large--one-third  {
+                          width: 33.33%;
+                        }
+                      }
+                      @media only screen and (min-width: 1300px) {
+                        .collectionProduct--mod {
+                          width: 25%;
+                        }
+                      }
+                    </style>
 
                     {% if paginate.pages > 1 %}
                         <div class="paginate-bottom">
@@ -106,3 +115,6 @@
 </div>
 
 {% include 'collection-footer-js' %}
+
+<script type="module" src="{{ 'built-product-tile.js' | asset_url }}"></script>
+<script defer nomodule src="{{ 'built-product-tile-legacy.js' | asset_url }}"></script>

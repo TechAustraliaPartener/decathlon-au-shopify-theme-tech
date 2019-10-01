@@ -7,8 +7,9 @@
 
 
 - [Project Setup](#project-setup)
-- [NPM scripts and Gulp tasks](#npm-scripts-and-gulp-tasks)
-  - [NPM Scripts](#npm-scripts)
+- [Development Process](#development-process)
+- [npm scripts and Gulp tasks](#npm-scripts-and-gulp-tasks)
+  - [npm Scripts](#npm-scripts)
   - [Gulp Tasks](#gulp-tasks)
 - [Watch](#watch)
   - [Testing and development CLI flags](#testing-and-development-cli-flags)
@@ -72,21 +73,80 @@
    git submodule update
    ```
 1. In Mac Terminal navigate to your project's root folder.
-1. Make sure ThemeKit is installed. If it's not go to https://shopify.github.io/themekit/
-1. There should be a `config.yml.sample` in the root of the project. Duplicate this file and name it `config.yml`. This will have the default api information for Shopify. If you're working on a cloned theme because multiple developers are on the project, this is where you'd update your theme id. Make sure `config.yml` is not under version control.
-1. Create a copy of the `.env.sample` file making sure to rename it to `.env`. Update the environment variables removing the sample values. Make sure the `.env` file is not under version control.
+1. Make sure Theme Kit is installed. If it's not go to https://shopify.github.io/themekit/
+1. There should be a `config.yml.sample` in the root of the project. Duplicate this file and name it `config.yml`. This will have the default api information for Shopify. If you're working on a cloned theme because multiple developers are on the project, this is where you'd update your theme id.
+1. Create a copy of the `.env.sample` file making sure to rename it to `.env`. Update the environment variables removing the sample values.
 1. Type the command `npm install` and press enter. This will install all node dependencies for the project.
-1. Type `npx gulp` and press enter. This will run all project gulp tasks and also ensure that all dependencies are installed properly. If a dependency does not exist you'll see an error in terminal. If you see this error, install the missing dependency by typing the command `npm install <package_name> --save-dev`. After this make sure to commit your `package.json` file so that the next user has the dependencies they need.
 
-## NPM scripts and Gulp tasks
+## Development Process
+1. Create a branch based off of your agency's dev branch.
+1. Create a Shopify Theme for your work:
+    - In the Shopify admin dashboard, go to `Sales Channels -> Online Store -> Themes`
+    - Starting with a baseline theme (e.g., the one that represents your agency's dev branch, as above), select `Actions -> Duplicate`
+    - When the theme is duplicating or duplicated, select `Actions -> Rename` on that new theme. For clarity, use this kind of naming pattern, or similar (add or omit what makes sense)
+      ```
+      DEV/<dev's initials>-<agency name or initials> <PR #>: <PR description>
+      ```
+    - When a theme is finished being duplicated, click `Actions` then right-click on `Preview` and click `Copy link address`
+    - Paste the last, numeric part of the copied URL's query string (`preview_theme_id=###########`) into your `config.yml` (add it if it's not there):
+      ```
+      theme_id: "###########"
+      ```
+    - Optionally, save the same value in a commented line in your `config.yml` with a description. This way, you'll know what themes map to what PRs:
+      ```
+      # Update CSS for product tiles, PR #123: "###########"
+      ```
+1. Open your preview theme in the browser
+    - As above, go to `Actions -> Preview`, just clicking on `Preview`
+1. Run `npm run dev`, which will start Gulp and Theme Kit watchers. Note that you can also run `npm run build` to build all files, and you can run `theme deploy` to upload all files to Shopify in case your theme has gotten out of date.
+1. Make changes to files. Make sure to not edit any generated/built files (See below).
+1. Get a URL to put in your PR description:
+    - The first option is to use your theme preview using the `preview_theme_id` query parameter. After navigating to the page you want to share, add the `preview_theme_id=###########` query parameter to the end of your URL, using the ID from step 2. This preview should work with various CORS-enabled APIs, because it uses the `testing-decathlon-usa.myshopify.com` domain.
+    - The 2nd option is to create a Shared Preview URL. Within a preview, at the bottom of the screen, click on the `Share preview` button, then copy the URL. You can append paths directly onto this URL to share specific pages. Some CORS-enabled APIs may not work using a Shared Preview URL.
 
-This project has both Gulp tasks and NPM scripts. The Gulp tasks are executed via the NPM scripts.
 
-### NPM Scripts
+### File structure
+This shows which files not to edit, as well as which files are built to which locations:
 
-@TODO Document all NPM scripts.
+```sh
+.
+├── assets
+│   │ # Most of the files in this folder can be edited, but not the ones listed below:
+│   │ # Check the .gitignore to make sure you aren't editing generated ones
+│   ├── built-*.css # Don't edit these, they are generated via the Gulp styles task from /styles/*/index.scss
+│   ├── built-*-legacy.js # Don't edit these, they are generated for IE11 via the Gulp jsC4Scripts task from /scripts/*/index.js
+│   ├── built-*.js # Don't edit these, these are generated via the Gulp jsC4Scripts task from /scripts/*/index.js
+│   ├── built-chunk-*.js # Don't edit these, they are the shared chunks used by multiple bundles, and they are generated by the Gulp jsC4Scripts task
+│   └── patterns-*.svg # Don't edit these, they get copied over from the patterns submodule by the Gulp patterns tasks
+├── patterns # This is a submodule, so if you make changes to it, make sure to send them as PR's to the patterns repo
+├── scripts
+│   └── *
+│       └── index.js # These are the entry files, each one of these gets built into assets/built-*.js as well as assets/built-*-legacy.js
+├── snippets
+│   # This folder contains liquid files to be included into other liquid files
+│   # We are gradually migrating source files from this folder into snippets-src
+│   # In the future, all files in this folder will be copied/built files
+│   # For now, there are both built files as well as source files.
+│   # Only edit a file in this folder if it does not have a corresponding file in snippets-src
+│   # Don't create files in this folder. Instead create them in snippets-src
+├── snippets-src
+│   # All files in this folder get copied to the snippets folder by the Gulp snippets task
+│   # The purpose of this directory is so that we can have a nested file structure
+│   # And build tools to flatten it for Shopify
+└── styles
+    ├── product-page # Files in here get built to assets/built-product-page.css
+    └── product-tile # Files in here get built to assets/built-product-tile.css
+```
 
-| NPM Script Name | Description |
+## npm scripts and Gulp tasks
+
+This project has both Gulp tasks and npm scripts. The Gulp tasks are executed via the npm scripts.
+
+### npm Scripts
+
+@TODO Document all npm scripts.
+
+| npm Script Name | Description |
 |---|---|
 | `npm run dev` | @TODO Add description |
 
@@ -414,7 +474,7 @@ Then add the environment variables (see [Building the client-side Persistent Car
 
 ### Set Up the Build Command
 
-To allow DeployBot to automatically build source code, you tell it to run the `build` NPM task. Add the following in the **Compile, compress, or minimize your code** section:
+To allow DeployBot to automatically build source code, you tell it to run the `build` npm task. Add the following in the **Compile, compress, or minimize your code** section:
 
 ```
 npm run build
