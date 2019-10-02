@@ -13,9 +13,9 @@ window.inventories = {
         {
           id: 10324541551,
           name: 'Tempe',
-          available: 17,
+          available: 0,
           pickupOption: true,
-          inStock: 1,
+          inStock: 0,
           distance: 0
         },
         {
@@ -579,8 +579,316 @@ window.inventories = {
         }
       ]
     }
+  },
+  29944918900835: {
+    id: 29944918900835,
+    sku: '2398073',
+    title: 'PINK / EU S - M / 8401950',
+    inventoryItem: {
+      id: 30607043035247,
+      locations: [
+        {
+          id: 10324541551,
+          name: 'Tempe',
+          available: 18,
+          pickupOption: true,
+          inStock: 1,
+          distance: 0
+        },
+        {
+          id: 15685779567,
+          name: 'Auburn',
+          available: 20,
+          pickupOption: true,
+          inStock: 1,
+          distance: 0
+        },
+        {
+          id: 15685845103,
+          name: 'Box Hill',
+          available: 10,
+          pickupOption: true,
+          inStock: 1,
+          distance: 0
+        },
+        {
+          id: 15685812335,
+          name: 'Knoxfield',
+          available: 6,
+          pickupOption: true,
+          inStock: 1,
+          distance: 0
+        },
+        {
+          id: 15685812335,
+          name: 'Moorabbin',
+          available: 6,
+          pickupOption: true,
+          inStock: 1,
+          distance: 0
+        }
+      ]
+    }
+  },
+  29944918671459: {
+    id: 29944918671459,
+    sku: '2398073',
+    title: 'PINK / EU S - M / 8401950',
+    inventoryItem: {
+      id: 30607043035247,
+      locations: [
+        {
+          id: 10324541551,
+          name: 'Tempe',
+          available: 18,
+          pickupOption: true,
+          inStock: 1,
+          distance: 0
+        },
+        {
+          id: 15685779567,
+          name: 'Auburn',
+          available: 20,
+          pickupOption: true,
+          inStock: 1,
+          distance: 0
+        },
+        {
+          id: 15685845103,
+          name: 'Box Hill',
+          available: 10,
+          pickupOption: true,
+          inStock: 1,
+          distance: 0
+        },
+        {
+          id: 15685812335,
+          name: 'Knoxfield',
+          available: 6,
+          pickupOption: true,
+          inStock: 1,
+          distance: 0
+        },
+        {
+          id: 15685812335,
+          name: 'Moorabbin',
+          available: 6,
+          pickupOption: true,
+          inStock: 1,
+          distance: 0
+        }
+      ]
+    }
+  },
+  29944925651043: {
+    id: 29944925651043,
+    sku: '2398073',
+    title: 'PINK / EU S - M / 8401950',
+    inventoryItem: {
+      id: 30607043035247,
+      locations: [
+        {
+          id: 10324541551,
+          name: 'Tempe',
+          available: 18,
+          pickupOption: true,
+          inStock: 1,
+          distance: 0
+        },
+        {
+          id: 15685779567,
+          name: 'Auburn',
+          available: 20,
+          pickupOption: true,
+          inStock: 1,
+          distance: 0
+        },
+        {
+          id: 15685845103,
+          name: 'Box Hill',
+          available: 10,
+          pickupOption: true,
+          inStock: 1,
+          distance: 0
+        },
+        {
+          id: 15685812335,
+          name: 'Knoxfield',
+          available: 6,
+          pickupOption: true,
+          inStock: 1,
+          distance: 0
+        },
+        {
+          id: 15685812335,
+          name: 'Moorabbin',
+          available: 6,
+          pickupOption: true,
+          inStock: 1,
+          distance: 0
+        }
+      ]
+    }
+  },
+  29944921194595: {
+    id: 29944921194595,
+    sku: '2398073',
+    title: 'PINK / EU S - M / 8401950',
+    inventoryItem: {
+      id: 30607043035247,
+      locations: [
+        {
+          id: 10324541551,
+          name: 'Tempe',
+          available: 18,
+          pickupOption: true,
+          inStock: 1,
+          distance: 0
+        },
+        {
+          id: 15685779567,
+          name: 'Auburn',
+          available: 20,
+          pickupOption: true,
+          inStock: 1,
+          distance: 0
+        },
+        {
+          id: 15685845103,
+          name: 'Box Hill',
+          available: 10,
+          pickupOption: true,
+          inStock: 1,
+          distance: 0
+        },
+        {
+          id: 15685812335,
+          name: 'Knoxfield',
+          available: 6,
+          pickupOption: true,
+          inStock: 1,
+          distance: 0
+        },
+        {
+          id: 15685812335,
+          name: 'Moorabbin',
+          available: 6,
+          pickupOption: true,
+          inStock: 1,
+          distance: 0
+        }
+      ]
+    }
+  },
+  29944921161827: {
+    id: 29944921161827,
+    sku: '2398073',
+    title: 'PINK / EU S - M / 8401950',
+    inventoryItem: {
+      id: 30607043035247,
+      locations: [
+        {
+          id: 10324541551,
+          name: 'Tempe',
+          available: 18,
+          pickupOption: true,
+          inStock: 1,
+          distance: 0
+        },
+        {
+          id: 15685779567,
+          name: 'Auburn',
+          available: 20,
+          pickupOption: true,
+          inStock: 1,
+          distance: 0
+        },
+        {
+          id: 15685845103,
+          name: 'Box Hill',
+          available: 10,
+          pickupOption: true,
+          inStock: 1,
+          distance: 0
+        },
+        {
+          id: 15685812335,
+          name: 'Knoxfield',
+          available: 6,
+          pickupOption: true,
+          inStock: 1,
+          distance: 0
+        },
+        {
+          id: 15685812335,
+          name: 'Moorabbin',
+          available: 6,
+          pickupOption: true,
+          inStock: 1,
+          distance: 0
+        }
+      ]
+    }
+  },
+  29944926142563: {
+    id: 29944926142563,
+    sku: '2398073',
+    title: 'PINK / EU S - M / 8401950',
+    inventoryItem: {
+      id: 30607043035247,
+      locations: [
+        {
+          id: 10324541551,
+          name: 'Tempe',
+          available: 0,
+          pickupOption: true,
+          inStock: 0,
+          distance: 0
+        },
+        {
+          id: 15685779567,
+          name: 'Auburn',
+          available: 20,
+          pickupOption: true,
+          inStock: 1,
+          distance: 0
+        },
+        {
+          id: 15685845103,
+          name: 'Box Hill',
+          available: 10,
+          pickupOption: true,
+          inStock: 1,
+          distance: 0
+        },
+        {
+          id: 15685812335,
+          name: 'Knoxfield',
+          available: 6,
+          pickupOption: true,
+          inStock: 1,
+          distance: 0
+        },
+        {
+          id: 15685812335,
+          name: 'Moorabbin',
+          available: 6,
+          pickupOption: true,
+          inStock: 1,
+          distance: 0
+        }
+      ]
+    }
   }
 };
+
+const demoInventory = {
+  id: 0,
+  locations: [],
+  delivery: {}
+};
+
+const storesSort = ['Tempe', 'Auburn', 'Knoxfield', 'Box Hill', 'Moorabbin'];
 
 function addMasterStoresData(inventoryItem) {
   for (let i = window.masterStores.length - 1; i >= 0; i--) {
@@ -616,6 +924,8 @@ function addMasterStoresData(inventoryItem) {
         console.log(1, delivery);
         inventoryItem.delivery = delivery;
       }
+
+      thisloc.title = masterLoc.title;
 
       thisloc.ready = 'Ready to collect in 2 hours';
 
@@ -656,6 +966,7 @@ function addMasterStoresData(inventoryItem) {
 
       const thisloc = {
         name: masterLoc.name,
+        title: masterLoc.title,
         ready: 'Unavailable',
         availability: {
           class: 'out',
@@ -671,9 +982,31 @@ function addMasterStoresData(inventoryItem) {
   }
 
   inventoryItem.locations.sort((a, b) =>
-    a.name > b.name ? 1 : b.name > a.name ? -1 : 0
+    storesSort.indexOf(a.name) > storesSort.indexOf(b.name)
+      ? 1
+      : storesSort.indexOf(b.name) > storesSort.indexOf(a.name)
+      ? -1
+      : 0
   );
   return inventoryItem;
+}
+
+for (let i = window.vars.productJSON.variants.length - 1; i >= 0; i--) {
+  const vId = window.vars.productJSON.variants[i].id;
+  console.log(vId);
+  const vInv = window.inventories[vId].inventoryItem;
+
+  const tempeAvailability = vInv.locations.find(obj => {
+    return obj.name === 'Tempe' && obj.inStock > 0;
+  });
+
+  window.vars.productJSON.variants[i].cc = false;
+
+  if (tempeAvailability) {
+    window.vars.productJSON.variants[i].cc = false;
+  } else if (vInv.locations.length > 0) {
+    window.vars.productJSON.variants[i].cc = true;
+  }
 }
 
 /**
@@ -682,7 +1015,7 @@ function addMasterStoresData(inventoryItem) {
 const initInventoryLocations = () => {
   window.inventoryLocationsDisplay = new Vue({
     el: '#inventoryLocs',
-    data: addMasterStoresData(window.inventories[29944901894243].inventoryItem),
+    data: JSON.parse(JSON.stringify(demoInventory)),
     methods: {
       changeWholeData(newData) {
         Object.keys(this.$data).forEach(key => (this.$data[key] = null));
@@ -691,9 +1024,13 @@ const initInventoryLocations = () => {
         );
       },
       changeVariant(variant) {
-        this.changeWholeData(
-          addMasterStoresData(window.inventories[variant].inventoryItem)
-        );
+        if (variant === null) {
+          this.changeWholeData({});
+        } else {
+          this.changeWholeData(
+            addMasterStoresData(window.inventories[variant].inventoryItem)
+          );
+        }
       }
     }
   });

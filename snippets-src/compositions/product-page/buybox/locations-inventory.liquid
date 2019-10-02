@@ -1,51 +1,63 @@
 <div class="product-inventory-locations">
-  <div class="de-u-padBottom06" data-collapse="inventoryLocations">
-    <div class="de-u-flex de-ProductFulfillment-option">
+  <div class="de-u-padBottom06">
+    <div class="de-u-flex">
       {% include 'assets-icons-store'
         with class: 'de-u-textBlack de-Icon de-u-textGrow6 de-u-spaceRight03' %}
-      <p class="de-u-spaceNone de-u-textMedium">
-        <span class="de-u-textBold">Free</span> returns
+      <p class="de-u-spaceNone de-u-textMedium" data-collapse="inventoryLocations">
+        <button class="de-collapse-trigger">Check In-Store Availability {% include 'assets-icons-chevron-down' with class: 'de-Icon de-u-spaceLeft05' %}</button>
       </p>
     </div>
   </div>
   <div class="de-u-padBottom06 de-collapse" id="inventoryLocations">
     <div class="inventory-locations" id="inventoryLocs">
       
-      <div class="locs-row">
-        {% include 'assets-icons-store'
-        with class: 'de-u-textBlack de-Icon de-u-textGrow6 de-u-spaceRight03' %}
-        Favourite store: Tempe Change
+      <div class="locs-row de-u-textBold">
+        {% include 'assets-icons-flag'
+        with class: 'de-u-textBlack de-Icon de-u-spaceRight06' %}
+        Favourite Store: Tempe <a class="de-u-spaceLeft05" href="/pages/store-finder">Change</a>
       </div>
 
       {% raw %}
-      <div class="locs-row">
-        <div class="t-table">
-          <div class="t-row">
-            <div class="t-cell title" v-text="delivery.name"></div>
-            <div class="t-cell ready" v-text="delivery.ready"></div>
-            <div class="t-cell availability" v-bind:class="delivery.availability.class" v-text="delivery.availability.text"></div>
-            <div class="t-cell hours" v-text="delivery.hours"></div>
+        <div class="locs-row" v-if="id && id !== 0">
+          <div class="t-table">
+            <div class="t-row">
+              <div class="t-cell title">
+                {% endraw %}
+                  {% include 'assets-icons-truck'
+                  with class: 'de-u-textBlack de-Icon de-u-spaceRight06' %}
+                {% raw %}
+                <span v-text="delivery.name"></span></div>
+              <div class="t-cell ready" v-text="delivery.ready"></div>
+              <div class="t-cell availability" v-bind:class="delivery.availability.class" v-text="delivery.availability.text"></div>
+              <div class="t-cell hours" v-text="delivery.hours"></div>
+            </div>
           </div>
         </div>
-      </div>
       {% endraw %}
 
-      <div class="locs-row">
-        {% include 'assets-icons-store'
-        with class: 'de-u-textBlack de-Icon de-u-textGrow6 de-u-spaceRight03' %}
-
-        Click and Collect locations
+      {% raw %}
+        <div class="locs-row de-u-textBold" v-if="id && id !== 0">
+      {% endraw %}
+        {% include 'assets-icons-location'
+        with class: 'de-u-textBlack de-Icon de-u-spaceRight06' %}
+        Click & Collect Locations
       </div>
 
       {% raw %}
-      <div class="t-table">
-        <div class="t-row" v-for="location in locations">
-          <div class="t-cell title" v-text="location.name"></div>
-          <div class="t-cell ready" v-text="location.ready"></div>
-          <div class="t-cell availability" v-bind:class="location.availability.class" v-text="location.availability.text"></div>
-          <div class="t-cell hours" v-text="location.hours"></div>
+        <div class="t-table" v-if="id && id !== 0">
+          <div class="t-row" v-for="location in locations">
+            <div class="t-cell title" v-text="location.title"></div>
+            <div class="t-cell ready" v-text="location.ready"></div>
+            <div class="t-cell availability" v-bind:class="location.availability.class" v-text="location.availability.text"></div>
+            <div class="t-cell hours" v-text="location.hours"></div>
+          </div>
         </div>
-      </div>
+        <div v-else-if="id && id === 0" class="locs-row">\
+          Loading inventory...
+        </div>
+        <div v-else class="locs-row">
+          Select a size
+        </div>
       {% endraw %}
 
     </div>

@@ -230,6 +230,18 @@ export const isVariantSoldOut = variant =>
   !isVariantAvailable(variant) && isNonFollowedProduct();
 
 /**
+ * Helper to know if a product variant is "Click & Collect"
+ * @param {Variant} variant
+ * @returns {boolean}
+ */
+export const isVariantCC = variant => {
+  const v = window.vars.productJSON.variants.find(obj => {
+    return obj.id === variant.id;
+  });
+  return v.cc || false;
+};
+
+/**
  * Helper to determine if a given variant has quantity above the minimum threshold
  * @param {Variant} variant
  * @returns {boolean}

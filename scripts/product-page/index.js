@@ -80,7 +80,11 @@ state.onChange(
       // The updateFulfillmentOptionsUI function will be undefined on page load,
       // but will update on subsequent page actions
       updateFulfillmentOptionsUI && updateFulfillmentOptionsUI(state);
+      window.vars.selectedVariant = variant;
       window.inventoryLocationsDisplay.changeVariant(variant.id);
+    } else {
+      window.vars.selectedVariant = null;
+      window.inventoryLocationsDisplay.changeVariant(null);
     }
   },
   state => [getVariantFromState(state)]

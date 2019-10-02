@@ -8,6 +8,7 @@ import {
 import {
   isVariantOutOfStock,
   isVariantSoldOut,
+  isVariantCC,
   isNonFollowedProduct,
   variantHasSufficientQuantity,
   variants
@@ -138,6 +139,14 @@ export const getUIState = variant => {
       };
     }
     return DEFAULT_UI_STATE;
+  }
+
+  if (isVariantCC(variant)) {
+    return {
+      ...DEFAULT_UI_STATE,
+      addToCartButtonText: 'Click & Collect',
+      isAddToCartButtonDisabled: false
+    };
   }
 
   if (isVariantSoldOut(variant)) {

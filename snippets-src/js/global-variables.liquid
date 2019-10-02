@@ -5,6 +5,10 @@
   window.vars.inventoryType = "{{ settings.inventory_type }}";
   window.vars.outOfStockHandling = "{{ settings.out_of_stock_handling }}";
   window.vars.pickupDisplay = "{{ settings.pickup_display }}";
+  {% if product %}
+    window.vars.productJSON = {{ product | json }};
+    window.vars.selectedVariant = {{ product.selected_variant | json }};
+  {% endif %}
 </script>
 
 {% include 'js-master-stores' %}

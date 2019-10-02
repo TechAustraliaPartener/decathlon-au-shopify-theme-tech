@@ -10,22 +10,53 @@
   }
 }
 
+[data-collapse] {
+  .de-collapse-trigger {
+    font-size: 12px;
+    font-family: 'avalonbold';
+    color: $color-white;
+    padding: 5px 20px;
+    background-color: $color-blue;
+
+    .de-Icon {
+      height: 0.5em;
+      transition: transform 200ms ease-in-out;
+    }
+  }
+
+  &.expanded {
+    .de-collapse-trigger {
+      .de-Icon {
+        transform: rotate(180deg);
+        margin-bottom: 0.1em;
+      }
+    }
+  }
+}
+
 .inventory-locations {
   background-color: $color-silver;
   padding: 20px 30px;
+  font-size: 12px;
+
+  .de-Icon {
+    width: 1.5em;
+    height: 1.5em;
+  }
 
   .locs-row {
     padding: 20px 0;
     border-top: 1px solid #d9d9d9;
     display: flex;
+    line-height: 1.5em;
 
     &:first-of-type {
       border-top: none;
+      padding-top: none;
     }
   }
 
   .t-table {
-    font-size: 12px;
     width: 100%;
 
     .t-row {
