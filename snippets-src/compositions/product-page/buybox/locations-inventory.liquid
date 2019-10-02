@@ -9,71 +9,45 @@
     </div>
   </div>
   <div class="de-u-padBottom06 de-collapse" id="inventoryLocations">
-    <div class="inventory-locations">
-
+    <div class="inventory-locations" id="inventoryLocs">
+      
       <div class="locs-row">
         {% include 'assets-icons-store'
         with class: 'de-u-textBlack de-Icon de-u-textGrow6 de-u-spaceRight03' %}
-
         Favourite store: Tempe Change
       </div>
+
+      {% raw %}
       <div class="locs-row">
         <div class="t-table">
           <div class="t-row">
-            <div class="t-cell title">
-              {% include 'assets-icons-store' with class: 'de-u-textBlack de-Icon de-u-textGrow6 de-u-spaceRight03' %}
-                Delivery
-            </div>
-            <div class="t-cell ready">Available for delivery</div>
-            <div class="t-cell availability">In Stock</div>
-            <div class="t-cell hours">2-6 day delivery in Metro areas</div>
+            <div class="t-cell title" v-text="delivery.name"></div>
+            <div class="t-cell ready" v-text="delivery.ready"></div>
+            <div class="t-cell availability" v-bind:class="delivery.availability.class" v-text="delivery.availability.text"></div>
+            <div class="t-cell hours" v-text="delivery.hours"></div>
           </div>
         </div>
       </div>
+      {% endraw %}
+
       <div class="locs-row">
         {% include 'assets-icons-store'
         with class: 'de-u-textBlack de-Icon de-u-textGrow6 de-u-spaceRight03' %}
 
         Click and Collect locations
       </div>
+
+      {% raw %}
       <div class="t-table">
-        <div class="t-row">
-          <div class="t-cell title">Tempe</div>
-          <div class="t-cell ready">Ready to collect in 2 hours</div>
-          <div class="t-cell availability in">In Stock</div>
-          <div class="t-cell hours">Open today 9:00am - 6:00pm</div>
-        </div>
-        <div class="t-row">
-          <div class="t-cell title">Tempe</div>
-          <div class="t-cell ready">Ready to collect in 2 hours</div>
-          <div class="t-cell availability out">In Stock</div>
-          <div class="t-cell hours">Open today 9:00am - 6:00pm</div>
-        </div>
-        <div class="t-row">
-          <div class="t-cell title">Tempe</div>
-          <div class="t-cell ready">Ready to collect in 2 hours</div>
-          <div class="t-cell availability low">In Stock</div>
-          <div class="t-cell hours">Open today 9:00am - 6:00pm</div>
-        </div>
-        <div class="t-row">
-          <div class="t-cell title">Tempe</div>
-          <div class="t-cell ready">Ready to collect in 2 hours</div>
-          <div class="t-cell availability">In Stock</div>
-          <div class="t-cell hours">Open today 9:00am - 6:00pm</div>
-        </div>
-        <div class="t-row">
-          <div class="t-cell title">Tempe</div>
-          <div class="t-cell ready">Ready to collect in 2 hours</div>
-          <div class="t-cell availability">In Stock</div>
-          <div class="t-cell hours">Open today 9:00am - 6:00pm</div>
-        </div>
-        <div class="t-row">
-          <div class="t-cell title">MOORABBIN DFO  POP-UP STORE</div>
-          <div class="t-cell ready">Ready to collect in 24 hours</div>
-          <div class="t-cell availability">Out of Stock</div>
-          <div class="t-cell hours">Open today 12:00am - 12:00pm</div>
+        <div class="t-row" v-for="location in locations">
+          <div class="t-cell title" v-text="location.name"></div>
+          <div class="t-cell ready" v-text="location.ready"></div>
+          <div class="t-cell availability" v-bind:class="location.availability.class" v-text="location.availability.text"></div>
+          <div class="t-cell hours" v-text="location.hours"></div>
         </div>
       </div>
+      {% endraw %}
+
     </div>
   </div>
 </div>

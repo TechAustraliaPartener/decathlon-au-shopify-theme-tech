@@ -8,6 +8,7 @@ import * as colorSwatches from './color-swatches';
 import * as sizeSwatches from './size-swatches';
 import './videos';
 import * as accordion from './accordion';
+import * as inventoryLocations from './inventory-locations';
 import { reviewsInit } from './ratings-reviews';
 import { updateOptionStates } from './option-states';
 import * as masterSelect from './master-select';
@@ -79,6 +80,7 @@ state.onChange(
       // The updateFulfillmentOptionsUI function will be undefined on page load,
       // but will update on subsequent page actions
       updateFulfillmentOptionsUI && updateFulfillmentOptionsUI(state);
+      window.inventoryLocationsDisplay.changeVariant(variant.id);
     }
   },
   state => [getVariantFromState(state)]
@@ -152,6 +154,7 @@ const init = async () => {
   const urlVariant = selectUrlVariant();
   stickyNav.init();
   modal.init();
+  inventoryLocations.init();
 
   return urlVariant;
 
