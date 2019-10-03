@@ -275,16 +275,30 @@
     // AJAX API Call to change Shopify cart object on quantity change
     function cartQuantityChange() {
       var $changedInput = $(this);
-      jQuery.ajax({
-        type: 'post',
-        url: '/cart/change.js',
-        data: {
-          quantity: $changedInput.val(),
-          id: $changedInput.data('item-variant')
-        },
-        success: updateCartPrices.call(this),
-        dataType: 'json'
-      });
+      var successCallbackThis = this;
+      var newQty = parseInt($changedInput.val(), 10);
+      if ($changedInput.attr('max') === 0) {
+        return;
+      }
+      if (newQty > $changedInput.attr('max')) {
+        $changedInput.val($changedInput.attr('max')).trigger('input');
+        return;
+      }
+      if (newQty < 1) {
+        $changedInput.val(1).trigger('input');
+        return;
+      }
+      var lineIndex = $changedInput.parents('.cart__row').index() + 1;
+      var cartIndex = lineIndex - 1;
+
+      var options = {
+        'success': function() {
+          updateCartPrices.call(successCallbackThis);
+        }
+      }
+      if (CartJS.cart.items[cartIndex].quantity !== parseInt(newQty)) {
+        CartJS.updateItem(lineIndex, newQty, CartJS.cart.items[cartIndex].properties, options);
+      }
     }
     // Update prices on cart page after successful quantity change
     function updateCartPrices() {
@@ -301,6 +315,7 @@
         qtotal += $(this).val() * 1;
       });
       $('.js-de-cart__subtotal').text(Shopify.formatMoney(total));
+      $('.afterpay-info strong').text(Shopify.formatMoney(total / 4));
       $('#CartCount').text(qtotal);
     }
 
