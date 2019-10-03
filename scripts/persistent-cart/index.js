@@ -18,13 +18,6 @@ import {
 } from '../utilities/storage';
 import pcConfig from './config';
 import scriptsConfig, { DEBUG } from '../shared/config';
-import {
-  setCheckingOutFlag,
-  wasFailedCheckout,
-  onCheckout,
-  cartFormSubmitEl,
-  unsetCheckingOutFlag
-} from '../shared/checkout-helpers';
 import { cartReconciler } from './cart-reconciler';
 import { setCartCookie, getCartCookie, removeCartCookie } from './cart-cookies';
 import onCartAjaxUpdated from './add-to-cart';
@@ -154,7 +147,7 @@ const rebuildCart = reconciledCarts => {
 
 /**
  * Call to update the Shopify cart using the `/cart/update.js` endpoint
- * @param {import('./cart-reconciler').CartPayload} reconciledCarts
+ * @param {Object} reconciledCarts
  * @returns {Promise<Cart|null>} - A Shopify cart
  */
 const updateCart = reconciledCarts => {
@@ -167,39 +160,11 @@ const updateCart = reconciledCarts => {
 };
 
 /**
- * Attempts to update a cart with the given items. If the update fails, it
- * rebuilds the cart.
- * @param {import('./cart-reconciler').CartPayload} cartItems
- */
-const updateOrRebuildCart = cartItems =>
-  updateCart(cartItems)
-    .catch(error => {
-      console.error('/cart/update.js returned with error', error);
-      /**
-       * If an error was thrown attempting to use `/cart/update.js`, now try
-       * to rebuild the cart using sequential `/cart/add.js` requests
-       */
-      return rebuildCart(cartItems);
-    })
-    .then(updatedCart => {
-      if (!updatedCart || !('item_count' in updatedCart)) {
-        throw new Error(
-          `No cart returned after attempting to update or rebuild using token ${getCartCookie()}${
-            cartItems
-              ? `, with reconciled carts: ${JSON.stringify(cartItems)}`
-              : ''
-          }.`
-        );
-      }
-      return updatedCart;
-    });
-
-/**
  * Use a reconciled cart object as payload to update the Shopify cart
  * This is considered "rehydrating" if the previously used cartID/token was
  * found to be expired by Shopify
- * @param {import('./cart-reconciler').CartPayload} reconciledCarts - An object
- * of line_item objects to use to update the cart
+ * @param {Object} reconciledCarts - An object of line_item objects to use to
+ * update the cart
  * @returns {Promise<Cart>} - The updated Shopify cart
  */
 const modifyShopifyCart = (reconciledCarts = null) => {
@@ -226,17 +191,34 @@ const modifyShopifyCart = (reconciledCarts = null) => {
    * Now call "/cart/update.js" (a POST request)
    * to the Shopify API to update the cart in their DB
    */
-  return updateOrRebuildCart(reconciledCarts).then(updatedCart => {
-    if (DEBUG) console.debug('🛒 Updated cart!!!', updatedCart);
-    // Update the cart in localStorage to match the newly updated Shopify cart
-    setStoredShopifyCart(updatedCart);
-    return updatedCart;
-  });
+  return updateCart(reconciledCarts)
+    .catch(error => {
+      console.error('/cart/update.js returned with error', error);
+      /**
+       * If an error was thrown attempting to use `/cart/update.js`, now try
+       * to rebuild the cart using sequential `/cart/add.js` requests
+       */
+      return rebuildCart(reconciledCarts);
+    })
+    .then(updatedCart => {
+      if (updatedCart && 'item_count' in updatedCart) {
+        if (DEBUG) console.debug('🛒 Updated cart!!!', updatedCart);
+        // Update the cart in localStorage to match the newly updated Shopify cart
+        setStoredShopifyCart(updatedCart);
+        return updatedCart;
+      }
+      throw new Error(
+        `No cart returned after attempting to update or rebuild using token ${newCartID}${
+          reconciledCarts ? `, with reconciled carts: ${reconciledCarts}` : ''
+        }.`
+      );
+    });
 };
 
 /**
  * Reconcile two carts, if needed
- * @returns {import('./cart-reconciler').CartPayload}
+ * @returns {Object} An object where the key/value pairs are set in
+ * key/value pairs: {variant_id: quantity}
  */
 const reconcileCarts = () => {
   /**
@@ -378,13 +360,9 @@ const fetchShopifyCart = cartID => {
     .then(res => res.json())
     .then(cart => {
       if (!cart) {
-        /**
-         * @TODO - What to do if this fails - Should the cookie be set back
-         * to what it was?
-         */
         throw new Error(
           `Could not fetch a cart from Shopify with cartID ${cartID ||
-            getCartCookie()}.`
+            getCartCookie}.`
         );
       }
       return cart;
@@ -394,10 +372,7 @@ const fetchShopifyCart = cartID => {
 /**
  * Get a Shopify cart on page load from the Storefront AJAX API
  * Called without first setting a cart cookie, unlike the "master" cart
- * Will not fetch if this is a page load directly after login, from a pre-login
- * state of having 0 items in the cart
- * @returns {Promise<Cart|null>} - A Shopify cart or null if there is nothing
- * in the cart on page load
+ * @returns {Promise<Cart|null>} - A Shopify cart or null if there is nothing in the cart on page load
  */
 const fetchPageLoadShopifyCart = () =>
   cache.currentCartCount > 0 ? fetchShopifyCart() : Promise.resolve(null);
@@ -585,38 +560,36 @@ const initWithCustomer = customer => {
   // Initialize logout handler for clearing storage and cart-related cookies on logout
   logoutHandlerInit();
   // Initialize the persistent cart flow
-  return (
-    pcInit(customer)
-      .then(response => {
-        if (response && response.error) {
-          throw new Error(getErrorMessage(response.error));
-        }
-        // Pass PC client initialization as a callback to the add-to-cart module
-        onCartAjaxUpdated(quantity => {
-          /**
-           * First update the cart quantity to add to what was in the template at page load
-           */
-          cache.currentCartCount += quantity;
-          // Now call the application init function
-          pcInit(customer);
-        });
-        /**
-         * Set a flag showing that the user was logged in as of this time.
-         * Do this only in the "finally" block of when all of the PC flow is complete
-         * This flag will be unset as soon as the page loads without a customerID
-         */
-        setWasLoggedIn();
-      })
-      // Catch all errors from ensuing calls
-      .catch(error => {
-        // @TODO - Promise.finally might need shimming. Instead, just call setLoggedIn on both success and failure
-        setWasLoggedIn();
-        console.error(
-          'Persistent cart errors or messages: ',
-          getErrorMessage(error)
-        );
-      })
-  );
+  pcInit(customer)
+    .then(response => {
+      if (response && response.error) {
+        throw new Error(getErrorMessage(response.error));
+      }
+      /**
+       * Set a flag showing that the user was logged in as of this time.
+       * Do this only in the "finally" block of when all of the PC flow is complete
+       * This flag will be unset as soon as the page loads without a customerID
+       */
+      setWasLoggedIn();
+    })
+    // Catch all errors from ensuing calls
+    .catch(error => {
+      // @TODO - Promise.finally might need shimming. Instead, just call setLoggedIn on both success and failure
+      setWasLoggedIn();
+      console.error(
+        'Persistent cart errors or messages: ',
+        getErrorMessage(error)
+      );
+    });
+  // Pass PC client initialization as a callback to the add-to-cart module
+  onCartAjaxUpdated(quantity => {
+    /**
+     * First update the cart quantity to add to what was in the template at page load
+     */
+    cache.currentCartCount += quantity;
+    // Now call the application init function
+    pcInit(customer);
+  });
 };
 
 /**
@@ -641,61 +614,16 @@ const initWithoutCustomer = () => {
     updateCartUI(0);
   }
   /**
-   * Remove any flags for failed checkout. PC-related checkout issues cannot
-   * affect a user who is not logged in.
-   */
-  unsetCheckingOutFlag();
-  /**
-   * Remove a flag showing that the user was previously logged in.
+   * Set a flag showing that the user was not logged in as of this time.
    * Do this only when there is no customerID in the template
-   * This flag will be set after page loads without a customerID, when
-   * the PC flow is complete
+   * This flag will be set after page loads without a customerID and
+   * when the PC flow is complete
    */
   removeWasLoggedIn();
   /**
    * Remove any locally saved cart information
    */
   removeStoredShopifyCart();
-};
-
-/**
- * Creates and hydrates a new Shopify cart and updates the customer in the DB
- * @param {Customer} customer
- * @returns {Promise<Customer>}
- */
-const handleFailedCheckout = async customer => {
-  /**
-   * @TODO - If the programmatic re-submit I added (runs after this returns)
-   * stays in place, consider a simple class toggle or state update that puts
-   * the form in a "submitted" state. This would go along with some update for
-   * disabling the submit button (also changing its text) on submit, and/or
-   * inticating a processing state with a "loader"-type graphic
-   */
-  // Get any existing Shopify cart
-  const existingShopifyCart = await fetchShopifyCart();
-  // @TODO - handle any errors here and/or abort?
-  const existingCartItems = cartReconciler(existingShopifyCart, null);
-  // Remove the existing cart cookie
-  removeCartCookie();
-  /**
-   * Now call "/cart/update.js" (a POST request)
-   * to the Shopify API to hydrate a new cart with the existing items
-   * This should return a new cart and set the cart cookie
-   */
-  return updateOrRebuildCart(existingCartItems).then(updatedCart => {
-    if (DEBUG) {
-      console.debug(
-        `🛒 Handled failed checkout, updated cart with token
-      ${updatedCart.token}!!!`,
-        updatedCart
-      );
-    }
-    // Update the cart in localStorage to match the newly updated Shopify cart
-    return createOrUpdateCustomer({
-      customerID: cache.customerID,
-      cart: updatedCart
-    });
-  });
 };
 
 /**
@@ -724,62 +652,36 @@ const pcCheckInit = customerID => {
   // Persist cid locally
   cache.customerID = customerID;
   // Test for a customer plus localStorage and cookie support (enabled), or do not proceed
-  if (cache.customerID) {
-    getCustomer(cache.customerID)
-      .then(customerResponse => {
-        /**
-         * Assuming
-         * - The Storefront API was successfully queried and
-         * - Either there's no customer in our DB yet or there is and Mongo
-         *   did not return an error
-         * Proceed
-         */
-        if (
-          !customerResponse ||
-          (typeof customerResponse === 'object' &&
-            !('error' in customerResponse))
-        ) {
+  if (localStorageAvailable && cookiesAvailable) {
+    if (cache.customerID) {
+      getCustomer(cache.customerID)
+        .then(customerResponse => {
           /**
-           * If we detect a checkout event failed, handle by getting and
-           * hydrating a new cart
+           * Assuming
+           * - The Storefront API was successfully queried and
+           * - Either there's no customer in our DB yet or there is and Mongo
+           *   did not return an error
+           * Proceed
            */
-          if (wasFailedCheckout()) {
-            handleFailedCheckout(customerResponse)
-              .then(initWithCustomer)
-              .then(() => {
-                // Clean up the flag for failed checkout now
-                unsetCheckingOutFlag();
-                if (DEBUG)
-                  console.debug(
-                    '🛒 Attempt to re-checkout after updating cart token?'
-                  );
-                /**
-                 * Now re-submit the form programatically - THIS IS UP FOR REVEIW
-                 *  @TODO - Discuss this behavior, and the lack of UI indicators
-                 * (also, accessibility indicators) of what's happening.
-                 * - The checkout submit button never gets disabled
-                 * - The messaging on that button doesn't change to indicate
-                 * that the checkout process is ongoing
-                 * - There's no indication that there was a problem with checkout
-                 * and that the app is "retrying"
-                 */
-                cartFormSubmitEl.click();
-              });
-          } else {
+          if (
+            !customerResponse ||
+            (typeof customerResponse === 'object' &&
+              !('error' in customerResponse))
+          ) {
             initWithCustomer(customerResponse);
+            return;
           }
-          return;
-        }
-        if ('error' in customerResponse) {
-          throw new Error(customerResponse.error);
-        }
-      })
-      .catch(error => {
-        console.error('Persistent cart cannot be initialized', error);
-        removeStoredShopifyCart();
-      });
-  } else {
-    initWithoutCustomer();
+          if ('error' in customerResponse) {
+            throw new Error(customerResponse.error);
+          }
+        })
+        .catch(error => {
+          console.error('Persistent cart cannot be initialized', error);
+          removeStoredShopifyCart();
+        });
+    } else {
+      initWithoutCustomer();
+    }
   }
 };
 
@@ -794,15 +696,6 @@ const initCleanup = customerID => {
   } else {
     initWithoutCustomer();
   }
-};
-
-/**
- * Add a listener to the `window.unload` event.
- * The callback will then set a flag indicating that navigation to checkout
- * should happen
- */
-const addCheckoutListener = () => {
-  window.addEventListener('unload', setCheckingOutFlag);
 };
 
 /**
@@ -821,19 +714,12 @@ const addCheckoutListener = () => {
  *       user logs out)
  */
 document.addEventListener('DOMContentLoaded', async () => {
-  // Test for client-storage availability before proceeding
-  if (sessionStorageAvailable && localStorageAvailable && cookiesAvailable) {
-    // Get cid from template
-    /** @type HTMLInputElement */
-    const cidEl = document.querySelector(CUSTOMER_ID);
-    const customerID = cidEl && cidEl.value ? cidEl.value : null;
+  // Get cid from template
+  /** @type HTMLInputElement */
+  const cidEl = document.querySelector(CUSTOMER_ID);
+  const customerID = cidEl && cidEl.value ? cidEl.value : null;
+  if (sessionStorageAvailable) {
     const storefrontAPIWorks = await persistedStorefrontAPITest();
-    /**
-     * Set a flag when checkout happens. If this doesn't get unset within checkout,
-     * it's a sign that checkout has failed and a new cart may need to be created,
-     * for a logged-in user
-     */
-    onCheckout(addCheckoutListener);
     if (storefrontAPIWorks) {
       if (DEBUG) console.debug('Shopify 🏬 Storefront API test succeeded');
       // Initialize custom checkout for all customers: Favro DEC-3130
@@ -846,8 +732,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       initCleanup(customerID);
     }
   } else {
-    console.error(`Storage tests failed, cannot proceed with persistent cart
-    or custom checkout`);
-    // Nothing further can be done here that depends on client storage APIs
+    console.error(`Session storage test failed, cannot persist Storefront API
+    health check results`);
+    initCleanup(customerID);
   }
 });

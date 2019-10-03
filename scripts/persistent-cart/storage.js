@@ -13,14 +13,14 @@ const {
 
 /**
  * Get a saved Shopify cart from localStorage
- * @returns {Cart} cart - The JSON.parsed cart object from localStorage
+ * @returns {Object} cart - The JSON.parsed cart object from localStorage
  */
 export const getStoredShopifyCart = () =>
   getObjectFromLocalStorage(SHOPIFY_CART);
 
 /**
  * Sets a Shopify cart object in localStorage
- * @param {Cart} cart - The cart object to be stored
+ * @param {Object} cart - The cart object to be stored
  */
 export const setStoredShopifyCart = cart =>
   setObjectInLocalStorage(SHOPIFY_CART, cart);

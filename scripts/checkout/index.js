@@ -5,11 +5,7 @@ import { DELIVERY_METHODS } from './constants';
 import STATE from './state';
 import bindUI from './bind-ui';
 import updateUI from './update-ui';
-import {
-  getObjectFromSessionStorage,
-  sessionStorageAvailable
-} from '../utilities/storage';
-import { unsetCheckingOutFlag } from '../shared/checkout-helpers';
+import { getObjectFromSessionStorage } from '../utilities/storage';
 
 /**
  * Initialize custom JS functionality
@@ -42,15 +38,6 @@ const init = () => {
  * checkout if it's a page load event
  */
 const initCheck = () => {
-  // Check ability to use session storage before proceeding
-  if (!sessionStorageAvailable) {
-    return;
-  }
-  /**
-   * Unset flag from pre-checkout that sets the state of "is checking out"
-   * If this page is not loaded, the cookie will not be unset
-   */
-  unsetCheckingOutFlag();
   const isOnlineStoreCheckout = getIsOnlineStoreCheckout();
   if (isOnlineStoreCheckout) {
     updateUI({ isOnlineStoreCheckout });

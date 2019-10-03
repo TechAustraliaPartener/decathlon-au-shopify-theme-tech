@@ -15,9 +15,6 @@ const config = {
     get CUSTOMER_ID() {
       return `${this.PREFIX}cid`;
     },
-    get CART_SUBMIT_BUTTON() {
-      return `${this.PREFIX}checkout`;
-    },
     CHECKOUT: {
       // @see https://help.shopify.com/en/themes/development/layouts/checkout#step-identification
       STEPS: {

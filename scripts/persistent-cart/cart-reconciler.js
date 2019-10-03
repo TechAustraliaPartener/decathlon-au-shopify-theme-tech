@@ -8,21 +8,18 @@
  */
 
 /**
- * @typedef {Object.<string, number>} CartPayload
- */
-
-/**
  * Get items from a Shopify cart or the cart in the DB
  * Note that the cart returned by a webhook does not match the
  * structure of a cart returned by the AJAX API
  * @param {Item[]} items - Items extracted from a cart
  * @returns {LineItem[]} - Query-ready line-item objects
  */
-const getLineItems = items =>
-  items.map(({ variant_id: id, quantity }) => ({
+const getLineItems = items => {
+  return items.map(({ variant_id: id, quantity }) => ({
     id,
     quantity
   }));
+};
 
 /**
  * Get items from a cart
@@ -34,16 +31,14 @@ const getItemsFromCart = cart =>
 
 // @TODO - implement and remove comments
 /**
- * Merges two carts to produce a merged object of line-item details (variant_id
- * and quantity)
+ * Merges two carts to produce a merged object of line-item details (variant_id and quantity)
  * This array should be used to update an existing Shopify cart in a single request
  * @see https://help.shopify.com/en/themes/development/getting-started/using-ajax-api#update-cart
- * @param {Cart|null} cart1 - One cart to reconcile
- * @param {Cart|null} cart2 - Another cart to reconcile
- * @returns {CartPayload} mergedCart - Object of line_item key/value
- * pairs, where the key is a variant_id (id property) the value is a quantity.
- * If the variant_id of two line items is identical, the quantity will be
- * accumulated to a single line_item
+ * @param {Object|null} cart1 - One cart to reconcile
+ * @param {Object|null} cart2 - Another cart to reconcile
+ * @returns {Object.<string,number>} mergedCart - Object of line_item key/value pairs,
+ * where the key is a variant_id (id property) the value is a quantity.
+ * If the variant_id of two line items is identical, the quantity will be accumulated to a single line_item
  */
 export const cartReconciler = (cart1, cart2) => {
   /**
