@@ -121,7 +121,7 @@
     {% endcomment %}
     {{ 'icomoon.scss.css' | asset_url | stylesheet_tag }}
   {% endif %}
-  {% if template == "cart" or template == "collection.hypervisual" or template == "collection.multi" or template == "collection" %}
+  {% if template == "cart" or template == "collection.hypervisual" or template == "collection.multi" or template == "collection" or template == "collection.subcategory" %}
     {{ 'built-product-tile.css' | asset_url | stylesheet_tag }}
   {% endif %}
   {% comment %}
