@@ -1,21 +1,21 @@
 <li class="de-u-spaceNone">
-	{% assign content-element = 'button' %}
-  	<{{ content-element }} class="de-MenuList-item{% if class %} {{class}}{% endif %}"{% if item.url %} href="{{ item.url }}{% endif %}" data-de-slideViews-target="{{menuChild}}-{{list.handle}}">
-		<div class="de-MenuList-content">
-			<h5 class="de-MenuList-heading">
-        {% if list.handle == 'kids' %}
-          For {{ list.handle | capitalize }}
-        {% else %}
-          For {{ list.handle | capitalize | remove: "s" }}
-        {% endif %}
-			</h5>
-			<p class="de-MenuList-summary">
-				{% for list-item in list.links limit:2 %}
-				  {{ list-item.title | remove: "Women's "  | remove: "Men's " | remove: "Kids' " | capitalize }}{% if forloop.last %}…{% else %},{% endif %}
-				{% endfor %}
-			</p>
-      	</div>
-	<p class="de-MenuList-badge">{{ list.links.size }}</p>
+  {% assign content-element = 'button' %}
+  
+  <{{ content-element }} class="de-MenuList-item{% if class %} {{class}}{% endif %}"{% if item.url %} href="{{ item.url }}{% endif %}" data-de-slideViews-target="{{menuChild}}-{{list.handle}}">
+  <div class="de-MenuList-content">
+    <h5 class="de-MenuList-heading">
+      {% comment %}Existing logic{% endcomment %}
+      {% assign generated_menu_title = list.handle | capitalize | remove: "s" | prepend: "For " %}
+      {{ menu_title | default: generated_menu_title }}
+    </h5>
+    <p class="de-MenuList-summary">
+      {% capture generated_subhead %}{% for list-item in list.links limit: 2 %}
+        {{ list-item.title | remove: "Women's "  | remove: "Men's " | capitalize }}{% if forloop.last %}…{% else %},{% endif %}
+      {% endfor %}{% endcapture %}
+      {{ subhead | default: generated_subhead }}
+    </p>
+  </div>
+  <p class="de-MenuList-badge">{{ list.links.size }}</p>
     {% include 'patterns-icons-chevron', class: 'de-MenuList-icon', role: 'presentation' %}
   </{{ content-element }}>
 </li>

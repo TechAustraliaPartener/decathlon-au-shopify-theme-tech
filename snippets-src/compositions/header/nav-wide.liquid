@@ -12,84 +12,35 @@
                   Shop All Sports…
                 </h2>
                 <ul class="de-MenuBar-list">
-                  <li>
-                    <button
-                      class="de-MenuBar-action"
-                      data-gtm-event="customer-interaction"
-                      data-gtm-id="By Activity"
-                      data-gtm-category="Header"
-                      data-de-collapsible-target="mega-tab-activity"
-                      data-de-collapsible-action="show">
-                      By Activity
-                    </button>
-                  </li>
-                  <li>
-                    <button
-                      class="de-MenuBar-action"
-                      data-gtm-event="customer-interaction"
-                      data-gtm-id="From AZ"
-                      data-gtm-category="Header"
-                      data-de-collapsible-target="mega-tab-alpha"
-                      data-de-collapsible-action="show">
-                      From A – Z
-                    </button>
-                  </li>
-                  <li>
-                    <button
-                      class="de-MenuBar-action"
-                      data-gtm-event="customer-interaction"
-                      data-gtm-id="For Women"
-                      data-gtm-category="Header"
-                      data-de-collapsible-target="mega-tab-women"
-                      data-de-collapsible-action="show">
-                      For Women
-                    </button>
-                  </li>
-                  <li>
-                    <button
-                      class="de-MenuBar-action"
-                      data-gtm-event="customer-interaction"
-                      data-gtm-id="For Men"
-                      data-gtm-category="Header"
-                      data-de-collapsible-target="mega-tab-men"
-                      data-de-collapsible-action="show">
-                      For Men
-                    </button>
-                  </li>
-                  <li>
-                    <button
-                      class="de-MenuBar-action"
-                      data-gtm-event="customer-interaction"
-                      data-gtm-id="For Kids"
-                      data-gtm-category="Header"
-                      data-de-collapsible-target="mega-tab-kids"
-                      data-de-collapsible-action="show">
-                      For Kids
-                    </button>
-                  </li>
+                  {% for link in linklists.mega-tabs.links %}
+                    <li>
+                      <button class="de-MenuBar-action"
+                        data-de-collapsible-target="mega-tab-{{ link.handle }}"
+                        data-de-collapsible-action="show">
+                        {{ link.title }}
+                      </button>
+                    </li>
+                  {% endfor %}
                 </ul>
               </div>
             </div>
             <div class="de-u-pad2 de-u-borderTopSm de-u-borderGray50 de-u-borderOverlapTopSm">
-              <div class="de-Collapsible js-de-Collapsible" data-parent="mega-tabs" id="mega-tab-activity">
-                {% include 'compositions-header-nav-wide-list',
-                  list: linklists["activities"] %}
-              </div>
-              <div class="de-Collapsible js-de-Collapsible" data-parent="mega-tabs" id="mega-tab-alpha">
-                {% include 'compositions-header-nav-wide-az' %}
-              </div>
-              <div class="de-Collapsible js-de-Collapsible" data-parent="mega-tabs" id="mega-tab-women">
-                {% include 'compositions-header-nav-wide-list',
-                  list: linklists["womens"] %}
-              </div>
-              <div class="de-Collapsible js-de-Collapsible" data-parent="mega-tabs" id="mega-tab-men">
-                {% include 'compositions-header-nav-wide-list',
-                  list: linklists["mens"] %}
-              </div>
-              <div class="de-Collapsible js-de-Collapsible" data-parent="mega-tabs" id="mega-tab-kids">
-                {% include 'compositions-header-nav-wide-list',
-                  list: linklists["kids"] %}
-              </div>
+              {% for link in linklists.mega-tabs.links %}
+
+                {% assign menu_handle = link.url | handleize %}
+                
+                {% assign mega_menu = linklists[menu_handle] %}
+                {% if mega_menu.links.size > 0 or menu_handle == 'az' %}
+                  <div class="de-Collapsible js-de-Collapsible" data-parent="mega-tabs" id="mega-tab-{{ link.handle }}">
+                    {% if menu_handle == 'az' %}
+                      {% include 'compositions-header-nav-wide-az' %}
+                    {% else %}
+                      {% include 'compositions-header-nav-wide-list', list: mega_menu %}
+                    {% endif %}
+                  </div>
+                {% endif %}
+                
+              {% endfor %}
             </div>
           </div>
         </div>

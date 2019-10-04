@@ -1,169 +1,110 @@
 <div class="de-SlideViews js-de-SlideViews">
 	<section class="de-SlideViews-view js-de-SlideViews-view" id="menu-narrow">
-		<ul class="de-MenuList">
+    <ul class="de-MenuList">
 			{% include 'navigation-menu-mobile-account' %}
-			<li class="de-u-spaceNone">
-        <a class="de-MenuList-item de-MenuList-item--brand de-ShopMenu"
-           style="{% if settings.shop_menu_bg_color %}background-color:{{settings.shop_menu_bg_color}};{% endif %}
-                  {% if settings.shop_menu_text_color %} color:{{settings.shop_menu_text_color}};{% endif %}"
-           href="{% if settings.shop_menu_link %}{{ settings.shop_menu_link }}{% else %}/pages/our-story{% endif %}">
-				<div class="de-MenuList-content">
-					<h5 class="de-MenuList-heading de-ShopMenu-title">{{ settings.shop_menu_title }}</h5>
-					<p class="de-MenuList-summary de-ShopMenu-subtitle">{{ settings.shop_menu_subtitle }}</p>
-				</div>
-				{% include 'patterns-icons-chevron',
-					class: "de-MenuList-icon de-ShopMenu-icon"
-					role: 'presentation' %}
-				</a>
-			</li>
-			{% comment %} <li class="de-u-spaceNone">
-				<a class="de-MenuList-item de-MenuList-item--lastcall" href="/pages/last-call">
-				<div class="de-MenuList-content">
-					<h5 class="de-MenuList-heading">Last Call</h5>
-					<p class="de-MenuList-summary">End of Season Deals</p>
-				</div>
-				{% include 'patterns-icons-chevron',
-					class: "de-MenuList-icon"
-					role: 'presentation' %}
-				</a>
-			</li> {% endcomment %}
-		</ul>
-		<ul class="de-MenuList de-u-listReset">
-	    	<li class="de-u-spaceNone">
-				<button class="de-MenuList-item" href="#"
-					data-de-slideViews-target="menu-list-all-sports">
-					<div class="de-MenuList-content">
-						<h5 class="de-MenuList-heading">
-							All Sports
-						</h5>
-						<p class="de-MenuList-summary">A-Z</p>
-					</div>
-					<p class="de-MenuList-badge">
-						{{ linklists["shop"].links.size }}
-					</p>
-					{% include 'patterns-icons-chevron', class: "de-MenuList-icon", role: 'presentation' %}
-				</button>
-			</li>
+    </ul>
 
-			{% include 'navigation-menu-list',
-				list: linklists["activities"],
-				menuChild: "menu-list" %}
-		</ul>
-		<ul class="de-MenuList">
-			{% include 'navigation-menu-list-collection', list: linklists["womens"], menuChild: "menu-list" %}
+    <ul class="de-MenuList">
+      <li class="de-u-spaceNone">
+        <a class="de-MenuList-item de-MenuList-item--lastcall" href="{{ settings.megamenu_link }}" style="background-color: {{ settings.megamenu_bg_colour }};">
+        <div class="de-MenuList-content">
+          <h5 class="de-MenuList-heading">{{ settings.megamenu_title }}</h5>
+          <p class="de-MenuList-summary">{{ settings.megamenu_subtitle }}</p>
+        </div>
+        {% include 'patterns-icons-chevron',
+          class: "de-MenuList-icon"
+          role: 'presentation' %}
+        </a>
+      </li>
+    </ul>
 
-			{% include 'navigation-menu-list-collection', list: linklists["mens"], menuChild: "menu-list" %}
+    <ul class="de-MenuList">
+      {% comment %}A-Z link{% endcomment %}
+      {% assign menu_handle = 'shop' %}
+      {% assign mega_menu = linklists[menu_handle] %}
+      {% if mega_menu.links.size > 0 %}
+        {% include 'navigation-menu-list-collection', list: mega_menu, subhead: 'A-Z', menuChild: "menu-list", menu_title: 'All Sports' %}
+      {% endif %}
 
-			{% include 'navigation-menu-list-collection', list: linklists["kids"], menuChild: "menu-list" %}
-		</ul>
-		<ul class="de-MenuList">
-			{% include 'navigation-menu-list', list: linklists["additional-shopping"] %}
-		</ul>
-		<ul class="de-MenuList">
-			{% include 'navigation-menu-list', list: linklists["brand-menu"] %}
-		</ul>
-		<ul class="de-MenuList">
-			{% for list-item in linklists["store-finder"].links %}
-				{% include 'navigation-menu-list-item',
-					item: list-item,
-					showLabel: true,
-					listClass: 'de-u-spaceNone de-u-textBold' %}
-			{% endfor %}
-		</ul>
-	</section>
-	<section class="de-SlideViews-view js-de-SlideViews-view" id="menu-list-all-sports">
-	    <ul class="de-MenuList">
-			{% include 'navigation-menu-mobile-crumb', slideTarget: "menu-narrow", linkLabel: "Home" %}
-	      	{% include 'navigation-menu-list', list: linklists["shop"], showCaret: false %}
-	    </ul>
-	</section>
-	<section class="de-SlideViews-view js-de-SlideViews-view" id="menu-list-womens">
-		<ul class="de-MenuList">
-			{% include 'navigation-menu-mobile-crumb', slideTarget: "menu-narrow", linkLabel: "Home" %}
-			{% include 'navigation-menu-list', list: linklists["womens"], menuChild: "menu-list" %}
-	    </ul>
-	</section>
-	<section class="de-SlideViews-view js-de-SlideViews-view" id="menu-list-mens">
-		<ul class="de-MenuList">
-			{% include 'navigation-menu-mobile-crumb', slideTarget: "menu-narrow", linkLabel: "Home" %}
-			{% include 'navigation-menu-list', list: linklists["mens"], menuChild: "menu-list" %}
-	    </ul>
-	</section>
-	<section class="de-SlideViews-view js-de-SlideViews-view" id="menu-list-kids">
-		<ul class="de-MenuList">
-			{% include 'navigation-menu-mobile-crumb', slideTarget: "menu-narrow", linkLabel: "Home" %}
-			{% include 'navigation-menu-list', list: linklists["kids"], menuChild: "menu-list" %}
-	    </ul>
-	</section>
-	{% for link in linklists.activities.links %}
-	{% if link.links != blank %}
-	<section class="de-SlideViews-view js-de-SlideViews-view" id="menu-list-{{ link.handle }}">
-		<ul class="de-MenuList">
-			{% include 'navigation-menu-mobile-crumb', slideTarget: "menu-narrow", linkLabel: "Home" %}
-	    </ul>
-	    <ul class="de-MenuList">
-		    {% for child_link in link.links %}
-		    <li class="de-u-spaceNone">
-		      <a class="de-MenuList-item" href= "{{ child_link.url }}">
-		        {{ child_link.title }}
-		      </a>
-		    </li>
-		    {% endfor %}
-	    </ul>
-	</section>
-  	{% endif %}
-  	{% endfor %}
-	{% for link in linklists.womens.links %}
-	{% assign menuCrumbLabel = linklists.womens.title | remove: "'s" | prepend: "For " %}
-	<section class="de-SlideViews-view js-de-SlideViews-view" id="menu-list-{{ link.handle }}">
-		<ul class="de-MenuList">
-			{% include 'navigation-menu-mobile-crumb', slideTarget: "menu-list-womens", linkLabel: menuCrumbLabel %}
-			<ul class="de-MenuList">
-			    {% for child_link in link.links %}
-			    <li class="de-u-spaceNone">
-			      <a class="de-MenuList-item" href= "{{ child_link.url }}">
-			        {{ child_link.title }}
-			      </a>
-			    </li>
-			    {% endfor %}
-		    </ul>
-		</ul>
-	</section>
-	{% endfor %}
+  		{% for link in linklists.mega-tabs.links %}
 
-	{% for link in linklists.mens.links %}
-	{% assign menuCrumbLabel = linklists.mens.title | remove: "'s" | prepend: "For " %}
-	<section class="de-SlideViews-view js-de-SlideViews-view" id="menu-list-{{ link.handle }}">
-		<ul class="de-MenuList">
-			{% include 'navigation-menu-mobile-crumb', slideTarget: "menu-list-mens", linkLabel: menuCrumbLabel %}
-			<ul class="de-MenuList">
-			    {% for child_link in link.links %}
-			    <li class="de-u-spaceNone">
-			      <a class="de-MenuList-item" href= "{{ child_link.url }}">
-			        {{ child_link.title }}
-			      </a>
-			    </li>
-			    {% endfor %}
-		    </ul>
-		</ul>
-	</section>
-	{% endfor %}
+  	    {% assign menu_handle = link.url | handleize %}
 
-	{% for link in linklists.kids.links %}
-	{% assign menuCrumbLabel = linklists.kids.title | prepend: "For " %}
-	<section class="de-SlideViews-view js-de-SlideViews-view" id="menu-list-{{ link.handle }}">
-		<ul class="de-MenuList">
-			{% include 'navigation-menu-mobile-crumb', slideTarget: "menu-list-kids", linkLabel: menuCrumbLabel %}
-			<ul class="de-MenuList">
-			    {% for child_link in link.links %}
-			    <li class="de-u-spaceNone">
-			      <a class="de-MenuList-item" href= "{{ child_link.url }}">
-			        {{ child_link.title }}
-			      </a>
-			    </li>
-			    {% endfor %}
-		    </ul>
-		</ul>
+  	    {% assign mega_menu = linklists[menu_handle] %}
+  	    {% if mega_menu.links.size > 0 %}
+
+          {% include 'navigation-menu-list-collection', list: mega_menu, menuChild: "menu-list", menu_title: link.title %}
+
+  	    {% endif %}
+
+  	  {% endfor %}
+    </ul>
+    <ul class="de-MenuList">
+      {% include 'navigation-menu-list', list: linklists["additional-shopping"] %}
+    </ul>
+    <ul class="de-MenuList">
+      {% include 'navigation-menu-list', list: linklists["brand-menu"] %}
+    </ul>
+    <ul class="de-MenuList">
+      {% for list-item in linklists["store-finder"].links %}
+        {% include 'navigation-menu-list-item',
+          item: list-item,
+          showLabel: true,
+          listClass: 'de-u-spaceNone de-u-textBold' %}
+      {% endfor %}
+    </ul>
 	</section>
-	{% endfor %}
+
+	{% comment %}A-Z link{% endcomment %}
+  {% assign menu_handle = 'shop' %}
+  {% assign mega_menu = linklists[menu_handle] %}
+  {% if mega_menu.links.size > 0 %}
+    <section class="de-SlideViews-view js-de-SlideViews-view" id="menu-list-{{ menu_handle }}">
+      <ul class="de-MenuList">
+      {% include 'navigation-menu-mobile-crumb', slideTarget: "menu-narrow", linkLabel: "Home" %}
+        {% include 'navigation-menu-list', list: mega_menu, subhead: 'A-Z', menuChild: "menu-list", showCaret: false %}
+      </ul>
+    </section>
+  {% endif %}
+
+	{% for link in linklists.mega-tabs.links %}
+
+    {% assign menu_handle = link.url | handleize %}
+
+    {% assign mega_menu = linklists[menu_handle] %}
+    {% comment %}if mega_menu.links.size > 0 or menu_handle == 'az'{% endcomment %}
+    {% if mega_menu.links.size > 0 %}
+
+      <section class="de-SlideViews-view js-de-SlideViews-view" id="menu-list-{{ menu_handle }}">
+        <ul class="de-MenuList">
+        {% include 'navigation-menu-mobile-crumb', slideTarget: "menu-narrow", linkLabel: "Home" %}
+          {% assign menu_child = "menu-list" | append: '-' | append: mega_menu.handle %}
+          {% include 'navigation-menu-list', list: mega_menu, menuChild: menu_child, showCaret: false %}
+        </ul>
+      </section>
+
+      {% for sub_link in mega_menu.links %}
+        {% if sub_link.links != blank %}
+          <section class="de-SlideViews-view js-de-SlideViews-view" id="menu-list-{{ mega_menu.handle }}-{{ sub_link.handle }}">
+            <ul class="de-MenuList">
+              {% assign slide_target = "menu-list-" | append: mega_menu.handle %}
+              {% include 'navigation-menu-mobile-crumb', slideTarget: slide_target, linkLabel: link.title %}
+            </ul>
+            <ul class="de-MenuList">
+              {% for child_link in sub_link.links %}
+              <li class="de-u-spaceNone">
+                <a class="de-MenuList-item" href="{{ child_link.url }}">
+                  {{ child_link.title }}
+                </a>
+              </li>
+              {% endfor %}
+            </ul>
+          </section>
+        {% endif %}
+      {% endfor %}
+
+    {% endif %}
+
+  {% endfor %}
+
 </div>
