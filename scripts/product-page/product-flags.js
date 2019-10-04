@@ -86,7 +86,7 @@ const render = ({ variant, isShown }) => {
   // ./snippets/product-flag.liquid
   // Last call flag needs to take priority over other flags
   if (isOnSale) {
-    updateFlag('Last Call', 'de-u-bgRed de-u-textWhite');
+    updateFlag('Sale', 'de-u-bgRed de-u-textWhite');
   } else if (product.tags.includes('Innovation')) {
     updateFlag('Innovation', 'de-u-bgLime de-u-textBlack');
   } else if (product.tags.includes('New_Release')) {

@@ -301,8 +301,8 @@
     },
     "product": {
       "sold_out": "Sold out",
-      "on_sale": "Last Call",
-      "on_sale_from_html": "<strong>Last Call<\/strong> from {{ price }}",
+      "on_sale": "Sale",
+      "on_sale_from_html": "<strong>Sale<\/strong> from {{ price }}",
       "unavailable": "Unavailable",
       "compare_at": "Compare at",
       "quantity": "Quantity",
