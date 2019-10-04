@@ -46,38 +46,40 @@
     <div class="medium-down--hide">
     {% if current_tags.size %}
         <header class="section-header">
-            <h1 class="section-header__title u-marginBottom0x">{{ tag_title }}</h2>
+            <h1 class="section-header__title u-marginBottom0x">{{ tag_title }}</h1>
         </header>
         <hr>
-    {% else %}
-    {% if collection.description != blank %}
-        <header class="section-header">
-            <h1 class="section-header__title">{{ collection.title }}</h2>
-            <div class="rte rte--header">
-                {{ collection.description }}
-            </div>
-        </header>
-        <hr>
-        <div class="section-header">
+      {% else %}
+        {% if collection.description != blank %}
+          <header class="section-header">
+            <h1 class="section-header__title">{{ collection.title }}</h1>
+            <article class="collection-description">
+              <div class="description-content"><div>{{ collection.description }}</div></div>
+              <a class="read-more-description" onclick='$(".collection-description").toggleClass("expanded");'>Read more</a>
+              <a class="show-less-description" onclick='$(".collection-description").toggleClass("expanded"); $("html, body").animate({ scrollTop: $(".wrapper").offset().top }, 300)'>Show less</a>
+            </article>
+          </header>
+          <hr>
+          <div class="section-header">
             <div class="section-header__right">
-                {% comment %}<div id="bc-sf-filter-top-sorting"></div>{% endcomment %}
-                {% comment %}{% include 'collection-sorting' %}{% endcomment %}
+              {% comment %}<div id="bc-sf-filter-top-sorting"></div>{% endcomment %}
+              {% comment %}{% include 'collection-sorting' %}{% endcomment %}
             </div>
-        </div>
-    {% else %}
+          </div>
+        {% else %}
 
-    <header class="section-header">
-        {%- unless collection.image -%}
-        <h1 class="section-header__title section-header__left">{{ collection.title }}</h2>
-        {%- endunless -%}
-        <div class="section-header__right">
-            {% comment %}<div id="bc-sf-filter-top-sorting"></div>{% endcomment %}
-            {% comment %}{% include 'collection-sorting' %}{% endcomment %}
-        </div>
-    </header>
+          <header class="section-header">
+            {%- unless collection.image -%}
+              <h1 class="section-header__title section-header__left">{{ collection.title }}</h1>
+            {%- endunless -%}
+            <div class="section-header__right">
+              {% comment %}<div id="bc-sf-filter-top-sorting"></div>{% endcomment %}
+              {% comment %}{% include 'collection-sorting' %}{% endcomment %}
+            </div>
+          </header>
 
-    {% endif %}
-    {% endif %}
+        {% endif %}
+      {% endif %}
     </div>
 
     <div class="de-loading text-center">
