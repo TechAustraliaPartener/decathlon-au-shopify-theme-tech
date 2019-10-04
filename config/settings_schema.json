@@ -241,6 +241,39 @@
     ]
   },
   {
+    "name": "Megamenu",
+    "settings": [
+      {
+        "id": "megamenu_image",
+        "type": "image_picker",
+        "label": "Select an image (.png or .jpg)"
+      },
+      {
+        "id": "megamenu_title",
+        "type": "text",
+        "label": "Add a megamenu title",
+        "default": "Last Call"
+      },
+      {
+        "id": "megamenu_subtitle",
+        "type": "text",
+        "label": "Add a megamenu title",
+        "default": "End of Season Deals"
+      },
+      {
+        "id": "megamenu_link",
+        "type": "url",
+        "label": "Define a megamenu link url"
+      },
+      {
+        "id": "megamenu_bg_colour",
+        "type": "color",
+        "label": "Choose a background color for your first link",
+        "default": "#666"
+      }
+    ]
+  },
+  {
     "name": "Lookbook",
     "settings": [
       {

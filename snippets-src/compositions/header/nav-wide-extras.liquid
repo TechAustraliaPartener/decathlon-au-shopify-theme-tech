@@ -1,33 +1,29 @@
 <div class="de-u-sizeFull">
   <div class="de-FlexEmbed">
     <div class="de-FlexEmbed-ratio de-FlexEmbed-ratio--4by3"></div>
-    <picture>
-      <source media="(min-width:960px)" srcset="{% if settings.shop_menu_image %}{{ settings.shop_menu_image | img_url: '400x', format: 'pjpg' }}{% else %}{{ 'story_split_full_content_1_image.jpg' | asset_img_url: '400x', format 'pjpg' }}{% endif %} 400w" sizes="20vw">
-      <img class="de-FlexEmbed-content" src="" alt="">
-    </picture>
+    {% if settings.megamenu_image != blank %}
+      <img src="{{ settings.megamenu_image | img_url: 'master' }}" alt="Megamenu image" class="de-FlexEmbed-content" onerror="this.style.display='none';">
+    {% endif %}
   </div>
   <ul class="de-MenuList">
-    <li>
-      <a class="de-MenuList-item de-MenuList-item--brand de-ShopMenu de-u-padSides2"
-         style="{% if settings.shop_menu_bg_color %}background-color:{{settings.shop_menu_bg_color}};{% endif %}
-                {% if settings.shop_menu_text_color %} color:{{settings.shop_menu_text_color}};{% endif %}"
-         href="{% if settings.shop_menu_link %}{{ settings.shop_menu_link }}{% else %}/pages/our-story{% endif %}">
-        <div class="de-MenuList-content">
-          <h5 class="de-MenuList-heading de-ShopMenu-title">{{ settings.shop_menu_title }}</h5>
-          <p class="de-MenuList-summary de-ShopMenu-subtitle">{{ settings.shop_menu_subtitle }}</p>
-        </div>
-        {% include 'patterns-icons-chevron', class: 'de-MenuList-icon de-ShopMenu-icon', role: 'presentation' %}
-      </a>
-    </li>
     {% comment %} <li>
-      <a class="de-MenuList-item de-MenuList-item--lastcall de-u-padSides2" href="/pages/last-call">
+      <a class="de-MenuList-item de-MenuList-item--brand de-u-padSides2" href="/pages/our-story">
         <div class="de-MenuList-content">
-          <h5 class="de-MenuList-heading">Last Call</h5>
-          <p class="de-MenuList-summary">End of Season Deals</p>
+          <h5 class="de-MenuList-heading">Meet Decathlon</h5>
+          <p class="de-MenuList-summary">Our Mission, Our Story</p>
         </div>
         {% include 'patterns-icons-chevron', class: 'de-MenuList-icon', role: 'presentation' %}
       </a>
     </li> {% endcomment %}
+    <li>
+      <a class="de-MenuList-item de-MenuList-item--lastcall de-u-padSides2" href="{{ settings.megamenu_link }}" style="background-color: {{ settings.megamenu_bg_colour }};">
+        <div class="de-MenuList-content">
+          <h5 class="de-MenuList-heading">{{ settings.megamenu_title }}</h5>
+          <p class="de-MenuList-summary">{{ settings.megamenu_subtitle }}</p>
+        </div>
+        {% include 'patterns-icons-chevron', class: 'de-MenuList-icon', role: 'presentation' %}
+      </a>
+    </li>
   </ul>
   <div class="de-u-pad2">
     <ul class="de-u-listReset de-u-spaceNone de-u-lineHeight3">
