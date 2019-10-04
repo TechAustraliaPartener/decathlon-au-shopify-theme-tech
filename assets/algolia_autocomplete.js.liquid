@@ -183,7 +183,7 @@
   $(document).ready(function mainAutocomplete () {
     autocomplete.$input = $(autocomplete.selector);
     autocomplete.$input.autocomplete({
-      debug: true,
+      debug: autocomplete.debug,
       hint: false,
       appendTo: 'body',
       templates: {
