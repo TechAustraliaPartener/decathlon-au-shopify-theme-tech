@@ -132,16 +132,12 @@
     {% endcomment %}
     {{ 'icomoon.scss.css' | asset_url | stylesheet_tag }}
   {% endif %}
-  {% if template == "cart" or template == "collection.hypervisual" or template == "collection.multi" or template == "collection" or template == "collection.subcategory" %}
+  
+  {% if template == "index" or template == "cart" or template.name == "collection" %}
     {{ 'built-product-tile.css' | asset_url | stylesheet_tag }}
   {% endif %}
   {% if template == "customers/account" %}
     {{ 'built-customer-fields.css' | asset_url | stylesheet_tag }}
-  {% endif %}
-  {% if template == "index" or template == "cart" %}
-    {% if settings.footer_trending_products %}
-      {{ 'product-carousel.scss.css' | asset_url | stylesheet_tag }}
-    {% endif %}
   {% endif %}
   {% comment %}
     @TODO

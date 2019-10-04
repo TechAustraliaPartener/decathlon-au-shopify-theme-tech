@@ -2,6 +2,10 @@
   {% when 'index' %}
     <script defer type="module" src="{{ 'built-home.js' | asset_url }}"></script>
     <script defer nomodule src="{{ 'built-home-legacy.js' | asset_url }}"></script>
+    <script type="module" src="{{ 'built-product-tile.js' | asset_url }}"></script>
+    <script defer nomodule src="{{ 'built-product-tile-legacy.js' | asset_url }}"></script>
+    <script type="module" src="{{ 'built-product-carousel.js' | asset_url }}"></script>
+    <script defer nomodule src="{{ 'built-product-carousel-legacy.js' | asset_url }}"></script>
   {% when 'product' %}
     {% if product.metafields.global.features == blank %}
       {% comment %} Legacy Product Page {% endcomment %}
@@ -27,4 +31,8 @@
   {% when 'cart' %}
     <script defer type="module" src="{{ 'built-cart-page.js' | asset_url }}"></script>
     <script defer nomodule src="{{ 'built-cart-page.js' | asset_url }}"></script>
+    <script type="module" src="{{ 'built-product-tile.js' | asset_url }}"></script>
+    <script defer nomodule src="{{ 'built-product-tile-legacy.js' | asset_url }}"></script>
+    <script type="module" src="{{ 'built-product-carousel.js' | asset_url }}"></script>
+    <script defer nomodule src="{{ 'built-product-carousel-legacy.js' | asset_url }}"></script>
 {% endcase %}

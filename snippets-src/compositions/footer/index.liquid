@@ -4,7 +4,15 @@
 
 <!-- Footer Products Slider -->
 {% if template == "index" and settings.footer_slider_products == true %}
-  {% include 'trending-products', show_add_to_cart: false %}
+  <div class="trendingProducts u-block">
+    <h3 class="text-center">{% if settings['is_lookbook'] == true %}Popular Products{% else %}Trending Products{% endif %}</h3>
+    <div class="de-u-padSides06 de-u-md-padSides03">
+      {% assign products = collections['trending-products'].products %}
+      {% include 'components-product-tile-carousel',
+        products: products,
+        limit: 20 %}
+    </div>
+  </div>
 {% endif %}
 
 <!-- begin site-footer -->

@@ -115,3 +115,7 @@
 .de-ProductTileCarousel-button:before {
   display: none; /* 1 */
 }
+
+.blue-band--footer + .trendingProducts {
+  padding-top: 3em;
+}
