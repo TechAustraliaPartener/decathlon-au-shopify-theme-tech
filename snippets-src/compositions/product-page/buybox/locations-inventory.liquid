@@ -47,9 +47,9 @@
         <div v-if="id === 'demo'" class="locs-row">
           Loading inventory...
         </div>
-        <div class="t-table" v-else-if="id">
+        <div class="t-table" v-else-if="id" id="locsTable">
           <div class="t-row" v-for="location in locations">
-            <div class="t-cell title" v-text="location.title"></div>
+            <div class="t-cell title"><span v-text="location.title"></span><span v-if="location.fav">{% endraw %}{% include 'assets-icons-flag' with class: 'de-u-textBlack de-Icon de-u-spaceLeft06' %}{% raw %}</span></div>
             <div class="t-cell ready" v-text="location.ready"></div>
             <div class="t-cell availability" v-bind:class="location.availability.class" v-text="location.availability.text"></div>
             <div class="t-cell hours" v-text="location.hours"></div>

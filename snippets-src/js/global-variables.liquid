@@ -9,6 +9,7 @@
     window.vars.productJSON = {{ product | json }};
     window.vars.selectedVariant = {{ product.selected_variant | json }};
   {% endif %}
+  window.vars.favStore = JSON.parse(localStorage.getItem('favoritedStore'));
 </script>
 
 {% include 'js-master-stores' %}

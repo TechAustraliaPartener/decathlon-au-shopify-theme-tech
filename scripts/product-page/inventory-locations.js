@@ -75,6 +75,10 @@ function addMasterStoresData(inventoryItem) {
       }
 
       thisLoc.hours = masterLoc.street2;
+
+      if (window.vars.favStore.id === masterLoc.id) {
+        thisLoc.fav = true;
+      }
     } else {
       if (masterLoc.name === 'Tempe') {
         inventoryItem.delivery = {
@@ -98,6 +102,10 @@ function addMasterStoresData(inventoryItem) {
         },
         hours: masterLoc.street2
       };
+
+      if (window.vars.favStore.id === masterLoc.id) {
+        thisLoc.fav = true;
+      }
 
       inventoryItem.locations.push(thisLoc);
     }
