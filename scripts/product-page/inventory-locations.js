@@ -115,7 +115,17 @@ function addMasterStoresData(inventoryItem) {
       ? -1
       : 0
   );
+
   inventoryItem.favStore = window.vars.favStore;
+
+  inventoryItem.locations.sort((a, b) =>
+    window.vars.favStore.name === b.name
+      ? 1
+      : window.vars.favStore.name === a.name
+      ? -1
+      : 0
+  );
+
   return inventoryItem;
 }
 
