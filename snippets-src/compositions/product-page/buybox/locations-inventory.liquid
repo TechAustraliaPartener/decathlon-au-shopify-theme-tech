@@ -18,7 +18,7 @@
       </div>
 
       {% raw %}
-        <div class="locs-row" v-if="id && id !== 0">
+        <div class="locs-row" v-if="id && id !== 'demo'">
           <div class="t-table">
             <div class="t-row">
               <div class="t-cell title">
@@ -36,7 +36,7 @@
       {% endraw %}
 
       {% raw %}
-        <div class="locs-row de-u-textBold" v-if="id && id !== 0">
+        <div class="locs-row de-u-textBold" v-if="id && id !== 'demo'">
       {% endraw %}
         {% include 'assets-icons-location'
         with class: 'de-u-textBlack de-Icon de-u-spaceRight06' %}
@@ -44,16 +44,16 @@
       </div>
 
       {% raw %}
-        <div class="t-table" v-if="id && id !== 0">
+        <div v-if="id === 'demo'" class="locs-row">
+          Loading inventory...
+        </div>
+        <div class="t-table" v-else-if="id">
           <div class="t-row" v-for="location in locations">
             <div class="t-cell title" v-text="location.title"></div>
             <div class="t-cell ready" v-text="location.ready"></div>
             <div class="t-cell availability" v-bind:class="location.availability.class" v-text="location.availability.text"></div>
             <div class="t-cell hours" v-text="location.hours"></div>
           </div>
-        </div>
-        <div v-else-if="id && id === 0" class="locs-row">\
-          Loading inventory...
         </div>
         <div v-else class="locs-row">
           Select a size

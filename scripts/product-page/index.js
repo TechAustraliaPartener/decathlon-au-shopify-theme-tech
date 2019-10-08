@@ -81,12 +81,12 @@ state.onChange(
       // but will update on subsequent page actions
       updateFulfillmentOptionsUI && updateFulfillmentOptionsUI(state);
       window.vars.selectedVariant = variant;
-      if (window.inventoryLocationsDisplay) {
+      if (window.inventoryLocationsDisplay && window.inventories) {
         window.inventoryLocationsDisplay.changeVariant(variant.id);
       }
     } else {
       window.vars.selectedVariant = null;
-      if (window.inventoryLocationsDisplay) {
+      if (window.inventoryLocationsDisplay && window.inventories) {
         window.inventoryLocationsDisplay.changeVariant(null);
       }
     }

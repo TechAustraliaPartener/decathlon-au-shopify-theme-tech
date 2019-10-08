@@ -4,7 +4,7 @@ import Vue from 'vue/dist/vue.esm.js';
 // Const product = productJSON;
 
 const demoInventory = {
-  id: 0,
+  id: 'demo',
   locations: [],
   delivery: {}
 };
