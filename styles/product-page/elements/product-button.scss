@@ -44,5 +44,11 @@ $button-background-hover-alt: #ecff9a;
     border-color: $color-gray;
     color: $color-white;
     cursor: not-allowed;
+
+    &:hover {
+      background-color: $color-gray;
+      border-color: $color-gray;
+      color: $color-white;
+    }
   }
 }

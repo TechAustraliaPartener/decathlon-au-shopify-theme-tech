@@ -141,14 +141,6 @@ export const getUIState = variant => {
     return DEFAULT_UI_STATE;
   }
 
-  if (isVariantCC(variant)) {
-    return {
-      ...DEFAULT_UI_STATE,
-      addToCartButtonText: 'Click & Collect',
-      isAddToCartButtonDisabled: false
-    };
-  }
-
   if (isVariantSoldOut(variant)) {
     return {
       ...DEFAULT_UI_STATE,
@@ -167,6 +159,14 @@ export const getUIState = variant => {
           : PRODUCT_PAGE_COPY.OUT_OF_STOCK,
       validationText: PRODUCT_PAGE_COPY.OUT_OF_STOCK,
       isAddToCartButtonDisabled: OUT_OF_STOCK_HANDLING !== 'back_in_stock'
+    };
+  }
+
+  if (isVariantCC(variant)) {
+    return {
+      ...DEFAULT_UI_STATE,
+      addToCartButtonText: 'Click & Collect',
+      isAddToCartButtonDisabled: false
     };
   }
 
