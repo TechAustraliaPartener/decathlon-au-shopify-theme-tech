@@ -3,7 +3,7 @@
     <div class="de-u-flex">
       {% include 'assets-icons-store'
         with class: 'de-u-textBlack de-Icon de-u-textGrow6 de-u-spaceRight03' %}
-      <p class="de-u-spaceNone de-u-textMedium" data-collapse="inventoryLocations">
+      <p class="de-u-spaceNone de-u-textMedium locs-collapse" data-collapse="inventoryLocations">
         <button class="de-collapse-trigger">Check In-Store Availability {% include 'assets-icons-chevron-down' with class: 'de-Icon de-u-spaceLeft05' %}</button>
       </p>
     </div>
@@ -46,18 +46,21 @@
 
       {% raw %}
         <div v-if="id === 'demo'" class="locs-row">
-          Loading inventory...
+          <div class="h5 locs-intruction">
+            <img src="{% endraw %}{{ 'decathlon-loader.gif' | asset_url }}{% raw %}">
+            Loading inventory...
+          </div>
         </div>
         <div class="t-table" v-else-if="id" id="locsTable">
           <div class="t-row" v-for="location in locations">
-            <div class="t-cell title"><span v-text="location.title"></span><span v-if="location.fav">{% endraw %}{% include 'assets-icons-flag' with class: 'de-u-textBlack de-Icon de-u-spaceLeft06' %}{% raw %}</span></div>
+            <div class="t-cell title"><span v-text="location.title"></span><span v-if="favStore && location.name === favStore.name">{% endraw %}{% include 'assets-icons-flag' with class: 'de-u-textBlack de-Icon de-u-spaceLeft06' %}{% raw %}</span></div>
             <div class="t-cell ready" v-text="location.ready"></div>
             <div class="t-cell availability" v-bind:class="location.availability.class" v-text="location.availability.text"></div>
             <div class="t-cell hours" v-text="location.hours"></div>
           </div>
         </div>
         <div v-else class="locs-row">
-          Select a size
+          <div class="h5 locs-intruction">Select a size</div>
         </div>
       {% endraw %}
 

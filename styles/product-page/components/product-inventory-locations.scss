@@ -53,7 +53,7 @@
 
     &:first-of-type {
       border-top: none;
-      padding-top: none;
+      padding-top: 0;
     }
   }
 
@@ -115,6 +115,8 @@
   }
 
   @media (max-width: $breakpoint-lg) {
+    padding: 15px;
+
     .t-table {
       .t-row {
         display: block;
@@ -146,4 +148,28 @@
   width: 1em;
   height: 1em;
   vertical-align: middle;
+}
+
+.locs-intruction {
+  margin: 0 auto;
+
+  img {
+    height: 1.5em;
+    vertical-align: middle;
+  }
+}
+
+@media (max-width: $breakpoint-lg) {
+  .locs-collapse, .locs-collapse button {
+    width: 100%;
+    position: relative;
+
+    .de-collapse-trigger {
+      .de-Icon {
+        position: absolute;
+        top: 1em;
+        right: 1.5em;
+      }
+    }
+  }
 }
