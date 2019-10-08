@@ -14,9 +14,31 @@ const emptyData = {
   favStore: window.vars.favStore
 };
 
-const storesSort = ['Tempe', 'Auburn', 'Knoxfield', 'Box Hill', 'Moorabbin'];
+const storesSort = window.masterStores.map(a => a.name);
 
 function addMasterStoresData(inventoryItem) {
+  for (let i = window.masterStores.length - 1; i >= 0; i--) {
+    const masterLoc = window.masterStores[i];
+
+    if (masterLoc.duplicate) {
+      const alreadyAdded = inventoryItem.locations.find(obj => {
+        return obj.name === masterLoc.name;
+      });
+
+      if (!alreadyAdded) {
+        const thisLoc = inventoryItem.locations.find(obj => {
+          return obj.name === masterLoc.duplicate;
+        });
+
+        if (thisLoc) {
+          const duplicateLoc = JSON.parse(JSON.stringify(thisLoc));
+          duplicateLoc.name = masterLoc.name;
+          inventoryItem.locations.push(duplicateLoc);
+        }
+      }
+    }
+  }
+
   for (let i = window.masterStores.length - 1; i >= 0; i--) {
     const masterLoc = window.masterStores[i];
 
