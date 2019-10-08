@@ -136,7 +136,9 @@ const initInventoryLocations = () => {
       } else if (vInv.locations.length > 0) {
         window.vars.productJSON.variants[i].cc = true;
         if (vId === window.vars.selectedVariant.id) {
-          $('#AddToCartText').text('Click & Collect');
+          if ($('#AddToCartText').text() === 'Add to Cart') {
+            $('#AddToCartText').text('Click & Collect');
+          }
         }
       }
     }
