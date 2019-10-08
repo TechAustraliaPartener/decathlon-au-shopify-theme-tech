@@ -1,5 +1,6 @@
 .de-collapse {
   max-height: 0;
+  overflow: hidden;
   transition-duration: 300ms;
   opacity: 0;
 
