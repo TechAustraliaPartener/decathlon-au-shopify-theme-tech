@@ -6,7 +6,12 @@ import Vue from 'vue/dist/vue.esm.js';
 const demoInventory = {
   id: 'demo',
   locations: [],
-  delivery: {}
+  delivery: {},
+  favStore: window.vars.favStore
+};
+
+const emptyData = {
+  favStore: window.vars.favStore
 };
 
 const storesSort = ['Tempe', 'Auburn', 'Knoxfield', 'Box Hill', 'Moorabbin'];
@@ -75,10 +80,6 @@ function addMasterStoresData(inventoryItem) {
       }
 
       thisLoc.hours = masterLoc.street2;
-
-      if (window.vars.favStore.id === masterLoc.id) {
-        thisLoc.fav = true;
-      }
     } else {
       if (masterLoc.name === 'Tempe') {
         inventoryItem.delivery = {
@@ -103,10 +104,6 @@ function addMasterStoresData(inventoryItem) {
         hours: masterLoc.street2
       };
 
-      if (window.vars.favStore.id === masterLoc.id) {
-        thisLoc.fav = true;
-      }
-
       inventoryItem.locations.push(thisLoc);
     }
   }
@@ -118,6 +115,7 @@ function addMasterStoresData(inventoryItem) {
       ? -1
       : 0
   );
+  inventoryItem.favStore = window.vars.favStore;
   return inventoryItem;
 }
 
@@ -143,7 +141,10 @@ const initInventoryLocations = () => {
         window.vars.productJSON.variants[i].cc = false;
       } else if (vInv.locations.length > 0) {
         window.vars.productJSON.variants[i].cc = true;
-        if (vId === window.vars.selectedVariant.id) {
+        if (
+          window.vars.selectedVariant &&
+          vId === window.vars.selectedVariant.id
+        ) {
           if ($('#AddToCartText').text() === 'Add to Cart') {
             $('#AddToCartText').text('Click & Collect');
           }
@@ -151,7 +152,9 @@ const initInventoryLocations = () => {
       }
     }
 
-    if (window.vars.selectedVariant !== null) {
+    if (window.vars.selectedVariant === null) {
+      window.inventoryLocationsDisplay.changeVariant(null);
+    } else {
       window.inventoryLocationsDisplay.changeVariant(
         window.vars.selectedVariant.id
       );
@@ -170,7 +173,7 @@ const initInventoryLocations = () => {
       },
       changeVariant(variant) {
         if (variant === null || !window.inventories) {
-          this.changeWholeData({});
+          this.changeWholeData(emptyData);
         } else {
           this.changeWholeData(
             addMasterStoresData(window.inventories[variant].inventoryItem)
