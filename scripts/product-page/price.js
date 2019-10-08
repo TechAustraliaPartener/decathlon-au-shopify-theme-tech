@@ -18,6 +18,7 @@ const CURRENT_PRICE_CSS_CLASS = `${JS_PREFIX}CurrentPrice`;
 const CROSSED_OUT_PRICE_CSS_CLASS = `${JS_PREFIX}CrossedOutPrice`;
 const PRICE_LABEL_CSS_CLASS = `${JS_PREFIX}PriceLabel`;
 const PRICE_AMOUNT_LABEL_CSS_CLASS = `${JS_PREFIX}PriceAmount`;
+const AFTERPAY_PRICE_CSS_CLASS = `${JS_PREFIX}AfterpayPrice`;
 
 // Multiple price elements exist in the DOM because there
 // are different ones for smaller vs larger viewports, use `querySelectorAll`
@@ -28,6 +29,10 @@ const currentPriceEls = document.querySelectorAll(
 /** @type {NodeListOf<HTMLElement>} */
 const crossedOutPriceEls = document.querySelectorAll(
   `.${CROSSED_OUT_PRICE_CSS_CLASS}`
+);
+/** @type {NodeListOf<HTMLElement>} */
+const afterpayPriceEls = document.querySelectorAll(
+  `.${AFTERPAY_PRICE_CSS_CLASS}`
 );
 
 /**
@@ -105,7 +110,12 @@ const isCrossedOutPriceEl = el =>
  * @param {string} [params.displayPrice=''] The price to render
  * @param {Boolean} [params.compareAtPrice=false] Should display as sale price?
  */
-const render = ({ priceEls, displayPrice = '', compareAtPrice = false }) => {
+const render = ({
+  priceEls,
+  displayPrice = '',
+  compareAtPrice = false,
+  afterpayPrice = false
+}) => {
   priceEls.forEach(priceEl => {
     /** @type {HTMLElement | null} */
     const labelEl = priceEl.querySelector(`.${PRICE_LABEL_CSS_CLASS}`);
@@ -135,6 +145,12 @@ const render = ({ priceEls, displayPrice = '', compareAtPrice = false }) => {
       amountEl.textContent = displayPrice;
     }
   });
+
+  if (afterpayPrice) {
+    afterpayPriceEls.forEach(afterpayPriceEl => {
+      afterpayPriceEl.textContent = afterpayPrice;
+    });
+  }
 };
 
 /**
@@ -149,7 +165,8 @@ const handleVariantSelection = ({
   render({
     priceEls: currentPriceEls,
     displayPrice: formatPrice(price),
-    compareAtPrice: compareAtPrice !== null
+    compareAtPrice: compareAtPrice !== null,
+    afterpayPrice: `${formatPrice(price / 4)} AU`
   });
   render({
     priceEls: crossedOutPriceEls,
