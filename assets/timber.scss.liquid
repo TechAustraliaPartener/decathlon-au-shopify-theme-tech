@@ -9814,14 +9814,16 @@ html {
             }
           }
         }
-        div[class*='color'], div[class*='Color'] {
+        div[class*='color'], div[class*='Color'], div[class*='hexa'], div[class*='HEXA'] {
           .ais-facet--label {
             line-height: 51px;
             text-align: center;
             font-size: 0;
             padding: 0;
             input,
-            span {
+            span,
+            &::before,
+            &::after {
               display: none;
             }
           }

@@ -105,6 +105,9 @@
     "options.color": function noSort(a, b) {
       return 0;
     },
+    "named_tags.COLOR_HEXA": function noSort(a, b) {
+      return 0;
+    },
     "named_tags.gender": function sortGenders(a, b) {
       var gendersSortOrder = ['Men', 'Women', 'Boy', 'Girl', 'Baby Boy', 'Baby Girl'];
       return gendersSortOrder.indexOf(a.name) - gendersSortOrder.indexOf(b.name) || sortByActive(a, b);
@@ -177,7 +180,7 @@
     params.attributeName = facet.name;
     params.templates = {};
     params.cssClasses = algolia.facetCssClasses;
-    if (!(facet.name === 'options.color' || facet.name === 'options.size')) {
+    if (!(facet.name === 'options.color' || facet.name === 'options.size' || facet.name === 'named_tags.COLOR_HEXA')) {
       params.cssClasses = algolia.facetCssClassesExpandable;
     }
 
