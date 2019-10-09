@@ -138,15 +138,17 @@ function addMasterStoresData(inventoryItem) {
       : 0
   );
 
-  inventoryItem.favStore = window.vars.favStore;
+  if (window.vars.favStore) {
+    inventoryItem.favStore = window.vars.favStore;
 
-  inventoryItem.locations.sort((a, b) =>
-    window.vars.favStore.name === b.name
-      ? 1
-      : window.vars.favStore.name === a.name
-      ? -1
-      : 0
-  );
+    inventoryItem.locations.sort((a, b) =>
+      window.vars.favStore.name === b.name
+        ? 1
+        : window.vars.favStore.name === a.name
+        ? -1
+        : 0
+    );
+  }
 
   return inventoryItem;
 }
