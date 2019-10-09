@@ -104,7 +104,7 @@
           </p>
         {% endraw %}
       </div>
-      <form action="/cart?is-online-store-checkout=true" method="post" novalidate class="cart table-wrap js-de-cart" v-on:submit="prepareCart">
+      <form action="/cart?is-online-store-checkout=true" method="post" novalidate class="cart table-wrap js-de-cart" v-on:submit="prepareCart($event)">
         <table class="cart-table full table--responsive">
           <thead class="cart__row cart__header-labels">
             <th>&nbsp;</th>
@@ -130,7 +130,7 @@
                       <p v-if="location.name === 'Tempe'" v-html="(location.inStock > 0 ? 'Available' : 'Unavailable') + ' for ' + 'delivery'"></p>
                       <p v-if="favStore.name && location.name === favStore.name" v-html="(location.inStock > 0 ? 'Available' : 'Unavailable') + ' for ' + 'click &amp; collect'"></p>
                     </div>
-                    <div class="low" v-if="item.quantity > currentMax(item)">
+                    <div class="low" v-if="item.quantity > currentMax(item) && currentMax(item) > 0">
                       <p v-html="'Not all items available for ' + deliveryOption.toLowerCase()"></p>
                     </div>
                   </div>
@@ -205,7 +205,7 @@
               <a href="/collections" class="btn btn--text">Continue Shopping</a>
               <span style="padding: 0 .5em 0 .25em;">or</span>
               {% endcomment %}
-              <input <input type="submit" name="checkout" class="btn btn--fill checkout-btn" value="{{ 'cart.general.checkout' | t }}">
+              <input type="submit" name="checkout" class="btn btn--fill checkout-btn" value="{{ 'cart.general.checkout' | t }}">
             </p>
           </div>
         </div>

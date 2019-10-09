@@ -62,7 +62,8 @@ const initCartDisplay = cart => {
       cart: supplementCart(JSON.parse(JSON.stringify(cart))),
       masterStores: window.masterStores,
       favStore: window.vars.favStore || {},
-      deliveryOption: window.vars.deliveryOption
+      deliveryOption: window.vars.deliveryOption,
+      override: false
     },
     methods: {
       changeWholeData(newData, part) {
@@ -71,6 +72,10 @@ const initCartDisplay = cart => {
         Object.entries(newData).forEach(entry =>
           Vue.set(changeData, entry[0], entry[1])
         );
+
+        if (this.$data.override) {
+          $('.checkout-btn').click();
+        }
       },
       money(price) {
         return `$${(price / 100).toFixed(2)}`;
@@ -131,8 +136,12 @@ const initCartDisplay = cart => {
 
         return checkLoc.available;
       },
-      prepareCart() {
+      prepareCart(event) {
         const app = this;
+
+        if (app.override) {
+          return true;
+        }
 
         const updateCartPayload = {};
 
@@ -144,11 +153,19 @@ const initCartDisplay = cart => {
           }
         }
 
+        if (JSON.stringify(updateCartPayload) === '{}') {
+          return true;
+        }
+        event.preventDefault();
+
         console.log(updateCartPayload);
-        CartJS.updateItemQuantitiesById(
-          updateCartPayload,
-          $('.js-de-cart').submit()
-        );
+        CartJS.updateItemQuantitiesById(updateCartPayload, {
+          success() {
+            app.$data.override = true;
+          }
+        });
+
+        return false;
       }
     }
   });
