@@ -123,10 +123,11 @@
 
       if (this.named_tags && this.named_tags.Label) {
         var thisLabels = typeof this.named_tags.Label === 'object' ? [this.named_tags.Label] : this.named_tags.Label;
+        thisLabels = Array.isArray(thisLabels) ? thisLabels : [thisLabels];
         console.log(thisLabels);
-        if (thisLabels.filter(function(e) { return e.value.replace('<span class="ais-highlight">', '').replace('</span>', '') === 'Innovation'; }).length > 0) {
+        if (thisLabels.filter(function(e) { return e.replace('<span class="ais-highlight">', '').replace('</span>', '') === 'Innovation'; }).length > 0) {
           return '<div class="ais-hit--label innovation">Innovation</div>';
-        } else if (thisLabels.filter(function(e) { return e.value.replace('<span class="ais-highlight">', '').replace('</span>', '') === 'Clearance'; }).length > 0) {
+        } else if (thisLabels.filter(function(e) { return e.replace('<span class="ais-highlight">', '').replace('</span>', '') === 'Clearance'; }).length > 0) {
           return '<div class="ais-hit--label clearance">' + clearanceLabelText + '</div>';
         }
       }
