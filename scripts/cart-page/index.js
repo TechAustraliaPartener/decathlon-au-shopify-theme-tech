@@ -3,8 +3,53 @@
 import $ from 'jquery';
 import Vue from 'vue/dist/vue.esm.js';
 
-function supplementCart(cart, inventory) {
-  return inventory;
+let cartInit = false;
+let invInit = false;
+
+function addMasterStoresData(inventoryItem) {
+  console.log(inventoryItem);
+  for (let i = window.masterStores.length - 1; i >= 0; i--) {
+    const masterLoc = window.masterStores[i];
+
+    if (masterLoc.duplicate) {
+      const alreadyAdded = inventoryItem.locations.find(obj => {
+        return obj.name === masterLoc.name;
+      });
+
+      if (!alreadyAdded) {
+        const thisLoc = inventoryItem.locations.find(obj => {
+          return obj.name === masterLoc.duplicate;
+        });
+
+        if (thisLoc) {
+          const duplicateLoc = JSON.parse(JSON.stringify(thisLoc));
+          duplicateLoc.name = masterLoc.name;
+          inventoryItem.locations.push(duplicateLoc);
+        }
+      }
+    }
+  }
+}
+
+function supplementCart(cart) {
+  console.log(cart, invInit);
+
+  for (let i = cart.items.length - 1; i >= 0; i--) {
+    const item = cart.items[i];
+
+    if (
+      invInit[item.product_id] &&
+      invInit[item.product_id].product.variants[item.variant_id]
+    ) {
+      const invItem =
+        invInit[item.product_id].product.variants[item.variant_id]
+          .inventoryItem;
+      addMasterStoresData(invItem);
+      item.locations = invItem.locations;
+    }
+  }
+
+  return cart;
 }
 
 /**
@@ -13,12 +58,18 @@ function supplementCart(cart, inventory) {
 const initCartDisplay = cart => {
   window.cartDisplay = new Vue({
     el: '#cartDisplay',
-    data: supplementCart(cart),
+    data: {
+      cart: supplementCart(JSON.parse(JSON.stringify(cart))),
+      masterStores: window.masterStores,
+      favStore: window.vars.favStore || {},
+      deliveryOption: window.vars.deliveryOption
+    },
     methods: {
-      changeWholeData(newData) {
-        Object.keys(this.$data).forEach(key => (this.$data[key] = null));
+      changeWholeData(newData, part) {
+        const changeData = part ? this.$data[part] : this.$data;
+        Object.keys(changeData).forEach(key => (changeData[key] = null));
         Object.entries(newData).forEach(entry =>
-          Vue.set(this.$data, entry[0], entry[1])
+          Vue.set(changeData, entry[0], entry[1])
         );
       },
       money(price) {
@@ -27,38 +78,54 @@ const initCartDisplay = cart => {
       updateQuantity(lineIndex, newQty) {
         console.log(lineIndex, newQty);
         CartJS.updateItem(lineIndex, newQty);
+      },
+      setFavStore(event) {
+        const masterStore = window.masterStores.find(obj => {
+          return obj.id === event.target.value;
+        });
+
+        if (masterStore) {
+          localStorage.setItem('favoritedStore', JSON.stringify(masterStore));
+          window.vars.favStore = JSON.parse(
+            localStorage.getItem('favoritedStore')
+          );
+          this.changeWholeData(window.vars.favStore, 'favStore');
+        }
+      },
+      setDeliveryOption(event) {
+        localStorage.setItem('deliveryOption', event.target.value);
+        window.vars.deliveryOption =
+          localStorage.getItem('deliveryOption') || 'Delivery';
+        this.$data.deliveryOption = window.vars.deliveryOption;
       }
     }
   });
 };
 
-let cartReady = false;
-let invReady = false;
-
 $(document).on('cart.ready', function(event, cart) {
-  cartReady = true;
+  cartInit = cart;
   console.log('CART READY', event, cart);
   tryInit();
 });
 
-document.addEventListener('tomitLoaded', function(inventory) {
+document.addEventListener('tomitLoaded', function() {
   window.tomitProductInventoryInfo
     .getProductsInventoryInformation(window.vars.tomitCartPayload)
-    .then(function(e, data) {
-      invReady = true;
+    .then(function(inventory) {
+      invInit = inventory;
       console.log('INV READY', inventory);
       tryInit();
     });
 });
 
 function tryInit() {
-  if (cartReady && invReady) {
-    initCartDisplay(CartJS.cart);
+  if (cartInit && invInit) {
+    initCartDisplay(cartInit);
   }
 }
 
 $(document).on('cart.requestComplete', function(event, cart) {
-  window.cartDisplay.changeWholeData(supplementCart(cart));
+  window.cartDisplay.changeWholeData(supplementCart(cart), 'cart');
   $('.js-de-cart__subtotal').text(Shopify.formatMoney(cart.total_price));
   $('.afterpay-info strong').text(Shopify.formatMoney(cart.total_price / 4));
   $('#CartCount').text(cart.item_count);

@@ -12,6 +12,7 @@
   window.vars.favStore = JSON.parse(localStorage.getItem('favoritedStore'));
   window.vars.iconChevronDown = `{% include 'assets-icons-chevron-down' with class: 'de-u-textBlue de-Icon de-u-spaceLeft06' %}`;
   window.vars.tomitCartPayload = [{{ cart.items | map: 'product' | map: 'id' | join: ', ' }}];
+  window.vars.deliveryOption = localStorage.getItem('deliveryOption') || 'Delivery';
 </script>
 
 {% include 'js-master-stores' %}

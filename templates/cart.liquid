@@ -21,6 +21,8 @@
     margin-bottom: 1px;
     margin-top: 0.5em;
   }
+  .afterpay-info { text-align: right; }
+  .afterpay-info img { margin-bottom: -5px; }
   .fee-message { margin-bottom: 1em; }
   .checkout-btn { width: 154px;}
 
@@ -76,75 +78,126 @@
     {% endif %}
     {% endcomment %}
 
-    <form action="/cart?is-online-store-checkout=true" method="post" novalidate class="cart table-wrap js-de-cart" id="cartDisplay">
-      <table class="cart-table full table--responsive">
-        <thead class="cart__row cart__header-labels">
-          <th>&nbsp;</th>
-          <th class="u-textUppercase u-textBold">{{ 'cart.label.product' | t }}</th>
-          <th class="u-textUppercase u-textBold text-center">{{ 'cart.label.price' | t }}</th>
-          <th class="u-textUppercase u-textBold text-center">{{ 'cart.label.quantity' | t }}</th>
-          <th class="u-textUppercase u-textBold text-right">{{ 'cart.label.total' | t }}</th>
-          <th class="column--remove">&nbsp;</th>
-        </thead>
-        <tbody>
-          {% raw %}
-            <tr class="cart__row table__section" v-for="(item, index) in items">
-              <td>
-                <a v-bind:href="item.url" class="cart__image">
-                  <img v-bind:src="item.image" v-bind:alt="item.title">
-                </a>
-              </td>
-              <td>
-                <a v-bind:href="item.url" class="h6 u-marginBottom0x" v-text="item.product_title"></a>
-                <small class="u-textUppercase u-textBold u-block" v-if="item.variant_title.indexOf('Default') < 0" v-text="item.variant_title"></small>
-              </td>
-              {% endraw %}<td data-label="{{ 'cart.label.price' | t }}">{% raw %}
-                <span class="h6 text-center" v-text="money(item.price)"></span>
-              </td>
-              {% endraw %}<td data-label="{{ 'cart.label.quantity' | t }}" class="text-center">{% raw %}
-                <input type="number" class="js-de-quantity" name="updates[]" v-bind:id="'updates_' + item.id" v-model:value="item.quantity" min="1" style="text-align: center; max-width: 75px;" v-bind:data-price="item.price" v-bind:data-item-variant="item.variant_id" v-bind:data-row="index" v-on:change="updateQuantity(index + 1, $event.target.value)">
-              </td>
-              {% endraw %}<td data-label="{{ 'cart.label.total' | t }}" class="text-right">{% raw %}
-                <span class="h6 js-de-line_price" v-text="money(item.line_price)"></span>
-              </td>
-              <td data-label="Remove">
-                <a v-bind:href="'/cart/update?updates[' + item.key + ']=0'" class="cart__remove">
-                  {% endraw %}{% include 'icon-x' with class: 'de-cart-remove' %}{% raw %}
-                </a>
-              </td>
-            </tr>
-          {% endraw %}
-        </tbody>
-      </table>
-      <div class="grid--full cart__row">
-        {% if settings.cart_notes_enable %}
-          <div class="grid__item large--two-fifths one-whole">
-            <label class="u-textBold u-textUppercase u-letterSpacing" for="CartSpecialInstructions">{{ 'cart.general.note' | t }}</label>
-            <textarea name="note" class="input-full" id="CartSpecialInstructions">{{ cart.note }}</textarea>
-          </div>
-        {% endif %}
-        <div class="grid__item large--text-right{% if settings.cart_notes_enable %} push--large--one-tenth large--one-half small--one-whole{% endif %}">
-          <p class="small--text-right medium--text-right">
-
-            <span class="subtotalWrap h6">
-              <span class="cart__subtotal-title u-textUppercase u-textBold u-letterSpacing">{{ 'cart.general.subtotal' | t }}</span>
-              {% raw %}
-                <span class="h6 cart__subtotal js-de-cart__subtotal" v-text="money(total_price)"></span>
-              {% endraw %}
+    <div id="cartDisplay">
+      <div class="cart-select-store">
+        <div class="d-flex-column">
+          <img src="{{ 'icon-pickup.png' | asset_img_url: '40x' }}" alt="Click & Collect icon">
+          <a href='/pages/store-finder' target='_blank' title='Stores' class='fav-store-btn'><strong>Stores</strong></a>
+        </div>
+        {% raw %}
+          <p v-if="favStore.name" class="fav-store-selected">
+            Your favourite store is:&nbsp;{{ favStore.title }}
+          </p>
+          <p v-else class="no-fav-store-selected">
+            To enable Click & Collect, <strong>select your favourite store:</strong>&nbsp;
+            <span class="fav-store-name">
+              <select name="favStore" @change="setFavStore($event)">
+                <option v-if="!favStore.name" value="" disabled="" :selected="!favStore.name">Please select</option>
+                <option v-for="store in masterStores" v-bind:value="store.id" :selected="favStore.name && store.name === favStore.name" v-text="store.title"></option>
+              </select>
             </span>
           </p>
-          <small class="u-textUppercase u-letterSpacing u-textBold u-block u-marginBottom2x small--text-right medium--text-right fee-message">{{ 'cart.general.shipping_at_checkout' | t }}</small>
-
-          <p class="small--text-right medium--text-right">
-            {% comment %}
-            <a href="/collections" class="btn btn--text">Continue Shopping</a>
-            <span style="padding: 0 .5em 0 .25em;">or</span>
-            {% endcomment %}
-            <input type="submit" name="checkout" class="btn btn--fill checkout-btn js-de-checkout" value="{{ 'cart.general.checkout' | t }}">
-          </p>
-        </div>
+        {% endraw %}
       </div>
-    </form>
+      <form action="/cart?is-online-store-checkout=true" method="post" novalidate class="cart table-wrap js-de-cart">
+        <table class="cart-table full table--responsive">
+          <thead class="cart__row cart__header-labels">
+            <th>&nbsp;</th>
+            <th class="u-textUppercase u-textBold">{{ 'cart.label.product' | t }}</th>
+            <th class="u-textUppercase u-textBold text-center">{{ 'cart.label.price' | t }}</th>
+            <th class="u-textUppercase u-textBold text-center">{{ 'cart.label.quantity' | t }}</th>
+            <th class="u-textUppercase u-textBold text-right">{{ 'cart.label.total' | t }}</th>
+            <th class="column--remove">&nbsp;</th>
+          </thead>
+          <tbody>
+            {% raw %}
+              <tr class="cart__row table__section" v-for="(item, index) in cart.items">
+                <td>
+                  <a v-bind:href="item.url" class="cart__image">
+                    <img v-bind:src="item.image" v-bind:alt="item.title">
+                  </a>
+                </td>
+                <td>
+                  <a v-bind:href="item.url" class="h6 u-marginBottom0x" v-text="item.product_title"></a>
+                  <small class="u-textUppercase u-textBold u-block" v-if="item.variant_title.indexOf('Default') < 0" v-text="item.variant_title"></small>
+                </td>
+                {% endraw %}<td data-label="{{ 'cart.label.price' | t }}">{% raw %}
+                  <span class="h6 text-center" v-text="money(item.price)"></span>
+                </td>
+                {% endraw %}<td data-label="{{ 'cart.label.quantity' | t }}" class="text-center">{% raw %}
+                  <input type="number" class="js-de-quantity" name="updates[]" v-bind:id="'updates_' + item.id" v-model:value="item.quantity" min="1" style="text-align: center; max-width: 75px;" v-bind:data-price="item.price" v-bind:data-item-variant="item.variant_id" v-bind:data-row="index" v-on:change="updateQuantity(index + 1, $event.target.value)">
+                </td>
+                {% endraw %}<td data-label="{{ 'cart.label.total' | t }}" class="text-right">{% raw %}
+                  <span class="h6 js-de-line_price" v-text="money(item.line_price)"></span>
+                </td>
+                <td data-label="Remove">
+                  <a v-bind:href="'/cart/update?updates[' + item.key + ']=0'" class="cart__remove">
+                    {% endraw %}{% include 'icon-x' with class: 'de-cart-remove' %}{% raw %}
+                  </a>
+                </td>
+              </tr>
+            {% endraw %}
+          </tbody>
+        </table>
+        <div class="grid--full cart__row">
+          {% comment %}To Do: Re-add Notes and settings integration{% endcomment %}
+          {% raw %}
+            <div class="grid__item large--two-thirds one-whole">
+              <p class="fav-store-selected shipping-selector" v-if="favStore.name">
+                <span>
+                  <b>Select your shipping method:</b>
+                </span>
+                <span>
+                  <input type="radio" name="attributes[checkout_option]" value="Delivery" :checked="deliveryOption === 'Delivery'" @change="setDeliveryOption($event)">
+                  <label>Delivery</label>
+                </span>
+                <span class="click-collect">
+                  <input type="radio" name="attributes[checkout_option]" value="Click &amp; Collect" :checked="deliveryOption === 'Click &amp; Collect'" @change="setDeliveryOption($event)">
+                  <label>Click &amp; Collect from</label> 
+                  <span class="fav-store-name">
+                    <select name="favStore" @change="setFavStore($event)">
+                      <option v-if="!favStore.name" value="" disabled="" :selected="!favStore.name">Please select</option>
+                      <option v-for="store in masterStores" v-bind:value="store.id" :selected="favStore.name && store.name === favStore.name" v-text="store.title"></option>
+                    </select>
+                  </span>
+                </span>
+              </p>
+              <p class="no-fav-store-selected" v-else>
+                To enable Click &amp; Collect,<br><strong>select your favourite store:</strong>&nbsp;
+                <span class="fav-store-name">
+                  <select name="favStore" @change="setFavStore($event)">
+                    <option v-if="!favStore.name" value="" disabled="" :selected="!favStore.name">Please select</option>
+                    <option v-for="store in masterStores" v-bind:value="store.id" :selected="favStore.name && store.name === favStore.name" v-text="store.title"></option>
+                  </select>
+                </span>
+              </p>
+              <p class="qty-update">Quantities updated</p>
+            </div>
+          {% endraw %}
+
+          <div class="grid__item large--one-third one-whole large--text-right">
+            <p class="small--text-right medium--text-right">
+
+              <span class="subtotalWrap h6">
+                <span class="cart__subtotal-title u-textUppercase u-textBold u-letterSpacing">{{ 'cart.general.subtotal' | t }}</span>
+                {% raw %}
+                  <span class="h6 cart__subtotal js-de-cart__subtotal" v-text="money(cart.total_price)"></span>
+                {% endraw %}
+              </span>
+            </p>
+            <small class="u-textUppercase u-letterSpacing u-textBold u-block u-marginBottom2x small--text-right medium--text-right fee-message">{{ 'cart.general.shipping_at_checkout' | t }}</small>
+
+            <p class="small--text-right medium--text-right">
+              {% comment %}
+              <a href="/collections" class="btn btn--text">Continue Shopping</a>
+              <span style="padding: 0 .5em 0 .25em;">or</span>
+              {% endcomment %}
+              <input type="submit" name="checkout" class="btn btn--fill checkout-btn js-de-checkout" value="{{ 'cart.general.checkout' | t }}">
+            </p>
+          </div>
+        </div>
+      </form>
+    </div>
     <div class="grid--full cart__payments">
       <div class="afterpay-info">{{ 'cart.general.afterpay_msg' | t }}&nbsp;<strong>{{ cart.total_price | divided_by: 4 | money }}</strong> by <img src="{{ 'logo-afterpay.svg' | asset_url }}" alt="Afterpay Logo">&nbsp;<a href="#" title="More info">{{ 'cart.general.more_info' | t }}</a></div>
       <!-- Zip WIDGET -->
@@ -152,7 +205,7 @@
         <div id="zip-cart-widget" data-zm-asset="cartwidget" data-zm-widget="popup" data-zm-popup-asset="termsdialog"></div>
       <!-- end Zip WIDGET -->
     </div>
-{% else %}
+  {% else %}
     {% comment %}
       The cart is empty
     {% endcomment %}
