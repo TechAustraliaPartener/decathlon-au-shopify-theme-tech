@@ -29,6 +29,8 @@
     "megamenu_link": "shopify:\/\/collections\/hiking-backpacks",
     "megamenu_bg_colour": "#1c82c3",
     "is_lookbook": false,
+    "product_returns_text": "365 Day Returns",
+    "product_shipping_text": "Check shipping rates in the checkout",
     "footer_slider_products": true,
     "footer_slider_products_title": "",
     "footer_slider_products_collection": "trending-products",

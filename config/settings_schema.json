@@ -285,6 +285,25 @@
     ]
   },
   {
+    "name": "Product Page",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Fulfillment Info"
+      },
+      {
+        "id": "product_returns_text",
+        "type": "text",
+        "label": "Returns"
+      },
+      {
+        "id": "product_shipping_text",
+        "type": "text",
+        "label": "Shipping"
+      }
+    ]
+  },
+  {
     "name": "Footer",
     "settings": [
       {

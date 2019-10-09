@@ -14,10 +14,15 @@
     <div class="de-u-flex de-ProductFulfillment-option">
       {% include 'assets-icons-returns'
         with class: 'de-u-textBlack de-Icon de-u-textGrow6 de-u-spaceRight03' %}
-      {% if bulk_shipping %}
+
+      {% if settings.product_returns_text != blank %}
+        <p class="de-u-spaceNone de-u-textMedium">
+          {{ settings.product_returns_text }}
+        </p>
+      {% elsif bulk_shipping %}
         <p class="de-u-spaceNone de-u-textMedium">
           See our
-          <a href="https://help.decathlon.com/hc/en-us/articles/115000588629-Returns-Instructions"
+          <a href="/pages/returns-and-refunds-policy"
               class="de-u-textMedium de-u-textSelectNone js-de-Drawer-toggle"
               data-drawer-id="returns-policy-drawer"
               data-drawer-toggle-aria-label="Open the returns policy dialog."
@@ -39,7 +44,9 @@
     {% include 'assets-icons-delivery-truck'
       with class: 'de-u-textBlack de-Icon de-u-textGrow6 de-u-spaceRight03' %}
       <p class="de-u-spaceNone de-u-textMedium">
-        {% if bulk_shipping %}
+        {% if settings.product_shipping_text != blank %}
+          {{ settings.product_shipping_text }}
+        {% elsif bulk_shipping %}
           See shipping rate at checkout
         {% else %}
           {% include 'components-free-shipping-info' %}
