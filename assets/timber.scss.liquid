@@ -10234,4 +10234,56 @@ html {
       left: 0px;
     }
   }
+
+  /*===Collection Filter Accordions===*/
+  .ais-facets {
+    .filter-accordion {
+      overflow: hidden;
+      max-height: 175px;
+      transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+    }
+
+    a.ais-show-all {
+      padding: 5px 0 15px 41px;
+      width: 100%;
+      display: block;
+      position: relative;
+      color: transparent !important;
+
+      &::before {
+        content: "Show All";
+        position: absolute;
+        left: 0;
+        padding-left: 41px;
+        color: $colorPrimary;
+      }
+
+      &::after {
+        content: '\f107';
+        font-family: "Font Awesome";
+        color: $colorPrimary;
+        pointer-events: none;
+        position: absolute;
+        left: 130px;
+        top: 3px;
+        font-size: 22px;
+        transition-duration: 100ms;
+      }
+    }
+
+    .filter-accordion.expanded {
+      max-height: 2000px;
+      transition: max-height 1s ease-in-out;
+
+      + .ais-show-all {
+        &::before {
+          content: "Show Less";
+        }
+        &::after {
+          transform: rotate(180deg);
+        }
+      }
+    }
+  }
 {% endif %}
+
