@@ -10,3 +10,4 @@ src/css/*
 /assets/built-*.css
 # Built from /snippets-src/**
 /snippets/*.liquid
+!/snippets/algolia*

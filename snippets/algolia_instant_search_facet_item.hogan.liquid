@@ -1,0 +1,13 @@
+[[# show ]]
+<label class="[[ cssClasses.label ]] [[# swatch ]]swatch-[[# helpers.handleize ]][[ name ]][[/ helpers.handleize ]] option--color-[[# helpers.handleize ]][[ name ]][[/ helpers.handleize ]][[/ swatch ]]" [[# swatch ]]title="[[ name ]]"[[/ swatch ]]>
+  [[# swatch ]]
+    <input type="checkbox" class="[[ cssClasses.checkbox ]]" [[# isRefined ]]checked[[/ isRefined ]]/>
+  [[/ swatch ]]
+  [[& name ]]
+  <span class="[[ cssClasses.count ]]">
+    [[# helpers.formatNumber ]]
+      [[ count ]]
+    [[/ helpers.formatNumber ]]
+  </span>
+</label>
+[[/ show ]]
