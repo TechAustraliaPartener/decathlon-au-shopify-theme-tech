@@ -8,84 +8,84 @@
 
 {% if collection.image %}
 <div class="collectionImage medium-down--hide" style="background-image:url('{{ collection.image | img_url: 'master' }}'); " data-background-image="{{ collection.image | img_url: 'master' }}">
-    <div class="wrapper">
-        {% include 'breadcrumb', adtl_classes: ' breadcrumb--overImage' %}
+  <div class="wrapper">
+    {% include 'breadcrumb', adtl_classes: ' breadcrumb--overImage' %}
 
-        <h1 class="collectionImage-header text-center">{{ collection.title }}</h1>
-    </div>
+    <h1 class="collectionImage-header text-center">{{ collection.title }}</h1>
+  </div>
 </div>
 {% endif %}
 
 <div class="de-padding10 de-u-textSizeBase large--hide">
-      {% include 'find-top-level-collection' %}
-      {% include 'create-breadcrumbs' %}
-      <h2 class="de-u-textBold de-u-textCapitalize de-u-textGrow de-u-spaceBottom06">{{ collection.title }}</h2>
-      <hr class="de-blue-hr de-u-bgBlue de-u-spaceNone">
+  {% include 'find-top-level-collection' %}
+  {% include 'create-breadcrumbs' %}
+  <h2 class="de-u-textBold de-u-textCapitalize de-u-textGrow de-u-spaceBottom06">{{ collection.title }}</h2>
+  <hr class="de-blue-hr de-u-bgBlue de-u-spaceNone">
 </div>
 <div class="wrapper{% if collection.image %} wrapper--collectionWithBanner u-paddingTopBottom4x de-mobile-nopadding{% endif %}">
-     <div class="medium-down--hide">
+  <div class="medium-down--hide">
     {% unless collection.image %}
-    {% include 'create-breadcrumbs' %}
+      {% include 'create-breadcrumbs' %}
     {% endunless %}
+  </div>
+
+  <div class="grid--full">
+    <div class="grid__item large--one-quarter left">
+      {% include 'nested-navigation' %}
+
+      {% if settings.use_adeptmind %}
+        <!-- Adept Search Start -->
+        <div class="adept-collection-filters"></div>
+        <!-- Adept Search End -->
+      {% endif %}
     </div>
 
-    <div class="grid--full">
-        <div class="grid__item large--one-quarter left">
-            {% include 'nested-navigation' %}
-				<!-- Adept Search Start -->
-				<div class="adept-collection-filters"></div>
-				<!-- Adept Search End -->
-
-</div>
-
-
-<div class="grid__item large--seven-tenths right">
-    {% comment %}
-    Different markup if a collection description exists
-    {% endcomment %}
-    <div class="medium-down--hide">
-    {% if current_tags.size %}
-        <header class="section-header">
-            <h1 class="section-header__title u-marginBottom0x">{{ tag_title }}</h1>
-        </header>
-        <hr>
-      {% else %}
-        {% if collection.description != blank %}
+    <div class="grid__item large--seven-tenths right">
+      {% comment %}
+      Different markup if a collection description exists
+      {% endcomment %}
+      <div class="medium-down--hide">
+        {% if current_tags.size %}
           <header class="section-header">
-            <h1 class="section-header__title">{{ collection.title }}</h1>
-            <article class="collection-description">
-              <div class="description-content"><div>{{ collection.description }}</div></div>
-              <a class="read-more-description" onclick='$(".collection-description").toggleClass("expanded");'>Read more</a>
-              <a class="show-less-description" onclick='$(".collection-description").toggleClass("expanded"); $("html, body").animate({ scrollTop: $(".wrapper").offset().top }, 300)'>Show less</a>
-            </article>
+            <h1 class="section-header__title u-marginBottom0x">{{ tag_title }}</h1>
           </header>
           <hr>
-          <div class="section-header">
-            <div class="section-header__right">
-              {% comment %}<div id="bc-sf-filter-top-sorting"></div>{% endcomment %}
-              {% comment %}{% include 'collection-sorting' %}{% endcomment %}
-            </div>
-          </div>
         {% else %}
+          {% if collection.description != blank %}
+            <header class="section-header">
+              <h1 class="section-header__title">{{ collection.title }}</h1>
+              <article class="collection-description">
+                <div class="description-content"><div>{{ collection.description }}</div></div>
+                <a class="read-more-description" onclick='$(".collection-description").toggleClass("expanded");'>Read more</a>
+                <a class="show-less-description" onclick='$(".collection-description").toggleClass("expanded"); $("html, body").animate({ scrollTop: $(".wrapper").offset().top }, 300)'>Show less</a>
+              </article>
+            </header>
+            <hr>
+            <div class="section-header">
+              <div class="section-header__right">
+                {% comment %}<div id="bc-sf-filter-top-sorting"></div>{% endcomment %}
+                {% comment %}{% include 'collection-sorting' %}{% endcomment %}
+              </div>
+            </div>
+          {% else %}
 
-          <header class="section-header">
-            {%- unless collection.image -%}
-              <h1 class="section-header__title section-header__left">{{ collection.title }}</h1>
-            {%- endunless -%}
-            <div class="section-header__right">
+            <header class="section-header">
+              {%- unless collection.image -%}
+                <h1 class="section-header__title section-header__left">{{ collection.title }}</h1>
+              {%- endunless -%}
+              <div class="section-header__right">
               {% comment %}<div id="bc-sf-filter-top-sorting"></div>{% endcomment %}
               {% comment %}{% include 'collection-sorting' %}{% endcomment %}
             </div>
           </header>
-
         {% endif %}
       {% endif %}
     </div>
 
     <div class="de-loading text-center">
-    <img src="{{ 'decathlon-loader.gif' | asset_url }}">
+      <img src="{{ 'decathlon-loader.gif' | asset_url }}">
     </div>
-
+    
     <div id="bc-sf-filter-products" class="de-collection-multi grid-uniform adept-collection-products">
 
         {% if current_tags.size %}
@@ -113,37 +113,37 @@
             {% endpaginate %}
 
         {% else %}
-			{% comment %} Find the correct collection: {% endcomment %}
-			{% for topLevelLink in linklists %}
-				{% if topLevelLink.links != blank %}
-					{% for firstLink in topLevelLink.links %}
-						{% if firstLink.links != blank %}
-							{% for secondLink in firstLink.links %}
-								{% if secondLink.links != blank %}
-									{% for thirdLink in secondLink.links %}
-										{% if thirdLink.title == collection.title %}
-											{% assign collectionLinks = thirdLink.links %}
-											{% break %}
-										{% endif %}
-									{% endfor %}
-								{% endif %}
-								{% if secondLink.title == collection.title %}
-									{% assign collectionLinks = secondLink.links %}
-									{% break %}
-								{% endif %}
-							{% endfor %}
-						{% endif %}
-						{% if firstLink.title == collection.title %}
-							{% assign collectionLinks = firstLink.links %}
-							{% break %}
-						{% endif %}
-					{% endfor %}
-				{% endif %}
-				{% if topLevelLink.title == collection.title %}
-					{% assign collectionLinks = topLevelLink.links %}
-					{%break%}
-				{% endif %}
-			{% endfor %}
+      {% comment %} Find the correct collection: {% endcomment %}
+      {% for topLevelLink in linklists %}
+        {% if topLevelLink.links != blank %}
+          {% for firstLink in topLevelLink.links %}
+            {% if firstLink.links != blank %}
+              {% for secondLink in firstLink.links %}
+                {% if secondLink.links != blank %}
+                  {% for thirdLink in secondLink.links %}
+                    {% if thirdLink.title == collection.title %}
+                      {% assign collectionLinks = thirdLink.links %}
+                      {% break %}
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
+                {% if secondLink.title == collection.title %}
+                  {% assign collectionLinks = secondLink.links %}
+                  {% break %}
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+            {% if firstLink.title == collection.title %}
+              {% assign collectionLinks = firstLink.links %}
+              {% break %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+        {% if topLevelLink.title == collection.title %}
+          {% assign collectionLinks = topLevelLink.links %}
+          {%break%}
+        {% endif %}
+      {% endfor %}
 
             {% for link in collectionLinks %}
 
