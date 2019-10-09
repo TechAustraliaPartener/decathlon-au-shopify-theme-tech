@@ -104,7 +104,7 @@
           </p>
         {% endraw %}
       </div>
-      <form action="/cart?is-online-store-checkout=true" method="post" novalidate class="cart table-wrap js-de-cart">
+      <form action="/cart?is-online-store-checkout=true" method="post" novalidate class="cart table-wrap js-de-cart" v-on:submit="prepareCart">
         <table class="cart-table full table--responsive">
           <thead class="cart__row cart__header-labels">
             <th>&nbsp;</th>
@@ -205,7 +205,7 @@
               <a href="/collections" class="btn btn--text">Continue Shopping</a>
               <span style="padding: 0 .5em 0 .25em;">or</span>
               {% endcomment %}
-              <input type="submit" name="checkout" class="btn btn--fill checkout-btn js-de-checkout" value="{{ 'cart.general.checkout' | t }}">
+              <input <input type="submit" name="checkout" class="btn btn--fill checkout-btn" value="{{ 'cart.general.checkout' | t }}">
             </p>
           </div>
         </div>

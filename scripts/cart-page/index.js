@@ -130,6 +130,25 @@ const initCartDisplay = cart => {
         }
 
         return checkLoc.available;
+      },
+      prepareCart() {
+        const app = this;
+
+        const updateCartPayload = {};
+
+        for (let i = app.cart.items.length - 1; i >= 0; i--) {
+          const item = app.cart.items[i];
+          const currentMax = app.currentMax(item);
+          if (item.quantity > currentMax) {
+            updateCartPayload[item.variant_id] = currentMax;
+          }
+        }
+
+        console.log(updateCartPayload);
+        CartJS.updateItemQuantitiesById(
+          updateCartPayload,
+          $('.js-de-cart').submit()
+        );
       }
     }
   });
