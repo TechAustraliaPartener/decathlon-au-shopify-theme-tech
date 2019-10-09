@@ -97,6 +97,39 @@ const initCartDisplay = cart => {
         window.vars.deliveryOption =
           localStorage.getItem('deliveryOption') || 'Delivery';
         this.$data.deliveryOption = window.vars.deliveryOption;
+      },
+      checkAvailability(item) {
+        const app = this;
+
+        let checkLoc = item.locations.find(obj => {
+          return obj.name === 'Tempe';
+        });
+
+        if (app.deliveryOption !== 'Delivery') {
+          checkLoc = item.locations.find(obj => {
+            return obj.name === app.favStore.name;
+          });
+        }
+
+        return checkLoc.inStock > 0 ? 'in' : 'out';
+      },
+      currentMax(item) {
+        // Let availabilities = item.locations.map(a => a.available);
+        // return Math.max(checkLoc);
+
+        const app = this;
+
+        let checkLoc = item.locations.find(obj => {
+          return obj.name === 'Tempe';
+        });
+
+        if (app.deliveryOption !== 'Delivery') {
+          checkLoc = item.locations.find(obj => {
+            return obj.name === app.favStore.name;
+          });
+        }
+
+        return checkLoc.available;
       }
     }
   });

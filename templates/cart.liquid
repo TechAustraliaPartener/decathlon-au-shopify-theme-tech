@@ -86,7 +86,12 @@
         </div>
         {% raw %}
           <p v-if="favStore.name" class="fav-store-selected">
-            Your favourite store is:&nbsp;{{ favStore.title }}
+            Your favourite store is:&nbsp;<span class="fav-store-name">
+              <select name="favStore" @change="setFavStore($event)">
+                <option v-if="!favStore.name" value="" disabled="" :selected="!favStore.name">Please select</option>
+                <option v-for="store in masterStores" v-bind:value="store.id" :selected="favStore.name && store.name === favStore.name" v-text="store.title"></option>
+              </select>
+            </span>
           </p>
           <p v-else class="no-fav-store-selected">
             To enable Click & Collect, <strong>select your favourite store:</strong>&nbsp;
@@ -111,7 +116,7 @@
           </thead>
           <tbody>
             {% raw %}
-              <tr class="cart__row table__section" v-for="(item, index) in cart.items">
+              <tr class="cart__row table__section" v-for="(item, index) in cart.items" v-bind:class="checkAvailability(item)">
                 <td>
                   <a v-bind:href="item.url" class="cart__image">
                     <img v-bind:src="item.image" v-bind:alt="item.title">
@@ -120,19 +125,28 @@
                 <td>
                   <a v-bind:href="item.url" class="h6 u-marginBottom0x" v-text="item.product_title"></a>
                   <small class="u-textUppercase u-textBold u-block" v-if="item.variant_title.indexOf('Default') < 0" v-text="item.variant_title"></small>
+                  <div v-if="item.locations.length" class="item-messages">
+                    <div v-for="location in item.locations" v-if="location.name === favStore.name || location.name === 'Tempe'" v-bind:class="[ location.inStock > 0 ? 'available' : 'unavailable' ]">
+                      <p v-if="location.name === 'Tempe'" v-html="(location.inStock > 0 ? 'Available' : 'Unavailable') + ' for ' + 'delivery'"></p>
+                      <p v-if="favStore.name && location.name === favStore.name" v-html="(location.inStock > 0 ? 'Available' : 'Unavailable') + ' for ' + 'click &amp; collect'"></p>
+                    </div>
+                    <div class="low" v-if="item.quantity > currentMax(item)">
+                      <p v-html="'Not all items available for ' + deliveryOption.toLowerCase()"></p>
+                    </div>
+                  </div>
                 </td>
                 {% endraw %}<td data-label="{{ 'cart.label.price' | t }}">{% raw %}
                   <span class="h6 text-center" v-text="money(item.price)"></span>
                 </td>
                 {% endraw %}<td data-label="{{ 'cart.label.quantity' | t }}" class="text-center">{% raw %}
-                  <input type="number" class="js-de-quantity" name="updates[]" v-bind:id="'updates_' + item.id" v-model:value="item.quantity" min="1" style="text-align: center; max-width: 75px;" v-bind:data-price="item.price" v-bind:data-item-variant="item.variant_id" v-bind:data-row="index" v-on:change="updateQuantity(index + 1, $event.target.value)">
+                  <input type="number" class="js-de-quantity" name="updates[]" v-bind:id="'updates_' + item.id" v-model:value="item.quantity" min="1" style="text-align: center; max-width: 75px;" v-bind:data-price="item.price" v-bind:data-item-variant="item.variant_id" v-bind:data-row="index" v-on:change="updateQuantity(index + 1, $event.target.value)" v-bind:max="currentMax(item)" min="1">
                 </td>
                 {% endraw %}<td data-label="{{ 'cart.label.total' | t }}" class="text-right">{% raw %}
                   <span class="h6 js-de-line_price" v-text="money(item.line_price)"></span>
                 </td>
                 <td data-label="Remove">
                   <a v-bind:href="'/cart/update?updates[' + item.key + ']=0'" class="cart__remove">
-                    {% endraw %}{% include 'icon-x' with class: 'de-cart-remove' %}{% raw %}
+                    {% endraw %}{% include 'icon-x' with class: 'de-Icon de-cart-remove' %}{% raw %}
                   </a>
                 </td>
               </tr>
@@ -171,7 +185,6 @@
                   </select>
                 </span>
               </p>
-              <p class="qty-update">Quantities updated</p>
             </div>
           {% endraw %}
 

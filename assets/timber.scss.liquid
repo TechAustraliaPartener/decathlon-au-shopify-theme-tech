@@ -10288,37 +10288,25 @@ html {
   }
 {% endif %}
 
+/*===Cart Page Favourite Store===*/
 .fav-store-name {
   display: inline-block;
   position: relative;
-  &::after {
-    position: absolute;
-    right: 10px;
-    line-height: 32px;
-    bottom: 0;
-    z-index: 5;
-    display: block;
-    font-family: $fontAwesome;
-    content: '\f078';
-    color: $midGray;
-    font-size: .6em;
-    pointer-events: none;
-  }
   select {
     padding: 4px 25px 4px 10px;
   }
 }
-#shopify-section-product-template {
-  display: none;
-}
+
 .cart-select-store {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 20px auto;
+
   p {
     margin: 10px 0 10px 10px;
   }
+
   @media only screen and (max-width: 768px) {
     flex-direction: column;
     text-align: center;
@@ -10333,13 +10321,84 @@ html {
     }
   }
 }
+
 .fav-store-selected.shipping-selector {
   margin-top: 20px;
   .click-collect {
     display: inline-block;
   }
 }
+
 .shipping-selector > span {
   display: block;
   margin-left: 2px;
+}
+
+.d-flex-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cart__row {
+  .item-messages {
+    clear: both;
+    margin-top: 1em;
+  }
+  div.available,
+  div.unavailable,
+  div.low {
+    font-size: 12px;
+    p {
+      margin-bottom: 0;
+    }
+    img {
+      float: left;
+      margin-top: 6px;
+    }
+    @media only screen and (max-width: 768px) {
+      text-align: center;
+      img {
+        float: none;
+      }
+      p{
+        display: inline-block;
+      }
+    }
+  }
+  .qty-update {
+    font-family: "avalon_mediumbold";
+    color: #DD3517;
+  }
+  .qty-update,
+  .no-fav-store-selected {
+    @media only screen and (max-width: 768px) {
+      text-align: center;
+    }
+  }
+}
+
+$color-in: #7cc000;
+$color-low: #ff9d00;
+$color-out: #ff0000;
+
+.item-messages {
+  .available, .unavailable, .low {
+    font-family: "avalon_mediumbold";
+  }
+  .available {
+    color: $color-in;
+  }
+  .low {
+    color: $color-low;
+  }
+  .unavailable {
+    color: $color-out;
+  }
+}
+
+.cart__row {
+  &.out {
+    box-shadow: inset 5px 0 $color-out;
+  }
 }
