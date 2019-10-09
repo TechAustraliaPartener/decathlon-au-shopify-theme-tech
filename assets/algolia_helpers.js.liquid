@@ -172,6 +172,10 @@
       }
 
       return returnName.toLocaleString();
+    },
+    nameAsColour: function nameAsColour (text, render) {
+      let nameAsColour = render(text);
+      return nameAsColour.indexOf('#') > -1 ? nameAsColour.toLocaleString() : '';
     }
   };
 
