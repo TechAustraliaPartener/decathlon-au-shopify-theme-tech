@@ -10,7 +10,10 @@
       {% assign products = collections['trending-products'].products %}
       {% include 'components-product-tile-carousel',
         products: products,
-        limit: 20 %}
+        limit: 20,
+        inventory_status: false,
+        delivery_options: false
+       %}
     </div>
   </div>
 {% endif %}
