@@ -109,7 +109,6 @@
       return render(text).toLowerCase().replace(/[^\w\u00C0-\u024f]+/g, "-").replace(/^-+|-+$/g, "").toLocaleString();
     },
     label: function label () {
-      var clearanceLabelText = "{{ 'products.product.label_clearance' | t }}";
       if (this.tags) {
         var lowercaseTags = this.tags.map(function(t){
           return t.toLowerCase();
@@ -117,7 +116,7 @@
         if (lowercaseTags.indexOf('innovation') > -1) {
           return '<div class="ais-hit--label innovation">Innovation</div>';
         } else if (lowercaseTags.indexOf('clearance') > -1) {
-          return '<div class="ais-hit--label clearance">' + clearanceLabelText + '</div>';
+          return '<div class="ais-hit--label clearance">Sale</div>';
         }
       }
 
@@ -128,7 +127,7 @@
         if (thisLabels.filter(function(e) { return e.replace('<span class="ais-highlight">', '').replace('</span>', '') === 'Innovation'; }).length > 0) {
           return '<div class="ais-hit--label innovation">Innovation</div>';
         } else if (thisLabels.filter(function(e) { return e.replace('<span class="ais-highlight">', '').replace('</span>', '') === 'Clearance'; }).length > 0) {
-          return '<div class="ais-hit--label clearance">' + clearanceLabelText + '</div>';
+          return '<div class="ais-hit--label clearance">Sale</div>';
         }
       }
       return '';
