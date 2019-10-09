@@ -10258,16 +10258,17 @@ html {
         color: $colorPrimary;
       }
 
-      &::after {
-        content: '\f107';
-        font-family: "Font Awesome";
-        color: $colorPrimary;
+      .de-Icon {
         pointer-events: none;
         position: absolute;
         left: 130px;
-        top: 3px;
-        font-size: 22px;
+        width: 1em;
+        height: 1em;
         transition-duration: 100ms;
+
+        * {
+          fill: currentColor;
+        }
       }
     }
 
@@ -10279,7 +10280,7 @@ html {
         &::before {
           content: "Show Less";
         }
-        &::after {
+        .de-Icon {
           transform: rotate(180deg);
         }
       }
