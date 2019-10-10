@@ -73,7 +73,7 @@
       "subtotal": "Subtotal",
       "afterpay_msg": "Or 4 interest-free installments of",
       "more_info": "More info",
-      "shipping_at_checkout": "Shipping & taxes calculated at checkout",
+      "shipping_at_checkout": "Shipping calculated at checkout",
       "update": "Update Cart",
       "checkout": "Check Out",
       "empty": "Your cart is currently empty.",
@@ -323,6 +323,24 @@
       "add_to_apple_wallet": "Add to Apple Wallet"
     }
   },
+  "checkout_gift_card": {
+    "gift_card_title": "Gift Card",
+    "open_modal": "Use your Decathlon gift card for this order.",
+    "modal": {
+      "modal_heading": "Gift Card",
+      "modal_subheading": "Use your Decathlon gift card for this order.",
+      "spinner": "Getting your gift card ready!",
+      "card_number_label": "Card Number:",
+      "card_number_tip": "This number should be 16 digits long.",
+      "pin_code_label": "PIN Code:",
+      "pin_code_tip": "This code should be 4 digits.",
+      "submit": "Redeem",
+      "close": "Close",
+      "success": "Success! Your code for [amount] is [code] and will be automatically applied to your order.",
+      "dont_forget": "Don't forget to complete your order!",
+      "balance": "You have [balance] left to redeem."
+    }
+  },
   "date_formats": {
     "month_day_year": "%B %d, %Y"
   },
@@ -330,24 +348,43 @@
     "checkout": {
       "contact": {
         "title": "Customer",
-        "new_address_label": "Select an Address or Create a new one below"
+        "new_address_label": "Select an Address or Create a new one below",
+        "city_label": "Suburb",
+        "province_label": "State",
+        "province_placeholder": "State",
+        "zip_code_label": "Post code",
+        "zip_code_placeholder": "Post code"
       },
       "shipping": {
         "title": "Shipping",
-        "no_rates_for_country_notice": "Our apologies, but we do not currently ship to {{ country }}. We are shipping only to California addresses during our initial launch period. Visit our FAQ section on shipping to read more about why."
+        "no_rates_for_country_notice": "Our apologies, but we do not currently ship to {{ country }}."
       },
       "payment": {
         "title": "Payment"
       },
       "thank_you": {
-        "contact_us_html": "Need help? <a href=\"https:\/\/www.decathlon.com\/pages\/contact-us\">Contact&nbsp;us<\/a>",
+        "contact_us_html": "Need help? <a href=\"https:\/\/help.decathlon.com.au\/support\/home\">Contact&nbsp;us<\/a>",
         "shipping_address_title": "Shipping address"
+      },
+      "order_summary": {
+        "taxes_label": "GST",
+        "vat_label_html": "Including {{amount}} in GST",
+        "gift_card_and_discount_title": "Discount code",
+        "gift_card_and_discount_label": "Discount code",
+        "gift_card_and_discount_placeholder": "Discount code"
+      },
+      "field_errors": {
+        "address_city_blank": "Enter a suburb"
       }
     },
     "notices": {
       "customer": {
         "no_account_found": "This email address is not associated with a Decathlon account, please return to the previous page to create one."
       }
+    },
+    "addresses": {
+      "province": "State",
+      "zip_code": "Post code"
     }
   }
 }

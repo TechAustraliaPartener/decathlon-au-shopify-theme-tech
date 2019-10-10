@@ -1880,5 +1880,64 @@
         "info": "Dimensions: 1906 x 456"
       }
     ]
+  },
+  {
+    "name": "Custom Thank you",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_reviewlink",
+        "label": "Do you want to show a review link?",
+        "info": "After a customer place an order, on the thank you page, you can show a link to leave a review.",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "review_title",
+        "label": "Review link title",
+        "default": "We would love to hear from you!"
+      },
+      {
+        "type": "text",
+        "id": "review_text",
+        "label": "Review link text",
+        "default": "Leave a review"
+      },
+      {
+        "type": "url",
+        "id": "review_url",
+        "label": "Review link URL"
+      }
+    ]
+  },
+  {
+    "name": "Gift Card Checkout Text",
+    "settings": [
+      {
+        "type": "text",
+        "id": "discount_code_redeem_gift_card_message",
+        "label": "Discount code gift card tip pre-Payment",
+        "info": "Shown to inform users to redeem gift cards at Payment",
+        "default": "You can redeem your Decathlon gift card at the Payment step."
+      },
+      {
+        "type": "text",
+        "id": "discount_code_redeem_gift_card_payment",
+        "label": "Discount code gift card tip",
+        "info": "Shown under the discount code field to direct users to the gift card modal"
+      },
+      {
+        "type": "text",
+        "id": "invalid_credentials_message",
+        "label": "Invalid credentials error message",
+        "default": "Looks like something's not quite right, please check your card number and PIN."
+      },
+      {
+        "type": "text",
+        "id": "general_error_message",
+        "label": "General error message",
+        "default": "Looks like something went wrong, please <a href=\"https:\/\/help.decathlon.com.au\/support\/home\" target=\"_blank\">contact us<\/a> to use your gift card."
+      }
+    ]
   }
 ]
