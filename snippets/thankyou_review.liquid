@@ -1,0 +1,16 @@
+<script>
+  var review_title = '{{ settings.review_title }}';
+  console.log(review_title);
+  console.log( '{{ settings.review_title }}');
+  var reviewLinkEl = [
+    '<h3 class="thankyou__reviewtitle">',
+      '{{ settings.review_title }}',
+      '<a href="{{ settings.review_url }}" title="{{ settings.review_text }}" class="thankyou__reviewlink">',
+        '{{ settings.review_text }}',
+      '</a>',
+    '</h3>'
+  ];
+
+  $(".thank-you__additional-content").append(reviewLinkEl.join(''));
+
+</script>
