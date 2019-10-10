@@ -278,7 +278,7 @@
                 <option value="note|asc">Lowest Score</option>
                 <option value="countUpVote|desc">Most Helpful</option>
               </select>
-              {% if settings['is_lookbook'] == false %}
+              {% if settings['is_lookbook'] == false and settings.show_write_a_review %}
                 {% if customer %}
                   <a class="btn btn--productReviews" href="/account?view=review-products">Write Review</a>
                 {% else %}

@@ -95,6 +95,12 @@
         "default": false
       },
       {
+        "type": "checkbox",
+        "id": "show_write_a_review",
+        "label": "Show Write A Review?",
+        "default": false
+      },
+      {
         "type": "select",
         "id": "extra_details",
         "label": "Account Extra Details Mechanic",

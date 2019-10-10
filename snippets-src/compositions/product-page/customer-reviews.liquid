@@ -19,505 +19,509 @@
 {% if customer %}/account?view=review-products{% else %}/account/login?checkout_url=/account?view=review-products{% endif %}
 {%- endcapture -%}
 
-<section class="ReviewsContainer de-Grid de-u-lg-spaceTop3
-                de-u-spaceTop">
-  {% unless total_item_count == 0 %}
-    <a class="de-u-hiddenVisually" href="#de-CustomerReviews-container">Skip to reviews</a>
-  {% endunless %}
+{% unless total_item_count == 0 && settings.show_write_a_review == false %}
+  <section class="ReviewsContainer de-Grid de-u-lg-spaceTop3
+                  de-u-spaceTop">
+    {% unless total_item_count == 0 %}
+      <a class="de-u-hiddenVisually" href="#de-CustomerReviews-container">Skip to reviews</a>
+    {% endunless %}
 
-  <div class="de-ReviewsContainer-reviewSummary">
-    <div class="de-ReviewSummary de-u-padBottom06">
-      {% if total_item_count == 0 %}
-        <p>Be the first to leave a review</p>
-      {% else %}
-        <div class="de-StarRating de-u-textGrow1 productRating">
-          <div class="de-StarRating-fill" style="width: {{ rating_average }}%"></div>
-        </div>
+    <div class="de-ReviewsContainer-reviewSummary">
+      <div class="de-ReviewSummary de-u-padBottom06">
+        {% if total_item_count == 0 %}
+          <p>Be the first to leave a review</p>
+        {% else %}
+          <div class="de-StarRating de-u-textGrow1 productRating">
+            <div class="de-StarRating-fill" style="width: {{ rating_average }}%"></div>
+          </div>
 
-        <div class="de-u-textGrow2 de-u-flex de-u-flexJustifyBetween
-          de-u-flexAlignItemsBaseline">
-          <button class="js-de-ReviewSummary-starsSummary">
-            <span class="de-u-textBold">{{ product_rating }}</span> out of 5 stars
-          </button>
-          <div class="de-u-textNormal de-u-textAlignRight">
-            {{ total_item_count }}
-            <span class="de-u-inlineBlock">
-              {{ total_item_count | pluralize: 'Review', 'Reviews' }}
-            </span>
+          <div class="de-u-textGrow2 de-u-flex de-u-flexJustifyBetween
+            de-u-flexAlignItemsBaseline">
+            <button class="js-de-ReviewSummary-starsSummary">
+              <span class="de-u-textBold">{{ product_rating }}</span> out of 5 stars
+            </button>
+            <div class="de-u-textNormal de-u-textAlignRight">
+              {{ total_item_count }}
+              <span class="de-u-inlineBlock">
+                {{ total_item_count | pluralize: 'Review', 'Reviews' }}
+              </span>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+
+      {% comment %}
+        Review Matrix
+      {% endcomment %}
+      {% assign ratings = product.metafields.reviews.recent_reviews_object.notes %}
+      {% comment %}
+        Multiply the total_ratings_count by 1.0 so that stars_percentage will not
+        be rounded (the result will be something between 0 and 100%)
+      {% endcomment %}
+      {% assign total_ratings_count = product.metafields.reviews.recent_reviews_object.total_item_rating_count | times: 1.0 %}
+      {% assign STAR_RATING_PERCENTAGE_MULTIPLIER = 20 %}
+      {% unless total_item_count == 0 %}
+        <div class="de-ReviewMatrix de-u-padTop03">
+          <div
+            class="de-ReviewMatrix de-u-padTop03"
+            id="de-ReviewMatrix-container">
+            {% for rating in ratings %}
+              {% assign stars_fill = rating.number | times: STAR_RATING_PERCENTAGE_MULTIPLIER %}
+              {% assign stars_percentage = rating.count | divided_by: total_ratings_count | times: 100 %}
+              <button
+                aria-label="Show {{rating.number}}-star reviews ({{rating.count}}, {{stars_percentage | round: 0 }} percent of total reviews)."
+                aria-controls="de-CustomerReviews-container"
+                class="de-CustomerReview-filter js-de-CustomerReview-filter"
+                data-star-rating="{{ rating.number }}">
+
+                <div
+                  class="de-CustomerReviews-starContainer
+                         de-u-flex">
+                  <div class="de-StarRating">
+                    <div class="de-StarRating-fill"
+                      style="width: {{ stars_fill }}%">
+                    </div>
+                  </div>
+                  <div
+                    class="de-CustomerReviews-count
+                           de-u-textDarkGray de-u-textMedium de-u-padLeft06 de-u-lineHeight2"
+                  >
+                    {{ rating.count }}
+                  </div>
+                </div>
+
+                <div
+                  class="de-ReviewMatrix-graph
+                          js-de-CustomerReview-filter"
+                  data-star-rating="{{ rating.number }}">
+                  <svg height="8px" width="100%">
+                    <rect class="total"
+                      width="100%"
+                      height="8px"
+                      fill="#d8d8d8">
+                    </rect>
+                    <rect class="completed"
+                      width="{{ stars_percentage }}%"
+                      height="8px"
+                      fill="#0082c3">
+                    </rect>
+                  </svg>
+                </div>
+              </button>
+            {% endfor %}
           </div>
         </div>
+      {% endunless %}
+
+      {% if settings.show_write_a_review %}
+        <a class="de-ReviewMatrix-reviewBtn btn btn--productReviews de-u-spaceTop2
+                  de-u-textGrow1 de-u-padEnds"
+          href="{{ write_a_review_url }}">
+          Write a Review
+        </a>
       {% endif %}
+
+      {% unless total_item_count == 0 %}
+        {% assign alt = product.featured_image.alt %}
+        {% assign product_image = product.featured_image %}
+        {% capture image_srcset %}
+          {{ product_image | img_url: "320x", format: "pjpg" }} 320w,
+          {{ product_image | img_url: "420x", format: "pjpg" }} 420w,
+          {{ product_image | img_url: "500x", format: "pjpg" }} 500w,
+          {{ product_image | img_url: "560x", format: "pjpg" }} 560w,
+          {{ product_image | img_url: "640x", format: "pjpg" }} 640w
+        {% endcapture %}
+        {% capture image_sizes %}
+          (min-width: 40em) 50vw,
+          (min-width: 60em) 33vw
+        {% endcapture %}
+        <img
+          src="{{ product.featured_image | img_url: 'large' }}"
+          srcset="{{ image_srcset }}"
+          sizes="{{ image_sizes }}"
+          class="de-ReviewsContainer-featuredImage de-u-spaceTop6"
+          alt="{% include 'func-extract-alt-copy' with alt %}">
+      {% endunless %}
+
     </div>
 
     {% comment %}
-      Review Matrix
+    Customer Reviews
     {% endcomment %}
-    {% assign ratings = product.metafields.reviews.recent_reviews_object.notes %}
-    {% comment %}
-      Multiply the total_ratings_count by 1.0 so that stars_percentage will not
-      be rounded (the result will be something between 0 and 100%)
-    {% endcomment %}
-    {% assign total_ratings_count = product.metafields.reviews.recent_reviews_object.total_item_rating_count | times: 1.0 %}
-    {% assign STAR_RATING_PERCENTAGE_MULTIPLIER = 20 %}
-    {% unless total_item_count == 0 %}
-      <div class="de-ReviewMatrix de-u-padTop03">
-        <div
-          class="de-ReviewMatrix de-u-padTop03"
-          id="de-ReviewMatrix-container">
-          {% for rating in ratings %}
-            {% assign stars_fill = rating.number | times: STAR_RATING_PERCENTAGE_MULTIPLIER %}
-            {% assign stars_percentage = rating.count | divided_by: total_ratings_count | times: 100 %}
-            <button
-              aria-label="Show {{rating.number}}-star reviews ({{rating.count}}, {{stars_percentage | round: 0 }} percent of total reviews)."
-              aria-controls="de-CustomerReviews-container"
-              class="de-CustomerReview-filter js-de-CustomerReview-filter"
-              data-star-rating="{{ rating.number }}">
-
-              <div
-                class="de-CustomerReviews-starContainer
-                       de-u-flex">
-                <div class="de-StarRating">
-                  <div class="de-StarRating-fill"
-                    style="width: {{ stars_fill }}%">
-                  </div>
-                </div>
-                <div
-                  class="de-CustomerReviews-count
-                         de-u-textDarkGray de-u-textMedium de-u-padLeft06 de-u-lineHeight2"
-                >
-                  {{ rating.count }}
-                </div>
-              </div>
-
-              <div
-                class="de-ReviewMatrix-graph
-                        js-de-CustomerReview-filter"
-                data-star-rating="{{ rating.number }}">
-                <svg height="8px" width="100%">
-                  <rect class="total"
-                    width="100%"
-                    height="8px"
-                    fill="#d8d8d8">
-                  </rect>
-                  <rect class="completed"
-                    width="{{ stars_percentage }}%"
-                    height="8px"
-                    fill="#0082c3">
-                  </rect>
-                </svg>
-              </div>
-            </button>
-          {% endfor %}
-        </div>
-      </div>
-    {% endunless %}
-
-    <a class="de-ReviewMatrix-reviewBtn btn btn--productReviews de-u-spaceTop2
-              de-u-textGrow1 de-u-padEnds"
-      href="{{ write_a_review_url }}">
-      Write a Review
-    </a>
 
     {% unless total_item_count == 0 %}
-      {% assign alt = product.featured_image.alt %}
-      {% assign product_image = product.featured_image %}
-      {% capture image_srcset %}
-        {{ product_image | img_url: "320x", format: "pjpg" }} 320w,
-        {{ product_image | img_url: "420x", format: "pjpg" }} 420w,
-        {{ product_image | img_url: "500x", format: "pjpg" }} 500w,
-        {{ product_image | img_url: "560x", format: "pjpg" }} 560w,
-        {{ product_image | img_url: "640x", format: "pjpg" }} 640w
-      {% endcapture %}
-      {% capture image_sizes %}
-        (min-width: 40em) 50vw,
-        (min-width: 60em) 33vw
-      {% endcapture %}
-      <img
-        src="{{ product.featured_image | img_url: 'large' }}"
-        srcset="{{ image_srcset }}"
-        sizes="{{ image_sizes }}"
-        class="de-ReviewsContainer-featuredImage de-u-spaceTop6"
-        alt="{% include 'func-extract-alt-copy' with alt %}">
-    {% endunless %}
-
-  </div>
-
-  {% comment %}
-  Customer Reviews
-  {% endcomment %}
-
-  {% unless total_item_count == 0 %}
-    <div class="de-ReviewsContainer-reviews de-u-md-padRightNone">
-      <div class="de-ReviewsViewControls de-u-padTop3">
-        <div
-          class="de-ReviewsViewControls-filterAttributes
-                 de-u-textSizeBase de-u-flex de-u-flexAlignItemsStart">
-          <span class="de-u-hidden js-de-CustomerReview-filterStatus de-u-spaceRight02">
-            <span class="de-u-spaceRight06">
-              Filtered by<span class="de-u-textMedium js-de-CustomerReview-filterStarValue"></span> reviews
-            </span>
-            <button
-              class="de-u-spaceRight06 de-u-textBlue de-u-textMedium de-u-textSelectNone js-de-CustomerReview-clearFilter">
-              Clear filter
-            </button>
-          </span>
-
-          <span class="js-de-LoadingReviews de-u-hidden de-u-flex de-u-flexAlignItemsCenter"
-                role="status"
-                aria-live="assertive">
-              <span class="de-u-flex de-u-padRight06">
-                <img
-                  src="{{ 'decathlon-loader.gif' | asset_url }}"
-                  alt=""
-                  width="16"
-                  height="16">
+      <div class="de-ReviewsContainer-reviews de-u-md-padRightNone">
+        <div class="de-ReviewsViewControls de-u-padTop3">
+          <div
+            class="de-ReviewsViewControls-filterAttributes
+                   de-u-textSizeBase de-u-flex de-u-flexAlignItemsStart">
+            <span class="de-u-hidden js-de-CustomerReview-filterStatus de-u-spaceRight02">
+              <span class="de-u-spaceRight06">
+                Filtered by<span class="de-u-textMedium js-de-CustomerReview-filterStarValue"></span> reviews
               </span>
-              Loading reviews&hellip;
-          </span>
+              <button
+                class="de-u-spaceRight06 de-u-textBlue de-u-textMedium de-u-textSelectNone js-de-CustomerReview-clearFilter">
+                Clear filter
+              </button>
+            </span>
+
+            <span class="js-de-LoadingReviews de-u-hidden de-u-flex de-u-flexAlignItemsCenter"
+                  role="status"
+                  aria-live="assertive">
+                <span class="de-u-flex de-u-padRight06">
+                  <img
+                    src="{{ 'decathlon-loader.gif' | asset_url }}"
+                    alt=""
+                    width="16"
+                    height="16">
+                </span>
+                Loading reviews&hellip;
+            </span>
+          </div>
+          <div
+            class="de-ReviewsViewControls-sort
+                   de-u-padBottom6 de-u-lg-padBottomNone"
+          >
+            <label for="de-CustomerReviews-sort"
+                    class="de-u-padRight de-u-textBold de-u-textSizeBase">Sort
+              <span class="de-u-hiddenVisually">reviews </span> by
+              <select id="de-CustomerReviews-sort"
+                      class="de-u-spaceLeft de-u-textSizeBase js-de-CustomerReview-sort"
+                      aria-controls="de-CustomerReviews-container">
+                <option value="date_desc"
+                        data-sort-direction="desc"
+                        data-sort-type="createdAt"
+                        aria-label="Sort reviews, most recent first.">
+                  Newest
+                </option>
+                <option value="date_asc"
+                        data-sort-direction="asc"
+                        data-sort-type="createdAt"
+                        aria-label="Sort reviews, oldest first.">
+                  Oldest
+                </option>
+                <option value="note_desc"
+                        data-sort-direction="desc"
+                        data-sort-type="note"
+                        aria-label="Sort reviews by highest to lowest rating.">
+                  Highest rating</option>
+                <option value="note_asc"
+                        data-sort-direction="asc"
+                        data-sort-type="note"
+                        aria-label="Sort reviews by lowest to highest rating.">
+                  Lowest rating
+                </option>
+                <option value="utility_desc"
+                        data-sort-direction="desc"
+                        data-sort-type="utility"
+                        aria-label="Sort reviews, most helpful first.">
+                  Most helpful
+                </option>
+              </select>
+            </label>
+          </div>
         </div>
-        <div
-          class="de-ReviewsViewControls-sort
-                 de-u-padBottom6 de-u-lg-padBottomNone"
-        >
-          <label for="de-CustomerReviews-sort"
-                  class="de-u-padRight de-u-textBold de-u-textSizeBase">Sort
-            <span class="de-u-hiddenVisually">reviews </span> by
-            <select id="de-CustomerReviews-sort"
-                    class="de-u-spaceLeft de-u-textSizeBase js-de-CustomerReview-sort"
-                    aria-controls="de-CustomerReviews-container">
-              <option value="date_desc"
-                      data-sort-direction="desc"
-                      data-sort-type="createdAt"
-                      aria-label="Sort reviews, most recent first.">
-                Newest
-              </option>
-              <option value="date_asc"
-                      data-sort-direction="asc"
-                      data-sort-type="createdAt"
-                      aria-label="Sort reviews, oldest first.">
-                Oldest
-              </option>
-              <option value="note_desc"
-                      data-sort-direction="desc"
-                      data-sort-type="note"
-                      aria-label="Sort reviews by highest to lowest rating.">
-                Highest rating</option>
-              <option value="note_asc"
-                      data-sort-direction="asc"
-                      data-sort-type="note"
-                      aria-label="Sort reviews by lowest to highest rating.">
-                Lowest rating
-              </option>
-              <option value="utility_desc"
-                      data-sort-direction="desc"
-                      data-sort-type="utility"
-                      aria-label="Sort reviews, most helpful first.">
-                Most helpful
-              </option>
-            </select>
-          </label>
-        </div>
-      </div>
-      {% comment %}
-        @TODO
-        1. Determine how default number of pre-loaded reviews is set and try to
-        ensure reviews_per_page is evenly divisible into that number
-        (default now is 15)
-        2. Document the above
-      {% endcomment %}
-      {% assign total_prerendered_reviews = product.metafields.reviews.recent_reviews_object.items | size %}
-      {% comment %}
-        a11y references:
-        https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions#Advanced_live_regions
-        http://pauljadam.com/demos/aria-atomic-relevant.html
-        aria-relevant="additions text" and aria-atomic="true" seems to be the
-        combination that reads reviews on load, but not from the last loaded review
-      {% endcomment %}
-      <div class="js-de-CustomerReviews"
-          role="region"
-          id="de-CustomerReviews-container"
-          aria-live="polite"
-          aria-relevant="additions text"
-          aria-atomic="true"
-          data-model-code="{{model_code}}"
-          data-reviews-per-page="{{ reviews_per_page }}"
-          data-total-prerendered-reviews="{{ total_prerendered_reviews }}">
-        {% comment %} <img class="de-u-block
-                    js-de-LoadingImage
-                    de-CustomerReviews-loadingImage
-                    de-u-hidden"
-            src="{{ 'decathlon-loader.gif' | asset_url }}"
-            alt="Loading image"> {% endcomment %}
         {% comment %}
-          Defaults to most recent X number of reviews sorted descending by posting
-          date and time Assigns a `looplimit` value at the top, which could come
-          from a value set in a liquid variable
+          @TODO
+          1. Determine how default number of pre-loaded reviews is set and try to
+          ensure reviews_per_page is evenly divisible into that number
+          (default now is 15)
+          2. Document the above
         {% endcomment %}
-        {% assign looplimit = reviews_per_page %}
-        {% for review in product.metafields.reviews.recent_reviews_object.items %}
-          {% assign rating_percentage = review.note | plus: 0 | times: 20 %}
-          {% assign review_date = review.created_at | date: "%-m/%-e/%Y" %}
-          <div class="de-CustomerReview js-de-CustomerReview
-                      js-de-CustomerReview-preloaded de-u-padBottom3
-                      de-u-spaceBottom3
-                      {% if (forloop.index > looplimit) %} de-u-hidden{% endif %}"
-              data-review-id="{{review.id}}"
-              tabindex="0">
-            {% if review.note || review.title %}
-              <div class="de-CustomerReview-title">
-                {% if review.note %}
-                  <div class="de-u-textGrow1 de-u-padRight06 de-u-padBottom06
-                    de-lg-padBottomNone de-u-flex de-u-flexAlignItemsCenter">
-                    <div class="de-StarRating">
-                      <div class="de-StarRating-fill"
-                          style="width: {{ rating_percentage }}%">
+        {% assign total_prerendered_reviews = product.metafields.reviews.recent_reviews_object.items | size %}
+        {% comment %}
+          a11y references:
+          https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions#Advanced_live_regions
+          http://pauljadam.com/demos/aria-atomic-relevant.html
+          aria-relevant="additions text" and aria-atomic="true" seems to be the
+          combination that reads reviews on load, but not from the last loaded review
+        {% endcomment %}
+        <div class="js-de-CustomerReviews"
+            role="region"
+            id="de-CustomerReviews-container"
+            aria-live="polite"
+            aria-relevant="additions text"
+            aria-atomic="true"
+            data-model-code="{{model_code}}"
+            data-reviews-per-page="{{ reviews_per_page }}"
+            data-total-prerendered-reviews="{{ total_prerendered_reviews }}">
+          {% comment %} <img class="de-u-block
+                      js-de-LoadingImage
+                      de-CustomerReviews-loadingImage
+                      de-u-hidden"
+              src="{{ 'decathlon-loader.gif' | asset_url }}"
+              alt="Loading image"> {% endcomment %}
+          {% comment %}
+            Defaults to most recent X number of reviews sorted descending by posting
+            date and time Assigns a `looplimit` value at the top, which could come
+            from a value set in a liquid variable
+          {% endcomment %}
+          {% assign looplimit = reviews_per_page %}
+          {% for review in product.metafields.reviews.recent_reviews_object.items %}
+            {% assign rating_percentage = review.note | plus: 0 | times: 20 %}
+            {% assign review_date = review.created_at | date: "%-m/%-e/%Y" %}
+            <div class="de-CustomerReview js-de-CustomerReview
+                        js-de-CustomerReview-preloaded de-u-padBottom3
+                        de-u-spaceBottom3
+                        {% if (forloop.index > looplimit) %} de-u-hidden{% endif %}"
+                data-review-id="{{review.id}}"
+                tabindex="0">
+              {% if review.note || review.title %}
+                <div class="de-CustomerReview-title">
+                  {% if review.note %}
+                    <div class="de-u-textGrow1 de-u-padRight06 de-u-padBottom06
+                      de-lg-padBottomNone de-u-flex de-u-flexAlignItemsCenter">
+                      <div class="de-StarRating">
+                        <div class="de-StarRating-fill"
+                            style="width: {{ rating_percentage }}%">
+                        </div>
                       </div>
                     </div>
-                  </div>
-                {% endif %}
-                {% if review.title %}
-                  <div class="de-u-textGrow3 de-u-textMedium
-                    de-u-lineHeight2 de-u-padBottom06">
-                    {{ review.title }}
-                  </div>
-                {% endif %}
-              </div>
-            {% endif %}
-
-            <p class="de-u-spaceNone">
-              {% comment %}
-                @TODO
-                Review use of body vs bodyHTML and raw rendering of HTML
-              {% endcomment %}
-              {{ review.body }}
-            </p>
-
-            <div class="de-Grid de-u-padTop06">
-              <div class="de-u-size4of6 de-u-textDarkGray">
-                {% if review.firstname || review_date %}
-                  {% if review.firstname %}
-                    <div class="de-u-textMedium">
-                      {{ review.firstname }}
+                  {% endif %}
+                  {% if review.title %}
+                    <div class="de-u-textGrow3 de-u-textMedium
+                      de-u-lineHeight2 de-u-padBottom06">
+                      {{ review.title }}
                     </div>
                   {% endif %}
-                  {% if review_date %}
-                    <div class="de-u-textShrink1 de-u-textDarkGray">
-                      {{ review_date }}
+                </div>
+              {% endif %}
+
+              <p class="de-u-spaceNone">
+                {% comment %}
+                  @TODO
+                  Review use of body vs bodyHTML and raw rendering of HTML
+                {% endcomment %}
+                {{ review.body }}
+              </p>
+
+              <div class="de-Grid de-u-padTop06">
+                <div class="de-u-size4of6 de-u-textDarkGray">
+                  {% if review.firstname || review_date %}
+                    {% if review.firstname %}
+                      <div class="de-u-textMedium">
+                        {{ review.firstname }}
+                      </div>
+                    {% endif %}
+                    {% if review_date %}
+                      <div class="de-u-textShrink1 de-u-textDarkGray">
+                        {{ review_date }}
+                      </div>
+                    {% endif %}
+                  {% endif %}
+                  {% if review.purchase_checked %}
+                    <div class="de-u-flex de-u-flexAlignItemsCenter de-u-spaceTop06">
+                      {% include 'assets-icons-checkmark-badge'
+                        with class: 'de-Icon de-u-textGrow5 de-u-padRight06' %}
+                      verified purchase
                     </div>
                   {% endif %}
-                {% endif %}
-                {% if review.purchase_checked %}
-                  <div class="de-u-flex de-u-flexAlignItemsCenter de-u-spaceTop06">
-                    {% include 'assets-icons-checkmark-badge'
-                      with class: 'de-Icon de-u-textGrow5 de-u-padRight06' %}
-                    verified purchase
-                  </div>
-                {% endif %}
-              </div>
-              {% comment %}
-                @TODO -
-                Reimplement when voting API becomes usable
-              {% endcomment %}
-              {% comment %}
-                <div class="de-u-size2of6 de-u-flex de-u-flexJustifyEnd
-                  de-u-flexAlignItemsEnd">
-                  <button class="de-u-flex de-u-textBlue de-u-textMedium
-                            js-de-CustomerReview-vote"
-                    data-review-vote-url="{{review.url_vote}}"
-                    href="{{review.url_vote}}">
-                    Helpful Review?
-                    {% include 'assets-icons-upvote-thumb'
-                      with class: 'de-Icon de-u-spaceLeft06 de-u-textGrow2' %}
-                  </button>
                 </div>
-              {% endcomment %}
-            </div>
-            {% if review.answer %}
-              {% assign answer_date = review.answer.created_at | date: "%-m/%-e/%Y" %}
-              <div class="de-CustomerReview-response de-u-spaceTop6"
-                tabindex="0"
-                data-review-id="{{review.answer.id}}">
-                {% include 'assets-logos-decathlon-chat'
-                  with class: 'de-DecathlonChatBubble' %}
-                <div>
-                  {{ review.answer.body }}
-                </div>
-                {% if answer_date %}
-                  <div class="de-u-textShrink1 de-u-textDarkGray">
-                    {{ answer_date }}
-                  </div>
-                {% endif %}
                 {% comment %}
                   @TODO -
                   Reimplement when voting API becomes usable
-                  Modify review url for answers
                 {% endcomment %}
                 {% comment %}
-                  <div class="de-u-flex de-u-flexJustifyStart">
+                  <div class="de-u-size2of6 de-u-flex de-u-flexJustifyEnd
+                    de-u-flexAlignItemsEnd">
                     <button class="de-u-flex de-u-textBlue de-u-textMedium
                               js-de-CustomerReview-vote"
-                        data-review-vote-url="{{review.url_vote}}"
-                        href="{{review.url_vote}}">
-                      Helpful Response?
+                      data-review-vote-url="{{review.url_vote}}"
+                      href="{{review.url_vote}}">
+                      Helpful Review?
                       {% include 'assets-icons-upvote-thumb'
                         with class: 'de-Icon de-u-spaceLeft06 de-u-textGrow2' %}
                     </button>
                   </div>
                 {% endcomment %}
               </div>
-            {% endif %}
-          </div>
-        {% endfor %}
-      </div>
-      {% comment %}
-        @TODO -
-        Reimplement when voting API becomes usable
-      {% endcomment %}
-      {% comment %} <script type="x-handlebars-template" id="de-Icon-helpful-template">
-        {% include 'assets-icons-upvote-thumb'
-          with class: 'de-Icon de-u-spaceLeft06 de-u-textGrow2' %}
-      </script> {% endcomment %}
-      {% comment %}
-        This alternate badge for use with Handlebars has alternate IDs that don't
-        conflict with the ones in the original file. Solution (maybe temporary)
-        for rendering issues with Handlebars in some circumstances (sorting, e.g.)
-      {% endcomment %}
-      <script type="x-handlebars-template" id="de-Icon-verifiedPurchase-template">
-        {% include 'assets-icons-checkmark-badge-alt'
-          with class: 'de-Icon de-u-textGrow5 de-u-padRight06' %}
-      </script>
-      <script type="x-handlebars-template" id="de-Icon-logoNoBg-template">
-        {% include 'assets-logos-decathlon-chat' with class: 'de-DecathlonChatBubble' %}
-      </script>
-      <script type="x-handlebars-template" id="de-CustomerReviews-template">
-        {% raw %}
-        {{#each reviews}}
-          <div class="de-CustomerReview js-de-CustomerReview de-u-padBottom3
-                      de-u-spaceBottom3"
-                data-review-id="{{id}}"
-                tabindex="0">
-            {{! Using custom Handlebars conditional helper }}
-            {{#if_or note title}}
-              <div class="de-u-flex de-u-flexAlignItemsBaseline de-u-flexCol
-                          de-u-lg-flexRow">
-                {{#if note}}
-                  <div class="de-u-textGrow1 de-u-padRight06 de-u-padBottom06
-                    de-lg-padBottomNone de-u-flex de-u-flexAlignItemsCenter">
-                    <div class="de-StarRating">
-                      <div class="de-StarRating-fill"
-                          style="width: {{ rating_percentage }}%">
+              {% if review.answer %}
+                {% assign answer_date = review.answer.created_at | date: "%-m/%-e/%Y" %}
+                <div class="de-CustomerReview-response de-u-spaceTop6"
+                  tabindex="0"
+                  data-review-id="{{review.answer.id}}">
+                  {% include 'assets-logos-decathlon-chat'
+                    with class: 'de-DecathlonChatBubble' %}
+                  <div>
+                    {{ review.answer.body }}
+                  </div>
+                  {% if answer_date %}
+                    <div class="de-u-textShrink1 de-u-textDarkGray">
+                      {{ answer_date }}
+                    </div>
+                  {% endif %}
+                  {% comment %}
+                    @TODO -
+                    Reimplement when voting API becomes usable
+                    Modify review url for answers
+                  {% endcomment %}
+                  {% comment %}
+                    <div class="de-u-flex de-u-flexJustifyStart">
+                      <button class="de-u-flex de-u-textBlue de-u-textMedium
+                                js-de-CustomerReview-vote"
+                          data-review-vote-url="{{review.url_vote}}"
+                          href="{{review.url_vote}}">
+                        Helpful Response?
+                        {% include 'assets-icons-upvote-thumb'
+                          with class: 'de-Icon de-u-spaceLeft06 de-u-textGrow2' %}
+                      </button>
+                    </div>
+                  {% endcomment %}
+                </div>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+        {% comment %}
+          @TODO -
+          Reimplement when voting API becomes usable
+        {% endcomment %}
+        {% comment %} <script type="x-handlebars-template" id="de-Icon-helpful-template">
+          {% include 'assets-icons-upvote-thumb'
+            with class: 'de-Icon de-u-spaceLeft06 de-u-textGrow2' %}
+        </script> {% endcomment %}
+        {% comment %}
+          This alternate badge for use with Handlebars has alternate IDs that don't
+          conflict with the ones in the original file. Solution (maybe temporary)
+          for rendering issues with Handlebars in some circumstances (sorting, e.g.)
+        {% endcomment %}
+        <script type="x-handlebars-template" id="de-Icon-verifiedPurchase-template">
+          {% include 'assets-icons-checkmark-badge-alt'
+            with class: 'de-Icon de-u-textGrow5 de-u-padRight06' %}
+        </script>
+        <script type="x-handlebars-template" id="de-Icon-logoNoBg-template">
+          {% include 'assets-logos-decathlon-chat' with class: 'de-DecathlonChatBubble' %}
+        </script>
+        <script type="x-handlebars-template" id="de-CustomerReviews-template">
+          {% raw %}
+          {{#each reviews}}
+            <div class="de-CustomerReview js-de-CustomerReview de-u-padBottom3
+                        de-u-spaceBottom3"
+                  data-review-id="{{id}}"
+                  tabindex="0">
+              {{! Using custom Handlebars conditional helper }}
+              {{#if_or note title}}
+                <div class="de-u-flex de-u-flexAlignItemsBaseline de-u-flexCol
+                            de-u-lg-flexRow">
+                  {{#if note}}
+                    <div class="de-u-textGrow1 de-u-padRight06 de-u-padBottom06
+                      de-lg-padBottomNone de-u-flex de-u-flexAlignItemsCenter">
+                      <div class="de-StarRating">
+                        <div class="de-StarRating-fill"
+                            style="width: {{ rating_percentage }}%">
+                        </div>
                       </div>
                     </div>
-                  </div>
-                {{/if}}
-                {{#if title}}
-                  <div class="de-u-textGrow3 de-u-textMedium
-                    de-u-lineHeight2 de-u-padBottom06">
-                    {{ title }}
-                  </div>
-                {{/if}}
-              </div>
-            {{/if_or}}
-
-            <p class="de-u-spaceNone">
-              {{!--  @TODO
-              review use of body vs bodyHTML and raw rendering of HTML
-              --}}
-              {{ body }}
-            </p>
-
-            <div class="de-Grid de-u-padTop06">
-              <div class="de-u-size4of6 de-u-textDarkGray">
-                {{#if_or firstname created_at }}
-                  {{#if firstname}}
-                    <div class="de-u-textMedium">
-                      {{ firstname }}
+                  {{/if}}
+                  {{#if title}}
+                    <div class="de-u-textGrow3 de-u-textMedium
+                      de-u-lineHeight2 de-u-padBottom06">
+                      {{ title }}
                     </div>
                   {{/if}}
-                  {{#if created_at}}
-                    <div class="de-u-textShrink1 de-u-textDarkGray">
-                      {{date_format created_at }}
+                </div>
+              {{/if_or}}
+
+              <p class="de-u-spaceNone">
+                {{!--  @TODO
+                review use of body vs bodyHTML and raw rendering of HTML
+                --}}
+                {{ body }}
+              </p>
+
+              <div class="de-Grid de-u-padTop06">
+                <div class="de-u-size4of6 de-u-textDarkGray">
+                  {{#if_or firstname created_at }}
+                    {{#if firstname}}
+                      <div class="de-u-textMedium">
+                        {{ firstname }}
+                      </div>
+                    {{/if}}
+                    {{#if created_at}}
+                      <div class="de-u-textShrink1 de-u-textDarkGray">
+                        {{date_format created_at }}
+                      </div>
+                    {{/if}}
+                  {{/if_or}}
+                  {{#if purchase_checked}}
+                    <div class="de-u-flex de-u-flexAlignItemsCenter de-u-spaceTop06">
+                      {{> verified_purchase_icon }}
+                      verified purchase
                     </div>
                   {{/if}}
-                {{/if_or}}
-                {{#if purchase_checked}}
-                  <div class="de-u-flex de-u-flexAlignItemsCenter de-u-spaceTop06">
-                    {{> verified_purchase_icon }}
-                    verified purchase
+                </div>
+                {{!--
+                  @TODO:
+                  Reimplement when voting API becomes usable
+                --}}
+                {{!--
+                  <div class="de-u-size2of6 de-u-flex de-u-flexJustifyEnd
+                              de-u-flexAlignItemsEnd">
+                    <button class="de-u-flex de-u-textBlue de-u-textMedium
+                              js-de-CustomerReview-vote"
+                      data-review-vote-url="{{review.url_vote}}"
+                      href="{{review.url_vote}}">
+                      Helpful Review?
+                      {{> helpful_icon }}
+                    </button>
+                  </div>
+                --}}
+              </div>
+            {{#if answer}}
+              <div class="de-CustomerReview-response de-u-spaceTop6"
+                tabindex="0"
+                data-review-id="{{answer.id}}">
+                {{> logo_no_bg }}
+                <div>
+                  {{{ answer.body }}}
+                </div>
+                {{#if answer.created_at }}
+                  <div class="de-u-textShrink1 de-u-textDarkGray">
+                  {{date_format answer.created_at }}
                   </div>
                 {{/if}}
+                {{!--
+                  @TODO:
+                  Reimplement when voting API becomes usable
+                  Modify review url for answers
+                --}}
+                {{!--
+                  <div class="de-u-flex de-u-flexJustifyStart">
+                    <button class="de-u-flex de-u-textBlue de-u-textMedium
+                              js-de-CustomerReview-vote"
+                      data-review-vote-url="{{review.url_vote}}"
+                      href="{{review.url_vote}}">
+                      Helpful Response?
+                      {{> helpful_icon }}
+                    </button>
+                  </div>
+                --}}
               </div>
-              {{!--
-                @TODO:
-                Reimplement when voting API becomes usable
-              --}}
-              {{!--
-                <div class="de-u-size2of6 de-u-flex de-u-flexJustifyEnd
-                            de-u-flexAlignItemsEnd">
-                  <button class="de-u-flex de-u-textBlue de-u-textMedium
-                            js-de-CustomerReview-vote"
-                    data-review-vote-url="{{review.url_vote}}"
-                    href="{{review.url_vote}}">
-                    Helpful Review?
-                    {{> helpful_icon }}
-                  </button>
-                </div>
-              --}}
+            {{/if}}
             </div>
-          {{#if answer}}
-            <div class="de-CustomerReview-response de-u-spaceTop6"
-              tabindex="0"
-              data-review-id="{{answer.id}}">
-              {{> logo_no_bg }}
-              <div>
-                {{{ answer.body }}}
-              </div>
-              {{#if answer.created_at }}
-                <div class="de-u-textShrink1 de-u-textDarkGray">
-                {{date_format answer.created_at }}
-                </div>
-              {{/if}}
-              {{!--
-                @TODO:
-                Reimplement when voting API becomes usable
-                Modify review url for answers
-              --}}
-              {{!--
-                <div class="de-u-flex de-u-flexJustifyStart">
-                  <button class="de-u-flex de-u-textBlue de-u-textMedium
-                            js-de-CustomerReview-vote"
-                    data-review-vote-url="{{review.url_vote}}"
-                    href="{{review.url_vote}}">
-                    Helpful Response?
-                    {{> helpful_icon }}
-                  </button>
-                </div>
-              --}}
-            </div>
-          {{/if}}
+          {{/each}}
+        {% endraw %}
+        </script>
+        {% unless total_item_count <= reviews_per_page %}
+          <div class="de-u-flex de-u-padBottom3 de-u-lg-padEnds3">
+            <button class="de-Button btn btn--fill
+                            de-u-textMedium
+                            js-de-moreReviewsButton"
+                    aria-controls="de-CustomerReviews-container"
+                  >
+              <span class="js-de-moreReviewsButton-text">
+                <span class="de-u-hiddenVisually">Load </span>More Reviews
+              </span>
+              <span class="js-de-moreReviewsButton-loadingText de-u-hidden">
+                Loading Reviews&hellip;
+              </span>
+            </button>
+            <a class="de-u-hiddenVisually" href="#de-CustomerReviews-container">
+              Skip to reviews
+            </a>
           </div>
-        {{/each}}
-      {% endraw %}
-      </script>
-      {% unless total_item_count <= reviews_per_page %}
-        <div class="de-u-flex de-u-padBottom3 de-u-lg-padEnds3">
-          <button class="de-Button btn btn--fill
-                          de-u-textMedium
-                          js-de-moreReviewsButton"
-                  aria-controls="de-CustomerReviews-container"
-                >
-            <span class="js-de-moreReviewsButton-text">
-              <span class="de-u-hiddenVisually">Load </span>More Reviews
-            </span>
-            <span class="js-de-moreReviewsButton-loadingText de-u-hidden">
-              Loading Reviews&hellip;
-            </span>
-          </button>
-          <a class="de-u-hiddenVisually" href="#de-CustomerReviews-container">
-            Skip to reviews
-          </a>
-        </div>
-      {% endunless %}
-    </div>
-  {% endunless %}
-</section>
+        {% endunless %}
+      </div>
+    {% endunless %}
+  </section>
+{% endunless %}
