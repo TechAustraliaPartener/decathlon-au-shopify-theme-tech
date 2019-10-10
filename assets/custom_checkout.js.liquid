@@ -1,0 +1,260 @@
+/**
+ * giftCard module.
+ *
+ * Renders an "Authority to Leave" checkbox and a "Delivery Instructions"
+ * input on the shipping method page once shipping methods have been returned.
+ **/
+var decathlonCheckout = (function(decathlonCheckout, $) {
+
+  // Declare the giftCard module.
+  var giftCard = {
+    steps: ['payment_method'],
+    name: 'decathlon-gift-card',
+    section: '[data-step]'
+  };
+
+  // Variables
+  var options;
+
+  // Constants
+  var REDUCTIONS_SELECTOR = '.section--reductions';
+
+  /**
+   * Initialise giftCard module.
+   */
+  giftCard.initialize = function(initializeOptions) {
+    options = initializeOptions;
+
+    // Render the delivery instructions template.
+    $(REDUCTIONS_SELECTOR).before(options.HTML_TEMPLATE_GIFT_CARD);
+
+    $('#redeemGiftCard').on('submit', giftCartSubmit);
+  };
+
+  var $giftCardForm = $('#redeemGiftCard');
+
+  function giftCartSubmit(e) {
+    var payload = {};
+    var giftCardFormData = $(this).serializeArray();
+
+    for (var i = 0; i < giftCardFormData.length; i++) {
+      if (giftCardFormData[i].name === 'amount') {
+        payload[giftCardFormData[i].name] = parseFloat(giftCardFormData[i].value);
+      } else {
+        payload[giftCardFormData[i].name] = giftCardFormData[i].value;
+      }
+    };
+
+    $('.js-de-loading-overlay, .de-checkout-loader').removeClass('de-u-hidden').show();
+    $('#GiftCardSpinner').show();
+
+    $('#errorMessage').empty();
+
+    $.ajax({
+      type: 'POST',
+      url: 'https://086wg0c0vj.execute-api.ap-southeast-2.amazonaws.com/v1/shopifyGiftCardCoupon',
+      data: JSON.stringify(payload),
+      dataType: 'json',
+      crossDomain: true,
+      done: function() {
+        $('.js-de-loading-overlay, .de-checkout-loader').addClass('de-u-hidden').hide();
+      },
+      success: function (data) {
+        console.log('success', data.AuthorizedAmount, data.CouponCode, data.PrepaidCardBalance);
+
+        var successMsg = '{{ 'checkout_gift_card.modal.success' | t }}';
+        var successDontForget = '{{ 'checkout_gift_card.modal.dont_forget' | t }}';
+        var balanceMsg = '{{ 'checkout_gift_card.modal.balance' | t }}';
+
+        var thanksHTML = [
+          '<p class="gift-card-thanks spacing">',
+            '<i class="blank-slate__icon icon icon--free-tag"></i>',
+            successMsg.replace('[amount]', '$' + data.AuthorizedAmount.toFixed(2)).replace('[code]', '<span class="gift-card-emphasis">' + data.CouponCode + '</span>'),
+            '</br>'
+          ];
+
+          if (data.PrepaidCardBalance && data.PrepaidCardBalance > 0) {
+            thanksHTML.push(balanceMsg.replace('[balance]', '$' + (data.PrepaidCardBalance / 100.00).toFixed(2)) + '</br>');
+          }
+
+          thanksHTML.push('<span class="gift-card-emphasis">' + successDontForget + '</span>');
+        thanksHTML.push('</p>');
+
+        $('#giftCardModal').html(thanksHTML.join(''));
+
+        // If you want to test the success message or style it, comment this block out
+        setTimeout(function() {
+          $('#checkout_reduction_code').val(data.CouponCode);
+          $('#checkout_reduction_code').parents('form').submit();
+          $('#giftCardModal .close').click();
+        }, 6000);
+      },
+      error: function(data) {
+        console.log('error', data.responseJSON.message, data.responseJSON.description);
+
+        var credentialsErrors = [
+          'Error code: 4 - Inactive account',
+          'Error code: 45 - Invalid EAN'
+        ];
+
+        if (data && data.responseJSON && data.responseJSON.message && credentialsErrors.indexOf(data.responseJSON.message) > -1) {
+          credentialsError();
+        } else {
+          generalError();
+        }
+        $('#GiftCardSpinner').hide();
+        $('.js-de-loading-overlay, .de-checkout-loader').addClass('de-u-hidden');
+      }
+    });
+
+    return false;
+  }
+
+  function credentialsError() {
+    errorise($('#account_number'));
+    errorise($('#eanCode'));
+
+    $('#errorMessage').html("{{ settings.invalid_credentials_message | replace: '"', '\"' }}");
+  }
+
+  function generalError() {
+    $('#errorMessage').html("{{ settings.general_error_message | replace: '"', '\"' }}");
+  }
+
+  function errorise(input) {
+    $(input).addClass('error');
+    $(input).unbind('change').bind('change', function() {
+      $('#account_number').removeClass('error');
+      $('#eanCode').removeClass('error');
+    });
+  }
+
+  // Add the giftCard module to our list of modules.
+  if(typeof decathlonCheckout.modules === 'undefined') {
+    decathlonCheckout.modules = [];
+  }
+
+  decathlonCheckout.modules.push(giftCard);
+
+  // Declare the discountMessage module.
+  var discountMessage = {
+    steps: ['payment_method'],
+    name: 'decathlon-discount-message',
+    section: '[data-step]'
+  };
+
+  // Variables
+  var options;
+
+  // Constants
+  var DISCOUNT_SECTION_SELECTOR = '[data-reduction-form]';
+
+  /**
+   * Initialise discountMessage module.
+   */
+  discountMessage.initialize = function(initializeOptions) {
+    options = initializeOptions;
+
+    $(DISCOUNT_SECTION_SELECTOR).each(function() {
+      if (!$(this).parents('.tag').length) {
+        if ($(this).find('.tags-list').length) {
+          $(this).find('.tags-list').before(options.HTML_TEMPLATE_DISCOUNT_MESSAGE);
+        } else {
+          $(this).append(options.HTML_TEMPLATE_DISCOUNT_MESSAGE);
+        }
+      }
+    });
+  };
+
+  // Add the discountMessage module to our list of modules.
+  if(typeof decathlonCheckout.modules === 'undefined') {
+    decathlonCheckout.modules = [];
+  }
+
+  decathlonCheckout.modules.push(discountMessage);
+
+  // Declare the discountMessagePrepayment module.
+  var discountMessagePrepayment = {
+    steps: ['contact_information', 'shipping_method'],
+    name: 'decathlon-discount-message',
+    section: '[data-step]'
+  };
+
+  // Variables
+  var options;
+
+  // Constants
+  var DISCOUNT_SECTION_SELECTOR = '[data-reduction-form]';
+
+  /**
+   * Initialise discountMessagePrepayment module.
+   */
+  discountMessagePrepayment.initialize = function(initializeOptions) {
+    options = initializeOptions;
+
+    $(DISCOUNT_SECTION_SELECTOR).each(function() {
+      if (!$(this).parents('.tag').length) {
+        if ($(this).find('.tags-list').length) {
+          $(this).find('.tags-list').before(options.HTML_TEMPLATE_PREPAYMENT_DISCOUNT_MESSAGE);
+        } else {
+          $(this).append(options.HTML_TEMPLATE_PREPAYMENT_DISCOUNT_MESSAGE);
+        }
+      }
+    });
+  };
+
+  // Add the discountMessagePrepayment module to our list of modules.
+  if(typeof decathlonCheckout.modules === 'undefined') {
+    decathlonCheckout.modules = [];
+  }
+
+  decathlonCheckout.modules.push(discountMessagePrepayment);
+
+  return decathlonCheckout;
+})(decathlonCheckout || {}, jQuery || Checkout.jQuery);
+
+/**
+ * Custom checkout initialisation.
+ */
+(function(decathlonCheckout, $, Shopify) {
+  // Define options that will be passed to each module on initialization.
+  var options = {
+    CUSTOMER_ID: {{ customer.id | json }},
+    HTML_TEMPLATE_GIFT_CARD: window.checkoutComponents.HTML_TEMPLATE_GIFT_CARD,
+    HTML_TEMPLATE_DISCOUNT_MESSAGE: window.checkoutComponents.HTML_TEMPLATE_DISCOUNT_MESSAGE,
+    HTML_TEMPLATE_PREPAYMENT_DISCOUNT_MESSAGE: window.checkoutComponents.HTML_TEMPLATE_PREPAYMENT_DISCOUNT_MESSAGE
+  };
+
+  /**
+   * Initialize a specific module (if it hasn't already been initialized).
+   * This is a variation of the Plus.func pattern advocated by Shopify for
+   * checkout customisation.
+   */
+  function initializeModule(module, options) {
+    var $section = $(module.section);
+    if(!$section.hasClass(module.name)) {
+      $section.addClass(module.name);
+      module.initialize(options);
+    }
+  }
+
+  /**
+   * Whenever the page load/change event triggers, check for any modules that
+   * should be initialized at this step. When a match is found, pass along to
+   * initializeModule().
+   */
+  $(document).on('page:load page:change', function() {
+    $.each(decathlonCheckout.modules || [], function(index, module) {
+      if(module.steps.indexOf(Shopify.Checkout.step) !== -1) {
+        // If on the shipping method page and rates haven't yet returned, do
+        // nothing.
+        if(Shopify.Checkout.step === 'shipping_method' && $('[data-poll-refresh]').length) {
+          return;
+        }
+
+        // Otherwise, initialise the module.
+        initializeModule(module, options);
+      }
+    });
+  });
+})(decathlonCheckout || {}, jQuery || Checkout.jQuery, Shopify || {});

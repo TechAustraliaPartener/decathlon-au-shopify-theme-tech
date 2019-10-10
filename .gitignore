@@ -11,3 +11,6 @@ src/css/*
 # Built from /snippets-src/**
 /snippets/*.liquid
 !/snippets/algolia*
+!/snippets/checkout_js*
+!/snippets/ship_icon*
+!/snippets/pickup_icon*

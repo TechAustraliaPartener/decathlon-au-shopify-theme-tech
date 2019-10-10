@@ -1,7 +1,7 @@
 import { DELIVERY_METHODS } from '../../constants';
 import STATE from '../../state';
 import SELECTORS from './selectors';
-import { showElements, hideElements } from '../../../utilities/element-utils';
+import { showElements, hideElements } from '../../ui-helpers';
 import {
   shipToggleBtn,
   pickupToggleBtn,
@@ -19,6 +19,7 @@ const updateUI = () => {
   // Capture the current selected delivery method
   const deliveryMethod = STATE.deliveryMethod;
   if (deliveryMethod === DELIVERY_METHODS.PICKUP) {
+    $('[data-address-field="company"]').hide();
     pickupToggleBtn.classList.add(CLASSES.ACTIVE_SHIPPICK_BTN);
     shipToggleBtn.classList.remove(CLASSES.ACTIVE_SHIPPICK_BTN);
     hideElements(deliveryElements);
@@ -27,6 +28,7 @@ const updateUI = () => {
     showElements([document.querySelector(SELECTORS.PICKUP_CONTINUE_BTN)]);
   }
   if (deliveryMethod === DELIVERY_METHODS.SHIP) {
+    $('[data-address-field="company"]').show();
     shipToggleBtn.classList.add(CLASSES.ACTIVE_SHIPPICK_BTN);
     pickupToggleBtn.classList.remove(CLASSES.ACTIVE_SHIPPICK_BTN);
     hideElements([pickupContent]);

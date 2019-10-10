@@ -1,9 +1,9 @@
-// @ts-check
-
 import {
   billingAddressChoices,
   shipToLabel,
   shipToMap,
+  loadingOverlay,
+  loadingImage,
   userAddress1,
   userAddress2,
   userCity,
@@ -11,15 +11,9 @@ import {
 } from './ui-elements';
 import STATE from '../../state';
 import { DELIVERY_METHODS } from '../../constants';
-import { hideElements, elementExists } from '../../../utilities/element-utils';
-import { loadingOverlay, loadingImage } from '../../ui-elements';
-import selectors from './selectors';
+import { hideElements, elementExists } from '../../ui-helpers';
 
-const {
-  BILLING_ADDRESS_CHOICES: { sameAsShipping }
-} = selectors;
-
-let sameBillingShippingAddressInput = null;
+console.log(STATE);
 
 /**
  * Clear auto-filled billing address fields
@@ -33,21 +27,6 @@ const clearBillingAddress = () => {
   });
 };
 
-/**
- * Set the billing address to match shipping. Run only if the user hasn't
- * selected pickup in store
- */
-const setBillingSameAsShipping = () => {
-  /** @type {HTMLInputElement} */
-  sameBillingShippingAddressInput =
-    sameBillingShippingAddressInput ||
-    document.querySelector(`${sameAsShipping} [type="radio"]`);
-
-  if (sameBillingShippingAddressInput) {
-    sameBillingShippingAddressInput.click();
-  }
-};
-
 const bindUI = () => {
   // Clear auto-filled billing address fields
   clearBillingAddress();
@@ -56,13 +35,19 @@ const bindUI = () => {
     hideElements(billingAddressChoices);
     hideElements([shipToMap]);
     shipToLabel.innerHTML = 'Pickup at';
+    const differentBillingShippingAddress = document.getElementById(
+      'checkout_different_billing_address_true'
+    );
+    if (elementExists(differentBillingShippingAddress)) {
+      differentBillingShippingAddress.click();
+    }
   } else {
-    setBillingSameAsShipping();
-    /**
-     * Listen for a Shopify page change event due to 3rd-party tax calculations
-     * in the payment step
-     */
-    document.addEventListener('page:change', setBillingSameAsShipping);
+    const sameBillingShippingAddress = document.getElementById(
+      'checkout_different_billing_address_false'
+    );
+    if (elementExists(sameBillingShippingAddress)) {
+      sameBillingShippingAddress.click();
+    }
   }
 };
 

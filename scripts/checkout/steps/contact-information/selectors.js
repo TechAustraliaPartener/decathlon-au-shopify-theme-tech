@@ -24,6 +24,7 @@ const SHOPIFY_UI_SELECTORS = {
   USER_ADDRESS_2: '#checkout_shipping_address_address2',
   USER_CITY: '#checkout_shipping_address_city',
   USER_ZIP: '#checkout_shipping_address_zip',
+  USER_PHONE: '#checkout_shipping_address_phone',
   USER_EMAIL: '#checkout_email'
 };
 
@@ -41,7 +42,9 @@ const CUSTOM_UI_SELECTORS = {
   ACTIVE_PICKUP_LOCATION: '.js-de-active-location',
   PICKUP_CONTINUE_BTN_CONTAINER: '.js-de-payment-continue-container',
   PICKUP_CONTINUE_BTN: '.js-de-payment-continue',
-  MAP_IMAGE: '.js-de-pickup-location-map-img'
+  MAP_IMAGE: '.js-de-pickup-location-map-img',
+  LOADING_OVERLAY: '.de-loading-overlay',
+  LOADING_IMAGE: '.de-checkout-loader'
 };
 
 export default {

@@ -1,25 +1,30 @@
-import { isDev } from '../utilities/env-utils';
-
+import sharedConfig from '../shared/config';
+const { PROD_HOSTNAME } = sharedConfig;
 /**
- * Several of the classes that might be referenced in this module come from
- * markup created on the server by Shopify. Hence, a class name like
- * `section__content` will not follow Cloud Four / Decathlon class
- * naming guidelines.
+ * Check for dev environment
+ * @param {Array} values - Two possible values, the second being for production or fallback
+ * @returns {*} - Either the first value if window.location.hostname exists and isn't prodction,
+ * or the production value
  */
+const ifDev = values =>
+  window && window.location && !window.location.hostname.match(PROD_HOSTNAME)
+    ? values[0]
+    : values[1];
+
 const config = {
   PICKUP_SHIPPING_METHODS: ['shopify-Pickup-0.00'],
   PICKUP_SHIPPING_METHOD: 'shopify-Pickup-0.00',
   CLASSES: {
-    ACTIVE_SHIPPICK_BTN: 'de-is-active',
+    ACTIVE_SHIPPICK_BTN: 'js-de-active-pickship-btn',
     ACTIVE_PICKUP_LOCATION: 'js-de-active-location',
-    DISABLED_BUTTON: 'js-de-BtnDisabled',
-    SHIPPING_OPTIONS_CONTAINER: 'section__content'
+    DISABLED_BUTTON: 'js-de-BtnDisabled'
   },
   COPY: {
     SHIPPING_ADDRESS_HEADING: 'Shipping address',
     PICKUP_ADDRESS_HEADING: 'Pickup address'
   },
-  SHOP_ID: isDev ? '17524727' : '13306287'
+  SHOP_ID: ['6665633903'],
+  STOREFRONT_API_KEY: ['fe87a1c3e2f7434995b7905f5ae37fb9']
 };
 
 export default config;

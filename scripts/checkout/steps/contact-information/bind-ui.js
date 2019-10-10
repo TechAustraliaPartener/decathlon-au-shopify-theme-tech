@@ -12,9 +12,11 @@ import {
   userAddress2,
   userCity,
   userZip,
-  userEmail
+  userPhone,
+  userEmail,
+  loadingImage,
+  loadingOverlay
 } from './ui-elements';
-import { loadingImage, loadingOverlay } from '../../ui-elements';
 import STATE from '../../state';
 import SELECTORS from './selectors';
 import { DELIVERY_METHODS } from '../../constants';
@@ -25,21 +27,12 @@ import {
   setObjectInSessionStorage
 } from '../../../utilities/storage';
 import { getCurrentLocation } from '../../../utilities/location';
-import {
-  showElements,
-  hideElements,
-  elementExists
-} from '../../../utilities/element-utils';
+import { showElements, hideElements, elementExists } from '../../ui-helpers';
 import config from '../../config';
-import sharedConfig from '../../../shared/config';
 
-const { CLASSES, SHOP_ID, PICKUP_SHIPPING_METHOD } = config;
-const { STOREFRONT_API } = sharedConfig;
+console.log(STATE);
 
-const gqlHeaders = {
-  'content-type': 'application/json',
-  [STOREFRONT_API.HEADER_NAME]: STOREFRONT_API.KEY
-};
+const { CLASSES, SHOP_ID, PICKUP_SHIPPING_METHOD, STOREFRONT_API_KEY } = config;
 
 const clearShippingForm = () => {
   company.value = '';
@@ -108,8 +101,22 @@ const bindLocations = () => {
  * @param  {object} currentLocation ipStack response
  */
 const updateLocationUI = currentLocation => {
+  showElements([loadingOverlay, loadingImage]);
+  if (deliveryMethod === 'Click &amp; Collect') {
+    pickupDefaultUpdate();
+    showElements([pickupContent]);
+  } else {
+    hideElements([loadingOverlay, loadingImage]);
+  }
+  /*
+  showElements([pickupToggleBtn, shipToggleBtn]);
+    if (STATE.deliveryMethod === DELIVERY_METHODS.PICKUP) {
+      showElements([pickupContent]);
+    }
+
   if (
-    currentLocation.region_name === 'California' ||
+    currentLocation.region_name === 'New South Wales' ||
+    currentLocation.region_name === 'Victoria' ||
     STATE.deliveryMethod === DELIVERY_METHODS.PICKUP
   ) {
     showElements([pickupToggleBtn, shipToggleBtn]);
@@ -132,7 +139,7 @@ const updateLocationUI = currentLocation => {
         hideElements([document.querySelector('.de-visit-cal-container')]);
       });
   }
-  hideElements([loadingOverlay, loadingImage]);
+  */
 };
 
 /**
@@ -146,31 +153,37 @@ const buildStoreList = locations => {
     // Check to see if this is the active store so we can add active class
     const activeCard = location.id === STATE.pickupStore || false;
 
-    // Build card
-    const locationNode = document.createElement('li');
-    locationNode.classList.add('de-u-size1of2');
-    locationNode.innerHTML = `
-      <div class="js-de-pickup-location de-pickup-location de-u-spaceEnds02 ${
-        activeCard ? CLASSES.ACTIVE_PICKUP_LOCATION : ''
-      }"
-      data-id="${location.id}"
-      data-name="${location.name}"
-      data-street1="${location.street1}"
-      data-city="${location.city}"
-      data-state="${location.state}"
-      data-zip="${location.zip}">
-      <p class="de-pickup-location-time de-u-textBlack de-u-textSemibold de-u-textGrow1">Free Pickup Tomorrow</p>
-      <p><span class="de-pickup-location-name de-u-textSemibold de-u-textBlack">${
-        location.name
-      }</span> ${location.street1}</p>
+    if (activeCard) {
+      // Build card
+      const locationNode = document.createElement('li');
+      const readyText =
+        location.name === 'Moorabbin'
+          ? 'Pickup: Ready In 24 Hours'
+          : 'Pickup: Ready In 2 Hours';
+      locationNode.classList.add('de-u-size1of2');
+      locationNode.innerHTML = `
+        <div class="js-de-pickup-location de-pickup-location de-u-spaceEnds02 ${
+          activeCard ? CLASSES.ACTIVE_PICKUP_LOCATION : ''
+        }"
+        data-id="${location.id}"
+        data-name="${location.name}"
+        data-street1="${location.street1}"
+        data-city="${location.city}"
+        data-state="${location.state}"
+        data-zip="${location.zip}">
+        <p class="de-pickup-location-time de-u-textBlack de-u-textSemibold de-u-textGrow1">${readyText}</p>
+        <p><span class="de-pickup-location-name de-u-textSemibold de-u-textBlack">${
+          location.name
+        }</span> ${location.street1}</p>
 
-      <p class="de-pickup-location-hours de-u-textShrink2">${
-        location.tomorrow
-      }</p>
-    </div>`;
+        <p class="de-pickup-location-hours de-u-textShrink2">${
+          location.street2
+        }</p>
+      </div>`;
 
-    // Insert card
-    pickupLocationList.appendChild(locationNode);
+      // Insert card
+      pickupLocationList.appendChild(locationNode);
+    }
   }
 
   // Now that the cards are built, bind onclick functionality
@@ -194,60 +207,41 @@ const updateCheckout = () => {
     .querySelector('[name="shopify-checkout-authorization-token"]')
     .getAttribute('content');
 
-  // Collect selected store location data and user input
-  const selectedStore = document.querySelector(
-    SELECTORS.ACTIVE_PICKUP_LOCATION
-  );
-  const selectedStoreData = {};
-  selectedStoreData.firstName = userFirstName.value;
-  selectedStoreData.lastName = userLastName.value;
-  selectedStoreData.name = selectedStore.dataset.name;
-  selectedStoreData.street1 = selectedStore.dataset.street1;
-  selectedStoreData.street2 = selectedStore.dataset.street2;
-  selectedStoreData.city = selectedStore.dataset.city;
-  selectedStoreData.state = selectedStore.dataset.state;
-  selectedStoreData.zip = selectedStore.dataset.zip;
-
-  // Construct GID for making graphql queries
-  // @TODO move to config
-  const checkoutGID = btoa(
-    `gid://shopify/Checkout/${window.Shopify.Checkout.token}?key=${checkoutKey}`
-  );
-
-  // Graphql update
-  fetch(`/api/graphql`, {
-    method: 'POST',
-    headers: gqlHeaders,
-    /* eslint-disable graphql/template-strings, no-useless-escape */
-    body: `{\"query\":\"\\n\\nmutation checkoutShippingAddressUpdateV2($shippingAddress: MailingAddressInput!, $checkoutId: ID!) {\\n  checkoutShippingAddressUpdateV2(shippingAddress: $shippingAddress, checkoutId: $checkoutId) {\\n    checkoutUserErrors {\\n      code\\n      field\\n      message\\n    }\\n    checkout {\\n      id\\n      webUrl\\n      shippingAddress {\\n        company\\n        firstName\\n        lastName\\n        address1\\n        province\\n        country\\n        zip\\n      }\\n    }\\n  }\\n}\",\"variables\":{\"shippingAddress\":{\"company\":\"${selectedStoreData.name}\",\"lastName\":\"${selectedStoreData.lastName}\",\"firstName\":\"${selectedStoreData.firstName}\",\"address1\":\"${selectedStoreData.street1}\",\"province\":\"${selectedStoreData.state}\",\"country\":\"United States\",\"zip\":\"${selectedStoreData.zip}\",\"city\":\"${selectedStoreData.city}\"},\"checkoutId\":\"${checkoutGID}\"},\"operationName\":\"checkoutShippingAddressUpdateV2\"}`
-    /* eslint-enable */
-  })
-    .then(res => res.json())
-    .then(data => {
-      updateEmail(checkoutGID, checkoutKey);
-    });
+  fillStoreData();
 };
 
-/**
- * Gets user inputted email address and sends it to checkout object
- * using graphql
- * @param  {string} checkoutGID Shopify graphql ID of checkout
- * @param  {string} checkoutKey checkout secret uses to construct checkout URL
- * @return calls next step in graphql chain: updateShippingMethod
- */
-const updateEmail = (checkoutGID, checkoutKey) => {
-  fetch(`/api/graphql`, {
-    method: 'POST',
-    headers: gqlHeaders,
-    /* eslint-disable graphql/template-strings, no-useless-escape */
-    body: `{\"query\":\"mutation checkoutEmailUpdateV2($checkoutId: ID!, $email: String!) {\\n  checkoutEmailUpdateV2(checkoutId: $checkoutId, email: $email) {\\n    checkout {\\n      id\\n      webUrl\\n    }\\n    checkoutUserErrors {\\n      code\\n      field\\n      message\\n    }\\n  }\\n}\",\"variables\":{\"email\":\"${userEmail.value}\",\"checkoutId\":\"${checkoutGID}\"},\"operationName\":\"checkoutEmailUpdateV2\"}`
-    /* eslint-enable */
-  })
-    .then(res => res.json())
-    .then(data => {
-      console.log(data);
-      updateShippingMethod(checkoutGID, checkoutKey);
-    });
+const pickupDefaultUpdate = () => {
+  var checkoutKey = document
+    .querySelector('[name="shopify-checkout-authorization-token"]')
+    .getAttribute('content');
+
+  fillStoreData();
+};
+
+const fillStoreData = () => {
+  // Collect selected store location data and user input
+  var selectedStore = document.querySelector(SELECTORS.ACTIVE_PICKUP_LOCATION);
+
+  var checkoutAddressData = {};
+
+  checkoutAddressData.first_name = userFirstName.value;
+  checkoutAddressData.last_name = userLastName.value;
+  checkoutAddressData.phone = userPhone.value;
+
+  checkoutAddressData.company = selectedStore.dataset.name;
+  checkoutAddressData.address1 = selectedStore.dataset.street1;
+  checkoutAddressData.address2 = selectedStore.dataset.street2 || '';
+  checkoutAddressData.city = selectedStore.dataset.city;
+  checkoutAddressData.country = 'Australia';
+  checkoutAddressData.province = selectedStore.dataset.state;
+  checkoutAddressData.zip = selectedStore.dataset.zip;
+
+  for (var key in checkoutAddressData) {
+    console.log(key, checkoutAddressData[key]);
+    $('input[name="checkout[shipping_address][' + key + ']"]').val(
+      checkoutAddressData[key]
+    );
+  }
 };
 
 /**
@@ -259,15 +253,21 @@ const updateEmail = (checkoutGID, checkoutKey) => {
  * for each store.
  */
 const updateShippingMethod = (checkoutGID, checkoutKey) => {
+  console.log('updateShippingMethod to pickup');
   fetch(`/api/graphql`, {
     method: 'POST',
-    headers: gqlHeaders,
+    headers: {
+      'x-shopify-storefront-access-token': STOREFRONT_API_KEY,
+      'content-type': 'application/json'
+    },
     /* eslint-disable graphql/template-strings, no-useless-escape */
     body: `{\"query\":\"mutation checkoutShippingLineUpdate($checkoutId: ID!, $shippingRateHandle: String!) {\\n  checkoutShippingLineUpdate(checkoutId: $checkoutId, shippingRateHandle: $shippingRateHandle) {\\n    checkout {\\n      id\\n      webUrl\\n    }\\n    checkoutUserErrors {\\n      code\\n      field\\n      message\\n    }\\n  }\\n}\",\"variables\":{\"checkoutId\":\"${checkoutGID}\",\"shippingRateHandle\":\"${PICKUP_SHIPPING_METHOD}\"},\"operationName\":\"checkoutShippingLineUpdate\"}`
     /* eslint-enable */
   })
     .then(res => res.json())
     .then(data => {
+      console.log(3, JSON.stringify(data));
+      //alert('Please feel free to check out the console logs for the GraphQL API responses, or check the Network tab for the requests themselves');
       const checkoutURL = `/${SHOP_ID}/checkouts/${window.Shopify.Checkout.token}?key=${checkoutKey}`;
       window.location.href = checkoutURL;
     });
@@ -343,12 +343,7 @@ const bindUI = () => {
   );
   let paymentBtn = document.querySelector(SELECTORS.PICKUP_CONTINUE_BTN);
   const paymentBtnHTML = paymentBtnCont.innerHTML;
-  if (paymentBtnCont)
-    paymentBtnCont.childNodes.forEach(node => {
-      if (node.isSameNode(paymentBtn)) {
-        paymentBtnCont.removeChild(node);
-      }
-    });
+  paymentBtnCont.removeChild(paymentBtn);
   continueBtn.insertAdjacentHTML('afterend', paymentBtnHTML);
   paymentBtn = document.querySelector(SELECTORS.PICKUP_CONTINUE_BTN);
   if (elementExists(paymentBtn)) {
@@ -363,6 +358,7 @@ const bindUI = () => {
         if (
           userFirstName.value === '' ||
           userLastName.value === '' ||
+          userPhone.value === '' ||
           userEmail.value === ''
         ) {
           if (elementExists(userFirstName) && userFirstName.value === '') {
@@ -381,13 +377,36 @@ const bindUI = () => {
               );
             });
           }
+          if (elementExists(userPhone) && userPhone.value === '') {
+            userPhone.parentNode.parentNode.classList.add('field--error');
+            userPhone.addEventListener('blur', () => {
+              userPhone.parentNode.parentNode.classList.remove('field--error');
+            });
+          }
           if (elementExists(userEmail) && userEmail.value === '') {
             userEmail.parentNode.parentNode.classList.add('field--error');
             userEmail.addEventListener('blur', () => {
               userEmail.parentNode.parentNode.classList.remove('field--error');
             });
           }
+        } else if (
+          $('.edit_checkout #checkout_email:invalid').length &&
+          elementExists(userEmail)
+        ) {
+          userEmail.parentNode.parentNode.classList.add('field--error');
+          userEmail.addEventListener('blur', () => {
+            userEmail.parentNode.parentNode.classList.remove('field--error');
+          });
+        } else if (
+          $('.edit_checkout #checkout_shipping_address_phone:invalid').length &&
+          elementExists(userPhone)
+        ) {
+          userPhone.parentNode.parentNode.classList.add('field--error');
+          userPhone.addEventListener('blur', () => {
+            userPhone.parentNode.parentNode.classList.remove('field--error');
+          });
         } else {
+          localStorage.setItem('step', Shopify.Checkout.step);
           this.classList.add = 'submitted';
           // Make button spin
           if (
@@ -412,6 +431,7 @@ const bindUI = () => {
             ).style.opacity = '0';
           }
           updateCheckout();
+          $('[data-customer-information-form]').submit();
         }
       }
     }
@@ -420,8 +440,7 @@ const bindUI = () => {
   async function fetchStoreList() {
     try {
       const stores = await fetchStores();
-      // @TODO: Remove when SF Potrero is opened
-      return stores.filter(store => store.id !== 'adr_sfpotrero');
+      return stores;
     } catch (error) {
       console.error(error);
     }

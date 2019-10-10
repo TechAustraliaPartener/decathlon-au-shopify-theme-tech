@@ -1,9 +1,8 @@
-import { loadingOverlay, loadingImage } from '../../ui-elements';
+import { loadingOverlay, loadingImage } from './ui-elements';
 import STATE from '../../state';
 import SELECTORS from './selectors';
 import { DELIVERY_METHODS } from '../../constants';
-import { createShippingOptionsMutationObserver } from '../../utilities';
-import { hideElements, elementExists } from '../../../utilities/element-utils';
+import { hideElements, elementExists } from '../../ui-helpers';
 
 const updateShippingMethod = () => {
   if (
@@ -42,6 +41,9 @@ const hideShippingMethods = () => {
     const currentMethod = radios[i].getAttribute('data-shipping-method');
     if (pickupMethod !== currentMethod) {
       radios[i].parentNode.style.display = 'none';
+      radios[i].parentNode.remove();
+    } else {
+      radios[i].querySelector('input').checked = true;
     }
   }
 };
@@ -52,12 +54,38 @@ const bindUI = () => {
     if (document.querySelector(SELECTORS.PICKUP_SHIPPING_METHOD)) {
       updateShippingMethod();
     } else {
-      createShippingOptionsMutationObserver(updateShippingMethod);
+      const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          updateShippingMethod();
+        });
+      });
+
+      const observerConfig = {
+        childList: true
+      };
+
+      observer.observe(
+        document.querySelector('.section__content'),
+        observerConfig
+      );
     }
   } else if (document.querySelector(SELECTORS.PICKUP_SHIPPING_METHOD)) {
     hideShippingMethods();
   } else {
-    createShippingOptionsMutationObserver(hideShippingMethods);
+    const observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        hideShippingMethods();
+      });
+    });
+
+    const observerConfig = {
+      childList: true
+    };
+
+    observer.observe(
+      document.querySelector('.section__content'),
+      observerConfig
+    );
   }
 };
 

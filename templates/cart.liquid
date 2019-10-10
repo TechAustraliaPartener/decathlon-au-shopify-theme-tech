@@ -158,6 +158,9 @@
             {% endraw %}
           </tbody>
         </table>
+        {% raw %}
+          <input type="hidden" name="attributes[pickup_location]" v-bind:value="deliveryOption !== 'Delivery' ? favStore.street1 : 'none'">
+        {% endraw %}
         <div class="grid--full cart__row">
           {% comment %}To Do: Re-add Notes and settings integration{% endcomment %}
           {% raw %}

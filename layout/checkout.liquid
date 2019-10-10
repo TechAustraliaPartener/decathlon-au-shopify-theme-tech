@@ -5,7 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, user-scalable=0">
     <meta name="referrer" content="origin">
+
     <title>{{ page_title }}</title>
+
     {{ content_for_header }}
     {{ 'patterns-toolkit.css' | asset_url | stylesheet_tag }}
     {{ checkout_stylesheets }}
@@ -15,13 +17,19 @@
 
     <script>
       window.checkoutID = {{ checkout.id }};
-      window.adr_GezSSC9M = "{{ 'adr_GezSSC9M.jpg' | asset_url }}";
-      window.adr_K6s3Kaja = "{{ 'adr_K6s3Kaja.jpg' | asset_url }}";
-      window.defaultMap = "{{ 'no-selection-map2.jpg' | asset_url }}";
+      window.adr_T6s3Kaja = "{{ 'adr_T6s3Kaja.jpg' | asset_url }}";
+      window.adr_A6s3Kaja = "{{ 'adr_A6s3Kaja.jpg' | asset_url }}";
+      window.adr_F6s3Kaja = "{{ 'adr_F6s3Kaja.jpg' | asset_url }}";
+      window.adr_B6s3Kaja = "{{ 'adr_B6s3Kaja.jpg' | asset_url }}";
+      window.adr_17930001 = "{{ 'adr_17930001.jpg' | asset_url }}";
+      window.defaultMap = "{{ 'no-selection-map.jpg' | asset_url }}";
     </script>
-    {% include 'polyfills' %}
     {{ checkout_scripts }}
 
+    {{ 'checkout.scss.css' | asset_url | stylesheet_tag }}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     {% assign login_link_default = 'https://' | append: request.host | append: '/account/login?' %}
     {% assign login_link_override = settings.login_portal_url %}
     {% if login_link_override contains '?' %}
@@ -29,10 +37,21 @@
     {% else %}
       {% assign login_link_override = login_link_override | append: '?' %}
     {% endif %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 
-  </head>
+    <!-- Hotjar Tracking Code for decathlon.com.au -->
+  <script>(function(h,o,t,j,a,r){h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};h._hjSettings={hjid:1319200,hjsv:6};a=o.getElementsByTagName('head')[0];r=o.createElement('script');r.async=1;r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;a.appendChild(r);})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');</script>
+
+</head>
   <body>
     {% include 'js-gtm-body' %}
+
+    <div class="visually-hidden">
+      {% assign preload_images = 'adr_T6s3Kaja.jpg|adr_A6s3Kaja.jpg|adr_F6s3Kaja.jpg|adr_B6s3Kaja.jpg|adr_17930001.jpg|no-selection-map.jpg' | split: '|' %}
+      {% for image in preload_images %}
+        <img src="{{ image | asset_url }}">
+      {% endfor %}
+    </div>
 
     {{ skip_to_content_link }}
 
@@ -59,7 +78,9 @@
         });
       </script>
     </div>
+
     {{ order_summary_toggle }}
+
     <div class="content" data-content>
       <div class="wrap">
         <div class="main" role="main">
@@ -80,42 +101,40 @@
               The checkout JS (scripts/checkout/index.js)
               will show and add UI functionality.
             {% endcomment %}
-            <div class="de-Grid de-Grid--withGutter">
-              <div
-                class="de-pickship-btn-container
-                       de-u-size1of2 de-u-spaceBottom"
-              >
-                <button
-                  class="btn de-pickship-btn
-                         de-u-hidden
-                         js-de-toggle-shipping"
-                >
-                  {% include 'assets-icons-delivery-truck'
-                      with class: 'de-Pickship-icon de-Icon de-u-spaceRight03'
-                  %}
-                  Ship to Home
+             {% if checkout.attributes.checkout_option == 'Delivery' %}
+              <div class="de-Grid de-Grid--withGutter">
+                <div class="de-pickship-btn-container de-u-size1of1 de-u-spaceBottom">
+                  <button class="btn de-pickship-btn js-de-active-pickship-btn">
+                    <span class="btn__content">{% include 'ship-icon' %} Ship to Home</span>
+                  </button>
+                </div>
+              </div>
+            {% else %}
+              <div class="de-Grid de-Grid--withGutter">
+                <div class="de-pickship-btn-container de-u-size1of1 de-u-spaceBottom">
+                  <button class="btn de-pickship-btn js-de-active-pickship-btn">
+                    <span class="btn__content">{% include 'pickup-icon' %} Pickup in Store</span>
+                  </button>
+                </div>
+              </div>
+            {% endif %}
+
+            <div class="de-Grid de-Grid--withGutter" style="display:none;">
+              <div class="de-pickship-btn-container de-u-size1of2 de-u-spaceBottom">
+                <button class="btn js-de-toggle-shipping de-pickship-btn de-u-hidden">
+                  <span class="btn__content">{% include 'ship-icon' %} Ship to Home</span>
                 </button>
               </div>
-              <div
-                class="de-pickship-btn-container
-                       de-u-size1of2 de-u-spaceBottom">
-                <button
-                  class="btn de-pickship-btn
-                         de-u-hidden
-                         js-de-toggle-pickup"
-                >
-                  {% include 'assets-icons-store'
-                      with class: 'de-Pickship-icon de-Icon de-u-spaceRight03'
-                  %} Pickup in Store
+              <div class="de-pickship-btn-container de-u-size1of2 de-u-spaceBottom">
+                <button class="btn js-de-toggle-pickup de-pickship-btn de-u-hidden">
+                  <span class="btn__content">{% include 'pickup-icon' %} Pickup in Store</span>
                 </button>
               </div>
             </div>
-            <div class="de-pickup-content de-u-hidden js-de-pickup-content">
-              <div class="de-pickup-location-map js-de-pickup-location-map">
-                <img
-                  src="{{ 'no-selection-map2.jpg' | asset_url }}"
-                  class="js-de-pickup-location-map-img"
-                  alt="">
+
+            <div class="js-de-pickup-content de-pickup-content de-u-hidden">
+              <div class="js-de-pickup-location-map de-pickup-location-map">
+                <img src="{{ 'no-selection-map2.jpg' | asset_url }}" class="js-de-pickup-location-map-img de-pickup-location-map-img" alt="">
               </div>
               <h2 class="de-location-heading de-u-spaceTop2">Select location</h2>
               <hr class="de-u-bgBlue de-location-hr de-u-spaceEnds2">
@@ -123,39 +142,22 @@
               <hr class="de-u-bgLime de-location-hr de-u-spaceEnds2">
             </div>
 
+            {% if settings.show_reviewlink %}
+              {% unless order.cancelled %}
+                {% capture thank_you_review_link %}{% include 'thankyou_review' %}{% endcapture %}
+              {% endunless %}
+            {% endif %}
+
             {% capture layout_content %}{{ content_for_layout }}{% endcapture %}
             {{ layout_content | replace: login_link_default, login_link_override }}
 
-            <div
-              class="de-visit-cal-container
-                     de-u-hidden de-u-spaceTop de-u-textShrink3"
-            >
-              <span>
-                Planning to be in San Francisco?
-                <button href="#"class="de-visit-cal-btn de-u-textBlue">
-                  Try Pickup in Store
-                </button>
-              </span>
-            </div>
+            {{ thank_you_review_link }}
+
+            <div class="de-visit-cal-container de-u-hidden de-u-spaceTop de-u-textShrink3">Planning to be in New South Wales or Victoria? <a href="#"class="de-visit-cal-btn">Try Pickup in Store</a></div>
             <span class="js-de-payment-continue-container">
-              <a
-                href="#"
-                class="btn de-payment-continue
-                       de-u-hidden
-                       js-de-payment-continue"
-              >
-                <span class="js-de-payment-continue-copy">
-                  Continue to Payment
-                </span>
-                <svg
-                  class="btn__spinner
-                         icon-svg icon-svg--size-18 icon-svg--spinner-button
-                         js-de-payment-continue-spinner"
-                  aria-hidden="true"
-                  focusable="false"
-                >
-                  <use xlink:href="#spinner-button"></use>
-                </svg>
+              <a href="#" class="btn js-de-payment-continue de-payment-continue de-u-hidden">
+                <span class="js-de-payment-continue-copy">Continue to Shipping</span>
+                <svg class="icon-svg icon-svg--size-18 btn__spinner icon-svg--spinner-button js-de-payment-continue-spinner" aria-hidden="true" focusable="false"> <use xlink:href="#spinner-button"></use> </svg>
               </a>
             </span>
           </div>
@@ -179,11 +181,73 @@
     {% if checkout_html_classes contains 'page--thank-you' %}
       {% include 'js-gtm-datalayer-purchase' %}
     {% endif %}
+    
+    <script>
+      window.deliveryMethod = '{{ checkout.attributes.checkout_option }}';
+      console.log(document.location.search);
 
+      var checkoutOptionStored = localStorage.getItem('checkoutOptionStored');
+      var checkoutOption = '{{ checkout.attributes.checkout_option }}';
+      {% if checkout != blank and checkout.attributes.checkout_option != blank and order == blank %}
+        if ((!checkoutOptionStored || checkoutOption !== checkoutOptionStored) && checkoutOption !== '') {
+          if (location.search !== '?step=contact_information') {
+            location.search = '?step=contact_information';
+          }
+        }
+      {% endif %}
+      localStorage.setItem('checkoutOptionStored', checkoutOption);
+
+      var favStoreStored = localStorage.getItem('favStoreStored');
+      var favStore = localStorage.getItem('favoritedStore');
+      var favStoreFromCart = '{{ checkout.attributes.pickup_location }}';
+      var setStore = '{{ checkout.shipping_address.address1 }}';
+
+      console.log(favStoreFromCart, setStore);
+
+      if ((!favStoreStored || favStore !== favStoreStored) && favStore !== '') {
+        if (location.search !== '?step=contact_information') {
+          location.search = '?step=contact_information';
+        }
+      }
+
+      if (!setStore || favStoreFromCart !== setStore) {
+        if (location.search !== '?step=contact_information') {
+          location.search = '?step=contact_information';
+        }
+      }
+
+      localStorage.setItem('favStoreStored', localStorage.getItem('favoritedStore'));
+
+      var userEmail = document.getElementById('checkout_email');
+
+      if (Shopify.Checkout.step === 'contact_information') {
+        if (localStorage.getItem('step') === 'contact_information' && !userEmail.value) {
+          userEmail.parentNode.parentNode.classList.add('field--error');
+          userEmail.addEventListener('blur', () => {
+            userEmail.parentNode.parentNode.classList.remove('field--error');
+          });
+        }
+      } else {
+        localStorage.removeItem('step');
+      }
+    </script>
     {% include 'moment.js' %}
     {% include 'moment-timezone.js' %}
     <script defer type="module" src="{{ 'built-checkout.js' | asset_url }}"></script>
     <script defer nomodule src="{{ 'built-checkout-legacy.js' | asset_url }}"></script>
+    <style>
+      .de-loading-overlay {
+        display: none;
+      }
+      .modal.default-background {
+        display: block;
+      }
+    </style>
+
     {{ tracking_code }}
+
+    {% include 'checkout_js' %}
+    {{ 'custom_checkout.js' | asset_url | script_tag }}
+    {{ 'checkout.js' | asset_url | script_tag }}
   </body>
 </html>

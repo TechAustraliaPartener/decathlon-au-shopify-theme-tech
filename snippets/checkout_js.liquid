@@ -1,0 +1,62 @@
+{%- capture HTML_TEMPLATE_GIFT_CARD -%}
+
+  {% comment %}
+    Gift Card
+  {% endcomment %}
+  <div class="section section--gift-card">
+    <div class="section__content">
+      <h2 class="section__title layout-flex__item layout-flex__item--stretch">{{ 'checkout_gift_card.gift_card_title' | t }}</h2>
+      <p class="section__text">
+        <a href="#giftCardModal" rel="modal:open">{{ 'checkout_gift_card.open_modal' | t }}</a>
+      </p>
+    </div>
+  </div>
+
+  <div id="giftCardModal" class="modal gift-card-modal" style="visibility: visible;">
+    <h2>{{ 'checkout_gift_card.modal.modal_heading' | t }}</h2>
+    <p class="subheading">{{ 'checkout_gift_card.modal.modal_subheading' | t }}</p>
+    <hr>
+    <form id="redeemGiftCard" action="https://086wg0c0vj.execute-api.ap-southeast-2.amazonaws.com/v1/shopifyGiftCardCoupon" method="post">
+      <div class="inputWrap spacing">
+        <label class="" for="account_number">{{ 'checkout_gift_card.modal.card_number_label' | t }}</label>
+        <input name="account_number" id="account_number" type="text" pattern="\d{16}" title="{{ 'checkout_gift_card.modal.card_number_tip' | t }}" maxlength="16" placeholder="________________" required>
+      </div>
+      <div class="inputWrap spacing">
+        <label class="" for="eanCode">{{ 'checkout_gift_card.modal.pin_code_label' | t }}</label>
+        <input name="eanCode" id="eanCode" type="text" pattern="\d{4}" title="{{ 'checkout_gift_card.modal.pin_code_tip' | t }}" maxlength="4" placeholder="____" required>
+      </div>
+      <div class="errorMessage spacing" id="errorMessage"></div>
+      <input name="amount" type="hidden" value="{{ checkout.total_price | divided_by: 100.00 }}">
+      <div class="inputWrap spacing">
+        <button type="submit" class="btn">{{ 'checkout_gift_card.modal.submit' | t }}</button>
+        <a href="#" rel="modal:close" class="btn close">{{ 'checkout_gift_card.modal.close' | t }}</a>
+      </div>
+      <div id="GiftCardSpinner" class="screen" data-spinner style="display: none;">
+        <div class="spinner-wrapper">
+          <div class="lds-ring">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+          <h5 class="text-center no-margin-top">{{ 'checkout_gift_card.modal.spinner' | t }}</h5>
+        </div>
+      </div>
+    </form>
+  </div>
+
+{%- endcapture -%}
+{%- capture HTML_TEMPLATE_DISCOUNT_MESSAGE -%}
+  <p>{{ settings.discount_code_redeem_gift_card_payment }}</p>
+{%- endcapture -%}
+{%- capture HTML_TEMPLATE_PREPAYMENT_DISCOUNT_MESSAGE -%}
+  <p>{{ settings.discount_code_redeem_gift_card_message }}</p>
+{%- endcapture -%}
+
+<script>
+  window.checkoutComponents = {
+    HTML_TEMPLATE_GIFT_CARD: {{ HTML_TEMPLATE_GIFT_CARD | json }},
+    HTML_TEMPLATE_DISCOUNT_MESSAGE: {{ HTML_TEMPLATE_DISCOUNT_MESSAGE | json }},
+    HTML_TEMPLATE_PREPAYMENT_DISCOUNT_MESSAGE: {{ HTML_TEMPLATE_PREPAYMENT_DISCOUNT_MESSAGE | json }}
+  };
+</script>

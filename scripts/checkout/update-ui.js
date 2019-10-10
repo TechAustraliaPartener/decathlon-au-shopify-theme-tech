@@ -1,5 +1,3 @@
-// @ts-check
-
 /**
  * @TODO - Note that the /scripts/checkout/state module was removed here
  * in favor of using the STEP getter from config.
@@ -8,17 +6,8 @@
  */
 import STATE from './state';
 import { CHECKOUT_STEPS } from './constants';
-import { IS_ONLINE_STORE_CHECKOUT } from '../shared/constants';
 import contactInformation from './steps/contact-information';
 import config from '../shared/config';
-import {
-  getIsOnlineStoreCheckout,
-  createShippingOptionsMutationObserver
-} from './utilities';
-import { loadingImage, loadingOverlay } from './ui-elements';
-import { hideElements } from '../utilities/element-utils';
-import { appendQueryStringToURL } from '../utilities/query-string';
-import Cookies from 'js-cookie';
 const {
   SELECTORS: {
     CHECKOUT: {
@@ -107,15 +96,13 @@ const needCartStepLink = () => {
  * @returns {boolean} - Has a breadcrumb cart link (or not)
  */
 const cartBreadcrumbLinkExists = () => {
-  /** @type {NodeListOf<HTMLAnchorElement>} */
   const breadcrumbLinks = document.querySelectorAll(`.${BC_LINK}`);
-  let hasLink = false;
-  breadcrumbLinks.forEach(link => {
+  for (const link of breadcrumbLinks) {
     if (link.href.indexOf(CART_URL) > -1) {
-      hasLink = true;
+      return true;
     }
-  });
-  return hasLink;
+  }
+  return false;
 };
 
 /**
@@ -164,140 +151,10 @@ const buildCartBreadCrumb = () => {
 
 // Update logo links to link to the "home" page
 const setLogoLinkHome = () => {
-  /** @type {NodeListOf<HTMLAnchorElement>} */
   const logos = document.querySelectorAll(`.${LOGO}`);
-  logos.forEach(logo => {
+  for (const logo of logos) {
     logo.href = ROOT_URL;
-  });
-};
-
-/**
- * Does the URL passed in go to a page outside of checkout?
- * @param {string} url
- * @returns {boolean}
- */
-const isCheckoutURL = url => url.includes('checkouts');
-
-/**
- * A query string is passed from `/cart` (or Ajax cart) if the Storefront API
- * fails to create a custom checkout
- * In this scenario (rare, hopefully never), make sure the query string is added
- * to all links and form action URLs within checkout, which link to another
- * step or page within checkout
- */
-const persistOnlineStoreCheckout = () => {
-  if (!getIsOnlineStoreCheckout()) {
-    /**
-     * Clean up the online store checkout flag if it was previously set but
-     * for whatever reason this is no longer an online store checkout flow (e.g.,
-     * the user closed a session and later was able to create a custom checkout)
-     */
-    Cookies.remove(IS_ONLINE_STORE_CHECKOUT);
-    // No need to proceed further
-    return;
   }
-  const links = document.querySelectorAll('a');
-  const forms = document.querySelectorAll('form');
-  links.forEach(link => {
-    if (!isCheckoutURL(link.href)) {
-      return;
-    }
-    link.href = appendQueryStringToURL(
-      link.href,
-      IS_ONLINE_STORE_CHECKOUT,
-      true
-    );
-  });
-  forms.forEach(form => {
-    if (!isCheckoutURL(form.action)) {
-      return;
-    }
-    form.action = appendQueryStringToURL(
-      form.action,
-      IS_ONLINE_STORE_CHECKOUT,
-      true
-    );
-  });
-  /**
-   * Add additional handlers for account links (login & logout), which will set
-   * a flag in cookies so that the query string for online checkout can be
-   * preserved across redirects
-   */
-  const accountLinks = document.querySelectorAll('[href*="/account/"]');
-  accountLinks.forEach(link =>
-    link.addEventListener('click', () =>
-      Cookies.set(IS_ONLINE_STORE_CHECKOUT, 'true')
-    )
-  );
-};
-
-/**
- * Gets all wrappers of shipping and pickup option inputs, returns the NodeList
- * destructured as an array
- * @returns {HTMLElement[]}
- */
-// @ts-ignore
-const getShippingInputWrappers = () => [
-  ...document.querySelectorAll('[data-shipping-method]')
-];
-
-/**
- * Determines whether a shipping option needs to be selected, and if so, selects
- * the first one.
- * This is run after removing and de-selecting the store pickup option
- * @param {HTMLElement[]} shippingInputWrappers
- */
-const selectShippingOptionIfNeeded = shippingInputWrappers => {
-  // Get all shipping option inputs, with a pickup option filtered out
-  const shippingOptionInputs = shippingInputWrappers
-    .filter(el => !/pickup/i.test(el.getAttribute('data-shipping-method')))
-    .map(el =>
-      /** @type {HTMLInputElement} */ (el.querySelector('input[type="radio"]'))
-    );
-  // Find if one is already checked
-  const shippingMethodIsSelected = shippingOptionInputs.some(
-    input => input.checked
-  );
-  // End if there's already a selected shipping option
-  if (shippingMethodIsSelected) {
-    return;
-  }
-  // Select the first shipping option remaining
-  if (shippingOptionInputs[0]) {
-    shippingOptionInputs[0].checked = true;
-  }
-};
-
-/**
- * If the Storefront API fails to create a custom checkout, code that handles
- * Shipping vs Pickup should not run.
- * However, the Store Pickup option is injected server-side, where we don't
- * share logic about queries to the Storefront API, so de-select and remove
- * the option here.
- * @param {HTMLElement[]} shippingInputWrappers
- */
-const removeStorePickupOption = shippingInputWrappers => {
-  // Find the wrapper for the pickup option input
-  const pickupInputWrapper = shippingInputWrappers.find(input =>
-    /pickup/i.test(input.getAttribute('data-shipping-method'))
-  );
-  // Bail if there is no pickup option input wrapper or input
-  if (!pickupInputWrapper) {
-    return;
-  }
-  const pickupInput = pickupInputWrapper.querySelector('input[type="radio"]');
-  // AFAIK, there will always be an input here, but if not, bail
-  if (!pickupInput) {
-    return;
-  }
-  // Get the parent element of the input wrapper. This should be a "row"
-  const pickupInputRow = pickupInputWrapper.parentElement;
-  // Uncheck the pickup option
-  pickupInput.removeAttribute('checked');
-  // Get the container of the shipping options so pickup can be removed
-  const shippingOptionsContainerEl = pickupInputRow.parentElement;
-  // Remove the pickup option row
-  shippingOptionsContainerEl.removeChild(pickupInputRow);
 };
 
 /**
@@ -339,38 +196,13 @@ const fixCustomCheckoutLinks = () => {
   setLogoLinkHome();
 };
 
-/**
- * - Get the shipping/pickup option input wrappers
- * - Remove the pickup option
- * - Select a shipping option if one isn't already selected
- */
-const initWithoutPickup = () => {
-  const shippingInputWrappers = getShippingInputWrappers();
-  removeStorePickupOption(shippingInputWrappers);
-  selectShippingOptionIfNeeded(shippingInputWrappers);
-};
-
-/**
- * 1. Build and modify checkout links for custom checkouts
- * 2. Remove pickup options for standard checkouts
- * 3. Pass through query parameters sent from cart
- * @param {Object} options
- * @param {boolean} [options.isOnlineStoreCheckout] - The checkout was created
- * by the online store, not the Storefront API
- */
-const updateUI = ({ isOnlineStoreCheckout } = {}) => {
-  if (isOnlineStoreCheckout) {
-    hideElements([loadingImage, loadingOverlay]);
-    // Neither cart nor logo links need the QS, so safe to run here
-    persistOnlineStoreCheckout();
-    if (isShippingMethodStep()) {
-      createShippingOptionsMutationObserver(initWithoutPickup);
-      initWithoutPickup();
-    }
-  }
-
+const updateUI = () => {
   if (isContactInfoStep()) {
     contactInformation.updateUI();
+  }
+
+  if (isShippingMethodStep()) {
+    // Update Shipping (Step 2) UI
   }
 
   fixCustomCheckoutLinks();

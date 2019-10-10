@@ -1,5 +1,5 @@
 import SELECTORS from './selectors';
-import { elementExists } from '../../../utilities/element-utils';
+import { elementExists } from '../../ui-helpers';
 
 /**
  * Grouping all toggle elements together into an array for easier access
@@ -42,5 +42,8 @@ export const userAddress1 = document.querySelector(SELECTORS.USER_ADDRESS_1);
 export const userAddress2 = document.querySelector(SELECTORS.USER_ADDRESS_2);
 export const userCity = document.querySelector(SELECTORS.USER_CITY);
 export const userZip = document.querySelector(SELECTORS.USER_ZIP);
+export const userPhone = document.querySelector(SELECTORS.USER_PHONE);
 export const userEmail = document.querySelector(SELECTORS.USER_EMAIL);
 export const mapImage = document.querySelector(SELECTORS.MAP_IMAGE);
+export const loadingOverlay = document.querySelector(SELECTORS.LOADING_OVERLAY);
+export const loadingImage = document.querySelector(SELECTORS.LOADING_IMAGE);
