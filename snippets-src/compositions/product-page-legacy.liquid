@@ -16,7 +16,7 @@
     {%- assign model_code_tag = tag | split: 'Model Code: ' -%}
     {%- assign model_code = model_code_tag[1] -%}
   {%- endif -%}
-  {%- if tag contains 'size-' -%}
+  {%- if tag contains 'Size Chart: ' -%}
     {% assign product_has_size_chart = true %}
   {%- endif -%}
 
