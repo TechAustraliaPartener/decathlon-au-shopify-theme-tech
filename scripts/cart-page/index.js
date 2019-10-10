@@ -136,6 +136,39 @@ const initCartDisplay = cart => {
 
         return checkLoc.available;
       },
+      cartModificationsMessage() {
+        const app = this;
+        const items = app.$data.cart.items;
+        let itemsToRemove = 0;
+
+        for (let i = items.length - 1; i >= 0; i--) {
+          const item = items[i];
+
+          let checkLoc = item.locations.find(obj => {
+            return obj.name === 'Tempe';
+          });
+
+          if (app.deliveryOption !== 'Delivery') {
+            checkLoc = item.locations.find(obj => {
+              return obj.name === app.favStore.name;
+            });
+          }
+
+          if (checkLoc.inStock < 1) {
+            itemsToRemove++;
+          }
+        }
+
+        if (itemsToRemove > 0) {
+          return `${itemsToRemove} ${
+            itemsToRemove > 1 ? 'items' : 'item'
+          } unavailable for ${
+            app.deliveryOption
+          } will be removed from your cart`;
+        }
+
+        return '';
+      },
       prepareCart(event) {
         const app = this;
 
@@ -169,6 +202,8 @@ const initCartDisplay = cart => {
       }
     }
   });
+  $('.de-u-fade').addClass('in');
+  $('#cartSpinner').addClass('de-u-hidden');
 };
 
 $(document).on('cart.ready', function(event, cart) {

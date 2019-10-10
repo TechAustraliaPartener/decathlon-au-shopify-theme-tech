@@ -78,10 +78,15 @@
     {% endif %}
     {% endcomment %}
 
-    <div id="cartDisplay">
+    <div class="h5" id="cartSpinner">
+      <img src="{{ 'decathlon-loader.gif' | asset_url }}">
+      Loading cart...
+    </div>
+
+    <div id="cartDisplay" class="de-u-fade">
       <div class="cart-select-store">
         <div class="d-flex-column">
-          <img src="{{ 'icon-pickup.png' | asset_img_url: '40x' }}" alt="Click & Collect icon">
+          {% include 'assets-icons-store' with class: 'de-u-textBlue de-Icon' %}
           <a href='/pages/store-finder' target='_blank' title='Stores' class='fav-store-btn'><strong>Stores</strong></a>
         </div>
         {% raw %}
@@ -185,6 +190,9 @@
                   </select>
                 </span>
               </p>
+              <p v-html="cartModificationsMessage()" class="qty-update">
+                3 items unavailable for Click &amp; Collect will be removed from your cart
+              </p>
             </div>
           {% endraw %}
 
@@ -211,7 +219,7 @@
         </div>
       </form>
     </div>
-    <div class="grid--full cart__payments">
+    <div class="grid--full cart__payments de-u-fade">
       <div class="afterpay-info">{{ 'cart.general.afterpay_msg' | t }}&nbsp;<strong>{{ cart.total_price | divided_by: 4 | money }}</strong> by <img src="{{ 'logo-afterpay.svg' | asset_url }}" alt="Afterpay Logo">&nbsp;<a href="#" title="More info">{{ 'cart.general.more_info' | t }}</a></div>
       <!-- Zip WIDGET -->
         {% include 'components-zip-widget'%}
