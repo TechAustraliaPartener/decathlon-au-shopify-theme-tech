@@ -14,8 +14,8 @@
 
 
 {%- for tag in product.tags -%}
-  {%- if tag contains 'Size Chart: ' -%}
-    {%- assign size_guide_tag = tag | split: 'Size Chart: ' -%}
+  {%- if tag contains 'size-' -%}
+    {%- assign size_guide_tag = tag | split: 'size-' -%}
     {%- assign size_guide = size_guide_tag[1] -%}
   {%- endif -%}
 {%- endfor -%}
@@ -42,6 +42,8 @@
     {% comment %}
       A reasonable responsive image solution should be considered.
     {% endcomment %}
-    <img class="sizechart-visual" src="{{ size_guide | handleize | prepend: 'sizechart-' | append: '.jpg' | file_img_url: '300x' }}" alt="Size Guide Visual">
+    {% comment %}TODO: Restore size guide images
+      <img class="sizechart-visual" src="{{ size_guide | handleize | prepend: 'sizechart-' | append: '.jpg' | file_img_url: '300x' }}" alt="Size Guide Visual">
+    {% endcomment %}
   </div>
 </section>
