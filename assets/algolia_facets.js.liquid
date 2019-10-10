@@ -138,14 +138,21 @@
       var values = value.split(':');
 
       return _.map(values, function (e) {
-        return filterMapping['named_tags.gender'][e];
+        return window.vars.filterMapping['named_tags.gender'][e];
+      }).join(' - ') || values;
+    },
+    'named_tags.GENDER_VALUE': function displayGender(value) {
+      var values = value.split(': ');
+
+      return _.map(values, function (e) {
+        return window.vars.filterMapping['named_tags.GENDER_VALUE'][e];
       }).join(' - ') || values;
     },
     'named_tags.sport': function displaySport(value) {
       var values = value.split(':');
 
       return _.map(values, function (e) {
-        return filterMapping['named_tags.sport'][e];
+        return window.vars.filterMapping['named_tags.sport'][e];
       }).join(' - ') || values;
     }
   }
