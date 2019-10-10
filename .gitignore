@@ -15,3 +15,4 @@ src/css/*
 !/snippets/ship_icon*
 !/snippets/pickup_icon*
 !/snippets/thankyou_review*
+!/snippets/shogun-*
