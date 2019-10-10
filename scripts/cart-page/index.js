@@ -74,7 +74,10 @@ const initCartDisplay = cart => {
         );
 
         if (this.$data.override) {
-          $('.checkout-btn').click();
+          // TODO: Remove timeout and lock onto re-render
+          setTimeout(function() {
+            $('.checkout-btn').click();
+          }, 300);
         }
       },
       money(price) {
