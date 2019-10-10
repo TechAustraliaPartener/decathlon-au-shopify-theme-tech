@@ -29,6 +29,27 @@ function addMasterStoresData(inventoryItem) {
       }
     }
   }
+
+  for (var i = window.masterStores.length - 1; i >= 0; i--) {
+    const masterLoc = window.masterStores[i];
+
+    let alreadyAdded = inventoryItem.locations.find(obj => {
+      return obj.name === masterLoc.name;
+    });
+
+    if (!alreadyAdded) {
+      let emptyLoc = {
+        available: 0,
+        distance: 0,
+        id: "0",
+        inStock: 0,
+        name: masterLoc.name,
+        pickupOption: false
+      }
+
+      inventoryItem.locations.push(emptyLoc);
+    }
+  }
 }
 
 function supplementCart(cart) {
