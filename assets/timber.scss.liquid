@@ -10192,46 +10192,33 @@ html {
   /* Labels */
   /*  --------------------------------------------------------------------------- */
 
-  .ais-hit--label {
+  .ais-page .ais-hit--label {
     position: absolute;
     z-index: 1;
     color: gray;
     top: 6px;
-    left: 10px;
+    left: 0;
+    right: auto;
+    font-size: 11px !important;
+    font-family: avalonmedium,Helvetica Neue,Helvetica,Arial,sans-serif;
+    font-weight: 400;
+    line-height: 1.2;
+    padding: 0.38125em 0.75375em;
     text-transform: uppercase;
-    padding: 6px 12px !important;
-    font-size: 12px !important;
-    line-height: 1.6 !important;
-    font-family: "avalonbold";
-    &:before {
-      content: " ";
-      position: absolute;
-      left: 1px;
-      z-index: -1;
-      bottom: -13px;
-      width: 10px;
-      height: 0;
-      transform: rotate(45deg);
-      background-color: transparent;
-      border-left: 15px solid transparent;
-      border-right: 15px solid transparent;
-    }
+    top: 0;
+    z-index: 1;
+
     &.innovation {
       background-color: #cbfb00;
       color: #1e1e1e;
-      &:before {
-        border-bottom: 15px solid darken(#cbfb00, 10%);
-      }
     }
     &.clearance {
       background-color: #e20c18;
       color: #fff;
-      &:before {
-        border-bottom: 15px solid darken(#e20c18, 10%);
-      }
     }
-    @include at-query($min, 768px) {
-      left: 0px;
+    &.new_release {
+      background-color: #0082c3;
+      color: #fff;
     }
   }
 
@@ -10286,6 +10273,21 @@ html {
       }
     }
   }
+
+  .starRating-container,
+  .collectionProduct-rating,
+  .adept-product-rating__info {
+    display: flex;
+  }
+  .collectionProduct-rating {
+    position: relative;
+    margin-right: 15px;
+  }
+  .starRating-container {
+    margin-bottom: 12px;
+    justify-content: center;
+  }
+
 {% endif %}
 
 /*===Cart Page Favourite Store===*/

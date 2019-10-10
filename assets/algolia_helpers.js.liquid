@@ -113,10 +113,12 @@
         var lowercaseTags = this.tags.map(function(t){
           return t.toLowerCase();
         });
-        if (lowercaseTags.indexOf('innovation') > -1) {
-          return '<div class="ais-hit--label innovation">Innovation</div>';
-        } else if (lowercaseTags.indexOf('clearance') > -1) {
+        if (lowercaseTags.indexOf('clearance') > -1) {
           return '<div class="ais-hit--label clearance">Sale</div>';
+        } else if (lowercaseTags.indexOf('innovation') > -1) {
+          return '<div class="ais-hit--label innovation">Innovation</div>';
+        } else if (lowercaseTags.indexOf('new_release') > -1) {
+          return '<div class="ais-hit--label new_release">New Release</div>';
         }
       }
 
@@ -124,10 +126,13 @@
         var thisLabels = typeof this.named_tags.Label === 'object' ? [this.named_tags.Label] : this.named_tags.Label;
         thisLabels = Array.isArray(thisLabels) ? thisLabels : [thisLabels];
         console.log(thisLabels);
-        if (thisLabels.filter(function(e) { return e.replace('<span class="ais-highlight">', '').replace('</span>', '') === 'Innovation'; }).length > 0) {
-          return '<div class="ais-hit--label innovation">Innovation</div>';
-        } else if (thisLabels.filter(function(e) { return e.replace('<span class="ais-highlight">', '').replace('</span>', '') === 'Clearance'; }).length > 0) {
+
+        if (thisLabels.filter(function(e) { return e.replace('<span class="ais-highlight">', '').replace('</span>', '') === 'Clearance'; }).length > 0) {
           return '<div class="ais-hit--label clearance">Sale</div>';
+        } else if (thisLabels.filter(function(e) { return e.replace('<span class="ais-highlight">', '').replace('</span>', '') === 'Innovation'; }).length > 0) {
+          return '<div class="ais-hit--label innovation">Innovation</div>';
+        } else if (thisLabels.filter(function(e) { return e.replace('<span class="ais-highlight">', '').replace('</span>', '') === 'New Release'; }).length > 0) {
+          return '<div class="ais-hit--label new_release">New Release</div>';
         }
       }
       return '';
