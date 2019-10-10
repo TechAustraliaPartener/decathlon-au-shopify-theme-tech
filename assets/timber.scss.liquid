@@ -10070,14 +10070,21 @@ html {
         color: #1e1e1e;
         white-space: normal;
         overflow: unset;
+        margin: 0 0 0.5em;
+        font-family: avalonmedium;
+
+        &::hover {
+          color: #47a7e5;
+        }
       }
       .ais-hit--price {
-        display: flex;
-        flex-direction: row-reverse;
-        justify-content: center;
-        font-size: 16px;
-        margin: 15px 0 9px;
-        color: #000;
+        font-size: 17px;
+        line-height: 1.6;
+        font-family: "avalonmedium","HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif;
+        color: #1f1f1f;
+        font-weight: 300;
+        margin-top: 0.25em;
+        margin-bottom: 0;
         .ais-hit--price-discount {
           display: none;
         }
@@ -10089,7 +10096,8 @@ html {
         }
         .ais-hit--price-striked,
         .ais-hit--price-striked span {
-          color: #e53322;
+          color: #1f1f1f;
+          font-family: "avalonmedium","HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif;
         }
       }
       @media screen and ( max-width: 1200px ) {
@@ -10140,9 +10148,18 @@ html {
       }
     }
     .ais-page .ais-results-as-block .ais-hit--details {
-      margin-top: 30px;
-      padding-left: 10px;
-      padding-right: 10px;
+      border-top: 1px solid rgba(172,179,184,.5);
+      padding-top: 10px;
+      text-align: left;
+      margin-top: 0;
+
+      .de-StarRating {
+        background-size: auto 100%;
+      }
+
+      .de-StarRating-fill {
+        background-size: auto 100%;
+      }
     }
   }
   @media screen and ( max-width: 876px ) {

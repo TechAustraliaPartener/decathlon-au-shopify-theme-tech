@@ -12,7 +12,7 @@
   function formattedPriceWithComparison (price, compare_at_price, price_ratio) {
     var comparing = +compare_at_price && +compare_at_price > +price,
         discount_ratio = 1.0 - price_ratio,
-        res = '<b>' + formatPrice(price) + '</b>';
+        res = formatPrice(price);
     if (comparing) {
       res += ' <span class="ais-hit--price-striked"><span>' + formatPrice(compare_at_price) + '</span></span> ';
       res += ' <span class="ais-hit--price-discount" style="font-weight: ' + (Math.floor(discount_ratio * 10) * 100) + ';">-' + Math.floor(discount_ratio * 100) + '%</span>';
@@ -46,7 +46,7 @@
         var min = this.variants_min_price;
         var max = this.variants_max_price;
         if (min !== max) {
-          return '<b>' + formatPrice(min) + ' - ' + formatPrice(max) + '</b>';
+          return formatPrice(min) + ' - ' + formatPrice(max);
         }
       }
       return formattedPriceWithComparison(this.price, null);
@@ -63,7 +63,7 @@
         var min = this.variants_min_price;
         var max = this.variants_max_price;
         if (min !== max) {
-          return '<b>' + formatPrice(min) + ' - ' + formatPrice(max) + '</b>';
+          return formatPrice(min) + ' - ' + formatPrice(max);
         }
       }
       return formattedPriceWithComparison(this.price, this.compare_at_price, this.price_ratio);
@@ -142,21 +142,18 @@
         return '';
       }
 
-      var roundedRating = Math.round(this.meta.ratings.product_rating);
-      var roundedRatingDisplay = [];
-
-      for (var i = 1; i < 6; i++) {
-        roundedRatingDisplay.push(i <= roundedRating ? '<span class="ico ico--star u-textYellow"></span>' : '<span class="ico ico--star"></span>');
-      };
+      var rating = this.meta.ratings.product_rating;
+      var width = rating * 20;
 
       var productRating = [
-        '<div class="starRating-container">',
-          '<div class="starRating collectionProduct-rating" data-rating="' + this.meta.ratings.product_rating + '">',
-            roundedRatingDisplay.join(''),
-          '</div>',
-          '<div class="adept-product-rating__info">',
-            '<div class="adept-product-rating__text">' + this.meta.ratings.product_rating + '</div>',
-          '</div>',
+        '<div class="de-u-flex de-u-flexAlignItemsCenter de-u-spaceTop06 de-u-lineHeight1">',
+          '<span class="de-StarRating de-u-spaceRight06 de-StarRating--small">',
+            '<span class="de-StarRating-fill" style="width: ' + width + '%"></span>',
+          '</span>',
+          '<span class="de-u-textMedium de-u-textSelectNone de-u-textDarkGray de-u-textShrink2 de-u-md-textShrink1">',
+            rating,
+            '<span class="de-u-hidden">Reviews</span>',
+          '</span>',
         '</div>'
       ];
 

@@ -7,16 +7,15 @@
 
   <div class="ais-hit--details">
 
-    <div class="ais-hit--reviews">
-      [[# helpers.rating ]]
-      [[/ helpers.rating ]]
-    </div>
-
     <p class="ais-hit--title">
       <a data-algolia-position="[[ productPosition ]]" data-algolia-queryid="[[ queryID ]]" data-algolia-objectid="[[ objectID ]]" href="[[# helpers.instantsearchLink ]][[/ helpers.instantsearchLink ]]" onclick="void(0)" title="[[# helpers.fullTitle ]][[/ helpers.fullTitle ]]">
         [[# helpers.fullHTMLTitle ]][[/ helpers.fullHTMLTitle ]]
       </a>
     </p>
+
+    [[# helpers.rating ]]
+    [[/ helpers.rating ]]
+
     <p class="ais-hit--price">[[# helpers.instantsearchPrice ]][[/ helpers.instantsearchPrice ]]</p>
     <!-- Extra info examples - Remove the display: none to show them -->
     <p class="ais-hit--info" style="display: none">
