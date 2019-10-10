@@ -204,17 +204,19 @@
 
       console.log(favStoreFromCart, setStore);
 
-      if ((!favStoreStored || favStore !== favStoreStored) && favStore !== '') {
-        if (location.search !== '?step=contact_information') {
-          location.search = '?step=contact_information';
+      if (deliveryMethod !== 'Delivery') {
+        if ((!favStoreStored || favStore !== favStoreStored) && favStore !== '') {
+          if (location.search !== '?step=contact_information') {
+            location.search = '?step=contact_information';
+          }
         }
-      }
 
-      if (!setStore || favStoreFromCart !== setStore) {
-        if (location.search !== '?step=contact_information') {
-          location.search = '?step=contact_information';
+        if (!setStore || favStoreFromCart !== setStore) {
+          if (location.search !== '?step=contact_information') {
+            location.search = '?step=contact_information';
+          }
         }
-      }
+      }     
 
       localStorage.setItem('favStoreStored', localStorage.getItem('favoritedStore'));
 
