@@ -112,6 +112,10 @@
       var gendersSortOrder = ['Men', 'Women', 'Boy', 'Girl', 'Baby Boy', 'Baby Girl'];
       return gendersSortOrder.indexOf(a.name) - gendersSortOrder.indexOf(b.name) || sortByActive(a, b);
     },
+    "named_tags.GENDER_ID": function sortGenders(a, b) {
+      var gendersSortOrder = ['Men', 'Women', 'Boy', 'Girl', 'Baby Boy', 'Baby Girl'];
+      return gendersSortOrder.indexOf(a.name) - gendersSortOrder.indexOf(b.name) || sortByActive(a, b);
+    },
     "default": function sortByActive(a, b) {
       return b.isRefined - a.isRefined;
     }
@@ -141,7 +145,14 @@
         return window.vars.filterMapping['named_tags.gender'][e];
       }).join(' - ') || values;
     },
-    'named_tags.GENDER_VALUE': function displayGender(value) {
+    'named_tags.GENDER_ID': function displayGenderID(value) {
+      var values = value.split(': ');
+
+      return _.map(values, function (e) {
+        return window.vars.filterMapping['named_tags.GENDER_ID'][e];
+      }).join(' - ') || values;
+    },
+    'named_tags.GENDER_VALUE': function displayGenderValue(value) {
       var values = value.split(': ');
 
       return _.map(values, function (e) {
