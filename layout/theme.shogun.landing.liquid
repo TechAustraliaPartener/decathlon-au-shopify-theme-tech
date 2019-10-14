@@ -247,25 +247,29 @@ This file can be re-written at any time.
 {% endcomment %}
 
 <body id="{% if collection %}{{ collection.handle }}{% else %}{{ page_title | handle }}{% endif %}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }} is-shortNav{% if settings['is_lookbook'] == true %} is-wishlistOnly{% endif %}{% if cart.item_count > 0 %} has-itemsInCart{% endif %}{% if product and product.tags contains 'allow sale' %} is-sellableProduct{% endif %}">
-  
-  
-  {{ content_for_layout }}
-  {{ 'fastclick.min.js' | asset_url | script_tag }}
-{{ 'timber.js' | asset_url | script_tag }}
-{{ 'built-persistent-cart.js' | asset_url | script_tag }}
-{{ 'handlebars.min.js' | asset_url | script_tag }}
-{{ 'fancybox.js' | asset_url | script_tag }}
-{{ 'jquery.fancybox-media.js' | asset_url | script_tag }}
-{{ 'ajax-cart.js' | asset_url | script_tag }}
-{{ 'slick.min.js' | asset_url | script_tag }}
-{{ 'js.cookie.min.js' | asset_url | script_tag }}
-{{ 'zoom.js' | asset_url | script_tag }}
-{{ 'transition.js' | asset_url | script_tag }}
-{{ 'decathlon.js' | asset_url | script_tag }}
-{{ 'patterns-toolkit.js' | asset_url | script_tag }}
-{{ 'collection.js' | asset_url | script_tag }}
-{{ 'search.js' | asset_url | script_tag }}
-{{ 'built-reviews.js' | asset_url | script_tag }}
+
+  {% if settings.page_redirect_enable == true and settings.page_redirect_handle != blank %}
+    {% assign page_redirect_handle = settings.page_redirect_handle %}
+    {{ pages[page_redirect_handle].content }}
+  {% else %}
+    {{ content_for_layout }}
+    {{ 'fastclick.min.js' | asset_url | script_tag }}
+    {{ 'timber.js' | asset_url | script_tag }}
+    {{ 'built-persistent-cart.js' | asset_url | script_tag }}
+    {{ 'handlebars.min.js' | asset_url | script_tag }}
+    {{ 'fancybox.js' | asset_url | script_tag }}
+    {{ 'jquery.fancybox-media.js' | asset_url | script_tag }}
+    {{ 'ajax-cart.js' | asset_url | script_tag }}
+    {{ 'slick.min.js' | asset_url | script_tag }}
+    {{ 'js.cookie.min.js' | asset_url | script_tag }}
+    {{ 'zoom.js' | asset_url | script_tag }}
+    {{ 'transition.js' | asset_url | script_tag }}
+    {{ 'decathlon.js' | asset_url | script_tag }}
+    {{ 'patterns-toolkit.js' | asset_url | script_tag }}
+    {{ 'collection.js' | asset_url | script_tag }}
+    {{ 'search.js' | asset_url | script_tag }}
+    {{ 'built-reviews.js' | asset_url | script_tag }}
+  {% endif %}
   <script>
     {% if resetPassword %}
       $(function() {
