@@ -15,13 +15,9 @@
       {% include 'assets-icons-returns'
         with class: 'de-u-textBlack de-Icon de-u-textGrow6 de-u-spaceRight03' %}
 
-      {% if settings.product_returns_text != blank %}
+      {% if bulk_shipping %}
         <p class="de-u-spaceNone de-u-textMedium">
-          {{ settings.product_returns_text }}
-        </p>
-      {% elsif bulk_shipping %}
-        <p class="de-u-spaceNone de-u-textMedium">
-          See our
+          {{ settings.bulk_shipping_text_before }}
           <a href="/pages/returns-and-refunds-policy"
               class="de-u-textMedium de-u-textSelectNone js-de-Drawer-toggle"
               data-drawer-id="returns-policy-drawer"
@@ -29,9 +25,13 @@
               data-drawer-action="open"
               data-test="returns-policy-toggle"
             >
-            return policy
+            {{ settings.bulk_shipping_text_link }}
           </a>
-          for heavy products
+          {{ settings.bulk_shipping_text_after }}
+        </p>
+      {% elsif settings.product_returns_text != blank %}
+        <p class="de-u-spaceNone de-u-textMedium">
+          {{ settings.product_returns_text }}
         </p>
       {% else %}
         <p class="de-u-spaceNone de-u-textMedium">

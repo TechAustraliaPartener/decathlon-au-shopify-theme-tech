@@ -41,6 +41,16 @@ export const app = {
           :geolocation-copy='geolocationCopy'
         ></store-finder-search-form>
 
+        <store-finder-no-locations
+          v-model.trim='emailInput'
+          v-show='showNoLocations'
+          @form-submit='handleEmailFormSubmit'
+          @checkbox-toggle='handleEmailCheckboxToggle'
+          :search-input='noLocationCopy'
+          :search-input-placeholder='searchInputPlaceholder'
+          :email-input-placeholder='emailInputPlaceholder'
+        ></store-finder-no-locations>
+
         <section
           v-show='showStoreTiles'
           class='Section Section--unique'
@@ -58,16 +68,6 @@ export const app = {
             :class='{ "de-is-active": isSelectedStore && isSelectedStore.id === store.id }'
           ></store-finder-store-tile>
         </section>
-
-        <store-finder-no-locations
-          v-model.trim='emailInput'
-          v-show='showNoLocations'
-          @form-submit='handleEmailFormSubmit'
-          @checkbox-toggle='handleEmailCheckboxToggle'
-          :search-input='noLocationCopy'
-          :search-input-placeholder='searchInputPlaceholder'
-          :email-input-placeholder='emailInputPlaceholder'
-        ></store-finder-no-locations>
 
         <div
           v-show='showLoader'
@@ -128,8 +128,7 @@ export const app = {
     showStoreTiles() {
       return (
         this.isStoresInitialized &&
-        !this.isStoreDistanceFetch &&
-        !this.isStoresOutOfArea
+        !this.isStoreDistanceFetch
       );
     },
 

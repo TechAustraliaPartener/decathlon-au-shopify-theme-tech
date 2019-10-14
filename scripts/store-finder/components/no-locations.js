@@ -12,7 +12,7 @@ export const noLocations = {
       <p class='de-u-textDarkGray de-u-spaceBottom de-u-textShrink1'>We don't have a store in <span class='de-u-textBold de-u-textShrink1'>{{ searchInput || searchInputPlaceholder }}</span> yet.</p>
       <form
         @submit.prevent='$emit("form-submit")'
-        class='de-SingleInputForm display-none'
+        class='de-SingleInputForm de-u-hidden'
       >
         <p class='de-u-textDarkGray de-u-spaceNone de-u-textShrink1'>Enter an email address</p>
         <div class='de-StoreNoLocations-inputWrapper de-u-spaceEnds03 de-u-flex de-u-bgSilver'>
