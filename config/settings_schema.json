@@ -303,32 +303,6 @@
         "label": "Returns"
       },
       {
-        "type": "header",
-        "content": "Bulk Product returns"
-      },
-      {
-        "id": "bulk_shipping_text_before",
-        "type": "text",
-        "label": "Text before Bulk return link",
-        "default": "See our"
-      },
-      {
-        "id": "bulk_shipping_text_link",
-        "type": "text",
-        "label": "Bulk return link text",
-        "default": "return policy"
-      },
-      {
-        "id": "bulk_shipping_text_after",
-        "type": "text",
-        "label": "Text after Bulk return link",
-        "default": "for heavy products"
-      },
-      {
-        "type": "header",
-        "content": "Shipping"
-      },
-      {
         "id": "product_shipping_text",
         "type": "text",
         "label": "Shipping"
