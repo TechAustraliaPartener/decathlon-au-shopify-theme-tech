@@ -1971,5 +1971,23 @@
         "default": "Looks like something went wrong, please <a href=\"https:\/\/help.decathlon.com.au\/support\/home\" target=\"_blank\">contact us<\/a> to use your gift card."
       }
     ]
+  },
+  {
+    "name": "Page Redirect",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "page_redirect_enable",
+        "label": "Enable Page redirection",
+        "info": "Do you want to always redirect your customers to a specific page?",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "page_redirect_handle",
+        "label": "Page handle",
+        "info": "Type the handle of the page you want your customers to be redirected"
+      }
+    ]
   }
 ]
