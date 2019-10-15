@@ -1961,20 +1961,20 @@
     ]
   },
   {
-    "name": "Page Redirect",
+    "name": "Splash Page",
     "settings": [
       {
         "type": "checkbox",
-        "id": "page_redirect_enable",
-        "label": "Enable Page redirection",
-        "info": "Do you want to always redirect your customers to a specific page?",
+        "id": "splash_page_enable",
+        "label": "Enable Splash Page",
+        "info": "Do you want to always display a splash page on any page of the store?",
         "default": false
       },
       {
         "type": "text",
-        "id": "page_redirect_handle",
+        "id": "splash_page_handle",
         "label": "Page handle",
-        "info": "Type the handle of the page you want your customers to be redirected"
+        "info": "Type the handle of the page you want to display"
       }
     ]
   }

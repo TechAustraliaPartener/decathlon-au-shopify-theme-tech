@@ -260,9 +260,9 @@
   {% section 'add-on-products' %}
 
   <div class="de-PageWrap de-Drawer-wrap js-de-PageWrap js-de-Drawer-wrap">
-    {% if settings.page_redirect_enable == true and settings.page_redirect_handle != blank %}
-      {% assign page_redirect_handle = settings.page_redirect_handle %}
-      {{ pages[page_redirect_handle].content }}
+    {% if settings.splash_page_enable == true and settings.splash_page_handle != blank %}
+      {% assign splash_page_handle = settings.splash_page_handle %}
+      {{ pages[splash_page_handle].content }}
     {% else %}
       {% include 'compositions-header' %}
 
