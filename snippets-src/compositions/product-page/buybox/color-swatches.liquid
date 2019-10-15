@@ -20,10 +20,10 @@
         {% if all_colors.size == 1 %}
         de-u-hidden de-u-md-block de-u-spaceBottom2
         {% endif %}">
-  <strong>Color: </strong>
+  <strong>{{ 'products.options.color' | t | capitalize }}: </strong>
   <span class="de-u-textDarkGray de-u-textMedium
                js-de-ColorInfo">
-    Select a color
+    Select a {{ 'products.options.color' | t }}
   </span>
 </div>
 
@@ -51,7 +51,7 @@
                js-de-ColorSwatches-option "
         value="{{ clean_color }}">
         <span class="de-u-hiddenVisually">
-          Select the {{ clean_color }} color before adding this product to
+          Select the {{ clean_color }} {{ 'products.options.color' | t }} before adding this product to
           your cart.
         </span>
         {% if option_thumb != false %}

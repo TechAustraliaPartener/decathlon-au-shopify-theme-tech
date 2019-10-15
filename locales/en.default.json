@@ -308,6 +308,10 @@
       "quantity": "Quantity",
       "add_to_cart": "Add to Cart",
       "add_to_wishlist": "Add to Wishlist"
+    },
+    "options": {
+      "color": "colour",
+      "size": "size"
     }
   },
   "product_locations": {
