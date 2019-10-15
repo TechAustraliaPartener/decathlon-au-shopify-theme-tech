@@ -306,6 +306,20 @@
         "id": "product_shipping_text",
         "type": "text",
         "label": "Shipping"
+      },
+      {
+        "type": "header",
+        "content": "Fulfillment Info for Products with 'Shipping: Bulk' Tag"
+      },
+      {
+        "id": "product_bulk_returns_text",
+        "type": "text",
+        "label": "Bulk Returns"
+      },
+      {
+        "id": "product_bulk_shipping_text",
+        "type": "text",
+        "label": "Bulk Shipping"
       }
     ]
   },

@@ -15,42 +15,51 @@
       {% include 'assets-icons-returns'
         with class: 'de-u-textBlack de-Icon de-u-textGrow6 de-u-spaceRight03' %}
 
-      {% if settings.product_returns_text != blank %}
-        <p class="de-u-spaceNone de-u-textMedium">
-          {{ settings.product_returns_text }}
-        </p>
-      {% elsif bulk_shipping %}
-        <p class="de-u-spaceNone de-u-textMedium">
-          See our
-          <a href="/pages/returns-and-refunds-policy"
-              class="de-u-textMedium de-u-textSelectNone js-de-Drawer-toggle"
-              data-drawer-id="returns-policy-drawer"
-              data-drawer-toggle-aria-label="Open the returns policy dialog."
-              data-drawer-action="open"
-              data-test="returns-policy-toggle"
-            >
-            return policy
-          </a>
-          for heavy products
-        </p>
-      {% else %}
-        <p class="de-u-spaceNone de-u-textMedium">
-          <span class="de-u-textBold">Free</span> returns
-        </p>
-      {% endif %}
+      <p class="de-u-spaceNone de-u-textMedium">
+        {% unless bulk_shipping %}
+          {% if settings.product_returns_text != blank %}
+            {{ settings.product_returns_text }}
+          {% else %}
+            <span class="de-u-textBold">Free</span> returns
+          {% endif %}
+        {% else %}
+          {% if settings.product_bulk_returns_text != blank %}
+            {{ settings.product_bulk_returns_text }}
+          {% else %}
+            See our
+            <a href="/pages/returns-and-refunds-policy"
+                class="de-u-textMedium de-u-textSelectNone js-de-Drawer-toggle"
+                data-drawer-id="returns-policy-drawer"
+                data-drawer-toggle-aria-label="Open the returns policy dialog."
+                data-drawer-action="open"
+                data-test="returns-policy-toggle"
+              >
+              return policy
+            </a>
+            for heavy products
+          {% endif %}
+        {% endunless %}
+      </p>
     </div>
 
     <div class="de-u-flex de-ProductFulfillment-option">
-    {% include 'assets-icons-delivery-truck'
-      with class: 'de-u-textBlack de-Icon de-u-textGrow6 de-u-spaceRight03' %}
+      {% include 'assets-icons-delivery-truck'
+        with class: 'de-u-textBlack de-Icon de-u-textGrow6 de-u-spaceRight03' %}
+
       <p class="de-u-spaceNone de-u-textMedium">
-        {% if settings.product_shipping_text != blank %}
-          {{ settings.product_shipping_text }}
-        {% elsif bulk_shipping %}
-          See shipping rate at checkout
+        {% unless bulk_shipping %}
+          {% if settings.product_shipping_text != blank %}
+            {{ settings.product_shipping_text }}
+          {% else %}
+            {% include 'components-free-shipping-info' %}
+          {% endif %}
         {% else %}
-          {% include 'components-free-shipping-info' %}
-        {% endif %}
+          {% if settings.product_bulk_shipping_text != blank %}
+            {{ settings.product_bulk_shipping_text }}
+          {% else %}
+            See shipping rate at checkout
+          {% endif %}
+        {% endunless %}
       </p>
     </div>
 
