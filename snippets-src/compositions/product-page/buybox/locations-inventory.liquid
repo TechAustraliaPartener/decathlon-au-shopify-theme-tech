@@ -11,12 +11,14 @@
   <div class="de-u-padBottom06 de-collapse" id="inventoryLocations">
     <div class="inventory-locations" id="inventoryLocs">
       
+      {% comment %} Displays favourite store - removed for the moment
       <div class="locs-row de-u-textBold">
         {% include 'assets-icons-flag'
         with class: 'de-u-textBlack de-Icon de-u-spaceRight06' %}
         <span v-if="favStore && favStore.name">Favourite Store: <span v-text="favStore.name"></span> <a class="de-u-spaceLeft05" href="/pages/store-finder" target="_blank">Change</a></span>
         <span v-else><a class="de-u-spaceLeft05" href="/pages/store-finder">Select your favourite store</a></span>
       </div>
+      {% endcomment %}
 
       {% raw %}
         <div class="locs-row" v-if="id && id !== 'demo'">

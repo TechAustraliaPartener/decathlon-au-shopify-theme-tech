@@ -53,6 +53,9 @@
 
     &:first-of-type {
       border-top: none;
+    }
+
+    &:first-of-type:not(:last-of-type) {
       padding-top: 0;
     }
   }
