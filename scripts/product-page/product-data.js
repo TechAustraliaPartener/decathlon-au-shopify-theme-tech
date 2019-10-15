@@ -83,8 +83,11 @@ export const isNonFollowedProduct = () => isTagFound(NON_FOLLOWED_TAG);
  *
  * @returns {boolean}
  */
-export const isProductPricingVaried = () =>
-  productsJSON.price_varies || productsJSON.compare_at_price_varies;
+export const isProductPricingVaried = () => {
+  let manualCompareAtPrices = productsJSON.variants.map(v => v.compare_at_price);
+  let manualCompareAtPriceVaries = manualCompareAtPrices => manualCompareAtPrices.every(v => v === manualCompareAtPrices[0]);
+  return productsJSON.price_varies || manualCompareAtPriceVaries;
+}
 
 /**
  * Gets model code from variant
