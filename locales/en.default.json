@@ -310,6 +310,12 @@
       "add_to_wishlist": "Add to Wishlist"
     }
   },
+  "product_locations": {
+    "button_title": "Check In-Store Availability",
+    "table_title": "Click & Collect Locations",
+    "loading": "Loading inventory...",
+    "select_a_size": "Please select a size to check in-store and online availability"
+  },
   "gift_cards": {
     "issued": {
       "title": "Here's your {{ value }} gift card for {{ shop }}!",

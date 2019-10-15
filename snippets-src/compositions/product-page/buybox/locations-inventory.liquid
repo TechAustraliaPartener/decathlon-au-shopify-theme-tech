@@ -4,7 +4,7 @@
       {% include 'assets-icons-store'
         with class: 'de-u-textBlack de-Icon de-u-textGrow6 de-u-spaceRight03' %}
       <p class="de-u-spaceNone de-u-textMedium locs-collapse" data-collapse="inventoryLocations">
-        <button class="de-collapse-trigger">Check In-Store Availability {% include 'assets-icons-chevron-down' with class: 'de-Icon de-u-spaceLeft05' %}</button>
+        <button class="de-collapse-trigger">{{ 'product_locations.button_title' | t }} {% include 'assets-icons-chevron-down' with class: 'de-Icon de-u-spaceLeft05' %}</button>
       </p>
     </div>
   </div>
@@ -43,14 +43,14 @@
       {% endraw %}
         {% include 'assets-icons-location'
         with class: 'de-u-textBlack de-Icon de-u-spaceRight06' %}
-        Click & Collect Locations
+        {{ 'product_locations.table_title' | t }}
       </div>
 
       {% raw %}
         <div v-if="id === 'demo'" class="locs-row">
           <div class="h5 locs-intruction">
             <img src="{% endraw %}{{ 'decathlon-loader.gif' | asset_url }}{% raw %}">
-            Loading inventory...
+            {% endraw %}{{ 'product_locations.loading' | t }}{% raw %}
           </div>
         </div>
         <div class="t-table" v-else-if="id" id="locsTable">
@@ -62,7 +62,7 @@
           </div>
         </div>
         <div v-else class="locs-row">
-          <div class="h5 locs-intruction">Select a size</div>
+          <div class="h5 locs-intruction">{% endraw %}{{ 'product_locations.select_a_size' | t }}{% raw %}</div>
         </div>
       {% endraw %}
 
