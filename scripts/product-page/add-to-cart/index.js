@@ -163,8 +163,8 @@ $('body').on('addItemError.ajaxCart', (e, { description }) => {
 const onAddToCartClick = event => {
   const { currentVariant, isProgrammaticAddToCart } = state.getState();
 
-  let requestQuantity = document.getElementById('Quantity').value;
-  if (requestQuantity < 1) {
+  let requestQuantity = document.getElementById('Quantity');
+  if (!requestQuantity.checkValidity()) {
     return;
   }
 
