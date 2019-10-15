@@ -163,6 +163,11 @@ $('body').on('addItemError.ajaxCart', (e, { description }) => {
 const onAddToCartClick = event => {
   const { currentVariant, isProgrammaticAddToCart } = state.getState();
 
+  let requestQuantity = document.getElementById('Quantity').value;
+  if (requestQuantity < 1) {
+    return;
+  }
+
   if (!currentVariant) {
     // Prevent Add To Cart form submit from going through
     event.preventDefault();
