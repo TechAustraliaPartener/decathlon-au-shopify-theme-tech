@@ -311,7 +311,9 @@
     },
     "options": {
       "color": "colour",
-      "size": "size"
+      "colors": "colours",
+      "size": "size",
+      "sizes": "sizes"
     }
   },
   "product_locations": {

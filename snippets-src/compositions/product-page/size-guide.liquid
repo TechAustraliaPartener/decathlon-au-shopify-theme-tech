@@ -43,7 +43,7 @@
       A reasonable responsive image solution should be considered.
     {% endcomment %}
     {% comment %}TODO: Restore size guide images
-      <img class="sizechart-visual" src="{{ size_guide | handleize | prepend: 'sizechart-' | append: '.jpg' | file_img_url: '300x' }}" alt="Size Guide Visual">
+      <img class="sizechart-visual" src="{{ size_guide | handleize | prepend: 'sizechart-' | append: '.jpg' | file_img_url: '300x' }}" alt="{{ 'products.options.size' | t | capitalize }} Guide Visual">
     {% endcomment %}
   </div>
 </section>

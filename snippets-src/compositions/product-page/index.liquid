@@ -73,7 +73,7 @@
 
     <header class="visually-hidden">
       <h2 id="Section-buybox">
-        Product Colors and Sizes
+        Product {{ 'products.options.colors' | t | capitalize }} and {{ 'products.options.sizes' | t | capitalize }}
       </h2>
     </header>
 
@@ -250,7 +250,7 @@
         {% endcomment %}
         {% include 'compositions-product-page-drawer',
           drawer_id: "size-guide-drawer",
-          drawer_label: "Size Guide",
+          drawer_label: "{{ 'products.options.size' | t | capitalize }} Guide",
           content: size_and_fit_drawer_content,
           heading: size_and_fit_heading,
           displays_in_page_flow: true
@@ -258,7 +258,7 @@
       {% endcapture %}
       {% include 'compositions-product-page-accordion'
         is_open: false
-        accordion_heading: "Size Guide"
+        accordion_heading: "{{ 'products.options.size' | t | capitalize }} Guide"
         accordion_content: size_and_fit_accordion_content
       %}
     </section>

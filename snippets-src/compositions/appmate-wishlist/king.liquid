@@ -633,7 +633,7 @@ function appmateOptionSelect(el){
       if ($(v).find('option').length == 1) {
         $(v).addClass('hidden');
       }
-      if ($(v).find('> label').text() === 'Color') {
+      if ($(v).find('> label').text() === '{{ 'products.options.color' | t | capitalize }}') {
         $(v).find('> select').addClass('js-colorOption');
         $(v).addClass('u-hidden');
       }

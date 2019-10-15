@@ -21,9 +21,9 @@
              de-u-hidden de-u-md-block
              {% endif %}"
     >
-      <strong>Size: </strong>
+      <strong>{{ 'products.options.size' | t | capitalize }}: </strong>
       <span class="de-u-textDarkGray de-u-textMedium js-de-SizeInfo">
-        Select a size
+        Select a {{ 'products.options.size' | t }}
       </span>
     </div>
     {%- if product_has_size_chart -%}
@@ -38,7 +38,7 @@
         data-test="size-and-fit-toggle"
       >
         {% include 'assets-icons-ruler' %}
-        Size Guide
+        {{ 'products.options.size' | t | capitalize }} Guide
       </a>
     {%- endif -%}
   </div>
@@ -54,7 +54,7 @@
         value="{{ cleanSize }}"
       >
         <span class="de-u-hiddenVisually">
-          Select the size {{ cleanSize }} before adding this product to
+          Select the {{ 'products.options.size' | t }} {{ cleanSize }} before adding this product to
           your cart.
         </span>
         <span aria-hidden>
