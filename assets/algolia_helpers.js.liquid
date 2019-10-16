@@ -108,6 +108,9 @@
     handleize: function handleize (text, render) {
       return render(text).toLowerCase().replace(/[^\w\u00C0-\u024f]+/g, "-").replace(/^-+|-+$/g, "").toLocaleString();
     },
+    lowercase: function handleize (text, render) {
+      return render(text).toLowerCase().toLocaleString();
+    },
     label: function label () {
       if (this.tags) {
         var lowercaseTags = this.tags.map(function(t){
