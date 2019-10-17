@@ -119,6 +119,11 @@ const initCartDisplay = cart => {
             localStorage.getItem('favoritedStore')
           );
           this.changeWholeData(window.vars.favStore, 'favStore');
+
+          localStorage.setItem('deliveryOption', 'Click & Collect');
+          window.vars.deliveryOption =
+            localStorage.getItem('deliveryOption') || 'Delivery';
+          this.$data.deliveryOption = window.vars.deliveryOption;
         }
       },
       setDeliveryOption(event) {
