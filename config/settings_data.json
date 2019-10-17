@@ -306,40 +306,40 @@
           "1568939548889": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "",
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_3_d39d6e0e-74fd-46bb-8662-bfddaf6abb1d.png",
               "slide_bg_position": "60%-80px",
               "banner_intro": "",
-              "banner_title": "<br><br><br>Swim Smart Buys",
-              "banner_subtitle": "<p><strong>Up to 50% Off Swimming Gear Ends Sunday 29 September<\/strong><\/p>\n<p><\/p>",
+              "banner_title": "<br><br>Mountains, our playground",
+              "banner_subtitle": "<p><strong>Discover 500+ Hiking &amp; Trekking Products<\/strong><\/p>",
               "button_new_window": false,
               "button_title": "SHOP NOW",
-              "button_url": "shopify:\/\/collections\/smart-buys-swim"
+              "button_url": "shopify:\/\/collections\/hiking-trekking"
             }
           },
           "1568939563080": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "",
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789.jpg",
               "slide_bg_position": "60%-80px",
               "banner_intro": "",
-              "banner_title": "<br><br><br>Bike Smart Buys",
-              "banner_subtitle": "<p><strong>Up to 50% Off&nbsp;Bikes&nbsp;Ends Sunday 29 September<\/strong><\/p>",
+              "banner_title": "<br><br>The Joy of Camping",
+              "banner_subtitle": "<p><strong>Browse 50+ Camping Tents &amp; Shelters.<\/strong><\/p>",
               "button_new_window": false,
               "button_title": "SHOP NOW",
-              "button_url": "shopify:\/\/collections\/smart-buys-bike"
+              "button_url": "shopify:\/\/collections\/tents-shelters"
             }
           },
           "1568939583060": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_5.png",
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_3.jpg",
               "slide_bg_position": "60%-80px",
               "banner_intro": "",
-              "banner_title": "<br><br><br>Run Smart Buys",
-              "banner_subtitle": "<p><strong>Up to 50% Off&nbsp;Running Shoes Ends Sunday 29 September<\/strong><\/p>",
+              "banner_title": "<br><br>Camping Made Easy",
+              "banner_subtitle": "<p><strong>Discover 100+ Camping&nbsp;Equipment&nbsp;<\/strong><\/p>",
               "button_new_window": false,
               "button_title": "SHOP NOW",
-              "button_url": "shopify:\/\/collections\/smart-buys-run"
+              "button_url": "shopify:\/\/collections\/camping-equipment"
             }
           }
         },
