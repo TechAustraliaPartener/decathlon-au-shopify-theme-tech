@@ -3,7 +3,12 @@
   [[# swatch ]]
     <input type="checkbox" class="[[ cssClasses.checkbox ]]" [[# isRefined ]]checked[[/ isRefined ]]/>
   [[/ swatch ]]
-  [[# helpers.lowercase ]][[& name ]][[/ helpers.lowercase ]]
+  [[# swatch ]]
+    [[& name ]]
+  [[/ swatch ]]
+  [[^ swatch ]]
+    [[# helpers.lowercase ]][[& name ]][[/ helpers.lowercase ]]
+  [[/ swatch ]]
   <span class="[[ cssClasses.count ]]">
     [[# helpers.formatNumber ]]
       [[ count ]]
