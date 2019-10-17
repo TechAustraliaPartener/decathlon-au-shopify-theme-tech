@@ -12,8 +12,8 @@ src/css/*
 /snippets/*.liquid
 !/snippets/algolia*
 !/snippets/checkout_js*
-!/snippets/ship_icon*
-!/snippets/pickup_icon*
+!/snippets/ship-icon*
+!/snippets/pickup-icon*
 !/snippets/thankyou_review*
 !/snippets/shogun-*
 theme.zip
