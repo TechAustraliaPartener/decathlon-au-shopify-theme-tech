@@ -33,9 +33,9 @@
     {% assign login_link_default = 'https://' | append: request.host | append: '/account/login?' %}
     {% assign login_link_override = settings.login_portal_url %}
     {% if login_link_override contains '?' %}
-      {% assign login_link_override = login_link_override | append: '&' %}
+      {% assign login_link_override = login_link_override | append: '&state=checkout&' %}
     {% else %}
-      {% assign login_link_override = login_link_override | append: '?' %}
+      {% assign login_link_override = login_link_override | append: '?state=checkout&' %}
     {% endif %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 
