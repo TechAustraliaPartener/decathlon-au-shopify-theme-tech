@@ -260,11 +260,18 @@
   {% section 'add-on-products' %}
 
   <div class="de-PageWrap de-Drawer-wrap js-de-PageWrap js-de-Drawer-wrap">
-    {% if settings.splash_page_enable == true and settings.splash_page_handle != blank %}
+    {% assign pages_to_show = settings.exception_page_handle | split: ',' %}
+    {% assign page_exception = false %}
+    {% if pages_to_show contains page.handle %}
+      {% assign page_exception = true %}
+    {% endif %}
+    {% if settings.splash_page_enable == true and settings.splash_page_handle != blank and page_exception == false %}
       {% assign splash_page_handle = settings.splash_page_handle %}
       {{ pages[splash_page_handle].content }}
     {% else %}
-      {% include 'compositions-header' %}
+      {% unless settings.hide_header == true %}
+        {% include 'compositions-header' %}
+      {% endunless %}
 
       {% if settings.ajax_cart_method == "drawer" %}
         {% include 'compositions-ajax-cart-drawer' %}
@@ -276,12 +283,14 @@
     	{% endif %}
 
       {% comment %} <div id="PageContainer" class="is-moved-by-drawer"> {% endcomment %}
-      <div class="de-PageWrap-main">
+      <div class="de-PageWrap-main" {% if settings.hide_header == true %}style="padding-top: 0;"{% endif %}>
         <div data-de-page-wrap-fix="scroll">
           <main class="main-content" role="main">
             {{ content_for_layout }}
           </main>
+        {% unless settings.hide_footer == true %}
           {% include 'compositions-footer' %}
+        {% endunless %}
         </div>
       </div>
     {% endif %}

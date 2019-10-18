@@ -1975,6 +1975,23 @@
         "id": "splash_page_handle",
         "label": "Page handle",
         "info": "Type the handle of the page you want to display"
+      },
+      {
+        "type": "text",
+        "id": "exception_page_handle",
+        "label": "Exeptions pages handle",
+        "info": "Type the handle of the exception pages you still want to show (separated with a comma eg. store-moorabbin,store-tempe)",
+        "default": "store-moorabbin,store-tempe"
+      },
+      {
+        "type": "checkbox",
+        "id": "hide_header",
+        "label": "Hide Header on exception pages"
+      },
+      {
+        "type": "checkbox",
+        "id": "hide_footer",
+        "label": "Hide Footer on exception pages"
       }
     ]
   }
