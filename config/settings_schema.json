@@ -1979,7 +1979,7 @@
       {
         "type": "text",
         "id": "exception_page_handle",
-        "label": "Exeptions pages handle",
+        "label": "Exception pages handle",
         "info": "Type the handle of the exception pages you still want to show (separated with a comma eg. store-moorabbin,store-tempe)",
         "default": "store-moorabbin,store-tempe"
       },
