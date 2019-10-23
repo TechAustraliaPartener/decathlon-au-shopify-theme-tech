@@ -37,16 +37,18 @@
           data-de-page-wrap-hover="true">
           <span class="de-MenuBar-label">Shop</span>
         </button>
-        <button
-          class="de-MenuBar-action de-u-textGrow1"
-          data-gtm-event="customer-interaction"
-          data-gtm-id="Meet Decathlon"
-          data-gtm-category="Header"
-          data-de-page-wrap-action="toggleMenu"
-          data-de-page-wrap-target="meet-decathlon"
-          data-de-page-wrap-hover="true">
-          <span class="de-MenuBar-label">{{ linklists["meet-decathlon"].title }}</span>
-        </button>
+        {% if settings.enable_meet_decathlon == true %}
+          <button
+            class="de-MenuBar-action de-u-textGrow1"
+            data-gtm-event="customer-interaction"
+            data-gtm-id="Meet Decathlon"
+            data-gtm-category="Header"
+            data-de-page-wrap-action="toggleMenu"
+            data-de-page-wrap-target="meet-decathlon"
+            data-de-page-wrap-hover="true">
+            <span class="de-MenuBar-label">{{ linklists["meet-decathlon"].title }}</span>
+          </button>
+        {% endif %}
       </div>
     </div>
   </div>

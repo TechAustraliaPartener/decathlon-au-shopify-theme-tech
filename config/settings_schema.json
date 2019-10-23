@@ -243,6 +243,12 @@
         "label": "Max logo width",
         "default": "450",
         "info": "Defined in pixels. Do not add the 'px' unit."
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_meet_decathlon",
+        "label": "Show Meet Decathlon Megamenu link",
+        "info": "This will show a megamenu with the navigation which handle is 'meet-decathlon'."
       }
     ]
   },
