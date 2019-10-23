@@ -49,5 +49,7 @@
         </div>
       </div>
     </nav>
-    {% include 'compositions-header-nav-wide-meet-decathlon' %}
+    {% if settings.enable_meet_decathlon == true %}
+      {% include 'compositions-header-nav-wide-meet-decathlon' %}
+    {% endif %}
   </div>
