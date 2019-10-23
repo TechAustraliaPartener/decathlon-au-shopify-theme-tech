@@ -185,6 +185,7 @@
                 </span>
               </p>
               <p class="no-fav-store-selected" v-else>
+                <input type="hidden" name="attributes[checkout_option]" value="Delivery">
                 To enable Click &amp; Collect,<br><strong>select your favourite store:</strong>&nbsp;
                 <span class="fav-store-name">
                   <select name="favStore" @change="setFavStore($event)">
