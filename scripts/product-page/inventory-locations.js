@@ -79,7 +79,11 @@ function addMasterStoresData(inventoryItem) {
       thisLoc.title = masterLoc.title;
 
       if (thisLoc.available > 0) {
-        thisLoc.ready = 'Ready to collect in 2 hours';
+        if (thisLoc.name === 'Moorabbin') {
+          thisLoc.ready = 'Ready to collect in 24 hours';
+        } else {
+          thisLoc.ready = 'Ready to collect in 2 hours';
+        }
       } else {
         thisLoc.ready = 'Unavailable';
       }
