@@ -39,5 +39,9 @@
   .esc-size-guide--title,
   .esc-size-guide--cell-type--text {
     font-size: 16px;
+    white-space: normal;
+  }
+  .esc-size-guide--table {
+    margin-bottom: 20px;
   }
 }
