@@ -3,6 +3,12 @@
 import $ from 'jquery';
 import Vue from 'vue/dist/vue.esm.js';
 
+Vue.config.errorHandler = (err, vm, info) => {
+  CartJS.clear({ success: function() {
+    window.location.reload();
+  }});
+}
+
 let cartInit = false;
 let invInit = false;
 
