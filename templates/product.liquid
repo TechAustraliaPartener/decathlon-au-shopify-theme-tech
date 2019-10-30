@@ -1,3 +1,5 @@
+{% include 'shogun-products', content: product %}
+{{product.metafields.shogun.above}}
 {% comment %}
   * Depending on the existence of a product's new metafields
   * (e.g. `metafields.features`), conditionally serve the new or older design.
@@ -9,3 +11,7 @@
   {% comment %} Serve old product page {% endcomment %}
   {% include 'compositions-product-page-legacy' %}
 {% endif %}
+
+
+{{product.metafields.shogun.below}}
+
