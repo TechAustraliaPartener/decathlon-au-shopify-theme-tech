@@ -80,7 +80,7 @@ export default () =>
       {
         address_type: 'destination',
         city: 'Moorabbin',
-        cityWithSuffix: 'Moorabbin DFO Click & Collect',
+        cityWithSuffix: 'Moorabbin Opening Soon!',
         code: null,
         company: 'Decathlon',
         country: 'AU',
@@ -91,7 +91,7 @@ export default () =>
         name: 'Moorabbin',
         phone_number: '(02) 9157 5799',
         state: 'VIC',
-        street1: '250 Centre Dandenong Rd',
+        street1: '405 Boundary Road, Moorabbin Airport',
         street2: 'Open 10am-6pm',
         validated: false,
         zip: '3194'

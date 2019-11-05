@@ -25,12 +25,14 @@ export const storeTile = {
             ></a>
           </div>
           <p
+            v-show='!(store.city === "Moorabbin")'
             v-text='store.street2'
             class='de-u-spaceNone de-u-textDarkGray de-u-textShrink2 de-u-textMedium'
           ></p>
         </div>
         <div class='de-StoreTile-actions de-u-size2of6 de-u-textShrink2 de-u-flex'>
           <a
+            v-if='!(store.city === "Moorabbin")'
             @click='$emit("set-favorited-store", store)'
             class='de-StoreTile-actionsButton de-u-flex de-u-flexCol de-u-flexAlignItemsCenter de-u-flexJustifyCenter de-u-spaceRight03'
           >
