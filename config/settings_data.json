@@ -336,14 +336,14 @@
           "1568939583060": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789-min_1.png",
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_3_1a603a65-ebc9-4dca-a749-278ad910adfc.png",
               "slide_bg_position": "60%-80px",
               "banner_intro": "",
-              "banner_title": "<br>Splash Into Summer",
-              "banner_subtitle": "<p><strong>Up To 40% Off&nbsp;Boards<\/strong><\/p>",
+              "banner_title": "<br>Moorabbin Grand Opening",
+              "banner_subtitle": "<p><strong>Grand Store Opening Friday 15 November at 9 am<\/strong><\/p>",
               "button_new_window": false,
-              "button_title": "SHOP SMART BUYS",
-              "button_url": "shopify:\/\/collections\/water-sports-smart-buys"
+              "button_title": "SIGN UP FOR YOUR OPENING GIFT",
+              "button_url": "shopify:\/\/pages\/store-moorabbin"
             }
           }
         },
