@@ -204,6 +204,18 @@
       var favStoreFromCart = '{{ checkout.attributes.pickup_location }}';
       var setStore = '{{ checkout.shipping_address.address1 }}';
 
+      // Check if the favourite store still exists, if not remove it from localStorage & redirect to the cart page
+      if (localStorage.getItem('favoritedStore')) {
+        var fav_store_id = JSON.parse(localStorage.getItem('favoritedStore')).id;
+        var master_stores_id = [];
+        for (let i = window.masterStores.length - 1; i >= 0; i--) {
+          master_stores_id.push(window.masterStores[i].id);
+        }
+        if (master_stores_id.indexOf(fav_store_id) <= 0) {
+          localStorage.removeItem('favoritedStore');
+          window.location.href = "/cart";
+        }
+      }
       console.log(favStoreFromCart, setStore);
 
       if (deliveryMethod !== 'Delivery') {
