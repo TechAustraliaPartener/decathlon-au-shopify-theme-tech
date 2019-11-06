@@ -183,6 +183,8 @@
     {% if checkout_html_classes contains 'page--thank-you' %}
       {% include 'js-gtm-datalayer-purchase' %}
     {% endif %}
+
+    {% include 'js-master-stores' %}
     
     <script>
       window.deliveryMethod = '{{ checkout.attributes.checkout_option }}';
@@ -207,14 +209,20 @@
       // Check if the favourite store still exists, if not remove it from localStorage & redirect to the cart page
       if (localStorage.getItem('favoritedStore')) {
         var fav_store_id = JSON.parse(localStorage.getItem('favoritedStore')).id;
-        var master_stores_id = [];
+
+        var masterStoreIDs = [];
         for (let i = window.masterStores.length - 1; i >= 0; i--) {
-          master_stores_id.push(window.masterStores[i].id);
+          masterStoreIDs.push(window.masterStores[i].id);
         }
-        if (master_stores_id.indexOf(fav_store_id) <= 0) {
+
+        if (masterStoreIDs.indexOf(fav_store_id) <= 0) {
           localStorage.removeItem('favoritedStore');
           localStorage.removeItem('deliveryOption');
-          window.location.href = "/cart";
+          window.location.href = '/cart';
+        }
+      } else {
+        if (localStorage.getItem('deliveryOption') !== 'Delivery') {
+          localStorage.setItem('deliveryOption', 'Delivery');
         }
       }
       console.log(favStoreFromCart, setStore);

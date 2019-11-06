@@ -1,3 +1,20 @@
+{% include 'js-master-stores' %}
+
+<script>
+  // Check if the favourite store still exists, if not remove it from localStorage
+  if (localStorage.getItem('favoritedStore')) {
+    var fav_store_id = JSON.parse(localStorage.getItem('favoritedStore')).id;
+    var master_stores_id = [];
+    for (let i = window.masterStores.length - 1; i >= 0; i--) {
+      master_stores_id.push(window.masterStores[i].id);
+    }
+    if (master_stores_id.indexOf(fav_store_id) <= 0) {
+      localStorage.removeItem('favoritedStore');
+      localStorage.removeItem('deliveryOption');
+    }
+  }
+</script>
+
 <script>
   window.vars = window.vars || {};
   window.vars.loginUrl = "{{ settings.login_portal_url }}";
@@ -16,8 +33,6 @@
   window.vars.tomitCartPayload = [{{ cart.items | map: 'product' | map: 'id' | join: ', ' }}];
   window.vars.deliveryOption = localStorage.getItem('deliveryOption') || 'Delivery';
 </script>
-
-{% include 'js-master-stores' %}
 
 {% include 'js-algolia-custom-widgets' %}
 

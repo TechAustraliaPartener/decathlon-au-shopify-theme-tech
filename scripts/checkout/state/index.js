@@ -46,4 +46,8 @@ const STATE = {
   }
 };
 
+if (STATE._pickupStore === null && STATE._deliveryMethod === 'pickup') {
+  window.location.href = '/cart';
+}
+
 export default STATE;
