@@ -24,7 +24,8 @@
     "predeploy": "gulp build",
     "deploy": "theme deploy assets config layout locales sections snippets templates",
     "prezip": "gulp build",
-    "zip": "bestzip theme.zip assets config layout locales sections snippets templates"
+    "zip": "bestzip theme.zip assets config layout locales sections snippets templates",
+    "sync": "theme download config locales"
   },
   "engines": {
     "node": ">=10",
