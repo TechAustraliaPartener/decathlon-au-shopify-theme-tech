@@ -17,6 +17,8 @@ export default () =>
         state: 'NSW',
         street1: '634-726 Princes Hwy',
         street2: 'Open 7am-11pm',
+        tooltip_hours: false,
+        fullHours: '',
         validated: false,
         zip: '2044'
       },
@@ -36,6 +38,8 @@ export default () =>
         state: 'NSW',
         street1: '300 Parramatta Rd',
         street2: 'Open 8am-10pm',
+        tooltip_hours: false,
+        fullHours: '',
         validated: false,
         zip: '2144'
       },
@@ -55,6 +59,8 @@ export default () =>
         state: 'VIC',
         street1: '1464 Ferntree Gully Rd',
         street2: 'Open 9am-9pm',
+        tooltip_hours: false,
+        fullHours: '',
         validated: false,
         zip: '3180'
       },
@@ -74,27 +80,31 @@ export default () =>
         state: 'VIC',
         street1: '249 Middleborough Rd',
         street2: 'Open 9am-9pm',
+        tooltip_hours: false,
+        fullHours: '',
         validated: false,
         zip: '3128'
       },
       {
         address_type: 'destination',
-        city: 'Moorabbin',
-        cityWithSuffix: 'Moorabbin Opening Soon!',
+        city: 'Melbourne',
+        cityWithSuffix: 'Genesis Health and Fitness',
         code: null,
         company: 'Decathlon',
         country: 'AU',
         email: 'customer.service@decathlon.com',
-        id: 'adr_17930001',
+        id: 'adr_17930002',
         is_residential: false,
         is_warehouse: false,
-        name: 'Moorabbin',
+        name: 'Genesis',
         phone_number: '(02) 9157 5799',
         state: 'VIC',
-        street1: '405 Boundary Road, Moorabbin Airport',
+        street1: '2/50 Lonsdale St',
         street2: 'Open 10am-6pm',
+        tooltip_hours: true,
+        fullHours: '<li>Mondays to Thursdays: 6 am to 9 pm</li><li>Fridays: 6 am to 8 pm</li><li>Saturdays: 8 am to 12 pm</li><li>Sundays and Public Holidays: Closed</li>',
         validated: false,
-        zip: '3194'
+        zip: '3000'
       }
     ];
 

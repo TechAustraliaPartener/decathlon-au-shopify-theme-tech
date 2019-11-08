@@ -24,11 +24,25 @@ export const storeTile = {
               class='de-u-spaceLeft06 de-u-textShrink1 de-u-textBlue de-u-textMedium'
             ></a>
           </div>
-          <p
-            v-show='!(store.city === "Moorabbin")'
-            v-text='store.street2'
-            class='de-u-spaceNone de-u-textDarkGray de-u-textShrink2 de-u-textMedium'
-          ></p>
+          <div v-if='(store.tooltip_hours === true)'>
+            <p
+              v-show='!(store.city === "Moorabbin")'
+              v-text='store.street2'
+              class='de-u-spaceNone de-u-textDarkGray de-u-textShrink2 de-u-textMedium de-StoreTile-tooltipOpener'
+            >
+            </p>
+            <div class='de-StoreTile-tooltip'>
+              <ul class='tooltip-content' v-html='store.fullHours'></ul>
+            </div>
+          </div>
+          <div v-else>
+            <p
+              v-show='!(store.city === "Moorabbin")'
+              v-text='store.street2'
+              class='de-u-spaceNone de-u-textDarkGray de-u-textShrink2 de-u-textMedium'
+            >
+            </p>
+          </div>
         </div>
         <div class='de-StoreTile-actions de-u-size2of6 de-u-textShrink2 de-u-flex'>
           <a

@@ -155,7 +155,33 @@ $max-icon-width: 17px;
 .de-StoreNoLocations-checkbox .de-Icon {
   width: 10px;
 }
-
+.de-StoreTile-info {
+  position: relative;
+}
+.de-StoreTile-tooltip {
+  display: none;
+  min-width: 318px;
+  position: absolute;
+  top: calc(100% + 10px);
+  background-color: $color-blue;
+  padding: 20px;
+  z-index: 10;
+  margin: 0 -14px;
+  .tooltip-content {
+    list-style: none;
+    margin: 0;
+  }
+  li {
+    color: #fff;
+    text-align: center;
+  }
+}
+.de-StoreTile-tooltipOpener {
+  cursor: pointer;
+  &:hover ~ .de-StoreTile-tooltip {
+    display: block;
+  }
+}
 
 
 
@@ -181,6 +207,13 @@ $max-icon-width: 17px;
 
   .de-StoreMap {
     height: 665px;
+  }
+  .de-StoreTile-tooltip {
+    width: 100%;
+    margin: 0;
+  }
+  .de-StoreTile-tooltipOpener {
+    text-decoration: underline;
   }
 }
 
