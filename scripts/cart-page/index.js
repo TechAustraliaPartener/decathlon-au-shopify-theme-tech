@@ -4,6 +4,20 @@ import $ from 'jquery';
 import Vue from 'vue/dist/vue.esm.js';
 
 Vue.config.errorHandler = (err, vm, info) => {
+  console.log({
+    'event': 'cart_clear',
+    'cart': window.vars.cartPayload,
+    'err': err,
+    'vm': vm,
+    'info': info
+  });
+  dataLayer.push({
+    'event': 'cart_clear',
+    'cart': window.vars.cartPayload,
+    'err': err,
+    'vm': vm,
+    'info': info
+  });
   CartJS.clear({ success: function() {
     window.location.reload();
   }});

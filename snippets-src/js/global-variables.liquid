@@ -30,6 +30,7 @@
   window.vars.iconChevronDown = `{% include 'assets-icons-chevron-down' with class: 'de-u-textBlue de-Icon de-u-spaceLeft06' %}`;
   window.vars.iconAvailable = `{% include 'assets-icons-available' with class: 'de-Icon de-u-spaceRight06' %}`;
   window.vars.iconUnavailable = `{% include 'assets-icons-unavailable' with class: 'de-Icon de-u-spaceRight06' %}`;
+  window.vars.cartPayload = {{ cart | json }};
   window.vars.tomitCartPayload = [{{ cart.items | map: 'product' | map: 'id' | join: ', ' }}];
   window.vars.deliveryOption = localStorage.getItem('deliveryOption') || 'Delivery';
 </script>
