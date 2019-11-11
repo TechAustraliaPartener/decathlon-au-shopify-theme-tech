@@ -154,6 +154,8 @@ const buildStoreList = locations => {
     const activeCard = location.id === STATE.pickupStore || false;
 
     if (activeCard) {
+      console.log(location);
+      console.log(location.fullHours);
       // Build card
       const locationNode = document.createElement('li');
       const readyText =
@@ -176,12 +178,14 @@ const buildStoreList = locations => {
           location.name
         }</span> ${location.street1}</p>
 
-        <p class="de-pickup-location-hours de-u-textShrink2 tooltip-opener">${
+        <p class="de-pickup-location-hours de-u-textShrink2 ${ location.tooltip_hours ? 'tooltip-opener' : '' }">${
           location.street2
         }</p>
-        <div class="hours-tooltip">
-          <ul class="tooltip-content">${ location.fullHours }</ul>
-        </div>
+        ${ location.tooltip_hours ?
+          `<div class="hours-tooltip">
+            <ul class="tooltip-content">${ location.fullHours }</ul>
+          </div>`
+        : '' }
       </div>`;
 
       // Insert card
