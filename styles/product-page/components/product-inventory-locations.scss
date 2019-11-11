@@ -116,6 +116,7 @@
       }
       .tooltipOpener {
         cursor: pointer;
+        text-decoration: underline;
         &:hover ~ .hours-tooltip {
           display: block;
         }
@@ -184,9 +185,6 @@
             left: 20px;
             right: unset;
           }
-        }
-        .tooltipOpener {
-          text-decoration: underline;
         }
       }
     }
