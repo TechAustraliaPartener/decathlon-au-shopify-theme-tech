@@ -111,6 +111,7 @@
   box-sizing: border-box;
   border: 1px solid #d9d9d9;
   cursor: pointer;
+  position: relative;
   &.js-de-active-location, &:hover {
     border: 3px solid #1c82c3;
     padding: 11px;
@@ -450,4 +451,47 @@
     }
   }
 
+}
+
+.tooltip-opener {
+  cursor: pointer;
+  &:hover ~ .hours-tooltip {
+    display: block;
+  }
+
+  @media (max-width: 1024px) {
+    text-decoration: underline;
+  }
+}
+
+.hours-tooltip {
+  display: none;
+  position: absolute;
+  top: calc(100% + 7px);
+  right: 0;
+  background-color: #fff;
+  box-shadow: 0px 2px 10px rgba(0,0,0,0.2);
+  border: solid 1px #ccc;
+  border-radius: 5px;
+  z-index: 10;
+
+  &::after {
+    content:'';
+    display:block;
+    width: 10px;
+    height: 10px;
+    position:absolute;
+    border-right: solid 1px #ccc;
+    border-top: solid 1px #ccc;
+    transform: rotate(-45deg);
+    left: 20px;
+    top: -6px;
+    background-color: #fff;
+  }
+}
+
+.tooltip-content {
+  list-style: none;
+  margin: 0;
+  padding: 20px;
 }

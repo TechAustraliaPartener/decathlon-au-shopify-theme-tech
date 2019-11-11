@@ -176,9 +176,12 @@ const buildStoreList = locations => {
           location.name
         }</span> ${location.street1}</p>
 
-        <p class="de-pickup-location-hours de-u-textShrink2">${
+        <p class="de-pickup-location-hours de-u-textShrink2 tooltip-opener">${
           location.street2
         }</p>
+        <div class="hours-tooltip">
+          <ul class="tooltip-content">${ location.fullHours }</ul>
+        </div>
       </div>`;
 
       // Insert card
