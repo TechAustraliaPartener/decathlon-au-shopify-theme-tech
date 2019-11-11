@@ -21,27 +21,27 @@ function addMasterStoresData(inventoryItem) {
     return storesSort.indexOf(loc.name) !== -1;
   });
 
-  for (let i = window.masterStores.length - 1; i >= 0; i--) {
-    const masterLoc = window.masterStores[i];
+  const duplicateStores = window.masterStores.filter(loc => {
+    return loc.duplicate;
+  });
 
-    if (masterLoc.duplicate) {
-      const alreadyAdded = inventoryItem.locations.find(obj => {
-        return obj.name === masterLoc.name;
+  duplicateStores.forEach(loc => {
+    const alreadyAdded = inventoryItem.locations.find(obj => {
+      return obj.name === loc.name;
+    });
+
+    if (!alreadyAdded) {
+      const thisLoc = inventoryItem.locations.find(obj => {
+        return obj.name === loc.duplicate;
       });
 
-      if (!alreadyAdded) {
-        const thisLoc = inventoryItem.locations.find(obj => {
-          return obj.name === masterLoc.duplicate;
-        });
-
-        if (thisLoc) {
-          const duplicateLoc = JSON.parse(JSON.stringify(thisLoc));
-          duplicateLoc.name = masterLoc.name;
-          inventoryItem.locations.push(duplicateLoc);
-        }
+      if (thisLoc) {
+        const duplicateLoc = JSON.parse(JSON.stringify(thisLoc));
+        duplicateLoc.name = loc.name;
+        inventoryItem.locations.push(duplicateLoc);
       }
     }
-  }
+  });
 
   for (let i = window.masterStores.length - 1; i >= 0; i--) {
     const masterLoc = window.masterStores[i];
@@ -104,6 +104,7 @@ function addMasterStoresData(inventoryItem) {
           text: 'Out of Stock'
         };
       }
+
       var variantWeight = window.vars.selectedVariant.weight;
       // If a product weight is higher than 22kg, then the item not available for C&C at Genesis store
       if ((thisLoc.name === 'Genesis') && (variantWeight >= 22000)) {
@@ -112,6 +113,7 @@ function addMasterStoresData(inventoryItem) {
           text: 'Out of Stock'
         };
       }
+
       // Check the current weekday to show Genesus store hours on product page
       if (thisLoc.name === 'Genesis') {
         var weekday = new Date().getDay();
@@ -125,7 +127,8 @@ function addMasterStoresData(inventoryItem) {
       } else {
         thisLoc.hours = masterLoc.street2;
       }
-    thisLoc.fullHours = masterLoc.fullHours;
+      thisLoc.fullHours = masterLoc.fullHours;
+
     } else {
       if (masterLoc.name === 'Tempe') {
         inventoryItem.delivery = {

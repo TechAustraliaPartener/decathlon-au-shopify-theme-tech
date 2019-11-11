@@ -28,34 +28,33 @@ let invInit = false;
 
 const storesSort = window.masterStores.map(a => a.name);
 
-function addMasterStoresData(inventoryItem) {
-  console.log(inventoryItem);
-
+function addMasterStoresData(inventoryItem, item) {
   inventoryItem.locations = inventoryItem.locations.filter(loc => {
     return storesSort.indexOf(loc.name) !== -1;
   });
-  
-  for (let i = window.masterStores.length - 1; i >= 0; i--) {
-    const masterLoc = window.masterStores[i];
 
-    if (masterLoc.duplicate) {
-      const alreadyAdded = inventoryItem.locations.find(obj => {
-        return obj.name === masterLoc.name;
+  console.log(inventoryItem, item);
+  const duplicateStores = window.masterStores.filter(loc => {
+    return loc.duplicate;
+  });
+
+  duplicateStores.forEach(loc => {
+    const alreadyAdded = inventoryItem.locations.find(obj => {
+      return obj.name === loc.name;
+    });
+
+    if (!alreadyAdded) {
+      const thisLoc = inventoryItem.locations.find(obj => {
+        return obj.name === loc.duplicate;
       });
 
-      if (!alreadyAdded) {
-        const thisLoc = inventoryItem.locations.find(obj => {
-          return obj.name === masterLoc.duplicate;
-        });
-
-        if (thisLoc) {
-          const duplicateLoc = JSON.parse(JSON.stringify(thisLoc));
-          duplicateLoc.name = masterLoc.name;
-          inventoryItem.locations.push(duplicateLoc);
-        }
+      if (thisLoc && (thisLoc.name !== 'Genesis' && item.grams <= 22000)) {
+        const duplicateLoc = JSON.parse(JSON.stringify(thisLoc));
+        duplicateLoc.name = loc.name;
+        inventoryItem.locations.push(duplicateLoc);
       }
     }
-  }
+  });
 
   for (var i = window.masterStores.length - 1; i >= 0; i--) {
     const masterLoc = window.masterStores[i];
@@ -92,7 +91,7 @@ function supplementCart(cart) {
       const invItem =
         invInit[item.product_id].product.variants[item.variant_id]
           .inventoryItem;
-      addMasterStoresData(invItem);
+      addMasterStoresData(invItem, item);
       item.locations = invItem.locations;
     }
   }
@@ -172,10 +171,6 @@ const initCartDisplay = cart => {
           });
         }
 
-        // If a product weight is higher than 22kg, then the item not available for C&C at Genesis store
-        if ((app.deliveryOption === 'Click & Collect') && (app.favStore.name === 'Genesis') && (item.grams > 22000)) {
-          checkLoc.inStock = 0;
-        }
         return checkLoc.inStock > 0 ? 'in' : 'out';
       },
       currentMax(item) {
