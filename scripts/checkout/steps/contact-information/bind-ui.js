@@ -238,7 +238,7 @@ const fillStoreData = () => {
 
   for (var key in checkoutAddressData) {
     console.log(key, checkoutAddressData[key]);
-    $('input[name="checkout[shipping_address][' + key + ']"]').val(
+    $('[name="checkout[shipping_address][' + key + ']"]').val(
       checkoutAddressData[key]
     );
   }
