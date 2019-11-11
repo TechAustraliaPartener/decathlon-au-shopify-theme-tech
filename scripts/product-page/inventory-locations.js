@@ -112,9 +112,20 @@ function addMasterStoresData(inventoryItem) {
           text: 'Out of Stock'
         };
       }
-
-      thisLoc.hours = masterLoc.street2;
-      thisLoc.fullHours = masterLoc.fullHours;
+      // Check the current weekday to show Genesus store hours on product page
+      if (thisLoc.name === 'Genesis') {
+        var weekday = new Date().getDay();
+        if (weekday === 0) {
+          thisLoc.hours = 'Open Monday 6am-9pm';
+        } else if (weekday === 6) {
+          thisLoc.hours = 'Open 6am-12pm';
+        } else {
+          thisLoc.hours = 'Open 6am-9pm';
+        }
+      } else {
+        thisLoc.hours = masterLoc.street2;
+      }
+    thisLoc.fullHours = masterLoc.fullHours;
     } else {
       if (masterLoc.name === 'Tempe') {
         inventoryItem.delivery = {
