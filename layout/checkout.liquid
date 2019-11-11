@@ -215,7 +215,7 @@
           masterStoreIDs.push(window.masterStores[i].id);
         }
 
-        if (masterStoreIDs.indexOf(fav_store_id) <= 0) {
+        if (masterStoreIDs.indexOf(fav_store_id) < 0) {
           localStorage.removeItem('favoritedStore');
           localStorage.removeItem('deliveryOption');
           window.location.href = '/cart';
