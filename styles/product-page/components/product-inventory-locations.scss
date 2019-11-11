@@ -65,6 +65,7 @@
 
     .t-row {
       display: flex;
+      position: relative;
       margin: 10px 0;
 
       &:first-of-type {
@@ -107,12 +108,45 @@
           color: #ff0000;
         }
       }
-
       .hours {
         flex-grow: 0;
         justify-content: flex-end;
-        width: 30%;
+        width: 28%;
         text-align: right;
+      }
+      .tooltipOpener {
+        cursor: pointer;
+        &:hover ~ .hours-tooltip {
+          display: block;
+        }
+      }
+      .hours-tooltip {
+        display: none;
+        position: absolute;
+        bottom: calc(100% + 7px);
+        right: 0;
+        background-color: #fff;
+        box-shadow: 0px 2px 10px rgba(0,0,0,0.2);
+        border: solid 1px #ccc;
+        border-radius: 5px;
+        &::after {
+          content:'';
+          display:block;
+          width: 10px;
+          height: 10px;
+          position:absolute;
+          border-left: solid 1px #ccc;
+          border-bottom: solid 1px #ccc;
+          transform: rotate(-45deg);
+          right: 20px;
+          bottom: -6px;
+          background-color: #fff;
+        }
+      }
+      .tooltip-content {
+        list-style: none;
+        margin: 0;
+        padding: 20px;
       }
     }
   }
@@ -141,6 +175,18 @@
         .availability {
           float: right;
           text-align: right;
+        }
+        .hours-tooltip {
+          left: 0;
+          right: unset;
+          bottom: 25px;
+          &::after {
+            left: 20px;
+            right: unset;
+          }
+        }
+        .tooltipOpener {
+          text-decoration: underline;
         }
       }
     }
