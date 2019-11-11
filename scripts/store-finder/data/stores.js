@@ -105,6 +105,27 @@ export default () =>
         fullHours: '<li>Mondays to Thursdays: 6 am to 9 pm</li><li>Fridays: 6 am to 8 pm</li><li>Saturdays: 8 am to 12 pm</li><li>Sundays and Public Holidays: Closed</li>',
         validated: false,
         zip: '3000'
+      },
+      {
+        address_type: 'destination',
+        city: 'Moorabbin',
+        cityWithSuffix: 'Moorabbin Opening Soon!',
+        code: null,
+        company: 'Decathlon',
+        country: 'AU',
+        email: 'customer.service@decathlon.com',
+        id: 'adr_17930001',
+        is_residential: false,
+        is_warehouse: false,
+        name: 'Moorabbin',
+        phone_number: '(02) 9157 5799',
+        state: 'VIC',
+        street1: '405 Boundary Road, Moorabbin Airport',
+        street2: 'Open 10am-6pm',
+        tooltip_hours: false,
+        fullHours: '',
+        validated: false,
+        zip: '3194'
       }
     ];
 
