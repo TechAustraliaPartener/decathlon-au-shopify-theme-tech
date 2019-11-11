@@ -32,7 +32,8 @@
                 <span v-text="delivery.name"></span></div>
               <div class="t-cell ready" v-text="delivery.ready"></div>
               <div class="t-cell availability" v-bind:class="delivery.availability.class" v-text="delivery.availability.text"></div>
-              <div class="t-cell hours" v-text="delivery.hours"></div>
+              <div class="t-cell hours" v-text="delivery.hours">
+              </div>
             </div>
           </div>
         </div>
@@ -56,9 +57,13 @@
         <div class="t-table" v-else-if="id" id="locsTable">
           <div class="t-row" v-for="location in locations">
             <div class="t-cell title"><span v-text="location.title"></span><span v-if="favStore && location.name === favStore.name">{% endraw %}{% include 'assets-icons-flag' with class: 'de-u-textBlack de-Icon de-u-spaceLeft06' %}{% raw %}</span></div>
-            <div class="t-cell ready" v-text="location.ready"></div>
+            <div class="t-cell ready" v-html="location.ready"></div>
             <div class="t-cell availability" v-bind:class="location.availability.class" v-text="location.availability.text"></div>
-            <div class="t-cell hours" v-text="location.hours"></div>
+            <div class="t-cell hours" v-if="(location.fullHours === blank)" v-text="location.hours"></div>
+            <div class="t-cell hours tooltipOpener" v-else v-text="location.hours"></div>
+            <div class="hours-tooltip" v-if="(location.fullHours !== blank)">
+              <ul class="tooltip-content" v-html="location.fullHours"></ul>
+            </div>
           </div>
         </div>
         <div v-else class="locs-row">

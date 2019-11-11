@@ -16,6 +16,8 @@
       state: 'NSW',
       street1: '634-726 Princes Hwy',
       street2: 'Open 7am-11pm',
+      tooltip_hours: false,
+      ready: 'Ready to collect in 2 hours',
       validated: false,
       zip: '2044'
     },
@@ -35,6 +37,8 @@
       state: 'NSW',
       street1: '300 Parramatta Rd',
       street2: 'Open 8am-10pm',
+      tooltip_hours: false,
+      ready: 'Ready to collect in 2 hours',
       validated: false,
       zip: '2144'
     },
@@ -54,6 +58,8 @@
       state: 'VIC',
       street1: '1464 Ferntree Gully Rd',
       street2: 'Open 9am-9pm',
+      tooltip_hours: false,
+      ready: 'Ready to collect in 2 hours',
       validated: false,
       zip: '3180'
     },
@@ -73,10 +79,35 @@
       state: 'VIC',
       street1: '249 Middleborough Rd',
       street2: 'Open 9am-9pm',
+      tooltip_hours: false,
+      ready: 'Ready to collect in 2 hours',
       validated: false,
       zip: '3128'
+    },
+    {
+      address_type: 'destination',
+      city: 'Melbourne',
+      code: null,
+      company: 'Decathlon',
+      country: 'AU',
+      email: 'customer.service@decathlon.com',
+      id: 'adr_17930002',
+      is_residential: false,
+      is_warehouse: false,
+      name: 'Genesis',
+      title: 'Genesis Health and Fitness',
+      phone_number: '(02) 9157 5799',
+      state: 'VIC',
+      street1: '2/50 Lonsdale St',
+      street2: 'Open 9am-9pm',
+      tooltip_hours: true,
+      ready: 'Free delivery in 24h<br/>We will deliver at 12 pm everyday',
+      fullHours: '<li>Mondays to Thursdays: 6 am to 9 pm</li><li>Fridays: 6 am to 8 pm</li><li>Saturdays: 8 am to 12 pm</li><li>Sundays and Public Holidays: Closed</li>',
+      validated: false,
+      zip: '3000',
+      duplicate: 'Box Hill'
     }
   ]
 </script>
 
-{% assign master_stores = 'Tempe|Auburn|Knoxfield|Box Hill' | split: '|' %}
+{% assign master_stores = 'Tempe|Auburn|Knoxfield|Box Hill|Genesis' | split: '|' %}

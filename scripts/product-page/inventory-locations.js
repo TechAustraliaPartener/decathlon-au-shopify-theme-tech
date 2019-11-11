@@ -83,13 +83,9 @@ function addMasterStoresData(inventoryItem) {
       thisLoc.title = masterLoc.title;
 
       if (thisLoc.available > 0) {
-        if (thisLoc.name === 'Moorabbin') {
-          thisLoc.ready = 'Ready to collect in 24 hours';
-        } else {
-          thisLoc.ready = 'Ready to collect in 2 hours';
-        }
+        thisLoc.ready = '<span>' + masterLoc.ready + '</span>';
       } else {
-        thisLoc.ready = 'Unavailable';
+        thisLoc.ready = '<span>Unavailable</span>';
       }
 
       if (thisLoc.available > 2) {
@@ -110,6 +106,8 @@ function addMasterStoresData(inventoryItem) {
       }
 
       thisLoc.hours = masterLoc.street2;
+      thisLoc.fullHours = masterLoc.fullHours;
+      console.log(masterLoc.fullHours);
     } else {
       if (masterLoc.name === 'Tempe') {
         inventoryItem.delivery = {
@@ -131,7 +129,8 @@ function addMasterStoresData(inventoryItem) {
           class: 'out',
           text: 'Out of Stock'
         },
-        hours: masterLoc.street2
+        hours: masterLoc.street2,
+        fullHours: masterLoc.fullHours
       };
 
       inventoryItem.locations.push(thisLoc);
