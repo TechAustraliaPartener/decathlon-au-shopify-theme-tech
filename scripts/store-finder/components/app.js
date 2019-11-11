@@ -386,7 +386,8 @@ export const app = {
         adr_A6s3Kaja: '/pages/store-auburn',
         adr_F6s3Kaja: '/pages/store-knoxfield',
         adr_B6s3Kaja: '/pages/store-boxhill',
-        adr_17930001: '/pages/store-moorabbin'
+        adr_17930001: '/pages/store-moorabbin',
+        adr_17930002: '/pages/store-genesis'
       };
       const { id } = store;
       const url = storeUrlMap[id];
