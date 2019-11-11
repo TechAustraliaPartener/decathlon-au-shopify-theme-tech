@@ -3,11 +3,11 @@
   {% include 'customers--my-account-header' %}
 
   <div id="order-history" class="account-orderHistory u-marginTop2x u-block">
-    <img id="spinningLoad" src="{{ 'Rolling-1s-200px.gif' | asset_url }}" style="height:200px;" alt="simple, lightweight generic loading indicator">
+    {% comment %}<img id="spinningLoad" src="{{ 'Rolling-1s-200px.gif' | asset_url }}" style="height:200px;" alt="simple, lightweight generic loading indicator">{% endcomment %}
 
-    <div class="table-wrap" id="order-table-wrap">
+    <div class="table-wrap" {% comment %}id="order-table-wrap"{% endcomment %}>
       {% if customer.orders.size != 0 %}
-        <table class="full" id="shopifyOrderTbl">
+        <table class="full" {% comment %}id="shopifyOrderTbl"{% endcomment %}>
           <thead>
             <tr>
               <th class="orderTh">{{ 'customer.orders.order_number' | t }}</th>
@@ -34,6 +34,7 @@
         <p cid='shopNowBtn' lass="text-center"><a href="/collections" class="btn">Shop Now</a></p>
       {% endif %}
 
+      {% comment %}
       <table class="full" id="newstoreOrderTbl">
         <thead>
           <tr>
@@ -47,11 +48,12 @@
         <tbody id="newstoreOrderBody">
         </tbody>
       </table>
+      {% endcomment %}
 
     </div>
 
-    <p id="order-history-return-btn" class="text-center u-marginTop2x"><a class="btn" href="/pages/returns">Return An Item</a></p>
-    
+    <p id="order-history-return-btn" class="text-center u-marginTop2x"><a class="btn" href="https://decathlonaustralia.freshdesk.com/support/solutions/articles/8000059284-what-is-your-returns-and-exchanges-policy-">Return An Item</a></p>
+
   </div>
 </div>
 {{ 'account--order-history.css' | asset_url | stylesheet_tag }}
@@ -66,4 +68,4 @@ Save liquid variables to be used in account--order-history.js
 </script>
 {{ 'https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js' | script_tag }}
 {{ 'https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css' | stylesheet_tag }}
-{{ 'account--order-history.js'| asset_url | script_tag}}
+{% comment %}{{ 'account--order-history.js'| asset_url | script_tag }}{% endcomment %}
