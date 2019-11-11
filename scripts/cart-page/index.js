@@ -172,6 +172,10 @@ const initCartDisplay = cart => {
           });
         }
 
+        // If a product weight is higher than 22kg, then the item not available for C&C at Genesis store
+        if ((app.deliveryOption === 'Click & Collect') && (app.favStore.name === 'Genesis') && (item.grams > 22000)) {
+          checkLoc.inStock = 0;
+        }
         return checkLoc.inStock > 0 ? 'in' : 'out';
       },
       currentMax(item) {

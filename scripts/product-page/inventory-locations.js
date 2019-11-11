@@ -104,10 +104,17 @@ function addMasterStoresData(inventoryItem) {
           text: 'Out of Stock'
         };
       }
+      var variantWeight = window.vars.selectedVariant.weight;
+      // If a product weight is higher than 22kg, then the item not available for C&C at Genesis store
+      if ((thisLoc.name === 'Genesis') && (variantWeight >= 22000)) {
+        thisLoc.availability = {
+          class: 'out',
+          text: 'Out of Stock'
+        };
+      }
 
       thisLoc.hours = masterLoc.street2;
       thisLoc.fullHours = masterLoc.fullHours;
-      console.log(masterLoc.fullHours);
     } else {
       if (masterLoc.name === 'Tempe') {
         inventoryItem.delivery = {
