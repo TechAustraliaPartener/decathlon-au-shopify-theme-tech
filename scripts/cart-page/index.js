@@ -26,6 +26,8 @@ Vue.config.errorHandler = (err, vm, info) => {
 let cartInit = false;
 let invInit = false;
 
+const storesSort = window.masterStores.map(a => a.name);
+
 function addMasterStoresData(inventoryItem) {
   console.log(inventoryItem);
 
