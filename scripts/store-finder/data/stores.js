@@ -88,7 +88,7 @@ export default () =>
       {
         address_type: 'destination',
         city: 'Melbourne',
-        cityWithSuffix: 'Genesis Health and Fitness',
+        cityWithSuffix: 'Genesis Health and Fitness Melbourne CBD',
         code: null,
         company: 'Decathlon',
         country: 'AU',
@@ -97,7 +97,7 @@ export default () =>
         is_residential: false,
         is_warehouse: false,
         name: 'Genesis',
-        title: 'Genesis Health and Fitness',
+        title: 'Genesis Health and Fitness Melbourne CBD',
         phone_number: '(02) 9157 5799',
         state: 'VIC',
         street1: '2/50 Lonsdale St',
@@ -105,8 +105,7 @@ export default () =>
         tooltip_hours: true,
         fullHours: '<li>Mondays to Thursdays: 6 am to 9 pm</li><li>Fridays: 6 am to 8 pm</li><li>Saturdays: 8 am to 12 pm</li><li>Sundays and Public Holidays: Closed</li>',
         validated: false,
-        zip: '3000',
-        promise: 'We will deliver at 12 pm everyday'
+        zip: '3000'
       },
       {
         address_type: 'destination',

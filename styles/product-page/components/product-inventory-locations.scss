@@ -8,6 +8,7 @@
     transition: max-height 0.25s ease-in;
     max-height: 1000px;
     opacity: 1;
+    overflow: unset;
   }
 }
 
@@ -90,7 +91,7 @@
       }
 
       .ready {
-        flex-grow: 1;
+        width: 200px;
       }
 
       .availability {
@@ -108,12 +109,14 @@
           color: #ff0000;
         }
       }
+
       .hours {
         flex-grow: 0;
         justify-content: flex-end;
         width: 28%;
         text-align: right;
       }
+
       .tooltipOpener {
         cursor: pointer;
         text-decoration: underline;
@@ -121,6 +124,7 @@
           display: block;
         }
       }
+
       .hours-tooltip {
         display: none;
         position: absolute;
@@ -144,10 +148,15 @@
           background-color: #fff;
         }
       }
+
       .tooltip-content {
         list-style: none;
         margin: 0;
         padding: 20px;
+
+        li {
+          margin: 0;
+        }
       }
     }
   }
