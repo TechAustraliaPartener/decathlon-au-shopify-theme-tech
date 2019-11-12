@@ -28,6 +28,11 @@ let invInit = false;
 
 function addMasterStoresData(inventoryItem) {
   console.log(inventoryItem);
+
+  inventoryItem.locations = inventoryItem.locations.filter(loc => {
+    return storesSort.indexOf(loc.name) !== -1;
+  });
+  
   for (let i = window.masterStores.length - 1; i >= 0; i--) {
     const masterLoc = window.masterStores[i];
 
