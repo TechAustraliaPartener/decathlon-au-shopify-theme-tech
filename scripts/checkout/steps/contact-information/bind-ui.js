@@ -158,8 +158,9 @@ const buildStoreList = locations => {
       console.log(location.fullHours);
       // Build card
       const locationNode = document.createElement('li');
+      var locs24 = ['Moorabbin', 'Genesis'];
       const readyText =
-        location.name === 'Moorabbin'
+        locs24.indexOf(location.name !== -1)
           ? 'Pickup: Ready In 24 Hours'
           : 'Pickup: Ready In 2 Hours';
       locationNode.classList.add('de-u-size1of2');
@@ -168,14 +169,18 @@ const buildStoreList = locations => {
           activeCard ? CLASSES.ACTIVE_PICKUP_LOCATION : ''
         }"
         data-id="${location.id}"
-        data-name="${location.name}"
+        data-name="${location.title}"
         data-street1="${location.street1}"
         data-city="${location.city}"
         data-state="${location.state}"
         data-zip="${location.zip}">
         <p class="de-pickup-location-time de-u-textBlack de-u-textSemibold de-u-textGrow1">${readyText}</p>
+        ${ location.promise ? 
+         `<p><span class="de-pickup-location-name de-u-textSemibold de-u-textBlack">${location.promise}</span></p>`
+         : '' 
+        }
         <p><span class="de-pickup-location-name de-u-textSemibold de-u-textBlack">${
-          location.name
+          location.title || location.name
         }</span> ${location.street1}</p>
 
         <p class="de-pickup-location-hours de-u-textShrink2 ${ location.tooltip_hours ? 'tooltip-opener' : '' }">${
