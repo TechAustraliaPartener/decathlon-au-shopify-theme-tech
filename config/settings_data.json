@@ -25,11 +25,11 @@
     "logo_use_image": true,
     "logo_max_width": "450",
     "enable_meet_decathlon": false,
-    "megamenu_image": "shopify:\/\/shop_images\/Copy_of_SIDE_NAV.png",
-    "megamenu_title": "On Sale Now",
-    "megamenu_subtitle": "Activewear & Gym Equipment",
-    "megamenu_link": "shopify:\/\/collections\/fitness-smart-buys",
-    "megamenu_bg_colour": "#ff0000",
+    "megamenu_image": "shopify:\/\/shop_images\/SIDE_NAV.png",
+    "megamenu_title": "Water Sports Smart Buys",
+    "megamenu_subtitle": "Browse Upcoming Offers",
+    "megamenu_link": "shopify:\/\/pages\/smart-buys-catalogue",
+    "megamenu_bg_colour": "#1c82c3",
     "is_lookbook": false,
     "product_returns_text": "365 Days Returns",
     "product_shipping_text": "Free shipping for orders above $80",
@@ -45,14 +45,14 @@
     "blue_band__yellowgram_icon": "shopify:\/\/shop_images\/delighted.png",
     "blue_band__yellowgram_text": "Delighted or Delighted",
     "blue_band__fact_one_icon": "shopify:\/\/shop_images\/shipping.png",
-    "blue_band__fact_one_text": "Free Shipping Over $80*",
-    "blue_band__fact_one_link": "",
+    "blue_band__fact_one_text": "<u>Free Shipping Over $80*<\/u>",
+    "blue_band__fact_one_link": "https:\/\/help.decathlon.com.au\/support\/solutions\/articles\/8000068779-free-shipping-over-80-conditions-apply",
     "blue_band__fact_two_icon": "shopify:\/\/shop_images\/pickup.png",
     "blue_band__fact_two_text": "Free In-Store Click & Collect",
     "blue_band__fact_two_link": "",
     "blue_band__fact_three_icon": "shopify:\/\/shop_images\/returns.png",
-    "blue_band__fact_three_text": "Easy 365 Days Return",
-    "blue_band__fact_three_link": "",
+    "blue_band__fact_three_text": "<u>Easy 365 Days Return<\/u>",
+    "blue_band__fact_three_link": "https:\/\/decathlonaustralia.freshdesk.com\/support\/solutions\/articles\/8000059284-what-is-your-returns-and-exchanges-policy-",
     "blue_band__fact_four_icon": "shopify:\/\/shop_images\/star.png",
     "blue_band__fact_four_text": "91% of Products have 4 to 5 Stars",
     "blue_band__fact_four_link": "",
@@ -307,32 +307,6 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
-          "1568939548889": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_1_-min.png",
-              "slide_bg_position": "60%-80px",
-              "banner_intro": "",
-              "banner_title": "<br>Find Your Fit",
-              "banner_subtitle": "<p><strong>Up To 40% Off Gym Equipment &amp; Clothing<\/strong><\/p>",
-              "button_new_window": false,
-              "button_title": "SHOP SMART BUYS",
-              "button_url": "shopify:\/\/collections\/fitness-smart-buys"
-            }
-          },
-          "1568939563080": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/15-min.png",
-              "slide_bg_position": "60%-80px",
-              "banner_intro": "",
-              "banner_title": "<br>Discover The Great Outdoors",
-              "banner_subtitle": "<p><strong>Up To 50% Off Camping Tents<\/strong><\/p>",
-              "button_new_window": false,
-              "button_title": "SHOP SMART BUYS",
-              "button_url": "shopify:\/\/collections\/camping-smart-buys"
-            }
-          },
           "1568939583060": {
             "type": "slide",
             "settings": {
@@ -345,14 +319,41 @@
               "button_title": "SIGN UP FOR YOUR OPENING GIFT",
               "button_url": "shopify:\/\/pages\/store-moorabbin"
             }
+          },
+          "1568939548889": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_6_e5c93741-5210-4278-8833-73808b04a1ef.png",
+              "slide_bg_position": "60%-80px",
+              "banner_intro": "",
+              "banner_title": "<br>Dive Into Summer",
+              "banner_subtitle": "<p><strong>Water Sports Sale Starts Saturday 16 November<\/strong><\/p>",
+              "button_new_window": false,
+              "button_title": "Browse Upcoming Offers",
+              "button_url": "shopify:\/\/pages\/smart-buys-catalogue"
+            }
+          },
+          "1568939563080": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_7.png",
+              "slide_bg_position": "60%-80px",
+              "banner_intro": "",
+              "banner_title": "<br>Sports Advice",
+              "banner_subtitle": "<p><strong>Discover New Stories, Articles &amp; Sports Advice.<\/strong><\/p>",
+              "button_new_window": false,
+              "button_title": "Read More",
+              "button_url": "shopify:\/\/pages\/blog"
+            }
           }
         },
         "block_order": [
+          "1568939583060",
           "1568939548889",
-          "1568939563080",
-          "1568939583060"
+          "1568939563080"
         ],
-        "settings": {}
+        "settings": {
+        }
       }
     },
     "content_for_index": [
