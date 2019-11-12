@@ -63,7 +63,7 @@ export const storeTile = {
             <span class='de-u-textBlue de-u-textMedium de-u-textShrink1'>Favorite</span>
           </a>
           <a
-            @click='$emit("store-info-nav", store)'
+            v-bind:href="store.page_info_url"
             class='de-StoreTile-actionsButton de-u-flex de-u-flexCol de-u-flexAlignItemsCenter de-u-flexJustifyCenter'
           >
             <span

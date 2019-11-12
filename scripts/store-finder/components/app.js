@@ -60,7 +60,6 @@ export const app = {
             :key='store + i'
             @set-selected-store='setSelectedStore'
             @set-favorited-store='setFavoritedStore'
-            @store-info-nav='goToStoreInfo'
             @store-direction-nav='goToStoreDirection'
             :store='store'
             :distance='store.distance'
@@ -377,22 +376,6 @@ export const app = {
       if (this.isFavoritedStore) {
         removeItemFromLocalStorage('favoritedStore');
         this.isFavoritedStore = null;
-      }
-    },
-
-    goToStoreInfo(store) {
-      const storeUrlMap = {
-        adr_T6s3Kaja: '/pages/store-tempe',
-        adr_A6s3Kaja: '/pages/store-auburn',
-        adr_F6s3Kaja: '/pages/store-knoxfield',
-        adr_B6s3Kaja: '/pages/store-boxhill',
-        adr_17930001: '/pages/store-moorabbin',
-        adr_17930002: '/pages/store-genesis'
-      };
-      const { id } = store;
-      const url = storeUrlMap[id];
-      if (url) {
-        window.location.href = url;
       }
     },
 

@@ -2,10 +2,15 @@
   window.masterStoresVisual = [
     {% for block in section.blocks %}
       {% unless block.settings.test_mode == true %}
+        {% assign store_name_handle = block.settings.name | handleize | replace: '-', '' %}
+        {% assign block_config = '"address_type":"destination","code":null,"page_info_url":"/pages/store-store_name_handle","title":' %}
+        {% assign block_config = block_config | replace: 'store_name_handle', store_name_handle %}
+
+        {% if block.settings.address_type_boolean == false %}
+          {% assign block_config = block_config | replace: '"address_type":"destination"', '"address_type":null' %}
+        {% endif %}
         {% if block.type == 'visual' %}
-          {% assign block_config = '"address_type":"destination","code":null,"is_visual":true,"title":' %}
-        {% else %}
-          {% assign block_config = '"address_type":"destination","code":null,"title":' %}
+          {% assign block_config = block_config | replace: ',"title":', ',"is_visual":true,"title":' %}
         {% endif %}
         {{ block.settings | json | replace: '"title":', block_config }}{% unless forloop.last %},{% endunless %}
       {% endunless %}
@@ -14,7 +19,7 @@
   window.masterStores = [
     {% for block in section.blocks %}
       {% unless block.settings.test_mode == true or block.type == 'visual' %}
-        {% if block.settings.address_type_boolean == true %}
+        {% if block.settings.address_type_boolean == false %}
           {% assign block_config = '"address_type":null,"code":null,"title":' %}
         {% else %}
           {% assign block_config = '"address_type":"destination","code":null,"title":' %}
