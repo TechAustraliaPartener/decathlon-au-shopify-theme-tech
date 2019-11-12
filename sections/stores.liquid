@@ -1,0 +1,334 @@
+
+{% schema %}
+  {
+    "name": "Stores list",
+    "blocks": [
+      {
+        "type": "store",
+        "name": "Store",
+        "settings": [
+          {
+            "type": "header",
+            "content": "Store Infos"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Store title",
+            "info": "For example: Genesis",
+            "default": "Store Name"
+          },
+          {
+            "type": "text",
+            "id": "extra_title",
+            "label": "Descriptive title",
+            "info": "For example: Genesis Health and Fitness"
+          },
+          {
+            "type": "text",
+            "id": "duplicate",
+            "label": "Popup store",
+            "info": "Is your store a popup store? If so, please enter the title of a main store and its inventory will be reflected for this popup location. If it's not a popup store, leave it blank."
+          },
+          {
+            "type": "checkbox",
+            "id": "test_mode",
+            "label": "Test mode",
+            "info": "Is your store a test store? If so, your store won't appear on your website."
+          },
+          {
+            "type": "text",
+            "id": "street1",
+            "label": "Street",
+            "default": "2/50 Lonsdale St"
+          },
+          {
+            "type": "text",
+            "id": "city",
+            "label": "City"
+          },
+          {
+            "type": "text",
+            "id": "zip",
+            "label": "Zipcode",
+            "default": "3000"
+          },
+          {
+            "type": "select",
+            "id": "state",
+            "options": [
+              { "value": "NSW", "label": "New South Wales" },
+              { "value": "QLD", "label": "Queensland" },
+              { "value": "SA", "label": "South Australia" },
+              { "value": "TAS", "label": "Tasmania" },
+              { "value": "VIC", "label": "Victoria" },
+              { "value": "WA", "label": "Western Australia" },
+              { "value": "ACT", "label": "Australian Capital Territory" },
+              { "value": "NT", "label": "Northern Territory" }
+            ],
+            "label": "State"
+          },
+          {
+            "type": "select",
+            "id": "country",
+            "options": [
+              { "value": "AU", "label": "Australia" }
+            ],
+            "label": "Country"
+          },
+          {
+            "type": "text",
+            "id": "email",
+            "label": "Email",
+            "default": "customer.service@decathlon.com"
+          },
+          {
+            "type": "text",
+            "id": "phone_number",
+            "label": "Phone Number",
+            "default": "(02) 9157 5799"
+          },
+          {
+            "type": "select",
+            "id": "company",
+            "options": [
+              { "value": "Decathlon", "label": "Decathlon" }
+            ],
+            "label": "Company"
+          },
+          {
+            "type": "text",
+            "id": "ready",
+            "label": "Promise",
+            "default": "Free delivery in 24h<br\/>We will deliver at 12 pm everyday",
+            "info": "Delivery promise to be displayed on product page and checkout."
+          },
+          {
+            "type": "text",
+            "id": "id",
+            "label": "ID",
+            "info": "Each store ID should be unique"
+          },
+          {
+            "type": "text",
+            "id": "fullHours",
+            "label": "Full hours",
+            "default": "<li>Mondays to Thursdays: 6 am to 9 pm<\/li><li>Fridays: 6 am to 8 pm<\/li><li>Saturdays: 8 am to 12 pm<\/li><li>Sundays and Public Holidays: Closed<\/li>",
+            "info": "What will appear in your store hours tooltip"
+          },
+          {
+            "type": "text",
+            "id": "street2",
+            "label": "Street (second line)",
+            "default": "Open 9am-9pm"
+          },
+          {
+            "type": "header",
+            "content": "Store Hours",
+            "info": "13 - 24 is equivalent to 1 - 12 PM, [9, 19] is equivalent to [9am, 7pm]"
+          },
+          {
+            "type": "checkbox",
+            "id": "tooltip_hours",
+            "label": "Tootlips available",
+            "info": "Tick the chekbox if to display a tooltip for full store hours.",
+            "default": true
+          },
+          {
+            "type": "checkbox",
+            "id": "is_same_hours_weekly",
+            "label": "Are the stores hours the same everyday?"
+          },
+          {
+            "type": "range",
+            "id": "hours_0_open",
+            "min": 0,
+            "max": 24,
+            "step": 1,
+            "unit": "h",
+            "label": "Sunday store opening at",
+            "default": 9
+          },
+          {
+            "type": "range",
+            "id": "hours_0_close",
+            "min": 0,
+            "max": 24,
+            "step": 1,
+            "unit": "h",
+            "label": "Sunday store closing at",
+            "default": 21
+          },
+          {
+            "type": "range",
+            "id": "hours_1_open",
+            "min": 0,
+            "max": 24,
+            "step": 1,
+            "unit": "h",
+            "label": "Monday store opening at",
+            "default": 9
+          },
+          {
+            "type": "range",
+            "id": "hours_1_close",
+            "min": 0,
+            "max": 24,
+            "step": 1,
+            "unit": "h",
+            "label": "Monday store closing at",
+            "default": 21
+          },
+          {
+            "type": "range",
+            "id": "hours_2_open",
+            "min": 0,
+            "max": 24,
+            "step": 1,
+            "unit": "h",
+            "label": "Tuesday store opening at",
+            "default": 9
+          },
+          {
+            "type": "range",
+            "id": "hours_2_close",
+            "min": 0,
+            "max": 24,
+            "step": 1,
+            "unit": "h",
+            "label": "Tuesday store closing at",
+            "default": 21
+          },
+          {
+            "type": "range",
+            "id": "hours_3_open",
+            "min": 0,
+            "max": 24,
+            "step": 1,
+            "unit": "h",
+            "label": "Wednesday store opening at",
+            "default": 9
+          },
+          {
+            "type": "range",
+            "id": "hours_3_close",
+            "min": 0,
+            "max": 24,
+            "step": 1,
+            "unit": "h",
+            "label": "Wednesday store closing at",
+            "default": 21
+          },
+          {
+            "type": "range",
+            "id": "hours_4_open",
+            "min": 0,
+            "max": 24,
+            "step": 1,
+            "unit": "h",
+            "label": "Thursday store opening at",
+            "default": 9
+          },
+          {
+            "type": "range",
+            "id": "hours_4_close",
+            "min": 0,
+            "max": 24,
+            "step": 1,
+            "unit": "h",
+            "label": "Thursday store closing at",
+            "default": 21
+          },
+          {
+            "type": "range",
+            "id": "hours_5_open",
+            "min": 0,
+            "max": 24,
+            "step": 1,
+            "unit": "h",
+            "label": "Friday store opening at",
+            "default": 9
+          },
+          {
+            "type": "range",
+            "id": "hours_5_close",
+            "min": 0,
+            "max": 24,
+            "step": 1,
+            "unit": "h",
+            "label": "Friday store closing at",
+            "default": 21
+          },
+          {
+            "type": "range",
+            "id": "hours_6_open",
+            "min": 0,
+            "max": 24,
+            "step": 1,
+            "unit": "h",
+            "label": "Saturday store opening at",
+            "default": 9
+          },
+          {
+            "type": "range",
+            "id": "hours_6_close",
+            "min": 0,
+            "max": 24,
+            "step": 1,
+            "unit": "h",
+            "label": "Saturday store closing at",
+            "default": 21
+          },
+          {
+            "type": "text",
+            "id": "announcement",
+            "label": "Store annoucement",
+            "info": "It will be displayed at the bottom of the store hours tooltip"
+          },
+          {
+            "type": "header",
+            "content": "Not In Use"
+          },
+          {
+            "type": "checkbox",
+            "id": "address_type",
+            "label": "Address type",
+            "info": "Tick the chekbox if your address type is destination, untick it if it's null."
+          },
+          {
+            "type": "checkbox",
+            "id": "is_residential",
+            "label": "Is residential?",
+            "default": false
+          },
+          {
+            "type": "checkbox",
+            "id": "is_warehouse",
+            "label": "Is warehouse?",
+            "default": false
+          },
+          {
+            "type": "checkbox",
+            "id": "validated",
+            "label": "Validated",
+            "default": false
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Stores list",
+        "category": "Stores list"
+      }
+    ]
+  }
+{% endschema %}
+
+
+<!-- Nice to have: 
+  - if the descriptive title is blank, it should use the title.
+  - make the page info for store finder use the handle of the store, not to be hardcoded
+  - street2 & full hours will need to be either removed or refactored
+  - consider the opening stores to appear only on the store finder
+ -->
