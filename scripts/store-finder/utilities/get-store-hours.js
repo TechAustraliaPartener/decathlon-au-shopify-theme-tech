@@ -1,5 +1,3 @@
-import storeHours from '../data/store-hours';
-
 /**
  * Transforms Military Time to Standard Time
  * @param {number} time - Military Time (0 - 23)
@@ -14,8 +12,9 @@ const militaryToStandardTime = time => ((time + 11) % 12) + 1;
  * @param {number} day - Day of the week (0 Sunday - 6 Saturday)
  * @returns {Object} - A store's opening and closing time of the specified day
  */
+const visualStoresHours = window.visualStoresHours;
 const getStoreOpenClose = ({ storeId, day }) => {
-  const store = storeHours[storeId];
+  const store = visualStoresHours[storeId];
   let storeDay = null;
   if (day > 6) {
     storeDay = store[0];

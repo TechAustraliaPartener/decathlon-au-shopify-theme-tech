@@ -23,7 +23,7 @@
       {% endunless %}
     {% endfor %}
   ]
-  window.masterStoresHours = {
+  window.visualStoresHours = {
     {% for block in section.blocks %}
       {% unless block.settings.test_mode == true %}
         {{ block.settings.id }}: {
@@ -40,7 +40,7 @@
   };
   console.log(window.masterStores);
   console.log(window.masterStoresVisual);
-  console.log(window.masterStoresHours);
+  console.log(window.visualStoresHours);
 </script>
 {% assign master_stores_names = '' %}
 {% for block in section.blocks %}
