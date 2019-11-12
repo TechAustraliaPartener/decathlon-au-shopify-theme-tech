@@ -10,7 +10,7 @@ export const storeTile = {
       <div class='de-Grid de-u-textSizeBase'>
         <div class='de-StoreTile-info de-u-size4of6 de-u-padRight06'>
           <h3
-            v-text='store.cityWithSuffix'
+            v-text='store.title'
             class='de-StoreTile-name de-u-textGrow de-u-spaceNone de-u-textBold'
           ></h3>
           <div class='de-StoreTile-address de-u-flex'>
@@ -26,7 +26,7 @@ export const storeTile = {
           </div>
           <div v-if='(store.tooltip_hours === true)'>
             <p
-              v-show='!(store.city === "Moorabbin")'
+              v-show='!(store.is_visual === true)'
               v-text='store.street2'
               class='de-u-spaceNone de-u-textDarkGray de-u-textShrink2 de-u-textMedium de-StoreTile-tooltipOpener'
             >
@@ -37,7 +37,7 @@ export const storeTile = {
           </div>
           <div v-else>
             <p
-              v-show='!(store.city === "Moorabbin")'
+              v-show='!(store.is_visual === true)'
               v-text='store.street2'
               class='de-u-spaceNone de-u-textDarkGray de-u-textShrink2 de-u-textMedium'
             >
@@ -46,7 +46,7 @@ export const storeTile = {
         </div>
         <div class='de-StoreTile-actions de-u-size2of6 de-u-textShrink2 de-u-flex'>
           <a
-            v-if='!(store.city === "Moorabbin")'
+            v-if='!(store.is_visual === true)'
             @click='$emit("set-favorited-store", store)'
             class='de-StoreTile-actionsButton de-u-flex de-u-flexCol de-u-flexAlignItemsCenter de-u-flexJustifyCenter de-u-spaceRight03'
           >
