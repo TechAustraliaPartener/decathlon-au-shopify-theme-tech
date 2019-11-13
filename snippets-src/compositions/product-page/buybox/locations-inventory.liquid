@@ -59,9 +59,9 @@
             <div class="t-cell title"><span v-text="location.title"></span><span v-if="favStore && location.name === favStore.name">{% endraw %}{% include 'assets-icons-flag' with class: 'de-u-textBlack de-Icon de-u-spaceLeft06' %}{% raw %}</span></div>
             <div class="t-cell ready" v-html="location.ready"></div>
             <div class="t-cell availability" v-bind:class="location.availability.class" v-text="location.availability.text"></div>
-            <div class="t-cell hours tooltipOpener" v-if="location.fullHours" v-text="location.hours"></div>
+            <div class="t-cell hours tooltipOpener" v-if="location.tooltip_hours === true" v-text="location.hours"></div>
             <div class="t-cell hours" v-else v-text="location.hours"></div>
-            <div class="hours-tooltip" v-if="location.fullHours">
+            <div class="hours-tooltip" v-if="location.tooltip_hours === true">
               <ul class="tooltip-content" v-html="location.fullHours"></ul>
             </div>
           </div>

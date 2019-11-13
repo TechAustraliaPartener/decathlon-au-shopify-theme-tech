@@ -127,7 +127,8 @@ function addMasterStoresData(inventoryItem) {
       } else {
         thisLoc.hours = masterLoc.street2;
       }
-      thisLoc.fullHours = masterLoc.fullHours;
+      thisLoc.tooltip_hours = masterLoc.tooltip_hours;
+      thisLoc.fullHours = masterLoc.full_hours;
 
     } else {
       if (masterLoc.name === 'Tempe') {
@@ -151,7 +152,8 @@ function addMasterStoresData(inventoryItem) {
           text: 'Out of Stock'
         },
         hours: masterLoc.street2,
-        fullHours: masterLoc.fullHours
+        tooltip_hours: masterLoc.tooltip_hours
+        fullHours: masterLoc.full_hours
       };
 
       inventoryItem.locations.push(thisLoc);
