@@ -81,7 +81,12 @@ const bindLocations = () => {
 
         // Update map image
         if (elementExists(mapImage)) {
-          mapImage.src = window[pickupStore];
+          for (let i = window.masterStores.length - 1; i >= 0; i--) {
+            const storeId = window.masterStores[i].id;
+            if (pickupStore === storeId) {
+              mapImage.src = window.masterStores[i].checkout_image;
+            }
+          }
         }
 
         // Enable Continue Button
@@ -342,7 +347,13 @@ const bindUI = () => {
     if (STATE.pickupStore === null) {
       mapImage.src = window.defaultMap;
     } else {
-      mapImage.src = window[STATE.pickupStore];
+      for (let i = window.masterStores.length - 1; i >= 0; i--) {
+        const pickupStore = STATE.pickupStore;
+        const storeId = window.masterStores[i].id;
+        if (pickupStore === storeId) {
+          mapImage.src = window.masterStores[i].checkout_image;
+        }
+      }
     }
   }
 
