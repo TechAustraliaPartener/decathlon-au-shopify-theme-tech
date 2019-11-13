@@ -32,7 +32,7 @@ export const storeTile = {
             >
             </p>
             <div class='de-StoreTile-tooltip'>
-              <ul class='tooltip-content' v-html='store.fullHours'></ul>
+              <ul class='tooltip-content' v-html='store.full_hours'></ul>
             </div>
           </div>
           <div v-else>
