@@ -33,6 +33,9 @@ export const storeTile = {
             </p>
             <div class='de-StoreTile-tooltip'>
               <ul class='tooltip-content' v-html='store.full_hours'></ul>
+              <p  v-if='(store.announcement !== "")'
+                v-text='store.announcement'
+                class='tooltip-announcement'></p>
             </div>
           </div>
           <div v-else>

@@ -129,6 +129,7 @@ function addMasterStoresData(inventoryItem) {
       }
       thisLoc.tooltip_hours = masterLoc.tooltip_hours;
       thisLoc.fullHours = masterLoc.full_hours;
+      thisLoc.announcement = masterLoc.announcement;
 
     } else {
       if (masterLoc.name === 'Tempe') {
@@ -153,7 +154,8 @@ function addMasterStoresData(inventoryItem) {
         },
         hours: masterLoc.street2,
         tooltip_hours: masterLoc.tooltip_hours
-        fullHours: masterLoc.full_hours
+        fullHours: masterLoc.full_hours,
+        announcement: masterLoc.announcement
       };
 
       inventoryItem.locations.push(thisLoc);

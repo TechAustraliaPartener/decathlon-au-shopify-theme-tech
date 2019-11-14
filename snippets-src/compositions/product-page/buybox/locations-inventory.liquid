@@ -63,6 +63,7 @@
             <div class="t-cell hours" v-else v-text="location.hours"></div>
             <div class="hours-tooltip" v-if="location.tooltip_hours === true">
               <ul class="tooltip-content" v-html="location.fullHours"></ul>
+              <p class="tooltip-announcement" v-if="location.announcement !== ''" v-text="location.announcement"></p>
             </div>
           </div>
         </div>
