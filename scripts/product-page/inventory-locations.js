@@ -114,19 +114,57 @@ function addMasterStoresData(inventoryItem) {
         };
       }
 
+      thisLoc.is_same_hours_weekly = masterLoc.is_same_hours_weekly;
+      
       // Check the current weekday to show Genesus store hours on product page
-      if (thisLoc.name === 'Genesis') {
-        var weekday = new Date().getDay();
-        if (weekday === 0) {
-          thisLoc.hours = 'Open Monday 6am-9pm';
-        } else if (weekday === 6) {
-          thisLoc.hours = 'Open 6am-12pm';
+      var weekday = new Date().getDay();
+      console.log('weekday: ' + weekday);
+      var openHour = masterLoc['hours_' + weekday + '_open'];
+      var closeHour = masterLoc['hours_' + weekday + '_close'];
+      if ((openHour === 0) && (closeHour === 0)) {
+        if (weekday === 6) {
+          var weekday = 0;
         } else {
-          thisLoc.hours = 'Open 6am-9pm';
+          var weekday = weekday + 1;
         }
       } else {
-        thisLoc.hours = masterLoc.street2;
+        if (openHour > 12) {
+          var openHour = openHour - 12;
+          var openHour = openHour.toString() + 'pm';
+        } else {
+          var openHour = openHour.toString() + 'am';
+        }
+        if (closeHour > 12) {
+          var closeHour = closeHour - 12;
+          var closeHour = closeHour.toString() + 'pm';
+        } else {
+          var closeHour = closeHour.toString() + 'am';
+        }
       }
+      if (weekday === 0) {
+        var nameDay = 'Sun';
+      } else if (weekday === 1) {
+        var nameDay = 'Mon';
+      } else if (weekday === 2) {
+        var nameDay = 'Tue';
+      } else if (weekday === 3) {
+        var nameDay = 'Thu';
+      } else if (weekday === 4) {
+        var nameDay = 'Wed';
+      } else if (weekday === 5) {
+        var nameDay = 'Fri';
+      } else {
+        var nameDay = 'Sat';
+      }
+      if (thisLoc.is_same_hours_weekly = true) {
+        thisLoc.hours = 'Open ' + openHour + '-' + closeHour;
+      } else {
+        thisLoc.hours = nameDay + '. ' + openHour + '-' + closeHour;
+      }
+      console.log(thisLoc.is_same_hours_weekly);
+      console.log('closeHour: ' + closeHour);
+      console.log('weekday: ' + weekday);
+
       thisLoc.tooltip_hours = masterLoc.tooltip_hours;
       thisLoc.fullHours = masterLoc.full_hours;
       thisLoc.announcement = masterLoc.announcement;
@@ -153,7 +191,7 @@ function addMasterStoresData(inventoryItem) {
           text: 'Out of Stock'
         },
         hours: masterLoc.street2,
-        tooltip_hours: masterLoc.tooltip_hours
+        tooltip_hours: masterLoc.tooltip_hours,
         fullHours: masterLoc.full_hours,
         announcement: masterLoc.announcement
       };

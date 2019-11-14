@@ -171,6 +171,7 @@ $max-icon-width: 17px;
   border-radius: 5px;
   z-index: 10;
   min-width: 245px;
+  padding: 20px;
 
   &::after {
     content:'';
@@ -189,13 +190,24 @@ $max-icon-width: 17px;
   .tooltip-content {
     list-style: none;
     margin: 0;
-    padding: 20px;
     font-size: 12px;
     font-family: avalonregular;
 
     li {
       margin: 0;
+      display: table-row;
+      .weekday,
+      .tooltip-hours {
+        display: table-cell;
+      }
+      .weekday {
+        padding-right: 10px;
+      }
     }
+  }
+  .tooltip-announcement {
+    font-size: 12px;
+    margin: 20px 0 0;
   }
 }
 
