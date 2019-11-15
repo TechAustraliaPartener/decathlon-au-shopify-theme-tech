@@ -9,8 +9,14 @@
   // Convert 24-hour time to human-readable am/pm time
   function hoursToAmPm(hour) {
     if (hour > 12) {
-      hour -= 12;
-      return hour += ':00 pm';
+      if (hour === 24) {
+        return '12:00 am';
+      } else  {
+        hour -= 12;
+        return hour += ':00 pm';
+      }
+    } else if (hour === 12) {
+      return '12:00 pm';
     }
     return hour += ':00 am';
   }
