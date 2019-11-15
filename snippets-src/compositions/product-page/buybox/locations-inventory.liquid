@@ -62,8 +62,20 @@
             <div class="t-cell hours tooltipOpener" v-if="location.tooltip_hours === true" v-text="location.hours"></div>
             <div class="t-cell hours" v-else v-text="location.hours"></div>
             <div class="hours-tooltip" v-if="location.tooltip_hours === true">
-              <ul class="tooltip-content" v-html="location.fullHours"></ul>
+              <div class='tooltip-content'>
+                <h4 v-text="location.title"></h4>
+                <hr/>
+                <p>
+                  <strong>Address:</strong>
+                  <span v-text="location.street1"></span>,
+                  <span v-text="location.city"></span>,
+                  <span v-text="location.zip"></span>,
+                  <span v-text="location.state"></span>
+                </p>
+                <p><strong>Trading hours</strong></p>
+                <ul class='fullhours-list' v-html="location.fullHours"></ul>
               <p class="tooltip-announcement" v-if="location.announcement !== ''" v-text="location.announcement"></p>
+              </div>
             </div>
           </div>
         </div>

@@ -155,6 +155,10 @@ function addMasterStoresData(inventoryItem) {
         thisLoc.hours = nameDay + '. ' + openHour + '-' + closeHour;
       }
 
+      thisLoc.street1 = masterLoc.street1;
+      thisLoc.city = masterLoc.city;
+      thisLoc.zip = masterLoc.zip;
+      thisLoc.state = masterLoc.state;
       thisLoc.tooltip_hours = masterLoc.tooltip_hours;
       thisLoc.fullHours = masterLoc.fullHours;
       thisLoc.announcement = masterLoc.announcement;

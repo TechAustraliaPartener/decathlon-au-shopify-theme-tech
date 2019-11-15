@@ -26,21 +26,31 @@ export const storeTile = {
           </div>
           <div v-if='(store.tooltip_hours === true)'>
             <p
-              v-show='!(store.is_visual === true)'
               v-text='store.street2'
               class='de-u-spaceNone de-u-textDarkGray de-u-textShrink2 de-u-textMedium de-StoreTile-tooltipOpener'
             >
             </p>
             <div class='de-StoreTile-tooltip'>
-              <ul class='tooltip-content' v-html='store.fullHours'></ul>
-              <p  v-if='(store.announcement !== "")'
-                v-text='store.announcement'
-                class='tooltip-announcement'></p>
+              <div class='tooltip-content'>
+                <h4 v-text='store.title'></h4>
+                <hr/>
+                <p>
+                  <strong>Address:</strong>
+                  <span v-text='store.street1'></span>,
+                  <span v-text='store.city'></span>,
+                  <span v-text='store.zip'></span>,
+                  <span v-text='store.state'></span>
+                </p>
+                <p><strong>Trading hours</strong></p>
+                <ul class='fullhours-list' v-html='store.fullHours'></ul>
+                <p v-if='(store.announcement !== "")'
+                  v-text='store.announcement'
+                  class='tooltip-announcement'></p>
+              </div>
             </div>
           </div>
           <div v-else>
             <p
-              v-show='!(store.is_visual === true)'
               v-text='store.street2'
               class='de-u-spaceNone de-u-textDarkGray de-u-textShrink2 de-u-textMedium'
             >
@@ -49,7 +59,7 @@ export const storeTile = {
         </div>
         <div class='de-StoreTile-actions de-u-size2of6 de-u-textShrink2 de-u-flex'>
           <a
-            v-if='!(store.is_visual === true)'
+            v-if='store.test_mode === false'
             @click='$emit("set-favorited-store", store)'
             class='de-StoreTile-actionsButton de-u-flex de-u-flexCol de-u-flexAlignItemsCenter de-u-flexJustifyCenter de-u-spaceRight03'
           >
