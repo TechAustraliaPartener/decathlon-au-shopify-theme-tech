@@ -1,318 +1,44 @@
 <script>
-  window.masterStoresVisual = [
-    {% for block in section.blocks %}
-      {% if block.settings.is_same_hours_weekly == true %}
-        {% if block.settings.hours_0_open == 0 and block.settings.hours_0_close == 0 %}
-          {% assign new_hours_0_open = 'Closed' %}
-          {% assign new_hours_0_close = '' %}
-        {% else %}
-          {% if block.settings.hours_0_open > 12 %}
-            {% assign new_hours_0_open = block.settings.hours_0_open | minus: 12 | append: ':00pm - ' %}
-          {% else %}
-            {% assign new_hours_0_open = block.settings.hours_0_open | append: ':00am - ' %}
-          {% endif %}
-          {% if block.settings.hours_0_close > 12 %}
-            {% assign new_hours_0_close = block.settings.hours_0_close | minus: 12 | append: ':00pm' %}
-          {% else %}
-            {% assign new_hours_0_close = block.settings.hours_0_close | append: ':00am' %}
-          {% endif %}
-        {% endif %}
-        {% capture full_hours %}
-          "full_hours":"<li><span class='weekday'>Monday</span> <span class='tooltip-hours'>{{ new_hours_0_open }} {{ new_hours_0_close }}</span></li><li><span class='weekday'>Tuesday</span> <span class='tooltip-hours'>{{ new_hours_0_open }} {{ new_hours_0_close }}</span></li><li><span class='weekday'>Wednesday</span> <span class='tooltip-hours'>{{ new_hours_0_open }} {{ new_hours_0_close }}</span></li><li><span class='weekday'>Thursday</span> <span class='tooltip-hours'>{{ new_hours_0_open }} {{ new_hours_0_close }}</span></li><li><span class='weekday'>Friday</span> <span class='tooltip-hours'>{{ new_hours_0_open }} {{ new_hours_0_close }}</span></li><li><span class='weekday'>Satuday</span> <span class='tooltip-hours'>{{ new_hours_0_open }} {{ new_hours_0_close }}</span></li><li><span class='weekday'>Sunday</span> <span class='tooltip-hours'>{{ new_hours_0_open }} {{ new_hours_0_close }}</span></li>",{% endcapture %}
-      {% else %}
-        {% if block.settings.hours_1_open == 0 and block.settings.hours_1_close == 0 %}
-          {% assign new_hours_1_open = 'Closed' %}
-          {% assign new_hours_1_close = '' %}
-        {% else %}
-          {% if block.settings.hours_1_open > 12 %}
-            {% assign new_hours_1_open = block.settings.hours_1_open | minus: 12 | append: ':00pm - ' %}
-          {% else %}
-            {% assign new_hours_1_open = block.settings.hours_1_open | append: ':00am - ' %}
-          {% endif %}
-          {% if block.settings.hours_1_close > 12 %}
-            {% assign new_hours_1_close = block.settings.hours_1_close | minus: 12 | append: ':00pm' %}
-          {% else %}
-            {% assign new_hours_1_close = block.settings.hours_1_close | append: ':00am' %}
-          {% endif %}
-        {% endif %}
-
-        {% if block.settings.hours_2_open == 0 and block.settings.hours_2_close == 0 %}
-          {% assign new_hours_2_open = 'Closed' %}
-          {% assign new_hours_2_close = '' %}
-        {% else %}
-          {% if block.settings.hours_2_open > 12 %}
-            {% assign new_hours_2_open = block.settings.hours_2_open | minus: 12 | append: ':00pm - ' %}
-          {% else %}
-            {% assign new_hours_2_open = block.settings.hours_2_open | append: ':00am - ' %}
-          {% endif %}
-          {% if block.settings.hours_2_close > 12 %}
-            {% assign new_hours_2_close = block.settings.hours_2_close | minus: 12 | append: ':00pm' %}
-          {% else %}
-            {% assign new_hours_2_close = block.settings.hours_2_close | append: ':00am' %}
-          {% endif %}
-        {% endif %}
-
-        {% if block.settings.hours_3_open == 0 and block.settings.hours_3_close == 0 %}
-          {% assign new_hours_3_open = 'Closed' %}
-          {% assign new_hours_3_close = '' %}
-        {% else %}
-          {% if block.settings.hours_3_open > 12 %}
-            {% assign new_hours_3_open = block.settings.hours_3_open | minus: 12 | append: ':00pm - ' %}
-          {% else %}
-            {% assign new_hours_3_open = block.settings.hours_3_open | append: ':00am - ' %}
-          {% endif %}
-          {% if block.settings.hours_3_close > 12 %}
-            {% assign new_hours_3_close = block.settings.hours_3_close | minus: 12 | append: ':00pm' %}
-          {% else %}
-            {% assign new_hours_3_close = block.settings.hours_3_close | append: ':00am' %}
-          {% endif %}
-        {% endif %}
-
-        {% if block.settings.hours_4_open == 0 and block.settings.hours_4_close == 0 %}
-          {% assign new_hours_4_open = 'Closed' %}
-          {% assign new_hours_4_close = '' %}
-        {% else %}
-          {% if block.settings.hours_4_open > 12 %}
-            {% assign new_hours_4_open = block.settings.hours_4_open | minus: 12 | append: ':00pm - ' %}
-          {% else %}
-            {% assign new_hours_4_open = block.settings.hours_4_open | append: ':00am - ' %}
-          {% endif %}
-          {% if block.settings.hours_4_close > 12 %}
-            {% assign new_hours_4_close = block.settings.hours_4_close | minus: 12 | append: ':00pm' %}
-          {% else %}
-            {% assign new_hours_4_close = block.settings.hours_4_close | append: ':00am' %}
-          {% endif %}
-        {% endif %}
-
-        {% if block.settings.hours_5_open == 0 and block.settings.hours_5_close == 0 %}
-          {% assign new_hours_5_open = 'Closed' %}
-          {% assign new_hours_5_close = '' %}
-        {% else %}
-          {% if block.settings.hours_5_open > 12 %}
-            {% assign new_hours_5_open = block.settings.hours_5_open | minus: 12 | append: ':00pm - ' %}
-          {% else %}
-            {% assign new_hours_5_open = block.settings.hours_5_open | append: ':00am - ' %}
-          {% endif %}
-          {% if block.settings.hours_5_close > 12 %}
-            {% assign new_hours_5_close = block.settings.hours_5_close | minus: 12 | append: ':00pm' %}
-          {% else %}
-            {% assign new_hours_5_close = block.settings.hours_5_close | append: ':00am' %}
-          {% endif %}
-        {% endif %}
-
-        {% if block.settings.hours_6_open == 0 and block.settings.hours_6_close == 0 %}
-          {% assign new_hours_6_open = 'Closed' %}
-          {% assign new_hours_6_close = '' %}
-        {% else %}
-          {% if block.settings.hours_6_open > 12 %}
-            {% assign new_hours_6_open = block.settings.hours_6_open | minus: 12 | append: ':00pm - ' %}
-          {% else %}
-            {% assign new_hours_6_open = block.settings.hours_6_open | append: ':00am - ' %}
-          {% endif %}
-          {% if block.settings.hours_6_close > 12 %}
-            {% assign new_hours_6_close = block.settings.hours_6_close | minus: 12 | append: ':00pm' %}
-          {% else %}
-            {% assign new_hours_6_close = block.settings.hours_6_close | append: ':00am' %}
-          {% endif %}
-        {% endif %}
-
-        {% if block.settings.hours_0_open == 0 and block.settings.hours_0_close == 0 %}
-          {% assign new_hours_0_open = 'Closed' %}
-          {% assign new_hours_0_close = '' %}
-        {% else %}
-          {% if block.settings.hours_0_open > 12 %}
-            {% assign new_hours_0_open = block.settings.hours_0_open | minus: 12 | append: ':00pm - ' %}
-          {% else %}
-            {% assign new_hours_0_open = block.settings.hours_0_open | append: ':00am - ' %}
-          {% endif %}
-          {% if block.settings.hours_0_close > 12 %}
-            {% assign new_hours_0_close = block.settings.hours_0_close | minus: 12 | append: ':00pm' %}
-          {% else %}
-            {% assign new_hours_0_close = block.settings.hours_0_close | append: ':00am' %}
-          {% endif %}
-        {% endif %}
-        {% capture full_hours %}
-          "full_hours":"<li><span class='weekday'>Monday</span> <span class='tooltip-hours'>{{ new_hours_1_open }} {{ new_hours_1_close }}</span></li><li><span class='weekday'>Tuesday</span> <span class='tooltip-hours'>{{ new_hours_2_open }} {{ new_hours_2_close }}</span></li><li><span class='weekday'>Wednesday</span> <span class='tooltip-hours'>{{ new_hours_3_open }} {{ new_hours_3_close }}</span></li><li><span class='weekday'>Thursday</span> <span class='tooltip-hours'>{{ new_hours_4_open }} {{ new_hours_4_close }}</span></li><li><span class='weekday'>Friday</span> <span class='tooltip-hours'>{{ new_hours_5_open }} {{ new_hours_5_close }}</span></li><li><span class='weekday'>Satuday</span> <span class='tooltip-hours'>{{ new_hours_6_open }} {{ new_hours_6_close }}</span></li><li><span class='weekday'>Sunday</span> <span class='tooltip-hours'>{{ new_hours_0_open }} {{ new_hours_0_close }}</span></li>",{% endcapture %}
-      {% endif %}
-      {% unless block.settings.test_mode == true %}
-        {% assign block_config = full_hours %}
-        {% assign store_name_handle = block.settings.name | handleize | replace: '-', '' %}
-        {% assign block_config = block_config | append: '"address_type":"destination","code":null,"page_info_url":"/pages/store-store_name_handle","title":' %}
-        {% assign block_config = block_config | replace: 'store_name_handle', store_name_handle %}
-
-        {% if block.settings.address_type_boolean == false %}
-          {% assign block_config = block_config | replace: '"address_type":"destination"', '"address_type":null' %}
-        {% endif %}
-        {% if block.type == 'visual' %}
-          {% assign block_config = block_config | replace: ',"title":', ',"is_visual":true,"title":' %}
-        {% endif %}
-        {{ block.settings | json | replace: '"title":', block_config }}{% unless forloop.last %},{% endunless %}
-      {% endunless %}
-    {% endfor %}
-  ];
   window.masterStores = [
     {% for block in section.blocks %}
-      {% if block.settings.is_same_hours_weekly == true %}
-        {% if block.settings.hours_0_open == 0 and block.settings.hours_0_close == 0 %}
-          {% assign new_hours_0_open = 'Closed' %}
-          {% assign new_hours_0_close = '' %}
-        {% else %}
-          {% if block.settings.hours_0_open > 12 %}
-            {% assign new_hours_0_open = block.settings.hours_0_open | minus: 12 | append: ':00pm - ' %}
-          {% else %}
-            {% assign new_hours_0_open = block.settings.hours_0_open | append: ':00am - ' %}
-          {% endif %}
-          {% if block.settings.hours_0_close > 12 %}
-            {% assign new_hours_0_close = block.settings.hours_0_close | minus: 12 | append: ':00pm' %}
-          {% else %}
-            {% assign new_hours_0_close = block.settings.hours_0_close | append: ':00am' %}
-          {% endif %}
-        {% endif %}
-        {% capture full_hours %}
-          "full_hours":"<li><span class='weekday'>Monday</span> <span class='tooltip-hours'>{{ new_hours_0_open }} {{ new_hours_0_close }}</span></li><li><span class='weekday'>Tuesday</span> <span class='tooltip-hours'>{{ new_hours_0_open }} {{ new_hours_0_close }}</span></li><li><span class='weekday'>Wednesday</span> <span class='tooltip-hours'>{{ new_hours_0_open }} {{ new_hours_0_close }}</span></li><li><span class='weekday'>Thursday</span> <span class='tooltip-hours'>{{ new_hours_0_open }} {{ new_hours_0_close }}</span></li><li><span class='weekday'>Friday</span> <span class='tooltip-hours'>{{ new_hours_0_open }} {{ new_hours_0_close }}</span></li><li><span class='weekday'>Satuday</span> <span class='tooltip-hours'>{{ new_hours_0_open }} {{ new_hours_0_close }}</span></li><li><span class='weekday'>Sunday</span> <span class='tooltip-hours'>{{ new_hours_0_open }} {{ new_hours_0_close }}</span></li>",{% endcapture %}
-      {% else %}
-        {% if block.settings.hours_1_open == 0 and block.settings.hours_1_close == 0 %}
-          {% assign new_hours_1_open = 'Closed' %}
-          {% assign new_hours_1_close = '' %}
-        {% else %}
-          {% if block.settings.hours_1_open > 12 %}
-            {% assign new_hours_1_open = block.settings.hours_1_open | minus: 12 | append: ':00pm - ' %}
-          {% else %}
-            {% assign new_hours_1_open = block.settings.hours_1_open | append: ':00am - ' %}
-          {% endif %}
-          {% if block.settings.hours_1_close > 12 %}
-            {% assign new_hours_1_close = block.settings.hours_1_close | minus: 12 | append: ':00pm' %}
-          {% else %}
-            {% assign new_hours_1_close = block.settings.hours_1_close | append: ':00am' %}
-          {% endif %}
-        {% endif %}
-
-        {% if block.settings.hours_2_open == 0 and block.settings.hours_2_close == 0 %}
-          {% assign new_hours_2_open = 'Closed' %}
-          {% assign new_hours_2_close = '' %}
-        {% else %}
-          {% if block.settings.hours_2_open > 12 %}
-            {% assign new_hours_2_open = block.settings.hours_2_open | minus: 12 | append: ':00pm - ' %}
-          {% else %}
-            {% assign new_hours_2_open = block.settings.hours_2_open | append: ':00am - ' %}
-          {% endif %}
-          {% if block.settings.hours_2_close > 12 %}
-            {% assign new_hours_2_close = block.settings.hours_2_close | minus: 12 | append: ':00pm' %}
-          {% else %}
-            {% assign new_hours_2_close = block.settings.hours_2_close | append: ':00am' %}
-          {% endif %}
-        {% endif %}
-
-        {% if block.settings.hours_3_open == 0 and block.settings.hours_3_close == 0 %}
-          {% assign new_hours_3_open = 'Closed' %}
-          {% assign new_hours_3_close = '' %}
-        {% else %}
-          {% if block.settings.hours_3_open > 12 %}
-            {% assign new_hours_3_open = block.settings.hours_3_open | minus: 12 | append: ':00pm - ' %}
-          {% else %}
-            {% assign new_hours_3_open = block.settings.hours_3_open | append: ':00am - ' %}
-          {% endif %}
-          {% if block.settings.hours_3_close > 12 %}
-            {% assign new_hours_3_close = block.settings.hours_3_close | minus: 12 | append: ':00pm' %}
-          {% else %}
-            {% assign new_hours_3_close = block.settings.hours_3_close | append: ':00am' %}
-          {% endif %}
-        {% endif %}
-
-        {% if block.settings.hours_4_open == 0 and block.settings.hours_4_close == 0 %}
-          {% assign new_hours_4_open = 'Closed' %}
-          {% assign new_hours_4_close = '' %}
-        {% else %}
-          {% if block.settings.hours_4_open > 12 %}
-            {% assign new_hours_4_open = block.settings.hours_4_open | minus: 12 | append: ':00pm - ' %}
-          {% else %}
-            {% assign new_hours_4_open = block.settings.hours_4_open | append: ':00am - ' %}
-          {% endif %}
-          {% if block.settings.hours_4_close > 12 %}
-            {% assign new_hours_4_close = block.settings.hours_4_close | minus: 12 | append: ':00pm' %}
-          {% else %}
-            {% assign new_hours_4_close = block.settings.hours_4_close | append: ':00am' %}
-          {% endif %}
-        {% endif %}
-
-        {% if block.settings.hours_5_open == 0 and block.settings.hours_5_close == 0 %}
-          {% assign new_hours_5_open = 'Closed' %}
-          {% assign new_hours_5_close = '' %}
-        {% else %}
-          {% if block.settings.hours_5_open > 12 %}
-            {% assign new_hours_5_open = block.settings.hours_5_open | minus: 12 | append: ':00pm - ' %}
-          {% else %}
-            {% assign new_hours_5_open = block.settings.hours_5_open | append: ':00am - ' %}
-          {% endif %}
-          {% if block.settings.hours_5_close > 12 %}
-            {% assign new_hours_5_close = block.settings.hours_5_close | minus: 12 | append: ':00pm' %}
-          {% else %}
-            {% assign new_hours_5_close = block.settings.hours_5_close | append: ':00am' %}
-          {% endif %}
-        {% endif %}
-
-        {% if block.settings.hours_6_open == 0 and block.settings.hours_6_close == 0 %}
-          {% assign new_hours_6_open = 'Closed' %}
-          {% assign new_hours_6_close = '' %}
-        {% else %}
-          {% if block.settings.hours_6_open > 12 %}
-            {% assign new_hours_6_open = block.settings.hours_6_open | minus: 12 | append: ':00pm - ' %}
-          {% else %}
-            {% assign new_hours_6_open = block.settings.hours_6_open | append: ':00am - ' %}
-          {% endif %}
-          {% if block.settings.hours_6_close > 12 %}
-            {% assign new_hours_6_close = block.settings.hours_6_close | minus: 12 | append: ':00pm' %}
-          {% else %}
-            {% assign new_hours_6_close = block.settings.hours_6_close | append: ':00am' %}
-          {% endif %}
-        {% endif %}
-
-        {% if block.settings.hours_0_open == 0 and block.settings.hours_0_close == 0 %}
-          {% assign new_hours_0_open = 'Closed' %}
-          {% assign new_hours_0_close = '' %}
-        {% else %}
-          {% if block.settings.hours_0_open > 12 %}
-            {% assign new_hours_0_open = block.settings.hours_0_open | minus: 12 | append: ':00pm - ' %}
-          {% else %}
-            {% assign new_hours_0_open = block.settings.hours_0_open | append: ':00am - ' %}
-          {% endif %}
-          {% if block.settings.hours_0_close > 12 %}
-            {% assign new_hours_0_close = block.settings.hours_0_close | minus: 12 | append: ':00pm' %}
-          {% else %}
-            {% assign new_hours_0_close = block.settings.hours_0_close | append: ':00am' %}
-          {% endif %}
-        {% endif %}
-        {% capture full_hours %}
-          "full_hours":"<li><span class='weekday'>Monday</span> <span class='tooltip-hours'>{{ new_hours_1_open }} {{ new_hours_1_close }}</span></li><li><span class='weekday'>Tuesday</span> <span class='tooltip-hours'>{{ new_hours_2_open }} {{ new_hours_2_close }}</span></li><li><span class='weekday'>Wednesday</span> <span class='tooltip-hours'>{{ new_hours_3_open }} {{ new_hours_3_close }}</span></li><li><span class='weekday'>Thursday</span> <span class='tooltip-hours'>{{ new_hours_4_open }} {{ new_hours_4_close }}</span></li><li><span class='weekday'>Friday</span> <span class='tooltip-hours'>{{ new_hours_5_open }} {{ new_hours_5_close }}</span></li><li><span class='weekday'>Satuday</span> <span class='tooltip-hours'>{{ new_hours_6_open }} {{ new_hours_6_close }}</span></li><li><span class='weekday'>Sunday</span> <span class='tooltip-hours'>{{ new_hours_0_open }} {{ new_hours_0_close }}</span></li>",{% endcapture %}
-      {% endif %}
-      {% unless block.settings.test_mode == true or block.type == 'visual' %}
-        {% assign block_config = full_hours %}
-        {% assign store_name_handle = block.settings.name | handleize | replace: '-', '' %}
-        {% assign block_config = block_config | append: '"address_type":"destination","code":null,"page_info_url":"/pages/store-store_name_handle","title":' %}
-        {% assign block_config = block_config | replace: 'store_name_handle', store_name_handle %}
-
-        {% if block.settings.address_type_boolean == false %}
-          {% assign block_config = block_config | replace: '"address_type":"destination"', '"address_type":null' %}
-        {% endif %}
-        {{ block.settings | json | replace: '"title":', block_config }}{% unless forloop.last %},{% endunless %}
-      {% endunless %}
+      {{ block.settings | json }}{% unless forloop.last %},{% endunless %}
     {% endfor %}
-  ]
-  window.visualStoresHours = {
-    {% for block in section.blocks %}
-      {% unless block.settings.test_mode == true %}
-        {{ block.settings.id }}: {
-          0: [{{ block.settings.hours_0_open }}, {{ block.settings.hours_0_close }}],
-          1: [{{ block.settings.hours_1_open }}, {{ block.settings.hours_1_close }}],
-          2: [{{ block.settings.hours_2_open }}, {{ block.settings.hours_2_close }}],
-          3: [{{ block.settings.hours_3_open }}, {{ block.settings.hours_3_close }}],
-          4: [{{ block.settings.hours_4_open }}, {{ block.settings.hours_4_close }}],
-          5: [{{ block.settings.hours_5_open }}, {{ block.settings.hours_5_close }}],
-          6: [{{ block.settings.hours_6_open }}, {{ block.settings.hours_6_close }}]
-        }{% unless forloop.last %},{% endunless %}
-      {% endunless %}
-    {% endfor %}
-  };
+  ];
+
+  function hoursToAmPm(hour) {
+    if (hour > 12) {
+      hour -= 12;
+      return hour += ':00 pm';
+    }
+    return hour += ':00 am';
+  }
+
+  function hoursToDisplay(open, close) {
+    if (open === close === 0) {
+      return 'Closed';
+    } else {
+      return hoursToAmPm(open) + ' - ' + hoursToAmPm(close);
+    }
+  }
+
+  {% for block in section.blocks %}
+    var store = window.masterStores[{{ forloop.index0 }}];
+    
+    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    store.hours = {};
+    for (var i = 0; i < 7; i++) {
+      var day = days[i];
+      var openHours = store['hours_' + i + '_open'];
+      var closeHours = store['hours_' + i + '_close'];
+      store.hours[i] = {
+        day: day,
+        open: openHours,
+        close: closeHours,
+        display: hoursToDisplay(openHours, closeHours)
+      };
+    };
+  {% endfor %}
+
   console.log(window.masterStores);
   console.log(window.masterStoresVisual);
   console.log(window.visualStoresHours);
