@@ -12,7 +12,17 @@ const militaryToStandardTime = time => ((time + 11) % 12) + 1;
  * @param {number} day - Day of the week (0 Sunday - 6 Saturday)
  * @returns {Object} - A store's opening and closing time of the specified day
  */
-const visualStoresHours = window.visualStoresHours;
+
+var hoursObj = {};
+
+for (var i = 0; i < window.masterStoresVisual.length; i++) {
+  var store = window.masterStoresVisual[i];
+  hoursObj[store.id] = store.hours.map(function(day) {
+    return [day.open, day.close];
+  });
+}
+const visualStoresHours = hoursObj;
+
 const getStoreOpenClose = ({ storeId, day }) => {
   const store = visualStoresHours[storeId];
   let storeDay = null;

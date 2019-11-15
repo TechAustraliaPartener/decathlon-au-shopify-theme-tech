@@ -23,7 +23,7 @@
 
   // Convert an opening and closing hour into the human-readable label.
   function hoursToDisplay(open, close) {
-    if (open === close === 0) {
+    if (open === 0 && close === 0) {
       return 'Closed';
     } else {
       return hoursToAmPm(open) + ' - ' + hoursToAmPm(close);
