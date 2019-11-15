@@ -50,9 +50,14 @@
       });
     };
     store.fullHours = fullHours(store.hours);
+
+    {% unless block.settings.test_mode %}
+      {% assign store_name_handle = block.settings.name | handleize | replace: '-', '' %}
+      store.page_info_url = '/pages/store-{{ store_name_handle }}';
+    {% endunless %}
   {% endfor %}
 
-  window.masterStoresVisual = window.masterStores;
+  window.masterStoresVisual = JSON.parse(JSON.stringify(window.masterStores));
   window.masterStores = window.masterStores.filter(function(store) {
     return !store.test_mode;
   });
