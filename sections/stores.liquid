@@ -1,10 +1,12 @@
 <script>
+  // First, just chuck all the data into one object. We can remove or alter anything we want, but we'll start from the largest dataset, which is the easiest to produce - just the settings, in an object.
   window.masterStores = [
     {% for block in section.blocks %}
       {{ block.settings | json }}{% unless forloop.last %},{% endunless %}
     {% endfor %}
   ];
 
+  // Convert 24-hour time to human-readable am/pm time
   function hoursToAmPm(hour) {
     if (hour > 12) {
       hour -= 12;
@@ -13,6 +15,7 @@
     return hour += ':00 am';
   }
 
+  // Convert an opening and closing hour into the human-readable label.
   function hoursToDisplay(open, close) {
     if (open === close === 0) {
       return 'Closed';
@@ -21,18 +24,22 @@
     }
   }
 
+  // Convert an array of hours per day into a the HTML expected in the tooltip.
   function fullHours(weekHours) {
     var hoursOrder = [1, 2, 3, 4, 5, 6, 0];
 
+    // sort weekHours into the chronological Monday - Sunday order before using the array.
     weekHours = weekHours.sort(function(a, b) {
       return hoursOrder.indexOf(weekHours.indexOf(a)) - hoursOrder.indexOf(weekHours.indexOf(b));
     });
 
+    // the map function allows us to perform a similar action on each item in the array, such as adding a bunch of identical html.
     return weekHours.map(function(dayHours) {
       return '<li><span class="weekday">' + dayHours.day + '</span> <span class="tooltip-hours">' + dayHours.display +'</span></li>';
     }).join('');
   }
 
+  // For each block, add everything extra we need that isn't in the settings
   {% for block in section.blocks %}
     var store = window.masterStores[{{ forloop.index0 }}];
     
@@ -42,6 +49,8 @@
       var day = days[i];
       var openHours = store['hours_' + i + '_open'];
       var closeHours = store['hours_' + i + '_close'];
+
+      // each day is at its index in the week, in the array - this means we can reference Wednesday with hours[3], for instance, without having to know which one Wednesday is.
       store.hours.push({
         day: day,
         open: openHours,
@@ -52,12 +61,13 @@
     store.fullHours = fullHours(store.hours);
 
     {% unless block.settings.test_mode %}
-      {% assign store_name_handle = block.settings.name | handleize | replace: '-', '' %}
-      store.page_info_url = '/pages/store-{{ store_name_handle }}';
+      {% assign store_page_name = block.settings.name | handleize | replace: '-', '' %}
+      store.page_info_url = '/pages/store-{{ store_page_name }}';
     {% endunless %}
   {% endfor %}
 
   window.masterStoresVisual = JSON.parse(JSON.stringify(window.masterStores));
+  // the filter function allows us to set a subset of an array without looping through all the items one by one.
   window.masterStores = window.masterStores.filter(function(store) {
     return !store.test_mode;
   });
