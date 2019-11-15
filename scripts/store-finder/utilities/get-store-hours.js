@@ -24,6 +24,23 @@ for (var i = 0; i < window.masterStoresVisual.length; i++) {
 const visualStoresHours = hoursObj;
 
 const getStoreOpenClose = ({ storeId, day }) => {
+  for (var i = 0; i < window.masterStoresVisual.length; i++) {
+    var x = window.masterStoresVisual[i];
+    if (x.id === storeId) {
+      if (x.is_same_hours_weekly === false && x.tooltip_hours === true) {
+        const weekday = new Date().getDay();
+        const days = ['Sun. ', 'Mon. ', 'Tue. ', 'Wed. ', 'Thu. ', 'Fri. ', 'Sat. ', 'Sun. '];
+        for (var d = 0; d < 7; d++) {
+          const day = days[d];
+          if (weekday === d) {
+            var nameDay = day;
+          }
+        }
+      } else {
+        var nameDay = 'Open ';
+      }
+    }
+  }
   const store = visualStoresHours[storeId];
   let storeDay = null;
   if (day > 6) {
@@ -35,7 +52,8 @@ const getStoreOpenClose = ({ storeId, day }) => {
   }
   return {
     open: storeDay && storeDay[0],
-    close: storeDay && storeDay[1]
+    close: storeDay && storeDay[1],
+    nameDay: nameDay
   };
 };
 
@@ -56,7 +74,7 @@ export default storeId => {
   };
 
   if (hour >= store.today.open && hour < store.today.close) {
-    hoursOfOperation.today = `Open ${militaryToStandardTime(
+    hoursOfOperation.today = `${(store.today.nameDay)} ${militaryToStandardTime(
       store.today.open
     )}am-${militaryToStandardTime(store.today.close)}pm`;
   } else if (hour >= store.today.close && hour < 24) {
@@ -64,7 +82,7 @@ export default storeId => {
       store.tomorrow.open
     )}am-${militaryToStandardTime(store.tomorrow.close)}pm`;
   } else if (hour >= 0 && hour < store.tomorrow.open) {
-    hoursOfOperation.today = `Open ${militaryToStandardTime(
+    hoursOfOperation.today = `${(store.today.nameDay)} ${militaryToStandardTime(
       store.today.open
     )}am-${militaryToStandardTime(store.today.close)}pm`;
   }
