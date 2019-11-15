@@ -49,13 +49,18 @@
         display: hoursToDisplay(openHours, closeHours)
       });
     };
-    store.fullHoursDisplay = fullHours(store.hours);
+    store.fullHours = fullHours(store.hours);
   {% endfor %}
+
+  window.masterStoresVisual = window.masterStores;
+  window.masterStores = window.masterStores.filter(function(store) {
+    return !store.test_mode;
+  });
 
   console.log(window.masterStores);
   console.log(window.masterStoresVisual);
-  console.log(window.visualStoresHours);
 </script>
+
 {% assign master_stores_names = '' %}
 {% for block in section.blocks %}
   {% unless block.settings.test_mode == true or block.type == 'visual' %}
@@ -66,6 +71,7 @@
   {% endunless %}
 {% endfor %}
 {% assign master_stores = master_stores_names | split: '|' %}
+
 {% schema %}
   {
     "name": "Stores list",
