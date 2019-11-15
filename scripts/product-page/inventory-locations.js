@@ -166,7 +166,7 @@ function addMasterStoresData(inventoryItem) {
       console.log('weekday: ' + weekday);
 
       thisLoc.tooltip_hours = masterLoc.tooltip_hours;
-      thisLoc.fullHours = masterLoc.full_hours;
+      thisLoc.fullHours = masterLoc.fullHours;
       thisLoc.announcement = masterLoc.announcement;
 
     } else {
@@ -192,7 +192,7 @@ function addMasterStoresData(inventoryItem) {
         },
         hours: masterLoc.street2,
         tooltip_hours: masterLoc.tooltip_hours,
-        fullHours: masterLoc.full_hours,
+        fullHours: masterLoc.fullHours,
         announcement: masterLoc.announcement
       };
 
