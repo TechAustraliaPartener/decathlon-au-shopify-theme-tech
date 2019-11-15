@@ -49,9 +49,10 @@ export default storeId => {
   const day = date.weekday();
 
   const store = {
-    yesterday: getStoreOpenClose({ storeId, day: day - 1 }),
-    today: getStoreOpenClose({ storeId, day }),
-    tomorrow: getStoreOpenClose({ storeId, day: day + 1 })
+    // Hours from masterStoresVisual comes from Mon to Sun, whereas from moment it comes from Sun to Sat, so we need to remove 1 for today
+    yesterday: getStoreOpenClose({ storeId, day: day - 2 }),
+    today: getStoreOpenClose({ storeId, day: day - 1 }),
+    tomorrow: getStoreOpenClose({ storeId, day })
   };
 
   if (hour >= store.today.open && hour < store.today.close) {
