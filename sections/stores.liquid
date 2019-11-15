@@ -21,22 +21,35 @@
     }
   }
 
+  function fullHours(weekHours) {
+    var hoursOrder = [1, 2, 3, 4, 5, 6, 0];
+
+    weekHours = weekHours.sort(function(a, b) {
+      return hoursOrder.indexOf(weekHours.indexOf(a)) - hoursOrder.indexOf(weekHours.indexOf(b));
+    });
+
+    return weekHours.map(function(dayHours) {
+      return '<li><span class="weekday">' + dayHours.day + '</span> <span class="tooltip-hours">' + dayHours.display +'</span></li>';
+    }).join('');
+  }
+
   {% for block in section.blocks %}
     var store = window.masterStores[{{ forloop.index0 }}];
     
     var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-    store.hours = {};
+    store.hours = [];
     for (var i = 0; i < 7; i++) {
       var day = days[i];
       var openHours = store['hours_' + i + '_open'];
       var closeHours = store['hours_' + i + '_close'];
-      store.hours[i] = {
+      store.hours.push({
         day: day,
         open: openHours,
         close: closeHours,
         display: hoursToDisplay(openHours, closeHours)
-      };
+      });
     };
+    store.fullHoursDisplay = fullHours(store.hours);
   {% endfor %}
 
   console.log(window.masterStores);
