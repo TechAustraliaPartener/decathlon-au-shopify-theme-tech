@@ -114,11 +114,8 @@ function addMasterStoresData(inventoryItem) {
         };
       }
 
-      thisLoc.is_same_hours_weekly = masterLoc.is_same_hours_weekly;
-      
       // Check the current weekday to show Genesus store hours on product page
       var weekday = new Date().getDay();
-      console.log('weekday: ' + weekday);
       var openHour = masterLoc['hours_' + weekday + '_open'];
       var closeHour = masterLoc['hours_' + weekday + '_close'];
       if ((openHour === 0) && (closeHour === 0)) {
@@ -141,29 +138,22 @@ function addMasterStoresData(inventoryItem) {
           var closeHour = closeHour.toString() + 'am';
         }
       }
-      if (weekday === 0) {
-        var nameDay = 'Sun';
-      } else if (weekday === 1) {
-        var nameDay = 'Mon';
-      } else if (weekday === 2) {
-        var nameDay = 'Tue';
-      } else if (weekday === 3) {
-        var nameDay = 'Thu';
-      } else if (weekday === 4) {
-        var nameDay = 'Wed';
-      } else if (weekday === 5) {
-        var nameDay = 'Fri';
-      } else {
-        var nameDay = 'Sat';
+
+      // Create abbreviation for each weekday & get the abbreviation for the current day
+      var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+      for (var d = 0; d < 7; d++) {
+        var day = days[d];
+        if (weekday === d) {
+          var nameDay = day;
+        }
       }
-      if (thisLoc.is_same_hours_weekly = true) {
+
+      thisLoc.is_same_hours_weekly = masterLoc.is_same_hours_weekly;
+      if (thisLoc.is_same_hours_weekly === true) {
         thisLoc.hours = 'Open ' + openHour + '-' + closeHour;
       } else {
         thisLoc.hours = nameDay + '. ' + openHour + '-' + closeHour;
       }
-      console.log(thisLoc.is_same_hours_weekly);
-      console.log('closeHour: ' + closeHour);
-      console.log('weekday: ' + weekday);
 
       thisLoc.tooltip_hours = masterLoc.tooltip_hours;
       thisLoc.fullHours = masterLoc.fullHours;
