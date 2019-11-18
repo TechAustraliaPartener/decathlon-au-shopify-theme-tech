@@ -50,6 +50,40 @@ function addMasterStoresData(inventoryItem) {
       return obj.name === masterLoc.name;
     });
 
+    // Check the current weekday to show Genesus store hours on product page
+    var weekday = new Date().getDay();
+    var openHour = masterLoc['hours_' + weekday + '_open'];
+    var closeHour = masterLoc['hours_' + weekday + '_close'];
+    if ((openHour === 0) && (closeHour === 0)) {
+      var weekday = weekday + 1;
+      if (weekday > 6) {
+        var weekday = 0;
+      }
+      var openHour = masterLoc['hours_' + weekday + '_open'];
+      var closeHour = masterLoc['hours_' + weekday + '_close'];
+      console.log(weekday);
+    }
+    if (openHour > 12) {
+      var openHour = openHour - 12;
+      var openHour = openHour.toString() + 'pm';
+    } else {
+      var openHour = openHour.toString() + 'am';
+    }
+    if (closeHour > 12) {
+      var closeHour = closeHour - 12;
+      var closeHour = closeHour.toString() + 'pm';
+    } else {
+      var closeHour = closeHour.toString() + 'am';
+    }
+
+    // Create abbreviation for each weekday & get the abbreviation for the current day
+    var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    for (var d = 0; d < 7; d++) {
+      var day = days[d];
+      if (weekday === d) {
+        var nameDay = day;
+      }
+    }
     if (thisLoc) {
       if (thisLoc.name === 'Tempe') {
         const delivery = {
@@ -114,47 +148,12 @@ function addMasterStoresData(inventoryItem) {
         };
       }
 
-      // Check the current weekday to show Genesus store hours on product page
-      var weekday = new Date().getDay();
-      var openHour = masterLoc['hours_' + weekday + '_open'];
-      var closeHour = masterLoc['hours_' + weekday + '_close'];
-      if ((openHour === 0) && (closeHour === 0)) {
-        if (weekday === 6) {
-          var weekday = 0;
-        } else {
-          var weekday = weekday + 1;
-        }
-      } else {
-        if (openHour > 12) {
-          var openHour = openHour - 12;
-          var openHour = openHour.toString() + 'pm';
-        } else {
-          var openHour = openHour.toString() + 'am';
-        }
-        if (closeHour > 12) {
-          var closeHour = closeHour - 12;
-          var closeHour = closeHour.toString() + 'pm';
-        } else {
-          var closeHour = closeHour.toString() + 'am';
-        }
-      }
-
-      // Create abbreviation for each weekday & get the abbreviation for the current day
-      var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-      for (var d = 0; d < 7; d++) {
-        var day = days[d];
-        if (weekday === d) {
-          var nameDay = day;
-        }
-      }
-
       thisLoc.is_same_hours_weekly = masterLoc.is_same_hours_weekly;
       if (thisLoc.is_same_hours_weekly === true) {
         thisLoc.hours = 'Open ' + openHour + '-' + closeHour;
       } else {
         thisLoc.hours = nameDay + '. ' + openHour + '-' + closeHour;
       }
-
       thisLoc.street1 = masterLoc.street1;
       thisLoc.city = masterLoc.city;
       thisLoc.zip = masterLoc.zip;
@@ -176,6 +175,12 @@ function addMasterStoresData(inventoryItem) {
         };
       }
 
+      if (masterLoc.is_same_hours_weekly === true) {
+        var thisLoc_hours = 'Open ' + openHour + '-' + closeHour;
+      } else {
+        var thisLoc_hours = nameDay + '. ' + openHour + '-' + closeHour;
+      }
+
       const thisLoc = {
         name: masterLoc.name,
         title: masterLoc.title,
@@ -184,7 +189,14 @@ function addMasterStoresData(inventoryItem) {
           class: 'out',
           text: 'Out of Stock'
         },
-        hours: masterLoc.street2,
+        hours: thisLoc_hours,
+        tooltip_hours: masterLoc.tooltip_hours,
+        fullHours: masterLoc.fullHours,
+        announcement: masterLoc.announcement,
+        street1: masterLoc.street1,
+        city: masterLoc.city,
+        zip: masterLoc.zip,
+        state: masterLoc.state,
         tooltip_hours: masterLoc.tooltip_hours,
         fullHours: masterLoc.fullHours,
         announcement: masterLoc.announcement
@@ -193,6 +205,7 @@ function addMasterStoresData(inventoryItem) {
       inventoryItem.locations.push(thisLoc);
     }
   }
+
 
   inventoryItem.locations.sort((a, b) =>
     storesSort.indexOf(a.name) > storesSort.indexOf(b.name)
