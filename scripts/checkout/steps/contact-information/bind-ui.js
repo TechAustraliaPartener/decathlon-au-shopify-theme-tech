@@ -462,7 +462,7 @@ const bindUI = () => {
 
   async function fetchStoreList() {
     try {
-      const stores = await fetchStores();
+      const stores = window.masterStores;
       return stores;
     } catch (error) {
       console.error(error);
