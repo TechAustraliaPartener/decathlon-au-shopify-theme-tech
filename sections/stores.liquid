@@ -56,6 +56,12 @@
       var openHours = store['hours_' + i + '_open'];
       var closeHours = store['hours_' + i + '_close'];
 
+      // For the stores with the same hours everyday, only use Sunday hours for the whole week
+      {% if block.settings.is_same_hours_weekly == true %}
+        var openHours = store['hours_0_open'];
+        var closeHours = store['hours_0_close'];
+      {% endif %}
+
       // each day is at its index in the week, in the array - this means we can reference Wednesday with hours[3], for instance, without having to know which one Wednesday is.
       store.hours.push({
         day: day,
@@ -230,7 +236,8 @@
           {
             "type": "checkbox",
             "id": "is_same_hours_weekly",
-            "label": "Are the stores hours the same everyday?"
+            "label": "Are the stores hours the same everyday?",
+            "info": "If so, you only need to set the opening for Sunday."
           },
           {
             "type": "range",
@@ -240,7 +247,8 @@
             "step": 1,
             "unit": "h",
             "label": "Sunday store opening at",
-            "default": 9
+            "default": 9,
+            "info": "If your store has the same hours every day, the stores hours will rely only on Sunday opening hours."
           },
           {
             "type": "range",
@@ -517,7 +525,8 @@
           {
             "type": "checkbox",
             "id": "is_same_hours_weekly",
-            "label": "Are the stores hours the same everyday?"
+            "label": "Are the stores hours the same everyday?",
+            "info": "If so, you only need to set the opening for Sunday. If so, you only need to set the opening for Sunday."
           },
           {
             "type": "range",
@@ -527,7 +536,8 @@
             "step": 1,
             "unit": "h",
             "label": "Sunday store opening at",
-            "default": 9
+            "default": 9,
+            "info": "If your store has the same hours every day, the stores hours will rely only on Sunday opening hours."
           },
           {
             "type": "range",
