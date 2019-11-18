@@ -168,6 +168,20 @@ const buildStoreList = locations => {
         locs24.indexOf(location.name !== -1)
           ? 'Pickup: Ready In 24 Hours'
           : 'Pickup: Ready In 2 Hours';
+      var weekday = new Date().getDay();
+      var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+      for (var d = 0; d < 7; d++) {
+        var day = days[d];
+        if (weekday === d) {
+          var nameDay = day;
+        }
+      }
+      if (location.is_same_hours_weekly === true) {
+        var opening_display = 'Open ' + location.hours[weekday].display;
+      } else {
+        var opening_display = nameDay + '. ' + location.hours[weekday].display;
+      }
+      var opening_display = opening_display.replace(':00 ', '').replace(':00 ', '');
       locationNode.classList.add('de-u-size1of2');
       locationNode.innerHTML = `
         <div class="js-de-pickup-location de-pickup-location de-u-spaceEnds02 ${
@@ -189,11 +203,24 @@ const buildStoreList = locations => {
         }</span> ${location.street1}</p>
 
         <p class="de-pickup-location-hours de-u-textShrink2 ${ location.tooltip_hours ? 'tooltip-opener' : '' }">${
-          location.street2
+          opening_display
         }</p>
         ${ location.tooltip_hours ?
           `<div class="hours-tooltip">
-            <ul class="tooltip-content">${ location.fullHours }</ul>
+            <div class="tooltip-content">
+              <h4 v-text="location.title">${ location.title }</h4>
+              <hr/>
+              <p>
+                <strong>Address:</strong>
+                <span>${ location.street1 }</span>,
+                <span>${ location.city }</span>,
+                <span>${ location.zip }</span>,
+                <span>${ location.state }</span>
+              </p>
+              <p><strong>Trading hours</strong></p>
+              <ul class="fullhours-list">${ location.fullHours }</ul>
+              ${ location.announcement ? `<p class="tooltip-announcement">${ location.announcement }</p>` : '' }
+            </div>
           </div>`
         : '' }
       </div>`;
