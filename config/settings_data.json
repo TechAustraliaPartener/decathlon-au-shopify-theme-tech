@@ -26,10 +26,10 @@
     "logo_max_width": "450",
     "enable_meet_decathlon": false,
     "megamenu_image": "shopify:\/\/shop_images\/SIDE_NAV.png",
-    "megamenu_title": "Water Sports Smart Buys",
-    "megamenu_subtitle": "Browse Upcoming Offers",
-    "megamenu_link": "shopify:\/\/pages\/smart-buys-catalogue",
-    "megamenu_bg_colour": "#1c82c3",
+    "megamenu_title": "On Sale Now",
+    "megamenu_subtitle": "Shop Kayaks, SUP & Surf Boards",
+    "megamenu_link": "shopify:\/\/collections\/water-sports-smart-buys",
+    "megamenu_bg_colour": "#ff0000",
     "is_lookbook": false,
     "product_returns_text": "365 Days Returns",
     "product_shipping_text": "Free shipping for orders above $80",
@@ -310,27 +310,27 @@
           "1568939583060": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_3_1a603a65-ebc9-4dca-a749-278ad910adfc.png",
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_6_-min.png",
               "slide_bg_position": "60%-80px",
               "banner_intro": "",
-              "banner_title": "<br>Moorabbin Grand Opening",
-              "banner_subtitle": "<p><strong>Grand Store Opening Friday 15 November at 9 am<\/strong><\/p>",
+              "banner_title": "<br>Water Sports Smart Buys",
+              "banner_subtitle": "<p><strong>Save Up To 40% Off&nbsp;Water Sports Equipment &amp; Swimwear<\/strong><\/p>",
               "button_new_window": false,
-              "button_title": "SIGN UP FOR YOUR OPENING GIFT",
-              "button_url": "shopify:\/\/pages\/store-moorabbin"
+              "button_title": "Shop Smart Buys",
+              "button_url": "shopify:\/\/collections\/water-sports-smart-buys"
             }
           },
           "1568939548889": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_6_e5c93741-5210-4278-8833-73808b04a1ef.png",
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_8_-min.png",
               "slide_bg_position": "60%-80px",
               "banner_intro": "",
-              "banner_title": "<br>Dive Into Summer",
-              "banner_subtitle": "<p><strong>Water Sports Sale Starts Saturday 16 November<\/strong><\/p>",
+              "banner_title": "<br>Camping Smart Buys",
+              "banner_subtitle": "<p><strong>Save Up To 40% Off Tents &amp; Camping Gear<\/strong><\/p>",
               "button_new_window": false,
-              "button_title": "Browse Upcoming Offers",
-              "button_url": "shopify:\/\/pages\/smart-buys-catalogue"
+              "button_title": "Shop Smart Buys",
+              "button_url": "shopify:\/\/collections\/camping-smart-buys"
             }
           },
           "1568939563080": {
