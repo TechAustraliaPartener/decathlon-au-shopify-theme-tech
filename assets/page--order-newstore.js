@@ -52,11 +52,12 @@ var params = {
     $('.order-page--delivery-method').text(order.shipping.method)
 
     // If the order is USN, update the Return An Item link
-    if (order.number.slice(0, 3) === 'USS') {
-      $('#shopify-order-return-btn').attr('href', `https://returns.decathlon.com/start_return?ext_order_number=${order.number}&customer_id=${forJS.customerId}`)
-    } else {
-      $('#shopify-order-return-btn').attr('href', `/pages/returns`)
-    }
+    // Comment these lines for Australia, the return URL should always be https://help.decathlon.com.au/support/solutions/folders/8000083353
+    // if (order.number.slice(0, 3) === 'USS') {
+    //   $('#shopify-order-return-btn').attr('href', `https://returns.decathlon.com/start_return?ext_order_number=${order.number}&customer_id=${forJS.customerId}`)
+    // } else {
+    //   $('#shopify-order-return-btn').attr('href', `/pages/returns`)
+    // }
 
     // Update Header with Order Number
     $('.accountHeading').text('Order ' + order.number)
