@@ -51,7 +51,7 @@
   // For each block, add everything extra we need that isn't in the settings
   {% for block in section.blocks %}
     var store = window.masterStores[{{ forloop.index0 }}];
-    
+
     var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     store.hours = [];
     for (var i = 0; i < 7; i++) {
@@ -108,11 +108,12 @@
     "blocks": [
       {
         "type": "store",
-        "name": "Store",
+        "name": "Master store",
         "settings": [
           {
             "type": "header",
-            "content": "Store Infos"
+            "content": "Master store Infos",
+            "info": "Customers are able to select a master store as their favourite store and as pickup location (if the store inventory allows it)."
           },
           {
             "type": "text",
@@ -130,31 +131,32 @@
           {
             "type": "text",
             "id": "duplicate",
-            "label": "Popup store",
-            "info": "Is your store a popup store? If so, please enter the title of a main store and its inventory will be reflected for this popup location. If it's not a popup store, leave it blank."
+            "label": "Duplicate inventory from another store?",
+            "info": "If your store is a popup store, please enter the title of a main store and its inventory will be reflected for this popup location. If it's not a popup store, leave this field blank."
           },
           {
             "type": "checkbox",
             "id": "test_mode",
-            "label": "Test mode",
+            "label": "Test mode?",
             "info": "Is your store a test store? If so, your store won't appear on your website."
           },
           {
             "type": "text",
             "id": "street1",
-            "label": "Street",
-            "default": "2/50 Lonsdale St"
+            "label": "Street address",
+            "info": "Enter an adress without suburb & postcode."
           },
           {
             "type": "text",
             "id": "city",
-            "label": "City"
+            "label": "Suburb"
           },
           {
             "type": "text",
             "id": "zip",
-            "label": "Zipcode",
-            "default": "3000"
+            "label": "Postcodee",
+            "default": "3000",
+            "info": "Australian postcodes consist of four digits."
           },
           {
             "type": "select",
@@ -177,7 +179,8 @@
             "options": [
               { "value": "AU", "label": "Australia" }
             ],
-            "label": "Country"
+            "label": "Country",
+            "info": "Only Australia is available"
           },
           {
             "type": "image_picker",
@@ -203,25 +206,26 @@
             "options": [
               { "value": "Decathlon", "label": "Decathlon" }
             ],
-            "label": "Company"
+            "label": "Company",
+            "info": "Only Decathlon is available."
           },
           {
             "type": "text",
             "id": "ready",
             "label": "Promise",
-            "default": "Free delivery in 24h<br\/>We will deliver at 12 pm everyday",
-            "info": "Delivery promise to be displayed on product page and checkout."
+            "default": "Ready to collect in 2 hours",
+            "info": "Delivery promise to be displayed on product page."
           },
           {
             "type": "text",
             "id": "id",
             "label": "ID",
-            "info": "Each store ID should be unique"
+            "info": "Enter an ID for your store (eg: adr_17930001). Each store ID should be unique."
           },
           {
             "type": "header",
             "content": "Store Hours",
-            "info": "13 - 24 is equivalent to 1 - 12 PM, [9, 19] is equivalent to [9am, 7pm]"
+            "info": "9h - 19h is equivalent to 9AM - 7 PM"
           },
           {
             "type": "checkbox",
@@ -380,17 +384,19 @@
           {
             "type": "text",
             "id": "announcement",
-            "label": "Store annoucement",
-            "info": "It will be displayed at the bottom of the store hours tooltip"
+            "label": "Annoucement",
+            "info": "(Optional) This copy will be displayed at the bottom of the store hours tooltip."
           },
           {
             "type": "header",
-            "content": "Not In Use"
+            "content": "Not In Use",
+            "info": "Nothing needs to be updated in this section."
           },
           {
             "type": "checkbox",
             "id": "address_type_boolean",
             "label": "Address type",
+            "default": true,
             "info": "Tick the chekbox if your address type is destination, untick it if it's null."
           },
           {
@@ -419,7 +425,8 @@
         "settings": [
           {
             "type": "header",
-            "content": "Store Infos"
+            "content": "Visual store Infos",
+            "info": "Visual stores will only appear on the store finder page. These stores can’t be selected as favourite store or pickup location."
           },
           {
             "type": "text",
@@ -437,25 +444,26 @@
           {
             "type": "checkbox",
             "id": "test_mode",
-            "label": "Test mode",
+            "label": "Test mode?",
             "info": "Is your store a test store? If so, your store won't appear on your website."
           },
           {
             "type": "text",
             "id": "street1",
-            "label": "Street",
-            "default": "2/50 Lonsdale St"
+            "label": "Street address",
+            "info": "Enter an adress without suburb & postcode."
           },
           {
             "type": "text",
             "id": "city",
-            "label": "City"
+            "label": "Suburb"
           },
           {
             "type": "text",
             "id": "zip",
-            "label": "Zipcode",
-            "default": "3000"
+            "label": "Postcode",
+            "default": "3000",
+            "info": "Australian postcodes consist of four digits."
           },
           {
             "type": "select",
@@ -478,7 +486,8 @@
             "options": [
               { "value": "AU", "label": "Australia" }
             ],
-            "label": "Country"
+            "label": "Country",
+            "info": "Only Australia is available."
           },
           {
             "type": "select",
@@ -486,31 +495,19 @@
             "options": [
               { "value": "Decathlon", "label": "Decathlon" }
             ],
-            "label": "Company"
+            "label": "Company",
+            "info": "Only Decathlon is available."
           },
           {
             "type": "text",
             "id": "id",
             "label": "ID",
-            "info": "Each store ID should be unique"
-          },
-          {
-            "type": "text",
-            "id": "fullHours",
-            "label": "Full hours",
-            "default": "<li>Mondays to Thursdays: 6 am to 9 pm<\/li><li>Fridays: 6 am to 8 pm<\/li><li>Saturdays: 8 am to 12 pm<\/li><li>Sundays and Public Holidays: Closed<\/li>",
-            "info": "What will appear in your store hours tooltip"
-          },
-          {
-            "type": "text",
-            "id": "street2",
-            "label": "Street (second line)",
-            "default": "Open 9am-9pm"
+            "info": "Enter an ID for your store (eg: adr_17930001). Each store ID should be unique."
           },
           {
             "type": "header",
             "content": "Store Hours",
-            "info": "13 - 24 is equivalent to 1 - 12 PM, [9, 19] is equivalent to [9am, 7pm]"
+            "info": "9h - 19h is equivalent to 9AM - 7 PM"
           },
           {
             "type": "checkbox",
@@ -523,7 +520,7 @@
             "type": "checkbox",
             "id": "is_same_hours_weekly",
             "label": "Are the stores hours the same everyday?",
-            "info": "If so, you only need to set the opening for Sunday. If so, you only need to set the opening for Sunday."
+            "info": "If so, you only need to set the opening for Sunday."
           },
           {
             "type": "range",
@@ -669,17 +666,19 @@
           {
             "type": "text",
             "id": "announcement",
-            "label": "Store annoucement",
-            "info": "It will be displayed at the bottom of the store hours tooltip"
+            "label": "Annoucement",
+            "info": "(Optional) This copy will be displayed at the bottom of the store hours tooltip."
           },
           {
             "type": "header",
-            "content": "Not In Use"
+            "content": "Not In Use",
+            "info": "Nothing needs to be updated in this section."
           },
           {
             "type": "checkbox",
             "id": "address_type_boolean",
             "label": "Address type",
+            "default": true,
             "info": "Tick the chekbox if your address type is destination, untick it if it's null."
           },
           {
@@ -715,7 +714,5 @@
 
 <!-- Nice to have: 
   - if the descriptive title is blank, it should use the title.
-  - make the page info for store finder use the handle of the store, not to be hardcoded
-  - street2 & full hours will need to be either removed or refactored
   - consider the opening stores to appear only on the store finder
  -->
