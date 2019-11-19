@@ -32,11 +32,14 @@
 
   // Convert an array of hours per day into a the HTML expected in the tooltip.
   function fullHours(weekHours) {
+    var refWeekHours = weekHours.map(function(dayHours) {
+      return JSON.stringify(dayHours);
+    });
     var hoursOrder = [1, 2, 3, 4, 5, 6, 0];
 
     // sort weekHours into the chronological Monday - Sunday order before using the array.
     weekHours = weekHours.sort(function(a, b) {
-      return hoursOrder.indexOf(weekHours.indexOf(a)) - hoursOrder.indexOf(weekHours.indexOf(b));
+      return hoursOrder.indexOf(refWeekHours.indexOf(JSON.stringify(a))) - hoursOrder.indexOf(refWeekHours.indexOf(JSON.stringify(b)));
     });
 
     // the map function allows us to perform a similar action on each item in the array, such as adding a bunch of identical html.
