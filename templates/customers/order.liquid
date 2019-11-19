@@ -3,6 +3,7 @@
   {% assign account_title = 'customer.order.title' | t: name: order.name %}
   {% include 'customers--my-account-header' %}
   <img id="spinningLoad" src="{{ 'Rolling-1s-200px.gif' | asset_url }}" alt="loading indicator">
+
   <div class="grid--full">
     <!-- Order Tables Wrap -->
     <div class="grid__item">
@@ -146,6 +147,19 @@
     <p class="shopify-order-return-wrap"><a id="shopify-order-return-btn" class="btn" href={{returnLink}}>Return An Item</a></p>
   </div>
 
+  {% for line_item in order.line_items %}
+    {% assign model_code = false %}
+    {% for option in line_item.product.options %}
+      {% if option == 'Model Code' %}
+        {% assign option = 'option' | append: forloop.index %}
+      {% endif %}
+    {% endfor %}
+    {% assign model_code = line_item.variant[option] %}
+
+    {% if model_code %}
+      {% assign reviewLinkHref = "https://reviews.decathlon.com/en_AU/review/new/sform/product/" | append: {{model_code}} %}
+    {% endif %}
+  {% endfor %}
 </div>
 {{ 'account--order.css' | asset_url | stylesheet_tag }}
 <script>
@@ -168,6 +182,7 @@ var jsOrder = {
     total: {{ order.total_price }}
   }
 }
+var reviewLinkHref = `{{ reviewLinkHref }}`
 var defaultImg = `https:{{ 'default-no-img.gif' | asset_url }}`
 </script>
 {{ 'account--order.js' | asset_url | script_tag }}
