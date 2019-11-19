@@ -38,8 +38,8 @@ export const storeTile = {
                   <strong>Address:</strong>
                   <span v-text='store.street1'></span>,
                   <span v-text='store.city'></span>,
-                  <span v-text='store.zip'></span>,
-                  <span v-text='store.state'></span>
+                  <span v-text='store.state'></span>,
+                  <span v-text='store.zip'></span>
                 </p>
                 <p><strong>Trading hours</strong></p>
                 <ul class='fullhours-list' v-html='store.fullHours'></ul>

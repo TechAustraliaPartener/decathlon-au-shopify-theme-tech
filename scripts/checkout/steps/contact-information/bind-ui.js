@@ -212,10 +212,10 @@ const buildStoreList = locations => {
               <hr/>
               <p>
                 <strong>Address:</strong>
-                <span>${ location.street1 }</span>,
-                <span>${ location.city }</span>,
-                <span>${ location.zip }</span>,
-                <span>${ location.state }</span>
+                <span>${ location.street1 }</span>, 
+                <span>${ location.city }</span>, 
+                <span>${ location.state }</span>, 
+                <span>${ location.zip }</span>
               </p>
               <p><strong>Trading hours</strong></p>
               <ul class="fullhours-list">${ location.fullHours }</ul>
