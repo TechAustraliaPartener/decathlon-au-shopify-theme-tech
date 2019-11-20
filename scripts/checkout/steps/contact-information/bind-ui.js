@@ -179,7 +179,7 @@ const buildStoreList = locations => {
       if (location.is_same_hours_weekly === true) {
         var opening_display = 'Open ' + location.hours[weekday].display;
       } else {
-        var opening_display = nameDay + ': ' + location.hours[weekday].display;
+        var opening_display = nameDay + ' ' + location.hours[weekday].display;
       }
       var opening_display = opening_display.replace(':00 ', '').replace(':00 ', '');
       locationNode.classList.add('de-u-size1of2');

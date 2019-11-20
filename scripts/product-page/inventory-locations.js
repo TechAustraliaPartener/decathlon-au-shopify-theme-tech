@@ -152,7 +152,7 @@ function addMasterStoresData(inventoryItem) {
       if (thisLoc.is_same_hours_weekly === true) {
         thisLoc.hours = 'Open ' + openHour + '-' + closeHour;
       } else {
-        thisLoc.hours = nameDay + ': ' + openHour + '-' + closeHour;
+        thisLoc.hours = nameDay + ' ' + openHour + '-' + closeHour;
       }
       thisLoc.street1 = masterLoc.street1;
       thisLoc.city = masterLoc.city;
@@ -178,7 +178,7 @@ function addMasterStoresData(inventoryItem) {
       if (masterLoc.is_same_hours_weekly === true) {
         var thisLoc_hours = 'Open ' + openHour + '-' + closeHour;
       } else {
-        var thisLoc_hours = nameDay + '. ' + openHour + '-' + closeHour;
+        var thisLoc_hours = nameDay + ' ' + openHour + '-' + closeHour;
       }
 
       const thisLoc = {
