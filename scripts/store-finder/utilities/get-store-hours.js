@@ -29,7 +29,7 @@ const getStoreOpenClose = ({ storeId, day }) => {
     if (x.id === storeId) {
       if (x.is_same_hours_weekly === false && x.tooltip_hours === true) {
         const weekday = new Date().getDay();
-        const days = ['Sun. ', 'Mon. ', 'Tue. ', 'Wed. ', 'Thu. ', 'Fri. ', 'Sat. ', 'Sun. '];
+        const days = ['Sun: ', 'Mon: ', 'Tue: ', 'Wed: ', 'Thu: ', 'Fri: ', 'Sat: ', 'Sun: '];
         for (var d = 0; d < 7; d++) {
           const day = days[d];
           if (weekday === d) {

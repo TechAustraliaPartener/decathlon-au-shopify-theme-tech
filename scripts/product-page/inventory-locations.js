@@ -152,7 +152,7 @@ function addMasterStoresData(inventoryItem) {
       if (thisLoc.is_same_hours_weekly === true) {
         thisLoc.hours = 'Open ' + openHour + '-' + closeHour;
       } else {
-        thisLoc.hours = nameDay + '. ' + openHour + '-' + closeHour;
+        thisLoc.hours = nameDay + ': ' + openHour + '-' + closeHour;
       }
       thisLoc.street1 = masterLoc.street1;
       thisLoc.city = masterLoc.city;
