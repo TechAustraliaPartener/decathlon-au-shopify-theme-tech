@@ -511,3 +511,6 @@ The table of contents for this README was generated using [DocToc](https://githu
 ```
 npx doctoc --maxlevel 4 README.md
 ```
+
+## Ignore Pattern
+-*/decathlon-shopify-theme/assets/built*, -*/decathlon-shopify-theme/node_modules/*, -*/decathlon-shopify-theme/cypress/*, -*/decathlon-shopify-theme/patterns/*
