@@ -19,7 +19,20 @@
       </div>
     </div>
     <div class="de-PageWrap-logo" itemscope itemtype="http://schema.org/Organization">
-      <img src="{{ 'black_logo.svg' | file_url }}" alt="Decathlon logo"/>
+      {% if settings.logo_use_image %}
+        <a href="/" title="Decathlon">
+          {% if settings.svg_logo != blank %}
+            <img src="{{ settings.svg_logo | file_url }}" alt="Decathlon logo"/>
+          {% else %}
+            <img src="{{ settings.img_logo }}" alt="Decathlon logo"/>
+          {% endif %}
+        </a>
+      {% else %}
+        {% include 'patterns-branding-logo' with
+          titleId:'logo-title',
+          href: '/',
+          class: 'de-PageWrap-logoImage' %}
+      {% endif %}
     </div>
     <div class="de-PageWrap-wideMenuControl">
       <div class="de-MenuBar">
