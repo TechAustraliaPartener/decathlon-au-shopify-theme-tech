@@ -336,14 +336,14 @@
           "1568939563080": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_7.png",
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_8_92230fe0-bb24-454a-a70a-ce27e5d3a361.png",
               "slide_bg_position": "60%-80px",
               "banner_intro": "",
-              "banner_title": "<br>Sports Advice",
-              "banner_subtitle": "<p><strong>Discover New Stories, Articles &amp; Sports Advice.<\/strong><\/p>",
+              "banner_title": "<br>Order Now. Pick Up In 24 Hours",
+              "banner_subtitle": "<p><strong>Your First Click &amp; Collect Point In Melbourne CBD<\/strong><\/p>",
               "button_new_window": false,
-              "button_title": "Read More",
-              "button_url": "shopify:\/\/pages\/blog"
+              "button_title": "Learn More",
+              "button_url": "shopify:\/\/pages\/store-genesis"
             }
           }
         },
