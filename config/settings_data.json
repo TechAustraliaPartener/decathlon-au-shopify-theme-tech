@@ -23,12 +23,13 @@
     "color_footer_text": "#aabdb9",
     "color_footer_social_link": "#bbbbbb",
     "logo_use_image": true,
-    "logo_max_width": "450",
+    "svg_logo": "black_logo.svg",
+    "img_logo": "",
     "enable_meet_decathlon": false,
-    "megamenu_image": "shopify:\/\/shop_images\/SIDE_NAV.png",
-    "megamenu_title": "On Sale Now",
-    "megamenu_subtitle": "Shop Kayaks, SUP & Surf Boards",
-    "megamenu_link": "shopify:\/\/collections\/water-sports-smart-buys",
+    "megamenu_image": "shopify:\/\/shop_images\/SIDE_NAV_26f6d519-c9ef-43eb-9f56-0807d45f328e.png",
+    "megamenu_title": "Black Friday Sale",
+    "megamenu_subtitle": "Up to 70% Off Selected Sports Gear",
+    "megamenu_link": "shopify:\/\/collections\/black-friday-sales",
     "megamenu_bg_colour": "#ff0000",
     "is_lookbook": false,
     "product_returns_text": "365 Days Returns",
@@ -249,8 +250,7 @@
     "hide_header": false,
     "hide_footer": false,
     "checkout_header_image": "",
-    "checkout_use_storefront_logo": true,
-    "checkout_logo_image": "",
+    "checkout_logo_image": "shopify:\/\/shop_images\/black_friday.png",
     "checkout_logo_position": "left",
     "checkout_logo_size": "small",
     "checkout_body_background_image": "",
@@ -263,6 +263,8 @@
     "checkout_accent_color": "#1c82c3",
     "checkout_button_color": "#1c82c3",
     "checkout_error_color": "#ff0000",
+    "logo_max_width": "450",
+    "checkout_use_storefront_logo": true,
     "footer_trending_products": true,
     "footer_trending_products_title": "",
     "footer_trending_products_collection": "trending-products",
@@ -307,6 +309,19 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
+          "1568939563080": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_2_ac68f125-f32e-48d9-9ce5-3cf95d45a46b.png",
+              "slide_bg_position": "60%-80px",
+              "banner_intro": "",
+              "banner_title": "<br>Black Friday Sale",
+              "banner_subtitle": "<p><strong>Up To 70% Off Selected Sports Gear<\/strong><\/p>",
+              "button_new_window": false,
+              "button_title": "Shop Now",
+              "button_url": "shopify:\/\/collections\/black-friday-sales"
+            }
+          },
           "1568939583060": {
             "type": "slide",
             "settings": {
@@ -332,25 +347,12 @@
               "button_title": "Shop Smart Buys",
               "button_url": "shopify:\/\/collections\/camping-smart-buys"
             }
-          },
-          "1568939563080": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_8_92230fe0-bb24-454a-a70a-ce27e5d3a361.png",
-              "slide_bg_position": "60%-80px",
-              "banner_intro": "",
-              "banner_title": "<br>Order Now. Pick Up In 24 Hours",
-              "banner_subtitle": "<p><strong>Your First Click &amp; Collect Point In Melbourne CBD<\/strong><\/p>",
-              "button_new_window": false,
-              "button_title": "Learn More",
-              "button_url": "shopify:\/\/pages\/store-genesis"
-            }
           }
         },
         "block_order": [
+          "1568939563080",
           "1568939583060",
-          "1568939548889",
-          "1568939563080"
+          "1568939548889"
         ],
         "settings": {}
       },
@@ -417,22 +419,22 @@
               "ready": "Ready to collect in 2 hours",
               "id": "1791",
               "tooltip_hours": true,
-              "is_same_hours_weekly": true,
+              "is_same_hours_weekly": false,
               "hours_0_open": 8,
               "hours_0_close": 22,
-              "hours_1_open": 8,
+              "hours_1_open": 9,
               "hours_1_close": 22,
-              "hours_2_open": 8,
+              "hours_2_open": 9,
               "hours_2_close": 22,
-              "hours_3_open": 8,
+              "hours_3_open": 9,
               "hours_3_close": 22,
-              "hours_4_open": 8,
+              "hours_4_open": 9,
               "hours_4_close": 22,
-              "hours_5_open": 8,
+              "hours_5_open": 9,
               "hours_5_close": 22,
               "hours_6_open": 8,
               "hours_6_close": 22,
-              "announcement": "",
+              "announcement": "From next Monday, the 2nd of December,  our new opening hours will be: 9am-10pm",
               "address_type_boolean": true,
               "is_residential": false,
               "is_warehouse": false,
