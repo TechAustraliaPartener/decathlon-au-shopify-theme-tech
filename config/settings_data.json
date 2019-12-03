@@ -22,19 +22,19 @@
     "color_footer_bg": "#1f1f1f",
     "color_footer_text": "#aabdb9",
     "color_footer_social_link": "#bbbbbb",
-    "logo_use_image": true,
-    "svg_logo": "black_logo.svg",
-    "img_logo": "",
+    "logo_use_image": false,
+    "svg_logo": "small_logo.svg",
+    "img_logo": "shopify:\/\/shop_images\/logo_small_9355cf1c-7626-4ada-916d-d809a214ca37.png",
     "enable_meet_decathlon": false,
-    "megamenu_image": "shopify:\/\/shop_images\/SIDE_NAV_26f6d519-c9ef-43eb-9f56-0807d45f328e.png",
-    "megamenu_title": "Black Friday Sale",
-    "megamenu_subtitle": "Up to 70% Off Selected Sports Gear",
-    "megamenu_link": "shopify:\/\/collections\/black-friday-sales",
+    "megamenu_image": "shopify:\/\/shop_images\/SIDE_NAV_a683e39d-1a6d-47d0-b658-6b5849050185.jpg",
+    "megamenu_title": "Christmas Sale",
+    "megamenu_subtitle": "Give the gift of sport this Christmas",
+    "megamenu_link": "shopify:\/\/collections\/christmas-gift-ideas",
     "megamenu_bg_colour": "#ff0000",
     "is_lookbook": false,
-    "product_returns_text": "365 Days Returns",
+    "product_returns_text": "Allow extra 2-3 days for shipping",
     "product_shipping_text": "Free shipping for orders above $80",
-    "product_bulk_returns_text": "365 Days Returns",
+    "product_bulk_returns_text": "Allow extra 2-3 days for shipping",
     "product_bulk_shipping_text": "Check shipping rates at the checkout.",
     "footer_slider_products": true,
     "footer_slider_products_title": "",
@@ -250,7 +250,7 @@
     "hide_header": false,
     "hide_footer": false,
     "checkout_header_image": "",
-    "checkout_logo_image": "shopify:\/\/shop_images\/black_friday.png",
+    "checkout_logo_image": "shopify:\/\/shop_images\/logo_small_9355cf1c-7626-4ada-916d-d809a214ca37.png",
     "checkout_logo_position": "left",
     "checkout_logo_size": "small",
     "checkout_body_background_image": "",
@@ -305,56 +305,6 @@
         "settings": {
           "enable": true
         }
-      },
-      "1568939434006": {
-        "type": "banner-hero",
-        "blocks": {
-          "1568939563080": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_2_ac68f125-f32e-48d9-9ce5-3cf95d45a46b.png",
-              "slide_bg_position": "60%-80px",
-              "banner_intro": "",
-              "banner_title": "<br>Black Friday Sale",
-              "banner_subtitle": "<p><strong>Up To 70% Off Selected Sports Gear<\/strong><\/p>",
-              "button_new_window": false,
-              "button_title": "Shop Now",
-              "button_url": "shopify:\/\/collections\/black-friday-sales"
-            }
-          },
-          "1568939583060": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_6_-min.png",
-              "slide_bg_position": "60%-80px",
-              "banner_intro": "",
-              "banner_title": "<br>Water Sports Smart Buys",
-              "banner_subtitle": "<p><strong>Save Up To 40% Off&nbsp;Water Sports Equipment &amp; Swimwear<\/strong><\/p>",
-              "button_new_window": false,
-              "button_title": "Shop Smart Buys",
-              "button_url": "shopify:\/\/collections\/water-sports-smart-buys"
-            }
-          },
-          "1568939548889": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_8_-min.png",
-              "slide_bg_position": "60%-80px",
-              "banner_intro": "",
-              "banner_title": "<br>Camping Smart Buys",
-              "banner_subtitle": "<p><strong>Save Up To 40% Off Tents &amp; Camping Gear<\/strong><\/p>",
-              "button_new_window": false,
-              "button_title": "Shop Smart Buys",
-              "button_url": "shopify:\/\/collections\/camping-smart-buys"
-            }
-          }
-        },
-        "block_order": [
-          "1568939563080",
-          "1568939583060",
-          "1568939548889"
-        ],
-        "settings": {}
       },
       "stores": {
         "type": "stores",
@@ -613,6 +563,28 @@
           "1573522635333",
           "1573530372429",
           "1573522642714"
+        ],
+        "settings": {}
+      },
+      "1568939434006": {
+        "type": "banner-hero",
+        "blocks": {
+          "1568939563080": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/desktop_1.png",
+              "slide_bg_position": "60%-80px",
+              "banner_intro": "",
+              "banner_title": "<br>Give The Gift Of Sport",
+              "banner_subtitle": "<p><strong>Up To 50% Off Outdoors, Bikes, Scooters &amp; Water Sports<\/strong><\/p>",
+              "button_new_window": false,
+              "button_title": "Find The Perfect Gift",
+              "button_url": "shopify:\/\/collections\/christmas-gift-ideas"
+            }
+          }
+        },
+        "block_order": [
+          "1568939563080"
         ],
         "settings": {}
       }
