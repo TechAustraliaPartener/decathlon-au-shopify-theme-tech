@@ -40,8 +40,7 @@
       return a.name.length - b.name.length || sortByActive(a, b);
     }),
     "options.size": function sortSizes(a, b) {
-      var sizesSortOrder = ['ONE SIZE', '3XS', '2XS', 'XS', 'XS/S', 'S', 'S/M', 'M', 'M/L', 'L', 'L/XL', 'XL', '2XL', '3XL'];
-
+      var sizesSortOrder = ['ONE SIZE', '3XS', '2XS', 'XS', 'XS/S', 'S', 'S/M', 'M', 'M/L', 'L', 'L/XL', 'XL', 'XL/2XL', '2XL', '3XL'];
       var aName = a.name.toUpperCase();
       var bName = b.name.toUpperCase();
 
@@ -198,7 +197,7 @@
     params.attributeName = facet.name;
     params.templates = {};
     params.cssClasses = algolia.facetCssClasses;
-    if (!(facet.name === 'options.color' || facet.name === 'options.size' || facet.name === 'named_tags.COLOR_HEXA')) {
+    if (!(facet.name === 'options.color' || facet.name === 'named_tags.COLOR_HEXA')) {
       params.cssClasses = algolia.facetCssClassesExpandable;
     }
 
@@ -236,7 +235,7 @@
         }
       }
 
-      if (facet.name === 'options.color' || facet.name === 'options.size') {
+      if (facet.name === 'options.color' || facet.name === 'options.size' || facet.name === 'named_tags.COLOR_HEXA') {
         data.swatch = true;
       }
       return data;
