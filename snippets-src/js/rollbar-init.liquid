@@ -4,7 +4,11 @@ var _rollbarConfig = {
     captureUncaught: true,
     captureUnhandledRejections: true,
     payload: {
-        environment: "production"
+        environment: Shopify.theme.role === "main" ? "production" : "development",
+        {% if customer %}customer: {
+          id: {{ customer.id }},
+          name: "{{ customer.name }}",
+        }{% endif %}
     }
 };
 // Rollbar Snippet

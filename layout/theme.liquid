@@ -12,8 +12,6 @@
 <!--[if IE 9 ]><html class="ie9 no-js" lang="en"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
-  {% include 'js-rollbar-init' %}
-
   <!-- Qr redirect ================================================== -->
   {% if shop.url == 'https://www.decathlon.com' %}
     {% assign qrRedirectUrl = 'https://shopify-decathlon-proxy-p.herokuapp.com' %}
@@ -150,6 +148,7 @@
 
   <!-- Header hook for plugins ================================================== -->
   {{ content_for_header }}
+  {% include 'js-rollbar-init' %}
   {% include 'oldIE-js' %}
 
   {{ 'jquery.min.js' | asset_url | script_tag }}

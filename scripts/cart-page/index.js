@@ -4,23 +4,28 @@ import $ from 'jquery';
 import Vue from 'vue/dist/vue.esm.js';
 
 Vue.config.errorHandler = (err, vm, info) => {
-  console.log({
-    'event': 'cart_clear',
-    'cart': window.vars.cartPayload,
-    'err': err,
-    'vm': vm,
-    'info': info
+  console.log('Vue error', err);
+  Rollbar.error("Vue error", {
+    'err': err
   });
-  dataLayer.push({
-    'event': 'cart_clear',
-    'cart': window.vars.cartPayload,
-    'err': err,
-    'vm': vm,
-    'info': info
-  });
-  CartJS.clear({ success: function() {
-    window.location.reload();
-  }});
+  if (window.location.pathname === '/cart') {
+    console.log({
+      'event': 'cart_clear',
+      'cart': CartJS.cart || window.vars.cartPayload,
+      'err': err,
+      'vm': vm,
+      'info': info
+    });
+    Rollbar.error("Cart clear triggered", {
+      'cart': JSON.stringify(CartJS.cart || window.vars.cartPayload),
+      'err': err,
+      'vm': vm,
+      'info': info
+    });
+    CartJS.clear({ success: function() {
+      window.location.reload();
+    }});
+  }
 }
 
 let cartInit = false;
