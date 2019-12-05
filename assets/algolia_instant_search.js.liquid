@@ -478,7 +478,8 @@
       var $facetItems = $facet.find('.ais-facet--body .ais-facet--item > div');
       var $facetItemsHidden = $facet.find('.ais-facet--body .ais-facet--item > div:empty');
 
-      if ($facetItems.length === $facetItemsHidden.length) {
+      // Check if the facet container only has empty items and if the facet is a list of items (otherwise slider facets are always hidden)
+      if (($facetItems.length === $facetItemsHidden.length) && ($facet.hasClass('ais-refinement-list'))) {
         $facet.hide();
       }
 
