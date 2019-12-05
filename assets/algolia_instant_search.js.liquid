@@ -96,7 +96,11 @@
           if (_.keys(currentState.facetsRefinements).length === 0 &&
             _.keys(currentState.numericRefinements).length === 0 &&
             _.keys(currentState.disjunctiveFacetsRefinements).length === 0 &&
-            page == 0
+            // send ruleContexts for only the default sort order
+            currentState.index === '' + algolia.config.index_prefix + 'products'
+            // commenting the page condiion to send ruleContexts on all pages
+            // and not just the first
+            // page == 0
           ) {
             // if we are on a collection page, `collectionRulesContextValue` is defined
             if (!!collectionRulesContextValue) {
