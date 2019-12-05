@@ -104,7 +104,7 @@ algoliaShopify.config = {
         available_types: [ "conjunctive", "disjunctive", "slider" ],
         enabled: true,
         forgettable: true,
-        name: "named_tags.gender",
+        name: "named_tags.GENDER_ID",
         title: "Gender",
         type: "disjunctive"
     }, {
@@ -117,9 +117,9 @@ algoliaShopify.config = {
         available_types: [ "conjunctive", "disjunctive", "slider" ],
         enabled: true,
         forgettable: true,
-        name: "named_tags.sport",
+        name: "named_tags.SPORT_VALUE",
         title: "Sport",
-        type: "disjunctive"
+        type: "conjunctive"
     }, {
         available_types: [ "menu", "conjunctive", "disjunctive" ],
         enabled: true,
@@ -130,7 +130,7 @@ algoliaShopify.config = {
         available_types: [ "conjunctive", "disjunctive", "slider" ],
         enabled: true,
         forgettable: true,
-        name: "options.color",
+        name: "named_tags.COLOR_HEXA",
         title: "Colour",
         type: "disjunctive"
     }, {
@@ -167,7 +167,7 @@ algoliaShopify.config = {
     },
     autocomplete_enabled: true,
     autocomplete_debug: false,
-    input_selector: 'input[type="search"]',
+    input_selector: 'form[action="/search"] input[type="text"], form[action="/search"] input[type="search"]',
     products_autocomplete_hits_per_page: 4,
     collections_autocomplete_hits_per_page: 5,
     articles_autocomplete_hits_per_page: 2,
@@ -188,7 +188,7 @@ algoliaShopify.config = {
             available_types: [ "conjunctive", "disjunctive", "slider" ],
             enabled: true,
             forgettable: true,
-            name: "named_tags.gender",
+            name: "named_tags.GENDER_ID",
             title: "Gender",
             type: "disjunctive"
         }, {
@@ -201,7 +201,7 @@ algoliaShopify.config = {
             available_types: [ "conjunctive", "disjunctive", "slider" ],
             enabled: true,
             forgettable: true,
-            name: "named_tags.sport",
+            name: "named_tags.SPORT_VALUE",
             title: "Sport",
             type: "conjunctive"
         }, {
@@ -214,7 +214,7 @@ algoliaShopify.config = {
             available_types: [ "conjunctive", "disjunctive", "slider" ],
             enabled: true,
             forgettable: true,
-            name: "options.color",
+            name: "named_tags.COLOR_HEXA",
             title: "Colour",
             type: "disjunctive"
         }, {
@@ -242,12 +242,201 @@ algoliaShopify.config = {
             name: "tags",
             title: "Tags",
             type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "options.model_code",
+            title: "Model code",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.Shipping",
+            title: "Shipping",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.sport_group",
+            title: "Sport group",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.NATURE_VALUE_GS",
+            title: "NATURE VALUE GS",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.LifeStage",
+            title: "LifeStage",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.TESSERACT_ID",
+            title: "TESSERACT ID",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.TESSERACT_VALUE",
+            title: "TESSERACT VALUE",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.BRAND_VALUE",
+            title: "BRAND VALUE",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.COLOR_VALUE",
+            title: "COLOR VALUE",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.DEPARTMENT_ID",
+            title: "DEPARTMENT ID",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.DEPARTMENT_VALUE",
+            title: "DEPARTMENT VALUE",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.Family",
+            title: "Family",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.GENDER_VALUE",
+            title: "GENDER VALUE",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.GROUP_ID",
+            title: "GROUP ID",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.GROUP_VALUE",
+            title: "GROUP VALUE",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.MODEL",
+            title: "MODEL",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.NATURE_ID",
+            title: "NATURE ID",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.NATURE_VALUE",
+            title: "NATURE VALUE",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.PRACTICE_ID",
+            title: "PRACTICE ID",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.PRACTICE_VALUE",
+            title: "PRACTICE VALUE",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.SPORT_ID",
+            title: "SPORT ID",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.SUBDEPARTMENT_ID",
+            title: "SUBDEPARTMENT ID",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.SUBDEPARTMENT_VALUE",
+            title: "SUBDEPARTMENT VALUE",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.SUPER_MODEL",
+            title: "SUPER MODEL",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.gender",
+            title: "Named Tag Gender",
+            type: "disjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.sport",
+            title: "Named Tag sport",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "options.color",
+            title: "Variant Option color",
+            type: "disjunctive"
         } ],
         "95912853615": [ {
             available_types: [ "conjunctive", "disjunctive", "slider" ],
             enabled: true,
             forgettable: true,
-            name: "named_tags.gender",
+            name: "named_tags.GENDER_ID",
             title: "Gender",
             type: "disjunctive"
         }, {
@@ -260,7 +449,7 @@ algoliaShopify.config = {
             available_types: [ "conjunctive", "disjunctive", "slider" ],
             enabled: true,
             forgettable: true,
-            name: "named_tags.sport",
+            name: "named_tags.SPORT_VALUE",
             title: "Sport",
             type: "conjunctive"
         }, {
@@ -273,7 +462,7 @@ algoliaShopify.config = {
             available_types: [ "conjunctive", "disjunctive", "slider" ],
             enabled: true,
             forgettable: true,
-            name: "options.color",
+            name: "named_tags.COLOR_HEXA",
             title: "Colour",
             type: "disjunctive"
         }, {
@@ -301,6 +490,195 @@ algoliaShopify.config = {
             name: "tags",
             title: "Tags",
             type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "options.model_code",
+            title: "Model code",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.Shipping",
+            title: "Shipping",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.sport_group",
+            title: "Sport group",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.NATURE_VALUE_GS",
+            title: "NATURE VALUE GS",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.LifeStage",
+            title: "LifeStage",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.TESSERACT_ID",
+            title: "TESSERACT ID",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.TESSERACT_VALUE",
+            title: "TESSERACT VALUE",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.BRAND_VALUE",
+            title: "BRAND VALUE",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.COLOR_VALUE",
+            title: "COLOR VALUE",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.DEPARTMENT_ID",
+            title: "DEPARTMENT ID",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.DEPARTMENT_VALUE",
+            title: "DEPARTMENT VALUE",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.Family",
+            title: "Family",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.GENDER_VALUE",
+            title: "GENDER VALUE",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.GROUP_ID",
+            title: "GROUP ID",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.GROUP_VALUE",
+            title: "GROUP VALUE",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.MODEL",
+            title: "MODEL",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.NATURE_ID",
+            title: "NATURE ID",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.NATURE_VALUE",
+            title: "NATURE VALUE",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.PRACTICE_ID",
+            title: "PRACTICE ID",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.PRACTICE_VALUE",
+            title: "PRACTICE VALUE",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.SPORT_ID",
+            title: "SPORT ID",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.SUBDEPARTMENT_ID",
+            title: "SUBDEPARTMENT ID",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.SUBDEPARTMENT_VALUE",
+            title: "SUBDEPARTMENT VALUE",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.SUPER_MODEL",
+            title: "SUPER MODEL",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.gender",
+            title: "Named Tag gender",
+            type: "disjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "named_tags.sport",
+            title: "Named Tag sport",
+            type: "conjunctive"
+        }, {
+            available_types: [ "conjunctive", "disjunctive", "slider" ],
+            enabled: false,
+            forgettable: true,
+            name: "options.color",
+            title: "Named Tag color",
+            type: "disjunctive"
         } ]
     },
     collection_sort_orders: {
