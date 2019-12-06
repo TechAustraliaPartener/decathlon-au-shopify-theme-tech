@@ -4,10 +4,27 @@ import $ from 'jquery';
 import Vue from 'vue/dist/vue.esm.js';
 
 Vue.config.errorHandler = (err, vm, info) => {
+  var cart = CartJS.cart || window.vars.cartPayload;
+  var logCart = {
+    attributes: cart.attributes,
+    item_count: cart.item_count,
+    token: cart.token,
+    items: cart.items.map(item => {
+      return {
+        title: item.title,
+        handle: item.handle,
+        product_id: item.product_id,
+        variant_id: item.variant_id,
+        variant_options: item.variant_options,
+        url: item.url,
+      }
+    })
+  }
+
   console.log('Vue error', err);
   Rollbar.error("Vue error", {
     'err': err,
-    'cart': JSON.stringify(CartJS.cart || window.vars.cartPayload)
+    'cart': JSON.stringify(logCart)
   }, function(err, data) {
     if (err) {
       console.log("Error while reporting error to Rollbar: ", err);
@@ -24,7 +41,7 @@ Vue.config.errorHandler = (err, vm, info) => {
       'info': info
     });
     Rollbar.error("Cart clear triggered", {
-      'cart': JSON.stringify(CartJS.cart || window.vars.cartPayload),
+      'cart': JSON.stringify(logCart),
       'err': err,
       'vm': vm,
       'info': info
