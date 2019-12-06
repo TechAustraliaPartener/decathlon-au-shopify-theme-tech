@@ -6,7 +6,14 @@ import Vue from 'vue/dist/vue.esm.js';
 Vue.config.errorHandler = (err, vm, info) => {
   console.log('Vue error', err);
   Rollbar.error("Vue error", {
-    'err': err
+    'err': err,
+    'cart': JSON.stringify(CartJS.cart || window.vars.cartPayload)
+  }, function(err, data) {
+    if (err) {
+      console.log("Error while reporting error to Rollbar: ", err);
+    } else {
+      console.log("Error successfully reported to Rollbar. UUID:", data.result.uuid);
+    }
   });
   if (window.location.pathname === '/cart') {
     console.log({
@@ -21,10 +28,16 @@ Vue.config.errorHandler = (err, vm, info) => {
       'err': err,
       'vm': vm,
       'info': info
+    }, function(err, data) {
+      if (err) {
+        console.log("Error while reporting error to Rollbar: ", err);
+      } else {
+        console.log("Error successfully reported to Rollbar. UUID:", data.result.uuid);
+      }
+      CartJS.clear({ success: function() {
+        window.location.reload();
+      }});
     });
-    CartJS.clear({ success: function() {
-      window.location.reload();
-    }});
   }
 }
 
