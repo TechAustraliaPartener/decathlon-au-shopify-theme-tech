@@ -1,7 +1,4 @@
 <div class="ais-page">
-  <div class="ais-facets-button">
-    Show filters
-  </div>
   <div class="ais-facets">
       <div class="ais-current-refined-values-container"></div>
     [[# facets ]]
@@ -23,14 +20,19 @@
     </div>
     <div class="ais-search-header">
       <div class="ais-stats-container"></div>
-      <div class="ais-sort">
-        [[# multipleSortOrders ]]
-        [[ translations.sortBy ]] <span class="ais-sort-orders-container"></span>
-        [[/ multipleSortOrders ]]
+      <div id="ais-sort-filter">
+        <div class="ais-sort">
+          [[# multipleSortOrders ]]
+          [[ translations.sortBy ]] <span class="ais-sort-orders-container"></span>
+          [[/ multipleSortOrders ]]
 
-        [[^ multipleSortOrders ]]
-        [[ translations.sortBy ]] [[ translations.relevance ]]
-        [[/ multipleSortOrders ]]
+          [[^ multipleSortOrders ]]
+          [[ translations.sortBy ]] [[ translations.relevance ]]
+          [[/ multipleSortOrders ]]
+        </div>
+        <div class="ais-facets-button">
+          Show filters
+        </div>
       </div>
     </div>
     <div class="ais-hits-container ais-results-as-block"></div>
