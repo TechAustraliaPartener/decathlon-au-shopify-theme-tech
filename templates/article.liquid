@@ -27,11 +27,12 @@
 
   <div class="grid">
 
-    <article class="grid__item blogPost" itemscope itemtype="http://schema.org/Article">
+    <article class="grid__item blogPost">
 
       <header class="section-header text-center">
         <div class="section-header__left">
           <h1 class="blogPost-title h3">{{ article.title }}</h1>
+          {{ article.updated_at }}
           {% if article.excerpt %}
             <h2 class="blogPost-subtitle h5">{{ article.excerpt }}</h2>
           {% endif %}
@@ -47,7 +48,7 @@
 
       {%- if article.image -%}{{ article.image | img_url: '2000x' | img_tag: article.title, 'u-block' }}{%- endif -%}
 
-      <div class="u-block u-paddingTopBottom3x" itemprop="articleBody">
+      <div class="u-block u-paddingTopBottom3x">
         {% include 'hypervisual' %}
         {{ article.content }}
       </div>
@@ -330,3 +331,40 @@ $(function() {
 })
 </script>
 {% endif %}
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "{{ article.url }}",
+      "url": "{{ article.url }}"
+    },
+    "headline": "{{ article.title }}",
+    "image": [
+      "{{ article.image | img_url }}"
+     ],
+    "datePublished": "{{ article.published_at }}",
+    {% if article.updated_at %}
+      "dateModified": "{{ article.updated_at }}",
+    {% else %}
+      "dateModified": "{{ article.created_at }}",
+    {% endif %}
+    "author": {
+      "@type": "Person",
+      "name": "{{ article.author }}"
+    },
+     "publisher": {
+      "@type": "Organization",
+      "name": "{{ shop.name }}",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "{{ 'logo.png' | asset_img_url }}"
+      }
+    {% if page_description %}
+      },
+      "description": "{{ page_description }}"
+    {% endif %}
+    }
+  }
+</script>
