@@ -60,3 +60,28 @@ $(function() {
   $('.authorSelect').val(path);
 });
 </script>
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "{{ blog.url }}",
+      "url": "{{ blog.url }}"
+    },
+    "headline": "{{ blog.title }}",
+    "publisher": {
+      "@type": "Organization",
+      "name": "{{ shop.name }}",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "{{ 'logo.png' | asset_img_url }}"
+      }
+    {% if page_description %}
+      },
+      "description": "{{ page_description }}"
+    {% endif %}
+    }
+  }
+</script>
