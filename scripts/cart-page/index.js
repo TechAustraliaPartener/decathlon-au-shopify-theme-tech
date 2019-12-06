@@ -46,6 +46,22 @@ let invInit = false;
 
 const storesSort = window.masterStores.map(a => a.name);
 
+const emptyLoc = name => {
+  let empty = {
+    available: 0,
+    distance: 0,
+    id: "0",
+    inStock: 0,
+    name: name,
+    pickupOption: false  
+  };
+  return empty;
+}
+
+const emptyInventoryItem = window.masterStores.map(store => {
+  return emptyLoc(store.name);
+});
+
 function addMasterStoresData(inventoryItem, item) {
   inventoryItem.locations = inventoryItem.locations.filter(loc => {
     return storesSort.indexOf(loc.name) !== -1;
@@ -82,16 +98,7 @@ function addMasterStoresData(inventoryItem, item) {
     });
 
     if (!alreadyAdded) {
-      let emptyLoc = {
-        available: 0,
-        distance: 0,
-        id: "0",
-        inStock: 0,
-        name: masterLoc.name,
-        pickupOption: false
-      }
-
-      inventoryItem.locations.push(emptyLoc);
+      inventoryItem.locations.push(emptyLoc(masterLoc.name));
     }
   }
 }
@@ -111,6 +118,9 @@ function supplementCart(cart) {
           .inventoryItem;
       addMasterStoresData(invItem, item);
       item.locations = invItem.locations;
+    } else {
+      console.log(i, 'No locations info for ' + item.title);
+      item.locations = JSON.parse(JSON.stringify(emptyInventoryItem));
     }
   }
 
@@ -178,6 +188,10 @@ const initCartDisplay = cart => {
       },
       checkAvailability(item) {
         const app = this;
+
+        if (!item.locations) {
+          return 'out';
+        }
 
         let checkLoc = item.locations.find(obj => {
           return obj.name === 'Tempe';
@@ -264,7 +278,6 @@ const initCartDisplay = cart => {
         }
         event.preventDefault();
 
-        console.log(updateCartPayload);
         CartJS.updateItemQuantitiesById(updateCartPayload, {
           success() {
             app.$data.override = true;

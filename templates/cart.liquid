@@ -130,7 +130,7 @@
                 <td>
                   <a v-bind:href="item.url" class="h6 u-marginBottom0x" v-text="item.product_title"></a>
                   <small class="u-textUppercase u-textBold u-block" v-if="item.variant_title.indexOf('Default') < 0" v-text="item.variant_title"></small>
-                  <div v-if="item.locations.length" class="item-messages">
+                  <div v-if="item.locations && item.locations.length" class="item-messages">
                     <div v-for="location in item.locations" v-if="location.name === favStore.name || location.name === 'Tempe'" v-bind:class="[ location.inStock > 0 ? 'available' : 'unavailable' ]">
                       <p v-if="location.name === 'Tempe'" v-html="(location.inStock > 0 ? 'Available' : 'Unavailable') + ' for ' + 'delivery'"></p>
                       <p v-if="favStore.name && location.name === favStore.name" v-html="(location.inStock > 0 ? 'Available' : 'Unavailable') + ' for ' + 'click &amp; collect'"></p>
