@@ -9973,6 +9973,11 @@ html {
             }
           }
         }
+        #ais-sort-filter svg {
+          @media (min-width: 800px) {
+            display: none;
+          }
+        }
         .ais-sort-by-selector {
           border: none;
           padding-right: 0;
@@ -10468,6 +10473,9 @@ $color-out: #ff0000;
     }
     .ais-sort,
     .ais-facets-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       position: relative;
       width: 50%;
       color: $colorPrimary;
@@ -10479,6 +10487,23 @@ $color-out: #ff0000;
       line-height: 50px;
       text-transform: uppercase;
       border: none;
+      svg {
+        width: 0.8em;
+        height: 0.8em;
+        path {
+          fill: $colorPrimary;
+        }
+      }
+      .ais-sort-by-selector,
+      .ais-sort-orders-container {
+        position: absolute;
+        width: 100%;
+        height: 50px;
+        top: 0;
+        left: 0;
+        right: 0;
+        opacity: 0;
+      }
     }
     .ais-facets-button::before {
       content: '';
@@ -10489,14 +10514,6 @@ $color-out: #ff0000;
       top: 10px;
       left: -1px;
       background: $colorPrimary;
-    }
-    .ais-sort-orders-container {
-      position: absolute;
-      width: 50vw;
-      height: 50px;
-      top: 0;
-      left: 0;
-      opacity: 0;
     }
   }
 }
