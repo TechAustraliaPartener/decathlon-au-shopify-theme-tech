@@ -5,7 +5,7 @@ var _rollbarConfig = {
     captureUnhandledRejections: true,
     payload: {
         environment: Shopify.theme.role === "main" ? "production" : "development",
-        {% if customer %}customer: {
+        {% if customer %}person: {
           id: {{ customer.id }},
           name: "{{ customer.name }}",
         }{% endif %}
