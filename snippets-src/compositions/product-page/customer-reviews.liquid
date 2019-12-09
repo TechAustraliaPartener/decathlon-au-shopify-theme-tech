@@ -266,17 +266,20 @@
                         de-u-spaceBottom3
                         {% if (forloop.index > looplimit) %} de-u-hidden{% endif %}"
                 data-review-id="{{review.id}}"
-                tabindex="0">
+                tabindex="0"
+                itemprop="review" itemtype="http://schema.org/Review" itemscope>
               {% if review.note || review.title %}
                 <div class="de-CustomerReview-title">
                   {% if review.note %}
                     <div class="de-u-textGrow1 de-u-padRight06 de-u-padBottom06
-                      de-lg-padBottomNone de-u-flex de-u-flexAlignItemsCenter">
+                      de-lg-padBottomNone de-u-flex de-u-flexAlignItemsCenter" itemprop="reviewRating" itemtype="http://schema.org/Rating" itemscope>
                       <div class="de-StarRating">
                         <div class="de-StarRating-fill"
                             style="width: {{ rating_percentage }}%">
                         </div>
                       </div>
+                      <meta itemprop="ratingValue" content="{{ review.note }}" />
+                      <meta itemprop="bestRating" content="5" />
                     </div>
                   {% endif %}
                   {% if review.title %}
@@ -300,9 +303,10 @@
                 <div class="de-u-size4of6 de-u-textDarkGray">
                   {% if review.firstname || review_date %}
                     {% if review.firstname %}
-                      <div class="de-u-textMedium">
+                      <div class="de-u-textMedium" itemprop="author" itemtype="http://schema.org/Person" itemscope>
                         {{ review.firstname }}
                       </div>
+                      <meta itemprop="name" content="{{ review.firstname }}" />
                     {% endif %}
                     {% if review_date %}
                       <div class="de-u-textShrink1 de-u-textDarkGray">
