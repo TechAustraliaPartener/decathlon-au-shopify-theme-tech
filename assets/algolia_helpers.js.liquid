@@ -44,8 +44,12 @@
       if (this._distinct) {
         var min = this.variants_min_price;
         var max = this.variants_max_price;
+        var current_price = this.price;
+        var compare_at_price = this.compare_at_price;
         if (min !== max) {
           return formatPrice(min) + ' - ' + formatPrice(max);
+        } else if (current_price < compare_at_price && compare_at_price > 0) {
+          return formatPrice(current_price) + ' <del>' + formatPrice(compare_at_price) + '</del>';
         }
       }
       return formattedPriceWithComparison(this.price, null);
