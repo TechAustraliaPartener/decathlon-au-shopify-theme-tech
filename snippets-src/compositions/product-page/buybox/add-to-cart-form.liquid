@@ -55,6 +55,22 @@
       {% endcomment %}
     </span>
   </div>
+
+  <div class="visually-hidden" itemprop="offers" itemtype="http://schema.org/Offer" itemscope>
+    <link itemprop="url" href="{{ shop.url }}{{ current_variant.url }}" />
+    {%- if current_variant.available -%}
+      <meta itemprop="availability" content="https://schema.org/InStock" />
+    {%- else -%}
+      <meta itemprop="availability" content="https://schema.org/OutOfStock" />
+    {%- endif -%}
+    <meta itemprop="priceCurrency" content="{{ shop.currency }}" />
+    <meta itemprop="itemCondition" content="https://schema.org/NewCondition" />
+    <meta itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}" />
+    <meta itemprop="priceValidUntil" content="{{'now' | date: "%s" | plus : 86400 | date: "%b %d, %Y %I:%M %p -0500" | uri_encode | replace:"+","%20"}}" />
+    <div itemprop="seller" itemtype="http://schema.org/Organization" itemscope>
+      <meta itemprop="name" content="{{ product.name }}" />
+    </div>
+  </div>
   <div
     class="de-AddToCartActions de-u-spaceBottom2">
 
