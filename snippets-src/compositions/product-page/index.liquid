@@ -53,281 +53,284 @@
 <div
   id="ProductWrap"
   class="timber-activeProduct
-         {% if product.options.size < 2 %} product-singleOption{% endif %}"
-  itemscope
-  itemtype="http://schema.org/Product"
->
+         {% if product.options.size < 2 %} product-singleOption{% endif %}">
+    <div itemscope itemtype="http://schema.org/Product">
 
-  <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
-  <meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
-
-  {% comment %} Get first variant, or deep linked one {% endcomment %}
-  {% assign current_variant = product.selected_or_first_available_variant %}
-
-  <section
-    aria-labelledby="Section-buybox"
-    class="de-Wrapper
-           de-u-spaceBottom3
-           de-u-overflowXNone"
-  >
-
-    <header class="visually-hidden">
-      <h2 id="Section-buybox">
-        Product {{ 'products.options.colors' | t | capitalize }} and {{ 'products.options.sizes' | t | capitalize }}
-      </h2>
-    </header>
-
-    {% comment %} Breadcrumbs {% endcomment %}
-    <div class="de-u-hidden de-u-md-block {% unless collection %}de-u-spaceBottom{% endunless %}">
-      {% if collection %}
-        {% include 'find-top-level-collection' %}
-        {% include 'create-breadcrumbs' %}
-      {% endif %}
+    <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
+    <meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
+    <div itemprop="brand" itemtype="http://schema.org/Thing" itemscope>
+      <meta itemprop="name" content="{{ product.vendor }}" />
     </div>
 
-    <div class="de-u-lg-flex de-u-lg-flexJustifyBetween">
-      <div class="de-ProductCarousel de-ProductCarousel--large">
-        {% include 'compositions-product-page-carousel' %}
-        {% include 'compositions-product-page-gallery-controls' with display_toggle: false %}
+    {% comment %} Get first variant, or deep linked one {% endcomment %}
+    {% assign current_variant = product.selected_or_first_available_variant %}
+    <meta itemprop="sku" content="{{ current_variant.sku }}" />
+
+    <section
+      aria-labelledby="Section-buybox"
+      class="de-Wrapper
+             de-u-spaceBottom3
+             de-u-overflowXNone"
+    >
+
+      <header class="visually-hidden">
+        <h2 id="Section-buybox">
+          Product {{ 'products.options.colors' | t | capitalize }} and {{ 'products.options.sizes' | t | capitalize }}
+        </h2>
+      </header>
+
+      {% comment %} Breadcrumbs {% endcomment %}
+      <div class="de-u-hidden de-u-md-block {% unless collection %}de-u-spaceBottom{% endunless %}">
+        {% if collection %}
+          {% include 'find-top-level-collection' %}
+          {% include 'create-breadcrumbs' %}
+        {% endif %}
       </div>
-      <div class="de-ProductBuyBox">
-        {% include 'compositions-product-page-buybox' %}
+
+      <div class="de-u-lg-flex de-u-lg-flexJustifyBetween">
+        <div class="de-ProductCarousel de-ProductCarousel--large">
+          {% include 'compositions-product-page-carousel' %}
+          {% include 'compositions-product-page-gallery-controls' with display_toggle: false %}
+        </div>
+        <div class="de-ProductBuyBox">
+          {% include 'compositions-product-page-buybox' %}
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  {% comment %} ProductMenu {% endcomment %}
-  {% include 'compositions-product-page-menu' with has_context_photo: has_context_photo %}
+    {% comment %} ProductMenu {% endcomment %}
+    {% include 'compositions-product-page-menu' with has_context_photo: has_context_photo %}
 
-  {% if product_video.size > 0 %}
-  <section
-    class="de-ProductInfoSection de-ProductInfoSection--silver
-           de-u-md-pad"
-    aria-labelledby="Section-videos"
-  >
-    <span
-      id="product-videos"
-      class="de-ProductAnchor"
-      aria-hidden="true">
-    </span>
-    <header>
-      <h2
-        class="de-ProductInfoSection-title
-               de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4
-               de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
-          id="Section-videos"
+    {% if product_video.size > 0 %}
+    <section
+      class="de-ProductInfoSection de-ProductInfoSection--silver
+             de-u-md-pad"
+      aria-labelledby="Section-videos"
+    >
+      <span
+        id="product-videos"
+        class="de-ProductAnchor"
+        aria-hidden="true">
+      </span>
+      <header>
+        <h2
+          class="de-ProductInfoSection-title
+                 de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4
+                 de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
+            id="Section-videos"
+        >
+          <span class="visually-hidden">Product</span> Videos
+        </h2>
+      </header>
+      {% capture additional_videos_accordion_content %}
+        {% include 'compositions-product-page-videos' %}
+      {% endcapture %}
+      {% include 'compositions-product-page-accordion'
+        is_open: true
+        accordion_heading: "Additional Videos"
+        accordion_content: additional_videos_accordion_content
+      %}
+    </section>
+    {% endif %}
+
+    <section
+      class="de-ProductInfoSection de-u-md-pad2"
+      aria-labelledby="Section-features"
+    >
+      <span
+        id="product-features"
+        class="de-ProductAnchor"
+        aria-hidden="true">
+      </span>
+      <header>
+        <h2
+          class="de-ProductInfoSection-title
+                 de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4
+                de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
+          id="Section-features"
+        >
+          <span class="visually-hidden">Product</span> Features
+        </h2>
+      </header>
+      {% capture features_accordion_content %}
+        {% include 'compositions-product-page-features' %}
+      {% endcapture %}
+      {% include 'compositions-product-page-accordion'
+        is_open: true
+        accordion_heading: "Features"
+        accordion_content: features_accordion_content
+      %}
+    </section>
+
+    {% if has_context_photo %}
+
+      <section
+        class="de-ProductInfoSection de-ProductInfoSection--withBorderTop
+               de-u-pad2 de-u-overflowXNone"
+        aria-labelledby="Section-lifestyle-images"
       >
-        <span class="visually-hidden">Product</span> Videos
-      </h2>
-    </header>
-    {% capture additional_videos_accordion_content %}
-      {% include 'compositions-product-page-videos' %}
-    {% endcapture %}
-    {% include 'compositions-product-page-accordion'
-      is_open: true
-      accordion_heading: "Additional Videos"
-      accordion_content: additional_videos_accordion_content
-    %}
-  </section>
-  {% endif %}
-
-  <section
-    class="de-ProductInfoSection de-u-md-pad2"
-    aria-labelledby="Section-features"
-  >
-    <span
-      id="product-features"
-      class="de-ProductAnchor"
-      aria-hidden="true">
-    </span>
-    <header>
-      <h2
-        class="de-ProductInfoSection-title
-               de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4
-              de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
-        id="Section-features"
-      >
-        <span class="visually-hidden">Product</span> Features
-      </h2>
-    </header>
-    {% capture features_accordion_content %}
-      {% include 'compositions-product-page-features' %}
-    {% endcapture %}
-    {% include 'compositions-product-page-accordion'
-      is_open: true
-      accordion_heading: "Features"
-      accordion_content: features_accordion_content
-    %}
-  </section>
-
-  {% if has_context_photo %}
+        <span
+          id="product-imageGallery"
+          class="de-ProductAnchor"
+          aria-hidden="true">
+        </span>
+        <h2
+          class="de-ProductInfoSection-title
+                 de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4
+                 de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
+          id="Section-lifestyle-images"
+        >
+          <span class="visually-hidden">Product Lifestyle</span> Image Gallery
+        </h2>
+          <h2 class="de-u-textGrow2 de-u-md-hidden">
+            Image Gallery
+          </h2>
+          <div class="ProductImageGallery de-u-fullwidth de-u-padEnds2">
+            {% include 'compositions-product-page-image-gallery' %}
+          </div>
+      </section>
+    {% endif %}
 
     <section
       class="de-ProductInfoSection de-ProductInfoSection--withBorderTop
-             de-u-pad2 de-u-overflowXNone"
-      aria-labelledby="Section-lifestyle-images"
+             de-u-md-padEnds de-u-md-padSides
+             js-de-Reviews"
+      aria-labelledby="Section-reviews"
+      data-model-code="{{model_code}}"
     >
       <span
-        id="product-imageGallery"
+        id="product-reviews"
         class="de-ProductAnchor"
         aria-hidden="true">
       </span>
-      <h2
-        class="de-ProductInfoSection-title
-               de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4
-               de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
-        id="Section-lifestyle-images"
-      >
-        <span class="visually-hidden">Product Lifestyle</span> Image Gallery
-      </h2>
-        <h2 class="de-u-textGrow2 de-u-md-hidden">
-          Image Gallery
-        </h2>
-        <div class="ProductImageGallery de-u-fullwidth de-u-padEnds2">
-          {% include 'compositions-product-page-image-gallery' %}
-        </div>
-    </section>
-  {% endif %}
-
-  <section
-    class="de-ProductInfoSection de-ProductInfoSection--withBorderTop
-           de-u-md-padEnds de-u-md-padSides
-           js-de-Reviews"
-    aria-labelledby="Section-reviews"
-    data-model-code="{{model_code}}"
-  >
-    <span
-      id="product-reviews"
-      class="de-ProductAnchor"
-      aria-hidden="true">
-    </span>
-    {% capture reviews_heading %}
-      {% include 'compositions-product-page-customer-reviews-heading' %}
-    {% endcapture %}
-    {% capture reviews_accordion_content %}
-      {% comment %}
-        Reviews
-        Capture to enable inserting content into the drawer
-      {% endcomment %}
-      {% capture reviews_drawer_content %}
-        {% include 'compositions-product-page-customer-reviews' %}
+      {% capture reviews_heading %}
+        {% include 'compositions-product-page-customer-reviews-heading' %}
       {% endcapture %}
-      {% comment %}
-        Create a drawer for the captured content
-      {% endcomment %}
-      {% include 'compositions-product-page-drawer',
-        drawer_id: "reviews-drawer",
-        drawer_label: "Customer Reviews",
-        content: reviews_drawer_content,
-        heading: reviews_heading,
-        displays_in_page_flow: true %}
-    {% endcapture %}
-    {% include 'compositions-product-page-accordion'
-      is_open: true
-      accordion_heading: "Customer Reviews"
-      accordion_content: reviews_accordion_content
-    %}
-  </section>
-  {%- if product_has_size_chart -%}
-    <section class="de-ProductInfoSection de-SizeGuide
-                    de-u-md-pad"
-      aria-labelledby="Section-sizeguide"
-    >
-      <span
-        id="product-sizeGuide"
-        class="de-ProductAnchor"
-        aria-hidden="true">
-      </span>
-      {% capture size_and_fit_heading %}
-        {% include 'compositions-product-page-size-guide-heading' %}
-      {% endcapture %}
-      {% capture size_and_fit_accordion_content %}
-        {% capture size_and_fit_drawer_content %}
-          {% include 'compositions-product-page-size-guide' %}
+      {% capture reviews_accordion_content %}
+        {% comment %}
+          Reviews
+          Capture to enable inserting content into the drawer
+        {% endcomment %}
+        {% capture reviews_drawer_content %}
+          {% include 'compositions-product-page-customer-reviews' %}
         {% endcapture %}
         {% comment %}
           Create a drawer for the captured content
         {% endcomment %}
-        {% assign options_size = 'products.options.size' | t | capitalize | append: ' Guide' %}
         {% include 'compositions-product-page-drawer',
-          drawer_id: "size-guide-drawer",
-          drawer_label: options_size,
-          content: size_and_fit_drawer_content,
-          heading: size_and_fit_heading,
-          displays_in_page_flow: true
+          drawer_id: "reviews-drawer",
+          drawer_label: "Customer Reviews",
+          content: reviews_drawer_content,
+          heading: reviews_heading,
+          displays_in_page_flow: true %}
+      {% endcapture %}
+      {% include 'compositions-product-page-accordion'
+        is_open: true
+        accordion_heading: "Customer Reviews"
+        accordion_content: reviews_accordion_content
+      %}
+    </section>
+    {%- if product_has_size_chart -%}
+      <section class="de-ProductInfoSection de-SizeGuide
+                      de-u-md-pad"
+        aria-labelledby="Section-sizeguide"
+      >
+        <span
+          id="product-sizeGuide"
+          class="de-ProductAnchor"
+          aria-hidden="true">
+        </span>
+        {% capture size_and_fit_heading %}
+          {% include 'compositions-product-page-size-guide-heading' %}
+        {% endcapture %}
+        {% capture size_and_fit_accordion_content %}
+          {% capture size_and_fit_drawer_content %}
+            {% include 'compositions-product-page-size-guide' %}
+          {% endcapture %}
+          {% comment %}
+            Create a drawer for the captured content
+          {% endcomment %}
+          {% assign options_size = 'products.options.size' | t | capitalize | append: ' Guide' %}
+          {% include 'compositions-product-page-drawer',
+            drawer_id: "size-guide-drawer",
+            drawer_label: options_size,
+            content: size_and_fit_drawer_content,
+            heading: size_and_fit_heading,
+            displays_in_page_flow: true
+          %}
+        {% endcapture %}
+        {% include 'compositions-product-page-accordion'
+          is_open: false
+          accordion_heading: options_size
+          accordion_content: size_and_fit_accordion_content
         %}
+      </section>
+    {%- endif -%}
+
+    <section
+      class="de-ProductInfoSection de-ProductInfoSection--silver
+             de-u-md-pad"
+      aria-labelledby="Section-additional-info"
+    >
+      <span
+        id="product-information"
+        class="de-ProductAnchor"
+        aria-hidden="true">
+      </span>
+      <header>
+        <h2
+          class="de-ProductInfoSection-title
+                 de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4
+                 de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
+          id="Section-additional-info"
+        >
+          <span class="visually-hidden">Additional </span>Product Information
+        </h2>
+      </header>
+      {% capture product_information_accordion_content %}
+        <div class="de-u-spaceTop6">
+          {% comment %}
+            Product information wired to metafields
+          {% endcomment %}
+          {% include 'compositions-product-page-product-information' %}
+
+        </div>
       {% endcapture %}
       {% include 'compositions-product-page-accordion'
         is_open: false
-        accordion_heading: options_size
-        accordion_content: size_and_fit_accordion_content
+        accordion_heading: "Product Information"
+        accordion_content: product_information_accordion_content
       %}
     </section>
-  {%- endif -%}
 
-  <section
-    class="de-ProductInfoSection de-ProductInfoSection--silver
-           de-u-md-pad"
-    aria-labelledby="Section-additional-info"
-  >
-    <span
-      id="product-information"
-      class="de-ProductAnchor"
-      aria-hidden="true">
-    </span>
-    <header>
-      <h2
-        class="de-ProductInfoSection-title
-               de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4
-               de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
-        id="Section-additional-info"
-      >
-        <span class="visually-hidden">Additional </span>Product Information
-      </h2>
-    </header>
-    {% capture product_information_accordion_content %}
-      <div class="de-u-spaceTop6">
-        {% comment %}
-          Product information wired to metafields
-        {% endcomment %}
-        {% include 'compositions-product-page-product-information' %}
-
-      </div>
+    {% capture 'fulfillment_drawer_content' %}
+      {% include 'compositions-product-page-store-pickup' %}
     {% endcapture %}
-    {% include 'compositions-product-page-accordion'
-      is_open: false
-      accordion_heading: "Product Information"
-      accordion_content: product_information_accordion_content
+    {% include 'compositions-product-page-drawer',
+      drawer_id: "store-pickup-options-drawer",
+      drawer_label: "Store Pickup Options",
+      content: fulfillment_drawer_content,
+      displays_in_page_flow: false
     %}
-  </section>
 
-  {% capture 'fulfillment_drawer_content' %}
-    {% include 'compositions-product-page-store-pickup' %}
-  {% endcapture %}
-  {% include 'compositions-product-page-drawer',
-    drawer_id: "store-pickup-options-drawer",
-    drawer_label: "Store Pickup Options",
-    content: fulfillment_drawer_content,
-    displays_in_page_flow: false
-  %}
-
-  {% capture 'returns_policy_drawer_content' %}
-    {% include 'compositions-product-page-heavy-returns-policy' %}
-  {% endcapture %}
-  {% capture 'returns_policy_drawer_heading' %}
-    <h3 class="de-ProductInfoSection-title
-              de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4
-              de-u-spaceNone de-u-hidden de-u-md-inlineBlock">
-      Heavy products return policy
-    </h3>
-  {% endcapture %}
-  {% include 'compositions-product-page-drawer',
-    drawer_id: "returns-policy-drawer",
-    drawer_label: "Heavy product returns policy",
-    heading: returns_policy_drawer_heading,
-    content: returns_policy_drawer_content,
-    displays_in_page_flow: false
-  %}
+    {% capture 'returns_policy_drawer_content' %}
+      {% include 'compositions-product-page-heavy-returns-policy' %}
+    {% endcapture %}
+    {% capture 'returns_policy_drawer_heading' %}
+      <h3 class="de-ProductInfoSection-title
+                de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4
+                de-u-spaceNone de-u-hidden de-u-md-inlineBlock">
+        Heavy products return policy
+      </h3>
+    {% endcapture %}
+    {% include 'compositions-product-page-drawer',
+      drawer_id: "returns-policy-drawer",
+      drawer_label: "Heavy product returns policy",
+      heading: returns_policy_drawer_heading,
+      content: returns_policy_drawer_content,
+      displays_in_page_flow: false
+    %}
+  </div>
 </div>
 
 {% comment %}
