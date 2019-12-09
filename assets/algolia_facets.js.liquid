@@ -235,6 +235,8 @@
         }
       }
 
+      // Sizes remains swatches even though they don't appear like swatches anymore.
+      // Removing Sizes from swatches converted all sizes to be capitalized.
       if (facet.name === 'options.color' || facet.name === 'options.size' || facet.name === 'named_tags.COLOR_HEXA') {
         data.swatch = true;
       }
