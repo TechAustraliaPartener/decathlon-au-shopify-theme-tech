@@ -137,6 +137,14 @@ function supplementCart(cart) {
       item.locations = invItem.locations;
     } else {
       console.log(i, 'No locations info for ' + item.title);
+
+      Rollbar.warning("Empty Inventory Item assigned", {
+        'title': item.title,
+        'product_id': item.product_id,
+        'variant_id': item.variant_id,
+        'url': item.url
+      });
+
       item.locations = JSON.parse(JSON.stringify(emptyInventoryItem));
     }
   }
