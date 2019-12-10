@@ -163,11 +163,6 @@ const buildStoreList = locations => {
       console.log(location.fullHours);
       // Build card
       const locationNode = document.createElement('li');
-      var locs24 = ['Moorabbin', 'Genesis'];
-      const readyText =
-        locs24.indexOf(location.name !== -1)
-          ? 'Pickup: Ready In 24 Hours'
-          : 'Pickup: Ready In 2 Hours';
       var weekday = new Date().getDay();
       var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
       for (var d = 0; d < 7; d++) {
