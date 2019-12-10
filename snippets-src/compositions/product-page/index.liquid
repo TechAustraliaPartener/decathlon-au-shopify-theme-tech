@@ -65,6 +65,7 @@
     {% comment %} Get first variant, or deep linked one {% endcomment %}
     {% assign current_variant = product.selected_or_first_available_variant %}
     <meta itemprop="sku" content="{{ current_variant.sku }}" />
+    <meta itemprop="gtin13" content="{{ current_variant.barcode }}" />
 
     <section
       aria-labelledby="Section-buybox"
