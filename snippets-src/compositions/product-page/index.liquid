@@ -53,17 +53,18 @@
 <div
   id="ProductWrap"
   class="timber-activeProduct
-         {% if product.options.size < 2 %} product-singleOption{% endif %}">
+    {% if product.options.size < 2 %} product-singleOption{% endif %}">
+
+    {% comment %} Get first variant, or deep linked one {% endcomment %}
+    {% assign current_variant = product.selected_or_first_available_variant %}
     <div itemscope itemtype="http://schema.org/Product">
 
-    <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
-    <meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
+    <meta itemprop="url" content="{{ shop.url }}{{ current_variant.url }}">
+    <meta itemprop="image" content="{{ current_variant.image.src | img_url: 'grande' }}">
     <div itemprop="brand" itemtype="http://schema.org/Thing" itemscope>
       <meta itemprop="name" content="{{ product.vendor }}" />
     </div>
 
-    {% comment %} Get first variant, or deep linked one {% endcomment %}
-    {% assign current_variant = product.selected_or_first_available_variant %}
     <meta itemprop="sku" content="{{ current_variant.sku }}" />
     <meta itemprop="gtin13" content="{{ current_variant.barcode }}" />
 
