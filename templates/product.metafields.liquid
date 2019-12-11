@@ -1,0 +1,11 @@
+{% layout none %}
+
+{% assign metafields_joined = '' %}
+{% assign metafield_trunks = 'global|ratings|reviews' | split: '|' %}
+
+{% for trunk in metafield_trunks %}
+  <p>
+    <h3>{{ trunk }}</h3>
+    {{ product.metafields[trunk] | json }}
+  </p>
+{% endfor %}
