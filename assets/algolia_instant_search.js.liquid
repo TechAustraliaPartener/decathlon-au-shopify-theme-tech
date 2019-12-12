@@ -516,6 +516,11 @@
       }
     }
 
+    $('.ais-current-refined-values--item').each(function() {
+      var isColour = $(this).find('.ais-current-refined-values--label.Colour').length > 0;
+      $(this).toggleClass('show', !isColour);
+    });
+    
     $('.ais-show-all').unbind('click').bind('click', function() {
       var $facet = $(this).parents('.ais-facet');
       var $facetAccordion = $facet.find('.filter-accordion');
