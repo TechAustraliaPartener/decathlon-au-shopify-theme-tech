@@ -429,5 +429,8 @@
     })();
   </script>
   {% include 'js-jsonld_sitelinks_searchbox' %}
+  {%- if template contains 'collection.' -%}
+    {% include 'compositions-collection-page-jsonld' %}
+  {%- endif -%}
 </body>
 </html>
