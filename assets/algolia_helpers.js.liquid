@@ -30,7 +30,6 @@
       .replace(/'/g, '&#039;');
   }
 
-
   algolia.helpers = {
     formatNumber: function formatNumber (text, render) {
       return Number(render(text)).toLocaleString();
@@ -52,7 +51,6 @@
       return formattedPriceWithComparison(this.price, null);
     },
     priceHide: function priceHide (text, render) {
-    console.log(this.price);
       if (this.price === 0 || this.price_max === 0) {
         return 'display-none';
       }
@@ -172,8 +170,10 @@
 
       var returnName = nameParts[1];
 
-      if (result && result.name && filterMapping && filterMapping[result.name] && filterMapping[result.name][nameParts[1]]) {
-        returnName = filterMapping[result.name][nameParts[1]];
+      console.log(window.vars.filterMapping, result.name, window.vars.filterMapping[result.name], nameParts[0], nameParts[1]);
+
+      if (result && result.name && window.vars.filterMapping && window.vars.filterMapping[result.name] && window.vars.filterMapping[result.name][nameParts[1]]) {
+        returnName = window.vars.filterMapping[result.name][nameParts[1]];
       }
 
       return returnName.toLocaleString();
