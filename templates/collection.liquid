@@ -3,7 +3,6 @@
 {% include 'helpers-template-name' %}
 
 {% include 'collection-header-js' %}
-
 {% if collection.image %}
     <div class="collectionImage medium-down--hide" style="background-image:url('{{ collection.image | img_url: 'master' }}'); " data-background-image="{{ collection.image | img_url: 'master' }}">
         <div class="wrapper">
@@ -116,6 +115,7 @@
     </div>
 </div>
 
+{% include 'compositions-collection-page-jsonld' %}
 {% include 'collection-footer-js' %}
 
 <script type="module" src="{{ 'built-product-tile.js' | asset_url }}"></script>
