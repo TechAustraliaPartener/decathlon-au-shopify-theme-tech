@@ -1,8 +1,5 @@
 {% capture price %}{{ product.price | money }}{% if product.price_varies %} — {{ product.price_max | money }}{% endif %}{% endcapture %}
-<div
-  itemprop="offers"
-  itemscope
-  itemtype="http://schema.org/Offer"
+<div 
   {% if data_gtm_event  %}data-gtm-event="{{ data_gtm_event }}"{% endif %}
   {% if data_gtm_id %}data-gtm-id="{{ data_gtm_id }}"{% endif %}
   {% if data_gtm_category %}data-gtm-category="{{ data_gtm_category }}"{% endif %}
@@ -15,7 +12,6 @@
            js-de-ProductTile-price"
     content="{{ price }}"
     id="ProductPrice"
-    itemprop="price"
     aria-live="polite"
   >
     <span class="de-u-hiddenVisually">{% if product.price_varies or product.compare_at_price == blank %}{{ 'products.general.regular_price' | t }}{% else %}{{ 'products.general.sale_price' | t }}{% endif %},</span>

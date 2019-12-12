@@ -25,9 +25,6 @@
 {% comment %} Begin ProductTile pattern {% endcomment %}
 <article
   class="de-ProductTile de-u-lineHeight3 js-de-ProductTile {{ class }}"
-  itemprop="itemListElement"
-  itemscope
-  itemtype="http://schema.org/Product"
   {% comment %} TODO Remove `data-product-title` if not needed, eventually {% endcomment %}
   data-product-title="{{ product.title }}"
 >
@@ -41,7 +38,6 @@
       <img
         alt="{% include 'func-extract-alt-copy' with alt %}"
         class="de-ProductTile-showcaseImage js-de-ProductTile-featureImage"
-        itemprop="image"
         src="{% if product.first_available_variant.image %}{{ product.first_available_variant.image | img_url: 'large' }}{% else %}{{ product.featured_image | img_url: 'large' }}{% endif %}"
         data-gtm-delegate="child"
         data-gtm-event="{{ data_gtm_event }}"
@@ -72,7 +68,6 @@
         <h4
           class="de-ProductTile-title
                  de-u-textMedium de-u-textShrink1 de-u-lg-textGrow1 de-u-lineHeight2"
-          itemprop="name"
           data-gtm-event="{{ data_gtm_event }}"
           data-gtm-category="{{ data_gtm_category }}"
           data-gtm-id="Product Title | {{ product.url }}"
