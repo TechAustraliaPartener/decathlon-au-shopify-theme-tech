@@ -25,3 +25,58 @@
   ]
 }
 </script>
+
+{% for link in top_level.links %}
+  {% if link.active or link.child_active %}
+    {% assign breadcrumb2 = link %}
+  {% endif %}
+  {% if link.child_active or link.active and link.links != blank %}
+    {% for sub in link.links %}
+      {% if sub.active or sub.child_active %}
+        {% assign breadcrumb3 = sub %}
+      {% endif %}
+      {% if sub.child_active or sub.active and sub.links != blank %}
+        {% for subSub in sub.links %}
+          {% if subSub.active or subSub.child_active %}
+            {% assign breadcrumb4 = subSub %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endfor %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+    "@type": "ListItem",
+    "position": 1,
+    "name": "{{top_level.title}}",
+    "item": "{{shop.url}}/collections/{{top_level.handle}}"
+    {% if breadcrumb2 != blank %}
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "{{ breadcrumb2.title }}",
+        "item": "{{shop.url}}{{ breadcrumb2.url }}"
+    {% endif %}
+    {% if breadcrumb3 != blank %}
+      },{
+        "@type": "ListItem",
+        "position": 3,
+        "name": "{{ breadcrumb3.title }}",
+        "item": "{{shop.url}}{{ breadcrumb3.url }}"
+    {% endif %}
+    {% if breadcrumb4 != blank %}
+      },{
+        "@type": "ListItem",
+        "position": 4,
+        "name": "{{ breadcrumb4.title }}",
+        "item": "{{shop.url}}{{ breadcrumb4.url }}"
+    {% endif %}
+  }]
+}
+</script>
+
