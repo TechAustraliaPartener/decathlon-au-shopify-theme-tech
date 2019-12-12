@@ -13,9 +13,11 @@
       Be the first to leave a review
     </a>
   {% endif %}
-  <div itemprop="aggregateRating" itemtype="http://schema.org/AggregateRating" itemscope class="visually-hidden">
-    <meta itemprop="reviewCount" content="0" />
-  </div>
+  {% if template == 'product' %}
+    <div itemprop="aggregateRating" itemtype="http://schema.org/AggregateRating" itemscope class="visually-hidden">
+      <meta itemprop="reviewCount" content="0" />
+    </div>
+{% endif %}
 {% else %}
   <a
     href="#customer-reviews"
