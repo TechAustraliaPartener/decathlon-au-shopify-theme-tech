@@ -32,9 +32,9 @@
     "megamenu_link": "shopify:\/\/collections\/christmas-gift-ideas",
     "megamenu_bg_colour": "#ff0000",
     "is_lookbook": false,
-    "product_returns_text": "Allow extra 2-3 days for shipping",
+    "product_returns_text": "Order before 15 December for pre-christmas delivery",
     "product_shipping_text": "Free shipping for orders above $80",
-    "product_bulk_returns_text": "Allow extra 2-3 days for shipping",
+    "product_bulk_returns_text": "Order before 15 December for pre-christmas delivery",
     "product_bulk_shipping_text": "Check shipping rates at the checkout.",
     "footer_slider_products": true,
     "footer_slider_products_title": "",
@@ -564,7 +564,8 @@
           "1573530372429",
           "1573522642714"
         ],
-        "settings": {}
+        "settings": {
+        }
       },
       "1568939434006": {
         "type": "banner-hero",
@@ -576,7 +577,7 @@
               "slide_bg_position": "60%-80px",
               "banner_intro": "",
               "banner_title": "<br>Give The Gift Of Sport",
-              "banner_subtitle": "<p><strong>Up To 50% Off Outdoors, Bikes, Scooters &amp; Water Sports<\/strong><\/p>",
+              "banner_subtitle": "<p><strong>Order before 15 December to ensure pre-christmas delivery<\/strong><\/p>",
               "button_new_window": false,
               "button_title": "Find The Perfect Gift",
               "button_url": "shopify:\/\/collections\/christmas-gift-ideas"
@@ -586,7 +587,8 @@
         "block_order": [
           "1568939563080"
         ],
-        "settings": {}
+        "settings": {
+        }
       }
     },
     "content_for_index": [
