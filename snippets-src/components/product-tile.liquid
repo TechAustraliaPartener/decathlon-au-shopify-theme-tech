@@ -3,6 +3,14 @@
 {% assign data_gtm_event = 'customer-interaction' %}
 
 {% comment %}
+<!-- Create a list of the Collection products url for Collection Schema Markup -->
+{% endcomment %}
+{% if products_url_list == blank %}
+  {% assign products_url_list = '' %}
+{% endif%}
+{% assign products_url_list = products_url_list | append: product.url | append: " | " %}
+
+{% comment %}
 
   Product Tile
 
