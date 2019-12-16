@@ -24,9 +24,8 @@
       cart_on_load: JSON.stringify(logCart),
       {% if customer %}person: {
         id: {{ customer.id }},
-        name: "{{ customer.name }}",
-        first: "{{ customer.first_name }}",
-        last: "{{ customer.last_name }}",
+        username: "{{ customer.name }}",
+        email: "{{ customer.email }}"
       }{% endif %}
     }
   };
