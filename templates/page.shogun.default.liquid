@@ -44,10 +44,17 @@ This file can be re-written at any time.
       {% else %}
         "dateModified": "{{ page.created_at }}",
       {% endif %}
-      "author": {
-        "@type": "Person",
-        "name": "{{ page.author }}"
-      },
+      {% unless page.author == 'Shopify API' %}
+        "author": {
+          "@type": "Person",
+          "name": "{{ page.author }}"
+        },
+      {% else %}
+        "author": {
+          "@type": "Organization",
+          "name": "{{ shop.name }}"
+        },
+      {% endunless %}
        "publisher": {
         "@type": "Organization",
         "name": "{{ shop.name }}",

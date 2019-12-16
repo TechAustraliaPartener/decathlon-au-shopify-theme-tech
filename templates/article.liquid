@@ -350,10 +350,17 @@ $(function() {
     {% else %}
       "dateModified": "{{ article.created_at }}",
     {% endif %}
-    "author": {
-      "@type": "Person",
-      "name": "{{ article.author }}"
-    },
+    {% unless article.author == 'Shopify API' %}
+      "author": {
+        "@type": "Person",
+        "name": "{{ article.author }}"
+      },
+    {% else %}
+      "author": {
+        "@type": "Organization",
+        "name": "{{ shop.name }}"
+      },
+    {% endunless %}
      "publisher": {
       "@type": "Organization",
       "name": "{{ shop.name }}",
