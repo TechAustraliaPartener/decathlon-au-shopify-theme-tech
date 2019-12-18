@@ -11,12 +11,61 @@
     apiKey: algolia.config.search_api_key
   })
 
+  // Track CTR for products
   algolia.clickTracker = function (e) {
-    window.aa('click', {
+    // Get the data from the product that was clicked
+    const data = {
       objectID: e.currentTarget.getAttribute('data-algolia-objectid'),
       position: parseInt(e.currentTarget.getAttribute('data-algolia-position')),
       queryID: e.currentTarget.getAttribute('data-algolia-queryid')
-    })
+    };
+
+    // Track the CTR for that product
+    window.aa('click', data);
+
+    // Try to save the details in local storage for conversion tracking.
+    // We're using a try, catch here to handle any possible exceptions
+    // resulting from local storage or JSON parsing.
+    try {
+      // Get any data previously stored
+      const previousClickItemsString = localStorage.getItem('algolia_analytics_clicked_objects') || '[]';
+      const previousClickItems = JSON.parse(previousClickItemsString);
+
+      // Add the current products data to local storage
+      previousClickItems.push(data)
+      localStorage.setItem('algolia_analytics_clicked_objects', JSON.stringify(previousClickItems))
+    } catch (error) {
+      // No need to do anything in this scenario
+    }
   }
 
+  // Track conversion rates for products
+  window.algolia_conversionTracker = algolia.conversionTracker = function () {
+    // Try to get the details from local storage for conversion tracking.
+    // We're using a try, catch here to handle any possible exceptions
+    // resulting from local storage or JSON parsing.
+    try {
+      // Get any data previously stored
+      const previousClickItemsString = localStorage.getItem('algolia_analytics_clicked_objects');
+
+      // If data was found, track conversion on all those products
+      if (!!previousClickItemsString) {
+        const previousClickItems = JSON.parse(previousClickItemsString);
+        previousClickItems.forEach(data => {
+          if (!!data.objectID && !!data.queryID) {
+            window.aa('conversion', { objectID: data.objectID, queryID: data.queryID });
+          }
+        })
+      }
+    } catch (error) {
+      // No need to do anything in this scenario
+    }
+
+    // Try to remove the items from local storage.
+    try {
+      localStorage.removeItem('algolia_analytics_clicked_objects');
+    } catch (error) {
+      // No need to do anything in this scenario
+    }
+  }
 }(algoliaShopify));
