@@ -16,9 +16,9 @@
   };
 
   var _rollbarConfig = {
-    accessToken: "11a9e256ef89479781c33878953b53fa",
-    captureUncaught: {% if template.name == 'product' or template.name == 'cart' %}true{% else %}false{% endif %},
-    captureUnhandledRejections: {% if template.name == 'product' or template.name == 'cart' %}true{% else %}false{% endif %},
+    accessToken: "b8e9db66c32a47d8bbddf9b130702ad5",
+    captureUncaught: false,
+    captureUnhandledRejections: false,
     payload: {
       environment: Shopify.theme.role === "main" ? "production" : "development",
       cart_on_load: JSON.stringify(logCart),
