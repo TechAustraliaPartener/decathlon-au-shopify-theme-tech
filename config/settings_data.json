@@ -326,6 +326,7 @@
               "phone_number": "(02) 9157 5799",
               "company": "Decathlon",
               "ready": "Ready to collect in 2 hours",
+              "ready_checkout": "Pickup: Ready in 2 Hours",
               "id": "1789",
               "tooltip_hours": true,
               "is_same_hours_weekly": true,
@@ -367,6 +368,7 @@
               "phone_number": "(02) 9157 5799",
               "company": "Decathlon",
               "ready": "Ready to collect in 2 hours",
+              "ready_checkout": "Pickup: Ready in 2 Hours",
               "id": "1791",
               "tooltip_hours": true,
               "is_same_hours_weekly": false,
@@ -408,6 +410,7 @@
               "phone_number": "(02) 9157 5799",
               "company": "Decathlon",
               "ready": "Ready to collect in 2 hours",
+              "ready_checkout": "Pickup: Ready in 2 Hours",
               "id": "1793",
               "tooltip_hours": true,
               "is_same_hours_weekly": true,
@@ -449,6 +452,7 @@
               "phone_number": "(02) 9157 5799",
               "company": "Decathlon",
               "ready": "Ready to collect in 2 hours",
+              "ready_checkout": "Pickup: Ready in 2 Hours",
               "id": "1792",
               "tooltip_hours": true,
               "is_same_hours_weekly": true,
@@ -490,6 +494,7 @@
               "phone_number": "(02) 9157 5799",
               "company": "Decathlon",
               "ready": "Ready to collect in 2 hours",
+              "ready_checkout": "Pickup: Ready in 2 Hours",
               "id": "1790",
               "tooltip_hours": true,
               "is_same_hours_weekly": true,
@@ -531,6 +536,7 @@
               "phone_number": "(02) 9157 5799",
               "company": "Decathlon",
               "ready": "Ready to collect in 24 hours",
+              "ready_checkout": "Pickup: Ready in 2 Hours",
               "id": "1792-0002",
               "tooltip_hours": true,
               "is_same_hours_weekly": false,
@@ -564,8 +570,7 @@
           "1573530372429",
           "1573522642714"
         ],
-        "settings": {
-        }
+        "settings": {}
       },
       "1568939434006": {
         "type": "banner-hero",
@@ -577,7 +582,7 @@
               "slide_bg_position": "60%-80px",
               "banner_intro": "",
               "banner_title": "<br>Give The Gift Of Sport",
-              "banner_subtitle": "<p><strong>Order before 15 December to ensure pre-christmas delivery<\/strong><\/p>",
+              "banner_subtitle": "<p><strong>Order Now, Collect In Stores In 2 Hours&nbsp;<\/strong><\/p>",
               "button_new_window": false,
               "button_title": "Find The Perfect Gift",
               "button_url": "shopify:\/\/collections\/christmas-gift-ideas"
@@ -587,8 +592,7 @@
         "block_order": [
           "1568939563080"
         ],
-        "settings": {
-        }
+        "settings": {}
       }
     },
     "content_for_index": [
