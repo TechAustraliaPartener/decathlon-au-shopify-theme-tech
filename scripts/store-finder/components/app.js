@@ -178,7 +178,9 @@ export const app = {
     async fetchStoreList() {
       try {
         const stores = await fetchStores();
-        this.stores = stores.map(store => ({
+        this.stores = stores.filter(function(store) {
+          return !store.test_mode;
+        }).map(store => ({
           ...store,
           distance: '',
           distanceInt: ''
