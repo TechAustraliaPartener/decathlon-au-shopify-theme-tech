@@ -1,3 +1,5 @@
+{% include 'shogun-products', content: collection %}
+{{collection.metafields.shogun.above}}
 {% include 'helpers-template-name' %}
 
 <script>var collectionViewMulti = true;</script>
@@ -255,3 +257,7 @@ $( window ).load(function() {
 
 <script type="module" src="{{ 'built-product-tile.js' | asset_url }}"></script>
 <script defer nomodule src="{{ 'built-product-tile-legacy.js' | asset_url }}"></script>
+
+
+{{collection.metafields.shogun.below}}
+
