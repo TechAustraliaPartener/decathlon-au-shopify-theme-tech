@@ -52,8 +52,8 @@ function addMasterStoresData(inventoryItem) {
 
     // Check the current weekday to show Genesus store hours on product page
     var weekday = new Date().getDay();
-    var openHour = masterLoc['hours_' + weekday + '_open'];
-    var closeHour = masterLoc['hours_' + weekday + '_close'];
+    var openHour = masterLoc['hours_' + (masterLoc.is_same_hours_weekly ? 0 : weekday) + '_open'];
+    var closeHour = masterLoc['hours_' + (masterLoc.is_same_hours_weekly ? 0 : weekday) + '_close'];
     if ((openHour === 0) && (closeHour === 0)) {
       var weekday = weekday + 1;
       if (weekday > 6) {
