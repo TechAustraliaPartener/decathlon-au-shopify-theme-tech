@@ -1,3 +1,3 @@
 [submodule "patterns"]
 	path = patterns
-	url = git@github.com:decathlon-usa/decathlonusa-patterns.git
+	url = https://gitlab.com/createurs/decathlon-shopify-theme-patterns.git
