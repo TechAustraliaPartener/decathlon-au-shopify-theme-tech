@@ -76,6 +76,8 @@
           helper.setQueryParameter('distinct', true);
         }
 
+        $('.ais-page').addClass('ais-page--loaded');
+
         ////////////////////////////
         // Collection page features
         ////////////////////////////
@@ -184,51 +186,83 @@
     // Mobile facets display
     instant.search.addWidget({
       init: function (opts) {
+
         var $button = $('.ais-facets-button');
         var $buttonDone = $('.ais-facets__done-button');
-
-        function closeDrawer() {
-          var $facets = $('.ais-facets');
-
-          if ($facets.hasClass('ais-facets__shown')) {
-            $('html').css('overflow', 'visible');
-            $('.template-collection').removeClass('hideContent');
-            $button.text('Show filters');
-            $button.appendTo('#ais-sort-filter');
-            $facets.removeClass('ais-facets__shown');
-            
-            // Start: Customisations
-            $('body').removeClass('ais-drawer-open');
-            $button.css('left', '0');
-            $button.removeClass('position-x');
-            // End: Customisations
-          } else {
-            $('html').css('overflow', 'hidden');
-            $('.template-collection').addClass('hideContent');
-            // $button.text('Hide Filters');
-            $facets.addClass('ais-facets__shown');
-            $button.appendTo('.ais-facets__shown');
-
-            // Start: Customisations
-            $('body').addClass('ais-drawer-open');
-            $button.css('left', '500px');
-            setTimeout(function() {
-              $button.addClass('position-x');
-              $button.css('left', '35px');
-            }, 1);
-            $button.text('Close');
-            // End: Customisations
+        $(document).ready(function() {
+          if($('.ais-page').hasClass('ais-page--loaded')) {
+            $button.css('color', '#1c82c3');
           }
-        }
-
-        $button.on('click', function () {
-          closeDrawer();
         });
-
-        // Additional event listener for 'Done' button
-        $buttonDone.on('click', function () {
-          closeDrawer();
-        });
+      
+          function toggleDrawer() {
+            var $facets = $('.ais-facets');
+  
+            if($('.ais-page').hasClass('ais-page--loaded')) {
+              
+              if ($facets.hasClass('ais-facets__shown')) {
+                $('html').css('overflow', 'visible');
+                $('.template-collection').removeClass('hideContent');
+                $button.text('Show filters');
+                $button.appendTo('#ais-sort-filter');
+                $facets.removeClass('ais-facets__shown');
+                
+                // Start: Customisations
+                $('body').removeClass('ais-drawer-open');
+                $button.css('left', '0');
+                $button.removeClass('position-x');
+                // End: Customisations
+              } else {
+                $('html').css('overflow', 'hidden');
+                $('.template-collection').addClass('hideContent');
+                /* $button.text('Hide Filters'); */
+                $facets.addClass('ais-facets__shown');
+                $button.appendTo('.ais-facets__shown');
+    
+                // Start: Customisations
+                if($('.ais-facet__expand').length == 0 && $(window).width() < 750) {
+                  $('.ais-facets__group')
+                    .append('<div class="ais-facet__expand"></div>')
+                    .find('.ais-header').on('click', function(evt) {
+                      var $facetGroup = $(evt.currentTarget).closest('.ais-facets__group');
+    
+                      if($facetGroup.hasClass('expanded')) {
+                        $facetGroup.removeClass('expanded');
+    
+                        var $body = $facetGroup.find('.ais-facet--body');
+                        $body.removeClass('expanded');
+                      
+                        $body.css('max-height', '0');
+                      } else {
+                        $facetGroup.addClass('expanded');
+    
+                        var $body = $facetGroup.find('.ais-facet--body');
+                        $body.addClass('expanded');
+                      
+                        $body.css('max-height', '1000px');
+                      }
+                    });
+                }
+                $('body').addClass('ais-drawer-open');
+                $button.css('left', '500px');
+                setTimeout(function() {
+                  $button.addClass('position-x');
+                  $button.css('left', '35px');
+                }, 1);
+                $button.text('Close');
+                // End: Customisations
+              }
+            }
+          }
+  
+          $button.on('click', function () {
+            toggleDrawer();
+          });
+  
+          // Additional event listener for 'Done' button
+          $buttonDone.on('click', function () {
+            toggleDrawer();
+          });
       }
     });
 
@@ -471,13 +505,16 @@
         });
 
         // 'Clear All' button clears filters
-        $('.ais-page').on('click', '.ais-facets__clear-all-button', function () {
+        $('.ais-page').on('click', '.ais-facets__clear-all-button', function (evt) {
           var helper = opts.helper;
           helper.clearTags();
           _.forEach(instant.facets.list, function (facet) {
             helper.clearRefinements(facet.name);
           });
           helper.search();
+
+          $(evt.currentTarget).closest('.ais-facets').find('.ais-facets__group, .ais-facets__group .ais-body').removeClass('expanded');
+
         });
 
         $('.ais-hits-container').on('click', '.ais-hit-empty--clear-input', function () {

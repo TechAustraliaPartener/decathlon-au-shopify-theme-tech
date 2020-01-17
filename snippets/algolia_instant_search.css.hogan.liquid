@@ -210,7 +210,6 @@
     color: #1e1e1e !important;
     border: none !important;
     border-bottom: 1px solid #d0d3d5 !important;
-}
   }
   .ais-facets__buttons {
     display: flex;
@@ -231,6 +230,62 @@
   .ais-facets__done-button {
     background-color: #0671B5;
     color: white;
+  }
+  .ais-show-all, .ais-current-refined-values--clear-all {
+    display: none !important;
+  }
+  .ais-page #ais-sort-filter.sticky-active .ais-facets-button {
+    color: #d8d8d8;
+  }
+  .template-search .ais-page .ais-facet--header {
+    border-bottom: none;
+    border-top: solid 1px #e5e5e5 !important;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    cursor: pointer;
+  }
+  .ais-facets__group {
+    position: relative;
+  }
+  .ais-facets__group .ais-refinement-list--list {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s;
+  }
+  .ais-facets__group.expanded .ais-refinement-list--list {
+    max-height: 1000px;
+  }
+  .ais-facet__expand {
+    position: absolute;
+    top: 6px;
+    right: 35px;
+  }
+  .ais-facet__expand:before {
+    position: absolute;
+    display: block;
+    top: 0;
+    right: 0;
+    font-size: 34px;
+    content: "\002B";
+    height: 14px;
+    width: 14px;
+    color: black;
+  }
+  .ais-facets__group.expanded .ais-facet__expand:before {
+    content: "\2212";
+  }
+  .ais-page .ais-facets__group .ais-facet--body {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    max-height: 0;
+    transition: max-height 0.5s, padding-top: 0.5s, padding-bottom: 0.5s;
+  }
+  .ais-page .ais-facets__group.expanded .ais-facet--body {
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+  }
+  .ais-page .ais-facets__group .ais-facet {
+    margin-bottom: 0;
   }
 }
 /* End: Drawer Customisations */
