@@ -185,7 +185,9 @@
     instant.search.addWidget({
       init: function (opts) {
         var $button = $('.ais-facets-button');
-        $button.on('click', function () {
+        var $buttonDone = $('.ais-facets__done-button');
+
+        function closeDrawer() {
           var $facets = $('.ais-facets');
 
           if ($facets.hasClass('ais-facets__shown')) {
@@ -194,13 +196,38 @@
             $button.text('Show filters');
             $button.appendTo('#ais-sort-filter');
             $facets.removeClass('ais-facets__shown');
+            
+            // Start: Customisations
+            $('body').removeClass('ais-drawer-open');
+            $button.css('left', '0');
+            $button.removeClass('position-x');
+            // End: Customisations
           } else {
             $('html').css('overflow', 'hidden');
             $('.template-collection').addClass('hideContent');
-            $button.text('Hide filters');
+            // $button.text('Hide Filters');
             $facets.addClass('ais-facets__shown');
             $button.appendTo('.ais-facets__shown');
+
+            // Start: Customisations
+            $('body').addClass('ais-drawer-open');
+            $button.css('left', '500px');
+            setTimeout(function() {
+              $button.addClass('position-x');
+              $button.css('left', '35px');
+            }, 1);
+            $button.text('Close');
+            // End: Customisations
           }
+        }
+
+        $button.on('click', function () {
+          closeDrawer();
+        });
+
+        // Additional event listener for 'Done' button
+        $buttonDone.on('click', function () {
+          closeDrawer();
         });
       }
     });
@@ -435,6 +462,16 @@
     instant.search.addWidget({
       init: function (opts) {
         $('.ais-hits-container').on('click', '.ais-hit-empty--clear-filters', function () {
+          var helper = opts.helper;
+          helper.clearTags();
+          _.forEach(instant.facets.list, function (facet) {
+            helper.clearRefinements(facet.name);
+          });
+          helper.search();
+        });
+
+        // 'Clear All' button clears filters
+        $('.ais-page').on('click', '.ais-facets__clear-all-button', function () {
           var helper = opts.helper;
           helper.clearTags();
           _.forEach(instant.facets.list, function (facet) {
