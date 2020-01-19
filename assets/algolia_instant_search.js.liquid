@@ -216,7 +216,7 @@
                 if($('.ais-facet__expand').length == 0 && $(window).width() < 750) {
                   $('.ais-facets__group')
                     .append('<div class="ais-facet__expand"></div>')
-                    .find('.ais-header').on('click', function(evt) {
+                    .find('.ais-header, .ais-facet__expand').on('click', function(evt) {
                       var $facetGroup = $(evt.currentTarget).closest('.ais-facets__group');
     
                       if($facetGroup.hasClass('expanded')) {
@@ -232,7 +232,7 @@
                         var $body = $facetGroup.find('.ais-facet--body');
                         $body.addClass('expanded');
                       
-                        $body.css('max-height', '1000px');
+                        $body.css('max-height', '10000px');
                       }
                     });
                 }
