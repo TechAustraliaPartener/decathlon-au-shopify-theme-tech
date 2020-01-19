@@ -76,8 +76,6 @@
           helper.setQueryParameter('distinct', true);
         }
 
-        $('.ais-page').addClass('ais-page--loaded');
-
         ////////////////////////////
         // Collection page features
         ////////////////////////////
@@ -189,11 +187,6 @@
 
         var $button = $('.ais-facets-button');
         var $buttonDone = $('.ais-facets__done-button');
-        $(document).ready(function() {
-          if($('.ais-page').hasClass('ais-page--loaded')) {
-            $button.css('color', '#1c82c3');
-          }
-        });
       
           function toggleDrawer() {
             var $facets = $('.ais-facets');
@@ -546,6 +539,9 @@
     } else {
       $('.ais-pagination').show();
     }
+
+    $('.ais-page').addClass('ais-page--loaded');
+    $('.ais-facets-button').css('color', '#1c82c3');
 
     var showFacetLimit = 5;
 
