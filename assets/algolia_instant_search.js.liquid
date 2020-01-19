@@ -256,6 +256,13 @@
           $buttonDone.on('click', function () {
             toggleDrawer();
           });
+
+          // Close drawer if user clicks outside of it
+          $('body').click(function (event) {
+            if($('.ais-facets').hasClass('ais-facets__shown') && !$(event.target).closest('.ais-facets').length && !$(event.target).is('.ais-facets')) {
+              toggleDrawer();
+            }     
+          });
       }
     });
 
