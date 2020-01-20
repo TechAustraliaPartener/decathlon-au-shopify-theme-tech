@@ -202,6 +202,8 @@
                 
                 // Start: Customisations
                 $('body').removeClass('ais-drawer-open');
+                $('.ais-facets-button--placeholder').remove();
+
                 $button.css('left', '0');
                 $button.removeClass('position-x');
                 // End: Customisations
@@ -211,6 +213,7 @@
                 /* $button.text('Hide Filters'); */
                 $facets.addClass('ais-facets__shown');
                 $button.appendTo('.ais-facets__shown');
+                $('#ais-sort-filter').append('<div class="ais-facets-button--placeholder"></div>');
     
                 // Start: Customisations
                 if($('.ais-facet__expand').length == 0 && $(window).width() < 750) {
@@ -556,6 +559,7 @@
 
     $('.ais-page').addClass('ais-page--loaded');
     $('.ais-facets-button').css('color', '#1c82c3');
+    $('.ais-facets').removeClass('ais-facets--loading');
 
     var showFacetLimit = 5;
 
