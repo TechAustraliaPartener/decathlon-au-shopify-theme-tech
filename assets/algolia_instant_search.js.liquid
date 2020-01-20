@@ -361,6 +361,12 @@
           indices: instant.sortOrders
         })
       );
+      instant.search.addWidget(
+        instantsearch.widgets.sortBySelector({
+          container: '.ais-sort-orders-container--drawer',
+          indices: instant.sortOrders
+        })
+      );
     }
 
     // Change display

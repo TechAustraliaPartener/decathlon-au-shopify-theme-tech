@@ -90,7 +90,7 @@
 
 /* Start: Drawer Customisations */
 @media screen and (min-width: 750px) {
-  .ais-facets__buttons {
+  .ais-facets__buttons, .ais-facets__group--sort {
     display: none !important;
   }
 }
@@ -295,6 +295,30 @@
   }
   .ais-facet__expand { pointer-events: none; }
   .ais-facet__expand::before { pointer-events: all; }
+
+  .ais-facets__group .ais-sort-orders-container--drawer {
+    width: 100%;
+    display: block;
+  }
+  .ais-facets__group .ais-sort-orders-container--drawer select {
+    width: 100%;
+    height: 3em;
+    border: 1px solid #0671B5;
+    margin-top: 0;
+    font-size: 16px;
+  }
+  .ais-facets__group.expanded .ais-sort-orders-container--drawer + svg {
+    width: 0.8em;
+    height: 0.8em;
+    fill: #0671B5;
+    position: absolute;
+    bottom: 23px;
+    right: 36px;
+    pointer-events: none;
+  }
+  .ais-facets__group.expanded .ais-sort-orders-container--drawer + svg path {
+    fill: #0671B5;
+  }
 }
 /* End: Drawer Customisations */
 
