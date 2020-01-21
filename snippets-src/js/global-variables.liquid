@@ -38,3 +38,21 @@
 {% include 'js-algolia-custom-widgets' %}
 
 {% include 'js-filter-mapping' %}
+
+<script>
+  window.vars.subBrandLogos = {};
+  {% for item in linklists.sub-brands.links %}
+
+    {% assign brand_logo_prefix = 'assets-logos-brands-' %}
+    {% assign brand_logo_name = item.url | remove: "#" %}
+    {% assign brand_logo_filename = brand_logo_prefix | append: brand_logo_name %}
+
+    window.vars.subBrandLogos['{{ brand_logo_name }}'] = `{% include brand_logo_filename, 
+          class: 'de-u-spaceTop04 de-subBrandLogo', 
+          data_gtm_category: 'Tiles',
+          data_gtm_event: 'customer-interaction',
+          data_gtm_actions: 'click',
+          data_gtm_delegate: 'child' %}`;
+
+  {% endfor %}
+</script>
