@@ -40,7 +40,7 @@
       return a.name.length - b.name.length || sortByActive(a, b);
     }),
     "options.size": function sortSizes(a, b) {
-      var sizesSortOrder = ['ONE SIZE', '3XS', '2XS', 'XS', 'XS/S', 'S', 'S/M', 'M', 'M/L', 'L', 'L/XL', 'XL', 'XL/2XL', '2XL', '3XL'];
+      var sizesSortOrder = ['2 Years', '4 Years', '6 Years', '8 Years', '10 Years', '12 Years', '14 Years', '16 Years', '18 Years', '20 Years', 'ONE SIZE', '3XS', '2XS', 'XS', 'XS/S', 'S', 'S/M', 'M', 'M/L', 'L', 'L/XL', 'XL', 'XL/2XL', '2XL', '3XL'];
       var aName = a.name.toUpperCase();
       var bName = b.name.toUpperCase();
 
@@ -107,21 +107,42 @@
     "named_tags.COLOR_HEXA": function noSort(a, b) {
       return 0;
     },
-    "named_tags.gender": function sortGenders(a, b) {
-      var gendersSortOrder = ['Men', 'Women', 'Boy', 'Girl', 'Baby Boy', 'Baby Girl'];
-      return gendersSortOrder.indexOf(a.name) - gendersSortOrder.indexOf(b.name) || sortByActive(a, b);
-    },
+    {% comment %}
+      "named_tags.gender": function sortGenders(a, b) {
+        var gendersSortOrder = ['Men', 'Women', 'Boy', 'Girl', 'Baby Boy', 'Baby Girl'];
+        return gendersSortOrder.indexOf(a.name) - gendersSortOrder.indexOf(b.name) || sortByActive(a, b);
+      },
+    {% endcomment %}
     "named_tags.GENDER_ID": function sortGenders(a, b) {
-      var gendersSortOrder = ['Men', 'Women', 'Boy', 'Girl', 'Baby Boy', 'Baby Girl'];
-      return gendersSortOrder.indexOf(a.name) - gendersSortOrder.indexOf(b.name) || sortByActive(a, b);
-    },
-    "default": function sortByActive(a, b) {
-      return b.isRefined - a.isRefined;
+      return sortAlphabetically((window.vars.filterMapping['named_tags.GENDER_ID'][a.name] || a.name), (window.vars.filterMapping['named_tags.GENDER_ID'][b.name] || b.name));
+    }, 
+    "default": function defaultSort(a, b) {
+      return sortAlphabetically(a.name, b.name);
+
+      //   if (a.isRefined) {
+      //     if (b.isRefined) {
+      //       return a.name.localeCompare(b.name);
+      //     } else {
+      //       return sortByActive(a, b);
+      //     }
+      //   } else {
+      //     if (b.isRefined) {
+      //       return sortByActive(a, b);
+      //     } else {
+      //       return a.name.localeCompare(b.name);
+      //     }
+      //   }
+      //   return b.isRefined - a.isRefined;
     }
   };
 
   function sortByActive(a, b) {
     return b.isRefined - a.isRefined;
+  }
+
+  function sortAlphabetically(a, b) {
+    console.log(a, b);
+    return a.localeCompare(b);
   }
 
   /*
