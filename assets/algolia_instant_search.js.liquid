@@ -618,6 +618,14 @@
       var $facetAccordion = $facet.find('.filter-accordion');
       $facetAccordion.toggleClass('expanded');
     });
+
+    $('.js-de-ColorSwatches .js-de-ColorSwatchList-action').bind('mouseover', function() {
+      var thumbnail = $(this).find('img')[0].src;
+      var productDisplay = $(this).parents('.ais-product');
+      var mainImage = productDisplay.find('.ais-hit--picture');
+
+      mainImage.attr('style', 'background-image: url(' + thumbnail + ') !important;');
+    });
   });
   $(document).ready(function() {
     checkScreenSize();

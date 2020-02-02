@@ -166,6 +166,55 @@
 
       return productRating.join('');
     },
+    thumbnails: function thumbnails() {
+      var product = this;
+
+      var variantImages = (((this || {}).meta || {}).variants || {}).images;      
+
+      if (!variantImages) {
+        return '';
+      }
+
+      variantImages = this.meta.variants.images.split('||');
+      var variantImagesWithInfo = variantImages.map(function(image) {
+        var imageWithInfo = image.split('|');
+        return {
+          variantID: imageWithInfo[0],
+          colour: imageWithInfo[1],
+          image: imageWithInfo[2]
+        }
+      });
+
+      var thumbnailsDisplay = [
+        '<div class="de-SwatchObjects de-SwatchObjects--productTile de-u-padEnds06 js-de-ColorSwatches">'
+      ];
+
+      var variantThumbnailsDisplay = variantImagesWithInfo.map(function(info) {
+        return [
+          '<a class="de-SwatchObjects-item de-ColorSwatches-color js-de-ColorSwatchList-action" aria-label="Colors available" title="' + info.colour + '" href="' + '/products/' + product.handle + '?variant=' + info.id + '">',
+            '<img class="de-SwatchObject-image de-u-block" src="' + info.image + '">',
+          '</a>'
+        ];
+      });
+
+      var diff = variantThumbnailsDisplay.length - 3;
+
+      if (diff > 0) {
+        variantThumbnailsDisplay = variantThumbnailsDisplay.slice(0, 3);
+        variantThumbnailsDisplay.push([
+          '<a class="de-SwatchObjects-item de-ColorSwatches-color de-u-textDarkGray" href="' + '/products/' + product.handle + '">',
+            '<span aria-hidden="true">+</span>' + diff + '<span class="de-u-hiddenVisually">more available colors</span>',
+          '</a>'
+        ].join(''));
+      }
+      
+      variantThumbnailsDisplay.slice(0, 3);
+
+      thumbnailsDisplay.push(variantThumbnailsDisplay.join(''));
+      thumbnailsDisplay.push('</div>');
+
+      return thumbnailsDisplay.join('');
+    },
     transformName: function transformName (text, render) {
       let nameParts = render(text).split('|');
 
