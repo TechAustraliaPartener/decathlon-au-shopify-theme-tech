@@ -143,12 +143,6 @@
       return '';
     },
     rating: function rating () {
-      this.meta.ratings = {
-        product_rating: 3.8,
-        ratings_count: 126
-      }
-
-      console.log(this.meta);
       if (!this || !this.meta || !this.meta.ratings || !this.meta.ratings.product_rating) {
         return '';
       }
@@ -173,7 +167,6 @@
       return productRating.join('');
     },
     thumbnails: function thumbnails() {
-      console.log(this);
       var product = this;
 
       var variantImages = (((this || {}).meta || {}).variants || {}).images;      
