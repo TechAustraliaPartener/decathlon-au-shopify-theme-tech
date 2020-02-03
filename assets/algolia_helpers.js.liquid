@@ -172,7 +172,11 @@
       var variantImages = (((this || {}).meta || {}).variants || {}).images;      
 
       if (!variantImages) {
-        return '';
+        return ['<div class="de-SwatchObjects de-SwatchObjects--productTile de-u-padEnds06 js-de-ColorSwatches">',
+          '<a class="de-SwatchObjects-item de-ColorSwatches-color js-de-ColorSwatchList-action" aria-label="Colors available" title="' + product.title + '" href="' + '/products/' + product.handle + '">',
+            '<img class="de-SwatchObject-image de-u-block" src="' + product.product_image + '">',
+          '</a>',
+        '</div>'].join('');
       }
 
       variantImages = this.meta.variants.images.split('||');
