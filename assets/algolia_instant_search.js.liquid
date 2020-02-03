@@ -206,6 +206,8 @@
 
                 $button.css('left', '0');
                 $button.removeClass('position-x');
+
+                $('html, body').animate({ scrollTop: 0 });
                 // End: Customisations
               } else {
                 $('html').css('overflow', 'hidden');
