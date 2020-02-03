@@ -4,7 +4,7 @@
     "use_persistent_cart": false,
     "out_of_stock_handling": "none",
     "use_gateway": false,
-    "login_portal_url": "https:\/\/api-eu.decathlon.net\/connect\/oauth\/authorize?response_type=code&client_id=e57b2db5-07ff-468e-a8da-85af418a1691&scope=openid+profile+email&redirect_uri=https%3A%2F%2F1fya2jw7u4.execute-api.ap-southeast-2.amazonaws.com%2FProd%2Flogin",
+    "login_portal_url": "https:\/\/api-eu.decathlon.net\/connect\/oauth\/authorize?response_type=code&client_id=e57b2db5-07ff-468e-a8da-85af418a1691&scope=openid+profile+email+contacts+contacts:write+optins+optins:write+sports+sports:write+phone:write&redirect_uri=https%3A%2F%2F1fya2jw7u4.execute-api.ap-southeast-2.amazonaws.com%2FProd%2Flogin",
     "register_portal_url": "https:\/\/account.decathlon.net\/account\/index.html?client_id=e57b2db5-07ff-468e-a8da-85af418a1691",
     "use_adeptmind": false,
     "use_algolia": true,
@@ -26,11 +26,11 @@
     "svg_logo": "small_logo.svg",
     "img_logo": "shopify:\/\/shop_images\/logo_small_9355cf1c-7626-4ada-916d-d809a214ca37.png",
     "enable_meet_decathlon": false,
-    "megamenu_image": "shopify:\/\/shop_images\/megamenu.jpg",
-    "megamenu_title": "New Decade, New You",
-    "megamenu_subtitle": "Get a head start on your new year's resolution",
-    "megamenu_link": "shopify:\/\/collections\/gym-clothes",
-    "megamenu_bg_colour": "#1c82c3",
+    "megamenu_image": "shopify:\/\/shop_images\/women_hiking_smiling.jpg",
+    "megamenu_title": "Discover Hiking",
+    "megamenu_subtitle": "Everyday Low Price On Hiking Gear",
+    "megamenu_link": "shopify:\/\/collections\/hiking-trekking",
+    "megamenu_bg_colour": "#0082c3",
     "is_lookbook": false,
     "product_returns_text": "Easy 365 days return",
     "product_shipping_text": "Free shipping for orders above $80",
@@ -336,7 +336,7 @@
               "hours_1_close": 22,
               "hours_2_open": 8,
               "hours_2_close": 22,
-              "hours_3_open": 8,
+              "hours_3_open": 12,
               "hours_3_close": 23,
               "hours_4_open": 8,
               "hours_4_close": 22,
@@ -462,7 +462,7 @@
               "hours_1_close": 21,
               "hours_2_open": 9,
               "hours_2_close": 21,
-              "hours_3_open": 9,
+              "hours_3_open": 15,
               "hours_3_close": 21,
               "hours_4_open": 9,
               "hours_4_close": 21,
@@ -578,19 +578,47 @@
           "1568939563080": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/women_hiking_smiling.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/homepage_main_banner_3_background_image.jpg",
               "slide_bg_position": "60%-80px",
               "banner_intro": "",
-              "banner_title": "<br>New Arrivals",
-              "banner_subtitle": "<p><strong>More Brands, More Products, More Sports<\/strong><\/p>",
+              "banner_title": "<br>Find Your Rhythm<br>Enjoy Your Run",
+              "banner_subtitle": "<p><strong>Running Shoes, Clothing &amp; Electronics<\/strong><\/p>",
               "button_new_window": false,
-              "button_title": "Shop Now",
-              "button_url": "shopify:\/\/collections\/new-arrival"
+              "button_title": "SHOP RUNNING GEAR",
+              "button_url": "shopify:\/\/collections\/running-gear-clothes"
+            }
+          },
+          "1578893835206": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/hiking.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "<br>Your Next Adventure Awaits<br>",
+              "banner_subtitle": "<p><strong>Hiking Backpacks, Boots &amp; Equipment<\/strong><\/p>",
+              "button_new_window": false,
+              "button_title": "DISCOVER HIKING",
+              "button_url": "shopify:\/\/collections\/hiking-trekking"
+            }
+          },
+          "1579733399475": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/homepage_main_banner_1_background_image_1600x.progressive_c0e35754-c49e-4d66-b8a2-c1c45dffa615.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "<br>No Rain<br>No Gain",
+              "banner_subtitle": "<p><strong>Raincoats, Jackets &amp; Waterproof Boots<\/strong><\/p>",
+              "button_new_window": false,
+              "button_title": "SHOP NOW",
+              "button_url": "shopify:\/\/collections\/sport-under-the-rain"
             }
           }
         },
         "block_order": [
-          "1568939563080"
+          "1568939563080",
+          "1578893835206",
+          "1579733399475"
         ],
         "settings": {}
       }
