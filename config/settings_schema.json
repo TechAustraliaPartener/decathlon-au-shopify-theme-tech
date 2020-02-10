@@ -326,6 +326,18 @@
     ]
   },
   {
+    "name": "Algolia Views (Collection + Search)",
+    "settings": [
+      {
+        "type": "text",
+        "id": "algolia_variant_image_dimensions",
+        "label": "Variant Image Dimensions",
+        "info": "Value should be [number]x[number], e.g. 400x400, and will be used as the ?F= querystring in the url. This will control the size of images populated in the variant swatches. This is applied as a parameter to the Pixel url provided in the metafield.",
+        "default": "600x600"
+      }
+    ]
+  },
+  {
     "name": "Footer",
     "settings": [
       {

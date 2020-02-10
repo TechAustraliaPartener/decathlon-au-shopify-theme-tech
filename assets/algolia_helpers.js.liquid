@@ -169,7 +169,7 @@
     thumbnails: function thumbnails() {
       var product = this;
 
-      var variantImages = (((this || {}).meta || {}).variants || {}).images;      
+      var variantImages = (((this || {}).meta || {}).variants || {}).images;   
 
       if (!variantImages) {
         return ['<div class="de-SwatchObjects de-SwatchObjects--productTile de-u-padEnds06 js-de-ColorSwatches">',
@@ -179,13 +179,17 @@
         '</div>'].join('');
       }
 
-      variantImages = this.meta.variants.images.split('||');
+      variantImages = variantImages.split('||');
       var variantImagesWithInfo = variantImages.map(function(image) {
         var imageWithInfo = image.split('|');
+
+        var imageUrl = new URL(imageWithInfo[2].toLowerCase());
+        imageUrl.searchParams.set('f', '{{ settings.algolia_variant_image_dimensions }}');
+
         return {
-          variantID: imageWithInfo[0],
+          id: imageWithInfo[0],
           colour: imageWithInfo[1],
-          image: imageWithInfo[2]
+          image: imageUrl
         }
       });
 
