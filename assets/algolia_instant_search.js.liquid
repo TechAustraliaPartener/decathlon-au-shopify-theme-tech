@@ -219,7 +219,7 @@
     
                 // Start: Customisations
                 if($('.ais-facet__expand').length == 0 && $(window).width() < 750) {
-                  $('.ais-facets__group')
+                  $('.ais-facets__group:not(.ais-facets__group--sort)')
                     .append('<div class="ais-facet__expand"></div>')
                     .find('.ais-header, .ais-facet__expand').on('click', function(evt) {
                       var $facetGroup = $(evt.currentTarget).closest('.ais-facets__group');
@@ -529,6 +529,29 @@
 
           $(evt.currentTarget).closest('.ais-facets').find('.ais-facets__group, .ais-facets__group .ais-body').removeClass('expanded');
 
+        });
+        
+         // Sorting within the drawer menu closes the drawer menu
+         $('.ais-page').on('change', '.ais-facets__group--sort select', function(evt) {
+
+          var $facets = $('.ais-facets');
+          var $button = $('.ais-facets-button');
+
+          if ($facets.hasClass('ais-facets__shown')) {
+            $('html').css('overflow', 'visible');
+            $('.template-collection').removeClass('hideContent');
+            $button.text('Show filters');
+            $button.appendTo('#ais-sort-filter');
+            $facets.removeClass('ais-facets__shown');
+            
+            $('body').removeClass('ais-drawer-open');
+            $('.ais-facets-button--placeholder').remove();
+
+            $button.css('left', '0');
+            $button.removeClass('position-x');
+
+            $('html, body').animate({ scrollTop: 0 });
+          }
         });
 
         $('.ais-hits-container').on('click', '.ais-hit-empty--clear-input', function () {

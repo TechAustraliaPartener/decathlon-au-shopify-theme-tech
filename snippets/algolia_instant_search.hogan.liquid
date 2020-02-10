@@ -6,21 +6,17 @@
       </div>
       <div class="ais-current-refined-values-container"></div>
       <div class="ais-facets__group ais-facets__group--sort">
-        <div class="ais-facet">
-          <div class="ais-refinement-list--header ais-facet--header ais-header">Sort by</div>
-          <div class="ais-body ais-refinement-list--body ais-facet--body filter-accordion">
-            <div class="ais-refinement-list--list ais-sort">
-              [[# multipleSortOrders ]]
-              <span class="ais-sort-orders-container--drawer"></span>
-              {% include 'assets-icons-chevron-down' with class: 'de-Icon de-u-spaceLeft06' %}
-              [[/ multipleSortOrders ]]
-
-              [[^ multipleSortOrders ]]
-              [[ translations.sortBy ]] [[ translations.relevance ]]
-              [[/ multipleSortOrders ]]
-            </div>
-          </div>
+        <div class="ais-sort-orders-header">
+          <span>Sort By</span>
+          {% include 'assets-icons-chevron-down' with class: 'de-Icon' %}
         </div>
+        [[# multipleSortOrders ]]
+        <span class="ais-sort-orders-container--drawer"></span>
+        [[/ multipleSortOrders ]]
+
+        [[^ multipleSortOrders ]]
+        [[ translations.sortBy ]] [[ translations.relevance ]]
+        [[/ multipleSortOrders ]]
       </div>
     [[# facets ]]
       <div class="ais-facets__group ais-facet-[[ type ]] ais-facet-[[ escapedName ]]"></div>
