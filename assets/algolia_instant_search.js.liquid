@@ -230,6 +230,7 @@
                       
                         $body.css('max-height', '0');
                         $body.css('opacity', '0');
+                        $body.css('transition', 'max-height 0.25s cubic-bezier(0, 1, 0, 1)');
                       } else {
                         $facetGroup.addClass('expanded');
     
@@ -239,6 +240,7 @@
                         $body.css('min-height', 'max-content');
                         $body.css('max-height', '10000px');
                         $body.css('opacity', '1');
+                        $body.css('transition', 'max-height 0.1s ease-in-out');
                       }
                     });
                 }
