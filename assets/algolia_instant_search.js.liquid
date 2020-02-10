@@ -231,6 +231,7 @@
                         $body.removeClass('expanded');
                       
                         $body.css('max-height', '0');
+                        $body.css('opacity', '0');
                       } else {
                         $facetGroup.addClass('expanded');
     
@@ -239,6 +240,7 @@
                     
                         $body.css('min-height', 'max-content');
                         $body.css('max-height', '10000px');
+                        $body.css('opacity', '1');
                       }
                     });
                 }
