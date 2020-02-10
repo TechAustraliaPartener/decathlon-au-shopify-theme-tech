@@ -195,7 +195,6 @@
               
               if ($facets.hasClass('ais-facets__shown')) {
                 $('html').css('overflow', 'visible');
-                $('.template-collection').removeClass('hideContent');
                 $button.text('Show filters');
                 $button.appendTo('#ais-sort-filter');
                 $facets.removeClass('ais-facets__shown');
@@ -211,7 +210,6 @@
                 // End: Customisations
               } else {
                 $('html').css('overflow', 'hidden');
-                $('.template-collection').addClass('hideContent');
                 /* $button.text('Hide Filters'); */
                 $facets.addClass('ais-facets__shown');
                 $button.appendTo('.ais-facets__shown');
@@ -539,7 +537,6 @@
 
           if ($facets.hasClass('ais-facets__shown')) {
             $('html').css('overflow', 'visible');
-            $('.template-collection').removeClass('hideContent');
             $button.text('Show filters');
             $button.appendTo('#ais-sort-filter');
             $facets.removeClass('ais-facets__shown');
