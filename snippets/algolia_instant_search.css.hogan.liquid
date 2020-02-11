@@ -309,19 +309,20 @@
     padding-top: 0 !important;
     padding-bottom: 0 !important;
     max-height: 0;
-    transition: max-height 0.5s, padding-top: 0.5s, padding-bottom: 0.5s, opacity: 0.5s;
-    -webkit-transition: max-height 0.5s, padding-top: 0.5s, padding-bottom: 0.5s, opacity: 0.5s;
-    -moz-transition: max-height 0.5s, padding-top: 0.5s, padding-bottom: 0.5s, opacity: 0.5s;
-    -ms-transition: max-height 0.5s, padding-top: 0.5s, padding-bottom: 0.5s, opacity: 0.5s;
-    -o-transition: max-height 0.5s, padding-top: 0.5s, padding-bottom: 0.5s, opacity: 0.5s;
+    transition: all 0.5s ease-in-out;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
     -webkit-transition-delay: 0s;
     transition-delay: 0s;
   }
+
   .ais-page .ais-facets__group.expanded .ais-facet--body {
-    padding-top: 8px !important;
     padding-bottom: 8px !important;
-    transition: max-height 0.5s ease-in-out;
+    max-height: 10000px; 
   }
+  
   .ais-page .ais-facets__group .ais-facet {
     margin-bottom: 0;
   }
