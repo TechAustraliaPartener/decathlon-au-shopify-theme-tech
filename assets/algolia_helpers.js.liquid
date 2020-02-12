@@ -150,8 +150,10 @@
       var rating = this.meta.ratings.product_rating;
       var width = rating * 20;
 
-      var ratingsCount = this.meta.ratings.ratings_count;
-
+      if (!!this && !!this.meta && !!this.meta.reviews && !!this.meta.reviews.ratings_count) {
+        var ratingsCount = this.meta.reviews.ratings_count;
+      }
+      
       var productRating = [
         '<div class="de-u-flex de-u-flexAlignItemsCenter de-u-spaceTop06 de-u-lineHeight1 ais-rating">',
           '<span class="de-StarRating de-u-spaceRight06 de-StarRating--small">',
