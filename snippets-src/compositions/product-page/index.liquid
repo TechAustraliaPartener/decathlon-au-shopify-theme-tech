@@ -377,7 +377,7 @@
       selectCallbackInitialized = false,
       activeColor;
 
-  productJSON.rating = '{{ product.metafields.ratings.product_rating }}';
+  productJSON.rating = '{{ product.metafields.reviews.product_rating }}';
 
   for(option in productJSON.options) {
     if (productJSON.options[option] === 'Color') {

@@ -143,11 +143,11 @@
       return '';
     },
     rating: function rating () {
-      if (!this || !this.meta || !this.meta.ratings || !this.meta.ratings.product_rating) {
+      if (!this || !this.meta || !this.meta.ratings || !this.meta.reviews.product_rating) {
         return '';
       }
 
-      var rating = this.meta.ratings.product_rating;
+      var rating = this.meta.reviews.product_rating;
       var width = rating * 20;
 
       if (!!this && !!this.meta && !!this.meta.reviews && !!this.meta.reviews.ratings_count) {

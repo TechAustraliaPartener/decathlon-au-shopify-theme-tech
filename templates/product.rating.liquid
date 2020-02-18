@@ -1,6 +1,6 @@
 {%- layout none -%}
-{%- assign rating_value = product.metafields.ratings.product_rating -%}
-{%- if product.metafields.ratings.product_rating == blank -%}
+{%- assign rating_value = product.metafields.reviews.product_rating -%}
+{%- if product.metafields.reviews.product_rating == blank -%}
   {%- assign rating_value = 0 -%}
 {%- endif -%}
 {"rating": {{ rating_value }} }

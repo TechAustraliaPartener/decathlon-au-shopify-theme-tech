@@ -99,7 +99,7 @@
 
           </div>
 
-          {% assign product_rating = product.metafields.ratings.product_rating %}
+          {% assign product_rating = product.metafields.reviews.product_rating %}
           {% assign rounded_rating = product_rating | round %}
           <div class="productAggregateRating js-productAggregateRating">
               <div class="starRating productDescription-rating">
@@ -129,7 +129,7 @@
           {% comment %}
           {% include 'compositions-product-grid-item-rating',
             rating_adtl_classes: ' productDescription-rating',
-            rating: product.metafields.ratings.product_rating
+            rating: product.metafields.reviews.product_rating
            %}
           {% endcomment %}
 
@@ -368,7 +368,7 @@
       selectCallbackInitialized = false,
       activeColor;
 
-  productJSON.rating = '{{ product.metafields.ratings.product_rating }}';
+  productJSON.rating = '{{ product.metafields.reviews.product_rating }}';
 
   for(option in productJSON.options) {
     if (productJSON.options[option] === 'Color') {
