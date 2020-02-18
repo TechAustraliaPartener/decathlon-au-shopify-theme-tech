@@ -171,15 +171,32 @@
     thumbnails: function thumbnails() {
       var product = this;
 
-      var variantImages = (((this || {}).meta || {}).variants || {}).images;   
+      var colorValueTags = product.named_tags.COLOR_VALUE;
+      var colors = colorValueTags.length - 1;
 
-      if (!variantImages) {
-        return ['<div class="de-SwatchObjects de-SwatchObjects--productTile de-u-padEnds06 js-de-ColorSwatches">',
-          '<a class="de-SwatchObjects-item de-ColorSwatches-color js-de-ColorSwatchList-action" aria-label="Colors available" title="' + product.title + '" href="' + '/products/' + product.handle + '">',
-            '<img class="de-SwatchObject-image de-u-block" src="' + product.product_image + '">',
-          '</a>',
-        '</div>'].join('');
-      }
+      /* var variantImages = (((this || {}).meta || {}).variants || {}).images;   
+
+      if (!variantImages) { */
+
+        var html = ['<div class="de-SwatchObjects de-SwatchObjects--productTile de-u-padEnds06 js-de-ColorSwatches">',
+                      '<a class="de-SwatchObjects-item de-ColorSwatches-color" aria-label="Colors available" title="' + product.title + '" href="' + '/products/' + product.handle + '">',
+                        '<img class="de-SwatchObject-image de-u-block" src="' + product.product_image + '">',
+                      '</a>'].join('');
+
+        if (colorValueTags.length > 1) {
+
+          var colourOrColours = (colorValueTags.length > 2) ? 'Colours' : 'Colour';
+
+          html += ['<a class="de-SwatchObjects-item de-ColorSwatches-color de-u-textDarkGray" '+'href="' + '/products/' + product.handle + '"'+ '>',
+                    '<span aria-hidden="true">+</span>',colors, 
+                    '</a>', 
+                  '<a class="de-ColorSwatches-color label" style="color:#464646;" '+'href="' + '/products/' + product.handle + '"'+ '>', colourOrColours,
+                    '</a>'
+                  ].join('');
+        }
+
+        return html + '</div>';
+      /* }
 
       variantImages = variantImages.split('||');
       var variantImagesWithInfo = variantImages.map(function(image) {
@@ -224,6 +241,7 @@
       thumbnailsDisplay.push('</div>');
 
       return thumbnailsDisplay.join('');
+      */
     },
     transformName: function transformName (text, render) {
       let nameParts = render(text).split('|');

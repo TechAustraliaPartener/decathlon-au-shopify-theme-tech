@@ -49,3 +49,6 @@
 .de-ProductTile-showcaseImage {
   width: 100%;
 }
+.de-SwatchObjects-item:hover + a.label {
+  color: $color-blue !important;
+}
