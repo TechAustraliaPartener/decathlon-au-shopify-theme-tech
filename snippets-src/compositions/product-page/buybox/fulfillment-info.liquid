@@ -1,10 +1,17 @@
 {% comment %} Customer Fulfillment Information {% endcomment %}
 
-{% comment %} Check if product contains a tag for bulk shipping {% endcomment %}
+{% comment %} Check if product contains a tag for bulk shipping and saftey {% endcomment %}
 {% assign bulk_shipping = false %}
+{% assign safety = false %}
 {% for tag in product.tags %}
   {% if tag contains 'Shipping: Bulk' %}
     {% assign bulk_shipping = true %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+{% for tag in product.tags %}
+  {% if tag contains 'Returns: Safety' %}
+    {% assign safety = true %}
     {% break %}
   {% endif %}
 {% endfor %}
@@ -16,29 +23,67 @@
         with class: 'de-u-textBlack de-Icon de-u-textGrow6 de-u-spaceRight03' %}
 
       <p class="de-u-spaceNone de-u-textMedium">
-        {% unless bulk_shipping %}
-          {% if settings.product_returns_text != blank %}
-            {{ settings.product_returns_text }}
+        {% assign use_fallback_label = false %}
+        {% if safety %}
+
+          {% if bulk_shipping %}
+            {% if settings.returns_policy_bulky_and_saftey %}
+              {{ settings.returns_policy_bulky_and_saftey }}
+            {% else %}
+              {% assign use_fallback_label = true %}
+            {% endif %}
+
           {% else %}
-            <span class="de-u-textBold">Free</span> returns
+            {% if settings.returns_policy_saftey %}
+              {{ settings.returns_policy_saftey }}
+            {% else %}
+              {% assign use_fallback_label = true %}
+            {% endif %}
           {% endif %}
+
         {% else %}
-          {% if settings.product_bulk_returns_text != blank %}
-            {{ settings.product_bulk_returns_text }}
+          {% if bulk_shipping %}
+            {% if settings.returns_policy_bulky %}
+              {{ settings.returns_policy_bulky }}
+            {% else %}
+              {% assign use_fallback_label = true %}
+            {% endif %}
           {% else %}
-            See our
-            <a href="/pages/returns-and-refunds-policy"
-                class="de-u-textMedium de-u-textSelectNone js-de-Drawer-toggle"
-                data-drawer-id="returns-policy-drawer"
-                data-drawer-toggle-aria-label="Open the returns policy dialog."
-                data-drawer-action="open"
-                data-test="returns-policy-toggle"
-              >
-              return policy
-            </a>
-            for heavy products
+            {% if settings.returns_policy_default %}
+              {{ settings.returns_policy_default }}
+            {% else %}
+              {% assign use_fallback_label = true %}
+            {% endif %}
           {% endif %}
-        {% endunless %}
+
+        {% endif %}
+
+        {% if use_fallback_label %}
+          {% unless bulk_shipping %}
+            {% if settings.product_returns_text != blank %}
+              {{ settings.product_returns_text }}
+            {% else %}
+              <span class="de-u-textBold">Free</span> returns
+            {% endif %}
+          {% else %}
+            {% if settings.product_bulk_returns_text != blank %}
+              {{ settings.product_bulk_returns_text }}
+            {% else %}
+              See our
+              <a href="/pages/returns-and-refunds-policy"
+                  class="de-u-textMedium de-u-textSelectNone js-de-Drawer-toggle"
+                  data-drawer-id="returns-policy-drawer"
+                  data-drawer-toggle-aria-label="Open the returns policy dialog."
+                  data-drawer-action="open"
+                  data-test="returns-policy-toggle"
+                >
+                return policy
+              </a>
+              for heavy products
+            {% endif %}
+          {% endunless %}
+        {% endif %}
+        
       </p>
     </div>
 

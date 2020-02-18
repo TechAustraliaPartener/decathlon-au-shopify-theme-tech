@@ -1996,5 +1996,34 @@
         "label": "Hide Footer on exception pages"
       }
     ]
+  },
+  {
+    "name" : "Returns",
+    "settings" : [
+      {
+        "type" : "text",
+        "id" : "returns_policy_default",
+        "label" : "\"Non BULKY\" + \"Non SAFETY\"",
+        "default" : "Easy 365 days return"
+      },
+      {
+        "type" : "text",
+        "id" : "returns_policy_bulky",
+        "label" : "\"BULKY\" + \"Non SAFETY\"",
+        "default" : "Easy 365 days return"
+      },
+      {
+        "type" : "text",
+        "id" : "returns_policy_saftey",
+        "label" : "\"BULKY\" + \"Non SAFETY\"",
+        "default" : "Product can only be returned if proved faulty"
+      },
+      {
+        "type" : "text",
+        "id" : "returns_policy_bulky_and_saftey",
+        "label" : "\"BULKY\" + \"SAFETY\"",
+        "default" : "Product can only be returned if proved faulty"
+      }
+    ]
   }
 ]
