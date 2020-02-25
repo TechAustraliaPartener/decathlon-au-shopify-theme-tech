@@ -10522,6 +10522,33 @@ $color-out: #ff0000;
   }
 }
 
-.de-SwatchObjects-item:hover + a.label {
-  color: #0082c3 !important;
+.ais-hits--item {
+  .de-SwatchObjects-item.de-u-textDarkGray {
+    border: none !important;
+
+    + a.label {
+      margin-left: -15px;
+    }
+
+    &:after {
+      content: unset;
+    }
+
+    &:hover {
+      border: none !important;
+      color: #0082c3 !important;
+
+      + a {
+        .label {
+          color: #0082c3 !important;
+        }
+      }
+    }
+
+    + a:hover {
+      .label {
+        color: #0082c3 !important;
+      }
+    }
+  }
 }

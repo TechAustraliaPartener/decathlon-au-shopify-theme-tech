@@ -171,7 +171,8 @@
     thumbnails: function thumbnails() {
       var product = this;
 
-      var colorValueTags = product.named_tags.COLOR_VALUE;
+      var colorValueTags = product.named_tags.MODEL;
+      colorValueTags = Array.isArray(colorValueTags) ? colorValueTags : [colorValueTags];
       var colors = colorValueTags.length - 1;
 
       /* var variantImages = (((this || {}).meta || {}).variants || {}).images;   
