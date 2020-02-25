@@ -578,7 +578,7 @@
           "1568939563080": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_27.png",
+              "banner_bg_image": "shopify:\/\/shop_images\/sales_1.png",
               "slide_bg_position": "60%-80px",
               "banner_intro": "",
               "banner_title": "<br>End Of Summer<br>Sale",
@@ -588,30 +588,30 @@
               "button_url": "shopify:\/\/collections\/all-sale-products"
             }
           },
-          "1578893835206": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/homepage_main_banner_1_background_image_1600x.progressive_c0e35754-c49e-4d66-b8a2-c1c45dffa615.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": "<br>No Rain<br>No Gain",
-              "banner_subtitle": "<p><strong>Waterproof Jackets, Boots &amp; More<\/strong><\/p>",
-              "button_new_window": false,
-              "button_title": "SHOP NOW",
-              "button_url": "shopify:\/\/collections\/sport-under-the-rain"
-            }
-          },
           "1579733399475": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_21.png",
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_21_863953ae-5029-4735-839b-f684a7052922.png",
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
               "banner_title": "<br>Easybreath<br>Snorkeling Mask",
-              "banner_subtitle": "<p><strong>Selected Colours On Sale Now From $35<\/strong><\/p>",
+              "banner_subtitle": "<p><strong>Selected Colours On Sale Now<\/strong><\/p>",
               "button_new_window": false,
-              "button_title": "SHOP NOW",
+              "button_title": "WAS $59 NOW $35",
               "button_url": "shopify:\/\/products\/easybreath-surface-snorkeling-mask-1616"
+            }
+          },
+          "1578893835206": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/kids_1.png",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "<br>50% Off Kids Balance Bike",
+              "banner_subtitle": "<p><strong>Runride 500 Kids Balance Bike<\/strong><\/p>",
+              "button_new_window": false,
+              "button_title": "WAS $89 NOW $45",
+              "button_url": "shopify:\/\/products\/runride-500-balance-bike-10-inch-2-4-years-145237"
             }
           }
         },
