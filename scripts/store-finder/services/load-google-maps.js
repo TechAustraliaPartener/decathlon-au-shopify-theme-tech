@@ -1,5 +1,5 @@
 export default () => {
-  const API_KEY = 'AIzaSyB6D8nxfYXoumLU-Bk-UyYjJercl5vSQMI';
+  const API_KEY = 'AIzaSyAkXb918cp932bUuHutJiiGOH5yAIZttQM';
   const CALLBACK_NAME = 'initMap';
   let initialized = window.google;
   let resolveInitPromise = null;
