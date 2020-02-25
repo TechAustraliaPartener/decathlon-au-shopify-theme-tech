@@ -1,18 +1,13 @@
 {% comment %} Customer Fulfillment Information {% endcomment %}
 
-{% comment %} Check if product contains a tag for bulk shipping and saftey {% endcomment %}
+{% comment %} Check if product contains a tag for bulk shipping and safety {% endcomment %}
 {% assign bulk_shipping = false %}
 {% assign safety = false %}
 {% for tag in product.tags %}
   {% if tag contains 'Shipping: Bulk' %}
     {% assign bulk_shipping = true %}
-    {% break %}
-  {% endif %}
-{% endfor %}
-{% for tag in product.tags %}
-  {% if tag contains 'Returns: Safety' %}
+  {% elsif tag contains 'Returns: Safety' %}
     {% assign safety = true %}
-    {% break %}
   {% endif %}
 {% endfor %}
 
@@ -24,18 +19,19 @@
 
       <p class="de-u-spaceNone de-u-textMedium">
         {% assign use_fallback_label = false %}
+
         {% if safety %}
 
           {% if bulk_shipping %}
-            {% if settings.returns_policy_bulky_and_saftey %}
-              {{ settings.returns_policy_bulky_and_saftey }}
+            {% if settings.returns_policy_bulky_and_safety %}
+              {{ settings.returns_policy_bulky_and_safety }}
             {% else %}
               {% assign use_fallback_label = true %}
             {% endif %}
 
           {% else %}
-            {% if settings.returns_policy_saftey %}
-              {{ settings.returns_policy_saftey }}
+            {% if settings.returns_policy_safety %}
+              {{ settings.returns_policy_safety }}
             {% else %}
               {% assign use_fallback_label = true %}
             {% endif %}

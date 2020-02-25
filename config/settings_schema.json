@@ -2001,28 +2001,32 @@
     "name" : "Returns",
     "settings" : [
       {
+        "type": "paragraph",
+        "content": "Bulky products are identified by the tag 'Shipping: Bulk'. Safety products are identified by the tag 'Returns: Safety'."
+      },
+      {
         "type" : "text",
-        "id" : "returns_policy_default",
-        "label" : "\"Non BULKY\" + \"Non SAFETY\"",
-        "default" : "Easy 365 days return"
+        "id" : "returns_policy_bulky_and_safety",
+        "label" : "Bulky + Safety",
+        "default" : "Product can only be returned if proved faulty"
+      },
+      {
+        "type" : "text",
+        "id" : "returns_policy_safety",
+        "label" : "Not Bulky + Safety",
+        "default" : "Product can only be returned if proved faulty"
       },
       {
         "type" : "text",
         "id" : "returns_policy_bulky",
-        "label" : "\"BULKY\" + \"Non SAFETY\"",
+        "label" : "Bulky + not Safety",
         "default" : "Easy 365 days return"
       },
       {
         "type" : "text",
-        "id" : "returns_policy_saftey",
-        "label" : "\"BULKY\" + \"Non SAFETY\"",
-        "default" : "Product can only be returned if proved faulty"
-      },
-      {
-        "type" : "text",
-        "id" : "returns_policy_bulky_and_saftey",
-        "label" : "\"BULKY\" + \"SAFETY\"",
-        "default" : "Product can only be returned if proved faulty"
+        "id" : "returns_policy_default",
+        "label" : "Not Bulky + not Safety",
+        "default" : "Easy 365 days return"
       }
     ]
   }
