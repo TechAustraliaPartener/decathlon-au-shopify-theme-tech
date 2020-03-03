@@ -187,6 +187,7 @@
 
         var $button = $('.ais-facets-button');
         var $buttonDone = $('.ais-facets__done-button');
+        var searchWasExpandedOnOpen = false;
       
           function toggleDrawer() {
             var $facets = $('.ais-facets');
@@ -207,6 +208,13 @@
                 $button.removeClass('position-x');
 
                 $('html, body').animate({ scrollTop: 0 });
+
+                if(searchWasExpandedOnOpen) {
+                  $('.de-Drawer-wrap .de-PageWrap-headerTertiaryControl .de-MenuBar-action').attr('aria-expanded', 'true');
+                  $('.de-Drawer-wrap').addClass('de-is-expanded');
+                  searchWasExpandedOnOpen = false;
+                }
+
                 // End: Customisations
               } else {
                 $('html').css('overflow', 'hidden');
@@ -242,6 +250,11 @@
                   $button.css('left', '35px');
                 }, 1);
                 $button.text('Close');
+                if($('.de-Drawer-wrap .de-PageWrap-headerTertiaryControl .de-MenuBar-action').attr('aria-expanded') == 'true') {
+                  $('.de-Drawer-wrap .de-PageWrap-headerTertiaryControl .de-MenuBar-action').attr('aria-expanded', 'false');
+                  $('.de-Drawer-wrap').removeClass('de-is-expanded');
+                  searchWasExpandedOnOpen = true;
+                }
                 // End: Customisations
               }
             }
