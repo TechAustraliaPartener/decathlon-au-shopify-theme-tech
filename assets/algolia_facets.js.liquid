@@ -40,25 +40,49 @@
       return a.name.length - b.name.length || sortByActive(a, b);
     }),
     "options.size": function sortSizes(a, b) {
+      var userSizeOrderString = "{{ settings.algolia_size_sorting_order }}";
       var sizesSortOrder = ['2 Years', '4 Years', '6 Years', '8 Years', '10 Years', '12 Years', '14 Years', '16 Years', '18 Years', '20 Years', 'ONE SIZE', '3XS', '2XS', 'XS', 'XS/S', 'S', 'S/M', 'M', 'M/L', 'L', 'L/XL', 'XL', 'XL/2XL', '2XL', '3XL'];
+      var customSizesSortOrder = (userSizeOrderString != "") ? userSizeOrderString.split(",").map(function(item) {return item.trim()}) : sizesSortOrder;
+      var sortNumber = 1;
+      
       var aName = a.name.toUpperCase();
       var bName = b.name.toUpperCase();
+
+      // If customSizesSortOrder is set, display them first
+      if (customSizesSortOrder.includes(aName) && customSizesSortOrder.includes(bName)) {
+        console.log("customSizesSortOrder:", customSizesSortOrder);
+        sortNumber = customSizesSortOrder.indexOf(aName) - customSizesSortOrder.indexOf(bName);
+        console.log('name:', aName);
+        console.log('sortNumber:', sortNumber);
+        return sortNumber;
+      }
 
       if (isNaN(a.name)) {
         if (isNaN(b.name)) {
 
           // If the options are present in the hardcoded array, order by that, otherwise, order alphabetically
-          if (sizesSortOrder.indexOf(aName) > -1) {
-            if (sizesSortOrder.indexOf(bName) > -1) {
-              return sizesSortOrder.indexOf(aName) - sizesSortOrder.indexOf(bName);
+          if (customSizesSortOrder.indexOf(aName) > -1) {
+            if (customSizesSortOrder.indexOf(bName) > -1) {
+              sortNumber = customSizesSortOrder.indexOf(aName) - sizesSortOrder.indexOf(bName);
+              console.log('name:', aName);
+              console.log('sortNumber:', sortNumber);
+              return sortNumber;
             } else {
-              return 1;
+              console.log('name:', aName);
+              console.log('sortNumber:', sortNumber);
+              return sortNumber;
             }
           } else {
-            if (sizesSortOrder.indexOf(bName) > -1) {
-              return -1;
+            if (customSizesSortOrder.indexOf(bName) > -1) {
+              sortNumber = -1;
+              console.log('name:', aName);
+              console.log('sortNumber:', sortNumber);
+              return sortNumber;
             } else {
-              return a.name.localeCompare(b.name);
+              sortNumber = a.name.localeCompare(b.name);
+              console.log('name:', aName);
+              console.log('sortNumber:', sortNumber);
+              return sortNumber;
             }
           }
 
@@ -68,15 +92,23 @@
           */
         } else {
           // If a is a word and b is a number, show words before numbers
-          return -1;
+          sortNumber = -1;
+          console.log('name:', aName);
+          console.log('sortNumber:', sortNumber);
+          return sortNumber;
         }
       } else {
         if (isNaN(b.name)) {
           // If b is a word and a is a number, show words before numbers
-          return 1;
+          console.log('name:', aName);
+          console.log('sortNumber:', sortNumber);
+          return sortNumber;
         } else {
           // If the values are both numbers, show in ascending order
-          return a.name - b.name;
+          sortNumber = a.name - b.name;
+          console.log('name:', aName);
+          console.log('sortNumber:', sortNumber);
+          return sortNumber;
 
           // Position decimals differently to integers - NOT IN USE
           /*
