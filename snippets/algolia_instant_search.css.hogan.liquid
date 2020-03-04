@@ -271,13 +271,15 @@
   .ais-facets__group .ais-refinement-list--list {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
-    -webkit-transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
-    -moz-transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
-    -ms-transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
-    -o-transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+    /* Transitions removed
+    transition: max-height 0.5s ;
+    -webkit-transition: max-height 0.5s ;
+    -moz-transition: max-height 0.5s ;
+    -ms-transition: max-height 0.5s ;
+    -o-transition: max-height 0.5s ;
     -webkit-transition-delay: 0s;
     transition-delay: 0s;
+    */
   }
   .ais-facets__group.expanded .ais-refinement-list--list {
     max-height: 10000px;
@@ -309,6 +311,7 @@
     padding-top: 0 !important;
     padding-bottom: 0 !important;
     max-height: 0;
+    /* Transitions removed
     transition: all 0.5s ease-in-out;
     -webkit-transition: all 0.5s ease-in-out;
     -moz-transition: all 0.5s ease-in-out;
@@ -316,6 +319,7 @@
     -o-transition: all 0.5s ease-in-out;
     -webkit-transition-delay: 0s;
     transition-delay: 0s;
+    */
   }
 
   .ais-page .ais-facets__group.expanded .ais-facet--body {
