@@ -98,7 +98,11 @@
 
   <!-- Helpers ================================================== -->
   {% include 'social-meta-tags' %}
-  <link rel="canonical" href="{{ canonical_url }}">
+  {% unless canonical_url contains 'search' %}
+    <link rel="canonical" href="{{ canonical_url | split: '?' | first }}">
+  {% else %}
+    <link rel="canonical" href="{{ canonical_url }}">
+  {% endunless %}
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no, user-scalable=0">
   <meta name="theme-color" content="{{ settings.color_primary }}">
 
