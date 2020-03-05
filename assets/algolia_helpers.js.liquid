@@ -180,20 +180,24 @@
       if (!variantImages) { */
 
         var html = ['<div class="de-SwatchObjects de-SwatchObjects--productTile de-u-padEnds06 js-de-ColorSwatches">',
-                      '<a class="de-SwatchObjects-item de-ColorSwatches-color" aria-label="Colors available" title="' + product.title + '" href="' + '/products/' + product.handle + '">',
-                        '<img class="de-SwatchObject-image de-u-block" src="' + product.product_image + '">',
-                      '</a>'].join('');
+          '<a class="de-SwatchObjects-item de-ColorSwatches-color" aria-label="Colors available" title="' + product.title + '" href="' + '/products/' + product.handle + '">',
+            '<img class="de-SwatchObject-image de-u-block" src="' + product.product_image + '">',
+          '</a>'].join('');
 
         if (colorValueTags.length > 1) {
 
           var colourOrColours = (colorValueTags.length > 2) ? 'Colours' : 'Colour';
 
-          html += ['<a class="de-SwatchObjects-item de-ColorSwatches-color de-u-textDarkGray" '+'href="' + '/products/' + product.handle + '"'+ '>',
-                    '<span aria-hidden="true">+</span>',colors, 
-                    '</a>', 
-                  '<a class="de-ColorSwatches-color label" style="color:#464646;" '+'href="' + '/products/' + product.handle + '"'+ '>', colourOrColours,
-                    '</a>'
-                  ].join('');
+          html += ['<span class="wrap">',
+              '<a class="de-SwatchObjects-item de-ColorSwatches-color de-u-textDarkGray" '+'href="' + '/products/' + product.handle + '"'+ '>',
+                '<span aria-hidden="true">+</span>',
+                colors, 
+              '</a>', 
+              '<a class="de-ColorSwatches-color label" style="color:#464646;" '+'href="' + '/products/' + product.handle + '"'+ '>', 
+                colourOrColours,
+              '</a>',
+            '</span>'
+          ].join('');
         }
 
         return html + '</div>';

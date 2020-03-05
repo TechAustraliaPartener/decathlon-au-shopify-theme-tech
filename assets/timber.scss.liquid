@@ -10525,27 +10525,22 @@ $color-out: #ff0000;
 .ais-hits--item {
   .de-SwatchObjects-item.de-u-textDarkGray {
     border: none !important;
+    display: inline;
 
     + a.label {
-      margin-left: -15px;
+      margin-left: -7px;
     }
 
     &:after {
       content: unset;
     }
+  }
 
-    &:hover {
+  .wrap:hover {
+    a {
       border: none !important;
       color: #0082c3 !important;
 
-      + a {
-        .label {
-          color: #0082c3 !important;
-        }
-      }
-    }
-
-    + a:hover {
       .label {
         color: #0082c3 !important;
       }
