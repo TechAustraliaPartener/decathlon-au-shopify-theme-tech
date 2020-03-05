@@ -33,9 +33,9 @@
     "megamenu_bg_colour": "#ff0000",
     "is_lookbook": false,
     "product_returns_text": "Easy 365 days return",
-    "product_shipping_text": "Free shipping for orders above $80",
+    "product_shipping_text": "Some delivery delays expected due to weather conditions",
     "product_bulk_returns_text": "Easy 365 days return",
-    "product_bulk_shipping_text": "Check shipping rates at the checkout.",
+    "product_bulk_shipping_text": "Some delivery delays expected due to weather conditions",
     "footer_slider_products": true,
     "footer_slider_products_title": "",
     "footer_slider_products_collection": "trending-products",
@@ -249,6 +249,10 @@
     "exception_page_handle": "",
     "hide_header": false,
     "hide_footer": false,
+    "returns_policy_bulky_and_safety": "Product can only be returned if proved faulty",
+    "returns_policy_safety": "Product can only be returned if proved faulty",
+    "returns_policy_bulky": "Easy 365 days return",
+    "returns_policy_default": "Easy 365 days return",
     "checkout_header_image": "",
     "checkout_logo_image": "shopify:\/\/shop_images\/logo_small_9355cf1c-7626-4ada-916d-d809a214ca37.png",
     "checkout_logo_position": "left",
@@ -581,44 +585,44 @@
               "banner_bg_image": "shopify:\/\/shop_images\/sales_1.png",
               "slide_bg_position": "60%-80px",
               "banner_intro": "",
-              "banner_title": "<br>End Of Summer<br>Sale",
-              "banner_subtitle": "<p><strong>Up To 70% Off Last Sizes<\/strong><\/p>",
+              "banner_title": "<br>Up To 70% Off<br>Last Sizes",
+              "banner_subtitle": "<p><strong>Sale Ends 15 March. Limited Stock<\/strong><\/p>",
               "button_new_window": false,
               "button_title": "SHOP NOW",
               "button_url": "shopify:\/\/collections\/all-sale-products"
             }
           },
-          "1579733399475": {
+          "1583208837009": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_21_863953ae-5029-4735-839b-f684a7052922.png",
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_1_a6dc712e-e019-4636-8b09-52d2f7431e14.png",
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
-              "banner_title": "<br>Easybreath<br>Snorkeling Mask",
-              "banner_subtitle": "<p><strong>Selected Colours On Sale Now<\/strong><\/p>",
+              "banner_title": "<br>New Arrivals<br>",
+              "banner_subtitle": "<p><strong>More Sports, More Brands, More Fun<\/strong><\/p>",
               "button_new_window": false,
-              "button_title": "WAS $59 NOW $35",
-              "button_url": "shopify:\/\/products\/easybreath-surface-snorkeling-mask-1616"
+              "button_title": "SHOP NEW ARRIVALS",
+              "button_url": "shopify:\/\/collections\/new-arrivals-2020"
             }
           },
-          "1578893835206": {
+          "1583209785440": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/kids_1.png",
+              "banner_bg_image": "shopify:\/\/shop_images\/homepage_main_banner_1_background_image_1600x.progressive_c0e35754-c49e-4d66-b8a2-c1c45dffa615.jpg",
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
-              "banner_title": "<br>50% Off Kids Balance Bike",
-              "banner_subtitle": "<p><strong>Runride 500 Kids Balance Bike<\/strong><\/p>",
+              "banner_title": "<br>Rainy Days<br>Essentials",
+              "banner_subtitle": "<p><strong>Raincoats, Jackets &amp; Waterproof Gear<\/strong><\/p>",
               "button_new_window": false,
-              "button_title": "WAS $89 NOW $45",
-              "button_url": "shopify:\/\/products\/runride-500-balance-bike-10-inch-2-4-years-145237"
+              "button_title": "SHOP NOW",
+              "button_url": "shopify:\/\/collections\/sport-under-the-rain"
             }
           }
         },
         "block_order": [
           "1568939563080",
-          "1579733399475",
-          "1578893835206"
+          "1583208837009",
+          "1583209785440"
         ],
         "settings": {}
       }
