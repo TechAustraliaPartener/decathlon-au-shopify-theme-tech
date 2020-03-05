@@ -336,11 +336,11 @@
         "default": "600x600"
       },
       {
-        "type" : "text",
-        "id" : "algolia_size_sorting_order",
-        "label" : "Size sorting order",
-        "info" : "List the options you would like to see first (each separated by a comma)",
-        "default" : "3XS, 2XS, XS, XS-S, S, S-M, M, M-L, L, L-XL, XL, 2XL, 3XL, 4XL, 5XL"
+        "type": "text",
+        "id": "algolia_size_sorting_order",
+        "label": "Size sorting order",
+        "info": "List the options you would like to see first (each separated by a comma)",
+        "default": "XS,S,M,L,XL"
       }
     ]
   },

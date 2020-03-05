@@ -41,93 +41,29 @@
     }),
     "options.size": function sortSizes(a, b) {
       var userSizeOrderString = "{{ settings.algolia_size_sorting_order }}";
-      var sizesSortOrder = ['2 Years', '4 Years', '6 Years', '8 Years', '10 Years', '12 Years', '14 Years', '16 Years', '18 Years', '20 Years', 'ONE SIZE', '3XS', '2XS', 'XS', 'XS/S', 'S', 'S/M', 'M', 'M/L', 'L', 'L/XL', 'XL', 'XL/2XL', '2XL', '3XL'];
-      var customSizesSortOrder = (userSizeOrderString != "") ? userSizeOrderString.split(",").map(function(item) {return item.trim()}) : sizesSortOrder;
-      var sortNumber = 1;
-      
-      var aName = a.name.toUpperCase();
-      var bName = b.name.toUpperCase();
+      var sizesSortOrder = userSizeOrderString.split(',');
+      console.log(userSizeOrderString, sizesSortOrder);
 
-      // If customSizesSortOrder is set, display them first
-      if (customSizesSortOrder.includes(aName) && customSizesSortOrder.includes(bName)) {
-        console.log("customSizesSortOrder:", customSizesSortOrder);
-        sortNumber = customSizesSortOrder.indexOf(aName) - customSizesSortOrder.indexOf(bName);
-        console.log('name:', aName);
-        console.log('sortNumber:', sortNumber);
-        return sortNumber;
-      }
+      var aInArray = (sizesSortOrder.indexOf(a.name) !== -1);
+      var bInArray = (sizesSortOrder.indexOf(b.name) !== -1);
 
-      if (isNaN(a.name)) {
-        if (isNaN(b.name)) {
+      console.log(a.name, aInArray, b.name, bInArray);
 
-          // If the options are present in the hardcoded array, order by that, otherwise, order alphabetically
-          if (customSizesSortOrder.indexOf(aName) > -1) {
-            if (customSizesSortOrder.indexOf(bName) > -1) {
-              sortNumber = customSizesSortOrder.indexOf(aName) - sizesSortOrder.indexOf(bName);
-              console.log('name:', aName);
-              console.log('sortNumber:', sortNumber);
-              return sortNumber;
-            } else {
-              console.log('name:', aName);
-              console.log('sortNumber:', sortNumber);
-              return sortNumber;
-            }
-          } else {
-            if (customSizesSortOrder.indexOf(bName) > -1) {
-              sortNumber = -1;
-              console.log('name:', aName);
-              console.log('sortNumber:', sortNumber);
-              return sortNumber;
-            } else {
-              sortNumber = a.name.localeCompare(b.name);
-              console.log('name:', aName);
-              console.log('sortNumber:', sortNumber);
-              return sortNumber;
-            }
-          }
+      // In a custom sort function, return -1 to move 'a' up in the order, or 1 to move it down, relative to 'b'.
 
-          // If the values are both words, use the hardcoded array above - NOT IN USE
-          /*
-          return sizesSortOrder.indexOf(aName) - sizesSortOrder.indexOf(bName);
-          */
-        } else {
-          // If a is a word and b is a number, show words before numbers
-          sortNumber = -1;
-          console.log('name:', aName);
-          console.log('sortNumber:', sortNumber);
-          return sortNumber;
-        }
+      // If both items are in the array, return an array position sort. 
+      // In this case, the index of 'a' - the index of 'b' will position 'a' above 'b' if it's earlier in the array, 
+      // as the result will be negative.
+      if (aInArray && bInArray) {
+        return sizesSortOrder.indexOf(a.name) - sizesSortOrder.indexOf(b.name);
+      // If either item is in the array while the other isn't, move that item up.
+      } else if (aInArray) {
+        return -1;
+      } else if (bInArray) {
+        return 1;
+      // If both items aren't in the array, return an alphabetical comparison.
       } else {
-        if (isNaN(b.name)) {
-          // If b is a word and a is a number, show words before numbers
-          console.log('name:', aName);
-          console.log('sortNumber:', sortNumber);
-          return sortNumber;
-        } else {
-          // If the values are both numbers, show in ascending order
-          sortNumber = a.name - b.name;
-          console.log('name:', aName);
-          console.log('sortNumber:', sortNumber);
-          return sortNumber;
-
-          // Position decimals differently to integers - NOT IN USE
-          /*
-          if (a.name.indexOf('.') > -1) {
-            if (b.name.indexOf('.') > -1) {
-              return a.name - b.name;
-            } else {
-              return 1;
-            }
-          } else {
-            if (b.name.indexOf('.') > -1) {
-              return -1;
-            } else {
-              return a.name - b.name;
-            }
-          }
-          */
-
-        }
+        return a.name.localeCompare(b.name);
       }
     },
     "options.colour": function noSort(a, b) {
