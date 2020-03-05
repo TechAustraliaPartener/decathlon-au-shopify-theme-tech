@@ -144,23 +144,6 @@
   aria-label="Colors available"
 >
 
-{% assign color_value_tags = 0 %}
-  {% for tag in product.tags %}
-      {% if tag contains 'COLOR_VALUE' %}
-        {% assign color_value_tags = color_value_tags | plus: 1 %}
-      {% endif %}
-  {% endfor %}
-
-  <a class="de-SwatchObjects-item de-ColorSwatches-color" aria-label="Colors available" title="{{ product.title }}" href="{{ product.url }}">
-    <img class="de-SwatchObject-image de-u-block" src="{{ product.variants[0].image | img_url: '42x' }}">
-  </a>
-  
-  {% if color_value_tags > 1 %}
-    <a class="de-SwatchObjects-item de-ColorSwatches-color de-u-textDarkGray" href="{{ product.url }}"><span aria-hidden="true">+</span>{{ color_value_tags | minus: 1 }}</a>
-    <a class="de-ColorSwatches-color label" style="color:#464646;" href="{{ product.url }}">{% if color_value_tags > 2 %}Colours{% else %}Colour{% endif %}</a>
-  {% endif %}
-
-  {% comment %}
   {% for c in colors limit: max_colors_to_display %}
     {%- assign color_row = c | split: attribute_delimiter -%}
     {% assign color_prices = color_row[7] | split: prices_delimiter %}
@@ -176,7 +159,6 @@
       • Consider accessibility
       • Test via screen reader
     {% endcomment %}
-    {% comment %}
     {% assign color_availability = color_row[5] | split: prices_delimiter %}
     <a
       class="de-SwatchObjects-item de-ColorSwatches-color js-de-ColorSwatchList-action {% unless color_availability contains 'true' %}de-u-hidden{% endunless %}"
@@ -189,7 +171,6 @@
       data-image2="{{ color_row[6] }}"
       data-image2-alt="{% include 'func-extract-alt-copy' with alt: color_row[10] %}"
       {% comment %} TODO Do we still need data-price and data-compare? {% endcomment %}
-      {% comment %}
       data-price="{{ color_row[3] }}"
       {% if color_row[3] < color_row[4] %}
         data-compare="{{ color_row[4] }}"
@@ -219,13 +200,11 @@
         TODO
         • Use translation keys
       {% endcomment %}
-      {% comment %}
       <span aria-hidden="true">+</span>
       {{remaining_color_count}}
       <span class="de-u-hiddenVisually">more available {{ remaining_color_count | pluralize: 'color', 'colors' }}</span>
     </a>
   {% endif %}
-  {% endcomment %}
 </div>
 
 {% comment %}
@@ -236,13 +215,11 @@
 {% comment %}
   TODO Remove example HTML below
 {% endcomment %}
-{% comment %}
-  <button
-    class="de-ColorSwatchList-action
-            {% if forloop.first %}de-is-active{% endif %}
-            de-u-bg{{color.name}}"
-    itemprop="color"
-  >
-    <span class="de-u-hiddenVisually">{{color.name}}</span>
-  </button>
-{% endcomment %}
+<button
+  class="de-ColorSwatchList-action
+          {% if forloop.first %}de-is-active{% endif %}
+          de-u-bg{{color.name}}"
+  itemprop="color"
+>
+  <span class="de-u-hiddenVisually">{{color.name}}</span>
+</button>
