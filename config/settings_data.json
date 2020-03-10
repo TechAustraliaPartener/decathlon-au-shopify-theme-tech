@@ -26,16 +26,16 @@
     "svg_logo": "small_logo.svg",
     "img_logo": "shopify:\/\/shop_images\/logo_small_9355cf1c-7626-4ada-916d-d809a214ca37.png",
     "enable_meet_decathlon": false,
-    "megamenu_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_22.png",
-    "megamenu_title": "End Of Summer Sale",
-    "megamenu_subtitle": "Up To 70% Off Last Sizes",
-    "megamenu_link": "shopify:\/\/collections\/all-sale-products",
-    "megamenu_bg_colour": "#ff0000",
+    "megamenu_image": "shopify:\/\/shop_images\/Copy_of_SIDE_NAV_1_-min.jpg",
+    "megamenu_title": "New Arrivals",
+    "megamenu_subtitle": "More Brands, More Fun",
+    "megamenu_link": "shopify:\/\/collections\/new-arrivals-2020",
+    "megamenu_bg_colour": "#1c82c3",
     "is_lookbook": false,
     "product_returns_text": "Easy 365 days return",
-    "product_shipping_text": "Some delivery delays expected due to weather conditions",
+    "product_shipping_text": "Free shipping for orders above $80",
     "product_bulk_returns_text": "Easy 365 days return",
-    "product_bulk_shipping_text": "Some delivery delays expected due to weather conditions",
+    "product_bulk_shipping_text": "Check shipping rates at checkout",
     "footer_slider_products": true,
     "footer_slider_products_title": "",
     "footer_slider_products_collection": "trending-products",
@@ -341,14 +341,14 @@
               "hours_2_open": 8,
               "hours_2_close": 22,
               "hours_3_open": 12,
-              "hours_3_close": 23,
+              "hours_3_close": 22,
               "hours_4_open": 8,
               "hours_4_close": 22,
               "hours_5_open": 8,
               "hours_5_close": 22,
               "hours_6_open": 8,
               "hours_6_close": 22,
-              "announcement": "",
+              "announcement": "Friday 10th April (Good Friday): Closed | Saturday 11th April: Normal hours | Sunday 12th April (Easter Sunday): Closed | Monday 13th April (Easter Monday): 9am-10pm | Saturday 25th April (Anzac Day): 1pm-10pm",
               "address_type_boolean": false,
               "is_residential": false,
               "is_warehouse": false,
@@ -432,7 +432,7 @@
               "hours_5_close": 21,
               "hours_6_open": 9,
               "hours_6_close": 21,
-              "announcement": "",
+              "announcement": "Friday 10th April (Good Friday): Closed | Saturday 11th April: 10am-7pm | Sunday 12th April (Easter Sunday): Closed | Monday 13th April (Easter Monday): 10am-7pm | Saturday 25th April (Anzac Day): 1pm-9pm",
               "address_type_boolean": true,
               "is_residential": false,
               "is_warehouse": false,
@@ -474,7 +474,7 @@
               "hours_5_close": 21,
               "hours_6_open": 9,
               "hours_6_close": 21,
-              "announcement": "",
+              "announcement": "Friday 10th April (Good Friday): Closed | Saturday 11th April: 10am-7pm | Sunday 12th April (Easter Sunday): Closed | Monday 13th April (Easter Monday): 10am-7pm | Saturday 25th April (Anzac Day): 1pm-9pm",
               "address_type_boolean": true,
               "is_residential": false,
               "is_warehouse": false,
@@ -503,20 +503,20 @@
               "tooltip_hours": true,
               "is_same_hours_weekly": true,
               "hours_0_open": 9,
-              "hours_0_close": 21,
+              "hours_0_close": 20,
               "hours_1_open": 9,
-              "hours_1_close": 21,
+              "hours_1_close": 20,
               "hours_2_open": 9,
-              "hours_2_close": 21,
+              "hours_2_close": 20,
               "hours_3_open": 9,
-              "hours_3_close": 21,
+              "hours_3_close": 20,
               "hours_4_open": 9,
-              "hours_4_close": 21,
+              "hours_4_close": 20,
               "hours_5_open": 9,
-              "hours_5_close": 21,
+              "hours_5_close": 20,
               "hours_6_open": 9,
-              "hours_6_close": 21,
-              "announcement": "",
+              "hours_6_close": 20,
+              "announcement": "Friday 10th April (Good Friday): Closed | Saturday 11th April: 10am-7pm | Sunday 12th April (Easter Sunday): Closed | Monday 13th April (Easter Monday): 10am-7pm | Saturday 25th April (Anzac Day): 1pm-8pm",
               "address_type_boolean": true,
               "is_residential": false,
               "is_warehouse": false,
@@ -579,50 +579,50 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
-          "1568939563080": {
+          "1583712138855": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/sales_1.png",
-              "slide_bg_position": "60%-80px",
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_2_-min.jpg",
+              "slide_bg_position": "75% -50px",
               "banner_intro": "",
-              "banner_title": "<br>Up To 70% Off<br>Last Sizes",
-              "banner_subtitle": "<p><strong>Sale Ends 15 March. Limited Stock<\/strong><\/p>",
+              "banner_title": "<br>Hiking This Autumn?",
+              "banner_subtitle": "<p><strong>Fleece Up For Your Next Adventures<\/strong><\/p>",
               "button_new_window": false,
-              "button_title": "SHOP NOW",
-              "button_url": "shopify:\/\/collections\/all-sale-products"
+              "button_title": "SHOP FLEECE JACKETS",
+              "button_url": "https:\/\/decathlon.com.au\/search?q=fleeces%20hiking&hPP=24&idx=shopify_products_recently_ordered_count_desc&p=0&dFR%5Bnamed_tags.SPORT_VALUE%5D%5B0%5D=HIKING&dFR%5Bnamed_tags.SPORT_VALUE%5D%5B1%5D=TREKKING%20SEVERAL%20DAYS&is_v=1"
             }
           },
           "1583208837009": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_1_a6dc712e-e019-4636-8b09-52d2f7431e14.png",
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_3_b8be2514-1f09-4da4-8b38-06202ea3dcd3.jpg",
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
-              "banner_title": "<br>New Arrivals<br>",
-              "banner_subtitle": "<p><strong>More Sports, More Brands, More Fun<\/strong><\/p>",
+              "banner_title": "<br>Pay Less<br>To Keep Fit",
+              "banner_subtitle": "<p><strong>Everyday Low Price On Home Gym Equipment<\/strong><\/p>",
               "button_new_window": false,
-              "button_title": "SHOP NEW ARRIVALS",
-              "button_url": "shopify:\/\/collections\/new-arrivals-2020"
+              "button_title": "SHOP FITNESS EQUIPMENT",
+              "button_url": "shopify:\/\/collections\/home-fitness-equipment-accessories"
             }
           },
-          "1583209785440": {
+          "1583714567390": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/homepage_main_banner_1_background_image_1600x.progressive_c0e35754-c49e-4d66-b8a2-c1c45dffa615.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/homepage_main_banner_3_background_image_1600x.progressive-min.jpg",
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
-              "banner_title": "<br>Rainy Days<br>Essentials",
-              "banner_subtitle": "<p><strong>Raincoats, Jackets &amp; Waterproof Gear<\/strong><\/p>",
+              "banner_title": "New Arrivals",
+              "banner_subtitle": "<p><strong>Get Your Runners As From $25<\/strong><\/p>",
               "button_new_window": false,
-              "button_title": "SHOP NOW",
-              "button_url": "shopify:\/\/collections\/sport-under-the-rain"
+              "button_title": "SHOP RUNNING SHOES",
+              "button_url": "shopify:\/\/collections\/all-running-shoes"
             }
           }
         },
         "block_order": [
-          "1568939563080",
+          "1583712138855",
           "1583208837009",
-          "1583209785440"
+          "1583714567390"
         ],
         "settings": {}
       }
