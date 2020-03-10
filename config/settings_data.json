@@ -36,6 +36,8 @@
     "product_shipping_text": "Free shipping for orders above $80",
     "product_bulk_returns_text": "Easy 365 days return",
     "product_bulk_shipping_text": "Check shipping rates at checkout",
+    "algolia_variant_image_dimensions": "600x600",
+    "algolia_size_sorting_order": "3XS,2XS,XS,XS-S,XS\/S,S,S-M,S\/M,M,M-L,M\/L,L,L-XL,L\/XL,XL,2XL,3XL,4XL,5XL",
     "footer_slider_products": true,
     "footer_slider_products_title": "",
     "footer_slider_products_collection": "trending-products",
