@@ -610,21 +610,21 @@
           "1583714567390": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/homepage_main_banner_3_background_image_1600x.progressive-min.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_13_-min.jpg",
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
-              "banner_title": "New Arrivals",
-              "banner_subtitle": "<p><strong>Get Your Runners As From $25<\/strong><\/p>",
+              "banner_title": "More Products, More Fun.",
+              "banner_subtitle": "<p><strong>Discover 700+ New Products<\/strong>&nbsp;<\/p>",
               "button_new_window": false,
-              "button_title": "SHOP RUNNING SHOES",
-              "button_url": "shopify:\/\/collections\/all-running-shoes"
+              "button_title": "SHOP NEW ARRIVALS",
+              "button_url": "shopify:\/\/collections\/new-arrivals-2020"
             }
           }
         },
         "block_order": [
+          "1583714567390",
           "1583712138855",
-          "1583208837009",
-          "1583714567390"
+          "1583208837009"
         ],
         "settings": {}
       }
