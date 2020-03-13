@@ -33,6 +33,11 @@
   window.vars.cartPayload = {{ cart | json }};
   window.vars.tomitCartPayload = [{{ cart.items | map: 'product' | map: 'id' | join: ', ' }}];
   window.vars.deliveryOption = localStorage.getItem('deliveryOption') || 'Delivery';
+  window.vars.customer = {
+    id: {{ customer.id }},
+    username: "{{ customer.name }}",
+    email: "{{ customer.email }}"
+  };
 </script>
 
 {% include 'js-algolia-custom-widgets' %}

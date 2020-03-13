@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import './footer';
+import './user_id';
 /* eslint-disable complexity, @cloudfour/no-param-reassign, no-redeclare, eqeqeq, no-negated-condition, radix, block-scoped-var, no-var, no-alert, no-new, @cloudfour/unicorn/explicit-length-check, max-params, no-new-func */
 /* global Cookies, jQuery, BlueLikeNeon, s3, DecathlonCustomer */
 
