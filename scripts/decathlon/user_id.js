@@ -4,7 +4,7 @@ import {
   localStorageAvailable,
   sessionStorageAvailable,
   setObjectInLocalStorage,
-  getObjectInLocalStorage,
+  getObjectFromLocalStorage,
   removeItemFromLocalStorage,
   cookiesAvailable
 } from '../utilities/storage';
@@ -22,11 +22,18 @@ function getParameterByName(name, url) {
 var user_id = getParameterByName('user_id');
 
 if (user_id) {
-  if (cookiesAvailable) {
-    Cookies.set(user_id, user_id);
-    console.log(Cookies.get(user_id));
-  } else if (localStorageAvailable) {
-    setObjectInLocalStorage(user_id, user_id);
-    console.log(getObjectInLocalStorage(user_id););
-  }
+  // if (cookiesAvailable) {
+  //   Cookies.set('user_id', user_id);
+  //   console.log(Cookies.get('user_id'));
+  // } else if (localStorageAvailable) {
+    setObjectInLocalStorage('user_id', user_id);
+    console.log(getObjectFromLocalStorage('user_id'));
+  // }
+}
+
+var userID = Cookies.get('user_id') || getObjectFromLocalStorage('user_id') || false;
+window.vars.userID = userID;
+
+export const getuserID = () => {
+  return Cookies.get('user_id') || getObjectFromLocalStorage('user_id') || getParameterByName('user_id') || false;
 }

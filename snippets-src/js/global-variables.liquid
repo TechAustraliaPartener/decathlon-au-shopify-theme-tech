@@ -33,11 +33,11 @@
   window.vars.cartPayload = {{ cart | json }};
   window.vars.tomitCartPayload = [{{ cart.items | map: 'product' | map: 'id' | join: ', ' }}];
   window.vars.deliveryOption = localStorage.getItem('deliveryOption') || 'Delivery';
-  window.vars.customer = {
+  window.vars.customer = {% if customer %}{
     id: {{ customer.id }},
     username: "{{ customer.name }}",
     email: "{{ customer.email }}"
-  };
+  }{% else %}false{% endif %};
 </script>
 
 {% include 'js-algolia-custom-widgets' %}

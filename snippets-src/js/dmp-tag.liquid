@@ -1,0 +1,185 @@
+<script type="text/javascript">
+  function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+  }
+
+  var userId = localStorage.getItem('user_id') || getParameterByName('user_id') || 'None';
+
+  console.log(userId);
+
+  var _y_account = "YT-000058-1"; //Each country have a dedicated account number
+  window.WTTAG_BEFORE_ONLOAD = true;
+  window.ytrackAsyncInit = function() {
+
+    var _wt1Q = this._wt1Q || [];
+    window.Ytrack.init({
+      "account": _y_account,
+      "domain_id": "0292", //Each website have a dedicated domain_id number
+      "domain_version": "2",
+      "domain": "decathlon.au" //Write the domain of the website
+    });
+
+    /* The tracking is activated. Privacy is managed in TMS if needed */
+    _wt1Q.setTrackAccept(true);
+    var _PM_SRC = null;
+    var _PM_ID = null;
+    if (userId !== '') {
+      _PM_ID = userId;
+
+      _PM_SRC = 'sharedid';
+    } else
+    if ((Ytrack.getParamValue('SPMID') || Ytrack.getParamValue('SPMID', undefined, document.referrer)) !== '') {
+      _PM_ID = Ytrack.getParamValue('SPMID') || Ytrack.getParamValue('SPMID', undefined, document.referrer);
+      _PM_SRC = 'sharedid';
+    }
+
+    if (_PM_ID !== null && _PM_ID !== "private") {
+      _wt1Q.push(["setSessionParam", "_user_id", userId]);
+      // Push the value to the tracker
+      _wt1Q.push(["setVisitorParam", "_PmId", _PM_ID]);
+      // Push source and sub-source to tracker
+      _wt1Q.push(["setVisitorParam", "_PmSrc", _PM_SRC]);
+    }
+
+    _wt1Q.push(["setSessionParam", "_env_channel", 'Web']);
+    _wt1Q.push(["setSessionParam", "_env_language", 'English']);
+    _wt1Q.push(["setSessionParam", "_user_id", userId]);
+    _wt1Q.push(["setSessionParam", "_env_template", "{{ template.name }}"]);
+
+    {% if checkout %}
+      {% assign items_count = 0 %}
+      {% for item in order.line_items %}
+        {% assign items_count = items_count | plus: item.quantity %}
+      {% endfor %}
+
+      _wt1Q.push(["setSessionParam", "_order_amount_ati_without_sf", "{{ order.total_price | money_without_currency }}"]);
+      _wt1Q.push(["setSessionParam", "_basket_id", "{{ order.id }}"]);
+      _wt1Q.push(["setSessionParam", "_order_ship_ati", "{{ order.shipping_price | money_without_currency }}"]);
+      _wt1Q.push(["setSessionParam", "_order_products_number", "{{ items_count }}"]);
+      _wt1Q.push(["setSessionParam", "_order_currency", 'AUD']);
+      _wt1Q.push(["setSessionParam", "_order_products", "{{ order.line_items | map: 'title' | join: ', ' }}"]);
+      _wt1Q.push(["setSessionParam", "_order_payment_methods", "{{ order.transactions | map: 'gateway' | join: ', ' }}"]);
+      _wt1Q.push(["setSessionParam", "_order_id", "{{ order.id }}"]);
+    {% else %}
+      {% case template.name %}
+
+        {% assign items_count = 0 %}
+        {% for item in cart.line_items %}
+          {% assign items_count = items_count | plus: item.quantity %}
+        {% endfor %}
+
+        _wt1Q.push(["setSessionParam", "_order_amount_ati_without_sf", "{{ cart.total_price | money_without_currency }}"]);
+        _wt1Q.push(["setSessionParam", "_order_products_number", "{{ items_count }}"]);
+        _wt1Q.push(["setSessionParam", "_order_currency", 'AUD']);
+        _wt1Q.push(["setSessionParam", "_order_products", "{{ cart.line_items | map: 'title' | join: ', ' }}"]);
+
+        {% when 'product' %}
+
+          {% assign super_model = false %}
+          {% for tag in product.tags %}
+            {% if tag contains 'SUPER_MODEL:' %}
+              {% assign super_model = tag | remove_first: 'SUPER_MODEL:' | strip %}
+            {% endif %}
+          {% endfor %}
+
+          {% assign model_option = product.options_with_values | where: 'name', 'Model Code' | map: 'position' | first | prepend: 'option' %}
+
+          {% if super_model %}_wt1Q.push(["setSessionParam", "_product_id_articles", "{{ super_model }}"]);{% endif %}
+          _wt1Q.push(["setSessionParam", "_product_unitprice_tf", "{{ product.price | money_without_currency }}"]);
+          {% if model_option %}_wt1Q.push(["setSessionParam", "_product_id_model", "{{ product.selected_or_first_available_variant[model_option] }}"]);{% endif %}
+          _wt1Q.push(["setSessionParam", "_product_name",, "{{ product.title }}"])]);
+          _wt1Q.push(["setSessionParam", "_product_trademark", "{{ product.vendor }}"]);
+          _wt1Q.push(["setSessionParam", "_product_currency", 'AUD']);
+          _wt1Q.push(["setSessionParam", "_product_instock", "{{ product.available }}"]);
+
+        {% when 'collection' %}
+
+          _wt1Q.push(["setSessionParam", "_page_cat0", "{{ page_cat0 }}"]);
+          _wt1Q.push(["setSessionParam", "_page_cat1", "{{ page_cat1 }}"]);
+          _wt1Q.push(["setSessionParam", "_page_cat2", "{{ page_cat2 }}"]);
+          _wt1Q.push(["setSessionParam", "_page_cat3", "{{ page_cat3 }}"]);
+
+      {% endcase %}
+    {% endif %}
+
+    _wt1Q.push(["trackPage", {}]);
+  };
+  (function() {
+    var e = document.createElement("script");
+    e.id = "tc_script_553_1";
+    e.async = true;
+    e.src = "//prod-js.aws.y-track.com/" + _y_account + "/v5/tracker.min.js";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(e, s);
+  }());
+
+  console.log('DMP Tag Data:', {
+    _env_channel: 'Web',
+    _env_language: 'English',
+    _user_id: userId,
+    
+    {% if checkout %}
+      {% assign items_count = 0 %}
+      {% for item in order.line_items %}
+        {% assign items_count = items_count | plus: item.quantity %}
+      {% endfor %}
+
+      _order_amount_ati_without_sf: "{{ order.total_price | money_without_currency }}",
+      _basket_id: "{{ order.id }}",
+      _order_ship_ati: "{{ order.shipping_price | money_without_currency }}",
+      _order_products_number: "{{ items_count }}",
+      _order_currency: 'AUD',
+      _order_products: "{{ order.line_items | map: 'title' | join: ', ' }}",
+      _order_payment_methods: "{{ order.transactions | map: 'gateway' | join: ', ' }}",
+      _order_id: "{{ order.id }}",
+    {% else %}
+
+      {% assign items_count = 0 %}
+      {% for item in cart.line_items %}
+        {% assign items_count = items_count | plus: item.quantity %}
+      {% endfor %}
+
+      _order_amount_ati_without_sf: "{{ cart.total_price | money_without_currency }}",
+      _order_products_number: "{{ items_count }}",
+      _order_currency: 'AUD',
+      _order_products: "{{ cart.line_items | map: 'title' | join: ', ' }}",
+
+      {% case template.name %}
+        {% when 'product' %}
+
+          {% assign super_model = false %}
+          {% for tag in product.tags %}
+            {% if tag contains 'SUPER_MODEL:' %}
+              {% assign super_model = tag | remove_first: 'SUPER_MODEL:' | strip %}
+            {% endif %}
+          {% endfor %}
+
+          {% assign model_option = product.options_with_values | where: 'name', 'Model Code' | map: 'position' | first | prepend: 'option' %}
+
+          {% if super_model %}_product_id_articles: "{{ super_model }}",{% endif %}
+          _product_unitprice_tf: "{{ product.price | money_without_currency }}",
+          {% if model_option %}_product_id_model: "{{ product.selected_or_first_available_variant[model_option] }}",{% endif %}
+          _product_name: "{{ product.title }}",
+          _product_trademark: "{{ product.vendor }}",
+          _product_currency: 'AUD',
+          _product_instock: "{{ product.available }}",
+
+        {% when 'collection' %}
+
+          _page_cat0: 'Needs definition: page_cat0',
+          _page_cat1: 'Needs definition: page_cat1',
+          _page_cat2: 'Needs definition: page_cat2',
+          _page_cat3: 'Needs definition: page_cat3',
+
+      {% endcase %}
+
+      _env_template: "{{ template.name }}"
+    {% endif %}
+  });
+</script>
