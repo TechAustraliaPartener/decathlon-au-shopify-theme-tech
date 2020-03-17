@@ -263,6 +263,9 @@ const initInventoryLocations = () => {
       }
     }
 
+    // Trigger function at gtm-datalayer-product-stock.liquid
+    pushStockInfoToDataLayer();
+
     if (window.vars.selectedVariant === null) {
       window.inventoryLocationsDisplay.changeVariant(null);
     } else {
