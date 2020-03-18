@@ -93,7 +93,7 @@
           {% if super_model %}_wt1Q.push(["setSessionParam", "_product_id_articles", "{{ super_model }}"]);{% endif %}
           _wt1Q.push(["setSessionParam", "_product_unitprice_tf", "{{ product.price | money_without_currency }}"]);
           {% if model_option %}_wt1Q.push(["setSessionParam", "_product_id_model", "{{ product.selected_or_first_available_variant[model_option] }}"]);{% endif %}
-          _wt1Q.push(["setSessionParam", "_product_name",, "{{ product.title }}"])]);
+          _wt1Q.push(["setSessionParam", "_product_name", "{{ product.title }}"]);
           _wt1Q.push(["setSessionParam", "_product_trademark", "{{ product.vendor }}"]);
           _wt1Q.push(["setSessionParam", "_product_currency", 'AUD']);
           _wt1Q.push(["setSessionParam", "_product_instock", "{{ product.available }}"]);
