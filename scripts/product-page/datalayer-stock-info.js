@@ -1,0 +1,67 @@
+function pushStockInfoToDataLayer(modelNumber) {
+  window.vars.pushInventory = window.vars.pushInventory || [];
+  window.vars.pushInventory.push(modelNumber);
+
+  if (!window.inventories) {
+    return false;
+  }
+
+  if (window.vars.pushInventory.length > 0) {
+    var uniqueModels = [...new Set(window.vars.pushInventory)];
+    console.log(uniqueModels);
+    uniqueModels.forEach(model => {
+      push(model);
+    });
+    window.vars.pushInventory.length = 0;
+  }
+}
+
+function push(modelNumber) {
+  console.log('Pushing ' + modelNumber);
+
+  // Determine stock status
+  var simpleInventory = {};
+
+  for (let [key, obj] of Object.entries(window.inventories)) {
+
+    var modelNum = obj.title.split(' ');
+    modelNum = modelNum[modelNum.length - 1];
+
+    simpleInventory[modelNum] = simpleInventory[modelNum] || {
+      stock: 0,
+      stockStatus: []
+    };
+
+    var tempeInventory = obj.inventoryItem.locations.find(loc => loc.name === 'Tempe');
+    if (tempeInventory) {
+      simpleInventory[modelNum].stockStatus.push((tempeInventory.inStock > 0));
+      simpleInventory[modelNum].stock += tempeInventory.available;
+    } else {
+      simpleInventory[modelNum].stockStatus.push(false);
+    }
+  }
+
+  var stockStatusArray = simpleInventory[modelNumber].stockStatus;
+  var stockStatus = 'Not Available';
+  if (stockStatusArray.every(item => item === true)) {
+    stockStatus = 'Fully Available';
+  } else if (stockStatusArray.some(item => item === true)) {
+    stockStatus = 'Partially Available';
+  }
+
+  window.vars.productStockInfo.dynamic = {
+    'Model Number': modelNumber,
+    'Stock Status': stockStatus
+  }
+
+  var event = {
+    'event': 'stockLevel'
+  }
+
+  const stockEventPayload = {...window.vars.productStockInfo.static, ...window.vars.productStockInfo.dynamic, ...event };
+  console.log(stockEventPayload);
+
+  dataLayer.push(stockEventPayload);
+}
+
+export default pushStockInfoToDataLayer;

@@ -16,91 +16,30 @@
   {% assign product_option_name = product_option.name | downcase %}
   {% if product_option_name == option_type %}
     {% assign option_index = forloop.index %}
+    {% assign model_option = 'option' | append: option_index %}
     {% break %}
   {% endif %}
 {% endfor %}
 
-{% if product.selected_or_first_available_variant and option_index != blank %}
-  {% if option_index == 1 %}{% assign current_model = product.selected_or_first_available_variant.option1 %}{% endif %}
-  {% if option_index == 2 %}{% assign current_model = product.selected_or_first_available_variant.option2 %}{% endif %}
-  {% if option_index == 3 %}{% assign current_model = product.selected_or_first_available_variant.option3 %}{% endif %}
+{% if product.selected_or_first_available_variant and model_option != blank %}
+  {% assign current_model = product.selected_or_first_available_variant[model_option] %}
 {% else %}
   {% assign current_model = '' %}
 {% endif %}
 
 <script>
-
-  window.inventories = JSON.parse('{"31327922782319":{"id":"31327922782319","sku":"272636","title":"Blue / S/M / 8304664","inventoryItem":{"id":"32937176727663","locations":[{"id":"10324541551","name":"Tempe","available":25,"pickupOption":true,"inStock":1,"distance":0,"_isPrimary":null,"businessHours":[{"day":"Monday","time":{"open":{"hours":"","minutes":""},"close":{"hours":"","minutes":""}},"closed":false},{"day":"Tuesday","time":{"open":{"hours":"","minutes":""},"close":{"hours":"","minutes":""}},"closed":false},{"day":"Wednesday","time":{"open":{"hours":"","minutes":""},"close":{"hours":"","minutes":""}},"closed":false},{"day":"Thursday","time":{"open":{"hours":"","minutes":""},"close":{"hours":"","minutes":""}},"closed":false},{"day":"Friday","time":{"open":{"hours":"","minutes":""},"close":{"hours":"","minutes":""}},"closed":false},{"day":"Saturday","time":{"open":{"hours":"","minutes":""},"close":{"hours":"","minutes":""}},"closed":false},{"day":"Sunday","time":{"open":{"hours":"","minutes":""},"close":{"hours":"","minutes":""}},"closed":false}],"city":"Tempe","address":"634-726 Princes Hwy","country":"AU","zip":"2044","title":"Tempe","ready":"<span>Ready to collect in 2 hours</span>","availability":{"class":"in","text":"In Stock"},"is_same_hours_weekly":true,"hours":"Open 8am-10pm","street1":"634-726 Princes Hwy","state":"NSW","tooltip_hours":true,"fullHours":"<li><span class=\"weekday\">Monday</span> <span class=\"tooltip-hours\">8:00 am - 10:00 pm</span></li><li><span class=\"weekday\">Tuesday</span> <span class=\"tooltip-hours\">8:00 am - 10:00 pm</span></li><li><span class=\"weekday\">Wednesday</span> <span class=\"tooltip-hours\">8:00 am - 10:00 pm</span></li><li><span class=\"weekday\">Thursday</span> <span class=\"tooltip-hours\">8:00 am - 10:00 pm</span></li><li><span class=\"weekday\">Friday</span> <span class=\"tooltip-hours\">8:00 am - 10:00 pm</span></li><li><span class=\"weekday\">Saturday</span> <span class=\"tooltip-hours\">8:00 am - 10:00 pm</span></li><li><span class=\"weekday\">Sunday</span> <span class=\"tooltip-hours\">8:00 am - 10:00 pm</span></li>","announcement":"Friday 10th April (Good Friday): Closed | Saturday 11th April: Normal hours | Sunday 12th April (Easter Sunday): Closed | Monday 13th April (Easter Monday): 9am-10pm | Saturday 25th April (Anzac Day): 1pm-10pm"},{"name":"Auburn","title":"Auburn","ready":"Unavailable","availability":{"class":"out","text":"Out of Stock"},"hours":"Tue 9am-10pm","tooltip_hours":true,"fullHours":"<li><span class=\"weekday\">Monday</span> <span class=\"tooltip-hours\">9:00 am - 10:00 pm</span></li><li><span class=\"weekday\">Tuesday</span> <span class=\"tooltip-hours\">9:00 am - 10:00 pm</span></li><li><span class=\"weekday\">Wednesday</span> <span class=\"tooltip-hours\">9:00 am - 10:00 pm</span></li><li><span class=\"weekday\">Thursday</span> <span class=\"tooltip-hours\">9:00 am - 10:00 pm</span></li><li><span class=\"weekday\">Friday</span> <span class=\"tooltip-hours\">9:00 am - 10:00 pm</span></li><li><span class=\"weekday\">Saturday</span> <span class=\"tooltip-hours\">9:00 am - 10:00 pm</span></li><li><span class=\"weekday\">Sunday</span> <span class=\"tooltip-hours\">9:00 am - 10:00 pm</span></li>","announcement":"","street1":"300 Parramatta Rd","city":"Auburn","zip":"2144","state":"NSW"},{"id":"15685812335","name":"Knoxfield","available":8,"pickupOption":true,"inStock":1,"distance":0,"_isPrimary":null,"businessHours":[{"day":"Monday","time":{"open":{"hours":"","minutes":""},"close":{"hours":"","minutes":""}},"closed":false},{"day":"Tuesday","time":{"open":{"hours":"","minutes":""},"close":{"hours":"","minutes":""}},"closed":false},{"day":"Wednesday","time":{"open":{"hours":"","minutes":""},"close":{"hours":"","minutes":""}},"closed":false},{"day":"Thursday","time":{"open":{"hours":"","minutes":""},"close":{"hours":"","minutes":""}},"closed":false},{"day":"Friday","time":{"open":{"hours":"","minutes":""},"close":{"hours":"","minutes":""}},"closed":false},{"day":"Saturday","time":{"open":{"hours":"","minutes":""},"close":{"hours":"","minutes":""}},"closed":false},{"day":"Sunday","time":{"open":{"hours":"","minutes":""},"close":{"hours":"","minutes":""}},"closed":false}],"city":"Knoxfield","address":"1464 Ferntree Gully Rd","country":"AU","zip":"3180","title":"Knoxfield","ready":"<span>Ready to collect in 2 hours</span>","availability":{"class":"in","text":"In Stock"},"is_same_hours_weekly":true,"hours":"Open 9am-9pm","street1":"1464 Ferntree Gully Rd","state":"VIC","tooltip_hours":true,"fullHours":"<li><span class=\"weekday\">Monday</span> <span class=\"tooltip-hours\">9:00 am - 9:00 pm</span></li><li><span class=\"weekday\">Tuesday</span> <span class=\"tooltip-hours\">9:00 am - 9:00 pm</span></li><li><span class=\"weekday\">Wednesday</span> <span class=\"tooltip-hours\">9:00 am - 9:00 pm</span></li><li><span class=\"weekday\">Thursday</span> <span class=\"tooltip-hours\">9:00 am - 9:00 pm</span></li><li><span class=\"weekday\">Friday</span> <span class=\"tooltip-hours\">9:00 am - 9:00 pm</span></li><li><span class=\"weekday\">Saturday</span> <span class=\"tooltip-hours\">9:00 am - 9:00 pm</span></li><li><span class=\"weekday\">Sunday</span> <span class=\"tooltip-hours\">9:00 am - 9:00 pm</span></li>","announcement":"Friday 10th April (Good Friday): Closed | Saturday 11th April: 10am-7pm | Sunday 12th April (Easter Sunday): Closed | Monday 13th April (Easter Monday): 10am-7pm | Saturday 25th April (Anzac Day): 1pm-9pm"},{"id":"15685845103","name":"Box Hill","available":43,"pickupOption":true,"inStock":1,"distance":0,"_isPrimary":null,"businessHours":[{"day":"Monday","time":{"open":{"hours":"","minutes":""},"close":{"hours":"","minutes":""}},"closed":false},{"day":"Tuesday","time":{"open":{"hours":"","minutes":""},"close":{"hours":"","minutes":""}},"closed":false},{"day":"Wednesday","time":{"open":{"hours":"","minutes":""},"close":{"hours":"","minutes":""}},"closed":false},{"day":"Thursday","time":{"open":{"hours":"","minutes":""},"close":{"hours":"","minutes":""}},"closed":false},{"day":"Friday","time":{"open":{"hours":"","minutes":""},"close":{"hours":"","minutes":""}},"closed":false},{"day":"Saturday","time":{"open":{"hours":"","minutes":""},"close":{"hours":"","minutes":""}},"closed":false},{"day":"Sunday","time":{"open":{"hours":"","minutes":""},"close":{"hours":"","minutes":""}},"closed":false}],"city":"Box Hill","address":"249 Middleborough Rd","country":"AU","zip":"3128","title":"Box Hill","ready":"<span>Ready to collect in 2 hours</span>","availability":{"class":"in","text":"In Stock"},"is_same_hours_weekly":true,"hours":"Open 9am-9pm","street1":"249 Middleborough Rd","state":"VIC","tooltip_hours":true,"fullHours":"<li><span class=\"weekday\">Monday</span> <span class=\"tooltip-hours\">9:00 am - 9:00 pm</span></li><li><span class=\"weekday\">Tuesday</span> <span class=\"tooltip-hours\">9:00 am - 9:00 pm</span></li><li><span class=\"weekday\">Wednesday</span> <span class=\"tooltip-hours\">9:00 am...');
-  pushStockInfoToDataLayer();
-
-  var currentModel = "{{ current_model }}";
-
-  function pushStockInfoToDataLayer() {
-
-    console.log('window.inventories', window.inventories);
-
-    // Determine stock status
-    var simpleInventory = {};
-    var stockStatus = "Not Available";
-    var prevModelNum = "";
-    var modelNum = "";
-    var prevInventoryNum = 0;
-
-    for (let [key, obj] of Object.entries(window.inventories)) {
-
-      modelNum = obj.title.slice(-7);
-      
-      for (let i = 0; i < obj.inventoryItem.locations.length; i++) {
-        if(obj.inventoryItem.locations[i].name == "Tempe") {
-
-          if(modelNum == prevModelNum) {
-            simpleInventory[modelNum] = prevInventoryNum + obj.inventoryItem.locations[i].available;
-          } else {
-            simpleInventory[modelNum] = obj.inventoryItem.locations[i].available;
-          }
-          prevInventoryNum = obj.inventoryItem.locations[i].available;
-        } else {
-          if(modelNum == prevModelNum) {
-            simpleInventory[modelNum] = prevInventoryNum;
-          } else {
-            simpleInventory[modelNum] = 0;
-          }
-        }
-      }
-
-      prevModelNum = obj.title.slice(-7);
+  window.vars = window.vars || {};
+  window.vars.productStockInfo = {
+    'static': {
+      'Brand': '{{ product.vendor }}', 
+      'Type': '{{ product.type }}', 
+      'Product Title': '{{ product.vendor }} {{ product.title }}', 
+      'Sport': '{{ sport_value }}', 
+      'Family ID': '{{ family_id }}'
+    },
+    'dynamic': {
+      'Model Number': '{{ current_model }}', 
+      'Stock Status': false
     }
-
-    var allAvailable = true;
-
-    for (let [key, value] of Object.entries(simpleInventory)) {
-      if(value > 0) {
-       stockStatus = "Partially Available"; 
-      } else {
-        allAvailable = false;
-      }
-    }
-
-    if(allAvailable) {
-      stockStatus = "Fully Available";
-    }
-
-    console.log('simpleInventory', simpleInventory);
-    console.log('Stock Status:', stockStatus);
-
-    dataLayer.push({
-    'Model Number': '{{ current_model }}', 
-    'Brand': '{{ product.vendor }}', 
-    'Type': '{{ product.type }}', 
-    'Product Title': '{{ product.vendor }} {{ product.title }}', 
-    'Sport': '{{ sport_value }}', 
-    'Family ID': '{{ family_id }}', 
-    'Stock Status': stockStatus
-    });
-
-    dataLayer.push({
-      'event': 'stockLevel',
-      
-    })
   }
 </script>

@@ -8,6 +8,7 @@ import * as colorSwatches from './color-swatches';
 import * as sizeSwatches from './size-swatches';
 import './videos';
 import * as accordion from './accordion';
+import pushStockInfoToDataLayer from './datalayer-stock-info';
 import * as inventoryLocations from './inventory-locations';
 import { reviewsInit } from './ratings-reviews';
 import { updateOptionStates } from './option-states';
@@ -20,6 +21,7 @@ import * as drawer from './drawer';
 import { getUrlVariant, updateUrlVariant } from './query-string';
 import { getSelectedVariant, getVariantOptions } from './product-data';
 import * as stickyNav from './sticky-nav';
+
 // Removed for AU
 // import * as storePickup from './fulfillment-options';
 import * as modal from './modal';

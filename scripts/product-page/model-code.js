@@ -1,3 +1,5 @@
+import pushStockInfoToDataLayer from './datalayer-stock-info';
+
 // @ts-check
 /**
  * Model code module
@@ -33,6 +35,9 @@ export const onColorSelect = color => {
     modelCodeTextEls.forEach(modelCodeTextEl => {
       modelCodeTextEl.textContent = modelCode;
     });
+
+    console.log('push the stock');
+    pushStockInfoToDataLayer(modelCode);
 
     // Then make sure any hidden model code wrappers are shown
     modelCodeEls.forEach(modelCodeEl => {

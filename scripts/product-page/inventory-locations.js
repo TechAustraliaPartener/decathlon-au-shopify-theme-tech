@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import Vue from 'vue/dist/vue.esm.js';
+import pushStockInfoToDataLayer from './datalayer-stock-info';
 
 // Const product = productJSON;
 
@@ -264,7 +265,10 @@ const initInventoryLocations = () => {
     }
 
     // Trigger function at gtm-datalayer-product-stock.liquid
-    pushStockInfoToDataLayer();
+    console.log('push the stock');
+    var titleParts = window.vars.selectedVariant.title.split(' ');
+    var currentModel = titleParts[titleParts.length - 1];
+    pushStockInfoToDataLayer(currentModel);
 
     if (window.vars.selectedVariant === null) {
       window.inventoryLocationsDisplay.changeVariant(null);
