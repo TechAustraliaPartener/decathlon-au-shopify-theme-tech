@@ -50,7 +50,7 @@
     _wt1Q.push(["setSessionParam", "_env_channel", 'Web']);
     _wt1Q.push(["setSessionParam", "_env_language", 'English']);
     _wt1Q.push(["setSessionParam", "_user_id", userId]);
-    _wt1Q.push(["setSessionParam", "_env_template", "{{ template.name }}"]);
+    _wt1Q.push(["setSessionParam", "_env_template", "{% if checkout %}{{ checkout.step }}{% else %}{{ template.name }}{% endif %}"]);
 
     {% if checkout %}
       {% assign items_count = 0 %}
@@ -67,18 +67,18 @@
       _wt1Q.push(["setSessionParam", "_order_payment_methods", "{{ order.transactions | map: 'gateway' | join: ', ' }}"]);
       _wt1Q.push(["setSessionParam", "_order_id", "{{ order.id }}"]);
     {% else %}
+
+      {% assign items_count = 0 %}
+      {% for item in cart.items %}
+        {% assign items_count = items_count | plus: item.quantity %}
+      {% endfor %}
+
+      _wt1Q.push(["setSessionParam", "_order_amount_ati_without_sf", "{{ cart.total_price | money_without_currency }}"]);
+      _wt1Q.push(["setSessionParam", "_order_products_number", "{{ items_count }}"]);
+      _wt1Q.push(["setSessionParam", "_order_currency", 'AUD']);
+      _wt1Q.push(["setSessionParam", "_order_products", "{{ cart.items | map: 'title' | join: ', ' }}"]);
+
       {% case template.name %}
-
-        {% assign items_count = 0 %}
-        {% for item in cart.line_items %}
-          {% assign items_count = items_count | plus: item.quantity %}
-        {% endfor %}
-
-        _wt1Q.push(["setSessionParam", "_order_amount_ati_without_sf", "{{ cart.total_price | money_without_currency }}"]);
-        _wt1Q.push(["setSessionParam", "_order_products_number", "{{ items_count }}"]);
-        _wt1Q.push(["setSessionParam", "_order_currency", 'AUD']);
-        _wt1Q.push(["setSessionParam", "_order_products", "{{ cart.line_items | map: 'title' | join: ', ' }}"]);
-
         {% when 'product' %}
 
           {% assign super_model = false %}
@@ -138,17 +138,18 @@
       _order_products: "{{ order.line_items | map: 'title' | join: ', ' }}",
       _order_payment_methods: "{{ order.transactions | map: 'gateway' | join: ', ' }}",
       _order_id: "{{ order.id }}",
+      _env_template: "{% if checkout %}Checkout{% else %}{{ template.name }}{% endif %}"
     {% else %}
 
       {% assign items_count = 0 %}
-      {% for item in cart.line_items %}
+      {% for item in cart.items %}
         {% assign items_count = items_count | plus: item.quantity %}
       {% endfor %}
 
       _order_amount_ati_without_sf: "{{ cart.total_price | money_without_currency }}",
       _order_products_number: "{{ items_count }}",
       _order_currency: 'AUD',
-      _order_products: "{{ cart.line_items | map: 'title' | join: ', ' }}",
+      _order_products: "{{ cart.items | map: 'title' | join: ', ' }}",
 
       {% case template.name %}
         {% when 'product' %}
@@ -178,8 +179,7 @@
           _page_cat3: 'Needs definition: page_cat3',
 
       {% endcase %}
-
-      _env_template: "{{ template.name }}"
+      _env_template: "{% if checkout %}Checkout{% else %}{{ template.name }}{% endif %}"
     {% endif %}
   });
 </script>
