@@ -25,12 +25,12 @@
     "logo_use_image": false,
     "svg_logo": "small_logo.svg",
     "img_logo": "shopify:\/\/shop_images\/logo_small_9355cf1c-7626-4ada-916d-d809a214ca37.png",
-    "enable_meet_decathlon": false,
-    "megamenu_image": "shopify:\/\/shop_images\/Copy_of_SIDE_NAV_6_-min.jpg",
-    "megamenu_title": "Selling Fast",
-    "megamenu_subtitle": "Shop Trending Products",
-    "megamenu_link": "shopify:\/\/collections\/trending-products",
-    "megamenu_bg_colour": "#ff0000",
+    "enable_meet_decathlon": true,
+    "megamenu_image": "shopify:\/\/shop_images\/Copy_of_SIDE_NAV_7.jpg",
+    "megamenu_title": "Ride At Home",
+    "megamenu_subtitle": "Turbo Trainers, Bikes & Scooters",
+    "megamenu_link": "shopify:\/\/collections\/bikes-scooters",
+    "megamenu_bg_colour": "#1c82c3",
     "is_lookbook": false,
     "product_returns_text": "Easy 365 days return",
     "product_shipping_text": "Free shipping for orders above $80",
@@ -233,7 +233,7 @@
     "shop_menu_link": "",
     "shop_menu_text_color": "#ffffff",
     "shop_menu_bg_color": "#0082c3",
-    "meet_decathlon_mission": "We design, manufacture, and offer the best gear at the best prices for more than 70 sports.",
+    "meet_decathlon_mission": "Since 1976, we design, manufacture, and offer the best gear at the best prices for more than 70 sports.",
     "meet_decathlon_statement_1": "We aim to sustainably bring the power of sport to everyone, everywhere",
     "meet_decathlon_statement_2": "by designing the best products at the best prices, innovating for quality and performance",
     "meet_decathlon_statement_3": "so everyone can play",
@@ -319,7 +319,7 @@
             "type": "store",
             "settings": {
               "name": "Tempe",
-              "title": "Tempe",
+              "title": "Tempe Store, 2044",
               "duplicate": "",
               "test_mode": false,
               "street1": "634-726 Princes Hwy",
@@ -361,7 +361,7 @@
             "type": "store",
             "settings": {
               "name": "Auburn",
-              "title": "Auburn",
+              "title": "Auburn Store, 2144",
               "duplicate": "",
               "test_mode": false,
               "street1": "300 Parramatta Rd",
@@ -403,7 +403,7 @@
             "type": "store",
             "settings": {
               "name": "Knoxfield",
-              "title": "Knoxfield",
+              "title": "Knoxfield Store, 3180",
               "duplicate": "",
               "test_mode": false,
               "street1": "1464 Ferntree Gully Rd",
@@ -445,7 +445,7 @@
             "type": "store",
             "settings": {
               "name": "Box Hill",
-              "title": "Box Hill",
+              "title": "Box Hill Store, 3128",
               "duplicate": "",
               "test_mode": false,
               "street1": "249 Middleborough Rd",
@@ -487,7 +487,7 @@
             "type": "store",
             "settings": {
               "name": "Moorabbin",
-              "title": "Moorabbin",
+              "title": "Moorabbin Store, 3194",
               "duplicate": "",
               "test_mode": false,
               "street1": "405 Boundary Road, Moorabbin Airport",
@@ -566,6 +566,90 @@
               "is_warehouse": false,
               "validated": false
             }
+          },
+          "1584593816398": {
+            "type": "store",
+            "settings": {
+              "name": "Maroubra C&C (2035)",
+              "title": "Maroubra, 2035, Pick Up Only",
+              "duplicate": "Tempe",
+              "test_mode": false,
+              "street1": "64 Marine Parade",
+              "city": "Maroubra",
+              "zip": "2035",
+              "state": "NSW",
+              "country": "AU",
+              "checkout_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_27.jpg",
+              "email": "customer.service@decathlon.com",
+              "phone_number": "(02) 9157 5799",
+              "company": "Decathlon",
+              "ready": "If order placed before 5 pm,  guaranteed next day by 7 pm",
+              "ready_checkout": "If order placed before 5 pm,  guaranteed next day by 7 pm",
+              "id": "1789-0001",
+              "tooltip_hours": true,
+              "is_same_hours_weekly": true,
+              "hours_0_open": 7,
+              "hours_0_close": 9,
+              "hours_1_open": 7,
+              "hours_1_close": 9,
+              "hours_2_open": 7,
+              "hours_2_close": 9,
+              "hours_3_open": 7,
+              "hours_3_close": 9,
+              "hours_4_open": 7,
+              "hours_4_close": 9,
+              "hours_5_open": 7,
+              "hours_5_close": 9,
+              "hours_6_open": 7,
+              "hours_6_close": 9,
+              "announcement": "C&C Available from 7 am to 9 am only",
+              "address_type_boolean": true,
+              "is_residential": false,
+              "is_warehouse": false,
+              "validated": false
+            }
+          },
+          "1584595062323": {
+            "type": "store",
+            "settings": {
+              "name": "Richmond C&C (3121)",
+              "title": "Richmond, 3121, Pick Up Only",
+              "duplicate": "Box Hill",
+              "test_mode": false,
+              "street1": "10\/109 Mary St",
+              "city": "Richmond",
+              "zip": "3121",
+              "state": "VIC",
+              "country": "AU",
+              "checkout_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_28.jpg",
+              "email": "customer.service@decathlon.com",
+              "phone_number": "(02) 9157 5799",
+              "company": "Decathlon",
+              "ready": "Collect Tomorrow between 7 pm and 9 pm",
+              "ready_checkout": "Collect Tomorrow between 7 pm and 9 pm",
+              "id": "1792-0001",
+              "tooltip_hours": true,
+              "is_same_hours_weekly": true,
+              "hours_0_open": 19,
+              "hours_0_close": 20,
+              "hours_1_open": 19,
+              "hours_1_close": 20,
+              "hours_2_open": 19,
+              "hours_2_close": 20,
+              "hours_3_open": 19,
+              "hours_3_close": 20,
+              "hours_4_open": 19,
+              "hours_4_close": 20,
+              "hours_5_open": 19,
+              "hours_5_close": 20,
+              "hours_6_open": 19,
+              "hours_6_close": 20,
+              "announcement": "C&C open from 7 am to 8 am only",
+              "address_type_boolean": true,
+              "is_residential": false,
+              "is_warehouse": false,
+              "validated": false
+            }
           }
         },
         "block_order": [
@@ -574,7 +658,9 @@
           "1573522627790",
           "1573522635333",
           "1573530372429",
-          "1573522642714"
+          "1573522642714",
+          "1584593816398",
+          "1584595062323"
         ],
         "settings": {}
       },
@@ -584,14 +670,27 @@
           "1583208837009": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/DecathlonAU_Web_banner4_SA_17-Mar-2020_1440x790_V1-min.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/DecathlonAU_webbanner01_SA_20-Mar-2020_1440x790_V1-min.jpg",
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
-              "banner_title": "<br>Workout<br>From Home",
+              "banner_title": "<br>Workout From Home",
               "banner_subtitle": "<p><strong>Everyday Low Price On Home Gym Equipment<\/strong><\/p>",
               "button_new_window": false,
               "button_title": "SHOP HOME GYM EQUIPMENT",
               "button_url": "shopify:\/\/collections\/home-fitness-equipment-accessories"
+            }
+          },
+          "1584329073675": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_30_-min.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "<br>Play At Home",
+              "banner_subtitle": "<p><strong>Set Up Your New Playground<\/strong><\/p>",
+              "button_new_window": false,
+              "button_title": "SHOP GARDEN GAMES",
+              "button_url": "shopify:\/\/collections\/indoor-sport-activities"
             }
           },
           "1584424981258": {
@@ -600,31 +699,18 @@
               "banner_bg_image": "shopify:\/\/shop_images\/DecathlonAU_Web_banner2_SA_17-Mar-2020_1440x790_V1.jpg",
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
-              "banner_title": "<br>Workout<br>From Home",
-              "banner_subtitle": "<p><strong>Everyday Low Price On&nbsp;Yoga &amp; Pilates<\/strong><\/p>",
+              "banner_title": "<br>Relax At Home",
+              "banner_subtitle": "<p><strong>Great Products To Stay Healthy At Home<\/strong><\/p>",
               "button_new_window": false,
               "button_title": "SHOP YOGA & PILATES",
-              "button_url": "shopify:\/\/collections\/yoga-at-home"
-            }
-          },
-          "1584329073675": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/DecathlonAU_Web_banner3_SA_17-Mar-2020_1440x790_V1_2.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": "<br>Creative Ideas<br>To Keep Active",
-              "banner_subtitle": "<p><strong>Discover Innovative Products, Perfect For Indoor Activities.<\/strong><\/p>",
-              "button_new_window": false,
-              "button_title": "SHOP INDOOR SPORTS GEAR",
-              "button_url": "shopify:\/\/collections\/indoor-sport-activities"
+              "button_url": "shopify:\/\/collections\/workout-from-home"
             }
           }
         },
         "block_order": [
           "1583208837009",
-          "1584424981258",
-          "1584329073675"
+          "1584329073675",
+          "1584424981258"
         ],
         "settings": {}
       }
