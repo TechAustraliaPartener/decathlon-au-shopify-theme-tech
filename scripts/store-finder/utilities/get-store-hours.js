@@ -73,18 +73,20 @@ export default storeId => {
     tomorrow: getStoreOpenClose({ storeId, day })
   };
 
+  var AmOrPm = (hour) => (hour <= 12 || hour == 24) ? "am" : "pm";
+
   if (hour >= store.today.open && hour < store.today.close) {
     hoursOfOperation.today = `${(store.today.nameDay)} ${militaryToStandardTime(
       store.today.open
-    )}am-${militaryToStandardTime(store.today.close)}pm`;
+    )}${AmOrPm(store.today.open)}-${militaryToStandardTime(store.today.close)}${AmOrPm(store.today.close)}`;
   } else if (hour >= store.today.close && hour < 24) {
     hoursOfOperation.today = `Open tomorrow ${militaryToStandardTime(
       store.tomorrow.open
-    )}am-${militaryToStandardTime(store.tomorrow.close)}pm`;
+    )}${AmOrPm(store.tomorrow.open)}-${militaryToStandardTime(store.tomorrow.close)}${AmOrPm(store.tomorrow.close)}`;
   } else if (hour >= 0 && hour < store.tomorrow.open) {
     hoursOfOperation.today = `${(store.today.nameDay)} ${militaryToStandardTime(
       store.today.open
-    )}am-${militaryToStandardTime(store.today.close)}pm`;
+    )}${AmOrPm(store.today.open)}-${militaryToStandardTime(store.today.close)}${AmOrPm(store.today.close)}`;
   }
 
   // hoursOfOperation.today = `Open ${militaryToStandardTime(
