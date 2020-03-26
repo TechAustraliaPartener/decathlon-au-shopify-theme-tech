@@ -320,6 +320,7 @@
             "settings": {
               "name": "Tempe",
               "title": "Tempe Store, 2044",
+              "online_inventory_source": true,
               "duplicate": "",
               "test_mode": false,
               "street1": "634-726 Princes Hwy",
@@ -362,6 +363,7 @@
             "settings": {
               "name": "Auburn",
               "title": "Auburn Store, 2144",
+              "online_inventory_source": true,
               "duplicate": "",
               "test_mode": false,
               "street1": "300 Parramatta Rd",
@@ -404,6 +406,7 @@
             "settings": {
               "name": "Knoxfield",
               "title": "Knoxfield Store, 3180",
+              "online_inventory_source": true,
               "duplicate": "",
               "test_mode": false,
               "street1": "1464 Ferntree Gully Rd",
@@ -446,6 +449,7 @@
             "settings": {
               "name": "Box Hill",
               "title": "Box Hill Store, 3128",
+              "online_inventory_source": true,
               "duplicate": "",
               "test_mode": false,
               "street1": "249 Middleborough Rd",
@@ -488,6 +492,7 @@
             "settings": {
               "name": "Moorabbin",
               "title": "Moorabbin Store, 3194",
+              "online_inventory_source": true,
               "duplicate": "",
               "test_mode": false,
               "street1": "405 Boundary Road, Moorabbin Airport",
@@ -530,6 +535,7 @@
             "settings": {
               "name": "Genesis",
               "title": "Genesis Health and Fitness Melbourne CBD",
+              "online_inventory_source": false,
               "duplicate": "Box Hill",
               "test_mode": true,
               "street1": "2\/50 Lonsdale St",
@@ -572,6 +578,7 @@
             "settings": {
               "name": "Maroubra C&C (2035)",
               "title": "Maroubra, 2035, Pick Up Only",
+              "online_inventory_source": false,
               "duplicate": "Tempe",
               "test_mode": false,
               "street1": "64 Marine Parade",
@@ -614,6 +621,7 @@
             "settings": {
               "name": "Richmond C&C (3121)",
               "title": "Richmond, 3121, Pick Up Only",
+              "online_inventory_source": false,
               "duplicate": "Box Hill",
               "test_mode": false,
               "street1": "10\/109 Mary St",
@@ -656,6 +664,7 @@
             "settings": {
               "name": "St Kilda C&C (3182)",
               "title": "St Kilda, 3182, Pick Up Only",
+              "online_inventory_source": false,
               "duplicate": "Knoxfield",
               "test_mode": false,
               "street1": "3-5 St Kilda Road",
@@ -698,6 +707,7 @@
             "settings": {
               "name": "Green Square C&C (2017)",
               "title": "Green Square, 2017, Pick Up Only",
+              "online_inventory_source": false,
               "duplicate": "Tempe",
               "test_mode": false,
               "street1": "6 Ebsworth Street",
@@ -740,6 +750,7 @@
             "settings": {
               "name": "Bentleigh C&C (3204)",
               "title": "Bentleigh, 3204, Pick Up Only",
+              "online_inventory_source": false,
               "duplicate": "Moorabbin",
               "test_mode": true,
               "street1": "16 Evelyn Street",
@@ -782,6 +793,7 @@
             "settings": {
               "name": "Coogee  C&C (2034)",
               "title": "Coogee, 2034, Pick Up Only",
+              "online_inventory_source": false,
               "duplicate": "Tempe",
               "test_mode": false,
               "street1": "23-25 Vicar Street",
@@ -824,6 +836,7 @@
             "settings": {
               "name": "Randwick C&C (2031)",
               "title": "Randwick, 2031, Pick Up Only",
+              "online_inventory_source": false,
               "duplicate": "Tempe",
               "test_mode": false,
               "street1": "47, Oberon Street",
@@ -866,6 +879,7 @@
             "settings": {
               "name": "Concord C&C (2137)",
               "title": "Concord, 2137, Pick Up Only",
+              "online_inventory_source": false,
               "duplicate": "Auburn",
               "test_mode": true,
               "street1": "225 Burwood rd",
@@ -908,6 +922,7 @@
             "settings": {
               "name": "Rowville (3178)",
               "title": "Rowville, 3178, Pick Up Only",
+              "online_inventory_source": false,
               "duplicate": "Moorabbin",
               "test_mode": true,
               "street1": "79 Willow Av",

@@ -6,6 +6,12 @@
     {% endfor %}
   ];
 
+  window.onlineInventoryStores = masterStores.filter(function(store) {
+    return store.online_inventory_source && !store.duplicate;
+  }).map(function(store) {
+    return store.name;
+  });
+
   // Convert 24-hour time to human-readable am/pm time
   function hoursToAmPm(hour) {
     if (hour > 12) {
@@ -112,13 +118,13 @@
         "settings": [
           {
             "type": "header",
-            "content": "Master store Infos",
-            "info": "Customers are able to select a master store as their favourite store and as pickup location (if the store inventory allows it)."
+            "content": "Store Info",
+            "info": "Customers are able to select a store as their favourite store, and as a pickup location."
           },
           {
             "type": "text",
             "id": "name",
-            "label": "Store title",
+            "label": "Store Name",
             "info": "For example: Genesis",
             "default": "Store Name"
           },
@@ -127,6 +133,13 @@
             "id": "title",
             "label": "Descriptive title",
             "info": "For example: Genesis Health and Fitness"
+          },
+          {
+            "type": "checkbox",
+            "id": "online_inventory_source",
+            "label": "Does this location contribute to online inventory?",
+            "info": "If so, products available at this location will be shown as available for shipping. Don't enable this for popup stores.",
+            "default": false
           },
           {
             "type": "text",
