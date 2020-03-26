@@ -23,7 +23,6 @@ function push(modelNumber) {
   var simpleInventory = {};
 
   for (let [key, obj] of Object.entries(window.inventories)) {
-
     var modelNum = obj.title.split(' ');
     modelNum = modelNum[modelNum.length - 1];
 
@@ -32,10 +31,10 @@ function push(modelNumber) {
       stockStatus: []
     };
 
-    var tempeInventory = obj.inventoryItem.locations.find(loc => loc.name === 'Tempe');
-    if (tempeInventory) {
-      simpleInventory[modelNum].stockStatus.push((tempeInventory.inStock > 0));
-      simpleInventory[modelNum].stock += tempeInventory.available;
+    var onlineInventory = obj.inventoryItem.delivery;
+    if (onlineInventory) {
+      simpleInventory[modelNum].stockStatus.push((onlineInventory.inStock > 0));
+      simpleInventory[modelNum].stock += onlineInventory.available;
     } else {
       simpleInventory[modelNum].stockStatus.push(false);
     }

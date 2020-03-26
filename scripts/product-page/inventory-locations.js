@@ -214,7 +214,7 @@ const initInventoryLocations = () => {
 
         onlineInventoryItem = {
           name: 'Delivery',
-          availability: totalAvailable,
+          available: totalAvailable,
           inStock: totalAvailable > 0 ? 1 : 0,
           hours: '2-6 day delivery in Metro areas',
           availability: {
