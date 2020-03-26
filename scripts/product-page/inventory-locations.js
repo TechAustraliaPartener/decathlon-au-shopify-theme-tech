@@ -262,20 +262,23 @@ const initInventoryLocations = () => {
           }
         }
       }
-    }
-
-    // Trigger function at gtm-datalayer-product-stock.liquid
-    console.log('push the stock');
-    var titleParts = window.vars.selectedVariant.title.split(' ');
-    var currentModel = titleParts[titleParts.length - 1];
-    pushStockInfoToDataLayer(currentModel);
+    }   
 
     if (window.vars.selectedVariant === null) {
       window.inventoryLocationsDisplay.changeVariant(null);
+
+      var currentModel = $('.js-de-ModelCode-text').text();
+      console.log('push the stock');
+      pushStockInfoToDataLayer(currentModel);
     } else {
       window.inventoryLocationsDisplay.changeVariant(
         window.vars.selectedVariant.id
       );
+
+      var titleParts = window.vars.selectedVariant.title.split(' ');
+      var currentModel = titleParts[titleParts.length - 1];
+      console.log('push the stock');
+      pushStockInfoToDataLayer(currentModel);
     }
   });
 
