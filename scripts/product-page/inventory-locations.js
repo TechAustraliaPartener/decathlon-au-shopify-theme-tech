@@ -22,6 +22,12 @@ function addMasterStoresData(inventoryItem) {
     return storesSort.indexOf(loc.name) !== -1;
   });
 
+  var onlineItem = inventoryItem.locations.filter(function(store) {
+    return window.onlineInventoryStores.indexOf(store.name) !== -1;
+  });
+
+  inventoryItem.online = onlineItem;
+
   const duplicateStores = window.masterStores.filter(loc => {
     return loc.duplicate;
   });
@@ -62,7 +68,7 @@ function addMasterStoresData(inventoryItem) {
       }
       var openHour = masterLoc['hours_' + weekday + '_open'];
       var closeHour = masterLoc['hours_' + weekday + '_close'];
-      console.log(weekday);
+      //console.log(weekday);
     }
     if (openHour > 12) {
       var openHour = openHour - 12;
@@ -86,35 +92,6 @@ function addMasterStoresData(inventoryItem) {
       }
     }
     if (thisLoc) {
-      if (thisLoc.name === 'Tempe') {
-        const delivery = {
-          name: 'Delivery'
-        };
-
-        if (thisLoc.available > 2) {
-          delivery.availability = {
-            class: 'in',
-            text: 'In Stock'
-          };
-          delivery.ready = 'Available for delivery';
-        } else if (thisLoc.available > 0) {
-          delivery.availability = {
-            class: 'low',
-            text: 'Low Stock'
-          };
-          delivery.ready = 'Available for delivery';
-        } else {
-          delivery.availability = {
-            class: 'out',
-            text: 'Out of Stock'
-          };
-          delivery.ready = 'Unavailable for delivery';
-        }
-        delivery.hours = '2-6 day delivery in Metro areas';
-
-        inventoryItem.delivery = delivery;
-      }
-
       thisLoc.title = masterLoc.title;
 
       if (thisLoc.available > 0) {
@@ -164,18 +141,6 @@ function addMasterStoresData(inventoryItem) {
       thisLoc.announcement = masterLoc.announcement;
 
     } else {
-      if (masterLoc.name === 'Tempe') {
-        inventoryItem.delivery = {
-          name: 'Delivery',
-          ready: 'Unavailable for delivery',
-          availability: {
-            class: 'out',
-            text: 'Out of Stock'
-          },
-          hours: '2-6 day delivery in Metro areas'
-        };
-      }
-
       if (masterLoc.is_same_hours_weekly === true) {
         var thisLoc_hours = 'Open ' + openHour + '-' + closeHour;
       } else {
@@ -239,17 +204,49 @@ const initInventoryLocations = () => {
     window.inventories =
       window.tomitProductInventoryInfo.activeProduct.variants;
 
+    Object.values(window.inventories).forEach(variant => {
+      var locs = variant.inventoryItem.locations;
+      var onlineInventoryLocs = locs.filter(loc => window.onlineInventoryStores.indexOf(loc.name) !== -1);
+      var onlineInventoryItem;
+
+      if (onlineInventoryLocs.length > 0) {
+        var totalAvailable = onlineInventoryLocs.map(loc => loc.available).reduce((a, b) => a + b, 0);
+
+        onlineInventoryItem = {
+          name: 'Delivery',
+          availability: totalAvailable,
+          inStock: totalAvailable > 0 ? 1 : 0,
+          hours: '2-6 day delivery in Metro areas',
+          availability: {
+            class: totalAvailable > 2 ? 'in' : (totalAvailable > 0 ? 'low' : 'out'),
+            text: totalAvailable > 2 ? 'In Stock' : (totalAvailable > 0 ? 'Low Stock' : 'Out of Stock')
+          },
+          ready: totalAvailable > 0 ? 'Available for delivery' : 'Unavailable for delivery'
+        }
+      } else {
+        onlineInventoryItem = {
+          name: 'Delivery',
+          ready: 'Unavailable for delivery',
+          availability: {
+            class: 'out',
+            text: 'Out of Stock'
+          },
+          hours: '2-6 day delivery in Metro areas'
+        }
+      }
+
+      variant.inventoryItem.delivery = onlineInventoryItem;
+    });
+
     for (let i = window.vars.productJSON.variants.length - 1; i >= 0; i--) {
       const vId = window.vars.productJSON.variants[i].id;
       const vInv = window.inventories[vId].inventoryItem;
 
-      const tempeAvailability = vInv.locations.find(obj => {
-        return obj.name === 'Tempe' && obj.inStock > 0;
-      });
+      const onlineAvailability = vInv.delivery;
 
       window.vars.productJSON.variants[i].cc = false;
 
-      if (tempeAvailability) {
+      if (onlineAvailability.inStock) {
         window.vars.productJSON.variants[i].cc = false;
       } else if (vInv.locations.length > 0) {
         window.vars.productJSON.variants[i].cc = true;
@@ -268,7 +265,7 @@ const initInventoryLocations = () => {
       window.inventoryLocationsDisplay.changeVariant(null);
 
       var currentModel = $('.js-de-ModelCode-text').text();
-      console.log('push the stock');
+      //console.log('push the stock');
       pushStockInfoToDataLayer(currentModel);
     } else {
       window.inventoryLocationsDisplay.changeVariant(
@@ -277,7 +274,7 @@ const initInventoryLocations = () => {
 
       var titleParts = window.vars.selectedVariant.title.split(' ');
       var currentModel = titleParts[titleParts.length - 1];
-      console.log('push the stock');
+      //console.log('push the stock');
       pushStockInfoToDataLayer(currentModel);
     }
   });
