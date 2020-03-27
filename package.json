@@ -26,7 +26,7 @@
     "prezip": "gulp build",
     "zip": "bestzip theme.zip assets config layout locales sections snippets templates",
     "sync": "theme download config locales",
-    "rec": "theme download layout config locales sections templates"
+    "rec": "theme download layout config locales sections templates snippets"
   },
   "engines": {
     "node": ">=10",
