@@ -8,12 +8,16 @@
 
   window.onlineInventoryStores = masterStores.filter(function(store) {
     return store.online_inventory_source && !store.duplicate;
+  }).filter(function(store) {
+    return !store.test;
   }).map(function(store) {
     return store.name;
   });
 
   window.ccStores = masterStores.filter(function(store) {
     return store.enable_c_c;
+  }).filter(function(store) {
+    return !store.test;
   }).map(function(store) {
     return store.name;
   });

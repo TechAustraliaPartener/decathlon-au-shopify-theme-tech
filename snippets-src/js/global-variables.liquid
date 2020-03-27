@@ -27,7 +27,7 @@
     window.vars.selectedVariant = {{ product.selected_variant | json }};
   {% endif %}
   window.vars.favStore = JSON.parse(localStorage.getItem('favoritedStore'));
-  if (window.ccStores.indexOf(window.vars.favStore.name) === -1) {
+  if (window.vars.favStore && window.ccStores.indexOf(window.vars.favStore.name) === -1) {
     window.vars.favStore = null;
   }
   window.vars.iconChevronDown = `{% include 'assets-icons-chevron-down' with class: 'de-u-textBlue de-Icon de-u-spaceLeft06' %}`;
