@@ -280,6 +280,28 @@ const initCartDisplay = cart => {
 
         return checkLoc.available;
       },
+      deliveryMax(item) {
+        // Let availabilities = item.locations.map(a => a.available);
+        // return Math.max(checkLoc);
+
+        const app = this;
+
+        let checkLoc = item.delivery;
+        console.log('Delivery', checkLoc.available);
+        return checkLoc.available;
+      },
+      favStoreMax(item) {
+        // Let availabilities = item.locations.map(a => a.available);
+        // return Math.max(checkLoc);
+
+        const app = this;
+
+        let checkLoc = item.locations.find(obj => {
+          return obj.name === app.favStore.name;
+        });
+        console.log('favStore', checkLoc.available);
+        return checkLoc ? checkLoc.available : 0;
+      },
       cartModificationsMessage() {
         const app = this;
         const items = app.$data.cart.items;
