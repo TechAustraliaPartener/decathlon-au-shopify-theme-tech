@@ -12,6 +12,12 @@
     return store.name;
   });
 
+  window.ccStores = masterStores.filter(function(store) {
+    return store.enable_c_c;
+  }).map(function(store) {
+    return store.name;
+  });
+
   // Convert 24-hour time to human-readable am/pm time
   function hoursToAmPm(hour) {
     if (hour > 12) {
@@ -140,6 +146,12 @@
             "label": "Does this location contribute to online inventory?",
             "info": "If so, products available at this location will be shown as available for shipping. Don't enable this for popup stores.",
             "default": false
+          },
+          {
+            "type": "checkbox",
+            "id": "enable_c_c",
+            "label": "Does this location offer Click & Collect?",
+            "default": true
           },
           {
             "type": "text",

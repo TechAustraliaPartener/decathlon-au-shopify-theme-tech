@@ -181,6 +181,8 @@ function addMasterStoresData(inventoryItem) {
       : 0
   );
 
+  inventoryItem.locations = inventoryItem.locations.filter(loc => window.ccStores.indexOf(loc.name) !== -1);
+
   if (window.vars.favStore) {
     inventoryItem.favStore = window.vars.favStore;
 
@@ -259,7 +261,7 @@ const initInventoryLocations = () => {
           }
         }
       }
-    }   
+    }
 
     if (window.vars.selectedVariant === null) {
       window.inventoryLocationsDisplay.changeVariant(null);

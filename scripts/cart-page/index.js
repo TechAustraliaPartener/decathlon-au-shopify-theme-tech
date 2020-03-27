@@ -150,6 +150,8 @@ function addMasterStoresData(inventoryItem, item) {
       inventoryItem.locations.push(emptyLoc(masterLoc.name));
     }
   }
+
+  inventoryItem.locations = inventoryItem.locations.filter(loc => window.ccStores.indexOf(loc.name) !== -1);
 }
 
 function supplementCart(cart) {
