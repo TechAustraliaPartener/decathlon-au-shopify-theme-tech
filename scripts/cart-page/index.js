@@ -196,6 +196,7 @@ const initCartDisplay = cart => {
     data: {
       cart: supplementCart(JSON.parse(JSON.stringify(cart))),
       masterStores: window.masterStores,
+      pickupStores: window.masterStores.filter(loc => window.ccStores.indexOf(loc.name) !== -1),
       favStore: window.vars.favStore || {},
       deliveryOption: window.vars.deliveryOption,
       override: false

@@ -94,7 +94,7 @@
             Your favourite store is:&nbsp;<span class="fav-store-name">
               <select name="favStore" @change="setFavStore($event)">
                 <option v-if="!favStore.name" value="" disabled="" :selected="!favStore.name">Please select</option>
-                <option v-for="store in masterStores" v-bind:value="store.id" :selected="favStore.name && store.name === favStore.name" v-text="store.title"></option>
+                <option v-for="store in pickupStores" v-bind:value="store.id" :selected="favStore.name && store.name === favStore.name" v-text="store.title"></option>
               </select>
             </span>
           </p>
@@ -103,7 +103,7 @@
             <span class="fav-store-name">
               <select name="favStore" @change="setFavStore($event)">
                 <option v-if="!favStore.name" value="" disabled="" :selected="!favStore.name">Please select</option>
-                <option v-for="store in masterStores" v-bind:value="store.id" :selected="favStore.name && store.name === favStore.name" v-text="store.title"></option>
+                <option v-for="store in pickupStores" v-bind:value="store.id" :selected="favStore.name && store.name === favStore.name" v-text="store.title"></option>
               </select>
             </span>
           </p>
@@ -181,7 +181,7 @@
                   <span class="fav-store-name">
                     <select name="favStore" @change="setFavStore($event)">
                       <option v-if="!favStore.name" value="" disabled="" :selected="!favStore.name">Please select</option>
-                      <option v-for="store in masterStores" v-bind:value="store.id" :selected="favStore.name && store.name === favStore.name" v-text="store.title"></option>
+                      <option v-for="store in pickupStores" v-bind:value="store.id" :selected="favStore.name && store.name === favStore.name" v-text="store.title"></option>
                     </select>
                   </span>
                 </span>
@@ -192,7 +192,7 @@
                 <span class="fav-store-name">
                   <select name="favStore" @change="setFavStore($event)">
                     <option v-if="!favStore.name" value="" disabled="" :selected="!favStore.name">Please select</option>
-                    <option v-for="store in masterStores" v-bind:value="store.id" :selected="favStore.name && store.name === favStore.name" v-text="store.title"></option>
+                    <option v-for="store in pickupStores" v-bind:value="store.id" :selected="favStore.name && store.name === favStore.name" v-text="store.title"></option>
                   </select>
                 </span>
               </p>
