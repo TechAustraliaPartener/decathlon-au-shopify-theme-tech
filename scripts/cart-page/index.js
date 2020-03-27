@@ -84,6 +84,38 @@ function addMasterStoresData(inventoryItem, item) {
     return storesSort.indexOf(loc.name) !== -1;
   });
 
+  var locs = inventoryItem.locations;
+  var onlineInventoryLocs = locs.filter(loc => window.onlineInventoryStores.indexOf(loc.name) !== -1);
+  var onlineInventoryItem;
+
+  if (onlineInventoryLocs.length > 0) {
+    var totalAvailable = onlineInventoryLocs.map(loc => loc.available).reduce((a, b) => a + b, 0);
+
+    onlineInventoryItem = {
+      name: 'Delivery',
+      available: totalAvailable,
+      inStock: totalAvailable > 0 ? 1 : 0,
+      hours: '2-6 day delivery in Metro areas',
+      availability: {
+        class: totalAvailable > 2 ? 'in' : (totalAvailable > 0 ? 'low' : 'out'),
+        text: totalAvailable > 2 ? 'In Stock' : (totalAvailable > 0 ? 'Low Stock' : 'Out of Stock')
+      },
+      ready: totalAvailable > 0 ? 'Available for delivery' : 'Unavailable for delivery'
+    }
+  } else {
+    onlineInventoryItem = {
+      name: 'Delivery',
+      ready: 'Unavailable for delivery',
+      availability: {
+        class: 'out',
+        text: 'Out of Stock'
+      },
+      hours: '2-6 day delivery in Metro areas'
+    }
+  }
+
+  inventoryItem.delivery = onlineInventoryItem;
+
   console.log(inventoryItem, item);
   const duplicateStores = window.masterStores.filter(loc => {
     return loc.duplicate;
@@ -134,6 +166,7 @@ function supplementCart(cart) {
         invInit[item.product_id].product.variants[item.variant_id]
           .inventoryItem;
       addMasterStoresData(invItem, item);
+      item.delivery = invItem.delivery;
       item.locations = invItem.locations;
     } else {
       console.log(i, 'No locations info for ' + item.title);
@@ -218,9 +251,7 @@ const initCartDisplay = cart => {
           return 'out';
         }
 
-        let checkLoc = item.locations.find(obj => {
-          return obj.name === 'Tempe';
-        });
+        let checkLoc = item.delivery;
 
         if (app.deliveryOption !== 'Delivery') {
           checkLoc = item.locations.find(obj => {
@@ -236,9 +267,7 @@ const initCartDisplay = cart => {
 
         const app = this;
 
-        let checkLoc = item.locations.find(obj => {
-          return obj.name === 'Tempe';
-        });
+        let checkLoc = item.delivery;
 
         if (app.deliveryOption !== 'Delivery') {
           checkLoc = item.locations.find(obj => {
@@ -256,9 +285,7 @@ const initCartDisplay = cart => {
         for (let i = items.length - 1; i >= 0; i--) {
           const item = items[i];
 
-          let checkLoc = item.locations.find(obj => {
-            return obj.name === 'Tempe';
-          });
+          let checkLoc = item.delivery;
 
           if (app.deliveryOption !== 'Delivery') {
             checkLoc = item.locations.find(obj => {
