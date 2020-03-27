@@ -997,7 +997,7 @@
           "1583208837009": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/DecathlonAU_webbanner_2_23032020_SA_23-Mar-2020_1440x790_V1-min.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/DecathlonAU_Website_Banner_260301_SA_26-Mar-2020_1440x790_V1-min.jpg",
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
               "banner_title": "<br>Workout At Home",
@@ -1010,8 +1010,8 @@
         },
         "block_order": [
           "1584329073675",
-          "1584424981258",
-          "1583208837009"
+          "1583208837009",
+          "1584424981258"
         ],
         "settings": {}
       }
