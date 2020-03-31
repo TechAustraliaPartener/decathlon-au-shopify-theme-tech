@@ -106,6 +106,8 @@ function addMasterStoresData(inventoryItem, item) {
     onlineInventoryItem = {
       name: 'Delivery',
       ready: 'Unavailable for delivery',
+      available: 0,
+      inStock: 0,
       availability: {
         class: 'out',
         text: 'Out of Stock'
