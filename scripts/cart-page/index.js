@@ -302,6 +302,24 @@ const initCartDisplay = cart => {
         console.log('favStore', checkLoc.available);
         return checkLoc ? checkLoc.available : 0;
       },
+      availabilityMessages(item) {
+        var messages = [];
+        const app = this;
+
+        const delivery = item.delivery;
+        var deliveryMessage = `<div class="${ delivery.inStock ? (item.quantity <= delivery.available ? 'available' : 'low') : 'unavailable' }"><p>${ delivery.inStock ? (item.quantity <= delivery.available ? 'Available' : 'Not all items available') : 'Unavailable' } for delivery</p></div>`;
+        messages.push(deliveryMessage);
+
+        if (app.favStore) {
+          const favStoreInventory = item.locations.find(obj => {
+            return obj.name === app.favStore.name;
+          });
+          var ccMessage = `<div class="${ favStoreInventory.inStock ? (item.quantity <= favStoreInventory.available ? 'available' : 'low') : 'unavailable' }"><p>${ favStoreInventory.inStock ? (item.quantity <= favStoreInventory.available ? 'Available' : 'Not all items available') : 'Unavailable' } for click & collect</p></div>`;
+          messages.push(ccMessage);
+        }
+        
+        return messages.join('');
+      },
       cartModificationsMessage() {
         const app = this;
         const items = app.$data.cart.items;
