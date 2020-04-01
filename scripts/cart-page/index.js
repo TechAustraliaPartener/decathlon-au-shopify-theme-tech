@@ -312,7 +312,7 @@ const initCartDisplay = cart => {
         var deliveryMessage = `<div class="${ delivery.inStock ? (item.quantity <= delivery.available ? 'available' : 'low') : 'unavailable' }"><p>${ delivery.inStock ? (item.quantity <= delivery.available ? 'Available' : 'Not all items available') : 'Unavailable' } for delivery</p></div>`;
         messages.push(deliveryMessage);
 
-        if (app.favStore) {
+        if (app.favStore && app.favStore.name) {
           const favStoreInventory = item.locations.find(obj => {
             return obj.name === app.favStore.name;
           });
