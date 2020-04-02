@@ -10,12 +10,6 @@
   border-bottom: 0;
 }
 
-@media (min-width: $breakpoint-lg) {
-  .de-ProductFulfillment {
-    border-bottom: $border-width-lg solid $color-lime;
-  }
-}
-
 .de-ProductFulfillment-option {
   padding: 0.35rem 0;
 }

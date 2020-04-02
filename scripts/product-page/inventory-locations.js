@@ -7,8 +7,11 @@ import pushStockInfoToDataLayer from './datalayer-stock-info';
 const demoInventory = {
   id: 'demo',
   locations: [],
+  stateLocations: [],
   delivery: {},
-  favStore: window.vars.favStore
+  favStore: window.vars.favStore,
+  state: [],
+  collapsed: true
 };
 
 const emptyData = {
@@ -17,7 +20,7 @@ const emptyData = {
 
 const storesSort = window.masterStores.map(a => a.name);
 
-function addMasterStoresData(inventoryItem) {
+function addMasterStoresData(inventoryItem, state) {
   inventoryItem.locations = inventoryItem.locations.filter(loc => {
     return storesSort.indexOf(loc.name) !== -1;
   });
@@ -172,7 +175,6 @@ function addMasterStoresData(inventoryItem) {
     }
   }
 
-
   inventoryItem.locations.sort((a, b) =>
     storesSort.indexOf(a.name) > storesSort.indexOf(b.name)
       ? 1
@@ -182,6 +184,10 @@ function addMasterStoresData(inventoryItem) {
   );
 
   inventoryItem.locations = inventoryItem.locations.filter(loc => window.ccStores.indexOf(loc.name) !== -1);
+  inventoryItem.stateLocations = inventoryItem.locations.filter(loc => !(state && state.length) || (state.indexOf(loc.state) !== -1));  
+
+
+  }
 
   if (window.vars.favStore) {
     inventoryItem.favStore = window.vars.favStore;
@@ -228,6 +234,8 @@ const initInventoryLocations = () => {
       } else {
         onlineInventoryItem = {
           name: 'Delivery',
+          available: 0,
+          inStock: 0,
           ready: 'Unavailable for delivery',
           availability: {
             class: 'out',
@@ -282,10 +290,15 @@ const initInventoryLocations = () => {
   });
 
   window.inventoryLocationsDisplay = new Vue({
-    el: '#inventoryLocs',
+    el: '#locsContainer',
     data: JSON.parse(JSON.stringify(demoInventory)),
     methods: {
       changeWholeData(newData) {
+        var extraData = {
+          state: newData.state || this.$data.state,
+          collapsed: newData.collapsed || this.$data.collapsed
+        }
+        newData = {...newData, ...extraData };
         Object.keys(this.$data).forEach(key => (this.$data[key] = null));
         Object.entries(newData).forEach(entry =>
           Vue.set(this.$data, entry[0], entry[1])
@@ -296,9 +309,78 @@ const initInventoryLocations = () => {
           this.changeWholeData(emptyData);
         } else {
           this.changeWholeData(
-            addMasterStoresData(window.inventories[variant].inventoryItem)
+            addMasterStoresData(window.inventories[variant].inventoryItem, this.$data.state)
           );
         }
+      },
+      evaluateState() {
+        var error = $('#postcodeError');
+        var message = $('#deliveryLocationMessage');
+        var code = $('#deliveryLocation');
+
+        var stateInput = $('[name="state"]');
+        var rawCode = stateInput.val();
+        console.log(state, rawCode);
+
+        if (this.isAustralianState(rawCode)) {
+
+          var state = [];
+          var postcode = parseInt(rawCode);
+
+          if ((postcode >= 1000 && postcode <= 1999) || (postcode >= 2000 && postcode <= 2599) || (postcode >= 2619 && postcode <= 2899) || (postcode >= 2921 && postcode <= 2999)) {
+            state.push('NSW');
+            state.push('ACT');
+            rawCode += ' (NSW/ACT)';
+          } else if ((postcode >= 200 && postcode <= 299) || (postcode >= 2600 && postcode <= 2618) || (postcode >= 2900 && postcode <= 2920)) {
+            state.push('NSW');
+            state.push('ACT');
+            rawCode += ' (NSW/ACT)';
+          } else if ((postcode >= 3000 && postcode <= 3999) || (postcode >= 8000 && postcode <= 8999)) {
+            state.push('VIC');
+            rawCode += ' (VIC)';
+          } else if ((postcode >= 4000 && postcode <= 4999) || (postcode >= 9000 && postcode <= 9999)) {
+            state.push('QLD');
+            rawCode += ' (QLD)';
+          } else if ((postcode >= 5000 && postcode <= 5999)) {
+            state.push('SA');
+            rawCode += ' (SA)';
+          } else if ((postcode >= 6000 && postcode <= 6999)) {
+            state.push('WA');
+            rawCode += ' (WA)';
+          } else if ((postcode >= 7000 && postcode <= 7799) || (postcode >= 7800 && postcode <= 7999)) {
+            state.push('TAS');
+            rawCode += ' (TAS)';
+          } else if ((postcode >= 800 && postcode <= 899) || (postcode >= 900 && postcode <= 999)) {
+            state.push('NT');
+            rawCode += ' (NT)';
+          }
+
+          if (state.length > 0) {
+            code.text(rawCode);
+            message.slideDown();
+            error.slideUp();
+
+            Vue.set(this.$data, 'state', state);  
+            Vue.set(this.$data, 'collapsed', false); 
+
+            if (window.vars.selectedVariant === null) {
+              this.changeVariant(null);
+            } else {
+              this.changeVariant(
+                window.vars.selectedVariant.id
+              );
+            }
+
+          } else {
+            error.slideDown();
+          }          
+        } else {
+          error.slideDown();
+        }
+      },
+      isAustralianState(postcode) {
+        var regex = /^\d{4}$/g;
+        return postcode.match(regex);
       }
     }
   });

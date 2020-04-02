@@ -253,3 +253,53 @@
     }
   }
 }
+
+@media (min-width: $breakpoint-lg) {
+  .product-inventory-locations {
+    border-bottom: 3px solid #cbfb00;
+  }
+}
+
+.product-inventory-locations {
+  .de-SingleInputForm {
+    max-width: 250px;
+  }
+
+  .de-SingleInputForm-action {
+    color: white;
+    background-color: #0081c3;
+  }
+}
+
+.product-inventory-locations {
+  .de-SingleInputForm {
+    max-width: 250px;
+    margin: 10px 0;
+    display: inline-block;
+  }
+
+  .de-SingleInputForm-action {
+    color: white;
+    background-color: #0081c3;
+  }
+
+  #deliveryLocationMessage {
+    display: inline-block;
+    font-weight: bold;
+    padding-left: 15px;
+  }
+
+  #postcodeError {
+    color: #e53222;
+    font-weight: bold;
+  }
+
+  
+
+  @media (min-width: $breakpoint-lg) {
+    #inventoryLocations, #postcodeError, .de-SingleInputForm {
+      margin-left: 40px;
+    }
+  } 
+}
+
