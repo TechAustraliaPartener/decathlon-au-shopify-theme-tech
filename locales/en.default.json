@@ -320,7 +320,13 @@
     "button_title": "Check In-Store Availability",
     "table_title": "Click & Collect Locations",
     "loading": "Loading inventory...",
-    "select_a_size": "Please select a size to check in-store and online availability"
+    "select_a_size": "Please select a size to check in-store and online availability",
+    "check_stock_and_shipping_rates": "Check stock & shipping rates",
+    "enter_postcode": "Enter Postcode",
+    "your_delivery_location": "Your delivery location:",
+    "postcode_error": "Please enter a valid postcode",
+    "no_set_state_fallback_message": "Please enter a postcode to find your state",
+    "no_cc_locations_in_your_state": "There are no click & collect locations in your state yet"
   },
   "gift_cards": {
     "issued": {

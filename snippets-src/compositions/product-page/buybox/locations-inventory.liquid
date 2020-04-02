@@ -4,7 +4,7 @@
       {% endraw %}{% include 'assets-icons-store'
         with class: 'de-u-textBlack de-Icon de-u-textGrow6 de-u-spaceRight03' %}{% raw %}
       <p class="de-u-spaceNone de-u-textMedium">
-        Check stock & shipping rates
+        {% endraw %}{{ 'product_locations.check_stock_and_shipping_rates' | t }}{% raw %}
       </p>
     </div>
     <div class="de-SingleInputForm">
@@ -12,7 +12,7 @@
         class="de-Input de-SingleInputForm-input"
         type="text"
         name="state"
-        placeholder="Enter Postcode"
+        placeholder="{% endraw %}{{ 'product_locations.enter_postcode' | t }}{% raw %}"
         v-model="code">
       <button
         class="de-SingleInputForm-action"
@@ -23,10 +23,10 @@
       </button>
     </div>
     <div id="deliveryLocationMessage" v-show="state && state.length">
-      Your delivery location: <span id="deliveryLocation"></span>
+      {% endraw %}{{ 'product_locations.your_delivery_location' | t }}{% raw %} <span id="deliveryLocation"></span>
     </div>
     <div id="postcodeError" style="display:none;">
-      Please enter a valid postcode
+      {% endraw %}{{ 'product_locations.postcode_error' | t }}{% raw %}
     </div>
   </div>
   <div class="de-u-padBottom06" v-bind:class="{ 'de-collapse': collapsed }" id="inventoryLocations">
@@ -77,10 +77,10 @@
           </div>
         </div>
         <div v-else-if="!state" class="no-click-collect">
-          Please enter a postcode to find your state
+          {% endraw %}{{ 'product_locations.no_set_state_fallback_message' | t }}{% raw %}
         </div>
         <div v-else-if="!stateLocations || stateLocations.length === 0" class="no-click-collect">
-          There are no click & collect locations in your state yet
+          {% endraw %}{{ 'product_locations.no_cc_locations_in_your_state' | t }}{% raw %}
         </div>
         <div class="t-table" v-else-if="id" id="locsTable">
           <div class="t-row" v-for="location in stateLocations">
