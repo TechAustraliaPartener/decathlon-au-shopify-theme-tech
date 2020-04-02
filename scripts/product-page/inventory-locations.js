@@ -360,8 +360,8 @@ const initInventoryLocations = () => {
             message.slideDown();
             error.slideUp();
 
-            Vue.set(this.$data, 'state', state);  
-            Vue.set(this.$data, 'collapsed', false); 
+            this.$data.state = state;
+            this.$data.collapsed = false;
 
             localStorage.setItem('state_array', JSON.stringify(state));
             localStorage.setItem('state_code', JSON.stringify(rawCode));
