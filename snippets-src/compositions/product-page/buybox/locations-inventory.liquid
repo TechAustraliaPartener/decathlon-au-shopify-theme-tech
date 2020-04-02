@@ -12,7 +12,8 @@
         class="de-Input de-SingleInputForm-input"
         type="text"
         name="state"
-        placeholder="Enter Postcode">
+        placeholder="Enter Postcode"
+        v-model="code">
       <button
         class="de-SingleInputForm-action"
         id="checkState"
@@ -75,7 +76,10 @@
             {% endraw %}{{ 'product_locations.loading' | t }}{% raw %}
           </div>
         </div>
-        <div v-else-if="!state || !stateLocations || stateLocations.length === 0" class="no-click-collect">
+        <div v-else-if="!state" class="no-click-collect">
+          Please enter a postcode to find your state
+        </div>
+        <div v-else-if="!stateLocations || stateLocations.length === 0" class="no-click-collect">
           There are no click & collect locations in your state yet
         </div>
         <div class="t-table" v-else-if="id" id="locsTable">

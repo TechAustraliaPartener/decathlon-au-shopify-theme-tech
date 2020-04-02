@@ -10,7 +10,8 @@ const demoInventory = {
   stateLocations: [],
   delivery: {},
   favStore: window.vars.favStore,
-  state: [],
+  state: null,
+  code: JSON.parse(localStorage.getItem('state_code')) || null,
   collapsed: true
 };
 
@@ -186,9 +187,6 @@ function addMasterStoresData(inventoryItem, state) {
   inventoryItem.locations = inventoryItem.locations.filter(loc => window.ccStores.indexOf(loc.name) !== -1);
   inventoryItem.stateLocations = inventoryItem.locations.filter(loc => !(state && state.length) || (state.indexOf(loc.state) !== -1));  
 
-
-  }
-
   if (window.vars.favStore) {
     inventoryItem.favStore = window.vars.favStore;
 
@@ -296,7 +294,8 @@ const initInventoryLocations = () => {
       changeWholeData(newData) {
         var extraData = {
           state: newData.state || this.$data.state,
-          collapsed: newData.collapsed || this.$data.collapsed
+          collapsed: newData.collapsed || this.$data.collapsed,
+          code: newData.code || this.$data.code
         }
         newData = {...newData, ...extraData };
         Object.keys(this.$data).forEach(key => (this.$data[key] = null));
@@ -320,6 +319,7 @@ const initInventoryLocations = () => {
 
         var stateInput = $('[name="state"]');
         var rawCode = stateInput.val();
+        var fullCode = rawCode;
         console.log(state, rawCode);
 
         if (this.isAustralianState(rawCode)) {
@@ -330,38 +330,41 @@ const initInventoryLocations = () => {
           if ((postcode >= 1000 && postcode <= 1999) || (postcode >= 2000 && postcode <= 2599) || (postcode >= 2619 && postcode <= 2899) || (postcode >= 2921 && postcode <= 2999)) {
             state.push('NSW');
             state.push('ACT');
-            rawCode += ' (NSW/ACT)';
+            fullCode += ' (NSW/ACT)';
           } else if ((postcode >= 200 && postcode <= 299) || (postcode >= 2600 && postcode <= 2618) || (postcode >= 2900 && postcode <= 2920)) {
             state.push('NSW');
             state.push('ACT');
-            rawCode += ' (NSW/ACT)';
+            fullCode += ' (NSW/ACT)';
           } else if ((postcode >= 3000 && postcode <= 3999) || (postcode >= 8000 && postcode <= 8999)) {
             state.push('VIC');
-            rawCode += ' (VIC)';
+            fullCode += ' (VIC)';
           } else if ((postcode >= 4000 && postcode <= 4999) || (postcode >= 9000 && postcode <= 9999)) {
             state.push('QLD');
-            rawCode += ' (QLD)';
+            fullCode += ' (QLD)';
           } else if ((postcode >= 5000 && postcode <= 5999)) {
             state.push('SA');
-            rawCode += ' (SA)';
+            fullCode += ' (SA)';
           } else if ((postcode >= 6000 && postcode <= 6999)) {
             state.push('WA');
-            rawCode += ' (WA)';
+            fullCode += ' (WA)';
           } else if ((postcode >= 7000 && postcode <= 7799) || (postcode >= 7800 && postcode <= 7999)) {
             state.push('TAS');
-            rawCode += ' (TAS)';
+            fullCode += ' (TAS)';
           } else if ((postcode >= 800 && postcode <= 899) || (postcode >= 900 && postcode <= 999)) {
             state.push('NT');
-            rawCode += ' (NT)';
+            fullCode += ' (NT)';
           }
 
           if (state.length > 0) {
-            code.text(rawCode);
+            code.text(fullCode);
             message.slideDown();
             error.slideUp();
 
             Vue.set(this.$data, 'state', state);  
             Vue.set(this.$data, 'collapsed', false); 
+
+            localStorage.setItem('state_array', JSON.stringify(state));
+            localStorage.setItem('state_code', JSON.stringify(rawCode));
 
             if (window.vars.selectedVariant === null) {
               this.changeVariant(null);
