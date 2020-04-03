@@ -384,6 +384,18 @@ const initInventoryLocations = () => {
       isAustralianState(postcode) {
         var regex = /^\d{4}$/g;
         return postcode.match(regex);
+      },
+      clearCode() {
+        Vue.set(this.$data, 'code', null);
+        Vue.set(this.$data, 'state', null);
+
+        if (window.vars.selectedVariant === null) {
+          this.changeVariant(null);
+        } else {
+          this.changeVariant(
+            window.vars.selectedVariant.id
+          );
+        }
       }
     }
   });

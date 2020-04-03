@@ -23,7 +23,7 @@
       </button>
     </div>
     <div id="deliveryLocationMessage" v-show="state && state.length">
-      {% endraw %}{{ 'product_locations.your_delivery_location' | t }}{% raw %} <span id="deliveryLocation"></span>
+      {% endraw %}{{ 'product_locations.your_delivery_location' | t }}{% raw %} <span id="deliveryLocation"></span> <span class="a" v-on:click="clearCode()">Change</span>
     </div>
     <div id="postcodeError" style="display:none;">
       {% endraw %}{{ 'product_locations.postcode_error' | t }}{% raw %}
