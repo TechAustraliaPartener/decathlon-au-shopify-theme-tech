@@ -387,6 +387,13 @@ const initInventoryLocations = () => {
       }
     }
   });
+
+  $('[name="state"]').on('keypress',function(e) {
+    if (e.which == 13) {
+      e.preventDefault();
+      $('#checkState').click();
+    }
+  });
 };
 
 /**
