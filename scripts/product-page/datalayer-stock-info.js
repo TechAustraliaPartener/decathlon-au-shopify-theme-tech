@@ -48,6 +48,7 @@ function push(modelNumber) {
     stockStatus = 'Partially Available';
   }
 
+  window.vars.productStockInfo = window.vars.productStockInfo || {};
   window.vars.productStockInfo.dynamic = {
     'Model Number': modelNumber,
     'Stock Status': stockStatus
