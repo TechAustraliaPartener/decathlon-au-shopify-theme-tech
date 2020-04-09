@@ -79,6 +79,18 @@ const emptyInventoryItem = window.masterStores.map(store => {
   return emptyLoc(store.name);
 });
 
+const emptyDelivery = {
+  name: 'Delivery',
+  ready: 'Unavailable for delivery',
+  available: 0,
+  inStock: 0,
+  availability: {
+    class: 'out',
+    text: 'Out of Stock'
+  },
+  hours: '2-6 day delivery in Metro areas'
+};
+
 function addMasterStoresData(inventoryItem, item) {
   inventoryItem.locations = inventoryItem.locations.filter(loc => {
     return storesSort.indexOf(loc.name) !== -1;
@@ -167,8 +179,7 @@ function supplementCart(cart) {
       invInit[item.product_id].product.variants[item.variant_id]
     ) {
       const invItem =
-        invInit[item.product_id].product.variants[item.variant_id]
-          .inventoryItem;
+        invInit[item.product_id].product.variants[item.variant_id].inventoryItem;
       addMasterStoresData(invItem, item);
       item.delivery = invItem.delivery;
       item.locations = invItem.locations;
@@ -183,6 +194,7 @@ function supplementCart(cart) {
       });
 
       item.locations = JSON.parse(JSON.stringify(emptyInventoryItem));
+      item.delivery = emptyDelivery;
     }
   }
 

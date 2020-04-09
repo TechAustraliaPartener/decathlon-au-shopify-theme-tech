@@ -43,7 +43,7 @@
 
       {% endraw %}
       {% raw %}
-        <div class="locs-row" v-if="id && id !== 'demo'">
+        <div class="locs-row" v-if="id && id !== 'demo' && id !== 'error'">
           <div class="t-table">
             <div class="t-row">
               <div class="t-cell title">
@@ -76,6 +76,11 @@
             {% endraw %}{{ 'product_locations.loading' | t }}{% raw %}
           </div>
         </div>
+        <div v-else-if="id === 'error'" class="locs-row">
+          <div class="h5 locs-intruction">
+            {% endraw %}{{ 'product_locations.error' | t }}{% raw %}
+          </div>
+        </div>
         <div v-else-if="!id" class="locs-row">
           <div class="h5 locs-intruction">{% endraw %}{{ 'product_locations.select_a_size' | t }}{% raw %}</div>
         </div>
@@ -85,7 +90,7 @@
         <div v-else-if="!stateLocations || stateLocations.length === 0" class="no-click-collect">
           {% endraw %}{{ 'product_locations.no_cc_locations_in_your_state' | t }}{% raw %}
         </div>
-        <div class="t-table" v-else="id" id="locsTable">
+        <div class="t-table" v-else-if="id" id="locsTable">
           <div class="t-row" v-for="location in stateLocations">
             <div class="t-cell title"><span v-text="location.title"></span><span v-if="favStore && location.name === favStore.name">{% endraw %}{% include 'assets-icons-flag' with class: 'de-u-textBlack de-Icon de-u-spaceLeft06' %}{% raw %}</span></div>
             <div class="t-cell ready" v-html="location.ready"></div>

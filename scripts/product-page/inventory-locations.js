@@ -210,6 +210,24 @@ const initInventoryLocations = () => {
     window.inventories =
       window.tomitProductInventoryInfo.activeProduct.variants;
 
+    for (let i = window.vars.productJSON.variants.length - 1; i >= 0; i--) {
+      var v = window.vars.productJSON.variants[i];
+
+      if (window.inventories[v.id]) {
+
+      } else {
+        window.inventories[v.id] = {
+          id: v.id,
+          sku: v.sku,
+          title: v.title,
+          inventoryItem: {
+            id: "1", 
+            locations: []
+          }
+        }
+      }
+    }
+
     Object.values(window.inventories).forEach(variant => {
       var locs = variant.inventoryItem.locations;
       var onlineInventoryLocs = locs.filter(loc => window.onlineInventoryStores.indexOf(loc.name) !== -1);
@@ -304,7 +322,9 @@ const initInventoryLocations = () => {
         );
       },
       changeVariant(variant) {
-        if (variant === null || !window.inventories) {
+        if (!window.inventories) {
+          Vue.set(this.$data, 'id', 'error');
+        } else if (variant === null) {
           this.changeWholeData(emptyData);
         } else {
           this.changeWholeData(

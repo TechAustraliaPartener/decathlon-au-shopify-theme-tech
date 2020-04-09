@@ -320,6 +320,7 @@
     "button_title": "Check In-Store Availability",
     "table_title": "Click & Collect Locations",
     "loading": "Loading inventory...",
+    "error": "Sorry, no stock information available for this product",
     "select_a_size": "Please select a size to check in-store and online availability",
     "check_stock_and_shipping_rates": "Check Stock Availability",
     "enter_postcode": "Enter Postcode",
