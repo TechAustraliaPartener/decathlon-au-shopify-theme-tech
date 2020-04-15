@@ -44,7 +44,7 @@ export const storeTile = {
                 <p><strong>Trading hours</strong></p>
                 <ul class='fullhours-list' v-html='store.fullHours'></ul>
                 <p v-if='(store.announcement !== "")'
-                  v-text='store.announcement'
+                  v-html='store.announcement'
                   class='tooltip-announcement'></p>
               </div>
             </div>
