@@ -1,4 +1,85 @@
-# Decathlon USA Shopify Theme
+# Decathlon AU Shopify Theme
+
+# What You Actually Need To Know
+
+## Getting Started
+
+First, clone the repo.
+
+Then, check out `master_au`.
+
+Then, run `npm i`.
+
+Then, run ``.
+
+Then, make a standard Shopify `config.yml`
+
+You should now be up and running.
+
+## Commands
+
+`npm run deploy`: Build and upload to a theme.
+`npm run dev`: Watch the theme and upload changes.
+`npm run sync`: Download only config and locales changes from a theme.
+`npm run reconcile`: Download all changes from a theme except Assets and Snippets into your repo. Assets and Snippets are built, and therefore can't be included.
+`npm run check-lint`: See what's wrong with your syntax.
+`npm run lint`: Let the theme automatically fix your syntax, if it can.
+
+## Branches
+
+`master` is actually the US region's theme. Don't use it at all.
+
+`master_au` is the AU region's production theme.
+
+`uat` and `dev` are the same as on other projects. `uat` is ready, QAed work, and `dev` is your work when it's done, all together.
+
+First, check which of `master_au`, `uat` and `dev` is furthest ahead. Then, rebase `dev` so it's up to date. 
+
+Then, split off onto your own named branch and go ahead.
+
+## The Repo
+
+This repo has a lot going on. Here's what you need to know:
+1. Most snippets are built from `snippets-src`. Each subfolder in that folder where the file is is prepended to the name. e.g. `snippets-src/assets/icons/available.liquid` becomes `snippets/assets-icons-available.liquid`. Some snippets are just in `snippets` as usual. Check which one you're dealing with before working. If it's built, edit it in `snippets-src`. Built snippets are gitignored, so always look for the change you made in your commit to ensure it's there.
+1. Most JS files are built from `scripts`, so make changes here and not in `assets` unless the file is not built.
+1. Most CSS files are built from `styles`. Same as the above.
+
+## Major Mechanics
+
+1. To enable Click & Collect, the checkout is really heavily modified. The user chooses their location, or delivery, before checkout, and there is a whole bunch of stuff to try and prevent them from changing it in the checkout.
+1. Because of Click & Collect, we use the Inventory Locations app to *asynchronously* load in the stock levels of each physical store on the product and cart pages. The product page shows what it can from Liquid before this loads in, and is updated afterwards. The cart page removes products that aren't available via the store the user has selected.
+1. The locational inventory display and the cart display use Vue. 
+1. The theme has a collection hierarchy, ie. collections with subcollections with subcollections etc. It is derived from Navigation menus (linklists). You can see it in the main menu and on the left top of any collection page. Only the lowest level collections are powered by Algolia, and use the collection.liquid template. The others have a different display, showing parts of multiple collections, and use the collection.multi.liquid template. Ignore the rest of the templates.
+
+## FAQs
+
+Q. I can't build or watch because of something about "patterns" or a "submodule"
+A. The repo has a submodule, which is another repo that sits inside it. You can see which ones in the `.gitmodules` file. Make sure you have access to `https://gitlab.com/createurs/decathlon-shopify-theme-patterns`, and run a command to initialise submodules.
+
+Q. I can't run build and the message is "Cannot find module 'gulp-sass'" or some other module
+A. Run 'npm i gulp-sass@latest --save-dev' (for the appropriate module name) and try again. If that doesn't work, check your versions of npm and node are correct to `package.json`. Finally, search the internet. https://stackoverflow.com/questions/33314607/error-cannot-find-module-gulp-sass
+
+Q. My changes aren't being uploaded
+A. Check you have the right theme ID, then check that the terminal isn't throwing an error.
+
+Q. The terminal is throwing errors at me for no reason
+A. This repo sometimes does that for incorrect syntax. First, find the error in the Terminal and look it up online. If it says "lint" anywhere, run `npm run check-lint` for details, run `npm run lint` and try committing again.
+
+Q. My snippet {% include %} isn't working
+A. Make sure you didn't make a snippet in `snippets-src` and then try to include it without the built filepath prefixes.
+
+Q. I can't find where something is in the repo
+A. Look for a class or ID in the whole repo.
+
+Q. It takes ages to search the whole repo
+A. I got you fam. Use the ignore pattern below.
+
+## Ignore Pattern
+-*/decathlon-shopify-theme/assets/built*, -*/decathlon-shopify-theme/node_modules/*, -*/decathlon-shopify-theme/cypress/*, -*/decathlon-shopify-theme/patterns/*
+
+# Ok, that's it from me, John in the AU region. After this is more information on the repo, some is relevant, some isn't. Enjoy.
+
+# The Old Readme
 
 ## Table of Contents
 
