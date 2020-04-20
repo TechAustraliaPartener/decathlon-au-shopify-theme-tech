@@ -26,10 +26,10 @@
     "svg_logo": "small_logo.svg",
     "img_logo": "shopify:\/\/shop_images\/logo_small_9355cf1c-7626-4ada-916d-d809a214ca37.png",
     "enable_meet_decathlon": true,
-    "megamenu_image": "shopify:\/\/shop_images\/Copy_of_SIDE_NAV_22_-min_1.jpg",
-    "megamenu_title": "Commuting Made Easy",
-    "megamenu_subtitle": "Bikes, Scooters & Roller Blades",
-    "megamenu_link": "shopify:\/\/collections\/equipment-bikes-scooters",
+    "megamenu_image": "shopify:\/\/shop_images\/Copy_of_SIDE_NAV_25_-min.jpg",
+    "megamenu_title": "Home Fitness Gear",
+    "megamenu_subtitle": "Everyday Low Price Fitness",
+    "megamenu_link": "shopify:\/\/collections\/home-fitness-equipment-accessories",
     "megamenu_bg_colour": "#1c82c3",
     "is_lookbook": false,
     "product_returns_text": "Allow 2-3 extra days for deliveries",
@@ -352,7 +352,7 @@
               "hours_5_close": 21,
               "hours_6_open": 8,
               "hours_6_close": 21,
-              "announcement": "Friday 10th April (Good Friday): Closed | Saturday 11th April: Normal hours | Sunday 12th April (Easter Sunday): Closed | Monday 13th April (Easter Monday): 9am-10pm | Saturday 25th April (Anzac Day): 1pm-10pm",
+              "announcement": "Saturday 25th April (Anzac Day): 1pm-10pm",
               "address_type_boolean": false,
               "is_residential": false,
               "is_warehouse": false,
@@ -385,18 +385,18 @@
               "hours_0_open": 9,
               "hours_0_close": 21,
               "hours_1_open": 10,
-              "hours_1_close": 22,
+              "hours_1_close": 21,
               "hours_2_open": 10,
-              "hours_2_close": 22,
+              "hours_2_close": 21,
               "hours_3_open": 10,
-              "hours_3_close": 22,
+              "hours_3_close": 21,
               "hours_4_open": 10,
-              "hours_4_close": 22,
+              "hours_4_close": 21,
               "hours_5_open": 10,
-              "hours_5_close": 22,
+              "hours_5_close": 21,
               "hours_6_open": 9,
-              "hours_6_close": 22,
-              "announcement": "Friday 10th April (Good Friday): Closed | Saturday 11th April: Normal hours | Sunday 12th April (Easter Sunday): Closed | Monday 13th April (Easter Monday): 10am-10pm | Saturday 25th April (Anzac Day): 1pm-10pm",
+              "hours_6_close": 21,
+              "announcement": "Saturday 25th April (Anzac Day): 1pm-9pm",
               "address_type_boolean": true,
               "is_residential": false,
               "is_warehouse": false,
@@ -440,7 +440,7 @@
               "hours_5_close": 20,
               "hours_6_open": 9,
               "hours_6_close": 20,
-              "announcement": "Friday 10th April (Good Friday): Closed | Saturday 11th April: 10am-7pm | Sunday 12th April (Easter Sunday): Closed | Monday 13th April (Easter Monday): 10am-7pm | Saturday 25th April (Anzac Day): 1pm-9pm",
+              "announcement": "Saturday 25th April (Anzac Day): 1pm-9pm",
               "address_type_boolean": true,
               "is_residential": false,
               "is_warehouse": false,
@@ -452,7 +452,7 @@
             "settings": {
               "name": "Box Hill",
               "title": "Box Hill Store, 3128",
-              "online_inventory_source": false,
+              "online_inventory_source": true,
               "enable_c_c": true,
               "duplicate": "",
               "test_mode": false,
@@ -484,7 +484,7 @@
               "hours_5_close": 21,
               "hours_6_open": 9,
               "hours_6_close": 21,
-              "announcement": "Friday 10th April (Good Friday): Closed | Saturday 11th April: 10am-7pm | Sunday 12th April (Easter Sunday): Closed | Monday 13th April (Easter Monday): 10am-7pm | Saturday 25th April (Anzac Day): 1pm-9pm",
+              "announcement": "Saturday 25th April (Anzac Day): 1pm-9pm",
               "address_type_boolean": true,
               "is_residential": false,
               "is_warehouse": false,
@@ -496,7 +496,7 @@
             "settings": {
               "name": "Moorabbin",
               "title": "Moorabbin Store, 3194",
-              "online_inventory_source": false,
+              "online_inventory_source": true,
               "enable_c_c": true,
               "duplicate": "",
               "test_mode": false,
@@ -528,7 +528,7 @@
               "hours_5_close": 20,
               "hours_6_open": 9,
               "hours_6_close": 20,
-              "announcement": "Friday 10th April (Good Friday): Closed | Saturday 11th April: 10am-7pm | Sunday 12th April (Easter Sunday): Closed | Monday 13th April (Easter Monday): 10am-7pm | Saturday 25th April (Anzac Day): 1pm-8pm",
+              "announcement": "Saturday 25th April (Anzac Day): 1pm-8pm",
               "address_type_boolean": true,
               "is_residential": false,
               "is_warehouse": false,
@@ -1043,19 +1043,6 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
-          "1584329073675": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/DecathlonAU_Website_Banner_2_SA_03-Apr-2020_1440x790_V1_1_-min.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": "<br>Play At Home<br>",
-              "banner_subtitle": "<p><strong>Set Up Your New Playground Indoor Or In Your Garden&nbsp;<\/strong><\/p>",
-              "button_new_window": false,
-              "button_title": "SHOP INDOOR & GARDEN GAMES",
-              "button_url": "shopify:\/\/collections\/indoor-sport-activities"
-            }
-          },
           "1584424981258": {
             "type": "slide",
             "settings": {
@@ -1069,17 +1056,30 @@
               "button_url": "shopify:\/\/collections\/equipment-bikes-scooters"
             }
           },
+          "1584329073675": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/DecathlonAU_Website_Banner_15042020_SA_15-Apr-2020_1440x790_V1.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "<br>Play At Home<br>",
+              "banner_subtitle": "<p><strong>Let The Backyard Fun Begin<\/strong><\/p>",
+              "button_new_window": false,
+              "button_title": "SHOP INDOOR & GARDEN GAMES",
+              "button_url": "shopify:\/\/collections\/indoor-sport-activities"
+            }
+          },
           "1583208837009": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/DecathlonAU_Website_banner_1__SA_30-Mar-2020_1440x790_V1_2_-min.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/DecathlonAU_webbanner_3_23032020_SA_23-Mar-2020_1440x790_V1-min.jpg",
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
-              "banner_title": "<br>Great Outdoor<br><span style=\"color: #ff0000;\">Sale<\/span>",
-              "banner_subtitle": "<p><strong>Waterproof Jackets, Padded Jackets &amp; Fleeces<\/strong><\/p>",
+              "banner_title": "<br>Play At Home<br>",
+              "banner_subtitle": "<p><strong>Let The Backyard Fun Begin<\/strong><\/p>",
               "button_new_window": false,
-              "button_title": "SHOP NOW",
-              "button_url": "shopify:\/\/collections\/smart-buys"
+              "button_title": "SHOP GARDEN GAMES",
+              "button_url": "shopify:\/\/collections\/indoor-sport-activities"
             }
           }
         },
