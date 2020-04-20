@@ -133,7 +133,7 @@
     {{ 'icomoon.scss.css' | asset_url | stylesheet_tag }}
   {% endif %}
   
-  {% if template == "index" or template == "cart" or template.name == "collection" or template.name == "search" %}
+  {% if template == "index" or template == "cart" or template.name == "collection" or template.name == "search" or template.name == "product" %}
     {{ 'built-product-tile.css' | asset_url | stylesheet_tag }}
   {% endif %}
   {% if template == "customers/account" %}

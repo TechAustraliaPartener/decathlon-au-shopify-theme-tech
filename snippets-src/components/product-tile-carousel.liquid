@@ -65,15 +65,30 @@
   data-arrow-previous-button="{{ arrow_previous_button | escape }}"
   data-arrow-next-button="{{ arrow_next_button | escape }}"
 >
-  {% for product in products limit: limit %}
-    {%- if product.available -%}
-      {% comment %} Product Tile Carousel Slide {% endcomment %}
-      {% include 'components-product-tile',
-        product: product,
-        class: "de-ProductTileCarousel-item",
-        delivery_options: delivery_options,
-        inventory_status: inventory_status,
-      %}
-    {%- endif -%}
-  {% endfor %}
+  {% if handles %}
+    {% for handle in handles limit: limit %}
+      {% assign product = all_products[handle] %}
+      {%- if product.available -%}
+        {% comment %} Product Tile Carousel Slide {% endcomment %}
+        {% include 'components-product-tile',
+          product: product,
+          class: "de-ProductTileCarousel-item",
+          delivery_options: delivery_options,
+          inventory_status: inventory_status,
+        %}
+      {%- endif -%}
+    {% endfor %}
+  {% else %}
+    {% for product in products limit: limit %}
+      {%- if product.available -%}
+        {% comment %} Product Tile Carousel Slide {% endcomment %}
+        {% include 'components-product-tile',
+          product: product,
+          class: "de-ProductTileCarousel-item",
+          delivery_options: delivery_options,
+          inventory_status: inventory_status,
+        %}
+      {%- endif -%}
+    {% endfor %}
+  {% endif %}
 </div>
