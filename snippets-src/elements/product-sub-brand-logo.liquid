@@ -33,14 +33,7 @@
 {% if product.vendor == no_vendor_testing
       or product.vendor == no_vendor_production
       or logo contains 'Liquid error' %}
-  {% include 'assets-logos-brands-decathlon', 
-    class: class,
-    data_gtm_event: data_gtm_event,
-    data_gtm_id: data_gtm_id,
-    data_gtm_category: data_gtm_category,
-    data_gtm_actions: data_gtm_actions,
-    data_gtm_delegate: data_gtm_delegate
-  %}
+  <div class="h3 vendor_logo_fallback">{{ product.vendor }}</div>
 {% else %}
 {{ logo }}
 {% endif %}

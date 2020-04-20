@@ -52,3 +52,12 @@
 .de-SwatchObjects-item:hover + a.label {
   color: $color-blue !important;
 }
+
+.de-ProductTile-header {
+  .vendor_logo_fallback {
+    margin: 0;
+    font-size: 1.3em;
+    line-height: 1.5em;
+    margin-top: 6px;
+  }
+}

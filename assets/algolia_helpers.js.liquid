@@ -279,11 +279,13 @@
       var no_vendor_testing = 'testing-decathlon-usa';
       var no_vendor_production = 'decathlon-usa';
       var brand_logo_name = this.vendor.toLowerCase().replace(/[^\w\u00C0-\u024f]+/g, "-").replace(/^-+|-+$/g, "").toLocaleString().replace(/-/g, '');
-      // console.log('this', this);
 
       if (this.vendor != no_vendor_testing && this.vendor != no_vendor_production && (((window || {}).vars || {}).subBrandLogos || {})[brand_logo_name]) {
         return render(window.vars.subBrandLogos[brand_logo_name]);
       } else {
+        return render('<div class="h3 vendor_logo_fallback de-u-spaceTop04">' + this.vendor + '</div>');
+        {% comment %}Return Decathlon logo{% endcomment %}
+        {% comment %}
         return render(`<svg viewBox="0 0 109.42541 24" width="109.42541" height="24" role="img" class="de-u-spaceTop04 de-subBrandLogo" 
           data-gtm-event="customer-interaction"
           data-gtm-id="Decathlon Brand | https://${Shopify.shop + '/products/' + this.handle}"
@@ -298,6 +300,7 @@
           <path d="M105.28,3.915v9l-6.19-9H95.37v5.44a8.3201,8.3201,0,0,0-2.2-3.35,9,9,0,0,0-12.17,0,7.89,7.89,0,0,0-2.57,5.83,8.32,8.32,0,0,0,1.33,4.66H76.6V3.915H72.5v16.11h8.92v-1.7a8.62,8.62,0,0,0,5.7,2,8.78,8.78,0,0,0,6.22-2.52,8.12008,8.12008,0,0,0,2-3.27v5.49h4.12v-9l6.29,9h3.64V3.915ZM87.12,16.335a4.51,4.51,0,0,1-4.44-4.49,4.42,4.42,0,1,1,4.44,4.49Z"/>
           <path d="M23.62,7.405V3.855H14.43v6.62a7.5,7.5,0,0,0-2.35-4.63c-1.75-1.59-3.63-1.93-6.31-1.93H0v16.11H6.34c2.37,0,4-.32,5.77-2a7.62,7.62,0,0,0,2.32-4.5v6.4h9.19v-3.45H18.49v-3h4.45v-3.45H18.49V7.405ZM5.79,16.495H4.13V7.385H5.77c3,0,4.67,1.63,4.67,4.53C10.44,15.085,8.95,16.495,5.79,16.495Z"/>
         </svg>`);
+        {% endcomment %}
       }
 
     }
