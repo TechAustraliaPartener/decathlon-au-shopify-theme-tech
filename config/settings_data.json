@@ -28,7 +28,7 @@
     "enable_meet_decathlon": true,
     "megamenu_image": "shopify:\/\/shop_images\/Copy_of_SIDE_NAV_25_-min.jpg",
     "megamenu_title": "Home Fitness Gear",
-    "megamenu_subtitle": "Everyday Low Price Fitness",
+    "megamenu_subtitle": "Everyday Low Price Fitness Gear",
     "megamenu_link": "shopify:\/\/collections\/home-fitness-equipment-accessories",
     "megamenu_bg_colour": "#1c82c3",
     "is_lookbook": false,
@@ -452,7 +452,7 @@
             "settings": {
               "name": "Box Hill",
               "title": "Box Hill Store, 3128",
-              "online_inventory_source": true,
+              "online_inventory_source": false,
               "enable_c_c": true,
               "duplicate": "",
               "test_mode": false,
@@ -1072,27 +1072,46 @@
           "1583208837009": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/DecathlonAU_webbanner_3_23032020_SA_23-Mar-2020_1440x790_V1-min.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/DecathlonAU_Website_Banner_wk16_2_SA_20-Apr-2020_1440x790_V1_2_-min.jpg",
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
-              "banner_title": "<br>Play At Home<br>",
-              "banner_subtitle": "<p><strong>Let The Backyard Fun Begin<\/strong><\/p>",
+              "banner_title": "<br>Run Faster,<br>Run Longer",
+              "banner_subtitle": "<p><strong>Everyday Low Price On Running Gear<\/strong><\/p>",
               "button_new_window": false,
-              "button_title": "SHOP GARDEN GAMES",
-              "button_url": "shopify:\/\/collections\/indoor-sport-activities"
+              "button_title": "SHOP RUNNING",
+              "button_url": "https:\/\/decathlon.com.au\/search?q=running"
             }
           }
         },
         "block_order": [
-          "1584329073675",
           "1584424981258",
+          "1584329073675",
           "1583208837009"
         ],
         "settings": {}
+      },
+      "1587698179276": {
+        "type": "slider_image_section",
+        "settings": {
+          "homepage_slider_image_title": "More to explore!",
+          "homepage_slider_image_1": "shopify:\/\/shop_images\/DecathlonAU_Content_Banner_2__SA_14-Apr-2020_450x280_V1_1_-min.png",
+          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/pages\/delivery-click-and-collect",
+          "checkbox_image_1": true,
+          "homepage_slider_image_2": "shopify:\/\/shop_images\/DecathlonAU_Content_Banner_1__SA_15-Apr-2020_450x280_V1_R1-min.png",
+          "homepage_slider_image_redirection_2": "https:\/\/app.adjust.com\/4yd6bmd?fallback=https%3A%2F%2Fwww.decathloncoach.com%2Fen%2Fhome%2F",
+          "checkbox_image_2": true,
+          "homepage_slider_image_3": "shopify:\/\/shop_images\/DecathlonAU_Content_Banner_3__SA_15-Apr-2020_450x280_V1_R2-min.png",
+          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/blogs\/workout-at-home\/running-on-a-treadmill-what-training-program-to-choose",
+          "checkbox_image_3": true,
+          "homepage_slider_image_4": "shopify:\/\/shop_images\/DecathlonAU_Content_Banner_4__SA_15-Apr-2020_450x280_V1_R1-min.png",
+          "homepage_slider_image_redirection_4": "https:\/\/decathlon.com.au\/blogs\/play-at-home",
+          "checkbox_image_4": true
+        }
       }
     },
     "content_for_index": [
-      "1568939434006"
+      "1568939434006",
+      "1587698179276"
     ]
   },
   "presets": {
