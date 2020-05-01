@@ -1,0 +1,26 @@
+{% assign sports_nav = linklists.sports %}
+
+<ul class="de-TextGrid de-u-columns4 de-u-xl-columns5">
+  {% for menu in sports_nav.links %}
+  	{% capture sport_menu %}{{ menu.handle }}{% endcapture %}
+    
+    <li class="de-TextGrid-cell de-u-spaceNone">
+	  <h3 class="de-u-textGrow1 de-u-textSemibold de-u-lineHeight3 de-u-spaceNone">
+	    {% if menu.url %}
+	      {% comment %}Removing "Women's" and "Men's" to avoid redundancy in For Women and For Men menu category headings{% endcomment %}
+	      <a class="de-u-linkClean" href="{{ menu.url }}">{{ menu.title | remove: "Women's "  | remove: "Men's " | remove: "Kids' " }}</a>
+	    {% else %}
+	      {{ menu.title }}
+	    {% endif %}
+	  </h3>
+	  <ul class="de-u-listReset de-u-spaceNone de-u-lineHeight3">
+	    {% for link in linklists[sport_menu].links %}
+	      <li class="de-u-spaceNone">
+	        <a class="de-u-linkClean de-u-textShrink1" href="{{ link.url }}">{{ link.title }}</a>
+	      </li>
+	    {% endfor %}
+	  </ul>
+	</li>
+
+  {% endfor %}
+</ul>

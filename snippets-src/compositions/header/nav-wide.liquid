@@ -28,15 +28,18 @@
               {% for link in linklists.mega-tabs.links %}
 
                 {% assign menu_handle = link.url | handleize %}
-                
                 {% assign mega_menu = linklists[menu_handle] %}
+                
                 {% if mega_menu.links.size > 0 or menu_handle == 'az' %}
                   <div class="de-Collapsible js-de-Collapsible" data-parent="mega-tabs" id="mega-tab-{{ link.handle }}">
-                    {% if menu_handle == 'az' %}
-                      {% include 'compositions-header-nav-wide-az' %}
-                    {% else %}
-                      {% include 'compositions-header-nav-wide-list', list: mega_menu %}
-                    {% endif %}
+                    {% case menu_handle %}
+                      {% when 'activities' %}
+                        {% render 'compositions-header-nav-wide-sports' %}
+                      {% when 'az' %}
+                        {% include 'compositions-header-nav-wide-az' %}
+                      {% else %}
+                        {% include 'compositions-header-nav-wide-list', list: mega_menu %}
+                    {% endcase %}
                   </div>
                 {% endif %}
                 
