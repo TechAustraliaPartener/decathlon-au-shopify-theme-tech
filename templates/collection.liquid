@@ -1,3 +1,44 @@
+{% assign hierarchy_title = false %}
+{% assign hierarchy = false %}
+
+{% assign sports_nav = linklists.sports %}
+
+{% for menu in sports_nav.links %}
+  {% capture sport_menu %}{{ menu.handle }}{% endcapture %}
+
+  {% for link in linklists[sport_menu].links %}
+    {% if link.current %}
+      {% assign hierarchy_title = link %}
+      {% assign hierarchy = link.links %}
+      {% break %}
+    {% elsif link.child_current && link.links %}
+
+      {% for sub in link.links %}
+        {% if sub.current %}
+          {% assign hierarchy_title = sub %}
+          {% assign hierarchy = sub.links %}
+          {% break %}
+        {% elsif sub.child_current && sub.links %}
+
+          {% for subsub in sub.links %}
+            {% if subsub.current %}
+              {% assign hierarchy_title = subsub %}
+              {% assign hierarchy = subsub.links %}
+              {% break %}
+            {% endif %}
+          {% endfor %}
+
+        {% endif %}
+      {% endfor %}
+
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+
+{{ hierarchy_title.title }}
+{{ hierarchy.size }}
+
+
 {% include 'shogun-products', content: collection %}
 {{collection.metafields.shogun.above}}
 {% include 'helpers-template-name' %}
