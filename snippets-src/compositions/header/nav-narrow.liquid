@@ -31,7 +31,7 @@
   	    {% assign menu_handle = link.url | handleize %}
   	    {% assign mega_menu = linklists[menu_handle] %}
 
-        {% if menu_handle == 'activities' %}
+        {% if menu_handle == 'sports' %}
           {% assign sports = linklists.sports %}
           {% include 'navigation-menu-list-collection', list: sports, menuChild: "menu-list", menu_title: link.title %}
         {% else %}
@@ -76,7 +76,7 @@
     {% assign mega_menu = linklists[menu_handle] %}
 
     {% comment %}if mega_menu.links.size > 0 or menu_handle == 'az'{% endcomment %}
-    {% if menu_handle == 'activities' %}
+    {% if menu_handle == 'sports' %}
       {% include 'nav-narrow-sports' %}
     {% else %}
       {% if mega_menu.links.size > 0 %}
