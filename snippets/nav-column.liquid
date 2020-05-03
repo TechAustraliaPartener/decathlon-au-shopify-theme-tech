@@ -1,0 +1,88 @@
+{% comment %}
+Requires:
+1. id - the ID of the slide target, used in the link that will trigger this column.
+2. list - A linklist that will populate the column.
+3. title - the breadcrumb title for the close target of this column
+4. prev_id - slide target for closing the column.
+5. prev_title - title of the close column link
+{% endcomment %}
+
+{% assign next_columns = '' %}
+
+<section class="de-SlideViews-view js-de-SlideViews-view" id="{{ id }}">
+  <ul class="de-MenuList">
+    {% render 'navigation-menu-mobile-crumb', slideTarget: prev_id, linkLabel: prev_title %}
+
+    {% for link in list %}
+
+      {% assign link_list = link.links %}
+      {% unless link_list.size > 0 %}
+        {% capture separate_nav %}{{ link.handle }}{% endcapture %}
+        {% assign link_list = linklists[separate_nav].links %}
+      {% endunless %}
+
+      {% assign link_has_links = false %}
+      {% if link_list.size > 0 %}
+        {% assign link_has_links = true %}
+      {% endif %}
+
+      {% if link_has_links %}
+        {% capture next_id %}{{ id }}-{{ link.handle }}{% endcapture %}
+        {% capture next_col %}{% render 'nav-column', id: next_id, list: link_list, title: link.title, prev_id: id, prev_title: title %}{% endcapture %}
+        {% assign next_columns = next_columns | append: '|||' | append: next_col %}
+      {% endif %}
+
+      <li class="de-u-spaceNone">
+        {% assign el = 'a' %}
+        {% if link_has_links %}
+          {% assign el = 'button' %}
+        {% endif %}
+
+        <{{ el }} 
+          class="de-MenuList-item" 
+          {% if link.url %} href="{{ link.url }}{% endif %}" 
+          {% comment %}How the ID is determined{% endcomment %}
+          {% if link_has_links %} data-de-slideViews-target="{{ id }}-{{ link.handle }}"{% endif %}
+        >
+
+          {% if link_has_links %}
+            <div class="de-MenuList-content">
+              <h5 class="de-MenuList-heading">
+                {{ link.title | remove: "Women's "  | remove: "Men's " | remove: "Kids' " }}
+              </h5>
+              <p class="de-MenuList-summary">
+                {% if link_list.size > 2 %}
+                  {% for sublink in link_list limit: 2 %}
+                    {{ sublink.title }}{% if forloop.last %}…{% else %},{% endif %}
+                  {% endfor %}
+                {% else %}
+                  {{ link_list | map: 'title' | join: ", "}}
+                {% endif %}
+              </p>
+            </div>
+          {% else %}
+            <p class="de-MenuList-content de-u-textSizeBase">
+              {{ link.title }}
+            </p>
+          {% endif %}
+        
+          {% if link.label or link_has_links %}
+            <p class="de-MenuList-badge">{{ link.label | default: link_list.size }}</p>
+          {% endif %}
+
+          {% if link_has_links %}
+            {% render 'patterns-icons-chevron', class: 'de-MenuList-icon', role: 'presentation' %}
+          {% endif %}
+        </{{ el }}>
+      </li>
+    {% endfor %}
+
+  </ul>
+</section>
+
+{% assign next_columns = next_columns | remove_first: '|||' | split: '|||' %}
+
+{% for next_col in next_columns %}
+  {{ next_col }}
+{% endfor %}
+

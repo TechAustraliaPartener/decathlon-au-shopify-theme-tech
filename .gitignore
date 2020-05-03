@@ -16,4 +16,5 @@ src/css/*
 !/snippets/pickup-icon*
 !/snippets/thankyou_review*
 !/snippets/shogun-*
+!/snippets/nav-*
 theme.zip

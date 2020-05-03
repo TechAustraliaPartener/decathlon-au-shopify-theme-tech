@@ -1,0 +1,3 @@
+{% assign sports = linklists.sports %}
+{% capture next_id %}menu-list-sports{% endcapture %}
+{% render 'nav-column', id: next_id, list: sports.links, title: 'Sports', prev_id: 'menu-narrow', prev_title: 'Home' %}
