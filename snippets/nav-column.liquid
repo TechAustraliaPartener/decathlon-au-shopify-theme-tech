@@ -5,6 +5,7 @@ Requires:
 3. title - the breadcrumb title for the close target of this column
 4. prev_id - slide target for closing the column.
 5. prev_title - title of the close column link
+6. separate_navs - whether the next level down is separate linklists, or tiers of the current linklist.
 {% endcomment %}
 
 {% assign next_columns = '' %}
@@ -16,10 +17,10 @@ Requires:
     {% for link in list %}
 
       {% assign link_list = link.links %}
-      {% unless link_list.size > 0 %}
+      {% if separate_navs %}
         {% capture separate_nav %}{{ link.handle }}{% endcapture %}
         {% assign link_list = linklists[separate_nav].links %}
-      {% endunless %}
+      {% endif %}
 
       {% assign link_has_links = false %}
       {% if link_list.size > 0 %}
@@ -28,7 +29,7 @@ Requires:
 
       {% if link_has_links %}
         {% capture next_id %}{{ id }}-{{ link.handle }}{% endcapture %}
-        {% capture next_col %}{% render 'nav-column', id: next_id, list: link_list, title: link.title, prev_id: id, prev_title: title %}{% endcapture %}
+        {% capture next_col %}{% render 'nav-column', id: next_id, list: link_list, title: link.title, prev_id: id, prev_title: title, separate_navs: false %}{% endcapture %}
         {% assign next_columns = next_columns | append: '|||' | append: next_col %}
       {% endif %}
 
