@@ -8,17 +8,13 @@
 
   {% for link in linklists[sport_menu].links %}
     {% if link.current %}
-      {% comment %}
       {% if link.links.size > 0 %}
-      {% endcomment %}
         {% assign hierarchy_title = link %}
         {% assign hierarchy = link.links %}
-      {% comment %}
       {% else %}
         {% assign hierarchy_title = menu %}
-        {% assign hierarchy = sports_nav.links %}
+        {% assign hierarchy = linklists[sport_menu].links %}
       {% endif %}
-      {% endcomment %}
       {% break %}
     {% elsif link.child_current && link.links %}
 
