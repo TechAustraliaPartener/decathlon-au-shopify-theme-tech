@@ -1,28 +1,27 @@
 {% comment %}
-<!-- the actual_collection needs to be determined for multi collection -->
+<!-- the true_collection needs to be determined for multi collection -->
 {% endcomment %}
 
-{% for link in top_level.links %}
-  {% if link.active or link.child_active %}
-    {% assign breadcrumb2 = link %}
-    {% assign actual_collection = link %}
+{% assign breadcrumbs_top = false %}
+{% assign breadcrumbs = false %}
+
+{% assign sports_nav = linklists.sports %}
+
+{% for menu in sports_nav.links %}
+  {% capture sport_menu %}{{ menu.handle }}{% endcapture %}
+
+  {% if menu.current %}
+    {% assign breadcrumbs_top = menu %}
+    {% assign breadcrumbs = linklists[sport_menu].links %}
   {% endif %}
-  {% if link.child_active or link.active and link.links != blank %}
-    {% for sub in link.links %}
-      {% if sub.active or sub.child_active %}
-        {% assign breadcrumb3 = sub %}
-        {% assign actual_collection = sub %}
-      {% endif %}
-      {% if sub.child_active or sub.active and sub.links != blank %}
-        {% for subSub in sub.links %}
-          {% if subSub.active or subSub.child_active %}
-            {% assign breadcrumb4 = subSub %}
-            {% assign actual_collection = subSub %}
-          {% endif %}
-        {% endfor %}
-      {% endif %}
-    {% endfor %}
-  {% endif %}
+
+  {% for link in linklists[sport_menu].links %}
+    {% if link.current or link.child_current %}
+      {% assign breadcrumbs_top = link %}
+      {% assign breadcrumbs = linklists[sport_menu].links %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
 {% endfor %}
 
 {% assign products_url_list = products_url_list | split: " | " %}
@@ -35,13 +34,13 @@
 {
   "@context":"https://schema.org",
   "@type":"ItemList",
-  "name":"{{ actual_collection.title }}",
-  "url":"{{ shop.url }}{{ actual_collection.url }}",
-  "description":"{{ actual_collection.description | strip_html  }}",
-  {% if actual_collection.image %}"image":"{{ actual_collection.image | img_url: 'grande' }}",{% endif %}
+  "name":"{{ true_collection.title }}",
+  "url":"{{ shop.url }}{{ true_collection.url }}",
+  "description":"{{ true_collection.description | strip_html  }}",
+  {% if true_collection.image %}"image":"{{ true_collection.image | img_url: 'grande' }}",{% endif %}
   "mainEntityOfPage": {
-      "@type": "CollectionPage",
-      "@id": "{{ shop.url }}{{ actual_collection.url }}"
+    "@type": "CollectionPage",
+    "@id": "{{ shop.url }}{{ true_collection.url }}"
   },
   "itemListElement":[
     {% for url in products_url_list %}
@@ -59,33 +58,53 @@
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [{
-    "@type": "ListItem",
-    "position": 1,
-    "name": "{{top_level.title}}",
-    "item": "{{shop.url}}/collections/{{top_level.handle}}"
-    {% if breadcrumb2 != blank %}
-      },{
-        "@type": "ListItem",
-        "position": 2,
-        "name": "{{ breadcrumb2.title }}",
-        "item": "{{shop.url}}{{ breadcrumb2.url }}"
-    {% endif %}
-    {% if breadcrumb3 != blank %}
-      },{
-        "@type": "ListItem",
-        "position": 3,
-        "name": "{{ breadcrumb3.title }}",
-        "item": "{{shop.url}}{{ breadcrumb3.url }}"
-    {% endif %}
-    {% if breadcrumb4 != blank %}
-      },{
-        "@type": "ListItem",
-        "position": 4,
-        "name": "{{ breadcrumb4.title }}",
-        "item": "{{shop.url}}{{ breadcrumb4.url }}"
-    {% endif %}
-  }]
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "{{ breadcrumbs_top.title }}",
+      "item": "{{ shop.url }}{{ breadcrumbs_top.url }}"
+    }
+
+    {% for link in breadcrumbs %}
+      {% if link.current or link.child_current %}
+        
+        ,{
+          "@type": "ListItem",
+          "position": 2,
+          "name": "{{ link.title }}",
+          "item": "{{ shop.url }}{{ link.url }}"
+        }
+
+        {% for sub in link.links %}
+          {% if sub.current or sub.child_current %}
+
+            ,{
+              "@type": "ListItem",
+              "position": 3,
+              "name": "{{ sub.title }}",
+              "item": "{{ shop.url }}{{ sub.url }}"
+            }
+
+            {% for subsub in sub.links %}
+              {% if subsub.current or subsub.child_current %}
+
+                ,{
+                  "@type": "ListItem",
+                  "position": 4,
+                  "name": "{{ subsub.title }}",
+                  "item": "{{ shop.url }}{{ subsub.url }}"
+                }
+
+              {% endif %}
+            {% endfor %}
+
+          {% endif %}
+        {% endfor %}
+
+      {% endif %}
+    {% endfor %}
+  ]
 }
 </script>
 

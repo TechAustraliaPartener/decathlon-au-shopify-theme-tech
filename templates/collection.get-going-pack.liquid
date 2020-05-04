@@ -1,3 +1,6 @@
+{% comment %}Preserve collection in true_collection for use later{% endcomment %}
+{% assign true_collection = collection %}
+
 {% assign start_tag = '<p>---collection_' | append: collection.handle | append: '---</p>' %}
 {% assign end_tag = '<p>---/collection_' | append: collection.handle | append: '---</p>' %}
 {% assign section_content = pages['get-going-pack-extra-sections'].content | split: start_tag %}

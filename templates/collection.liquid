@@ -1,3 +1,6 @@
+{% comment %}Preserve collection in true_collection for use later{% endcomment %}
+{% assign true_collection = collection %}
+
 {% assign hierarchy_title = false %}
 {% assign hierarchy = false %}
 
@@ -152,7 +155,7 @@
     </div>
 </div>
 
-{% include 'compositions-collection-page-algolia-jsonld' %}
+{% include 'compositions-collection-page-jsonld' %}
 {% include 'collection-footer-js' %}
 
 <script type="module" src="{{ 'built-product-tile.js' | asset_url }}"></script>

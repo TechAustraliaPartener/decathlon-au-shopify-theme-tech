@@ -17,4 +17,5 @@ src/css/*
 !/snippets/thankyou_review*
 !/snippets/shogun-*
 !/snippets/nav-*
+!/snippets/breadcrumb-*
 theme.zip
