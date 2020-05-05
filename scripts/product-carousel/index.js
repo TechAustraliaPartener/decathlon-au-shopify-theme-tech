@@ -28,6 +28,8 @@ const arrowNextButton = $(`.${SLICK_PRODUCT_TILE_CAROUSEL}`).data(
   'arrow-next-button'
 );
 
+const slideBreakpointsType = $(`.${SLICK_PRODUCT_TILE_CAROUSEL}`).data('slide-breakpoints-type');
+
 /**
  * Slick carousel default configuration
  *
@@ -85,42 +87,59 @@ const standardizeImageContainers = () => {
  * @returns {Number} - How many slides to show
  */
 const calcSlidesToShow = windowWidth => {
-  /**
-   * Responsive slide breakpoints
-   *
-   * - non-carousel overflow scrolling on small screens
-   * - 3 product tiles with previous/arrows on medium screens
-   * - 4 product tiles on large screens ( > 960 px )
-   * - 5 product tiles on larger screens ( > 1280 px )
-   * - 6 product tiles on even larger screens ( > 1480 )
-   */
-  const slideBreakpoints = [
-    {
-      start: 0,
-      end: 624,
-      slidesToShow: 0
-    },
-    {
-      start: 625,
-      end: 960,
-      slidesToShow: 3
-    },
-    {
-      start: 961,
-      end: 1280,
-      slidesToShow: 4
-    },
-    {
-      start: 1281,
-      end: 1480,
-      slidesToShow: 5
-    },
-    {
-      start: 1481,
-      end: 99999,
-      slidesToShow: 6
-    }
-  ];
+  let slideBreakpoints;
+
+  if (slideBreakpointsType === 'associated-products') {
+    slideBreakpoints = [
+      {
+        start: 0,
+        end: 624,
+        slidesToShow: 0
+      },
+      {
+        start: 625,
+        end: 99999,
+        slidesToShow: 3
+      }
+    ];
+  } else {
+    /**
+     * Responsive slide breakpoints
+     *
+     * - non-carousel overflow scrolling on small screens
+     * - 3 product tiles with previous/arrows on medium screens
+     * - 4 product tiles on large screens ( > 960 px )
+     * - 5 product tiles on larger screens ( > 1280 px )
+     * - 6 product tiles on even larger screens ( > 1480 )
+     */
+    slideBreakpoints = [
+      {
+        start: 0,
+        end: 624,
+        slidesToShow: 0
+      },
+      {
+        start: 625,
+        end: 960,
+        slidesToShow: 3
+      },
+      {
+        start: 961,
+        end: 1280,
+        slidesToShow: 4
+      },
+      {
+        start: 1281,
+        end: 1480,
+        slidesToShow: 5
+      },
+      {
+        start: 1481,
+        end: 99999,
+        slidesToShow: 6
+      }
+    ];
+  }
 
   const activeSlideBreakpoint = slideBreakpoints.find(
     breakpoint =>

@@ -322,6 +322,15 @@
         "id": "product_bulk_shipping_text",
         "type": "text",
         "label": "Bulk Shipping"
+      },
+      {
+        "type": "header",
+        "content": "Products slider"
+      },
+      {
+        "id": "show_associated_products_carousel_on_product_page",
+        "type": "checkbox",
+        "label": "Show Frequently Bought Together Products slider"
       }
     ]
   },

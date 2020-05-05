@@ -291,3 +291,44 @@
   bottom: 0;
   position: absolute;
 }
+
+.associated-products-carousel-container {
+  border-top: 1px solid rgba(172, 179, 184, .5);
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+
+  .associated_products_carousel {
+    width: 100%;
+
+    @media (min-width: $breakpoint-lg) {
+      margin: 0 auto;
+      max-width: 72vw;
+    }
+
+    .de-ProductTileCarousel {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
+    .de-ProductTileCarousel-button {
+      display: none !important;
+    }
+
+    .de-ProductTile {
+      padding: 0;
+
+      &:not(:last-of-type) {
+        margin-right: 10%;
+      }
+
+      @media (min-width: $breakpoint-lg) {
+        max-width: 25%;
+      }
+
+      .de-ProductTile-showcase {
+        padding-top: 1rem;
+      }
+    }
+  }
+}
