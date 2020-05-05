@@ -7,6 +7,7 @@
   - {number} [limit]: The products loop limit
   - {boolean} [inventory_status]: Controls render of the inventory status
   - {boolean} [delivery_options]: Controls render of the delivery options
+  - {string} [slide_breakpoints_type]: type of the products carousel to configure the slide breakpoints
 
   Example:
   {% include 'components-product-tile-carousel',
@@ -64,6 +65,7 @@
   aria-label="Product Collection"
   data-arrow-previous-button="{{ arrow_previous_button | escape }}"
   data-arrow-next-button="{{ arrow_next_button | escape }}"
+  data-slide-breakpoints-type="{{ slide_breakpoints_type }}"
 >
   {% if handles %}
     {% for handle in handles limit: limit %}
