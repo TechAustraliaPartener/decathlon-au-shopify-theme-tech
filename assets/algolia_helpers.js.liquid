@@ -122,7 +122,7 @@
           return '<div class="ais-hit--label clearance">Sale</div>';
         } else if (lowercaseTags.indexOf('innovation') > -1) {
           return '<div class="ais-hit--label innovation">Innovation</div>';
-        } else if (lowercaseTags.indexOf('new_release') > -1) {
+        } else if (lowercaseTags.indexOf('new') > -1) {
           return '<div class="ais-hit--label new_release">New Release</div>';
         }
       }
@@ -136,7 +136,7 @@
           return '<div class="ais-hit--label clearance">Sale</div>';
         } else if (thisLabels.filter(function(e) { return e.replace('<span class="ais-highlight">', '').replace('</span>', '') === 'Innovation'; }).length > 0) {
           return '<div class="ais-hit--label innovation">Innovation</div>';
-        } else if (thisLabels.filter(function(e) { return e.replace('<span class="ais-highlight">', '').replace('</span>', '') === 'New Release'; }).length > 0) {
+        } else if (thisLabels.filter(function(e) { return e.replace('<span class="ais-highlight">', '').replace('</span>', '') === 'new'; }).length > 0) {
           return '<div class="ais-hit--label new_release">New Release</div>';
         }
       }

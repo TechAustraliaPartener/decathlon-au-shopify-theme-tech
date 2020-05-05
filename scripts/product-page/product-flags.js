@@ -89,7 +89,7 @@ const render = ({ variant, isShown }) => {
     updateFlag('Sale', 'de-u-bgRed de-u-textWhite');
   } else if (product.tags.includes('Innovation')) {
     updateFlag('Innovation', 'de-u-bgLime de-u-textBlack');
-  } else if (product.tags.includes('New_Release')) {
+  } else if (product.tags.includes('new')) {
     updateFlag('New Release', 'de-u-bgBlue de-u-textWhite');
   } else {
     updateFlag(null, ''); // The flag will hide
