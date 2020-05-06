@@ -6,48 +6,30 @@
 {% for menu in sports_nav.links %}
   {% capture sport_menu %}{{ menu.handle }}{% endcapture %}
 
-  {% for link in linklists[sport_menu].links %}
-    {% if link.current %}
-      {% if link.links.size > 0 %}
-        {% assign hierarchy_title = link %}
-        {% assign hierarchy = link.links %}
-      {% else %}
-        {% assign hierarchy_title = menu %}
-        {% assign hierarchy = linklists[sport_menu].links %}
-      {% endif %}
-      {% break %}
-    {% elsif link.child_current && link.links %}
-
-      {% for sub in link.links %}
-        {% if sub.current %}
-          {% if sub.links.size > 0 %}
-            {% assign hierarchy_title = sub %}
-            {% assign hierarchy = sub.links %}
-          {% else %}
-            {% assign hierarchy_title = link %}
-            {% assign hierarchy = link.links %}
-          {% endif %}
-          {% break %}
-        {% elsif sub.child_current && sub.links %}
-
-          {% for subsub in sub.links %}
-            {% if subsub.current %}
-              {% if subsub.links.size > 0 %}
-                {% assign hierarchy_title = subsub %}
-                {% assign hierarchy = subsub.links %}
-              {% else %}
-                {% assign hierarchy_title = sub %}
-                {% assign hierarchy = sub.links %}
-              {% endif %}
-              {% break %}
-            {% endif %}
-          {% endfor %}
-
-        {% endif %}
-      {% endfor %}
-
+  {% if menu.current %}
+    {% if linklists[sport_menu].links.size > 0 %}
+      {% assign hierarchy_title = menu %}
+      {% assign hierarchy = linklists[sport_menu].links %}
+    {% else %}
+      {% assign hierarchy_title = menu %}
+      {% assign hierarchy = sports_nav.links %}
     {% endif %}
-  {% endfor %}
+  {% else %}
+
+    {% for link in linklists[sport_menu].links %}
+      {% if link.current or link.child_current %}
+        {% if link.links.size > 0 %}
+          {% assign hierarchy_title = link %}
+          {% assign hierarchy = link.links %}
+        {% else %}
+          {% assign hierarchy_title = menu %}
+          {% assign hierarchy = linklists[sport_menu].links %}
+        {% endif %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+
+  {% endif %}
 {% endfor %}
 
 <!-- Start Nested Nav -->
