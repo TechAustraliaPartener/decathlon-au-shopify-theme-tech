@@ -201,8 +201,11 @@ const handleWindowResize = () => {
  * Initialize carousel to start things off
  */
 const init = () => {
-  initCarousels();
-  handleWindowResize();
+  const $productTileCarousel = $(`.${SLICK_PRODUCT_TILE_CAROUSEL}`);
+  if ($productTileCarousel.length > 0) {
+    initCarousels();
+    handleWindowResize();
+  }
 };
 
 init();

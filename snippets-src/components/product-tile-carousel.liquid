@@ -69,11 +69,11 @@
 >
   {% if handles %}
     {% for handle in handles limit: limit %}
-      {% assign product = all_products[handle] %}
-      {%- if product.available -%}
+      {% assign carousel_product = all_products[handle] %}
+      {%- if carousel_product.available -%}
         {% comment %} Product Tile Carousel Slide {% endcomment %}
         {% include 'components-product-tile',
-          product: product,
+          product: carousel_product,
           class: "de-ProductTileCarousel-item",
           delivery_options: delivery_options,
           inventory_status: inventory_status,
@@ -81,11 +81,11 @@
       {%- endif -%}
     {% endfor %}
   {% else %}
-    {% for product in products limit: limit %}
-      {%- if product.available -%}
+    {% for carousel_product in products limit: limit %}
+      {%- if carousel_product.available -%}
         {% comment %} Product Tile Carousel Slide {% endcomment %}
         {% include 'components-product-tile',
-          product: product,
+          product: carousel_product,
           class: "de-ProductTileCarousel-item",
           delivery_options: delivery_options,
           inventory_status: inventory_status,
