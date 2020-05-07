@@ -21,6 +21,7 @@ import * as drawer from './drawer';
 import { getUrlVariant, updateUrlVariant } from './query-string';
 import { getSelectedVariant, getVariantOptions } from './product-data';
 import * as stickyNav from './sticky-nav';
+import * as recentlyViewed from './recently-viewed';
 
 // Removed for AU
 // import * as storePickup from './fulfillment-options';
@@ -156,6 +157,7 @@ const init = async () => {
   setUpListeners();
   reviewsInit();
   drawer.init();
+  recentlyViewed.init();
   carousel.init();
   carouselContext.init();
   collapse.init();
