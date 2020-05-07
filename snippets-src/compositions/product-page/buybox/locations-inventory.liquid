@@ -110,7 +110,7 @@
                 </p>
                 <p><strong>Trading hours</strong></p>
                 <ul class='fullhours-list' v-html="location.fullHours"></ul>
-              <p class="tooltip-announcement" v-if="location.announcement !== ''" v-text="location.announcement"></p>
+              <p class="tooltip-announcement" v-if="location.announcement !== ''" v-html="location.announcement"></p>
               </div>
             </div>
           </div>
