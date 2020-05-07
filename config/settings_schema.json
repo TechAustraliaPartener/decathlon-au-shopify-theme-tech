@@ -331,6 +331,11 @@
         "id": "show_associated_products_carousel_on_product_page",
         "type": "checkbox",
         "label": "Show Frequently Bought Together Products slider"
+      },
+      {
+        "id": "show_recently_viewed_carousel_on_product_page",
+        "type": "checkbox",
+        "label": "Show Recently Viewed Products slider"
       }
     ]
   },
