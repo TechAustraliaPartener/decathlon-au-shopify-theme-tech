@@ -11,10 +11,13 @@ import { encode, decode } from 'qss';
 /**
  * Parses variant id out of the URL
  */
-export const getUrlVariant = () =>
+export const getUrlVariant = () => {
+  
+  const urlParams = new URLSearchParams(window.location.search);
   /** @type {{variant?: string}} */
-  (decode(window.location.search.substr(1))).variant;
+  urlParams.get('variant');
 
+};
 /**
  * Updates the variant id in the URL when a new variant is selected
  *
