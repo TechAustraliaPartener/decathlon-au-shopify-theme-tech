@@ -70,13 +70,17 @@ export const init = () => {
       return (className.match (/(^|\s)col-\S+/g) || []).join(' ');
     });
 
+    const arrowPreviousButton = $container.data('arrow-previous-button');
+    const arrowNextButton = $container.data('arrow-next-button');
+
     $container.slick({
       centerMode: false,
       infinite: true,
       slidesToShow: 4,
       slidesToScroll: 1,
       dots: true,
-      arrows: true,
+      prevArrow: arrowPreviousButton,
+      nextArrow: arrowNextButton,
       responsive: [
         {
           breakpoint: 992,
@@ -88,5 +92,4 @@ export const init = () => {
       ]
     });
   });
-
 };
