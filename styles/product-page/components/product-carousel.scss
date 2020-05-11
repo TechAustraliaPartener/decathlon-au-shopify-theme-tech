@@ -294,21 +294,27 @@
 
 .associated-products-carousel-container {
   border-top: 1px solid rgba(172, 179, 184, .5);
-  display: flex;
-  justify-content: center;
   padding: 1rem;
+
+  .de-ProductInfoSection-title {
+    margin-bottom: 1rem;
+  }
 
   .associated_products_carousel {
     width: 100%;
 
-    @media (min-width: $breakpoint-lg) {
-      margin: 0 auto;
-      max-width: 72vw;
-    }
-
     .de-ProductTileCarousel {
-      padding-top: 0;
-      padding-bottom: 0;
+      padding: 0;
+
+      .slick-list {
+        width: 100%;
+
+        .slick-track {
+          display: flex;
+          justify-content: center;
+          width: 100% !important;
+        }
+      }
     }
 
     .de-ProductTileCarousel-button {
@@ -317,13 +323,20 @@
 
     .de-ProductTile {
       padding: 0;
+      margin: 0 0.75rem;
+      flex: 1 0 37vw;
 
-      &:not(:last-of-type) {
-        margin-right: 10%;
+      @media (min-width: $breakpoint-lg) {
+        margin: 0 3rem;
+      }
+
+      @media (min-width: $breakpoint-md) {
+        flex: 0 0 auto;
       }
 
       .de-ProductTile-showcase {
         padding-top: 1rem;
+        height: auto !important;
       }
     }
   }
