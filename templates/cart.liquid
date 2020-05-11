@@ -218,10 +218,26 @@
       </form>
     </div>
     <div class="grid--full cart__payments de-u-fade">
-      <div class="afterpay-info">{{ 'cart.general.afterpay_msg' | t }}&nbsp;<strong>{{ cart.total_price | divided_by: 4 | money }}</strong> by <img src="{{ 'logo-afterpay.svg' | asset_url }}" alt="Afterpay Logo">&nbsp;<a href="#" title="More info">{{ 'cart.general.more_info' | t }}</a></div>
+      {% assign threshold_for_afterpay_threshold = settings.threshold_for_afterpay_threshold | times: 100 %}
+      {% assign threshold_for_zip_pay_threshold = settings.threshold_for_zip_pay_threshold | times: 100 %}
+      <div class="afterpay-info cart-afterpay-info{% if settings.threshold_for_afterpay_enabled and cart.total_price < threshold_for_afterpay_threshold %} de-u-hidden{% endif %}">
+        {{ 'cart.general.afterpay_msg' | t }}&nbsp;<strong>{{ cart.total_price | divided_by: 4 | money }}</strong> by <img src="{{ 'logo-afterpay.svg' | asset_url }}" alt="Afterpay Logo">&nbsp;<a href="#" title="More info">{{ 'cart.general.more_info' | t }}</a>
+      </div>
+      {% if settings.threshold_for_afterpay_enabled %}
+        <div class="cart-afterpay-disabled-info{% if cart.total_price >= threshold_for_afterpay_threshold %} de-u-hidden{% endif %}">
+          {% assign threshold_for_afterpay_threshold_money = threshold_for_afterpay_threshold | money %}
+          {{settings.threshold_for_afterpay_cart_message | replace: '[gateway]', settings.threshold_for_afterpay_gateway | replace: '[threshold]', threshold_for_afterpay_threshold_money}}
+        </div>
+      {% endif %}
       <!-- Zip WIDGET -->
-        {% include 'components-zip-widget'%}
-        <div id="zip-cart-widget" data-zm-asset="cartwidget" data-zm-widget="popup" data-zm-popup-asset="termsdialog"></div>
+      {% include 'components-zip-widget'%}
+      <div id="zip-cart-widget" data-zm-asset="cartwidget" data-zm-widget="popup" data-zm-popup-asset="termsdialog" class="cart-zip-pay-info{% if settings.threshold_for_zip_pay_enabled and cart.total_price < threshold_for_zip_pay_threshold %} de-u-hidden{% endif %}"></div>
+      {% if settings.threshold_for_zip_pay_enabled %}
+        <div class="cart-zip-pay-disabled-info{% if cart.total_price >= threshold_for_zip_pay_threshold %} de-u-hidden{% endif %}">
+          {% assign threshold_for_zip_pay_threshold_money = threshold_for_zip_pay_threshold | money %}
+          {{settings.threshold_for_zip_pay_cart_message | replace: '[gateway]', settings.threshold_for_zip_pay_gateway | replace: '[threshold]', threshold_for_zip_pay_threshold_money}}
+        </div>
+      {% endif %}
       <!-- end Zip WIDGET -->
     </div>
   {% else %}

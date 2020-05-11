@@ -118,6 +118,12 @@ state.onChange(
     // Price can be updated even if no variant (color + size) has been selected
     // @see: https://app.gitbook.com/@decathlonusa/s/shopify/product-feature/product-page#price
     price.onSwatchChange({ color, variant });
+    if (window.vars.thresholdForGateways.afterpay.enabled && window.vars.thresholdForGateways.afterpay.threshold && variant) {
+      displayPaymentGateway(variant.price, window.vars.thresholdForGateways.afterpay.threshold * 100, 'afterpay');
+    }
+    if (window.vars.thresholdForGateways.zipPay.enabled && window.vars.thresholdForGateways.zipPay.threshold && variant) {
+      displayPaymentGateway(variant.price, window.vars.thresholdForGateways.zipPay.threshold * 100, 'zip-pay');
+    }
   },
   state => [state.size, state.color]
 );
@@ -147,6 +153,12 @@ const selectUrlVariant = () => {
   }
   if (variant) return urlVariantId;
 };
+
+const displayPaymentGateway = function (price, threshold, gateway) {
+  const dNoneClassName = 'de-u-hidden';
+  $(`.product-${gateway}-info`).toggleClass(dNoneClassName, price < threshold);
+  $(`.product-${gateway}-disabled-info`).toggleClass(dNoneClassName, price >= threshold);
+}
 
 /**
  * Initialize

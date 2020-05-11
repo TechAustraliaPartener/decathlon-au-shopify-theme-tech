@@ -41,6 +41,16 @@
     username: "{{ customer.name }}",
     email: "{{ customer.email }}"
   }{% else %}false{% endif %};
+  window.vars.thresholdForGateways = {
+    afterpay: {
+      enabled: {{settings.threshold_for_afterpay_enabled}},
+      threshold: Number({{settings.threshold_for_afterpay_threshold}})
+    },
+    zipPay: {
+      enabled: {{settings.threshold_for_zip_pay_enabled}},
+      threshold: Number({{settings.threshold_for_zip_pay_threshold}})
+    } 
+  };
 </script>
 
 {% include 'js-algolia-custom-widgets' %}

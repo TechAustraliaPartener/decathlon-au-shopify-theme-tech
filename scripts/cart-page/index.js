@@ -428,4 +428,16 @@ $(document).on('cart.requestComplete', function(event, cart) {
   $('.js-de-cart__subtotal').text(Shopify.formatMoney(cart.total_price));
   $('.afterpay-info strong').text(Shopify.formatMoney(cart.total_price / 4));
   $('#CartCount').text(cart.item_count);
+  if (window.vars.thresholdForGateways.afterpay.enabled && window.vars.thresholdForGateways.afterpay.threshold && cart) {
+    displayPaymentGateway(cart.total_price, window.vars.thresholdForGateways.afterpay.threshold * 100, 'afterpay');
+  }
+  if (window.vars.thresholdForGateways.zipPay.enabled && window.vars.thresholdForGateways.zipPay.threshold && cart) {
+    displayPaymentGateway(cart.total_price, window.vars.thresholdForGateways.zipPay.threshold * 100, 'zip-pay');
+  }
 });
+
+function displayPaymentGateway(price, threshold, gateway) {
+  const dNoneClassName = 'de-u-hidden';
+  $(`.cart-${gateway}-info`).toggleClass(dNoneClassName, price < threshold);
+  $(`.cart-${gateway}-disabled-info`).toggleClass(dNoneClassName, price >= threshold);
+}

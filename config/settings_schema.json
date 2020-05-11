@@ -2069,5 +2069,95 @@
         "default": "Easy 365 days return"
       }
     ]
+  },
+  {
+    "name": "Minimum Price Threshold to Use Afterpay",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "threshold_for_afterpay_enabled",
+        "label": "Enabled",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "threshold_for_afterpay_gateway",
+        "label": "Gateway",
+        "default": "Afterpay"
+      },
+      {
+        "type": "text",
+        "id": "threshold_for_afterpay_threshold",
+        "label": "Threshold",
+        "default": "100",
+        "info": "A dollar value that represents the minimum spend required to trigger the payment option."
+      },
+      {
+        "type": "text",
+        "id": "threshold_for_afterpay_cart_message",
+        "label": "Cart Page Message",
+        "default": "[gateway] is available on orders over [threshold]",
+        "info": "The message to be shown when visiting the cart page if the threshold is not met for the cart total. This accept variables, [gateway] and [threshold]. E.G: \"[gateway] is available on orders over [threshold]\"."
+      },
+      {
+        "type": "text",
+        "id": "threshold_for_afterpay_product_message",
+        "label": "Product Page Message",
+        "default": "[gateway] is available on orders over [threshold]",
+        "info": "The message to be shown when visiting the product page if the threshold is not met for the price of the individual product. This accept variables, [gateway] and [threshold]. E.G: \"[gateway] is available on orders over [threshold]\"."
+      },
+      {
+        "type": "text",
+        "id": "threshold_for_afterpay_checkout_message",
+        "label": "Checkout Message",
+        "default": "[gateway] is available on orders over [threshold]",
+        "info": "The message to be shown during checkout if the threshold is not met for the cart total. This accept variables, [gateway] and [threshold]. E.G: \"[gateway] is available on orders over [threshold]\"."
+      }
+    ]
+  },
+  {
+    "name": "Minimum Price Threshold to Use Zip Pay",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "threshold_for_zip_pay_enabled",
+        "label": "Enabled",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "threshold_for_zip_pay_gateway",
+        "label": "Gateway",
+        "default": "Zip Pay"
+      },
+      {
+        "type": "text",
+        "id": "threshold_for_zip_pay_threshold",
+        "label": "Threshold",
+        "default": "100",
+        "info": "A dollar value that represents the minimum spend required to trigger the payment option."
+      },
+      {
+        "type": "text",
+        "id": "threshold_for_zip_pay_cart_message",
+        "label": "Cart Page Message",
+        "default": "[gateway] is available on orders over [threshold]",
+        "info": "The message to be shown when visiting the cart page if the threshold is not met for the cart total. This accept variables, [gateway] and [threshold]. E.G: \"[gateway] is available on orders over [threshold]\"."
+      },
+      {
+        "type": "text",
+        "id": "threshold_for_zip_pay_product_message",
+        "label": "Product Page Message",
+        "default": "[gateway] is available on orders over [threshold]",
+        "info": "The message to be shown when visiting the product page if the threshold is not met for the price of the individual product. This accept variables, [gateway] and [threshold]. E.G: \"[gateway] is available on orders over [threshold]\"."
+      },
+      {
+        "type": "text",
+        "id": "threshold_for_zip_pay_checkout_message",
+        "label": "Checkout Message",
+        "default": "[gateway] is available on orders over [threshold]",
+        "info": "The message to be shown during checkout if the threshold is not met for the cart total. This accept variables, [gateway] and [threshold]. E.G: \"[gateway] is available on orders over [threshold]\"."
+      }
+    ]
   }
 ]
