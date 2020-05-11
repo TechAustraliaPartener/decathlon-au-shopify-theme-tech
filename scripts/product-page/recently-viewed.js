@@ -3,6 +3,7 @@
 import $ from 'jquery';
 import Cookies from 'js-cookie';
 
+
 export const init = () => {
   const productsJSON = window.productJSON;
 
@@ -36,6 +37,43 @@ export const init = () => {
     $('#shopify-section-recently-viewed-products').hide();
     return;
   }
+
+  const calcSlidesToShow = windowWidth => {
+    const slideBreakpoints = [
+      {
+        start: 0,
+        end: 624,
+        slidesToShow: 2
+      },
+      {
+        start: 625,
+        end: 960,
+        slidesToShow: 3
+      },
+      {
+        start: 961,
+        end: 1280,
+        slidesToShow: 4
+      },
+      {
+        start: 1281,
+        end: 1480,
+        slidesToShow: 5
+      },
+      {
+        start: 1481,
+        end: 99999,
+        slidesToShow: 6
+      }
+    ];
+
+    const activeSlideBreakpoint = slideBreakpoints.find(
+      breakpoint =>
+        windowWidth >= breakpoint.start && windowWidth <= breakpoint.end
+    );
+
+    return activeSlideBreakpoint ? activeSlideBreakpoint.slidesToShow : 0;
+  };
 
   Promise.all(
     recentlyViewedProductHandles.map((handle) => {
@@ -72,12 +110,14 @@ export const init = () => {
 
     const arrowPreviousButton = $container.data('arrow-previous-button');
     const arrowNextButton = $container.data('arrow-next-button');
+    const slidesToShow = calcSlidesToShow($(window).width());
+
 
     $container.slick({
       centerMode: false,
       infinite: true,
-      slidesToShow: 4,
-      slidesToScroll: 1,
+      slidesToShow,
+      slidesToScroll: slidesToShow,
       dots: true,
       prevArrow: arrowPreviousButton,
       nextArrow: arrowNextButton,
@@ -85,11 +125,11 @@ export const init = () => {
         {
           breakpoint: 992,
           settings: {
-            slidesToShow: 2,
-            slidesToScroll: 1
+            dots: false
           }
         }
       ]
+
     });
   });
 };

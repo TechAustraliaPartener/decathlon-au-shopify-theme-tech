@@ -347,6 +347,32 @@
   .de-ProductTileCarousel-button.slick-next {
     display: none !important;
   }
+
+  .recently_viewed_products .slick-dots {
+    display: none !important;
+  }
+
+  .mobile_title {
+    display: block;
+    align-items: center;
+    appearance: none;
+    background-color: #fff;
+    border: 0;
+    cursor: pointer;
+    display: flex;
+    font: inherit;
+    font-family: avalon_mediumbold;
+    justify-content: space-between;
+    margin: 0;
+    padding: 1rem 1rem;
+    text-align: left;
+    width: 100%;
+    font-size: 18px;
+  }
+}
+
+.border-bottom--none {
+  border-bottom: none !important;
 }
 
 @media (min-width: $breakpoint-md) {
@@ -364,5 +390,9 @@
   .de-ProductTileCarousel-button:focus {
     background: $color-silver !important; /* 1 */
     border-color: $color-blue; /* 2 */
+  }
+
+  .mobile_title {
+    display: none;
   }
 }
