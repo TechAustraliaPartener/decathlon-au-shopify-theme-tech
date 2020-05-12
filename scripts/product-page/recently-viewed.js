@@ -35,8 +35,11 @@ export const init = () => {
   // Hide section if no recently viewed products
   if (recentlyViewedProductHandles.length === 0) {
     $('#shopify-section-recently-viewed-products').hide();
+    $('#recently-viewed-products-section').hide();
     return;
-  }
+  } 
+  $('#recently-viewed-products-section').show();
+  
 
   const calcSlidesToShow = windowWidth => {
     const slideBreakpoints = [
