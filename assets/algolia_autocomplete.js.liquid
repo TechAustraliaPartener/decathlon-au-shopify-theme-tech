@@ -181,6 +181,7 @@
   }));
 
   $(document).ready(function mainAutocomplete () {
+    var $backdrop = $('.searchbar-overlay'); 
     autocomplete.$input = $(autocomplete.selector);
     autocomplete.$input.autocomplete({
       debug: autocomplete.debug,
@@ -244,6 +245,16 @@
 
     autocomplete.$input.on('autocomplete:redrawn', function () {
       readjust($(this));
+    });
+
+    autocomplete.$input.on('focus', function () {
+      $backdrop.show();
+    });
+
+
+
+    autocomplete.$input.on('blur', function () {
+      $backdrop.hide();
     });
 
     $(window).resize(function () {
