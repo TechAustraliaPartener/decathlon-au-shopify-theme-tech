@@ -78,26 +78,21 @@ export const init = () => {
     return activeSlideBreakpoint ? activeSlideBreakpoint.slidesToShow : 0;
   };
 
-  Promise.all(
-    recentlyViewedProductHandles.map((handle) => {
-      const failCallback = function() {
-        // eslint-disable-next-line prefer-template
-        Cookies.remove('product_viewed_' + handle);
-      };
-
-      // eslint-disable-next-line prefer-template
-      return $.get('/products/'+ handle + '?view=nolayout.tile')
-        .done(data => {
-          return data;
-        })
-        .fail(error => {
-          if (error.status === '404') {
-            failCallback();
-          }
-          return '';
+  const mappedRVProducts = recentlyViewedProductHandles
+    .map(handle => {
+      const deferred = $.Deferred();
+    
+      $.get(`/products/${handle}?view=nolayout.tile`)
+        .done(data => deferred.resolve(data))
+        .fail(() => {
+          Cookies.remove(`product_viewed_${handle}`);
+          deferred.resolve('');
         });
-    })
-  ).then(data => {
+
+      return deferred;
+    });
+
+  $.when(...mappedRVProducts).done((...data) => {
     const html = data.filter(html => html !== '').slice(0, productLimit);
 
     $section.show();
