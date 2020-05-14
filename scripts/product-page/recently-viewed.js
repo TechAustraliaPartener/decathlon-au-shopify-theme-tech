@@ -129,6 +129,10 @@ export const init = () => {
       ]
 
     });
-    $container.find('.slick-list').css('padding', '0 10% 0 0');
+
+    // In phone view show half of the next slide
+    if($(window).width() < 640) {
+      $container.find('.slick-list').css('padding', '0 10% 0 0');
+    }
   });
 };
