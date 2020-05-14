@@ -129,5 +129,6 @@ export const init = () => {
       ]
 
     });
+    $container.find('.slick-list').css('padding', '0 10% 0 0');
   });
 };
