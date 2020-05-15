@@ -53,7 +53,7 @@
   {% assign style = '' %}
 {% endif %}
 
-<span class="de-ProductFlag de-u-textMedium js-de-ProductFlag
+<span data-flag="{{ product.id }}" class="de-ProductFlag de-u-textMedium js-de-ProductFlag
   {% unless label %}de-u-hidden{% endunless %} {{ style }} {{ class }}">
   <span class="de-u-hiddenVisually">Special product, </span>{{ label }}
 </span>

@@ -65,7 +65,7 @@ const render = ({ variant, isShown }) => {
   const isOnSale = variant
     ? variant.compare_at_price > variant.price
     : product.compare_at_price > product.price;
-  const productFlagEls = document.querySelectorAll(`.${JS_PREFIX}ProductFlag`);
+  const productFlagEls = document.querySelectorAll(`.${JS_PREFIX}ProductFlag[data-flag="{ product.id }"]`);
   if (!productFlagEls) return;
 
   /**
