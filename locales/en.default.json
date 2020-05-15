@@ -376,7 +376,8 @@
       },
       "shipping": {
         "title": "Shipping",
-        "no_rates_for_country_notice": "Our apologies, but we do not currently ship to {{ country }}."
+        "no_rates_for_country_notice": "Our apologies, but we do not currently ship to {{ country }}.",
+        "no_rates_for_cart_or_destination_notice": "Unfortunately some items in your cart cannot be shipped to the designated location. Please make sure your address is correct or contact us. "
       },
       "payment": {
         "title": "Payment"
@@ -394,6 +395,9 @@
       },
       "field_errors": {
         "address_city_blank": "Enter a suburb"
+      },
+      "shipping_errors": {
+        "shipping_method_not_available": "Unfortunately some items in your cart cannot be shipped to the designated location. Please make sure your address is correct or contact us."
       }
     },
     "notices": {
