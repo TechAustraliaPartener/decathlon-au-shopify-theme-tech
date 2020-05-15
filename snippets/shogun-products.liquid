@@ -15,3 +15,8 @@ This file can be re-written at any time.
     {% endfor %}
   </script>
 {% endif %}
+{% if cart != blank and cart.currency != blank and cart.currency.iso_code != blank %}
+  <script type="text/javascript">
+    window.__shgCurrentCurrencyCode = window.__shgCurrentCurrencyCode || "{{ cart.currency.iso_code }}";
+  </script>
+{% endif %}
