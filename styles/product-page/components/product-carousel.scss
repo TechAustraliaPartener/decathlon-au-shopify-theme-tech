@@ -326,12 +326,17 @@
       margin: 0 0.75rem;
       flex: 1 0 37vw;
 
-      @media (min-width: $breakpoint-lg) {
-        margin: 0 3rem;
-      }
-
       @media (min-width: $breakpoint-md) {
         flex: 0 0 auto;
+      }
+
+      @media (min-width: $breakpoint-lg) {
+        margin: 0 3rem;
+        flex: 0 0 20vw;
+      }
+
+      @media (min-width: 90em) {
+        flex: 0 0 15vw;
       }
 
       .de-ProductTile-showcase {
