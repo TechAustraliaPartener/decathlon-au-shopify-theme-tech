@@ -75,7 +75,10 @@ const standardizeImageContainers = () => {
     })
   );
   // Set element height to mode value of siblings
-  containers.forEach(el => (el.style.height = `${mode}px`));
+  containers.forEach(el => {
+    el.style.height = `${mode}px`;
+    el.style.minHeight = $(window).width() < 1000 ? '200px' : '250px';
+  });
 };
 
 /**
