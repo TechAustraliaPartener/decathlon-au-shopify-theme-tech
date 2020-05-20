@@ -317,7 +317,28 @@
     },
     getClickAndCollectInfo: function getClickAndCollectInfo() {
       return `<div class="product-tile-shipping-info">Free Click & Collect</div>`
-    }
+    },
+    getRRPPrices: function getRRPPrices() {
+      console.log('rrp_price Called!');
+      if (!this || !this.meta || !this.meta.global || !this.meta.global.model_RRPprices) {
+        console.log('no RRP!');
+        return '';
+      }
+
+      var rrp_prices = JSON.parse(this.meta.global.model_RRPprices);    
+      console.log('RRP_PRICES: ', rrp_prices);
+      const rrp_to_show = rrp_prices['rrp_prices'].find(el => {
+        return el.modelcode == this.option3;
+      });
+
+      var rrpPriceTemplate = [
+        '<div class="rrp-price">',
+          '<span>',
+            (rrp_prices || ''),
+          '</span>',
+      ]
+      return `<div class="rrp-price">RRP: <span>${rrp_to_show.PriceRRP || ''}</span></div>`
+    },
   };
 
   _.forEach(['pico', 'icon', 'thumb', 'small', 'compact', 'medium', 'large', 'grande', 'original'], function (size) {

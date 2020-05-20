@@ -1,3 +1,9 @@
 @import './config.scss';
 @import './base.scss';
 @import './state.scss';
+
+.rrp-price {
+  color: red;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+}

@@ -19,10 +19,11 @@ import * as productFlags from './product-flags';
 import * as addToCart from './add-to-cart';
 import * as drawer from './drawer';
 import { getUrlVariant, updateUrlVariant } from './query-string';
-import { getSelectedVariant, getVariantOptions } from './product-data';
+import { getSelectedVariant, getVariantOptions, getModelCodeFromVariant, variants } from './product-data';
 import * as stickyNav from './sticky-nav';
 import * as recentlyViewed from './recently-viewed';
 import * as faqs from './faqs';
+import { formatPriceSingle } from './../utilities/price-format';
 
 // Removed for AU
 // import * as storePickup from './fulfillment-options';
@@ -106,6 +107,9 @@ state.onChange(
     carousel.onColorSelect(color);
     // Model code can be updated without size
     modelCode.onColorSelect(color);
+    console.log('color: ', color);
+    displayRRPPrices(color);
+
   },
   state => [state.color]
 );
@@ -161,6 +165,35 @@ const displayPaymentGateway = function (price, threshold, gateway) {
   $(`.product-${gateway}-disabled-info`).toggleClass(dNoneClassName, price >= threshold);
 }
 
+const displayRRPPrices = function(color) {
+  const variantModelCode = getModelCodeFromVariant(
+    variants.find(variant => getVariantOptions(variant).color === color)
+  );
+
+  console.log('variantModelCode: ', variantModelCode);
+  const metafields = window.vars.rrpMetafields;
+  console.log('Product: ', window.vars.productJSON);
+  console.log('Product Metafields: ', metafields);
+
+  let rrpFound = false;
+  for(const rrp of metafields.rrp_prices) {
+    console.log(rrp);
+    console.log('RRP price', parseInt(rrp.PriceRRP, 10));
+    console.log('Variant price', getSelectedVariant().price);
+    console.log('>= ',parseInt(rrp.PriceRRP, 10) >= getSelectedVariant().price);
+    if(rrp.modelcode == variantModelCode && parseInt(rrp.PriceRRP, 10) >= getSelectedVariant().price) {
+      const price = formatPriceSingle(rrp.PriceRRP);
+      $('#product-rrp-price').text(`RRP* ${price}`);
+      $('#product-rrp-price').css('display', 'block');
+      rrpFound = true;
+      break;
+    }
+  }
+  if(!rrpFound) {
+    $('#product-rrp-price').css('display', 'none');
+  }
+}
+
 /**
  * Initialize
  */
@@ -196,5 +229,8 @@ const init = async () => {
 
 // Call the async init to return the Promise and log errors
 init()
-  .then(() => console.log('Product page initialized.'))
+  .then(() => {
+    displayRRPPrices(state.getState().color);
+    return console.log('Product page initialized.');
+  })
   .catch(error => console.error(error));

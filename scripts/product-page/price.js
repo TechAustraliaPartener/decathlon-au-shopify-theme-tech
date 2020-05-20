@@ -19,6 +19,7 @@ const CROSSED_OUT_PRICE_CSS_CLASS = `${JS_PREFIX}CrossedOutPrice`;
 const PRICE_LABEL_CSS_CLASS = `${JS_PREFIX}PriceLabel`;
 const PRICE_AMOUNT_LABEL_CSS_CLASS = `${JS_PREFIX}PriceAmount`;
 const AFTERPAY_PRICE_CSS_CLASS = `${JS_PREFIX}AfterpayPrice`;
+const RRP_PRICE_CSS_CLASS = `${JS_PREFIX}RRPPrice`;
 
 // Multiple price elements exist in the DOM because there
 // are different ones for smaller vs larger viewports, use `querySelectorAll`
@@ -34,6 +35,9 @@ const crossedOutPriceEls = document.querySelectorAll(
 const afterpayPriceEls = document.querySelectorAll(
   `.${AFTERPAY_PRICE_CSS_CLASS}`
 );
+const rrpPriceEls = document.querySelectorAll(
+  `.${RRP_PRICE_CSS_CLASS}`
+)
 
 /**
  * Formats default Shopify price value, which is in cents,

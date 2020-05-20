@@ -36,6 +36,7 @@ export const onColorSelect = color => {
       modelCodeTextEl.textContent = modelCode;
     });
 
+    console.log('model code: ', modelCode);
     console.log('push the stock');
     pushStockInfoToDataLayer(modelCode);
 

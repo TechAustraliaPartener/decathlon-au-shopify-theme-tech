@@ -14,7 +14,7 @@
     }
   }
 </script>
-
+{% assign rrpMetafields = product.metafields.global.model_RRPprices %}
 <script>
   window.vars = window.vars || {};
   window.vars.loginUrl = "{{ settings.login_portal_url }}";
@@ -24,6 +24,7 @@
   window.vars.pickupDisplay = "{{ settings.pickup_display }}";
   {% if product %}
     window.vars.productJSON = {{ product | json }};
+    window.vars.rrpMetafields = {{ rrpMetafields | json }};
     window.vars.selectedVariant = {{ product.selected_variant | json }};
   {% endif %}
   window.vars.favStore = JSON.parse(localStorage.getItem('favoritedStore'));

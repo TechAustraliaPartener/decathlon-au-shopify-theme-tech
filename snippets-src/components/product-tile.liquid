@@ -136,6 +136,13 @@
     {% endif %}
 
     {% comment %}
+      RRP PRICE
+    {% endcomment %}
+    {% if true %}
+      {% include 'compositions-product-price-rrp', variant: current_variant, product: product %}
+    {% endif %}
+
+    {% comment %}
     Inventory Status
     TODO To be implemented in future release
     {% endcomment %}
