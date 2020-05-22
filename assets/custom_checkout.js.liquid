@@ -210,6 +210,68 @@ var decathlonCheckout = (function(decathlonCheckout, $) {
 
   decathlonCheckout.modules.push(discountMessagePrepayment);
 
+  // Declare the zipPayHidden module.
+  var zipPayHidden = {
+    steps: ['payment_method'],
+    name: 'zip-pay-hidden',
+    section: '[data-step]'
+  };
+
+  // Variables
+  var options;
+
+  // Constants
+  var PAYMENT_METHODS_SELECTOR = '.section--payment-method fieldset';
+
+  /**
+   * Initialise zipPayHidden module.
+   */
+  zipPayHidden.initialize = function(initializeOptions) {
+    options = initializeOptions;
+
+    $(PAYMENT_METHODS_SELECTOR).each(function() {
+      $(this).append(options.HTML_TEMPLATE_ZIP_PAY_HIDDEN);
+    });
+  };
+
+  // Add the zipPayHidden module to our list of modules.
+  if(typeof decathlonCheckout.modules === 'undefined') {
+    decathlonCheckout.modules = [];
+  }
+
+  decathlonCheckout.modules.push(zipPayHidden);
+
+  // Declare the afterpayHidden module.
+  var afterpayHidden = {
+    steps: ['payment_method'],
+    name: 'afterpay-hidden',
+    section: '[data-step]'
+  };
+
+  // Variables
+  var options;
+
+  // Constants
+  var PAYMENT_METHODS_SELECTOR = '.section--payment-method fieldset';
+
+  /**
+   * Initialise afterpayHidden module.
+   */
+  afterpayHidden.initialize = function(initializeOptions) {
+    options = initializeOptions;
+
+    $(PAYMENT_METHODS_SELECTOR).each(function() {
+      $(this).append(options.HTML_TEMPLATE_AFTERPAY_HIDDEN);
+    });
+  };
+
+  // Add the afterpayHidden module to our list of modules.
+  if(typeof decathlonCheckout.modules === 'undefined') {
+    decathlonCheckout.modules = [];
+  }
+
+  decathlonCheckout.modules.push(afterpayHidden);
+
   return decathlonCheckout;
 })(decathlonCheckout || {}, jQuery || Checkout.jQuery);
 
@@ -222,7 +284,9 @@ var decathlonCheckout = (function(decathlonCheckout, $) {
     CUSTOMER_ID: {{ customer.id | json }},
     HTML_TEMPLATE_GIFT_CARD: window.checkoutComponents.HTML_TEMPLATE_GIFT_CARD,
     HTML_TEMPLATE_DISCOUNT_MESSAGE: window.checkoutComponents.HTML_TEMPLATE_DISCOUNT_MESSAGE,
-    HTML_TEMPLATE_PREPAYMENT_DISCOUNT_MESSAGE: window.checkoutComponents.HTML_TEMPLATE_PREPAYMENT_DISCOUNT_MESSAGE
+    HTML_TEMPLATE_PREPAYMENT_DISCOUNT_MESSAGE: window.checkoutComponents.HTML_TEMPLATE_PREPAYMENT_DISCOUNT_MESSAGE,
+    HTML_TEMPLATE_ZIP_PAY_HIDDEN: window.checkoutComponents.HTML_TEMPLATE_ZIP_PAY_HIDDEN,
+    HTML_TEMPLATE_AFTERPAY_HIDDEN: window.checkoutComponents.HTML_TEMPLATE_AFTERPAY_HIDDEN
   };
 
   /**

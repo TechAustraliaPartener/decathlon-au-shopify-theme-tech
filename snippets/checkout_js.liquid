@@ -53,10 +53,51 @@
   <p>{{ settings.discount_code_redeem_gift_card_message }}</p>
 {%- endcapture -%}
 
+{% assign threshold_for_afterpay_threshold = settings.threshold_for_afterpay_threshold | times: 100 %}
+{% assign threshold_for_zip_pay_threshold = settings.threshold_for_zip_pay_threshold | times: 100 %}
+
+{% capture HTML_TEMPLATE_AFTERPAY_HIDDEN %}
+  {% if checkout.subtotal_price < threshold_for_afterpay_threshold and settings.threshold_for_afterpay_enabled %}
+    <div class="radio-wrapper content-box__row">
+      <div class="radio__label">
+      {% capture threshold_for_afterpay_logo %}
+        <img class="afterpay-logo gateway_logo" style="vertical-align:middle;" src="{{ 'logo-afterpay.svg' | asset_url }}" width="100" height="21" alt="Afterpay" />
+      {% endcapture %}
+
+      {% assign threshold_for_afterpay_threshold_money = threshold_for_afterpay_threshold | money_without_trailing_zeros %}
+      {{ settings.threshold_for_afterpay_checkout_message 
+        | replace: '[gateway]', settings.threshold_for_afterpay_gateway 
+        | replace: '[threshold]', threshold_for_afterpay_threshold_money
+        | replace: '[logo]', threshold_for_afterpay_logo
+      }}
+    </div>
+  {% endif %}
+{% endcapture %}
+
+{% capture HTML_TEMPLATE_ZIP_PAY_HIDDEN %}
+  {% if checkout.subtotal_price < threshold_for_zip_pay_threshold and settings.threshold_for_zip_pay_enabled %}
+    <div class="radio-wrapper content-box__row">
+      <div class="radio__label">
+      {% capture threshold_for_zip_pay_logo %}
+        <img class="logo gateway_logo" src="https://static.zipmoney.com.au/assets/default/product-widget/img/primary-zip.svg" alt="Zip Pay">
+      {% endcapture %}
+
+      {% assign threshold_for_zip_pay_threshold_money = threshold_for_zip_pay_threshold | money_without_trailing_zeros %}
+      {{ settings.threshold_for_zip_pay_checkout_message 
+        | replace: '[gateway]', settings.threshold_for_zip_pay_gateway 
+        | replace: '[threshold]', threshold_for_zip_pay_threshold_money
+        | replace: '[logo]', threshold_for_zip_pay_logo
+      }}
+    </div>
+  {% endif %}
+{% endcapture %}
+
 <script>
   window.checkoutComponents = {
     HTML_TEMPLATE_GIFT_CARD: {{ HTML_TEMPLATE_GIFT_CARD | json }},
     HTML_TEMPLATE_DISCOUNT_MESSAGE: {{ HTML_TEMPLATE_DISCOUNT_MESSAGE | json }},
-    HTML_TEMPLATE_PREPAYMENT_DISCOUNT_MESSAGE: {{ HTML_TEMPLATE_PREPAYMENT_DISCOUNT_MESSAGE | json }}
+    HTML_TEMPLATE_PREPAYMENT_DISCOUNT_MESSAGE: {{ HTML_TEMPLATE_PREPAYMENT_DISCOUNT_MESSAGE | json }},
+    HTML_TEMPLATE_AFTERPAY_HIDDEN: {{ HTML_TEMPLATE_AFTERPAY_HIDDEN | json }},
+    HTML_TEMPLATE_ZIP_PAY_HIDDEN: {{ HTML_TEMPLATE_ZIP_PAY_HIDDEN | json }}
   };
 </script>
