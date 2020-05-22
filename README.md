@@ -10,8 +10,6 @@ Then, check out `master_au`.
 
 Then, run `npm i`.
 
-Then, run ``.
-
 Then, make a standard Shopify `config.yml`
 
 You should now be up and running.
