@@ -29,18 +29,32 @@
       {% include 'components-afterpay_snippet' %}
       </div>
       {% if settings.threshold_for_afterpay_enabled %}
-        <div class="product-afterpay-disabled-info de-u-textGrow1{% if selected_variant_or_product_price >= threshold_for_afterpay_threshold %} de-u-hidden{% endif %}">
-          {% assign threshold_for_afterpay_threshold_money = threshold_for_afterpay_threshold | money %}
-          {{settings.threshold_for_afterpay_product_message | replace: '[gateway]', settings.threshold_for_afterpay_gateway | replace: '[threshold]', threshold_for_afterpay_threshold_money}}
+        {% capture threshold_for_afterpay_logo %}
+          <img class="afterpay-logo gateway_logo" style="vertical-align:middle;" src="{{ 'logo-afterpay.svg' | asset_url }}" width="100" height="21" alt="Afterpay" />
+        {% endcapture %}
+        <div class="product-afterpay-disabled-info disabled_info de-u-textGrow1{% if selected_variant_or_product_price >= threshold_for_afterpay_threshold %} de-u-hidden{% endif %}">
+          {% assign threshold_for_afterpay_threshold_money = threshold_for_afterpay_threshold | money_without_trailing_zeros %}
+          {{ settings.threshold_for_afterpay_product_message 
+            | replace: '[gateway]', settings.threshold_for_afterpay_gateway 
+            | replace: '[threshold]', threshold_for_afterpay_threshold_money
+            | replace: '[logo]', threshold_for_afterpay_logo
+          }}
         </div>
       {% endif %}
       <!-- Zip WIDGET -->
       {% include 'components-zip-widget'%}
       <div id="zip-prod-widget" data-zm-asset="productwidget" data-zm-widget="popup" data-zm-popup-asset="termsdialog" class="product-zip-pay-info{% if settings.threshold_for_zip_pay_enabled and selected_variant_or_product_price < threshold_for_zip_pay_threshold %} de-u-hidden{% endif %}"></div>
       {% if settings.threshold_for_zip_pay_enabled %}
-        <div class="product-zip-pay-disabled-info de-u-textGrow1{% if selected_variant_or_product_price >= threshold_for_zip_pay_threshold %} de-u-hidden{% endif %}">
-          {% assign threshold_for_zip_pay_threshold_money = threshold_for_zip_pay_threshold | money %}
-          {{settings.threshold_for_zip_pay_product_message | replace: '[gateway]', settings.threshold_for_zip_pay_gateway | replace: '[threshold]', threshold_for_zip_pay_threshold_money}}
+        {% capture threshold_for_zip_pay_logo %}
+          <img class="logo gateway_logo" src="https://static.zipmoney.com.au/assets/default/product-widget/img/primary-zip.svg" alt="Zip Pay">
+        {% endcapture %}
+        <div class="product-zip-pay-disabled-info disabled_info de-u-textGrow1{% if selected_variant_or_product_price >= threshold_for_zip_pay_threshold %} de-u-hidden{% endif %}">
+          {% assign threshold_for_zip_pay_threshold_money = threshold_for_zip_pay_threshold | money_without_trailing_zeros %}
+          {{ settings.threshold_for_zip_pay_product_message 
+            | replace: '[gateway]', settings.threshold_for_zip_pay_gateway 
+            | replace: '[threshold]', threshold_for_zip_pay_threshold_money
+            | replace: '[logo]', threshold_for_zip_pay_logo
+          }}
         </div>
       {% endif %}
       <!-- end Zip WIDGET -->
