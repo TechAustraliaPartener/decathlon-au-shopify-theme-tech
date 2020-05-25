@@ -354,7 +354,7 @@
               "hours_5_close": 19,
               "hours_6_open": 9,
               "hours_6_close": 19,
-              "announcement": "",
+              "announcement": "<p>jijij<br>jijij<\/p>",
               "address_type_boolean": false,
               "is_residential": false,
               "is_warehouse": false,
