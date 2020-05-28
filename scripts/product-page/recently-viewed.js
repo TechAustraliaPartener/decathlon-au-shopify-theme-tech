@@ -134,5 +134,8 @@ export const init = () => {
     if($(window).width() < 640) {
       $container.find('.slick-list').css('padding', '0 10% 0 0');
     }
+    setTimeout(() => {
+      $container.children('article').remove();
+    }, 100);
   });
 };
