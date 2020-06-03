@@ -13,21 +13,28 @@ export const init = () => {
   const productLimit = parseInt($('#recently_viewed_products_container').data('max-items'), 10);
   
   const cookieValue = `product_viewed_${handleOfCurrentProduct}`;
-  Cookies.set(cookieValue);
+  Cookies.set(cookieValue, Date.now());
 
   const recentlyViewedProducts = [];
   $.each(document.cookie.split(/; */), function()  {
     const splitCookie = this.split('=');
     // Name is splitCookie[0], value is splitCookie[1]
     const name = splitCookie[0];
+    const addedDate = splitCookie[1];
 
     if(name.includes('product_viewed_')) {
-      recentlyViewedProducts.push(name);
+      const recentlyViewedProductproduct = {
+        name,
+        addedDate
+      }
+      recentlyViewedProducts.push(recentlyViewedProductproduct);
     }
   });
 
+  recentlyViewedProducts.sort((prev, curr) => curr.addedDate - prev.addedDate);
+
   const recentlyViewedProductHandles = recentlyViewedProducts.map(product => {
-    return product.replace('product_viewed_', '');
+    return product.name.replace('product_viewed_', '');
   }).filter(product => {
     return product !== handleOfCurrentProduct;
   });
