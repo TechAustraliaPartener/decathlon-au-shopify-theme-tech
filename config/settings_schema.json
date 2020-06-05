@@ -83,6 +83,13 @@
         "info": "Theme default is '\/account\/register'"
       },
       {
+        "type": "text",
+        "id": "logout_portal_url",
+        "label": "Logout Portal URL",
+        "default": "\/account\/logout",
+        "info": "Theme default is '\/account\/logout'"
+      },
+      {
         "type": "checkbox",
         "id": "use_adeptmind",
         "label": "Use Adeptmind?",

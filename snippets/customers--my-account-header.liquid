@@ -19,7 +19,7 @@
 
   <p class="accountLogout">
     {% if customer_home %}
-      <a class="accountLogout-link btn btn--text js-de-logout" href="/account/logout">Logout</a>
+      <a class="accountLogout-link btn btn--text js-de-logout" href="{{ settings.logout_portal_url }}">Logout</a>
     {% else %}
       <a class="btn btn--text" href="/account">Back To My Account</a>
     {% endif %}
