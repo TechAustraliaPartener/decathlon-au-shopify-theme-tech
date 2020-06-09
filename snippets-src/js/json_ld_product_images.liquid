@@ -1,0 +1,17 @@
+{%- assign variant_image_urls = "" -%}
+{%- assign capture_images = false -%}
+
+{%- for image in product.images -%}
+  {%- assign image_variants = image.variants | map: 'id' -%}
+  {%- if image_variants contains variant.id -%}
+    {%- assign capture_images = true -%}
+  {%- elsif capture_images and image.variants.size > 0 -%}
+    {%- assign capture_images = false -%}
+  {%- endif -%}
+
+  {%- if capture_images -%}
+    {%- assign variant_image_urls = image | img_url | prepend: "https:" | prepend: "|" | prepend: variant_image_urls -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- assign variant_image_urls = variant_image_urls | remove_first: "|" | split: "|" -%}
