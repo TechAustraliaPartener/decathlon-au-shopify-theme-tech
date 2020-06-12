@@ -7,33 +7,46 @@
 {% for menu in sports_nav.links %}
   {% capture sport_menu %}{{ menu.handle }}{% endcapture %}
 
-  {% for link in linklists[sport_menu].links %}
-    {% if link.current or link.child_current %}
+  {% if menu.current %}
+    {% if linklists[sport_menu].links.size > 0 %}
       {% assign breadcrumbs_top = menu %}
       {% assign breadcrumbs = linklists[sport_menu].links %}
-      {% break %}
+    {% else %}
+      {% assign breadcrumbs_top = menu %}
+      {% assign breadcrumbs = sports_nav.links %}
     {% endif %}
-  {% endfor %}
-{% endfor %}
+  {% else %}
+
+    {% for link in hierarchy %}
+    {{ link.title }}
+      {% if link.current or link.child_current %}
+        {% if link.links.size > 0 %}
+          {% assign breadcrumbs_top = link %}
+          {% assign breadcrumbs = link.links %}
+        {% else %}
+          {% assign breadcrumbs_top = menu %}
+          {% assign breadcrumbs = linklists[sport_menu].links %}
+        {% endif %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+
+  {% endif %}
+{% endfor %} 
 
 <nav class="breadcrumb" role="navigation" aria-label="breadcrumbs">
   
-  <a 
-    href="{{ breadcrumbs_top.url }}"
-    {% if breadcrumbs_top.title == collection.title and template.name == 'collection' %} class="mobile-hide"{% endif %} 
-    title="{{ breadcrumbs_top.title }}">
-    {{ breadcrumbs_top.title }}
-  </a>
+  <a href="{{shop.url}}/collections/{{top_level.handle}}"{% if top_level.title == collection.title and template contains 'collection' %} class="mobile-hide"{% endif %} title="{{top_level.title}}">{{top_level.title}}</a>
 
   {% assign sep_class = '' %}
 
-  {% for link in breadcrumbs %}
+  {% for link in top_level.links %}
     {% if link.current or link.child_current %}
       
       {% if link.current and template.name == 'collection' %}
         {% assign sep_class = 'mobile-hide' %}
       {% endif %}
-      {% render 'breadcrumb_separator', class: sep_class %}
+      <span aria-hidden="true" class="breadcrumb__sep{% if link.active and template contains 'collection' %} mobile-hide{% endif %}">/</span>
       <a href="{{ link.url }}"
         class="{{ sep_class }}" 
         title="{{ link.title }}">
@@ -46,7 +59,7 @@
           {% if sub.current %}
             {% assign sep_class = 'mobile-hide' %}
           {% endif %}
-          {% render 'breadcrumb_separator', class: sep_class %}
+          <span aria-hidden="true" class="breadcrumb__sep{% if link.active and template contains 'collection' %} mobile-hide{% endif %}">/</span>
           <a href="{{ sub.url }}"
             class="{{ sep_class }}" 
             title="{{ sub.title }}">
@@ -59,7 +72,7 @@
               {% if subsub.current %}
                 {% assign sep_class = 'mobile-hide' %}
               {% endif %}
-              {% render 'breadcrumb_separator', class: sep_class %}
+              <span aria-hidden="true" class="breadcrumb__sep{% if link.active and template contains 'collection' %} mobile-hide{% endif %}">/</span>
               <a href="{{ subsub.url }}"
                 class="{{ sep_class }}" 
                 title="{{ subsub.title }}">
@@ -74,6 +87,24 @@
 
     {% endif %}
   {% endfor %}
+
+  {% for link in breadcrumbs %}
+    {% if link.active or link.child_active %}
+      <span aria-hidden="true" class="breadcrumb__sep{% if link.active and template contains 'collection' %} mobile-hide{% endif %}">/</span>
+      <a href="{{link.url}}"{% if link.url == collection.url and template contains 'collection' %} class="mobile-hide"{% endif %} title="{{link.title}}">Breadcrumbs{{link.title}}</a>
+        {% if link.child_active %}
+          <span aria-hidden="true" class="breadcrumb__sep{% if template contains 'collection' %} mobile-hide{% endif %}">/</span>
+        {% endif %}
+        {% if link.links != blank %}
+          {% for sub in link.links %}
+            {% if sub.active %}
+              <a href="{{sub.url}}"{% if template contains 'collection' %} class="mobile-hide"{% endif %} title="{{sub.title}}">Breadcrumbs{{sub.title}}</a>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+    {% endif%}
+  {% endfor %}
+
 
 </nav>
 <!-- create-breadcrumbs.liquid End -->

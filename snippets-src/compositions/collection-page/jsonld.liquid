@@ -11,18 +11,31 @@
   {% capture sport_menu %}{{ menu.handle }}{% endcapture %}
 
   {% if menu.current %}
-    {% assign breadcrumbs_top = menu %}
-    {% assign breadcrumbs = linklists[sport_menu].links %}
-  {% endif %}
-
-  {% for link in linklists[sport_menu].links %}
-    {% if link.current or link.child_current %}
-      {% assign breadcrumbs_top = link %}
+    {% if linklists[sport_menu].links.size > 0 %}
+      {% assign breadcrumbs_top = menu %}
       {% assign breadcrumbs = linklists[sport_menu].links %}
-      {% break %}
+    {% else %}
+      {% assign breadcrumbs_top = menu %}
+      {% assign breadcrumbs = sports_nav.links %}
     {% endif %}
-  {% endfor %}
-{% endfor %}
+  {% else %}
+
+    {% for link in hierarchy %}
+    {{ link.title }}
+      {% if link.current or link.child_current %}
+        {% if link.links.size > 0 %}
+          {% assign breadcrumbs_top = link %}
+          {% assign breadcrumbs = link.links %}
+        {% else %}
+          {% assign breadcrumbs_top = menu %}
+          {% assign breadcrumbs = linklists[sport_menu].links %}
+        {% endif %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+
+  {% endif %}
+{% endfor %} 
 
 {% assign products_url_list = products_url_list | split: " | " %}
 
@@ -62,8 +75,8 @@
     {
       "@type": "ListItem",
       "position": 1,
-      "name": "{{ breadcrumbs_top.title }}",
-      "item": "{{ shop.url }}{{ breadcrumbs_top.url }}"
+      "name": "{{ top_links.title }}",
+      "item": "{{ shop.url }}/collections/{{ top_links.url }}"
     }
 
     {% for link in breadcrumbs %}
