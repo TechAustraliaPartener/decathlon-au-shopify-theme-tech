@@ -1,0 +1,197 @@
+{% include 'helpers-template-name' %}
+
+{% comment %}
+  top_level is used for both breadcrumbs and navigation
+{% endcomment %}
+{% for link in linklists %}
+  {% if top_level %}
+    {% break %}
+  {% endif %}
+  {% if link.links != blank %}
+    {% for sub in link.links %}
+      {% if sub.active or sub.child_active %}
+        {% if sub.child_active %}
+      	  {% assign top_level = sub %}
+      	{% elsif sub.active and sub.links == blank %}
+      	  {% if link.title == "Shop" or link.title == "Shop All Sports" or link.title == "Shop-Homepage" or link.title == "Header Shop Menu Links" %}
+      	    {% assign top_level = sub %}
+      	  {% else %}
+      		{% assign top_level = link %}
+      	  {% endif %}
+      	{% elsif sub.active and sub.links != blank %}
+      	  {% assign top_level = sub %}
+      	{% endif %}
+      	{% break %}
+	  {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endfor %}
+
+{% include 'collection-header-js' %}
+
+{% if collection.image %}
+    <div class="collectionImage medium-down--hide" style="background-image:url('{{ collection.image | img_url: 'master' }}'); " data-background-image="{{ collection.image | img_url: 'master' }}">
+        <div class="wrapper">
+            {% include 'breadcrumb', adtl_classes: ' breadcrumb--overImage' %}
+
+            <h1 class="collectionImage-header text-center">{{ collection.title }}</h1>
+        </div>
+    </div>
+{% endif %}
+
+<div class="de-padding10 de-u-textSizeBase large--hide">
+      {% include 'create-breadcrumbs' %}
+      <h2 class="de-u-textBold de-u-textCapitalize de-u-textGrow de-u-spaceBottom06">{{ collection.title }}</h2>
+      <hr class="de-blue-hr de-u-bgBlue de-u-spaceNone">
+</div>
+<div class="wrapper{% if collection.image %} wrapper--collectionWithBanner u-paddingTopBottom4x{% else %} u-marginBottom4x{% endif %}">
+    <div class="medium-down--hide">
+    {% unless collection.image %}
+		<!-- Create Breadcrumbs Start -->
+		<nav class="breadcrumb" role="navigation" aria-label="breadcrumbs">
+			{% comment %} Hiding "All Sports" per DEC-643
+            <a href="/collections" title="All Sports">All Sports</a>
+			<span aria-hidden="true" class="breadcrumb__sep">&rsaquo;</span>
+			{% endcomment %}
+            <a href="{{shop.url}}/collections/{{top_level.handle}}" title="{{top_level.title}}">{{top_level.title}}</a>
+			{% for link in top_level.links %}
+				{% if link.active or link.child_active %}
+				<span aria-hidden="true" class="breadcrumb__sep">/</span>
+				<a href="{{link.url}}" title="{{link.title}}">{{link.title}}</a>
+					{% if link.child_active %}
+						<span aria-hidden="true" class="breadcrumb__sep">/</span>
+					{% endif %}
+					{% if link.links != blank %}
+						{% for sub in link.links %}
+							{% if sub.active %}
+								<a href="{{sub.url}}" title="{{sub.title}}">{{sub.title}}</a>
+							{% endif %}
+						{% endfor %}
+					{% endif %}
+				{% endif%}
+			{% endfor %}
+		</nav>
+		<!-- Create Breadcrumbs End -->
+    {% endunless %}
+    </div>
+
+    <div class="grid--full">
+        <div class="grid__item large--one-quarter left">
+
+			<!-- Start Nested Nav -->
+			 <div id="nested-nav" class="medium-down--hide">
+			 <ul style='list-style: none'>
+			   <li>
+			   <a class="breadcrumb-item top-level" href="{{shop.url}}/collections/{{top_level.handle}}">{{top_level.title}}</a>
+				 <ul style='list-style: none'>
+				   {% for link in top_level.links %}
+					   <li>
+					   <a class="{% if link.active or link.child_active %}breadcrumb-item{% else %}not-breadcrumb-item{% endif %}"
+						  href="{{link.url}}">{{link.title}}</a>
+						   {% if link.child_active or link.active and link.links != blank %}
+							   <ul style='list-style: none'>
+							   {% for sub in link.links %}
+								   <li>
+								   <a class="{% if sub.active or sub.child_active %}breadcrumb-item{% else %}not-breadcrumb-item{% endif %}"
+									  href="{{sub.url}}">{{sub.title}}</a>
+								   </li>
+							   {% endfor %}
+							   </ul>
+						   {% endif %}
+					   </li>
+				   {% endfor %}
+				 </ul>
+			   </li>
+			 </ul>
+			 </div>
+			 <!-- End Nested Nav -->
+
+            <!-- Adept Search Start -->
+            <div class="adept-collection-filters"></div>
+            <!-- Adept Search End -->
+        </div>
+
+        <div class="grid__item large--seven-tenths right">
+            {% comment %}
+            Different markup if a collection description exists
+            {% endcomment %}
+            <div class="medium-down--hide">
+            {% if current_tags.size %}
+                <header class="section-header is-currentTag">
+                    <h1 class="section-header__title u-marginBottom0x">{{ tag_title }}</h1>
+                </header>
+                <hr>
+            {% else %}
+                {% if collection.description != blank %}
+                <header class="section-header">
+                    <h1 class="section-header__title">{{ collection.title }}</h1>
+                    <div class="rte rte--header">
+                        {{ collection.description }}
+                    </div>
+                </header>
+                <hr>
+                {% else %}
+
+                <header class="section-header">
+                    {%- unless collection.image -%}
+                        <h1 class="section-header__title section-header__left">{{ collection.title }}</h1>
+                    {%- endunless -%}
+                </header>
+                <hr>
+                {% endif %}
+            {% endif %}
+            </div>
+
+
+            {% assign pageBy = 40 %}
+            {% assign offset = 40 %}
+
+
+            <div id="bc-sf-filter-products" class="grid-uniform adept-collection-products">
+
+                {% paginate collection.products by pageBy %}
+
+                    {% for product in collection.products %}
+                      <div class="grid__item extra-large--one-third one-half collectionProduct--mod">
+                        {% include 'components-product-tile',
+                          product: product,
+                          delivery_options: false,
+                          inventory_status: false %}
+                      </div>
+                    {% endfor %}
+
+                    {% comment %}
+                      @TODO Remove style applied below. This is a temporary fix.
+                      When product tiles are replaced by product tile carousels, remove code below.
+                    {% endcomment %}
+                    <style>
+                      @media only screen and (min-width: 1000px) {
+                        .extra-large--one-third  {
+                          width: 33.33%;
+                        }
+                      }
+                      @media only screen and (min-width: 1300px) {
+                        .collectionProduct--mod {
+                          width: 25%;
+                        }
+                      }
+                    </style>
+
+                    {% if paginate.pages > 1 %}
+                        <div class="paginate-bottom">
+                            {{ paginate | default_pagination | replace: '&laquo; Previous', '&lang;' | replace: 'Next &raquo;', '&rang;' }}
+                        </div>
+                    {% endif %}
+
+                {% endpaginate %}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'compositions-collection-page-jsonld' %}
+{% include 'collection-footer-js' %}
+
+<script type="module" src="{{ 'built-product-tile.js' | asset_url }}"></script>
+<script defer nomodule src="{{ 'built-product-tile-legacy.js' | asset_url }}"></script>
