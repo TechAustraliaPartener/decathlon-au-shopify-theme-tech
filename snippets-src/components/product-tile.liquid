@@ -8,7 +8,7 @@
 {% if products_url_list == blank %}
   {% assign products_url_list = '' %}
 {% endif%}
-{% assign products_url_list = products_url_list | append: product.url | append: " | " %}
+{% assign products_url_list = products_url_list | append: product.url | append: '**' | append: product.title | append: " | "  %}
 
 {% comment %}
 

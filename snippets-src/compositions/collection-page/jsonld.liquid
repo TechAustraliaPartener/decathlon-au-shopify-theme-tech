@@ -57,10 +57,14 @@
   },
   "itemListElement":[
     {% for url in products_url_list %}
+    {% assign splitted = url | split: "**" %}
+    {% assign product_url = splitted[0] %}
+    {% assign product_name = splitted[1] %}
       {
         "@type":"ListItem",
         "position":{{ forloop.index }},
-        "url": "{{ shop.url }}{{ url }}"
+        "name": "{{ product_name }}",
+        "url": "{{ shop.url }}{{ product_url }}"
       }{% unless forloop.last %},{% endunless %}
     {% endfor %}
   ]
@@ -75,8 +79,8 @@
     {
       "@type": "ListItem",
       "position": 1,
-      "name": "{{ top_links.title }}",
-      "item": "{{ shop.url }}/collections/{{ top_links.url }}"
+      "name": "{{ top_level.title }}",
+      "item": "{{ shop.url }}/collections/{{ top_level.handle }}"
     }
 
     {% for link in breadcrumbs %}
