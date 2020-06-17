@@ -76,10 +76,7 @@ const standardizeImageContainers = () => {
       return el.offsetHeight;
     })
   );
-  // Set element height to mode value of siblings
-  containers.forEach(el => {
-    el.style.height = `${mode}px`;
-  });
+  
 };
 
 /**
