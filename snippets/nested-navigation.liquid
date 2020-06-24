@@ -36,14 +36,23 @@
 <div id="nested-nav" class="medium-down--hide">
   <ul style='list-style: none'>
     <li>
-      <a class="breadcrumb-item top-level" href="{{shop.url}}/collections/{{top_level.handle}}">{{top_level.title}}</a>
+      {% unless top_level.title == 'Activities' %}
+        <a class="breadcrumb-item top-level" href="{{shop.url}}/collections/{{top_level.handle}}">{{top_level.title}}</a>
+      {% endunless %}
+
       <ul style='list-style: none'>
       
       {% for link in top_level.links %}
         <li>
-          <a class="{% if link.active or link.child_active %}breadcrumb-item{% else %}not-breadcrumb-item{% endif %}"
-             href="{{link.url}}">{{link.title}}</a>
+          {% unless top_level.title == 'Activities' %}
+            <a class="{% if link.active or link.child_active %} breadcrumb-item{% else %}not-breadcrumb-item{% endif %}"
+            href="{{link.url}}">{{link.title}}</a>
+          {% endunless %}
           {% if link.child_active or link.active and link.links != blank %}
+            {% if top_level.title == 'Activities' %}
+              <a class="{% if link.active or link.child_active %} top-level breadcrumb-item{% else %}not-breadcrumb-item{% endif %}"
+              href="{{link.url}}">{{link.title}}</a>
+            {% endif %}
             <ul style='list-style: none'>
               {% for sub in link.links %}
                 <li>
@@ -65,43 +74,6 @@
           {% endif %}
         </li>       
       {% endfor %}
-        
-        {% for link in hierarchy %}
-          <li>
-            <a 
-              class="{% if link.active or link.child_active %}breadcrumb-item{% else %}not-breadcrumb-item{% endif %}"
-              href="{{ link.url }}">
-              {{ link.title }}
-            </a>
-
-            {% if link.child_active or link.active and link.links != blank %}
-              <ul style='list-style: none'>
-                {% for sub in link.links %}
-                  <li>
-                    <a 
-                      class="{% if sub.active or sub.child_active %}breadcrumb-item{% else %}not-breadcrumb-item{% endif %}"
-                      href="{{ sub.url }}">
-                      {{sub.title}}
-                    </a>
-                    {% if sub.child_active or sub.active and sub.links != blank %}
-                      <ul style='list-style: none'>
-                        {% for subSub in sub.links %}
-                          <li>
-                            <a 
-                              class="{% if subSub.active or subSub.child_active %}breadcrumb-item{% else %}not-breadcrumb-item{% endif %}"
-                              href="{{subSub.url}}">
-                              {{subSub.title}}
-                            </a>
-                          </li>
-                        {% endfor %}
-                      </ul>
-                    {% endif %}
-                  </li>
-                {% endfor %}
-              </ul>
-            {% endif %}
-          </li>
-        {% endfor %}
       </ul>
     </li>
   </ul>
