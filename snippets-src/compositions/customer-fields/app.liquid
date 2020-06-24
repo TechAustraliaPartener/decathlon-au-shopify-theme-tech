@@ -16,6 +16,8 @@
           $('#create_customer.copy-create input, #create_customer.copy-create select').each(function() {
             $(this).trigger('change');
           });
+          var $email = $('#customer-fields input[name="' + 'customer[email]' + '"]');
+          $email.val('{{ customer.email }}');
         },
         beforeSave: function() {
           var $firstName = $('#customer-fields input[name="' + 'customer[first_name]' + '"]');
