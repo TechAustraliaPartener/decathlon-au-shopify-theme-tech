@@ -26,10 +26,10 @@
     "svg_logo": "small_logo.svg",
     "img_logo": "shopify:\/\/shop_images\/logo_small_9355cf1c-7626-4ada-916d-d809a214ca37.png",
     "enable_meet_decathlon": true,
-    "megamenu_image": "shopify:\/\/shop_images\/Copy_of_SIDE_NAV_1.jpg",
-    "megamenu_title": "Hiking Backpacks",
-    "megamenu_subtitle": "Explore All!",
-    "megamenu_link": "shopify:\/\/collections\/hiking-backpacks",
+    "megamenu_image": "shopify:\/\/shop_images\/Copy_of_SIDE_NAV_3.jpg",
+    "megamenu_title": "Bodybuilding",
+    "megamenu_subtitle": "Dumbbells, Weights, Proteins & More",
+    "megamenu_link": "shopify:\/\/collections\/bodybuilding",
     "megamenu_bg_colour": "#0082c3",
     "is_lookbook": false,
     "product_returns_text": "Easy 365 days return",
@@ -473,7 +473,7 @@
               "tooltip_hours": true,
               "is_same_hours_weekly": false,
               "hours_0_open": 10,
-              "hours_0_close": 22,
+              "hours_0_close": 20,
               "hours_1_open": 10,
               "hours_1_close": 20,
               "hours_2_open": 10,
@@ -486,7 +486,7 @@
               "hours_5_close": 20,
               "hours_6_open": 9,
               "hours_6_close": 21,
-              "announcement": "<p>Mon - Fri<br>8:30 - 20:30<\/p>",
+              "announcement": "<p>Mon - Fri<br>9:30 - 20:30<\/p>",
               "address_type_boolean": true,
               "is_residential": false,
               "is_warehouse": false,
@@ -1073,7 +1073,7 @@
               "online_inventory_source": false,
               "enable_c_c": true,
               "duplicate": "Auburn",
-              "test_mode": true,
+              "test_mode": false,
               "street1": "3 Australia Avenue",
               "city": "Sydney Olympic Park",
               "zip": "2127",
@@ -1083,26 +1083,26 @@
               "email": "customer.service@decathlon.com",
               "phone_number": "(02) 9157 5799",
               "company": "Decathlon",
-              "ready": "Ready to collect in 24 hours",
-              "ready_checkout": "Pickup: Ready in 24 Hours",
+              "ready": "Ready to collect in 2 business days",
+              "ready_checkout": "Ready to collect in 2 business days",
               "id": "1791-0002",
               "tooltip_hours": true,
               "is_same_hours_weekly": false,
-              "hours_0_open": 10,
-              "hours_0_close": 20,
+              "hours_0_open": 0,
+              "hours_0_close": 0,
               "hours_1_open": 10,
-              "hours_1_close": 20,
+              "hours_1_close": 19,
               "hours_2_open": 10,
-              "hours_2_close": 20,
+              "hours_2_close": 19,
               "hours_3_open": 10,
-              "hours_3_close": 20,
+              "hours_3_close": 19,
               "hours_4_open": 10,
-              "hours_4_close": 20,
+              "hours_4_close": 19,
               "hours_5_open": 10,
-              "hours_5_close": 20,
+              "hours_5_close": 19,
               "hours_6_open": 10,
-              "hours_6_close": 20,
-              "announcement": "",
+              "hours_6_close": 14,
+              "announcement": "<p>Wait for the ready for pick up email.&nbsp;<\/p>",
               "address_type_boolean": true,
               "is_residential": false,
               "is_warehouse": false,
@@ -1135,16 +1135,29 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
+          "1584329073675": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/DecathlonAU_Website_Homepage_-_W26_SA_26-Jun-2020_1440x790_R2.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "<p><span style=\"color: #EEEEEE\">.<\/span><\/p>",
+              "banner_subtitle": "<p><strong>Limited Offer!<\/strong><\/p>",
+              "button_new_window": false,
+              "button_title": "SHOP NOW",
+              "button_url": "shopify:\/\/collections\/challenge-the-cold-down-padded-jackets"
+            }
+          },
           "1584424981258": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/DecathlonAU_Website_Homepage_SA_15-Jun-2020_1440x790_V1-min_af973967-d66b-4418-8b6c-9888817df806.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/DecathlonAU_web_banner3_SA_19-Mar-2020_1440x790_V1-min.jpg",
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
               "banner_title": "Back To Fitness",
               "banner_subtitle": "<p><strong>Fitness Equipment&nbsp;Back In Stock!<\/strong><\/p>",
               "button_new_window": false,
-              "button_title": "SHOP FITNESS GEAR",
+              "button_title": "SHOP HOME FITNESS GEAR",
               "button_url": "shopify:\/\/collections\/home-fitness-equipment-accessories"
             }
           },
@@ -1160,25 +1173,12 @@
               "button_title": "Shop Now",
               "button_url": "shopify:\/\/collections\/running-gear-clothes"
             }
-          },
-          "1584329073675": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/DecathlonAU_Website_Banner_HP_1_SA_28-May-2020_1440x790_V1.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": "<br>Layer Up For Winter",
-              "banner_subtitle": "<p><strong>Everyday Low Price On&nbsp;Fleeces &amp; Layers<\/strong><\/p>",
-              "button_new_window": false,
-              "button_title": "SHOP NOW",
-              "button_url": "shopify:\/\/collections\/challenge-the-cold-fleeces"
-            }
           }
         },
         "block_order": [
+          "1584329073675",
           "1584424981258",
-          "1589172506799",
-          "1584329073675"
+          "1589172506799"
         ],
         "settings": {}
       },
