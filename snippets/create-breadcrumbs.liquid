@@ -19,121 +19,125 @@
 
 <nav class="breadcrumb" role="navigation" aria-label="breadcrumbs">
   
-  <a 
-    href="{{ breadcrumbs_top.url }}"
-    {% if breadcrumbs_top.title == collection.title and template.name == 'collection' %} class="mobile-hide"{% endif %} 
-    title="{{ breadcrumbs_top.title }}">
-    {{ breadcrumbs_top.title }}
-  </a>
+  {% if breadcrumbs_top %}
+    <a 
+      href="{{ breadcrumbs_top.url }}"
+      {% if breadcrumbs_top.title == collection.title and template.name == 'collection' %} class="mobile-hide"{% endif %} 
+      title="{{ breadcrumbs_top.title }}">
+      {{ breadcrumbs_top.title }}
+    </a>
 
-  {% assign sep_class = '' %}
+    {% assign sep_class = '' %}
 
-  {% for link in breadcrumbs %}
-    {% if link.current or link.child_current %}
-      
-      {% if link.current and template.name == 'collection' %}
-        {% assign sep_class = 'mobile-hide' %}
-      {% endif %}
-      <span aria-hidden="true" class="breadcrumb__sep{% if template contains 'collection' %} mobile-hide{% endif %}">/</span>
-
-      <a href="{{ link.url }}"
-        class="{{ sep_class }}" 
-        title="{{ link.title }}">
-        {{ link.title }}
-      </a>
-
-      {% for sub in link.links %}
-        {% if sub.current or sub.child_current %}
-
-          {% if sub.current %}
-            {% assign sep_class = 'mobile-hide' %}
-          {% endif %}
-          <span aria-hidden="true" class="breadcrumb__sep{% if template contains 'collection' %} mobile-hide{% endif %}">/</span>
-
-          <a href="{{ sub.url }}"
-            class="{{ sep_class }}" 
-            title="{{ sub.title }}">
-            {{ sub.title }}
-          </a>
-
-          {% for subsub in sub.links %}
-            {% if subsub.current or subsub.child_current %}
-
-              {% if subsub.current %}
-                {% assign sep_class = 'mobile-hide' %}
-              {% endif %}
-              <span aria-hidden="true" class="breadcrumb__sep{% if template contains 'collection' %} mobile-hide{% endif %}">/</span>
-
-              <a href="{{ subsub.url }}"
-                class="{{ sep_class }}" 
-                title="{{ subsub.title }}">
-                {{ subsub.title }}
-              </a>
-
-            {% endif %}
-          {% endfor %}
-
+    {% for link in breadcrumbs %}
+      {% if link.current or link.child_current %}
+        
+        {% if link.current and template.name == 'collection' %}
+          {% assign sep_class = 'mobile-hide' %}
         {% endif %}
-      {% endfor %}
+        <span aria-hidden="true" class="breadcrumb__sep {{sep_class}}">/</span>
 
-    {% endif %}
-  {% endfor %}
+        <a href="{{ link.url }}"
+          class="{{ sep_class }}" 
+          title="{{ link.title }}">
+          {{ link.title }}
+        </a>
 
-  <a 
-    href="{{ top_level.url }}"
-    {% if top_level.title == collection.title and template.name == 'collection' %} class="mobile-hide"{% endif %} 
-    title="{{ top_level.title }}">
-    {{ top_level.title }}
-  </a>
+        {% for sub in link.links %}
+          {% if sub.current or sub.child_current %}
 
-  {% for link in top_level.links %}
-    {% if link.current or link.child_current %}
-      
-      {% if link.current and template.name == 'collection' %}
-        {% assign sep_class = 'mobile-hide' %}
-      {% endif %}
-      <span aria-hidden="true" class="breadcrumb__sep{% if link.active and template contains 'collection' %} mobile-hide{% endif %}">/</span>
-      <a href="{{ link.url }}"
-        class="{{ sep_class }}" 
-        title="{{ link.title }}">
-        {{ link.title }}
-      </a>
-
-      {% for sub in link.links %}
-        {% if sub.current or sub.child_current %}
-
-          {% if sub.current %}
-            {% assign sep_class = 'mobile-hide' %}
-          {% endif %}
-          <span aria-hidden="true" class="breadcrumb__sep{% if sub.active and template contains 'collection' %} mobile-hide{% endif %}">/</span>
-          <a href="{{ sub.url }}"
-            class="{{ sep_class }}" 
-            title="{{ sub.title }}">
-            {{ sub.title }}
-          </a>
-
-          {% for subsub in sub.links %}
-            {% if subsub.current or subsub.child_current %}
-
-              {% if subsub.current %}
-                {% assign sep_class = 'mobile-hide' %}
-              {% endif %}
-              <span aria-hidden="true" class="breadcrumb__sep{% if subsub.active and template contains 'collection' %} mobile-hide{% endif %}">/</span>
-              <a href="{{ subsub.url }}"
-                class="{{ sep_class }}" 
-                title="{{ subsub.title }}">
-                {{ subsub.title }}
-              </a>
-
+            {% if sub.current %}
+              {% assign sep_class = 'mobile-hide' %}
             {% endif %}
-          {% endfor %}
+            <span aria-hidden="true" class="breadcrumb__sep {{sep_class}}">/</span>
 
+            <a href="{{ sub.url }}"
+              class="{{ sep_class }}" 
+              title="{{ sub.title }}">
+              {{ sub.title }}
+            </a>
+
+            {% for subsub in sub.links %}
+              {% if subsub.current or subsub.child_current %}
+
+                {% if subsub.current %}
+                  {% assign sep_class = 'mobile-hide' %}
+                {% endif %}
+                <span aria-hidden="true" class="breadcrumb__sep {{sep_class}}">/</span>
+
+                <a href="{{ subsub.url }}"
+                  class="{{ sep_class }}" 
+                  title="{{ subsub.title }}">
+                  {{ subsub.title }}
+                </a>
+
+              {% endif %}
+            {% endfor %}
+
+          {% endif %}
+        {% endfor %}
+
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+
+  {% unless breadcrumbs_top %}
+    
+    <a 
+      href="{{ top_level.url }}"
+      {% if top_level.title == collection.title and template.name == 'collection' %} class="mobile-hide"{% endif %} 
+      title="{{ top_level.title }}">
+      {{ top_level.title }}
+    </a>
+
+    {% for link in top_level.links %}
+      {% if link.current or link.child_current %}
+        
+        {% if link.current and template.name == 'collection' %}
+          {% assign sep_class = 'mobile-hide' %}
         {% endif %}
-      {% endfor %}
+        <span aria-hidden="true" class="breadcrumb__sep {{sep_class}}">/</span>
+        <a href="{{ link.url }}"
+          class="{{ sep_class }}" 
+          title="{{ link.title }}">
+          {{ link.title }}
+        </a>
 
-      
-    {% endif %}
-  {% endfor %}
+        {% for sub in link.links %}
+          {% if sub.current or sub.child_current %}
+
+            {% if sub.current %}
+              {% assign sep_class = 'mobile-hide' %}
+            {% endif %}
+            <span aria-hidden="true" class="breadcrumb__sep {{sep_class}}">/</span>
+            <a href="{{ sub.url }}"
+              class="{{ sep_class }}" 
+              title="{{ sub.title }}">
+              {{ sub.title }}
+            </a>
+
+            {% for subsub in sub.links %}
+              {% if subsub.current or subsub.child_current %}
+
+                {% if subsub.current %}
+                  {% assign sep_class = 'mobile-hide' %}
+                {% endif %}
+                <span aria-hidden="true" class="breadcrumb__sep {{sep_class}}">/</span>
+                <a href="{{ subsub.url }}"
+                  class="{{ sep_class }}" 
+                  title="{{ subsub.title }}">
+                  {{ subsub.title }}
+                </a>
+
+              {% endif %}
+            {% endfor %}
+
+          {% endif %}
+        {% endfor %}
+        
+      {% endif %}
+    {% endfor %}
+  {% endunless %}
 
 </nav>
 <!-- create-breadcrumbs.liquid End -->
