@@ -21,7 +21,6 @@
   {% else %}
 
     {% for link in hierarchy %}
-    {{ link.title }}
       {% if link.current or link.child_current %}
         {% if link.links.size > 0 %}
           {% assign breadcrumbs_top = link %}
