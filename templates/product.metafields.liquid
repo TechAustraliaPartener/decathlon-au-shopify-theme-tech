@@ -1,7 +1,7 @@
 {% layout none %}
 
 {% assign metafields_joined = '' %}
-{% assign metafield_trunks = 'global|ratings|reviews|variants|merchandising' | split: '|' %}
+{% assign metafield_trunks = 'global|ratings|reviews|variants|merchandising|faq' | split: '|' %}
 
 {% for trunk in metafield_trunks %}
   <p>
@@ -9,3 +9,5 @@
     {{ product.metafields[trunk] | json }}
   </p>
 {% endfor %}
+
+{{ product.metafields.faq.q_and_a }}
