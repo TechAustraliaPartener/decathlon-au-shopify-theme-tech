@@ -6,6 +6,7 @@
     "use_gateway": false,
     "login_portal_url": "https:\/\/api-eu.decathlon.net\/connect\/oauth\/authorize?response_type=code&client_id=e57b2db5-07ff-468e-a8da-85af418a1691&scope=openid+profile+email+contacts+contacts:write+optins+optins:write+sports+sports:write+phone:write&redirect_uri=https%3A%2F%2F1fya2jw7u4.execute-api.ap-southeast-2.amazonaws.com%2FProd%2Flogin",
     "register_portal_url": "https:\/\/account.decathlon.net\/account\/index.html?client_id=e57b2db5-07ff-468e-a8da-85af418a1691",
+    "logout_portal_url": "https:\/\/1fya2jw7u4.execute-api.ap-southeast-2.amazonaws.com\/Prod\/logout",
     "use_adeptmind": false,
     "use_algolia": true,
     "show_write_a_review": false,
