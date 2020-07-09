@@ -1,0 +1,136 @@
+$decathlon_blue: #0082c3;
+$grey: #f3f3f3;
+$black: #1f1f1f;
+$yellow: #fdd935;
+$text_grey: #898989;
+
+$cross_height: 16px;
+$cross_width: 4px;
+$cross_space: ($cross_height - $cross_width) / 2;
+
+.faq_accordions {
+  margin-top: 2em;
+
+  .faq_accordion:not(:first-of-type) {
+    margin-top: -1px;
+  }
+}
+
+.faq_accordion {
+  border: 1px solid $grey;
+}
+
+.faq_accordion_head {
+  cursor: pointer;
+  padding: 15px;
+  padding-left: 60px;
+  position: relative;
+}
+
+.faq_question {
+  padding-right: 60px;
+}
+
+.faq_accordion_body {
+  max-height: 0;
+  overflow: hidden;
+  transition-duration: 300ms;
+  opacity: 0;
+}
+
+.faq_response_wrapper {
+  padding: 0 15px 30px 60px;
+}
+
+.faq_response {
+  border-top: 1px solid $grey;
+  padding-top: 30px;
+}
+
+.faq_author {
+  color: $text_grey;
+  font-style: italic;
+  font-size: 12px;
+}
+
+.faq_reply_from {
+  color: $decathlon_blue;
+  font-style: italic;
+  font-size: 12px;
+}
+
+.faq_reply_indicator {
+  text-transform: uppercase;
+  background: $yellow;
+  color: $black;
+  padding: 3px 7px;
+  border-radius: 2em;
+  float: right;
+  line-height: 1;
+}
+
+.faq_accordion_icon {
+  background: $decathlon_blue;
+
+  position: absolute;
+
+  height: $cross_width;
+  width: $cross_height;
+
+  top: calc(2em + #{$cross_space});
+  left: 20px;
+
+  transition-duration: 300ms;  
+
+  &:after {
+    content: "";
+
+    background: $decathlon_blue;
+
+    position: absolute;
+
+    height: $cross_height;
+    width: $cross_width;
+
+    top: (-$cross_space);
+    left: $cross_space;
+
+    transition-duration: 300ms;    
+  }
+}
+
+.faq_accordion.open {
+  .faq_accordion_icon {
+    transform: rotate(180deg);
+    &:after {
+      transform: scale(0);
+    }
+  }
+
+  .faq_accordion_body {
+    transition: max-height 0.25s ease-in;
+    max-height: 1000px;
+    opacity: 1;
+    overflow: unset;
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .faq_accordions {
+    margin-bottom: 2em;
+  }
+
+  .faq_accordion_head {
+    padding-left: 15px;
+    padding-right: 60px;
+  }
+
+  .faq_question {
+    padding-right: 0;
+  }
+
+  .faq_accordion_icon {
+    left: unset;
+    right: 20px;
+  }
+}
