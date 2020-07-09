@@ -454,7 +454,7 @@
             "settings": {
               "name": "Box Hill",
               "title": "Box Hill Store, 3128",
-              "online_inventory_source": true,
+              "online_inventory_source": false,
               "enable_c_c": true,
               "duplicate": "",
               "test_mode": false,
@@ -675,9 +675,9 @@
               "name": "St Kilda C&C (3182)",
               "title": "St Kilda, 3182, Pick Up Only",
               "online_inventory_source": false,
-              "enable_c_c": false,
+              "enable_c_c": true,
               "duplicate": "Knoxfield",
-              "test_mode": true,
+              "test_mode": false,
               "street1": "350 Beaconsfield Parade",
               "city": "St Kilda",
               "zip": "3182",
@@ -1091,17 +1091,17 @@
               "hours_0_open": 0,
               "hours_0_close": 0,
               "hours_1_open": 10,
-              "hours_1_close": 19,
+              "hours_1_close": 18,
               "hours_2_open": 10,
-              "hours_2_close": 19,
+              "hours_2_close": 18,
               "hours_3_open": 10,
-              "hours_3_close": 19,
+              "hours_3_close": 18,
               "hours_4_open": 10,
-              "hours_4_close": 19,
+              "hours_4_close": 18,
               "hours_5_open": 10,
-              "hours_5_close": 19,
-              "hours_6_open": 10,
-              "hours_6_close": 14,
+              "hours_5_close": 18,
+              "hours_6_open": 0,
+              "hours_6_close": 0,
               "announcement": "<p>Wait for the ready for pick up email.&nbsp;<\/p>",
               "address_type_boolean": true,
               "is_residential": false,
@@ -1135,6 +1135,19 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
+          "1589172506799": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_11_-min.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "<br>Challenge The Cold",
+              "banner_subtitle": "<p><strong>Winter &amp; Snow Gear For Everyone<\/strong><\/p>",
+              "button_new_window": false,
+              "button_title": "Shop Now",
+              "button_url": "shopify:\/\/collections\/winter-snow-sports"
+            }
+          },
           "1584329073675": {
             "type": "slide",
             "settings": {
@@ -1151,34 +1164,21 @@
           "1584424981258": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/DecathlonAU_web_banner3_SA_19-Mar-2020_1440x790_V1-min.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/DecathlonAU_Homepage_-_Banner_SA_06-Jul-2020_1440x790_V1-min.jpg",
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
-              "banner_title": "Back To Fitness",
-              "banner_subtitle": "<p><strong>Fitness Equipment&nbsp;Back In Stock!<\/strong><\/p>",
+              "banner_title": "Trending Now!",
+              "banner_subtitle": "<p><strong>Inflatable kayaks, SUP, Paddles &amp; Life Jackets<\/strong><\/p>",
               "button_new_window": false,
-              "button_title": "SHOP HOME FITNESS GEAR",
-              "button_url": "shopify:\/\/collections\/home-fitness-equipment-accessories"
-            }
-          },
-          "1589172506799": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_5_-min.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": "<br>Running & Walking <b> In Winter<\/b>",
-              "banner_subtitle": "<p><strong>Shoes, Jackets, Headbands &amp; More<\/strong><\/p>",
-              "button_new_window": false,
-              "button_title": "Shop Now",
-              "button_url": "shopify:\/\/collections\/running-gear-clothes"
+              "button_title": "Shop now",
+              "button_url": "https:\/\/decathlon.com.au\/search?q=kayak"
             }
           }
         },
         "block_order": [
+          "1589172506799",
           "1584329073675",
-          "1584424981258",
-          "1589172506799"
+          "1584424981258"
         ],
         "settings": {}
       },
