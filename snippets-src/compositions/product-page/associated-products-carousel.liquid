@@ -14,14 +14,12 @@
     <h2 class="de-ProductInfoSection-title de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4 de-u-inlineBlock">
       Frequently Bought Together
     </h2>
-    <div class="associated_products_carousel">
-      {% include 'components-product-tile-carousel'
-        handles: associated_product_handles,
-        limit: 3,
-        inventory_status: false,
-        delivery_options: false,
-        slide_breakpoints_type: 'associated-products'
-      %}
-    </div>
+    {% include 'components-product-tile-carousel'
+      handles: associated_product_handles,
+      limit: 10,
+      inventory_status: false,
+      delivery_options: false,
+      slide_breakpoints_type: 'associated-products'
+    %}
   </div>
 {% endif %}
