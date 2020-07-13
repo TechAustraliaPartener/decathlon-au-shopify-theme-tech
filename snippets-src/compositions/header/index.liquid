@@ -66,6 +66,7 @@
     <ul class="de-MenuBar">
       <li class="de-PageWrap-headerTertiaryControl">
         <button
+          id="demo-search-input-toggler"
           class="de-MenuBar-action"
           data-gtm-event="customer-interaction"
           data-gtm-id="Magnifying Glass"
@@ -92,6 +93,7 @@
   <div class="de-SingleInputForm adept-autocomplete-search">
     <form action="/search">
       <input
+        id="demo-search-input"
         class="de-Input de-SingleInputForm-input"
         data-gtm-event="customer-interaction"
         data-gtm-id="Search Bar"
@@ -121,3 +123,12 @@
   {% include 'compositions-header-nav-wide' %}
 </div>
 <!-- End snippets-src/compositions/header/index.liquid -->
+
+<script>
+  jQuery(function($) {
+    $('#demo-search-input-toggler').on('click', function(event) {
+      console.log('MAGNIFIER CLICKED');
+      $('#demo-search-input').focus();
+    });
+  });
+</script>
