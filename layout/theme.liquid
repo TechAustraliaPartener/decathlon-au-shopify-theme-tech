@@ -155,6 +155,12 @@
   {{ 'jquery.min.js' | asset_url | script_tag }}
   {{ 'modernizr.min.js' | asset_url | script_tag }}
 
+  {% if template.name == '404' %}  
+    <script>
+      location.href = '/pages/404'
+    </script>
+  {% endif %}
+
   {% comment %}
     If you store has customer accounts disabled, you can remove the following JS file
   {% endcomment %}
