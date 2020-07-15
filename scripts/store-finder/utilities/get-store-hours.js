@@ -1,9 +1,15 @@
 /**
- * Transforms Military Time to Standard Time
- * @param {number} time - Military Time (0 - 23)
- * @returns {number} - Standard Time
+ * Transforms Military Time to 12h Time Format
+ * @param {number} time - Military Time (0000-2359)
+ * @returns {number} - 12h Time Format (1:20am)
  */
-const militaryToStandardTime = time => ((time + 11) % 12) + 1;
+const militaryTo12hFormat = time => {
+  const militaryHours = Number(time.substring(0, 2));
+  const militaryMinutes = time.substring(2, 4);
+  const hours = ((militaryHours + 11) % 12) + 1;
+  const amOrPm = (militaryHours < 12 || militaryHours === 24) ? 'am' : 'pm';
+  return `${hours}:${militaryMinutes}${amOrPm}`;
+}
 
 /**
  * Lookup store and determine open/close time by day offset
@@ -17,7 +23,7 @@ var hoursObj = {};
 
 for (var i = 0; i < window.masterStoresVisual.length; i++) {
   var store = window.masterStoresVisual[i];
-  hoursObj[store.id] = store.hours.map(function(day) {
+  hoursObj[store.id] = store.hours.map(function (day) {
     return [day.open, day.close];
   });
 }
@@ -58,12 +64,12 @@ const getStoreOpenClose = ({ storeId, day }) => {
 };
 
 export default storeId => {
-  const hoursOfOperation = {};
+  let openTime;
   moment.tz.add(
     'Australia/ACT|AEDT AEST|-b0 -a0|01010101010101010101010|1C140 1cM0 1cM0 1cM0 1cM0 1fA0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1fA0 1cM0 1cM0 1cM0 1cM0'
   );
   const date = moment().tz('Australia/ACT');
-  const hour = parseInt(date.format('H'), 10);
+  const currentMilitaryTime = Number(date.format('HHmm'));
   const day = date.weekday();
 
   const store = {
@@ -73,31 +79,18 @@ export default storeId => {
     tomorrow: getStoreOpenClose({ storeId, day })
   };
 
-  var AmOrPm = (hour) => (hour <= 12 || hour == 24) ? "am" : "pm";
+  const openTimeToday = militaryTo12hFormat(store.today.open);
+  const openTimeTomorrow = militaryTo12hFormat(store.tomorrow.open);
+  const closeTimeToday = militaryTo12hFormat(store.today.close);
+  const closeTimeTomorrow = militaryTo12hFormat(store.tomorrow.close);
 
-  if (hour >= store.today.open && hour < store.today.close) {
-    hoursOfOperation.today = `${(store.today.nameDay)} ${militaryToStandardTime(
-      store.today.open
-    )}${AmOrPm(store.today.open)}-${militaryToStandardTime(store.today.close)}${AmOrPm(store.today.close)}`;
-  } else if (hour >= store.today.close && hour < 24) {
-    hoursOfOperation.today = `Open tomorrow ${militaryToStandardTime(
-      store.tomorrow.open
-    )}${AmOrPm(store.tomorrow.open)}-${militaryToStandardTime(store.tomorrow.close)}${AmOrPm(store.tomorrow.close)}`;
-  } else if (hour >= 0 && hour < store.tomorrow.open) {
-    hoursOfOperation.today = `${(store.today.nameDay)} ${militaryToStandardTime(
-      store.today.open
-    )}${AmOrPm(store.today.open)}-${militaryToStandardTime(store.today.close)}${AmOrPm(store.today.close)}`;
+  if (currentMilitaryTime >= Number(store.today.open) && currentMilitaryTime < Number(store.today.close)) {
+    openTime = `${(store.today.nameDay)} ${openTimeToday}-${closeTimeToday}`;
+  } else if (currentMilitaryTime >= Number(store.today.close) && currentMilitaryTime < 2400) {
+    openTime = `Open tomorrow ${openTimeTomorrow}-${closeTimeTomorrow}`;
+  } else if (currentMilitaryTime >= 0 && currentMilitaryTime < Number(store.tomorrow.open)) {
+    openTime = `${(store.today.nameDay)} ${openTimeToday}-${closeTimeToday}`;
   }
 
-  // hoursOfOperation.today = `Open ${militaryToStandardTime(
-  //   store.tomorrow.open
-  // )}am-${militaryToStandardTime(store.tomorrow.close)}pm`;
-
-  // // TEMPORARY: Can be deleted after Emeryville's opening
-  // if (Date.now() <= 1555084800000 && storeId === 'adr_K6s3Kaja') {
-  //   hoursOfOperation.today = 'Grand Opening April 12th 9am';
-  //   hoursOfOperation.tomorrow = 'Grand Opening April 12th 9am';
-  // }
-
-  return hoursOfOperation;
+  return openTime ? { today: openTime } : {};
 };

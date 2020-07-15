@@ -22,27 +22,21 @@
     return store.name;
   });
 
-  // Convert 24-hour time to human-readable am/pm time
-  function hoursToAmPm(hour) {
-    if (hour > 12) {
-      if (hour === 24) {
-        return '12:00 am';
-      } else  {
-        hour -= 12;
-        return hour += ':00 pm';
-      }
-    } else if (hour === 12) {
-      return '12:00 pm';
-    }
-    return hour += ':00 am';
+  // Convert military time to human-readable am/pm time
+  function militaryTo12hFormat(time) {
+    var militaryHours = Number(time.substring(0, 2));
+    var militaryMinutes = time.substring(2, 4);
+    var hours = ((militaryHours + 11) % 12) + 1;
+    var amOrPm = (militaryHours < 12 || militaryHours === 24) ? 'am' : 'pm';
+    return hours + ':' + militaryMinutes + ' ' + amOrPm;
   }
 
-  // Convert an opening and closing hour into the human-readable label.
-  function hoursToDisplay(open, close) {
-    if (open === 0 && close === 0) {
+  // Convert an opening and closing time into the human-readable label.
+  function timeToDisplay(open, close) {
+    if (open === '0000' && close === '0000') {
       return 'Closed';
     } else {
-      return hoursToAmPm(open) + ' - ' + hoursToAmPm(close);
+      return militaryTo12hFormat(open) + ' - ' + militaryTo12hFormat(close);
     }
   }
 
@@ -86,7 +80,7 @@
         day: day,
         open: openHours,
         close: closeHours,
-        display: hoursToDisplay(openHours, closeHours)
+        display: timeToDisplay(openHours, closeHours)
       });
     };
     store.fullHours = fullHours(store.hours);
@@ -261,7 +255,7 @@
           {
             "type": "header",
             "content": "Store Hours",
-            "info": "9h - 19h is equivalent to 9AM - 7 PM"
+            "info": "Set times with military format e.g. 0930 for 9:30"
           },
           {
             "type": "checkbox",
@@ -274,7 +268,7 @@
             "type": "checkbox",
             "id": "is_same_hours_weekly",
             "label": "Are the stores hours the same everyday?",
-            "info": "If so, you only need to set the hours for Sunday. Set times with military format e.g. 0930 for 9:30"
+            "info": "If so, you only need to set the hours for Sunday."
           },
           {
             "type": "text",
@@ -487,7 +481,7 @@
           {
             "type": "header",
             "content": "Store Hours",
-            "info": "9h - 19h is equivalent to 9AM - 7 PM"
+            "info": "Set times with military format e.g. 0930 for 9:30"
           },
           {
             "type": "checkbox",

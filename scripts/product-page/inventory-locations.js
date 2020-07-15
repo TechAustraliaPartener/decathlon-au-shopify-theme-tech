@@ -21,6 +21,14 @@ const emptyData = {
 
 const storesSort = window.masterStores.map(a => a.name);
 
+const militaryTo12hFormat = time => {
+  const militaryHours = Number(time.substring(0, 2));
+  const militaryMinutes = time.substring(2, 4);
+  const hours = ((militaryHours + 11) % 12) + 1;
+  const amOrPm = (militaryHours < 12 || militaryHours === 24) ? 'am' : 'pm';
+  return `${hours}:${militaryMinutes}${amOrPm}`;
+}
+
 function addMasterStoresData(inventoryItem, state) {
   inventoryItem.locations = inventoryItem.locations.filter(loc => {
     return storesSort.indexOf(loc.name) !== -1;
@@ -65,7 +73,7 @@ function addMasterStoresData(inventoryItem, state) {
     var weekday = new Date().getDay();
     var openHour = masterLoc['hours_' + (masterLoc.is_same_hours_weekly ? 0 : weekday) + '_open'];
     var closeHour = masterLoc['hours_' + (masterLoc.is_same_hours_weekly ? 0 : weekday) + '_close'];
-    if ((openHour === 0) && (closeHour === 0)) {
+    if (openHour === '0000' && closeHour === '0000') {
       var weekday = weekday + 1;
       if (weekday > 6) {
         var weekday = 0;
@@ -73,18 +81,6 @@ function addMasterStoresData(inventoryItem, state) {
       var openHour = masterLoc['hours_' + weekday + '_open'];
       var closeHour = masterLoc['hours_' + weekday + '_close'];
       //console.log(weekday);
-    }
-    if (openHour > 12) {
-      var openHour = openHour - 12;
-      var openHour = openHour.toString() + 'pm';
-    } else {
-      var openHour = openHour.toString() + 'am';
-    }
-    if (closeHour > 12) {
-      var closeHour = closeHour - 12;
-      var closeHour = closeHour.toString() + 'pm';
-    } else {
-      var closeHour = closeHour.toString() + 'am';
     }
 
     // Create abbreviation for each weekday & get the abbreviation for the current day
@@ -130,11 +126,14 @@ function addMasterStoresData(inventoryItem, state) {
         };
       }
 
+      var formattedOpenHour = militaryTo12hFormat(openHour);
+      var formattedCloseHour = militaryTo12hFormat(closeHour);
+
       thisLoc.is_same_hours_weekly = masterLoc.is_same_hours_weekly;
       if (thisLoc.is_same_hours_weekly === true) {
-        thisLoc.hours = 'Open ' + openHour + '-' + closeHour;
+        thisLoc.hours = 'Open ' + formattedOpenHour + '-' + formattedCloseHour;
       } else {
-        thisLoc.hours = nameDay + ' ' + openHour + '-' + closeHour;
+        thisLoc.hours = nameDay + ' ' + formattedOpenHour + '-' + formattedCloseHour;
       }
       thisLoc.street1 = masterLoc.street1;
       thisLoc.city = masterLoc.city;
@@ -146,9 +145,9 @@ function addMasterStoresData(inventoryItem, state) {
 
     } else {
       if (masterLoc.is_same_hours_weekly === true) {
-        var thisLoc_hours = 'Open ' + openHour + '-' + closeHour;
+        var thisLoc_hours = 'Open ' + formattedOpenHour + '-' + formattedCloseHour;
       } else {
-        var thisLoc_hours = nameDay + ' ' + openHour + '-' + closeHour;
+        var thisLoc_hours = nameDay + ' ' + formattedOpenHour + '-' + formattedCloseHour;
       }
 
       const thisLoc = {

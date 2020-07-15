@@ -176,7 +176,6 @@ const buildStoreList = locations => {
       } else {
         var opening_display = nameDay + ' ' + location.hours[weekday].display;
       }
-      var opening_display = opening_display.replace(':00 ', '').replace(':00 ', '');
       locationNode.classList.add('de-u-size1of2');
       locationNode.innerHTML = `
         <div class="js-de-pickup-location de-pickup-location de-u-spaceEnds02 ${
