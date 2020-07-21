@@ -126,8 +126,8 @@ function addMasterStoresData(inventoryItem, state) {
         };
       }
 
-      var formattedOpenHour = militaryTo12hFormat(openHour);
-      var formattedCloseHour = militaryTo12hFormat(closeHour);
+      const formattedOpenHour = militaryTo12hFormat(openHour);
+      const formattedCloseHour = militaryTo12hFormat(closeHour);
 
       thisLoc.is_same_hours_weekly = masterLoc.is_same_hours_weekly;
       if (thisLoc.is_same_hours_weekly === true) {
@@ -144,6 +144,9 @@ function addMasterStoresData(inventoryItem, state) {
       thisLoc.announcement = masterLoc.announcement;
 
     } else {
+      const formattedOpenHour = militaryTo12hFormat(openHour);
+      const formattedCloseHour = militaryTo12hFormat(closeHour);
+
       if (masterLoc.is_same_hours_weekly === true) {
         var thisLoc_hours = 'Open ' + formattedOpenHour + '-' + formattedCloseHour;
       } else {
