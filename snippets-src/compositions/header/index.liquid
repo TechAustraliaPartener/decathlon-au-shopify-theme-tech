@@ -125,10 +125,16 @@
 <!-- End snippets-src/compositions/header/index.liquid -->
 
 <script>
+  let opened = false;
   jQuery(function($) {
     $('#demo-search-input-toggler').on('click', function(event) {
-      console.log('MAGNIFIER CLICKED');
-      $('#demo-search-input').focus();
+
+      if(!opened) {
+        $('#demo-search-input').focus();
+        opened = true;
+      } else {
+        opened = false;
+      }
     });
   });
 </script>
