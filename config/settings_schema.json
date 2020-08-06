@@ -362,6 +362,20 @@
         "label": "Size sorting order",
         "info": "List the options you would like to see first (each separated by a comma)",
         "default": "XS,S,M,L,XL"
+      },
+      {
+        "type": "header",
+        "content": "Recently Viewed Products"
+      },
+      {
+        "id": "show_recently_viewed_carousel_on_collection_page",
+        "type": "checkbox",
+        "label": "Show on Collection Page"
+      },
+      {
+        "id": "show_recently_viewed_carousel_on_search_page",
+        "type": "checkbox",
+        "label": "Show on Search Page"
       }
     ]
   },

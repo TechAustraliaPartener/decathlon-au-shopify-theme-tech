@@ -139,6 +139,19 @@
   {% if template == "customers/account" %}
     {{ 'built-customer-fields.css' | asset_url | stylesheet_tag }}
   {% endif %}
+
+  {% if template == 'search' and settings.show_recently_viewed_carousel_on_search_page %}
+    {% assign display_recently_viewed = true %}
+  {% endif %}
+
+  {% if template == 'collection' and settings.show_recently_viewed_carousel_on_collection_page %}
+    {% assign display_recently_viewed = true %}
+  {% endif %}
+
+  {% if display_recently_viewed %}
+    {{ 'built-recently-viewed.css' | asset_url | stylesheet_tag }}
+  {% endif %}
+
   {% comment %}
     @TODO
     1. Determine when this was commented out and why.
@@ -298,6 +311,11 @@
           <main class="main-content" role="main">
             {{ content_for_layout }}
           </main>
+          {% if display_recently_viewed %}
+            <section id="recently-viewed-products-section" class="recently-viewed-algolia de-ProductInfoSection border-bottom--none" aria-labelledby="Section-additional-info">
+              {% include 'compositions-product-page-recently-viewed-products' %}
+            </section>
+          {% endif %}
         {% unless settings.hide_footer == true %}
           {% include 'compositions-footer' %}
         {% endunless %}

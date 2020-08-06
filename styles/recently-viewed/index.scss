@@ -1,0 +1,16 @@
+.recently-viewed-algolia {
+  @import '../product-page/index.scss';
+
+  width: 100%;
+  padding-left: 16px;
+
+  @media (min-width: 800px) {
+    width: calc(100% - 320px);
+    padding-left: 38px;
+    float: right;
+  }
+
+  .mobile_title {
+    padding-top: 0;
+  }
+}

@@ -40,5 +40,22 @@
     <script type="module" src="{{ 'built-product-carousel.js' | asset_url }}"></script>
     <script defer nomodule src="{{ 'built-product-carousel-legacy.js' | asset_url }}"></script>
   {% when 'collection' %}
-     <script defer src="{{ 'built-collection-page.js' | asset_url }}"></script>
+    <script defer src="{{ 'built-collection-page.js' | asset_url }}"></script>
+    {% if settings.show_recently_viewed_carousel_on_collection_page %}
+      <script type="module" src="{{ 'built-product-carousel.js' | asset_url }}"></script>
+      <script defer nomodule src="{{ 'built-product-carousel-legacy.js' | asset_url }}"></script>
+      <script type="module" src="{{ 'built-product-tile.js' | asset_url }}"></script>
+      <script defer nomodule src="{{ 'built-product-tile-legacy.js' | asset_url }}"></script>
+      <script type="module" src="{{ 'built-init-recently-viewed.js' | asset_url }}"></script>
+      <script defer nomodule src="{{ 'built-init-recently-viewed-legacy.js' | asset_url }}"></script>
+    {% endif %}
+  {% when 'search' %}
+    {% if settings.show_recently_viewed_carousel_on_search_page %}
+      <script type="module" src="{{ 'built-product-carousel.js' | asset_url }}"></script>
+      <script defer nomodule src="{{ 'built-product-carousel-legacy.js' | asset_url }}"></script>
+      <script type="module" src="{{ 'built-product-tile.js' | asset_url }}"></script>
+      <script defer nomodule src="{{ 'built-product-tile-legacy.js' | asset_url }}"></script>
+      <script type="module" src="{{ 'built-init-recently-viewed.js' | asset_url }}"></script>
+      <script defer nomodule src="{{ 'built-init-recently-viewed-legacy.js' | asset_url }}"></script>
+    {% endif %}
 {% endcase %}
