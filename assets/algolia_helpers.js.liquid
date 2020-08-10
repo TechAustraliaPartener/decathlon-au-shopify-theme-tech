@@ -303,6 +303,20 @@
         {% endcomment %}
       }
 
+    },
+    getShippingInfo: function getShippingInfo() {
+      console.log(this);
+      var price = this.price;
+      var weight = this.grams;
+
+      if(price >= 90 && weight <= 5000) {
+        return `<div class="product-tile-shipping-info">Free Shipping</div>`
+      } else {
+        return `<div class="product-tile-shipping-info">Free shipping above $90*</div>`
+      }
+    },
+    getClickAndCollectInfo: function getClickAndCollectInfo() {
+      return `<div class="product-tile-shipping-info">Free Click & Collect</div>`
     }
   };
 

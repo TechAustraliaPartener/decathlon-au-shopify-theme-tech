@@ -115,6 +115,27 @@
     %}
 
     {% comment %}
+      Shipping Info
+    {% endcomment %}
+    {% if product.price >= 9000 %}
+      {% if product.first_available_variant.weight <= 5000 %}
+        <div class="product-tile-shipping-info">Free Shipping</div>
+      {% else %}
+        <div class="product-tile-shipping-info">Free shipping above $90*</div>
+      {% endif %}
+    {% else %}
+      <div class="product-tile-shipping-info">Free shipping above $90*</div>
+    {% endif %}
+
+    {% comment %}
+      Click & Collect info
+      By default "Free Click & Collect" is shown
+    {% endcomment %}
+    {% if true %}
+      <div class="product-tile-shipping-info">Free Click & Collect</div>
+    {% endif %}
+
+    {% comment %}
     Inventory Status
     TODO To be implemented in future release
     {% endcomment %}

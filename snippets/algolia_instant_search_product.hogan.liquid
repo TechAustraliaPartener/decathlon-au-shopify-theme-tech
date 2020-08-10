@@ -47,6 +47,12 @@
         <span class="ais-hit--tag">[[& value ]]</span>
       [[/ _highlightResult.tags ]]
     </p>
+
+    [[# helpers.getShippingInfo ]]
+    [[/ helpers.getShippingInfo ]]
+    [[# helpers.getClickAndCollectInfo ]]
+    [[/ helpers.getClickAndCollectInfo ]]
+
     [[^ _distinct ]]
       <form id="algolia-add-to-cart-[[ objectID ]]" style="display: none;" action="/cart/add" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" value="[[ objectID ]]" />
