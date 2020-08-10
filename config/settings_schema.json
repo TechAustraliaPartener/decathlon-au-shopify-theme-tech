@@ -252,6 +252,26 @@
         "id": "enable_meet_decathlon",
         "label": "Show Meet Decathlon Megamenu link",
         "info": "This will show a megamenu with the navigation which handle is 'meet-decathlon'."
+      },
+      {
+        "type": "text",
+        "id": "header_support_label",
+        "label": "Support label"
+      },
+      {
+        "type": "text",
+        "id": "header_support_link",
+        "label": "Support link"
+      },
+      {
+        "type": "text",
+        "id": "header_store_label",
+        "label": "Store finder label"
+      },
+      {
+        "type": "text",
+        "id": "header_sign_in_label",
+        "label": "Sign In label"
       }
     ]
   },

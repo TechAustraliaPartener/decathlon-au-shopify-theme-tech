@@ -14,6 +14,7 @@ src/css/*
 !/snippets/checkout_js*
 !/snippets/ship-icon*
 !/snippets/pickup-icon*
+!/snippets/support-icon*
 !/snippets/thankyou_review*
 !/snippets/shogun-*
 !/snippets/nav-*
