@@ -15,11 +15,9 @@ export const map = {
   },
   computed: {
     markerIcon() {
-      const iconUrl =
-        'https://cdn.shopify.com/s/files/1/1752/4727/t/77/assets/map-marker-';
       const iconConfig = { size: new google.maps.Size(40, 40) };
-      const active = { ...iconConfig, url: `${iconUrl}active.png` };
-      const inactive = { ...iconConfig, url: `${iconUrl}inactive.png` };
+      const active = { ...iconConfig, url: window.mapMarkerActiveIcon };
+      const inactive = { ...iconConfig, url: window.mapMarkerInactiveIcon };
       return { active, inactive };
     }
   },
