@@ -10,7 +10,7 @@
       class="rrp-price js-de-PriceAmount" 
       data-toggle="tooltip" 
       data-placement="top" 
-      title="Tooltip on top"
+      title="Recommended Retail Price: Based on a review of the equivalent product's market price."
     >
 
     {% assign rrp_splitted1 = rrp_meta | split: "}, {" %}
@@ -29,7 +29,7 @@
 
         {% assign rrp_price = item_rrp_price | remove: '"' | remove: '}' | remove: ']' %}
 
-        RRP: {{rrp_price}}
+        RRP*: {{rrp_price | money}}
       {% endif %}
     {% endfor %}
     </span>

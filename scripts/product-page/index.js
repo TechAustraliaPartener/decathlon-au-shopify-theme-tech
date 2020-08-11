@@ -1,3 +1,4 @@
+/* eslint-disable capitalized-comments */
 // @ts-check
 
 import './buybox';
@@ -64,6 +65,7 @@ const setUpListeners = () => {
   });
   colorSwatches.handleColorSelect(color => {
     state.updateState({ color });
+    displayRRPPrices(color);
   });
   addToCart.onVariantModification(() => {
     const fullState = getComputedState(state.getState());
@@ -102,12 +104,12 @@ state.onChange(
 // When the color changes
 state.onChange(
   ({ color }) => {
+
     if (!color) return;
     sizeSwatches.onColorSelect(color);
     carousel.onColorSelect(color);
     // Model code can be updated without size
     modelCode.onColorSelect(color);
-    console.log('color: ', color);
     displayRRPPrices(color);
 
   },
@@ -117,6 +119,7 @@ state.onChange(
 // When a swatch changes (color _or_ size)
 state.onChange(
   state => {
+
     const { color, size } = state;
     const variant = getVariantFromState(state);
     updateOptionStates({ color, size, variant });
@@ -166,25 +169,19 @@ const displayPaymentGateway = function (price, threshold, gateway) {
 }
 
 const displayRRPPrices = function(color) {
-  const variantModelCode = getModelCodeFromVariant(
-    variants.find(variant => getVariantOptions(variant).color === color)
-  );
-
-  console.log('variantModelCode: ', variantModelCode);
+  const variant = variants.find(variant => getVariantOptions(variant).color === color);
+  
+  const variantModelCode = getModelCodeFromVariant(variant);
   const metafields = window.vars.rrpMetafields;
-  console.log('Product: ', window.vars.productJSON);
-  console.log('Product Metafields: ', metafields);
+  const product = window.vars.productJSON;;
 
   let rrpFound = false;
   for(const rrp of metafields.rrp_prices) {
-    console.log(rrp);
-    console.log('RRP price', parseInt(rrp.PriceRRP, 10));
-    console.log('Variant price', getSelectedVariant().price);
-    console.log('>= ',parseInt(rrp.PriceRRP, 10) >= getSelectedVariant().price);
-    if(rrp.modelcode == variantModelCode && parseInt(rrp.PriceRRP, 10) >= getSelectedVariant().price) {
+    if(rrp.modelcode == variantModelCode && parseInt(rrp.PriceRRP, 10) >= product.price) {
       const price = formatPriceSingle(rrp.PriceRRP);
-      $('#product-rrp-price').text(`RRP* ${price}`);
+      $('#product-rrp-price').text(`RRP*: ${price}`);
       $('#product-rrp-price').css('display', 'block');
+        $('[data-toggle="tooltip"]').tooltip();
       rrpFound = true;
       break;
     }
@@ -231,6 +228,8 @@ const init = async () => {
 init()
   .then(() => {
     displayRRPPrices(state.getState().color);
+    $('[data-toggle="tooltip"]').tooltip();
     return console.log('Product page initialized.');
+
   })
   .catch(error => console.error(error));

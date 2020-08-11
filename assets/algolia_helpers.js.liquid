@@ -331,14 +331,14 @@
         return el.modelcode == this.option3;
       });
 
-      var rrpPriceTemplate = [
-        '<div class="rrp-price">',
-          '<span>',
-            (rrp_prices || ''),
-          '</span>',
-      ]
-      return `<div class="rrp-price">RRP: <span>${rrp_to_show.PriceRRP || ''}</span></div>`
-    },
+      console.log('RRP TO SHOW +==================', rrp_to_show.PriceRRP);
+      if (rrp_to_show.PriceRRP < this.price) {
+        return ''; 
+      }
+
+     
+      return `<div class="rrp-price" data-toggle="tooltip" data-placement="top" title="Recommended Retail Price: Based on a review of the equivalent product market price.">RRP*: <span> ${rrp_to_show.PriceRRP}</span>`;
+    }
   };
 
   _.forEach(['pico', 'icon', 'thumb', 'small', 'compact', 'medium', 'large', 'grande', 'original'], function (size) {
