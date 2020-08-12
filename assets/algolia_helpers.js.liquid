@@ -326,18 +326,17 @@
       }
 
       var rrp_prices = JSON.parse(this.meta.global.model_RRPprices);    
-      console.log('RRP_PRICES: ', rrp_prices);
       const rrp_to_show = rrp_prices['rrp_prices'].find(el => {
         return el.modelcode == this.option3;
       });
 
-      console.log('RRP TO SHOW +==================', rrp_to_show.PriceRRP);
       if (rrp_to_show.PriceRRP < this.price) {
         return ''; 
       }
 
-     
-      return `<div class="rrp-price" data-toggle="tooltip" data-placement="top" title="Recommended Retail Price: Based on a review of the equivalent product market price.">RRP*: <span> ${rrp_to_show.PriceRRP}</span>`;
+      const rrp = (parseInt(rrp_to_show.PriceRRP, 10) / 100).toFixed(2);
+
+      return `<div class="rrp-price" data-toggle="tooltip" data-placement="top" title="Recommended Retail Price: Based on a review of the equivalent product market price.">RRP*: <span> ${rrp}</span>`;
     }
   };
 

@@ -24,7 +24,7 @@ import { getSelectedVariant, getVariantOptions, getModelCodeFromVariant, variant
 import * as stickyNav from './sticky-nav';
 import * as recentlyViewed from './recently-viewed';
 import * as faqs from './faqs';
-import { formatPriceSingle } from './../utilities/price-format';
+import { formatPriceSingle, convertToDecimal } from './../utilities/price-format';
 
 // Removed for AU
 // import * as storePickup from './fulfillment-options';
@@ -178,7 +178,7 @@ const displayRRPPrices = function(color) {
   let rrpFound = false;
   for(const rrp of metafields.rrp_prices) {
     if(rrp.modelcode == variantModelCode && parseInt(rrp.PriceRRP, 10) >= product.price) {
-      const price = formatPriceSingle(rrp.PriceRRP);
+      const price = convertToDecimal(rrp.PriceRRP);
       $('#product-rrp-price').text(`RRP*: ${price}`);
       $('#product-rrp-price').css('display', 'block');
         $('[data-toggle="tooltip"]').tooltip();
