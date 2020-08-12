@@ -3300,6 +3300,15 @@ body.is-shortNav .header-cartWrapper:before { height: 45px; }
 
 } // closing media query
 
+$header-height: 58px;
+$subheader-height: 48px;
+.de-PageWrap-main {
+  padding-top: $header-height;
+  @media screen and (min-width : 60em) {
+    padding-top: calc(#{$header-height} + #{$subheader-height});
+  }
+}
+
 /* Homepage Hero */
 .template-index {
     .de-PageWrap-main {
@@ -3331,10 +3340,6 @@ body.is-shortNav .header-cartWrapper:before { height: 45px; }
 			}
 		}
 	}
-
-    .de-PageWrap-main {
-        padding-top: 0;
-    }
 
     .blue-band--footer {
         bottom: 0;

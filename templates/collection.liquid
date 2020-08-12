@@ -60,7 +60,7 @@
       <h2 class="de-u-textBold de-u-textCapitalize de-u-textGrow de-u-spaceBottom06">{{ collection.title }}</h2>
       <hr class="de-blue-hr de-u-bgBlue de-u-spaceNone">
 </div>
-<div class="wrapper{% if collection.image %} wrapper--collectionWithBanner u-paddingTopBottom4x{% else %} u-marginBottom4x{% endif %}{% if settings.use_algolia %} algolia-wrapper{% endif %}">
+<div class="wrapper u-marginTop1x{% if collection.image %} wrapper--collectionWithBanner u-paddingTopBottom4x{% else %} u-marginBottom4x{% endif %}{% if settings.use_algolia %} algolia-wrapper{% endif %}">
     <div class="medium-down--hide">
     {% unless collection.image %}
 		{% include 'create-breadcrumbs' %}

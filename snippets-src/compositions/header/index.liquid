@@ -1,4 +1,14 @@
-<!-- snippets-src/compositions/header/index.liquid -->
+<div class="de-PageWrap-menu de-PageWrap-narrowMenu" data-de-page-wrap-action="closeMenu">
+	<nav class="de-PageWrap-narrowMenuInner" id="demo-side" data-de-page-wrap-cancel="" aria-hidden="false">
+	  {% include 'compositions-header-nav-narrow' %}
+	</nav>
+</div>
+
+{% if settings.enable_meet_decathlon == true %}
+<div class="de-PageWrap-menu de-PageWrap-wideMenu de-PageWrap-psnMeetDecathlon" data-de-page-wrap-action="closeMenu">
+  {% render 'compositions-header-nav-wide-meet-decathlon' %}
+</div>
+{% endif %}
 
 <header class="de-PageWrap-header js-de-PageWrap-header">
   <div class="de-PageWrap-headerPrimary">
@@ -34,33 +44,6 @@
           class: 'de-PageWrap-logoImage' %}
       {% endif %}
     </div>
-    <div class="de-PageWrap-wideMenuControl">
-      <div class="de-MenuBar">
-        <button
-          class="de-MenuBar-action de-u-textGrow1"
-          id="data-MenuBar-Wide"
-          data-gtm-event="customer-interaction"
-          data-gtm-id="Shop"
-          data-gtm-category="Header"
-          data-de-page-wrap-action="toggleMenu"
-          data-de-page-wrap-target="demo-mega"
-          data-de-page-wrap-hover="true">
-          <span class="de-MenuBar-label">Shop</span>
-        </button>
-        {% if settings.enable_meet_decathlon == true %}
-          <button
-            class="de-MenuBar-action de-u-textGrow1"
-            data-gtm-event="customer-interaction"
-            data-gtm-id="Meet Decathlon"
-            data-gtm-category="Header"
-            data-de-page-wrap-action="toggleMenu"
-            data-de-page-wrap-target="meet-decathlon"
-            data-de-page-wrap-hover="true">
-            <span class="de-MenuBar-label">{{ linklists["meet-decathlon"].title }}</span>
-          </button>
-        {% endif %}
-      </div>
-    </div>
   </div>
   <nav class="de-PageWrap-headerSecondary">
     <ul class="de-MenuBar">
@@ -76,6 +59,20 @@
           {% include 'patterns-icons-search'
               with class: 'de-MenuBar-icon' %}
         </button>
+      </li>
+      <li class="de-u-hidden de-u-lg-block">
+        {% if settings.enable_meet_decathlon == true %}
+          <button
+            class="de-MenuBar-action de-u-textGrow1"
+            data-gtm-event="customer-interaction"
+            data-gtm-id="Meet Decathlon"
+            data-gtm-category="Header"
+            data-de-page-wrap-action="toggleMenu"
+            data-de-page-wrap-target="meet-decathlon"
+            data-de-page-wrap-hover="true">
+            <span class="de-MenuBar-label">{{ linklists["meet-decathlon"].title }}</span>
+          </button>
+        {% endif %}
       </li>
       <li class='de-u-hidden de-u-sm-block'>
         {% include 'compositions-header-support' %}
@@ -114,18 +111,9 @@
       </button>
     </form>
   </div>
-</div>
 </header>
-<div class="de-PageWrap-narrowMenu" data-de-page-wrap-action="closeMenu">
-	<nav class="de-PageWrap-narrowMenuInner" id="demo-side" data-de-page-wrap-cancel="" aria-hidden="false">
-	  {% include 'compositions-header-nav-narrow' %}
-	</nav>
-</div>
-<div class="de-PageWrap-wideMenu"
-  data-de-page-wrap-action="closeMenu">
-  {% include 'compositions-header-nav-wide' %}
-</div>
-<!-- End snippets-src/compositions/header/index.liquid -->
+
+{% include 'compositions-header-nav-wide' %}
 
 <script>
   let opened = false;

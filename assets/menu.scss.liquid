@@ -7,4 +7,54 @@
   .de-MenuBar-icon {
     margin-right: 0;
   }
+
+  &:focus,
+  &:hover {
+    color: #0082C3;
+  }
+
+  &:hover:after {
+    display: block;
+  }
+}
+
+.de-PageWrap-subHeader .de-MenuBar-list {
+  height: 100%;
+
+  .de-MenuBar-action {
+    height: auto;
+    padding: 5px 20px;
+
+    &:after {
+      left: 20px;
+      right: 20px;
+    }
+  }
+
+  .de-MenuBar-listItem {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:first-of-type {
+      .de-MenuBar-action {
+        padding-left: 12.256px;
+
+        &:after {
+          left: 12.256px;
+        }
+      }
+    }
+
+    &:not(:last-of-type) {
+      .de-MenuBar-action {
+        border-right: 1px solid #d5d9db;
+      }
+    }
+  }
+}
+
+.de-PageWrap-header, .de-PageWrap-subHeader {
+  position: fixed !important;
 }
