@@ -320,6 +320,8 @@
     },
     getRRPPrices: function getRRPPrices() {
       console.log('rrp_price Called!');
+      $('[data-toggle="tooltip"]').tooltip();
+
       if (!this || !this.meta || !this.meta.global || !this.meta.global.model_RRPprices) {
         console.log('no RRP!');
         return '';
@@ -336,7 +338,10 @@
 
       const rrp = (parseInt(rrp_to_show.PriceRRP, 10) / 100).toFixed(2);
 
-      return `<div class="rrp-price" data-toggle="tooltip" data-placement="top" title="Recommended Retail Price: Based on a review of the equivalent product market price.">RRP*: <span> ${rrp}</span>`;
+      return `<div class="rrp-price" style="width: fit-content;" data-toggle="tooltip" data-placement="top" title="Recommended Retail Price: Based on a review of the equivalent product market price.">RRP*: <span> ${rrp}</span>`;
+    },
+    setupTooltip: function setupTooltip() {
+      $('[data-toggle="tooltip"]').tooltip();
     }
   };
 
@@ -367,4 +372,12 @@
     };
     return res;
   }, {});
+  
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+  });
+
+  $(document).ready(function() {
+    $('[data-toggle="tooltip"]').tooltip();
+  });
 }(algoliaShopify));
