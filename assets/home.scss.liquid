@@ -3300,12 +3300,15 @@ body.is-shortNav .header-cartWrapper:before { height: 45px; }
 
 } // closing media query
 
-$header-height: 58px;
+$header-height-desktop: 58px;
 $subheader-height: 48px;
 .de-PageWrap-main {
-  padding-top: $header-height;
-  @media screen and (min-width : 60em) {
-    padding-top: calc(#{$header-height} + #{$subheader-height});
+  padding-top: 46px;
+  @media screen and (min-width: 40em) {
+    padding-top: $header-height-desktop;
+  }
+  @media screen and (min-width: 60em) {
+    padding-top: calc(#{$header-height-desktop} + #{$subheader-height});
   }
 }
 
