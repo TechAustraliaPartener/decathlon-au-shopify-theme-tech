@@ -173,7 +173,12 @@ const displayRRPPrices = function(color) {
   
   const variantModelCode = getModelCodeFromVariant(variant);
   const metafields = window.vars.rrpMetafields;
-  const product = window.vars.productJSON;;
+  const product = window.vars.productJSON;
+
+  if(!metafields || !metafields.rrp_prices) {
+    $('#product-rrp-price').css('display', 'none');
+    return;
+  }
 
   let rrpFound = false;
   for(const rrp of metafields.rrp_prices) {
@@ -181,7 +186,6 @@ const displayRRPPrices = function(color) {
       const price = convertToDecimal(rrp.PriceRRP);
       $('#product-rrp-price').text(`RRP*: ${price}`);
       $('#product-rrp-price').css('display', 'block');
-        $('[data-toggle="tooltip"]').tooltip();
       rrpFound = true;
       break;
     }
@@ -228,7 +232,6 @@ const init = async () => {
 init()
   .then(() => {
     displayRRPPrices(state.getState().color);
-    $('[data-toggle="tooltip"]').tooltip();
     return console.log('Product page initialized.');
 
   })

@@ -4,13 +4,9 @@
 
   <span class="js-de-PriceLabel">
   </span>
-  <span class="js-de-PriceAmount">
+  <span class="js-de-PriceAmount position--relative">
     <span id="product-rrp-price"
-      
-      class="rrp-price js-de-PriceAmount" 
-      data-toggle="tooltip" 
-      data-placement="top" 
-      title="Recommended Retail Price: Based on a review of the equivalent product's market price."
+      class="rrp-price js-de-PriceAmount de-rrp-tooltipOpener" 
     >
 
     {% assign rrp_splitted1 = rrp_meta | split: "}, {" %}
@@ -33,11 +29,9 @@
       {% endif %}
     {% endfor %}
     </span>
+
+    <div class="de-rrp-tooltip {% if tooltip_top %}de-rrp-tooltip--top{% endif %}">
+      Recommended Retail Price: Based on a review of the equivalent product's market price.
+    </div>
   </span>
 </span>
-
-<script>
-  $(function () {
-    $('[data-toggle="tooltip"]').tooltip();
-  })
-</script>
