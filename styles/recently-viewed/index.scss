@@ -3,6 +3,7 @@
 
   width: 100%;
   padding-left: 16px;
+  float: left;
 
   @media (min-width: 800px) {
     width: calc(100% - 320px);
