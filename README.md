@@ -6,7 +6,7 @@
 
 First, clone the repo.
 
-Then, check out `master_au`.
+`master` is used for code from the US region, so check out `master_au`. 
 
 Then, run `npm i`.
 
