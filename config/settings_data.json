@@ -1161,19 +1161,6 @@
               "button_url": "shopify:\/\/collections\/indoor-sport-activities"
             }
           },
-          "1584329073675": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_13_-min_2a8357cc-6a69-4467-bf94-9d9f2338e569.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": "<br> Up to 80% Off",
-              "banner_subtitle": "<p><strong>Limited Offer<\/strong><\/p>",
-              "button_new_window": false,
-              "button_title": "SHOP NOW",
-              "button_url": "shopify:\/\/collections\/all-sale-products"
-            }
-          },
           "1584424981258": {
             "type": "slide",
             "settings": {
@@ -1185,6 +1172,19 @@
               "button_new_window": false,
               "button_title": "Shop now",
               "button_url": "https:\/\/decathlon.com.au\/search?q=jacket"
+            }
+          },
+          "1584329073675": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_1_-min_aa376ebc-95fc-4da6-8ca5-55cd5053174e.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "<br>Ping Pong At Home",
+              "banner_subtitle": "<p><strong>Table Tennis Tables, Balls &amp; Racquets<\/strong><\/p>",
+              "button_new_window": false,
+              "button_title": "SHOP NOW",
+              "button_url": "shopify:\/\/collections\/table-tennis"
             }
           }
         },
@@ -1234,8 +1234,8 @@
     },
     "content_for_index": [
       "1568939434006",
-      "1590735691745",
-      "1597283878337"
+      "1597283878337",
+      "1590735691745"
     ]
   },
   "presets": {
