@@ -184,7 +184,7 @@ const displayRRPPrices = function(color) {
   for(const rrp of metafields.rrp_prices) {
     if(rrp.modelcode == variantModelCode && parseInt(rrp.PriceRRP, 10) >= product.price) {
       const price = convertToDecimal(rrp.PriceRRP);
-      $('#product-rrp-price').text(`RRP*: ${price}`);
+      $('#product-rrp-price').text(`RRP*: $${price}`);
       $('#product-rrp-price').css('display', 'block');
       rrpFound = true;
       break;

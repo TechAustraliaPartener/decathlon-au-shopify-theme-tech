@@ -25,7 +25,7 @@
 
         {% assign rrp_price = item_rrp_price | remove: '"' | remove: '}' | remove: ']' %}
 
-        RRP*: {{rrp_price | money_without_currency}}
+        RRP*: ${{ rrp_price | money_without_currency }}
       {% endif %}
     {% endfor %}
     </span>

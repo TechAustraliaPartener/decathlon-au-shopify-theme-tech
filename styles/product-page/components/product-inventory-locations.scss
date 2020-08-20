@@ -326,3 +326,18 @@
     color: #0082c3;
   }
 }
+
+.de-rrp-tooltip--top {
+  bottom: 25px;
+  left: 0;
+  top: unset;
+
+  &::after {
+    border-right: solid 1px #ccc;
+    border-top: solid 1px #ccc;
+    border-left: none;
+    border-bottom: none;
+    bottom: -6px;
+    top: unset;
+  }
+}
