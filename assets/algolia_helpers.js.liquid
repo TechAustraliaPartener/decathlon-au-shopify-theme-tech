@@ -337,7 +337,7 @@
 
       const rrp = (parseInt(rrp_to_show.PriceRRP, 10) / 100).toFixed(2);
 
-      return `<div class="rrp-price de-rrp-tooltipOpener" style="width: fit-content;" >RRP*: <span> ${rrp}</span></div>
+      return `<div class="rrp-price de-rrp-tooltipOpener" style="width: fit-content;" >RRP*: <span> ${'$' + rrp}</span></div>
       <div class="de-rrp-tooltip de-rrp-tooltip--top de-rrp-tooltip--after-no" style="bottom: -50px;">Recommended Retail Price: Based on a review of the equivalent product's market price.</div>`;
     }
   };

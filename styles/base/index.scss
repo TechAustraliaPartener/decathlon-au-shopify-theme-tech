@@ -7,7 +7,7 @@
 }
 
 .rrp-price {
-  color: e53322;
+  color: #e53322;
 }
 
 .de-rrp-tooltip {
@@ -48,6 +48,7 @@
 }
 
 .de-rrp-tooltipOpener {
+  color: #e53322;
   cursor: pointer;
   &:hover ~ .de-rrp-tooltip {
     display: block;
