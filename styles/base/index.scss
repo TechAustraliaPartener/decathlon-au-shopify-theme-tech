@@ -7,9 +7,7 @@
 }
 
 .rrp-price {
-  color: red;
-  text-decoration: underline;
-  text-decoration-style: dotted;
+  color: e53322;
 }
 
 .de-rrp-tooltip {
@@ -51,8 +49,6 @@
 
 .de-rrp-tooltipOpener {
   cursor: pointer;
-  text-decoration: underline;
-  text-decoration-style: dotted;
   &:hover ~ .de-rrp-tooltip {
     display: block;
   }

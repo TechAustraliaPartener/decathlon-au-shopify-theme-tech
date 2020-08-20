@@ -31,9 +31,15 @@
   }
 }
 
-
 .rrp-price {
-  color: red;
-  text-decoration: underline;
-  text-decoration-style: dotted;
+  color: #e53322;
+}
+
+
+.de-ProductPrice {
+  justify-content: space-between;
+
+  @media (min-width: $breakpoint-lg) {
+    justify-content: unset;
+  }
 }
