@@ -2,6 +2,7 @@
 // @ts-check
 
 import './buybox';
+import $ from 'jquery';
 import * as carousel from './carousel';
 import * as carouselContext from './carousel-context';
 import * as collapse from './collapse';
@@ -175,24 +176,23 @@ const displayRRPPrices = function(color) {
   const metafields = window.vars.rrpMetafields;
   const product = window.vars.productJSON;
 
+  const productPriceEl = $('#product-rrp-price');
+
   if(!metafields || !metafields.rrp_prices) {
-    $('#product-rrp-price').css('display', 'none');
+    productPriceEl.hide();
     return;
   }
 
-  let rrpFound = false;
-  for(const rrp of metafields.rrp_prices) {
-    if(rrp.modelcode == variantModelCode && parseInt(rrp.PriceRRP, 10) >= product.price) {
-      const price = convertToDecimal(rrp.PriceRRP);
-      $('#product-rrp-price').text(`RRP*: $${price}`);
-      $('#product-rrp-price').css('display', 'block');
-      rrpFound = true;
-      break;
-    }
-  }
-  if(!rrpFound) {
-    $('#product-rrp-price').css('display', 'none');
-  }
+  const rrpPriceObj = metafields.rrp_prices.find(rrp => rrp.modelcode === variantModelCode);
+  console.log(rrpPriceObj);
+  const rrpPriceData = rrpPriceObj && rrpPriceObj.PriceRRP ? parseInt(rrpPriceObj.PriceRRP, 10) : false;
+  const rrpPrice = rrpPriceData > product.price ?  (rrpPriceData / 100).toFixed(2) : false;
+
+  rrpPrice ? function() {
+    productPriceEl.text(`RRP*: ${'$' + rrpPrice}`);
+    productPriceEl.show();
+  }() : productPriceEl.hide();
+
 }
 
 /**
