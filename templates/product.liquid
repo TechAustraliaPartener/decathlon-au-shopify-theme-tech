@@ -1,3 +1,4 @@
+{% render 'shogun-products', content: product %}
 {% include 'js-gtm-datalayer-product-stock' %}
 {% include 'shogun-products', content: product %}
 {{product.metafields.shogun.above}}
@@ -18,3 +19,4 @@
 
 {%- assign price_valid_until = 'now' | date: '%s' | plus: 31536000 | date: '%Y-%m-%d' -%}
 {% include 'js-json_ld_product' %}
+

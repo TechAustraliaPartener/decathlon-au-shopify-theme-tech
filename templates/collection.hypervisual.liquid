@@ -1,3 +1,5 @@
+{% render 'shogun-products', content: collection %}
+{{collection.metafields.shogun.above}}
 {% comment %}Preserve collection in true_collection for use later{% endcomment %}
 {% assign true_collection = collection %}
 
@@ -91,3 +93,7 @@
 <script defer nomodule src="{{ 'built-product-tile-legacy.js' | asset_url }}"></script>
 <script type="module" src="{{ 'built-product-carousel.js' | asset_url }}"></script>
 <script defer nomodule src="{{ 'built-product-carousel-legacy.js' | asset_url }}"></script>
+
+
+{{collection.metafields.shogun.below}}
+
