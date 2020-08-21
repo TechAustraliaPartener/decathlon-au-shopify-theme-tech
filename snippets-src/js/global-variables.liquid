@@ -52,6 +52,10 @@
       threshold: Number({{settings.threshold_for_zip_pay_threshold}})
     } 
   };
+  window.vars.freeShippingSettings = {
+    minPrice: {{ settings.free_shipping_threshold }},
+    maxWeight: {{ settings.free_shipping_max_weight }}
+  }
 </script>
 
 {% include 'js-algolia-custom-widgets' %}

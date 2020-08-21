@@ -305,14 +305,14 @@
 
     },
     getShippingInfo: function getShippingInfo() {
-      console.log(this);
       var price = this.price;
       var weight = this.grams;
+      var freeShippingSettings = window.vars.freeShippingSettings;
 
-      if(price >= 90 && weight <= 5000) {
+      if(price >= freeShippingSettings.minPrice && weight <= freeShippingSettings.maxWeight) {
         return `<div class="product-tile-shipping-info">Free Shipping</div>`
       } else {
-        return `<div class="product-tile-shipping-info">Free shipping above $90*</div>`
+        return `<div class="product-tile-shipping-info">Free shipping above ${ '$' + freeShippingSettings.minPrice }*</div>`
       }
     },
     getClickAndCollectInfo: function getClickAndCollectInfo() {
