@@ -2193,5 +2193,24 @@
         "info": "The message to be shown during checkout if the threshold is not met for the cart total. This accept variables, [gateway] and [threshold]. E.G: \"[gateway] is available on orders over [threshold]\"."
       }
     ]
+  },
+  {
+    "name": "Free Shipping Info",
+    "settings": [
+      {
+        "id": "free_shipping_threshold",
+        "type": "text",
+        "label": "Min Price in $",
+        "info": "Products greater than or equal to this price will be shown as getting free shipping.",
+        "default": "90"
+      },
+      {
+        "id": "free_shipping_max_weight",
+        "type": "text",
+        "label": "Max Weight in grams",
+        "info": "Products lighter than or equal to this weight will be shown as getting free shipping.",
+        "default": "5000"
+      }
+    ]
   }
 ]
