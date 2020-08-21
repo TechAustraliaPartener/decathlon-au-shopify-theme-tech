@@ -2208,7 +2208,7 @@
         "id": "free_shipping_max_weight",
         "type": "text",
         "label": "Max Weight in grams",
-        "info": "Products lighter than or equal to this weight will be shown as getting free shipping.",
+        "info": "Products lighter than this weight will be shown as getting free shipping.",
         "default": "5000"
       }
     ]

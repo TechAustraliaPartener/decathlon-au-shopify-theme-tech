@@ -117,14 +117,15 @@
     {% comment %}
       Shipping Info
     {% endcomment %}
-    {% if product.price >= 9000 %}
-      {% if product.first_available_variant.weight <= 5000 %}
-        <div class="product-tile-shipping-info">Free Shipping</div>
-      {% else %}
-        <div class="product-tile-shipping-info">Free shipping above $90*</div>
-      {% endif %}
+    
+    {% assign fs_min_price = settings.free_shipping_threshold | abs | times: 100 %}
+    {% assign fs_max_weight = settings.free_shipping_max_weight | abs %}
+    {% assign v = product.selected_or_first_available_variant %}
+
+    {% if product.price >= fs_min_price and v.weight <= fs_max_weight %}
+       <div class="product-tile-shipping-info">Free Shipping</div>
     {% else %}
-      <div class="product-tile-shipping-info">Free shipping above $90*</div>
+      <div class="product-tile-shipping-info">Free shipping above ${{ settings.free_shipping_threshold }}*</div>
     {% endif %}
 
     {% comment %}
