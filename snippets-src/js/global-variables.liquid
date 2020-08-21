@@ -55,7 +55,14 @@
   window.vars.freeShippingSettings = {
     minPrice: {{ settings.free_shipping_threshold }},
     maxWeight: {{ settings.free_shipping_max_weight }}
-  }
+  };
+  window.vars.translations = {
+    products: {
+      general: {
+        rrp_price_info: '{{ 'products.general.rrp_price_info' | t }}'
+      }
+    }
+  };
 </script>
 
 {% include 'js-algolia-custom-widgets' %}
