@@ -19,3 +19,13 @@
     right: auto;
   }
 }
+
+.grey-divider {
+  border-top: 1px solid #e5e5e5;
+  margin-right: 15px;
+  padding-top: 30px;
+
+  @media (min-width: 800px) {
+    margin-right: 30px;
+  }
+}
