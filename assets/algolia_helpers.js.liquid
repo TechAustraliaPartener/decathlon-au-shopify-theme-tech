@@ -310,13 +310,13 @@
       var freeShippingSettings = window.vars.freeShippingSettings;
 
       if(price >= freeShippingSettings.minPrice && weight <= freeShippingSettings.maxWeight) {
-        return `<div class="product-tile-shipping-info">Free Shipping</div>`
+        return `<div class="product-tile-shipping-info de-u-textShrink1 de-u-textMedium">Free Shipping</div>`
       } else {
-        return `<div class="product-tile-shipping-info">Free shipping above ${ '$' + freeShippingSettings.minPrice }*</div>`
+        return `<div class="product-tile-shipping-info de-u-textShrink1 de-u-textMedium">Free shipping above ${ '$' + freeShippingSettings.minPrice }*</div>`
       }
     },
     getClickAndCollectInfo: function getClickAndCollectInfo() {
-      return `<div class="product-tile-shipping-info">Free Click & Collect</div>`
+      return `<div class="product-tile-shipping-info de-u-textShrink1 de-u-textMedium">Free Click & Collect</div>`
     },
     getRRPPrices: function getRRPPrices() {
       console.log('rrp_price Called!');
