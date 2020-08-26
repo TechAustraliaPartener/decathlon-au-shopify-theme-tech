@@ -335,7 +335,7 @@
             "settings": {
               "name": "Tempe",
               "title": "Tempe Store, 2044",
-              "online_inventory_source": false,
+              "online_inventory_source": true,
               "enable_c_c": true,
               "duplicate": "",
               "test_mode": false,
@@ -487,17 +487,17 @@
               "is_same_hours_weekly": false,
               "hours_0_open": 0,
               "hours_0_close": 0,
-              "hours_1_open": 10,
+              "hours_1_open": 9,
               "hours_1_close": 18,
-              "hours_2_open": 10,
+              "hours_2_open": 9,
               "hours_2_close": 18,
-              "hours_3_open": 10,
+              "hours_3_open": 9,
               "hours_3_close": 18,
-              "hours_4_open": 10,
+              "hours_4_open": 9,
               "hours_4_close": 18,
-              "hours_5_open": 10,
+              "hours_5_open": 9,
               "hours_5_close": 18,
-              "hours_6_open": 9,
+              "hours_6_open": 8,
               "hours_6_close": 18,
               "announcement": "<p>Due to Stage 4 restrictions in VIC in-store shopping is not available.&nbsp;<\/p>",
               "address_type_boolean": true,
@@ -688,9 +688,9 @@
               "name": "St Kilda C&C (3182)",
               "title": "St Kilda, 3182, Pick Up Only",
               "online_inventory_source": false,
-              "enable_c_c": true,
+              "enable_c_c": false,
               "duplicate": "Knoxfield",
-              "test_mode": false,
+              "test_mode": true,
               "street1": "350 Beaconsfield Parade",
               "city": "St Kilda",
               "zip": "3182",
@@ -993,41 +993,41 @@
           "1585864291426": {
             "type": "store",
             "settings": {
-              "name": "Malabar (2036)",
-              "title": "Malabar, 2036,Pick Up Only",
+              "name": "Berwick (3806)",
+              "title": "Berwick, 3806, Pick Up Only",
               "online_inventory_source": false,
               "enable_c_c": true,
-              "duplicate": "Tempe",
-              "test_mode": true,
-              "street1": "15 Bilga Crescent",
-              "city": "Malabar",
-              "zip": "2036",
-              "state": "NSW",
+              "duplicate": "Knoxfield",
+              "test_mode": false,
+              "street1": "29-31 High Street",
+              "city": "Berwick",
+              "zip": "3806",
+              "state": "VIC",
               "country": "AU",
-              "checkout_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_56.jpg",
+              "checkout_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_4_-min.jpg",
               "email": "customer.service@decathlon.com",
               "phone_number": "(02) 9157 5799",
               "company": "Decathlon",
-              "ready": "Collect Tomorrow between 7 pm and 9 pm",
-              "ready_checkout": "Collect Tomorrow between 7 pm and 9 pm",
-              "id": "1789-0005",
-              "tooltip_hours": false,
-              "is_same_hours_weekly": true,
-              "hours_0_open": 19,
-              "hours_0_close": 21,
-              "hours_1_open": 9,
-              "hours_1_close": 21,
-              "hours_2_open": 9,
-              "hours_2_close": 21,
-              "hours_3_open": 9,
-              "hours_3_close": 21,
-              "hours_4_open": 9,
-              "hours_4_close": 21,
-              "hours_5_open": 9,
-              "hours_5_close": 21,
-              "hours_6_open": 9,
-              "hours_6_close": 21,
-              "announcement": "",
+              "ready": "Collect Next Monday, Wednesday or Friday afternoon",
+              "ready_checkout": "Collect Next Monday, Wednesday or Friday afternoon",
+              "id": "1793-0002",
+              "tooltip_hours": true,
+              "is_same_hours_weekly": false,
+              "hours_0_open": 7,
+              "hours_0_close": 11,
+              "hours_1_open": 7,
+              "hours_1_close": 17,
+              "hours_2_open": 7,
+              "hours_2_close": 17,
+              "hours_3_open": 7,
+              "hours_3_close": 17,
+              "hours_4_open": 7,
+              "hours_4_close": 17,
+              "hours_5_open": 7,
+              "hours_5_close": 17,
+              "hours_6_open": 7,
+              "hours_6_close": 16,
+              "announcement": "<p>Wait for your Ready To Pick Up Email.<\/p>",
               "address_type_boolean": true,
               "is_residential": false,
               "is_warehouse": false,
@@ -1148,6 +1148,19 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
+          "1584424981258": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_3_-min.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "Father's Day!",
+              "banner_subtitle": "<p><strong>Sporty Gift Ideas For Father's Day!<\/strong><\/p>",
+              "button_new_window": false,
+              "button_title": "Shop now",
+              "button_url": "shopify:\/\/collections\/gift-ideas-fathers-day"
+            }
+          },
           "1589172506799": {
             "type": "slide",
             "settings": {
@@ -1161,36 +1174,23 @@
               "button_url": "shopify:\/\/collections\/indoor-sport-activities"
             }
           },
-          "1584424981258": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/DecathlonAU_Website_Banner_152020_SA_01-May-2020_1440x790_V1-min.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": "Layer Up!",
-              "banner_subtitle": "<p><strong>Down Jackets, Jackets &amp; Windbreaker<\/strong><\/p>",
-              "button_new_window": false,
-              "button_title": "Shop now",
-              "button_url": "https:\/\/decathlon.com.au\/search?q=jacket"
-            }
-          },
           "1584329073675": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_1_-min_aa376ebc-95fc-4da6-8ca5-55cd5053174e.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/DecathlonAU_Homepage_-_Banner_SA_06-Jul-2020_1440x790_V1-min.jpg",
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
-              "banner_title": "<br>Ping Pong At Home",
-              "banner_subtitle": "<p><strong>Table Tennis Tables, Balls &amp; Racquets<\/strong><\/p>",
+              "banner_title": "<br>Kayaking",
+              "banner_subtitle": "<p><strong>Kayak, Paddles, Life Vests &amp; More<\/strong><\/p>",
               "button_new_window": false,
               "button_title": "SHOP NOW",
-              "button_url": "shopify:\/\/collections\/table-tennis"
+              "button_url": "https:\/\/decathlon.com.au\/search?q=kayak"
             }
           }
         },
         "block_order": [
-          "1589172506799",
           "1584424981258",
+          "1589172506799",
           "1584329073675"
         ],
         "settings": {}
@@ -1234,8 +1234,8 @@
     },
     "content_for_index": [
       "1568939434006",
-      "1597283878337",
-      "1590735691745"
+      "1590735691745",
+      "1597283878337"
     ]
   },
   "presets": {
