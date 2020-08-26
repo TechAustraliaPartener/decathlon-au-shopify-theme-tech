@@ -228,11 +228,13 @@ This file can be re-written at any time.
     {{ 'algolia_instant_search.js' | asset_url | script_tag }}
   <!-- /Algolia head -->
 
-  {% include 'shogun-head' %}
+  
   {% if settings.app_wk_enabled %}
   {% include 'appmate-wishlist-king' %}
   {% endif %}
 
+
+  {% render 'shogun-head' %}
 </head>
 
 
