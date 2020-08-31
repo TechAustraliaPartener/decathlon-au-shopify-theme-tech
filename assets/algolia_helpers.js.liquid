@@ -130,7 +130,7 @@
       if (this.named_tags && this.named_tags.Label) {
         var thisLabels = typeof this.named_tags.Label === 'object' ? [this.named_tags.Label] : this.named_tags.Label;
         thisLabels = Array.isArray(thisLabels) ? thisLabels : [thisLabels];
-        console.log(thisLabels);
+        //console.log(thisLabels);
 
         if (thisLabels.filter(function(e) { return e.replace('<span class="ais-highlight">', '').replace('</span>', '') === 'Clearance'; }).length > 0) {
           return '<div class="ais-hit--label clearance">Sale</div>';
@@ -258,7 +258,7 @@
 
       var returnName = nameParts[1];
 
-      console.log(window.vars.filterMapping, result.name, window.vars.filterMapping[result.name], nameParts[0], nameParts[1]);
+      //console.log(window.vars.filterMapping, result.name, window.vars.filterMapping[result.name], nameParts[0], nameParts[1]);
 
       if (result && result.name && window.vars.filterMapping && window.vars.filterMapping[result.name] && window.vars.filterMapping[result.name][nameParts[1]]) {
         returnName = window.vars.filterMapping[result.name][nameParts[1]];
@@ -319,14 +319,14 @@
       return `<div class="product-tile-shipping-info de-u-textShrink1 de-u-textMedium">Free Click & Collect</div>`
     },
     getRRPPrices: function getRRPPrices() {
-      console.log('rrp_price Called!');
+      //console.log('rrp_price Called!');
 
-      if (!this || !this.meta || !this.meta.global || !this.meta.global.model_RRPprices) {
-        console.log('no RRP!');
+      if (!this || !this.meta || !this.meta.global || !this.meta.global.model_RRPprices || !this.meta.global.model_RRPprices.rrp_prices) {
+        //console.log('no RRP!');
         return '';
       }
 
-      var rrp_prices = JSON.parse(this.meta.global.model_RRPprices);    
+      var rrp_prices = JSON.parse(this.meta.global.model_RRPprices);
       const rrp_to_show = rrp_prices['rrp_prices'].find(el => {
         return el.modelcode == this.option3;
       });

@@ -42,12 +42,12 @@
     "options.size": function sortSizes(a, b) {
       var userSizeOrderString = "{{ settings.algolia_size_sorting_order }}";
       var sizesSortOrder = userSizeOrderString.split(',');
-      console.log(userSizeOrderString, sizesSortOrder);
+      //console.log(userSizeOrderString, sizesSortOrder);
 
       var aInArray = (sizesSortOrder.indexOf(a.name) !== -1);
       var bInArray = (sizesSortOrder.indexOf(b.name) !== -1);
 
-      console.log(a.name, aInArray, b.name, bInArray);
+      //console.log(a.name, aInArray, b.name, bInArray);
 
       // In a custom sort function, return -1 to move 'a' up in the order, or 1 to move it down, relative to 'b'.
 
