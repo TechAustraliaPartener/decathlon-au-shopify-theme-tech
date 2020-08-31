@@ -319,19 +319,31 @@
       return `<div class="product-tile-shipping-info de-u-textShrink1 de-u-textMedium">Free Click & Collect</div>`
     },
     getRRPPrices: function getRRPPrices() {
-      //console.log('rrp_price Called!');
+      console.log('Checking RRP');
 
-      if (!this || !this.meta || !this.meta.global || !this.meta.global.model_RRPprices || !this.meta.global.model_RRPprices.rrp_prices) {
-        //console.log('no RRP!');
+      if (!this || !this.meta || !this.meta.global || !this.meta.global.model_RRPprices) {
+        console.log('No RRP', this.meta.global.model_RRPprices);
         return '';
       }
 
       var rrp_prices = JSON.parse(this.meta.global.model_RRPprices);
-      const rrp_to_show = rrp_prices['rrp_prices'].find(el => {
-        return el.modelcode == this.option3;
+
+      if (!rrp_prices.rrp_prices) {
+        console.log('No RRP', this.meta.global.model_RRPprices);
+        return '';
+      }
+
+      const rrp_to_show = rrp_prices['rrp_prices'].find(item => {
+        return item.modelcode == this.option3;
       });
 
+      if (!rrp_to_show || !rrp_to_show.PriceRRP) {
+        console.log('No RRP', this.meta.global.model_RRPprices);
+        return '';
+      }
+
       if (rrp_to_show.PriceRRP < this.price) {
+        console.log('No RRP', this.meta.global.model_RRPprices);
         return ''; 
       }
 
