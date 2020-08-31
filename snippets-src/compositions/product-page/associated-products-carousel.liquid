@@ -9,7 +9,7 @@
 
 {% assign associated_product_handles = associated_product_handles | remove_first: '|' | split: '|' %}
 
-{% if associated_product_handles.size > 0 %}
+{% if associated_product_handles.size > 2 %}
   <div class="trendingProducts associated-products-carousel-container">
     <h2 class="de-ProductInfoSection-title de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4 de-u-inlineBlock">
       Frequently Bought Together
@@ -19,7 +19,6 @@
       limit: 10,
       inventory_status: false,
       delivery_options: false,
-      slide_breakpoints_type: 'associated-products'
     %}
   </div>
 {% endif %}
