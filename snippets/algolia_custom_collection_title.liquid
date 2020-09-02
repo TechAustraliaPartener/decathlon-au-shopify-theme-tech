@@ -7,12 +7,3 @@
 </article>
 {% endcomment %}
 <h2 class="collection-title">{{ collection.title }}</h2>
-{% if collection.description !='' %}
-  <article class="collection-description">
-    <div class="description-content">
-      <div>{{ collection.description }}</div>
-    </div>
-    <a class="read-more-description" onclick="$('.collection-description').toggleClass('expanded');">Read more</a>
-    <a class="show-less-description" onclick="$('.collection-description').toggleClass('expanded');$('html, body').animate({ scrollTop: $('.wrapper').offset().top }, 300)">Show less</a>
-  </article>
-{% endif %}

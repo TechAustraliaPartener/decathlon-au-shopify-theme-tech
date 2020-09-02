@@ -302,9 +302,23 @@
       instant.search.addWidget({
         render(options) {
           var $block = $('.ais-block');
+          var $block2 = $('.blue-band--footer');
           if ($('.collection-description').length < 1) {
             $block.prepend(window.algolia_custom_widgets.description);
+            $(window.algolia_custom_widgets.description).wrap('<div class="custom-widget-wrap"/>').appendTo($block2);
           }
+        },
+      });
+    }
+
+    if (window.algolia_custom_widgets.title) {
+      instant.search.addWidget({
+        render(options) {
+          var $block = $('.ais-block');
+
+
+          $block.prepend(window.algolia_custom_widgets.title);
+
         },
       });
     }
@@ -579,26 +593,6 @@
     $hiding.remove();
   });
 
-
-  instant.search.addWidget(
-    instantsearch.widgets.hits({
-      templates: {
-        allItems({ userData }) {
-          if (userData) {
-            console.log('USER DATA' + userData);
-            const banners = userData.map(({ banner_img_slug }) => {
-              console.log(banner_img_slug);
-              return `<img src="https://preview.algolia.com/query-rules/${banner_img_slug}"/>`;
-            });
-            return banners.join('');
-          }
-          return '';
-        },
-      },
-      container: document.getElementById('banner'),
-    })
-  );
-
   instant.search.on('render', function () {
     var n = $('.ais-pagination--item__page').length;
     if (n <= 1) {
@@ -737,8 +731,4 @@
 
     lastScrollTop = st;
   }
-
-
-
-
 }(algoliaShopify, instantsearch));
