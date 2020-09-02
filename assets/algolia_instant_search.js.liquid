@@ -1,12 +1,12 @@
 (function (algolia, instantsearch) {
 
   var collectionPage =
-  !!algolia.is_collection_results_page &&
-  !!algolia.config.instant_search_enabled_on_collection;
+    !!algolia.is_collection_results_page &&
+    !!algolia.config.instant_search_enabled_on_collection;
 
   if (
-      (!algolia.full_results && !collectionPage) || !algolia.config.instant_search_enabled
-    ) {
+    (!algolia.full_results && !collectionPage) || !algolia.config.instant_search_enabled
+  ) {
     return;
   }
 
@@ -188,93 +188,93 @@
         var $button = $('.ais-facets-button');
         var $buttonDone = $('.ais-facets__done-button');
         var searchWasExpandedOnOpen = false;
-      
-          function toggleDrawer() {
-            var $facets = $('.ais-facets');
-  
-            if($('.ais-page').hasClass('ais-page--loaded')) {
-              
-              if ($facets.hasClass('ais-facets__shown')) {
-                $('html').css('overflow', 'visible');
-                $button.text('Show filters');
-                $button.appendTo('#ais-sort-filter');
-                $facets.removeClass('ais-facets__shown');
-                
-                // Start: Customisations
-                $('body').removeClass('ais-drawer-open');
-                $('.ais-facets-button--placeholder').remove();
 
-                $button.css('left', '0');
-                $button.removeClass('position-x');
+        function toggleDrawer() {
+          var $facets = $('.ais-facets');
 
-                $('html, body').animate({ scrollTop: 0 });
+          if ($('.ais-page').hasClass('ais-page--loaded')) {
 
-                if(searchWasExpandedOnOpen) {
-                  $('.de-Drawer-wrap .de-PageWrap-headerTertiaryControl .de-MenuBar-action').attr('aria-expanded', 'true');
-                  $('.de-Drawer-wrap').addClass('de-is-expanded');
-                  searchWasExpandedOnOpen = false;
-                }
+            if ($facets.hasClass('ais-facets__shown')) {
+              $('html').css('overflow', 'visible');
+              $button.text('Show filters');
+              $button.appendTo('#ais-sort-filter');
+              $facets.removeClass('ais-facets__shown');
 
-                // End: Customisations
-              } else {
-                $('html').css('overflow', 'hidden');
-                /* $button.text('Hide Filters'); */
-                $facets.addClass('ais-facets__shown');
-                $button.appendTo('.ais-facets__shown');
-                $('#ais-sort-filter').append('<div class="ais-facets-button--placeholder"></div>');
-    
-                // Start: Customisations
-                if($('.ais-facet__expand').length == 0 && $(window).width() < 750) {
-                  $('.ais-facets__group:not(.ais-facets__group--sort)')
-                    .append('<div class="ais-facet__expand"></div>')
-                    .find('.ais-header, .ais-facet__expand').on('click', function(evt) {
-                      var $facetGroup = $(evt.currentTarget).closest('.ais-facets__group');
-    
-                      if($facetGroup.hasClass('expanded')) {
-                        $facetGroup.removeClass('expanded');
-    
-                        var $body = $facetGroup.find('.ais-facet--body');
-                        $body.removeClass('expanded');
-                      } else {
-                        $facetGroup.addClass('expanded');
-    
-                        var $body = $facetGroup.find('.ais-facet--body');
-                        $body.addClass('expanded');
-                      }
-                    });
-                }
-                $('body').addClass('ais-drawer-open');
-                $button.css('left', '500px');
-                setTimeout(function() {
-                  $button.addClass('position-x');
-                  $button.css('left', '35px');
-                }, 1);
-                $button.text('Close');
-                if($('.de-Drawer-wrap .de-PageWrap-headerTertiaryControl .de-MenuBar-action').attr('aria-expanded') == 'true') {
-                  $('.de-Drawer-wrap .de-PageWrap-headerTertiaryControl .de-MenuBar-action').attr('aria-expanded', 'false');
-                  $('.de-Drawer-wrap').removeClass('de-is-expanded');
-                  searchWasExpandedOnOpen = true;
-                }
-                // End: Customisations
+              // Start: Customisations
+              $('body').removeClass('ais-drawer-open');
+              $('.ais-facets-button--placeholder').remove();
+
+              $button.css('left', '0');
+              $button.removeClass('position-x');
+
+              $('html, body').animate({ scrollTop: 0 });
+
+              if (searchWasExpandedOnOpen) {
+                $('.de-Drawer-wrap .de-PageWrap-headerTertiaryControl .de-MenuBar-action').attr('aria-expanded', 'true');
+                $('.de-Drawer-wrap').addClass('de-is-expanded');
+                searchWasExpandedOnOpen = false;
               }
+
+              // End: Customisations
+            } else {
+              $('html').css('overflow', 'hidden');
+              /* $button.text('Hide Filters'); */
+              $facets.addClass('ais-facets__shown');
+              $button.appendTo('.ais-facets__shown');
+              $('#ais-sort-filter').append('<div class="ais-facets-button--placeholder"></div>');
+
+              // Start: Customisations
+              if ($('.ais-facet__expand').length == 0 && $(window).width() < 750) {
+                $('.ais-facets__group:not(.ais-facets__group--sort)')
+                  .append('<div class="ais-facet__expand"></div>')
+                  .find('.ais-header, .ais-facet__expand').on('click', function (evt) {
+                    var $facetGroup = $(evt.currentTarget).closest('.ais-facets__group');
+
+                    if ($facetGroup.hasClass('expanded')) {
+                      $facetGroup.removeClass('expanded');
+
+                      var $body = $facetGroup.find('.ais-facet--body');
+                      $body.removeClass('expanded');
+                    } else {
+                      $facetGroup.addClass('expanded');
+
+                      var $body = $facetGroup.find('.ais-facet--body');
+                      $body.addClass('expanded');
+                    }
+                  });
+              }
+              $('body').addClass('ais-drawer-open');
+              $button.css('left', '500px');
+              setTimeout(function () {
+                $button.addClass('position-x');
+                $button.css('left', '35px');
+              }, 1);
+              $button.text('Close');
+              if ($('.de-Drawer-wrap .de-PageWrap-headerTertiaryControl .de-MenuBar-action').attr('aria-expanded') == 'true') {
+                $('.de-Drawer-wrap .de-PageWrap-headerTertiaryControl .de-MenuBar-action').attr('aria-expanded', 'false');
+                $('.de-Drawer-wrap').removeClass('de-is-expanded');
+                searchWasExpandedOnOpen = true;
+              }
+              // End: Customisations
             }
           }
-  
-          $button.on('click', function () {
-            toggleDrawer();
-          });
-  
-          // Additional event listener for 'Done' button
-          $buttonDone.on('click', function () {
-            toggleDrawer();
-          });
+        }
 
-          // Close drawer if user clicks outside of it
-          $('body').click(function (event) {
-            if($('.ais-facets').hasClass('ais-facets__shown') && !$(event.target).closest('.ais-facets').length && !$(event.target).is('.ais-facets')) {
-              toggleDrawer();
-            }     
-          });
+        $button.on('click', function () {
+          toggleDrawer();
+        });
+
+        // Additional event listener for 'Done' button
+        $buttonDone.on('click', function () {
+          toggleDrawer();
+        });
+
+        // Close drawer if user clicks outside of it
+        $('body').click(function (event) {
+          if ($('.ais-facets').hasClass('ais-facets__shown') && !$(event.target).closest('.ais-facets').length && !$(event.target).is('.ais-facets')) {
+            toggleDrawer();
+          }
+        });
       }
     });
 
@@ -405,7 +405,7 @@
           disjunctiveFacets: list
         };
       },
-      init: function () {}
+      init: function () { }
     });
 
     // Current refined values
@@ -473,9 +473,9 @@
       init: function (opts) {
         $('.ais-hits-container').on('click', '.ais-hit', function (e) {
           var $this = $(this),
-              handle = $this.attr('data-handle'),
-              variant_id = $this.attr('data-variant-id')
-              distinct = $this.attr('data-distinct');
+            handle = $this.attr('data-handle'),
+            variant_id = $this.attr('data-variant-id')
+          distinct = $this.attr('data-distinct');
 
           var link = '/products/' + handle;
           if (distinct !== 'true') {
@@ -501,7 +501,7 @@
         $('.ais-hits-container').on('click', '.ais-hit--cart-button', function (e) {
           e.stopPropagation();
           var $this = $(this),
-              formId = $this.attr('data-form-id');
+            formId = $this.attr('data-form-id');
 
           if (formId) {
             document.getElementById(formId).submit();
@@ -534,9 +534,9 @@
           $(evt.currentTarget).closest('.ais-facets').find('.ais-facets__group, .ais-facets__group .ais-body').removeClass('expanded');
 
         });
-        
-         // Sorting within the drawer menu closes the drawer menu
-         $('.ais-page').on('change', '.ais-facets__group--sort select', function(evt) {
+
+        // Sorting within the drawer menu closes the drawer menu
+        $('.ais-page').on('change', '.ais-facets__group--sort select', function (evt) {
 
           var $facets = $('.ais-facets');
           var $button = $('.ais-facets-button');
@@ -546,7 +546,7 @@
             $button.text('Show filters');
             $button.appendTo('#ais-sort-filter');
             $facets.removeClass('ais-facets__shown');
-            
+
             $('body').removeClass('ais-drawer-open');
             $('.ais-facets-button--placeholder').remove();
 
@@ -578,6 +578,26 @@
 
     $hiding.remove();
   });
+
+
+  instant.search.addWidget(
+    instantsearch.widgets.hits({
+      templates: {
+        allItems({ userData }) {
+          if (userData) {
+            console.log('USER DATA' + userData);
+            const banners = userData.map(({ banner_img_slug }) => {
+              console.log(banner_img_slug);
+              return `<img src="https://preview.algolia.com/query-rules/${banner_img_slug}"/>`;
+            });
+            return banners.join('');
+          }
+          return '';
+        },
+      },
+      container: document.getElementById('banner'),
+    })
+  );
 
   instant.search.on('render', function () {
     var n = $('.ais-pagination--item__page').length;
@@ -638,12 +658,12 @@
       }
     }
 
-    $('.ais-current-refined-values--item').each(function() {
+    $('.ais-current-refined-values--item').each(function () {
       var isColour = $(this).find('.ais-current-refined-values--label.Colour').length > 0;
       $(this).toggleClass('show', !isColour);
     });
-    
-    $('.ais-show-all').unbind('click').bind('click', function() {
+
+    $('.ais-show-all').unbind('click').bind('click', function () {
       var $facet = $(this).parents('.ais-facet');
       var $facetAccordion = $facet.find('.filter-accordion');
       $facetAccordion.toggleClass('expanded');
@@ -660,11 +680,11 @@
     */
   });
 
-  $(document).ready(function() {
+  $(document).ready(function () {
     checkScreenSize();
   });
 
-  $(window).resize(function() {
+  $(window).resize(function () {
     checkScreenSize();
   });
 
@@ -674,11 +694,11 @@
   var delta = 5;
   var navbarHeight = $('#ais-sort-filter').outerHeight();
 
-  $(window).scroll(function(event){
-      didScroll = true;
+  $(window).scroll(function (event) {
+    didScroll = true;
   });
 
-  setInterval(function() {
+  setInterval(function () {
     if (didScroll) {
       hasScrolled();
       didScroll = false;
@@ -687,7 +707,7 @@
 
   function checkScreenSize() {
     var windowWidth = $(window).width();
-    if( windowWidth < 800 ){
+    if (windowWidth < 800) {
       $('.de-PageWrap-main').addClass('sticky-sort-filter');
       $('#ais-sort-filter').addClass('sticky-active');
     } else {
@@ -700,21 +720,25 @@
     var st = $(this).scrollTop();
 
     // Make sure they scroll more than delta
-    if(Math.abs(lastScrollTop - st) <= delta)
+    if (Math.abs(lastScrollTop - st) <= delta)
       return;
 
     // If they scrolled down and are past the navbar, add class .nav-up.
     // This is necessary so you never see what is "behind" the navbar.
-    if (st > lastScrollTop && st > navbarHeight){
+    if (st > lastScrollTop && st > navbarHeight) {
       // Scroll Down
       $('#ais-sort-filter.sticky-active').removeClass('nav-down').addClass('nav-up');
     } else {
       // Scroll Up
-      if(st + $(window).height() < $(document).height()) {
+      if (st + $(window).height() < $(document).height()) {
         $('#ais-sort-filter.sticky-active').removeClass('nav-up').addClass('nav-down');
       }
     }
 
     lastScrollTop = st;
   }
+
+
+
+
 }(algoliaShopify, instantsearch));
