@@ -204,7 +204,7 @@
   {% include 'js-dmp-tag' %}
 
   {% if settings.use_alternate_banner == false %}
-    {% comment %}
+    <!--
       * The intent of this block is to render (3) preload links
       * containing the background banner image URLs, which are used
       * for templates/index.liquid only. <link rel="preload"> elements
@@ -212,7 +212,7 @@
       * are repeated: [slideName, slideImage, banner_bg_image_size,
       * banner_bg_image]. Any changes made to these variables should also
       * be updated within templates/index.liquid.
-    {% endcomment %}
+-->
     {% if template contains 'index' %}
       {% for i in (1..3) %}
         {% assign slideName = 'homepage_main_banner_' | append: i | append: '_'  %}
@@ -265,7 +265,7 @@
     {% if shop.secure_url == "https://www.decathlon.com" %}
       <script async id="adeptmind-js" src="https://s3.us-east-2.amazonaws.com/adept-shop-ui/prod/dc2bc6f9-e0b9-4fa8-9678-3aacb9640f23/EA5C467F-BD87-495F-ABAA-73473DA91574.js"></script>
     {% else %}
-      <script async id="adeptmind-js" src="https://s3.us-east-2.amazonaws.com/adept-shop-ui/stage/dc2bc6f9-e0b9-4fa8-9678-3aacb9640f23/C6F81754-93AC-4B29-87C8-DDB7ADAFAB86.js""></script>
+      <script async id="adeptmind-js" src="https://s3.us-east-2.amazonaws.com/adept-shop-ui/stage/dc2bc6f9-e0b9-4fa8-9678-3aacb9640f23/C6F81754-93AC-4B29-87C8-DDB7ADAFAB86.js"></script>
     {% endif %}
   {% endif %}
 
@@ -310,7 +310,7 @@
         {% include 'gateway' %}
     	{% endif %}
 
-      {% comment %} <div id="PageContainer" class="is-moved-by-drawer"> {% endcomment %}
+  <!--  <div id="PageContainer" class="is-moved-by-drawer"> -->
       <div class="de-PageWrap-main" {% if settings.hide_header == true %}style="padding-top: 0;"{% endif %}>
         <div>
           <main class="main-content" role="main">
@@ -328,7 +328,7 @@
         </div>
       </div>
     {% endif %}
-  </div>
+ </div>
 
 
   {{ 'timber.js' | asset_url | script_tag }}
