@@ -259,6 +259,12 @@
           {% endcomment %}
           {% assign looplimit = reviews_per_page %}
           {% for review in product.metafields.reviews.recent_reviews_object.items %}
+
+            {% assign country_code = review.country_label | downcase %}
+            {{ country_code }}
+            {% assign country_full = 'countries_by_code.' | append: country_code | t %}
+            Reviewed in {{ country_full }}
+
             {% assign rating_percentage = review.note | plus: 0 | times: 20 %}
             {% assign review_date = review.created_at | date: "%-m/%-e/%Y" %}
             <div class="de-CustomerReview js-de-CustomerReview
