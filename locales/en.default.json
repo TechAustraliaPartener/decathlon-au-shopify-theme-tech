@@ -335,6 +335,10 @@
     "no_set_state_fallback_message": "Please enter a postcode to find your state",
     "no_cc_locations_in_your_state": "There are no click & collect locations in your state yet"
   },
+  "countries_by_code": {
+    "au": "Australia",
+    "fr": "France"
+  },
   "gift_cards": {
     "issued": {
       "title": "Here's your {{ value }} gift card for {{ shop }}!",
