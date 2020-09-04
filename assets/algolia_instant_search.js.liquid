@@ -276,6 +276,8 @@
           }
         });
       }
+
+
     });
 
     // Search input
@@ -297,28 +299,37 @@
       });
     }
 
+    function showReadMore() {
+      if ($('.description-main-content').outerHeight(true) < 110) {
+        console.log('OUTERHEIGHT: ' + $('.description-main-content').outerHeight(true));
+        $('.read-more-description').hide();
+        console.log('HIDE READMORE');
+      } else {
+        $('.read-more-description').show()
+        console.log('SHOW READMORE');
+      }
+    }
+
     // Collection title and description
     if (window.algolia_custom_widgets.description) {
       instant.search.addWidget({
         render(options) {
-          var $block = $('.ais-block');
           var $block2 = $('.blue-band--footer');
           if ($('.collection-description').length < 1) {
-            $block.prepend(window.algolia_custom_widgets.description);
-            $(window.algolia_custom_widgets.description).wrap('<div class="custom-widget-wrap"/>').appendTo($block2);
+            // $block.prepend(window.algolia_custom_widgets.description);
+            $(window.algolia_custom_widgets.description).insertBefore($block2);
+
           }
         },
       });
+      showReadMore();
     }
 
     if (window.algolia_custom_widgets.title) {
       instant.search.addWidget({
         render(options) {
           var $block = $('.ais-block');
-
-
-          $block.prepend(window.algolia_custom_widgets.title);
-
+          $block.prepend('<h2 class="collection-title-top">' + window.algolia_custom_widgets.title + '</h2>');
         },
       });
     }
@@ -676,6 +687,7 @@
 
   $(document).ready(function () {
     checkScreenSize();
+
   });
 
   $(window).resize(function () {
@@ -731,4 +743,9 @@
 
     lastScrollTop = st;
   }
+
+
+
+
+
 }(algoliaShopify, instantsearch));
