@@ -5,14 +5,14 @@
 
   var _ = algolia._;
 
-  var formatPrice = function formatPrice (value) {
+  var formatPrice = function formatPrice(value) {
     return algolia.formatMoney(+value * 100);
   };
 
-  function formattedPriceWithComparison (price, compare_at_price, price_ratio) {
+  function formattedPriceWithComparison(price, compare_at_price, price_ratio) {
     var comparing = +compare_at_price && +compare_at_price > +price,
-        discount_ratio = 1.0 - price_ratio,
-        res = formatPrice(price);
+      discount_ratio = 1.0 - price_ratio,
+      res = formatPrice(price);
     if (comparing) {
       res += ' <span class="ais-hit--price-striked"><span>' + formatPrice(compare_at_price) + '</span></span> ';
       res += ' <span class="ais-hit--price-discount" style="font-weight: ' + (Math.floor(discount_ratio * 10) * 100) + ';">-' + Math.floor(discount_ratio * 100) + '%</span>';
@@ -21,7 +21,7 @@
     return res;
   }
 
-  var escapeHtml = function escapeHtml (unsafe) {
+  var escapeHtml = function escapeHtml(unsafe) {
     return (unsafe || '')
       .replace(/&/g, '&amp;')
       .replace(/</g, '&lt;')
@@ -31,16 +31,16 @@
   }
 
   algolia.helpers = {
-    formatNumber: function formatNumber (text, render) {
+    formatNumber: function formatNumber(text, render) {
       return Number(render(text)).toLocaleString();
     },
-    formattedPrice: function formattedPrice (text, render) {
+    formattedPrice: function formattedPrice(text, render) {
       return formatPrice(render(text));
     },
-    formattedPriceWithoutDecimals: function formattedPriceWithoutDecimals (text, render) {
+    formattedPriceWithoutDecimals: function formattedPriceWithoutDecimals(text, render) {
       return formatPrice(render(text)).replace(/\.\d+$/, '');
     },
-    autocompletePrice: function autocompletePrice (text, render) {
+    autocompletePrice: function autocompletePrice(text, render) {
       if (this._distinct) {
         var min = this.variants_min_price;
         var max = this.variants_max_price;
@@ -54,13 +54,13 @@
       }
       return formattedPriceWithComparison(this.price, null);
     },
-    priceHide: function priceHide (text, render) {
+    priceHide: function priceHide(text, render) {
       if (this.price === 0 || this.price_max === 0) {
         return 'display-none';
       }
       return '';
     },
-    instantsearchPrice: function instantsearchPrice (text, render) {
+    instantsearchPrice: function instantsearchPrice(text, render) {
       if (this._distinct) {
         var min = this.variants_min_price;
         var max = this.variants_max_price;
@@ -70,11 +70,11 @@
       }
       return formattedPriceWithComparison(this.price, this.compare_at_price, this.price_ratio);
     },
-    instantsearchLink: function instantsearchLink () {
+    instantsearchLink: function instantsearchLink() {
       var addVariantId = !this._distinct && this.objectID !== this.id;
       return '/products/' + this.handle + (addVariantId ? ('?variant=' + this.objectID) : '');
     },
-    fullTitle: function fullTitle () {
+    fullTitle: function fullTitle() {
       var res = this.title;
       if (!this._distinct && this.variant_title && this.variant_title !== 'Default Title' && this.variant_title !== 'Default') {
         res += ' (' + this.variant_title + ')';
@@ -82,7 +82,7 @@
 
       return escapeHtml(res);
     },
-    fullHTMLTitle: function fullHTMLTitle () {
+    fullHTMLTitle: function fullHTMLTitle() {
       var res = this._highlightResult.title.value;
       if (!this._distinct && this.variant_title && this.variant_title !== 'Default Title' && this.variant_title !== 'Default') {
         res += ' <span class="algolia-variant">(' + this._highlightResult.variant_title.value + ')</span>';
@@ -90,13 +90,13 @@
 
       return res;
     },
-    floor: function floor (text, render) {
+    floor: function floor(text, render) {
       return '' + Math.floor(+render(text));
     },
-    ceil: function ceil (text, render) {
+    ceil: function ceil(text, render) {
       return '' + Math.ceil(+render(text));
     },
-    sizedImage: function sizedImage (text, render) {
+    sizedImage: function sizedImage(text, render) {
       var image = this._distinct ? this.product_image : this.image;
       if (!image) {
         return 'http://cdn.shopify.com/s/images/admin/no-image-compact.gif';
@@ -107,15 +107,15 @@
       }
       return image.replace(/\/(.*)\.(\w{2,4})/g, '/$1_' + size + '.$2');
     },
-    handleize: function handleize (text, render) {
+    handleize: function handleize(text, render) {
       return render(text).toLowerCase().replace(/[^\w\u00C0-\u024f]+/g, "-").replace(/^-+|-+$/g, "").toLocaleString();
     },
-    lowercase: function handleize (text, render) {
+    lowercase: function handleize(text, render) {
       return render(text).toLowerCase().toLocaleString();
     },
-    label: function label () {
+    label: function label() {
       if (this.tags) {
-        var lowercaseTags = this.tags.map(function(t){
+        var lowercaseTags = this.tags.map(function (t) {
           return t.toLowerCase();
         });
         if (lowercaseTags.indexOf('clearance') > -1) {
@@ -132,17 +132,17 @@
         thisLabels = Array.isArray(thisLabels) ? thisLabels : [thisLabels];
         //console.log(thisLabels);
 
-        if (thisLabels.filter(function(e) { return e.replace('<span class="ais-highlight">', '').replace('</span>', '') === 'Clearance'; }).length > 0) {
+        if (thisLabels.filter(function (e) { return e.replace('<span class="ais-highlight">', '').replace('</span>', '') === 'Clearance'; }).length > 0) {
           return '<div class="ais-hit--label clearance">Sale</div>';
-        } else if (thisLabels.filter(function(e) { return e.replace('<span class="ais-highlight">', '').replace('</span>', '') === 'Innovation'; }).length > 0) {
+        } else if (thisLabels.filter(function (e) { return e.replace('<span class="ais-highlight">', '').replace('</span>', '') === 'Innovation'; }).length > 0) {
           return '<div class="ais-hit--label innovation">Innovation</div>';
-        } else if (thisLabels.filter(function(e) { return e.replace('<span class="ais-highlight">', '').replace('</span>', '') === 'new'; }).length > 0) {
+        } else if (thisLabels.filter(function (e) { return e.replace('<span class="ais-highlight">', '').replace('</span>', '') === 'new'; }).length > 0) {
           return '<div class="ais-hit--label new_release">New Release</div>';
         }
       }
       return '';
     },
-    rating: function rating () {
+    rating: function rating() {
       if (!this || !this.meta || !this.meta.ratings || !this.meta.reviews.product_rating) {
         return '';
       }
@@ -153,16 +153,16 @@
       if (!!this && !!this.meta && !!this.meta.reviews && !!this.meta.reviews.ratings_count) {
         var ratingsCount = this.meta.reviews.ratings_count;
       }
-      
+
       var productRating = [
         '<div class="de-u-flex de-u-flexAlignItemsCenter de-u-spaceTop06 de-u-lineHeight1 ais-rating">',
-          '<span class="de-StarRating de-u-spaceRight06 de-StarRating--small">',
-            '<span class="de-StarRating-fill" style="width: ' + width + '%"></span>',
-          '</span>',
-          '<span class="de-u-textMedium de-u-textSelectNone de-u-textDarkGray de-u-textShrink2 de-u-md-textShrink1">',
-            (ratingsCount || ''),
-            '<span class="de-u-hidden">Reviews</span>',
-          '</span>',
+        '<span class="de-StarRating de-u-spaceRight06 de-StarRating--small">',
+        '<span class="de-StarRating-fill" style="width: ' + width + '%"></span>',
+        '</span>',
+        '<span class="de-u-textMedium de-u-textSelectNone de-u-textDarkGray de-u-textShrink2 de-u-md-textShrink1">',
+        (ratingsCount || ''),
+        '<span class="de-u-hidden">Reviews</span>',
+        '</span>',
         '</div>'
       ];
 
@@ -179,30 +179,30 @@
 
       if (!variantImages) { */
 
-        var imgUrl = product.product_image.replace('.jpg', '_medium.jpg');
+      var imgUrl = product.product_image.replace('.jpg', '_medium.jpg');
 
-        var html = ['<div class="de-SwatchObjects de-SwatchObjects--productTile de-u-padEnds06 js-de-ColorSwatches">',
-          '<a class="de-SwatchObjects-item de-ColorSwatches-color" aria-label="Colors available" title="' + product.title + '" href="' + '/products/' + product.handle + '">',
-            '<img class="de-SwatchObject-image de-u-block" src="' + imgUrl + '">',
-          '</a>'].join('');
+      var html = ['<div class="de-SwatchObjects de-SwatchObjects--productTile de-u-padEnds06 js-de-ColorSwatches">',
+        '<a class="de-SwatchObjects-item de-ColorSwatches-color" aria-label="Colors available" title="' + product.title + '" href="' + '/products/' + product.handle + '">',
+        '<img class="de-SwatchObject-image de-u-block" src="' + imgUrl + '">',
+        '</a>'].join('');
 
-        if (colorValueTags.length > 1) {
+      if (colorValueTags.length > 1) {
 
-          var colourOrColours = (colorValueTags.length > 2) ? 'Colours' : 'Colour';
+        var colourOrColours = (colorValueTags.length > 2) ? 'Colours' : 'Colour';
 
-          html += ['<span class="wrap">',
-              '<a class="de-SwatchObjects-item de-ColorSwatches-color de-u-textDarkGray" '+'href="' + '/products/' + product.handle + '"'+ '>',
-                '<span aria-hidden="true">+</span>',
-                colors, 
-              '</a>', 
-              '<a class="de-ColorSwatches-color label" style="color:#464646;" '+'href="' + '/products/' + product.handle + '"'+ '>', 
-                colourOrColours,
-              '</a>',
-            '</span>'
-          ].join('');
-        }
+        html += ['<span class="wrap">',
+          '<a class="de-SwatchObjects-item de-ColorSwatches-color de-u-textDarkGray" ' + 'href="' + '/products/' + product.handle + '"' + '>',
+          '<span aria-hidden="true">+</span>',
+          colors,
+          '</a>',
+          '<a class="de-ColorSwatches-color label" style="color:#464646;" ' + 'href="' + '/products/' + product.handle + '"' + '>',
+          colourOrColours,
+          '</a>',
+          '</span>'
+        ].join('');
+      }
 
-        return html + '</div>';
+      return html + '</div>';
       /* }
 
       variantImages = variantImages.split('||');
@@ -250,11 +250,11 @@
       return thumbnailsDisplay.join('');
       */
     },
-    transformName: function transformName (text, render) {
+    transformName: function transformName(text, render) {
       let nameParts = render(text).split('|');
 
       let facets = algoliaShopify.instantsearch.facets.list;
-      var result = facets.find(function(facet) {
+      var result = facets.find(function (facet) {
         return facet.title === nameParts[0];
       });
 
@@ -268,7 +268,7 @@
 
       return returnName.toLocaleString();
     },
-    nameAsColour: function nameAsColour (text, render) {
+    nameAsColour: function nameAsColour(text, render) {
       let nameAsColour = render(text);
 
       if (nameAsColour.indexOf('#') > -1) {
@@ -286,7 +286,7 @@
         return render(window.vars.subBrandLogos[brand_logo_name]);
       } else {
         return render('<div class="h3 vendor_logo_fallback de-u-spaceTop04">' + this.vendor + '</div>');
-        {% comment %}Return Decathlon logo{% endcomment %}
+        {% comment %} Return Decathlon logo{% endcomment %}
         {% comment %}
         return render(`<svg viewBox="0 0 109.42541 24" width="109.42541" height="24" role="img" class="de-u-spaceTop04 de-subBrandLogo" 
           data-gtm-event="customer-interaction"
@@ -310,11 +310,12 @@
       var price = this.price;
       var weight = this.grams;
       var freeShippingSettings = window.vars.freeShippingSettings;
+      var thresholdText = window.vars.translations.products.threshold_label.message;
 
-      if(price >= freeShippingSettings.minPrice && weight <= freeShippingSettings.maxWeight) {
+      if (price >= freeShippingSettings.minPrice && weight <= freeShippingSettings.maxWeight) {
         return `<div class="product-tile-shipping-info de-u-textShrink1 de-u-textMedium">Free Shipping</div>`
       } else {
-        return `<div class="product-tile-shipping-info de-u-textShrink1 de-u-textMedium">Free shipping above ${ '$' + freeShippingSettings.minPrice }*</div>`
+        return `<div class="product-tile-shipping-info de-u-textShrink1 de-u-textMedium">${thresholdText}</div>`
       }
     },
     getClickAndCollectInfo: function getClickAndCollectInfo() {
@@ -346,13 +347,13 @@
 
       if (rrp_to_show.PriceRRP < this.price) {
         console.log('No RRP', this.meta.global.model_RRPprices);
-        return ''; 
+        return '';
       }
 
       const rrp = (parseInt(rrp_to_show.PriceRRP, 10) / 100).toFixed(2);
 
       return `<div class="rrp-price de-u-textShrink1 de-u-textMedium de-rrp-tooltipOpener" style="width: fit-content;" >RRP*: <span> ${'$' + rrp}</span></div>
-      <div class="de-rrp-tooltip">${ window.vars.translations.products.general.rrp_price_info }</div>`;
+      <div class="de-rrp-tooltip">${ window.vars.translations.products.general.rrp_price_info}</div>`;
     }
   };
 
@@ -372,7 +373,7 @@
   });
 
   /* Create an Hogan lambda, which doesn't respect the mustache doc */
-  algolia.hoganHelpers = _.reduce(Object.assign({}, algolia.helpers, algolia.translation_helpers ), function (res, helper, name) {
+  algolia.hoganHelpers = _.reduce(Object.assign({}, algolia.helpers, algolia.translation_helpers), function (res, helper, name) {
     res[name] = function () {
       return function (text) {
         var render = function (value) {

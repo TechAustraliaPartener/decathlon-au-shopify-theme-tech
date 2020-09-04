@@ -317,7 +317,7 @@
       "sizes": "sizes"
     },
     "threshold_label": {
-      "text": "Free Delivery over [threshold]"
+      "text": "Free Delivery over $[threshold]"
     }
   },
   "product_locations": {
