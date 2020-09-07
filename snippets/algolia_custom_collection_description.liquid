@@ -10,20 +10,22 @@
 
 {% if collection.description !='' %}
   <div class="custom-description-widget">
-    <h2 class="collection-title">{{ collection.title }}</h2>
-    <article class="collection-description">
-      <div class="description-content">
-        <div>{{ collection.description }}</div>
-        <!-- <div class="description-main-content">
+    <div class="wrapper">
+      <h2 class="collection-title">{{ collection.title }}</h2>
+      <article class="collection-description">
+        <div class="description-content">
+          <div>{{ collection.description }}</div>
+          <!-- <div class="description-main-content">
           <p>Discover our range of Men’s Pants</p>
           <p>Check out the Boomers, Socceroos, or any athlete and you’ll see that a complete athletic attire covers everything,
                                             including the top, men’s trousers, and footwear. Men’s sports pants are integral in providing warmth and keeping the
                                             athlete in optimal condition. Decathlon’s line of trousers for men ranges from the best men’s tracksuit pants, warm-up
                                             bottoms, and cargo pants for men. We have men’s pants for just about every sporting activity.</p>
         </div> -->
-      </div>
-      <a class="read-more-description" onclick="$('.collection-description').toggleClass('expanded');">Read more</a>
-      <a class="show-less-description" onclick="$('.collection-description').toggleClass('expanded');">Show less</a>
-    </article>
+        </div>
+        <a class="read-more-description" onclick="$('.collection-description').toggleClass('expanded');">{{'collections.read_more_toggle.read_more_text' | t}}</a>
+        <a class="show-less-description" onclick="$('.collection-description').toggleClass('expanded');">{{'collections.read_more_toggle.show_less_text' | t}}</a>
+      </article>
+    </div>
   </div>
 {% endif %}
