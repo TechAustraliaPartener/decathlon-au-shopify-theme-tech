@@ -8,16 +8,20 @@
   </div>
 {% endif %}
 <!-- {% endcomment %}
-
-{% if collection.metafields.merchandising.desktop %}
-  <div class="collection-custom-banner-desktop">
-    <img src="{{collection.metafields.merchandising.desktop}}" alt="{{collection.title}} desktop banner">
-  </div>
+{% if collection.metafields.merchandising.link %}
+  <a href="{{collection.metafields.merchandising.link}}">
+  {% endif %}
+  {% if collection.metafields.merchandising.desktop %}
+    <div class="collection-custom-banner-desktop">
+      <img src="{{collection.metafields.merchandising.desktop}}" alt="{{collection.title}} desktop banner">
+    </div>
+  {% endif %}
+  {% if collection.metafields.merchandising.mobile %}
+    <div class="collection-custom-banner-mobile">
+      <img src="{{collection.metafields.merchandising.mobile}}" alt="{{collection.title}} mobile banner">
+    </div>
+  {% endif %}
+  {% if collection.metafields.merchandising.link %}
+  </a>
 {% endif %}
-{% if collection.metafields.merchandising.mobile %}
-  <div class="collection-custom-banner-mobile">
-    <img src="{{collection.metafields.merchandising.mobile}}" alt="{{collection.title}} mobile banner">
-  </div>
-{% endif %}
-
 <!-- {% if collection.image %} <div class="collectionImage" style="background-image:url('{{ collection.image | img_url: '1024x' }}'); " data-background-image="{{ collection.image | img_url: '1024x' }}"> <div class="wrapper"> <h1 class="collectionImage-header text-center">{{ collection.title }}</h1> </div> </div> {% endif %} -->
