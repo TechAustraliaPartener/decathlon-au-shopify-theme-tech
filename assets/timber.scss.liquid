@@ -2685,13 +2685,14 @@ input.btn:focus {
 }
 
 @media only screen and (max-width: 768px) {
-  	.header-cartWrapper {
-     	width: auto;
-    }
+  .header-cartWrapper {
+    width: auto;
+  }
+
 	#CartCount {
         font-size: 16px;
       	padding: 0 5px;
-    }
+    } 
 }
 
 .footer-icon-instagram:before {
@@ -10579,3 +10580,22 @@ $color-out: #ff0000;
       background: none;
     }
   } 
+
+  .collection-title-top {
+    font-size: 36px;
+  }
+
+  @media only screen and (max-width: 768px) {
+    .collection-title-top {
+      display: none;
+    }
+    .custom-description-widget {
+      padding: 25px 30px;
+      font-family: avalonmedium;
+    }
+    .ais-search-header {
+    position: relative;
+    top: -36px;
+    border-bottom: 0;
+    }
+  }
