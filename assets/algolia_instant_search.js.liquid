@@ -293,10 +293,11 @@
     if (window.algolia_custom_widgets.banner) {
       instant.search.addWidget({
         render(options) {
-          var $wrapper = $('.algolia-wrapper');
-          $wrapper.prepend(window.algolia_custom_widgets.banner);
+          $(window.algolia_custom_widgets.banner).insertBefore('.ais-input');
+          $('.collection-custom-banner-mobile').prependTo('.main-content');
         },
       });
+
     }
 
     function showReadMore() {
