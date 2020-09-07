@@ -454,6 +454,11 @@
                         {{date_format created_at }}
                       </div>
                     {{/if}}
+                    {{#if country_label}}
+                      {{#each country_label}}
+                        Reviewed in {{this}}
+                      {{/each}}                        
+                    {{/if}}
                   {{/if_or}}
                   {{#if purchase_checked}}
                     <div class="de-u-flex de-u-flexAlignItemsCenter de-u-spaceTop06">
