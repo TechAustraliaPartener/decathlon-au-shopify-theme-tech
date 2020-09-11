@@ -310,16 +310,18 @@
       var price = this.price;
       var weight = this.grams;
       var freeShippingSettings = window.vars.freeShippingSettings;
-      var thresholdText = window.vars.translations.products.threshold_label.message;
+
+      const { free_shipping_message, free_shipping_threshold_message } = window.vars.translations.products.delivery_text;
 
       if (price >= freeShippingSettings.minPrice && weight <= freeShippingSettings.maxWeight) {
-        return `<div class="product-tile-shipping-info de-u-textShrink1 de-u-textMedium">Free Shipping</div>`
+        return `<div class="product-tile-shipping-info de-u-textShrink1 de-u-textMedium">${ free_shipping_message }</div>`
       } else {
-        return `<div class="product-tile-shipping-info de-u-textShrink1 de-u-textMedium">${thresholdText}</div>`
+        return `<div class="product-tile-shipping-info de-u-textShrink1 de-u-textMedium">${ free_shipping_threshold_message.replace('[threshold]', freeShippingSettings.minPrice) }</div>`
       }
     },
     getClickAndCollectInfo: function getClickAndCollectInfo() {
-      return `<div class="product-tile-shipping-info de-u-textShrink1 de-u-textMedium">Free Click & Collect</div>`
+      const { free_pickup } = window.vars.translations.products.delivery_text;
+      return `<div class="product-tile-shipping-info de-u-textShrink1 de-u-textMedium">${ free_pickup }</div>`
     },
     getRRPPrices: function getRRPPrices() {
       console.log('Checking RRP');
