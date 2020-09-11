@@ -320,8 +320,10 @@
       "size": "size",
       "sizes": "sizes"
     },
-    "threshold_label": {
-      "text": "Free Delivery over $[threshold]"
+    "delivery_text": {
+      "free_shipping_achieved": "Free Delivery",
+      "free_shipping_threshold_message": "Free Delivery over $[threshold]",
+      "free_pickup": "Free Click & Collect"
     }
   },
   "product_locations": {
