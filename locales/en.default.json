@@ -322,7 +322,7 @@
     },
     "delivery_text": {
       "free_shipping_message": "Free Shipping",
-      "free_shipping_threshold_message": "Free Shipping above $[threshold]",
+      "free_shipping_threshold_message": "Free Shipping above $[threshold]*",
       "free_pickup": "Free Click & Collect"
     }
   },

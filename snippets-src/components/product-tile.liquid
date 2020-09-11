@@ -107,10 +107,9 @@ Example:
     {% assign v = product.selected_or_first_available_variant %}
 
     {% if product.price >= fs_min_price and v.weight <= fs_max_weight %}
-    <div class="product-tile-shipping-info de-u-textShrink1 de-u-textMedium">Free Shipping</div>
+      <div class="product-tile-shipping-info de-u-textShrink1 de-u-textMedium">{{ 'products.delivery_text.free_shipping_message' | t }}</div>
     {% else %}
-    <div class="product-tile-shipping-info de-u-textShrink1 de-u-textMedium">Free shipping above
-      ${{ settings.free_shipping_threshold }}*</div>
+      <div class="product-tile-shipping-info de-u-textShrink1 de-u-textMedium">{{ 'products.delivery_text.free_shipping_threshold_message' | t | replace: '[threshold]', settings.free_shipping_threshold }}</div>
     {% endif %}
 
     {% comment %}
@@ -118,7 +117,7 @@ Example:
     By default "Free Click & Collect" is shown
     {% endcomment %}
     {% if true %}
-    <div class="product-tile-shipping-info de-u-textShrink1 de-u-textMedium">Free Click & Collect</div>
+      <div class="product-tile-shipping-info de-u-textShrink1 de-u-textMedium">{{ 'products.delivery_text.free_pickup' | t }}</div>
     {% endif %}
 
     {% comment %}
