@@ -321,8 +321,8 @@
       "sizes": "sizes"
     },
     "delivery_text": {
-      "free_shipping_achieved": "Free Delivery",
-      "free_shipping_threshold_message": "Free Delivery over $[threshold]",
+      "free_shipping_message": "Free Shipping",
+      "free_shipping_threshold_message": "Free Shipping above $[threshold]",
       "free_pickup": "Free Click & Collect"
     }
   },
