@@ -9947,6 +9947,11 @@ html {
         padding: 0 0 8px;
         border-bottom: solid 1px #e5e5e5;
         color: #1e1e1e;
+
+        @media (max-width: 768px) {
+          border: none;
+        }
+
         .ais-stats-container {
           order: 2;
           float: right;
@@ -10551,7 +10556,7 @@ $color-out: #ff0000;
 /* Fix for Sticky Banner on Algolia-powered phone views obscuring Breadcrumbs or Number of Returned Results */
 @media only screen and (max-width: 768px) {
   .template-collection:not(.template-suffix-multi) .main-content, .template-search .main-content {
-    padding-top: 65px;
+    padding-top: 50px;
   }
 }
 
