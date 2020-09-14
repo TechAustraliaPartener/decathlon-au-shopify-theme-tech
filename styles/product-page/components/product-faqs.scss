@@ -77,7 +77,7 @@ $cross_space: ($cross_height - $cross_width) / 2;
   height: $cross_width;
   width: $cross_height;
 
-  top: calc(2em + #{$cross_space});
+  top: 50%;
   left: 20px;
 
   transition-duration: 300ms;  
