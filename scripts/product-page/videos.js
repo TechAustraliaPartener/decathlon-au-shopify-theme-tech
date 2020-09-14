@@ -162,7 +162,7 @@ const initializeVideoJS = () => {
   const $toggleButton = $('.js-de-toggle-media');
   const $viewImagesCTA = $('.js-de-view-images');
   const $watchVideoCTA = $('.js-de-watch-video');
-  const $copyVideo = $('.js-de-copyVideo');
+  const $galleryVideo = $('.js-de-galleryVideo');
   const $imageCount = $('.js-de-ProductGallery-count');
 
   const switchToImages = () => {
@@ -170,7 +170,7 @@ const initializeVideoJS = () => {
     $toggleButton.removeClass('js-de-toggle');
     $watchVideoCTA.removeClass('de-u-hidden');
     $viewImagesCTA.addClass('de-u-hidden');
-    $copyVideo.addClass('de-u-hidden');
+    $galleryVideo.addClass('de-u-hidden');
     showProductFlags();
     $imageCount.removeClass('de-u-hidden');
     // Pause Video
@@ -184,7 +184,7 @@ const initializeVideoJS = () => {
     $imageCount.addClass('de-u-hidden');
     $viewImagesCTA.removeClass('de-u-hidden');
     $watchVideoCTA.addClass('de-u-hidden');
-    $copyVideo.removeClass('de-u-hidden');
+    $galleryVideo.removeClass('de-u-hidden');
     // Play Video
     playFirstVideoPlayer();
   };

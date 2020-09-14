@@ -1,0 +1,66 @@
+.de-ProductPageTopShelf {
+  display: grid;
+  grid-column-gap: 10px;
+  grid-template-areas: 
+    "titleLockup"
+    "gallery"
+    "mediaControls"
+    "colorSwatches"
+    "sizeSwatches"
+    "addToCart"
+    "fulfillmentInfo"
+    "locationsInventory"
+    "modelCode";
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: $breakpoint-lg) {
+  .de-ProductPageTopShelf {
+    grid-template-areas: 
+      "gallery titleLockup"
+      "gallery colorSwatches"
+      "gallery sizeSwatches"
+      "gallery addToCart"
+      "gallery fulfillmentInfo"
+      "gallery locationsInventory"
+      "gallery modelCode"
+      "gallery .";
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.de-ProductPageTopShelf-gallery {
+  grid-area: gallery;
+}
+
+.de-ProductPageTopShelf-mediaControls {
+  grid-area: mediaControls;
+}
+
+.de-ProductPageTopShelf-titleLockup {
+  grid-area: titleLockup;
+}
+
+.de-ProductPageTopShelf-colorSwatches {
+  grid-area: colorSwatches;
+}
+
+.de-ProductPageTopShelf-sizeSwatches {
+  grid-area: sizeSwatches;
+}
+
+.de-ProductPageTopShelf-addToCart {
+  grid-area: addToCart;
+}
+
+.de-ProductPageTopShelf-fulfillment {
+  grid-area: fulfillmentInfo;
+}
+
+.de-ProductPageTopShelf-locationsInventory {
+  grid-area: locationsInventory;
+}
+
+.de-ProductPageTopShelf-modelCode {
+  grid-area: modelCode;
+}

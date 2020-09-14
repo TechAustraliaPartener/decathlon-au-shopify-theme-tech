@@ -15,6 +15,8 @@
 
 {% assign all_sizes = sizes | split: sizes_delimiter %}
 
+<div class="de-ProductPageTopShelf-sizeSwatches">
+
   <div class="de-u-flex de-u-flexAlignItemsCenter de-u-flexJustifyBetween">
     <div
       class="{% if all_sizes.size == 1 %}
@@ -43,11 +45,11 @@
     {%- endif -%}
   </div>
 
-<div class="de-SwatchObjects
-            de-Wrapper--fullwidth de-u-padEnds06
-            js-de-SizeSwatches">
-  {% for size in all_sizes %}
-    {% assign cleanSize = size | strip | escape %}
+  <div class="de-SwatchObjects
+              de-Wrapper--fullwidth de-u-padEnds06
+              js-de-SizeSwatches">
+    {% for size in all_sizes %}
+      {% assign cleanSize = size | strip | escape %}
       <button
         class="de-SwatchObjects-item de-SwatchObjects--size de-u-textMedium
                js-de-SizeSwatches-option"
@@ -61,5 +63,7 @@
           {{ cleanSize }}
         </span>
       </button>
-  {% endfor %}
+    {% endfor %}
+  </div>
+  
 </div>

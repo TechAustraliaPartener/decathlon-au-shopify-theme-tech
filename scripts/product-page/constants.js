@@ -58,6 +58,7 @@ export const VALIDATION_MESSAGE_CLASS = `${JS_PREFIX}validation-message`;
 
 /**
  * Text used to update UI elements
+ * @todo Use translation keys
  */
 
 export const PRODUCT_PAGE_COPY = {
@@ -81,10 +82,15 @@ export const PRODUCT_PAGE_COPY = {
       Number(quantity) === 1 ? 'was' : 'were'
     } added.`,
   /**
+   * Provides the proper UI text to display
+   * • If quantity 0 left => "0 left"
+   * • If quantity > 0 => "Only X left"
+   * @todo Consider moving out of constants because different values can be returned
    * @param {string | number} quantity
    * @returns {string}
    */
-  limitedQuantityLeft: quantity => `Only ${quantity} left`
+  limitedQuantityLeft: quantity =>
+    quantity === 0 ? `${quantity} left` : `Only ${quantity} left`
 };
 
 /*

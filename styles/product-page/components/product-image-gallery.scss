@@ -62,3 +62,8 @@
  .ProductImageGallery-item:last-of-type {
    margin-right: 0;
  }
+
+.de-galleryVideo .vjs-tech {
+  object-fit: cover;
+  z-index: 1;
+}

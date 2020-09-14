@@ -175,9 +175,10 @@
     {% endcomment %}
     <div
       class="de-CarouselThumbnail
-              {% if color == activeColor %}de-is-active{% endif %}
-              js-de-SlickCarousel js-de-SlickCarouselThumbnail"
-      data-carousel-color="{{- all_colors_array[forloop.index0] -}}">
+             {% if color == activeColor %}de-is-active{% endif %}
+             js-de-SlickCarousel js-de-SlickCarouselThumbnail"
+      data-carousel-color="{{- all_colors_array[forloop.index0] -}}"
+    >
       {%- for product_image in product_images -%}
         {% assign image_src = product_image | img_url: "150x", format: "pjpg" %}
         {% capture image_srcset %}
