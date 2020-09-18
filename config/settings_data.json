@@ -31,9 +31,9 @@
     "header_support_link": "https:\/\/help.decathlon.com.au\/support\/home",
     "header_store_label": "Stores",
     "header_sign_in_label": "Sign In",
-    "megamenu_image": "shopify:\/\/shop_images\/Copy_of_SIDE_NAV_3.jpg",
-    "megamenu_title": "Home Fitness Gear",
-    "megamenu_subtitle": "Keep Fit At Home",
+    "megamenu_image": "shopify:\/\/shop_images\/HP-Menu-Cross-Training_400x.progressive_59be366d-a497-47ac-91c7-5e15483f1476.jpg",
+    "megamenu_title": "Weight Training",
+    "megamenu_subtitle": "Fitness Gear",
     "megamenu_link": "shopify:\/\/collections\/home-fitness-equipment-accessories",
     "megamenu_bg_colour": "#0082c3",
     "is_lookbook": false,
@@ -343,7 +343,7 @@
             "settings": {
               "name": "Tempe",
               "title": "Tempe Store, 2044",
-              "online_inventory_source": false,
+              "online_inventory_source": true,
               "enable_c_c": true,
               "duplicate": "",
               "test_mode": false,
@@ -936,19 +936,19 @@
       "1590735691745": {
         "type": "slider_image_section",
         "settings": {
-          "homepage_slider_image_title": "Fresh Wheels",
-          "homepage_slider_image_1": "shopify:\/\/shop_images\/DecathlonAU_Section-Banner_Roller-Skate_450x280_SAI_04-08-2020_V2.jpg",
-          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/commuter-scooters",
+          "homepage_slider_image_title": "Trending Now!",
+          "homepage_slider_image_1": "shopify:\/\/shop_images\/DecathlonAU_Side_Banner_Camping_SA_14-09-2020_V1-min.png",
+          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/camping",
           "checkbox_image_1": true,
-          "homepage_slider_image_2": "shopify:\/\/shop_images\/DecathlonAU_Section-Banner_Roller-Skate_450x280_SAI_04-08-2020_V3.jpg",
-          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/bikes",
+          "homepage_slider_image_2": "shopify:\/\/shop_images\/DecathlonAU_Side_Banner_Cycling_SA_14-09-2020_V1-min.png",
+          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/cycling",
           "checkbox_image_2": true,
-          "homepage_slider_image_3": "shopify:\/\/shop_images\/DecathlonAU_Section-Banner_Roller-Skate_450x280_SAI_04-08-2020_V1.jpg",
-          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/roller-skates",
+          "homepage_slider_image_3": "shopify:\/\/shop_images\/DecathlonAU_Side_Banner_table_tennis_SA_14-09-2020_V1-min.png",
+          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/table-tennis",
           "checkbox_image_3": true,
-          "homepage_slider_image_4": "shopify:\/\/shop_images\/DecathlonAU_Section_Banner_Roller_Skate_450x280_SAI_04-08-2020_V4.jpg",
-          "homepage_slider_image_redirection_4": "https:\/\/decathlon.com.au\/collections\/roller-skates",
-          "checkbox_image_4": false
+          "homepage_slider_image_4": "shopify:\/\/shop_images\/DecathlonAU_Side_Banner_kayaking_SA_14-09-2020_V1-min.png",
+          "homepage_slider_image_redirection_4": "https:\/\/decathlon.com.au\/collections\/kayaking",
+          "checkbox_image_4": true
         }
       },
       "1597283878337": {
