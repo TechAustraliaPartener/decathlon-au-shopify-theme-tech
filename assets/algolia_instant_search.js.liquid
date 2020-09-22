@@ -46,6 +46,10 @@
   var $hiding = $('<style>' + results_selector + ' { visibility: hidden }</style>');
   $hiding.appendTo($('head'));
 
+  function getPlatform() {
+    return (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) ? 'mobile' : 'desktop';
+  };
+
   var instant = algolia.instantsearch = {
     colors: algolia.config.colors,
     distinct: !!algolia.config.show_products,
@@ -62,7 +66,8 @@
       apiKey: algolia.config.search_api_key,
       indexName: '' + algolia.config.index_prefix + 'products',
       searchParameters: {
-        clickAnalytics: true
+        clickAnalytics: true,
+        ruleContexts: [getPlatform()]
       },
       urlSync: {},
       searchFunction: function (searchFunctionHelper) {
