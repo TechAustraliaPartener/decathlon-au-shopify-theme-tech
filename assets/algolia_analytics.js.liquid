@@ -13,6 +13,7 @@
 
   // Track CTR for products
   algolia.clickTracker = function (e) {
+
     // Get the data from the product that was clicked
     const data = {
       objectID: e.currentTarget.getAttribute('data-algolia-objectid'),
@@ -39,6 +40,13 @@
     }
   }
 
+  const cartVariants = window.vars.cartPayload.items.map(item => item.variant_id);
+  console.log('algolia clicked items in cart', 
+    JSON.parse(localStorage.getItem('algolia_analytics_clicked_objects')).filter(item => 
+      cartVariants.indexOf(parseInt(item.objectID)) !== -1
+    )
+  );
+
   // Track conversion rates for products
   window.algolia_conversionTracker = algolia.conversionTracker = function () {
     // Try to get the details from local storage for conversion tracking.
@@ -51,6 +59,10 @@
       // If data was found, track conversion on all those products
       if (!!previousClickItemsString) {
         const previousClickItems = JSON.parse(previousClickItemsString);
+
+        // Createur: If they're in the order.
+        previousClickItems = previousClickItems.filter(item => cartVariants.indexOf(item.objectID) !== -1);
+
         previousClickItems.forEach(data => {
           if (!!data.objectID && !!data.queryID) {
             window.aa('conversion', { objectID: data.objectID, queryID: data.queryID });
@@ -68,4 +80,6 @@
       // No need to do anything in this scenario
     }
   }
+
+
 }(algoliaShopify));

@@ -34,10 +34,20 @@
     {% endif %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 
-  
+    {% render 'shogun-head' %}
 
-  {% render 'shogun-head' %}
-</head>
+    <script>
+      {% assign checkout_items_ids = checkout.line_items | map: 'variant_id' %}
+      window.vars = window.vars || {};
+      window.vars.cartPayload = {
+        items: [{% for id in checkout_items_ids %}{ variant_id: {{ id }} }{% unless forloop.last %},{% endunless %}{% endfor %}]
+      };
+    </script>
+
+    {% if settings.use_algolia %}
+      {% include 'layout-algolia-head' %}
+    {% endif %}
+  </head>
   <body>
     {% include 'js-gtm-body' %}
 
