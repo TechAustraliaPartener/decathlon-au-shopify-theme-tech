@@ -294,6 +294,24 @@
       })
     );
 
+    // Custom data
+    instant.search.addWidget(
+      instantsearch.widgets.hits({
+        templates: {
+          allItems({ userData }) {
+            if (userData) {
+              const banners = userData.map(({ image }) => {
+                return `<img src="${image}"/>`;
+              });
+              return banners.join('');
+            }
+            return '';
+          },
+        },
+        container: document.getElementById('ais_banner_container'),
+      })
+    );
+
     // Banner
     if (window.algolia_custom_widgets.banner) {
       instant.search.addWidget({
