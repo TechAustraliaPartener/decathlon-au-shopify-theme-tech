@@ -40,12 +40,12 @@
     }
   }
 
-  const cartVariants = window.vars.cartPayload.items.map(item => item.variant_id);
+{% comment %}  const cartVariants = window.vars.cartPayload.items.map(item => item.variant_id);
   console.log('algolia clicked items in cart', 
     JSON.parse(localStorage.getItem('algolia_analytics_clicked_objects')).filter(item => 
       cartVariants.indexOf(parseInt(item.objectID)) !== -1
     )
-  );
+  );{% endcomment %}
 
   // Track conversion rates for products
   window.algolia_conversionTracker = algolia.conversionTracker = function () {
