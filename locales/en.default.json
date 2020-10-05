@@ -315,6 +315,11 @@
       "colors": "colours",
       "size": "size",
       "sizes": "sizes"
+    },
+    "delivery_text": {
+      "free_shipping_message": "Free Shipping",
+      "free_shipping_threshold_message": "Shipping rates at checkout",
+      "free_pickup": "Free Click & Collect"
     }
   },
   "product_locations": {

@@ -32,8 +32,8 @@
     "header_store_label": "Stores",
     "header_sign_in_label": "Sign In",
     "megamenu_image": "shopify:\/\/shop_images\/HP-Menu-Cross-Training_400x.progressive_59be366d-a497-47ac-91c7-5e15483f1476.jpg",
-    "megamenu_title": "Weight Training",
-    "megamenu_subtitle": "Fitness Gear",
+    "megamenu_title": "Fitness Gear",
+    "megamenu_subtitle": "Weights & Cardio Equipment",
     "megamenu_link": "shopify:\/\/collections\/home-fitness-equipment-accessories",
     "megamenu_bg_colour": "#0082c3",
     "is_lookbook": false,
@@ -387,7 +387,7 @@
             "settings": {
               "name": "Auburn",
               "title": "Auburn Store, 2144",
-              "online_inventory_source": false,
+              "online_inventory_source": true,
               "enable_c_c": true,
               "duplicate": "",
               "test_mode": false,
@@ -620,8 +620,8 @@
               "email": "customer.service@decathlon.com",
               "phone_number": "(02) 9157 5799",
               "company": "Decathlon",
-              "ready": "Collect on the next Monday, Wednesday or Friday",
-              "ready_checkout": "Collect on the next Monday, Wednesday or Friday",
+              "ready": "Within 2 business days after 3 pm",
+              "ready_checkout": "Within 2 business days after 3 pm",
               "id": "1792-0004",
               "tooltip_hours": false,
               "is_same_hours_weekly": true,
@@ -886,30 +886,30 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
-          "1589172506799": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Decathlon_Homepage_Banner_summer__SA_21-aug-2020_R1-01_2_-min.png",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": ".",
-              "banner_subtitle": "",
-              "button_new_window": false,
-              "button_title": "Shop Now",
-              "button_url": "shopify:\/\/collections\/spring-sale"
-            }
-          },
           "1599283340303": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_3_-min_b7099801-e4f6-4449-aaee-d6458daaa0b1.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_3_-min.png",
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
-              "banner_title": "Triathlon",
-              "banner_subtitle": "<p><strong>Shop Road Bikes, Running &amp; Swimming Gear<\/strong><\/p>",
+              "banner_title": "Boxing Gear!",
+              "banner_subtitle": "<p><strong>Shop Boxing Gloves, Punch Bags &amp; More<\/strong><\/p>",
               "button_new_window": false,
               "button_title": "SHOP NOW",
-              "button_url": "shopify:\/\/collections\/triathlon-gear-clothing"
+              "button_url": "shopify:\/\/collections\/boxing"
+            }
+          },
+          "1589172506799": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_8_-min.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "Backyard Fun!",
+              "banner_subtitle": "<p><strong>Trampolines, Badminton Sets &amp; More..<\/strong><\/p>",
+              "button_new_window": false,
+              "button_title": "Shop Now",
+              "button_url": "shopify:\/\/collections\/indoor-sport-activities"
             }
           },
           "1584424981258": {
@@ -927,8 +927,8 @@
           }
         },
         "block_order": [
-          "1589172506799",
           "1599283340303",
+          "1589172506799",
           "1584424981258"
         ],
         "settings": {}
@@ -937,8 +937,8 @@
         "type": "slider_image_section",
         "settings": {
           "homepage_slider_image_title": "Trending Now!",
-          "homepage_slider_image_1": "shopify:\/\/shop_images\/DecathlonAU_Side_Banner_Camping_SA_14-09-2020_V1-min.png",
-          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/camping",
+          "homepage_slider_image_1": "shopify:\/\/shop_images\/Decathlon_SB_Fitness_SA_25-09-2020_R2-min.png",
+          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/bodybuilding-equipment",
           "checkbox_image_1": true,
           "homepage_slider_image_2": "shopify:\/\/shop_images\/DecathlonAU_Side_Banner_Cycling_SA_14-09-2020_V1-min.png",
           "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/cycling",
@@ -946,34 +946,34 @@
           "homepage_slider_image_3": "shopify:\/\/shop_images\/DecathlonAU_Side_Banner_table_tennis_SA_14-09-2020_V1-min.png",
           "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/table-tennis",
           "checkbox_image_3": true,
-          "homepage_slider_image_4": "shopify:\/\/shop_images\/DecathlonAU_Side_Banner_kayaking_SA_14-09-2020_V1-min.png",
-          "homepage_slider_image_redirection_4": "https:\/\/decathlon.com.au\/collections\/kayaking",
+          "homepage_slider_image_4": "shopify:\/\/shop_images\/DecathlonAU_Side_Banner_Camping_SA_14-09-2020_V1-min.png",
+          "homepage_slider_image_redirection_4": "https:\/\/decathlon.com.au\/collections\/camping",
           "checkbox_image_4": true
         }
       },
       "1597283878337": {
         "type": "slider_image_section",
         "settings": {
-          "homepage_slider_image_title": "Running Gear",
-          "homepage_slider_image_1": "shopify:\/\/shop_images\/DecathlonAU_Content_Banner_3__450x280px_AB_29-04-2020_1_copy-min.jpg",
-          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/all-running-shoes",
+          "homepage_slider_image_title": "Dive Into Summer!",
+          "homepage_slider_image_1": "shopify:\/\/shop_images\/Decathlon_SB_Snorkeling_SA_24-09-2020_R1-min.png",
+          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/snorkeling",
           "checkbox_image_1": true,
-          "homepage_slider_image_2": "shopify:\/\/shop_images\/DecathlonAU_Content_Banner_01_SA_29-Apr-2020_450x280_V1_R1_1_-min.png",
-          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/mens-running-clothes",
+          "homepage_slider_image_2": "shopify:\/\/shop_images\/Decathlon_SB_Surfing_SA_24-09-2020_R1-min.png",
+          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/surfing",
           "checkbox_image_2": true,
-          "homepage_slider_image_3": "shopify:\/\/shop_images\/DecathlonAU_Content_Banner_02_SA_29-Apr-2020_450x280_V1_R1-min.png",
-          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/womens-running-clothes",
+          "homepage_slider_image_3": "shopify:\/\/shop_images\/Decathlon_SB_Kayaking_SA_24-09-2020_R1-min.png",
+          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/kayaking",
           "checkbox_image_3": true,
-          "homepage_slider_image_4": "",
-          "homepage_slider_image_redirection_4": "",
-          "checkbox_image_4": false
+          "homepage_slider_image_4": "shopify:\/\/shop_images\/Decathlon_SB_Swimming_SA_24-09-2020_R1.png",
+          "homepage_slider_image_redirection_4": "https:\/\/decathlon.com.au\/collections\/swimming",
+          "checkbox_image_4": true
         }
       }
     },
     "content_for_index": [
       "1568939434006",
-      "1590735691745",
-      "1597283878337"
+      "1597283878337",
+      "1590735691745"
     ]
   },
   "presets": {
