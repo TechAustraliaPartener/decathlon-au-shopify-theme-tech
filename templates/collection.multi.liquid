@@ -1,7 +1,8 @@
+{% render 'shogun-products', content: collection %}
 {% comment %}Preserve collection in true_collection for use later{% endcomment %}
 {% assign true_collection = collection %}
 
-{% include 'shogun-products', content: collection %}
+
 {{collection.metafields.shogun.above}}
 {% include 'helpers-template-name' %}
 
@@ -263,4 +264,5 @@ $( window ).load(function() {
 
 
 {{collection.metafields.shogun.below}}
+
 
