@@ -294,19 +294,47 @@
       })
     );
 
+    const bannerFromUserData = (instant, data) => {
+      const { ruleContexts } = instant.search.searchParameters;
+      const device = ruleContexts.indexOf('mobile') !== -1 ? 'mobile' : 'desktop';
+
+      const { desktop, mobile } = data;
+
+      return `<picture>${ mobile ? `<source srcset="${ mobile }" media="(max-width: 575px)" />` : '' }<img src="${ desktop }" /></picture>`;
+    }
+
     // Custom data
+
+    /* Example banner custom data
+    {
+      "banner": {
+        "desktop": "https://cdn.shopify.com/s/files/1/0066/6563/3903/files/algolia_desk_test.jpeg?v=1601309504",
+        "mobile": "https://cdn.shopify.com/s/files/1/0066/6563/3903/files/algolia_mobile_test.jpeg?v=1601309504"
+      }
+    }
+    */
+    
     instant.search.addWidget(
       instantsearch.widgets.hits({
         templates: {
           allItems({ userData }) {
             if (userData) {
-              const banners = userData.map(({ image }) => {
-                return `<img src="${image}"/>`;
+              const banners = userData.map(({ banner }) => {
+                return bannerFromUserData(instant, banner);
               });
               return banners.join('');
             }
             return '';
           },
+          empty({ userData }) {
+            if (userData) {
+              const banners = userData.map(({ banner }) => {
+                return bannerFromUserData(instant, banner);
+              });
+              return banners.join('');
+            }
+            return '';
+          }
         },
         container: document.getElementById('ais_banner_container'),
       })
