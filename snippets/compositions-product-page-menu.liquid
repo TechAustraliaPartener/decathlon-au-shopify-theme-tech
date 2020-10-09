@@ -5,7 +5,7 @@
   1. Hook up with dynamic active states on scroll
   2. Revisit keyboard navigation experience
 {% endcomment %}
-
+{% assign qanda = product.metafields.faq.q_and_a %}
 <nav
   aria-hidden="true"
   class="de-ProductMenu
@@ -31,6 +31,11 @@
         Features
       </a>
     </li>
+    <li class="de-u-lg-textGrow1 de-u-spaceNone">
+      <a href="#product-information" class="de-MenuBar-label de-MenuBar-action de-js-StickyMenuItem">
+        Product Information
+      </a>
+    </li>
     {% if has_context_photo %}
       <li class="de-u-lg-textGrow1 de-u-spaceNone">
         <a
@@ -49,14 +54,13 @@
         Reviews
       </a>
     </li>
+    {% if qanda.size > 0 %}
     <li class="de-u-lg-textGrow1 de-u-spaceNone">
-      <a
-        href="#product-information"
-        class="de-MenuBar-label de-MenuBar-action de-js-StickyMenuItem"
-      >
-        Product Information
+      <a href="#faqs" class="de-MenuBar-label de-MenuBar-action de-js-StickyMenuItem">
+        FAQs
       </a>
     </li>
+    {% endif %}
     <li class="de-u-lg-textGrow1 de-u-spaceNone">
       <a
         href="#"
