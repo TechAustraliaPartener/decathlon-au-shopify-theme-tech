@@ -164,6 +164,10 @@
       {% include 'compositions-product-page-associated-products-carousel' %}
     {% endif %}
 
+    {% if settings.show_similar_products_carousel_on_product_page %}
+      {% include 'compositions-product-page-similar-products-carousel' %}
+    {% endif %}
+
     {% if product_video.size > 0 %}
     <section
       class="de-ProductInfoSection de-ProductInfoSection--silver

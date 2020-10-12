@@ -164,6 +164,10 @@
       {% include 'compositions-product-page-associated-products-carousel' %}
     {% endif %}
 
+    {% if settings.show_similar_products_carousel_on_product_page %}
+      {% include 'compositions-product-page-similar-products-carousel' %}
+    {% endif %}
+
     {% if product_video.size > 0 %}
     <section
       class="de-ProductInfoSection de-ProductInfoSection--silver
@@ -254,6 +258,33 @@
       </section>
     {% endif %}
 
+    <section class="de-ProductInfoSection de-ProductInfoSection--silver
+                de-u-md-pad" aria-labelledby="Section-additional-info">
+      <span id="product-information" class="de-ProductAnchor" aria-hidden="true">
+      </span>
+      <header>
+        <h2 class="de-ProductInfoSection-title
+                    de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4
+                    de-u-spaceNone de-u-hidden de-u-md-inlineBlock" id="Section-additional-info">
+          <span class="visually-hidden">Additional </span>Product Information
+        </h2>
+      </header>
+      {% capture product_information_accordion_content %}
+      <div class="de-u-spaceTop6">
+        {% comment %}
+        Product information wired to metafields
+        {% endcomment %}
+        {% include 'compositions-product-page-product-information' %}
+
+      </div>
+      {% endcapture %}
+      {% include 'compositions-product-page-accordion'
+            is_open: false
+            accordion_heading: "Product Information"
+            accordion_content: product_information_accordion_content
+          %}
+    </section>
+      
     <section
       class="de-ProductInfoSection de-ProductInfoSection--withBorderTop
              de-u-md-padEnds de-u-md-padSides
@@ -332,42 +363,6 @@
         %}
       </section>
     {%- endif -%}
-
-    <section
-      class="de-ProductInfoSection de-ProductInfoSection--silver
-             de-u-md-pad"
-      aria-labelledby="Section-additional-info"
-    >
-      <span
-        id="product-information"
-        class="de-ProductAnchor"
-        aria-hidden="true">
-      </span>
-      <header>
-        <h2
-          class="de-ProductInfoSection-title
-                 de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4
-                 de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
-          id="Section-additional-info"
-        >
-          <span class="visually-hidden">Additional </span>Product Information
-        </h2>
-      </header>
-      {% capture product_information_accordion_content %}
-        <div class="de-u-spaceTop6">
-          {% comment %}
-            Product information wired to metafields
-          {% endcomment %}
-          {% include 'compositions-product-page-product-information' %}
-
-        </div>
-      {% endcapture %}
-      {% include 'compositions-product-page-accordion'
-        is_open: false
-        accordion_heading: "Product Information"
-        accordion_content: product_information_accordion_content
-      %}
-    </section>
 
     {% capture 'fulfillment_drawer_content' %}
       {% include 'compositions-product-page-store-pickup' %}
