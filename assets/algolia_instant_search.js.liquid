@@ -382,7 +382,10 @@
       instant.search.addWidget({
         render(options) {
           var $block = $('.ais-block');
-          $block.prepend('<h2 class="collection-title-top">' + window.algolia_custom_widgets.title + '</h2>');
+          var titleExists = $block.find('.collection-title-top').length > 0;
+          if (!titleExists) {
+            $block.prepend('<h2 class="collection-title-top">' + window.algolia_custom_widgets.title + '</h2>');
+          } 
         },
       });
     }
