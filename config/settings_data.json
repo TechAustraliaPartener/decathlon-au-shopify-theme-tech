@@ -31,11 +31,11 @@
     "header_support_link": "https:\/\/help.decathlon.com.au\/support\/home",
     "header_store_label": "Stores",
     "header_sign_in_label": "Sign In",
-    "megamenu_image": "shopify:\/\/shop_images\/HP-Menu-Cross-Training_400x.progressive_59be366d-a497-47ac-91c7-5e15483f1476.jpg",
-    "megamenu_title": "Fitness Gear",
-    "megamenu_subtitle": "Weights & Cardio Equipment",
-    "megamenu_link": "shopify:\/\/collections\/home-fitness-equipment-accessories",
-    "megamenu_bg_colour": "#0082c3",
+    "megamenu_image": "shopify:\/\/shop_images\/HP-Menu-EasyTent_400x.progressive_c50e3db8-f437-4672-ae58-8f71299b4ee1.jpg",
+    "megamenu_title": "Let's Go Camping!",
+    "megamenu_subtitle": "Tents, Shelters & More",
+    "megamenu_link": "shopify:\/\/collections\/camping",
+    "megamenu_bg_colour": "#dc5236",
     "is_lookbook": false,
     "product_returns_text": "Easy 365 days return",
     "product_shipping_text": "Free shipping for orders above $90 (excludes bulky orders)",
@@ -343,7 +343,7 @@
             "settings": {
               "name": "Tempe",
               "title": "Tempe Store, 2044",
-              "online_inventory_source": true,
+              "online_inventory_source": false,
               "enable_c_c": true,
               "duplicate": "",
               "test_mode": false,
@@ -387,7 +387,7 @@
             "settings": {
               "name": "Auburn",
               "title": "Auburn Store, 2144",
-              "online_inventory_source": true,
+              "online_inventory_source": false,
               "enable_c_c": true,
               "duplicate": "",
               "test_mode": false,
@@ -886,19 +886,6 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
-          "1599283340303": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_3_-min.png",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": "Boxing Gear!",
-              "banner_subtitle": "<p><strong>Shop Boxing Gloves, Punch Bags &amp; More<\/strong><\/p>",
-              "button_new_window": false,
-              "button_title": "SHOP NOW",
-              "button_url": "shopify:\/\/collections\/boxing"
-            }
-          },
           "1589172506799": {
             "type": "slide",
             "settings": {
@@ -915,21 +902,34 @@
           "1584424981258": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_4_-min_e9d31e4a-4f64-438f-9534-cb6893702673.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_11_-min_1cb9cde1-1da7-4428-a83c-793855b84445.jpg",
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
-              "banner_title": "The Ocean Is Our Playground!",
-              "banner_subtitle": "<p><strong>Discover our range of Surf Gear &amp; Swimwear&nbsp;<\/strong><\/p>",
+              "banner_title": "<span style=\"color: #ff0000;\"><strong>Scooter Sale<\/strong><\/span>",
+              "banner_subtitle": "<p><strong>Up to 25% Off Kids &amp; Adult Scooters<\/strong><\/p>",
               "button_new_window": false,
-              "button_title": "Shop Surf Gear & Clothing",
-              "button_url": "shopify:\/\/collections\/surfing"
+              "button_title": "SHOP NOW",
+              "button_url": "shopify:\/\/collections\/scooters"
+            }
+          },
+          "1599283340303": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_3_-min.png",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "Boxing Gear!",
+              "banner_subtitle": "<p><strong>Shop Boxing Gloves, Punch Bags &amp; More<\/strong><\/p>",
+              "button_new_window": false,
+              "button_title": "SHOP NOW",
+              "button_url": "shopify:\/\/collections\/boxing"
             }
           }
         },
         "block_order": [
-          "1599283340303",
           "1589172506799",
-          "1584424981258"
+          "1584424981258",
+          "1599283340303"
         ],
         "settings": {}
       },
@@ -955,11 +955,11 @@
         "type": "slider_image_section",
         "settings": {
           "homepage_slider_image_title": "Dive Into Summer!",
-          "homepage_slider_image_1": "shopify:\/\/shop_images\/Decathlon_SB_Snorkeling_SA_24-09-2020_R1-min.png",
-          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/snorkeling",
+          "homepage_slider_image_1": "shopify:\/\/shop_images\/Stay_in_shape_and_achieve_your_goals_8.jpg",
+          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/pages\/partners-the-surfboard-warehouse",
           "checkbox_image_1": true,
-          "homepage_slider_image_2": "shopify:\/\/shop_images\/Decathlon_SB_Surfing_SA_24-09-2020_R1-min.png",
-          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/surfing",
+          "homepage_slider_image_2": "shopify:\/\/shop_images\/Decathlon_SB_Snorkeling_SA_24-09-2020_R1-min.png",
+          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/snorkeling",
           "checkbox_image_2": true,
           "homepage_slider_image_3": "shopify:\/\/shop_images\/Decathlon_SB_Kayaking_SA_24-09-2020_R1-min.png",
           "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/kayaking",
@@ -968,10 +968,29 @@
           "homepage_slider_image_redirection_4": "https:\/\/decathlon.com.au\/collections\/swimming",
           "checkbox_image_4": true
         }
+      },
+      "1602562605803": {
+        "type": "slider_image_section",
+        "settings": {
+          "homepage_slider_image_title": "Weekly Deals!",
+          "homepage_slider_image_1": "shopify:\/\/shop_images\/Great_white_shark-min.jpg",
+          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/pools-pool-games",
+          "checkbox_image_1": true,
+          "homepage_slider_image_2": "shopify:\/\/shop_images\/Monster_truck_tube-min.jpg",
+          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/pools-pool-games",
+          "checkbox_image_2": true,
+          "homepage_slider_image_3": "shopify:\/\/shop_images\/WAHU_wingblade.jpg",
+          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/pools-pool-games",
+          "checkbox_image_3": true,
+          "homepage_slider_image_4": "",
+          "homepage_slider_image_redirection_4": "",
+          "checkbox_image_4": false
+        }
       }
     },
     "content_for_index": [
       "1568939434006",
+      "1602562605803",
       "1597283878337",
       "1590735691745"
     ]
