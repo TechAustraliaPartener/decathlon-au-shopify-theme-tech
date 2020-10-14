@@ -26,8 +26,8 @@
 <label>Mobile Phone</label>
 <div data-marketing-hide>
   <input type="text" name="country_code_number" value="+61" disabled style="width: 20%; display: inline-block;" />
-  <input type="text" name="customer[addresses][][phone]" value="{{ customer.default_address.phone }}"
-    style="width: 79%; display: inline-block;" />
+  <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="customer[addresses][][phone]"
+    value="{{ customer.default_address.phone }}" style="width: 79%; display: inline-block;" />
 </div>
 
 <label>Date of Birth</label>
@@ -44,7 +44,7 @@
   <input type="text" name="customer[postcode]" placeholder="Postcode"
     value="{{ customer.metafields.customr.postcode | strip }}" pattern="[0-9]{4}">
   <select name="customer[addresses][][province]" data-country="Australia">
-    <!-- <option></option>
+    <option></option>
     <option>Australian Capital Territory</option>
     <option>New South Wales</option>
     <option>Northern Territory</option>
@@ -52,27 +52,28 @@
     <option>South Australia</option>
     <option>Tasmania</option>
     <option>Victoria</option>
-    <option>Western Australia</option> -->
-    {% for province in master_stores %}
-    <option value="{{ province }}" {% if customer.default_address.province == province %}selected="selected"
-      {% endif %}>
-      {{ province_titles[forloop.index0] }}
-    </option>
-    {% endfor %}
+    <option>Western Australia</option>
   </select>
-
 </div>
+
+{% assign preferred_store_names = 'Tempe, NSW | Auburn, NSW | Box Hill, VIC | Knoxfield, VIC | Moorabbin, VIC | No stores around me' | split: "|" %}
 
 <label>Preferred Store</label>
 <div>
   <select name="customer[preferred_store]" data-marketing-hide>
-    <option value=""></option>
+    <!-- <option value=""></option>
     <option>Tempe, NSW</option>
     <option>Auburn, NSW</option>
     <option>Box Hill, VIC</option>
     <option>Knoxfield, VIC</option>
     <option>Moorabbin, VIC</option>
-    <option>No stores around me</option>
+    <option>No stores around me</option> -->
+    <option value=''></option>
+    {% for store in preferred_store_names %}
+    <option value="{{ store }}" {% if customer.preferred_store == store %}selected="selected" {% endif %}>
+      {{ preferred_store_names[forloop.index0] }}
+    </option>
+    {% endfor %}
   </select>
 </div>
 
