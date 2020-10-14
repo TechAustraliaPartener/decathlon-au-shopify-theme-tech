@@ -30,5 +30,5 @@
 <div class="inputWrap" data-marketing-hide>
   <label>Test</label>
   <input type="text" name="country_code" value='+61'/>
-  <input type="text" name="phone_number" value='' />
+  <input type="text" name="customer[addresses][][phone]" value="{{ customer.default_address.phone }}" />
 </div>
