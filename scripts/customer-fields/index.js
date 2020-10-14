@@ -56,6 +56,7 @@ $(document).ready(() => {
   });
 
   $('[data-submit]').on('submit', function(e) {
+    console.log('submit form');
     e.preventDefault();
     if ($($(this).data('submit')).length > 0) {
       $($(this).data('submit')).submit();
