@@ -2,10 +2,13 @@ import $ from 'jquery';
 
 $(document).ready(() => {
   $('#accountInfo input, #accountEdit input').on('change', function() {
+    console.log($(this).val());
     const $registerField = $(this);
     const $hiddenCustomerField = $(
       `#customer-fields input[name="${$registerField.attr('name')}"]`
     );
+    console.log(`${$registerField.attr('name')}`);
+    console.log($hiddenCustomerField);
     if ($hiddenCustomerField.length > 0) {
       if ($registerField.attr('type') === 'checkbox') {
         $hiddenCustomerField.prop('checked', $registerField.prop('checked'));
