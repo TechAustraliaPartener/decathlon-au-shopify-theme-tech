@@ -43,6 +43,7 @@
     value="{{ customer.default_address.city }}" />
   <input type="text" name="customer[postcode]" placeholder="Postcode"
     value="{{ customer.metafields.customr.postcode | strip }}" pattern="[0-9]{4}">
+  {{ customer.default_address.province }}
   <select name="customer[addresses][][province]" data-country="Australia">
     <option></option>
     <option>Australian Capital Territory</option>
