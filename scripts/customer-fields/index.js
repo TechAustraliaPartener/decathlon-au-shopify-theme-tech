@@ -68,24 +68,6 @@ $(document).ready(() => {
     const province = $('select[name="customer[addresses][][province]"]');
     e.preventDefault();
     if ($($(this).data('submit')).length > 0) {
-      // if ($('input[name="customer[preferred_store]"]').val() == '') {
-      //   $('select[name="customer[preferred_store]"]').addClass('error');
-      //   alert('Please select');
-      //   error = true;
-      // } else {
-      //   $('select[name="customer[preferred_store]"]').removeClass('error');
-      // }
-
-      // if (province.val() == '') {
-      //   $('select[name="customer[addresses][][province]"]').addClass('error');
-      //   alert('Please select');
-      //   error = true;
-      // }
-      // else {
-      //   $('select[name="customer[addresses][][province]"]').removeClass('error');
-      // }
-
-
       if (!$('input[name="customer[accepts_terms_conditions]"]').is(':checked')) {
         $('input[name="customer[accepts_terms_conditions]"]').addClass('error')
         error = true;
@@ -117,5 +99,10 @@ $(document).ready(() => {
       $('[data-marketing-hide]').show();
       $('#detailsDisplay').fadeIn();
     });
+  });
+
+  $('.show_edit_form').click(function (e) {
+    e.preventDefault();
+    $('#editDetails').click();
   });
 });
