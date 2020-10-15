@@ -10589,7 +10589,30 @@ $color-out: #ff0000;
   width: 100%;
   box-shadow: none;
 }
-.custom-description-widget{
+
+.form-vertical input.country_code_number {
+  background: url({{ 'icon-australia-flag.png' | asset_url }}) no-repeat 10px center;
+  margin-right: 5px;
+  max-width: 80px;
+  padding-left: 42px;
+}
+
+.form-vertical .two-column-wrap {
+  display: flex;
+  justify-content: space-between;
+  > div {
+    width: 49%;
+  }
+}
+
+
+.form-vertical .error {
+  border: 1px solid red !important
+}
+
+.form-vertical input[type=checkbox].error {
+  outline: 1px solid red !important
+}.custom-description-widget{
     background-color: #EFEFEF;
     clear:both;
     padding: 25px 95px;

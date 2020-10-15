@@ -1,21 +1,16 @@
-<div class="inputWrap" data-marketing-hide>
+<div data-marketing-hide>
   <label>{{ 'customer.register.first_name' | t }}</label>
-  <input type="text" name="customer[first_name]" placeholder="First name" value="{{ customer.first_name }}" required>
+  <input type="text" name="customer[first_name]" placeholder="First name" value="{{ customer.first_name }}">
 </div>
 
-<div class="inputWrap" data-marketing-hide>
+<div data-marketing-hide>
   <label>{{ 'customer.register.last_name' | t }}</label>
   <input type="text" name="customer[last_name]" placeholder="Last name" value="{{ customer.last_name }}">
 </div>
 
-<div class="checkboxWrap">
-  <input type="checkbox" value="Yes" name="customer[accepts_marketing]"
-    {% if customer.accepts_marketing or get_account_info %}checked{% endif %}>
-  <label class="label">{{ 'customer.account.marketing_optin' | t }}</label>
-</div>
-
 <label data-marketing-hide>Gender</label>
 <select name="customer[gender]" data-marketing-hide>
+  <option value=""></option>
   {% for gender in gender_values %}
   <option value="{{ gender }}" {% if customer.metafields.customr.gender == gender %}selected="selected" {% endif %}>
     {{ gender_titles[forloop.index0] }}
@@ -23,13 +18,11 @@
   {% endfor %}
 </select>
 
-<label>Mobile Phone</label>
+<label>{{'customer.register.mobile_phone' | t }}</label>
 <div data-marketing-hide style="display: flex;">
 
-  <input type="text" class="country_code_number" name="country_code_number" value="+61" disabled
-    style="margin-right: 5px;max-width: 45px;" />
-  <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="customer[addresses][][phone]"
-    value="{{ customer.default_address.phone }}" />
+  <input type="text" class="country_code_number" name="country_code_number" value="+61" disabled />
+  <input type="tel" name="customer[addresses][][phone]" value="{{ customer.default_address.phone }}" />
 </div>
 
 <label>Date of Birth</label>
@@ -43,25 +36,33 @@
     value="{{ customer.default_address.address1 }}" />
   <input type="text" name="customer[addresses][][city]" placeholder="Suburb"
     value="{{ customer.default_address.city }}" />
-  <input type="text" name="customer[postcode]" placeholder="Postcode"
-    value="{{ customer.metafields.customr.postcode | strip }}" pattern="[0-9]{4}">
 
   {% assign address_province_names = 'Australian Capital Territory|New South Wales|Northern Territory|Queensland|South Australia|Tasmania|Victoria|Western Australia' | split: "|" %}
 
-  <select name="customer[addresses][][province]" data-country="Australia">
-    <option></option>
-    {% for province in address_province_names %}
-    <option value="{{ province }}" {% if customer.default_address.province == province %}selected="selected"
-      {% endif %}>
-      {{ address_province_names[forloop.index0] }}
-    </option>
-    {% endfor %}
-  </select>
+  <div class="two-column-wrap">
+    <div>
+      <input type="text" name="customer[postcode]" placeholder="Postcode"
+        value="{{ customer.metafields.customr.postcode | strip }}" />
+    </div>
+    <div>
+      <select name="customer[addresses][][province]" data-country="Australia">
+        <option value="" {% if customer.default_address.province != province %}selected="selected" {% endif %}>State
+        </option>
+        {% for province in address_province_names %}
+        <option value="{{ province }}" {% if customer.default_address.province == province %}selected="selected"
+          {% endif %}>
+          {{ address_province_names[forloop.index0] }}
+        </option>
+        {% endfor %}
+      </select>
+    </div>
+
+  </div>
 </div>
 
 {% assign preferred_store_names = 'customer.preferred_store.stores' | t | split: "|" %}
 
-<label>Preferred Store</label>
+<label>{{'customer.preferred_store.title' | t }}</label>
 <div>
   <select name="customer[preferred_store]" data-marketing-hide>
     <option value=''></option>
@@ -76,7 +77,12 @@
 
 <div>
   <p>
-    <input type="checkbox" name="customer[accepts_marketing]" /> Keep me up to date on news and exclusive offers <br />
-    <input type="checkbox" name="customer[accepts_terms_conditions]" checked /> I have read & understood the <a
-      href="#">T&Cs</a> of the offer.</p>
+    <input type="checkbox" value="Yes" name="customer[accepts_marketing]"
+      {% if customer.accepts_marketing or get_account_info %}checked{% endif %}>
+    <label>{{ 'customer.account.marketing_optin' | t }}</label>
+    <br />
+
+    <input type="checkbox" name="customer[accepts_terms_conditions]"
+      {% if customer.metafields.customr.accepts_terms_conditions %}checked{% endif %} /> I have read & understood the <a
+      href="/pages/terms-and-conditions-membership">T&Cs</a> of the offer.</p>
 </div>
