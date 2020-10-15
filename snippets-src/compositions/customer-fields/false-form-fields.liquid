@@ -25,7 +25,9 @@
 
 <label>Mobile Phone</label>
 <div data-marketing-hide style="display: flex;">
-  <input type="text" name="country_code_number" value="+61" disabled style="margin-right: 5px;max-width: 45px;" />
+
+  <input type="text" class="country_code_number" name="country_code_number" value="+61" disabled
+    style="margin-right: 5px;max-width: 45px;" />
   <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="customer[addresses][][phone]"
     value="{{ customer.default_address.phone }}" />
 </div>
@@ -57,7 +59,8 @@
   </select>
 </div>
 
-{% assign preferred_store_names = 'Tempe, NSW|Auburn, NSW|Box Hill, VIC|Knoxfield, VIC|Moorabbin, VIC|No stores around me' | split: "|" %}
+{% assign preferred_store_names = 'customer.preferred_store.stores' | t | split: "|" %}
+
 
 <label>Preferred Store</label>
 <div>

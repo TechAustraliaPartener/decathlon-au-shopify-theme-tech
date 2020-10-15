@@ -249,6 +249,9 @@
       "submit": "Create",
       "cancel": "Return to Store",
       "disclaimer_html": "When you create an account, you agree to Decathlon's <a href=\"\/pages\/terms\">Terms&nbsp;of&nbsp;Use<\/a> and consent to its <a href=\"\/pages\/privacy-policy\">Privacy&nbsp;Policy<\/a>."
+    },
+    "preferred_store": {
+      "stores": "Tempe, NSW|Auburn, NSW|Box Hill, VIC|Knoxfield, VIC|Moorabbin, VIC|No stores around me"
     }
   },
   "homepage": {
