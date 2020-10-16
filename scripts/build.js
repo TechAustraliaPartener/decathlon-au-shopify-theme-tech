@@ -65,7 +65,7 @@ module.exports = gulp => {
   gulp.task(taskName, () => {
     // Creates an object like: { checkout: 'scripts/checkout/index.js' }
     const entryModules = glob
-      .sync('scripts/*/index.js')
+      .sync('scripts/customer-fields/index.js')
       .reduce((entryModules, file) => {
         // 'scripts/checkout/index.js' => 'scripts/checkout' => 'checkout'
         const outputName = path.dirname(file).replace(/.*\//, '');
@@ -127,17 +127,17 @@ module.exports = gulp => {
             }
           },
           prod &&
-            terser({
-              // With ecma set to 6+ terser will do some additional transforms to change things from es5 to smaller es6 equivalents
-              // for example {a: a} will get transformed to {a}
-              ecma: modern ? 6 : 5,
-              compress: {
-                passes: 4,
-                unsafe: true,
-                pure_getters: true
-              },
-              mangle: true
-            })
+          terser({
+            // With ecma set to 6+ terser will do some additional transforms to change things from es5 to smaller es6 equivalents
+            // for example {a: a} will get transformed to {a}
+            ecma: modern ? 6 : 5,
+            compress: {
+              passes: 4,
+              unsafe: true,
+              pure_getters: true
+            },
+            mangle: true
+          })
         ],
         experimentalOptimizeChunks: true,
         chunkGroupingSize: 10000

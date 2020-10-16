@@ -62,8 +62,22 @@ $(document).ready(() => {
     $popup.show();
   });
 
+  if ($('#accountEdit').length > 0) {
+    $('.edit-form .birthday_wrap').hide()
+  }
+
+  $('input[name="customer[addresses][][phone]"]').on('input', function () {
+    this.value = parseInt(this.value.replace(/[^0-9]/g, ''), 10) || '';
+  });
+
+  $('input[name="customer[postcode]"]').on('input', function () {
+    this.value = parseInt(this.value.replace(/[^0-9]/g, ''), 10) || '';
+  });
+
   $('[data-submit]').on('submit', function (e) {
-    console.log('submit form');
+
+    // console.log('submit forms');
+
     let error = false;
     const $first_name = $('input[name="customer[first_name]"]');
     const $last_name = $('input[name="customer[last_name]"]');
@@ -74,8 +88,10 @@ $(document).ready(() => {
     const $phone = $('input[name="customer[addresses][][phone]"]');
     const $address1 = $('input[name="customer[addresses][][address1]"]');
     const $post_code = $('input[name="customer[postcode]"]');
+    const $terms_conditions = $('input[name="customer[accepts_terms_conditions]"]')
 
     e.preventDefault();
+
     if ($($(this).data('submit')).length > 0) {
 
       if ($first_name.val() == '') {
@@ -84,39 +100,6 @@ $(document).ready(() => {
       } else {
         $first_name.removeClass('error');
       }
-
-      if ($address1.val() == '') {
-        $address1.addClass('error');
-        error = true;
-      } else {
-        $address1.removeClass('error');
-      }
-
-      if ($post_code.val() == '') {
-        $post_code.addClass('error');
-        error = true;
-      } else {
-        $post_code.removeClass('error');
-      }
-
-      if ($phone.val() == '') {
-        $phone.addClass('error');
-        error = true;
-      } else {
-        $phone.removeClass('error');
-      }
-
-      // $phone.keyup(function () {
-      //   this.value = this.value.replace(/[^0-9\.]/g, '');
-      // });
-
-      // $('input[name="customer[addresses][][phone]"]').on('keypress', function (e) {
-      //   console.log('numbers only');
-      //   if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
-      //     console.log('numbers only please');
-      //     return false;
-      //   }
-      // });
 
       if ($last_name.val() == '') {
         $last_name.addClass('error');
@@ -139,6 +122,27 @@ $(document).ready(() => {
         $birthday.removeClass('error');
       }
 
+      if ($phone.val() == '') {
+        $phone.addClass('error');
+        error = true;
+      } else {
+        $phone.removeClass('error');
+      }
+
+      if ($address1.val() == '') {
+        $address1.addClass('error');
+        error = true;
+      } else {
+        $address1.removeClass('error');
+      }
+
+      if ($post_code.val() == '') {
+        $post_code.addClass('error');
+        error = true;
+      } else {
+        $post_code.removeClass('error');
+      }
+
       if ($preferred_store.val() == '') {
         $preferred_store.addClass('error');
         error = true;
@@ -154,11 +158,11 @@ $(document).ready(() => {
         $province.removeClass('error');
       }
 
-      if (!$('input[name="customer[accepts_terms_conditions]"]').is(':checked')) {
-        $('input[name="customer[accepts_terms_conditions]"]').addClass('error')
+      if (!$terms_conditions.is(':checked')) {
+        $terms_conditions.addClass('error')
         error = true;
       } else {
-        $('input[name="customer[accepts_terms_conditions]"]').removeClass('error')
+        $terms_conditions.removeClass('error')
       }
 
       if (!error) {
