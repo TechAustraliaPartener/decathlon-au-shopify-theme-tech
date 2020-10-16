@@ -9,7 +9,7 @@
 </div>
 
 <label data-marketing-hide>{{ 'customer.custom_fields.gender' | t }}</label>
-<select name="customer[gender]" data-marketing-hide>
+<select data-marketing-hide name="customer[gender]" data-marketing-hide>
   <option value=""></option>
   {% for gender in gender_values %}
   <option value="{{ gender }}" {% if customer.metafields.customr.gender == gender %}selected="selected" {% endif %}>
@@ -18,7 +18,7 @@
   {% endfor %}
 </select>
 
-<label>{{ 'customer.custom_fields.phone' | t }}</label>
+<label data-marketing-hide>{{ 'customer.custom_fields.phone' | t }}</label>
 <div data-marketing-hide style="display: flex;">
   <input type="text" class="country_code_number" name="country_code_number" value="+61" disabled />
   <input type="tel" name="customer[addresses][][phone]" value="{{ customer.default_address.phone }}" maxlength="10" />
@@ -29,8 +29,8 @@
     <input type="date" name="customer[birthday]" value="{{ customer.metafields.customr.birthday  }}" />
   </div>
 </div>
-<label>{{ 'customer.custom_fields.address' | t }}</label>
-<div>
+<label data-marketing-hide>{{ 'customer.custom_fields.address' | t }}</label>
+<div data-marketing-hide>
   <input type="text" name="customer[addresses][][address1]" placeholder="{{ 'customer.custom_fields.unit_number' | t }}"
     value="{{ customer.default_address.address1 }}" />
   <input type="text" name="customer[addresses][][city]" placeholder="Suburb"
@@ -61,8 +61,8 @@
 
 {% assign preferred_store_names = 'customer.custom_fields.stores' | t | split: "|" %}
 
-<label>{{ 'customer.custom_fields.preferred_store' | t }}</label>
-<div>
+<label data-marketing-hide>{{ 'customer.custom_fields.preferred_store' | t }}</label>
+<div data-marketing-hide>
   <select name="customer[preferred_store]" data-marketing-hide>
     <option value=''></option>
     {% for store in preferred_store_names %}
@@ -79,7 +79,8 @@
       {% if customer.accepts_marketing or get_account_info %}checked{% endif %}>
     <label>{{ 'customer.custom_fields.marketing_optin' | t }}</label>
     <br />
-    <input type="checkbox" name="customer[accepts_terms_conditions]"
+    <input data-marketing-hide type="checkbox" name="customer[accepts_terms_conditions]"
       {% if customer.metafields.customr.accepts_terms_conditions %}checked{% endif %} />
-    {{ 'customer.custom_fields.accepts_terms_conditions' | t }}</p>
+    <span data-marketing-hide>{{ 'customer.custom_fields.accepts_terms_conditions' | t }}</span>
+  </p>
 </div>
