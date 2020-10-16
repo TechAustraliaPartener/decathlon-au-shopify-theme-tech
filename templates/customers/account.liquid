@@ -53,9 +53,11 @@
               <p>
                 <b>{% if customer.first_name %}{{ customer.first_name }} {% endif %}{% if customer.last_name %}{{ customer.last_name }}{% endif %}</b>
                 <br/>
-                <label>{{ 'customer.account.gender' | t }}</label>{{ account_gender | default: 'Not provided' }}
+                <label>{{ 'customer.account.gender' | t }}: </label>{{ account_gender | default: 'Not provided' }}
                 <br/>
-                <label>{{ 'customer.account.postcode' | t }}</label>{{ customer.metafields.customr.postcode | default: 'Not provided' }}
+                <label>{{ 'customer.account.birthday' | t }}: </label>{{ customer.metafields.customr.birthday | date: "%d/%m/%Y" | default: 'Not provided' }}
+                <br/>
+                <label>{{ 'customer.account.preferred_store' | t }}: </label>{{ customer.metafields.customr.preferred_store | default: 'Not provided' }}
               </p>
               <ul class="no-bullets">
                 <li>
