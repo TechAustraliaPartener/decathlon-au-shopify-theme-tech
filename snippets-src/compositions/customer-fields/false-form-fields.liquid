@@ -21,7 +21,7 @@
 <label data-marketing-hide>{{ 'customer.custom_fields.phone' | t }}</label>
 <div data-marketing-hide style="display: flex;">
   <input type="text" class="country_code_number" name="country_code_number" value="+61" disabled />
-  <input type="tel" name="customer[addresses][][phone]" value="{{ customer.default_address.phone }}" maxlength="10" />
+  <input type="tel" name="customer[addresses][][phone]" value="{{ customer.default_address.phone | remove_first: '+61' }}" maxlength="10" data-prefix="+61" />
 </div>
 <div class="birthday_wrap">
   <label>{{ 'customer.custom_fields.birthday' | t }}</label>

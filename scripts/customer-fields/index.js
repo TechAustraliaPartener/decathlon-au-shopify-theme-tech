@@ -2,20 +2,24 @@ import $ from 'jquery';
 
 $(document).ready(() => {
   $('#accountInfo input, #accountEdit input').on('change', function () {
-    console.log($(this).val());
+    // console.log($(this).val());
     const $registerField = $(this);
     const $hiddenCustomerField = $(
       `#customer-fields input[name="${$registerField.attr('name')}"]`
     );
-    console.log(`${$registerField.attr('name')}`);
-    console.log($hiddenCustomerField);
+    // console.log(`${$registerField.attr('name')}`);
+    // console.log($hiddenCustomerField);
     if ($hiddenCustomerField.length > 0) {
       if ($registerField.attr('type') === 'checkbox') {
         $hiddenCustomerField.prop('checked', $registerField.prop('checked'));
       } else if ($registerField.attr('type') === 'select') {
         $hiddenCustomerField.val($registerField.val());
       } else {
-        $hiddenCustomerField.val($registerField.val());
+
+        const prefix = $registerField.data('prefix');
+        const val = prefix ? prefix + $registerField.val() : $registerField.val();
+
+        $hiddenCustomerField.val(val);
       }
     }
   });
