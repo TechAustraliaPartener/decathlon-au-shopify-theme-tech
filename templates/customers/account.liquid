@@ -52,9 +52,9 @@
             <div id="detailsDisplay">
               <p>
                 <b>{% if customer.first_name %}{{ customer.first_name }} {% endif %}{% if customer.last_name %}{{ customer.last_name }}{% endif %}</b>
-              <br/>
+                <br/>
                 <label>{{ 'customer.account.gender' | t }}</label>{{ account_gender | default: 'Not provided' }}
-              <br/>
+                <br/>
                 <label>{{ 'customer.account.postcode' | t }}</label>{{ customer.metafields.customr.postcode | default: 'Not provided' }}
               </p>
               <ul class="no-bullets">
@@ -142,31 +142,30 @@
 
         {% if customer.default_address != nil and customer.default_address.address1 != blank %}
           <p class="address--default">
-          <strong>{{ customer.default_address.address1 }}{%- if customer.default_address.address2 != "" -%}, {{ customer.default_address.address2 }}
-          {%- endif -%}
-          </strong>
-          <br/>
-          {% if customer.default_address.city != "" %}
-            {{ customer.default_address.city }},
-          {% endif %}
+            <strong>{{ customer.default_address.address1 }}{%- if customer.default_address.address2 != "" -%}, {{ customer.default_address.address2 }}{%- endif -%}</strong>
 
-          {% if customer.default_address.province_code != "" %}
-            {{ customer.default_address.province_code | upcase }}
-          {% endif %}
+            <br/>
 
-          {% if customer.default_address.zip != "" %}
-            {{ customer.default_address.zip | upcase }}<br>
-          {% endif %}
+            {% if customer.default_address.city != "" %}
+              {{ customer.default_address.city }},
+            {% endif %}
 
-          {% if customer.default_address.country != "" %}
-            {{ customer.default_address.country }}<br>
-          {% endif %}
+            {% if customer.default_address.province_code != "" %}
+              {{ customer.default_address.province_code | upcase }}
+            {% endif %}
 
-          {% if customer.default_address.phone != "" %}
-            {{ customer.default_address.phone }}
-          {% endif %}
+            {% if customer.default_address.zip != "" %}
+              {{ customer.default_address.zip | upcase }}<br>
+            {% endif %}
+
+            {% if customer.default_address.country != "" %}
+              {{ customer.default_address.country }}<br>
+            {% endif %}
+
+            {% if customer.default_address.phone != "" %}
+              {{ customer.default_address.phone }}
+            {% endif %}
           </p>
-
         {% endif %}
 
         <ul class="no-bullets">
