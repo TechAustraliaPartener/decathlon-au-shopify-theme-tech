@@ -10,11 +10,11 @@
 
 <label data-marketing-hide>{{ 'customer.custom_fields.gender' | t }}</label>
 <select data-marketing-hide name="customer[gender]" data-marketing-hide>
-  <option value=""></option>
+  <option {% if customer.metafields.customr.gender == blank %}selected{% endif %} disabled hidden></option>
   {% for gender in gender_values %}
-  <option value="{{ gender }}" {% if customer.metafields.customr.gender == gender %}selected="selected" {% endif %}>
-    {{ gender_titles[forloop.index0] }}
-  </option>
+    <option value="{{ gender }}" {% if customer.metafields.customr.gender == gender %}selected="selected" {% endif %}>
+      {{ gender_titles[forloop.index0] }}
+    </option>
   {% endfor %}
 </select>
 
@@ -45,7 +45,7 @@
     </div>
     <div>
       <select name="customer[addresses][][province]" data-country="Australia">
-        <option value="" {% if customer.default_address.province != province %}selected="selected" {% endif %}>
+        <option {% if customer.default_address.province == blank %}selected{% endif %} disabled hidden>
           {{ 'customer.custom_fields.state' | t }}
         </option>
         {% for province in address_province_names %}
@@ -64,7 +64,7 @@
 <label data-marketing-hide>{{ 'customer.custom_fields.preferred_store' | t }}</label>
 <div data-marketing-hide>
   <select name="customer[preferred_store]" data-marketing-hide>
-    <option value=''></option>
+    <option {% if customer.metafields.customr.preferred_store == blank %}selected{% endif %} disabled hidden></option>
     {% for store in preferred_store_names %}
     <option value="{{ store }}" {% if customer.metafields.customr.preferred_store == store %}selected="selected"
       {% endif %}>
