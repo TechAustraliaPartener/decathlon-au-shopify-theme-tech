@@ -27,6 +27,7 @@
         },
         afterSave: function() {
           $('#accountInfo').fadeOut();
+          setTimeout(function(){ location.reload(); }, 1000);
         }        
       };
     </script>
