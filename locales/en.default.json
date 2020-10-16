@@ -245,7 +245,6 @@
       "first_name": "First Name",
       "last_name": "Last Name",
       "email": "Email",
-      "mobile_phone": "Mobile Phone",
       "password": "Password",
       "submit": "Create",
       "cancel": "Return to Store",
@@ -266,7 +265,7 @@
       "preferred_store": "Preferred Store",
       "stores": "Tempe, NSW|Auburn, NSW|Box Hill, VIC|Knoxfield, VIC|Moorabbin, VIC|No stores around me",
       "marketing_optin": "Keep me up to date on news and exclusive offers",
-      "accepts_terms_conditions": "I have read &amp; understood the T&amp;Cs of the offer."
+      "accepts_terms_conditions": "I have read &amp; understood the T&Cs of the offer."
     }
   },
   "homepage": {
