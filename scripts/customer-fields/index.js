@@ -83,6 +83,7 @@ $(document).ready(() => {
     const $last_name = $('input[name="customer[last_name]"]');
     const $gender = $('select[name="customer[gender]"]');
     const $province = $('select[name="customer[addresses][][province]"]');
+    const $suburb = $('input[name="customer[addresses][][city]"]');
     const $preferred_store = $('select[name="customer[preferred_store]"]');
     const $birthday = $('input[name="customer[birthday]"]');
     const $phone = $('input[name="customer[addresses][][phone]"]');
@@ -94,68 +95,74 @@ $(document).ready(() => {
 
     if ($($(this).data('submit')).length > 0) {
 
-      if ($first_name.val() == '') {
+      if (!$first_name.val()) {
         $first_name.addClass('error');
         error = true;
       } else {
         $first_name.removeClass('error');
       }
 
-      if ($last_name.val() == '') {
+      if (!$last_name.val()) {
         $last_name.addClass('error');
         error = true;
       } else {
         $last_name.removeClass('error');
       }
 
-      if ($gender.val() == '') {
+      if (!$gender.val()) {
         $gender.addClass('error');
         error = true;
       } else {
         $gender.removeClass('error');
       }
 
-      if ($birthday.val() == '') {
+      if (!$birthday.val()) {
         $birthday.addClass('error');
         error = true;
       } else {
         $birthday.removeClass('error');
       }
 
-      if ($phone.val() == '') {
+      if (!$phone.val()) {
         $phone.addClass('error');
         error = true;
       } else {
         $phone.removeClass('error');
       }
 
-      if ($address1.val() == '') {
+      if (!$address1.val()) {
         $address1.addClass('error');
         error = true;
       } else {
         $address1.removeClass('error');
       }
 
-      if ($post_code.val() == '') {
+      if (!$post_code.val()) {
         $post_code.addClass('error');
         error = true;
       } else {
         $post_code.removeClass('error');
       }
 
-      if ($preferred_store.val() == '') {
+      if (!$preferred_store.val()) {
         $preferred_store.addClass('error');
         error = true;
       } else {
         $preferred_store.removeClass('error');
       }
 
-      if ($province.val() == '') {
+      if (!$province.val()) {
         $province.addClass('error');
         error = true;
-      }
-      else {
+      } else {
         $province.removeClass('error');
+      }
+
+      if (!$suburb.val()) {
+        $suburb.addClass('error');
+        error = true;
+      } else {
+        $suburb.removeClass('error');
       }
 
       if (!$terms_conditions.is(':checked')) {
