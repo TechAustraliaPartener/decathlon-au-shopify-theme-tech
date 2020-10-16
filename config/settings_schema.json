@@ -309,6 +309,16 @@
     ]
   },
   {
+    "name": "Custom Fields",
+    "settings": [
+      {
+        "type": "text",
+        "id": "custom_fields_terms_conditions",
+        "label": "Terms & Conditions Checkbox Text"
+      }
+    ]
+  },
+  {
     "name": "Lookbook",
     "settings": [
       {

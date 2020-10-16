@@ -81,6 +81,6 @@
     <br />
     <input data-marketing-hide type="checkbox" name="customer[accepts_terms_conditions]"
       {% if customer.metafields.customr.accepts_terms_conditions %}checked{% endif %} />
-    <span data-marketing-hide>{{ 'customer.custom_fields.accepts_terms_conditions' | t }}</span>
+    <span data-marketing-hide>{{ settings.custom_fields_terms_conditions }}</span>
   </p>
 </div>
