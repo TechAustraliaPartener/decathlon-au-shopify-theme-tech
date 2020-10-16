@@ -12,6 +12,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "theme watch & gulp",
+    "b": "gulp b",
     "build": "gulp build",
     "check-lint": "prettier --list-different '{scripts,cypress}/**/*.js' && eslint '{scripts,cypress}/**/*.js'",
     "lint": "prettier --write '{scripts,cypress}/**/*.js' && eslint --fix '{scripts,cypress}/**/*.js'",
