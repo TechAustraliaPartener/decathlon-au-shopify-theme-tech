@@ -23,6 +23,11 @@ const SNIPPETS_SRC = 'snippets-src/';
 
 const patternCwd = path.join(__dirname, PATTERNS_PATH);
 
+// Allows reading of environment variables from `.env` file
+require('dotenv').config();
+const snippetsDirectory = process.env.SNIPPETS || '**';
+const scriptsDirectory = process.env.SCRIPTS || '**';
+
 /**
  * update Patterns
  */
@@ -208,7 +213,7 @@ gulp.task('snippets:clean', function () {
 gulp.task('snippets:copy', function () {
   return (
     gulp
-      .src(`${SNIPPETS_SRC}/**/*.liquid`)
+      .src(`${SNIPPETS_SRC}/${snippetsDirectory}/*.liquid`)
       .pipe(
         rename(path => {
           const nameParts = [
@@ -231,9 +236,9 @@ gulp.task('snippets:copy', function () {
 gulp.task('snippets', gulp.series('snippets:clean', 'snippets:copy'));
 
 gulp.task('watch', function () {
-  gulp.watch('scripts/**/*.js', gulp.series([scriptsTask]));
+  gulp.watch(`scripts/${ scriptsDirectory }/*.js`, gulp.series([scriptsTask]));
   gulp.watch(`${STYLES_PATH}**/*.scss`, gulp.series(['styles']));
-  gulp.watch(`${SNIPPETS_SRC}**/*.liquid`, gulp.series(['snippets:copy']));
+  gulp.watch(`${SNIPPETS_SRC}${snippetsDirectory}/*.liquid`, gulp.series(['snippets:copy']));
 });
 
 /**

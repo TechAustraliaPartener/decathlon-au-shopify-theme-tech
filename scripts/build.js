@@ -1,5 +1,6 @@
 // Allows reading of environment variables from `.env` file
 require('dotenv').config();
+const scriptsDirectory = process.env.SCRIPTS || '*';
 
 // Imported/called by parent gulp task
 
@@ -74,7 +75,7 @@ module.exports = gulp => {
   gulp.task(taskName, () => {
     // Creates an object like: { checkout: 'scripts/checkout/index.js' }
     const entryModules = glob
-      .sync('scripts/*/index.js')
+      .sync(`scripts/${ scriptsDirectory }/index.js`)
       .reduce((entryModules, file) => {
         // 'scripts/checkout/index.js' => 'scripts/checkout' => 'checkout'
         const outputName = path.dirname(file).replace(/.*\//, '');
