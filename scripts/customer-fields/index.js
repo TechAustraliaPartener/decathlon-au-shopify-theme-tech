@@ -83,18 +83,17 @@ $(document).ready(() => {
     // console.log('submit forms');
 
     let error = false;
-    const $first_name = $('input[name="customer[first_name]"]');
-    const $last_name = $('input[name="customer[last_name]"]');
-    const $gender = $('select[name="customer[gender]"]');
-    const $province = $('select[name="customer[addresses][][province]"]');
-    const $suburb = $('input[name="customer[addresses][][city]"]');
-    const $preferred_store = $('select[name="customer[preferred_store]"]');
-    const $birthday = $('input[name="customer[birthday]"]');
-    const $phone = $('input[name="customer[addresses][][phone]"]');
-    const $address1 = $('input[name="customer[addresses][][address1]"]');
-    const $post_code = $('input[name="customer[postcode]"]');
-    const $terms_conditions = $('input[name="customer[accepts_terms_conditions]"]')
-
+    const $first_name = $('[name="customer[first_name]"]');
+    const $last_name = $('[name="customer[last_name]"]');
+    const $gender = $('[name="customer[gender]"]');
+    const $province = $('[name="customer[addresses][][province]"]');
+    const $suburb = $('[name="customer[addresses][][city]"]');
+    const $preferred_store = $('[name="customer[preferred_store]"]');
+    const $birthday = $('[name="customer[birthday]"]');
+    const $phone = $('[name="customer[addresses][][phone]"]');
+    const $address1 = $('[name="customer[addresses][][address1]"]');
+    const $post_code = $('[name="customer[postcode]"]');
+    const $terms_conditions = $('[name="customer[accepts_terms_conditions]"]')
     e.preventDefault();
 
     if ($($(this).data('submit')).length > 0) {
@@ -208,5 +207,9 @@ $(document).ready(() => {
   $('.show_edit_form').click(function (e) {
     e.preventDefault();
     $('#editDetails').click();
+  });
+
+  $('input, select').on('blur', function() {
+    $(this).removeClass('error');
   });
 });
