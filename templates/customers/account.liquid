@@ -43,11 +43,14 @@
     <div class="u-block u-paddingTopBottom6x alert-form fade" id="accountInfo">
       <div class="wrapper wrapper--midWidth">
         <h1 class="h4 text-center">
+          {% comment %}
           {% unless has_filled_in_form and has_accepted_marketing == false %}
             {{ 'customer.account.welcome_form_title' | t }}
           {% else %}
             {{ 'customer.account.hasnt_accepted_marketing_title' | t }}
           {% endunless %}
+          {% endcomment %}
+          {{ 'customer.account.welcome_form_title' | t }}
         </h1>
         {% include 'compositions-customer-fields-account-info-form' %}
       </div>
@@ -55,7 +58,10 @@
   {% endif %}
 
   <div class="grid account-links u-marginTop2x js-hideable">
+    {% comment %}
     <div class="grid__item large--one-third medium--one-half {% if get_account_info and has_filled_in_form == false %}fade{% endif %}">
+    {% endcomment %}
+    <div class="grid__item large--one-third medium--one-half {% if get_account_info %}fade{% endif %}">
 
       <div class="u-block u-marginBottom1x">
 
