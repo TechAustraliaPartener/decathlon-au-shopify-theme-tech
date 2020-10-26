@@ -81,7 +81,7 @@ $(document).ready(() => {
 
   $('[data-submit]').on('submit', function (e) {
 
-    // console.log('submit forms');
+    console.log('submit forms');
 
     let error = false;
     const $email = $('input[name="customer[email]"]');
@@ -97,6 +97,7 @@ $(document).ready(() => {
     const $post_code = $('input[name="customer[postcode]"]');
     const $terms_conditions = $('input[name="customer[accepts_terms_conditions]"]');
     const $accepts_marketing = $('input[name="customer[accepts_marketing]"]');
+    console.log('PREVENT DEFAULT');
     e.preventDefault();
 
     if ($($(this).data('submit')).length > 0) {
@@ -188,6 +189,7 @@ $(document).ready(() => {
         
         $email.val(customerEmail);
 
+        console.log('AMDIOKMDMKDWAKWMAOKMKOMO', $($(this).data('submit')));
         $($(this).data('submit')).submit();
       }
     }
