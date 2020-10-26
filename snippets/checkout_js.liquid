@@ -31,17 +31,8 @@
         <button type="submit" class="btn">{{ 'checkout_gift_card.modal.submit' | t }}</button>
         <a href="#" rel="modal:close" class="btn close">{{ 'checkout_gift_card.modal.close' | t }}</a>
       </div>
-      <div id="GiftCardSpinner" class="screen" data-spinner style="display: none;">
-        <div class="spinner-wrapper">
-          <div class="lds-ring">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-          <h5 class="text-center no-margin-top">{{ 'checkout_gift_card.modal.spinner' | t }}</h5>
-        </div>
-      </div>
+      {% capture spinner_text %}{{ 'checkout_gift_card.modal.spinner' | t }}{% endcapture %}
+      {% render 'spinner', id: 'GiftCardSpinner', text: spinner_text %}
     </form>
   </div>
 

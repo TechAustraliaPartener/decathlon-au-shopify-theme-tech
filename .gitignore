@@ -19,4 +19,5 @@ src/css/*
 !/snippets/shogun-*
 !/snippets/nav-*
 !/snippets/breadcrumb-*
+!/snippets/spinner*
 theme.zip
