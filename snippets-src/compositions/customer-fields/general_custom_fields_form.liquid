@@ -1,4 +1,4 @@
-<div id="customer-fields" {% unless customer %}data-registration="true"{% endunless %}>
+<div id="customer-fields" {% unless customer %}data-registration="true"{% endunless %} class="de-u-hidden">
   {% form 'create_customer' %}
     <input type="hidden" name="shop" value="{{ shop.permanent_domain }}">
     <div class="fields"><!-- Fields loaded from server --></div>
@@ -24,7 +24,7 @@
           addSpace($postcode);
         },
         afterSaveSuccess: function() {
-          setTimeout(function(){ location.reload(); }, 2000);
+          setTimeout(function(){ location.reload(); }, 1000);
         }
       };
     </script>
