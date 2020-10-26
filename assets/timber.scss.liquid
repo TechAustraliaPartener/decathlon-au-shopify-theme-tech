@@ -10751,15 +10751,10 @@ $color-out: #ff0000;
   opacity: 1;
   position: absolute;
   z-index: 99;
-  top: 30px;
-  padding-top: 35%;
+  top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-
-  @media screen and (max-width: 639px) {
-    padding-top: 185%;
-  }
 
   .lds-ring {
     margin: 20px auto 10px;
@@ -10777,4 +10772,16 @@ $color-out: #ff0000;
       display: none !important;
     }
   }
+
+  @media screen and (max-width: 639px) {
+    position: fixed;
+  }
+}
+
+.spinner-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translate(0, -50%);
 }
