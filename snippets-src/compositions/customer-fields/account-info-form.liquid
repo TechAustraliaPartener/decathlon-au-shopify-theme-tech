@@ -1,6 +1,6 @@
 <div class="form-vertical">
   {% form 'create_customer', data-submit: '#customer-fields #create_customer', class: 'copy-create' %}
-    {% include 'compositions-customer-fields-false-form-fields', hide_completed_fields: true %}
+    {% include 'compositions-customer-fields-false-form-fields', hide_completed_fields: true, marketing_on: true %}
     <input type="submit" value="Submit">
   {% endform %}
 </div>

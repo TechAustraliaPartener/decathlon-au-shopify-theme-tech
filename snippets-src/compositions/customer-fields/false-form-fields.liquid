@@ -87,7 +87,7 @@
 <div>
   <p>
     <input type="checkbox" value="Yes" name="customer[accepts_marketing]"
-      {% if customer.accepts_marketing or get_account_info %}checked{% endif %}>
+      {% if customer.accepts_marketing or marketing_on %}checked{% endif %}>
     <label>{{ 'customer.custom_fields.marketing_optin' | t }}</label>
     <br />
     {% if hide_completed_fields and customer.metafields.customr.accepts_terms_conditions != blank %}<span class="de-u-hidden">{% endif %}

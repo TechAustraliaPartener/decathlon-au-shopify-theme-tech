@@ -42,6 +42,8 @@ $(document).ready(() => {
     }
   });
 
+  $('#accountInfo form').find('input, select').trigger('change');
+
   window.addSpace = function ($input) {
     $input.val(`${$input.val()} `);
   };
@@ -80,12 +82,9 @@ $(document).ready(() => {
   });
 
   $('[data-submit]').on('submit', function (e) {
-
-    console.log('submit forms');
-
     let error = false;
     const $email = $('input[name="customer[email]"]');
-    
+
     const $first_name = $('.copy-create input[name="customer[first_name]"]');
     const $last_name = $('.copy-create input[name="customer[last_name]"]');
     const $gender = $('.copy-create select[name="customer[gender]"]');
@@ -101,8 +100,10 @@ $(document).ready(() => {
 
     const $falseGenderSelect = $('.copy-create select[name="customer[gender]"]');
     const $falseStateSelect = $('.copy-create select[name="customer[addresses][][province]"]');
-    console.log('PREVENT DEFAULT');
     e.preventDefault();
+
+    console.log($(this).data('submit'));
+    console.log($($(this).data('submit')));
 
     if ($($(this).data('submit')).length > 0) {
 
@@ -204,6 +205,7 @@ $(document).ready(() => {
     $('#detailsDisplay').fadeOut(200, function () {
       $('#accountEdit').fadeIn();
     });
+    $('#accountEdit form').find('input, select').trigger('change');
   });
 
   $('#updateMarketing').click(function (e) {
@@ -212,6 +214,7 @@ $(document).ready(() => {
     $('#detailsDisplay').fadeOut(200, function () {
       $('#accountEdit').fadeIn();
     });
+    $('#accountEdit form').find('input, select').trigger('change');
   });
 
   $('#cancelEditAccount').click(function (e) {
@@ -220,6 +223,7 @@ $(document).ready(() => {
       $('[data-marketing-hide]').show();
       $('#detailsDisplay').fadeIn();
     });
+    $('#accountInfo form').find('input, select').trigger('change');
   });
 
   $('.show_edit_form').click(function (e) {
