@@ -85,18 +85,22 @@ $(document).ready(() => {
 
     let error = false;
     const $email = $('input[name="customer[email]"]');
-    const $first_name = $('input[name="customer[first_name]"]');
-    const $last_name = $('input[name="customer[last_name]"]');
-    const $gender = $('select[name="customer[gender]"]');
-    const $province = $('select[name="customer[addresses][][province]"]');
-    const $suburb = $('input[name="customer[addresses][][city]"]');
-    const $preferred_store = $('select[name="customer[preferred_store]"]');
-    const $birthday = $('input[name="customer[birthday]"]');
-    const $phone = $('input[name="customer[addresses][][phone]"]');
-    const $address1 = $('input[name="customer[addresses][][address1]"]');
-    const $post_code = $('input[name="customer[postcode]"]');
-    const $terms_conditions = $('input[name="customer[accepts_terms_conditions]"]');
-    const $accepts_marketing = $('input[name="customer[accepts_marketing]"]');
+    
+    const $first_name = $('.copy-create input[name="customer[first_name]"]');
+    const $last_name = $('.copy-create input[name="customer[last_name]"]');
+    const $gender = $('.copy-create select[name="customer[gender]"]');
+    const $province = $('.copy-create select[name="customer[addresses][][province]"]');
+    const $suburb = $('.copy-create input[name="customer[addresses][][city]"]');
+    const $preferred_store = $('.copy-create select[name="customer[preferred_store]"]');
+    const $birthday = $('.copy-create input[name="customer[birthday]"]');
+    const $phone = $('.copy-create input[name="customer[addresses][][phone]"]');
+    const $address1 = $('.copy-create input[name="customer[addresses][][address1]"]');
+    const $post_code = $('.copy-create input[name="customer[postcode]"]');
+    const $terms_conditions = $('.copy-create input[name="customer[accepts_terms_conditions]"]');
+    const $accepts_marketing = $('.copy-create input[name="customer[accepts_marketing]"]');
+
+    const $falseGenderSelect = $('.copy-create select[name="customer[gender]"]');
+    const $falseStateSelect = $('.copy-create select[name="customer[addresses][][province]"]');
     console.log('PREVENT DEFAULT');
     e.preventDefault();
 
@@ -116,11 +120,11 @@ $(document).ready(() => {
         $last_name.removeClass('error');
       }
 
-      if (!$gender.val()) {
-        $gender.addClass('error');
+      if ($falseGenderSelect.find('option:selected').prop('disabled')) {
+        $falseGenderSelect.addClass('error');
         error = true;
       } else {
-        $gender.removeClass('error');
+        $falseGenderSelect.removeClass('error');
       }
 
       if (!$birthday.val()) {
@@ -158,11 +162,11 @@ $(document).ready(() => {
         $preferred_store.removeClass('error');
       }
 
-      if (!$province.val()) {
-        $province.addClass('error');
+      if ($falseStateSelect.find('option:selected').prop('disabled')) {
+        $falseStateSelect.addClass('error');
         error = true;
       } else {
-        $province.removeClass('error');
+        $falseStateSelect.removeClass('error');
       }
 
       if (!$suburb.val()) {
