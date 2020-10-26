@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie';
 import $ from 'jquery';
 
 $(document).ready(() => {
@@ -83,17 +84,19 @@ $(document).ready(() => {
     // console.log('submit forms');
 
     let error = false;
-    const $first_name = $('[name="customer[first_name]"]');
-    const $last_name = $('[name="customer[last_name]"]');
-    const $gender = $('[name="customer[gender]"]');
-    const $province = $('[name="customer[addresses][][province]"]');
-    const $suburb = $('[name="customer[addresses][][city]"]');
-    const $preferred_store = $('[name="customer[preferred_store]"]');
-    const $birthday = $('[name="customer[birthday]"]');
-    const $phone = $('[name="customer[addresses][][phone]"]');
-    const $address1 = $('[name="customer[addresses][][address1]"]');
-    const $post_code = $('[name="customer[postcode]"]');
-    const $terms_conditions = $('[name="customer[accepts_terms_conditions]"]')
+    const $email = $('input[name="customer[email]"]');
+    const $first_name = $('input[name="customer[first_name]"]');
+    const $last_name = $('input[name="customer[last_name]"]');
+    const $gender = $('select[name="customer[gender]"]');
+    const $province = $('select[name="customer[addresses][][province]"]');
+    const $suburb = $('input[name="customer[addresses][][city]"]');
+    const $preferred_store = $('select[name="customer[preferred_store]"]');
+    const $birthday = $('input[name="customer[birthday]"]');
+    const $phone = $('input[name="customer[addresses][][phone]"]');
+    const $address1 = $('input[name="customer[addresses][][address1]"]');
+    const $post_code = $('input[name="customer[postcode]"]');
+    const $terms_conditions = $('input[name="customer[accepts_terms_conditions]"]');
+    const $accepts_marketing = $('input[name="customer[accepts_marketing]"]');
     e.preventDefault();
 
     if ($($(this).data('submit')).length > 0) {
@@ -176,6 +179,15 @@ $(document).ready(() => {
       }
 
       if (!error) {
+        const { customerEmail } = window.vars;
+
+        if ($accepts_marketing.is(':checked')) {
+          const inFiveMinutes = new Date(new Date().getTime() + 5 * 60 * 1000);
+          Cookies.set('optedInAt', customerEmail, { expires: inFiveMinutes });
+        }
+        
+        $email.val(customerEmail);
+
         $($(this).data('submit')).submit();
       }
     }
@@ -213,10 +225,14 @@ $(document).ready(() => {
     $(this).removeClass('error');
   });
 
-  const { showDetailsForm } = window.vars;
-  if (showDetailsForm) {
+  const { showDetailsForm, customerEmail } = window.vars;
+  const optedIn = Cookies.get('optedInAt') === customerEmail;
+  console.log(optedIn);
+  if (showDetailsForm && !optedIn) {
     $('#accountInfo').addClass('in');
+    $('.grid__item.fade').remove();
   } else {
+    $('#accountInfo').remove();
     $('.grid__item').addClass('in');
   }
   
