@@ -463,7 +463,7 @@
               "hours_5_close": "1800",
               "hours_6_open": "0900",
               "hours_6_close": "1800",
-              "announcement": "<p>Due to Stage 4 restrictions in VIC in-store shopping is not available.&nbsp;<\/p>",
+              "announcement": "<p>Due to Stage 4 restrictions in VIC in-store shopping is not available. <\/p>",
               "address_type_boolean": true,
               "is_residential": false,
               "is_warehouse": false,
@@ -475,7 +475,7 @@
             "settings": {
               "name": "Box Hill",
               "title": "Box Hill Store, 3128",
-              "online_inventory_source": true,
+              "online_inventory_source": false,
               "enable_c_c": true,
               "duplicate": "",
               "test_mode": false,
@@ -507,7 +507,7 @@
               "hours_5_close": "1800",
               "hours_6_open": "0900",
               "hours_6_close": "1800",
-              "announcement": "<p>Due to Stage 4 restrictions in VIC in-store shopping is not available.&nbsp;<\/p>",
+              "announcement": "<p>Due to Stage 4 restrictions in VIC in-store shopping is not available. <\/p>",
               "address_type_boolean": true,
               "is_residential": false,
               "is_warehouse": false,
@@ -551,7 +551,7 @@
               "hours_5_close": "1800",
               "hours_6_open": "0900",
               "hours_6_close": "1800",
-              "announcement": "<p>Due to Stage 4 restrictions in VIC in-store shopping is not available.&nbsp;<\/p>",
+              "announcement": "<p>Due to Stage 4 restrictions in VIC in-store shopping is not available. <\/p>",
               "address_type_boolean": true,
               "is_residential": false,
               "is_warehouse": false,
@@ -595,7 +595,7 @@
               "hours_5_close": "9",
               "hours_6_open": "7",
               "hours_6_close": "9",
-              "announcement": "<p>C&amp;C Only Available from 7 am to 9 am&nbsp;<\/p>",
+              "announcement": "<p>C&amp;C Only Available from 7 am to 9 am <\/p>",
               "address_type_boolean": true,
               "is_residential": false,
               "is_warehouse": false,
@@ -639,7 +639,7 @@
               "hours_5_close": "1700",
               "hours_6_open": "0800",
               "hours_6_close": "1700",
-              "announcement": "<p>Wait for your Ready to Pick up Your Email.&nbsp;<\/p>",
+              "announcement": "<p>Wait for your Ready to Pick up Your Email. <\/p>",
               "address_type_boolean": true,
               "is_residential": false,
               "is_warehouse": false,
@@ -683,7 +683,7 @@
               "hours_5_close": "19",
               "hours_6_open": "18",
               "hours_6_close": "19",
-              "announcement": "<p>Click & Collect Not Available on Sundays<\/p>",
+              "announcement": "<p>Click &amp; Collect Not Available on Sundays<\/p>",
               "address_type_boolean": true,
               "is_residential": false,
               "is_warehouse": false,
@@ -815,7 +815,7 @@
               "hours_5_close": "1600",
               "hours_6_open": "0900",
               "hours_6_close": "1400",
-              "announcement": "<p>Wait for your Ready to Pick up Your Email.&nbsp;<\/p>",
+              "announcement": "<p>Wait for your Ready to Pick up Your Email. <\/p>",
               "address_type_boolean": true,
               "is_residential": false,
               "is_warehouse": false,
@@ -859,7 +859,7 @@
               "hours_5_close": "1800",
               "hours_6_open": "0000",
               "hours_6_close": "0000",
-              "announcement": "<p>Wait for the ready for pick up email.&nbsp;<\/p>",
+              "announcement": "<p>Wait for the ready for pick up email. <\/p>",
               "address_type_boolean": true,
               "is_residential": false,
               "is_warehouse": false,
@@ -886,6 +886,19 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
+          "1584424981258": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/DecathlonAU_HB_Easybreath_SA_20-10-2020_V1-min.png",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "Easybreath Snorkeling Mask",
+              "banner_subtitle": "<p><strong>On Sale Now.<br\/>Available in 5 Colours.<\/strong><\/p>",
+              "button_new_window": false,
+              "button_title": "SHOP NOW",
+              "button_url": "shopify:\/\/collections\/snorkeling"
+            }
+          },
           "1589172506799": {
             "type": "slide",
             "settings": {
@@ -897,19 +910,6 @@
               "button_new_window": false,
               "button_title": "Shop Now",
               "button_url": "shopify:\/\/collections\/indoor-sport-activities"
-            }
-          },
-          "1584424981258": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_11_-min_1cb9cde1-1da7-4428-a83c-793855b84445.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": "<span style=\"color: #ff0000;\"><strong>Scooter Sale<\/strong><\/span>",
-              "banner_subtitle": "<p><strong>Up to 25% Off Kids &amp; Adult Scooters<\/strong><\/p>",
-              "button_new_window": false,
-              "button_title": "SHOP NOW",
-              "button_url": "shopify:\/\/collections\/scooters"
             }
           },
           "1599283340303": {
@@ -927,8 +927,8 @@
           }
         },
         "block_order": [
-          "1589172506799",
           "1584424981258",
+          "1589172506799",
           "1599283340303"
         ],
         "settings": {}
@@ -972,17 +972,16 @@
       "1602562605803": {
         "type": "slider_image_section",
         "settings": {
-          "homepage_slider_image_title": "Outdoor Specials!",
-          "homepage_slider_image_1": "shopify:\/\/shop_images\/10L_hiking_backpack_1_-min.jpg",
-          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/hiking-backpacks",
+          "homepage_slider_image_title": "Weekly Deals!",
+          "homepage_slider_image_1": "shopify:\/\/shop_images\/Men_s_boardies-min.png",
+          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/mens-board-shorts",
           "checkbox_image_1": true,
-          "homepage_slider_image_2": "shopify:\/\/shop_images\/camp_chairs-min.jpg",
-          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/camping-equipment",
+          "homepage_slider_image_2": "shopify:\/\/shop_images\/adult_poncho_1_-min.png",
+          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/beach-towels-hooded-towels",
           "checkbox_image_2": true,
-          "homepage_slider_image_3": "shopify:\/\/shop_images\/sleeping_bags.jpg",
-          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/sleeping-equipment",
+          "homepage_slider_image_3": "shopify:\/\/shop_images\/kids_poncho-min.png",
+          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/beach-towels-hooded-towels",
           "checkbox_image_3": true,
-          "homepage_slider_image_4": "",
           "homepage_slider_image_redirection_4": "",
           "checkbox_image_4": false
         }
