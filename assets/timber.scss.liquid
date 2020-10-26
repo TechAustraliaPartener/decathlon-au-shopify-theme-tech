@@ -10751,11 +10751,15 @@ $color-out: #ff0000;
   opacity: 1;
   position: absolute;
   z-index: 99;
-  top: 40px;
+  top: 30px;
   padding-top: 35%;
   right: 0;
   bottom: 0;
   left: 0;
+
+  @media screen and (max-width: 639px) {
+    padding-top: 185%;
+  }
 
   .lds-ring {
     margin: 20px auto 10px;
