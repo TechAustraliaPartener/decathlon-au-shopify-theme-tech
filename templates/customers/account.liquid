@@ -7,6 +7,7 @@
 {% endcomment %}
 
 {% assign customer_home = true %}
+{% assign details_complete_tag = 'details:complete' %}
 
 <div class="wrapper u-paddingTopBottom4x u-marginBottom4x">
   {% if customer.first_name != blank %}
@@ -16,9 +17,9 @@
 
   {% if settings.extra_details == 'customer_fields' %}
     {% assign get_account_info = false %}
-    {% if customer.first_name == blank %}
+    {% unless customer.tags contains details_complete_tag %}
       {% assign get_account_info = true %}
-    {% endif %}
+    {% endunless %}
 
     {% assign gender_values = 'no|male|female' | split: "|" %}
     {% assign gender_titles = 'Prefer not to say|Male|Female' | split: "|" %}
