@@ -3,13 +3,10 @@ import $ from 'jquery';
 
 $(document).ready(() => {
   $('#accountInfo input, #accountEdit input').on('change', function () {
-    // console.log($(this).val());
     const $registerField = $(this);
     const $hiddenCustomerField = $(
       `#customer-fields input[name="${$registerField.attr('name')}"]`
     );
-    // console.log(`${$registerField.attr('name')}`);
-    // console.log($hiddenCustomerField);
     if ($hiddenCustomerField.length > 0) {
       if ($registerField.attr('type') === 'checkbox') {
         $hiddenCustomerField.prop('checked', $registerField.prop('checked'));
@@ -102,8 +99,6 @@ $(document).ready(() => {
     const $falseStateSelect = $('.copy-create select[name="customer[addresses][][province]"]');
     e.preventDefault();
 
-    console.log($(this).data('submit'));
-    console.log($($(this).data('submit')));
 
     if ($($(this).data('submit')).length > 0) {
 
@@ -194,7 +189,6 @@ $(document).ready(() => {
         
         $email.val(customerEmail);
 
-        console.log('AMDIOKMDMKDWAKWMAOKMKOMO', $($(this).data('submit')));
         $($(this).data('submit')).submit();
       }
     }
@@ -237,7 +231,6 @@ $(document).ready(() => {
 
   const { showDetailsForm, customerEmail } = window.vars;
   const optedIn = Cookies.get('optedInAt') === customerEmail;
-  console.log(optedIn);
   if (showDetailsForm && !optedIn) {
     $('#accountInfo').addClass('in');
     $('.grid__item.fade').remove();
