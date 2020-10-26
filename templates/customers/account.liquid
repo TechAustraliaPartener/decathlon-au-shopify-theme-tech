@@ -25,7 +25,7 @@
     {% assign gender_titles = 'Prefer not to say|Male|Female' | split: "|" %}
 
     {% if get_account_info %}
-      <div class="u-block u-paddingTopBottom6x alert-form" id="accountInfo">
+      <div class="u-block u-paddingTopBottom6x alert-form fade" id="accountInfo">
         <div class="wrapper wrapper--midWidth">
           <h1 class="h4 text-center">{{ 'customer.account.welcome_form_title' | t }}</h1>
           {% include 'compositions-customer-fields-account-info-form' %}
@@ -37,56 +37,54 @@
   <div class="grid account-links u-marginTop2x js-hideable">
 
     {% if settings.extra_details == 'customer_fields' %}
-      {% unless get_account_info %}
-        <div class="grid__item large--one-third medium--one-half">
+      <div class="grid__item large--one-third medium--one-half {% if get_account_info %}fade{% endif %}">
 
-          <div class="u-block u-marginBottom1x">
+        <div class="u-block u-marginBottom1x">
 
-            {% assign account_gender = empty %}
-            {% for gender in gender_values %}
-              {% if gender == customer.metafields.customr.gender %}
-                {% assign account_gender = gender_titles[forloop.index0] %}
+          {% assign account_gender = empty %}
+          {% for gender in gender_values %}
+            {% if gender == customer.metafields.customr.gender %}
+              {% assign account_gender = gender_titles[forloop.index0] %}
+            {% endif %}
+          {% endfor %}
+
+          <h5>{{ 'customer.account.my_details' | t }}</h5>
+          <div id="detailsDisplay">
+            <p>
+              <b>{% if customer.first_name %}{{ customer.first_name }} {% endif %}{% if customer.last_name %}{{ customer.last_name }}{% endif %}</b>
+              <br/>
+              <label>{{ 'customer.account.gender' | t }}: </label>{{ account_gender | default: 'Not provided' }}
+              <br/>
+              <label>{{ 'customer.account.birthday' | t }}: </label>{{ customer.metafields.customr.birthday | date: "%d/%m/%Y" | default: 'Not provided' }}
+              <br/>
+              <label>{{ 'customer.account.preferred_store' | t }}: </label>{{ customer.metafields.customr.preferred_store | default: 'Not provided' }}
+            </p>
+            <ul class="no-bullets">
+              <li>
+                <a href="#" id="editDetails">{{ 'customer.account.details_update' | t }}</a>
+              </li>
+            </ul>
+            <p>
+              <label>
+                {{ 'customer.account.marketing_optin_choice' | t }}
+              </label>
+              <br/>
+              {% if customer.accepts_marketing %}
+                {{ 'customer.account.marketing_optin' | t }}
+              {% else %}
+                {{ 'customer.account.marketing_optin_disabled' | t }}
               {% endif %}
-            {% endfor %}
-
-            <h5>{{ 'customer.account.my_details' | t }}</h5>
-            <div id="detailsDisplay">
-              <p>
-                <b>{% if customer.first_name %}{{ customer.first_name }} {% endif %}{% if customer.last_name %}{{ customer.last_name }}{% endif %}</b>
-                <br/>
-                <label>{{ 'customer.account.gender' | t }}: </label>{{ account_gender | default: 'Not provided' }}
-                <br/>
-                <label>{{ 'customer.account.birthday' | t }}: </label>{{ customer.metafields.customr.birthday | date: "%d/%m/%Y" | default: 'Not provided' }}
-                <br/>
-                <label>{{ 'customer.account.preferred_store' | t }}: </label>{{ customer.metafields.customr.preferred_store | default: 'Not provided' }}
-              </p>
-              <ul class="no-bullets">
-                <li>
-                  <a href="#" id="editDetails">{{ 'customer.account.details_update' | t }}</a>
-                </li>
-              </ul>
-              <p>
-                <label>
-                  {{ 'customer.account.marketing_optin_choice' | t }}
-                </label>
-                <br/>
-                {% if customer.accepts_marketing %}
-                  {{ 'customer.account.marketing_optin' | t }}
-                {% else %}
-                  {{ 'customer.account.marketing_optin_disabled' | t }}
-                {% endif %}
-              </p>
-              <ul class="no-bullets">
-                <li>
-                  <a href="#" id="updateMarketing">{{ 'customer.account.marketing_change' | t }}</a>
-                </li>
-              </ul>
-            </div>
-            {% include 'compositions-customer-fields-edit-form' %}
+            </p>
+            <ul class="no-bullets">
+              <li>
+                <a href="#" id="updateMarketing">{{ 'customer.account.marketing_change' | t }}</a>
+              </li>
+            </ul>
           </div>
-
+          {% include 'compositions-customer-fields-edit-form' %}
         </div>
-      {% endunless %}
+
+      </div>
     {% endif %}
 
     <div class="grid__item large--one-third medium--one-half">
@@ -181,3 +179,7 @@
     </div>
   </div>
 </div>
+
+<script>
+  window.vars.showDetailsForm = {{ get_account_info | json }};
+</script>

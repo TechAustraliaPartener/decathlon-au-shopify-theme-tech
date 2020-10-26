@@ -10396,6 +10396,27 @@ $color-out: #ff0000;
   }
 }
 
+.fade {
+  opacity: 0;
+  transition-duration: 300ms;
+  height: 0;
+  max-width: 0;
+  overflow: hidden;
+  &.in {
+    opacity: 1;
+    height: auto;
+    overflow: unset;
+    max-width: none;
+  }
+}
+
+#accountInfo.fade {
+  padding: 0;
+  &.in {
+    padding: 6em 3em;
+  }
+}
+
 #cartSpinner {
   margin: 0;
   text-align: center;

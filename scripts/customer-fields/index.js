@@ -212,4 +212,12 @@ $(document).ready(() => {
   $('input, select').on('blur', function() {
     $(this).removeClass('error');
   });
+
+  const { showDetailsForm } = window.vars;
+  if (showDetailsForm) {
+    $('#accountInfo').addClass('in');
+  } else {
+    $('.grid__item').addClass('in');
+  }
+  
 });
