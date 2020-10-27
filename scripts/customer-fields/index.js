@@ -207,6 +207,7 @@ $(document).ready(() => {
   $('#updateMarketing').click(function (e) {
     e.preventDefault();
     $('[data-marketing-hide]').hide();
+    $('[data-marketing-show]').show();
     $('#detailsDisplay').fadeOut(200, function () {
       $('#accountEdit').fadeIn();
     });
@@ -217,6 +218,7 @@ $(document).ready(() => {
     e.preventDefault();
     $('#accountEdit').fadeOut(200, function () {
       $('[data-marketing-hide]').show();
+      $('[data-marketing-show]').hide();
       $('#detailsDisplay').fadeIn();
     });
     $('#accountInfo form').find('input, select').trigger('change');
