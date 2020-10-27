@@ -30,7 +30,7 @@
     <script defer nomodule src="{{ 'built-product-tile-legacy.js' | asset_url }}"></script>
   {% when 'customers/account' %}
     {% if settings.extra_details == 'customer_fields' %}
-      <script defer src="{{ 'built-customer-fields.js' | asset_url }}"></script>
+      <script defer type="module" src="{{ 'built-customer-fields.js' | asset_url }}"></script>
     {% endif %}
   {% when 'cart' %}
     <script defer type="module" src="{{ 'built-cart-page.js' | asset_url }}"></script>
