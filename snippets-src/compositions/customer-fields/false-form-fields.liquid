@@ -88,7 +88,7 @@
   <p>
     <input type="checkbox" value="Yes" name="customer[accepts_marketing]"
       {% if customer.accepts_marketing or marketing_on %}checked{% endif %}>
-    <label>{{ 'customer.custom_fields.marketing_optin' | t }}</label>
+    <label>{% if marketing_text %}{{ marketing_text }}{% else %}{{ 'customer.custom_fields.marketing_optin' | t }}{% endif %}</label>
     <br />
     {% if hide_completed_fields and customer.metafields.customr.accepts_terms_conditions != blank %}<span class="de-u-hiddenc">{% endif %}
       <input data-marketing-hide type="checkbox" name="customer[accepts_terms_conditions]"

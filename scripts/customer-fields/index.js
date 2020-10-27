@@ -188,7 +188,7 @@ $(document).ready(() => {
           const inFiveMinutes = new Date(new Date().getTime() + 5 * 60 * 1000);
           Cookies.set('optedInAt', customerEmail, { expires: inFiveMinutes });
         }
-        
+
         $email.val(customerEmail);
 
         $($(this).data('submit')).submit();
