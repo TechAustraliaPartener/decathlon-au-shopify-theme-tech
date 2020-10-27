@@ -95,6 +95,8 @@ $(document).ready(() => {
     const $terms_conditions = $('.copy-create input[name="customer[accepts_terms_conditions]"]');
     const $accepts_marketing = $('.copy-create input[name="customer[accepts_marketing]"]');
 
+    const $realAcceptsMarketing = $('#customer-fields input[name="customer[accepts_marketing]"]');
+
     const $falseGenderSelect = $('.copy-create select[name="customer[gender]"]');
     const $falseStateSelect = $('.copy-create select[name="customer[addresses][][province]"]');
     e.preventDefault();
@@ -182,7 +184,7 @@ $(document).ready(() => {
       if (!error) {
         const { customerEmail } = window.vars;
 
-        if ($accepts_marketing.is(':checked')) {
+        if ($realAcceptsMarketing.is(':checked')) {
           const inFiveMinutes = new Date(new Date().getTime() + 5 * 60 * 1000);
           Cookies.set('optedInAt', customerEmail, { expires: inFiveMinutes });
         }
