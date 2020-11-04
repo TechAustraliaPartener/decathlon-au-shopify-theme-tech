@@ -61,10 +61,14 @@
     {% comment %}
     <div class="grid__item large--one-third medium--one-half {% if get_account_info and has_filled_in_form == false %}fade{% endif %}">
     {% endcomment %}
+    <div class="registration-confirm-message"><p>Thanks for updating your details,
+      your discount code will be emailed to you shortly.</p></div>
+    <div>
     <div class="grid__item large--one-third medium--one-half {% if get_account_info %}fade{% endif %}">
 
       <div class="u-block u-marginBottom1x">
-
+        {% comment %} DISPLAY CONFIRMATION MESSAGE{% endcomment %}
+        
         <h5>{{ 'customer.account.my_details' | t }}</h5>
         <div id="detailsDisplay">
           <p>
@@ -181,6 +185,7 @@
           <li><a href="/account/addresses#add">{{ 'customer.addresses.add_new' | t }}</a></li>
         </ul>
       </div>
+    </div>
     </div>
   </div>
 </div>
