@@ -123,7 +123,7 @@ window.getLocaleSync = getLocaleSync;
       const offsetHeight = opts.offsetHeight || 0;
       const windowHeight = $(global).height();
 
-      $(containerSelector).each(function() {
+      $(containerSelector).each(function () {
         const containerHeight = $(this)
           .find(wrapperSelector)
           .height();
@@ -189,7 +189,7 @@ window.getLocaleSync = getLocaleSync;
         const r = t.selector.substr(1);
         if (!o.length) return n;
         let s = [];
-        o.find('.js-anchorLink').each(function(index, anchorEl) {
+        o.find('.js-anchorLink').each(function (index, anchorEl) {
           s.push({
             top: $($(anchorEl).attr('href')).offset().top - a,
             index
@@ -202,7 +202,7 @@ window.getLocaleSync = getLocaleSync;
           l = o.offset().top - c;
           a = o.innerHeight() + $('.js-de-PageWrap-header').innerHeight() + 5;
           s = [];
-          o.find('.js-anchorLink').each(function(index, anchorEl) {
+          o.find('.js-anchorLink').each(function (index, anchorEl) {
             s.push({
               top: $($(anchorEl).attr('href')).offset().top - a,
               index
@@ -239,8 +239,7 @@ window.getLocaleSync = getLocaleSync;
             o.after(
               `<div class="${o.attr(
                 'class'
-              )} ${r}--placeholder" style="height:${
-                o[0].getBoundingClientRect().height
+              )} ${r}--placeholder" style="height:${o[0].getBoundingClientRect().height
               }px"></div>`
             );
 
@@ -272,7 +271,7 @@ window.getLocaleSync = getLocaleSync;
 
     // Only called in this file
     anchorLinks(getHeaderHeight) {
-      $('.js-anchorLink').on('click', function(event) {
+      $('.js-anchorLink').on('click', function (event) {
         event.preventDefault();
         $('.js-navRelative').addClass('is-hidden');
         $(`#${event.currentTarget.href.split('#')[1]}`).removeClass(
@@ -306,14 +305,14 @@ window.getLocaleSync = getLocaleSync;
         const padding = e
           ? '0'
           : `${Math.floor(
-              Math.max(
-                0,
-                (bannerHeight -
-                  currentProductWrapperHeight -
-                  productListHeight) /
-                  2
-              )
-            )}px 0`;
+            Math.max(
+              0,
+              (bannerHeight -
+                currentProductWrapperHeight -
+                productListHeight) /
+              2
+            )
+          )}px 0`;
         $(getGoingPackEl)
           .find('.getGoingPack-currentProductWrapper')
           .css({ padding });
@@ -341,7 +340,7 @@ window.getLocaleSync = getLocaleSync;
           'Add to Wishlist'
         );
 
-        $('.addToCart, .js-addToWishlist').click(function(e) {
+        $('.addToCart, .js-addToWishlist').click(function (e) {
           e.preventDefault();
           if (isLegacyProductPage)
             $('.timber-activeProduct')
@@ -375,7 +374,7 @@ window.getLocaleSync = getLocaleSync;
           $('body').addClass('is-wishlistOnly');
           $('main').addClass('hide-wkCartButtons');
           $('.addToCart .addToCartText').text('Add to Wishlist');
-          $('.addToCart').click(function(e) {
+          $('.addToCart').click(function (e) {
             e.preventDefault();
             if (isLegacyProductPage) $('.wishlist .wk-add-product').click();
             else
@@ -564,11 +563,11 @@ window.getLocaleSync = getLocaleSync;
           .parent()
           .removeClass('is-notEmpty');
     }
-    $.fn.serializeObject = function() {
+    $.fn.serializeObject = function () {
       const e = {};
       const i = this.serializeArray();
 
-      $.each(i, function() {
+      $.each(i, function () {
         if (e[this.name] !== undefined) {
           if (!e[this.name].push) e[this.name] = [e[this.name]];
           e[this.name].push(this.value || '');
@@ -627,7 +626,7 @@ window.getLocaleSync = getLocaleSync;
         decathlon.setData('seenPromo', new Date().getTime());
       });
     }
-    $('.js-bannerVideo').on('click', function(event) {
+    $('.js-bannerVideo').on('click', function (event) {
       event.preventDefault();
       const n = $(this).parents('.banner--video');
       const o = $(this)
@@ -662,7 +661,7 @@ window.getLocaleSync = getLocaleSync;
           .parents('.collectionSidebar')
           .toggleClass('is-open');
       });
-      $('.js-tagLink').each(function() {
+      $('.js-tagLink').each(function () {
         const i = $(this).attr('href');
         const n = global.location.pathname;
         const o = n.split('/').splice(1);
@@ -682,7 +681,7 @@ window.getLocaleSync = getLocaleSync;
     }
     $('.js-slick--attr').slick();
     const ee = [];
-    $('.js-slick--attr').each(function() {
+    $('.js-slick--attr').each(function () {
       const $this = $(this);
       const n = $this.data('slick');
       if (n && n.responsive)
@@ -703,7 +702,7 @@ window.getLocaleSync = getLocaleSync;
           ee[n].active = true;
         }
     });
-    $('.js-slick--attr').on('destroy', function() {
+    $('.js-slick--attr').on('destroy', function () {
       for (let i = $(this), n = 0; n < ee.length; n++) {
         const o = i.data('slickBreakIndex');
         if (o !== undefined) ee[o].active = false;
@@ -713,13 +712,13 @@ window.getLocaleSync = getLocaleSync;
       $(global).resize();
     }, 1500);
     $('.js-slick--attr .collectionProduct-relative').hover(
-      function() {
+      function () {
         const i = $(this).parents('.slick-slider');
         i.css('height', i.innerHeight()).addClass(
           'slickSlider-collectionProductFix'
         );
       },
-      function() {
+      function () {
         const i = $(this).parents('.slick-slider');
         i.css('height', '').removeClass('slickSlider-collectionProductFix');
       }
@@ -766,7 +765,7 @@ window.getLocaleSync = getLocaleSync;
       $(e.currentTarget).addClass('option--active');
     });
     if (global.attachOptionSelectors) global.attachOptionSelectors();
-    $('.collectionProduct .js-shopNow').click(function(i) {
+    $('.collectionProduct .js-shopNow').click(function (i) {
       i.preventDefault();
       const n = $(this)
         .parents('.collectionProduct')
@@ -774,7 +773,7 @@ window.getLocaleSync = getLocaleSync;
         .data('variantchoice');
       global.location.href = `${$(this).attr('href')}?variantid=${n}`;
     });
-    $('.js-adjustFeaturedContent').each(function() {
+    $('.js-adjustFeaturedContent').each(function () {
       if (
         $(this)
           .prev()
@@ -874,7 +873,7 @@ window.getLocaleSync = getLocaleSync;
           }
         );
       });
-      $('.js-createCustomer').on('submit', function(e) {
+      $('.js-createCustomer').on('submit', function (e) {
         const i = $(this);
         const n = $(e.currentTarget).serializeObject();
         let a = false;
@@ -1055,7 +1054,7 @@ window.getLocaleSync = getLocaleSync;
             global.location = '/account';
           });
       }
-      $('#customer_login').on('submit', function(e) {
+      $('#customer_login').on('submit', function (e) {
         const i = $(this);
         const n = $(this).serializeObject();
         const customer = new DecathlonCustomer({
@@ -1097,11 +1096,11 @@ window.getLocaleSync = getLocaleSync;
     }
     if ($('body').hasClass('template-customers-addresses')) {
       if (global.location.hash === '#add') $('.js-addAddress').trigger('click');
-      $('#address_form_new').submit(function(e) {
+      $('#address_form_new').submit(function (e) {
         const i = $(this);
         let n = true;
 
-        i.find('[required]').each(function() {
+        i.find('[required]').each(function () {
           const e = $(this);
           if (e.val() == '') {
             e.css('border', '1px solid red');
@@ -1116,10 +1115,10 @@ window.getLocaleSync = getLocaleSync;
     }
     if (global.location.search === '?contact_posted=true')
       $('.hide-on-success').css('display', 'none');
-    $('#contact_form').submit(function(e) {
+    $('#contact_form').submit(function (e) {
       const i = $(this);
       const n = [];
-      i.find('[required]').each(function() {
+      i.find('[required]').each(function () {
         const e = $(this);
         if (e.val() == '')
           n.push(
@@ -1172,6 +1171,26 @@ window.getLocaleSync = getLocaleSync;
       'keyup',
       updateInputEmptyClass
     );
+
+
+    function getCookie(name) {
+      var cookieArr = document.cookie.split(";");
+      for (var i = 0; i < cookieArr.length; i++) {
+        var cookiePair = cookieArr[i].split("=");
+
+        if (name == cookiePair[0].trim()) {
+          return decodeURIComponent(cookiePair[1]);
+        }
+      }
+    }
+
+    //SETCOOKIE
+
+    if (getCookie('is_from_registration')) {
+      $('.registration-confirm-message').show();
+      document.cookie = "is_from_registration=; max-age=0";
+    }
+
     global.decathlon = decathlon;
   });
 })(window, jQuery, BlueLikeNeon, DecathlonCustomer);

@@ -22,9 +22,12 @@
           var $postcode = $('#customer-fields input[name="' + 'customer[postcode]' + '"]');
           addSpace($firstName);
           addSpace($postcode);
-          $('#accountEditSpiner').show();
         },
         afterSaveSuccess: function() {
+          $('#accountEditSpiner').show();
+          if ($('#accountInfo').length) {
+            document.cookie = "is_from_registration=1; max-age=" + 60 * 5;
+          }
           setTimeout(function(){ location.reload(); }, 1000);
         }
       };
