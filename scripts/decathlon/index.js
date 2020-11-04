@@ -1184,11 +1184,66 @@ window.getLocaleSync = getLocaleSync;
       }
     }
 
-    //SETCOOKIE
-
     if (getCookie('is_from_registration')) {
       $('.registration-confirm-message').show();
       document.cookie = "is_from_registration=; max-age=0";
+    }
+
+    //GOOGLE TRANSLATE
+    const TRANSLATE_API_KEY = 'AIzaSyBmV081v1C1hz45hJpCpcprUPOhrNqDekY';
+    const SOURCE_LANGUAGE = '';
+    const TARGET_LANGUAGE = 'en';
+
+    function translateReview(text, parentEl, type) {
+      var translateURL = "https://www.googleapis.com/language/translate/v2" +
+        "?key=" + TRANSLATE_API_KEY +
+        "&source=" + SOURCE_LANGUAGE +
+        "&target=" + TARGET_LANGUAGE +
+        "&q=" + text +
+        "&callback=?";
+
+      $.getJSON(translateURL, function (result) {
+        if (!result.error) {
+          console.log('CONTENTS: ' + result.data.translations[0].translatedText);
+          parentEl.find('.review-' + type + '-translated').text(result.data.translations[0].translatedText);
+          show_review(parentEl, 'original', 'translated')
+          parentEl.addClass('translated');
+        } else {
+          console.log(result.error);
+        }
+      }
+      );
+    }
+
+    $('.btn-original').on('click', function (e) {
+      e.preventDefault();
+      const parentEl = $(this).closest('.de-CustomerReview');
+      show_review(parentEl, 'translated', 'original');
+    });
+
+    $('.btn-translated').on('click', function (e) {
+      e.preventDefault();
+
+      const parentEl = $(this).closest('.de-CustomerReview');
+      const title = parentEl.find('.review-title-original').text();
+      const body = parentEl.find('.review-body').text();
+
+      if (!parentEl.hasClass('translated')) {
+        translateReview(title, parentEl, 'title')
+        translateReview(body, parentEl, 'body');
+      } else {
+        console.log('Already translated');
+        show_review(parentEl, 'original', 'translated');
+      }
+    });
+
+    function show_review(parentEl, h, s) {
+      parentEl.find('.review-title-' + s).show();
+      parentEl.find('.review-body-' + s).show();
+      parentEl.find('.review-title-' + h).hide();
+      parentEl.find('.review-body-' + h).hide();
+      parentEl.find('.btn-' + h).addClass('active');
+      parentEl.find('.btn-' + s).removeClass('active');
     }
 
     global.decathlon = decathlon;

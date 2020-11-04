@@ -345,6 +345,10 @@
       "free_shipping_message": "Free Shipping",
       "free_shipping_threshold_message": "Free Shipping above $[threshold]*",
       "free_pickup": "Free Click & Collect"
+    },
+    "translation_text": {
+      "translate": "Translate",
+      "original": "Show Original"
     }
   },
   "product_locations": {
