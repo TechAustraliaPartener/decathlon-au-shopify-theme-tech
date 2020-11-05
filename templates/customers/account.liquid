@@ -73,12 +73,18 @@
         <div id="detailsDisplay">
           <p>
             <b>{% if customer.first_name %}{{ customer.first_name }} {% endif %}{% if customer.last_name %}{{ customer.last_name }}{% endif %}</b>
+            {% if customer.metafields.customr.gender %}
             <br/>
             <label>{{ 'customer.account.gender' | t }}: </label>{{ account_gender | default: 'Not provided' }}
+            {% endif %}
+            {% if customer.metafields.customr.birthday %}
             <br/>
             <label>{{ 'customer.account.birthday' | t }}: </label>{{ customer.metafields.customr.birthday | date: "%d/%m/%Y" | default: 'Not provided' }}
+            {% endif %}
+            {% if customer.metafields.customr.preferred_store %}
             <br/>
             <label>{{ 'customer.account.preferred_store' | t }}: </label>{{ customer.metafields.customr.preferred_store | default: 'Not provided' }}
+            {% endif %}
           </p>
           <ul class="no-bullets">
             <li>
