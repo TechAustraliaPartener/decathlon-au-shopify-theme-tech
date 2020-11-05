@@ -17,7 +17,7 @@
             $(this).trigger('change');
           });
         },
-        beforeSave: function() {
+      beforeSave: function() {
           var $firstName = $('#customer-fields input[name="' + 'customer[first_name]' + '"]');
           var $postcode = $('#customer-fields input[name="' + 'customer[postcode]' + '"]');
           addSpace($firstName);
@@ -28,7 +28,14 @@
           if ($('#accountInfo').length) {
             document.cookie = "is_from_registration=1; max-age=" + 60 * 5;
           }
-          setTimeout(function(){ location.reload(); }, 1000);
+
+          // prevent browser from automatically scrolling down
+          window.onbeforeunload = function () {
+            window.scrollTo(0, 0);
+          }
+
+          setTimeout(function(){ location.reload();  }, 3000);
+          
         }
       };
     </script>
