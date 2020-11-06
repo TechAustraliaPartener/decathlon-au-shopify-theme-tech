@@ -347,7 +347,7 @@
               "online_inventory_source": true,
               "enable_c_c": false,
               "duplicate": "",
-              "test_mode": true,
+              "test_mode": false,
               "street1": "4 Millner Avenue",
               "city": "Horsley Park",
               "zip": "2175",
