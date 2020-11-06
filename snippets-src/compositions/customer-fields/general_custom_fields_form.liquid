@@ -17,25 +17,23 @@
             $(this).trigger('change');
           });
         },
-      beforeSave: function() {
+      beforeSave: function() {  
           var $firstName = $('#customer-fields input[name="' + 'customer[first_name]' + '"]');
           var $postcode = $('#customer-fields input[name="' + 'customer[postcode]' + '"]');
           addSpace($firstName);
           addSpace($postcode);
+          $('#accountEditSpiner').show();
+          $('html, body').animate({
+            scrollTop: 0
+          }, 100);
         },
         afterSaveSuccess: function() {
-          $('#accountEditSpiner').show();
           if ($('#accountInfo').length) {
             document.cookie = "is_from_registration=1; max-age=" + 60 * 5;
           }
-
-          // prevent browser from automatically scrolling down
-          window.onbeforeunload = function () {
-            window.scrollTo(0, 0);
-          }
-
-          setTimeout(function(){ location.reload();  }, 3000);
-          
+          setTimeout(function(){   
+            window.location.reload(true);       
+          }, 2000);
         }
       };
     </script>

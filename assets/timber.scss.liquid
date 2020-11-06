@@ -10761,6 +10761,8 @@ $color-out: #ff0000;
     display: block;
   }
 
+
+
   &.mobile {
     position: fixed;
     @media screen and (min-width: 640px) {
@@ -10780,25 +10782,34 @@ $color-out: #ff0000;
 
 .spinner-wrapper {
   position: absolute;
-  top: 50%;
+  top: 25%;
   left: 0;
   right: 0;
   transform: translate(0, -50%);
+  @media screen and (max-width: 639px) {
+    top: 50%;
+  }
 }
 
 #accountInfo .wrapper {
   position: relative;
 }
 
+#account .account-links {
+  margin-top: 10px;
+}
+
+#account .hr--small {
+  margin-bottom: 5px;
+}
+
 .registration-confirm-message {
-  margin-left: 30px;
   color: #8BBC77;
   font-weight: bold;
   background: url("{{'icon-checkmark.png' | asset_img_url:'30x'}}") no-repeat left center;
   padding-top: 7px;
   padding-bottom: 5px;
-  padding-left: 33px;
-  margin-bottom: 20px;
+  padding-left: 40px;
   font-size: 11px;
   display: none;
 }

@@ -1,4 +1,5 @@
 <div class="form-vertical">
+  {% capture spinner_text %}{{ 'customer.account.updating_details_spinner' | t }}{% endcapture %}
   {% render 'spinner', id: 'accountEditSpiner', text: spinner_text %}
   {% form 'create_customer', data-submit: '#customer-fields #create_customer', class: 'copy-create' %}
     {% include 'compositions-customer-fields-false-form-fields', hide_completed_fields: true, marketing_on: true %}
