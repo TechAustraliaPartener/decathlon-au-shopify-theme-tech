@@ -232,7 +232,7 @@
     "pack_underwater_wonders_sport": "snorkeling",
     "pack_off_road_adventure_sport": "biking",
     "pack_hit_the_trails_sport": "running",
-    "app_wk_enabled": false,
+    "app_wk_enabled": true,
     "app_wk_login_required": false,
     "app_wk_icon": "heart",
     "app_wk_col_bg_shape": "square",

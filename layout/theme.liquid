@@ -3,7 +3,7 @@
   {%- assign pageUsesAppMate = false -%}
 {%- elsif template == 'product' and product.metafields.global.features != blank -%}
   {% comment %} New Product Page {% endcomment %}
-  {% assign pageUsesAppMate = false %}
+  {% assign pageUsesAppMate = true %}
 {%- endif -%}
 {% comment %} For Google Tag Manager {% endcomment %}
 {% include 'helpers-template-name' %}

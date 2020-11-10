@@ -48,9 +48,9 @@
       var product = this.getAttribute('data-wk-add-product');
 
       var variant = $(this).parents('.timber-activeProduct').find('.product-single__variants').val();
-      if ($('body').hasClass('template-product')) {
-        var variant = window.currentVariant.id;
-      }
+      // if ($('body').hasClass('template-product')) {
+      //   var variant = window.currentVariant.id;
+      // }
 
       if (Appmate.wk.collection.containsProduct(product)) {
         return;
