@@ -431,7 +431,7 @@
             "settings": {
               "name": "Auburn",
               "title": "Auburn Store, 2144",
-              "online_inventory_source": true,
+              "online_inventory_source": false,
               "enable_c_c": true,
               "duplicate": "",
               "test_mode": false,
@@ -869,8 +869,8 @@
           "1592459708324": {
             "type": "store",
             "settings": {
-              "name": "Snap Fitness (2127)",
-              "title": "Snap Fitness, 2127, Pick Up Only",
+              "name": "Snap Fitness Olympic Park (2127)",
+              "title": "Snap Fitness Olympic Park, 2127, Pick Up Only",
               "online_inventory_source": false,
               "enable_c_c": true,
               "duplicate": "Auburn",
