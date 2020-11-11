@@ -207,18 +207,19 @@
 <script id="wishlist-button-product" data="product" type="text/x-template" app="wishlist-king">
 {% if product.in_wishlist %}
   {% assign btn_text = 'In Wishlist' %}
-  {% assign btn_title = 'Remove from Wishlist' %}
+  {% assign btn_title = 'Added to wishlist' %}
   {% assign btn_action = 'wk-remove-product' %}
   {% assign btn_icon = 'wishlist-icon-filled' %}
 {% else %}
-  {% assign btn_text = 'Add to Wishlist' %}
-  {% assign btn_title = 'Add to Wishlist' %}
+  {% assign btn_text = 'Add to wishlist' %}
+  {% assign btn_title = 'Add to wishlist' %}
   {% assign btn_action = 'wk-add-product' %}
   {% assign btn_icon = 'wishlist-icon-empty' %}
 {% endif %}
 
 <button type="button" class="wk-button-product {{ btn_action }}" title="{{ btn_title }}" data-{{ btn_action }}="{{ product.id }}">
   <div class="wk-icon">
+    {{btn_title}}
     {% include btn_icon %}
   </div>
 </button>
