@@ -1,0 +1,89 @@
+{% comment %}
+  Store Pickup Component
+{% endcomment %}
+
+<!-- snippets/product-store-pickup.liquid -->
+<div class="de-StorePickup js-de-StorePickup">
+
+  <div
+    class="de-StorePickup-header
+           de-u-flex de-u-padBottom03 de-u-spaceBottom03">
+    <div class="de-StorePickup-thumbnail">
+      <img
+        alt=""
+        class="de-u-block js-de-StorePickup-thumbnailImage"
+        src="https://cdn.shopify.com/s/files/1/1752/4727/products/8bdfc1a5-64b0-409c-bffd-80152d762d79_100x.jpg"
+      >
+    </div>
+    <div class="de-u-padLeft03">
+      <h3
+        class="de-u-textGrow1 de-u-md-textGrow2 de-u-textMedium
+               de-u-spaceBottomNone"
+        itemprop="name">
+        {{ product.title }}
+      </h3>
+      <div class="de-u-textDarkGray">
+        <span class="js-de-StorePickup-variantSize">Large</span> <span>|</span> <span class="js-de-StorePickup-variantColor">Electric Blue</span>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="de-UseMyLocation de-js-UseMyLocation
+           de-u-flex de-u-flexAlignItemsCenter de-u-flexJustifyBetween
+           de-u-textSizeBase
+           de-u-spaceBottom06"
+  >
+    <p
+      class="de-UpdateLocation
+             de-u-textShrink1 de-u-spaceNone">
+      Your location:
+      <span>
+        <span class="js-de-StorePickup-city">City</span>,
+        <span class="js-de-StorePickup-stateCode">ST</span>
+      </span>
+
+    </p>
+
+    <button
+      class="de-u-flex de-u-flexAlignItemsCenter de-u-cursorPointer
+             de-u-textBlue js-de-StorePickup-useGeolocation">
+      <span
+        class="de-u-flex de-u-flexAlignItemsCenter de-u-flexJustifyCenter
+               de-u-padRight06">
+        {% include 'assets-icons-crosshairs' with class: 'de-Icon' %}
+      </span>
+      <span class="de-u-spaceLeft07 de-u-textMedium">
+        <span class="js-de-StorePickup-useMyLocationText">Use my location</span>
+        <span class="js-de-StorePickup-loadingLocationText de-u-hidden">Location&hellip;</span>
+      </span>
+    </button>
+  </div>
+
+  {% comment %}
+    For placement only
+  {% endcomment %}
+
+  <section class="de-u-textSizeBase de-u-spaceTop de-u-textRed
+    `             de-u-hidden js-de-StorePickup-locationUpdateMessage">
+    <p class="de-u-spaceBottom de-u-textShrink1">
+      <span class="js-de-StorePickup-defaultLocationUpdateMessage">
+          Please enter a valid city with state or zipcode. Example: San Francisco, CA or 94101
+      </span>
+      <span class="js-de-StorePickup-locationUpdateMessageContent">
+      </span>
+    </p>
+  </section>
+
+  <h5
+    class="de-ContentHeading de-ContentHeading--blue
+           de-u-textGrow1 de-u-lineHeight3">
+    Order online for
+  </h5>
+
+  {% comment %} The container for dynamically added store tiles {% endcomment %}
+  <ul class="js-de-StorePickup-list de-u-spaceBottomNone de-u-spaceLeftNone"></ul>
+
+</div>
+
+<!-- End snippets/product-store-pickup.liquid -->

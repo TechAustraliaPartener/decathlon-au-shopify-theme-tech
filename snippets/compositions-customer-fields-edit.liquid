@@ -1,0 +1,33 @@
+<div id="customer-fields" {% unless customer %}data-registration="true"{% endunless %}>
+  {% form 'create_customer' %}
+    <input type="hidden" name="shop" value="{{ shop.permanent_domain }}">
+    <div class="fields"><!-- Fields loaded from server --></div>
+    <div class="form-footer"></div>
+    <script>
+      var Customr = {
+        baseUrl: "https://customr.heliumdev.com",
+        {% if customer %}
+          shopifyCustomer: {
+            id: {{ customer.id }},
+            token: {{ customer.metafields.customr_auth.token | json }}
+          },
+        {% endif %}
+        ready: function() {
+          $('#create_customer.copy-create input, #create_customer.copy-create select').each(function() {
+            $(this).trigger('change');
+          });
+        },
+        beforeSave: function() {
+          var $firstName = $('#customer-fields input[name="' + 'customer[first_name]' + '"]');
+          var $postcode = $('#customer-fields input[name="' + 'customer[postcode]' + '"]');
+          addSpace($firstName);
+          addSpace($postcode);
+        },
+        afterSaveSuccess: function() {
+          setTimeout(function(){ location.reload(); }, 2000);
+        }
+      };
+    </script>
+    <script src="https://cdn-customr.heliumdev.com/assets/v2/embed.js"></script>
+  {% endform %}
+</div>

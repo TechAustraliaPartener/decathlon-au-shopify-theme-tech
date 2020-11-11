@@ -1,0 +1,122 @@
+<div class="product-inventory-locations de-ProductPageTopShelf-locationsInventory" id="locsContainer" style="display:none;" v-show="true">
+  {% raw %}<div class="de-u-padBottom06">
+    <div class="de-u-flex">
+      {% endraw %}{% include 'assets-icons-store'
+        with class: 'de-u-textBlack de-Icon de-u-textGrow6 de-u-spaceRight03' %}{% raw %}
+      <p class="de-u-spaceNone de-u-textMedium">
+        {% endraw %}{{ 'product_locations.check_stock_and_shipping_rates' | t }}{% raw %}
+      </p>
+    </div>
+    <div class="de-SingleInputForm">
+      <input
+        class="de-Input de-SingleInputForm-input"
+        type="text"
+        name="state"
+        placeholder="{% endraw %}{{ 'product_locations.enter_postcode' | t }}{% raw %}"
+        v-model="code">
+      <button
+        class="de-SingleInputForm-action"
+        id="checkState"
+        v-on:click="evaluateState()">
+        {% endraw %}{% include 'patterns-icons-search', class: 'de-u-textGrow3', role: 'presentation' %}{% raw %}
+        <span class="de-u-hiddenVisually">Search</span>
+      </button>
+    </div>
+    <div id="deliveryLocationMessage" v-show="state && state.length">
+      {% endraw %}{{ 'product_locations.your_delivery_location' | t }}{% raw %} <span id="deliveryLocation"></span> <span class="a" v-on:click="clearCode()">Change</span>
+    </div>
+    <div id="postcodeError" style="display:none;">
+      {% endraw %}{{ 'product_locations.postcode_error' | t }}{% raw %}
+    </div>
+  </div>
+  <div class="de-u-padBottom06" v-bind:class="{ 'de-collapse': collapsed }" id="inventoryLocations">
+    <div class="inventory-locations" id="inventoryLocs">
+      
+      {% endraw %}{% comment %} Displays favourite store - removed for the moment
+      <div class="locs-row de-u-textBold">
+        {% include 'assets-icons-flag'
+        with class: 'de-u-textBlack de-Icon de-u-spaceRight06' %}
+        <span v-if="favStore && favStore.name">Favourite Store: <span v-text="favStore.name"></span> <a class="de-u-spaceLeft05" href="/pages/store-finder" target="_blank">Change</a></span>
+        <span v-else><a class="de-u-spaceLeft05" href="/pages/store-finder">Select your favourite store</a></span>
+      </div>
+      {% endcomment %}{% raw %}
+
+      {% endraw %}
+      {% raw %}
+        <div class="locs-row" v-if="id && id !== 'demo' && id !== 'error'">
+          <div class="t-table">
+            <div class="t-row">
+              <div class="t-cell title">
+                {% endraw %}
+                  {% include 'assets-icons-truck'
+                  with class: 'de-u-textBlack de-Icon de-u-spaceRight06' %}
+                {% raw %}
+                <span v-text="delivery.name"></span></div>
+              <div class="t-cell ready" v-text="delivery.ready"></div>
+              <div class="t-cell availability" v-bind:class="delivery.availability.class" v-text="delivery.availability.text"></div>
+              <div class="t-cell hours" v-text="delivery.hours">
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endraw %}
+
+      {% raw %}
+        <div class="locs-row de-u-textBold" v-if="id && id !== 'demo'">
+      {% endraw %}
+        {% include 'assets-icons-location'
+        with class: 'de-u-textBlack de-Icon de-u-spaceRight06' %}
+        {{ 'product_locations.table_title' | t }}
+      </div>
+
+      {% raw %}
+        <div v-if="id === 'demo'" class="locs-row">
+          <div class="h5 locs-intruction">
+            <img src="{% endraw %}{{ 'decathlon-loader.gif' | asset_url }}{% raw %}">
+            {% endraw %}{{ 'product_locations.loading' | t }}{% raw %}
+          </div>
+        </div>
+        <div v-else-if="id === 'error'" class="locs-row">
+          <div class="h5 locs-intruction">
+            {% endraw %}{{ 'product_locations.error' | t }}{% raw %}
+          </div>
+        </div>
+        <div v-else-if="!id" class="locs-row">
+          <div class="h5 locs-intruction">{% endraw %}{{ 'product_locations.select_a_size' | t }}{% raw %}</div>
+        </div>
+        <div v-else-if="!state" class="no-click-collect">
+          {% endraw %}{{ 'product_locations.no_set_state_fallback_message' | t }}{% raw %}
+        </div>
+        <div v-else-if="!stateLocations || stateLocations.length === 0" class="no-click-collect">
+          {% endraw %}{{ 'product_locations.no_cc_locations_in_your_state' | t }}{% raw %}
+        </div>
+        <div class="t-table" v-else-if="id" id="locsTable">
+          <div class="t-row" v-for="location in stateLocations">
+            <div class="t-cell title"><span v-text="location.title"></span><span v-if="favStore && location.name === favStore.name">{% endraw %}{% include 'assets-icons-flag' with class: 'de-u-textBlack de-Icon de-u-spaceLeft06' %}{% raw %}</span></div>
+            <div class="t-cell ready" v-html="location.ready"></div>
+            <div class="t-cell availability" v-bind:class="location.availability.class" v-text="location.availability.text"></div>
+            <div class="t-cell hours tooltipOpener" v-if="location.tooltip_hours === true" v-text="location.hours"></div>
+            <div class="t-cell hours" v-else v-text="location.hours"></div>
+            <div class="hours-tooltip" v-if="location.tooltip_hours === true">
+              <div class='tooltip-content'>
+                <h4 v-text="location.title"></h4>
+                <hr/>
+                <p>
+                  <strong>Address:</strong>
+                  <span v-text="location.street1"></span>, 
+                  <span v-text="location.city"></span>, 
+                  <span v-text="location.state"></span>, 
+                  <span v-text="location.zip"></span>
+                </p>
+                <p><strong>Trading hours</strong></p>
+                <ul class='fullhours-list' v-html="location.fullHours"></ul>
+              <p class="tooltip-announcement" v-if="location.announcement !== ''" v-html="location.announcement"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endraw %}
+      {% raw %}
+    </div>
+  </div>{% endraw %}
+</div>

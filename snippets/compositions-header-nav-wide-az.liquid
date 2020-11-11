@@ -1,0 +1,27 @@
+<ul class="de-TextGrid de-u-columns4 de-u-xl-columns5">
+  {% comment %} If you don't assign these ahead of time, they won't carry through the loop. {% endcomment %}
+  {% assign letter = '' %}
+  {% assign lastLetter = '' %}
+  {% comment %} Loop through the shop linkList. {% endcomment %}
+  {% for link in linklists.shop.links %}
+    {% comment %} Assign the first letter of the link to a variable. {% endcomment %}
+    {% assign letter = link.title | slice: 0 %}
+    {% comment %} If the letter is different than the last one... {% endcomment %}
+    {% unless letter == lastLetter %}
+      {% comment %} Close the previous group (but only if there was one) {% endcomment %}
+      {% unless lastLetter == '' %}
+          </ul>
+        </li>
+      {% endunless %}
+      {% comment %} Open and title a new group using the letter {% endcomment %}
+      <li class="de-TextGrid-cell de-u-spaceNone">
+        <h3 class="de-u-textGrow1 de-u-textSemibold de-u-lineHeight3 de-u-spaceNone">{{letter}}</h3>
+          <ul class="de-u-listReset de-u-spaceNone de-u-lineHeight3">
+      {% assign lastLetter = letter %}
+    {% endunless %}
+    {% comment %} Output this item {% endcomment %}
+    <li class="de-u-spaceNone">
+      <a class="de-u-linkClean de-u-textShrink1" href="{{link.url}}">{{link.title}}</a>
+    </li>
+  {% endfor %}
+</ul>

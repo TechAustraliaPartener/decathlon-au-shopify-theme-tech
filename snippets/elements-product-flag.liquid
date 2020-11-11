@@ -1,0 +1,59 @@
+{% comment %}
+  @TODO:
+  1. Review/approve proper logic for Last Call
+  2. Add logic for displaying multiple flags
+     - Innovation (product.tag)
+     - New Release (product.tag)
+     - Last Call (based on sale price / current_variant.price )
+
+     @see: https://app.gitbook.com/@decathlonusa/s/shopify/product-feature/product-page
+
+  3. Check suggestions/requirements for whitespace control
+  4. Confirm requirements for variant level flags (on_sale)
+  5. Ensure that only one ProductFlag is displayed at a time on small
+     screen devices
+
+  Variables
+  1. `content`: (`{% assign label = content %}`) represents a string and is the
+     paramater that can be passed to the pattern via liquid `include with`
+  2. `style`: Intended for holding utility classes used for styling the
+      ProductFlags. This variable is not used outside of this file.
+  3. `class`: Intended to allow utility CSS classes to be passed in as needed
+      to customize styling depending on context where product flag is included.
+{% endcomment %}
+
+{% comment %}
+  Check if the product is on sale and set a variable to be used below.
+{% endcomment %}
+{%- assign on_sale = false -%}
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+{%- if current_variant.compare_at_price -%}
+  {%- assign on_sale = true -%}
+{%- endif -%}
+
+{% comment %}
+  IF YOU UPDATE THIS
+  You must also update the corresponding JS code for client updating
+  ./scripts/product-page/product-flags.js
+{% endcomment %}
+{% if on_sale %}
+  {% comment %}
+    Last call flag needs to take priority over other flags
+  {% endcomment %}
+  {% assign label = 'Sale' %}
+  {% assign style = 'de-u-bgRed de-u-textWhite' %}
+{% elsif product.tags contains 'Innovation' %}
+  {% assign label = 'Innovation' %}
+  {% assign style = 'de-u-bgLime de-u-textBlack' %}
+{% elsif product.tags contains 'new' %}
+  {% assign label = 'New Release' %}
+  {% assign style = 'de-u-bgBlue de-u-textWhite' %}
+{% else %}
+  {% assign label = content %}
+  {% assign style = '' %}
+{% endif %}
+
+<span data-flag="{{ product.id }}" class="de-ProductFlag de-u-textMedium js-de-ProductFlag
+  {% unless label %}de-u-hidden{% endunless %} {{ style }} {{ class }}">
+  <span class="de-u-hiddenVisually">Special product, </span>{{ label }}
+</span>

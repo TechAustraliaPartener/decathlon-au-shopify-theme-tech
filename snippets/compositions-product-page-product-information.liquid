@@ -1,0 +1,47 @@
+{% comment %}
+  Information on `itemprop="additionalProperty"`
+  @see https://schema.org/additionalProperty
+{% endcomment %}
+
+{% assign productinfo = product.metafields.global['product_info'] %}
+{% assign iterator = 0 %}
+
+{% comment %}
+  Determine whether there is more than one spec section, in order
+  to control column layout
+{% endcomment %}
+{% for specs in productinfo %}
+  {% assign spec = specs[1] %}
+  {% unless spec == blank or spec['description'] == blank %}
+    {% assign iterator = iterator | plus: 1 %}
+  {% endunless %}
+{% endfor %}
+
+<section class="de-ProductInformation{% if iterator > 1 %} de-ProductInformation--multispec{% endif %}">
+  {%- capture content -%}
+    {%- for specs in productinfo -%}
+      {%- assign spec = specs[1] -%}
+
+      {% comment %}
+        Check to see if the spec is an empty array and check for specs like
+        "Guarantee"and "Care Instructions" that have hardcoded `names` but don't
+        have an associated description.
+      {% endcomment %}
+
+      {%- unless spec == blank or spec['description'] == blank -%}
+        {%- if spec['name'] == 'Composition' -%}
+          {% comment %}
+            Capture the composition item because it needs to be displayed first
+          {% endcomment%}
+          {%- capture composition -%}
+            {%- include 'compositions-product-page-product-information-entry' with spec -%}
+          {%- endcapture -%}
+        {%- else -%}
+          {%- include 'compositions-product-page-product-information-entry' with spec -%}
+        {%- endif -%}
+      {%- endunless -%}
+    {%- endfor -%}
+  {%- endcapture -%}
+  {{ composition }}
+  {{ content }}
+</section>

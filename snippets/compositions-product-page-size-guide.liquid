@@ -1,0 +1,49 @@
+{% comment %}
+  A note about non `de-` classes. These classes have styles associated with them
+  in `timber.css` and `legacy.css` with high levels of specificity. These
+  classes are not receiving any properties from these style rules when used
+  here. instead, they are actually receiving inlined styles based on logic
+  defined in decathlon.js 😕
+
+  @see
+  → `esc-size-guide--table`
+  → `esc-size-guide--heading`
+  → `esc-size-guide--cell`
+
+{% endcomment %}
+
+
+{%- for tag in product.tags -%}
+  {%- if tag contains 'size-' -%}
+    {%- assign size_guide_tag = tag | split: 'size-' -%}
+    {%- assign size_guide = size_guide_tag[1] -%}
+  {%- endif -%}
+{%- endfor -%}
+
+<section class="SizeGuideContainer de-u-flex de-u-flexWrap de-u-lg-spaceTop3
+                de-u-spaceTop">
+  <div class="SizeGuide de-u-sizeFull">
+    <div class="SizeGuide-table de-u-flex de-u-padBottom3">
+      {% comment %}
+        A note about the `data` attributes, they are required by the Size Matters app.
+
+        @see
+        →  https://testing-decathlon-usa.myshopify.com/admin/apps/sizeguide/app
+      {% endcomment %}
+      <div data-app="eastsideco_sizeGuides"
+        data-shop="{{ shop.permanent_domain }}"
+        data-tags="{{ product.tags | join:',' | escape }}"
+        data-metafields="{{ product.metafields.esc-size-matters.tag }}"
+        data-popup="">
+      </div>
+    </div>
+  </div>
+  <div class="de-u-flex de-u-flexJustifyCenter de-u-flexAlignSelfCenter de-u-sizeFull de-u-spaceBottom6 de-u-md-spaceBottomNone">
+    {% comment %}
+      A reasonable responsive image solution should be considered.
+    {% endcomment %}
+    {% comment %}TODO: Restore size guide images
+      <img class="sizechart-visual" src="{{ size_guide | handleize | prepend: 'sizechart-' | append: '.jpg' | file_img_url: '300x' }}" alt="{{ 'products.options.size' | t | capitalize }} Guide Visual">
+    {% endcomment %}
+  </div>
+</section>

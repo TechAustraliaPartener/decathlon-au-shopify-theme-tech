@@ -1,0 +1,17 @@
+<span
+  class="js-de-CurrentPrice de-u-textGrow6 de-u-lineHeight1"
+  content="{{ variant.price | divided_by: 100.00 }}"
+  data-regular-price-label="{{ 'products.general.regular_price' | t }}:"
+  data-sale-price-label="{{ 'products.general.sale_price' | t }}:"
+>
+  <span class="js-de-PriceLabel de-u-hiddenVisually">
+    {% if variant.compare_at_price %}
+      {{ 'products.general.sale_price' | t }}:
+    {% else %}
+      {{ 'products.general.regular_price' | t }}:
+    {% endif %}
+  </span>
+  <span class="js-de-PriceAmount">
+    {{ variant.price | money }}
+  </span>
+</span>

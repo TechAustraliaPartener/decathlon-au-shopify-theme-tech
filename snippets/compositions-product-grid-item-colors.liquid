@@ -1,0 +1,68 @@
+{%- for option in product.options -%}
+  {%- if option == 'Color' -%}
+    {%- assign colors = '' -%}
+    {%- assign variant_images = '' -%}
+    {%- assign opt = 'option' | append: forloop.index -%}
+    {%- for variant in product.variants -%}
+
+      {%- assign color_array = colors | split: ',' -%}
+      {%- assign color_exists = false -%}
+      {%- for col in color_array -%}
+        {%- assign color = col | split: '|' %}
+        {%- if color[0] == variant[opt] -%}
+           {% assign color_exists = true %}
+        {%- endif -%}
+      {%- endfor -%}
+      {%- unless color_exists -%}
+        {%- assign obj = '' -%}
+        {%- assign obj = variant[opt]  -%}
+        {%- assign img = variant.image | img_url: '600x' -%}
+        {%- assign price = variant.price | money -%}
+        {%- assign compare = variant.compare_at_price | money -%}
+        {%- assign obj = obj | append: '|' | append: img -%}
+        {%- assign obj = obj | append: '|' | append: variant.id -%}
+        {%- assign obj = obj | append: '|' | append: price -%}
+        {%- assign obj = obj | append: '|' | append: compare -%}
+        {%- assign colors = colors | append: obj | append: ',' -%}
+      {%- endunless -%}
+    {%- endfor -%}
+
+    {%- assign colors = colors | split: ',' -%}
+
+  {%- if colors.size <= 4 -%}
+    {% assign shownColors = colors %}
+  {%- else -%}
+    {% assign shownColors = colors | slice: 0, 3 %}
+  {%- endif -%}
+
+  {%- assign additionalColors = colors.size | minus: shownColors.size -%}
+
+    <div class="collectionProduct-colors{% if colors.size < 2 %} hidden{% endif %}" data-colorChoice="{{ colors | first | split: '|' | first }}" data-variantChoice="{{ colors | first | split: '|' | last }}">
+    {% for color in shownColors %}
+      {%- assign col = color | split: '|' -%}
+      {%- if forloop.first == true -%}
+        {%- assign activeClass = ' option--active' -%}
+      {%- else -%}
+        {%- assign activeClass = '' -%}
+      {%- endif -%}
+      <span class="option option--color-{{ col[0] | handleize }} js-colorChip{{ activeClass }}" 
+            title="{{ col[0] }}" 
+            data-variant="{{ col[2] }}" 
+            data-color="{{ col[0] }}" 
+            data-image="{{ col[1] }}" 
+            data-price="{{ col[3] }}"{% if col[3] < col[4] %} 
+            data-compare="{{ col[4] }}{% endif %}"
+            {% if data_gtm_event  %}data-gtm-event="{{ data_gtm_event }}"{% endif %}
+            data-gtm-id="Swatch {{ forloop.index }} / {{ shownColors.size }} | {{ product_url }}"
+            {% if data_gtm_category %}data-gtm-category="{{ data_gtm_category }}"{% endif %}
+      >
+      </span>
+    {% endfor %}
+    {%- if additionalColors > 0 -%}
+      <span class="adept-product-display__color__extra">
+        + {{additionalColors}}
+      </span>  
+    {%- endif -%}
+    </div>
+  {%- endif -%}
+{%- endfor -%}

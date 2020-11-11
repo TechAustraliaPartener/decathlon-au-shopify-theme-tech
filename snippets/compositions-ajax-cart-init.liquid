@@ -1,0 +1,63 @@
+<script>
+  /**
+  * Legacy code setting up callbacks to events in ajax-cart.js
+  */
+  jQuery(function($) {
+    $('body').on('beforeAddItem.ajaxCart', function(e) {});
+    var itemPopupTemplate = Handlebars.compile($('#AddedItemTemplate').html());
+    $('body').on('completeAddItem.ajaxCart', function(evt, obj, jqxhr) {
+      if (jqxhr.status < 400) {
+        var context = jqxhr.responseJSON;
+
+        /* set the add to cart pane to load once the thumbnail loads */
+        var thumbnail = new Image();
+
+        /* display the item popup and setup some event listeners */
+        function displayItemPopup() {
+          $('#AddedItemPopup').remove();
+          context.variant_options_without_model_code = context.options_with_values
+            .filter(function (o) {return o.name !== 'Model Code'})
+            .map(function (o) {return o.value})
+          $('body').append(itemPopupTemplate(context));
+
+          $('#AddedItemPopup .close-itemPopup-btn').click(function(e) {
+            $('#AddedItemPopup').remove();
+          });
+
+          $('#AddedItemPopup .js-submitCart').click(function(e) {
+            e.preventDefault();
+            $('.cart__checkout').click();
+          });
+
+          $('body').addClass('has-itemsInCart');
+
+          setTimeout(function() {
+            $('#AddedItemPopup').remove();
+          }, 5000);
+        }
+        thumbnail.onload = displayItemPopup;
+        context.rating = $('.productRating').html();
+        context.price_dollars = Shopify.formatMoney(context.price, {{ shop.money_format | json }});
+        context.subtotal = $('#CartSubtotal').text();
+        var defaultTitleIndex = context.variant_options.indexOf('Default Title');
+        if (defaultTitleIndex > -1) {
+          context.variant_options.splice(defaultTitleIndex, 1);
+        }
+        context.added_quantity = /quantity=(\d+)/.exec(obj.data)[1] || 1
+
+        /* if subtotal is empty then the cart needs to be loaded */
+        if (!context.subtotal) {
+          function getCartHandler(e, cart) {
+            $('body').off('afterGetCart.ajaxCart', getCartHandler);
+            context.subtotal = Shopify.formatMoney(cart.total_price, {{ shop.money_format | json }});
+            thumbnail.src = context.image;
+          }
+          $('body').on('afterGetCart.ajaxCart', getCartHandler);
+          ajaxCart.load();
+        } else {
+          	thumbnail.src = context.image;
+        }
+      }
+    });
+  });
+</script>

@@ -1,0 +1,45 @@
+{% comment %}
+  TODO - Decide whether to remove this file,
+  as it appears to not be used anywhere
+{% endcomment %}
+
+<div class="grid blog-banner-item flex-item">
+	<div class="grid-item articleSnippet {{ adtl_classes }}">
+		<div class="grid__item large--five-tenths">
+		  <a class="articleSnippet-featuredImage" href="{{ article.url }}">
+		    {{ article | img_url: '448x208' | img_tag: article.title }}
+		  </a>
+		</div>
+
+	  	<div class="grid__item large--five-tenths articleSnippet-body-side">
+		  <div class="articleSnippet-body u-bgGray">
+		  {% assign articleID = article.id %}
+		  	{% for links in linklists['blog-menu'].links %}
+			      {% assign linkHandles = links.handle %}
+			      {% assign linkTitles = links.title %}
+			      {% for linkHandle in linkHandles %}
+			      		{% for article in blogs[linkHandle].articles %}
+			      			{% assign handleArticleID = article.id %}
+			      			{% if articleID == handleArticleID %}
+			      				<p class="articleSnippet-blog u-textUppercase u-letterSpacing">{{ linkTitles }}</p>
+			      			{% endif %}
+			      		{% endfor %}
+			      {% endfor %}
+			{% endfor %}
+
+		    <h3 class="articleSnippet-title h2 u-padBottom05x"><a href="{{ article.url }}">{{ article.title }}</a></h3>
+		    {% capture date %}<time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: format: 'month_day_year' }}</time>{% endcapture %}
+
+		    <p class="articleSnippet-excerpt">
+		     {% if article.excerpt == blank %}
+		    	{{ article.content | strip_html | truncate: 130}}
+			  {% else %}
+			    {{ article.excerpt }}
+			  {% endif %}
+			</p>
+
+		    <p class="articleSnippet-date u-textUppercase"><a href="{{ article.url }}">{{ date }}</a></p>
+		  </div>
+		</div>
+	</div>
+</div>

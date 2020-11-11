@@ -1,0 +1,37 @@
+<span class="js-de-RRPPrice de-u-textGrow2 de-u-lineHeight2">
+{% assign rrp_meta = product.metafields.global.model_RRPprices %}
+{% assign model_code = variant.option3 %}
+
+  <span class="js-de-PriceLabel">
+  </span>
+  <span class="js-de-PriceAmount position--relative">
+    <span {% if id %}id="product-rrp-price"{% endif %}
+      class="rrp-price de-u-textShrink1 de-u-textMedium js-de-PriceAmount de-rrp-tooltipOpener" 
+    >
+
+    {% assign rrp_splitted1 = rrp_meta | split: "}, {" %}
+    {% for item in rrp_splitted1 %}
+      {% assign item_splitted = item | split: ',' %}
+      {% assign item_modelcode_split1 = item_splitted | first %}
+      {% assign item_modelcode_split2 = item_modelcode_split1 | split: '=>' %}
+
+      {% assign item_rrp_price_split1 = item_splitted | last %}
+      {% assign item_rrp_price_split2 = item_rrp_price_split1 | split: '=>' %}
+
+      {% assign item_modelcode = item_modelcode_split2 | last | remove: '"' %}
+      {% assign item_rrp_price = item_rrp_price_split2 | last %}
+
+      {% if item_modelcode == model_code%}
+
+        {% assign rrp_price = item_rrp_price | remove: '"' | remove: '}' | remove: ']' %}
+
+        RRP*: ${{ rrp_price | money_without_currency }}
+      {% endif %}
+    {% endfor %}
+    </span>
+
+    <div class="de-rrp-tooltip {% if tooltip_top %}de-rrp-tooltip--top{% endif %}">
+      {{ 'products.general.rrp_price_info' | t }}
+    </div>
+  </span>
+</span>

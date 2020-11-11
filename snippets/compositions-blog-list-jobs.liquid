@@ -1,0 +1,51 @@
+{% comment %}
+  TODO - Decide whether to remove this file,
+  as it appears to not be used anywhere
+{% endcomment %}
+
+<div class="grid">
+
+  <div class="grid__item push--large--one-sixth large--two-thirds">
+
+    {% if current_tags %}
+      <h1>{{ blog.title | link_to: blog.url }} &mdash; {{ current_tags.first }}</h1>
+    {% else %}
+      <h1>Open Positions</h1>
+    {% endif %}
+
+
+    {% for article in blog.articles %}
+
+      <div class="article">
+
+        <h3><a href="{{ article.url }}">{{ article.title }}</a></h3>
+
+        {% comment %}
+          Add a surrounding div with class 'rte' to anything that will come from the rich text editor.
+          Since this is just a listing page, you can either use the excerpt or truncate the full article.
+        {% endcomment %}
+        <div class="rte">
+          {% if article.excerpt.size > 0 %}
+            {{ article.excerpt }}
+          {% else %}
+            <p>{{ article.content | strip_html | truncatewords: 100 }}</p>
+          {% endif %}
+        </div>
+
+        <p><a href="{{ article.url }}">{{ 'blogs.article.read_more' | t }} &rarr;</a></p>
+
+      </div>
+
+      {% unless forloop.last %}<hr>{% endunless %}
+
+    {% endfor %}
+
+    {% if paginate.pages > 1 %}
+      <hr>
+      <div class="pagination">
+        {{ paginate | default_pagination }}
+      </div>
+    {% endif %}
+
+  </div>
+</div>

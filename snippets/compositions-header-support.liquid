@@ -1,0 +1,12 @@
+<a
+  href='{{ settings.header_support_link }}'
+  class='de-MenuBar-action menu-bar-menu-item-action'
+  data-gtm-event="customer-interaction"
+  data-gtm-id="Support"
+  data-gtm-category="Header">
+  {% include 'assets-icons-support',
+    with class: 'de-Icon de-MenuBar-icon' %}
+  <span class='de-MenuBar-label de-u-textNormal de-u-hidden de-u-lg-block'>
+    {{ settings.header_support_label }}
+  </span>
+</a>

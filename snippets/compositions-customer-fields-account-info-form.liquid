@@ -1,0 +1,9 @@
+<div class="form-vertical">
+  {% form 'create_customer', data-submit: '#customer-fields #create_customer', class: 'copy-create' %}
+    {% include 'compositions-customer-fields-false-form-fields' %}
+    <input type="submit" value="Submit">
+  {% endform %}
+  <div style="display:none;">
+    {% include 'compositions-customer-fields-app' %}
+  </div>
+</div>

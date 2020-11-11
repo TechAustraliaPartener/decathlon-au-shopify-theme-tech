@@ -1,0 +1,72 @@
+{% assign qanda = product.metafields.faq.q_and_a %}
+{% if qanda.size > 0 %}
+  <section
+    class="de-ProductInfoSection de-ProductInfoSection--withBorderTop de-u-md-pad"
+    aria-labelledby="Section-faqs"
+  >
+    <span
+      id="faqs"
+      class="de-ProductAnchor"
+      aria-hidden="true">
+    </span>
+    <header>
+      <h2
+        class="de-ProductInfoSection-title
+               de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4
+               de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
+        id="Section-faqs"
+      >
+        Frequently Asked Questions
+      </h2>
+    </header>
+    {% capture faqs_accordion_content %}
+      <div class="faq_accordions">
+        {% for qanda_item in qanda limit: 4 %}
+          {% assign q = qanda_item.question %}
+          {% assign a = qanda_item.answers | first %}
+          {% assign country = qanda_item.context.country %}
+          {% if q and a %}
+            <div class="faq_accordion">
+              <div class="faq_accordion_head">
+                <i class="faq_accordion_icon"></i>
+                <h3 class="faq_question de-u-textGrow2">
+                  {{ q.content }}
+                </h3>
+                {% if q.author %}
+                  <span class="faq_author">
+                    Question from {{ q.author.firstname }}
+                  </span>
+                {% endif %}
+                {% if a %}
+                  <span class="faq_reply_indicator">
+                    1 Reply
+                  </span>
+                {% endif %}
+              </div>
+              {% if a %}
+                <div class="faq_accordion_body">
+                  <div class="faq_response_wrapper">
+                    <p class="faq_response">
+                      {{ a.content }}
+                    </p>
+
+                    {% comment %}To Do: Hook country display into a real lookup{% endcomment %}
+                   {% if a.author %}
+                     <span class="faq_reply_from">Reply from {{ a.author.firstname }} {% if country %}({% if country == 'SG' %}Singapore{% else %}{{ country }}{% endif %}){% endif %}</span>
+                    {% endif %}
+                  </div>
+                </div> 
+              {% endif %}
+            </div> 
+          {% endif %}
+        {% endfor %}
+
+      </div>
+    {% endcapture %}
+    {% include 'compositions-product-page-accordion'
+      is_open: false
+      accordion_heading: "Frequently Asked Questions"
+      accordion_content: faqs_accordion_content
+    %}
+  </section>
+{% endif %}

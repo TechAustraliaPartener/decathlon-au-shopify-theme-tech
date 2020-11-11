@@ -1,0 +1,120 @@
+{% comment %}
+  ID addToCartForm is a selector for the ajax cart plugin
+{% endcomment %}
+<form
+  action="/cart/add"
+  method="post"
+  enctype="multipart/form-data"
+  id="AddToCartForm"
+  class="form-vertical addToCartForm de-addToCartForm de-ProductPageTopShelf-addToCart">
+  {% comment %}
+    Add product variants as a dropdown.
+    - By default, each variant (or combination of variants) will display as its own <option>
+    - To separate these into multiple steps, which we suggest, use option_selection.js (see below)
+
+    You can leverage jQuery to add a callback on page load and each time the select element changes:
+    - Include option_selection.js (as seen at the bottom of this file)
+    - This allows you to use JavaScript anytime the variant dropdown changes
+    - This also separates out your variant options (ie. size, color, etc.) to separate select elements
+
+    For more information on products with multiple options, visit:
+    - http://docs.shopify.com/support/your-website/themes/can-i-make-my-theme-use-products-with-multiple-options#update-product-liquid
+  {% endcomment %}
+  <select name="id" id="productSelect" class="product-single__variants de-u-hidden">
+    {% for variant in product.variants %}
+      {% if variant.available %}
+        {% comment %}
+          Note: if you use option_selection.js, your <select> tag will be overwritten, meaning what you have inside <option> will not reflect what you coded below.
+        {% endcomment %}
+        <option data-sku="{{ variant.sku }}" value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money_with_currency }}</option>
+      {% else %}
+        <option disabled>
+          {{ variant.title }} - {{ 'products.product.sold_out' | t }}
+        </option>
+      {% endif %}
+    {% endfor %}
+  </select>
+  <div
+    class="de-ProductPrice
+           de-u-padTop de-u-md-padTop04 de-u-padBottom06
+           de-u-textMedium
+           de-u-flex de-u-flexAlignItemsEnd">
+    <div
+      class="de-u-flex de-u-flexAlignItemsEnd
+             de-u-lg-hidden">
+      {% include 'compositions-product-price-current', variant: current_variant %}
+      {% include 'compositions-product-price-crossed-out', variant: current_variant %}
+      {% include 'compositions-product-price-rrp', variant: current_variant, product: product, tooltip_top: true, id: true %}
+    </div>
+    <span
+      class="de-u-textRed de-u-lineHeight2 de-u-textGrow2
+             js-de-validation-message"
+      aria-live="polite"
+    >
+      {% comment %}
+        Validation messaging updated via JS
+      {% endcomment %}
+    </span>
+  </div>
+
+  <div class="visually-hidden" itemprop="offers" itemtype="http://schema.org/Offer" itemscope>
+    <link itemprop="url" href="{{ shop.url }}{{ current_variant.url }}" />
+    {%- if current_variant.available -%}
+      <meta itemprop="availability" content="https://schema.org/InStock" />
+    {%- else -%}
+      <meta itemprop="availability" content="https://schema.org/OutOfStock" />
+    {%- endif -%}
+    <meta itemprop="priceCurrency" content="{{ shop.currency }}" />
+    <meta itemprop="itemCondition" content="https://schema.org/NewCondition" />
+    <meta itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}" />
+    <div itemprop="seller" itemtype="http://schema.org/Organization" itemscope>
+      <meta itemprop="name" content="{{ shop.name }}" />
+    </div>
+  </div>
+  <div
+    class="de-AddToCartActions de-u-spaceBottom2">
+
+    {% comment %} Quantity Input {% endcomment %}
+    <div class="de-ProductQuantity de-u-hidden de-u-md-block">
+      <label for="Quantity" class="quantity-selector visually-hidden">
+          {{ 'products.product.quantity' | t }} of items to add to the cart.
+      </label>
+      {% comment %}
+        The class name 'quantity-selector' is used by JS to condition the
+        appearance of quantity inputs based on variant availability
+
+        @see: assets/timber.js.liquid
+      {% endcomment %}
+      <input
+        class="de-ProductQuantity-input
+              de-u-textSizeBase quantity-selector
+              js-de-AddToCart-quantity"
+        id="Quantity"
+        type="number"
+        name="quantity"
+        value="1"
+        min="1">
+    </div>
+
+    <div
+      class="de-ProductAddToCart">
+      <button
+        type="submit"
+        name="add"
+        id="AddToCart"
+        class="de-Button btn btn--fill
+              de-u-sizeFull de-u-textSizeBase
+              js-de-AddToCart-btn addToCart alt">
+        <span
+          id="AddToCartText"
+          class="js-de-AddToCart-btn-text"
+          aria-live="assertive"
+          aria-label="{{ 'products.product.add_to_cart' | t }}"
+        >
+          {{ 'products.product.add_to_cart' | t }}
+        </span>
+      </button>
+    </div>
+
+  </div>
+</form>

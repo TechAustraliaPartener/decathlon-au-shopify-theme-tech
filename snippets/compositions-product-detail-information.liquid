@@ -1,0 +1,73 @@
+<div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+  <meta itemprop="priceCurrency" content="{{ shop.currency }}">
+
+  <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
+
+  {% comment %}
+    ID addToCartForm is a selector for the ajax cart plugin
+  {% endcomment %}
+  <form action="/cart/add" method="post" enctype="multipart/form-data" class="addToCartForm wrapper">
+    <div class="productOptions-selects">
+      <select name="id" id="productSelect" class="product-single__variants">
+        {%- for variant in product.variants -%}
+          {%- if variant.available -%}
+
+            <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money_with_currency }}</option>
+
+          {%- else -%}
+            <option data-color-size="{{ variant.option1 }}/{{ variant.option2 }}" value="{{ variant.id }}">
+              {{ variant.title }} - {{ 'products.product.sold_out' | t }}
+            </option>
+          {%- endif -%}
+        {%- endfor -%}
+      </select>
+      <div class="addons-list">
+        <a class="u-textBold u-marginBottom0x">Included:</a>
+        <small class="addons-list__items"></small>
+      </div>
+      {% if product_has_size_chart %}
+      <div class="productOptions-sizeChart">
+        <a class="js-sizechart" href="/pages/size-chart">{{ 'products.options.size' | t | capitalize }} Chart</a>
+      </div>
+      {% endif %}
+    </div>
+
+
+    {% comment %}
+    <label for="Quantity" class="quantity-selector">{{ 'products.product.quantity' | t }}</label>
+    <input type="number" id="Quantity" name="quantity" value="1" min="1" class="quantity-selector">
+    {% endcomment %}
+
+    <div class="bluegram">
+    {% if settings['is_lookbook'] == false %}
+      {%- unless product.tags contains 'Online only' -%}
+      {%comment%}
+        <p class="pickupInSF">
+          <i class="ico ico--pin u-textYellow"></i>
+          <span class="pickupInSF-text">Pick up in SF</span>
+        </p>
+      {%endcomment%}
+      {%- endunless -%}
+    {% endif %}
+
+      <span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
+      <p class="productPrice" itemprop="price">
+        {{ current_variant.price | money }}
+      </p>
+
+
+      {% if product.tags contains 'allow sale' %}
+      <button type="submit" name="add" class="addToCart btn btn--addToCart">
+        <span class="addToCartText">{{ 'products.product.add_to_cart' | t }}</span>
+      </button>
+      {% else %}
+      <button type="submit" name="add" class="{% if settings['is_lookbook'] == false %}addToCart{% else %}js-addToWishlist{% endif %} btn btn--addToCart">
+        <span class="addToCartText">{{ 'products.product.add_to_cart' | t }}</span>
+      </button>
+      {% endif %}
+    </div>
+    <input type="hidden" name="collections" value="{{ product.collections | map: 'handle' | join: ',' }}" />
+    <input type="hidden" name="p_handle" value="{{ product.handle }}" />
+  </form>
+
+</div>

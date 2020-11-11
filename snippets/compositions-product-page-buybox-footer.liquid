@@ -1,0 +1,66 @@
+{% assign option_type = 'model code' %}
+{% assign option_index = '' %}
+{% for product_option in product.options_with_values %}
+  {% assign product_option_name = product_option.name | downcase %}
+  {% if product_option_name == option_type %}
+    {% assign option_index = forloop.index %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% if product.selected_or_first_available_variant and option_index != blank %}
+  {% if option_index == 1 %}{% assign current_model = product.selected_or_first_available_variant.option1 %}{% endif %}
+  {% if option_index == 2 %}{% assign current_model = product.selected_or_first_available_variant.option2 %}{% endif %}
+  {% if option_index == 3 %}{% assign current_model = product.selected_or_first_available_variant.option3 %}{% endif %}
+{% else %}
+  {% assign current_model = '' %}
+{% endif %}
+<div class="de-u-flex de-u-flexCol de-u-lg-flexRow de-u-lg-flexJustifyBetween de-u-textShrink1 de-u-textDarkGray de-u-padTop03 js-de-ModelCode de-ProductPageTopShelf-modelCode">
+ {% if product.available %}
+    {% assign threshold_for_afterpay_threshold = settings.threshold_for_afterpay_threshold | times: 100 %}
+    {% assign threshold_for_zip_pay_threshold = settings.threshold_for_zip_pay_threshold | times: 100 %}
+    {% if product.selected_variant %}
+      {% assign selected_variant_or_product_price = product.selected_variant.price %}
+    {% else %}
+      {% assign selected_variant_or_product_price = product.price %}
+    {% endif %}
+    <div class="afterpay-block">
+      <div class="product-afterpay-info{% if settings.threshold_for_afterpay_enabled and selected_variant_or_product_price < threshold_for_afterpay_threshold %} de-u-hidden{% endif %}">
+      {% include 'components-afterpay_snippet' %}
+      </div>
+      {% if settings.threshold_for_afterpay_enabled %}
+        {% capture threshold_for_afterpay_logo %}
+          <img class="afterpay-logo gateway_logo" style="vertical-align:middle;" src="{{ 'logo-afterpay.svg' | asset_url }}" width="100" height="21" alt="Afterpay" />
+        {% endcapture %}
+        <div class="product-afterpay-disabled-info disabled_info de-u-textGrow1{% if selected_variant_or_product_price >= threshold_for_afterpay_threshold %} de-u-hidden{% endif %}">
+          {% assign threshold_for_afterpay_threshold_money = threshold_for_afterpay_threshold | money_without_trailing_zeros %}
+          {{ settings.threshold_for_afterpay_product_message 
+            | replace: '[gateway]', settings.threshold_for_afterpay_gateway 
+            | replace: '[threshold]', threshold_for_afterpay_threshold_money
+            | replace: '[logo]', threshold_for_afterpay_logo
+          }}
+        </div>
+      {% endif %}
+      <!-- Zip WIDGET -->
+      {% include 'components-zip-widget'%}
+      <div id="zip-prod-widget" data-zm-asset="productwidget" data-zm-widget="popup" data-zm-popup-asset="termsdialog" class="product-zip-pay-info{% if settings.threshold_for_zip_pay_enabled and selected_variant_or_product_price < threshold_for_zip_pay_threshold %} de-u-hidden{% endif %}"></div>
+      {% if settings.threshold_for_zip_pay_enabled %}
+        {% capture threshold_for_zip_pay_logo %}
+          <img class="logo gateway_logo" src="https://static.zipmoney.com.au/assets/default/product-widget/img/primary-zip.svg" alt="Zip Pay">
+        {% endcapture %}
+        <div class="product-zip-pay-disabled-info disabled_info de-u-textGrow1{% if selected_variant_or_product_price >= threshold_for_zip_pay_threshold %} de-u-hidden{% endif %}">
+          {% assign threshold_for_zip_pay_threshold_money = threshold_for_zip_pay_threshold | money_without_trailing_zeros %}
+          {{ settings.threshold_for_zip_pay_product_message 
+            | replace: '[gateway]', settings.threshold_for_zip_pay_gateway 
+            | replace: '[threshold]', threshold_for_zip_pay_threshold_money
+            | replace: '[logo]', threshold_for_zip_pay_logo
+          }}
+        </div>
+      {% endif %}
+      <!-- end Zip WIDGET -->
+    </div>
+  {% endif %}
+  <div class="{% if current_model == blank %} de-u-hidden{% endif %}">
+    <span class="de-u-textMedium de-u-textGrow1">Model: <span class="js-de-ModelCode-text" itemprop="model">{{ current_model }}</span></span>
+  </div>
+</div>

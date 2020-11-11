@@ -1,0 +1,17 @@
+<script>
+  var dataLayer = window.dataLayer || [];
+  console.log('Check Datalayer Visit:', {
+    'CustomerNumber': '{{ customer.id }}',
+    'PageType': '{{ template.name }}',
+    'pageTitle': '{% include 'helpers-meta-title' %}',
+    'envChannel': 'WEB',
+    'UserNumber': ''
+  });
+  dataLayer.push({
+    'CustomerNumber': '{{ customer.id }}', // id of customer if logged in
+    'PageType': '{{ template.name }}', // 'ProductPage' // for example
+    'pageTitle': '{{ page_title }}', // for example
+    'envChannel': 'WEB', // for example
+    'UserNumber': ''
+  });
+</script>

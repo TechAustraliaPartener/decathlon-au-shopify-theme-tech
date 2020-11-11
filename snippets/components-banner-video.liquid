@@ -1,0 +1,28 @@
+<div class="banner banner--video banner--billboard{{ banner_adtl_classes }}"{% if banner_bg_image %}
+     data-background-image="{{ banner_bg_image }}"{% endif %} {% if banner_id %} id="{{banner_id}}" {% endif %}>
+  <div class="wrapper">
+    <div class="banner-content">
+      {%- if banner_intro -%}
+        <p class="banner-intro">{{ banner_intro }}</p>
+      {%- endif -%}
+
+      {%- if banner_title -%}
+        {%- if banner_title_normal -%}
+          <h1 class="banner-title{{ banner_title_adtl_classes }}">{{ banner_title }}</h1>
+        {%- else -%}
+          <h2 id="background-image-text">{{ banner_title }}</h2>
+        {%- endif -%}
+      {%- endif -%}
+
+      {%- if banner_subtitle -%}
+        <p class="banner-subtitle{% unless button_url %} u-marginBottom0x{% endunless %}">{{ banner_subtitle }}</p>
+      {%- endif -%}
+
+      {%- if video_url -%}
+        <a class=" js-bannerVideo" href="{{ video_url }}" target="_blank"{% if video_button %} data-videoButton='{{ video_button }}'{% endif %}>
+          <i class="ico ico--play h2 u-marginBottom0x"></i>
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</div>

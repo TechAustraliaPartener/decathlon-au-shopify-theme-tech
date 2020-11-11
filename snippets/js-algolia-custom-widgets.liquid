@@ -1,0 +1,10 @@
+<script>
+  window.algolia_custom_widgets = {
+    {% if template.name == 'collection' %}
+      menu : `{% capture menu %}{% include 'algolia_custom_menu' %}{% endcapture %}{{ menu | newline_to_br }}`,
+      title : `{{ collection.title }}`,
+      description : `{% capture collection_description %}{% include 'algolia_custom_collection_description' %}{% endcapture %}{{ collection_description }}`,
+      banner : `{% capture banner %}{% include 'algolia_custom_banner' %}{% endcapture %}{{ banner  }}`
+    {% endif %}
+  };
+</script>

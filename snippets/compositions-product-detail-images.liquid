@@ -1,0 +1,14 @@
+{% comment %}
+  TODO: filter images via variants
+{% endcomment %}
+
+{%- for image in product.images -%}
+  {% assign alt = image.alt %}
+  <div class="grid__item large--one-half productImage" data-action="zoom">
+    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+      data-lazy="{{ image | img_url: 'large' }}"
+      data-original="{{ image | img_url: 'original' }}"
+      style="margin: 0 auto;"
+      alt="{% include 'func-extract-alt-copy' with alt %}">
+  </div>
+{%- endfor -%}

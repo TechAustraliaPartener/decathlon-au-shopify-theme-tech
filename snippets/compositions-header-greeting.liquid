@@ -1,0 +1,38 @@
+ <!-- Start Sign In/Greeting -->
+{% assign greetingLength = 9 %}
+{% assign emailName = '' %}
+{% if customer %}
+  <a
+    href="/account"
+    class="de-MenuBar-action menu-bar-menu-item-action"
+    data-gtm-event="customer-interaction"
+    data-gtm-id="My Account"
+    data-gtm-category="Header">
+    {% include 'patterns-icons-user'
+      with class: 'de-MenuBar-icon', role: 'presentation' %}
+    <span class="de-MenuBar-label de-u-textNormal de-u-hidden de-u-lg-block">
+    {% if customer.first_name != blank %}
+      {{customer.first_name | slice: 0, greetingLength | capitalize }}
+      {% if customer.first_name.size > greetingLength %}…{% endif %}
+    {% else %}
+      {% assign emailName = customer.email | split: '@' | first %}
+      {{ customer.email | split: '@' | first | slice: 0, greetingLength | capitalize }}
+      {% if emailName.size > greetingLength %}…{% endif %}
+    {% endif %}
+    </span>
+  </a>
+{% else %}
+  <a
+    href="{{ settings.login_portal_url }}"
+    class="de-MenuBar-action menu-bar-menu-item-action"
+    data-gtm-event="customer-interaction"
+    data-gtm-id="My Account"
+    data-gtm-category="Header">
+    {% include 'assets-icons-user'
+      with class: 'de-MenuBar-icon', role: 'presentation' %}
+    <span class="de-MenuBar-label de-u-textNormal de-u-hidden de-u-lg-block">
+      {{ settings.header_sign_in_label }}
+    </span>
+  </a>
+{% endif %}
+<!-- End Sign In/Greeting -->

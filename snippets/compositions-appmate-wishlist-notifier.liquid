@@ -1,0 +1,84 @@
+      $('js-wishlistBanner').remove();
+      //window.decathlon.addPromo('<p class="u-marginBottom0x"><a href="/pages/wishlist" class="u-textUppercase">Product added! View your wishlist</a></p>', 'js-wishlistBanner');
+
+      var itemPopupTemplate = Handlebars.compile($('#AddedItemTemplate').html());
+
+      if ($('body').hasClass('template-product')) {
+        var productSlug = window.location.pathname;
+      } else {
+        var productSlug = $(this).parents('.timber-activeProduct').find('.collectionProduct-title').attr('href');
+      }
+
+      $.get(productSlug +'.json', function(res, status, data) {
+        var context = data.responseJSON.product;
+        for (var i = 0; i < context.variants.length; i++) {
+          if (context.variants[i].id == parseInt(variant)) {
+            context.variant_options = context.variants[i].title;
+            context.price = context.variants[i].price;
+            context.image = context.variants[i].image_id;
+          }
+        }
+        for (var i = 0; i < context.images.length; i++) {
+          if (context.images[i].id == context.image) {
+            context.image = context.images[i].src;
+          }
+        }
+        context.product_title = context.title;
+        if (context.variant_options) {
+          context.variant_options = context.variant_options.split(' / ');
+        } else {
+          context.variant_options = context.variants[0].title.split(' / ');
+        }
+
+        context.isWishlist = true;
+
+        /* set the add to cart pane to load once the thumbnail loads */
+        var thumbnail = new Image();
+
+        /* display the item popup and setup some event listeners */
+        function displayItemPopup() {
+          $('#AddedItemPopup').remove();
+          $('body').append(itemPopupTemplate(context));
+
+          $('#AddedItemPopup .close-itemPopup-btn').click(function(e) {
+            $('#AddedItemPopup').remove();
+          });
+
+          $('#AddedItemPopup .js-submitCart').click(function(e) {
+            e.preventDefault();
+            $('.cart__checkout').click();
+          });
+
+          setTimeout(function() {
+            $('#AddedItemPopup').remove();
+          }, 3000);
+        }
+        thumbnail.onload = displayItemPopup;
+
+        if ($('.productRating').length > 0) {
+          context.rating = $('.productRating').html();
+        } else {
+          context.rating = $('.collectionProduct[data-product-id="'+ context.id +'"] .starRating').html();
+        }
+        context.price_dollars = Shopify.formatMoney(context.price, {{ shop.money_format | json }});
+        context.subtotal = $('#CartSubtotal').text();
+        var defaultTitleIndex = context.variant_options.indexOf('Default Title');
+        if (defaultTitleIndex > -1) {
+          context.variant_options.splice(defaultTitleIndex, 1);
+        }
+
+        /* if subtotal is empty then the cart needs to be loaded */
+        if (!context.subtotal) {
+          function getCartHandler(e, cart) {
+            $('body').off('afterGetCart.ajaxCart', getCartHandler);
+            context.subtotal = Shopify.formatMoney(cart.total_price, {{ shop.money_format | json }});
+            thumbnail.src = context.image;
+          }
+          $('body').on('afterGetCart.ajaxCart', getCartHandler);
+          ajaxCart.load();
+
+        } else {
+          thumbnail.src = context.image;
+        }
+      });
+

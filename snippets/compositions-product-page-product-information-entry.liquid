@@ -1,0 +1,43 @@
+<section
+  class="de-ProductInformation-entry de-u-spaceBottom6"
+  aria-labelledby="ProductInfo-{{forloop.index}}"
+  itemprop="additionalProperty"
+  itemscope
+  itemtype="http://schema.org/PropertyValue"
+>
+  <header>
+    <h3
+      class="de-u-textGrow2"
+      id="ProductInfo-{{forloop.index}}"
+      itemprop="name"
+    >
+      {{ spec.name | capitalize }}
+    </h3>
+  </header>
+  {%- assign description_words = spec['description'] | split: ' ' -%}
+
+  {%- if spec.name == 'Composition' and spec.description.compositions -%}
+    {%- assign productParts = spec.description.compositions -%}
+    <div class="de-u-spaceNone" itemprop="value">
+      {%- for part in productParts -%}
+        <h4 class="de-u-textGrow1 de-u-textMedium">{{ part.header }}</h4>
+        <ul class="de-u-spaceBottom06">
+          {%- for material in part.materials -%}
+            <li class="de-u-spaceNone">{{ material.percentage | round }}% {{ material.material }}</li>
+          {%- endfor -%}
+        </ul>
+      {%- endfor -%}
+    </div>
+  {%- else -%}
+    <p class="de-u-spaceNone" itemprop="value">
+      {%- for word in description_words -%}
+        {%- assign protocol = word | split: '://' -%}
+        {%- if protocol[0] == 'http' or protocol[0] == 'https' -%}
+          {{ ' ' }}<a href="{{ word }}">{{ word }}</a>
+        {%- else -%}
+          {{ ' ' }}{{- word -}}
+        {%- endif -%}
+      {%- endfor -%}
+    </p>
+  {%- endif -%}
+</section>

@@ -1,0 +1,33 @@
+{% comment %} Toggle from image to video {% endcomment %}
+<div class="ProductGallery-controls de-Wrapper--fullwidth de-u-padEnds03 {{ class }}">
+  <div class="de-u-padSides de-u-lg-padSidesNone de-u-textSizeBase de-u-flex
+    de-u-flexAlignItemsCenter {% if display_toggle and product_video.size > 0 %}de-u-flexJustifyBetween{% else %}de-u-flexJustifyEnd{% endif %}">
+    {% if display_toggle and product_video.size > 0 %}
+      <div class="js-de-toggle-media">
+        <button class="de-u-flex de-u-flexAlignItemsCenter de-u-textBlue js-de-watch-video">
+          {% include 'assets-icons-media-play'
+            with class: 'de-Icon de-u-textGrow3 de-u-spaceRight06' %}
+          Watch Video
+        </button>
+        <button class="de-u-hidden de-u-flex
+        de-u-flexAlignItemsCenter de-u-textBlue js-de-view-images">
+          {% include 'assets-icons-camera'
+            with class: 'de-Icon de-u-textGrow3 de-u-spaceRight06' %}
+          View Images
+        </button>
+      </div>
+    {% endif %}
+    <div class="ProductGallery-count de-u-flex de-u-flexAlignItemsCenter js-de-ProductGallery-count">
+      {% include 'assets-icons-camera'
+        with class: 'de-Icon de-u-textGrow2 de-u-spaceRight06' %}
+      {% comment %}
+        Hide from accessibility tree, duplicate content
+      {% endcomment %}
+      <span
+        class="js-de-ProductGallery-countValue"
+        aria-hidden="true"
+        aria-live="off"
+      >0/0</span>
+    </div>
+  </div>
+</div>

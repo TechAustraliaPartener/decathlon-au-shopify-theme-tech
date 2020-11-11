@@ -1,0 +1,28 @@
+<div class="de-AdditionalVideos de-u-padEnds6">
+  <div class="de-slick--videos js-de-slick--videos">
+    {% for video_id in product_video %}
+      <div class="embedWrapper">
+        <div class="embedContainer">
+          <video data-account="3415345270001"
+            data-player="jQMS54WMw"
+            data-embed="default"
+            data-video-id="ref:{{ video_id | strip }}_1"
+            class="video-js"
+            controls
+            playsinline>
+          </video>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  {% if product_video.size > 1 %}
+    <div class="de-slick--videos-thumbnails js-de-slick--videos-thumbnails">
+      {% for video_id in product_video %}
+        <div>
+          <img class="de-AdditionalVideos-thumb js-de-AdditionalVideos-thumb-{{ forloop.index }}">
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>
+<script defer src="https://players.brightcove.net/3415345270001/jQMS54WMw_default/index.min.js" class="js-de-brightcove-script"></script>

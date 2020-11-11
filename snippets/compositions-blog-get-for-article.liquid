@@ -1,0 +1,11 @@
+{% comment %}
+  Loop through links in linklist
+  Loop through articles and check if the article has the same handle
+{% endcomment %}
+{%- for link in blogs -%}
+  {%- for refArticle in link.object.articles -%}
+    {%- if refArticle.handle == article.handle -%}
+      {%- assign blog = link.object -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endfor -%}

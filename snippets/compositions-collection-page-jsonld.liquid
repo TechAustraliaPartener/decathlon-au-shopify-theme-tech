@@ -1,0 +1,126 @@
+{% comment %}
+<!-- the true_collection needs to be determined for multi collection -->
+{% endcomment %}
+
+{% assign breadcrumbs_top = false %}
+{% assign breadcrumbs = false %}
+
+{% assign sports_nav = linklists.sports %}
+
+{% for menu in sports_nav.links %}
+  {% capture sport_menu %}{{ menu.handle }}{% endcapture %}
+
+  {% if menu.current %}
+    {% if linklists[sport_menu].links.size > 0 %}
+      {% assign breadcrumbs_top = menu %}
+      {% assign breadcrumbs = linklists[sport_menu].links %}
+    {% else %}
+      {% assign breadcrumbs_top = menu %}
+      {% assign breadcrumbs = sports_nav.links %}
+    {% endif %}
+  {% else %}
+
+    {% for link in hierarchy %}
+      {% if link.current or link.child_current %}
+        {% if link.links.size > 0 %}
+          {% assign breadcrumbs_top = link %}
+          {% assign breadcrumbs = link.links %}
+        {% else %}
+          {% assign breadcrumbs_top = menu %}
+          {% assign breadcrumbs = linklists[sport_menu].links %}
+        {% endif %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+
+  {% endif %}
+{% endfor %} 
+
+{% assign products_url_list = products_url_list | split: " | " %}
+
+{% comment %}
+<!-- Schema recommended by Shopify -->
+<!-- reference here: https://sherpas.design/blogs/e-commerce/structured-data-for-shopify#collection -->
+{% endcomment %}
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"ItemList",
+  "name":"{{ true_collection.title }}",
+  "url":"{{ shop.url }}{{ true_collection.url }}",
+  "description":"{{ true_collection.description | strip_html  }}",
+  {% if true_collection.image %}"image":"{{ true_collection.image | img_url: 'grande' }}",{% endif %}
+  "mainEntityOfPage": {
+    "@type": "CollectionPage",
+    "@id": "{{ shop.url }}{{ true_collection.url }}"
+  },
+  "itemListElement":[
+    {% for url in products_url_list %}
+    {% assign splitted = url | split: "**" %}
+    {% assign product_url = splitted[0] %}
+    {% assign product_name = splitted[1] %}
+      {
+        "@type":"ListItem",
+        "position":{{ forloop.index }},
+        "name": "{{ product_name }}",
+        "url": "{{ shop.url }}{{ product_url }}"
+      }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "{{ top_level.title }}",
+      "item": "{{ shop.url }}/collections/{{ top_level.handle }}"
+    }
+
+    {% for link in breadcrumbs %}
+      {% if link.current or link.child_current %}
+        
+        ,{
+          "@type": "ListItem",
+          "position": 2,
+          "name": "{{ link.title }}",
+          "item": "{{ shop.url }}{{ link.url }}"
+        }
+
+        {% for sub in link.links %}
+          {% if sub.current or sub.child_current %}
+
+            ,{
+              "@type": "ListItem",
+              "position": 3,
+              "name": "{{ sub.title }}",
+              "item": "{{ shop.url }}{{ sub.url }}"
+            }
+
+            {% for subsub in sub.links %}
+              {% if subsub.current or subsub.child_current %}
+
+                ,{
+                  "@type": "ListItem",
+                  "position": 4,
+                  "name": "{{ subsub.title }}",
+                  "item": "{{ shop.url }}{{ subsub.url }}"
+                }
+
+              {% endif %}
+            {% endfor %}
+
+          {% endif %}
+        {% endfor %}
+
+      {% endif %}
+    {% endfor %}
+  ]
+}
+</script>
+

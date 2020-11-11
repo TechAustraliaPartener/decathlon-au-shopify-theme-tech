@@ -1,0 +1,10 @@
+<p class="grid__item{% if size_classes %} {{ size_classes }}{% endif %} blogCard {{ adtl_classes }}" data-author="{{ article.author }}">
+  <a class="blogCard-link" href="{{ article.url }}">
+    <img class="blogCard-image" {% if article.image %}data-src="{{ article.image.src | img_url: 'large' }}"{% endif %} src="{{ '16x9.png' | asset_url }}" alt="{{ article.image.alt }}" />
+    <noscript><img class="blogCard-image" src="{{ article.image.src | img_url: 'large' }}" alt="{{ article.image.alt }}" /></noscript>
+    <span class="blogCard-content">
+      <span class="blogCard-category">{{ blog.title }}</span>{% comment %}<br/>{% endcomment %}
+      <span class="blogCard-title">{{ article.title }}</span>
+    </span>
+  </a>
+</p>

@@ -1,0 +1,48 @@
+{% unless limit %}
+  {% assign limit = 15 %}
+{% endunless %}
+
+{% capture arrow_previous_button %}
+  <button 
+    aria-label="Scroll to previous set of products"
+    type="button" 
+    class="de-ProductTileCarousel-button slick-prev"
+    data-gtm-id="Product Tile Carousel Control"
+    data-gtm-category="Tiles"
+    data-gtm-event="customer-interaction"
+    id="recently_viewed_prev_button"
+  >
+    {% include 'assets-icons-arrow-extended-right', class: 'de-ProductTileCarousel-svg', direction_in_title: 'previous' %}
+  </button>
+{% endcapture %}
+
+{% capture arrow_next_button %}
+  <button 
+    aria-label="Scroll to next set of products"
+    type="button" 
+    class="de-ProductTileCarousel-button slick-next"
+    data-gtm-id="Product Tile Carousel Control"
+    data-gtm-category="Tiles"
+    data-gtm-event="customer-interaction"
+    id="recently_viewed_next_button"
+  >
+    {% include 'assets-icons-arrow-extended-right', class: 'de-ProductTileCarousel-svg', direction_in_title: 'next' %}
+  </button>
+{% endcapture %}
+
+<div class="recently_viewed_products slick-slider container slick-carousel">
+  <h2 class="de-ProductInfoSection-title
+    de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4
+    de-u-spaceNone de-u-hidden de-u-md-inlineBlock">Recently Viewed Products</h2>
+  <h2 class="mobile_title">Recently Viewed Products</h2>
+  <div id="recently_viewed_products_container" class="row slider" data-max-items="12" 
+    data-arrow-previous-button="{{ arrow_previous_button | escape }}"
+    data-arrow-next-button="{{ arrow_next_button | escape }}">
+    <div id="recently_viewed_products_loading" class="d-flex justify-content-center">
+      <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+  </div>
+  
+</div>

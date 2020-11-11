@@ -1,0 +1,45 @@
+{% assign sport_value = "" %}
+{% assign family_id = "" %}
+{% for tag in product.tags %}
+  {% assign downcased_tag = tag | downcase %}
+  {% if downcased_tag contains "sport_value:" %}
+    {% assign sport_value = tag | split: "SPORT_VALUE:" | last | strip %}
+  {% endif %}
+  {% if downcased_tag contains "family:" %}
+    {% assign family_id = tag | split: "Family:" | last | strip %}
+  {% endif %}
+{% endfor %}
+
+{% assign option_type = 'model code' %}
+{% assign option_index = '' %}
+{% for product_option in product.options_with_values %}
+  {% assign product_option_name = product_option.name | downcase %}
+  {% if product_option_name == option_type %}
+    {% assign option_index = forloop.index %}
+    {% assign model_option = 'option' | append: option_index %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% if product.selected_or_first_available_variant and model_option != blank %}
+  {% assign current_model = product.selected_or_first_available_variant[model_option] %}
+{% else %}
+  {% assign current_model = '' %}
+{% endif %}
+
+<script>
+  window.vars = window.vars || {};
+  window.vars.productStockInfo = {
+    "static": {
+      "Brand": "{{ product.vendor }}", 
+      "Type": "{{ product.type }}", 
+      "Product Title": "{{ product.vendor }} {{ product.title }}", 
+      "Sport": "{{ sport_value }}", 
+      "Family ID": "{{ family_id }}"
+    },
+    "dynamic": {
+      "Model Number": "{{ current_model }}", 
+      "Stock Status": false
+    }
+  }
+</script>

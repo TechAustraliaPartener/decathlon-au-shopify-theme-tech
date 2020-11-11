@@ -1,0 +1,93 @@
+{% include 'js-master-stores' %}
+
+<script>
+  // Check if the favourite store still exists, if not remove it from localStorage
+  if (localStorage.getItem('favoritedStore')) {
+    var fav_store_id = JSON.parse(localStorage.getItem('favoritedStore')).id;
+    var master_stores_id = [];
+    for (let i = window.masterStores.length - 1; i >= 0; i--) {
+      master_stores_id.push(window.masterStores[i].id);
+    }
+    if (master_stores_id.indexOf(fav_store_id) < 0) {
+      localStorage.removeItem('favoritedStore');
+      localStorage.removeItem('deliveryOption');
+    }
+  }
+</script>
+{% assign rrpMetafields = product.metafields.global.model_RRPprices %}
+<script>
+  window.vars = window.vars || {};
+  window.vars.loginUrl = "{{ settings.login_portal_url }}";
+  window.vars.registerUrl = "{{ settings.register_portal_url }}";
+  window.vars.inventoryType = "{{ settings.inventory_type }}";
+  window.vars.outOfStockHandling = "{{ settings.out_of_stock_handling }}";
+  window.vars.pickupDisplay = "{{ settings.pickup_display }}";
+  {% if product %}
+    window.vars.productJSON = {{ product | json }};
+    window.vars.rrpMetafields = {{ rrpMetafields | json }};
+    window.vars.selectedVariant = {{ product.selected_variant | json }};
+  {% endif %}
+  window.vars.favStore = JSON.parse(localStorage.getItem('favoritedStore'));
+  if (window.vars.favStore && window.ccStores.indexOf(window.vars.favStore.name) === -1) {
+    window.vars.favStore = null;
+  }
+  window.vars.iconChevronDown = `{% include 'assets-icons-chevron-down' with class: 'de-u-textBlue de-Icon de-u-spaceLeft06' %}`;
+  window.vars.iconAvailable = `{% include 'assets-icons-available' with class: 'de-Icon de-u-spaceRight06' %}`;
+  window.vars.iconUnavailable = `{% include 'assets-icons-unavailable' with class: 'de-Icon de-u-spaceRight06' %}`;
+  window.vars.cartPayload = {{ cart | json }};
+  window.vars.tomitCartPayload = [{{ cart.items | map: 'product' | map: 'id' | join: ', ' }}];
+  window.vars.deliveryOption = (window.vars.favStore ? localStorage.getItem('deliveryOption') : 'Delivery') || 'Delivery';
+  window.vars.customer = {% if customer %}{
+    id: {{ customer.id }},
+    username: "{{ customer.name }}",
+    email: "{{ customer.email }}"
+  }{% else %}false{% endif %};
+  window.vars.thresholdForGateways = {
+    afterpay: {
+      enabled: {{settings.threshold_for_afterpay_enabled}},
+      threshold: Number({{settings.threshold_for_afterpay_threshold}})
+    },
+    zipPay: {
+      enabled: {{settings.threshold_for_zip_pay_enabled}},
+      threshold: Number({{settings.threshold_for_zip_pay_threshold}})
+    } 
+  };
+  window.vars.freeShippingSettings = {
+    minPrice: {{ settings.free_shipping_threshold }},
+    maxWeight: {{ settings.free_shipping_max_weight }}
+  };
+  window.vars.translations = {
+    products: {
+      general: {
+        rrp_price_info: '{{ 'products.general.rrp_price_info' | t }}'
+      },
+      delivery_text: {
+        free_shipping_message: '{{ 'products.delivery_text.free_shipping_message' | t }}',
+        free_shipping_threshold_message: '{{ 'products.delivery_text.free_shipping_threshold_message' | t }}',
+        free_pickup: '{{ 'products.delivery_text.free_pickup' | t }}'
+      }
+    }
+  };
+</script>
+
+{% include 'js-algolia-custom-widgets' %}
+
+{% include 'js-filter-mapping' %}
+
+<script>
+  window.vars.subBrandLogos = {};
+  {% for item in linklists.sub-brands.links %}
+
+    {% assign brand_logo_prefix = 'assets-logos-brands-' %}
+    {% assign brand_logo_name = item.url | remove: "#" %}
+    {% assign brand_logo_filename = brand_logo_prefix | append: brand_logo_name %}
+
+    window.vars.subBrandLogos['{{ brand_logo_name }}'] = `{% include brand_logo_filename, 
+      class: 'de-u-spaceTop04 de-subBrandLogo', 
+      data_gtm_category: 'Tiles',
+      data_gtm_event: 'customer-interaction',
+      data_gtm_actions: 'click',
+      data_gtm_delegate: 'child' %}`;
+
+  {% endfor %}
+</script>

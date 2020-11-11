@@ -1,0 +1,28 @@
+<div class="inputWrap" data-marketing-hide>
+  <label>{{ 'customer.register.first_name' | t }}</label>
+  <input type="text" name="customer[first_name]" placeholder="First name" value="{{ customer.first_name }}" required>
+</div>
+
+<div class="inputWrap" data-marketing-hide>
+  <label>{{ 'customer.register.last_name' | t }}</label>
+  <input type="text" name="customer[last_name]" placeholder="Last name" value="{{ customer.last_name }}">
+</div>
+
+<div class="checkboxWrap">
+  <input type="checkbox" value="Yes" name="customer[accepts_marketing]" {% if customer.accepts_marketing or get_account_info %}checked{% endif %}>
+  <label class="label">{{ 'customer.account.marketing_optin' | t }}</label>
+</div>
+
+<label data-marketing-hide>Gender</label>
+<select name="customer[gender]" data-marketing-hide>
+  {% for gender in gender_values %}
+    <option value="{{ gender }}" {% if customer.metafields.customr.gender == gender %}selected="selected"{% endif %}>
+      {{ gender_titles[forloop.index0] }}
+    </option>
+  {% endfor %}
+</select>
+
+<div class="inputWrap" data-marketing-hide>
+  <label>Postcode</label>
+  <input type="text" name="customer[postcode]" placeholder="Postcode" value="{{ customer.metafields.customr.postcode | strip }}" pattern="[0-9]{4}">
+</div>

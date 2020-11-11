@@ -1,0 +1,46 @@
+<div class="de-PageWrap-menu de-PageWrap-wideMenu de-PageWrap-prioritySportNav">
+  {% for link in linklists.mega-tabs.links %}
+  {% assign menu_handle = link.url | handleize %}
+  {% assign mega_menu = linklists[menu_handle] %}
+  <nav class="de-PageWrap-wideMenuInner" id="mega-tab-{{ link.handle }}" data-de-page-wrap-cancel>
+    <div class="de-Grid de-Grid--equalHeight">
+      <div class="de-u-size4of5 de-u-xl-size5of6">
+        <div class="de-u-sizeFull">
+          <div class="de-u-pad2 de-u-borderTopSm de-u-borderGray50 de-u-borderOverlapTopSm">
+            {% if mega_menu.links.size > 0 or menu_handle == 'az' %}
+              {% case menu_handle %}
+                {% when 'sports' %}
+                  {% render 'compositions-header-nav-wide-sports' %}
+                {% when 'az' %}
+                  {% include 'compositions-header-nav-wide-az' %}
+                {% else %}
+                  {% include 'compositions-header-nav-wide-list', list: mega_menu %}
+              {% endcase %}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="de-u-size1of5 de-u-xl-size1of6 de-u-bgWhite">
+        {% include 'compositions-header-nav-wide-extras' %}
+      </div>
+    </div>
+  </nav>
+  {% endfor %}
+</div>
+
+<div class="de-PageWrap-subHeader">
+  <ul class="de-MenuBar-list">
+    {% for link in linklists.mega-tabs.links %}
+      <li class="de-MenuBar-listItem">
+        <button class="de-MenuBar-action de-u-textGrow1"        
+          data-de-page-wrap-action="toggleMenu"
+          data-de-page-wrap-target="mega-tab-{{ link.handle }}"
+          data-de-page-wrap-hover="true"
+          aria-expanded="false"
+          >
+          <span class="de-MenuBar-label">{{ link.title }}</span>
+        </button>
+      </li>
+    {% endfor %}
+  </ul>
+</div>

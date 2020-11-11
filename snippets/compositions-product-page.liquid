@@ -1,0 +1,484 @@
+{% comment %}
+
+  Rich snippets (itemscope, itemtype, etc.) for products are a theme requirement,
+  and allow search engines to easily understand what the content is.
+
+  For more information on these Scheme.org tags, visit:
+    - http://schema.org/docs/gs.html
+
+{% endcomment %}
+
+{% include 'section-clips' %}
+
+{% comment %} `product.metafields.global.videos` returns a hash list {% endcomment %}
+{% assign video_hash_list = product.metafields.global.videos %}
+{% comment %} Get a string of all the video IDs {% endcomment %}
+{% capture video_id_string_list %}
+  {% for video_hash in video_hash_list  %}
+    {% assign video_obj = video_hash[1] %}
+    {% if video_obj.id %}
+      {{video_obj.id}},
+    {% endif %}
+  {% endfor %}
+{% endcapture %}
+{% comment %} Create an array of the video IDs {% endcomment %}
+{% assign product_video = video_id_string_list | strip | split: ',' %}
+
+{% assign product_has_size_chart = false %}
+{%- for tag in product.tags -%}
+  {%- if tag contains 'Model Code: ' -%}
+    {%- assign model_code_tag = tag | split: 'Model Code: ' -%}
+    {%- assign model_code = model_code_tag[1] -%}
+  {%- endif -%}
+  {%- if tag contains 'size-' -%}
+    {% assign product_has_size_chart = true %}
+  {%- endif -%}
+{%- endfor -%}
+
+{% if model_code == blank %}
+  {% capture model_code %}{{ product.variants.first.option3 }}{% endcapture %}
+{% endif %}
+
+{%- assign product_images = product.images -%}
+{%- assign context_photo_delimiter = '[[contextphoto]]' -%}
+{%- assign has_context_photo = false -%}
+
+{%- for product_image in product_images -%}
+  {% if product_image.alt contains context_photo_delimiter %}
+    {% assign has_context_photo = true %}
+    {% break %}
+  {% endif %}
+{%- endfor -%}
+
+{% comment %} Section IDs {% endcomment %}
+{% assign product_videos_id = 'product-videos' %}
+{% assign product_features_id = 'product-features' %}
+{% assign product_reviews_id = 'product-reviews' %}
+{% assign product_size_chart_id = 'product-sizeGuide' %}
+{% assign product_info_id = 'product-information' %}
+
+<div
+  id="ProductWrap"
+  class="timber-activeProduct
+    {% if product.options.size < 2 %} product-singleOption{% endif %}">
+
+    {% comment %} Get first variant, or deep linked one {% endcomment %}
+    {% assign current_variant = product.selected_or_first_available_variant %}
+    <div itemscope itemtype="http://schema.org/Product">
+
+    <meta itemprop="url" content="{{ shop.url }}{{ current_variant.url }}">
+    <meta itemprop="image" content="{{ current_variant.image.src | img_url: 'grande' }}">
+    <div itemprop="brand" itemtype="http://schema.org/Thing" itemscope>
+      <meta itemprop="name" content="{{ product.vendor }}" />
+    </div>
+
+    <div class="de-ProductPageTopShelf 
+      de-Wrapper
+      de-u-spaceBottom3
+      de-u-overflowXNone"
+    >
+      <div class="de-ProductCarousel de-ProductPageTopShelf-gallery
+                  de-Wrapper--fullwidth js-de-ProductGallery-showcase"
+      >
+        <div class="de-u-lg-hidden js-de-BuyBoxFlags">
+          {% include 'elements-product-flag' 
+             with class: 'de-u-bgBlue de-u-textWhite'
+          %}
+        </div>
+
+        {% include 'compositions-product-page-carousel' %}
+        
+        {% include 'compositions-product-page-gallery-controls' with    
+           display_toggle: false
+           class: "de-u-hidden de-u-lg-block"
+        %}
+
+        {% if product_video.size > 0 %}
+          <video data-account="3415345270001"
+            data-player="jQMS54WMw"
+            data-embed="default"
+            data-video-id="ref:{{ product_video[0] }}_1"
+            class="video-js de-galleryVideo js-de-galleryVideo de-u-hidden"
+            controls
+            playsinline>
+          </video>
+        {% endif %}
+      </div>
+
+      {% if product_video.size > 0 %}
+        {% include 'compositions-product-page-gallery-controls' with
+          class: 'de-u-bgSilver de-u-lg-hidden js-de-MobileGalleryControls',
+          display_toggle: true %}
+      {% endif %}
+
+      {% include 'compositions-product-page-buybox' %}
+    </div>
+  </section>
+
+  {% comment %} ProductMenu {% endcomment %}
+  {% include 'compositions-product-page-menu',
+    has_context_photo: has_context_photo,
+    product_features_id: product_features_id,
+    product_info_id: product_info_id,
+    product_reviews_id: product_reviews_id,
+    product_size_chart_id: product_size_chart_id
+  %}
+
+  {% if product_video.size > 0 %}
+  <video data-account="3415345270001"
+    data-player="jQMS54WMw"
+    data-embed="default"
+    data-video-id="ref:{{ product_video[0] }}_1"
+    class="video-js de-copyVideo js-de-copyVideo de-ProductPageTopShelf-gallery de-u-hidden"
+    controls
+    playsinline>
+  </video>
+  <section
+    class="de-ProductPageTopShelf-mediaControls 
+           de-ProductInfoSection de-ProductInfoSection--silver
+           de-u-md-pad js-de-VideoSection de-u-hidden"
+    aria-labelledby="Section-videos"
+  >
+    <span
+      id="{{product_videos_id}}"
+      class="de-ProductAnchor"
+      aria-hidden="true">
+    </span>
+    <header>
+      <h2
+        class="de-ProductInfoSection-title
+               de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4
+               de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
+          id="Section-videos"
+      >
+        <span class="visually-hidden">Product</span> Videos
+      </h2>
+    </header>
+    {% capture additional_videos_accordion_content %}
+      {% include 'compositions-product-page-videos' %}
+    {% endcapture %}
+  </section>
+  {% endif %}
+
+    {% if settings.show_associated_products_carousel_on_product_page %}
+      {% include 'compositions-product-page-associated-products-carousel' %}
+    {% endif %}
+
+    {% if product_video.size > 0 %}
+    <section
+      class="de-ProductInfoSection de-ProductInfoSection--silver
+             de-u-md-pad"
+      aria-labelledby="Section-videos"
+    >
+      <span
+        id="product-videos"
+        class="de-ProductAnchor"
+        aria-hidden="true">
+      </span>
+      <header>
+        <h2
+          class="de-ProductInfoSection-title
+                 de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4
+                 de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
+            id="Section-videos"
+        >
+          <span class="visually-hidden">Product</span> Videos
+        </h2>
+      </header>
+      {% capture additional_videos_accordion_content %}
+        {% include 'compositions-product-page-videos' %}
+      {% endcapture %}
+      {% include 'compositions-product-page-accordion'
+        is_open: true
+        accordion_heading: "Additional Videos"
+        accordion_content: additional_videos_accordion_content
+      %}
+    </section>
+    {% endif %}
+
+    <section
+      class="de-ProductInfoSection de-u-md-pad2"
+      aria-labelledby="Section-features"
+    >
+      <span
+        id="product-features"
+        class="de-ProductAnchor"
+        aria-hidden="true">
+      </span>
+      <header>
+        <h2
+          class="de-ProductInfoSection-title
+                 de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4
+                de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
+          id="Section-features"
+        >
+          <span class="visually-hidden">Product</span> Features
+        </h2>
+      </header>
+      {% capture features_accordion_content %}
+        {% include 'compositions-product-page-features' %}
+      {% endcapture %}
+      {% include 'compositions-product-page-accordion'
+        is_open: true
+        accordion_heading: "Features"
+        accordion_content: features_accordion_content
+      %}
+    </section>
+
+    {% if has_context_photo %}
+
+      <section
+        class="de-ProductInfoSection de-ProductInfoSection--withBorderTop
+               de-u-pad2 de-u-overflowXNone"
+        aria-labelledby="Section-lifestyle-images"
+      >
+        <span
+          id="product-imageGallery"
+          class="de-ProductAnchor"
+          aria-hidden="true">
+        </span>
+        <h2
+          class="de-ProductInfoSection-title
+                 de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4
+                 de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
+          id="Section-lifestyle-images"
+        >
+          <span class="visually-hidden">Product Lifestyle</span> Image Gallery
+        </h2>
+        <h2 class="de-u-textGrow2 de-u-md-hidden">
+          Image Gallery
+        </h2>
+        <div class="ProductImageGallery de-u-fullwidth de-u-padEnds2">
+          {% include 'compositions-product-page-image-gallery' %}
+        </div>
+      </section>
+    {% endif %}
+
+    <section
+      class="de-ProductInfoSection de-ProductInfoSection--withBorderTop
+             de-u-md-padEnds de-u-md-padSides
+             js-de-Reviews"
+      aria-labelledby="Section-reviews"
+      data-model-code="{{model_code}}"
+    >
+      <span
+        id="product-reviews"
+        class="de-ProductAnchor"
+        aria-hidden="true">
+      </span>
+      {% capture reviews_heading %}
+        {% include 'compositions-product-page-customer-reviews-heading' %}
+      {% endcapture %}
+      {% capture reviews_accordion_content %}
+        {% comment %}
+          Reviews
+          Capture to enable inserting content into the drawer
+        {% endcomment %}
+        {% capture reviews_drawer_content %}
+          {% include 'compositions-product-page-customer-reviews' %}
+        {% endcapture %}
+        {% comment %}
+          Create a drawer for the captured content
+        {% endcomment %}
+        {% include 'compositions-product-page-drawer',
+          drawer_id: "reviews-drawer",
+          drawer_label: "Customer Reviews",
+          content: reviews_drawer_content,
+          heading: reviews_heading,
+          displays_in_page_flow: true %}
+      {% endcapture %}
+      {% include 'compositions-product-page-accordion'
+        is_open: true
+        accordion_heading: "Customer Reviews"
+        accordion_content: reviews_accordion_content
+      %}
+    </section>
+
+    {% include 'compositions-product-page-qanda' %}
+    
+    {%- if product_has_size_chart -%}
+      <section class="de-ProductInfoSection de-SizeGuide
+                      de-u-md-pad"
+        aria-labelledby="Section-sizeguide"
+      >
+        <span
+          id="product-sizeGuide"
+          class="de-ProductAnchor"
+          aria-hidden="true">
+        </span>
+        {% capture size_and_fit_heading %}
+          {% include 'compositions-product-page-size-guide-heading' %}
+        {% endcapture %}
+        {% capture size_and_fit_accordion_content %}
+          {% capture size_and_fit_drawer_content %}
+            {% include 'compositions-product-page-size-guide' %}
+          {% endcapture %}
+          {% comment %}
+            Create a drawer for the captured content
+          {% endcomment %}
+          {% assign options_size = 'products.options.size' | t | capitalize | append: ' Guide' %}
+          {% include 'compositions-product-page-drawer',
+            drawer_id: "size-guide-drawer",
+            drawer_label: options_size,
+            content: size_and_fit_drawer_content,
+            heading: size_and_fit_heading,
+            displays_in_page_flow: true
+          %}
+        {% endcapture %}
+        {% include 'compositions-product-page-accordion'
+          is_open: false
+          accordion_heading: options_size
+          accordion_content: size_and_fit_accordion_content
+        %}
+      </section>
+    {%- endif -%}
+
+    <section
+      class="de-ProductInfoSection de-ProductInfoSection--silver
+             de-u-md-pad"
+      aria-labelledby="Section-additional-info"
+    >
+      <span
+        id="product-information"
+        class="de-ProductAnchor"
+        aria-hidden="true">
+      </span>
+      <header>
+        <h2
+          class="de-ProductInfoSection-title
+                 de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4
+                 de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
+          id="Section-additional-info"
+        >
+          <span class="visually-hidden">Additional </span>Product Information
+        </h2>
+      </header>
+      {% capture product_information_accordion_content %}
+        <div class="de-u-spaceTop6">
+          {% comment %}
+            Product information wired to metafields
+          {% endcomment %}
+          {% include 'compositions-product-page-product-information' %}
+
+        </div>
+      {% endcapture %}
+      {% include 'compositions-product-page-accordion'
+        is_open: false
+        accordion_heading: "Product Information"
+        accordion_content: product_information_accordion_content
+      %}
+    </section>
+
+    {% capture 'fulfillment_drawer_content' %}
+      {% include 'compositions-product-page-store-pickup' %}
+    {% endcapture %}
+    {% include 'compositions-product-page-drawer',
+      drawer_id: "store-pickup-options-drawer",
+      drawer_label: "Store Pickup Options",
+      content: fulfillment_drawer_content,
+      displays_in_page_flow: false
+    %}
+
+    {% capture 'returns_policy_drawer_content' %}
+      {% include 'compositions-product-page-heavy-returns-policy' %}
+    {% endcapture %}
+    {% capture 'returns_policy_drawer_heading' %}
+      <h3 class="de-ProductInfoSection-title
+                de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4
+                de-u-spaceNone de-u-hidden de-u-md-inlineBlock">
+        Heavy products return policy
+      </h3>
+    {% endcapture %}
+    {% include 'compositions-product-page-drawer',
+      drawer_id: "returns-policy-drawer",
+      drawer_label: "Heavy product returns policy",
+      heading: returns_policy_drawer_heading,
+      content: returns_policy_drawer_content,
+      displays_in_page_flow: false
+    %}
+
+    {% if settings.show_recently_viewed_carousel_on_product_page %}
+      <section id="recently-viewed-products-section" class="de-ProductInfoSection de-u-md-pad border-bottom--none" aria-labelledby="Section-additional-info">
+        {% include 'compositions-product-page-recently-viewed-products' %}
+      </section>
+    {% endif %}
+  </div>
+</div>
+
+{% comment %}
+<div class="product-description rte" itemprop="description">
+  {{ product_intro }}
+</div>
+{% endcomment %}
+
+{% comment %}
+<div class="addons-list">
+  <a class="u-textBold u-marginBottom0x">Included:</a>
+  <small class="addons-list__items"></small>
+</div>
+{% endcomment %}
+
+{% comment %}
+  {% include 'compositions-product-detail-collection-control' %}
+{% endcomment %}
+
+{% comment %}
+  To take advantage of a callback on the select dropdown, add option_selection.js
+  and customize the JS in timber.productPage as needed.
+
+  Currently, timber.productPage does the following:
+    - Hides your <select> tag from above
+    - Breaks out the product variants into separate product options, if more
+      than one exists
+    - Generates a <select> tag for each product option
+    - Enables/disables elements based on variant availability
+
+  Callback notes:
+    - Keep the callback available to the global scope (window.selectCallback)
+      so that advanced addons can override it.
+      * E.g. multiple currencies http://docs.shopify.com/manual/configuration/store-customization/currencies-and-translations/currencies/how-to-toggle-between-two-currencies
+{% endcomment %}
+
+{{ 'option_selection.js' | shopify_asset_url | script_tag }}
+
+<script>
+  var productJSON = {{ product | json }},
+      colorOption = null,
+      selectCallbackInitialized = false,
+      activeColor;
+
+  productJSON.rating = '{{ product.metafields.reviews.product_rating }}';
+
+  for(option in productJSON.options) {
+    if (productJSON.options[option] === 'Color') {
+      colorOption = 'option'+ (parseInt(option) + 1);
+    }
+  }
+
+  var selectCallback = function(variant, selector) {
+    timber.productPage({
+      money_format: "{{ shop.money_format }}",
+      variant: variant,
+      selector: selector
+    });
+  };
+</script>
+
+{% include 'sizechart' %}
+{% include 'compositions-ajax-cart-init' %}
+
+<script>
+(function () {
+  // create global object
+  window.Shopify = window.Shopify || {};
+
+  // assign customer object to shopify
+  {% if customer %}
+    Shopify.customer = {
+      email: {{ customer.email | json }}
+    };
+  {% endif %}
+})();
+</script>
+
+{% include 'compositions-product-page-tomit-inventory' %}

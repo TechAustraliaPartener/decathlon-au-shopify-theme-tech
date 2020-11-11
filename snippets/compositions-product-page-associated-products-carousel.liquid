@@ -1,0 +1,24 @@
+{% assign associated_product_handles = '' %}
+
+{% assign metafield_associated_product_handles = product.metafields.merchandising.associated_products.products %}
+{% for h in metafield_associated_product_handles %}
+  {% if all_products[h] != blank %}
+    {% assign associated_product_handles = associated_product_handles | append: '|' | append: h %}
+  {% endif %}
+{% endfor %}
+
+{% assign associated_product_handles = associated_product_handles | remove_first: '|' | split: '|' %}
+
+{% if associated_product_handles.size > 2 %}
+  <div class="trendingProducts associated-products-carousel-container">
+    <h2 class="de-ProductInfoSection-title de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4 de-u-inlineBlock">
+      Frequently Bought Together
+    </h2>
+    {% include 'components-product-tile-carousel'
+      handles: associated_product_handles,
+      limit: 10,
+      inventory_status: false,
+      delivery_options: false,
+    %}
+  </div>
+{% endif %}
