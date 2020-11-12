@@ -9,14 +9,14 @@ src/css/*
 # Built from /styles/**
 /assets/built-*.css
 # Built from /snippets-src/**
-# /snippets/*.liquid
-# !/snippets/algolia*
-# !/snippets/checkout_js*
-# !/snippets/ship-icon*
-# !/snippets/pickup-icon*
-# !/snippets/support-icon*
-# !/snippets/thankyou_review*
-# !/snippets/shogun-*
-# !/snippets/nav-*
-# !/snippets/breadcrumb-*
+/snippets/*.liquid
+!/snippets/algolia*
+!/snippets/checkout_js*
+!/snippets/ship-icon*
+!/snippets/pickup-icon*
+!/snippets/support-icon*
+!/snippets/thankyou_review*
+!/snippets/shogun-*
+!/snippets/nav-*
+!/snippets/breadcrumb-*
 theme.zip
