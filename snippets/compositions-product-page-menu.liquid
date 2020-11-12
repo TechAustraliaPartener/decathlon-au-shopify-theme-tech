@@ -5,29 +5,23 @@
   1. Hook up with dynamic active states on scroll
   2. Revisit keyboard navigation experience
 {% endcomment %}
+
 {% assign qanda = product.metafields.faq.q_and_a %}
-<nav
-  aria-hidden="true"
-  class="de-ProductMenu
+
+<nav aria-hidden="true" class="de-ProductMenu
          de-u-textSizeBase
          de-u-overflowXNone">
 
   <ul class="de-MenuBar">
     {% if product_video.size > 0 %}
     <li class="de-u-lg-textGrow1 de-u-spaceNone">
-      <a
-        href="#product-videos"
-        class="de-MenuBar-label de-MenuBar-action de-js-StickyMenuItem"
-      >
+      <a href="#product-videos" class="de-MenuBar-label de-MenuBar-action de-js-StickyMenuItem">
         Videos
       </a>
     </li>
     {% endif %}
     <li class="de-u-lg-textGrow1 de-u-spaceNone">
-      <a
-        href="#product-features"
-        class="de-MenuBar-label de-MenuBar-action de-js-StickyMenuItem"
-      >
+      <a href="#product-features" class="de-MenuBar-label de-MenuBar-action de-js-StickyMenuItem">
         Features
       </a>
     </li>
@@ -37,20 +31,15 @@
       </a>
     </li>
     {% if has_context_photo %}
-      <li class="de-u-lg-textGrow1 de-u-spaceNone">
-        <a
-          href="#product-imageGallery"
-          class="de-MenuBar-label de-MenuBar-action de-js-StickyMenuItem"
-        >
-          Image Gallery
-        </a>
-      </li>
-    {% endif %}
     <li class="de-u-lg-textGrow1 de-u-spaceNone">
-      <a
-        href="#product-reviews"
-        class="de-MenuBar-label de-MenuBar-action de-js-StickyMenuItem"
-      >
+      <a href="#product-imageGallery" class="de-MenuBar-label de-MenuBar-action de-js-StickyMenuItem">
+        Image Gallery
+      </a>
+    </li>
+    {% endif %}
+
+    <li class="de-u-lg-textGrow1 de-u-spaceNone">
+      <a href="#product-reviews" class="de-MenuBar-label de-MenuBar-action de-js-StickyMenuItem">
         Reviews
       </a>
     </li>
@@ -62,11 +51,8 @@
     </li>
     {% endif %}
     <li class="de-u-lg-textGrow1 de-u-spaceNone">
-      <a
-        href="#"
-        class="de-MenuBar-label de-MenuBar-action de-MenuBar--noAction
-               de-u-textBlue"
-      >
+      <a href="#" class="de-MenuBar-label de-MenuBar-action de-MenuBar--noAction
+               de-u-textBlue">
         Back to top
       </a>
     </li>

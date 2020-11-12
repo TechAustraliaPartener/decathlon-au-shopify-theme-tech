@@ -1,28 +1,99 @@
-<div class="inputWrap" data-marketing-hide>
-  <label>{{ 'customer.register.first_name' | t }}</label>
-  <input type="text" name="customer[first_name]" placeholder="First name" value="{{ customer.first_name }}" required>
+<div data-marketing-hide {% if hide_completed_fields and customer.first_name != blank %}class="de-u-hiddenc"{% endif %}>
+  <label>{{ 'customer.custom_fields.first_name' | t }}</label>
+  <input type="text" name="customer[first_name]" value="{{ customer.first_name }}">
 </div>
 
-<div class="inputWrap" data-marketing-hide>
-  <label>{{ 'customer.register.last_name' | t }}</label>
-  <input type="text" name="customer[last_name]" placeholder="Last name" value="{{ customer.last_name }}">
+<div data-marketing-hide {% if hide_completed_fields and customer.last_name != blank %}class="de-u-hiddenc"{% endif %}>
+  <label>{{ 'customer.custom_fields.last_name' | t }}</label>
+  <input type="text" name="customer[last_name]" value="{{ customer.last_name }}">
 </div>
 
-<div class="checkboxWrap">
-  <input type="checkbox" value="Yes" name="customer[accepts_marketing]" {% if customer.accepts_marketing or get_account_info %}checked{% endif %}>
-  <label class="label">{{ 'customer.account.marketing_optin' | t }}</label>
+{% if hide_completed_fields and customer.metafields.customr.gender != blank %}<span class="de-u-hiddenc">{% endif %}
+  <label data-marketing-hide>{{ 'customer.custom_fields.gender' | t }}</label>
+  <select data-marketing-hide name="customer[gender]" data-marketing-hide>
+    <option {% if customer.metafields.customr.gender == blank %}selected{% endif %} disabled hidden></option>
+    {% for gender in gender_values %}
+      <option value="{{ gender }}" {% if customer.metafields.customr.gender == gender %}selected="selected" {% endif %}>
+        {{ gender_titles[forloop.index0] }}
+      </option>
+    {% endfor %}
+  </select>
+{% if hide_completed_fields and customer.metafields.customr.gender != blank %}</span>{% endif %}
+
+{% if hide_completed_fields and customer.default_address.phone != blank %}<span class="de-u-hiddenc">{% endif %}
+  <label data-marketing-hide>{{ 'customer.custom_fields.phone' | t }}</label>
+  <div data-marketing-hide style="display: flex;">
+    <input type="text" class="country_code_number" name="country_code_number" value="+61" disabled />
+    <input type="tel" name="customer[addresses][][phone]" value="{{ customer.default_address.phone | remove_first: '+61' }}" maxlength="10" data-prefix="+61" />
+  </div>
+{% if hide_completed_fields and customer.default_address.phone != blank %}</span>{% endif %}
+
+<div class="birthday_wrap {% if hide_completed_fields and customer.metafields.customr.birthday != blank %}de-u-hiddenc{% endif %}">
+  <label>{{ 'customer.custom_fields.birthday' | t }}</label>
+  <div>
+    <input type="date" name="customer[birthday]" value="{{ customer.metafields.customr.birthday  }}" />
+  </div>
 </div>
 
-<label data-marketing-hide>Gender</label>
-<select name="customer[gender]" data-marketing-hide>
-  {% for gender in gender_values %}
-    <option value="{{ gender }}" {% if customer.metafields.customr.gender == gender %}selected="selected"{% endif %}>
-      {{ gender_titles[forloop.index0] }}
-    </option>
-  {% endfor %}
-</select>
+{% if hide_completed_fields and customer.default_address != blank %}<span class="de-u-hiddenc">{% endif %}
+  <label data-marketing-hide>{{ 'customer.custom_fields.address' | t }}</label>
+  <div data-marketing-hide>
+    <input type="text" name="customer[addresses][][address1]" placeholder="{{ 'customer.custom_fields.unit_number' | t }}"
+      value="{{ customer.default_address.address1 }}" />
+    <input type="text" name="customer[addresses][][city]" placeholder="Suburb"
+      value="{{ customer.default_address.city }}" />
 
-<div class="inputWrap" data-marketing-hide>
-  <label>Postcode</label>
-  <input type="text" name="customer[postcode]" placeholder="Postcode" value="{{ customer.metafields.customr.postcode | strip }}" pattern="[0-9]{4}">
+    {% assign address_province_names = 'Australian Capital Territory|New South Wales|Northern Territory|Queensland|South Australia|Tasmania|Victoria|Western Australia' | split: "|" %}
+
+    <div class="two-column-wrap">
+      <div>
+        <input type="text" name="customer[postcode]" placeholder="{{ 'customer.custom_fields.post_code' | t }}"
+          value="{{ customer.metafields.customr.postcode | strip }}" maxlength="4" />
+      </div>
+      <div>
+        <select name="customer[addresses][][province]" data-country="Australia">
+          <option {% if customer.default_address.province == blank %}selected{% endif %} disabled hidden>
+            {{ 'customer.custom_fields.state' | t }}
+          </option>
+          {% for province in address_province_names %}
+          <option value="{{ province }}" {% if customer.default_address.province == province %}selected="selected"
+            {% endif %}>
+            {{ address_province_names[forloop.index0] }}
+          </option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+  </div>
+{% if hide_completed_fields and customer.default_address != blank %}</span>{% endif %}
+
+{% if hide_completed_fields and customer.metafields.customr.preferred_store != blank %}<span class="de-u-hiddenc">{% endif %}
+  {% assign preferred_store_names = 'customer.custom_fields.stores' | t | split: "|" %}
+
+  <label data-marketing-hide>{{ 'customer.custom_fields.preferred_store' | t }}</label>
+  <div data-marketing-hide>
+    <select name="customer[preferred_store]" data-marketing-hide>
+      <option {% if customer.metafields.customr.preferred_store == blank %}selected{% endif %} disabled hidden></option>
+      {% for store in preferred_store_names %}
+      <option value="{{ store }}" {% if customer.metafields.customr.preferred_store == store %}selected="selected"
+        {% endif %}>
+        {{ preferred_store_names[forloop.index0] }}
+      </option>
+      {% endfor %}
+    </select>
+  </div>
+{% if hide_completed_fields and customer.metafields.customr.preferred_store != blank %}</span>{% endif %}
+
+<div>
+  <p>
+    <input type="checkbox" value="Yes" name="customer[accepts_marketing]"
+      {% if customer.accepts_marketing or marketing_on %}checked{% endif %} {% if marketing_hidden %}data-marketing-show style="display: none;"{% endif %}>
+    <label {% if marketing_hidden %}data-marketing-show style="display: none;"{% endif %}>{% if marketing_text %}{{ marketing_text }}{% else %}{{ 'customer.custom_fields.marketing_optin' | t }}{% endif %}</label>
+    <br {% if marketing_hidden %}data-marketing-show style="display: none;"{% endif %} />
+    {% if hide_completed_fields and customer.metafields.customr.accepts_terms_conditions != blank %}<span class="de-u-hiddenc">{% endif %}
+      <input data-marketing-hide type="checkbox" name="customer[accepts_terms_conditions]"
+        {% if customer.metafields.customr.accepts_terms_conditions %}checked{% endif %} />
+      <span data-marketing-hide>{{ settings.custom_fields_terms_conditions }}</span>
+    {% if hide_completed_fields and customer.metafields.customr.accepts_terms_conditions != blank %}</span>{% endif %}
+  </p>
 </div>
