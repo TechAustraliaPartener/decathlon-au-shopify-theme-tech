@@ -1,25 +1,21 @@
 {% assign similar_products_handles = '' %}
-
-{% assign similar_products_handles = product.metafields.merchandising.similar_products.products %}
-
-{% for h in similar_products_handles %}
-  {% if all_products[h] != blank %}
-    {% assign similar_products_handles = similar_products_handles | append: '|' | append: h %}
-  {% endif %}
+{% assign metafield_similar_products_handles = product.metafields.merchandising.similar_products.products %}
+{% for h in metafield_similar_products_handles %}
+{% if all_products[h] != blank %}
+{% assign similar_products_handles = similar_products_handles | append: '|' | append: h %}
+{% endif %}
 {% endfor %}
-
 {% assign similar_products_handles = similar_products_handles | remove_first: '|' | split: '|' %}
-
 {% if similar_products_handles.size > 0 %}
 <div class="trendingProducts associated-products-carousel-container">
-  <h2 class="de-ProductInfoSection-title de-u-textGrow2 de-u-textGrow3 de-u-lg-textGrow4 de-u-inlineBlock">
+  <h2 class="de-ProductInfoSection-title de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4 de-u-inlineBlock">
     You May Also Like
   </h2>
-  {% include 'components-product-tile-carousel' 
-    handles: similar_products_handles,
-    limit: 10,
-    inventory_status: false,
-    delivery_options: false,
-  %}
+  {% include 'components-product-tile-carousel'	
+        handles: similar_products_handles,	
+        limit: 10,	
+        inventory_status: false,	
+        delivery_options: false,	
+      %}
 </div>
 {% endif %}
