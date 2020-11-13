@@ -40,7 +40,7 @@ const updateFulfillmentOptionsUI = null;
  * @property {string} [size]
  */
 
-const state = createState(/** @type {State} */ ({}));
+const state = createState(/** @type {State} */({}));
 
 /** @param {State} state */
 const getVariantFromState = ({ color, size }) =>
@@ -169,16 +169,16 @@ const displayPaymentGateway = function (price, threshold, gateway) {
   $(`.product-${gateway}-disabled-info`).toggleClass(dNoneClassName, price >= threshold);
 }
 
-const displayRRPPrices = function(color) {
+const displayRRPPrices = function (color) {
   const variant = variants.find(variant => getVariantOptions(variant).color === color);
-  
+
   const variantModelCode = getModelCodeFromVariant(variant);
   const metafields = window.vars.rrpMetafields;
   const product = window.vars.productJSON;
 
   const productPriceEl = $('#product-rrp-price');
 
-  if(!metafields || !metafields.rrp_prices) {
+  if (!metafields || !metafields.rrp_prices) {
     productPriceEl.hide();
     return;
   }
@@ -186,9 +186,9 @@ const displayRRPPrices = function(color) {
   const rrpPriceObj = metafields.rrp_prices.find(rrp => rrp.modelcode === variantModelCode);
   console.log(rrpPriceObj);
   const rrpPriceData = rrpPriceObj && rrpPriceObj.PriceRRP ? parseInt(rrpPriceObj.PriceRRP, 10) : false;
-  const rrpPrice = rrpPriceData > product.price ?  (rrpPriceData / 100).toFixed(2) : false;
+  const rrpPrice = rrpPriceData > product.price ? (rrpPriceData / 100).toFixed(2) : false;
 
-  rrpPrice ? function() {
+  rrpPrice ? function () {
     productPriceEl.text(`RRP*: ${'$' + rrpPrice}`);
     productPriceEl.show();
   }() : productPriceEl.hide();
@@ -236,3 +236,51 @@ init()
 
   })
   .catch(error => console.error(error));
+
+//GOOGLE TRANSLATE
+var TRANSLATE_API_KEY = 'AIzaSyBmV081v1C1hz45hJpCpcprUPOhrNqDekY';
+var SOURCE_LANGUAGE = '';
+var TARGET_LANGUAGE = 'en';
+
+function translateReview(text, parentEl, type) {
+  var translateURL = "https://www.googleapis.com/language/translate/v2" + "?key=" + TRANSLATE_API_KEY + "&source=" + SOURCE_LANGUAGE + "&target=" + TARGET_LANGUAGE + "&q=" + text + "&format=text&callback=?";
+  $.getJSON(translateURL, function (result) {
+    if (!result.error) {
+      console.log('CONTENTS: ' + result.data.translations[0].translatedText);
+      parentEl.find('.review-' + type + '-translated').text(result.data.translations[0].translatedText);
+      show_review(parentEl, 'original', 'translated');
+      parentEl.addClass('translated');
+    } else {
+      console.log(result.error);
+    }
+  });
+}
+
+$('.btn-original').on('click', function (e) {
+  e.preventDefault();
+  var parentEl = $(this).closest('.de-CustomerReview');
+  show_review(parentEl, 'translated', 'original');
+});
+$('.btn-translated').on('click', function (e) {
+  e.preventDefault();
+  var parentEl = $(this).closest('.de-CustomerReview');
+  var title = parentEl.find('.review-title-original').html();
+  var body = parentEl.find('.review-body p').html();
+
+  if (!parentEl.hasClass('translated')) {
+    translateReview(title, parentEl, 'title');
+    translateReview(body, parentEl, 'body');
+  } else {
+    console.log('Already translated');
+    show_review(parentEl, 'original', 'translated');
+  }
+});
+
+function show_review(parentEl, h, s) {
+  parentEl.find('.review-title-' + s).show();
+  parentEl.find('.review-body-' + s).show();
+  parentEl.find('.review-title-' + h).hide();
+  parentEl.find('.review-body-' + h).hide();
+  parentEl.find('.btn-' + h).addClass('active');
+  parentEl.find('.btn-' + s).removeClass('active');
+}
