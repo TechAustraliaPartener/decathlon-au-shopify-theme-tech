@@ -475,7 +475,7 @@
             "settings": {
               "name": "Knoxfield",
               "title": "Knoxfield Store, 3180",
-              "online_inventory_source": false,
+              "online_inventory_source": true,
               "enable_c_c": true,
               "duplicate": "",
               "test_mode": false,
