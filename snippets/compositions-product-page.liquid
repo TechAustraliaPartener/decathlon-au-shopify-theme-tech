@@ -123,7 +123,7 @@
     product_reviews_id: product_reviews_id,
     product_size_chart_id: product_size_chart_id
   %}
-
+  
   {% if product_video.size > 0 %}
   <video data-account="3415345270001"
     data-player="jQMS54WMw"
@@ -229,6 +229,65 @@
       %}
     </section>
 
+    <section class="de-ProductInfoSection de-ProductInfoSection--silver
+                    de-u-md-pad" aria-labelledby="Section-additional-info">
+      <span id="product-information" class="de-ProductAnchor" aria-hidden="true">
+      </span>
+      <header>
+        <h2 class="de-ProductInfoSection-title
+                        de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4
+                        de-u-spaceNone de-u-hidden de-u-md-inlineBlock" id="Section-additional-info">
+          <span class="visually-hidden">Additional </span>Product Information
+        </h2>
+      </header>
+      {% capture product_information_accordion_content %}
+      <div class="de-u-spaceTop6">
+        {% comment %}
+        Product information wired to metafields
+        {% endcomment %}
+        {% include 'compositions-product-page-product-information' %}
+    
+      </div>
+      {% endcapture %}
+      {% include 'compositions-product-page-accordion'
+                is_open: false
+                accordion_heading: "Product Information"
+                accordion_content: product_information_accordion_content
+              %}
+    </section> 
+    
+    {%- if product_has_size_chart -%}
+    <section class="de-ProductInfoSection de-SizeGuide
+                              de-u-md-pad" aria-labelledby="Section-sizeguide">
+      <span id="product-sizeGuide" class="de-ProductAnchor" aria-hidden="true">
+      </span>
+      {% capture size_and_fit_heading %}
+      {% include 'compositions-product-page-size-guide-heading' %}
+      {% endcapture %}
+      {% capture size_and_fit_accordion_content %}
+      {% capture size_and_fit_drawer_content %}
+      {% include 'compositions-product-page-size-guide' %}
+      {% endcapture %}
+      {% comment %}
+      Create a drawer for the captured content
+      {% endcomment %}
+      {% assign options_size = 'products.options.size' | t | capitalize | append: ' Guide' %}
+      {% include 'compositions-product-page-drawer',
+                    drawer_id: "size-guide-drawer",
+                    drawer_label: options_size,
+                    content: size_and_fit_drawer_content,
+                    heading: size_and_fit_heading,
+                    displays_in_page_flow: true
+                  %}
+      {% endcapture %}
+      {% include 'compositions-product-page-accordion'
+                  is_open: false
+                  accordion_heading: options_size
+                  accordion_content: size_and_fit_accordion_content
+                %}
+    </section>
+    {%- endif -%}
+
     {% if has_context_photo %}
 
       <section
@@ -257,32 +316,7 @@
         </div>
       </section>
     {% endif %}
-    <section class="de-ProductInfoSection de-ProductInfoSection--silver
-                de-u-md-pad" aria-labelledby="Section-additional-info">
-      <span id="product-information" class="de-ProductAnchor" aria-hidden="true">
-      </span>
-      <header>
-        <h2 class="de-ProductInfoSection-title
-                    de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4
-                    de-u-spaceNone de-u-hidden de-u-md-inlineBlock" id="Section-additional-info">
-          <span class="visually-hidden">Additional </span>Product Information
-        </h2>
-      </header>
-      {% capture product_information_accordion_content %}
-      <div class="de-u-spaceTop6">
-        {% comment %}
-        Product information wired to metafields
-        {% endcomment %}
-        {% include 'compositions-product-page-product-information' %}
-
-      </div>
-      {% endcapture %}
-      {% include 'compositions-product-page-accordion'
-            is_open: false
-            accordion_heading: "Product Information"
-            accordion_content: product_information_accordion_content
-          %}
-    </section>
+    
     <section
       class="de-ProductInfoSection de-ProductInfoSection--withBorderTop
              de-u-md-padEnds de-u-md-padSides
@@ -325,42 +359,7 @@
 
     {% include 'compositions-product-page-qanda' %}
     
-    {%- if product_has_size_chart -%}
-      <section class="de-ProductInfoSection de-SizeGuide
-                      de-u-md-pad"
-        aria-labelledby="Section-sizeguide"
-      >
-        <span
-          id="product-sizeGuide"
-          class="de-ProductAnchor"
-          aria-hidden="true">
-        </span>
-        {% capture size_and_fit_heading %}
-          {% include 'compositions-product-page-size-guide-heading' %}
-        {% endcapture %}
-        {% capture size_and_fit_accordion_content %}
-          {% capture size_and_fit_drawer_content %}
-            {% include 'compositions-product-page-size-guide' %}
-          {% endcapture %}
-          {% comment %}
-            Create a drawer for the captured content
-          {% endcomment %}
-          {% assign options_size = 'products.options.size' | t | capitalize | append: ' Guide' %}
-          {% include 'compositions-product-page-drawer',
-            drawer_id: "size-guide-drawer",
-            drawer_label: options_size,
-            content: size_and_fit_drawer_content,
-            heading: size_and_fit_heading,
-            displays_in_page_flow: true
-          %}
-        {% endcapture %}
-        {% include 'compositions-product-page-accordion'
-          is_open: false
-          accordion_heading: options_size
-          accordion_content: size_and_fit_accordion_content
-        %}
-      </section>
-    {%- endif -%}
+    
 
     
 
