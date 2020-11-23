@@ -144,7 +144,12 @@ module.exports = gulp => {
       }).pipe(gulp.dest(DESTINATION));
     };
 
-    return createRollupConfig(entryModules, 'modern');
+    return mergeStreams(
+      createRollupConfig(entryModules, 'modern'),
+      ...Object.entries(entryModules).map(([outputName, inputPath]) => {
+        return createRollupConfig({ [outputName]: inputPath }, 'legacy');
+      })
+    );
   });
 
   return taskName;
