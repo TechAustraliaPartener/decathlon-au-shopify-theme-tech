@@ -298,9 +298,9 @@
       const { ruleContexts } = instant.search.searchParameters;
       const device = ruleContexts.indexOf('mobile') !== -1 ? 'mobile' : 'desktop';
 
-      const { desktop, mobile } = data;
+      const { desktop, mobile, link } = data;
 
-      return `<picture>${ mobile ? `<source srcset="${ mobile }" media="(max-width: 575px)" />` : '' }<img src="${ desktop }" /></picture>`;
+      return `${link ? `<a href="${link}" class="banner-link">` : ''}<picture>${mobile ? `<source srcset="${mobile}" media="(max-width: 575px)" />` : ''}<img src="${desktop}" /></picture>${link ? `</a>` : ''}`;
     }
 
     // Custom data
@@ -313,7 +313,7 @@
       }
     }
     */
-    
+
     instant.search.addWidget(
       instantsearch.widgets.hits({
         templates: {
@@ -389,7 +389,7 @@
           var titleExists = $block.find('.collection-title-top').length > 0;
           if (!titleExists) {
             $block.prepend('<h2 class="collection-title-top">' + window.algolia_custom_widgets.title + '</h2>');
-          } 
+          }
         },
       });
     }
