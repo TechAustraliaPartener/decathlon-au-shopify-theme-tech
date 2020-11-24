@@ -126,7 +126,9 @@
   {{ 'timber.scss.css' | asset_url | stylesheet_tag }}
   {% endif %}
   {{ 'adeptMind.scss.css' | asset_url | stylesheet_tag }}
-  {{ 'legacySupport.scss.css' | asset_url | stylesheet_tag }}
+  <style>
+    .de-PageWrap-main .breadcrumb{margin-top:0.5em}.de-AddedItemPopup{z-index:2000 !important}
+  </style>
   {{ 'cadence.scss.css' | asset_url | stylesheet_tag }}
   {{ 'menu.scss.css' | asset_url | stylesheet_tag }}
   {% if template == "product" and product.metafields.global.features != blank %}

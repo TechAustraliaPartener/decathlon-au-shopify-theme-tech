@@ -112,7 +112,15 @@ This file can be re-written at any time.
   {{ 'skill-level.scss.css' | asset_url | stylesheet_tag }}
   {{ 'header.css' | asset_url | stylesheet_tag }}
   {{ 'patterns-toolkit.css' | asset_url | stylesheet_tag }}
-  {{ 'legacySupport.scss.css' | asset_url | stylesheet_tag }}
+  <style>
+    .de-PageWrap-main .breadcrumb {
+      margin-top: 0.5em
+    }
+  
+    .de-AddedItemPopup {
+      z-index: 2000 !important
+    }
+  </style>
   {{ 'cadence.scss.css' | asset_url | stylesheet_tag }}
   {{ 'shogun-overrides.scss.css' | asset_url | stylesheet_tag }}
 
