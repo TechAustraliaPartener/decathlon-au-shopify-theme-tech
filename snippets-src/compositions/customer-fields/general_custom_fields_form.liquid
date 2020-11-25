@@ -13,6 +13,10 @@
           },
         {% endif %}
         ready: function() {
+          if (!$('#customer-fields #customr30').length) {
+            $('#settingAccountSpiner').show();
+            window.location.reload();
+          }
           $('#create_customer.copy-create input, #create_customer.copy-create select').each(function() {
             $(this).trigger('change');
           });
