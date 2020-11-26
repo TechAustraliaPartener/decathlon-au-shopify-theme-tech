@@ -8,6 +8,9 @@ const replace = require('gulp-replace');
 const spawn = require('cross-spawn');
 const sass = require('gulp-dart-sass');
 const changed = require('gulp-changed');
+const gulpif = require('gulp-if');
+const lec = require('gulp-line-ending-corrector');
+const isBinary = require('gulp-is-binary');
 
 const scriptsTask = require('./scripts/build')(gulp);
 
@@ -242,3 +245,18 @@ gulp.task('default', gulp.series(['watch']));
  */
 gulp.task('build', gulp.parallel([scriptsTask, 'styles', 'snippets']));
 gulp.task('b', gulp.series([scriptsTask]));
+
+gulp.task('fixeol', function() {
+  return gulp.src([
+      'layout/*',
+      'locales/*',
+      'sections/*',
+      'snippets/*',
+      'templates/*'
+    ])
+    .pipe(isBinary())
+    .pipe(gulpif(file => ! file.isBinary(), lec()))
+    .pipe(gulp.dest(function (file) {
+      return file.base;
+    }));
+});
