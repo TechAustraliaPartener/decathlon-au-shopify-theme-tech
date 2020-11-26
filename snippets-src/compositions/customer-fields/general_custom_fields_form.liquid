@@ -1,3 +1,5 @@
+
+
 <div id="customer-fields" {% unless customer %}data-registration="true"{% endunless %} class="de-u-hidden">
   {% form 'create_customer' %}
     <input type="hidden" name="shop" value="{{ shop.permanent_domain }}">
@@ -17,9 +19,7 @@
             $('#settingAccountSpiner').show();
             window.location.reload();
           }
-          $('#create_customer.copy-create input, #create_customer.copy-create select').each(function() {
-            $(this).trigger('change');
-          });
+              
         },
       beforeSave: function() {  
           var $firstName = $('#customer-fields input[name="' + 'customer[first_name]' + '"]');
@@ -27,6 +27,7 @@
           addSpace($firstName);
           addSpace($postcode);
           $('#accountEditSpiner').show();
+          $('#accountEditSpiner2').show();
           $('html, body').animate({
             scrollTop: 0
           }, 100);

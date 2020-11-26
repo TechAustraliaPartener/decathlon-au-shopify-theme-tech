@@ -1,10 +1,12 @@
+{% render 'spinner', id: 'collectingDataSpiner', text: 'Collecting Details' %}
 <div class="form-vertical" id="accountEdit" style="display:none;">
+  
   {% capture spinner_text %}{{ 'customer.account.updating_details_spinner' | t }}{% endcapture %}
-  {% render 'spinner', id: 'accountEditSpiner', text: spinner_text %}
+  {% render 'spinner', id: 'accountEditSpiner2', text: spinner_text %}
   {% form 'create_customer', data-submit: '#customer-fields #create_customer', class: 'copy-create edit-form styled-form' %}
     {% capture marketing_text %}{{ 'customer.custom_fields.marketing_optin_edit' | t }}{% endcapture %}
     {% include 'compositions-customer-fields-false-form-fields', marketing_text: marketing_text, marketing_hidden: true %}
-    <input type="submit" value="Update">
+    <input type="submit" value="Update" class="btn-update"> 
     <a href="#" id="cancelEditAccount">Cancel</a>
   {% endform %}
 </div>
