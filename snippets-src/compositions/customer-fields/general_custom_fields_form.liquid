@@ -19,7 +19,15 @@
             $('#settingAccountSpiner').show();
             window.location.reload();
           }
-              
+
+          $('#create_customer.copy-create input, #create_customer.copy-create select').each(function () {
+            $(this).trigger('change');
+          });
+
+          let defaultcountry = $('select#customr30').data('country');
+          let currentcountry = $('#customer-fields input[name="customer[addresses][][country]"');
+          currentcountry.val(defaultcountry);
+          
         },
       beforeSave: function() {  
           var $firstName = $('#customer-fields input[name="' + 'customer[first_name]' + '"]');
