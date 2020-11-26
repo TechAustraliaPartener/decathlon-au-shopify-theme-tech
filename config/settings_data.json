@@ -432,7 +432,7 @@
             "settings": {
               "name": "Auburn",
               "title": "Auburn Store, 2144",
-              "online_inventory_source": true,
+              "online_inventory_source": false,
               "enable_c_c": true,
               "duplicate": "",
               "test_mode": false,
@@ -699,7 +699,7 @@
               "online_inventory_source": false,
               "enable_c_c": true,
               "duplicate": "Moorabbin",
-              "test_mode": true,
+              "test_mode": false,
               "street1": "2 Wells Street",
               "city": "Frankston",
               "zip": "3199",
