@@ -23,19 +23,19 @@
     "color_footer_bg": "#1f1f1f",
     "color_footer_text": "#aabdb9",
     "color_footer_social_link": "#bbbbbb",
-    "logo_use_image": false,
-    "svg_logo": "small_logo.svg",
+    "logo_use_image": true,
+    "svg_logo": "black_logo.svg",
     "img_logo": "shopify:\/\/shop_images\/logo_small_9355cf1c-7626-4ada-916d-d809a214ca37.png",
     "enable_meet_decathlon": true,
     "header_support_label": "Support",
     "header_support_link": "https:\/\/help.decathlon.com.au\/support\/home",
     "header_store_label": "Stores",
     "header_sign_in_label": "Sign In",
-    "megamenu_image": "shopify:\/\/shop_images\/HP-Menu-EasyTent_400x.progressive_c50e3db8-f437-4672-ae58-8f71299b4ee1.jpg",
-    "megamenu_title": "Let's Go Camping!",
-    "megamenu_subtitle": "Tents, Shelters & More",
-    "megamenu_link": "shopify:\/\/collections\/camping",
-    "megamenu_bg_colour": "#dc5236",
+    "megamenu_image": "shopify:\/\/shop_images\/Copy_of_SIDE_NAV_171da3c7-0428-4548-9083-c7ac51f3dc61.jpg",
+    "megamenu_title": "Black Friday Deals",
+    "megamenu_subtitle": "Up to 70% Off Selected Gear",
+    "megamenu_link": "shopify:\/\/pages\/black-friday-sale",
+    "megamenu_bg_colour": "#ff0000",
     "custom_fields_terms_conditions": "I agree to the <a href=\"\/pages\/terms-conditions\" target=\"_blank\">T&Cs<\/a> and <a href=\"\/pages\/privacy-policy\" target=\"_blank\">Privacy Policy<\/a> for creating an account.",
     "is_lookbook": false,
     "product_returns_text": "Easy 365 days return",
@@ -43,7 +43,7 @@
     "product_bulk_returns_text": "Easy 365 days return",
     "product_bulk_shipping_text": "Check shipping rates at checkout",
     "show_associated_products_carousel_on_product_page": true,
-    "show_similar_products_carousel_on_product_page": true,
+    "show_similar_products_carousel_on_product_page": false,
     "show_recently_viewed_carousel_on_product_page": true,
     "algolia_variant_image_dimensions": "600x600",
     "algolia_size_sorting_order": "3XS,2XS,XS,XS-S,XS\/S,S,S-M,S\/M,M,M-L,M\/L,L,L-XL,L\/XL,XL,2XL,3XL,4XL,5XL",
@@ -281,7 +281,7 @@
     "free_shipping_threshold": "90",
     "free_shipping_max_weight": "5000",
     "checkout_header_image": "",
-    "checkout_logo_image": "shopify:\/\/shop_images\/logo_small_9355cf1c-7626-4ada-916d-d809a214ca37.png",
+    "checkout_logo_image": "shopify:\/\/shop_images\/black_friday.png",
     "checkout_logo_position": "left",
     "checkout_logo_size": "small",
     "checkout_body_background_image": "",
@@ -432,7 +432,7 @@
             "settings": {
               "name": "Auburn",
               "title": "Auburn Store, 2144",
-              "online_inventory_source": false,
+              "online_inventory_source": true,
               "enable_c_c": true,
               "duplicate": "",
               "test_mode": false,
@@ -476,7 +476,7 @@
             "settings": {
               "name": "Knoxfield",
               "title": "Knoxfield Store, 3180",
-              "online_inventory_source": false,
+              "online_inventory_source": true,
               "enable_c_c": true,
               "duplicate": "",
               "test_mode": false,
@@ -520,7 +520,7 @@
             "settings": {
               "name": "Box Hill",
               "title": "Box Hill Store, 3128",
-              "online_inventory_source": false,
+              "online_inventory_source": true,
               "enable_c_c": true,
               "duplicate": "",
               "test_mode": false,
@@ -564,7 +564,7 @@
             "settings": {
               "name": "Moorabbin",
               "title": "Moorabbin Store, 3194",
-              "online_inventory_source": false,
+              "online_inventory_source": true,
               "enable_c_c": true,
               "duplicate": "",
               "test_mode": false,
@@ -655,7 +655,7 @@
               "online_inventory_source": false,
               "enable_c_c": false,
               "duplicate": "Box Hill",
-              "test_mode": true,
+              "test_mode": false,
               "street1": "125 Johnston Street",
               "city": "Fitzroy",
               "zip": "3065",
@@ -699,7 +699,7 @@
               "online_inventory_source": false,
               "enable_c_c": true,
               "duplicate": "Moorabbin",
-              "test_mode": false,
+              "test_mode": true,
               "street1": "2 Wells Street",
               "city": "Frankston",
               "zip": "3199",
@@ -935,99 +935,68 @@
           "1589172506799": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_5a59460d-aad4-4e65-9e38-6d07bc1faff2.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_3_-min_5cbe2cd8-7a73-4dc0-8c2b-4ea7b193a221.jpg",
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
-              "banner_title": "Camping Deals!",
-              "banner_subtitle": "<p><strong>Tents, Chairs, Eskys &amp; More..<\/strong><\/p>",
+              "banner_title": "`",
+              "banner_subtitle": "",
               "button_new_window": false,
               "button_title": "Shop Now",
-              "button_url": "shopify:\/\/collections\/camping"
-            }
-          },
-          "1584424981258": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/DecathlonAU_HB_Easybreath_SA_20-10-2020_V1-min.png",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": "Easybreath Snorkeling Mask",
-              "banner_subtitle": "<p><strong>On Sale Now.<br\/>Available in 5 Colours.<\/strong><\/p>",
-              "button_new_window": false,
-              "button_title": "SHOP NOW",
-              "button_url": "shopify:\/\/collections\/snorkeling"
-            }
-          },
-          "1599283340303": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_1_9788cbc4-4b9b-40ef-b163-24bbbf2464f9.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": "Run Free",
-              "banner_subtitle": "<p><strong>Up to 40% off running gear<\/strong><\/p>",
-              "button_new_window": false,
-              "button_title": "SHOP NOW",
-              "button_url": "shopify:\/\/collections\/running-gear-clothes"
+              "button_url": "shopify:\/\/pages\/black-friday-sale"
             }
           }
         },
         "block_order": [
-          "1589172506799",
-          "1584424981258",
-          "1599283340303"
+          "1589172506799"
         ],
         "settings": {}
       },
       "1590735691745": {
         "type": "slider_image_section",
         "settings": {
-          "homepage_slider_image_title": "Trending Now!",
-          "homepage_slider_image_1": "shopify:\/\/shop_images\/Decathlon_SB_Fitness_SA_25-09-2020_R2-min.png",
-          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/bodybuilding-equipment",
+          "homepage_slider_image_title": "By Department!",
+          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_Banner_Women_450x280px_MM_25-Nov-2020.png",
+          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/women-clearance",
           "checkbox_image_1": true,
-          "homepage_slider_image_2": "shopify:\/\/shop_images\/DecathlonAU_Side_Banner_Cycling_SA_14-09-2020_V1-min.png",
-          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/cycling",
+          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_Banner_Men_450x280px_MM_25-Nov-2020.png",
+          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/mens-clearance-apparel",
           "checkbox_image_2": true,
-          "homepage_slider_image_3": "shopify:\/\/shop_images\/DecathlonAU_Side_Banner_table_tennis_SA_14-09-2020_V1-min.png",
+          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_Banner_Kids_450x280px_MM_25-Nov-2020.png",
           "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/table-tennis",
           "checkbox_image_3": true,
-          "homepage_slider_image_4": "shopify:\/\/shop_images\/DecathlonAU_Side_Banner_Camping_SA_14-09-2020_V1-min.png",
-          "homepage_slider_image_redirection_4": "https:\/\/decathlon.com.au\/collections\/camping",
-          "checkbox_image_4": true
+          "homepage_slider_image_redirection_4": "",
+          "checkbox_image_4": false
         }
       },
       "1597283878337": {
         "type": "slider_image_section",
         "settings": {
-          "homepage_slider_image_title": "Dive Into Summer!",
-          "homepage_slider_image_1": "shopify:\/\/shop_images\/Decathlon_SB_Surfing_SA_24-09-2020_R1-min.png",
+          "homepage_slider_image_title": "By Price",
+          "homepage_slider_image_1": "shopify:\/\/shop_images\/1_450X280DecathlonAU_HP_section_banner_BS_25NOV2020.png",
           "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/surfing",
           "checkbox_image_1": true,
-          "homepage_slider_image_2": "shopify:\/\/shop_images\/Decathlon_SB_Snorkeling_SA_24-09-2020_R1-min.png",
+          "homepage_slider_image_2": "shopify:\/\/shop_images\/2_450X280DecathlonAU_HP_section_banner_BS_25NOV2020.png",
           "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/snorkeling",
           "checkbox_image_2": true,
-          "homepage_slider_image_3": "shopify:\/\/shop_images\/Decathlon_SB_Kayaking_SA_24-09-2020_R1-min.png",
+          "homepage_slider_image_3": "shopify:\/\/shop_images\/3_450X280DecathlonAU_HP_section_banner_BS_25NOV2020.png",
           "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/kayaking",
           "checkbox_image_3": true,
-          "homepage_slider_image_4": "shopify:\/\/shop_images\/Decathlon_SB_Swimming_SA_24-09-2020_R1.png",
-          "homepage_slider_image_redirection_4": "https:\/\/decathlon.com.au\/collections\/swimming",
-          "checkbox_image_4": true
+          "homepage_slider_image_redirection_4": "",
+          "checkbox_image_4": false
         }
       },
       "1602562605803": {
         "type": "slider_image_section",
-        "disabled": true,
         "settings": {
-          "homepage_slider_image_title": "Weekly Deals!",
-          "homepage_slider_image_1": "shopify:\/\/shop_images\/Mizuno_Men_s_Running_Shoe_2_1_-min.jpg",
-          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/mizuno-sports-gear",
+          "homepage_slider_image_title": "Top Deals!",
+          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_-min_1.jpg",
+          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/pages\/black-friday-sale",
           "checkbox_image_1": true,
-          "homepage_slider_image_2": "shopify:\/\/shop_images\/Womens_running_apparel_2_1_-min.jpg",
-          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/womens-running-clothes",
+          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_1_-min_1.jpg",
+          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/pages\/black-friday-sale",
           "checkbox_image_2": true,
-          "homepage_slider_image_3": "shopify:\/\/shop_images\/Mens_Running_Apparel-min.jpg",
-          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/mens-running-clothes",
+          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_3_-min_1.jpg",
+          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/pages\/black-friday-sale",
           "checkbox_image_3": true,
           "homepage_slider_image_redirection_4": "",
           "checkbox_image_4": false
