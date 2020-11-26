@@ -43,7 +43,7 @@
     "product_bulk_returns_text": "Easy 365 days return",
     "product_bulk_shipping_text": "Check shipping rates at checkout",
     "show_associated_products_carousel_on_product_page": true,
-    "show_similar_products_carousel_on_product_page": false,
+    "show_similar_products_carousel_on_product_page": true,
     "show_recently_viewed_carousel_on_product_page": true,
     "algolia_variant_image_dimensions": "600x600",
     "algolia_size_sorting_order": "3XS,2XS,XS,XS-S,XS\/S,S,S-M,S\/M,M,M-L,M\/L,L,L-XL,L\/XL,XL,2XL,3XL,4XL,5XL",
@@ -388,7 +388,7 @@
             "settings": {
               "name": "Tempe",
               "title": "Tempe Store, 2044",
-              "online_inventory_source": true,
+              "online_inventory_source": false,
               "enable_c_c": true,
               "duplicate": "",
               "test_mode": false,
@@ -699,7 +699,7 @@
               "online_inventory_source": false,
               "enable_c_c": true,
               "duplicate": "Moorabbin",
-              "test_mode": true,
+              "test_mode": false,
               "street1": "2 Wells Street",
               "city": "Frankston",
               "zip": "3199",
@@ -942,7 +942,7 @@
               "banner_subtitle": "",
               "button_new_window": false,
               "button_title": "Shop Now",
-              "button_url": "shopify:\/\/pages\/black-friday-sale"
+              "button_url": "shopify:\/\/collections\/black-friday-sale"
             }
           }
         },
@@ -962,7 +962,7 @@
           "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/mens-clearance-apparel",
           "checkbox_image_2": true,
           "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_Banner_Kids_450x280px_MM_25-Nov-2020.png",
-          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/table-tennis",
+          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/black-friday-sale?q=&hPP=24&idx=shopify_products_price_desc&p=0&dFR%5Bnamed_tags.GENDER_ID%5D%5B0%5D=5&dFR%5Bnamed_tags.GENDER_ID%5D%5B1%5D=6&is_v=1",
           "checkbox_image_3": true,
           "homepage_slider_image_redirection_4": "",
           "checkbox_image_4": false
@@ -973,13 +973,13 @@
         "settings": {
           "homepage_slider_image_title": "By Price",
           "homepage_slider_image_1": "shopify:\/\/shop_images\/1_450X280DecathlonAU_HP_section_banner_BS_25NOV2020.png",
-          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/surfing",
+          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/black-friday-sale?hPP=24&idx=shopify_products&is_v=1&nR%5Bprice%5D%5B%3C%3D%5D%5B0%5D=25&nR%5Bprice%5D%5B%3E%3D%5D%5B0%5D=0&p=0&q=",
           "checkbox_image_1": true,
           "homepage_slider_image_2": "shopify:\/\/shop_images\/2_450X280DecathlonAU_HP_section_banner_BS_25NOV2020.png",
-          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/snorkeling",
+          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/black-friday-sale?hPP=24&idx=shopify_products&is_v=1&nR%5Bprice%5D%5B%3C%3D%5D%5B0%5D=50&nR%5Bprice%5D%5B%3E%3D%5D%5B0%5D=25&p=0&q=",
           "checkbox_image_2": true,
           "homepage_slider_image_3": "shopify:\/\/shop_images\/3_450X280DecathlonAU_HP_section_banner_BS_25NOV2020.png",
-          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/kayaking",
+          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/black-friday-sale?hPP=24&idx=shopify_products&is_v=1&nR%5Bprice%5D%5B%3C%3D%5D%5B0%5D=2000&nR%5Bprice%5D%5B%3E%3D%5D%5B0%5D=51&p=0&q=",
           "checkbox_image_3": true,
           "homepage_slider_image_redirection_4": "",
           "checkbox_image_4": false
@@ -989,14 +989,14 @@
         "type": "slider_image_section",
         "settings": {
           "homepage_slider_image_title": "Top Deals!",
-          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_-min_1.jpg",
-          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/pages\/black-friday-sale",
+          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_3.png",
+          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/products\/york-enforcer-home-gym",
           "checkbox_image_1": true,
           "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_1_-min_1.jpg",
-          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/pages\/black-friday-sale",
+          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/products\/riverside-900-hybrid-bike-28",
           "checkbox_image_2": true,
-          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_3_-min_1.jpg",
-          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/pages\/black-friday-sale",
+          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_4.png",
+          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/products\/softachery-100-archery-set-302266",
           "checkbox_image_3": true,
           "homepage_slider_image_redirection_4": "",
           "checkbox_image_4": false
