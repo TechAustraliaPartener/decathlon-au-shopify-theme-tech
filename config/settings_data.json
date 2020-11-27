@@ -476,7 +476,7 @@
             "settings": {
               "name": "Knoxfield",
               "title": "Knoxfield Store, 3180",
-              "online_inventory_source": true,
+              "online_inventory_source": false,
               "enable_c_c": true,
               "duplicate": "",
               "test_mode": false,
@@ -520,7 +520,7 @@
             "settings": {
               "name": "Box Hill",
               "title": "Box Hill Store, 3128",
-              "online_inventory_source": true,
+              "online_inventory_source": false,
               "enable_c_c": true,
               "duplicate": "",
               "test_mode": false,
@@ -564,7 +564,7 @@
             "settings": {
               "name": "Moorabbin",
               "title": "Moorabbin Store, 3194",
-              "online_inventory_source": true,
+              "online_inventory_source": false,
               "enable_c_c": true,
               "duplicate": "",
               "test_mode": false,
@@ -992,8 +992,8 @@
           "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_3.png",
           "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/products\/york-enforcer-home-gym",
           "checkbox_image_1": true,
-          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_1_-min_1.jpg",
-          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/products\/riverside-900-hybrid-bike-28",
+          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_8.jpg",
+          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/products\/2-seconds-pop-up-fresh-black-camping-tent-2-person-142650",
           "checkbox_image_2": true,
           "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_4.png",
           "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/products\/softachery-100-archery-set-302266",
