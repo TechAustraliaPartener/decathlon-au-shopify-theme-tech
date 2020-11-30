@@ -31,8 +31,8 @@
     "header_support_link": "https:\/\/help.decathlon.com.au\/support\/home",
     "header_store_label": "Stores",
     "header_sign_in_label": "Sign In",
-    "megamenu_image": "shopify:\/\/shop_images\/Copy_of_SIDE_NAV_171da3c7-0428-4548-9083-c7ac51f3dc61.jpg",
-    "megamenu_title": "Black Friday Deals",
+    "megamenu_image": "shopify:\/\/shop_images\/Copy_of_SIDE_NAV_2_414b7916-6d2b-4724-ad42-ff3898ea10db.jpg",
+    "megamenu_title": "Cyber Monday Sale",
     "megamenu_subtitle": "Up to 70% Off Selected Gear",
     "megamenu_link": "shopify:\/\/pages\/black-friday-sale",
     "megamenu_bg_colour": "#ff0000",
@@ -432,7 +432,7 @@
             "settings": {
               "name": "Auburn",
               "title": "Auburn Store, 2144",
-              "online_inventory_source": true,
+              "online_inventory_source": false,
               "enable_c_c": true,
               "duplicate": "",
               "test_mode": false,
@@ -476,7 +476,7 @@
             "settings": {
               "name": "Knoxfield",
               "title": "Knoxfield Store, 3180",
-              "online_inventory_source": false,
+              "online_inventory_source": true,
               "enable_c_c": true,
               "duplicate": "",
               "test_mode": false,
@@ -935,11 +935,11 @@
           "1589172506799": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_3_-min_5cbe2cd8-7a73-4dc0-8c2b-4ea7b193a221.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_5.jpg",
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
-              "banner_title": "`",
-              "banner_subtitle": "",
+              "banner_title": "Up to 70% Off",
+              "banner_subtitle": "<p>Ends tonight 11:59 pm AEDT<\/p>",
               "button_new_window": false,
               "button_title": "Shop Now",
               "button_url": "shopify:\/\/collections\/black-friday-sale"
@@ -973,13 +973,13 @@
         "settings": {
           "homepage_slider_image_title": "By Price",
           "homepage_slider_image_1": "shopify:\/\/shop_images\/1_450X280DecathlonAU_HP_section_banner_BS_25NOV2020.png",
-          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/black-friday-sale?hPP=24&idx=shopify_products&is_v=1&nR%5Bprice%5D%5B%3C%3D%5D%5B0%5D=25&nR%5Bprice%5D%5B%3E%3D%5D%5B0%5D=0&p=0&q=",
+          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/bargains-under-25",
           "checkbox_image_1": true,
           "homepage_slider_image_2": "shopify:\/\/shop_images\/2_450X280DecathlonAU_HP_section_banner_BS_25NOV2020.png",
-          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/black-friday-sale?hPP=24&idx=shopify_products&is_v=1&nR%5Bprice%5D%5B%3C%3D%5D%5B0%5D=50&nR%5Bprice%5D%5B%3E%3D%5D%5B0%5D=25&p=0&q=",
+          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/bargains-under-5",
           "checkbox_image_2": true,
           "homepage_slider_image_3": "shopify:\/\/shop_images\/3_450X280DecathlonAU_HP_section_banner_BS_25NOV2020.png",
-          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/black-friday-sale?hPP=24&idx=shopify_products&is_v=1&nR%5Bprice%5D%5B%3C%3D%5D%5B0%5D=2000&nR%5Bprice%5D%5B%3E%3D%5D%5B0%5D=51&p=0&q=",
+          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/bargains-under-100",
           "checkbox_image_3": true,
           "homepage_slider_image_redirection_4": "",
           "checkbox_image_4": false
@@ -989,14 +989,14 @@
         "type": "slider_image_section",
         "settings": {
           "homepage_slider_image_title": "Top Deals!",
-          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_3.png",
-          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/products\/york-enforcer-home-gym",
+          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_9.jpg",
+          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/products\/easybreath-surface-snorkeling-mask-1616?",
           "checkbox_image_1": true,
           "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_8.jpg",
           "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/products\/2-seconds-pop-up-fresh-black-camping-tent-2-person-142650",
           "checkbox_image_2": true,
           "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_4.png",
-          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/products\/softachery-100-archery-set-302266",
+          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/products\/softachery-100-archery-set-302266?",
           "checkbox_image_3": true,
           "homepage_slider_image_redirection_4": "",
           "checkbox_image_4": false
