@@ -1,45 +1,26 @@
 // @ts-check
-
-/**
- * Color Swatches "component"
- */
-
 import { IS_ACTIVE_CLASS, JS_PREFIX } from './constants';
-// @todo Consider removing jQuery dependency
 import $ from 'jquery';
 import { availableVariants, getVariantOptions } from './product-data';
 import { createState } from '../utilities/create-state';
 
-/**
- * @typedef State
- * @property {string} [color]
- * @property {HTMLElement} [selectedOption]
- */
+const initialState = {
+  color: null,
+  selectedOption: null
+};
 
-const state = createState(/** @type {State} */ ({}));
+const state = createState(initialState);
 
-/**
- * Module-specific constants
- */
 const CLICK_EVENT = 'click';
 
-/**
- * Root element
- */
 export const $Swatches = $(`.${JS_PREFIX}ColorSwatches`);
 
-/** @type {NodeListOf<HTMLButtonElement>} */
 export const swatchOptionEls = document.querySelectorAll(
   `.${JS_PREFIX}ColorSwatches-option`
 );
 const $ColorSwatchesOptions = $(swatchOptionEls);
 const $ColorInfo = $(`.${JS_PREFIX}ColorInfo`);
 
-/**
- * Updates the selected color UI state
- *
- * @param {Element} selectedOption The selected option HTML element
- */
 const updateColorUiState = selectedOption => {
   // Visually unselect all options
   $ColorSwatchesOptions.removeClass(IS_ACTIVE_CLASS);
@@ -57,11 +38,6 @@ export const selectFirstSwatch = () => {
   if (firstSwatch) firstSwatch.click();
 };
 
-/**
- * Handles UI updates for the Color Swatches component
- *
- * @param {State} state
- */
 const render = ({ selectedOption, color }) => {
   // We need to update the selected color option UI state
   updateColorUiState(selectedOption);
@@ -71,16 +47,10 @@ const render = ({ selectedOption, color }) => {
 
 state.onChange(render);
 
-/** @param {(size: string) => void} cb */
+// change to callback
 export const handleColorSelect = cb =>
   state.onChange(({ color }) => cb(color), state => [state.color]);
 
-/**
- * Handler for when a color choice is made
- *
- * @todo Consider removing jQuery dependency
- * @this {HTMLElement} The triggered color swatch option element
- */
 const onColorSelect = function() {
   state.updateState({
     // @todo Consider removing jQuery dependency
@@ -90,20 +60,12 @@ const onColorSelect = function() {
   });
 };
 
-/**
- * Single color options are selected by default
- */
 const selectSingleColorOptions = () => {
   if ($ColorSwatchesOptions.length === 1) {
     $ColorSwatchesOptions[0].click();
   }
 };
 
-/**
- * Initializes functionality by setting up event binding
- *
- * @todo Consider removing jQuery dependency
- */
 export const init = () => {
   $ColorSwatchesOptions.on(CLICK_EVENT, onColorSelect);
   selectSingleColorOptions();
