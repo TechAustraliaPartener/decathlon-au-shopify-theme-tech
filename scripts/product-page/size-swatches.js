@@ -1,5 +1,3 @@
-// @ts-check
-
 import $ from 'jquery';
 import {
   IS_ACTIVE_CLASS,

@@ -1,5 +1,3 @@
-// @ts-check
-
 import $ from 'jquery';
 import { IS_ACTIVE_CLASS, JS_PREFIX } from './constants';
 import { availableVariants, getVariantOptions } from './product-data';

@@ -1,8 +1,8 @@
 /* eslint-disable capitalized-comments */
 // @ts-check
 
-import './buybox';
 import $ from 'jquery';
+import './buybox';
 import * as carousel from './carousel';
 import * as carouselContext from './carousel-context';
 import * as collapse from './collapse';
@@ -10,7 +10,6 @@ import * as colorSwatches from './color-swatches';
 import * as sizeSwatches from './size-swatches';
 import './videos';
 import * as accordion from './accordion';
-import pushStockInfoToDataLayer from './datalayer-stock-info';
 import * as inventoryLocations from './inventory-locations';
 import { reviewsInit } from './ratings-reviews';
 import { updateOptionStates } from './option-states';
@@ -25,7 +24,6 @@ import { getSelectedVariant, getVariantOptions, getModelCodeFromVariant, variant
 import * as stickyNav from './sticky-nav';
 import * as recentlyViewed from './recently-viewed';
 import * as faqs from './faqs';
-import { formatPriceSingle, convertToDecimal } from './../utilities/price-format';
 
 // Removed for AU
 // import * as storePickup from './fulfillment-options';
@@ -34,21 +32,16 @@ import { createState } from '../utilities/create-state';
 
 const updateFulfillmentOptionsUI = null;
 
-/**
- * @typedef State
- * @property {string} [color]
- * @property {string} [size]
- */
+const initialState = {
+  color: null,
+  size: null
+}
 
-const state = createState(/** @type {State} */({}));
+const state = createState(initialState);
 
-/** @param {State} state */
 const getVariantFromState = ({ color, size }) =>
   color && size && getSelectedVariant({ color, size });
 
-/**
- * @param {State} state The current UI state
- */
 const getComputedState = state => {
   return {
     color: state.color,
@@ -57,9 +50,6 @@ const getComputedState = state => {
   };
 };
 
-/**
- * Sets up listeners for custom UI components
- */
 const setUpListeners = () => {
   sizeSwatches.handleSizeSelect(size => {
     state.updateState({ size });
@@ -74,7 +64,7 @@ const setUpListeners = () => {
   });
 };
 
-// When the variant changes
+// Handles variant change
 state.onChange(
   state => {
     const variant = getVariantFromState(state);
@@ -102,25 +92,22 @@ state.onChange(
   state => [getVariantFromState(state)]
 );
 
-// When the color changes
+// Handles color change
 state.onChange(
   ({ color }) => {
-
     if (!color) return;
     sizeSwatches.onColorSelect(color);
     carousel.onColorSelect(color);
     // Model code can be updated without size
     modelCode.onColorSelect(color);
     displayRRPPrices(color);
-
   },
   state => [state.color]
 );
 
-// When a swatch changes (color _or_ size)
+// Handles swatch change (color/size)
 state.onChange(
   state => {
-
     const { color, size } = state;
     const variant = getVariantFromState(state);
     updateOptionStates({ color, size, variant });
@@ -137,9 +124,6 @@ state.onChange(
   state => [state.size, state.color]
 );
 
-/**
- * Updates UI to reflect variant in URL
- */
 const selectUrlVariant = () => {
   const urlVariantId = Number(getUrlVariant());
   const variant = getSelectedVariant({ id: urlVariantId });
@@ -192,12 +176,8 @@ const displayRRPPrices = function (color) {
     productPriceEl.text(`RRP*: ${'$' + rrpPrice}`);
     productPriceEl.show();
   }() : productPriceEl.hide();
-
 }
 
-/**
- * Initialize
- */
 const init = async () => {
   sizeSwatches.init();
   colorSwatches.init();
@@ -233,7 +213,6 @@ init()
   .then(() => {
     displayRRPPrices(state.getState().color);
     return console.log('Product page initialized.');
-
   })
   .catch(error => console.error(error));
 
@@ -261,6 +240,7 @@ $('.btn-original').on('click', function (e) {
   var parentEl = $(this).closest('.de-CustomerReview');
   show_review(parentEl, 'translated', 'original');
 });
+
 $('.btn-translated').on('click', function (e) {
   e.preventDefault();
   var parentEl = $(this).closest('.de-CustomerReview');

@@ -1,5 +1,3 @@
-// @ts-check
-
 import {
   PRODUCT_PAGE_COPY,
   INVENTORY_TYPE,
@@ -19,19 +17,6 @@ import {
   isErrorScenario3
 } from './error-scenarios';
 
-/**
- * Type for the ATC UI state
- *
- * @typedef {Object} UIState
- *
- * @property {string} addToCartButtonText
- * @property {string} validationText
- * @property {boolean} isAddToCartButtonDisabled
- * @property {boolean} isInAddToCartErrorState
- * @property {string | null} shopifyErrorMessage
- */
-
-/** @type {UIState} */
 export const DEFAULT_UI_STATE = {
   addToCartButtonText: PRODUCT_PAGE_COPY.ADD_TO_CART,
   validationText: '',
@@ -40,20 +25,11 @@ export const DEFAULT_UI_STATE = {
   shopifyErrorMessage: null
 };
 
-/**
- * Gets the first digit in the given `message`
- * @param {string} message A Shopify error `description` value
- * @returns {string}
- */
+// Gets the first digit in the given `message`
 export const getQuantityFromMessage = message =>
   message.split(/\s/g).find(word => /\d/g.test(word)) || '';
 
-/**
- * Returns the ATC AJAX error state based on the Shopify error `description` value
- *
- * @param {string} shopifyErrorMessage A Shopify error `description` value
- * @returns {UIState}
- */
+// Returns the ATC AJAX error state based on the Shopify error `description` value
 export const getShopifyErrorUIState = shopifyErrorMessage => {
   const defaultShopifyErrorUIState = {
     ...DEFAULT_UI_STATE,
@@ -61,10 +37,8 @@ export const getShopifyErrorUIState = shopifyErrorMessage => {
     isInAddToCartErrorState: true
   };
 
-  /**
-   * Handle "Inventory Case 1: Entirely Sold Out"
-   * @see https://app.gitbook.com/@decathlonusa/s/shopify/product-feature/product-page#inventory-cases
-   */
+  // Handle "Inventory Case 1: Entirely Sold Out"
+  // https://app.gitbook.com/@decathlonusa/s/shopify/product-feature/product-page#inventory-cases
   if (isErrorScenario1(shopifyErrorMessage)) {
     if (isNonFollowedProduct()) {
       return {
@@ -85,10 +59,8 @@ export const getShopifyErrorUIState = shopifyErrorMessage => {
     };
   }
 
-  /**
-   * Handle "Inventory Case 2: Not sold out, can add at least 1 to cart"
-   * @see https://app.gitbook.com/@decathlonusa/s/shopify/product-feature/product-page#inventory-cases
-   */
+  // Handle "Inventory Case 2: Not sold out, can add at least 1 to cart"
+  // https://app.gitbook.com/@decathlonusa/s/shopify/product-feature/product-page#inventory-cases
   if (isErrorScenario2(shopifyErrorMessage)) {
     return {
       ...defaultShopifyErrorUIState,
@@ -98,10 +70,8 @@ export const getShopifyErrorUIState = shopifyErrorMessage => {
     };
   }
 
-  /**
-   * Handle "Inventory Case 3: Not sold out, all stock already in cart"
-   * @see https://app.gitbook.com/@decathlonusa/s/shopify/product-feature/product-page#inventory-cases
-   */
+  //  Handle "Inventory Case 3: Not sold out, all stock already in cart"
+  // https://app.gitbook.com/@decathlonusa/s/shopify/product-feature/product-page#inventory-cases
   if (isErrorScenario3(shopifyErrorMessage)) {
     return {
       ...defaultShopifyErrorUIState,
@@ -109,22 +79,14 @@ export const getShopifyErrorUIState = shopifyErrorMessage => {
     };
   }
 
-  /**
-   * Handle "Inventory Case 4: Unknown Shopify error message - "Catch All" case"
-   * @see https://app.gitbook.com/@decathlonusa/s/shopify/product-feature/product-page#inventory-cases
-   */
+  // Handle "Inventory Case 4: Unknown Shopify error message - "Catch All" case"
+  // https://app.gitbook.com/@decathlonusa/s/shopify/product-feature/product-page#inventory-cases
   return {
     ...defaultShopifyErrorUIState,
     validationText: shopifyErrorMessage
   };
 };
 
-/**
- * Returns the appropriate UI state depending on the `variant`
- *
- * @param {Variant | undefined} variant
- * @returns {UIState}
- */
 export const getUIState = variant => {
   if (!variant) {
     if (variants.every(isVariantOutOfStock)) {

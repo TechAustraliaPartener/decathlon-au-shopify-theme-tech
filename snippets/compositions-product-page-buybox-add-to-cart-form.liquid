@@ -1,6 +1,3 @@
-{% comment %}
-  ID addToCartForm is a selector for the ajax cart plugin
-{% endcomment %}
 <form
   action="/cart/add"
   method="post"
@@ -49,11 +46,7 @@
     <span
       class="de-u-textRed de-u-lineHeight2 de-u-textGrow2
              js-de-validation-message"
-      aria-live="polite"
-    >
-      {% comment %}
-        Validation messaging updated via JS
-      {% endcomment %}
+      aria-live="polite">
     </span>
   </div>
 
@@ -74,7 +67,6 @@
   <div
     class="de-AddToCartActions de-u-spaceBottom2">
 
-    {% comment %} Quantity Input {% endcomment %}
     <div class="de-ProductQuantity de-u-hidden de-u-md-block">
       <label for="Quantity" class="quantity-selector visually-hidden">
           {{ 'products.product.quantity' | t }} of items to add to the cart.
@@ -110,12 +102,10 @@
           id="AddToCartText"
           class="js-de-AddToCart-btn-text"
           aria-live="assertive"
-          aria-label="{{ 'products.product.add_to_cart' | t }}"
-        >
+          aria-label="{{ 'products.product.add_to_cart' | t }}">
           {{ 'products.product.add_to_cart' | t }}
         </span>
       </button>
     </div>
-
   </div>
 </form>
