@@ -1,6 +1,7 @@
 // @ts-check
-import { IS_ACTIVE_CLASS, JS_PREFIX } from './constants';
+
 import $ from 'jquery';
+import { IS_ACTIVE_CLASS, JS_PREFIX } from './constants';
 import { availableVariants, getVariantOptions } from './product-data';
 import { createState } from '../utilities/create-state';
 
@@ -11,49 +12,42 @@ const initialState = {
 
 const state = createState(initialState);
 
-const CLICK_EVENT = 'click';
+export const $swatches = $(`.${JS_PREFIX}ColorSwatches`);
 
-export const $Swatches = $(`.${JS_PREFIX}ColorSwatches`);
+export const swatchOptionEls = document.querySelectorAll(`.${JS_PREFIX}ColorSwatches-option`);
+const $colorSwatchesOptions = $(swatchOptionEls);
+const $colorInfo = $(`.${JS_PREFIX}ColorInfo`);
 
-export const swatchOptionEls = document.querySelectorAll(
-  `.${JS_PREFIX}ColorSwatches-option`
-);
-const $ColorSwatchesOptions = $(swatchOptionEls);
-const $ColorInfo = $(`.${JS_PREFIX}ColorInfo`);
-
-const updateColorUiState = selectedOption => {
-  // Visually unselect all options
-  $ColorSwatchesOptions.removeClass(IS_ACTIVE_CLASS);
-  // Then visually select the current option
+const updateColorUIState = selectedOption => {
+  // Visually unselect all options then select current options
+  $colorSwatchesOptions.removeClass(IS_ACTIVE_CLASS);
   $(selectedOption).addClass(IS_ACTIVE_CLASS);
 };
 
 export const selectFirstSwatch = () => {
   const firstAvailableVariant = availableVariants()[0];
-  const color =
-    firstAvailableVariant && getVariantOptions(firstAvailableVariant).color;
+  const color = firstAvailableVariant && getVariantOptions(firstAvailableVariant).color;
   const firstSwatch =
-    (color && $ColorSwatchesOptions.toArray().find(el => el.value === color)) ||
-    $ColorSwatchesOptions.get(0);
-  if (firstSwatch) firstSwatch.click();
+    (color && $colorSwatchesOptions.toArray().find(el => el.value === color)) ||
+    $colorSwatchesOptions.get(0);
+  if (firstSwatch) {
+    firstSwatch.click();
+  }
 };
 
 const render = ({ selectedOption, color }) => {
-  // We need to update the selected color option UI state
-  updateColorUiState(selectedOption);
-  // We need to update the selected color text
-  $ColorInfo.text(color);
+  updateColorUIState(selectedOption);
+  $colorInfo.text(color);
 };
 
 state.onChange(render);
 
-// change to callback
-export const handleColorSelect = cb =>
-  state.onChange(({ color }) => cb(color), state => [state.color]);
+export const handleColorSelect = (callback) => {
+  state.onChange(({ color }) => callback(color), state => [state.color]);
+}
 
 const onColorSelect = function() {
   state.updateState({
-    // @todo Consider removing jQuery dependency
     // @ts-ignore
     color: $(this).val(),
     selectedOption: this
@@ -61,12 +55,12 @@ const onColorSelect = function() {
 };
 
 const selectSingleColorOptions = () => {
-  if ($ColorSwatchesOptions.length === 1) {
-    $ColorSwatchesOptions[0].click();
+  if ($colorSwatchesOptions.length === 1) {
+    $colorSwatchesOptions[0].click();
   }
 };
 
 export const init = () => {
-  $ColorSwatchesOptions.on(CLICK_EVENT, onColorSelect);
+  $colorSwatchesOptions.on('click', onColorSelect);
   selectSingleColorOptions();
 };

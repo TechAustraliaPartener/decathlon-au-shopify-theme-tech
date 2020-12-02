@@ -2,7 +2,7 @@
 
 import $ from 'jquery';
 import { CSS_PREFIX, JS_PREFIX } from './constants';
-import { $Swatches } from './color-swatches';
+import { $swatches } from './color-swatches';
 import { hideProductFlags, showProductFlags } from './product-flags';
 import { DEBUG } from '../shared/config';
 let videojs = window.videojs;
@@ -189,7 +189,7 @@ const initializeVideoJS = () => {
     playFirstVideoPlayer();
   };
 
-  $Swatches.on('ColorSwatches:select', switchToImages);
+  $swatches.on('ColorSwatches:select', switchToImages);
 
   // Attach click event to 'Watch Videos' button to toggle between video and image
   $toggleButton.click(function() {

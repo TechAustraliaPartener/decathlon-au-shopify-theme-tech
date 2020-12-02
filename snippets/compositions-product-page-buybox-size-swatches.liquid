@@ -16,13 +16,11 @@
 {% assign all_sizes = sizes | split: sizes_delimiter %}
 
 <div class="de-ProductPageTopShelf-sizeSwatches">
-
   <div class="de-u-flex de-u-flexAlignItemsCenter de-u-flexJustifyBetween">
     <div
       class="{% if all_sizes.size == 1 %}
              de-u-hidden de-u-md-block
-             {% endif %}"
-    >
+             {% endif %}">
       <strong>{{ 'products.options.size' | t | capitalize }}: </strong>
       <span class="de-u-textDarkGray de-u-textMedium js-de-SizeInfo">
         Select a {{ 'products.options.size' | t }}
@@ -37,8 +35,7 @@
         class="de-u-flex de-u-flexAlignItemsCenter
               de-u-textBlue de-u-textMedium de-u-textSelectNone
               js-de-Drawer-toggle"
-        data-test="size-and-fit-toggle"
-      >
+        data-test="size-and-fit-toggle">
         {% include 'assets-icons-ruler' %}
         {{ 'products.options.size' | t | capitalize }} Guide
       </a>
@@ -53,8 +50,7 @@
       <button
         class="de-SwatchObjects-item de-SwatchObjects--size de-u-textMedium
                js-de-SizeSwatches-option"
-        value="{{ cleanSize }}"
-      >
+        value="{{ cleanSize }}">
         <span class="de-u-hiddenVisually">
           Select the {{ 'products.options.size' | t }} {{ cleanSize }} before adding this product to
           your cart.
@@ -65,5 +61,4 @@
       </button>
     {% endfor %}
   </div>
-  
 </div>

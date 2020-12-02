@@ -1,4 +1,6 @@
 // @ts-check
+
+import $ from 'jquery';
 import {
   IS_ACTIVE_CLASS,
   VALIDATION_MESSAGE_CLASS,
@@ -6,7 +8,6 @@ import {
   PRODUCT_PAGE_COPY,
   IS_HIDDEN_CLASS
 } from './constants';
-import $ from 'jquery';
 import { createState } from '../utilities/create-state';
 import { getExistingSizesFromColor } from './product-data';
 
@@ -19,33 +20,26 @@ const initialState = {
 
 const state = createState(initialState);
 
-const CLICK_EVENT = 'click';
-
-export const $Swatches = $(`.${JS_PREFIX}SizeSwatches`);
+export const $swatches = $(`.${JS_PREFIX}SizeSwatches`);
 
 export const swatchOptionEls = document.querySelectorAll(`.${JS_PREFIX}SizeSwatches-option`);
-
 const validationTextEl = document.querySelector(`.${VALIDATION_MESSAGE_CLASS}`);
+const $sizeSwatchesOptions = $(swatchOptionEls);
+const $sizeInfo = $(`.${JS_PREFIX}SizeInfo`);
 
-const $SizeSwatchesOptions = $(swatchOptionEls);
-const $SizeInfo = $(`.${JS_PREFIX}SizeInfo`);
-
-const updateSizeUiState = selectedOption => {
-  // Visually unselect all options
-  $SizeSwatchesOptions.removeClass(IS_ACTIVE_CLASS);
-  // Then visually select the current option
+const updateSizeUIState = selectedOption => {
+  // Visually unselect all options then select current options
+  $sizeSwatchesOptions.removeClass(IS_ACTIVE_CLASS);
   $(selectedOption).addClass(IS_ACTIVE_CLASS);
 };
 
 const render = ({ selectedOption, size, variant, color }) => {
-  $Swatches.toggleClass(
+  $swatches.toggleClass(
     IS_HIDDEN_CLASS,
     getExistingSizesFromColor(color).length === 1
   );
-  // We need to update the selected color option UI state
-  updateSizeUiState(selectedOption);
-  // We need to update the selected color text
-  $SizeInfo.text(variant ? size : PRODUCT_PAGE_COPY.SELECT_A_SIZE);
+  updateSizeUIState(selectedOption);
+  $sizeInfo.text(variant ? size : PRODUCT_PAGE_COPY.SELECT_A_SIZE);
 };
 
 state.onChange(render);
@@ -56,7 +50,7 @@ export const onColorSelect = color => {
   if (existingSizes.length === 1) {
     const onlyApplicableSize = existingSizes[0];
     if (onlyApplicableSize !== state.getState().size) {
-      const target = $SizeSwatchesOptions
+      const target = $sizeSwatchesOptions
         .filter((_index, el) => el.value === onlyApplicableSize)
         .get(0);
       onSizeSelect.bind(target)();
@@ -66,12 +60,12 @@ export const onColorSelect = color => {
 };
 
 // Change cb to callback
-export const handleSizeSelect = cb =>
-  state.onChange(({ size }) => cb(size), state => [state.size]);
+export const handleSizeSelect = (callback) => {
+  state.onChange(({ size }) => callback(size), state => [state.size]);
+}
 
 const onSizeSelect = function() {
   state.updateState({
-    // @todo Consider removing jQuery dependency
     // @ts-ignore
     size: $(this).val(),
     selectedOption: this
@@ -103,5 +97,5 @@ export const handleAddToCartAttemptWithNoVariant = () => {
 };
 
 export const init = () => {
-  $SizeSwatchesOptions.on(CLICK_EVENT, onSizeSelect);
+  $sizeSwatchesOptions.on('click', onSizeSelect);
 };
