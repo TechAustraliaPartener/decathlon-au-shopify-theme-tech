@@ -38,7 +38,7 @@
 {% if hide_completed_fields and customer.default_address != blank %}<span class="de-u-hiddenc">{% endif %}
   <label data-marketing-hide>{{ 'customer.custom_fields.address' | t }}</label>
   <div data-marketing-hide>
-    <input type="text" name="customer[addresses][][address1]" placeholder="{{ 'customer.custom_fields.unit_number' | t }}"
+    <input type="text" name="customer[addresses][][address1]" id="google_address" placeholder="{{ 'customer.custom_fields.unit_number' | t }}"
       value="{{ customer.default_address.address1 }}" />
     <input type="text" name="customer[addresses][][city]" placeholder="Suburb"
       value="{{ customer.default_address.city }}" />

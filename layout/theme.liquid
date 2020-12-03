@@ -33,6 +33,15 @@
     window.mapMarkerInactiveIcon = "{{'map-marker-inactive.png' | asset_url}}";
   </script>
 
+  <script defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkXb918cp932bUuHutJiiGOH5yAIZttQM&libraries=places&callback=handleCallback">
+  </script>
+  <script type="text/javascript">
+    window.handleCallback = function() {
+      console.log('Places API successfully loaded');
+    };
+  </script>
+
   {% include 'layout-account-portal-redirects' %}
 
   {% include 'js-gtm-datalayer-visit' %}

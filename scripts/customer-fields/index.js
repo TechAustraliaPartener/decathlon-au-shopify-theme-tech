@@ -39,6 +39,52 @@ $(document).ready(() => {
     }
   });
 
+  let address_input = document.getElementById('google_address');
+  let options = {
+    types: ['address'],
+    componentRestrictions: {country: 'au'}
+  };
+  let autocomplete = new google.maps.places.Autocomplete(address_input, options);
+  autocomplete.addListener('place_changed', fillAddress);
+
+  function fillAddress() {
+    let place = autocomplete.getPlace();
+    let streetNumber,
+        streetName,
+        suburb,
+        city,
+        regionName,
+        regionCode,
+        postalCode;
+
+    place.address_components.forEach((item) => {
+      if (item.types.includes('street_number')) {
+        streetNumber = item.long_name;
+      }
+      if (item.types.includes('route')) {
+        streetName = item.long_name;
+      }
+      if (item.types.includes('locality')) {
+        suburb = item.long_name;
+      }
+      if (item.types.includes('administrative_area_level_2')) {
+        city = item.long_name;
+      }
+      if (item.types.includes('administrative_area_level_1')) {
+        regionName = item.long_name;
+        regionCode = item.short_name;
+      }
+      if (item.types.includes('postal_code')) {
+        postalCode = item.long_name;
+      }
+    });
+
+    $('input[name="customer[addresses][][address1]"]').val(`${streetNumber} ${streetName}`);
+    $('input[name="customer[addresses][][city]"]').val(`${suburb}, ${city}`);
+    $('input[name="customer[postcode]"]').val(`${postalCode}`);
+    $('select[name="customer[addresses][][province]"]').val(regionName);
+  }
+
   $('#accountInfo form').find('input, select').trigger('change');
 
   window.addSpace = function ($input) {
