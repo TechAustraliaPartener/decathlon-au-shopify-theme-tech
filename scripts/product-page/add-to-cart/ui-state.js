@@ -90,14 +90,16 @@ export const getShopifyErrorUIState = shopifyErrorMessage => {
 export const getUIState = variant => {
   if (!variant) {
     if (variants.every(isVariantOutOfStock)) {
+      //alert(window.vars.productJSON.tags.includes('clearance'));
       return {
         ...DEFAULT_UI_STATE,
         addToCartButtonText:
-          OUT_OF_STOCK_HANDLING === 'back_in_stock'
+          OUT_OF_STOCK_HANDLING === 'clearance'
             ? PRODUCT_PAGE_COPY.EMAIL_ME_WHEN_IN_STOCK
             : PRODUCT_PAGE_COPY.OUT_OF_STOCK,
         validationText: PRODUCT_PAGE_COPY.ALL_SIZES_OUT_OF_STOCK,
-        isAddToCartButtonDisabled: OUT_OF_STOCK_HANDLING !== 'back_in_stock'
+        isAddToCartButtonDisabled: OUT_OF_STOCK_HANDLING !== 'clearance',
+        bisHidden: OUT_OF_STOCK_HANDLING === 'clearance' ? true : false
       };
     }
     return DEFAULT_UI_STATE;
@@ -108,19 +110,23 @@ export const getUIState = variant => {
       ...DEFAULT_UI_STATE,
       addToCartButtonText: PRODUCT_PAGE_COPY.SOLD_OUT,
       validationText: PRODUCT_PAGE_COPY.NEW_MODEL_IN_DESIGN,
-      isAddToCartButtonDisabled: true
+      isAddToCartButtonDisabled: true,
+      bisHidden: false
     };
   }
 
   if (isVariantOutOfStock(variant)) {
+    alert('isVariantOutOfStock 2');
+
     return {
       ...DEFAULT_UI_STATE,
       addToCartButtonText:
-        OUT_OF_STOCK_HANDLING === 'back_in_stock'
+        OUT_OF_STOCK_HANDLING === 'clearance'
           ? PRODUCT_PAGE_COPY.EMAIL_ME_WHEN_IN_STOCK
           : PRODUCT_PAGE_COPY.OUT_OF_STOCK,
       validationText: PRODUCT_PAGE_COPY.OUT_OF_STOCK,
-      isAddToCartButtonDisabled: OUT_OF_STOCK_HANDLING !== 'back_in_stock'
+      isAddToCartButtonDisabled: OUT_OF_STOCK_HANDLING !== 'clearance',
+      bisHidden: OUT_OF_STOCK_HANDLING === 'clearance' ? true : false
     };
   }
 
@@ -128,7 +134,8 @@ export const getUIState = variant => {
     return {
       ...DEFAULT_UI_STATE,
       addToCartButtonText: 'Click & Collect',
-      isAddToCartButtonDisabled: false
+      isAddToCartButtonDisabled: false,
+      bisHidden: false
     };
   }
 

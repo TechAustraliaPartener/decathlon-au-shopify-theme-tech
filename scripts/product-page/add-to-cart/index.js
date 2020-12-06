@@ -145,7 +145,8 @@ export const onVariantSelect = newVariant => {
   state.updateState({
     ...DEFAULT_MODULE_STATE,
     ...getUIState(newVariant),
-    currentVariant: newVariant
+    currentVariant: newVariant,
+
   });
 };
 
@@ -153,12 +154,19 @@ const render = ({
   isAddToCartButtonDisabled,
   validationText,
   addToCartButtonText,
+  bisHidden,
   isLoading
 }) => {
   /*  Give priority to the error messages. This ensures the UI gets updated
       regardless of the availability of `addToCartButtonEl` or `addToCartButtonTextEl` */
   if (validationTextEl) {
     validationTextEl.textContent = validationText;
+  }
+
+  if (bisHidden) {
+    alert("CLEARANCE SALE " + bisHidden);
+    document.querySelector('.de-AddToCartActions .de-ProductQuantity').classList.remove('de-u-md-block');
+    addToCartButtonEl.classList.add('bis-hidden');
   }
 
   if (!addToCartButtonEl || !addToCartButtonTextEl) return;

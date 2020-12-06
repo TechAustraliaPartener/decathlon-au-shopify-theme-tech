@@ -65,7 +65,7 @@ export const PRODUCT_PAGE_COPY = {
   SELECT_A_SIZE: 'Select a size',
   ADD_TO_CART: 'Add to Cart',
   SOLD_OUT: 'Sold Out',
-  EMAIL_ME_WHEN_IN_STOCK: 'Email Me When In Stock',
+  EMAIL_ME_WHEN_IN_STOCK: 'Email Me When Available',
   OUT_OF_STOCK: 'Out of stock',
   ALL_SIZES_OUT_OF_STOCK:
     'Out of stock.',
@@ -78,8 +78,7 @@ export const PRODUCT_PAGE_COPY = {
    * @returns {string}
    */
   allInStockProductsInYourCart: quantity =>
-    `All in stock products are now in your cart. ${quantity} ${
-      Number(quantity) === 1 ? 'was' : 'were'
+    `All in stock products are now in your cart. ${quantity} ${Number(quantity) === 1 ? 'was' : 'were'
     } added.`,
   /**
    * Provides the proper UI text to display
