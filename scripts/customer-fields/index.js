@@ -68,7 +68,7 @@ $(document).ready(() => {
         suburb = item.long_name;
       }
       if (item.types.includes('administrative_area_level_2')) {
-        city = item.long_name;
+        city = item.short_name;
       }
       if (item.types.includes('administrative_area_level_1')) {
         regionName = item.long_name;
@@ -80,7 +80,7 @@ $(document).ready(() => {
     });
 
     $('input[name="customer[addresses][][address1]"]').val(`${streetNumber} ${streetName}`);
-    $('input[name="customer[addresses][][city]"]').val(`${suburb}, ${city}`);
+    $('input[name="customer[addresses][][city]"]').val(`${suburb}`);
     $('input[name="customer[postcode]"]').val(`${postalCode}`);
     $('select[name="customer[addresses][][province]"]').val(regionName);
   }
