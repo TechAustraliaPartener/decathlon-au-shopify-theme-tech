@@ -14,6 +14,7 @@ const glob = require('glob');
 const path = require('path');
 const del = require('del');
 const mergeStreams = require('merge-stream');
+const changed = require('gulp-changed');
 
 const taskName = 'jsC4Scripts';
 
@@ -61,6 +62,14 @@ function globals(modules) {
   };
 }
 
+/** List of modules for which entry points should not be automatically created */
+const excludeEntries = [
+  // Scripts/decathlon is a special-case build that is handled separately in its own build
+  'decathlon',
+  // This will be created as a dynamic chunk (with hash) since it is used as a dynamic import
+  '1-hr-pickup'
+];
+
 module.exports = gulp => {
   gulp.task(taskName, () => {
     // Creates an object like: { checkout: 'scripts/checkout/index.js' }
@@ -69,7 +78,9 @@ module.exports = gulp => {
       .reduce((entryModules, file) => {
         // 'scripts/checkout/index.js' => 'scripts/checkout' => 'checkout'
         const outputName = path.dirname(file).replace(/.*\//, '');
-        entryModules[outputName] = file;
+        if (!excludeEntries.includes(outputName)) {
+          entryModules[outputName] = file;
+        }
         return entryModules;
       }, {});
 
@@ -82,11 +93,11 @@ module.exports = gulp => {
         output: {
           format: modern ? 'esm' : 'iife',
           chunkFileNames: modern
-            ? `${BUILT_PREFIX}[name]-[hash].js`
-            : `${BUILT_PREFIX}[name]-[hash]-legacy.js`,
+            ? `${BUILT_PREFIX}[name]-[hash].js.liquid`
+            : `${BUILT_PREFIX}[name]-[hash]-legacy.js.liquid`,
           entryFileNames: modern
-            ? `${BUILT_PREFIX}[name].js`
-            : `${BUILT_PREFIX}[name]-legacy.js`,
+            ? `${BUILT_PREFIX}[name].js.liquid`
+            : `${BUILT_PREFIX}[name]-legacy.js.liquid`,
           preferConst: true
         },
         rollup,
@@ -114,8 +125,8 @@ module.exports = gulp => {
                 return cachedValue.data;
               const transformed = await babel.transformAsync(code, {
                 configFile: require.resolve('./babel.config.js'),
+                root: path.join(process.cwd(), 'scripts'),
                 filename: id,
-                envName,
                 caller: {
                   name: 'rollup-plugin-babel',
                   supportsStaticESM: true,
@@ -124,6 +135,14 @@ module.exports = gulp => {
               });
               babelCache.set(filenameHash, { inputHash, data: transformed });
               return transformed;
+            }
+          },
+          {
+            // Renames built imports from `.js.liquid` to `.js` so that the shopify CDN serves the correct content-type
+            // Otherwise shopify CDN will return the files with the MIME type of text/x-liquid
+            name: 'imports-js-liquid-to-js',
+            renderChunk(/** @type string */ code) {
+              return code.replace(/\.js\.liquid/g, '.js');
             }
           },
           prod &&
@@ -141,15 +160,19 @@ module.exports = gulp => {
         ],
         experimentalOptimizeChunks: true,
         chunkGroupingSize: 10000
-      }).pipe(gulp.dest(DESTINATION));
-    };
-
-    return mergeStreams(
-      createRollupConfig(entryModules, 'modern'),
-      ...Object.entries(entryModules).map(([outputName, inputPath]) => {
-        return createRollupConfig({ [outputName]: inputPath }, 'legacy');
       })
+        .pipe(changed(DESTINATION, { hasChanged: changed.compareContents }))
+        .pipe(gulp.dest(DESTINATION));
+    };
+    const modernBuild = createRollupConfig(entryModules, 'modern');
+
+    // The scripts/decathlon legacy bundle must be loaded synchronously, so it cannot be an ESM bundle.
+    const legacyDecathlonBuild = createRollupConfig(
+      { decathlon: path.join('scripts', 'decathlon') },
+      'legacy'
     );
+
+    return mergeStreams(modernBuild, legacyDecathlonBuild);
   });
 
   return taskName;
