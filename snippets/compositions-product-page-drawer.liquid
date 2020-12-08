@@ -26,7 +26,7 @@
     data-drawer-action="close"
     data-test="{{ drawer_id }}-overlay"
   ></div>
-  <div class="de-Drawer-contentWrapper">
+  <div class="de-Drawer-contentWrapper {{ drawer_modifier }}">
     <header class="de-Drawer-header
                    de-u-bgSilver
                    de-u-padSides de-u-padEnds06 de-u-spaceNone">
@@ -43,7 +43,7 @@
         CLOSE
       </button>
     </header>
-    <div class="de-Drawer-content">
+    <div class="de-Drawer-content {{ drawer_content_modifier }}">
       {% if heading %}
         {{ heading }}
       {% endif %}

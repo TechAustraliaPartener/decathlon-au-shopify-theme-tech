@@ -5,3 +5,17 @@
 {% include 'compositions-product-page-buybox-fulfillment-info' %}
 {% include 'compositions-product-page-buybox-locations-inventory' %}
 {% include 'compositions-product-page-buybox-footer' %}
+
+{% capture post_add_to_cart_drawer_content %}
+  {% include 'compositions-product-page-post-add-to-cart-drawer' %}
+{% endcapture %}
+
+{% include 'compositions-product-page-drawer',
+  drawer_id: "post-add-to-cart-drawer",
+  drawer_label: "Post Add to Carts",
+  content: post_add_to_cart_drawer_content,
+  displays_in_page_flow: false,
+  drawer_modifier: "de-Drawer--extraWide",
+  drawer_content_modifier: "de-u-overflowXNone"
+%}
+

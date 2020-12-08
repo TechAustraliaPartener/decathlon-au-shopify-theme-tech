@@ -6,6 +6,16 @@
  * @see https://www.w3.org/TR/wai-aria-practices-1.1/#dialog_modal
  */
 
+/**
+ * The following data attributes should/can exist on the Drawer Toggle.
+ *
+ * @typedef {Object} DrawerToggleDataAttributes
+ *
+ * @property {string} drawerId The ID of the drawer the toggle controls
+ * @property {string} drawerAction The action the toggle should take ("open" or "close")
+ * @property {'true' | 'false'} [drawerPreventDefault='true'] Whether or not to call event.preventDefault()
+ */
+
 import {
   IS_ACTIVE_CLASS,
   HIDE_OVERFLOW_Y_CLASS,
@@ -20,6 +30,7 @@ import {
   init as initFocusTrap
 } from './focus-trap';
 import { createState } from '../utilities/create-state';
+import { getUrlVariant } from './query-string';
 
 /**
  * Module constants
@@ -44,6 +55,7 @@ const IS_OPENING_CLASS = `${STATE_PREFIX}opening`;
 export const IS_CLOSED_CLASS = `${STATE_PREFIX}closed`;
 const IS_CLOSING_CLASS = `${STATE_PREFIX}closing`;
 const IS_DRAWER_OPEN_CLASS = `${STATE_PREFIX}drawerOpen`;
+const POST_ADD_TO_CART_DRAWER_ID = 'post-add-to-cart-drawer';
 /**
  * TRANSITION_DURATION value must match (in milliseconds) the value in associated
  * CSS for transition duration ($transition-speed-normal)
@@ -405,14 +417,25 @@ const render = state => {
  * @param {Object} event The event object
  */
 const toggleHandler = function(event) {
-  event.preventDefault();
+  const {
+    drawerAction,
+    drawerId,
+    drawerPreventDefault = 'true'
+  } = /** @type {DrawerToggleDataAttributes} */ event.currentTarget.dataset;
 
-  const { drawerAction, drawerId } = event.currentTarget.dataset;
+  if (drawerPreventDefault.toLowerCase() === 'true') {
+    event.preventDefault();
+  }
 
   const drawerEl = document.getElementById(drawerId);
 
   // No need to run any further logic if we have no drawer to work with
   if (!drawerEl) {
+    return;
+  }
+
+  // Only open Post Add to Cart drawer if a variant is selected
+  if (drawerEl.id === POST_ADD_TO_CART_DRAWER_ID && !getUrlVariant()) {
     return;
   }
 
