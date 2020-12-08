@@ -23,7 +23,7 @@
     "color_footer_bg": "#1f1f1f",
     "color_footer_text": "#aabdb9",
     "color_footer_social_link": "#bbbbbb",
-    "logo_use_image": true,
+    "logo_use_image": false,
     "svg_logo": "black_logo.svg",
     "img_logo": "shopify:\/\/shop_images\/logo_small_9355cf1c-7626-4ada-916d-d809a214ca37.png",
     "enable_meet_decathlon": true,
@@ -31,12 +31,12 @@
     "header_support_link": "https:\/\/help.decathlon.com.au\/support\/home",
     "header_store_label": "Stores",
     "header_sign_in_label": "Sign In",
-    "megamenu_image": "shopify:\/\/shop_images\/Copy_of_SIDE_NAV_2_414b7916-6d2b-4724-ad42-ff3898ea10db.jpg",
-    "megamenu_title": "Cyber Monday Sale",
-    "megamenu_subtitle": "Up to 70% Off Selected Gear",
-    "megamenu_link": "shopify:\/\/pages\/black-friday-sale",
+    "megamenu_image": "shopify:\/\/shop_images\/Copy_of_SIDE_NAV_3_536fd197-5efe-483e-b333-ee556b3d4d96.jpg",
+    "megamenu_title": "Sporty Gifts!",
+    "megamenu_subtitle": "Bikes, Scooters, Fitness Tech & More",
+    "megamenu_link": "shopify:\/\/collections\/christmas-gift-ideas",
     "megamenu_bg_colour": "#ff0000",
-    "custom_fields_terms_conditions": "I agree to the <a href=\"\/pages\/terms-conditions\" target=\"_blank\">T&Cs<\/a> and <a href=\"\/pages\/privacy-policy\" target=\"_blank\">Privacy Policy<\/a> for creating an account.",
+    "custom_fields_terms_conditions": "I agree to the <a href=\"\/pages\/terms-and-conditions-membership\" target=\"_blank\">T&Cs<\/a> and <a href=\"\/pages\/privacy-policy\" target=\"_blank\">Privacy Policy<\/a> for creating an account.",
     "is_lookbook": false,
     "product_returns_text": "Easy 365 days return",
     "product_shipping_text": "Free shipping for orders above $90 (excludes bulky orders)",
@@ -476,7 +476,7 @@
             "settings": {
               "name": "Knoxfield",
               "title": "Knoxfield Store, 3180",
-              "online_inventory_source": true,
+              "online_inventory_source": false,
               "enable_c_c": true,
               "duplicate": "",
               "test_mode": false,
@@ -935,24 +935,53 @@
           "1589172506799": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_5.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_6_-min_aa41577c-9311-411b-9e25-d9f0568887b7.jpg",
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
-              "banner_title": "Up to 70% Off",
-              "banner_subtitle": "<p>Ends tonight 11:59 pm AEDT<\/p>",
+              "banner_title": "Gift Ideas",
+              "banner_subtitle": "<p><strong>Give the gift of sport this Christmas<\/strong><\/p>",
               "button_new_window": false,
-              "button_title": "Shop Now",
-              "button_url": "shopify:\/\/collections\/black-friday-sale"
+              "button_title": "Shop now",
+              "button_url": "https:\/\/decathlon.com.au\/collections\/christmas-gift-ideas?q=&hPP=28&idx=shopify_products_recently_ordered_count_desc&p=0&is_v=1"
+            }
+          },
+          "070de20e-9e73-4b48-b30a-e13a6d3083c0": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_11.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "The Great Outdoors",
+              "banner_subtitle": "<p><strong>Tents, Esky, Camping Furniture &amp; Backpacks<\/strong><\/p>",
+              "button_new_window": false,
+              "button_title": "shop now",
+              "button_url": "shopify:\/\/collections\/camping"
+            }
+          },
+          "ab679345-c7c5-4f8d-a587-c0580b5c2f93": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_12_c183e3dd-6c98-4c40-81b4-0b3ebc542b6b.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "Explore SUP",
+              "banner_subtitle": "<p><strong>SUP, Paddles &amp; More<\/strong><\/p>",
+              "button_new_window": false,
+              "button_title": "shop now",
+              "button_url": "shopify:\/\/collections\/stand-up-paddle"
             }
           }
         },
         "block_order": [
-          "1589172506799"
+          "1589172506799",
+          "070de20e-9e73-4b48-b30a-e13a6d3083c0",
+          "ab679345-c7c5-4f8d-a587-c0580b5c2f93"
         ],
         "settings": {}
       },
       "1590735691745": {
         "type": "slider_image_section",
+        "disabled": true,
         "settings": {
           "homepage_slider_image_title": "By Department!",
           "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_Banner_Women_450x280px_MM_25-Nov-2020.png",
@@ -971,15 +1000,15 @@
       "1597283878337": {
         "type": "slider_image_section",
         "settings": {
-          "homepage_slider_image_title": "By Price",
-          "homepage_slider_image_1": "shopify:\/\/shop_images\/1_450X280DecathlonAU_HP_section_banner_BS_25NOV2020.png",
-          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/bargains-under-25",
+          "homepage_slider_image_title": "Info",
+          "homepage_slider_image_1": "shopify:\/\/shop_images\/1_450X280_Decthlon_Make-similar-_450-x280__BS_01DEC2020.jpg",
+          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/pages\/christmas-deliveries-pick-up",
           "checkbox_image_1": true,
-          "homepage_slider_image_2": "shopify:\/\/shop_images\/2_450X280DecathlonAU_HP_section_banner_BS_25NOV2020.png",
-          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/bargains-under-5",
+          "homepage_slider_image_2": "shopify:\/\/shop_images\/2_450X280_Decthlon_Make-similar-_450-x280__BS_01DEC2020.jpg",
+          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/pages\/christmas-deliveries-pick-up",
           "checkbox_image_2": true,
-          "homepage_slider_image_3": "shopify:\/\/shop_images\/3_450X280DecathlonAU_HP_section_banner_BS_25NOV2020.png",
-          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/bargains-under-100",
+          "homepage_slider_image_3": "shopify:\/\/shop_images\/3_450X280_Decthlon_Make-similar-_450-x280__BS_01DEC2020.jpg",
+          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/pages\/workshop-services",
           "checkbox_image_3": true,
           "homepage_slider_image_redirection_4": "",
           "checkbox_image_4": false
@@ -987,15 +1016,16 @@
       },
       "1602562605803": {
         "type": "slider_image_section",
+        "disabled": true,
         "settings": {
-          "homepage_slider_image_title": "Top Deals!",
-          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_9.jpg",
+          "homepage_slider_image_title": "Top Picks",
+          "homepage_slider_image_1": "shopify:\/\/shop_images\/DecathlonAU_HP_Section_easy_breath__SA_30-11-2020_V1.png",
           "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/products\/easybreath-surface-snorkeling-mask-1616?",
           "checkbox_image_1": true,
-          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_8.jpg",
-          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/products\/2-seconds-pop-up-fresh-black-camping-tent-2-person-142650",
+          "homepage_slider_image_2": "shopify:\/\/shop_images\/DecathlonAU_HP_Section_cycle__SA_30-11-2020_V1.png",
+          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/products\/rockrider-st-100-mountain-bike-193771?",
           "checkbox_image_2": true,
-          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_4.png",
+          "homepage_slider_image_3": "shopify:\/\/shop_images\/DecathlonAU_HP_Section_soft_archery__SA_30-11-2020_V1.png",
           "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/products\/softachery-100-archery-set-302266?",
           "checkbox_image_3": true,
           "homepage_slider_image_redirection_4": "",
