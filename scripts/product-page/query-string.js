@@ -15,8 +15,7 @@ export const getUrlVariant = () => {
   
   const urlParams = new URLSearchParams(window.location.search);
   /** @type {{variant?: string}} */
-  urlParams.get('variant');
-
+  return urlParams.get('variant');
 };
 /**
  * Updates the variant id in the URL when a new variant is selected
