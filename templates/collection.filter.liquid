@@ -249,8 +249,7 @@ function TimberInit() {
     $(this).removeClass('timber-activeProduct');
   });
 
-  var itemPopupTemplate = Handlebars.compile($('#AddedItemTemplate').html()),
-      productsAdded = [];
+  var productsAdded = [];
 
   $('body').on('completeAddItem.ajaxCart', function(evt, obj, jqxhr) {
 
@@ -260,28 +259,6 @@ function TimberInit() {
 
       /* set the add to cart pane to load once the thumbnail loads */
       var thumbnail = new Image();
-
-      /* display the item popup and setup some event listeners */
-      function displayItemPopup() {
-        $('#AddedItemPopup').remove();
-        $('body').append(itemPopupTemplate(context));
-        productsAdded = [];
-
-        $('#AddedItemPopup .close-itemPopup-btn').click(function(e) {
-          $('#AddedItemPopup').remove();
-        });
-
-        $('#AddedItemPopup .js-submitCart').click(function(e) {
-          e.preventDefault();
-          $('.cart__checkout').click();
-        });
-
-        setTimeout(function() {
-          $('#AddedItemPopup').remove();
-        }, 3000);
-
-      }
-      thumbnail.onload = displayItemPopup;
 
       /* TODO: make this actually use the rating */
       context.rating = $('.collectionProduct[data-product-id="'+ context.product_id +'"] .starRating').html();

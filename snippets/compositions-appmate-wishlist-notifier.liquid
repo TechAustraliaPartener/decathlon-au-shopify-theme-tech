@@ -1,8 +1,6 @@
       $('js-wishlistBanner').remove();
       //window.decathlon.addPromo('<p class="u-marginBottom0x"><a href="/pages/wishlist" class="u-textUppercase">Product added! View your wishlist</a></p>', 'js-wishlistBanner');
 
-      var itemPopupTemplate = Handlebars.compile($('#AddedItemTemplate').html());
-
       if ($('body').hasClass('template-product')) {
         var productSlug = window.location.pathname;
       } else {
@@ -31,29 +29,6 @@
         }
 
         context.isWishlist = true;
-
-        /* set the add to cart pane to load once the thumbnail loads */
-        var thumbnail = new Image();
-
-        /* display the item popup and setup some event listeners */
-        function displayItemPopup() {
-          $('#AddedItemPopup').remove();
-          $('body').append(itemPopupTemplate(context));
-
-          $('#AddedItemPopup .close-itemPopup-btn').click(function(e) {
-            $('#AddedItemPopup').remove();
-          });
-
-          $('#AddedItemPopup .js-submitCart').click(function(e) {
-            e.preventDefault();
-            $('.cart__checkout').click();
-          });
-
-          setTimeout(function() {
-            $('#AddedItemPopup').remove();
-          }, 3000);
-        }
-        thumbnail.onload = displayItemPopup;
 
         if ($('.productRating').length > 0) {
           context.rating = $('.productRating').html();

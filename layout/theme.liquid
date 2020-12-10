@@ -127,7 +127,7 @@
   {% endif %}
   {{ 'adeptMind.scss.css' | asset_url | stylesheet_tag }}
   <style>
-    .de-PageWrap-main .breadcrumb{margin-top:0.5em}.de-AddedItemPopup{z-index:2000 !important}
+    .de-PageWrap-main .breadcrumb{margin-top:0.5em}
   </style>
   {{ 'cadence.scss.css' | asset_url | stylesheet_tag }}
   {{ 'menu.scss.css' | asset_url | stylesheet_tag }}
@@ -382,8 +382,6 @@
 
     </script>
   {% endif %}
-
-  {% include 'added-item-popup-template' %}
 
   {{ 'slick.min.js' | asset_url | script_tag }}
   {{ 'js.cookie.min.js' | asset_url | script_tag }}

@@ -2227,5 +2227,17 @@
         "default": "5000"
       }
     ]
+  },
+  {
+    "name": "Add to Cart Drawer",
+    "settings": [
+      {
+        "id": "add_to_cart_drawer_enabled",
+        "type": "checkbox",
+        "label": "Add to Cart Drawer Enabled",
+        "info": "Determines whether or not to show the add to cart drawer",
+        "default": true
+      }
+    ]
   }
 ]
