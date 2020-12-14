@@ -16,6 +16,29 @@
  * viewport width. Necessary for the "slide-in/slide-out" effect
  */
 
+ /*
+    Additional styles from updated drawer
+ */
+ 
+.de-PostAddToCart {
+  display: grid;
+  grid-template-columns: 50% 46%;
+  grid-gap: 4%;
+}
+
+.de-CartItemInfo-grid {
+  display: grid;
+  grid-template-areas:
+    "images price"
+    ". message";
+  grid-template-columns: auto 1fr;
+}
+
+.de-ProductThumbnail {
+  max-height: 64px;
+  max-width: 64px;
+}
+
 /**
  * Base Drawer overlay styles
  */
@@ -71,6 +94,12 @@
 @media (min-width: $breakpoint-lg) {
   .de-Drawer:not(.de-is-inPageFlow) .de-Drawer-contentWrapper {
     max-width: 50%;
+  }
+}
+
+@media (min-width: $breakpoint-lg) {
+  .de-Drawer:not(.de-is-inPageFlow) .de-Drawer--extraWide {
+    max-width: 80% !important;
   }
 }
 

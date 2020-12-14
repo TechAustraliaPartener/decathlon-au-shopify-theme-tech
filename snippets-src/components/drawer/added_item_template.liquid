@@ -1,0 +1,121 @@
+<script id="AddedItemTemplate" type="text/template">
+{% raw %}
+  <section class="de-PostAddToCart">
+    <section class="de-PostAddToCart-content de-PostAddToCart-info">
+      <h3 class="de-u-textGrow de-u-md-textGrow2 de-u-textBold de-u-spaceBottom06">
+        Great Choice! Added {{ added_quantity }} item{{#if added_multiple}}s{{/if}}
+      </h3>
+      <section class="de-CartItemInfo-grid de-u-padTop06 de-u-md-padEnds06">
+        <div class="de-CartItemInfo-images de-u-flex de-u-flexNone de-u-flexAlignItemsCenter">
+          <div class="de-u-flex de-u-padRight06">
+            <svg width="26px" height="26px" viewBox="0 0 26 26">
+            <path d="M8.56591313,23 L8.55915517,23 C8.25778143,22.9975013 7.96990825,22.8649608 7.75991373,22.632019 L0.326157411,14.3864291 C0.0411391726,14.0763895 -0.0674580557,13.6253338 0.0417364197,13.205094 C0.150930895,12.7848541 0.461103291,12.4601388 0.854091777,12.35465 C1.24708026,12.2491612 1.66237241,12.3791421 1.94176045,12.6950758 L8.5771764,20.057123 L24.0912006,3.34068829 C24.5331474,2.88074577 25.235644,2.8873236 25.6701063,3.35547236 C26.1045686,3.82362113 26.1106731,4.58058654 25.6838266,5.05680017 L9.36200085,22.6441556 C9.15091486,22.8718059 8.8645634,23 8.56591313,23 L8.56591313,23 Z" id="Path" fill="#0380C5" fill-rule="nonzero"></path>
+            </svg>
+          </div>
+          <img alt="{{ product_title }}" class="de-ProductThumbnail de-u-block" src="{{ image }}">
+        </div>
+        <div class="de-CartItemInfo-price de-u-padLeft03 de-u-sizeFull de-u-md-textGrow">
+          <h3 class="de-u-textGrow1 de-u-md-textGrow2 de-u-textMedium de-u-spaceBottomNone" itemprop="name">{{ product_title }}</h3>
+          <div class="de-u-textDarkGray">
+            <span>{{ variant_title }}</span>
+            <div class="de-postAddToCart-pricerow de-postAddToCart-pricerow--md de-u-md-textGrow de-u-spaceBottom06">
+              <div class="de-postAddToCart-priceInfo de-u-sizeFull">
+                <div class="de-u-flex de-u-flexJustifyBetween de-u-sizeFull">
+                  <div>
+                    <span class="de-ProductTile-price de-u-padRight06" id="ProductPrice">
+                      <span class="de-u-hiddenVisually">Sale price:</span>
+                      <span>{{ price_dollars }}</span>
+                    </span>
+                  </div>
+                  <span>Qty: {{ added_quantity }}</span>
+                  <span class="de-u-textMedium">{{ line_price_dollars }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="de-postAddToCart-pricerow de-postAddToCart-pricerow--sm de-u-md-textGrow de-u-spaceBottom06">
+        <div class="de-postAddToCart-priceInfo de-u-sizeFull">
+          <div class="de-u-flex de-u-flexJustifyBetween de-u-sizeFull">
+            <div>
+              <span class="de-ProductTile-price de-u-padRight06" id="ProductPrice">
+                <span class="de-u-hiddenVisually">Sale price:</span>
+                <span>{{ price_dollars }}</span>
+              </span>
+            </div>
+            <span>Qty: {{ added_quantity }}</span>
+            <span class="de-u-textMedium">{{ line_price_dollars }}</span>
+          </div>
+        </div>
+      </div>
+      <section class="de-FreeShippingIndicator de-u-bgWhite de-u-overflowXNone de-u-overflowYNone de-u-padRight06 de-u-hidden de-u-lg-block de-u-padBottomNone de-u-borderTopMd de-u-borderLightGray de-u-padEnds06 de-u-md-padBottom03">
+        <div class="de-u-textShrink1 de-u-md-textGrow de-u-padBottom06 de-u-spaceTop3 de-u-lineHeight1">
+          <span>Free shipping over $30</span>
+        </div>
+        <div class="de-u-textShrink1 de-u-md-textGrow de-u-padBottom06 de-u-lineHeight1">Free returns</div>
+        <div class="de-u-textShrink1 de-u-md-textGrow de-u-lineHeight1">Free pickup available</div>
+      </section>
+    </section>
+
+    <section>
+      <h2 class="de-u-textGrow de-u-md-textGrow2 de-u-spaceBottom03">
+        Cart Subtotal
+        <span class="de-u-textDarkGray de-u-textNormal"> ({{ cart_count }} items)</span>
+      </h2>
+
+      <div class="de-CartSubtotal de-u-borderLightGray de-u-borderSm de-u-textShrink1 de-u-md-textGrow">
+        <div class="de-u-pad03">
+          <span class="de-u-flex de-u-flexJustifyBetween de-u-padBottom06">
+            <span>Subtotal (Need to recompute when on same page)</span>
+            <span>{{ subtotal }}</span>
+          </span>
+          {% endraw %}{% if total_discount > 0 %} 
+          {% comment %}Need to color this red{% endcomment %}{% raw %}
+          <span class="de-u-flex de-u-flexJustifyBetween de-u-padBottom06">
+            <span>Discount</span>
+            <span>Total Discount</span>
+          </span>
+          {% endraw %}{% endif %}{% raw %}
+          <span class="de-u-flex de-u-flexJustifyBetween de-u-padBottom06">
+            <span>Shipping</span>
+            <span>Calculated at checkout</span>
+          </span>
+        </div>
+        <div class="de-u-borderTopSm de-u-borderLightGray de-u-bgSilver">
+          <span class="de-u-textGrow1 de-u-textMedium de-u-flex de-u-flexJustifyBetween de-u-pad03">
+            <span>Estimated Total</span>
+            <span class="de-u-textBold">{{ subtotal }}</span>
+          </span>
+        </div>
+      </div>
+      
+      <div class="de-u-md-flex de-u-padTopNone de-u-spaceEnds1 de-md-u-padBottomNone">
+        <a class="btn de-u-flexInline de-u-flexJustifyCenter de-u-flexAlignItemsCenter de-u-textSizeBase de-u-md-spaceRight06 de-u-spaceBottom06 de-u-md-spaceBottomNone de-u-padSides06 de-u-sizeFull js-de-PostAddToCart-viewCart" href="/cart">
+          View Cart
+        </a>
+        <a class="de-Button btn btn--fill de-u-textSizeBase de-u-sizeFull de-u-padSides06 js-de-checkout js-de-PostAddToCart-checkout" href="/cart">
+          Check Out
+        </a>
+      </div>
+    </section>
+  </section>
+{% endraw %}
+</script>
+
+{% comment %}
+
+        <div class="de-FreeShippingIndicator-graph de-u-flex de-u-padTop3" aria-hidden="true">
+          <span class="de-FreeShippingIndicator-priceMin de-u-padRight06 de-u-textMedium">$0</span>
+          <div class="de-FreeShippingIndicator-chart de-u-flexGrow1">
+            <svg height="8px" width="100%" class="de-FreeShippingIndicator-progress-line" style="height: 8px;"><rect width="100%" height="8px" fill="#d8d8d8"></rect>
+            </svg>
+            <div class="de-FreeShippingIndicator--progress de-u-bgBlue" style="width: calc(33.2667% - 5.32267px); height: 8px;"></div>
+            <svg width="48px" height="37px" viewBox="0 0 48 37" class="de-FreeShippingIndicator-jumper" style="height: 37px;"><path d="M30.26,32.33a2.26,2.26,0,0,1,0,3.46c-1.15,1.05-2.49,1.05-3.88-.4l-4.8-5.45-7.5-1.79.59,4.65c.41,1.87-1.26,3-3.17,2.71L3.1,34.19C.6,33.74.16,33,.33,31.48S1.85,29.74,3.8,30l5.71.84c0-.06-.93-5.74-1-5.75a4.19,4.19,0,0,1,1-3.76l5.87-6.44L13,13.71,7.34,16.22a2.42,2.42,0,0,1-1.92-4.44l6.65-3a2.32,2.32,0,0,1,2,0l13.69,6.57L33.05,14a2.41,2.41,0,0,1,1.16,4.68l-6.12,1.56a2.34,2.34,0,0,1-1.65-.17l-4.34-2c-.49.67-2.35,1.88-5.14,5.05l6.37,2.21a2.46,2.46,0,0,1,1.42.87Z" style="fill: rgb(3, 128, 197);"></path><path d="M46,12.5c.17-.55-1.8-3.08-1.19-3.94S48,5.75,48.21,5.41s-.08-.8-.16-.91a1.21,1.21,0,0,0-.64-.33h-.56A8.72,8.72,0,0,1,42.44,3a10.42,10.42,0,0,0-4.67-1.38l.12-.35a.81.81,0,0,0-.47-1,.83.83,0,0,0-1,.48l-5.3,15.6c-.33-.13,1.55.56,1.55.56l2.22-6.39a8.83,8.83,0,0,1,4.42,1.2A9.83,9.83,0,0,0,44.51,13h.56C45.23,13,45.79,13,46,12.5Z" style="fill: rgb(3, 128, 197);"></path><path d="M18.55,30.15,6.68,26.65Z" style="fill: none; stroke: rgb(255, 255, 255); stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.274px;"></path><ellipse cx="24.89" cy="7.47" rx="4.55" ry="4.1" transform="translate(14.03 31.08) rotate(-82)" style="fill: rgb(3, 128, 197);"></ellipse>
+            </svg>
+            <svg width="34px" height="39px" viewBox="0 0 34 39" class="de-FreeShippingIndicator-runner" style="transform: translateX(calc(33.2667% - 5.32267px)); height: 39px;"><path d="M33.18,18.2a1.69,1.69,0,0,0-1.86-1.45l-2.77.18-.91-4.51a3.37,3.37,0,0,0-1-1.85L23,7.23a3.28,3.28,0,0,0-1.54-.81L15.07,5a2.21,2.21,0,0,0-2,.54L9.71,8.72a1.68,1.68,0,0,0,0,2.44,1.71,1.71,0,0,0,2.36-.05L15,8.45l4.67,1L13.57,16a3.52,3.52,0,0,0,.18,5l1.45,1.36,4.63,4.28-2.58,9.66a2.2,2.2,0,0,0,1.27,2.44,2.14,2.14,0,0,0,2.95-1.58l2.81-10.92a2.3,2.3,0,0,0-.63-2L19.2,20.05l5.4-5.73.86,4.28a2.21,2.21,0,0,0,2.27,1.72l3.9-.27A1.7,1.7,0,0,0,33.18,18.2Z" style="fill: rgb(3, 128, 197); fill-rule: evenodd;"></path><path d="M1.38,21.69l6.85,3.09a2.45,2.45,0,0,0,2.57-.41L13.18,22l-.58-.5A4.52,4.52,0,0,1,11,18.43L8.73,20.66,3.28,18.18a2.24,2.24,0,0,0-2.89.91A1.89,1.89,0,0,0,1.38,21.69Z" style="fill: rgb(3, 128, 197); fill-rule: evenodd;"></path><path d="M24.27,3.76A4,4,0,0,1,29,1a3.58,3.58,0,0,1,3.11,4.14,4.08,4.08,0,0,1-4.73,2.73A3.55,3.55,0,0,1,24.27,3.76Z" style="fill: rgb(3, 128, 197); fill-rule: evenodd;"></path>
+            </svg>
+          </div>
+          <span class="de-FreeShippingIndicator-priceMax de-u-textMedium">$30</span>
+        </div>
+{% endcomment %}

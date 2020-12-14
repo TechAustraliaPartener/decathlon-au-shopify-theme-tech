@@ -3,18 +3,13 @@
 {% endcomment %}
 <div class="js-de-PAC-dynamic-content"></div>
 
+{% include 'components-drawer-added_item_template' %}
+
 {% comment %}
   Dynamic Yield Featured Products
 
   Client-side rendered grid of product tiles driven by Dynamic Yield
 {% endcomment %}
-<section class="de-u-borderTopMd de-u-borderLightGray de-u-spaceTop de-u-lg-spaceTopNone">
-  {% render 'components-dy-product-tile-grid',
-    id:'recommendations-post-add-to-cart',
-    grid_container_css_class: 'de-PostAddToCart-featuredProducts de-u-spaceTop06 js-de-PostAddToCart-featuredProducts',
-    render_brand_logos: 'false',
-    render_fulfillment_options: 'false',
-    render_inventory_status: 'false',
-    render_call_to_action_button: 'true'
-  %}
+<section>
+  {% render 'components-drawer-added_item_drawer_container' %}
 </section>

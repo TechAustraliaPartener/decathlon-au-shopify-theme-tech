@@ -4,22 +4,34 @@
   */
   jQuery(function($) {
     $('body').on('beforeAddItem.ajaxCart', function(e) {});
-
+    var addedItemTemplate = Handlebars.compile($('#AddedItemTemplate').html());
     $('body').on('completeAddItem.ajaxCart', function(evt, obj, jqxhr) {
       if (jqxhr.status < 400) {
         var context = jqxhr.responseJSON;
+        console.log('CONTEXT');
+        console.log(context);
 
         /* set the add to cart pane to load once the thumbnail loads */
         var thumbnail = new Image();
 
+        function loadTemplate() {
+          $('.de-PostAddToCart').remove();
+          $('.de-addedItemContainer').append(addedItemTemplate(context));
+        }
+
+        thumbnail.onload = loadTemplate;
+
         context.rating = $('.productRating').html();
         context.price_dollars = Shopify.formatMoney(context.price, {{ shop.money_format | json }});
-        context.subtotal = $('#CartSubtotal').text();
+        context.subtotal = $('#CartSubtotal').text(); // TODO: need to recompute this when on the same page
         var defaultTitleIndex = context.variant_options.indexOf('Default Title');
         if (defaultTitleIndex > -1) {
           context.variant_options.splice(defaultTitleIndex, 1);
         }
         context.added_quantity = /quantity=(\d+)/.exec(obj.data)[1] || 1
+        context.cart_count = parseInt($('#CartCount').text()) + parseInt(context.added_quantity);
+        context.line_price_dollars = Shopify.formatMoney(context.line_price, {{ shop.money_format | json }});
+        context.added_multiple = parseInt(context.added_quantity) > 1 ? true : false; // TODO: this doesnt seem to update when on the same page
 
         /* if subtotal is empty then the cart needs to be loaded */
         if (!context.subtotal) {
