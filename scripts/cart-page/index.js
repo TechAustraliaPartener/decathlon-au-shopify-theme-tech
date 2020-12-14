@@ -25,7 +25,7 @@ Vue.config.errorHandler = (err, vm, info) => {
   Rollbar.error("Vue error", {
     'err': err,
     'cart': JSON.stringify(logCart)
-  }, function(err, data) {
+  }, function (err, data) {
     if (err) {
       console.log("Error while reporting error to Rollbar: ", err);
     } else {
@@ -45,15 +45,17 @@ Vue.config.errorHandler = (err, vm, info) => {
       'err': err,
       'vm': vm,
       'info': info
-    }, function(err, data) {
+    }, function (err, data) {
       if (err) {
         console.log("Error while reporting error to Rollbar: ", err);
       } else {
         console.log("Error successfully reported to Rollbar. UUID:", data.result.uuid);
       }
-      CartJS.clear({ success: function() {
-        window.location.reload();
-      }});
+      CartJS.clear({
+        success: function () {
+          window.location.reload();
+        }
+      });
     });
   }
 }
@@ -70,7 +72,7 @@ const emptyLoc = name => {
     id: "0",
     inStock: 0,
     name: name,
-    pickupOption: false  
+    pickupOption: false
   };
   return empty;
 }
@@ -225,7 +227,7 @@ const initCartDisplay = cart => {
 
         if (this.$data.override) {
           // TODO: Remove timeout and lock onto re-render
-          setTimeout(function() {
+          setTimeout(function () {
             $('.checkout-btn').click();
           }, 300);
         }
@@ -321,17 +323,17 @@ const initCartDisplay = cart => {
         const app = this;
 
         const delivery = item.delivery;
-        var deliveryMessage = `<div class="${ delivery.inStock ? (item.quantity <= delivery.available ? 'available' : 'low') : 'unavailable' }"><p>${ delivery.inStock ? (item.quantity <= delivery.available ? 'Available' : 'Not all items available') : 'Unavailable' } for delivery</p></div>`;
+        var deliveryMessage = `<div class="${delivery.inStock ? (item.quantity <= delivery.available ? 'available' : 'low') : 'unavailable'}"><p>${delivery.inStock ? (item.quantity <= delivery.available ? 'Available' : 'Not all items available') : 'Unavailable'} for delivery</p></div>`;
         messages.push(deliveryMessage);
 
         if (app.favStore && app.favStore.name) {
           const favStoreInventory = item.locations.find(obj => {
             return obj.name === app.favStore.name;
           });
-          var ccMessage = `<div class="${ favStoreInventory.inStock ? (item.quantity <= favStoreInventory.available ? 'available' : 'low') : 'unavailable' }"><p>${ favStoreInventory.inStock ? (item.quantity <= favStoreInventory.available ? 'Available' : 'Not all items available') : 'Unavailable' } for click & collect</p></div>`;
+          var ccMessage = `<div class="${favStoreInventory.inStock ? (item.quantity <= favStoreInventory.available ? 'available' : 'low') : 'unavailable'}"><p>${favStoreInventory.inStock ? (item.quantity <= favStoreInventory.available ? 'Available' : 'Not all items available') : 'Unavailable'} for click & collect</p></div>`;
           messages.push(ccMessage);
         }
-        
+
         return messages.join('');
       },
       cartModificationsMessage() {
@@ -356,11 +358,9 @@ const initCartDisplay = cart => {
         }
 
         if (itemsToRemove > 0) {
-          return `${itemsToRemove} ${
-            itemsToRemove > 1 ? 'items' : 'item'
-          } unavailable for ${
-            app.deliveryOption
-          } will be removed from your cart`;
+          return `${itemsToRemove} ${itemsToRemove > 1 ? 'items' : 'item'
+            } unavailable for ${app.deliveryOption
+            } will be removed from your cart`;
         }
 
         return '';
@@ -401,16 +401,16 @@ const initCartDisplay = cart => {
   $('#cartSpinner').addClass('de-u-hidden');
 };
 
-$(document).on('cart.ready', function(event, cart) {
+$(document).on('cart.ready', function (event, cart) {
   cartInit = cart;
   console.log('CART READY', event, cart);
   tryInit();
 });
 
-document.addEventListener('tomitLoaded', function() {
+document.addEventListener('tomitLoaded', function () {
   window.tomitProductInventoryInfo
     .getProductsInventoryInformation(window.vars.tomitCartPayload)
-    .then(function(inventory) {
+    .then(function (inventory) {
       invInit = inventory;
       console.log('INV READY', inventory);
       tryInit();
@@ -423,7 +423,7 @@ function tryInit() {
   }
 }
 
-$(document).on('cart.requestComplete', function(event, cart) {
+$(document).on('cart.requestComplete', function (event, cart) {
   window.cartDisplay.changeWholeData(supplementCart(cart), 'cart');
   $('.js-de-cart__subtotal').text(Shopify.formatMoney(cart.total_price));
   $('.afterpay-info strong').text(Shopify.formatMoney(cart.total_price / 4));

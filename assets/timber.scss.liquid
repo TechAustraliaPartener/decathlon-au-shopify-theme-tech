@@ -10738,6 +10738,7 @@ $color-out: #ff0000;
     top: 30px;
   }
 }
+
 @media screen and (min-width: 960px) and (max-width: 1130px) {
   .de-ProductTitleLockup h1 {
     max-width: 75%;
@@ -10756,4 +10757,21 @@ $color-out: #ff0000;
   .de-ProductTitleLockup .wk-button-product {
     top: 32px;
   }
+}
+
+@keyframes wk_beat {
+  0% {
+    transform: scale(.8);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+.de-AddToCartActions.full-width-button {
+  display: block !important;
+}
+
+.de-AddToCartActions.full-width-button .de-ProductAddToCart {
+  margin: 0 !important;
 }

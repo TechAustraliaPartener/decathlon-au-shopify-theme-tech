@@ -2,7 +2,7 @@ import $ from 'jquery';
 import Vue from 'vue/dist/vue.esm.js';
 import pushStockInfoToDataLayer from './datalayer-stock-info';
 
-// Const product = productJSON;
+// Const product = productJSON; 
 
 const demoInventory = {
   id: 'demo',
@@ -34,7 +34,7 @@ function addMasterStoresData(inventoryItem, state) {
     return storesSort.indexOf(loc.name) !== -1;
   });
 
-  var onlineItem = inventoryItem.locations.filter(function(store) {
+  var onlineItem = inventoryItem.locations.filter(function (store) {
     return window.onlineInventoryStores.indexOf(store.name) !== -1;
   });
 
@@ -182,12 +182,12 @@ function addMasterStoresData(inventoryItem, state) {
     storesSort.indexOf(a.name) > storesSort.indexOf(b.name)
       ? 1
       : storesSort.indexOf(b.name) > storesSort.indexOf(a.name)
-      ? -1
-      : 0
+        ? -1
+        : 0
   );
 
   inventoryItem.locations = inventoryItem.locations.filter(loc => window.ccStores.indexOf(loc.name) !== -1);
-  inventoryItem.stateLocations = inventoryItem.locations.filter(loc => !(state && state.length) || (state.indexOf(loc.state) !== -1));  
+  inventoryItem.stateLocations = inventoryItem.locations.filter(loc => !(state && state.length) || (state.indexOf(loc.state) !== -1));
 
   if (window.vars.favStore) {
     inventoryItem.favStore = window.vars.favStore;
@@ -196,8 +196,8 @@ function addMasterStoresData(inventoryItem, state) {
       window.vars.favStore.name === b.name
         ? 1
         : window.vars.favStore.name === a.name
-        ? -1
-        : 0
+          ? -1
+          : 0
     );
   }
 
@@ -208,7 +208,8 @@ function addMasterStoresData(inventoryItem, state) {
  * Attach listeners to open collapse elements
  */
 const initInventoryLocations = () => {
-  document.addEventListener('tomitProductLoaded', function(e, data) {
+  document.addEventListener('tomitProductLoaded', function (e, data) {
+    alert('PRODUCT LOADED');
     window.inventories =
       window.tomitProductInventoryInfo.activeProduct.variants;
 
@@ -223,7 +224,7 @@ const initInventoryLocations = () => {
           sku: v.sku,
           title: v.title,
           inventoryItem: {
-            id: "1", 
+            id: "1",
             locations: []
           }
         }
@@ -317,7 +318,7 @@ const initInventoryLocations = () => {
           collapsed: newData.collapsed || this.$data.collapsed,
           code: newData.code || this.$data.code
         }
-        newData = {...newData, ...extraData };
+        newData = { ...newData, ...extraData };
         Object.keys(this.$data).forEach(key => (this.$data[key] = null));
         Object.entries(newData).forEach(entry =>
           Vue.set(this.$data, entry[0], entry[1])
@@ -398,7 +399,7 @@ const initInventoryLocations = () => {
 
           } else {
             error.slideDown();
-          }          
+          }
         } else {
           error.slideDown();
         }
@@ -422,7 +423,7 @@ const initInventoryLocations = () => {
     }
   });
 
-  $('[name="state"]').on('keypress',function(e) {
+  $('[name="state"]').on('keypress', function (e) {
     if (e.which == 13) {
       e.preventDefault();
       $('#checkState').click();

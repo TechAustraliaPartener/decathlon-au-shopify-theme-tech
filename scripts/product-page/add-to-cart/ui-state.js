@@ -116,17 +116,15 @@ export const getUIState = variant => {
   }
 
   if (isVariantOutOfStock(variant)) {
-    alert('isVariantOutOfStock 2');
-
     return {
       ...DEFAULT_UI_STATE,
       addToCartButtonText:
-        OUT_OF_STOCK_HANDLING === 'clearance'
-          ? PRODUCT_PAGE_COPY.EMAIL_ME_WHEN_IN_STOCK
-          : PRODUCT_PAGE_COPY.OUT_OF_STOCK,
+        OUT_OF_STOCK_HANDLING !== 'back_in_stock'
+          ? PRODUCT_PAGE_COPY.OUT_OF_STOCK
+          : window.vars.productJSON.tags.includes('clearance') ? PRODUCT_PAGE_COPY.EMAIL_ME_WHEN_IN_STOCK : PRODUCT_PAGE_COPY.OUT_OF_STOCK,
       validationText: PRODUCT_PAGE_COPY.OUT_OF_STOCK,
-      isAddToCartButtonDisabled: OUT_OF_STOCK_HANDLING !== 'clearance',
-      bisHidden: OUT_OF_STOCK_HANDLING === 'clearance' ? true : false
+      isAddToCartButtonDisabled: !window.vars.productJSON.tags.includes('clearance'),
+      bisHidden: OUT_OF_STOCK_HANDLING === 'back_in_stock' ? true : false
     };
   }
 
