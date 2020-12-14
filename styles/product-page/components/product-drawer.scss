@@ -39,6 +39,36 @@
   max-width: 64px;
 }
 
+.de-DrawerSubtotalDiscount {
+  & > span {
+    color: #e53322;
+  }
+}
+
+.de-PostAddToCart-featuredProducts {
+  display: flex;
+  flex-direction: row;
+}
+
+.de-ProductTileDrawer {
+  max-width: 235px;
+}
+
+.de-productTile-showcaseImageContainer {
+  height: 0;
+  overflow: hidden;
+  padding-top: 100%;
+  position: relative;
+}
+
+.de-ProductTileDrawer-showcaseImage {
+  left: 50%;
+  max-height: 100%;
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+}
+
 /**
  * Base Drawer overlay styles
  */

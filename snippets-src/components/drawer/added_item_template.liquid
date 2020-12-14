@@ -50,11 +50,18 @@
         </div>
       </div>
       <section class="de-FreeShippingIndicator de-u-bgWhite de-u-overflowXNone de-u-overflowYNone de-u-padRight06 de-u-hidden de-u-lg-block de-u-padBottomNone de-u-borderTopMd de-u-borderLightGray de-u-padEnds06 de-u-md-padBottom03">
-        <div class="de-u-textShrink1 de-u-md-textGrow de-u-padBottom06 de-u-spaceTop3 de-u-lineHeight1">
-          <span>Free shipping over $30</span>
+        <div class="de-u-spaceNone de-u-textMedium">
+          {% endraw %}{% include 'assets-icons-returns'
+        with class: 'de-u-textBlack de-Icon de-u-textGrow6 de-u-spaceRight03' %}{% raw %}{{ line_one }}
         </div>
-        <div class="de-u-textShrink1 de-u-md-textGrow de-u-padBottom06 de-u-lineHeight1">Free returns</div>
-        <div class="de-u-textShrink1 de-u-md-textGrow de-u-lineHeight1">Free pickup available</div>
+        <div class="de-u-spaceNone de-u-textMedium">
+          {% endraw %}{% include 'assets-icons-delivery-truck'
+        with class: 'de-u-textBlack de-Icon de-u-textGrow6 de-u-spaceRight03' %}{% raw %}{{ line_two }}
+        </div>
+        <div class="de-u-spaceNone de-u-textMedium">
+          {% endraw %}{% include 'assets-icons-store'
+          with class: 'de-u-textBlack de-Icon de-u-textGrow6 de-u-spaceRight03' %}{% raw %}{{ line_three }}
+        </div>
       </section>
     </section>
 
@@ -70,13 +77,12 @@
             <span>Subtotal (Need to recompute when on same page)</span>
             <span>{{ subtotal }}</span>
           </span>
-          {% endraw %}{% if total_discount > 0 %} 
-          {% comment %}Need to color this red{% endcomment %}{% raw %}
-          <span class="de-u-flex de-u-flexJustifyBetween de-u-padBottom06">
+          {{#if has_discount}}
+          <span class="de-u-flex de-u-flexJustifyBetween de-u-padBottom06 de-DrawerSubtotalDiscount">
             <span>Discount</span>
-            <span>Total Discount</span>
+            <span>{{ total_discount_dollar }}</span>
           </span>
-          {% endraw %}{% endif %}{% raw %}
+          {{/if}}
           <span class="de-u-flex de-u-flexJustifyBetween de-u-padBottom06">
             <span>Shipping</span>
             <span>Calculated at checkout</span>
@@ -100,22 +106,58 @@
       </div>
     </section>
   </section>
+
+  <section class="de-PostAddToCart-FrequentlyBought">
+    <section class="de-u-borderTopMd de-u-borderLightGray de-u-spaceTop de-u-lg-spaceTopNone">
+      <div id="recommendations-post-add-to-cart" class="js-de-DYProductTileGrid de-u-padTop03 de-u-md-padTop3">
+        <h2 class="de-u-borderBottomLg de-u-borderLime de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4 de-u-spaceBottomNone de-u-inline">Frequently Bought Together</h2>
+        <div class="de-PostAddToCart-featuredProducts de-u-spaceTop06 js-de-PostAddToCart-featuredProducts">
+          {{#each associated_products}}
+          <article class="de-ProductTile de-ProductTileDrawer de-u-lineHeight3 de-u-bgWhite de-Skeleton js-de-Skeleton">
+            <a class="de-u-block" href="{{ this.url }}">
+              <section class="de-ProductTile-showcase">
+                <div class="de-productTile-showcaseImageContainer">
+                  <img alt="{{ this.title }}" class="de-ProductTileDrawer-showcaseImage" itemprop="image" src="{{ this.featured_image }}" loading="lazy">
+                </div>
+              </section>
+            </a>
+            <section class="de-ProductTile-info">
+              <div class="de-SwatchObjects de-SwatchObjects--productTile de-u-padEnds06">
+              </div>
+              <a class="de-u-linkClean" href="{{ this.url }}">
+                <header class="de-ProductTile-header">
+                  <h4 class="de-ProductTile-title de-ProductTile-titleWithButtons de-u-textMedium de-u-textShrink1 de-u-lg-textGrow1 de-u-lineHeight2 de-u-spaceTop04" itemprop="name">
+                    {{ this.title }}
+                  </h4>
+                </header>
+                <div class="de-u-flex de-u-flexAlignItemsCenter de-u-spaceTop06 de-u-lineHeight1">
+                  <span class="de-StarRating de-u-spaceRight06 de-StarRating--small">
+                    <span class="de-StarRating-fill" aria-hidden="true" style="width: 82%;"></span>
+                    <span class="de-u-hiddenVisually">
+                      <span>Average rating: 4.1 out of 5 stars</span>
+                    </span>
+                  </span>
+                  <span class="de-u-textMedium de-u-textSelectNone de-u-textDarkGray de-u-textShrink2 de-u-md-textShrink1" aria-hidden="true">
+                    216
+                  </span>
+                  <span class="de-u-hiddenVisually">216 Reviews</span>
+                </div>
+              </a>
+            </section>
+            <p class="de-ProductTile-price de-u-md-textGrow2 de-u-textMedium de-u-lineHeight4 de-u-spaceBottomNone">
+              {{ this.price_dollar }}
+            </p>
+            <footer class="de-ProductTile-footer de-ProductTile-footer--reducedContent"></footer>
+            <p class="de-u-spaceNone">
+              <span class="de-u-hiddenVisually">{{ this.title }}</span>
+              <span class="de-ProductTileAddToCart-Message de-u-block de-u-textRed de-u-textMedium de-u-textShrink1"></span>
+            </p>
+            <a href="{{ this.url }}" class="btn btn--fill btn--full de-Button de-u-pad06 de-u-spaceBottom1 de-u-md-spaceBottomNone">View Product</a>
+          </article>
+          {{/each}}
+        </div>
+      </div>
+    </section>
+  </section>
 {% endraw %}
 </script>
-
-{% comment %}
-
-        <div class="de-FreeShippingIndicator-graph de-u-flex de-u-padTop3" aria-hidden="true">
-          <span class="de-FreeShippingIndicator-priceMin de-u-padRight06 de-u-textMedium">$0</span>
-          <div class="de-FreeShippingIndicator-chart de-u-flexGrow1">
-            <svg height="8px" width="100%" class="de-FreeShippingIndicator-progress-line" style="height: 8px;"><rect width="100%" height="8px" fill="#d8d8d8"></rect>
-            </svg>
-            <div class="de-FreeShippingIndicator--progress de-u-bgBlue" style="width: calc(33.2667% - 5.32267px); height: 8px;"></div>
-            <svg width="48px" height="37px" viewBox="0 0 48 37" class="de-FreeShippingIndicator-jumper" style="height: 37px;"><path d="M30.26,32.33a2.26,2.26,0,0,1,0,3.46c-1.15,1.05-2.49,1.05-3.88-.4l-4.8-5.45-7.5-1.79.59,4.65c.41,1.87-1.26,3-3.17,2.71L3.1,34.19C.6,33.74.16,33,.33,31.48S1.85,29.74,3.8,30l5.71.84c0-.06-.93-5.74-1-5.75a4.19,4.19,0,0,1,1-3.76l5.87-6.44L13,13.71,7.34,16.22a2.42,2.42,0,0,1-1.92-4.44l6.65-3a2.32,2.32,0,0,1,2,0l13.69,6.57L33.05,14a2.41,2.41,0,0,1,1.16,4.68l-6.12,1.56a2.34,2.34,0,0,1-1.65-.17l-4.34-2c-.49.67-2.35,1.88-5.14,5.05l6.37,2.21a2.46,2.46,0,0,1,1.42.87Z" style="fill: rgb(3, 128, 197);"></path><path d="M46,12.5c.17-.55-1.8-3.08-1.19-3.94S48,5.75,48.21,5.41s-.08-.8-.16-.91a1.21,1.21,0,0,0-.64-.33h-.56A8.72,8.72,0,0,1,42.44,3a10.42,10.42,0,0,0-4.67-1.38l.12-.35a.81.81,0,0,0-.47-1,.83.83,0,0,0-1,.48l-5.3,15.6c-.33-.13,1.55.56,1.55.56l2.22-6.39a8.83,8.83,0,0,1,4.42,1.2A9.83,9.83,0,0,0,44.51,13h.56C45.23,13,45.79,13,46,12.5Z" style="fill: rgb(3, 128, 197);"></path><path d="M18.55,30.15,6.68,26.65Z" style="fill: none; stroke: rgb(255, 255, 255); stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.274px;"></path><ellipse cx="24.89" cy="7.47" rx="4.55" ry="4.1" transform="translate(14.03 31.08) rotate(-82)" style="fill: rgb(3, 128, 197);"></ellipse>
-            </svg>
-            <svg width="34px" height="39px" viewBox="0 0 34 39" class="de-FreeShippingIndicator-runner" style="transform: translateX(calc(33.2667% - 5.32267px)); height: 39px;"><path d="M33.18,18.2a1.69,1.69,0,0,0-1.86-1.45l-2.77.18-.91-4.51a3.37,3.37,0,0,0-1-1.85L23,7.23a3.28,3.28,0,0,0-1.54-.81L15.07,5a2.21,2.21,0,0,0-2,.54L9.71,8.72a1.68,1.68,0,0,0,0,2.44,1.71,1.71,0,0,0,2.36-.05L15,8.45l4.67,1L13.57,16a3.52,3.52,0,0,0,.18,5l1.45,1.36,4.63,4.28-2.58,9.66a2.2,2.2,0,0,0,1.27,2.44,2.14,2.14,0,0,0,2.95-1.58l2.81-10.92a2.3,2.3,0,0,0-.63-2L19.2,20.05l5.4-5.73.86,4.28a2.21,2.21,0,0,0,2.27,1.72l3.9-.27A1.7,1.7,0,0,0,33.18,18.2Z" style="fill: rgb(3, 128, 197); fill-rule: evenodd;"></path><path d="M1.38,21.69l6.85,3.09a2.45,2.45,0,0,0,2.57-.41L13.18,22l-.58-.5A4.52,4.52,0,0,1,11,18.43L8.73,20.66,3.28,18.18a2.24,2.24,0,0,0-2.89.91A1.89,1.89,0,0,0,1.38,21.69Z" style="fill: rgb(3, 128, 197); fill-rule: evenodd;"></path><path d="M24.27,3.76A4,4,0,0,1,29,1a3.58,3.58,0,0,1,3.11,4.14,4.08,4.08,0,0,1-4.73,2.73A3.55,3.55,0,0,1,24.27,3.76Z" style="fill: rgb(3, 128, 197); fill-rule: evenodd;"></path>
-            </svg>
-          </div>
-          <span class="de-FreeShippingIndicator-priceMax de-u-textMedium">$30</span>
-        </div>
-{% endcomment %}

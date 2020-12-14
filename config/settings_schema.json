@@ -2237,6 +2237,24 @@
         "label": "Add to Cart Drawer Enabled",
         "info": "Determines whether or not to show the add to cart drawer",
         "default": true
+      },
+      {
+        "id": "add_to_cart_drawer_line_1",
+        "type": "text",
+        "label": "Line 1",
+        "default": "Free Exchanges (see T&C)"
+      },
+      {
+        "id": "add_to_cart_drawer_line_2",
+        "type": "text",
+        "label": "Line 2",
+        "default": "Free shipping for orders above $90 (excludes bulky orders)"
+      },
+      {
+        "id": "add_to_cart_drawer_line_3",
+        "type": "text",
+        "label": "Line 3",
+        "default": "Free 2 Hour contactless Click & Collect"
       }
     ]
   }

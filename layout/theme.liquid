@@ -448,6 +448,15 @@
 	  })();
   </script>
 
+  <script>
+    window.translations = window.translations || {};
+    window.translations.add_to_cart_drawer = {
+      line_one: '{{ settings.add_to_cart_drawer_line_1 }}',
+      line_two: '{{ settings.add_to_cart_drawer_line_2 }}',
+      line_three: '{{ settings.add_to_cart_drawer_line_3 }}'
+    };
+  </script>
+
   {% comment %}
     Capture a customer ID (will be undefined if there's not a customer yet, but that's good).
     Used by Persistent Cart JS

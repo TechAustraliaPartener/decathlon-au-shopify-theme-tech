@@ -465,6 +465,8 @@
 (function () {
   // create global object
   window.Shopify = window.Shopify || {};
+  window.Shopify.product = window.Shopify.product || {};
+  window.Shopify.product.associated_products = '{{ product.metafields.merchandising.associated_products }}';
 
   // assign customer object to shopify
   {% if customer %}

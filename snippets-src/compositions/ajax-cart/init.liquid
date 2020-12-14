@@ -5,7 +5,7 @@
   jQuery(function($) {
     $('body').on('beforeAddItem.ajaxCart', function(e) {});
     var addedItemTemplate = Handlebars.compile($('#AddedItemTemplate').html());
-    $('body').on('completeAddItem.ajaxCart', function(evt, obj, jqxhr) {
+    $('body').on('completeAddItem.ajaxCart', async function(evt, obj, jqxhr) {
       if (jqxhr.status < 400) {
         var context = jqxhr.responseJSON;
         console.log('CONTEXT');
@@ -16,22 +16,47 @@
 
         function loadTemplate() {
           $('.de-PostAddToCart').remove();
+          $('.de-PostAddToCart-FrequentlyBought').remove();
           $('.de-addedItemContainer').append(addedItemTemplate(context));
         }
 
         thumbnail.onload = loadTemplate;
 
+        var associated_products_string = window.Shopify.product.associated_products.replace("=>", ":");
+        var formatted_associated_products = JSON.parse(associated_products_string); // Returns array of handles 
+
+        var associated_products = [];
+        var index = 0;
+
+        for (const handle of formatted_associated_products.products) {
+          if (index > 7) break;
+          await $.getJSON('/products/' + handle + '.js').then(product => {
+            product.price_dollar = Shopify.formatMoney(product.price, {{ shop.money_format | json }});
+            associated_products.push(product);
+          });
+          index++;
+        }
+        context.associated_products = associated_products;
+
+        context.has_discount = context.total_discount > 0;
+        context.total_discount_dollar = Shopify.formatMoney(context.total_discount, {{ shop.money_format | json }});
+
         context.rating = $('.productRating').html();
         context.price_dollars = Shopify.formatMoney(context.price, {{ shop.money_format | json }});
-        context.subtotal = $('#CartSubtotal').text(); // TODO: need to recompute this when on the same page
+        context.subtotal = $('#CartSubtotal').text();
         var defaultTitleIndex = context.variant_options.indexOf('Default Title');
         if (defaultTitleIndex > -1) {
           context.variant_options.splice(defaultTitleIndex, 1);
         }
         context.added_quantity = /quantity=(\d+)/.exec(obj.data)[1] || 1
-        context.cart_count = parseInt($('#CartCount').text()) + parseInt(context.added_quantity);
-        context.line_price_dollars = Shopify.formatMoney(context.line_price, {{ shop.money_format | json }});
-        context.added_multiple = parseInt(context.added_quantity) > 1 ? true : false; // TODO: this doesnt seem to update when on the same page
+        context.cart_count = $('#CartCount').text();
+        context.line_price_dollars = Shopify.formatMoney(context.price * parseInt(context.added_quantity), {{ shop.money_format | json }});
+        context.added_multiple = parseInt(context.added_quantity) > 1 ? true : false;
+
+        var translations = window.translations.add_to_cart_drawer;
+        context.line_one = translations.line_one;
+        context.line_two = translations.line_two;
+        context.line_three = translations.line_three;
 
         /* if subtotal is empty then the cart needs to be loaded */
         if (!context.subtotal) {
