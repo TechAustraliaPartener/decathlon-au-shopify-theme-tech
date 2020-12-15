@@ -119,13 +119,17 @@
 
   {% assign associated_product_handles = associated_product_handles | remove_first: '|' | split: '|' %}
 
-  {% if associated_product_handles.size > 2 %}
+  {% if associated_product_handles.size < 1 %}
+    {% assign associated_product_handles = collections['trending-products'].products | limit: 8 | map: 'handle' %}
+  {% endif %}
+
+  {% if associated_product_handles.size > 0 %}
     <div class="trendingProducts associated-products-carousel-container">
       <h2 class="de-ProductInfoSection-title de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4 de-u-inlineBlock">
         Frequently Bought Together
       </h2>
       {% if associated_product_handles %}
-        {% for handle in associated_product_handles limit: limit %}
+        {% for handle in associated_product_handles limit: 8 %}
           {% assign carousel_product = all_products[handle] %}
           {%- if carousel_product.available -%}
             {% comment %} Product Tile Carousel Slide {% endcomment %}
