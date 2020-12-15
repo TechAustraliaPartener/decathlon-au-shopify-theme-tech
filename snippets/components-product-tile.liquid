@@ -152,5 +152,9 @@ Example:
       See buying options
     </button> {% endcomment %}
     {% endif %}
+
+    {% if added_item_drawer == true %}
+      <a href="{{ product.url }}" class="btn btn--fill btn--full de-Button de-u-pad06 de-u-spaceBottom1 de-u-md-spaceBottomNone de-u-spaceTop1">View Product</a>
+    {% endif %}
   </section>
 </article>

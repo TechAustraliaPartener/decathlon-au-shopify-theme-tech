@@ -39,6 +39,35 @@
   max-width: 64px;
 }
 
+.de-lineMessage {
+  svg {
+    position: relative;
+    top: 8px;
+  }
+}
+
+.de-PostAddToCart-FrequentlyBought {
+  .trendingProducts {
+    display: flex;
+  }
+  .de-ProductTile {
+    max-width: 25%;
+  }
+  .de-ProductTile-title {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+  }
+  .product-tile-shipping-info,
+  .de-ProductTile-inventoryStatus,
+  footer {
+    display: none;
+  }
+}
+
 .de-DrawerSubtotalDiscount {
   & > span {
     color: #e53322;
@@ -67,6 +96,19 @@
   position: absolute;
   top: 0;
   transform: translateX(-50%);
+}
+
+.de-postAddToCart-pricerow--sm {
+  display: flex;
+}
+
+@media (min-width: $breakpoint-md) {
+  .de-postAddToCart-pricerow--sm {
+    display: none;
+  }
+  .de-postAddToCart-pricerow--md {
+    display: flex;
+  }
 }
 
 /**
