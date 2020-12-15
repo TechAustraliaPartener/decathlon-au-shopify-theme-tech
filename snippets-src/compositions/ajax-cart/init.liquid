@@ -28,16 +28,6 @@
         var associated_products = [];
         var index = 0;
 
-        for (const handle of formatted_associated_products.products) {
-          if (index > 7) break;
-          await $.getJSON('/products/' + handle + '.js').then(product => {
-            product.price_dollar = Shopify.formatMoney(product.price, {{ shop.money_format | json }});
-            associated_products.push(product);
-          });
-          index++;
-        }
-        context.associated_products = associated_products;
-
         context.has_discount = context.total_discount > 0;
         context.total_discount_dollar = Shopify.formatMoney(context.total_discount, {{ shop.money_format | json }});
 

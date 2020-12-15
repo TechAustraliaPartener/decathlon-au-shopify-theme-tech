@@ -105,6 +105,21 @@
         </a>
       </div>
     </section>
+
+    <section class="de-FreeShippingIndicator de-u-bgWhite de-u-overflowXNone de-u-overflowYNone de-u-padRight06 de-u-block de-u-lg-hidden de-u-padBottomNone de-u-borderTopMd de-u-borderLightGray de-u-padEnds06 de-u-md-padBottom03">
+      <div class="de-u-spaceTop06 de-u-textMedium de-lineMessage">
+        {% endraw %}{% include 'assets-icons-returns'
+      with class: 'de-u-textBlack de-Icon de-u-textGrow6 de-u-spaceRight03' %}{% raw %}{{ line_one }}
+      </div>
+      <div class="de-u-spaceNone de-u-textMedium de-lineMessage">
+        {% endraw %}{% include 'assets-icons-delivery-truck'
+      with class: 'de-u-textBlack de-Icon de-u-textGrow6 de-u-spaceRight03' %}{% raw %}{{ line_two }}
+      </div>
+      <div class="de-u-spaceBottom06 de-u-textMedium de-lineMessage">
+        {% endraw %}{% include 'assets-icons-store'
+        with class: 'de-u-textBlack de-Icon de-u-textGrow6 de-u-spaceRight03' %}{% raw %}{{ line_three }}
+      </div>
+    </section>
   </section>
 
   <section class="de-PostAddToCart-FrequentlyBought">
