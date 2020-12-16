@@ -83,10 +83,16 @@ state.onChange(
       if (window.inventoryLocationsDisplay && window.inventories) {
         window.inventoryLocationsDisplay.changeVariant(variant.id);
       }
+      if (window.vueATC) {
+        window.vueATC.changeVariant(variant.id);
+      }
     } else {
       window.vars.selectedVariant = null;
       if (window.inventoryLocationsDisplay && window.inventories) {
         window.inventoryLocationsDisplay.changeVariant(null);
+      }
+      if (window.vueATC) {
+        window.vueATC.changeVariant(null);
       }
     }
   },

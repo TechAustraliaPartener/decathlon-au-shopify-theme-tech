@@ -1,8 +1,10 @@
+/* eslint-disable */
+
 import $ from 'jquery';
 import Vue from 'vue/dist/vue.esm.js';
 
-const variantInventory = window.productJSON.variants[0]; 
-console.log(variantInventory);
+const variantInventory = window.firstVariant; 
+// console.log(variantInventory);
 
 const initVueATC = () => {
   window.vueATC = new Vue({
@@ -11,9 +13,6 @@ const initVueATC = () => {
     methods: {
       changeWholeData(newData) {
         var extraData = {
-          state: newData.state || this.$data.state,
-          collapsed: newData.collapsed || this.$data.collapsed,
-          code: newData.code || this.$data.code
         }
         newData = { ...newData, ...extraData };
         Object.keys(this.$data).forEach(key => (this.$data[key] = null));
@@ -22,6 +21,22 @@ const initVueATC = () => {
         );
       },
       changeVariant(variant) {
+        const variantInventory = window.productJSON.variants.find(v => v.id === variant);
+
+        const variantLocationsInventory = (window.inventories || {})[variant];
+        const calculatedInventory = variantLocationsInventory ? this.mutateWithLocations(variantInventory, variantLocationsInventory) : variantInventory;
+
+        this.changeWholeData(calculatedInventory);
+      },
+      mutateWithLocations(variantInventory, variantLocationsInventory) {
+        var mutatedInventory = variantInventory;
+
+        const { inventoryItem } = variantLocationsInventory;
+        const { delivery, locations } = inventoryItem;
+
+        //mutatedInventory.available = (delivery.inStock > 0 || locations.length > 0);
+
+        return mutatedInventory;
       }
     }
   });

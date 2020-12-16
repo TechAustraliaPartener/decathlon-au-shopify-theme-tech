@@ -15,6 +15,9 @@
       {% endcomment %}
       {% include 'moment.js' %}
       {% include 'moment-timezone.js' %}
+      <script>
+        window.firstVariant = {{ product.selected_or_first_available_variant | json }};
+      </script>
       <script defer type="module" src="{{ 'built-product-page.js' | asset_url }}"></script>
     {% endif %}
     <script type="module" src="{{ 'built-product-carousel.js' | asset_url }}"></script>
