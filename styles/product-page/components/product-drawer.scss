@@ -53,6 +53,17 @@
   .de-ProductTile {
     max-width: 50%;
   }
+  .de-ProductTile.de-is-loading * {
+    display: none;
+  }
+  .de-ProductTile.de-is-loading {
+    background-color: #f3f3f3;
+    border: none;
+    height: 400px;
+    margin-bottom: 2em;
+    padding: 1em !important;
+    position: relative;
+  }
   .de-ProductTile-title {
     display: -webkit-box;
     overflow: hidden;
@@ -66,6 +77,33 @@
   footer {
     display: none;
   }
+}
+
+.de-CartItemInfo-images.de-is-loading * {
+  display: none;
+}
+
+.de-CartSubtotal.de-is-loading * {
+  display: none;
+}
+
+.de-CartSubtotal.de-is-loading {
+  border: 0;
+  height: 190px;
+  background-color: #f3f3f3;
+  padding: 1em;
+}
+
+.de-FreeShippingIndicator.de-is-loading * {
+  display: none;
+}
+
+.de-FreeShippingIndicator.de-is-loading {
+  background-color: #f3f3f3;
+  border: none;
+  height: 176px;
+  margin-bottom: 2em;
+  padding: 1em !important;
 }
 
 .de-DrawerSubtotalDiscount {
@@ -104,6 +142,28 @@
 
 .de-postAddToCart-pricerow--md {
   display: none;
+}
+
+.de-Skeleton.de-is-loading::after {
+  animation: pulse 1.5s linear infinite;
+  animation-delay: 1s;
+  background-image:
+    linear-gradient(#ddd 36px, transparent 0),
+    linear-gradient(#ddd 28px, transparent 0),
+    linear-gradient(#ddd 28px, transparent 0);
+  background-repeat: no-repeat;
+  background-size:
+    90% 24px,
+    65% 16px,
+    50% 16px;
+  background-position:
+    0 0px,
+    0 40px,
+    0 70px;
+    content: '';
+    display: block;
+    height: 100%;
+    width: 100%;
 }
 
 @media (min-width: $breakpoint-md) {

@@ -3,8 +3,16 @@
   * Legacy code setting up callbacks to events in ajax-cart.js
   */
   jQuery(function($) {
-    $('body').on('beforeAddItem.ajaxCart', function(e) {});
     var addedItemTemplate = Handlebars.compile($('#AddedItemTemplate').html());
+    $('body').on('beforeAddItem.ajaxCart', function(e) {
+      // Add empty template with loading classes
+      $('.de-PostAddToCartContainer').remove();
+      $('.de-addedItemContainer').append(addedItemTemplate({}));
+      $('.de-CartItemInfo-images').addClass('de-is-loading');
+      $('.de-CartSubtotal').addClass('de-is-loading');
+      $('.de-FreeShippingIndicator').addClass('de-is-loading');
+      $('.de-ProductTile').addClass('de-is-loading');
+    });
     $('body').on('completeAddItem.ajaxCart', async function(evt, obj, jqxhr) {
       if (jqxhr.status < 400) {
         var context = jqxhr.responseJSON;
@@ -15,33 +23,34 @@
         var thumbnail = new Image();
 
         function loadTemplate() {
-          $('.de-PostAddToCart').remove();
-          $('.de-PostAddToCart-FrequentlyBought').remove();
-          $('.de-addedItemContainer').append(addedItemTemplate(context));
+          // Replace empty template with populated template and remove loading bars
+          $('.de-PostAddToCartContainer').replaceWith(addedItemTemplate(context));
+          $('.de-CartItemInfo-images').removeClass('de-is-loading');
+          $('.de-CartSubtotal').removeClass('de-is-loading');
+          $('.de-FreeShippingIndicator').removeClass('de-is-loading');
+          $('.de-ProductTile').removeClass('de-is-loading');
         }
 
         thumbnail.onload = loadTemplate;
 
-        var associated_products_string = window.Shopify.product.associated_products.replace("=>", ":");
-        var formatted_associated_products = JSON.parse(associated_products_string); // Returns array of handles 
-
-        var associated_products = [];
-        var index = 0;
+        await $.getJSON('/cart.js', function (cart, status) {
+          context.cart_count = cart.item_count;
+          context.subtotal = Shopify.formatMoney(cart.total_price, {{ shop.money_format | json }});
+        });
 
         context.has_discount = context.total_discount > 0;
         context.total_discount_dollar = Shopify.formatMoney(context.total_discount, {{ shop.money_format | json }});
 
         context.rating = $('.productRating').html();
         context.price_dollars = Shopify.formatMoney(context.price, {{ shop.money_format | json }});
-        context.subtotal = $('#CartSubtotal').text();
         var defaultTitleIndex = context.variant_options.indexOf('Default Title');
         if (defaultTitleIndex > -1) {
           context.variant_options.splice(defaultTitleIndex, 1);
         }
         context.added_quantity = /quantity=(\d+)/.exec(obj.data)[1] || 1
-        context.cart_count = $('#CartCount').text();
         context.line_price_dollars = Shopify.formatMoney(context.price * parseInt(context.added_quantity), {{ shop.money_format | json }});
-        context.added_multiple = parseInt(context.added_quantity) > 1 ? true : false;
+        context.added_multiple = parseInt(context.added_quantity) > 1;
+        context.cart_multiple = parseInt(context.cart_count) > 1;
 
         var translations = window.translations.add_to_cart_drawer;
         context.line_one = translations.line_one;

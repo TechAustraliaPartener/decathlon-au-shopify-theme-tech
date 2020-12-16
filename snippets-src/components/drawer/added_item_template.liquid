@@ -1,12 +1,13 @@
 <script id="AddedItemTemplate" type="text/template">
 {% raw %}
+<section class="de-PostAddToCartContainer">
   <section class="de-PostAddToCart">
     <section class="de-PostAddToCart-content de-PostAddToCart-info">
       <h3 class="de-u-textGrow de-u-md-textGrow2 de-u-textBold de-u-spaceBottom06">
-        Great Choice! Added {{ added_quantity }} item{{#if added_multiple}}s{{/if}} 2.0
+        Great Choice! Added {{ added_quantity }} item{{#if added_multiple}}s{{/if}}
       </h3>
       <section class="de-CartItemInfo-grid de-u-padTop06 de-u-md-padEnds06">
-        <div class="de-CartItemInfo-images de-u-flex de-u-flexNone de-u-flexAlignItemsCenter">
+        <div class="de-CartItemInfo-images de-u-flex de-u-flexNone de-u-flexAlignItemsCenter de-is-loading">
           <div class="de-u-flex de-u-padRight06">
             <svg width="26px" height="26px" viewBox="0 0 26 26">
             <path d="M8.56591313,23 L8.55915517,23 C8.25778143,22.9975013 7.96990825,22.8649608 7.75991373,22.632019 L0.326157411,14.3864291 C0.0411391726,14.0763895 -0.0674580557,13.6253338 0.0417364197,13.205094 C0.150930895,12.7848541 0.461103291,12.4601388 0.854091777,12.35465 C1.24708026,12.2491612 1.66237241,12.3791421 1.94176045,12.6950758 L8.5771764,20.057123 L24.0912006,3.34068829 C24.5331474,2.88074577 25.235644,2.8873236 25.6701063,3.35547236 C26.1045686,3.82362113 26.1106731,4.58058654 25.6838266,5.05680017 L9.36200085,22.6441556 C9.15091486,22.8718059 8.8645634,23 8.56591313,23 L8.56591313,23 Z" id="Path" fill="#0380C5" fill-rule="nonzero"></path>
@@ -49,7 +50,7 @@
           </div>
         </div>
       </div>
-      <section class="de-FreeShippingIndicator de-u-bgWhite de-u-overflowXNone de-u-overflowYNone de-u-padRight06 de-u-hidden de-u-lg-block de-u-padBottomNone de-u-borderTopMd de-u-borderLightGray de-u-padEnds06 de-u-md-padBottom03">
+      <section class="de-FreeShippingIndicator de-u-bgWhite de-u-overflowXNone de-u-overflowYNone de-u-padRight06 de-u-hidden de-u-lg-block de-u-padBottomNone de-u-borderTopMd de-u-borderLightGray de-u-padEnds06 de-u-md-padBottom03 de-is-loading de-Skeleton">
         <div class="de-u-spaceTop06 de-u-textMedium de-lineMessage">
           {% endraw %}{% include 'assets-icons-returns'
         with class: 'de-u-textBlack de-Icon de-u-textGrow6 de-u-spaceRight03' %}{% raw %}{{ line_one }}
@@ -68,13 +69,13 @@
     <section>
       <h2 class="de-u-textGrow de-u-md-textGrow2 de-u-spaceBottom03">
         Cart Subtotal
-        <span class="de-u-textDarkGray de-u-textNormal"> ({{ cart_count }} items)</span>
+        <span class="de-u-textDarkGray de-u-textNormal de-CartCount"> ({{ cart_count }} item{{#if cart_multiple}}s{{/if}})</span>
       </h2>
 
-      <div class="de-CartSubtotal de-u-borderLightGray de-u-borderSm de-u-textShrink1 de-u-md-textGrow">
+      <div class="de-CartSubtotal de-u-borderLightGray de-u-borderSm de-u-textShrink1 de-u-md-textGrow de-is-loading de-Skeleton">
         <div class="de-u-pad03">
           <span class="de-u-flex de-u-flexJustifyBetween de-u-padBottom06">
-            <span>Subtotal (Need to recompute when on same page)</span>
+            <span>Subtotal</span>
             <span>{{ subtotal }}</span>
           </span>
           {{#if has_discount}}
@@ -106,7 +107,7 @@
       </div>
     </section>
 
-    <section class="de-FreeShippingIndicator de-u-bgWhite de-u-overflowXNone de-u-overflowYNone de-u-padRight06 de-u-block de-u-lg-hidden de-u-padBottomNone de-u-borderTopMd de-u-borderLightGray de-u-padEnds06 de-u-md-padBottom03">
+    <section class="de-FreeShippingIndicator de-u-bgWhite de-u-overflowXNone de-u-overflowYNone de-u-padRight06 de-u-block de-u-lg-hidden de-u-padBottomNone de-u-borderTopMd de-u-borderLightGray de-u-padEnds06 de-u-md-padBottom03 de-is-loading de-Skeleton">
       <div class="de-u-spaceTop06 de-u-textMedium de-lineMessage">
         {% endraw %}{% include 'assets-icons-returns'
       with class: 'de-u-textBlack de-Icon de-u-textGrow6 de-u-spaceRight03' %}{% raw %}{{ line_one }}
@@ -167,5 +168,6 @@
       {% raw %}
     </section>
   </section>
+</section>
 {% endraw %}
 </script>

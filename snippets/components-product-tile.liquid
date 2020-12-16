@@ -31,7 +31,7 @@ Example:
 {% endcomment %}
 
 {% comment %} Begin ProductTile pattern {% endcomment %}
-<article class="de-ProductTile de-u-lineHeight3 js-de-ProductTile {{ class }}" {% comment %} TODO Remove
+<article class="de-ProductTile de-u-lineHeight3 js-de-ProductTile {{ class }} {% if added_item_drawer == true %}de-is-loading de-Skeleton{% endif %}" {% comment %} TODO Remove
   `data-product-title` if not needed, eventually {% endcomment %} data-product-title="{{ product.title }}">
   <a href="{{ product.url }}">
     <section class="de-ProductTile-showcase js-de-ProductTile-showcase">
