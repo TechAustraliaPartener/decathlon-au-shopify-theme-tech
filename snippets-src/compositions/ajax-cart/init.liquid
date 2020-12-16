@@ -4,6 +4,7 @@
   */
   jQuery(function($) {
     var addedItemTemplate = Handlebars.compile($('#AddedItemTemplate').html());
+
     $('body').on('beforeAddItem.ajaxCart', function(e) {
       // Add empty template with loading classes
       $('.de-PostAddToCartContainer').remove();
@@ -13,11 +14,10 @@
       $('.de-FreeShippingIndicator').addClass('de-is-loading');
       $('.de-ProductTile').addClass('de-is-loading');
     });
+
     $('body').on('completeAddItem.ajaxCart', async function(evt, obj, jqxhr) {
       if (jqxhr.status < 400) {
         var context = jqxhr.responseJSON;
-        console.log('CONTEXT');
-        console.log(context);
 
         /* set the add to cart pane to load once the thumbnail loads */
         var thumbnail = new Image();
@@ -67,7 +67,7 @@
           $('body').on('afterGetCart.ajaxCart', getCartHandler);
           ajaxCart.load();
         } else {
-          	thumbnail.src = context.image;
+          thumbnail.src = context.image;
         }
       }
     });
