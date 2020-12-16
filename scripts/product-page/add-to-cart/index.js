@@ -164,7 +164,7 @@ const render = ({
   }
 
   if (bisHidden) {
-    alert("CLEARANCE SALE " + bisHidden);
+    // alert("CLEARANCE SALE " + bisHidden);
     document.querySelector('.de-AddToCartActions .de-ProductQuantity').classList.remove('de-u-md-block');
     addToCartButtonEl.classList.add('bis-hidden');
     $('.js-de-AddToCart-btn').closest('.de-AddToCartActions').addClass('full-width-button');

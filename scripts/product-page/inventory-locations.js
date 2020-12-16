@@ -209,7 +209,7 @@ function addMasterStoresData(inventoryItem, state) {
  */
 const initInventoryLocations = () => {
   document.addEventListener('tomitProductLoaded', function (e, data) {
-    alert('PRODUCT LOADED');
+    // alert('PRODUCT LOADED');
     window.inventories =
       window.tomitProductInventoryInfo.activeProduct.variants;
 

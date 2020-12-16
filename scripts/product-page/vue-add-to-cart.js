@@ -1,12 +1,13 @@
 import $ from 'jquery';
 import Vue from 'vue/dist/vue.esm.js';
 
-const product = window.productJSON; 
+const variantInventory = window.productJSON.variants[0]; 
+console.log(variantInventory);
 
 const initVueATC = () => {
   window.vueATC = new Vue({
     el: '#addToCartButton',
-    data: {},
+    data: variantInventory,
     methods: {
       changeWholeData(newData) {
         var extraData = {
@@ -30,6 +31,5 @@ const initVueATC = () => {
  * Put all functions that need to run on product-page load here
  */
 export const init = () => {
-  console.log('yepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyepyep');
   initVueATC();
 };
