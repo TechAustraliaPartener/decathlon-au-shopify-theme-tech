@@ -680,5 +680,14 @@ function slugify(str) {
 
 </script>
 
+<script type="text/javascript">
+$(document).on('ready', () => {
+  vendorFallbackLogo = $('.vendor_logo_fallback');
+  if (vendorFallbackLogo.length > 0) {
+    vendorFallbackLogo.closest('.de-ProductTitleLockup').addClass('has_vendor_logo_fallback');
+  }
+});
+</script>
+
 {% comment %}{{ 'appmate-wishlist-king.scss.css' | asset_url | stylesheet_tag }}{% endcomment %}
 
