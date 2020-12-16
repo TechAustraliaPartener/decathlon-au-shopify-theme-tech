@@ -8,7 +8,7 @@ function pushStockInfoToDataLayer(modelNumber) {
 
   if (window.vars.pushInventory.length > 0) {
     var uniqueModels = [...new Set(window.vars.pushInventory)];
-    console.log(uniqueModels);
+    // console.log(uniqueModels);
     uniqueModels.forEach(model => {
       push(model);
     });
@@ -17,7 +17,7 @@ function pushStockInfoToDataLayer(modelNumber) {
 }
 
 function push(modelNumber) {
-  console.log('Pushing ' + modelNumber);
+  // console.log('Pushing ' + modelNumber);
 
   // Determine stock status
   var simpleInventory = {};
@@ -59,7 +59,7 @@ function push(modelNumber) {
   }
 
   const stockEventPayload = {...window.vars.productStockInfo.static, ...window.vars.productStockInfo.dynamic, ...event };
-  console.log(stockEventPayload);
+  // console.log(stockEventPayload);
 
   dataLayer.push(stockEventPayload);
 }
