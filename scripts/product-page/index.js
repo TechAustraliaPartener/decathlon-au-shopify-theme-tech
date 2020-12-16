@@ -11,6 +11,7 @@ import * as sizeSwatches from './size-swatches';
 import './videos';
 import * as accordion from './accordion';
 import * as inventoryLocations from './inventory-locations';
+import * as vueATC from './vue-add-to-cart';
 import { reviewsInit } from './ratings-reviews';
 import { updateOptionStates } from './option-states';
 import * as masterSelect from './master-select';
@@ -194,6 +195,7 @@ const init = async () => {
   stickyNav.init();
   modal.init();
   inventoryLocations.init();
+  vueATC.init();
   faqs.init();
 
   return urlVariant;
