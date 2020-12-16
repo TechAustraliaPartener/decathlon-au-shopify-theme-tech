@@ -20,4 +20,5 @@ src/css/*
 !/snippets/shogun-*
 !/snippets/nav-*
 !/snippets/breadcrumb-*
+!/snippets/vue*
 theme.zip
