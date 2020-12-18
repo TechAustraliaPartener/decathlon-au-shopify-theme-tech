@@ -67,7 +67,6 @@
         }
       }
 
-      $(this).parents('.de-ProductTitleLockup').addClass('wk_item_added').removeClass('wk_item_removed');
     }),
     'click [data-wk-remove-product]': eventHandler(function(){
       var product = this.getAttribute('data-wk-remove-product');
@@ -80,7 +79,7 @@
         $('.addToCartText').text('Add to wishlist');
       }
 
-      $(this).parents('.de-ProductTitleLockup').addClass('wk_item_removed').removeClass('wk_item_added');
+
     }),
     'click [data-wk-remove-item]': eventHandler(function(){
       var item = this.getAttribute('data-wk-remove-item');
@@ -218,13 +217,12 @@
   {% assign btn_icon = 'wishlist-icon-empty' %}
 {% endif %}
 
-  <button type="button" class="wk-button-product {{ btn_action }}" title="{{ btn_title }}" data-{{ btn_action }}="{{ product.id }}">
-    <div class="wk-icon">
-      {{btn_title}}
-      {% include btn_icon %}
-    </div>
-  </button>
-
+<button type="button" class="wk-button-product {{ btn_action }}" title="{{ btn_title }}" data-{{ btn_action }}="{{ product.id }}">
+  <div class="wk-icon">
+    {{btn_title}}
+    {% include btn_icon %}
+  </div>
+</button>
 </script>
 
 <script id="wishlist-button-collection" data="product" type="text/x-template" app="wishlist-king">

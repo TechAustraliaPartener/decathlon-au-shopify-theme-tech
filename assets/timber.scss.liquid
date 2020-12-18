@@ -10722,24 +10722,10 @@ $color-out: #ff0000;
   height: 20px;
   vertical-align: text-bottom;
   margin-left: 5px;
-  transition: transform .5s ease-in-out;
-
-  &:hover {
-    transform: scale(1.1);
-    @extend .wk_wishlist_icon_active;
-  }
 }
 
-.wk-remove-product svg {
-  @extend .wk_wishlist_icon_active;
-}
-
-.wk_item_added svg {
-  animation: wk_beat .5s 1;
-}
-
-.wk_item_removed svg {
-  animation: wk_beat .5s 2;
+.wk-remove-product svg path {
+  fill: #0082C3;
 }
 
 @media screen and (max-width: 640px ) {
@@ -10770,13 +10756,3 @@ $color-out: #ff0000;
     top: 32px;
   }
 }
-
-@keyframes wk_beat {
-  0% {
-    transform: scale(.8);
-  }
-  100% {
-    transform: scale(1.1);
-  }
-}
-
