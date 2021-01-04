@@ -31,11 +31,11 @@
     "header_support_link": "https:\/\/help.decathlon.com.au\/support\/home",
     "header_store_label": "Stores",
     "header_sign_in_label": "Sign In",
-    "megamenu_image": "shopify:\/\/shop_images\/Copy_of_SIDE_NAV_3_536fd197-5efe-483e-b333-ee556b3d4d96.jpg",
-    "megamenu_title": "Sporty Gifts!",
-    "megamenu_subtitle": "Bikes, Scooters, Fitness Tech & More",
-    "megamenu_link": "shopify:\/\/collections\/christmas-gift-ideas",
-    "megamenu_bg_colour": "#ff0000",
+    "megamenu_image": "shopify:\/\/shop_images\/Copy_of_SIDE_NAV_507bd8cd-6d54-4857-9108-ab46a80acc0b.png",
+    "megamenu_title": "Beach Essentials",
+    "megamenu_subtitle": "Shelters, Umbrellas, Chairs & More",
+    "megamenu_link": "shopify:\/\/collections\/beach-specials",
+    "megamenu_bg_colour": "#1c82c3",
     "custom_fields_terms_conditions": "I agree to the <a href=\"\/pages\/terms-and-conditions-membership\" target=\"_blank\">T&Cs<\/a> and <a href=\"\/pages\/privacy-policy\" target=\"_blank\">Privacy Policy<\/a> for creating an account.",
     "is_lookbook": false,
     "product_returns_text": "Easy 365 days return",
@@ -785,9 +785,9 @@
               "name": "Berwick (3806)",
               "title": "Berwick, 3806, Pick Up Only",
               "online_inventory_source": false,
-              "enable_c_c": true,
+              "enable_c_c": false,
               "duplicate": "Knoxfield",
-              "test_mode": false,
+              "test_mode": true,
               "street1": "29-31 High Street",
               "city": "Berwick",
               "zip": "3806",
@@ -935,63 +935,34 @@
           "1589172506799": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_6_-min_aa41577c-9311-411b-9e25-d9f0568887b7.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_13.jpg",
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
-              "banner_title": "Gift Ideas",
-              "banner_subtitle": "<p><strong>Give the gift of sport this Christmas<\/strong><\/p>",
+              "banner_title": "New Year, New You",
+              "banner_subtitle": "<p><strong>Fitness Equipment, Apparel &amp; Accessories<\/strong><\/p>",
               "button_new_window": false,
-              "button_title": "Shop now",
-              "button_url": "https:\/\/decathlon.com.au\/collections\/christmas-gift-ideas?q=&hPP=28&idx=shopify_products_recently_ordered_count_desc&p=0&is_v=1"
-            }
-          },
-          "070de20e-9e73-4b48-b30a-e13a6d3083c0": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_11.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": "The Great Outdoors",
-              "banner_subtitle": "<p><strong>Tents, Esky, Camping Furniture &amp; Backpacks<\/strong><\/p>",
-              "button_new_window": false,
-              "button_title": "shop now",
-              "button_url": "shopify:\/\/collections\/camping"
-            }
-          },
-          "ab679345-c7c5-4f8d-a587-c0580b5c2f93": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_12_c183e3dd-6c98-4c40-81b4-0b3ebc542b6b.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": "Explore SUP",
-              "banner_subtitle": "<p><strong>SUP, Paddles &amp; More<\/strong><\/p>",
-              "button_new_window": false,
-              "button_title": "shop now",
-              "button_url": "shopify:\/\/collections\/stand-up-paddle"
+              "button_title": "Shop Fitness",
+              "button_url": "shopify:\/\/collections\/gym-clothes"
             }
           }
         },
         "block_order": [
-          "1589172506799",
-          "070de20e-9e73-4b48-b30a-e13a6d3083c0",
-          "ab679345-c7c5-4f8d-a587-c0580b5c2f93"
+          "1589172506799"
         ],
         "settings": {}
       },
       "1590735691745": {
         "type": "slider_image_section",
-        "disabled": true,
         "settings": {
-          "homepage_slider_image_title": "By Department!",
-          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_Banner_Women_450x280px_MM_25-Nov-2020.png",
-          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/women-clearance",
+          "homepage_slider_image_title": "Water Fun!",
+          "homepage_slider_image_1": "shopify:\/\/shop_images\/Decathlon_SB_Kayaking_SA_24-09-2020_R1-min.png",
+          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/kayaking",
           "checkbox_image_1": true,
-          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_Banner_Men_450x280px_MM_25-Nov-2020.png",
-          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/mens-clearance-apparel",
+          "homepage_slider_image_2": "shopify:\/\/shop_images\/Decathlon_SB_Snorkeling_SA_24-09-2020_R1-min.png",
+          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/snorkeling",
           "checkbox_image_2": true,
-          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_Banner_Kids_450x280px_MM_25-Nov-2020.png",
-          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/black-friday-sale?q=&hPP=24&idx=shopify_products_price_desc&p=0&dFR%5Bnamed_tags.GENDER_ID%5D%5B0%5D=5&dFR%5Bnamed_tags.GENDER_ID%5D%5B1%5D=6&is_v=1",
+          "homepage_slider_image_3": "shopify:\/\/shop_images\/Decathlon_SB_Swimming_SA_24-09-2020_R1.png",
+          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/swimming",
           "checkbox_image_3": true,
           "homepage_slider_image_redirection_4": "",
           "checkbox_image_4": false
@@ -1000,15 +971,15 @@
       "1597283878337": {
         "type": "slider_image_section",
         "settings": {
-          "homepage_slider_image_title": "Info",
-          "homepage_slider_image_1": "shopify:\/\/shop_images\/1_450X280_Decthlon_Make-similar-_450-x280__BS_01DEC2020.jpg",
-          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/pages\/christmas-deliveries-pick-up",
+          "homepage_slider_image_title": "Trending",
+          "homepage_slider_image_1": "shopify:\/\/shop_images\/Decathlon_SB_Fitness_SA_25-09-2020_R2-min.png",
+          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/bodybuilding",
           "checkbox_image_1": true,
-          "homepage_slider_image_2": "shopify:\/\/shop_images\/2_450X280_Decthlon_Make-similar-_450-x280__BS_01DEC2020.jpg",
-          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/pages\/christmas-deliveries-pick-up",
+          "homepage_slider_image_2": "shopify:\/\/shop_images\/DecathlonAU_Side_Banner_Cycling_SA_14-09-2020_V1-min.png",
+          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/cycling",
           "checkbox_image_2": true,
-          "homepage_slider_image_3": "shopify:\/\/shop_images\/3_450X280_Decthlon_Make-similar-_450-x280__BS_01DEC2020.jpg",
-          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/pages\/workshop-services",
+          "homepage_slider_image_3": "shopify:\/\/shop_images\/DecathlonAU_Side_Banner_Camping_SA_14-09-2020_V1-min.png",
+          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/camping",
           "checkbox_image_3": true,
           "homepage_slider_image_redirection_4": "",
           "checkbox_image_4": false
