@@ -3,8 +3,8 @@
 import $ from 'jquery';
 import Vue from 'vue/dist/vue.esm.js';
 
-const variantInventory = window.firstVariant; 
-// console.log(variantInventory);
+const variantInventory = window.firstVariant;
+variantInventory.tagged_bis_hidden = window.vars.productJSON.tags.includes('bis-hidden');
 
 const initVueATC = () => {
   window.vueATC = new Vue({
@@ -13,6 +13,7 @@ const initVueATC = () => {
     methods: {
       changeWholeData(newData) {
         var extraData = {
+          tagged_bis_hidden: window.vars.productJSON.tags.includes('bis-hidden')
         }
         newData = { ...newData, ...extraData };
         Object.keys(this.$data).forEach(key => (this.$data[key] = null));

@@ -1,7 +1,7 @@
 <div id="addToCartButton">
   {% raw %}
-    <button v-bind:disabled="!available">
-      <span v-text="available ? 'Add to Cart' : 'Out of Stock'"></span>
+    <button v-bind:disabled="!available || tagged_bis_hidden">
+      <span v-text="available ? 'Add to Cart' : tagged_bis_hidden ? 'Out of Stock' : 'Email me when available'"></span>
     </button>
   {% endraw %}
 </div>
