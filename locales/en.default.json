@@ -333,7 +333,9 @@
       "compare_at": "Compare at",
       "quantity": "Quantity",
       "add_to_cart": "Add to Cart",
-      "add_to_wishlist": "Add to Wishlist"
+      "add_to_wishlist": "Add to Wishlist",
+      "out_of_stock": "Out of Stock",
+      "email_when_available": "Email me when available"
     },
     "options": {
       "color": "colour",

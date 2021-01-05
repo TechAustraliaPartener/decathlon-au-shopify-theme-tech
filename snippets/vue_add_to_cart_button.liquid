@@ -4,8 +4,15 @@
       v-bind:disabled="!available && tagged_bis_hidden"
       v-bind:class="[available ? 'alt' : '']"
       v-cloak
-      class="de-Button btn btn--fill de-u-sizeFull de-u-textSizeBase js-de-AddToCart-btn addToCart js-de-Drawer-toggle">
-      <span v-text="available ? 'Add to Cart' : tagged_bis_hidden ? 'Out of Stock' : 'Email me when available'"></span>
+      type="submit"
+      name="add"
+      id="AddToCart"
+      class="de-Button btn btn--fill de-u-sizeFull de-u-textSizeBase js-de-AddToCart-btn addToCart js-de-Drawer-toggle" 
+      data-drawer-id="post-add-to-cart-drawer"
+      {% endraw %}{% if settings.add_to_cart_drawer_enabled %}data-drawer-action="open"{% endif %}{% raw %}
+      data-drawer-prevent-default="false">
+      <span v-text="{% endraw %}available ? '{{ 'products.product.add_to_cart' | t }}' : tagged_bis_hidden
+        ? '{{ 'products.product.out_of_stock' | t }}' : '{{ 'products.product.email_when_available' | t }}' {% raw %}"></span>
     </button>
   {% endraw %}
 </div>
