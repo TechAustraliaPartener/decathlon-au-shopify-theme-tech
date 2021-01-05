@@ -91,6 +91,7 @@
     <div class="de-ProductAddToCart">
       {% render 'vue_add_to_cart_button' %}
       
+      {% comment %}
       <button
         type="submit"
         name="add"
@@ -108,6 +109,7 @@
           {{ 'products.product.add_to_cart' | t }}
         </span>
       </button>
+      {% endcomment %}
     </div>
   </div>
 </form>

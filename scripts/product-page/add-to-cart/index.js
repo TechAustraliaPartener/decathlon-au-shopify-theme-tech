@@ -163,12 +163,12 @@ const render = ({
     validationTextEl.textContent = validationText;
   }
 
-  if (bisHidden) {
-    // alert("CLEARANCE SALE " + bisHidden);
-    document.querySelector('.de-AddToCartActions .de-ProductQuantity').classList.remove('de-u-md-block');
-    addToCartButtonEl.classList.add('bis-hidden');
-    $('.js-de-AddToCart-btn').closest('.de-AddToCartActions').addClass('full-width-button');
-  }
+  // if (bisHidden) {
+  //   // alert("CLEARANCE SALE " + bisHidden);
+  //   document.querySelector('.de-AddToCartActions .de-ProductQuantity').classList.remove('de-u-md-block');
+  //   addToCartButtonEl.classList.add('bis-hidden');
+  //   $('.js-de-AddToCart-btn').closest('.de-AddToCartActions').addClass('full-width-button');
+  // }
 
   if (!addToCartButtonEl || !addToCartButtonTextEl) return;
 
