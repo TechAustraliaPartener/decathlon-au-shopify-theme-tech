@@ -1,0 +1,16 @@
+.add_to_wishlist_container {
+  .wk-button-product {
+    border: 1px solid #0080C4;
+    height: 100%;
+    width: 72px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .wk-icon {
+    margin-left: -5px;
+    margin-top: 1px;
+  }
+}

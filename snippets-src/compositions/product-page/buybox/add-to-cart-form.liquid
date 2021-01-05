@@ -101,7 +101,7 @@
         type="submit"
         name="add"
         id="AddToCart"
-        class="de-Button btn btn--fill de-u-sizeFull de-u-textSizeBase js-de-AddToCart-btn addToCart alt js-de-Drawer-toggle" 
+        class="de-Button btn btn--fill de-u-sizeFull de-u-textSizeBase js-de-AddToCart-btn addToCart alt js-de-Drawer-toggle"
         data-drawer-id="post-add-to-cart-drawer"
         {% if settings.add_to_cart_drawer_enabled %}data-drawer-action="open"{% endif %}
         data-drawer-prevent-default="false"
@@ -116,5 +116,9 @@
       </button>
       {% endcomment %}
     </div>
+    <div class="add_to_wishlist_container">
+      <!-- include 'wishlist-button-product' with '{{ product.id }}' -->
+    </div>
+
   </div>
 </form>

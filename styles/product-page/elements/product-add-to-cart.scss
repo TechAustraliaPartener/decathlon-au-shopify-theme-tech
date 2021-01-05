@@ -1,6 +1,12 @@
 /**
  * Add to cart actions
  */
+@supports (display: grid) {
+  .de-AddToCartActions {
+    display: grid;
+    grid-template-columns: 1fr 72px;
+  }
+}
 
 @media (min-width: $breakpoint-md) {
   .de-AddToCartActions {
@@ -10,7 +16,7 @@
   @supports (display: grid) {
     .de-AddToCartActions {
       display: grid; /* 2 */
-      grid-template-columns: 72px 1fr; /* 4 */
+      grid-template-columns: 72px 1fr 72px; /* 4 */
     }
   }
 }

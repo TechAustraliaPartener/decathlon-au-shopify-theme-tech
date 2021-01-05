@@ -217,12 +217,13 @@
   {% assign btn_icon = 'wishlist-icon-empty' %}
 {% endif %}
 
-<button type="button" class="wk-button-product {{ btn_action }}" title="{{ btn_title }}" data-{{ btn_action }}="{{ product.id }}">
-  <div class="wk-icon">
-    {{btn_title}}
-    {% include btn_icon %}
-  </div>
-</button>
+  <button type="button" class="wk-button-product {{ btn_action }}" title="{{ btn_title }}" data-{{ btn_action }}="{{ product.id }}">
+    <div class="wk-icon">
+      {% comment %} {{btn_title}} {% endcomment %}
+      {% include btn_icon %}
+    </div>
+  </button>
+
 </script>
 
 <script id="wishlist-button-collection" data="product" type="text/x-template" app="wishlist-king">
