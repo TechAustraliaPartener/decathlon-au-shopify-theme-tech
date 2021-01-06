@@ -116,7 +116,12 @@
       </button>
       {% endcomment %}
     </div>
-    <div class="add_to_wishlist_container" title="{{ settings.app_wk_message }}">
+    <div class="add_to_wishlist_container">
+      {%  if customer %}{% else %}
+        <div class='tooltip de-rrp-tooltip de-rrp-tooltip--top'>
+          {{ 'products.product.wishlist_disabled_message' | t }}
+        </div>
+      {% endif %}
       <!-- include 'wishlist-button-product' with '{{ product.id }}' -->
     </div>
 

@@ -1,4 +1,23 @@
 .add_to_wishlist_container {
+  position: relative;
+
+  .tooltip {
+    bottom: 67px;
+    z-index: 999;
+  }
+
+  &:hover {
+    .tooltip {
+      display: block !important;
+      left: -130px;
+      min-width: 200px;
+
+      &:after {
+        left: 160px;
+      }
+    }
+  }
+
   .wk-button-product {
     border: 2px solid #0080C4;
     height: 100%;

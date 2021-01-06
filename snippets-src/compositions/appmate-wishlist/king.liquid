@@ -205,29 +205,19 @@
 </script>
 
 <script id="wishlist-button-product" data="product" type="text/x-template" app="wishlist-king">
-{% if product.in_wishlist %}
-  {% assign btn_text = 'In Wishlist' %}
-  {% assign btn_title = 'Added to wishlist' %}
-  {% assign btn_action = 'wk-remove-product' %}
-  {% assign btn_icon = 'wishlist-icon-filled' %}
-{% else %}
-  {% assign btn_text = 'Add to wishlist' %}
-  {% assign btn_title = 'Add to wishlist' %}
-  {% assign btn_action = 'wk-add-product' %}
-  {% assign btn_icon = 'wishlist-icon-empty' %}
-{% endif %}
-{% if customer %}
-  {% assign tooltip_title = '' %}
-{% else %}
-  {% if settings.app_wk_message%}
-    {% assign tooltip_title = settings.app_wk_message %}
+  {% if product.in_wishlist %}
+    {% assign btn_text = 'In Wishlist' %}
+    {% assign btn_title = 'Added to wishlist' %}
+    {% assign btn_action = 'wk-remove-product' %}
+    {% assign btn_icon = 'wishlist-icon-filled' %}
+  {% else %}
+    {% assign btn_text = 'Add to wishlist' %}
+    {% assign btn_title = 'Add to wishlist' %}
+    {% assign btn_action = 'wk-add-product' %}
+    {% assign btn_icon = 'wishlist-icon-empty' %}
   {% endif %}
-{% endif %}
 
-{{ settings.app_wk_message }}
-{{ settings.app_wk_icon }}
-
-  <button type="button" class="wk-button-product {{ btn_action }}" title="{{ tooltip_title }}" data-{{ btn_action }}="{{ product.id }}" data-toggle="tooltip" data-placement="top" {% if customer %}{% else %} disabled="disabled"{% endif %}>
+  <button type="button" class="wk-button-product {{ btn_action }}" data-{{ btn_action }}="{{ product.id }}" {% if customer %}{% else %} disabled="disabled"{% endif %}>
     <div class="wk-icon">
       {% comment %} {{btn_title}} {% endcomment %}
       {% include btn_icon %}
