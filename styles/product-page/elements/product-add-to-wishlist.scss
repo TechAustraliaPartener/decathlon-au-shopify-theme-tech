@@ -26,6 +26,10 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+
+    path {
+      stroke: #0080C4;
+    }
   }
 
   .wk-button-product[disabled],
