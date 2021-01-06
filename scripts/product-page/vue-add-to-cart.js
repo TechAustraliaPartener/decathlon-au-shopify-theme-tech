@@ -38,6 +38,19 @@ const initVueATC = () => {
         //mutatedInventory.available = (delivery.inStock > 0 || locations.length > 0);
 
         return mutatedInventory;
+      },
+      showModal(variantId, isEmailButton) {
+        if (isEmailButton) {
+          window.BISPopover.show({ variantId: variantId });
+
+          const BISPopoverEl = document.querySelector('#BIS_frame');
+          const BISPopoverEmailInputEl = BISPopoverEl.contentDocument.querySelector('#email_address');
+          const customer = window.Shopify.customer;
+
+          if (BISPopoverEmailInputEl && customer) {
+            BISPopoverEmailInputEl.value = customer.email;
+          }
+        }
       }
     }
   });

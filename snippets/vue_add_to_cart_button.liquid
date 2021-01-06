@@ -3,7 +3,7 @@
     <button 
       v-bind:disabled="!available && tagged_bis_hidden"
       v-bind:class="[available ? 'alt' : '']"
-      v-cloak
+      v-on:click="showModal(id, (!available && !tagged_bis_hidden))"
       type="submit"
       name="add"
       id="AddToCart"
