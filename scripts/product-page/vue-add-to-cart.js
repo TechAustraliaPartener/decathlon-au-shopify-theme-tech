@@ -33,9 +33,28 @@ const initVueATC = () => {
         var mutatedInventory = variantInventory;
 
         const { inventoryItem } = variantLocationsInventory;
-        const { delivery, locations } = inventoryItem;
+        const { delivery, locations, online } = inventoryItem;
+
+        let totalAllLocations = 0;
+        
+        for (let location of locations) {
+          if (location.available && location.available > 0) {
+            totalAllLocations += location.available;
+          }
+        }
+
+        let totalDelivery = delivery.available;
+
+        let totalOnline = 0;
+
+        for (let item of online) {
+          if (item.available && item.available > 0) {
+            totalOnline += item.available;
+          }
+        }
 
         //mutatedInventory.available = (delivery.inStock > 0 || locations.length > 0);
+        mutatedInventory.available = (totalAllLocations > 0 || totalDelivery.available > 0 || totalOnline > 0);
 
         return mutatedInventory;
       },
