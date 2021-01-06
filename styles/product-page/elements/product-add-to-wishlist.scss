@@ -9,6 +9,24 @@
     cursor: pointer;
   }
 
+  .wk-button-product[disabled],
+  .wk-button-product.disabled {
+    border: 2px solid #acb3b8;
+    cursor: not-allowed;
+
+    & path {
+      stroke: #acb3b8;
+    }
+
+    &:hover {
+      cursor: not-allowed;
+
+      path {
+        fill-opacity: 0;
+      }
+    }
+  }
+
   .wk-icon {
     margin-left: -5px;
     margin-top: 1px;

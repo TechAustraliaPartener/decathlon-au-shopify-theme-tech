@@ -1844,6 +1844,12 @@
         "default": "heart"
       },
       {
+        "type": "text",
+        "id": "app_wk_message",
+        "label": "Wishlist button disabled message",
+        "info": "This message will show upon hovering on disabled wishlist button"
+      },
+      {
         "type": "header",
         "content": "Button - Collection"
       },

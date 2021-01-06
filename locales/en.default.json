@@ -338,7 +338,8 @@
       "email_when_available": "Email me when available",
       "in_stock": "In Stock",
       "low_stock": "Low Stock",
-      "pickup_only": "Pickup Only"
+      "pickup_only": "Pickup Only",
+      "wishlist_disabled_message": "Create an account or sign in to save your wishlist"
     },
     "options": {
       "color": "colour",
