@@ -30,6 +30,10 @@
     path {
       stroke: #0080C4;
     }
+
+    &:hover, &:focus {
+      outline: none !important;
+    }
   }
 
   .wk-button-product[disabled],
