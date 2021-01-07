@@ -364,12 +364,12 @@ var ajaxCart = (function(module, $) {
       totalCartDiscountApplied: cart.total_discount === 0 ? false : true
     }
 
-    console.log('Could be this line');
-    console.log($cartContainer, template, data);
-    const src = $("#CartTemplate").html();
-    const render = Handlebars.compile(src);
-    console.log(render(data));
-    $cartContainer.append(render(data));
+    // console.log('Could be this line');
+    // console.log($cartContainer, template, data);
+    // const src = $("#CartTemplate").html();
+    // const render = Handlebars.compile(src);
+    // console.log(render(data));
+    // $cartContainer.append(render(data));
 
     cartCallback(cart);
   };

@@ -190,7 +190,6 @@ const init = async () => {
   colorSwatches.init();
   setUpListeners();
   reviewsInit();
-  drawer.init();
   recentlyViewed.init();
   carousel.init();
   carouselContext.init();
@@ -202,6 +201,7 @@ const init = async () => {
   modal.init();
   inventoryLocations.init();
   vueATC.init();
+  drawer.init();
   faqs.init();
 
   return urlVariant;

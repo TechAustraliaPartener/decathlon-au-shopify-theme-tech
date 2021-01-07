@@ -1,1 +1,427 @@
-import{V as e}from"./built-vue.esm-b00b619e.js";e.config.errorHandler=function(e,t,a){var r=CartJS.cart||window.vars.cartPayload,o={attributes:r.attributes,item_count:r.item_count,token:r.token,items:r.items.map((function(e){return{title:e.title,handle:e.handle,product_id:e.product_id,variant_id:e.variant_id,variant_options:e.variant_options,url:e.url}}))};console.log("Vue error",e),Rollbar.error("Vue error",{err:e,cart:JSON.stringify(o)},(function(e,t){e?console.log("Error while reporting error to Rollbar: ",e):console.log("Error successfully reported to Rollbar. UUID:",t.result.uuid)})),"/cart"===window.location.pathname&&(console.log({event:"cart_clear",cart:CartJS.cart||window.vars.cartPayload,err:e,vm:t,info:a}),Rollbar.error("Cart clear triggered",{cart:JSON.stringify(o),err:e,vm:t,info:a},(function(e,t){e?console.log("Error while reporting error to Rollbar: ",e):console.log("Error successfully reported to Rollbar. UUID:",t.result.uuid),CartJS.clear({success:function(){window.location.reload()}})})))};var t=!1,a=!1,r=window.masterStores.map((function(e){return e.name})),o=function(e){return{available:0,distance:0,id:"0",inStock:0,name:e,pickupOption:!1}},i=window.masterStores.map((function(e){return o(e.name)})),n={name:"Delivery",ready:"Unavailable for delivery",available:0,inStock:0,availability:{class:"out",text:"Out of Stock"},hours:"2-6 day delivery in Metro areas"};function l(e,t){e.locations=e.locations.filter((function(e){return-1!==r.indexOf(e.name)}));var a,i=e.locations.filter((function(e){return-1!==window.onlineInventoryStores.indexOf(e.name)}));if(i.length>0){var n=i.map((function(e){return e.available})).reduce((function(e,t){return e+t}),0);a={name:"Delivery",available:n,inStock:n>0?1:0,hours:"2-6 day delivery in Metro areas",availability:{class:n>2?"in":n>0?"low":"out",text:n>2?"In Stock":n>0?"Low Stock":"Out of Stock"},ready:n>0?"Available for delivery":"Unavailable for delivery"}}else a={name:"Delivery",ready:"Unavailable for delivery",available:0,inStock:0,availability:{class:"out",text:"Out of Stock"},hours:"2-6 day delivery in Metro areas"};e.delivery=a,console.log(e,t),window.masterStores.filter((function(e){return e.duplicate})).forEach((function(a){if(!e.locations.find((function(e){return e.name===a.name}))){var r=e.locations.find((function(e){return e.name===a.duplicate}));if(r&&"Genesis"!==r.name&&t.grams<=22e3){var o=JSON.parse(JSON.stringify(r));o.name=a.name,e.locations.push(o)}}}));for(var l=function(){var t=window.masterStores[s];e.locations.find((function(e){return e.name===t.name}))||e.locations.push(o(t.name))},s=window.masterStores.length-1;s>=0;s--)l()}function s(e){console.log(e,a);for(var t=e.items.length-1;t>=0;t--){var r=e.items[t];if(a[r.product_id]&&a[r.product_id].product.variants[r.variant_id]){var o=a[r.product_id].product.variants[r.variant_id].inventoryItem;l(o,r),r.delivery=o.delivery,r.locations=o.locations}else console.log(t,"No locations info for "+r.title),Rollbar.warning("Empty Inventory Item assigned",{title:r.title,product_id:r.product_id,variant_id:r.variant_id,url:r.url}),r.locations=JSON.parse(JSON.stringify(i)),r.delivery=n}return e}function c(){t&&a&&(window.cartDisplay=new e({el:"#cartDisplay",data:{cart:s(JSON.parse(JSON.stringify(t))),masterStores:window.masterStores,pickupStores:window.masterStores.filter((function(e){return-1!==window.ccStores.indexOf(e.name)})),favStore:window.vars.favStore||{},deliveryOption:window.vars.deliveryOption,override:!1},methods:{changeWholeData:function(t,a){var r=a?this.$data[a]:this.$data;Object.keys(r).forEach((function(e){return r[e]=null})),Object.entries(t).forEach((function(t){return e.set(r,t[0],t[1])})),this.$data.override&&setTimeout((function(){jQuery(".checkout-btn").click()}),300)},money:function(e){return"$"+(e/100).toFixed(2)},updateQuantity:function(e,t){console.log(e,t),CartJS.updateItem(e,t)},setFavStore:function(e){var t=window.masterStores.find((function(t){return t.id===e.target.value}));t&&(localStorage.setItem("favoritedStore",JSON.stringify(t)),window.vars.favStore=JSON.parse(localStorage.getItem("favoritedStore")),this.changeWholeData(window.vars.favStore,"favStore"),localStorage.setItem("deliveryOption","Click & Collect"),window.vars.deliveryOption=localStorage.getItem("deliveryOption")||"Delivery",this.$data.deliveryOption=window.vars.deliveryOption)},setDeliveryOption:function(e){localStorage.setItem("deliveryOption",e.target.value),window.vars.deliveryOption=localStorage.getItem("deliveryOption")||"Delivery",this.$data.deliveryOption=window.vars.deliveryOption},checkAvailability:function(e){var t=this;if(!e.locations)return"out";var a=e.delivery;return"Delivery"!==t.deliveryOption&&(a=e.locations.find((function(e){return e.name===t.favStore.name}))),a.inStock>0?"in":"out"},currentMax:function(e){var t=this,a=e.delivery;return"Delivery"!==t.deliveryOption&&(a=e.locations.find((function(e){return e.name===t.favStore.name}))),a.available},deliveryMax:function(e){var t=e.delivery;return console.log("Delivery",t.available),t.available},favStoreMax:function(e){var t=this,a=e.locations.find((function(e){return e.name===t.favStore.name}));return console.log("favStore",a.available),a?a.available:0},availabilityMessages:function(e){var t=[],a=this,r=e.delivery;if(t.push('<div class="'+(r.inStock?e.quantity<=r.available?"available":"low":"unavailable")+'"><p>'+(r.inStock?e.quantity<=r.available?"Available":"Not all items available":"Unavailable")+" for delivery</p></div>"),a.favStore&&a.favStore.name){var o=e.locations.find((function(e){return e.name===a.favStore.name}));t.push('<div class="'+(o.inStock?e.quantity<=o.available?"available":"low":"unavailable")+'"><p>'+(o.inStock?e.quantity<=o.available?"Available":"Not all items available":"Unavailable")+" for click & collect</p></div>")}return t.join("")},cartModificationsMessage:function(){for(var e=this,t=e.$data.cart.items,a=0,r=t.length-1;r>=0;r--){var o=t[r],i=o.delivery;"Delivery"!==e.deliveryOption&&(i=o.locations.find((function(t){return t.name===e.favStore.name}))),i.inStock<1&&a++}return a>0?a+" "+(a>1?"items":"item")+" unavailable for "+e.deliveryOption+" will be removed from your cart":""},prepareCart:function(e){var t=this;if(t.override)return!0;for(var a={},r=t.cart.items.length-1;r>=0;r--){var o=t.cart.items[r],i=t.currentMax(o);o.quantity>i&&(a[o.variant_id]=i)}return"{}"===JSON.stringify(a)||(e.preventDefault(),CartJS.updateItemQuantitiesById(a,{success:function(){t.$data.override=!0}}),!1)}}}),jQuery(".de-u-fade").addClass("in"),jQuery("#cartSpinner").addClass("de-u-hidden"))}function d(e,t,a){jQuery(".cart-"+a+"-info").toggleClass("de-u-hidden",e<t),jQuery(".cart-"+a+"-disabled-info").toggleClass("de-u-hidden",e>=t)}jQuery(document).on("cart.ready",(function(e,a){t=a,console.log("CART READY",e,a),c()})),document.addEventListener("tomitLoaded",(function(){window.tomitProductInventoryInfo.getProductsInventoryInformation(window.vars.tomitCartPayload).then((function(e){a=e,console.log("INV READY",e),c()}))})),jQuery(document).on("cart.requestComplete",(function(e,t){window.cartDisplay.changeWholeData(s(t),"cart"),jQuery(".js-de-cart__subtotal").text(Shopify.formatMoney(t.total_price)),jQuery(".afterpay-info strong").text(Shopify.formatMoney(t.total_price/4)),jQuery("#CartCount").text(t.item_count),window.vars.thresholdForGateways.afterpay.enabled&&window.vars.thresholdForGateways.afterpay.threshold&&t&&d(t.total_price,100*window.vars.thresholdForGateways.afterpay.threshold,"afterpay"),window.vars.thresholdForGateways.zipPay.enabled&&window.vars.thresholdForGateways.zipPay.threshold&&t&&d(t.total_price,100*window.vars.thresholdForGateways.zipPay.threshold,"zip-pay")}));
+import { V as Vue } from './built-vue.esm-661ab646.js';
+
+/* global CartJS, Shopify */
+
+Vue.config.errorHandler = function (err, vm, info) {
+  var cart = CartJS.cart || window.vars.cartPayload;
+  var logCart = {
+    attributes: cart.attributes,
+    item_count: cart.item_count,
+    token: cart.token,
+    items: cart.items.map(function (item) {
+      return {
+        title: item.title,
+        handle: item.handle,
+        product_id: item.product_id,
+        variant_id: item.variant_id,
+        variant_options: item.variant_options,
+        url: item.url
+      };
+    })
+  };
+  console.log('Vue error', err);
+  Rollbar.error("Vue error", {
+    'err': err,
+    'cart': JSON.stringify(logCart)
+  }, function (err, data) {
+    if (err) {
+      console.log("Error while reporting error to Rollbar: ", err);
+    } else {
+      console.log("Error successfully reported to Rollbar. UUID:", data.result.uuid);
+    }
+  });
+
+  if (window.location.pathname === '/cart') {
+    console.log({
+      'event': 'cart_clear',
+      'cart': CartJS.cart || window.vars.cartPayload,
+      'err': err,
+      'vm': vm,
+      'info': info
+    });
+    Rollbar.error("Cart clear triggered", {
+      'cart': JSON.stringify(logCart),
+      'err': err,
+      'vm': vm,
+      'info': info
+    }, function (err, data) {
+      if (err) {
+        console.log("Error while reporting error to Rollbar: ", err);
+      } else {
+        console.log("Error successfully reported to Rollbar. UUID:", data.result.uuid);
+      }
+
+      CartJS.clear({
+        success: function success() {
+          window.location.reload();
+        }
+      });
+    });
+  }
+};
+
+var cartInit = false;
+var invInit = false;
+var storesSort = window.masterStores.map(function (a) {
+  return a.name;
+});
+
+var emptyLoc = function emptyLoc(name) {
+  var empty = {
+    available: 0,
+    distance: 0,
+    id: "0",
+    inStock: 0,
+    name: name,
+    pickupOption: false
+  };
+  return empty;
+};
+
+var emptyInventoryItem = window.masterStores.map(function (store) {
+  return emptyLoc(store.name);
+});
+var emptyDelivery = {
+  name: 'Delivery',
+  ready: 'Unavailable for delivery',
+  available: 0,
+  inStock: 0,
+  availability: {
+    class: 'out',
+    text: 'Out of Stock'
+  },
+  hours: '2-6 day delivery in Metro areas'
+};
+
+function addMasterStoresData(inventoryItem, item) {
+  inventoryItem.locations = inventoryItem.locations.filter(function (loc) {
+    return storesSort.indexOf(loc.name) !== -1;
+  });
+  var locs = inventoryItem.locations;
+  var onlineInventoryLocs = locs.filter(function (loc) {
+    return window.onlineInventoryStores.indexOf(loc.name) !== -1;
+  });
+  var onlineInventoryItem;
+
+  if (onlineInventoryLocs.length > 0) {
+    var totalAvailable = onlineInventoryLocs.map(function (loc) {
+      return loc.available;
+    }).reduce(function (a, b) {
+      return a + b;
+    }, 0);
+    onlineInventoryItem = {
+      name: 'Delivery',
+      available: totalAvailable,
+      inStock: totalAvailable > 0 ? 1 : 0,
+      hours: '2-6 day delivery in Metro areas',
+      availability: {
+        class: totalAvailable > 2 ? 'in' : totalAvailable > 0 ? 'low' : 'out',
+        text: totalAvailable > 2 ? 'In Stock' : totalAvailable > 0 ? 'Low Stock' : 'Out of Stock'
+      },
+      ready: totalAvailable > 0 ? 'Available for delivery' : 'Unavailable for delivery'
+    };
+  } else {
+    onlineInventoryItem = {
+      name: 'Delivery',
+      ready: 'Unavailable for delivery',
+      available: 0,
+      inStock: 0,
+      availability: {
+        class: 'out',
+        text: 'Out of Stock'
+      },
+      hours: '2-6 day delivery in Metro areas'
+    };
+  }
+
+  inventoryItem.delivery = onlineInventoryItem;
+  console.log(inventoryItem, item);
+  var duplicateStores = window.masterStores.filter(function (loc) {
+    return loc.duplicate;
+  });
+  duplicateStores.forEach(function (loc) {
+    var alreadyAdded = inventoryItem.locations.find(function (obj) {
+      return obj.name === loc.name;
+    });
+
+    if (!alreadyAdded) {
+      var thisLoc = inventoryItem.locations.find(function (obj) {
+        return obj.name === loc.duplicate;
+      });
+
+      if (thisLoc && thisLoc.name !== 'Genesis' && item.grams <= 22000) {
+        var duplicateLoc = JSON.parse(JSON.stringify(thisLoc));
+        duplicateLoc.name = loc.name;
+        inventoryItem.locations.push(duplicateLoc);
+      }
+    }
+  });
+
+  var _loop = function _loop() {
+    var masterLoc = window.masterStores[i];
+    var alreadyAdded = inventoryItem.locations.find(function (obj) {
+      return obj.name === masterLoc.name;
+    });
+
+    if (!alreadyAdded) {
+      inventoryItem.locations.push(emptyLoc(masterLoc.name));
+    }
+  };
+
+  for (var i = window.masterStores.length - 1; i >= 0; i--) {
+    _loop();
+  } //inventoryItem.locations = inventoryItem.locations.filter(loc => window.ccStores.indexOf(loc.name) !== -1);
+
+}
+
+function supplementCart(cart) {
+  console.log(cart, invInit);
+
+  for (var i = cart.items.length - 1; i >= 0; i--) {
+    var item = cart.items[i];
+
+    if (invInit[item.product_id] && invInit[item.product_id].product.variants[item.variant_id]) {
+      var invItem = invInit[item.product_id].product.variants[item.variant_id].inventoryItem;
+      addMasterStoresData(invItem, item);
+      item.delivery = invItem.delivery;
+      item.locations = invItem.locations;
+    } else {
+      console.log(i, 'No locations info for ' + item.title);
+      Rollbar.warning("Empty Inventory Item assigned", {
+        'title': item.title,
+        'product_id': item.product_id,
+        'variant_id': item.variant_id,
+        'url': item.url
+      });
+      item.locations = JSON.parse(JSON.stringify(emptyInventoryItem));
+      item.delivery = emptyDelivery;
+    }
+  }
+
+  return cart;
+}
+/**
+ * Attach listeners to open collapse elements
+ */
+
+
+var initCartDisplay = function initCartDisplay(cart) {
+  window.cartDisplay = new Vue({
+    el: '#cartDisplay',
+    data: {
+      cart: supplementCart(JSON.parse(JSON.stringify(cart))),
+      masterStores: window.masterStores,
+      pickupStores: window.masterStores.filter(function (loc) {
+        return window.ccStores.indexOf(loc.name) !== -1;
+      }),
+      favStore: window.vars.favStore || {},
+      deliveryOption: window.vars.deliveryOption,
+      override: false
+    },
+    methods: {
+      changeWholeData: function changeWholeData(newData, part) {
+        var changeData = part ? this.$data[part] : this.$data;
+        Object.keys(changeData).forEach(function (key) {
+          return changeData[key] = null;
+        });
+        Object.entries(newData).forEach(function (entry) {
+          return Vue.set(changeData, entry[0], entry[1]);
+        });
+
+        if (this.$data.override) {
+          // TODO: Remove timeout and lock onto re-render
+          setTimeout(function () {
+            jQuery('.checkout-btn').click();
+          }, 300);
+        }
+      },
+      money: function money(price) {
+        return "$" + (price / 100).toFixed(2);
+      },
+      updateQuantity: function updateQuantity(lineIndex, newQty) {
+        console.log(lineIndex, newQty);
+        CartJS.updateItem(lineIndex, newQty);
+      },
+      setFavStore: function setFavStore(event) {
+        var masterStore = window.masterStores.find(function (obj) {
+          return obj.id === event.target.value;
+        });
+
+        if (masterStore) {
+          localStorage.setItem('favoritedStore', JSON.stringify(masterStore));
+          window.vars.favStore = JSON.parse(localStorage.getItem('favoritedStore'));
+          this.changeWholeData(window.vars.favStore, 'favStore');
+          localStorage.setItem('deliveryOption', 'Click & Collect');
+          window.vars.deliveryOption = localStorage.getItem('deliveryOption') || 'Delivery';
+          this.$data.deliveryOption = window.vars.deliveryOption;
+        }
+      },
+      setDeliveryOption: function setDeliveryOption(event) {
+        localStorage.setItem('deliveryOption', event.target.value);
+        window.vars.deliveryOption = localStorage.getItem('deliveryOption') || 'Delivery';
+        this.$data.deliveryOption = window.vars.deliveryOption;
+      },
+      checkAvailability: function checkAvailability(item) {
+        var app = this;
+
+        if (!item.locations) {
+          return 'out';
+        }
+
+        var checkLoc = item.delivery;
+
+        if (app.deliveryOption !== 'Delivery') {
+          checkLoc = item.locations.find(function (obj) {
+            return obj.name === app.favStore.name;
+          });
+        }
+
+        return checkLoc.inStock > 0 ? 'in' : 'out';
+      },
+      currentMax: function currentMax(item) {
+        // Let availabilities = item.locations.map(a => a.available);
+        // return Math.max(checkLoc);
+        var app = this;
+        var checkLoc = item.delivery;
+
+        if (app.deliveryOption !== 'Delivery') {
+          checkLoc = item.locations.find(function (obj) {
+            return obj.name === app.favStore.name;
+          });
+        }
+
+        return checkLoc.available;
+      },
+      deliveryMax: function deliveryMax(item) {
+        var checkLoc = item.delivery;
+        console.log('Delivery', checkLoc.available);
+        return checkLoc.available;
+      },
+      favStoreMax: function favStoreMax(item) {
+        // Let availabilities = item.locations.map(a => a.available);
+        // return Math.max(checkLoc);
+        var app = this;
+        var checkLoc = item.locations.find(function (obj) {
+          return obj.name === app.favStore.name;
+        });
+        console.log('favStore', checkLoc.available);
+        return checkLoc ? checkLoc.available : 0;
+      },
+      availabilityMessages: function availabilityMessages(item) {
+        var messages = [];
+        var app = this;
+        var delivery = item.delivery;
+        var deliveryMessage = "<div class=\"" + (delivery.inStock ? item.quantity <= delivery.available ? 'available' : 'low' : 'unavailable') + "\"><p>" + (delivery.inStock ? item.quantity <= delivery.available ? 'Available' : 'Not all items available' : 'Unavailable') + " for delivery</p></div>";
+        messages.push(deliveryMessage);
+
+        if (app.favStore && app.favStore.name) {
+          var favStoreInventory = item.locations.find(function (obj) {
+            return obj.name === app.favStore.name;
+          });
+          var ccMessage = "<div class=\"" + (favStoreInventory.inStock ? item.quantity <= favStoreInventory.available ? 'available' : 'low' : 'unavailable') + "\"><p>" + (favStoreInventory.inStock ? item.quantity <= favStoreInventory.available ? 'Available' : 'Not all items available' : 'Unavailable') + " for click & collect</p></div>";
+          messages.push(ccMessage);
+        }
+
+        return messages.join('');
+      },
+      cartModificationsMessage: function cartModificationsMessage() {
+        var app = this;
+        var items = app.$data.cart.items;
+        var itemsToRemove = 0;
+
+        for (var i = items.length - 1; i >= 0; i--) {
+          var item = items[i];
+          var checkLoc = item.delivery;
+
+          if (app.deliveryOption !== 'Delivery') {
+            checkLoc = item.locations.find(function (obj) {
+              return obj.name === app.favStore.name;
+            });
+          }
+
+          if (checkLoc.inStock < 1) {
+            itemsToRemove++;
+          }
+        }
+
+        if (itemsToRemove > 0) {
+          return itemsToRemove + " " + (itemsToRemove > 1 ? 'items' : 'item') + " unavailable for " + app.deliveryOption + " will be removed from your cart";
+        }
+
+        return '';
+      },
+      prepareCart: function prepareCart(event) {
+        var app = this;
+
+        if (app.override) {
+          return true;
+        }
+
+        var updateCartPayload = {};
+
+        for (var i = app.cart.items.length - 1; i >= 0; i--) {
+          var item = app.cart.items[i];
+          var currentMax = app.currentMax(item);
+
+          if (item.quantity > currentMax) {
+            updateCartPayload[item.variant_id] = currentMax;
+          }
+        }
+
+        if (JSON.stringify(updateCartPayload) === '{}') {
+          return true;
+        }
+
+        event.preventDefault();
+        CartJS.updateItemQuantitiesById(updateCartPayload, {
+          success: function success() {
+            app.$data.override = true;
+          }
+        });
+        return false;
+      }
+    }
+  });
+  jQuery('.de-u-fade').addClass('in');
+  jQuery('#cartSpinner').addClass('de-u-hidden');
+};
+
+jQuery(document).on('cart.ready', function (event, cart) {
+  cartInit = cart;
+  console.log('CART READY', event, cart);
+  tryInit();
+});
+document.addEventListener('tomitLoaded', function () {
+  window.tomitProductInventoryInfo.getProductsInventoryInformation(window.vars.tomitCartPayload).then(function (inventory) {
+    invInit = inventory;
+    console.log('INV READY', inventory);
+    tryInit();
+  });
+});
+
+function tryInit() {
+  if (cartInit && invInit) {
+    initCartDisplay(cartInit);
+  }
+}
+
+jQuery(document).on('cart.requestComplete', function (event, cart) {
+  window.cartDisplay.changeWholeData(supplementCart(cart), 'cart');
+  jQuery('.js-de-cart__subtotal').text(Shopify.formatMoney(cart.total_price));
+  jQuery('.afterpay-info strong').text(Shopify.formatMoney(cart.total_price / 4));
+  jQuery('#CartCount').text(cart.item_count);
+
+  if (window.vars.thresholdForGateways.afterpay.enabled && window.vars.thresholdForGateways.afterpay.threshold && cart) {
+    displayPaymentGateway(cart.total_price, window.vars.thresholdForGateways.afterpay.threshold * 100, 'afterpay');
+  }
+
+  if (window.vars.thresholdForGateways.zipPay.enabled && window.vars.thresholdForGateways.zipPay.threshold && cart) {
+    displayPaymentGateway(cart.total_price, window.vars.thresholdForGateways.zipPay.threshold * 100, 'zip-pay');
+  }
+});
+
+function displayPaymentGateway(price, threshold, gateway) {
+  var dNoneClassName = 'de-u-hidden';
+  jQuery(".cart-" + gateway + "-info").toggleClass(dNoneClassName, price < threshold);
+  jQuery(".cart-" + gateway + "-disabled-info").toggleClass(dNoneClassName, price >= threshold);
+}
