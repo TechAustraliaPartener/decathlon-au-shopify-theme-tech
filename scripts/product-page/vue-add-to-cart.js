@@ -35,26 +35,23 @@ const initVueATC = () => {
         const { inventoryItem } = variantLocationsInventory;
         const { delivery, locations, online } = inventoryItem;
 
-        let totalAllLocations = 0;
-        
-        for (let location of locations) {
-          if (location.available && location.available > 0) {
-            totalAllLocations += location.available;
-          }
-        }
+        /*
+          'locations' from itemInventory already only account for stores which have Click & Collect enabled in Settings
+          This checks whether the specific product is available in any of those locations, or in delivery/online and sets availability accordingly.
+        */
 
-        let totalDelivery = delivery.available;
+        // Filter locations that have at least one available product in stock
+        const filteredLocations = locations.filter(loc => {
+          return loc.available > 0;
+        });
 
-        let totalOnline = 0;
+        // const filteredOnline = online.filter(item => {
+        //   return item.available > 0;
+        // });
 
-        for (let item of online) {
-          if (item.available && item.available > 0) {
-            totalOnline += item.available;
-          }
-        }
-
-        //mutatedInventory.available = (delivery.inStock > 0 || locations.length > 0);
-        mutatedInventory.available = (totalAllLocations > 0 || totalDelivery.available > 0 || totalOnline > 0);
+        // item is available if there is at least one stock in any location or delivery/online
+        // mutatedInventory.available = (delivery.available > 0 || filteredLocations.length > 0 || filteredOnline.length > 0);
+        mutatedInventory.available = filteredLocations.length > 0;
 
         return mutatedInventory;
       },
