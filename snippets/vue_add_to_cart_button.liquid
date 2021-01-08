@@ -1,9 +1,9 @@
-<div id="addToCartButton">
+<div id="addToCartButton" v-cloak>
   {% raw %}
     <button 
-      v-bind:disabled="!available && tagged_bis_hidden"
-      v-bind:class="[available ? 'alt' : '']"
-      v-on:click="showModal(id, (!available && !tagged_bis_hidden))"
+      v-bind:disabled="!available && tagged_bis_hidden && is_size_selected"
+      v-bind:class="{ alt: !(!available && !tagged_bis_hidden && is_size_selected) }"
+      v-on:click="showModal(id, (!available && !tagged_bis_hidden && is_size_selected))"
       type="submit"
       name="add"
       id="AddToCart"
@@ -11,8 +11,17 @@
       data-drawer-id="post-add-to-cart-drawer"
       {% endraw %}{% if settings.add_to_cart_drawer_enabled %}data-drawer-action="open"{% endif %}{% raw %}
       data-drawer-prevent-default="false">
-      <span v-text="{% endraw %}available ? '{{ 'products.product.add_to_cart' | t }}' : tagged_bis_hidden
-        ? '{{ 'products.product.out_of_stock' | t }}' : '{{ 'products.product.email_when_available' | t }}' {% raw %}"></span>
+      <span v-text="{% endraw %}available ? '{{ 'products.product.add_to_cart' | t }}' : !is_size_selected ?
+        '{{ 'products.product.add_to_cart' | t }}' : tagged_bis_hidden ?
+        '{{ 'products.product.out_of_stock' | t }}' : '{{ 'products.product.email_when_available' | t }}' {% raw %}">
+        {% endraw %}{{ 'products.product.out_of_stock' | t }}{% raw %}
+      </span>
     </button>
   {% endraw %}
 </div>
+
+<style>
+[v-cloak] {
+  display: none;
+}
+</style>

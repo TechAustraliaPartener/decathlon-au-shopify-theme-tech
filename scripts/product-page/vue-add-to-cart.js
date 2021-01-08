@@ -5,6 +5,7 @@ import Vue from 'vue/dist/vue.esm.js';
 
 const variantInventory = window.firstVariant;
 variantInventory.tagged_bis_hidden = window.vars.productJSON.tags.includes('bis-hidden');
+variantInventory.is_size_selected = false;
 
 const initVueATC = () => {
   window.vueATC = new Vue({
@@ -13,7 +14,8 @@ const initVueATC = () => {
     methods: {
       changeWholeData(newData) {
         var extraData = {
-          tagged_bis_hidden: window.vars.productJSON.tags.includes('bis-hidden')
+          tagged_bis_hidden: window.vars.productJSON.tags.includes('bis-hidden'),
+          is_size_selected: newData && newData.option2 ? true : false
         }
         newData = { ...newData, ...extraData };
         Object.keys(this.$data).forEach(key => (this.$data[key] = null));
