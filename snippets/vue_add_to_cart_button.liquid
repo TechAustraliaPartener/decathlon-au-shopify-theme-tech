@@ -3,7 +3,7 @@
     <button 
       v-bind:disabled="!available && tagged_bis_hidden && is_size_selected"
       v-bind:class="{ alt: !(!available && !tagged_bis_hidden && is_size_selected) }"
-      v-on:click="showModal(id, (!available && !tagged_bis_hidden && is_size_selected))"
+      v-on:click="showModal(id, (!available && !tagged_bis_hidden && is_size_selected), $event)"
       type="submit"
       name="add"
       id="AddToCart"

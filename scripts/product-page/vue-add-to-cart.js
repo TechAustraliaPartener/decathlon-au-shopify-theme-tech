@@ -2,6 +2,7 @@
 
 import $ from 'jquery';
 import Vue from 'vue/dist/vue.esm.js';
+import { handleAddToCartAttemptWithNoVariant } from './size-swatches';
 
 const variantInventory = window.firstVariant;
 variantInventory.tagged_bis_hidden = window.vars.productJSON.tags.includes('bis-hidden');
@@ -57,8 +58,15 @@ const initVueATC = () => {
 
         return mutatedInventory;
       },
-      showModal(variantId, isEmailButton) {
+      showModal(variantId, isEmailButton, event) {
+        if (!this.$data.is_size_selected) {
+          event.preventDefault();
+          handleAddToCartAttemptWithNoVariant();
+          return;
+        }
+
         if (isEmailButton) {
+          event.preventDefault();
           window.BISPopover.show({ variantId: variantId });
 
           const BISPopoverEl = document.querySelector('#BIS_frame');
@@ -68,6 +76,8 @@ const initVueATC = () => {
           if (BISPopoverEmailInputEl && customer) {
             BISPopoverEmailInputEl.value = customer.email;
           }
+
+          return;
         }
       }
     }
