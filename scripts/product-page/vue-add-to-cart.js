@@ -2,8 +2,8 @@
 
 import $ from 'jquery';
 import Vue from 'vue/dist/vue.esm.js';
-import { handleAddToCartAttemptWithNoVariant } from './size-swatches';
 
+const validationTextEl = document.querySelector('.js-de-validation-message');
 const variantInventory = window.firstVariant;
 variantInventory.tagged_bis_hidden = window.vars.productJSON.tags.includes('bis-hidden');
 variantInventory.is_size_selected = false;
@@ -59,12 +59,22 @@ const initVueATC = () => {
         return mutatedInventory;
       },
       showModal(variantId, isEmailButton, event) {
+        // Trying to add a product to cart without selecting a size
         if (!this.$data.is_size_selected) {
           event.preventDefault();
-          handleAddToCartAttemptWithNoVariant();
+          validationTextEl.textContent = "Select a size";
           return;
         }
 
+        // Trying to add a product to cart when variant doesn't exist
+        const variant = window.productJSON.variants.find(v => v.id === variantId);
+        if (!variant) {
+          event.preventDefault();
+          validationTextEl.textContent = "Unavailable";
+          return;
+        }
+
+        // Opens Back in Stock Popover Modal
         if (isEmailButton) {
           event.preventDefault();
           window.BISPopover.show({ variantId: variantId });
