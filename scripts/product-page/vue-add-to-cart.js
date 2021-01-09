@@ -59,6 +59,7 @@ const initVueATC = () => {
         return mutatedInventory;
       },
       showModal(variantId, isEmailButton, event) {
+        $('.js-de-Drawer-toggle').data("drawer-action", '')
         // Trying to add a product to cart without selecting a size
         if (!this.$data.is_size_selected) {
           event.preventDefault();
@@ -79,6 +80,8 @@ const initVueATC = () => {
           event.preventDefault();
           window.BISPopover.show({ variantId: variantId });
 
+          $('#addToCartButton .js-de-Drawer-toggle').attr("data-drawer-action", '');
+
           const BISPopoverEl = document.querySelector('#BIS_frame');
           const BISPopoverEmailInputEl = BISPopoverEl.contentDocument.querySelector('#email_address');
           const customer = window.Shopify.customer;
@@ -88,6 +91,8 @@ const initVueATC = () => {
           }
 
           return;
+        } else {
+          $('#addToCartButton .js-de-Drawer-toggle').attr("data-drawer-action", 'open');
         }
       }
     }
