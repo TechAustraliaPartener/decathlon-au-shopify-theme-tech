@@ -48,13 +48,52 @@ const initVueATC = () => {
           return loc.available > 0;
         });
 
-        // const filteredOnline = online.filter(item => {
-        //   return item.available > 0;
-        // });
+        const filteredOnline = online.filter(item => {
+          return item.available > 0;
+        });
 
         // item is available if there is at least one stock in any location or delivery/online
         // mutatedInventory.available = (delivery.available > 0 || filteredLocations.length > 0 || filteredOnline.length > 0);
         mutatedInventory.available = filteredLocations.length > 0;
+
+        const availablePerLocation = filteredLocations.map(location => {
+          return location.available;
+        });
+
+        let locationsAvailable = 0;
+
+        if (availablePerLocation.length > 0) {
+          locationsAvailable = availablePerLocation.reduce((a, b) => a + b, 0);
+        }
+
+        let onlineAvailable = 0;
+
+        const availableOnline = filteredOnline.map(online => {
+          return online.available;
+        });
+
+        if (availableOnline.length > 0) {
+          onlineAvailable = availableOnline.reduce((a, b) => a + b, 0);
+        }
+
+        console.log('AVAILABLE IN CLICK & COLLECT');
+        console.log(locationsAvailable);
+        console.log('AVAILABLE ONLINE');
+        console.log(onlineAvailable);
+
+        if (onlineAvailable > 1) {
+          console.log('greater than 1');
+          validationTextEl.textContent = "In Stock";
+        } else if (onlineAvailable == 1) {
+          console.log('equal to 1');
+          validationTextEl.textContent = "Low Stock";
+        } else {
+          console.log('online is 0');
+          if (locationsAvailable > 0) {
+            console.log('BUT HAS PICKUP!');
+            validationTextEl.textContent = "Pick Up Only";
+          }
+        }
 
         return mutatedInventory;
       },
