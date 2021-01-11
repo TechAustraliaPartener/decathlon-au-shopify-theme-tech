@@ -22,6 +22,7 @@ export const $swatches = $(`.${JS_PREFIX}SizeSwatches`);
 
 export const swatchOptionEls = document.querySelectorAll(`.${JS_PREFIX}SizeSwatches-option`);
 const validationTextEl = document.querySelector(`.${VALIDATION_MESSAGE_CLASS}`);
+const stockMessageTextEl = document.querySelector('.js-de-stock-info-message');
 const $sizeSwatchesOptions = $(swatchOptionEls);
 const $sizeInfo = $(`.${JS_PREFIX}SizeInfo`);
 
@@ -80,6 +81,10 @@ export const onVariantSelect = variant => {
 const showMissingSizeInfo = () => {
   if (validationTextEl) {
     validationTextEl.textContent = PRODUCT_PAGE_COPY.SELECT_A_SIZE;
+  }
+
+  if (stockMessageTextEl && stockMessageTextEl.textContent && validationTextEl.textContent !== '') {
+    stockMessageTextEl.textContent = '';
   }
 };
 

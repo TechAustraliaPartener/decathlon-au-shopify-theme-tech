@@ -196,13 +196,13 @@ const init = async () => {
   collapse.init();
   addToCart.init();
   accordion.init();
-  const urlVariant = selectUrlVariant();
   stickyNav.init();
   modal.init();
-  inventoryLocations.init();
   vueATC.init();
+  inventoryLocations.init();
   drawer.init();
   faqs.init();
+  const urlVariant = selectUrlVariant();
 
   return urlVariant;
 

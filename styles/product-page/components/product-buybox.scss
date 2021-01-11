@@ -43,3 +43,13 @@
     justify-content: unset;
   }
 }
+
+.js-de-stock-info-message {
+  &.in_stock {
+    color: $color-in;
+  }
+
+  &.low_stock {
+    color: $color-low;
+  }
+}

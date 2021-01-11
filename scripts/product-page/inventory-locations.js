@@ -300,6 +300,9 @@ const initInventoryLocations = () => {
       window.inventoryLocationsDisplay.changeVariant(
         window.vars.selectedVariant.id
       );
+      window.vueATC.changeVariant(
+        window.vars.selectedVariant.id
+      );
 
       var titleParts = window.vars.selectedVariant.title.split(' ');
       var currentModel = titleParts[titleParts.length - 1];

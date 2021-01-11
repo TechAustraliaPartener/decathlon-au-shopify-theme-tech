@@ -20,6 +20,7 @@ const ADD_TO_CART_PREFIX = `.${JS_PREFIX}${MODULE_NAME}-`;
 
 const quantityInputEl = document.querySelector(`${ADD_TO_CART_PREFIX}quantity`);
 const validationTextEl = document.querySelector(`.${VALIDATION_MESSAGE_CLASS}`);
+const stockMessageTextEl = document.querySelector('.js-de-stock-info-message');
 const addToCartButtonEl = document.querySelector(`${ADD_TO_CART_PREFIX}btn`);
 const addToCartButtonTextEl = document.querySelector(`${ADD_TO_CART_PREFIX}btn-text`);
 
@@ -161,6 +162,10 @@ const render = ({
       regardless of the availability of `addToCartButtonEl` or `addToCartButtonTextEl` */
   if (validationTextEl) {
     validationTextEl.textContent = validationText;
+  }
+
+  if (stockMessageTextEl && stockMessageTextEl.textContent && validationTextEl.textContent !== '') {
+    stockMessageTextEl.textContent = '';
   }
 
   // if (bisHidden) {
