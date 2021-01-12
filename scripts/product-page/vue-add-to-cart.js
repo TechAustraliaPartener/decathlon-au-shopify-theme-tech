@@ -34,7 +34,7 @@ const initVueATC = () => {
         // Use Shopify availability on load while remote inventory is being loaded
         if (variantInventory && variantInventory.available) {
           $('.js-de-stock-info-message').text(translations.in_stock);
-          $('.js-de-stock-info-message').addClass(IN_STOCK_CLASS).removeClass(LOW_STOCK_CLASS);
+          $('.js-de-stock-info-message').addClass(IN_STOCK_CLASS).removeClass(LOW_STOCK_CLASS).css({"display":"block"});
         }
 
         const variantLocationsInventory = (window.inventories || {})[variant];
@@ -98,6 +98,11 @@ const initVueATC = () => {
 
         $('.js-de-stock-info-message').text(stockInfoMessage);
         $('.js-de-stock-info-message').addClass(stockAddClass).removeClass(stockRemoveClass);
+        if ($('.js-de-stock-info-message').text().length > 0) {
+          $('.js-de-stock-info-message').css({"display":"block"});
+        } else {
+          $('.js-de-stock-info-message').css({"display":"none"});
+        }
 
         return mutatedInventory;
       },
