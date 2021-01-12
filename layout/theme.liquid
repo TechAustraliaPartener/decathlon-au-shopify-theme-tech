@@ -464,6 +464,11 @@
       line_two: '{{ settings.add_to_cart_drawer_line_2 }}',
       line_three: '{{ settings.add_to_cart_drawer_line_3 }}'
     };
+    window.translations.product_stock = {
+      in_stock: "{{ 'products.product.in_stock' | t }}",
+      low_stock: "{{ 'products.product.low_stock' | t }}",
+      pickup_only: "{{ 'products.product.pickup_only' | t }}"
+    }
   </script>
 
   {% comment %}

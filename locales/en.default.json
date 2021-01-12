@@ -335,7 +335,10 @@
       "add_to_cart": "Add to Cart",
       "add_to_wishlist": "Add to Wishlist",
       "out_of_stock": "Out of Stock",
-      "email_when_available": "Email me when available"
+      "email_when_available": "Email me when available",
+      "in_stock": "In Stock",
+      "low_stock": "Low Stock",
+      "pickup_only": "Pickup Only"
     },
     "options": {
       "color": "colour",

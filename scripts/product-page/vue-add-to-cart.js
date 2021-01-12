@@ -8,6 +8,10 @@ const variantInventory = window.firstVariant;
 variantInventory.tagged_bis_hidden = window.vars.productJSON.tags.includes('bis-hidden');
 variantInventory.is_size_selected = false;
 
+const translations = window.translations.product_stock;
+const IN_STOCK_CLASS = 'in_stock';
+const LOW_STOCK_CLASS = 'low_stock';
+
 const initVueATC = () => {
   window.vueATC = new Vue({
     el: '#addToCartButton',
@@ -26,6 +30,12 @@ const initVueATC = () => {
       },
       changeVariant(variant) {
         const variantInventory = window.productJSON.variants.find(v => v.id === variant);
+
+        // Use Shopify availability on load while remote inventory is being loaded
+        if (variantInventory && variantInventory.available) {
+          $('.js-de-stock-info-message').text(translations.in_stock);
+          $('.js-de-stock-info-message').addClass(IN_STOCK_CLASS).removeClass(LOW_STOCK_CLASS);
+        }
 
         const variantLocationsInventory = (window.inventories || {})[variant];
         const calculatedInventory = variantLocationsInventory ? this.mutateWithLocations(variantInventory, variantLocationsInventory) : variantInventory;
@@ -64,21 +74,30 @@ const initVueATC = () => {
           locationsAvailable = availablePerLocation.reduce((a, b) => a + b, 0);
         }
 
+        let stockInfoMessage = '';
+        let stockAddClass = '';
+        let stockRemoveClass = '';
+
+        // If variant is in stock for delivery in locations contributing to online inventory
         if (delivery.available > 1) {
-          $('.js-de-stock-info-message').text('In Stock');
-          $('.js-de-stock-info-message').addClass('in_stock').removeClass('low_stock');
+          stockInfoMessage = translations.in_stock;
+          stockAddClass = IN_STOCK_CLASS;
+          stockRemoveClass = LOW_STOCK_CLASS;
         } else if (delivery.available == 1) {
-          $('.js-de-stock-info-message').text('Low Stock');
-          $('.js-de-stock-info-message').addClass('low_stock').removeClass('in_stock');
+          stockInfoMessage = translations.low_stock;
+          stockAddClass = LOW_STOCK_CLASS;
+          stockRemoveClass = IN_STOCK_CLASS;
         } else {
+          // If variant is NOT in stock for delivery but available in locations offering Click & Collect
           if (locationsAvailable > 0) {
-            $('.js-de-stock-info-message').text('Pickup Only');
-            $('.js-de-stock-info-message').addClass('low_stock').removeClass('in_stock');
-          } else {
-            $('.js-de-stock-info-message').text('');
-            $('.js-de-stock-info-message').removeClass('low_stock').removeClass('in_stock');
+            stockInfoMessage = translations.pickup_only;
+            stockAddClass = LOW_STOCK_CLASS;
+            stockRemoveClass = IN_STOCK_CLASS;
           }
         }
+
+        $('.js-de-stock-info-message').text(stockInfoMessage);
+        $('.js-de-stock-info-message').addClass(stockAddClass).removeClass(stockRemoveClass);
 
         return mutatedInventory;
       },
