@@ -179,7 +179,8 @@
 
       if (!variantImages) { */
       
-      var imgUrl = product.product_image.replace('.jpg', '_medium.jpg');
+      /* Null checker for product_image. If a product has no images, it uses Shopify's default "No Image" Placeholder */
+      var imgUrl = product && product.product_image ? product.product_image.replace('.jpg', '_medium.jpg') : '';
 
       var html = ['<div class="de-SwatchObjects de-SwatchObjects--productTile de-u-padEnds06 js-de-ColorSwatches">',
         '<a class="de-SwatchObjects-item de-ColorSwatches-color" aria-label="Colors available" title="' + product.title + '" href="' + '/products/' + product.handle + '">',
