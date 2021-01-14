@@ -153,9 +153,6 @@
   {% if template == "index" or template == "cart" or template.name == "collection" or template.name == "search" or template.name == "product" %}
     {{ 'built-product-tile.css' | asset_url | stylesheet_tag }}
   {% endif %}
-  {% if template == "customers/account" %}
-    {{ 'built-customer-fields.css' | asset_url | stylesheet_tag }}
-  {% endif %}
 
   {% if template == 'search' and settings.show_recently_viewed_carousel_on_search_page %}
     {% assign display_recently_viewed = true %}
