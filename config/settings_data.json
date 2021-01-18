@@ -31,11 +31,11 @@
     "header_support_link": "https:\/\/help.decathlon.com.au\/support\/home",
     "header_store_label": "Stores",
     "header_sign_in_label": "Sign In",
-    "megamenu_image": "shopify:\/\/shop_images\/Copy_of_SIDE_NAV_507bd8cd-6d54-4857-9108-ab46a80acc0b.png",
-    "megamenu_title": "Beach Essentials",
-    "megamenu_subtitle": "Shelters, Umbrellas, Chairs & More",
-    "megamenu_link": "shopify:\/\/collections\/beach-specials",
-    "megamenu_bg_colour": "#1c82c3",
+    "megamenu_image": "shopify:\/\/shop_images\/Copy_of_SIDE_NAV_1_309b8603-3bad-42a8-a266-c313ed3d8c9c.png",
+    "megamenu_title": "Up To 30% Off",
+    "megamenu_subtitle": "Tents, Kayaks, MTB, Beach Shelters & More",
+    "megamenu_link": "shopify:\/\/collections\/weekly-deals",
+    "megamenu_bg_colour": "#ff0000",
     "custom_fields_terms_conditions": "I agree to the <a href=\"\/pages\/terms-and-conditions-membership\" target=\"_blank\">T&Cs<\/a> and <a href=\"\/pages\/privacy-policy\" target=\"_blank\">Privacy Policy<\/a> for creating an account.",
     "is_lookbook": false,
     "product_returns_text": "Easy 365 days return",
@@ -935,34 +935,62 @@
           "1589172506799": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_13.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_5_dd2a9505-0704-4bb8-8c6e-7ada886284d3.png",
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
-              "banner_title": "New Year, New You",
-              "banner_subtitle": "<p><strong>Fitness Equipment, Apparel &amp; Accessories<\/strong><\/p>",
+              "banner_title": "Pilates At Home",
+              "banner_subtitle": "<p><strong>Elastic Bands, Dumbbells, Mats &amp; Ankle Weights<\/strong><\/p>",
               "button_new_window": false,
-              "button_title": "Shop Fitness",
-              "button_url": "shopify:\/\/collections\/gym-clothes"
+              "button_title": "Shop Now",
+              "button_url": "shopify:\/\/collections\/pilates-equipment-accessories"
+            }
+          },
+          "4cf92f46-c528-4e84-a6a7-8781c5769a26": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_7_1b56b225-74be-4c3b-97dc-17b75ee79abc.png",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "Easybreath Snorkeling Mask",
+              "banner_subtitle": "<p><strong>An innovation by Decathlon<\/strong><\/p>",
+              "button_new_window": false,
+              "button_title": "Discover Snorkeling",
+              "button_url": "shopify:\/\/collections\/snorkeling"
+            }
+          },
+          "9f05d3c1-98d7-40bb-8141-4d7e1523647b": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_6_46d4bf86-842a-4a47-8698-bd78236d7616.png",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "Camping Deals",
+              "banner_subtitle": "<p><strong>Camping Tents, Furniture &amp; More<\/strong><\/p>",
+              "button_new_window": false,
+              "button_title": "Shop Now",
+              "button_url": "shopify:\/\/collections\/camping"
             }
           }
         },
         "block_order": [
-          "1589172506799"
+          "1589172506799",
+          "4cf92f46-c528-4e84-a6a7-8781c5769a26",
+          "9f05d3c1-98d7-40bb-8141-4d7e1523647b"
         ],
         "settings": {}
       },
       "1590735691745": {
         "type": "slider_image_section",
         "settings": {
-          "homepage_slider_image_title": "Water Fun!",
-          "homepage_slider_image_1": "shopify:\/\/shop_images\/Decathlon_SB_Kayaking_SA_24-09-2020_R1-min.png",
-          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/kayaking",
+          "homepage_slider_image_title": "By Department",
+          "homepage_slider_image_1": "shopify:\/\/shop_images\/10.png",
+          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/garden-games",
           "checkbox_image_1": true,
-          "homepage_slider_image_2": "shopify:\/\/shop_images\/Decathlon_SB_Snorkeling_SA_24-09-2020_R1-min.png",
-          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/snorkeling",
+          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_17.png",
+          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/fitness-machines-equipment",
           "checkbox_image_2": true,
-          "homepage_slider_image_3": "shopify:\/\/shop_images\/Decathlon_SB_Swimming_SA_24-09-2020_R1.png",
-          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/swimming",
+          "homepage_slider_image_3": "shopify:\/\/shop_images\/11.png",
+          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/bikes",
           "checkbox_image_3": true,
           "homepage_slider_image_redirection_4": "",
           "checkbox_image_4": false
@@ -972,14 +1000,14 @@
         "type": "slider_image_section",
         "settings": {
           "homepage_slider_image_title": "Trending",
-          "homepage_slider_image_1": "shopify:\/\/shop_images\/Decathlon_SB_Fitness_SA_25-09-2020_R2-min.png",
-          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/bodybuilding",
+          "homepage_slider_image_1": "shopify:\/\/shop_images\/36.png",
+          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/products\/camping-tent-2-seconds-easy-fresh-black-2-person?variant=31318853714031",
           "checkbox_image_1": true,
-          "homepage_slider_image_2": "shopify:\/\/shop_images\/DecathlonAU_Side_Banner_Cycling_SA_14-09-2020_V1-min.png",
-          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/cycling",
+          "homepage_slider_image_2": "shopify:\/\/shop_images\/35.png",
+          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/products\/2-3-person-inflatable-cruising-kayak-163733",
           "checkbox_image_2": true,
-          "homepage_slider_image_3": "shopify:\/\/shop_images\/DecathlonAU_Side_Banner_Camping_SA_14-09-2020_V1-min.png",
-          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/camping",
+          "homepage_slider_image_3": "shopify:\/\/shop_images\/34.png",
+          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/products\/camping-air-basic-mattress-70cm-1-person?variant=31292710453359",
           "checkbox_image_3": true,
           "homepage_slider_image_redirection_4": "",
           "checkbox_image_4": false
