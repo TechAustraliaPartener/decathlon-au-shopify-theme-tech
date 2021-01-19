@@ -1,1 +1,1123 @@
-import{s as e}from"./built-fetch-stores-13903880.js";import"./built-toConsumableArray-0fbe23f7.js";import{s as t,a as o,g as r}from"./built-storage-f11703b1.js";var n={CONTACT_INFORMATION:"contact_information",SHIPPING_METHOD:"shipping_method",PAYMENT_METHOD:"payment_method",PROCESSING:"processing",THANK_YOU:"thank_you",REVIEW:"review"},c=window.Shopify,i=c&&c.Checkout&&c.Checkout.step,a=c&&c.Checkout&&c.Checkout.page,d={_deliveryMethod:"Delivery"===window.deliveryMethod?"ship":"pickup",_pickupStore:localStorage.getItem("favoritedStore")?JSON.parse(localStorage.getItem("favoritedStore")).id:null,checkoutStep:i,checkoutPage:a,get deliveryMethod(){return this._deliveryMethod},get pickupStore(){return this._pickupStore},set deliveryMethod(e){return!1},set pickupStore(e){this._pickupStore=e,console.info("STATE:",d)}};null===d._pickupStore&&"pickup"===d._deliveryMethod&&(window.location.href="/cart");const s=Object.assign({},{CONTINUE_BTN:".step__footer__continue-btn",SHIPPING_ADDRESS_HEADER:".section--shipping-address .section__header h2",DELIVERY_INPUTS:{address1Input:'[data-address-field="address1"]',address2Input:'[data-address-field="address2"]',cityInput:'[data-address-field="city"]',countryInput:'[data-address-field="country"]',provinceInput:'[data-address-field="province"]',zipInput:'[data-address-field="zip"]'},USER_ADDRESS_LIST:"#checkout_shipping_address_id",COMPANY:"#checkout_shipping_address_company",USER_FIRST_NAME:"#checkout_shipping_address_first_name",USER_LAST_NAME:"#checkout_shipping_address_last_name",USER_ADDRESS_1:"#checkout_shipping_address_address1",USER_ADDRESS_2:"#checkout_shipping_address_address2",USER_CITY:"#checkout_shipping_address_city",USER_ZIP:"#checkout_shipping_address_zip",USER_PHONE:"#checkout_shipping_address_phone",USER_EMAIL:"#checkout_email"},{TOGGLE_SHIPPING:".js-de-toggle-shipping",TOGGLE_PICKUP:".js-de-toggle-pickup",PICKUP_CONTENT:".js-de-pickup-content",PICKUP_LOCATIONS:".js-de-pickup-locations",PICKUP_LOCATION:".js-de-pickup-location",ACTIVE_PICKUP_LOCATION:".js-de-active-location",PICKUP_CONTINUE_BTN_CONTAINER:".js-de-payment-continue-container",PICKUP_CONTINUE_BTN:".js-de-payment-continue",MAP_IMAGE:".js-de-pickup-location-map-img",LOADING_OVERLAY:".de-loading-overlay",LOADING_IMAGE:".de-checkout-loader"});var u=function(e){return!!e},l=function(e){e&&e.classList.add("de-u-hidden")},p=function(e){e&&e.classList.remove("de-u-hidden")},_=function(e){e.forEach(l)},S=function(e){e.forEach(p)},I=Object.keys(s.DELIVERY_INPUTS).map((function(e){return document.querySelector(s.DELIVERY_INPUTS[e])})),m=document.querySelector(s.CONTINUE_BTN),h=document.querySelector(s.TOGGLE_SHIPPING),E=document.querySelector(s.TOGGLE_PICKUP),y=document.querySelector(s.PICKUP_CONTENT),f=(document.querySelectorAll(s.STORE_INPUT),document.querySelector(s.PICKUP_LOCATIONS)),v=document.querySelector(s.SHIPPING_ADDRESS_HEADER),T=!!u(document.querySelector(s.USER_ADDRESS_LIST))&&document.querySelector(s.USER_ADDRESS_LIST).parentNode,P=document.querySelector(s.COMPANY),N=document.querySelector(s.USER_FIRST_NAME),A=document.querySelector(s.USER_LAST_NAME),C=document.querySelector(s.USER_ADDRESS_1),O=document.querySelector(s.USER_ADDRESS_2),L=document.querySelector(s.USER_CITY),k=document.querySelector(s.USER_ZIP),g=document.querySelector(s.USER_PHONE),U=document.querySelector(s.USER_EMAIL),R=document.querySelector(s.MAP_IMAGE),D=document.querySelector(s.LOADING_OVERLAY),q=document.querySelector(s.LOADING_IMAGE),b={ACTIVE_SHIPPICK_BTN:"js-de-active-pickship-btn",ACTIVE_PICKUP_LOCATION:"js-de-active-location",DISABLED_BUTTON:"js-de-BtnDisabled"},M=b,H=function(){var e=d.deliveryMethod;"pickup"===e&&($('[data-address-field="company"]').hide(),E.classList.add(M.ACTIVE_SHIPPICK_BTN),h.classList.remove(M.ACTIVE_SHIPPICK_BTN),_(I),_([m,v,T]),S([y]),S([document.querySelector(s.PICKUP_CONTINUE_BTN)])),"ship"===e&&($('[data-address-field="company"]').show(),h.classList.add(M.ACTIVE_SHIPPICK_BTN),E.classList.remove(M.ACTIVE_SHIPPICK_BTN),_([y]),_([document.querySelector(s.PICKUP_CONTINUE_BTN)]),S(I),S([m,v,T]),v.textContent="Shipping address")},K=fetch("https://api.ipstack.com/check?access_key=23cb2745b5ee35580d6f00373f14f868&legacy=1").then((function(e){return e.json()}));function B(e,t){(null==t||t>e.length)&&(t=e.length);for(var o=0,r=Array(t);o<t;o++)r[o]=e[o];return r}console.log(d);var G=b,w=function(){P.value="",C.value="",O.value="",L.value="",k.value=""},j=function(){var e=document.querySelector(s.ACTIVE_PICKUP_LOCATION),t={};for(var o in t.first_name=N.value,t.last_name=A.value,t.phone=g.value,t.company=e.dataset.name,t.address1=e.dataset.street1,t.address2=e.dataset.street2||"",t.city=e.dataset.city,t.country="Australia",t.province=e.dataset.state,t.zip=e.dataset.zip,t)console.log(o,t[o]),$('[name="checkout[shipping_address]['+o+']"]').val(t[o])};const V=H;var x={PICKUP_SHIPPING_METHOD_BLOCKS:["shopify-Pickup-0.00"].map((function(e){return'[data-shipping-method="'+e+'"]'})),PICKUP_SHIPPING_METHOD:'[data-shipping-method="shopify-Pickup-0.00"]',LOADING_OVERLAY:".de-loading-overlay",LOADING_IMAGE:".de-checkout-loader"},Y=(x.PICKUP_SHIPPING_METHOD_BLOCKS.map((function(e){return!!u(document.querySelector(e))&&document.querySelector(e).parentNode})),document.querySelector(x.PICKUP_SHIPPING_METHOD_BLOCK),document.querySelector(x.LOADING_OVERLAY)),z=document.querySelector(x.LOADING_IMAGE),F=function(){if(u(document.querySelector(x.PICKUP_SHIPPING_METHOD+" input"))&&document.querySelector(x.PICKUP_SHIPPING_METHOD+" input").checked)for(var e=document.querySelectorAll(".input-radio"),t=document.querySelector(x.PICKUP_SHIPPING_METHOD).getAttribute("data-shipping-method"),o=0,r=e.length;o<r;o++)if(t!==e[o].value){e[o].checked=!0,_([document.querySelector(".review-block:nth-child(3)")]);break}_([document.querySelector(x.PICKUP_SHIPPING_METHOD).parentNode])},Z=function(){for(var e=document.querySelectorAll(".radio-wrapper"),t=document.querySelector(x.PICKUP_SHIPPING_METHOD).getAttribute("data-shipping-method"),o=0,r=e.length;o<r;o++)t!==e[o].getAttribute("data-shipping-method")?(e[o].parentNode.style.display="none",e[o].parentNode.remove()):e[o].querySelector("input").checked=!0},W={BILLING_ADDRESS_CHOICES:{sameAsShipping:"[data-same-billing-address]",differentThanShipping:"[data-different-billing-address]"},SHIP_TO_LABEL:".review-block:nth-child(2) .review-block__label",SHIP_TO_MAP:".map",LOADING_OVERLAY:".de-loading-overlay",LOADING_IMAGE:".de-checkout-loader",USER_ADDRESS_1:"#checkout_billing_address_address1",USER_ADDRESS_2:"#checkout_billing_address_address2",USER_CITY:"#checkout_billing_address_city",USER_ZIP:"#checkout_billing_address_zip"},X=Object.keys(W.BILLING_ADDRESS_CHOICES).map((function(e){return document.querySelector(W.BILLING_ADDRESS_CHOICES[e])})),J=document.querySelector(W.SHIP_TO_LABEL),Q=document.querySelector(W.SHIP_TO_MAP),ee=document.querySelector(W.LOADING_OVERLAY),te=document.querySelector(W.LOADING_IMAGE),oe=document.querySelector(W.USER_ADDRESS_1),re=document.querySelector(W.USER_ADDRESS_2),ne=document.querySelector(W.USER_CITY),ce=document.querySelector(W.USER_ZIP);console.log(d);var ie=document.querySelector(".map"),ae=document.querySelector(".de-loading-overlay"),de=document.querySelector(".de-checkout-loader"),se=document.querySelector(".de-loading-overlay"),ue=document.querySelector(".de-checkout-loader");function le(e,t){var o;if("undefined"==typeof Symbol||null==e[Symbol.iterator]){if(Array.isArray(e)||(o=function(e,t){if(e){if("string"==typeof e)return pe(e,void 0);var o=Object.prototype.toString.call(e).slice(8,-1);return"Object"===o&&e.constructor&&(o=e.constructor.name),"Map"===o||"Set"===o?Array.from(e):"Arguments"===o||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(o)?pe(e,void 0):void 0}}(e))||t&&e&&"number"==typeof e.length){o&&(e=o);var r=0;return function(){return r>=e.length?{done:!0}:{done:!1,value:e[r++]}}}throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}return(o=e[Symbol.iterator]()).next.bind(o)}function pe(e,t){(null==t||t>e.length)&&(t=e.length);for(var o=0,r=Array(t);o<t;o++)r[o]=e[o];return r}var _e=e.SELECTORS.CHECKOUT,Se=_e.TEXT.CART_TEXT,Ie=_e.CLASSES,me=Ie.LOGO,he=Ie.STEPS,Ee=he.STEP_FOOTER,ye=he.STEP_FOOTER_PREVIOUS_LINK,fe=Ie.BREADCRUMBS,ve=fe.BC_ROOT,Te=fe.BC_LINK,Pe=fe.BC_ITEM,Ne=fe.BC_ITEM_COMPLETED,Ae=fe.BC_CHEVRON_ICON,Ce=_e.ATTRIBUTES.BREADCRUMBS.DATA_TREKKIE_ID,Oe=Ce.TREKKIE_NAME,Le=Ce.TREKKIE_VALUE,ke=_e.URLS,ge=ke.CART_URL,Ue=ke.ROOT_URL,Re=d.checkoutStep,De=d.checkoutPage,qe=function(){return Re===n.CONTACT_INFORMATION},be=function(){var e=document.querySelector("."+Ee);return!!e&&!e.querySelector("."+ye)},Me=function(){var e=document.createElement("a");e.href=ge,e.classList.add(ye),e.innerHTML='<svg focusable="false" aria-hidden="true" class="icon-svg icon-svg--color-accent icon-svg--size-10 previous-link__icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><path d="M8 1L7 0 3 4 2 5l1 1 4 4 1-1-4-4"></path></svg><span class="step__footer__previous-link-content">Return to cart</span>',document.querySelector("."+Ee).appendChild(e)};document.addEventListener("page:load",(function(){d.deliveryMethod="pickup"===r("delivery_method")?"pickup":"ship",r("pickup_store")&&(d.pickupStore=r("pickup_store")),d.checkoutStep===n.CONTACT_INFORMATION&&function(){if("ship"===d.deliveryMethod&&u(P)&&/San Francisco|Emeryville|Oakland/.test(P.value)&&w(),E.addEventListener("click",(function(e){e.preventDefault(),d.deliveryMethod="pickup",E.classList.toggle(G.ACTIVE_SHIPPICK_BTN),h.classList.toggle(G.ACTIVE_SHIPPICK_BTN),t&&o("delivery_method","pickup"),H()})),h.addEventListener("click",(function(e){u(P)&&/San Francisco|Emeryville|Oakland/.test(P.value)&&w(),d.deliveryMethod="ship",E.classList.toggle(G.ACTIVE_SHIPPICK_BTN),h.classList.toggle(G.ACTIVE_SHIPPICK_BTN),t&&o("delivery_method","ship"),H()})),u(R))if(null===d.pickupStore)R.src=window.defaultMap;else for(var e=window.masterStores.length-1;e>=0;e--)d.pickupStore===window.masterStores[e].id&&(R.src=window.masterStores[e].checkout_image);var r=document.querySelector(s.PICKUP_CONTINUE_BTN_CONTAINER),n=document.querySelector(s.PICKUP_CONTINUE_BTN),c=r.innerHTML;r.removeChild(n),m.insertAdjacentHTML("afterend",c),n=document.querySelector(s.PICKUP_CONTINUE_BTN),u(n)&&n.classList.add(G.DISABLED_BUTTON),n.addEventListener("click",(function(e){e.preventDefault(),document.querySelector(s.ACTIVE_PICKUP_LOCATION)&&(this.classList.contains("submitted")||(""===N.value||""===A.value||""===g.value||""===U.value?(u(N)&&""===N.value&&(N.parentNode.parentNode.classList.add("field--error"),N.addEventListener("blur",(function(){N.parentNode.parentNode.classList.remove("field--error")}))),u(A)&&""===A.value&&(A.parentNode.parentNode.classList.add("field--error"),A.addEventListener("blur",(function(){A.parentNode.parentNode.classList.remove("field--error")}))),u(g)&&""===g.value&&(g.parentNode.parentNode.classList.add("field--error"),g.addEventListener("blur",(function(){g.parentNode.parentNode.classList.remove("field--error")}))),u(U)&&""===U.value&&(U.parentNode.parentNode.classList.add("field--error"),U.addEventListener("blur",(function(){U.parentNode.parentNode.classList.remove("field--error")})))):$(".edit_checkout #checkout_email:invalid").length&&u(U)?(U.parentNode.parentNode.classList.add("field--error"),U.addEventListener("blur",(function(){U.parentNode.parentNode.classList.remove("field--error")}))):$(".edit_checkout #checkout_shipping_address_phone:invalid").length&&u(g)?(g.parentNode.parentNode.classList.add("field--error"),g.addEventListener("blur",(function(){g.parentNode.parentNode.classList.remove("field--error")}))):(localStorage.setItem("step",Shopify.Checkout.step),this.classList.add="submitted",u(document.querySelector(".js-de-payment-continue-spinner"))&&(document.querySelector(".js-de-payment-continue-spinner").style.animation="rotate 0.5s linear infinite",document.querySelector(".js-de-payment-continue-spinner").style.opacity="1"),u(document.querySelector(".js-de-payment-continue-copy"))&&(document.querySelector(".js-de-payment-continue-copy").style.opacity="0"),document.querySelector('[name="shopify-checkout-authorization-token"]').getAttribute("content"),j(),$("[data-customer-information-form]").submit())))})),new Promise((function(e,t){try{return e(window.masterStores)}catch(e){console.error(e)}return e()})).then((function(e){return function(e){for(var r,n=function(e,t){var o;if("undefined"==typeof Symbol||null==e[Symbol.iterator]){if(Array.isArray(e)||(o=function(e,t){if(e){if("string"==typeof e)return B(e,void 0);var o=Object.prototype.toString.call(e).slice(8,-1);return"Object"===o&&e.constructor&&(o=e.constructor.name),"Map"===o||"Set"===o?Array.from(e):"Arguments"===o||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(o)?B(e,void 0):void 0}}(e))){o&&(e=o);var r=0;return function(){return r>=e.length?{done:!0}:{done:!1,value:e[r++]}}}throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}return(o=e[Symbol.iterator]()).next.bind(o)}(e);!(r=n()).done;){var c=r.value,i=c.id===d.pickupStore||!1;if(i){console.log(c),console.log(c.fullHours);for(var a=document.createElement("li"),l=(new Date).getDay(),p=["Sun","Mon","Tue","Wed","Thu","Fri","Sat","Sun"],I=0;I<7;I++)if(l===I)var m=p[I];if(!0===c.is_same_hours_weekly)var h="Open "+c.hours[l].display;else h=m+" "+c.hours[l].display;a.classList.add("de-u-size1of2"),a.innerHTML='\n        <div class="js-de-pickup-location de-pickup-location de-u-spaceEnds02 '+(i?G.ACTIVE_PICKUP_LOCATION:"")+'"\n        data-id="'+c.id+'"\n        data-name="'+c.title+'"\n        data-street1="'+c.street1+'"\n        data-city="'+c.city+'"\n        data-state="'+c.state+'"\n        data-zip="'+c.zip+'">\n        <p class="de-pickup-location-time de-u-textBlack de-u-textSemibold de-u-textGrow1">'+c.ready_checkout+"</p>\n        "+(c.promise?'<p><span class="de-pickup-location-name de-u-textSemibold de-u-textBlack">'+c.promise+"</span></p>":"")+'\n        <p><span class="de-pickup-location-name de-u-textSemibold de-u-textBlack">'+(c.title||c.name)+"</span> "+c.street1+'</p>\n\n        <p class="de-pickup-location-hours de-u-textShrink2 '+(c.tooltip_hours?"tooltip-opener":"")+'">'+h+"</p>\n        "+(c.tooltip_hours?'<div class="hours-tooltip">\n            <div class="tooltip-content">\n              <h4 v-text="location.title">'+c.title+"</h4>\n              <hr/>\n              <p>\n                <strong>Address:</strong>\n                <span>"+c.street1+"</span>, \n                <span>"+c.city+"</span>, \n                <span>"+c.state+"</span>, \n                <span>"+c.zip+'</span>\n              </p>\n              <p><strong>Trading hours</strong></p>\n              <ul class="fullhours-list">'+c.fullHours+"</ul>\n              "+(c.announcement?'<p class="tooltip-announcement">'+c.announcement+"</p>":"")+"\n            </div>\n          </div>":"")+"\n      </div>",f.appendChild(a)}}document.querySelectorAll(s.PICKUP_LOCATION).forEach((function(e){e.addEventListener("click",(function(e){if(!this.classList.contains(G.ACTIVE_PICKUP_LOCATION)){var r=document.querySelector(s.ACTIVE_PICKUP_LOCATION);null!==r&&r.classList.remove(G.ACTIVE_PICKUP_LOCATION),this.classList.add(G.ACTIVE_PICKUP_LOCATION);var n=this.getAttribute("data-id");if(d.pickupStore=n,t&&o("pickup_store",n),u(R))for(var c=window.masterStores.length-1;c>=0;c--)n===window.masterStores[c].id&&(R.src=window.masterStores[c].checkout_image);u(document.querySelector(".js-de-payment-continue"))&&document.querySelector(".js-de-payment-continue").classList.remove(G.DISABLED_BUTTON)}}))})),K.then((function(e){S([D,q]),"Click &amp; Collect"===deliveryMethod?(document.querySelector('[name="shopify-checkout-authorization-token"]').getAttribute("content"),j(),S([y])):_([D,q])}))}(e)}))}(),d.checkoutStep===n.SHIPPING_METHOD&&(_([Y,z]),"ship"===d.deliveryMethod?document.querySelector(x.PICKUP_SHIPPING_METHOD)?F():new MutationObserver((function(e){e.forEach((function(e){F()}))})).observe(document.querySelector(".section__content"),{childList:!0}):document.querySelector(x.PICKUP_SHIPPING_METHOD)?Z():new MutationObserver((function(e){e.forEach((function(e){Z()}))})).observe(document.querySelector(".section__content"),{childList:!0})),d.checkoutStep===n.PAYMENT_METHOD&&function(){if([oe,re,ne,ce].forEach((function(e){u(e)&&(e.value="")})),_([ee,te]),"pickup"===d.deliveryMethod){_(X),_([Q]),J.innerHTML="Pickup at";var e=document.getElementById("checkout_different_billing_address_true");u(e)&&e.click()}else{var t=document.getElementById("checkout_different_billing_address_false");u(t)&&t.click()}}(),(d.checkoutStep===n.THANK_YOU||window.Shopify&&window.Shopify.Checkout&&window.Shopify.Checkout.isOrderStatusPage)&&function(){if(_([ae,de]),"pickup"===d.deliveryMethod){_([ie]);var e=document.querySelectorAll("h3");[].forEach.call(e,(function(e){"Shipping address"===e.textContent&&(e.textContent="Pickup address")}))}}(),"stock_problems"===d.checkoutPage&&_([se,ue]),qe()&&V(),!function(){for(var e,t=le(document.querySelectorAll("."+Te));!(e=t()).done;)if(e.value.href.indexOf(ge)>-1)return!0;return!1}()&&Object.keys(n).some((function(e){return n[e]===Re}))&&(qe()&&be()&&Me(),function(){var e=document.querySelector("."+ve),t=document.createElement("li");t.classList.add(Pe,Ne);var o=document.createElement("a");o.href=ge,o.classList.add(""+Te),o.appendChild(document.createTextNode(Se)),o.setAttribute(Oe,Le);var r=document.querySelector("."+Ae).cloneNode(!0);t.appendChild(o),e.insertBefore(t,e.firstChild),t.insertBefore(r,o.nextSibling)}()),"stock_problems"===De&&be()&&Me(),function(){for(var e,t=le(document.querySelectorAll("."+me));!(e=t()).done;)e.value.href=Ue}()}));
+import { s as scriptsConfig } from './built-fetch-stores-13903880.js';
+import './built-toConsumableArray-0fbe23f7.js';
+import { s as sessionStorageAvailable, a as setObjectInSessionStorage, g as getObjectFromSessionStorage } from './built-storage-f11703b1.js';
+
+/**
+ * The delivery method options, matches the UI "Ship"/"Pickup" buttons
+ */
+const deliveryMethods = {
+  SHIP: 'ship',
+  PICKUP: 'pickup'
+};
+
+/**
+ * These constants match up to the `Shopify.Checkout.step` values
+ * @see https://help.shopify.com/en/themes/development/layouts/checkout#step-identification
+ */
+const checkoutSteps = {
+  CONTACT_INFORMATION: 'contact_information',
+  SHIPPING_METHOD: 'shipping_method',
+  PAYMENT_METHOD: 'payment_method',
+  PROCESSING: 'processing',
+  // Between payment page and thank you page
+  THANK_YOU: 'thank_you',
+  REVIEW: 'review' // Optional step set in the Admin
+
+};
+
+var DELIVERY_METHODS = deliveryMethods;
+var CHECKOUT_STEPS = checkoutSteps;
+
+/**
+ * Allows debugging of app/UI state
+ * @todo: Can this be configured via environment variable?
+ * Set to `false` for `production`.
+ */
+var Shopify$1 = window.Shopify;
+var checkoutStep = Shopify$1 && Shopify$1.Checkout && Shopify$1.Checkout.step;
+var checkoutPage = Shopify$1 && Shopify$1.Checkout && Shopify$1.Checkout.page;
+
+var logState = function logState() {
+  console.info('STATE:', STATE);
+};
+/**
+ * @todo Refactor to not use getters/setters per feedback
+ * @see https://github.com/decathlon-usa/shopify-theme-decathlonusa/pull/101#discussion_r253569982
+ */
+
+
+var STATE = {
+  _deliveryMethod: window.deliveryMethod === 'Delivery' ? 'ship' : 'pickup',
+  _pickupStore: !!localStorage.getItem('favoritedStore') ? JSON.parse(localStorage.getItem('favoritedStore')).id : null,
+  //_pickupStore: null,
+
+  /**
+   * For the purposes of steps and pages, don't use setters and getters
+   */
+  checkoutStep: checkoutStep,
+  checkoutPage: checkoutPage,
+
+  /**
+   * Getters/Setters
+   */
+  get deliveryMethod() {
+    return this._deliveryMethod;
+  },
+
+  get pickupStore() {
+    return this._pickupStore;
+  },
+
+  set deliveryMethod(method) {
+    return false;
+  },
+
+  set pickupStore(store) {
+    this._pickupStore = store;
+    logState();
+  }
+
+};
+
+if (STATE._pickupStore === null && STATE._deliveryMethod === 'pickup') {
+  window.location.href = '/cart';
+}
+
+/**
+ * Note: If Shopify updates the `content_for_layout` Liquid drop,
+ * there is the possiblity these selectors will fail. This is a known
+ * risk we are taking.
+ * @see https://help.shopify.com/en/themes/development/layouts/checkout/best-practices#dom-dependency-and-liquid-drops
+ * @see https://docs.decathlon.us/shopify/-LSqQDiLEYzw_Jv4oueW/product-feature/untitled-2#shopify-plus-checkout-customization
+ */
+var SHOPIFY_UI_SELECTORS = {
+  CONTINUE_BTN: '.step__footer__continue-btn',
+  SHIPPING_ADDRESS_HEADER: '.section--shipping-address .section__header h2',
+  DELIVERY_INPUTS: {
+    address1Input: '[data-address-field="address1"]',
+    address2Input: '[data-address-field="address2"]',
+    cityInput: '[data-address-field="city"]',
+    countryInput: '[data-address-field="country"]',
+    provinceInput: '[data-address-field="province"]',
+    zipInput: '[data-address-field="zip"]'
+  },
+  USER_ADDRESS_LIST: '#checkout_shipping_address_id',
+  COMPANY: '#checkout_shipping_address_company',
+  USER_FIRST_NAME: '#checkout_shipping_address_first_name',
+  USER_LAST_NAME: '#checkout_shipping_address_last_name',
+  USER_ADDRESS_1: '#checkout_shipping_address_address1',
+  USER_ADDRESS_2: '#checkout_shipping_address_address2',
+  USER_CITY: '#checkout_shipping_address_city',
+  USER_ZIP: '#checkout_shipping_address_zip',
+  USER_PHONE: '#checkout_shipping_address_phone',
+  USER_EMAIL: '#checkout_email'
+};
+/**
+ * These CSS selectors are custom. You will find the UI elements
+ * within the Checkout Liquid template. We have full control over them
+ * as they do not preside inside of the `content_for_Layout` Liquid drop.
+ */
+
+var CUSTOM_UI_SELECTORS = {
+  TOGGLE_SHIPPING: '.js-de-toggle-shipping',
+  TOGGLE_PICKUP: '.js-de-toggle-pickup',
+  PICKUP_CONTENT: '.js-de-pickup-content',
+  PICKUP_LOCATIONS: '.js-de-pickup-locations',
+  PICKUP_LOCATION: '.js-de-pickup-location',
+  ACTIVE_PICKUP_LOCATION: '.js-de-active-location',
+  PICKUP_CONTINUE_BTN_CONTAINER: '.js-de-payment-continue-container',
+  PICKUP_CONTINUE_BTN: '.js-de-payment-continue',
+  MAP_IMAGE: '.js-de-pickup-location-map-img',
+  LOADING_OVERLAY: '.de-loading-overlay',
+  LOADING_IMAGE: '.de-checkout-loader'
+};
+const SELECTORS = Object.assign({}, SHOPIFY_UI_SELECTORS, CUSTOM_UI_SELECTORS);
+
+/**
+ * Pattern Toolkit CSS classes to manipulate DOM
+ */
+var HIDDEN = 'de-u-hidden';
+/**
+ * Checks if HTML element exists in the DOM
+ * @param {Element} element The HTML element to check
+ */
+
+var elementExists = function elementExists(element) {
+  return Boolean(element);
+};
+/**
+ * Hides HTML element by adding CSS class
+ * @param {Element} element The HTML element to hide
+ */
+
+var hideElement = function hideElement(element) {
+  if (!element) return;
+  element.classList.add(HIDDEN);
+};
+/**
+ * Shows HTML element by removing CSS class
+ * @param {Element} element The HTML element to hide
+ */
+
+
+var showElement = function showElement(element) {
+  if (!element) return;
+  element.classList.remove(HIDDEN);
+};
+/**
+ * Hides all HTML elements in array
+ * @param {array} elements An array of HTML elements
+ */
+
+
+var hideElements = function hideElements(elements) {
+  elements.forEach(hideElement);
+};
+/**
+ * Shows all HTML elements in array
+ * @param {array} elements An array of HTML elements
+ */
+
+var showElements = function showElements(elements) {
+  elements.forEach(showElement);
+};
+
+/**
+ * Grouping all toggle elements together into an array for easier access
+ */
+
+var deliveryElements = Object.keys(SELECTORS.DELIVERY_INPUTS).map(function (key) {
+  return document.querySelector(SELECTORS.DELIVERY_INPUTS[key]);
+});
+/**
+ * Next step "continue" buttons
+ */
+
+var continueBtn = document.querySelector(SELECTORS.CONTINUE_BTN);
+/**
+ * The toggle buttons
+ */
+
+var shipToggleBtn = document.querySelector(SELECTORS.TOGGLE_SHIPPING);
+var pickupToggleBtn = document.querySelector(SELECTORS.TOGGLE_PICKUP);
+/**
+ * Content specific to the "Pickup" UI
+ */
+
+var pickupContent = document.querySelector(SELECTORS.PICKUP_CONTENT);
+var storeLocations = document.querySelectorAll(SELECTORS.STORE_INPUT);
+var pickupLocationList = document.querySelector(SELECTORS.PICKUP_LOCATIONS);
+var shippingAddressHeader = document.querySelector(SELECTORS.SHIPPING_ADDRESS_HEADER);
+var userAddressList = elementExists(document.querySelector(SELECTORS.USER_ADDRESS_LIST)) ? document.querySelector(SELECTORS.USER_ADDRESS_LIST).parentNode : false;
+var company = document.querySelector(SELECTORS.COMPANY);
+var userFirstName = document.querySelector(SELECTORS.USER_FIRST_NAME);
+var userLastName = document.querySelector(SELECTORS.USER_LAST_NAME);
+var userAddress1 = document.querySelector(SELECTORS.USER_ADDRESS_1);
+var userAddress2 = document.querySelector(SELECTORS.USER_ADDRESS_2);
+var userCity = document.querySelector(SELECTORS.USER_CITY);
+var userZip = document.querySelector(SELECTORS.USER_ZIP);
+var userPhone = document.querySelector(SELECTORS.USER_PHONE);
+var userEmail = document.querySelector(SELECTORS.USER_EMAIL);
+var mapImage = document.querySelector(SELECTORS.MAP_IMAGE);
+var loadingOverlay = document.querySelector(SELECTORS.LOADING_OVERLAY);
+var loadingImage = document.querySelector(SELECTORS.LOADING_IMAGE);
+
+var config = {
+  PICKUP_SHIPPING_METHODS: ['shopify-Pickup-0.00'],
+  PICKUP_SHIPPING_METHOD: 'shopify-Pickup-0.00',
+  CLASSES: {
+    ACTIVE_SHIPPICK_BTN: 'js-de-active-pickship-btn',
+    ACTIVE_PICKUP_LOCATION: 'js-de-active-location',
+    DISABLED_BUTTON: 'js-de-BtnDisabled'
+  },
+  COPY: {
+    SHIPPING_ADDRESS_HEADING: 'Shipping address',
+    PICKUP_ADDRESS_HEADING: 'Pickup address'
+  },
+  SHOP_ID: ['6665633903'],
+  STOREFRONT_API_KEY: ['fe87a1c3e2f7434995b7905f5ae37fb9']
+};
+
+var CLASSES = config.CLASSES,
+    COPY = config.COPY;
+
+var updateUI = function updateUI() {
+  // Capture the current selected delivery method
+  var deliveryMethod = STATE.deliveryMethod;
+
+  if (deliveryMethod === DELIVERY_METHODS.PICKUP) {
+    $('[data-address-field="company"]').hide();
+    pickupToggleBtn.classList.add(CLASSES.ACTIVE_SHIPPICK_BTN);
+    shipToggleBtn.classList.remove(CLASSES.ACTIVE_SHIPPICK_BTN);
+    hideElements(deliveryElements);
+    hideElements([continueBtn, shippingAddressHeader, userAddressList]);
+    showElements([pickupContent]);
+    showElements([document.querySelector(SELECTORS.PICKUP_CONTINUE_BTN)]);
+  }
+
+  if (deliveryMethod === DELIVERY_METHODS.SHIP) {
+    $('[data-address-field="company"]').show();
+    shipToggleBtn.classList.add(CLASSES.ACTIVE_SHIPPICK_BTN);
+    pickupToggleBtn.classList.remove(CLASSES.ACTIVE_SHIPPICK_BTN);
+    hideElements([pickupContent]);
+    hideElements([document.querySelector(SELECTORS.PICKUP_CONTINUE_BTN)]);
+    showElements(deliveryElements);
+    showElements([continueBtn, shippingAddressHeader, userAddressList]);
+    shippingAddressHeader.textContent = COPY.SHIPPING_ADDRESS_HEADING;
+  }
+};
+
+/**
+ * Get user's current location from ipStack
+ * @returns Promise
+ */
+var getCurrentLocation = fetch('https://api.ipstack.com/check?access_key=23cb2745b5ee35580d6f00373f14f868&legacy=1').then(function (res) {
+  return res.json();
+});
+
+function _createForOfIteratorHelperLoose(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; return function () { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } it = o[Symbol.iterator](); return it.next.bind(it); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+console.log(STATE);
+var CLASSES$1 = config.CLASSES;
+
+var clearShippingForm = function clearShippingForm() {
+  company.value = '';
+  userAddress1.value = '';
+  userAddress2.value = '';
+  userCity.value = '';
+  userZip.value = '';
+};
+/**
+ * Binds click event to location cards separately
+ * since they are dynamically added after the DOM is
+ * loaded. This function is called after the fetch to
+ * ShipHawk resolves and store list is built in the DOM.
+ */
+
+
+var bindLocations = function bindLocations() {
+  var pickupLocations = document.querySelectorAll(SELECTORS.PICKUP_LOCATION);
+  pickupLocations.forEach(function (location) {
+    location.addEventListener('click', function (e) {
+      // Is this card already active?
+      if (!this.classList.contains(CLASSES$1.ACTIVE_PICKUP_LOCATION)) {
+        // Find the currently active card
+        var activeLocation = document.querySelector(SELECTORS.ACTIVE_PICKUP_LOCATION); // Make currently active card inactive
+
+        if (activeLocation !== null) {
+          activeLocation.classList.remove(CLASSES$1.ACTIVE_PICKUP_LOCATION);
+        } // Make this card active
+
+
+        this.classList.add(CLASSES$1.ACTIVE_PICKUP_LOCATION); // Get the ShipHawk ID of this store
+
+        var pickupStore = this.getAttribute('data-id'); // Update global state with pickup store
+
+        STATE.pickupStore = pickupStore; // Set preferred store in sessionStorage
+
+        if (sessionStorageAvailable) {
+          setObjectInSessionStorage('pickup_store', pickupStore);
+        } // Update map image
+
+
+        if (elementExists(mapImage)) {
+          for (var i = window.masterStores.length - 1; i >= 0; i--) {
+            var storeId = window.masterStores[i].id;
+
+            if (pickupStore === storeId) {
+              mapImage.src = window.masterStores[i].checkout_image;
+            }
+          }
+        } // Enable Continue Button
+
+
+        if (elementExists(document.querySelector('.js-de-payment-continue'))) {
+          document.querySelector('.js-de-payment-continue').classList.remove(CLASSES$1.DISABLED_BUTTON);
+        }
+      }
+    });
+  });
+};
+/**
+ * Hides In Store Pickup UI for users outside of California and
+ * reveals a link to optionally un-hide In Store Pickup UI
+ * @param  {object} currentLocation ipStack response
+ */
+
+
+var updateLocationUI = function updateLocationUI(currentLocation) {
+  showElements([loadingOverlay, loadingImage]);
+
+  if (deliveryMethod === 'Click &amp; Collect') {
+    pickupDefaultUpdate();
+    showElements([pickupContent]);
+  } else {
+    hideElements([loadingOverlay, loadingImage]);
+  }
+  /*
+  showElements([pickupToggleBtn, shipToggleBtn]);
+    if (STATE.deliveryMethod === DELIVERY_METHODS.PICKUP) {
+      showElements([pickupContent]);
+    }
+   if (
+    currentLocation.region_name === 'New South Wales' ||
+    currentLocation.region_name === 'Victoria' ||
+    STATE.deliveryMethod === DELIVERY_METHODS.PICKUP
+  ) {
+    showElements([pickupToggleBtn, shipToggleBtn]);
+    if (STATE.deliveryMethod === DELIVERY_METHODS.PICKUP) {
+      showElements([pickupContent]);
+    }
+  } else {
+    showElements([document.querySelector('.de-visit-cal-container')]);
+    document
+      .querySelector('.de-visit-cal-btn')
+      .addEventListener('click', event => {
+        showElements([pickupToggleBtn, shipToggleBtn, pickupContent]);
+        STATE.deliveryMethod = DELIVERY_METHODS.PICKUP;
+        pickupToggleBtn.classList.toggle(CLASSES.ACTIVE_SHIPPICK_BTN);
+        shipToggleBtn.classList.toggle(CLASSES.ACTIVE_SHIPPICK_BTN);
+        if (sessionStorageAvailable) {
+          setObjectInSessionStorage('delivery_method', DELIVERY_METHODS.PICKUP);
+        }
+        updateUI();
+        hideElements([document.querySelector('.de-visit-cal-container')]);
+      });
+  }
+  */
+
+};
+/**
+ * Callback for fetch to ShipHawk. Takes the locations and
+ * builds the HTML for the store cards and appends them to the
+ * locations UL in the DOM.
+ * @param  {Object} locations data from ShipHawk
+ */
+
+
+var buildStoreList = function buildStoreList(locations) {
+  for (var _iterator = _createForOfIteratorHelperLoose(locations), _step; !(_step = _iterator()).done;) {
+    var location = _step.value;
+    // Check to see if this is the active store so we can add active class
+    var activeCard = location.id === STATE.pickupStore || false;
+
+    if (activeCard) {
+      console.log(location);
+      console.log(location.fullHours); // Build card
+
+      var locationNode = document.createElement('li');
+      var weekday = new Date().getDay();
+      var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+      for (var d = 0; d < 7; d++) {
+        var day = days[d];
+
+        if (weekday === d) {
+          var nameDay = day;
+        }
+      }
+
+      if (location.is_same_hours_weekly === true) {
+        var opening_display = 'Open ' + location.hours[weekday].display;
+      } else {
+        var opening_display = nameDay + ' ' + location.hours[weekday].display;
+      }
+
+      locationNode.classList.add('de-u-size1of2');
+      locationNode.innerHTML = "\n        <div class=\"js-de-pickup-location de-pickup-location de-u-spaceEnds02 " + (activeCard ? CLASSES$1.ACTIVE_PICKUP_LOCATION : '') + "\"\n        data-id=\"" + location.id + "\"\n        data-name=\"" + location.title + "\"\n        data-street1=\"" + location.street1 + "\"\n        data-city=\"" + location.city + "\"\n        data-state=\"" + location.state + "\"\n        data-zip=\"" + location.zip + "\">\n        <p class=\"de-pickup-location-time de-u-textBlack de-u-textSemibold de-u-textGrow1\">" + location.ready_checkout + "</p>\n        " + (location.promise ? "<p><span class=\"de-pickup-location-name de-u-textSemibold de-u-textBlack\">" + location.promise + "</span></p>" : '') + "\n        <p><span class=\"de-pickup-location-name de-u-textSemibold de-u-textBlack\">" + (location.title || location.name) + "</span> " + location.street1 + "</p>\n\n        <p class=\"de-pickup-location-hours de-u-textShrink2 " + (location.tooltip_hours ? 'tooltip-opener' : '') + "\">" + opening_display + "</p>\n        " + (location.tooltip_hours ? "<div class=\"hours-tooltip\">\n            <div class=\"tooltip-content\">\n              <h4 v-text=\"location.title\">" + location.title + "</h4>\n              <hr/>\n              <p>\n                <strong>Address:</strong>\n                <span>" + location.street1 + "</span>, \n                <span>" + location.city + "</span>, \n                <span>" + location.state + "</span>, \n                <span>" + location.zip + "</span>\n              </p>\n              <p><strong>Trading hours</strong></p>\n              <ul class=\"fullhours-list\">" + location.fullHours + "</ul>\n              " + (location.announcement ? "<p class=\"tooltip-announcement\">" + location.announcement + "</p>" : '') + "\n            </div>\n          </div>" : '') + "\n      </div>"; // Insert card
+
+      pickupLocationList.appendChild(locationNode);
+    }
+  } // Now that the cards are built, bind onclick functionality
+
+
+  bindLocations(); // Get ipstack location promise, Update UI based on results
+
+  getCurrentLocation.then(function (currentLocation) {
+    updateLocationUI();
+  });
+};
+/**
+ * Gathers selected store location data and sends to checkout
+ * object as the shipping address with graphql call
+ * @return calls next step in graphql chain: updateEmail
+ */
+
+
+var updateCheckout = function updateCheckout() {
+  // Get "checkout_secret" from meta tags to use in construction of GID
+  // @TODO move to config
+  var checkoutKey = document.querySelector('[name="shopify-checkout-authorization-token"]').getAttribute('content');
+  fillStoreData();
+};
+
+var pickupDefaultUpdate = function pickupDefaultUpdate() {
+  var checkoutKey = document.querySelector('[name="shopify-checkout-authorization-token"]').getAttribute('content');
+  fillStoreData();
+};
+
+var fillStoreData = function fillStoreData() {
+  // Collect selected store location data and user input
+  var selectedStore = document.querySelector(SELECTORS.ACTIVE_PICKUP_LOCATION);
+  var checkoutAddressData = {};
+  checkoutAddressData.first_name = userFirstName.value;
+  checkoutAddressData.last_name = userLastName.value;
+  checkoutAddressData.phone = userPhone.value;
+  checkoutAddressData.company = selectedStore.dataset.name;
+  checkoutAddressData.address1 = selectedStore.dataset.street1;
+  checkoutAddressData.address2 = selectedStore.dataset.street2 || '';
+  checkoutAddressData.city = selectedStore.dataset.city;
+  checkoutAddressData.country = 'Australia';
+  checkoutAddressData.province = selectedStore.dataset.state;
+  checkoutAddressData.zip = selectedStore.dataset.zip;
+
+  for (var key in checkoutAddressData) {
+    console.log(key, checkoutAddressData[key]);
+    $('[name="checkout[shipping_address][' + key + ']"]').val(checkoutAddressData[key]);
+  }
+};
+
+var bindUI = function bindUI() {
+  /**
+   * On load checks hidden Company field for auto-populated pickup store data.
+   * If true, form clears
+   */
+  if (STATE.deliveryMethod === DELIVERY_METHODS.SHIP) {
+    var regexDEC = new RegExp(/San Francisco|Emeryville|Oakland/);
+
+    if (elementExists(company)) {
+      if (regexDEC.test(company.value)) {
+        clearShippingForm();
+      }
+    }
+  } // Clear form if store data is pre-populating
+
+  /**
+   * Bind the toggle buttons.
+   * Some of these procedures may move to updateUI
+   */
+
+
+  pickupToggleBtn.addEventListener('click', function (event) {
+    event.preventDefault();
+    STATE.deliveryMethod = DELIVERY_METHODS.PICKUP;
+    pickupToggleBtn.classList.toggle(CLASSES$1.ACTIVE_SHIPPICK_BTN);
+    shipToggleBtn.classList.toggle(CLASSES$1.ACTIVE_SHIPPICK_BTN);
+
+    if (sessionStorageAvailable) {
+      setObjectInSessionStorage('delivery_method', DELIVERY_METHODS.PICKUP);
+    }
+
+    updateUI();
+  });
+  shipToggleBtn.addEventListener('click', function (event) {
+    // Will find a better way here when location API is finalized
+    var regexDEC = new RegExp(/San Francisco|Emeryville|Oakland/);
+
+    if (elementExists(company)) {
+      if (regexDEC.test(company.value)) {
+        clearShippingForm();
+      }
+    }
+
+    STATE.deliveryMethod = DELIVERY_METHODS.SHIP;
+    pickupToggleBtn.classList.toggle(CLASSES$1.ACTIVE_SHIPPICK_BTN);
+    shipToggleBtn.classList.toggle(CLASSES$1.ACTIVE_SHIPPICK_BTN);
+
+    if (sessionStorageAvailable) {
+      setObjectInSessionStorage('delivery_method', DELIVERY_METHODS.SHIP);
+    }
+
+    updateUI();
+  });
+  /**
+   * Update map if preferred store is selected on load.
+   * This probably needs to move.
+   */
+
+  if (elementExists(mapImage)) {
+    if (STATE.pickupStore === null) {
+      mapImage.src = window.defaultMap;
+    } else {
+      for (var i = window.masterStores.length - 1; i >= 0; i--) {
+        var pickupStore = STATE.pickupStore;
+        var storeId = window.masterStores[i].id;
+
+        if (pickupStore === storeId) {
+          mapImage.src = window.masterStores[i].checkout_image;
+        }
+      }
+    }
+  }
+  /**
+   * Add second Continue button for Pickup (straight to Payment)
+   * Needs refactoring.
+   */
+
+
+  var paymentBtnCont = document.querySelector(SELECTORS.PICKUP_CONTINUE_BTN_CONTAINER);
+  var paymentBtn = document.querySelector(SELECTORS.PICKUP_CONTINUE_BTN);
+  var paymentBtnHTML = paymentBtnCont.innerHTML;
+  paymentBtnCont.removeChild(paymentBtn);
+  continueBtn.insertAdjacentHTML('afterend', paymentBtnHTML);
+  paymentBtn = document.querySelector(SELECTORS.PICKUP_CONTINUE_BTN);
+
+  if (elementExists(paymentBtn)) {
+    paymentBtn.classList.add(CLASSES$1.DISABLED_BUTTON);
+  }
+
+  paymentBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+
+    if (document.querySelector(SELECTORS.ACTIVE_PICKUP_LOCATION)) {
+      // @TODO create validtion function
+      if (!this.classList.contains('submitted')) {
+        if (userFirstName.value === '' || userLastName.value === '' || userPhone.value === '' || userEmail.value === '') {
+          if (elementExists(userFirstName) && userFirstName.value === '') {
+            userFirstName.parentNode.parentNode.classList.add('field--error');
+            userFirstName.addEventListener('blur', function () {
+              userFirstName.parentNode.parentNode.classList.remove('field--error');
+            });
+          }
+
+          if (elementExists(userLastName) && userLastName.value === '') {
+            userLastName.parentNode.parentNode.classList.add('field--error');
+            userLastName.addEventListener('blur', function () {
+              userLastName.parentNode.parentNode.classList.remove('field--error');
+            });
+          }
+
+          if (elementExists(userPhone) && userPhone.value === '') {
+            userPhone.parentNode.parentNode.classList.add('field--error');
+            userPhone.addEventListener('blur', function () {
+              userPhone.parentNode.parentNode.classList.remove('field--error');
+            });
+          }
+
+          if (elementExists(userEmail) && userEmail.value === '') {
+            userEmail.parentNode.parentNode.classList.add('field--error');
+            userEmail.addEventListener('blur', function () {
+              userEmail.parentNode.parentNode.classList.remove('field--error');
+            });
+          }
+        } else if ($('.edit_checkout #checkout_email:invalid').length && elementExists(userEmail)) {
+          userEmail.parentNode.parentNode.classList.add('field--error');
+          userEmail.addEventListener('blur', function () {
+            userEmail.parentNode.parentNode.classList.remove('field--error');
+          });
+        } else if ($('.edit_checkout #checkout_shipping_address_phone:invalid').length && elementExists(userPhone)) {
+          userPhone.parentNode.parentNode.classList.add('field--error');
+          userPhone.addEventListener('blur', function () {
+            userPhone.parentNode.parentNode.classList.remove('field--error');
+          });
+        } else {
+          localStorage.setItem('step', Shopify.Checkout.step);
+          this.classList.add = 'submitted'; // Make button spin
+
+          if (elementExists(document.querySelector('.js-de-payment-continue-spinner'))) {
+            document.querySelector('.js-de-payment-continue-spinner').style.animation = 'rotate 0.5s linear infinite';
+            document.querySelector('.js-de-payment-continue-spinner').style.opacity = '1';
+          }
+
+          if (elementExists(document.querySelector('.js-de-payment-continue-copy'))) {
+            document.querySelector('.js-de-payment-continue-copy').style.opacity = '0';
+          }
+
+          updateCheckout();
+          $('[data-customer-information-form]').submit();
+        }
+      }
+    }
+  });
+
+  function fetchStoreList() {
+    return new Promise(function ($return, $error) {
+      try {
+        var stores = window.masterStores;
+        return $return(stores);
+      } catch (error) {
+        console.error(error);
+      }
+
+      return $return();
+    });
+  }
+
+  fetchStoreList().then(function (stores) {
+    return buildStoreList(stores);
+  });
+};
+
+const contactInformation = {
+  bindUI: bindUI,
+  updateUI: updateUI
+};
+
+var updateUI$1 = function updateUI() {};
+
+var PICKUP_SHIPPING_METHODS = config.PICKUP_SHIPPING_METHODS,
+    PICKUP_SHIPPING_METHOD = config.PICKUP_SHIPPING_METHOD;
+var CUSTOM_UI_SELECTORS$1 = {
+  PICKUP_SHIPPING_METHOD_BLOCKS: PICKUP_SHIPPING_METHODS.map(function (selector) {
+    return "[data-shipping-method=\"" + selector + "\"]";
+  }),
+  PICKUP_SHIPPING_METHOD: "[data-shipping-method=\"" + PICKUP_SHIPPING_METHOD + "\"]",
+  LOADING_OVERLAY: '.de-loading-overlay',
+  LOADING_IMAGE: '.de-checkout-loader'
+};
+
+var pickupShippingMethods = CUSTOM_UI_SELECTORS$1.PICKUP_SHIPPING_METHOD_BLOCKS.map(function (selector) {
+  if (elementExists(document.querySelector(selector))) {
+    return document.querySelector(selector).parentNode;
+  }
+
+  return false;
+});
+var pickupShippingMethod = document.querySelector(CUSTOM_UI_SELECTORS$1.PICKUP_SHIPPING_METHOD_BLOCK);
+var loadingOverlay$1 = document.querySelector(CUSTOM_UI_SELECTORS$1.LOADING_OVERLAY);
+var loadingImage$1 = document.querySelector(CUSTOM_UI_SELECTORS$1.LOADING_IMAGE);
+
+var updateShippingMethod = function updateShippingMethod() {
+  if (elementExists(document.querySelector(CUSTOM_UI_SELECTORS$1.PICKUP_SHIPPING_METHOD + " input")) && document.querySelector(CUSTOM_UI_SELECTORS$1.PICKUP_SHIPPING_METHOD + " input").checked) {
+    var radios = document.querySelectorAll('.input-radio');
+    var pickupMethod = document.querySelector(CUSTOM_UI_SELECTORS$1.PICKUP_SHIPPING_METHOD).getAttribute('data-shipping-method');
+
+    for (var i = 0, length = radios.length; i < length; i++) {
+      var currentMethod = radios[i].value;
+
+      if (pickupMethod !== currentMethod) {
+        radios[i].checked = true;
+        hideElements([document.querySelector('.review-block:nth-child(3)')]);
+        break;
+      }
+    }
+  }
+
+  hideElements([document.querySelector(CUSTOM_UI_SELECTORS$1.PICKUP_SHIPPING_METHOD).parentNode]); //
+  // document.querySelector('.content-box__row:nth-child(3)').style.borderTop =
+  //  'none';
+};
+
+var hideShippingMethods = function hideShippingMethods() {
+  var radios = document.querySelectorAll('.radio-wrapper');
+  var pickupMethod = document.querySelector(CUSTOM_UI_SELECTORS$1.PICKUP_SHIPPING_METHOD).getAttribute('data-shipping-method');
+
+  for (var i = 0, length = radios.length; i < length; i++) {
+    var currentMethod = radios[i].getAttribute('data-shipping-method');
+
+    if (pickupMethod !== currentMethod) {
+      radios[i].parentNode.style.display = 'none';
+      radios[i].parentNode.remove();
+    } else {
+      radios[i].querySelector('input').checked = true;
+    }
+  }
+};
+
+var bindUI$1 = function bindUI() {
+  hideElements([loadingOverlay$1, loadingImage$1]);
+
+  if (STATE.deliveryMethod === DELIVERY_METHODS.SHIP) {
+    if (document.querySelector(CUSTOM_UI_SELECTORS$1.PICKUP_SHIPPING_METHOD)) {
+      updateShippingMethod();
+    } else {
+      var observer = new MutationObserver(function (mutations) {
+        mutations.forEach(function (mutation) {
+          updateShippingMethod();
+        });
+      });
+      var observerConfig = {
+        childList: true
+      };
+      observer.observe(document.querySelector('.section__content'), observerConfig);
+    }
+  } else if (document.querySelector(CUSTOM_UI_SELECTORS$1.PICKUP_SHIPPING_METHOD)) {
+    hideShippingMethods();
+  } else {
+    var _observer = new MutationObserver(function (mutations) {
+      mutations.forEach(function (mutation) {
+        hideShippingMethods();
+      });
+    });
+
+    var _observerConfig = {
+      childList: true
+    };
+
+    _observer.observe(document.querySelector('.section__content'), _observerConfig);
+  }
+};
+
+const shippingMethod = {
+  bindUI: bindUI$1,
+  updateUI: updateUI$1
+};
+
+var updateUI$2 = function updateUI() {};
+
+var SHOPIFY_UI_SELECTORS$1 = {
+  BILLING_ADDRESS_CHOICES: {
+    sameAsShipping: '[data-same-billing-address]',
+    differentThanShipping: '[data-different-billing-address]'
+  },
+  SHIP_TO_LABEL: '.review-block:nth-child(2) .review-block__label',
+  SHIP_TO_MAP: '.map',
+  LOADING_OVERLAY: '.de-loading-overlay',
+  LOADING_IMAGE: '.de-checkout-loader',
+  USER_ADDRESS_1: '#checkout_billing_address_address1',
+  USER_ADDRESS_2: '#checkout_billing_address_address2',
+  USER_CITY: '#checkout_billing_address_city',
+  USER_ZIP: '#checkout_billing_address_zip'
+};
+
+var billingAddressChoices = Object.keys(SHOPIFY_UI_SELECTORS$1.BILLING_ADDRESS_CHOICES).map(function (key) {
+  return document.querySelector(SHOPIFY_UI_SELECTORS$1.BILLING_ADDRESS_CHOICES[key]);
+});
+var shipToLabel = document.querySelector(SHOPIFY_UI_SELECTORS$1.SHIP_TO_LABEL);
+var shipToMap = document.querySelector(SHOPIFY_UI_SELECTORS$1.SHIP_TO_MAP);
+var loadingOverlay$2 = document.querySelector(SHOPIFY_UI_SELECTORS$1.LOADING_OVERLAY);
+var loadingImage$2 = document.querySelector(SHOPIFY_UI_SELECTORS$1.LOADING_IMAGE);
+var userAddress1$1 = document.querySelector(SHOPIFY_UI_SELECTORS$1.USER_ADDRESS_1);
+var userAddress2$1 = document.querySelector(SHOPIFY_UI_SELECTORS$1.USER_ADDRESS_2);
+var userCity$1 = document.querySelector(SHOPIFY_UI_SELECTORS$1.USER_CITY);
+var userZip$1 = document.querySelector(SHOPIFY_UI_SELECTORS$1.USER_ZIP);
+
+console.log(STATE);
+/**
+ * Clear auto-filled billing address fields
+ */
+
+var clearBillingAddress = function clearBillingAddress() {
+  var billingFields = [userAddress1$1, userAddress2$1, userCity$1, userZip$1];
+  billingFields.forEach(function (field) {
+    if (elementExists(field)) {
+      field.value = '';
+    }
+  });
+};
+
+var bindUI$2 = function bindUI() {
+  // Clear auto-filled billing address fields
+  clearBillingAddress();
+  hideElements([loadingOverlay$2, loadingImage$2]);
+
+  if (STATE.deliveryMethod === DELIVERY_METHODS.PICKUP) {
+    hideElements(billingAddressChoices);
+    hideElements([shipToMap]);
+    shipToLabel.innerHTML = 'Pickup at';
+    var differentBillingShippingAddress = document.getElementById('checkout_different_billing_address_true');
+
+    if (elementExists(differentBillingShippingAddress)) {
+      differentBillingShippingAddress.click();
+    }
+  } else {
+    var sameBillingShippingAddress = document.getElementById('checkout_different_billing_address_false');
+
+    if (elementExists(sameBillingShippingAddress)) {
+      sameBillingShippingAddress.click();
+    }
+  }
+};
+
+const paymentMethod = {
+  bindUI: bindUI$2,
+  updateUI: updateUI$2
+};
+
+var updateUI$3 = function updateUI() {};
+
+var SHOPIFY_UI_SELECTORS$2 = {
+  SHIP_TO_MAP: '.map',
+  LOADING_OVERLAY: '.de-loading-overlay',
+  LOADING_IMAGE: '.de-checkout-loader'
+};
+
+var shipToMap$1 = document.querySelector(SHOPIFY_UI_SELECTORS$2.SHIP_TO_MAP);
+var loadingOverlay$3 = document.querySelector(SHOPIFY_UI_SELECTORS$2.LOADING_OVERLAY);
+var loadingImage$3 = document.querySelector(SHOPIFY_UI_SELECTORS$2.LOADING_IMAGE);
+
+var bindUI$3 = function bindUI() {
+  hideElements([loadingOverlay$3, loadingImage$3]);
+
+  if (STATE.deliveryMethod === DELIVERY_METHODS.PICKUP) {
+    hideElements([shipToMap$1]);
+    var headings = document.querySelectorAll('h3');
+    [].forEach.call(headings, function (heading) {
+      if (heading.textContent === 'Shipping address') {
+        heading.textContent = 'Pickup address';
+      }
+    });
+  }
+};
+
+const thankYou = {
+  bindUI: bindUI$3,
+  updateUI: updateUI$3
+};
+
+var SHOPIFY_UI_SELECTORS$3 = {
+  LOADING_OVERLAY: '.de-loading-overlay',
+  LOADING_IMAGE: '.de-checkout-loader'
+};
+
+var loadingOverlay$4 = document.querySelector(SHOPIFY_UI_SELECTORS$3.LOADING_OVERLAY);
+var loadingImage$4 = document.querySelector(SHOPIFY_UI_SELECTORS$3.LOADING_IMAGE);
+
+var bindUI$4 = function bindUI() {
+  hideElements([loadingOverlay$4, loadingImage$4]);
+};
+
+const bindUI$5 = {
+  bindUI: bindUI$4
+};
+
+var bindUI$6 = function bindUI() {
+  if (STATE.checkoutStep === CHECKOUT_STEPS.CONTACT_INFORMATION) {
+    contactInformation.bindUI();
+  }
+
+  if (STATE.checkoutStep === CHECKOUT_STEPS.SHIPPING_METHOD) {
+    shippingMethod.bindUI();
+  }
+
+  if (STATE.checkoutStep === CHECKOUT_STEPS.PAYMENT_METHOD) {
+    paymentMethod.bindUI();
+  }
+
+  if (STATE.checkoutStep === CHECKOUT_STEPS.THANK_YOU || window.Shopify && window.Shopify.Checkout && window.Shopify.Checkout.isOrderStatusPage) {
+    thankYou.bindUI();
+  }
+
+  if (STATE.checkoutPage === 'stock_problems') {
+    bindUI$5.bindUI();
+  }
+};
+
+function _createForOfIteratorHelperLoose$1(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray$1(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; return function () { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } it = o[Symbol.iterator](); return it.next.bind(it); }
+
+function _unsupportedIterableToArray$1(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray$1(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray$1(o, minLen); }
+
+function _arrayLikeToArray$1(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+var _config$SELECTORS$CHE = scriptsConfig.SELECTORS.CHECKOUT,
+    CART_TEXT = _config$SELECTORS$CHE.TEXT.CART_TEXT,
+    _config$SELECTORS$CHE2 = _config$SELECTORS$CHE.CLASSES,
+    LOGO = _config$SELECTORS$CHE2.LOGO,
+    _config$SELECTORS$CHE3 = _config$SELECTORS$CHE2.STEPS,
+    STEP_FOOTER = _config$SELECTORS$CHE3.STEP_FOOTER,
+    STEP_FOOTER_PREVIOUS_LINK = _config$SELECTORS$CHE3.STEP_FOOTER_PREVIOUS_LINK,
+    _config$SELECTORS$CHE4 = _config$SELECTORS$CHE2.BREADCRUMBS,
+    BC_ROOT = _config$SELECTORS$CHE4.BC_ROOT,
+    BC_LINK = _config$SELECTORS$CHE4.BC_LINK,
+    BC_ITEM = _config$SELECTORS$CHE4.BC_ITEM,
+    BC_ITEM_COMPLETED = _config$SELECTORS$CHE4.BC_ITEM_COMPLETED,
+    BC_CHEVRON_ICON = _config$SELECTORS$CHE4.BC_CHEVRON_ICON,
+    _config$SELECTORS$CHE5 = _config$SELECTORS$CHE.ATTRIBUTES.BREADCRUMBS.DATA_TREKKIE_ID,
+    TREKKIE_NAME = _config$SELECTORS$CHE5.TREKKIE_NAME,
+    TREKKIE_VALUE = _config$SELECTORS$CHE5.TREKKIE_VALUE,
+    _config$SELECTORS$CHE6 = _config$SELECTORS$CHE.URLS,
+    CART_URL = _config$SELECTORS$CHE6.CART_URL,
+    ROOT_URL = _config$SELECTORS$CHE6.ROOT_URL;
+var checkoutStep$1 = STATE.checkoutStep,
+    checkoutPage$1 = STATE.checkoutPage;
+/**
+ * Return true if this is any step in checkout,
+ * meaning that it's a candidate for breadcrumbs and step links
+ * @returns {boolean} - Is or isn't a documented Shopify checkout step
+ */
+
+var isCheckoutStep = function isCheckoutStep() {
+  return Object.keys(CHECKOUT_STEPS).some(function (step) {
+    return CHECKOUT_STEPS[step] === checkoutStep$1;
+  });
+};
+/**
+ * The first step in checkout is the contact information step
+ * and that is where we'll want to add a breadcrumb and step link to cart
+ * @returns {boolean} - Is or isn't the contact info step
+ */
+
+
+var isContactInfoStep = function isContactInfoStep() {
+  // @see https://help.shopify.com/en/themes/development/layouts/checkout/#shopify-checkout-step
+  return checkoutStep$1 === CHECKOUT_STEPS.CONTACT_INFORMATION;
+};
+/**
+ * Whether or not this is the stock problems page in checkout
+ * @returns {boolean} - Is or isn't the stock problems page
+ */
+
+
+var isStockProblemsPage = function isStockProblemsPage() {
+  // @see https://help.shopify.com/en/themes/development/layouts/checkout/#shopify-checkout-page
+  return checkoutPage$1 === 'stock_problems';
+};
+/**
+ * Check to see whether a cart step link should be built and inserted in DOM
+ * @returns {boolean} - Needs a cart step link built (or not)
+ */
+
+
+var needCartStepLink = function needCartStepLink() {
+  var stepFooter = document.querySelector("." + STEP_FOOTER);
+
+  if (stepFooter) {
+    var existingCartStepLink = stepFooter.querySelector("." + STEP_FOOTER_PREVIOUS_LINK);
+
+    if (existingCartStepLink) {
+      return false;
+    }
+
+    return true;
+  }
+
+  return false;
+};
+/**
+ * Check to see whether a breadcrumb cart link exists
+ * @returns {boolean} - Has a breadcrumb cart link (or not)
+ */
+
+
+var cartBreadcrumbLinkExists = function cartBreadcrumbLinkExists() {
+  var breadcrumbLinks = document.querySelectorAll("." + BC_LINK);
+
+  for (var _iterator = _createForOfIteratorHelperLoose$1(breadcrumbLinks), _step; !(_step = _iterator()).done;) {
+    var link = _step.value;
+
+    if (link.href.indexOf(CART_URL) > -1) {
+      return true;
+    }
+  }
+
+  return false;
+};
+/**
+ * Builds a "step" link in the footer to return to the cart from the first page of checkout
+ */
+
+
+var buildStepLink = function buildStepLink() {
+  // Build Return to Cart link
+  var returnToCartLink = document.createElement('a');
+  returnToCartLink.href = CART_URL;
+  returnToCartLink.classList.add(STEP_FOOTER_PREVIOUS_LINK);
+  returnToCartLink.innerHTML = '<svg focusable="false" aria-hidden="true" class="icon-svg icon-svg--color-accent icon-svg--size-10 previous-link__icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><path d="M8 1L7 0 3 4 2 5l1 1 4 4 1-1-4-4"></path></svg><span class="step__footer__previous-link-content">Return to cart</span>'; // Insert Return to Cart link
+
+  document.querySelector("." + STEP_FOOTER).appendChild(returnToCartLink);
+};
+/**
+ * Builds a breadcrumb to go back to the cart and appends to the list of breadcrumbs (as the 1st)
+ */
+
+
+var buildCartBreadCrumb = function buildCartBreadCrumb() {
+  // Get breadcrumb list
+  var breadcrumbs = document.querySelector("." + BC_ROOT); // Build crumb
+
+  var cartCrumb = document.createElement('li');
+  cartCrumb.classList.add(BC_ITEM, BC_ITEM_COMPLETED); // Build crumb link
+
+  var cartCrumbLink = document.createElement('a');
+  cartCrumbLink.href = CART_URL;
+  cartCrumbLink.classList.add("" + BC_LINK);
+  cartCrumbLink.appendChild(document.createTextNode(CART_TEXT));
+  cartCrumbLink.setAttribute(TREKKIE_NAME, TREKKIE_VALUE); // Build crumb separator arrow
+
+  var cartCrumbArrow = document.querySelector("." + BC_CHEVRON_ICON).cloneNode(true); // Insert crumb and arrow
+
+  cartCrumb.appendChild(cartCrumbLink);
+  breadcrumbs.insertBefore(cartCrumb, breadcrumbs.firstChild);
+  cartCrumb.insertBefore(cartCrumbArrow, cartCrumbLink.nextSibling);
+}; // Update logo links to link to the "home" page
+
+
+var setLogoLinkHome = function setLogoLinkHome() {
+  var logos = document.querySelectorAll("." + LOGO);
+
+  for (var _iterator2 = _createForOfIteratorHelperLoose$1(logos), _step2; !(_step2 = _iterator2()).done;) {
+    var logo = _step2.value;
+    logo.href = ROOT_URL;
+  }
+};
+/**
+ * This is a very tightly coupled implementation being used to manipulate
+ * the DOM of checkout Liquid "drops" to reinsert cart links and fix logo links
+ * in the case when persistent cart is hijacking checkout and setting location
+ * directly to a new checkout's `webUrl`. No other solution exists at this time
+ * (that we know of), and it's acknowledged that this is a fragile
+ * approach, but it works, for the time being.
+ */
+
+
+var fixCustomCheckoutLinks = function fixCustomCheckoutLinks() {
+  /**
+   * If there is no breadcrumb link
+   * run this code to build or update
+   * 1) A breadcrumb that goes back to the cart
+   * 2) A step link in the footer that returns to the cart
+   * 3) The href on logos to point back to the web root of the deployed Decathlon site
+   */
+  if (!cartBreadcrumbLinkExists() && isCheckoutStep()) {
+    if (isContactInfoStep() && needCartStepLink()) {
+      /**
+       * Add Return to cart link on Checkout Step 1 (when the current step is "contact_information")
+       * In subsequent steps, these links are automatically inserted into the DOM
+       */
+      buildStepLink();
+    }
+
+    buildCartBreadCrumb();
+  }
+
+  if (isStockProblemsPage() && needCartStepLink()) {
+    /**
+     * Also add return to cart link on the `stock_problems` page (aka, Out of Stock), so the user has a way
+     * to get back to cart. For whatever reason, at least in testing, the breadcrumbs are output correctly
+     * but set to display none, so those are not an available option.
+     */
+    buildStepLink();
+  }
+
+  setLogoLinkHome();
+};
+
+var updateUI$4 = function updateUI() {
+  if (isContactInfoStep()) {
+    contactInformation.updateUI();
+  }
+
+  fixCustomCheckoutLinks();
+};
+
+/**
+ * Initialize custom JS functionality
+ */
+
+var init = function init() {
+  // Set delivery method - Default to ship, set pick if selection is stored.
+  if (getObjectFromSessionStorage('delivery_method') === 'pickup') {
+    STATE.deliveryMethod = DELIVERY_METHODS.PICKUP;
+  } else {
+    STATE.deliveryMethod = DELIVERY_METHODS.SHIP;
+  } // Look for preferred store in sessionStorage and set global state.
+
+
+  if (getObjectFromSessionStorage('pickup_store')) {
+    STATE.pickupStore = getObjectFromSessionStorage('pickup_store');
+  } // Bind event listeners (and more)
+
+
+  bindUI$6(); // Update UI elements, as needed
+
+  updateUI$4();
+};
+/**
+ * Listen to Shopify Checkout `page:load` to initialize
+ * @see https://help.shopify.com/en/themes/development/layouts/checkout#page-events
+ */
+
+
+document.addEventListener('page:load', init);

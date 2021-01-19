@@ -1,1 +1,206 @@
-var e,t="undefined"!=typeof globalThis?globalThis:"undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:{},n=(function(e,t){e.exports=function(){function e(){for(var e=0,t={};e<arguments.length;e++){var n=arguments[e];for(var r in n)t[r]=n[r]}return t}function t(e){return e.replace(/(%[0-9A-Z]{2})+/g,decodeURIComponent)}return function n(r){function o(){}function i(t,n,i){if("undefined"!=typeof document){"number"==typeof(i=e({path:"/"},o.defaults,i)).expires&&(i.expires=new Date(1*new Date+864e5*i.expires)),i.expires=i.expires?i.expires.toUTCString():"";try{var a=JSON.stringify(n);/^[\{\[]/.test(a)&&(n=a)}catch(e){}n=r.write?r.write(n,t):encodeURIComponent(n+"").replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g,decodeURIComponent),t=encodeURIComponent(t+"").replace(/%(23|24|26|2B|5E|60|7C)/g,decodeURIComponent).replace(/[\(\)]/g,escape);var c="";for(var f in i)i[f]&&(c+="; "+f,!0!==i[f]&&(c+="="+i[f].split(";")[0]));return document.cookie=t+"="+n+c}}function a(e,n){if("undefined"!=typeof document){for(var o={},i=document.cookie?document.cookie.split("; "):[],a=0;a<i.length;a++){var c=i[a].split("="),f=c.slice(1).join("=");n||'"'!==f.charAt(0)||(f=f.slice(1,-1));try{var u=t(c[0]);if(f=(r.read||r)(f,u)||t(f),n)try{f=JSON.parse(f)}catch(e){}if(o[u]=f,e===u)break}catch(e){}}return e?o[e]:o}}return o.set=i,o.get=function(e){return a(e,!1)},o.getJSON=function(e){return a(e,!0)},o.remove=function(t,n){i(t,"",e(n,{expires:-1}))},o.defaults={},o.withConverter=n,o}((function(){}))}()}(e={exports:{}}),e.exports);function r(e,t){(null==t||t>e.length)&&(t=e.length);for(var n=0,r=Array(t);n<t;n++)r[n]=e[n];return r}function o(e){return function(e){if(Array.isArray(e))return r(e)}(e)||function(e){if("undefined"!=typeof Symbol&&Symbol.iterator in Object(e))return Array.from(e)}(e)||function(e,t){if(e){if("string"==typeof e)return r(e,void 0);var n=Object.prototype.toString.call(e).slice(8,-1);return"Object"===n&&e.constructor&&(n=e.constructor.name),"Map"===n||"Set"===n?Array.from(e):"Arguments"===n||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)?r(e,void 0):void 0}}(e)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}export{n as C,o as _,t as c};
+var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
+function createCommonjsModule(fn, module) {
+  return module = {
+    exports: {}
+  }, fn(module, module.exports), module.exports;
+}
+
+var js_cookie = createCommonjsModule(function (module, exports) {
+
+  (function (factory) {
+    var registeredInModuleLoader;
+
+    {
+      module.exports = factory();
+      registeredInModuleLoader = true;
+    }
+
+    if (!registeredInModuleLoader) {
+      var OldCookies = window.Cookies;
+      var api = window.Cookies = factory();
+
+      api.noConflict = function () {
+        window.Cookies = OldCookies;
+        return api;
+      };
+    }
+  })(function () {
+    function extend() {
+      var i = 0;
+      var result = {};
+
+      for (; i < arguments.length; i++) {
+        var attributes = arguments[i];
+
+        for (var key in attributes) {
+          result[key] = attributes[key];
+        }
+      }
+
+      return result;
+    }
+
+    function decode(s) {
+      return s.replace(/(%[0-9A-Z]{2})+/g, decodeURIComponent);
+    }
+
+    function init(converter) {
+      function api() {}
+
+      function set(key, value, attributes) {
+        if (typeof document === 'undefined') {
+          return;
+        }
+
+        attributes = extend({
+          path: '/'
+        }, api.defaults, attributes);
+
+        if (typeof attributes.expires === 'number') {
+          attributes.expires = new Date(new Date() * 1 + attributes.expires * 864e+5);
+        } // We're using "expires" because "max-age" is not supported by IE
+
+
+        attributes.expires = attributes.expires ? attributes.expires.toUTCString() : '';
+
+        try {
+          var result = JSON.stringify(value);
+
+          if (/^[\{\[]/.test(result)) {
+            value = result;
+          }
+        } catch (e) {}
+
+        value = converter.write ? converter.write(value, key) : encodeURIComponent(String(value)).replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g, decodeURIComponent);
+        key = encodeURIComponent(String(key)).replace(/%(23|24|26|2B|5E|60|7C)/g, decodeURIComponent).replace(/[\(\)]/g, escape);
+        var stringifiedAttributes = '';
+
+        for (var attributeName in attributes) {
+          if (!attributes[attributeName]) {
+            continue;
+          }
+
+          stringifiedAttributes += '; ' + attributeName;
+
+          if (attributes[attributeName] === true) {
+            continue;
+          } // Considers RFC 6265 section 5.2:
+          // ...
+          // 3.  If the remaining unparsed-attributes contains a %x3B (";")
+          //     character:
+          // Consume the characters of the unparsed-attributes up to,
+          // not including, the first %x3B (";") character.
+          // ...
+
+
+          stringifiedAttributes += '=' + attributes[attributeName].split(';')[0];
+        }
+
+        return document.cookie = key + '=' + value + stringifiedAttributes;
+      }
+
+      function get(key, json) {
+        if (typeof document === 'undefined') {
+          return;
+        }
+
+        var jar = {}; // To prevent the for loop in the first place assign an empty array
+        // in case there are no cookies at all.
+
+        var cookies = document.cookie ? document.cookie.split('; ') : [];
+        var i = 0;
+
+        for (; i < cookies.length; i++) {
+          var parts = cookies[i].split('=');
+          var cookie = parts.slice(1).join('=');
+
+          if (!json && cookie.charAt(0) === '"') {
+            cookie = cookie.slice(1, -1);
+          }
+
+          try {
+            var name = decode(parts[0]);
+            cookie = (converter.read || converter)(cookie, name) || decode(cookie);
+
+            if (json) {
+              try {
+                cookie = JSON.parse(cookie);
+              } catch (e) {}
+            }
+
+            jar[name] = cookie;
+
+            if (key === name) {
+              break;
+            }
+          } catch (e) {}
+        }
+
+        return key ? jar[key] : jar;
+      }
+
+      api.set = set;
+
+      api.get = function (key) {
+        return get(key, false
+        /* read as raw */
+        );
+      };
+
+      api.getJSON = function (key) {
+        return get(key, true
+        /* read as json */
+        );
+      };
+
+      api.remove = function (key, attributes) {
+        set(key, '', extend(attributes, {
+          expires: -1
+        }));
+      };
+
+      api.defaults = {};
+      api.withConverter = init;
+      return api;
+    }
+
+    return init(function () {});
+  });
+});
+
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+
+  return arr2;
+}
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) return _arrayLikeToArray(arr);
+}
+
+function _iterableToArray(iter) {
+  if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);
+}
+
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+}
+
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+function _toConsumableArray(arr) {
+  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
+}
+
+export { js_cookie as C, _toConsumableArray as _, commonjsGlobal as c };

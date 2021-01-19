@@ -1,1 +1,169 @@
-import{S as e,a as t}from"./built-fetch-stores-13903880.js";import{C as r}from"./built-toConsumableArray-0fbe23f7.js";var a=function(e){var t;try{t=window[e];var r="__storage_test__";return t.setItem(r,r),t.removeItem(r),!0}catch(e){return e instanceof DOMException&&(22===e.code||1014===e.code||"QuotaExceededError"===e.name||"NS_ERROR_DOM_QUOTA_REACHED"===e.name)&&0!==t.length}},n=a("localStorage"),o=a("sessionStorage"),s=function(){var e="persistent-cart-test";r.set(e,"foo");var t=r.get(e);r.remove(e);var a=r.get(e);return t&&!a}(),i=function(e,t){return localStorage.setItem(e,JSON.stringify(t))},u=function(e){return JSON.parse(localStorage.getItem(e))},c=function(e){return localStorage.removeItem(e)},f=function(e,t){return sessionStorage.setItem(e,JSON.stringify(t))},m=function(e){return JSON.parse(sessionStorage.getItem(e))},g=function(r){if(o){var a=(new Date).getTime()+60*e*1e3;f(t,{value:r,expires:a})}},l=function(){var e=m(t);return null===e||function(e){return(new Date).getTime()>e.expires}(e)?(sessionStorage.removeItem(t),null):e.value};export{f as a,u as b,i as c,l as d,g as e,s as f,m as g,n as l,c as r,o as s};
+import { S as STOREFRONT_API_TEST_TIMEOUT_MINUTES, a as STOREFRONT_API_IS_TESTED } from './built-fetch-stores-13903880.js';
+import { C as Cookies } from './built-toConsumableArray-0fbe23f7.js';
+
+// @ts-check
+
+/**
+ * @see https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API#Feature-detecting_localStorage
+ * @param {string} type - type of storage ('localStorage' or 'sessionStorage') to test
+ * @returns {boolean} - whether the test succeeded
+ */
+
+var storageAvailableTest = function storageAvailableTest(type) {
+  var storage;
+
+  try {
+    storage = window[type];
+    var x = '__storage_test__';
+    storage.setItem(x, x);
+    storage.removeItem(x);
+    return true;
+  } catch (error) {
+    return error instanceof DOMException && ( // Everything except Firefox
+    error.code === 22 || // Firefox
+    error.code === 1014 || // Test name field too, because code might not be present
+    // Everything except Firefox
+    error.name === 'QuotaExceededError' || // Firefox
+    error.name === 'NS_ERROR_DOM_QUOTA_REACHED') && // Acknowledge QuotaExceededError only if there's something already stored
+    storage.length !== 0;
+  }
+};
+/**
+ * Helper testing for localStorage availability
+ * If sessionStorage is needed, create another const using the string 'sessionStorage'
+ */
+
+
+var localStorageAvailable = storageAvailableTest('localStorage');
+/**
+ * Helper testing for sessionStorage availability
+ */
+
+var sessionStorageAvailable = storageAvailableTest('sessionStorage');
+/**
+ * Test the client's ability to set and get cookies (unset after testing)
+ * @returns {boolean} - Whether the test passed
+ */
+
+var cookiesAvailableTest = function cookiesAvailableTest() {
+  var test = 'persistent-cart-test';
+  Cookies.set(test, 'foo');
+  var storedVal = Cookies.get(test);
+  Cookies.remove(test);
+  var deletedVal = Cookies.get(test);
+  return storedVal && !deletedVal;
+};
+/**
+ * Export the boolean return value from cookiesAvailableTest
+ */
+
+
+var cookiesAvailable = cookiesAvailableTest();
+/**
+ * Helper to set an object in localStorage
+ * @param {string} name
+ * @param {Object} value
+ */
+
+var setObjectInLocalStorage = function setObjectInLocalStorage(name, value) {
+  return localStorage.setItem(name, JSON.stringify(value));
+};
+/**
+ * Helper to get an object from its stringified representation in localStorage
+ * @param {string} name
+ * @returns {Object} - Parsed object contained in localStorage as a string
+ */
+
+var getObjectFromLocalStorage = function getObjectFromLocalStorage(name) {
+  return JSON.parse(localStorage.getItem(name));
+};
+/**
+ * Helper to remove an item from localStorage
+ * @param {string} item The item to remove from localStorage
+ */
+
+var removeItemFromLocalStorage = function removeItemFromLocalStorage(item) {
+  return localStorage.removeItem(item);
+};
+/**
+ * Helper to set an object in sessionStorage
+ * @param {string} name
+ * @param {Object} value
+ */
+
+var setObjectInSessionStorage = function setObjectInSessionStorage(name, value) {
+  return sessionStorage.setItem(name, JSON.stringify(value));
+};
+/**
+ * Helper to get an object from its stringified representation in sessionStorage
+ * @param {string} name
+ * @returns {Object} - Parsed object contained in sessionStorage as a string
+ */
+
+var getObjectFromSessionStorage = function getObjectFromSessionStorage(name) {
+  return JSON.parse(sessionStorage.getItem(name));
+};
+/**
+ * Helper to remove an item from sessionStorage
+ * @param {string} item The item to remove from sessionStorage
+ */
+
+var removeItemFromSessionStorage = function removeItemFromSessionStorage(item) {
+  return sessionStorage.removeItem(item);
+};
+/**
+ * @typedef {Object} ValueObjectWithExpiration
+ * @property {*} value
+ * @property {number} expires
+ */
+
+/**
+ * Helper to check whether a value (in a ValueObjectWithExpiration) is expired
+ * @param {ValueObjectWithExpiration} valueObj
+ * @returns {boolean} valueObj is not valid or is expired
+ */
+
+var isValueObjectExpired = function isValueObjectExpired(valueObj) {
+  return new Date().getTime() > valueObj.expires;
+};
+/**
+ * Sets a flag that indicating whether a call to test the Storefront API has
+ * succeeded or failed, with an expiration.
+ * No-op if `sessionStorage` is not available.
+ * @param {boolean} value
+ */
+
+var setStorefrontAPITestedState = function setStorefrontAPITestedState(value) {
+  if (sessionStorageAvailable) {
+    // Expires in fifteen minutes
+    var expires = new Date().getTime() + STOREFRONT_API_TEST_TIMEOUT_MINUTES * 60 * 1000;
+    setObjectInSessionStorage(STOREFRONT_API_IS_TESTED,
+    /** @type {ValueObjectWithExpiration} */
+    {
+      value: value,
+      expires: expires
+    });
+  }
+};
+/**
+ * Gets a flag that indicates whether a call to test the Storefront API has
+ * succeeded or failed.
+ * Checks against a stored value, which includes an expiration, in milliseconds.
+ * On expiration, nullifies the value - it must be set again to get a new
+ * expiration.
+ * @returns {boolean | null}
+ */
+
+var getStorefrontAPITested = function getStorefrontAPITested() {
+  /** @type {ValueObjectWithExpiration | null} */
+  var valueObj = getObjectFromSessionStorage(STOREFRONT_API_IS_TESTED);
+
+  if (valueObj === null || isValueObjectExpired(valueObj)) {
+    removeItemFromSessionStorage(STOREFRONT_API_IS_TESTED);
+    return null;
+  }
+
+  return valueObj.value;
+};
+
+export { setObjectInSessionStorage as a, getObjectFromLocalStorage as b, setObjectInLocalStorage as c, getStorefrontAPITested as d, setStorefrontAPITestedState as e, cookiesAvailable as f, getObjectFromSessionStorage as g, localStorageAvailable as l, removeItemFromLocalStorage as r, sessionStorageAvailable as s };

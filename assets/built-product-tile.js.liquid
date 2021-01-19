@@ -1,1 +1,489 @@
-import{J as e,c as r}from"./built-fetch-stores-13903880.js";import{_ as t}from"./built-toConsumableArray-0fbe23f7.js";import{c as i}from"./built-create-state-e7ac62e2.js";var n=null,a="."+e+"ColorSwatchList-action",c=function(e){n.querySelectorAll(a).forEach((function(r){r.addEventListener("mouseenter",(function(r){e(r.target.dataset.color)}))}))},o=function(e){n=e},u=function(e){return e?"$"+function(e){return e?(parseInt(e,10)/100).toFixed(2):""}(e):""},s="."+e+"ProductTile-price",l="."+e+"ProductTile-currentPrice",p="."+e+"ProductTile-crossedOutPrice";document.querySelectorAll("."+e+"ProductTile").forEach((function(n){var m={productTileEl:n},f=t(n.querySelectorAll(a)),d=f.reduce((function(e,r){var t,i=r.dataset;return Object.assign({},e,((t={})[i.color]={productId:i.productId,prices:i.prices,pricesDelimiter:i.pricesDelimiter,image1:i.image,image1Alt:i.imageAlt,image2:i.image2,image2Alt:i.image2Alt,compareAtPrice:i.compareAtPrice,priceVaries:"true"===i.priceVaries,compareAtPriceVaries:"true"===i.compareAtPriceVaries,isFreeShipping:"true"===i.isFreeShipping},t))}),{}),g=i(m),v=f[0].dataset.color,h=function(e){return void 0===e&&(e=d[v]),{image1:{url:e.image1,alt:e.image1Alt},image2:{url:e.image2,alt:e.image2Alt}}};o(n);var A=function(r){var t=r.querySelector("."+e+"ProductTile-featureImage"),n=i({image1:{},image2:{},isHovered:!1});return t&&(n.onChange((function(e){var r=e.isHovered?e.image2:e.image1,i=r.alt;t.src=r.url,t.alt=i})),t.addEventListener("mouseenter",(function(){return n.updateState({isHovered:!0})})),t.addEventListener("mouseleave",(function(){return n.updateState({isHovered:!1})}))),{updateImages:function(e){return n.updateState(e)}}}(n),S=function(t){var i=t.querySelector("."+e+"DeliveryOptions-freeShippingOverFifty");return{updateFreeShipping:function(e){void 0===e&&(e={}),i&&(e.isFreeShipping?i.classList.add(r):i.classList.remove(r))}}}(n);A.updateImages(h()),g.onChange((function(e){var r=e.chosenColor,i=d[r];(function(e){var r=e.priceVaries,i=e.compareAtPrice,n=e.compareAtPriceVaries,a=e.productTileEl;(function(e){return e.querySelectorAll(s+" "+l)})(a).forEach((function(r){var i,n;r.textContent=(n=(i=e).prices,i.priceVaries?function(e,r){if(void 0===r&&(r="=="),!e)return"";var i=function(e,r){return e?e.split(r).filter((function(e){return""!==e})):[]}(e,r),n=""+Math.min.apply(Math,t(i)),a=""+Math.max.apply(Math,t(i));return n===a?u(n):u(n)+" — "+u(a)}(n,i.pricesDelimiter):n?u(n.split("|")[0]):"")})),function(e){return e.querySelectorAll(s+" "+p)}(a).forEach((function(e){r||n||!i||(e.textContent=u(i))}))})(function(e){if(e)return Object.assign({},d[e],{productTileEl:n});var r=Object.values(d).flatMap((function(e){return e.prices?e.prices.split(e.pricesDelimiter):[]})),t=Object.values(d).flatMap((function(e){return e.compareAtPrice?e.compareAtPrice.split(e.pricesDelimiter):[]})),i=r.some((function(e){return e!==r[0]})),a=t.some((function(e){return e!==t[0]}));return{prices:r.join("=="),priceVaries:i,compareAtPrice:t.join("=="),compareAtPriceVaries:a,pricesDelimiter:"==",productTileEl:n}}(r)),A.updateImages(h(i)),S.updateFreeShipping(i||{isFreeShipping:Object.values(d).every((function(e){return e.isFreeShipping}))})}),(function(e){return[e.chosenColor]})),c((function(e){return g.updateState({chosenColor:e})})),n.addEventListener("mouseleave",(function(){g.updateState({chosenColor:void 0})}))}));
+import { J as JS_PREFIX, c as IS_HIDDEN_CLASS } from './built-fetch-stores-13903880.js';
+import { _ as _toConsumableArray } from './built-toConsumableArray-0fbe23f7.js';
+import { c as createState } from './built-create-state-e7ac62e2.js';
+
+// @ts-check
+/**
+ * Will reference the parent Product Tile root element
+ */
+
+var productTileEl = null;
+var COLOR_SWATCH_SELECTOR = "." + JS_PREFIX + "ColorSwatchList-action";
+/**
+ * Sets up listeners on all color swatch elements
+ * @param {(color: string) => void} onColorSelectCallback Called with the selected color when a color is hovered
+ */
+
+var onColorSelect = function onColorSelect(onColorSelectCallback) {
+  productTileEl.querySelectorAll(COLOR_SWATCH_SELECTOR).forEach(function (colorSwatchEl) {
+    colorSwatchEl.addEventListener('mouseenter', function (event) {
+      // Call the callback with the new color swatch data
+      onColorSelectCallback(
+      /** @type {HTMLElement} */
+      event.target.dataset.color);
+    });
+  });
+};
+/**
+ * Initialize setup
+ *
+ * @param {HTMLElement} el
+ */
+
+var init = function init(el) {
+  productTileEl = el;
+};
+
+// @ts-check
+
+/**
+ * Converts a set of prices into an array by PRICE_DELIMITER
+ *
+ * @todo Consider accepting delimiter as an argument
+ *
+ * @param {string} prices e.g. '1000==499==5000'
+ * @param {string} delimiter The delimiter to split on
+ * @returns {Array}
+ */
+var getPriceList = function getPriceList(prices, delimiter) {
+  if (!prices) return [];
+  return prices.split(delimiter).filter(function (price) {
+    return price !== '';
+  });
+};
+/**
+ * Converts a string number into a decimal for UI display
+ *
+ * @param {string} price e.g. '1000'
+ * @returns {string} e.g. '10.00'
+ */
+
+
+var convertToDecimal = function convertToDecimal(price) {
+  if (!price) return '';
+  return (parseInt(price, 10) / 100).toFixed(2);
+};
+/**
+ * Formats a price range for UI display
+ *
+ * e.g. '$4.99 — $19.99'
+ *
+ * @param {string} prices A delimited set of prices, e.g. '3.99|4.99'
+ * @param {string} [delimiter='=='] The prices list delimiter to split on
+ * @returns {string}
+ */
+
+var formatPriceRange = function formatPriceRange(prices, delimiter) {
+  if (delimiter === void 0) {
+    delimiter = '==';
+  }
+
+  if (!prices) return '';
+  var priceList = getPriceList(prices, delimiter);
+  var minPrice = Math.min.apply(Math, _toConsumableArray(priceList)).toString();
+  var maxPrice = Math.max.apply(Math, _toConsumableArray(priceList)).toString(); // Handle case where the min and max are the same
+
+  if (minPrice === maxPrice) {
+    return formatPriceSingle(minPrice);
+  }
+
+  return formatPriceSingle(minPrice) + " \u2014 " + formatPriceSingle(maxPrice);
+};
+/**
+ * Formats a single price for UI display
+ *
+ * e.g. '$10.00'
+ *
+ * @param {string} price A single price, e.g. '1000'
+ * @returns {string}
+ */
+
+var formatPriceSingle = function formatPriceSingle(price) {
+  if (!price) return '';
+  return "$" + convertToDecimal(price);
+};
+
+// @ts-check
+var PRICE_CSS_SELECTOR = "." + JS_PREFIX + "ProductTile-price";
+var CURRENT_PRICE_CSS_SELECTOR = "." + JS_PREFIX + "ProductTile-currentPrice";
+var CROSSED_OUT_PRICE_CSS_SELECTOR = "." + JS_PREFIX + "ProductTile-crossedOutPrice";
+/**
+ * Helper to get all Current Price elements for a given Product Tile element
+ *
+ * @param {HTMLElement} productTileEl
+ * @returns {NodeListOf<HTMLElement>}
+ */
+
+var getCurrentPriceElsForTile = function getCurrentPriceElsForTile(productTileEl) {
+  return productTileEl.querySelectorAll(PRICE_CSS_SELECTOR + " " + CURRENT_PRICE_CSS_SELECTOR);
+};
+/**
+ * Helper to get all Crossed Out Price elements for a given Product Tile element
+ *
+ * @param {HTMLElement} productTileEl
+ * @returns {NodeListOf<HTMLElement>}
+ */
+
+
+var getCrossedOutPriceElsForTile = function getCrossedOutPriceElsForTile(productTileEl) {
+  return productTileEl.querySelectorAll(PRICE_CSS_SELECTOR + " " + CROSSED_OUT_PRICE_CSS_SELECTOR);
+};
+/**
+ * Formats the price for display
+ *
+ * @param {PriceData} state
+ * @returns {string}
+ */
+
+
+var formatPrice = function formatPrice(_ref) {
+  var prices = _ref.prices,
+      pricesDelimiter = _ref.pricesDelimiter,
+      priceVaries = _ref.priceVaries;
+
+  if (priceVaries) {
+    return formatPriceRange(prices, pricesDelimiter);
+  }
+
+  if (!prices) {
+    return '';
+  } // If prices don't vary, all prices are the same
+  // so go ahead and use the first one from the list.
+
+
+  return formatPriceSingle(prices.split('|')[0]);
+};
+/**
+ * @typedef {Object} PriceData
+ * @property {string} [prices] The variant-level price values
+ * @property {string} [pricesDelimiter] The prices list delimiter
+ * @property {boolean} [priceVaries] product-level value
+ * @property {string} [compareAtPrice]
+ * @property {boolean} [compareAtPriceVaries]
+ * @property {HTMLElement} productTileEl
+ */
+
+/**
+ * Updates the Price UI
+ *
+ * @param {PriceData} priceData
+ */
+
+
+var render = function render(priceData) {
+  var priceVaries = priceData.priceVaries,
+      compareAtPrice = priceData.compareAtPrice,
+      compareAtPriceVaries = priceData.compareAtPriceVaries,
+      productTileEl = priceData.productTileEl;
+  getCurrentPriceElsForTile(productTileEl).forEach(function (currentPriceEl) {
+    currentPriceEl.textContent = formatPrice(priceData);
+  });
+  getCrossedOutPriceElsForTile(productTileEl).forEach(function (crossedOutPriceEl) {
+    // Crossed price exists only if the product has no price ranges
+    // @see https://app.gitbook.com/@decathlonusa/s/shopify/product-feature/product-tiles-and-carousel#crossed-price
+    if (!priceVaries && !compareAtPriceVaries && compareAtPrice) {
+      crossedOutPriceEl.textContent = formatPriceSingle(compareAtPrice);
+    }
+  });
+};
+
+// @ts-check
+/**
+ * @typedef {Object} Image
+ * @property {string} [url]
+ * @property {string} [alt]
+ */
+
+/**
+ * @typedef {Object} FeatureImageState
+ * @property {Image} image1
+ * @property {Image} image2
+ * @property {boolean} isHovered
+ */
+
+/**
+ * @param {HTMLElement} productTileEl
+ */
+
+var init$1 = function init(productTileEl) {
+  /** @type {HTMLImageElement} */
+  var imageEl = productTileEl.querySelector("." + JS_PREFIX + "ProductTile-featureImage");
+  /** @type {FeatureImageState} */
+
+  var initialState = {
+    image1: {},
+    image2: {},
+    isHovered: false
+  };
+  var state = createState(initialState);
+
+  if (imageEl) {
+    state.onChange(function (_ref) {
+      var image1 = _ref.image1,
+          image2 = _ref.image2,
+          isHovered = _ref.isHovered;
+
+      var _ref2 = isHovered ? image2 : image1,
+          url = _ref2.url,
+          alt = _ref2.alt;
+
+      imageEl.src = url;
+      imageEl.alt = alt;
+    });
+    imageEl.addEventListener('mouseenter', function () {
+      return state.updateState({
+        isHovered: true
+      });
+    });
+    imageEl.addEventListener('mouseleave', function () {
+      return state.updateState({
+        isHovered: false
+      });
+    });
+  }
+
+  return {
+    /**
+     * Updates the feature image to the selected color
+     * @param {{ image1: Image, image2: Image }} newImages
+     */
+    updateImages: function updateImages(newImages) {
+      return state.updateState(newImages);
+    }
+  };
+};
+
+// @ts-check
+/**
+ * @typedef {Object} FreeShippingData
+ * @property {boolean} [isFreeShipping] "Free Shipping" vs "Free shipping over $50"
+ * @see https://app.gitbook.com/@decathlonusa/s/shopify/product-feature/product-tiles-and-carousel#delivery-options
+ */
+
+/**
+ * Initializes scoped to a single Product Tile
+ *
+ * @param {HTMLElement} productTileEl
+ */
+
+var init$2 = function init(productTileEl) {
+  /** @type {HTMLElement} */
+  var freeShippingOverFiftyEl = productTileEl.querySelector("." + JS_PREFIX + "DeliveryOptions-freeShippingOverFifty");
+  /**
+   * Shows/hides the "over $50" free shipping element
+   *
+   * @param {FreeShippingData | undefined} freeShippingData
+   */
+
+  var updateFreeShipping = function updateFreeShipping(freeShippingData) {
+    if (freeShippingData === void 0) {
+      freeShippingData = {};
+    }
+
+    var _freeShippingData = freeShippingData,
+        isFreeShipping = _freeShippingData.isFreeShipping;
+
+    if (freeShippingOverFiftyEl) {
+      if (isFreeShipping) {
+        freeShippingOverFiftyEl.classList.add(IS_HIDDEN_CLASS);
+      } else {
+        freeShippingOverFiftyEl.classList.remove(IS_HIDDEN_CLASS);
+      }
+    }
+  };
+
+  return {
+    updateFreeShipping: updateFreeShipping
+  };
+};
+
+/**
+ * Module-specific type definitions
+ */
+
+/**
+ * @typedef {Object} ProductTileState
+ *
+ * Defines the state properties for Product Tile
+ *
+ * The `prices` value comes from the `data-prices` attribute. The `data-prices`
+ * attribute value is attached to each color swatch. The price values represent
+ * the prices available for a given color. Example: `data-prices="1000|2000|1500"`
+ *
+ * The `priceVaries` value will be false (from Shopify) when there is
+ * no price range. This means the `data-prices` attribute on a color swatch
+ * element might be something like `"1000|1000|1000"` when `priceVaries`
+ * is `false`.
+ *
+ * @property {HTMLElement} [productTileEl]
+ * @property {string} [chosenColor]
+ */
+
+/**
+ * Module-specific constants
+ */
+
+var PRODUCT_TILE_CSS_SELECTOR = "." + JS_PREFIX + "ProductTile";
+/**
+ * @typedef {Object} SwatchOptions
+ * Options that come from data attributes on the swatch elements
+
+ * @property {string} [productId] From the `data-product-id` attribute
+ * @property {string} [image1] Sourced from `data-image` attribute, the main image for the selected color
+ * @property {string} [image1Alt] Sourced from `data-image-alt` attribute, the alt text for the main image for the selected color
+ * @property {string} [image2] Sourced from `data-image2` attribute, the 2nd image for the selected color
+ * @property {string} [image2Alt] Sourced from `data-image2-alt` attribute, the alt text for the 2nd image for the selected color
+ * @property {string} [prices] Sourced from `data-prices` attribute, the variant-level price values
+ * @property {string} [pricesDelimiter] Sourced from `data-prices-delimiter` attribute, prices list delimiter
+ * @property {boolean} [priceVaries] Sourced from Shopify `product.priceVaries`, product-level value
+ * @property {string} [compareAtPrice] Sourced from Shopify `product.compare_at_price` value
+ * @property {boolean} [compareAtPriceVaries] Sourced from Shopify `product.compare_at_price_varies` value
+ * @property {boolean} [isFreeShipping] Sourced from `data-is-free-shipping` attribute, whether a product qualifies for the "Free shipping" (price >= $50)
+ */
+// This value is not tied to the `data-prices-delimiter` attribute and can be anything
+
+var pricesDelimiter = '==';
+/**
+ * Scoped Product Tile
+ *
+ * This allows each Product Tile to have its own scoped state.
+ *
+ * @param {HTMLElement} productTileEl
+ */
+
+var initProductTile = function initProductTile(productTileEl) {
+  /**
+   * @type {ProductTileState}
+   */
+  var productTileState = {
+    productTileEl: productTileEl
+  };
+
+  var allSwatches =
+  /** @type {HTMLElement[]} */
+  _toConsumableArray(productTileEl.querySelectorAll(COLOR_SWATCH_SELECTOR));
+  /** Map of all the colors to all the options associated with those colors (retrieved from data attributes) */
+
+
+  var allSwatchOptions = allSwatches.reduce(function (allSwatchOptions, el) {
+    var _Object$assign;
+
+    var dataset = el.dataset;
+    return Object.assign({}, allSwatchOptions, (_Object$assign = {}, _Object$assign[dataset.color] = {
+      productId: dataset.productId,
+      prices: dataset.prices,
+      pricesDelimiter: dataset.pricesDelimiter,
+      image1: dataset.image,
+      image1Alt: dataset.imageAlt,
+      image2: dataset.image2,
+      image2Alt: dataset.image2Alt,
+      compareAtPrice: dataset.compareAtPrice,
+      priceVaries: dataset.priceVaries === 'true',
+      compareAtPriceVaries: dataset.compareAtPriceVaries === 'true',
+      isFreeShipping: dataset.isFreeShipping === 'true'
+    }, _Object$assign));
+  },
+  /** @type {{[color: string]: SwatchOptions}} */
+  {});
+  var state = createState(productTileState);
+  var defaultColor = allSwatches[0].dataset.color;
+  /**
+   * @param {SwatchOptions | undefined} [swatchOptions]
+   */
+
+  var getImagesFromSwatchOptions = function getImagesFromSwatchOptions(swatchOptions) {
+    if (swatchOptions === void 0) {
+      swatchOptions = allSwatchOptions[defaultColor];
+    }
+
+    return {
+      image1: {
+        url: swatchOptions.image1,
+        alt: swatchOptions.image1Alt
+      },
+      image2: {
+        url: swatchOptions.image2,
+        alt: swatchOptions.image2Alt
+      }
+    };
+  }; // Initialize the child UI components first
+
+
+  init(productTileEl);
+  var featureImageInstance = init$1(productTileEl);
+  var freeShippingInstance = init$2(productTileEl); // Pass the initial images to the feature image component
+  // in case the image gets hovered before a swatch gets selected
+
+  featureImageInstance.updateImages(getImagesFromSwatchOptions());
+  /**
+   * Gets the price options for the selected color,
+   * or the price options for the entire product if there is no selected color
+   * @param {string | undefined} chosenColor
+   * @returns {import('./price').PriceData}
+   */
+
+
+  var getPriceOptions = function getPriceOptions(chosenColor) {
+    if (chosenColor) return Object.assign({}, allSwatchOptions[chosenColor], {
+      productTileEl: productTileEl
+    }); // If no swatch is selected, we need to construct a price data object that encompasses _all_ swatch prices
+
+    var prices = Object.values(allSwatchOptions).flatMap(function (swatch) {
+      return swatch.prices ? swatch.prices.split(swatch.pricesDelimiter) : [];
+    });
+    var compareAtPrices = Object.values(allSwatchOptions).flatMap(function (swatch) {
+      return swatch.compareAtPrice ? swatch.compareAtPrice.split(swatch.pricesDelimiter) : [];
+    });
+    var priceVaries = prices.some(function (price) {
+      return price !== prices[0];
+    });
+    var compareAtPriceVaries = compareAtPrices.some(function (price) {
+      return price !== compareAtPrices[0];
+    });
+    return {
+      prices: prices.join(pricesDelimiter),
+      priceVaries: priceVaries,
+      compareAtPrice: compareAtPrices.join(pricesDelimiter),
+      compareAtPriceVaries: compareAtPriceVaries,
+      pricesDelimiter: pricesDelimiter,
+      productTileEl: productTileEl
+    };
+  };
+
+  state.onChange(function (_ref) {
+    var chosenColor = _ref.chosenColor;
+    var matchingSwatchOptions = allSwatchOptions[chosenColor]; // Here, we can update any other UI elements via their appropriate modules
+
+    render(getPriceOptions(chosenColor));
+    featureImageInstance.updateImages(getImagesFromSwatchOptions(matchingSwatchOptions));
+    freeShippingInstance.updateFreeShipping(matchingSwatchOptions || {
+      isFreeShipping: Object.values(allSwatchOptions).every(function (swatch) {
+        return swatch.isFreeShipping;
+      })
+    });
+  }, function (state) {
+    return [state.chosenColor];
+  }); // Then setup the callback to be called when a color is selected
+
+  onColorSelect(function (chosenColor) {
+    return state.updateState({
+      chosenColor: chosenColor
+    });
+  }); // Reset Product Tile state when hovering off of Product Tile
+
+  productTileEl.addEventListener('mouseleave', function () {
+    state.updateState({
+      chosenColor: undefined
+    });
+  });
+};
+/**
+ * Initializes all child UI modules
+ */
+
+var initProductTiles = function initProductTiles() {
+  document.querySelectorAll(PRODUCT_TILE_CSS_SELECTOR).forEach(initProductTile);
+};
+
+// @ts-check
+initProductTiles();

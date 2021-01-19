@@ -1,8 +1,8 @@
-import { V as Vue } from './built-vue.esm-661ab646.js';
-import { J as JS_PREFIX, C as CSS_PREFIX, b as CSS_UTILITY_PREFIX, c as IS_HIDDEN_CLASS } from './built-fetch-stores-0afbe528.js';
+import { V as Vue } from './built-vue.esm-a9b2b31f.js';
+import { J as JS_PREFIX, C as CSS_PREFIX, b as CSS_UTILITY_PREFIX, c as IS_HIDDEN_CLASS } from './built-fetch-stores-13903880.js';
 import { _ as _toConsumableArray } from './built-toConsumableArray-0fbe23f7.js';
 import { i as init$f } from './built-recently-viewed-799d64d9.js';
-import { c as createState } from './built-create-state-60ccb78c.js';
+import { c as createState } from './built-create-state-e7ac62e2.js';
 
 // @ts-check
 /**
@@ -853,6 +853,7 @@ var state$1 = createState(initialState$1);
 var $swatches$1 = jQuery("." + JS_PREFIX + "SizeSwatches");
 var swatchOptionEls$1 = document.querySelectorAll("." + JS_PREFIX + "SizeSwatches-option");
 var validationTextEl = document.querySelector("." + VALIDATION_MESSAGE_CLASS);
+var stockMessageTextEl = document.querySelector('.js-de-stock-info-message');
 var $sizeSwatchesOptions = jQuery(swatchOptionEls$1);
 var $sizeInfo = jQuery("." + JS_PREFIX + "SizeInfo");
 
@@ -920,6 +921,10 @@ var onVariantSelect = function onVariantSelect(variant) {
 var showMissingSizeInfo = function showMissingSizeInfo() {
   if (validationTextEl) {
     validationTextEl.textContent = PRODUCT_PAGE_COPY.SELECT_A_SIZE;
+  }
+
+  if (stockMessageTextEl && stockMessageTextEl.textContent && validationTextEl.textContent !== '') {
+    stockMessageTextEl.textContent = '';
   }
 };
 
@@ -1740,6 +1745,7 @@ var initInventoryLocations = function initInventoryLocations() {
       pushStockInfoToDataLayer(currentModel);
     } else {
       window.inventoryLocationsDisplay.changeVariant(window.vars.selectedVariant.id);
+      window.vueATC.changeVariant(window.vars.selectedVariant.id);
       var titleParts = window.vars.selectedVariant.title.split(' ');
       var currentModel = titleParts[titleParts.length - 1]; //console.log('push the stock');
 
@@ -1874,6 +1880,9 @@ var validationTextEl$1 = document.querySelector('.js-de-validation-message');
 var variantInventory = window.firstVariant;
 variantInventory.tagged_bis_hidden = window.vars.productJSON.tags.includes('bis-hidden');
 variantInventory.is_size_selected = false;
+var translations = window.translations.product_stock;
+var IN_STOCK_CLASS = 'in_stock';
+var LOW_STOCK_CLASS = 'low_stock';
 
 var initVueATC = function initVueATC() {
   window.vueATC = new Vue({
@@ -1898,7 +1907,15 @@ var initVueATC = function initVueATC() {
       changeVariant: function changeVariant(variant) {
         var variantInventory = window.productJSON.variants.find(function (v) {
           return v.id === variant;
-        });
+        }); // Use Shopify availability on load while remote inventory is being loaded
+
+        if (variantInventory && variantInventory.available) {
+          jQuery('.js-de-stock-info-message').text(translations.in_stock);
+          jQuery('.js-de-stock-info-message').addClass(IN_STOCK_CLASS).removeClass(LOW_STOCK_CLASS).css({
+            "display": "block"
+          });
+        }
+
         var variantLocationsInventory = (window.inventories || {})[variant];
         var calculatedInventory = variantLocationsInventory ? this.mutateWithLocations(variantInventory, variantLocationsInventory) : variantInventory;
         this.changeWholeData(calculatedInventory);
@@ -1917,13 +1934,58 @@ var initVueATC = function initVueATC() {
 
         var filteredLocations = locations.filter(function (loc) {
           return loc.available > 0;
-        }); // const filteredOnline = online.filter(item => {
-        //   return item.available > 0;
-        // });
-        // item is available if there is at least one stock in any location or delivery/online
+        });
+        var filteredOnline = online.filter(function (item) {
+          return item.available > 0;
+        }); // item is available if there is at least one stock in any location or delivery/online
         // mutatedInventory.available = (delivery.available > 0 || filteredLocations.length > 0 || filteredOnline.length > 0);
 
         mutatedInventory.available = filteredLocations.length > 0;
+        var availablePerLocation = filteredLocations.map(function (location) {
+          return location.available;
+        });
+        var locationsAvailable = 0;
+
+        if (availablePerLocation.length > 0) {
+          locationsAvailable = availablePerLocation.reduce(function (a, b) {
+            return a + b;
+          }, 0);
+        }
+
+        var stockInfoMessage = '';
+        var stockAddClass = '';
+        var stockRemoveClass = ''; // If variant is in stock for delivery in locations contributing to online inventory
+
+        if (delivery.available > 1) {
+          stockInfoMessage = translations.in_stock;
+          stockAddClass = IN_STOCK_CLASS;
+          stockRemoveClass = LOW_STOCK_CLASS;
+        } else if (delivery.available == 1) {
+          stockInfoMessage = translations.low_stock;
+          stockAddClass = LOW_STOCK_CLASS;
+          stockRemoveClass = IN_STOCK_CLASS;
+        } else {
+          // If variant is NOT in stock for delivery but available in locations offering Click & Collect
+          if (locationsAvailable > 0) {
+            stockInfoMessage = translations.pickup_only;
+            stockAddClass = LOW_STOCK_CLASS;
+            stockRemoveClass = IN_STOCK_CLASS;
+          }
+        }
+
+        jQuery('.js-de-stock-info-message').text(stockInfoMessage);
+        jQuery('.js-de-stock-info-message').addClass(stockAddClass).removeClass(stockRemoveClass);
+
+        if (jQuery('.js-de-stock-info-message').text().length > 0) {
+          jQuery('.js-de-stock-info-message').css({
+            "display": "block"
+          });
+        } else {
+          jQuery('.js-de-stock-info-message').css({
+            "display": "none"
+          });
+        }
+
         return mutatedInventory;
       },
       showModal: function showModal(variantId, isEmailButton, event) {
@@ -1932,6 +1994,7 @@ var initVueATC = function initVueATC() {
         if (!this.$data.is_size_selected) {
           event.preventDefault();
           validationTextEl$1.textContent = "Select a size";
+          jQuery('.js-de-stock-info-message').text('');
           return;
         } // Trying to add a product to cart when variant doesn't exist
 
@@ -1943,6 +2006,7 @@ var initVueATC = function initVueATC() {
         if (!variant) {
           event.preventDefault();
           validationTextEl$1.textContent = "Unavailable";
+          jQuery('.js-de-stock-info-message').text('');
           return;
         } // Opens Back in Stock Popover Modal
 
@@ -3650,6 +3714,7 @@ var MODULE_NAME = 'AddToCart';
 var ADD_TO_CART_PREFIX = "." + JS_PREFIX + MODULE_NAME + "-";
 var quantityInputEl = document.querySelector(ADD_TO_CART_PREFIX + "quantity");
 var validationTextEl$2 = document.querySelector("." + VALIDATION_MESSAGE_CLASS);
+var stockMessageTextEl$1 = document.querySelector('.js-de-stock-info-message');
 var addToCartButtonEl = document.querySelector(ADD_TO_CART_PREFIX + "btn");
 var addToCartButtonTextEl = document.querySelector(ADD_TO_CART_PREFIX + "btn-text");
 var DEFAULT_MODULE_STATE = Object.assign({
@@ -3791,6 +3856,10 @@ var render$4 = function render(_ref2) {
       regardless of the availability of `addToCartButtonEl` or `addToCartButtonTextEl` */
   if (validationTextEl$2) {
     validationTextEl$2.textContent = validationText;
+  }
+
+  if (stockMessageTextEl$1 && stockMessageTextEl$1.textContent && validationTextEl$2.textContent !== '') {
+    stockMessageTextEl$1.textContent = '';
   } // if (bisHidden) {
   //   // alert("CLEARANCE SALE " + bisHidden);
   //   document.querySelector('.de-AddToCartActions .de-ProductQuantity').classList.remove('de-u-md-block');
@@ -5069,13 +5138,13 @@ var init$e = function init$9() {
     init$2();
     init$8();
     init$5();
-    var urlVariant = selectUrlVariant();
     init$b();
     init$d();
-    init$6();
     init$7();
+    init$6();
     init$a();
     init$c();
+    var urlVariant = selectUrlVariant();
     return $return(urlVariant); // Removed for AU
     // Suggest leaving the async setup for fulfillment options to last
     // updateFulfillmentOptionsUI = await storePickup.init();

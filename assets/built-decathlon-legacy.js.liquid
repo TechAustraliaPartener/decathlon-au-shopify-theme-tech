@@ -1,1 +1,1388 @@
-!function(){"use strict";jQuery(document).ready((function(){var e=window.DecathlonCustomer,t=function(){function e(e){this.dd=e,this.placeholder=this.dd.children("p"),this.opts=this.dd.find("ul > li"),this.val="",this.index=-1,this.initEvents()}var t=e.prototype;return t.initEvents=function(){var e=this;this.dd.on("click",(function(){return jQuery(this).toggleClass("active"),!1})),this.opts.on("click",(function(){var t=jQuery(this);t.siblings("input").prop("checked",!0),t.addClass("active"),t.siblings("li").removeClass("active"),t.siblings("li").children("input").prop("checked",!0),e.val=t.text(),e.index=t.index(),e.placeholder.text(e.val)}))},t.getValue=function(){return this.val},t.getIndex=function(){return this.index},e}();jQuery(".footerNewsletter-form, .blogNewsletter-form").submit((function(t){t.preventDefault();var r=jQuery(this);jQuery(".newsLetterForm-response").remove();var a=!0,n=r.find(".state-dropdown-list .active input");0===n.length&&0===(n=r.find("select")).length&&(a=!1),a?(r.append('<input type="hidden" name="MMERGE1" />'),r.find('[name="MMERGE1"]').val(n.val())):r.find(".footerNewsletter-dropdown-wrap, select").css("border","1px solid red");var i=!0;return/\S+@\S+\.\S+/.test(r.find('input[type="email"]').val())||(r.find('input[type="email"]').css("border","1px solid red"),i=!1),a?i?void new e({customer:{email:r.find('input[type="email"]').val().toLowerCase(),accepts_marketing:!0,addresses:[{province:n.val(),country:"US"}]}}).createCustomer().then((function(){r.hide(),r.after('<p class="newsLetterForm-response success">Thank you for signing up!</p>'),jQuery("body").hasClass("template-article")&&(jQuery(".blog-article-newsletter-form .hide-on-success").hide(),jQuery(".blog-article-newsletter-form .blog-article-newsletter-success").css("display","block"))})).catch((function(e){r.after('<p class="newsLetterForm-response error">'+e.message+"</p>")})):(r.after('<p class="newsLetterForm-response error">Please enter a valid email address.</p>'),!1):(r.after('<p class="newsLetterForm-response error">Please select a state.</p>'),!1)})),jQuery(".blue-band").length>0&&(jQuery(".blue-band").each((function(){jQuery(this).children().children().children(".grid__item").eq(1).addClass("active")})),jQuery(".blue-band-icon").click((function(){jQuery(this).parent().parent().addClass("active"),jQuery(this).parent().parent().siblings().removeClass("active")}))),jQuery(".blue-band-link").click((function(e){(jQuery(window).width()>=1e3||"P"===e.target.nodeName)&&(window.location.href=jQuery(this).data("href"))})),new t(jQuery(".footerNewsletter-dropdown-wrap")),jQuery(document).click((function(){jQuery(".footerNewsletter-dropdown-wrap").removeClass("active")}))}));var e,t,r=(function(e,t){e.exports=function(){function e(){for(var e=0,t={};e<arguments.length;e++){var r=arguments[e];for(var a in r)t[a]=r[a]}return t}function t(e){return e.replace(/(%[0-9A-Z]{2})+/g,decodeURIComponent)}return function r(a){function n(){}function i(t,r,i){if("undefined"!=typeof document){"number"==typeof(i=e({path:"/"},n.defaults,i)).expires&&(i.expires=new Date(1*new Date+864e5*i.expires)),i.expires=i.expires?i.expires.toUTCString():"";try{var o=JSON.stringify(r);/^[\{\[]/.test(o)&&(r=o)}catch(e){}r=a.write?a.write(r,t):encodeURIComponent(r+"").replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g,decodeURIComponent),t=encodeURIComponent(t+"").replace(/%(23|24|26|2B|5E|60|7C)/g,decodeURIComponent).replace(/[\(\)]/g,escape);var s="";for(var c in i)i[c]&&(s+="; "+c,!0!==i[c]&&(s+="="+i[c].split(";")[0]));return document.cookie=t+"="+r+s}}function o(e,r){if("undefined"!=typeof document){for(var n={},i=document.cookie?document.cookie.split("; "):[],o=0;o<i.length;o++){var s=i[o].split("="),c=s.slice(1).join("=");r||'"'!==c.charAt(0)||(c=c.slice(1,-1));try{var l=t(s[0]);if(c=(a.read||a)(c,l)||t(c),r)try{c=JSON.parse(c)}catch(e){}if(n[l]=c,e===l)break}catch(e){}}return e?n[e]:n}}return n.set=i,n.get=function(e){return o(e,!1)},n.getJSON=function(e){return o(e,!0)},n.remove=function(t,r){i(t,"",e(r,{expires:-1}))},n.defaults={},n.withConverter=r,n}((function(){}))}()}(e={exports:{}}),e.exports),a=function(e){var t;try{t=window[e];var r="__storage_test__";return t.setItem(r,r),t.removeItem(r),!0}catch(e){return e instanceof DOMException&&(22===e.code||1014===e.code||"QuotaExceededError"===e.name||"NS_ERROR_DOM_QUOTA_REACHED"===e.name)&&0!==t.length}},n=(a("localStorage"),a("sessionStorage"),r.set(t="persistent-cart-test","foo"),r.get(t),r.remove(t),r.get(t),function(e){return JSON.parse(localStorage.getItem(e))}),i=function(e,t){t||(t=window.location.href),e=e.replace(/[\[\]]/g,"\\$&");var r=RegExp("[?&]"+e+"(=([^&#]*)|&|#|$)").exec(t);return r?r[2]?decodeURIComponent(r[2].replace(/\+/g," ")):"":null}("user_id");i&&(localStorage.setItem("user_id",JSON.stringify(i)),console.log(n("user_id")));var o=Cookies.get("user_id")||n("user_id")||!1;window.vars.userID=o;var s=function e(t){return t?(t^16*Math.random()>>t/4).toString(16):"10000000-1000-4000-8000-100000000000".replace(/[018]/g,e)};function c(){var e=window.location.href.split("/");for(var t in e)if("collections"===e[t]||"products"===e[t]||"repls"===e[t])return!0;return!1}function l(e){var t={},r=null;return e.ajax({dataType:"json",url:"https://api.ipstack.com/check?access_key=23cb2745b5ee35580d6f00373f14f868&legacy=1",async:!1,success:function(e){t=e},error:function(e){console.log("err with getLocaleSync",e),r=e}}),{error:r,data:t}}window.uuid=s,window.isProductPage=c,window.getLocaleSync=l,function(e,t,r){var a=function(){function a(e){this.cookieName_=e||"bln",this.cookieData_=t.getJSON(this.cookieName_)||{};var r=(new Date).getTime();this.cookieData_.createdAt||(this.setData("createdAt",r),this.setData("id",s())),this.setData("updatedAt",r)}var n=a.prototype;return n.getLocale=function(){var e=this;return new Promise((function(a,n){e.cookieData_.locale?a(e.cookieData_.locale):r.getJSON("https://api.ipstack.com/check?access_key=23cb2745b5ee35580d6f00373f14f868&legacy=1").then((function(r){return t.set(e.cookieName_,{locale:r}),e.cookieData_=t.getJSON(e.cookieName_),a(e.cookieData_.locale)})).fail((function(e){return console.log("error retrieving geoip."),n(e)}))}))},n.getUserRegionCode=function(){var e=null;return"California"===this.getData("userSetRegion")&&(e="CA"),e||this.getData("locale").region_code},n.getUserRegion=function(){var e=this.getData("userSetRegion");if(e)return e;if(e=this.getData("locale"))return e.region_name;var t=l(r);return t.error?void 0:t.data.region_name},n.fullscreen=function(t){var a=t.container||".js-fullscreen",n=t.wrapper||".wrapper",i=t.offsetHeight||0,o=r(e).height();r(a).each((function(){var e=r(this).find(n).height(),t=parseInt(r(a).css("padding-top").replace("px","")),s=(o-i-e)/2;t>s||r(a).css({"padding-top":s,"padding-bottom":s})}))},n.recentlyViewed=function(e){var a=this.cookieData_.recentlyViewed||[];a.length||r("body").addClass("is-emptyRecentlyViewed"),r(a).each((function(t,r){e.url===r.url&&a.splice(a[t],1)})),a.unshift(e),a.length>4&&(a.length=4),t.set(this.cookieName_,r.extend(this.cookieData_,{recentlyViewed:a}))},n.setData=function(e,a){var n={};return n[e]=a,t.set(this.cookieName_,r.extend(this.cookieData_,n)),this},n.getData=function(e){return this.cookieData_[e]},n.pinToHeader=function(t){var a=this;return setTimeout((function(){var n=r(t.selector),i=r(t.selector).innerHeight()+r(".js-de-PageWrap-header").innerHeight()+5,o=t.selector.substr(1);if(!n.length)return a;var s=[];n.find(".js-anchorLink").each((function(e,t){s.push({top:r(r(t).attr("href")).offset().top-i,index:e})}));var l=t.offset(),u=n.offset().top-l;r("#PageContainer").resize((function(){l=t.offset(),u=n.offset().top-l,i=n.innerHeight()+r(".js-de-PageWrap-header").innerHeight()+5,s=[],n.find(".js-anchorLink").each((function(e,t){s.push({top:r(r(t).attr("href")).offset().top-i,index:e})}))}));var d=function(){if(c()){if(r(e).scrollTop()<u)return void(1===r(t.selector+"--cloned").length&&(n.detach(),n.removeClass(o+"--cloned is-fixed"),n.css({top:""}),r(t.selector+"--placeholder").replaceWith(n),t.unpinCallback&&t.unpinCallback(n)))}else if(r(e).scrollTop()<u)return void(1===r(t.selector+"--cloned").length&&(n.detach(),n.removeClass(o+"--cloned is-fixed"),n.css({top:""}),r(t.selector+"--placeholder").replaceWith(n),t.unpinCallback&&t.unpinCallback(n)));if(0===r(t.selector+"--cloned").length&&(n.after('<div class="'+n.attr("class")+" "+o+'--placeholder" style="height:'+n[0].getBoundingClientRect().height+'px"></div>'),n.addClass(o+"--cloned is-fixed").detach(),r("body").append(n),n.css({top:l}),t.pinCallback&&t.pinCallback(n)),s.length){for(var a=null,i=0;i<s.length&&r(e).scrollTop()>s[i].top;i++)a=n.find(".anchorList-link").eq(s[i].index);n.find(".anchorList-link").removeClass("anchorList-link--active").blur(),a&&a.addClass("anchorList-link--active")}};return r(e).on("scroll",d),r("#PageContainer").resize(d),a}),10)},n.anchorLinks=function(e){r(".js-anchorLink").on("click",(function(t){t.preventDefault(),r(".js-navRelative").addClass("is-hidden"),r("#"+t.currentTarget.href.split("#")[1]).removeClass("is-hidden"),r(this).parents(".anchorList").find(".anchorList-link").removeClass("anchorList-link--active"),r(this).addClass("anchorList-link--active"),r("html, body").scrollTop(r(r(this).attr("href")).offset().top-e()-30)}))},n.getGoingPacks=function(e){r(".js-getGoingPack").each((function(t,a){var n=r(a).find(".getGoingPack-banner").outerHeight(),i=r(a).find(".getGoingPack-currentProductWrapper"),o=i.height();i.outerHeight();var s=r(a).find(".getGoingPack-productList").outerHeight(),c=e?"0":Math.floor(Math.max(0,(n-o-s)/2))+"px 0";r(a).find(".getGoingPack-currentProductWrapper").css({padding:c})}))},n.addPromo=function(e,t){r(".promo-band").remove(),r("body").append('<div class="promo-band is-fixed '+t+'"><div class="wrapper">'+e+'</div><div class="promo-band__close" onclick="this.parentNode.parentNode.removeChild(this.parentNode);"></div></div>')},n.wishlistSwap=function(t){void 0===t&&(t=e.addToWishlist);var a=r("body").hasClass("template-product"),n=a&&r("body").hasClass("is-sellableProduct");if(t){if(n)return;e.addToWishlist=!0,r("main").addClass("hide-wkCartButtons"),r(".addToCart .addToCartText, .js-addToWishlist .addToCartText").text("Add to Wishlist"),r(".addToCart, .js-addToWishlist").click((function(e){if(e.preventDefault(),a)r(".timber-activeProduct").find(".wk-button-product").click();else{var t=r(e.currentTarget).parents(".timber-activeProduct").find(".wk-button-product");t.trigger("click"),r(e.currentTarget).find(".addToCartText").text(t.hasClass("wk-add-product")?"Remove from Wishlist":"Add to Wishlist")}r(this).blur()}))}else{if(-1!==e.shipStates.indexOf("all"))return;if(-1===e.shipStates.indexOf(this.getUserRegion())){if(n)return r("body").addClass("is-wishlistOnly"),void r("main").addClass("hide-wkCartButtons");e.addToWishlist=!0,r("body").addClass("is-wishlistOnly"),r("main").addClass("hide-wkCartButtons"),r(".addToCart .addToCartText").text("Add to Wishlist"),r(".addToCart").click((function(e){e.preventDefault(),a?r(".wishlist .wk-add-product").click():r(this).parents(".timber-activeProduct").find(".wk-add-product").click(),r(this).blur()}))}}},a}();e.BlueLikeNeon=a}(window,Cookies,jQuery),function(e,t){var r=function(){function r(e){this.apiUrl=t("#decathlon-customer-api").data("apiRoot"),this.messages=[],this.userData=e||{},this.customerId=e["customer[id]"],this.userMetaData={}}var a=r.prototype;return a.createCustomer=function(){var e=this;this.messages=[];var r=this.userData;return new Promise((function(a,n){e.checkEmail().then((function(i){if(i&&"enabled"===i.state){var o=Error(i.email+" is already subscribed.");return o.code="USER_ENABLED",n(o)}if(i&&"disabled"===i.state){e.customerId=i.id;var s=Error(i.email+" is already subscribed.");return s.code="USER_NOT_ENABLED",n(s)}var c={url:[e.apiUrl,"customers"].join("/"),method:"POST",headers:{"Content-type":"application/json"},data:JSON.stringify(r)};t.ajax(c).success(a).error(n)}))}))},a.updateCustomer=function(e){var r=this,a=e=e||{};return this.customerToken=this.userData.customer.token,delete this.userData.customer.token,this.customerToken||console.log("[Error]: Token missing"),new Promise((function(e,n){t.ajax({url:[r.apiUrl,"customers"].join("/"),method:"PUT",headers:{"Content-type":"application/json","X-Decathlon-CustomerAccessToken":r.customerToken},data:JSON.stringify(r.userData.customer)}).success((function(i){i.errors?n(i.errors):i.errorType&&"TokenExpiredError"===i.errorType?r.updateToken().success((function(n){n.errorMessage?alert(n.errorMessage):(t('input[name="token"]').val(n.metafield.value),r.userData.customer.token=n.metafield.value,e(r.updateCustomer(a)))})):e(i)})).error(n)}))},a.checkEmail=function(){var e=this;return new Promise((function(r){t.get([e.apiUrl,"check-email",e.userData.customer.email||e.userData["customer[email]"]].join("/")).success((function(t){if(!t.customers.length)return r(!1);var a=t.customers[0];e.customerId=a.id,r(a)}))}))},a.shopifyLogin=function(){t.post("/account/login",this.userData).success((function(t,r){"success"===r&&(e.location="/account")})).error((function(){alert("there was an error logging in")}))},a.updateMetafield=function(e){var r=this,a=e;return this.customerToken=this.userData.customer.token,this.customerToken||console.log("[Error]: Token missing"),new Promise((function(n,i){t.ajax({url:[r.apiUrl,"metafields"].join("/"),method:"POST",headers:{"Content-type":"application/json","X-Decathlon-CustomerAccessToken":r.customerToken},data:JSON.stringify(e)}).success((function(e){e.errors?i(e.errors):e.errorType&&"TokenExpiredError"===e.errorType?r.updateToken().success((function(e){e.errorMessage?alert(e.errorMessage):(t('input[name="token"]').val(e.metafield.value),r.userData.customer.token=e.metafield.value,n(r.updateMetafield(a)))})):n(e)})).error(i)}))},a.registerExistingUser=function(){var e=this.userData;return e.customer.id=this.customerId,t.ajax({url:[this.apiUrl,"register-existing-user"].join("/"),method:"POST",headers:{"Content-type":"application/json"},data:JSON.stringify(e)})},a.updateToken=function(){return t.ajax({url:[this.apiUrl,"/customers/update-token"].join("/"),method:"POST",headers:{"Content-type":"application/json","X-Decathlon-CustomerAccessToken":this.customerToken}})},r}();e.DecathlonCustomer=r}(window,jQuery),function(e,t,r,a){t((function(){function n(e){t(e.currentTarget).val()?t(e.currentTarget).parent().addClass("is-notEmpty"):t(e.currentTarget).parent().removeClass("is-notEmpty")}t.fn.serializeObject=function(){var e={},r=this.serializeArray();return t.each(r,(function(){if(void 0!==e[this.name])e[this.name].push||(e[this.name]=[e[this.name]]),e[this.name].push(this.value||"");else if(this.name.indexOf(".")>-1){var t=this.name.split(".");e[t[0]]=e[t[0]]||{},e[t[0]][t[1]]=this.value||""}else e[this.name]=this.value||""})),e},Function("/*@cc_on return document.documentMode===10@*/")()&&t("html").addClass("ie ie10");var i=new r("decathlon_usa");i.getLocale(),i.fullscreen({offsetHeight:Math.floor(t(".js-de-PageWrap-header").outerHeight())}),t(e).bind("pageshow",(function(){t(".js-nobfcache").val("")}));var o=function(){return Math.floor(t(".js-de-PageWrap-header").outerHeight())};i.pinToHeader({selector:".js-pinToHeader",offset:o}),0!==t(".js-pinToHeader--second").length&&i.pinToHeader({selector:".js-pinToHeader--second",offset:o=function(){return 0}}),i.anchorLinks(o),t(e).scroll(),jQuery("img[data-src]").each((function(e,t){jQuery(t).attr("src",jQuery(t).attr("data-src"))})),jQuery("[data-background-image]").each((function(e,t){jQuery(t).css("background-image","url("+jQuery(t).data("backgroundImage")+")")}));var c=0,l=t("#PageContainer");setInterval((function(){var e=l.innerHeight();e!=c&&(l.trigger(t.Event("resize")),c=e)}),50),i.getData("seenPromo")||(t(".promo-band").removeClass("is-hidden"),t(".promo-band__close").click((function(){t(".promo-band").addClass("close"),i.setData("seenPromo",(new Date).getTime())}))),t(".js-bannerVideo").on("click",(function(r){r.preventDefault();var a=t(this).parents(".banner--video"),n=t(this).attr("href").replace("https://www.youtube.com/watch?v=","");if(a.append('<div id="bannerVideo"><div class="js-closeBannerVideo"></div><div class="embedWrapper"><div class="embedContainer"><iframe src="https://www.youtube.com/embed/'+n+'?autoplay=1&rel=0" frameborder="0" allowfullscreen></iframe></div></div></div>'),t(this).attr("data-videoButton")){var i=JSON.parse(t(this).attr("data-videoButton"));t("#bannerVideo").append('<p class="bannerButton"><a class="btn" href="'+i.url+'">'+i.text+"</a></p>")}a.addClass("banner--videoActive"),t(".js-closeBannerVideo").click((function(){a.removeClass("banner--videoActive"),t(e).width()>=768?t("#bannerVideo").remove():setTimeout((function(){t("#bannerVideo").remove()}),750)}))})),(t("body").hasClass("template-collection")||t("body").hasClass("template-list-collections"))&&(t(".js-toggleCollectionSidebar").on("click",(function(e){e.preventDefault(),t(e.currentTarget).parents(".collectionSidebar").toggleClass("is-open")})),t(".js-tagLink").each((function(){var r=t(this).attr("href"),a=e.location.pathname,n=a.split("/").splice(1);if(n.length<3)t(this).attr("href",[a,r].join("/"));else{var i=n.pop().split("+"),o=i.indexOf(r),s=n.join("/");-1===o?i.push(r):i.splice(o,1);var c=["",s,i.join("+")].join("/").replace(/\/$/,"");t(this).attr("href",c)}}))),t(".js-slick--attr").slick();var u=[];t(".js-slick--attr").each((function(){var r=t(this),a=r.data("slick");if(a&&a.responsive)for(var n=0;n<a.responsive.length;n++)"unslick"==a.responsive[n].settings&&(u.push({element:r,breakpoint:a.responsive[n].breakpoint,active:t(e).width()<=a.responsive[n].breakpoint}),r.data("slickBreakIndex",u.length-1))})),t(e).resize((function(){for(var r=t(e).width(),a=0;a<u.length;a++)!u[a].active&&r<=u[a].breakpoint&&(u[a].element.slick(),u[a].active=!0)})),t(".js-slick--attr").on("destroy",(function(){for(var e=t(this),r=0;r<u.length;r++){var a=e.data("slickBreakIndex");void 0!==a&&(u[a].active=!1)}})),setTimeout((function(){t(e).resize()}),1500),t(".js-slick--attr .collectionProduct-relative").hover((function(){var e=t(this).parents(".slick-slider");e.css("height",e.innerHeight()).addClass("slickSlider-collectionProductFix")}),(function(){t(this).parents(".slick-slider").css("height","").removeClass("slickSlider-collectionProductFix")})),t(".js-colorChip").on("mouseenter",(function(e){e.preventDefault(),(new Image).src=t(e.currentTarget).data("image")})),t(".js-colorChip").on("click",(function(e){e.preventDefault(),t(e.currentTarget).parents(".collectionProduct").find(".collectionProduct-image").attr("src",t(e.currentTarget).data("image")),t(e.currentTarget).data("compare")?t(e.currentTarget).parents(".collectionProduct").find(".collectionProduct-price").html("<span style='color: #E53322;'>"+t(e.currentTarget).data("price")+"</span><span class='visually-hidden'>Regular price</span><br><s>"+t(e.currentTarget).data("compare")+"</s>"):t(e.currentTarget).parents(".collectionProduct").find(".collectionProduct-price").html(t(e.currentTarget).data("price")),t(e.currentTarget).parent().attr("data-colorChoice",t(e.currentTarget).data("color")),t(e.currentTarget).parent().attr("data-variantChoice",t(e.currentTarget).data("variant")),t(e.currentTarget).parent().find(".option.option--active").removeClass("option--active"),t(e.currentTarget).addClass("option--active")})),e.attachOptionSelectors&&e.attachOptionSelectors(),t(".collectionProduct .js-shopNow").click((function(r){r.preventDefault();var a=t(this).parents(".collectionProduct").find(".collectionProduct-colors").data("variantchoice");e.location.href=t(this).attr("href")+"?variantid="+a})),t(".js-adjustFeaturedContent").each((function(){t(this).prev().hasClass("collectionProduct--featured")?t(this).removeClass("collectionProduct--featured--end"):t(this).prev().addClass("collectionProduct--nextIsEndFeatured")})),t(e).width()>768&&t(".getGoingPack-currentProductWrapper .slick-slide:first-of-type img").on("load",(function(){i.getGoingPacks()})),t(".js-slick--attr").first().on("setPosition",(function(){setTimeout((function(){i.getGoingPacks(t(e).width()<=768)}),250)})),t("body").append(t(".appointment").detach()),t(".js-sanFranAppt").click((function(e){e.preventDefault(),t(".appointment").css("display","block")})),t(".js-closeAppt").click((function(){t(".appointment").css("display","none")})),"/pages/san-francisco"===e.location.pathname&&t(".appointment .form-success").length>0&&(t(".btn.js-sanFranAppt").click(),t(".appointment .hide-on-success").css("display","none"),t(".js-closeAppt").click((function(){e.history.pushState({},"",e.location.href.split("?")[0]),t(".appointment .hide-on-success").css("display","block"),t(".appointment .form-success").css("display","none")})));var d=new Date,p=d.getUTCDay(),f=d.getUTCHours()-8,h=!1;if(t(".js-storeOpen p[data-day-info]").each((function(e,r){var a=t(r).data("dayInfo").split(",");p>=parseInt(a[0])&&p<=parseInt(a[1])&&(t(r).addClass("is-active"),f>=parseInt(a[2])&&f<parseInt(a[3])&&(h=!0))})),h&&t(".js-storeOpen").addClass("storeHours--open"),t("body").hasClass("template-customers-register")){if(e.location.search){var m=e.location.search.substring(1).split("&");t(m).each((function(e,r){var a=r.split("=");t('input[name="'+a[0]+'"]').val(a[1])}))}t(".js-editProfileImage").on("click",(function(e){e.preventDefault(),t(".imageUploadForm").removeClass("visually-hidden"),t(e.currentTarget).addClass("visually-hidden")})),t("#imageFiles").on("change",(function(e){var r=t(e.currentTarget).prop("files")[0],a=r.name.split(".").pop(),n="images/"+s().replace(/-/g,"")+"."+a;s3.upload({Key:n,Body:r,ACL:"public-read",ContentType:"image/"+a},(function(e,r){e?(console.log(e),alert("There was an error uploading your image.")):(t('input[name="image_upload"]').val(r.Location),t(".imageUpload, .js-editProfileImage").removeClass("visually-hidden"),t(".profilePic").attr("src",r.Location),t(".imageUploadForm").addClass("visually-hidden"))}))})),t(".js-createCustomer").on("submit",(function(e){var r=t(this),n=t(e.currentTarget).serializeObject(),i=!1,o=t(e.currentTarget).find(".notifications"),s=new a({customer:{first_name:n["customer[first_name]"],last_name:n["customer[last_name]"],accepts_marketing:n["customer[accepts_marketing]"],email:n["customer[email]"]}});o.removeClass("form-success").removeClass("form-error").empty(),e.preventDefault();var c="All fields are required";if(r.find("input:not(.ignore)").each((function(e,r){""===t(r).val()&&(i=!0)})),/\S+@\S+\.\S+/.test(t('input[name="customer[email]"]').val())||(c="Invalid email",i=!0),i)o.addClass("form-error").html("<p>"+c+"</p>");else{s.userData.customer.send_email_invite=!0;var l={namespace:"customers",key:"profile_image",value:t('input[name="image_upload"]').val(),value_type:"string"};t('input[name="image_upload"]').val()&&(s.userData.customer.metafields=[l],r.append('<input type="hidden" name="customer[metafields][0][namespace]" value="customers" />'),r.append('<input type="hidden" name="customer[metafields][0][key]" value="profile_image" />'),r.append('<input type="hidden" name="customer[metafields][0][value]" value="'+l.value+'" />'),r.append('<input type="hidden" name="customer[metafields][0][value_type]" value="string" />')),s.createCustomer().then((function(e){r.find(":not(.notifications)").remove(),e.errors?"has already been taken"==e.errors.email[0]?o.addClass("form-error").html("<p>The email address you entered is already associated with a Decathlon account. Please log in to that account, or enter a different email address to create a new Decathlon account.</p>").after('<p class="u-marginTop1x text-center"><a class="btn btn--text" href="'+window.vars.loginUrl+'">Sign In</a></p>').after('<p class="u-marginTop1x"><a class="btn btn--fill btn--full" href="'+window.vars.registerUrl+'">Create Account</a></p>'):o.addClass("form-error").html("<p>Unknown Error</p>"):o.addClass("form-success").html("<p>Please check your email to continue account&nbsp;activation</p>")})).catch((function(e){"USER_NOT_ENABLED"===e.code&&s.registerExistingUser().success((function(){r.unbind("submit").submit()})).error((function(e){console.log("error",e)})),"USER_ENABLED"===e.code&&(r.find(":not(.notifications)").remove(),o.addClass("form-success").append('<p>You already have an account, <a href="'+window.vars.loginUrl+'">please&nbsp;login</a></p>'))}))}}))}t("body").hasClass("template-customers-account")&&(t(".js-editProfileImage").on("click",(function(e){e.preventDefault(),t(".imageUploadForm").removeClass("visually-hidden"),t(e.currentTarget).addClass("visually-hidden")})),t("#imageFiles").on("change",(function(e){var r=t(e.currentTarget).prop("files")[0],n=r.name.split(".").pop(),i="images/"+s().replace(/-/g,"")+"."+n;s3.upload({Key:i,Body:r,ACL:"public-read",ContentType:"image/"+n},(function(r,n){if(r)return console.log(r),alert("There was an error uploading your image.");var i=t(e.currentTarget).parents(".js-updateCustomer").find('input[name="token"]').val();new a({customer:{token:i}}).updateMetafield({namespace:"customers",key:"profile_image",value:n.Location,value_type:"string"}).then((function(e){t(".imageUpload, .js-editProfileImage").removeClass("visually-hidden"),t(".profilePic").attr("src",e.metafield.value),t(".imageUploadForm").addClass("visually-hidden")}))}))})),t(".js-updateCustomer").on("submit",(function(e){e.preventDefault();var r=new a({customer:t(e.currentTarget).serializeObject()}),n=t(e.currentTarget).find(".notifications");n.removeClass("form-success").removeClass("form-error").empty(),r.userData.customer.accepts_marketing||(r.userData.customer.accepts_marketing=!1),r.updateCustomer().then((function(){n.addClass("form-success").append("<p>Saved successfully!</p>")})).catch((function(e){var t=[];e.email&&t.push("Email "+e.email[0]),t.forEach((function(e){n.addClass("form-error").append("<p>"+e+"</p>")}))}))}))),t("body").hasClass("template-customers-login")&&("#recover"===e.location.hash&&(t("#RecoverPassword").trigger("click"),"?redirect_to=/account"===e.location.search&&t("#HideRecoverPasswordLink").on("click",(function(){e.location="/account"}))),t("#customer_login").on("submit",(function(e){var r=t(this),n=t(this).serializeObject(),i=new a({customer:{email:n["customer[email]"]}}),o=!1;console.log(i),e.preventDefault();var s=t(e.currentTarget).find(".notifications");s.removeClass("form-success").removeClass("form-error").empty(),r.find("input").each((function(e,r){""===t(r).val()&&(o=!0)})),o&&s.addClass("form-error").html("<p>All fields are required</p>"),i.checkEmail().then((function(e){e?"enabled"!==e.state?s.removeClass("form-error").addClass("form-success").html('<p>Please <a href="/account/register?customer[email]='+e.email+'">complete your profile</a></p>'):r.unbind("submit").submit():s.addClass("form-error").html("<p>No account found with that email.</p>")}))}))),t("body").hasClass("template-customers-addresses")&&("#add"===e.location.hash&&t(".js-addAddress").trigger("click"),t("#address_form_new").submit((function(e){var r=t(this),a=!0;if(r.find("[required]").each((function(){var e=t(this);""==e.val()&&(e.css("border","1px solid red"),a=!1)})),!a)return e.preventDefault(),!1}))),"?contact_posted=true"===e.location.search&&t(".hide-on-success").css("display","none"),t("#contact_form").submit((function(e){var r=t(this),a=[];if(r.find("[required]").each((function(){""==t(this).val()&&a.push(t(this).parent().find("label").text()+" is required")})),/\S+@\S+\.\S+/.test(r.find('input[type="email"]').val())||a.push("Invalid email."),a.length)return t(e.currentTarget).find(".form-vertical .notifications").remove(),t(e.currentTarget).find(".form-vertical").prepend('<div class="notifications form-errors u-paddingTopBottom1x"><ul class="no-bullets u-marginBottom0x"></ul></div>'),t(a).each((function(r,a){t(e.currentTarget).find(".notifications ul").append("<li>"+a+"</li>")})),!1})),t("#create_customer .errors").text().indexOf("verify your email")>-1&&t("#create_customer .errors").addClass("notifications form-success u-textCenter"),t(".inputWrap > input, .inputWrap > select, .inputWrap > textarea").each((function(e,r){t(r).val()&&t(r).parent().addClass("is-notEmpty")})),t(".inputWrap > select").on("change",n),t(".inputWrap > input, .inputWrap > textarea").on("keyup",n),function(e){for(var t=document.cookie.split(";"),r=0;r<t.length;r++){var a=t[r].split("=");if("is_from_registration"==a[0].trim())return decodeURIComponent(a[1])}}()&&(t(".registration-confirm-message").show(),document.cookie="is_from_registration=; max-age=0"),e.decathlon=i}))}(window,jQuery,BlueLikeNeon,DecathlonCustomer)}();
+(function () {
+  'use strict';
+
+  jQuery(document).ready(function () {
+    var DecathlonCustomer = window.DecathlonCustomer;
+
+    var CustomDropdown = /*#__PURE__*/function () {
+      /** @param {JQuery} $elements */
+      function CustomDropdown($elements) {
+        this.dd = $elements;
+        this.placeholder = this.dd.children('p');
+        this.opts = this.dd.find('ul > li');
+        this.val = '';
+        this.index = -1;
+        this.initEvents();
+      }
+
+      var _proto = CustomDropdown.prototype;
+
+      _proto.initEvents = function initEvents() {
+        var self = this;
+        this.dd.on('click', function () {
+          jQuery(this).toggleClass('active');
+          return false;
+        });
+        this.opts.on('click', function () {
+          var element = jQuery(this);
+          element.siblings('input').prop('checked', true);
+          element.addClass('active');
+          element.siblings('li').removeClass('active');
+          element.siblings('li').children('input').prop('checked', true);
+          self.val = element.text();
+          self.index = element.index();
+          self.placeholder.text(self.val);
+        });
+      };
+
+      _proto.getValue = function getValue() {
+        return this.val;
+      };
+
+      _proto.getIndex = function getIndex() {
+        return this.index;
+      };
+
+      return CustomDropdown;
+    }();
+
+    jQuery('.footerNewsletter-form, .blogNewsletter-form').submit(function (e) {
+      e.preventDefault();
+      var i = jQuery(this);
+      jQuery('.newsLetterForm-response').remove();
+      var n = true;
+      var a = i.find('.state-dropdown-list .active input');
+
+      if (a.length === 0) {
+        a = i.find('select');
+        if (a.length === 0) n = false;
+      }
+
+      if (n) {
+        i.append('<input type="hidden" name="MMERGE1" />');
+        i.find('[name="MMERGE1"]').val(a.val());
+      } else i.find('.footerNewsletter-dropdown-wrap, select').css('border', '1px solid red');
+
+      var r = true;
+      var s = /\S+@\S+\.\S+/;
+
+      if (!s.test(i.find('input[type="email"]').val())) {
+        i.find('input[type="email"]').css('border', '1px solid red');
+        r = false;
+      }
+
+      if (!n) {
+        i.after('<p class="newsLetterForm-response error">Please select a state.</p>');
+        return false;
+      }
+
+      if (!r) {
+        i.after('<p class="newsLetterForm-response error">Please enter a valid email address.</p>');
+        return false;
+      }
+
+      var c = new DecathlonCustomer({
+        customer: {
+          email: i.find('input[type="email"]').val().toLowerCase(),
+          accepts_marketing: true,
+          addresses: [{
+            province: a.val(),
+            country: 'US'
+          }]
+        }
+      });
+      c.createCustomer().then(function () {
+        i.hide();
+        i.after('<p class="newsLetterForm-response success">Thank you for signing up!</p>');
+
+        if (jQuery('body').hasClass('template-article')) {
+          jQuery('.blog-article-newsletter-form .hide-on-success').hide();
+          jQuery('.blog-article-newsletter-form .blog-article-newsletter-success').css('display', 'block');
+        }
+      }).catch(function (error) {
+        i.after("<p class=\"newsLetterForm-response error\">" + error.message + "</p>");
+      });
+    });
+
+    if (jQuery('.blue-band').length > 0) {
+      jQuery('.blue-band').each(function () {
+        jQuery(this).children().children().children('.grid__item').eq(1).addClass('active');
+      });
+      jQuery('.blue-band-icon').click(function () {
+        jQuery(this).parent().parent().addClass('active');
+        jQuery(this).parent().parent().siblings().removeClass('active');
+      });
+    }
+
+    jQuery('.blue-band-link').click(function (i) {
+      if (jQuery(window).width() >= 1e3 || i.target.nodeName === 'P') window.location.href = jQuery(this).data('href');
+    }); // eslint-disable-next-line no-new
+
+    new CustomDropdown(jQuery('.footerNewsletter-dropdown-wrap'));
+    jQuery(document).click(function () {
+      jQuery('.footerNewsletter-dropdown-wrap').removeClass('active');
+    });
+  });
+
+  function createCommonjsModule(fn, module) {
+    return module = {
+      exports: {}
+    }, fn(module, module.exports), module.exports;
+  }
+
+  var js_cookie = createCommonjsModule(function (module, exports) {
+
+    (function (factory) {
+      var registeredInModuleLoader;
+
+      {
+        module.exports = factory();
+        registeredInModuleLoader = true;
+      }
+
+      if (!registeredInModuleLoader) {
+        var OldCookies = window.Cookies;
+        var api = window.Cookies = factory();
+
+        api.noConflict = function () {
+          window.Cookies = OldCookies;
+          return api;
+        };
+      }
+    })(function () {
+      function extend() {
+        var i = 0;
+        var result = {};
+
+        for (; i < arguments.length; i++) {
+          var attributes = arguments[i];
+
+          for (var key in attributes) {
+            result[key] = attributes[key];
+          }
+        }
+
+        return result;
+      }
+
+      function decode(s) {
+        return s.replace(/(%[0-9A-Z]{2})+/g, decodeURIComponent);
+      }
+
+      function init(converter) {
+        function api() {}
+
+        function set(key, value, attributes) {
+          if (typeof document === 'undefined') {
+            return;
+          }
+
+          attributes = extend({
+            path: '/'
+          }, api.defaults, attributes);
+
+          if (typeof attributes.expires === 'number') {
+            attributes.expires = new Date(new Date() * 1 + attributes.expires * 864e+5);
+          } // We're using "expires" because "max-age" is not supported by IE
+
+
+          attributes.expires = attributes.expires ? attributes.expires.toUTCString() : '';
+
+          try {
+            var result = JSON.stringify(value);
+
+            if (/^[\{\[]/.test(result)) {
+              value = result;
+            }
+          } catch (e) {}
+
+          value = converter.write ? converter.write(value, key) : encodeURIComponent(String(value)).replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g, decodeURIComponent);
+          key = encodeURIComponent(String(key)).replace(/%(23|24|26|2B|5E|60|7C)/g, decodeURIComponent).replace(/[\(\)]/g, escape);
+          var stringifiedAttributes = '';
+
+          for (var attributeName in attributes) {
+            if (!attributes[attributeName]) {
+              continue;
+            }
+
+            stringifiedAttributes += '; ' + attributeName;
+
+            if (attributes[attributeName] === true) {
+              continue;
+            } // Considers RFC 6265 section 5.2:
+            // ...
+            // 3.  If the remaining unparsed-attributes contains a %x3B (";")
+            //     character:
+            // Consume the characters of the unparsed-attributes up to,
+            // not including, the first %x3B (";") character.
+            // ...
+
+
+            stringifiedAttributes += '=' + attributes[attributeName].split(';')[0];
+          }
+
+          return document.cookie = key + '=' + value + stringifiedAttributes;
+        }
+
+        function get(key, json) {
+          if (typeof document === 'undefined') {
+            return;
+          }
+
+          var jar = {}; // To prevent the for loop in the first place assign an empty array
+          // in case there are no cookies at all.
+
+          var cookies = document.cookie ? document.cookie.split('; ') : [];
+          var i = 0;
+
+          for (; i < cookies.length; i++) {
+            var parts = cookies[i].split('=');
+            var cookie = parts.slice(1).join('=');
+
+            if (!json && cookie.charAt(0) === '"') {
+              cookie = cookie.slice(1, -1);
+            }
+
+            try {
+              var name = decode(parts[0]);
+              cookie = (converter.read || converter)(cookie, name) || decode(cookie);
+
+              if (json) {
+                try {
+                  cookie = JSON.parse(cookie);
+                } catch (e) {}
+              }
+
+              jar[name] = cookie;
+
+              if (key === name) {
+                break;
+              }
+            } catch (e) {}
+          }
+
+          return key ? jar[key] : jar;
+        }
+
+        api.set = set;
+
+        api.get = function (key) {
+          return get(key, false
+          /* read as raw */
+          );
+        };
+
+        api.getJSON = function (key) {
+          return get(key, true
+          /* read as json */
+          );
+        };
+
+        api.remove = function (key, attributes) {
+          set(key, '', extend(attributes, {
+            expires: -1
+          }));
+        };
+
+        api.defaults = {};
+        api.withConverter = init;
+        return api;
+      }
+
+      return init(function () {});
+    });
+  });
+
+  // @ts-check
+
+  /**
+   * @see https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API#Feature-detecting_localStorage
+   * @param {string} type - type of storage ('localStorage' or 'sessionStorage') to test
+   * @returns {boolean} - whether the test succeeded
+   */
+
+  var storageAvailableTest = function storageAvailableTest(type) {
+    var storage;
+
+    try {
+      storage = window[type];
+      var x = '__storage_test__';
+      storage.setItem(x, x);
+      storage.removeItem(x);
+      return true;
+    } catch (error) {
+      return error instanceof DOMException && ( // Everything except Firefox
+      error.code === 22 || // Firefox
+      error.code === 1014 || // Test name field too, because code might not be present
+      // Everything except Firefox
+      error.name === 'QuotaExceededError' || // Firefox
+      error.name === 'NS_ERROR_DOM_QUOTA_REACHED') && // Acknowledge QuotaExceededError only if there's something already stored
+      storage.length !== 0;
+    }
+  };
+  /**
+   * Helper testing for localStorage availability
+   * If sessionStorage is needed, create another const using the string 'sessionStorage'
+   */
+
+
+  var localStorageAvailable = storageAvailableTest('localStorage');
+  /**
+   * Helper testing for sessionStorage availability
+   */
+
+  var sessionStorageAvailable = storageAvailableTest('sessionStorage');
+  /**
+   * Test the client's ability to set and get cookies (unset after testing)
+   * @returns {boolean} - Whether the test passed
+   */
+
+  var cookiesAvailableTest = function cookiesAvailableTest() {
+    var test = 'persistent-cart-test';
+    js_cookie.set(test, 'foo');
+    var storedVal = js_cookie.get(test);
+    js_cookie.remove(test);
+    var deletedVal = js_cookie.get(test);
+    return storedVal && !deletedVal;
+  };
+  /**
+   * Export the boolean return value from cookiesAvailableTest
+   */
+
+
+  var cookiesAvailable = cookiesAvailableTest();
+  /**
+   * Helper to set an object in localStorage
+   * @param {string} name
+   * @param {Object} value
+   */
+
+  var setObjectInLocalStorage = function setObjectInLocalStorage(name, value) {
+    return localStorage.setItem(name, JSON.stringify(value));
+  };
+  /**
+   * Helper to get an object from its stringified representation in localStorage
+   * @param {string} name
+   * @returns {Object} - Parsed object contained in localStorage as a string
+   */
+
+  var getObjectFromLocalStorage = function getObjectFromLocalStorage(name) {
+    return JSON.parse(localStorage.getItem(name));
+  };
+
+  function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+  }
+
+  var user_id = getParameterByName('user_id');
+
+  if (user_id) {
+    // if (cookiesAvailable) {
+    //   Cookies.set('user_id', user_id);
+    //   console.log(Cookies.get('user_id'));
+    // } else if (localStorageAvailable) {
+    setObjectInLocalStorage('user_id', user_id);
+    console.log(getObjectFromLocalStorage('user_id')); // }
+  }
+
+  var userID = Cookies.get('user_id') || getObjectFromLocalStorage('user_id') || false;
+  window.vars.userID = userID;
+
+  /* eslint-disable complexity, @cloudfour/no-param-reassign, no-redeclare, eqeqeq, no-negated-condition, radix, block-scoped-var, no-var, no-alert, no-new, @cloudfour/unicorn/explicit-length-check, max-params, no-new-func */
+
+  /* global Cookies, jQuery, BlueLikeNeon, s3, DecathlonCustomer */
+
+  var loadImages = function loadImages() {
+    jQuery('img[data-src]').each(function (i, el) {
+      jQuery(el).attr('src', jQuery(el).attr('data-src'));
+    });
+    jQuery('[data-background-image]').each(function (i, el) {
+      jQuery(el).css('background-image', "url(" + jQuery(el).data('backgroundImage') + ")");
+    });
+  };
+  /**
+   * @see https://gist.github.com/jed/982883
+   */
+
+
+  var uuid = function uuid(t) {
+    return t ? (t ^ 16 * Math.random() >> t / 4).toString(16) : ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, uuid);
+  };
+
+  window.uuid = uuid;
+
+  function isProductPage() {
+    var thisUrl = window.location.href;
+    var pages = thisUrl.split('/');
+
+    for (var i in pages) {
+      if (pages[i] === 'collections' || pages[i] === 'products' || pages[i] === 'repls') return true;
+    }
+
+    return false;
+  }
+
+  window.isProductPage = isProductPage;
+
+  function getLocaleSync($) {
+    // Alan
+    var data = {};
+    var _error = null;
+    $.ajax({
+      dataType: 'json',
+      url: 'https://api.ipstack.com/check?access_key=23cb2745b5ee35580d6f00373f14f868&legacy=1',
+      async: false,
+      success: function success(result) {
+        data = result;
+      },
+      error: function error(err) {
+        console.log('err with getLocaleSync', err);
+        _error = err;
+      }
+    });
+    return {
+      error: _error,
+      data: data
+    };
+  }
+
+  window.getLocaleSync = getLocaleSync;
+
+  (function (global, Cookies, $) {
+    var BlueLikeNeon = /*#__PURE__*/function () {
+      function BlueLikeNeon(cookieName) {
+        this.cookieName_ = cookieName || 'bln';
+        this.cookieData_ = Cookies.getJSON(this.cookieName_) || {};
+        var i = new Date().getTime();
+
+        if (!this.cookieData_.createdAt) {
+          this.setData('createdAt', i);
+          this.setData('id', uuid());
+        }
+
+        this.setData('updatedAt', i);
+      } // Only used within this file
+
+
+      var _proto = BlueLikeNeon.prototype;
+
+      _proto.getLocale = function getLocale() {
+        var _this = this;
+
+        return new Promise(function (resolve, reject) {
+          if (_this.cookieData_.locale) resolve(_this.cookieData_.locale);else {
+            $.getJSON('https://api.ipstack.com/check?access_key=23cb2745b5ee35580d6f00373f14f868&legacy=1').then(function (i) {
+              Cookies.set(_this.cookieName_, {
+                locale: i
+              });
+              _this.cookieData_ = Cookies.getJSON(_this.cookieName_);
+              return resolve(_this.cookieData_.locale);
+            }).fail(function (error) {
+              console.log('error retrieving geoip.');
+              return reject(error);
+            });
+          }
+        });
+      } // Only used within this file
+      ;
+
+      _proto.getUserRegionCode = function getUserRegionCode() {
+        var rc = null;
+        if (this.getData('userSetRegion') === 'California') rc = 'CA';
+        return rc || this.getData('locale').region_code;
+      } // Only used within this file
+      ;
+
+      _proto.getUserRegion = function getUserRegion() {
+        var thisRegion = this.getData('userSetRegion');
+        if (thisRegion) return thisRegion;
+        thisRegion = this.getData('locale');
+        if (thisRegion) return thisRegion.region_name;
+        var thisRegionResult = getLocaleSync($);
+        if (thisRegionResult.error) return;
+        return thisRegionResult.data.region_name;
+      } // Only called within this file
+      ;
+
+      _proto.fullscreen = function fullscreen(opts) {
+        var containerSelector = opts.container || '.js-fullscreen';
+        var wrapperSelector = opts.wrapper || '.wrapper';
+        var offsetHeight = opts.offsetHeight || 0;
+        var windowHeight = $(global).height();
+        $(containerSelector).each(function () {
+          var containerHeight = $(this).find(wrapperSelector).height();
+          var minPadding = parseInt($(containerSelector).css('padding-top').replace('px', ''));
+          var normalizedPadding = (windowHeight - offsetHeight - containerHeight) / 2;
+          if (!(minPadding > normalizedPadding)) $(containerSelector).css({
+            'padding-top': normalizedPadding,
+            'padding-bottom': normalizedPadding
+          });
+        });
+      } // Only called within this file
+      ;
+
+      _proto.recentlyViewed = function recentlyViewed(e) {
+        var recentProducts = this.cookieData_.recentlyViewed || [];
+        if (!recentProducts.length) $('body').addClass('is-emptyRecentlyViewed');
+        $(recentProducts).each(function (index, product) {
+          if (e.url === product.url) recentProducts.splice(recentProducts[index], 1);
+        });
+        recentProducts.unshift(e);
+        if (recentProducts.length > 4) recentProducts.length = 4;
+        Cookies.set(this.cookieName_, $.extend(this.cookieData_, {
+          recentlyViewed: recentProducts
+        }));
+      } // Only called within this file
+      ;
+
+      _proto.setData = function setData(e, n) {
+        var a = {};
+        a[e] = n;
+        Cookies.set(this.cookieName_, $.extend(this.cookieData_, a));
+        return this;
+      } // Only called within this file
+      ;
+
+      _proto.getData = function getData(e) {
+        return this.cookieData_[e];
+      } // Only called within this file
+      // Used for get going packs, legacy product page, our story page
+      ;
+
+      _proto.pinToHeader = function pinToHeader(t) {
+        var n = this;
+        return setTimeout(_pinToHeader, 10);
+
+        function _pinToHeader() {
+          var o = $(t.selector);
+          var a = $(t.selector).innerHeight() + $('.js-de-PageWrap-header').innerHeight() + 5;
+          var r = t.selector.substr(1);
+          if (!o.length) return n;
+          var s = [];
+          o.find('.js-anchorLink').each(function (index, anchorEl) {
+            s.push({
+              top: $($(anchorEl).attr('href')).offset().top - a,
+              index: index
+            });
+          });
+          var c = t.offset();
+          var l = o.offset().top - c;
+
+          var d = function d() {
+            c = t.offset();
+            l = o.offset().top - c;
+            a = o.innerHeight() + $('.js-de-PageWrap-header').innerHeight() + 5;
+            s = [];
+            o.find('.js-anchorLink').each(function (index, anchorEl) {
+              s.push({
+                top: $($(anchorEl).attr('href')).offset().top - a,
+                index: index
+              });
+            });
+          };
+
+          $('#PageContainer').resize(d);
+
+          var u = function u() {
+            if (isProductPage()) {
+              if ($(global).scrollTop() < l) {
+                if ($(t.selector + "--cloned").length === 1) {
+                  o.detach();
+                  o.removeClass(r + "--cloned is-fixed");
+                  o.css({
+                    top: ''
+                  });
+                  $(t.selector + "--placeholder").replaceWith(o);
+                  if (t.unpinCallback) t.unpinCallback(o);
+                }
+
+                return;
+              }
+            } else if ($(global).scrollTop() < l) {
+              if ($(t.selector + "--cloned").length === 1) {
+                o.detach();
+                o.removeClass(r + "--cloned is-fixed");
+                o.css({
+                  top: ''
+                });
+                $(t.selector + "--placeholder").replaceWith(o);
+                if (t.unpinCallback) t.unpinCallback(o);
+              }
+
+              return;
+            }
+
+            if ($(t.selector + "--cloned").length === 0) {
+              o.after("<div class=\"" + o.attr('class') + " " + r + "--placeholder\" style=\"height:" + o[0].getBoundingClientRect().height + "px\"></div>");
+              o.addClass(r + "--cloned is-fixed").detach();
+              $('body').append(o);
+              o.css({
+                top: c
+              });
+              if (t.pinCallback) t.pinCallback(o);
+            }
+
+            if (s.length) {
+              for (var a = null, d = 0; d < s.length && $(global).scrollTop() > s[d].top; d++) {
+                a = o.find('.anchorList-link').eq(s[d].index);
+              }
+
+              o.find('.anchorList-link').removeClass('anchorList-link--active').blur();
+              if (a) a.addClass('anchorList-link--active');
+            }
+          };
+
+          $(global).on('scroll', u);
+          $('#PageContainer').resize(u);
+          return n;
+        }
+      } // Only called in this file
+      ;
+
+      _proto.anchorLinks = function anchorLinks(getHeaderHeight) {
+        $('.js-anchorLink').on('click', function (event) {
+          event.preventDefault();
+          $('.js-navRelative').addClass('is-hidden');
+          $("#" + event.currentTarget.href.split('#')[1]).removeClass('is-hidden');
+          $(this).parents('.anchorList').find('.anchorList-link').removeClass('anchorList-link--active');
+          $(this).addClass('anchorList-link--active');
+          $('html, body').scrollTop($($(this).attr('href')).offset().top - getHeaderHeight() - 30);
+        });
+      } // Only called in this file
+      ;
+
+      _proto.getGoingPacks = function getGoingPacks(e) {
+        $('.js-getGoingPack').each(function (i, getGoingPackEl) {
+          var bannerHeight = $(getGoingPackEl).find('.getGoingPack-banner').outerHeight();
+          var currentProductWrapper = $(getGoingPackEl).find('.getGoingPack-currentProductWrapper');
+          var currentProductWrapperHeight = currentProductWrapper.height();
+          currentProductWrapper.outerHeight();
+          var productListHeight = $(getGoingPackEl).find('.getGoingPack-productList').outerHeight();
+          var padding = e ? '0' : Math.floor(Math.max(0, (bannerHeight - currentProductWrapperHeight - productListHeight) / 2)) + "px 0";
+          $(getGoingPackEl).find('.getGoingPack-currentProductWrapper').css({
+            padding: padding
+          });
+        });
+      } // Used in appmate wishlist most likely
+      ;
+
+      _proto.addPromo = function addPromo(e, i) {
+        $('.promo-band').remove();
+        $('body').append("<div class=\"promo-band is-fixed " + i + "\"><div class=\"wrapper\">" + e + "</div><div class=\"promo-band__close\" onclick=\"this.parentNode.parentNode.removeChild(this.parentNode);\"></div></div>");
+      } // Used in other files, Collections and search possibly?
+      ;
+
+      _proto.wishlistSwap = function wishlistSwap(addToWishlist) {
+        if (addToWishlist === void 0) {
+          addToWishlist = global.addToWishlist;
+        }
+
+        var isLegacyProductPage = $('body').hasClass('template-product');
+        var isSellableProduct = isLegacyProductPage && $('body').hasClass('is-sellableProduct');
+
+        if (addToWishlist) {
+          if (isSellableProduct) return;
+          global.addToWishlist = true;
+          $('main').addClass('hide-wkCartButtons');
+          $('.addToCart .addToCartText, .js-addToWishlist .addToCartText').text('Add to Wishlist');
+          $('.addToCart, .js-addToWishlist').click(function (e) {
+            e.preventDefault();
+            if (isLegacyProductPage) $('.timber-activeProduct').find('.wk-button-product').click();else {
+              var i = $(e.currentTarget).parents('.timber-activeProduct').find('.wk-button-product');
+              i.trigger('click');
+              $(e.currentTarget).find('.addToCartText').text(i.hasClass('wk-add-product') ? 'Remove from Wishlist' : 'Add to Wishlist');
+            }
+            $(this).blur();
+          });
+        } else {
+          if (global.shipStates.indexOf('all') !== -1) return;
+
+          if (global.shipStates.indexOf(this.getUserRegion()) === -1) {
+            if (isSellableProduct) {
+              $('body').addClass('is-wishlistOnly');
+              $('main').addClass('hide-wkCartButtons');
+              return;
+            }
+
+            global.addToWishlist = true;
+            $('body').addClass('is-wishlistOnly');
+            $('main').addClass('hide-wkCartButtons');
+            $('.addToCart .addToCartText').text('Add to Wishlist');
+            $('.addToCart').click(function (e) {
+              e.preventDefault();
+              if (isLegacyProductPage) $('.wishlist .wk-add-product').click();else $(this).parents('.timber-activeProduct').find('.wk-add-product').click();
+              $(this).blur();
+            });
+          }
+        }
+      };
+
+      return BlueLikeNeon;
+    }();
+
+    global.BlueLikeNeon = BlueLikeNeon;
+  })(window, Cookies, jQuery);
+
+  (function (global, $) {
+    var DecathlonCustomer = /*#__PURE__*/function () {
+      function DecathlonCustomer(userData) {
+        this.apiUrl = $('#decathlon-customer-api').data('apiRoot');
+        this.messages = [];
+        this.userData = userData || {};
+        this.customerId = userData['customer[id]'];
+        this.userMetaData = {};
+      }
+
+      var _proto2 = DecathlonCustomer.prototype;
+
+      _proto2.createCustomer = function createCustomer() {
+        var _this2 = this;
+
+        this.messages = [];
+        var n = this.userData;
+        return new Promise(function (resolve, reject) {
+          _this2.checkEmail().then(function (a) {
+            if (a && a.state === 'enabled') {
+              var r = new Error(a.email + " is already subscribed.");
+              r.code = 'USER_ENABLED';
+              return reject(r);
+            }
+
+            if (a && a.state === 'disabled') {
+              _this2.customerId = a.id;
+
+              var _r = new Error(a.email + " is already subscribed.");
+
+              _r.code = 'USER_NOT_ENABLED';
+              return reject(_r);
+            }
+
+            var s = {
+              url: [_this2.apiUrl, 'customers'].join('/'),
+              method: 'POST',
+              headers: {
+                'Content-type': 'application/json'
+              },
+              data: JSON.stringify(n)
+            };
+            $.ajax(s).success(resolve).error(reject);
+          });
+        });
+      };
+
+      _proto2.updateCustomer = function updateCustomer(e) {
+        var _this3 = this;
+
+        var e = e || {};
+        var n = e;
+        this.customerToken = this.userData.customer.token;
+        delete this.userData.customer.token;
+        if (!this.customerToken) console.log('[Error]: Token missing');
+        return new Promise(function (resolve, reject) {
+          $.ajax({
+            url: [_this3.apiUrl, 'customers'].join('/'),
+            method: 'PUT',
+            headers: {
+              'Content-type': 'application/json',
+              'X-Decathlon-CustomerAccessToken': _this3.customerToken
+            },
+            data: JSON.stringify(_this3.userData.customer)
+          }).success(function (a) {
+            if (a.errors) reject(a.errors);else if (a.errorType && a.errorType === 'TokenExpiredError') _this3.updateToken().success(function (o) {
+              if (o.errorMessage) alert(o.errorMessage);else {
+                $('input[name="token"]').val(o.metafield.value);
+                _this3.userData.customer.token = o.metafield.value;
+                resolve(_this3.updateCustomer(n));
+              }
+            });else resolve(a);
+          }).error(reject);
+        });
+      };
+
+      _proto2.checkEmail = function checkEmail() {
+        var _this4 = this;
+
+        return new Promise(function (resolve) {
+          var email = _this4.userData.customer.email || _this4.userData['customer[email]'];
+          $.get([_this4.apiUrl, 'check-email', email].join('/')).success(function (t) {
+            if (!t.customers.length) return resolve(false);
+            var n = t.customers[0];
+            _this4.customerId = n.id;
+            resolve(n);
+          });
+        });
+      };
+
+      _proto2.shopifyLogin = function shopifyLogin() {
+        $.post('/account/login', this.userData).success(function (t, i) {
+          if (i === 'success') global.location = '/account';
+        }).error(function () {
+          alert('there was an error logging in');
+        });
+      };
+
+      _proto2.updateMetafield = function updateMetafield(e) {
+        var _this5 = this;
+
+        var n = e;
+        this.customerToken = this.userData.customer.token;
+        if (!this.customerToken) console.log('[Error]: Token missing');
+        return new Promise(function (resolve, reject) {
+          $.ajax({
+            url: [_this5.apiUrl, 'metafields'].join('/'),
+            method: 'POST',
+            headers: {
+              'Content-type': 'application/json',
+              'X-Decathlon-CustomerAccessToken': _this5.customerToken
+            },
+            data: JSON.stringify(e)
+          }).success(function (e) {
+            if (e.errors) reject(e.errors);else if (e.errorType && e.errorType === 'TokenExpiredError') _this5.updateToken().success(function (e) {
+              if (e.errorMessage) alert(e.errorMessage);else {
+                $('input[name="token"]').val(e.metafield.value);
+                _this5.userData.customer.token = e.metafield.value;
+                resolve(_this5.updateMetafield(n));
+              }
+            });else resolve(e);
+          }).error(reject);
+        });
+      };
+
+      _proto2.registerExistingUser = function registerExistingUser() {
+        var userData = this.userData;
+        userData.customer.id = this.customerId;
+        return $.ajax({
+          url: [this.apiUrl, 'register-existing-user'].join('/'),
+          method: 'POST',
+          headers: {
+            'Content-type': 'application/json'
+          },
+          data: JSON.stringify(userData)
+        });
+      };
+
+      _proto2.updateToken = function updateToken() {
+        return $.ajax({
+          url: [this.apiUrl, '/customers/update-token'].join('/'),
+          method: 'POST',
+          headers: {
+            'Content-type': 'application/json',
+            'X-Decathlon-CustomerAccessToken': this.customerToken
+          }
+        });
+      };
+
+      return DecathlonCustomer;
+    }();
+
+    global.DecathlonCustomer = DecathlonCustomer;
+  })(window, jQuery);
+
+  (function (global, $, BlueLikeNeon, DecathlonCustomer) {
+    var breakpoint = 768;
+    $(function () {
+      function updateInputEmptyClass(event) {
+        if ($(event.currentTarget).val()) $(event.currentTarget).parent().addClass('is-notEmpty');else $(event.currentTarget).parent().removeClass('is-notEmpty');
+      }
+
+      $.fn.serializeObject = function () {
+        var e = {};
+        var i = this.serializeArray();
+        $.each(i, function () {
+          if (e[this.name] !== undefined) {
+            if (!e[this.name].push) e[this.name] = [e[this.name]];
+            e[this.name].push(this.value || '');
+          } else if (this.name.indexOf('.') > -1) {
+            var t = this.name.split('.');
+            e[t[0]] = e[t[0]] || {};
+            var p = e[t[0]];
+            p[t[1]] = this.value || '';
+          } else e[this.name] = this.value || '';
+        });
+        return e;
+      };
+
+      if (new Function('/*@cc_on return document.documentMode===10@*/')()) $('html').addClass('ie ie10');
+      var decathlon = new BlueLikeNeon('decathlon_usa');
+      decathlon.getLocale();
+      decathlon.fullscreen({
+        offsetHeight: Math.floor($('.js-de-PageWrap-header').outerHeight())
+      });
+      $(global).bind('pageshow', function () {
+        $('.js-nobfcache').val('');
+      });
+
+      var getHeaderHeight = function getHeaderHeight() {
+        return Math.floor($('.js-de-PageWrap-header').outerHeight());
+      };
+
+      decathlon.pinToHeader({
+        selector: '.js-pinToHeader',
+        offset: getHeaderHeight
+      });
+      var x = $('.js-pinToHeader--second');
+
+      if (x.length !== 0) {
+        getHeaderHeight = function getHeaderHeight() {
+          return 0;
+        };
+
+        decathlon.pinToHeader({
+          selector: '.js-pinToHeader--second',
+          offset: getHeaderHeight
+        });
+      }
+
+      decathlon.anchorLinks(getHeaderHeight);
+      $(global).scroll();
+      loadImages();
+      var lastHeight = 0;
+      var pageContainer = $('#PageContainer');
+      setInterval(function () {
+        var height = pageContainer.innerHeight();
+
+        if (height != lastHeight) {
+          pageContainer.trigger($.Event('resize'));
+          lastHeight = height;
+        }
+      }, 50);
+
+      if (!decathlon.getData('seenPromo')) {
+        $('.promo-band').removeClass('is-hidden');
+        $('.promo-band__close').click(function () {
+          $('.promo-band').addClass('close');
+          decathlon.setData('seenPromo', new Date().getTime());
+        });
+      }
+
+      $('.js-bannerVideo').on('click', function (event) {
+        event.preventDefault();
+        var n = $(this).parents('.banner--video');
+        var o = $(this).attr('href').replace('https://www.youtube.com/watch?v=', '');
+        n.append("<div id=\"bannerVideo\"><div class=\"js-closeBannerVideo\"></div><div class=\"embedWrapper\"><div class=\"embedContainer\"><iframe src=\"https://www.youtube.com/embed/" + o + "?autoplay=1&rel=0\" frameborder=\"0\" allowfullscreen></iframe></div></div></div>");
+
+        if ($(this).attr('data-videoButton')) {
+          var a = JSON.parse($(this).attr('data-videoButton'));
+          $('#bannerVideo').append("<p class=\"bannerButton\"><a class=\"btn\" href=\"" + a.url + "\">" + a.text + "</a></p>");
+        }
+
+        n.addClass('banner--videoActive');
+        $('.js-closeBannerVideo').click(function () {
+          n.removeClass('banner--videoActive');
+          if ($(global).width() >= breakpoint) $('#bannerVideo').remove();else setTimeout(function () {
+            $('#bannerVideo').remove();
+          }, 750);
+        });
+      });
+
+      if ($('body').hasClass('template-collection') || $('body').hasClass('template-list-collections')) {
+        $('.js-toggleCollectionSidebar').on('click', function (e) {
+          e.preventDefault();
+          $(e.currentTarget).parents('.collectionSidebar').toggleClass('is-open');
+        });
+        $('.js-tagLink').each(function () {
+          var i = $(this).attr('href');
+          var n = global.location.pathname;
+          var o = n.split('/').splice(1);
+          var a = '/';
+
+          if (o.length < 3) {
+            $(this).attr('href', [n, i].join(a));
+            return;
+          }
+
+          var r = o.pop().split('+');
+          var s = r.indexOf(i);
+          var c = o.join('/');
+          if (s === -1) r.push(i);else r.splice(s, 1);
+          var l = ['', c, r.join('+')].join(a).replace(/\/$/, '');
+          $(this).attr('href', l);
+        });
+      }
+
+      $('.js-slick--attr').slick();
+      var ee = [];
+      $('.js-slick--attr').each(function () {
+        var $this = $(this);
+        var n = $this.data('slick');
+        if (n && n.responsive) for (var o = 0; o < n.responsive.length; o++) {
+          if (n.responsive[o].settings == 'unslick') {
+            ee.push({
+              element: $this,
+              breakpoint: n.responsive[o].breakpoint,
+              active: $(global).width() <= n.responsive[o].breakpoint
+            });
+            $this.data('slickBreakIndex', ee.length - 1);
+          }
+        }
+      });
+      $(global).resize(function () {
+        for (var i = $(global).width(), n = 0; n < ee.length; n++) {
+          if (!ee[n].active && i <= ee[n].breakpoint) {
+            ee[n].element.slick();
+            ee[n].active = true;
+          }
+        }
+      });
+      $('.js-slick--attr').on('destroy', function () {
+        for (var i = $(this), n = 0; n < ee.length; n++) {
+          var o = i.data('slickBreakIndex');
+          if (o !== undefined) ee[o].active = false;
+        }
+      });
+      setTimeout(function () {
+        $(global).resize();
+      }, 1500);
+      $('.js-slick--attr .collectionProduct-relative').hover(function () {
+        var i = $(this).parents('.slick-slider');
+        i.css('height', i.innerHeight()).addClass('slickSlider-collectionProductFix');
+      }, function () {
+        var i = $(this).parents('.slick-slider');
+        i.css('height', '').removeClass('slickSlider-collectionProductFix');
+      });
+      $('.js-colorChip').on('mouseenter', function (e) {
+        e.preventDefault();
+        var i = new Image();
+        i.src = $(e.currentTarget).data('image');
+      });
+      $('.js-colorChip').on('click', function (e) {
+        e.preventDefault();
+        $(e.currentTarget).parents('.collectionProduct').find('.collectionProduct-image').attr('src', $(e.currentTarget).data('image'));
+
+        if ($(e.currentTarget).data('compare')) {
+          $(e.currentTarget).parents('.collectionProduct').find('.collectionProduct-price').html("<span style='color: #E53322;'>" + $(e.currentTarget).data('price') + "</span><span class='visually-hidden'>Regular price</span><br><s>" + $(e.currentTarget).data('compare') + "</s>");
+        } else {
+          $(e.currentTarget).parents('.collectionProduct').find('.collectionProduct-price').html($(e.currentTarget).data('price'));
+        }
+
+        $(e.currentTarget).parent().attr('data-colorChoice', $(e.currentTarget).data('color'));
+        $(e.currentTarget).parent().attr('data-variantChoice', $(e.currentTarget).data('variant'));
+        $(e.currentTarget).parent().find('.option.option--active').removeClass('option--active');
+        $(e.currentTarget).addClass('option--active');
+      });
+      if (global.attachOptionSelectors) global.attachOptionSelectors();
+      $('.collectionProduct .js-shopNow').click(function (i) {
+        i.preventDefault();
+        var n = $(this).parents('.collectionProduct').find('.collectionProduct-colors').data('variantchoice');
+        global.location.href = $(this).attr('href') + "?variantid=" + n;
+      });
+      $('.js-adjustFeaturedContent').each(function () {
+        if ($(this).prev().hasClass('collectionProduct--featured')) $(this).removeClass('collectionProduct--featured--end');else $(this).prev().addClass('collectionProduct--nextIsEndFeatured');
+      });
+      if ($(global).width() > breakpoint) $('.getGoingPack-currentProductWrapper .slick-slide:first-of-type img').on('load', function () {
+        decathlon.getGoingPacks();
+      });
+      $('.js-slick--attr').first().on('setPosition', function () {
+        setTimeout(function () {
+          decathlon.getGoingPacks($(global).width() <= breakpoint);
+        }, 250);
+      });
+      $('body').append($('.appointment').detach());
+      $('.js-sanFranAppt').click(function (e) {
+        e.preventDefault();
+        $('.appointment').css('display', 'block');
+      });
+      $('.js-closeAppt').click(function () {
+        $('.appointment').css('display', 'none');
+      });
+
+      if (global.location.pathname === '/pages/san-francisco' && $('.appointment .form-success').length > 0) {
+        $('.btn.js-sanFranAppt').click();
+        $('.appointment .hide-on-success').css('display', 'none');
+        $('.js-closeAppt').click(function () {
+          global.history.pushState({}, '', global.location.href.split('?')[0]);
+          $('.appointment .hide-on-success').css('display', 'block');
+          $('.appointment .form-success').css('display', 'none');
+        });
+      }
+
+      var te = new Date();
+      var ie = te.getUTCDay();
+      var ne = te.getUTCHours() - 8;
+      var oe = false;
+      $('.js-storeOpen p[data-day-info]').each(function (e, i) {
+        var n = $(i).data('dayInfo').split(',');
+
+        if (ie >= parseInt(n[0]) && ie <= parseInt(n[1])) {
+          $(i).addClass('is-active');
+          if (ne >= parseInt(n[2]) && ne < parseInt(n[3])) oe = true;
+        }
+      });
+      if (oe) $('.js-storeOpen').addClass('storeHours--open');
+
+      if ($('body').hasClass('template-customers-register')) {
+        if (global.location.search) {
+          var ae = global.location.search.substring(1).split('&');
+          $(ae).each(function (e, i) {
+            var n = i.split('=');
+            $("input[name=\"" + n[0] + "\"]").val(n[1]);
+          });
+        }
+
+        $('.js-editProfileImage').on('click', function (e) {
+          e.preventDefault();
+          $('.imageUploadForm').removeClass('visually-hidden');
+          $(e.currentTarget).addClass('visually-hidden');
+        });
+        $('#imageFiles').on('change', function (e) {
+          var i = $(e.currentTarget).prop('files');
+          var n = i[0];
+          var o = n.name.split('.').pop();
+          var a = "images/" + uuid().replace(/-/g, '') + "." + o;
+          s3.upload({
+            Key: a,
+            Body: n,
+            ACL: 'public-read',
+            ContentType: "image/" + o
+          }, function (e, i) {
+            if (e) {
+              console.log(e);
+              alert('There was an error uploading your image.');
+            } else {
+              $('input[name="image_upload"]').val(i.Location);
+              $('.imageUpload, .js-editProfileImage').removeClass('visually-hidden');
+              $('.profilePic').attr('src', i.Location);
+              $('.imageUploadForm').addClass('visually-hidden');
+            }
+          });
+        });
+        $('.js-createCustomer').on('submit', function (e) {
+          var i = $(this);
+          var n = $(e.currentTarget).serializeObject();
+          var a = false;
+          var r = $(e.currentTarget).find('.notifications');
+          var s = new DecathlonCustomer({
+            customer: {
+              first_name: n['customer[first_name]'],
+              last_name: n['customer[last_name]'],
+              accepts_marketing: n['customer[accepts_marketing]'],
+              email: n['customer[email]']
+            }
+          });
+          r.removeClass('form-success').removeClass('form-error').empty();
+          e.preventDefault();
+          var c = 'All fields are required';
+          i.find('input:not(.ignore)').each(function (e, i) {
+            if ($(i).val() === '') a = true;
+          });
+
+          if (!/\S+@\S+\.\S+/.test($('input[name="customer[email]"]').val())) {
+            c = 'Invalid email';
+            a = true;
+          }
+
+          if (a) {
+            r.addClass('form-error').html("<p>" + c + "</p>");
+            return;
+          }
+
+          s.userData.customer.send_email_invite = true;
+          var l = {
+            namespace: 'customers',
+            key: 'profile_image',
+            value: $('input[name="image_upload"]').val(),
+            value_type: 'string'
+          };
+
+          if ($('input[name="image_upload"]').val()) {
+            s.userData.customer.metafields = [l];
+            i.append('<input type="hidden" name="customer[metafields][0][namespace]" value="customers" />');
+            i.append('<input type="hidden" name="customer[metafields][0][key]" value="profile_image" />');
+            i.append("<input type=\"hidden\" name=\"customer[metafields][0][value]\" value=\"" + l.value + "\" />");
+            i.append('<input type="hidden" name="customer[metafields][0][value_type]" value="string" />');
+          }
+
+          s.createCustomer().then(function (e) {
+            i.find(':not(.notifications)').remove();
+
+            if (e.errors) {
+              if (e.errors.email[0] == 'has already been taken') r.addClass('form-error').html('<p>The email address you entered is already associated with a Decathlon account. Please log in to that account, or enter a different email address to create a new Decathlon account.</p>').after("<p class=\"u-marginTop1x text-center\"><a class=\"btn btn--text\" href=\"" + window.vars.loginUrl + "\">Sign In</a></p>").after("<p class=\"u-marginTop1x\"><a class=\"btn btn--fill btn--full\" href=\"" + window.vars.registerUrl + "\">Create Account</a></p>");else r.addClass('form-error').html('<p>Unknown Error</p>');
+            } else {
+              r.addClass('form-success').html('<p>Please check your email to continue account&nbsp;activation</p>');
+            }
+          }).catch(function (error) {
+            if (error.code === 'USER_NOT_ENABLED') s.registerExistingUser().success(function () {
+              i.unbind('submit').submit();
+            }).error(function (e) {
+              console.log('error', e);
+            });
+
+            if (error.code === 'USER_ENABLED') {
+              i.find(':not(.notifications)').remove();
+              r.addClass('form-success').append("<p>You already have an account, <a href=\"" + window.vars.loginUrl + "\">please&nbsp;login</a></p>");
+            }
+          });
+        });
+      }
+
+      if ($('body').hasClass('template-customers-account')) {
+        $('.js-editProfileImage').on('click', function (e) {
+          e.preventDefault();
+          $('.imageUploadForm').removeClass('visually-hidden');
+          $(e.currentTarget).addClass('visually-hidden');
+        });
+        $('#imageFiles').on('change', function (e) {
+          var i = $(e.currentTarget).prop('files');
+          var n = i[0];
+          var a = n.name.split('.').pop();
+          var r = "images/" + uuid().replace(/-/g, '') + "." + a;
+          s3.upload({
+            Key: r,
+            Body: n,
+            ACL: 'public-read',
+            ContentType: "image/" + a
+          }, function (i, n) {
+            if (i) {
+              console.log(i);
+              return alert('There was an error uploading your image.');
+            }
+
+            var a = $(e.currentTarget).parents('.js-updateCustomer').find('input[name="token"]').val();
+            var r = new DecathlonCustomer({
+              customer: {
+                token: a
+              }
+            });
+            r.updateMetafield({
+              namespace: 'customers',
+              key: 'profile_image',
+              value: n.Location,
+              value_type: 'string'
+            }).then(function (e) {
+              $('.imageUpload, .js-editProfileImage').removeClass('visually-hidden');
+              $('.profilePic').attr('src', e.metafield.value);
+              $('.imageUploadForm').addClass('visually-hidden');
+            });
+          });
+        });
+        $('.js-updateCustomer').on('submit', function (e) {
+          e.preventDefault();
+          var customer = new DecathlonCustomer({
+            customer: $(e.currentTarget).serializeObject()
+          });
+          var notificationsEl = $(e.currentTarget).find('.notifications');
+          notificationsEl.removeClass('form-success').removeClass('form-error').empty();
+          if (!customer.userData.customer.accepts_marketing) customer.userData.customer.accepts_marketing = false;
+          customer.updateCustomer().then(function () {
+            notificationsEl.addClass('form-success').append('<p>Saved successfully!</p>');
+          }).catch(function (error) {
+            var messages = [];
+            if (error.email) messages.push("Email " + error.email[0]);
+            messages.forEach(function (e) {
+              notificationsEl.addClass('form-error').append("<p>" + e + "</p>");
+            });
+          });
+        });
+      }
+
+      if ($('body').hasClass('template-customers-login')) {
+        if (global.location.hash === '#recover') {
+          $('#RecoverPassword').trigger('click');
+          if (global.location.search === '?redirect_to=/account') $('#HideRecoverPasswordLink').on('click', function () {
+            global.location = '/account';
+          });
+        }
+
+        $('#customer_login').on('submit', function (e) {
+          var i = $(this);
+          var n = $(this).serializeObject();
+          var customer = new DecathlonCustomer({
+            customer: {
+              email: n['customer[email]']
+            }
+          });
+          var r = false;
+          console.log(customer);
+          e.preventDefault();
+          var $notifications = $(e.currentTarget).find('.notifications');
+          $notifications.removeClass('form-success').removeClass('form-error').empty();
+          i.find('input').each(function (e, i) {
+            if ($(i).val() === '') r = true;
+          });
+          if (r) $notifications.addClass('form-error').html('<p>All fields are required</p>');
+          customer.checkEmail().then(function (e) {
+            if (e) {
+              if (e.state !== 'enabled') {
+                $notifications.removeClass('form-error').addClass('form-success').html("<p>Please <a href=\"/account/register?customer[email]=" + e.email + "\">complete your profile</a></p>");
+              } else i.unbind('submit').submit();
+            } else $notifications.addClass('form-error').html('<p>No account found with that email.</p>');
+          });
+        });
+      }
+
+      if ($('body').hasClass('template-customers-addresses')) {
+        if (global.location.hash === '#add') $('.js-addAddress').trigger('click');
+        $('#address_form_new').submit(function (e) {
+          var i = $(this);
+          var n = true;
+          i.find('[required]').each(function () {
+            var e = $(this);
+
+            if (e.val() == '') {
+              e.css('border', '1px solid red');
+              n = false;
+            }
+          });
+
+          if (!n) {
+            e.preventDefault();
+            return false;
+          }
+        });
+      }
+
+      if (global.location.search === '?contact_posted=true') $('.hide-on-success').css('display', 'none');
+      $('#contact_form').submit(function (e) {
+        var i = $(this);
+        var n = [];
+        i.find('[required]').each(function () {
+          var e = $(this);
+          if (e.val() == '') n.push($(this).parent().find('label').text() + " is required");
+        });
+        var o = /\S+@\S+\.\S+/;
+        if (!o.test(i.find('input[type="email"]').val())) n.push('Invalid email.');
+
+        if (n.length) {
+          $(e.currentTarget).find('.form-vertical .notifications').remove();
+          $(e.currentTarget).find('.form-vertical').prepend('<div class="notifications form-errors u-paddingTopBottom1x"><ul class="no-bullets u-marginBottom0x"></ul></div>');
+          $(n).each(function (i, n) {
+            $(e.currentTarget).find('.notifications ul').append("<li>" + n + "</li>");
+          });
+          return false;
+        }
+      });
+      if ($('#create_customer .errors').text().indexOf('verify your email') > -1) $('#create_customer .errors').addClass('notifications form-success u-textCenter');
+      $('.inputWrap > input, .inputWrap > select, .inputWrap > textarea').each(function (e, i) {
+        if ($(i).val()) $(i).parent().addClass('is-notEmpty');
+      });
+      $('.inputWrap > select').on('change', updateInputEmptyClass);
+      $('.inputWrap > input, .inputWrap > textarea').on('keyup', updateInputEmptyClass);
+
+      function getCookie(name) {
+        var cookieArr = document.cookie.split(";");
+
+        for (var i = 0; i < cookieArr.length; i++) {
+          var cookiePair = cookieArr[i].split("=");
+
+          if (name == cookiePair[0].trim()) {
+            return decodeURIComponent(cookiePair[1]);
+          }
+        }
+      }
+
+      if (getCookie('is_from_registration')) {
+        $('.registration-confirm-message').show();
+        document.cookie = "is_from_registration=; max-age=0";
+      }
+
+      global.decathlon = decathlon;
+    });
+  })(window, jQuery, BlueLikeNeon, DecathlonCustomer);
+
+}());
