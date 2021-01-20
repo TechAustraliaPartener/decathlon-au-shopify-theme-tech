@@ -11,6 +11,7 @@ variantInventory.is_size_selected = false;
 const translations = window.translations.product_stock;
 const IN_STOCK_CLASS = 'in_stock';
 const LOW_STOCK_CLASS = 'low_stock';
+const addToCartDrawerEnabled = window.add_to_cart_drawer_enabled;
 
 const initVueATC = () => {
   window.vueATC = new Vue({
@@ -142,7 +143,9 @@ const initVueATC = () => {
 
           return;
         } else {
-          $('#addToCartButton .js-de-Drawer-toggle').attr("data-drawer-action", 'open');
+          if (addToCartDrawerEnabled) {
+            $('#addToCartButton .js-de-Drawer-toggle').attr("data-drawer-action", 'open');
+          }
         }
       }
     }
