@@ -147,7 +147,7 @@ function addMasterStoresData(inventoryItem, item) {
         return obj.name === loc.duplicate;
       });
 
-      if (thisLoc && (thisLoc.name !== 'Genesis' && item.grams <= 22000)) {
+      if (thisLoc && (thisLoc.name !== 'Genesis' || item.grams <= 22000)) {
         const duplicateLoc = JSON.parse(JSON.stringify(thisLoc));
         duplicateLoc.name = loc.name;
         inventoryItem.locations.push(duplicateLoc);
