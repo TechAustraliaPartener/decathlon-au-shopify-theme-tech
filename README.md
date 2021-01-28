@@ -25,13 +25,15 @@ You should now be up and running.
 
 ## Branches
 
-`master` is actually the US region's theme. Don't use it at all.
+`master` is the live theme.
 
-`master_au` is the AU region's production theme.
+`uat` is QAed work, reconciled with the live theme at the time of deployment and ready to publish.
 
-`uat` and `dev` are the same as on other projects. `uat` is ready, QAed work, and `dev` is your work when it's done, all together.
+`dev` is completed work, before it's QAed.
 
-First, check which of `master_au`, `uat` and `dev` is furthest ahead. Then, rebase `dev` so it's up to date. 
+Named branches are for individual work in progress.
+
+First, check which of `master`, `uat` and `dev` is furthest ahead. Then, rebase `dev` so it's up to date. 
 
 Then, split off onto your own named branch and go ahead.
 
@@ -64,13 +66,13 @@ Q. The terminal is throwing errors at me for no reason
 A. This repo sometimes does that for incorrect syntax. First, find the error in the Terminal and look it up online. If it says "lint" anywhere, run `npm run check-lint` for details, run `npm run lint` and try committing again.
 
 Q. My snippet {% include %} isn't working
-A. Make sure you didn't make a snippet in `snippets-src` and then try to include it without the built filepath prefixes.
+A. Make sure you're including or rendering it with its full, built path. Search for your snippet code in snippets/ (not snippets-src/) to find where it ended up.
 
 Q. I can't find where something is in the repo
 A. Look for a class or ID in the whole repo.
 
 Q. It takes ages to search the whole repo
-A. I got you fam. Use the ignore pattern below.
+A. I got you fam - use the ignore pattern below.
 
 ## Ignore Pattern
 -*/decathlon-shopify-theme/assets/built*, -*/decathlon-shopify-theme/node_modules/*, -*/decathlon-shopify-theme/cypress/*, -*/decathlon-shopify-theme/patterns/*
