@@ -1,4 +1,4 @@
-import { V as Vue } from './built-vue.esm-a9b2b31f.js';
+import { V as Vue } from './built-vue.esm-661ab646.js';
 import { J as JS_PREFIX, C as CSS_PREFIX, b as CSS_UTILITY_PREFIX, c as IS_HIDDEN_CLASS } from './built-fetch-stores-13903880.js';
 import { _ as _toConsumableArray } from './built-toConsumableArray-0fbe23f7.js';
 import { i as init$f } from './built-recently-viewed-799d64d9.js';
@@ -1883,6 +1883,7 @@ variantInventory.is_size_selected = false;
 var translations = window.translations.product_stock;
 var IN_STOCK_CLASS = 'in_stock';
 var LOW_STOCK_CLASS = 'low_stock';
+var addToCartDrawerEnabled = window.add_to_cart_drawer_enabled;
 
 var initVueATC = function initVueATC() {
   window.vueATC = new Vue({
@@ -2027,7 +2028,9 @@ var initVueATC = function initVueATC() {
 
           return;
         } else {
-          jQuery('#addToCartButton .js-de-Drawer-toggle').attr("data-drawer-action", 'open');
+          if (addToCartDrawerEnabled) {
+            jQuery('#addToCartButton .js-de-Drawer-toggle').attr("data-drawer-action", 'open');
+          }
         }
       }
     }
