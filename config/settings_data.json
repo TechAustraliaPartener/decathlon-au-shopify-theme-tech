@@ -910,6 +910,50 @@
               "is_warehouse": false,
               "validated": false
             }
+          },
+          "439603b4-c7c5-475d-a765-2d3d92e529fa": {
+            "type": "store",
+            "settings": {
+              "name": "The Surfboard Warehouse Brookvale",
+              "title": "The Surfboard Warehouse, 2100, Pick Up Only",
+              "online_inventory_source": false,
+              "enable_c_c": true,
+              "duplicate": "Tempe",
+              "test_mode": false,
+              "street1": "535 Pittwater Rd",
+              "city": "Brookvale",
+              "zip": "2100",
+              "state": "NSW",
+              "country": "AU",
+              "checkout_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_2_aeef06e3-6593-4a1d-9a58-9dd9d5c3ab18.png",
+              "email": "customer.service@decathlon.com",
+              "phone_number": "(02) 9157 5799",
+              "company": "Decathlon",
+              "ready": "Ready to collect in 2 business days and in 5 business days for bulky items",
+              "ready_checkout": "Ready to collect in 2 business days and in 5 business days for bulky items",
+              "id": "1789-0001",
+              "tooltip_hours": false,
+              "is_same_hours_weekly": true,
+              "hours_0_open": "0900",
+              "hours_0_close": "1700",
+              "hours_1_open": "0900",
+              "hours_1_close": "2100",
+              "hours_2_open": "0900",
+              "hours_2_close": "2100",
+              "hours_3_open": "0900",
+              "hours_3_close": "2100",
+              "hours_4_open": "0900",
+              "hours_4_close": "2100",
+              "hours_5_open": "0900",
+              "hours_5_close": "2100",
+              "hours_6_open": "0900",
+              "hours_6_close": "2100",
+              "announcement": "<p>Ready to collect in 2 business days and in 5 business days for bulky items. <\/p>",
+              "address_type_boolean": true,
+              "is_residential": false,
+              "is_warehouse": false,
+              "validated": false
+            }
           }
         },
         "block_order": [
@@ -925,26 +969,14 @@
           "1585053394899",
           "1585864291426",
           "1588893496482",
-          "1592459708324"
+          "1592459708324",
+          "439603b4-c7c5-475d-a765-2d3d92e529fa"
         ],
         "settings": {}
       },
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
-          "1589172506799": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_5_dd2a9505-0704-4bb8-8c6e-7ada886284d3.png",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": "Pilates At Home",
-              "banner_subtitle": "<p><strong>Elastic Bands, Dumbbells, Mats &amp; Ankle Weights<\/strong><\/p>",
-              "button_new_window": false,
-              "button_title": "Shop Now",
-              "button_url": "shopify:\/\/collections\/pilates-equipment-accessories"
-            }
-          },
           "4cf92f46-c528-4e84-a6a7-8781c5769a26": {
             "type": "slide",
             "settings": {
@@ -970,12 +1002,25 @@
               "button_title": "Shop Now",
               "button_url": "shopify:\/\/collections\/camping"
             }
+          },
+          "1589172506799": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_5_dd2a9505-0704-4bb8-8c6e-7ada886284d3.png",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "Pilates At Home",
+              "banner_subtitle": "<p><strong>Elastic Bands, Dumbbells, Mats &amp; Ankle Weights<\/strong><\/p>",
+              "button_new_window": false,
+              "button_title": "Shop Now",
+              "button_url": "shopify:\/\/collections\/pilates-equipment-accessories"
+            }
           }
         },
         "block_order": [
-          "1589172506799",
           "4cf92f46-c528-4e84-a6a7-8781c5769a26",
-          "9f05d3c1-98d7-40bb-8141-4d7e1523647b"
+          "9f05d3c1-98d7-40bb-8141-4d7e1523647b",
+          "1589172506799"
         ],
         "settings": {}
       },
@@ -1000,8 +1045,8 @@
         "type": "slider_image_section",
         "settings": {
           "homepage_slider_image_title": "Trending",
-          "homepage_slider_image_1": "shopify:\/\/shop_images\/36.png",
-          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/products\/camping-tent-2-seconds-easy-fresh-black-2-person?variant=31318853714031",
+          "homepage_slider_image_1": "shopify:\/\/shop_images\/DecathlonAU_HP_Section_Actiwalk__DK_22-01-2021_V1_1.jpg",
+          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/products\/actiwalk-kids-walking-shoes-black",
           "checkbox_image_1": true,
           "homepage_slider_image_2": "shopify:\/\/shop_images\/35.png",
           "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/products\/2-3-person-inflatable-cruising-kayak-163733",
