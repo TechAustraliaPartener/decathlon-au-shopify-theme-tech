@@ -65,7 +65,7 @@ const initVueATC = () => {
 
         // item is available if there is at least one stock in any location or delivery/online
         // mutatedInventory.available = (delivery.available > 0 || filteredLocations.length > 0 || filteredOnline.length > 0);
-        mutatedInventory.available = filteredLocations.length > 0;
+        mutatedInventory.available = (filteredLocations.length > 0 || delivery.available > 0);
 
         const availablePerLocation = filteredLocations.map(location => {
           return location.available;
