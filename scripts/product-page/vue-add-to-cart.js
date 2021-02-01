@@ -7,6 +7,7 @@ const validationTextEl = document.querySelector('.js-de-validation-message');
 const variantInventory = window.firstVariant;
 variantInventory.tagged_bis_hidden = window.vars.productJSON.tags.includes('bis-hidden');
 variantInventory.is_size_selected = false;
+variantInventory.artificially_unavailable = false;
 
 const translations = window.translations.product_stock;
 const IN_STOCK_CLASS = 'in_stock';
@@ -66,6 +67,11 @@ const initVueATC = () => {
         // item is available if there is at least one stock in any location or delivery/online
         // mutatedInventory.available = (delivery.available > 0 || filteredLocations.length > 0 || filteredOnline.length > 0);
         mutatedInventory.available = (filteredLocations.length > 0 || delivery.available > 0);
+        mutatedInventory.artificially_unavailable = (locations.length < 1 && delivery.available < 1);
+
+        if (filteredLocations.length < 1 && delivery.available < 1) {
+          $('.js-de-validation-message').text('Out of stock');
+        }
 
         const availablePerLocation = filteredLocations.map(location => {
           return location.available;

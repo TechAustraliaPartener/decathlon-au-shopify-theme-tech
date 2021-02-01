@@ -212,7 +212,28 @@ export const getVariantOptions = variant => ({
  * @param {Variant} variant
  * @returns {boolean}
  */
-export const isVariantAvailable = variant => variant && variant.available;
+export const isVariantAvailable = variant => {
+  const variantInventory = window.productJSON.variants.find(v => v.id === variant.id);
+  const variantLocationsInventory = (window.inventories || {})[variant.id];
+
+  let isAvailable = false;
+
+  if (variantLocationsInventory) {
+    const { inventoryItem } = variantLocationsInventory;
+    const { delivery, locations } = inventoryItem;
+
+    const filteredLocations = locations.filter(loc => {
+      return loc.available > 0;
+    });
+
+    isAvailable = (filteredLocations > 0 || delivery.available > 0);
+  } else {
+    return variant && variant.available;
+  }
+
+  // return variant && variant.available;
+  return isAvailable;
+}
 
 /**
  * Helper to know if a product variant is "out of stock"

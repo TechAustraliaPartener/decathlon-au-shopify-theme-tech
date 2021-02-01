@@ -63,6 +63,13 @@ const setUpListeners = () => {
     const fullState = getComputedState(state.getState());
     updateOptionStates(fullState);
   });
+  // For triggering swatches UI update after inventory has been loaded
+  document.addEventListener('tomitProductLoaded', function (e, data) {
+    setTimeout(() => {
+      const fullState = getComputedState(state.getState());
+      updateOptionStates(fullState);
+    }, 100);
+  });
 };
 
 // Handles variant change
