@@ -33,7 +33,7 @@
     "header_sign_in_label": "Sign In",
     "megamenu_image": "shopify:\/\/shop_images\/Copy_of_SIDE_NAV_1_309b8603-3bad-42a8-a266-c313ed3d8c9c.png",
     "megamenu_title": "Up To 30% Off",
-    "megamenu_subtitle": "Beach Shelters & Accessories",
+    "megamenu_subtitle": "Tents, Kayaks, MTB, Beach Shelters & More",
     "megamenu_link": "shopify:\/\/collections\/weekly-deals",
     "megamenu_bg_colour": "#ff0000",
     "custom_fields_terms_conditions": "I agree to the <a href=\"\/pages\/terms-and-conditions-membership\" target=\"_blank\">T&Cs<\/a> and <a href=\"\/pages\/privacy-policy\" target=\"_blank\">Privacy Policy<\/a> for creating an account.",
@@ -976,6 +976,19 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
+          "9f05d3c1-98d7-40bb-8141-4d7e1523647b": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_10.png",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "Tennis Deals",
+              "banner_subtitle": "<p><strong>Big Brands At Low Prices<\/strong><\/p>",
+              "button_new_window": false,
+              "button_title": "Shop Now",
+              "button_url": "shopify:\/\/collections\/tennis"
+            }
+          },
           "4cf92f46-c528-4e84-a6a7-8781c5769a26": {
             "type": "slide",
             "settings": {
@@ -987,19 +1000,6 @@
               "button_new_window": false,
               "button_title": "Discover Snorkeling",
               "button_url": "shopify:\/\/collections\/snorkeling"
-            }
-          },
-          "9f05d3c1-98d7-40bb-8141-4d7e1523647b": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_10.png",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": "Tennis Deals",
-              "banner_subtitle": "<p><strong>Big Brands at Low Prices<\/strong><\/p>",
-              "button_new_window": false,
-              "button_title": "Shop Now",
-              "button_url": "shopify:\/\/collections\/tennis"
             }
           },
           "1589172506799": {
@@ -1017,8 +1017,8 @@
           }
         },
         "block_order": [
-          "4cf92f46-c528-4e84-a6a7-8781c5769a26",
           "9f05d3c1-98d7-40bb-8141-4d7e1523647b",
+          "4cf92f46-c528-4e84-a6a7-8781c5769a26",
           "1589172506799"
         ],
         "settings": {}
@@ -1026,15 +1026,15 @@
       "1590735691745": {
         "type": "slider_image_section",
         "settings": {
-          "homepage_slider_image_title": "By Department",
-          "homepage_slider_image_1": "shopify:\/\/shop_images\/10.png",
-          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/garden-games",
+          "homepage_slider_image_title": "By Sport",
+          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_20.png",
+          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/boxing",
           "checkbox_image_1": true,
-          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_17.png",
-          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/fitness-machines-equipment",
+          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_19.png",
+          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/soccer-futsal",
           "checkbox_image_2": true,
-          "homepage_slider_image_3": "shopify:\/\/shop_images\/11.png",
-          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/bikes",
+          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_21.png",
+          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/running-gear-clothes",
           "checkbox_image_3": true,
           "homepage_slider_image_redirection_4": "",
           "checkbox_image_4": false
