@@ -226,7 +226,7 @@ export const isVariantAvailable = variant => {
       return loc.available > 0;
     });
 
-    isAvailable = (filteredLocations > 0 || delivery.available > 0);
+    isAvailable = (filteredLocations.length > 0 || delivery.available > 0);
   } else {
     return variant && variant.available;
   }
