@@ -47,6 +47,14 @@
     {% if settings.use_algolia %}
       {% include 'layout-algolia-head' %}
     {% endif %}
+
+    {% if customer %}
+      <style>
+        div[data-section="customer-information"] div[data-buyer-accepts-marketing] {
+          display: none;
+        }
+      </style>
+    {% endif %}
   </head>
   <body>
     {% include 'js-gtm-body' %}
