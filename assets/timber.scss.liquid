@@ -9326,6 +9326,11 @@ html {
     @extend .btn--fill;
     float: right;
   }
+  .btn-submit-cf {
+    @extend .btn;
+    @extend .btn--fill;
+    float: right;
+  }
   #cancelEditAccount {
     float: left;
     @extend .btn;
@@ -10774,4 +10779,35 @@ $color-out: #ff0000;
 
 .de-AddToCartActions.full-width-button .de-ProductAddToCart {
   margin: 0 !important;
+}
+
+#accountInfo .btn-submit-cf
+ {
+  border-style: solid;
+  border-width: 0px;
+  border-radius: 5px;
+  text-align: center;
+  color: #fff;
+  background-color: #3266ac;
+  text-decoration: none;
+  width: 100%;
+  font-family: "avalon_mediumbold", sans-serif;
+  font-size: 20px;
+  text-transform: uppercase;
+  padding: 8px 10px;
+}
+
+#accountEdit .btn-submit-cf {
+  background: #1c82c3;
+  color: white;
+  float: right;
+}
+
+#accountInfo .btn-submit-cf:focus,
+#accountEdit .btn-submit-cf:focus  {
+  outline: none !important;
+}
+
+#accountEdit .cf_accepts_marketing {
+  display: none;
 }
