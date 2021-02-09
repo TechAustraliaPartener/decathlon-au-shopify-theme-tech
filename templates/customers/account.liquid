@@ -6,19 +6,23 @@
 
 {% endcomment %}
 
-{% render 'compositions-customer-fields-general_custom_fields_form' %}
-
 {% assign customer_home = true %}
 {% assign details_complete_tag = 'details:complete' %}
 
 {% assign get_account_info = false %}
 {% unless customer.tags contains details_complete_tag %}
-  {% assign get_account_info = true %}
+{% assign get_account_info = true %}
 {% endunless %}
 
+{% if customer.accepts_marketing and customer.metafields.customer_fields.data.accepts_terms_conditions %}
+{% assign get_account_info = false %}
+{% endif %}
+
 {% assign has_filled_in_form = false %}
-{% if customer.first_name and customer.last_name and customer.metafields.customr.gender and customer.default_address.phone and customer.default_address and customer.metafields.customr.preferred_store and customer.metafields.customr.accepts_terms_conditions %}
-  {% assign has_filled_in_form = true %}
+{% if customer.first_name and customer.last_name and customer.metafields.customr.gender and
+customer.default_address.phone and customer.default_address and customer.metafields.customr.preferred_store and
+customer.metafields.customr.accepts_terms_conditions %}
+{% assign has_filled_in_form = true %}
 {% endif %}
 
 {% assign has_accepted_marketing = customer.accepts_marketing %}
@@ -28,171 +32,175 @@
 
 {% assign account_gender = empty %}
 {% for gender in gender_values %}
-  {% if gender == customer.metafields.customr.gender %}
-    {% assign account_gender = gender_titles[forloop.index0] %}
-  {% endif %}
+{% if gender == customer.metafields.customr.gender %}
+{% assign account_gender = gender_titles[forloop.index0] %}
+{% endif %}
 {% endfor %}
+
 
 <div class="wrapper u-paddingTopBottom4x u-marginBottom4x">
   {% if customer.first_name != blank %}
-    {% assign account_title = 'Hey, ' | append: customer.first_name | append: '!' %}
+  {% assign account_title = 'Hey, ' | append: customer.first_name | append: '!' %}
   {% endif %}
   {% include 'customers--my-account-header' %}
 
-  {% if get_account_info %}
-    <div class="u-block u-paddingTopBottom6x alert-form fade" id="accountInfo">
-      <div class="wrapper wrapper--midWidth" style="position: relative;">
-        <h1 class="h4 text-center">
-          {% comment %}
-          {% unless has_filled_in_form and has_accepted_marketing == false %}
-            {{ 'customer.account.welcome_form_title' | t }}
-          {% else %}
-            {{ 'customer.account.hasnt_accepted_marketing_title' | t }}
-          {% endunless %}
-          {% endcomment %}
-          {{ 'customer.account.welcome_form_title' | t }}
-        </h1>
-        {% include 'compositions-customer-fields-account-info-form' %}
-      </div>
+ {% if get_account_info %}
+  <div class="u-block u-paddingTopBottom6x alert-form" id="accountInfo">
+    <div class="wrapper wrapper--midWidth" style="position: relative;">      
+      <h1 class="h4 text-center">
+        {% comment %}
+        {% unless has_filled_in_form and has_accepted_marketing == false %}
+        {{ 'customer.account.welcome_form_title' | t }}
+        {% else %}
+        {{ 'customer.account.hasnt_accepted_marketing_title' | t }}
+        {% endunless %}
+        {% endcomment %}
+        {{ 'customer.account.welcome_form_title' | t }}
+      </h1>  
+      {% include 'compositions-customer-fields-account-info-form' %}      
     </div>
-  {% endif %}
+  </div>
+{% endif %}
   <div class="registration-confirm-message">
     <p>Thanks for updating your details,
       your discount code will be emailed to you shortly.</p>
   </div>
   <div>
-  <div class="grid account-links u-marginTop2x js-hideable">
-    {% comment %}
-    <div class="grid__item large--one-third medium--one-half {% if get_account_info and has_filled_in_form == false %}fade{% endif %}">
-    {% endcomment %}
-    
-    <div class="grid__item large--one-third medium--one-half {% if get_account_info %}fade{% endif %}">
-      <div class="u-block u-marginBottom1x">
-        <h5>{{ 'customer.account.my_details' | t }}</h5>
-        <div id="detailsDisplay">
-          <p>
-            <b>{% if customer.first_name %}{{ customer.first_name }} {% endif %}{% if customer.last_name %}{{ customer.last_name }}{% endif %}</b>
-            {% if customer.metafields.customr.gender %}
-            <br/>
-            <label>{{ 'customer.account.gender' | t }}: </label>{{ account_gender | default: 'Not provided' }}
+    <div class="grid account-links u-marginTop2x js-hideable">
+      {% comment %}
+      <div class="grid__item large--one-third medium--one-half {% if get_account_info and has_filled_in_form == false %}fade{% endif %}">
+        {% endcomment %}
+
+        <div class="grid__item large--one-third medium--one-half {% if get_account_info %}fade{% endif %}">
+          <div class="u-block u-marginBottom1x">
+            <h5>{{ 'customer.account.my_details' | t }}</h5>
+            <div id="detailsDisplay">
+              <p>
+                <b>{% if customer.first_name %}{{ customer.first_name }} {% endif %}{% if customer.last_name %}{{
+                  customer.last_name }}{% endif %}</b>
+                {% if customer.metafields.customer_fields.data.gender %}
+                <br/>
+                <label>{{ 'customer.account.gender' | t }}: </label>{{ customer.metafields.customer_fields.data.gender | default: 'Not provided' | capitalize }}
+                {% endif %}
+                {% if customer.metafields.customer_fields.data.birthday %}
+                <br/>
+                <label>{{ 'customer.account.birthday' | t }}: </label>{{ customer.metafields.customer_fields.data.birthday | date:
+                "%d/%m/%Y" | default: 'Not provided' }}
+                {% endif %}
+                {% if customer.metafields.customer_fields.data.preferred_store %}
+                <br/>
+                <label>{{ 'customer.account.preferred_store' | t }}: </label>{{
+                customer.metafields.customer_fields.data.preferred_store | default: 'Not provided' }}
+                {% endif %}
+              </p>
+              <ul class="no-bullets">
+                <li>
+                  <a href="#" id="editDetails">{{ 'customer.account.details_update' | t }}</a>
+                </li>
+              </ul>
+              <p>
+                <label>
+                  {{ 'customer.account.marketing_optin_choice' | t }}
+                </label>
+                <br/>
+                {% if customer.accepts_marketing %}
+                {{ 'customer.account.marketing_optin' | t }}
+                {% else %}
+                {{ 'customer.account.marketing_optin_disabled' | t }}
+                {% endif %}
+              </p>
+              <ul class="no-bullets">
+                <li>
+                  <a href="#" id="updateMarketing">{{ 'customer.account.marketing_change' | t }}</a>
+                </li>
+              </ul>
+            </div>
+            {% if get_account_info == false %}
+              {% include 'compositions-customer-fields-edit-form' %} 
             {% endif %}
-            {% if customer.metafields.customr.birthday %}
-            <br/>
-            <label>{{ 'customer.account.birthday' | t }}: </label>{{ customer.metafields.customr.birthday | date: "%d/%m/%Y" | default: 'Not provided' }}
-            {% endif %}
-            {% if customer.metafields.customr.preferred_store %}
-            <br/>
-            <label>{{ 'customer.account.preferred_store' | t }}: </label>{{ customer.metafields.customr.preferred_store | default: 'Not provided' }}
-            {% endif %}
-          </p>
-          <ul class="no-bullets">
-            <li>
-              <a href="#" id="editDetails">{{ 'customer.account.details_update' | t }}</a>
-            </li>
-          </ul>
-          <p>
-            <label>
-              {{ 'customer.account.marketing_optin_choice' | t }}
-            </label>
-            <br/>
-            {% if customer.accepts_marketing %}
-              {{ 'customer.account.marketing_optin' | t }}
-            {% else %}
-              {{ 'customer.account.marketing_optin_disabled' | t }}
-            {% endif %}
-          </p>
-          <ul class="no-bullets">
-            <li>
-              <a href="#" id="updateMarketing">{{ 'customer.account.marketing_change' | t }}</a>
-            </li>
-          </ul>
+          </div>
         </div>
-        {% include 'compositions-customer-fields-edit-form' %}
-      </div>
+        <div class="grid__item large--one-third medium--one-half">
 
-    </div>
-
-    <div class="grid__item large--one-third medium--one-half">
-
-      {% if settings['is_lookbook'] == false %}
-        <div class="u-block u-marginBottom1x">
-          <h5>{{ 'customer.account.purchase_history' | t }}</h5>
-          <ul class="no-bullets">
-            <li><a href="/account?view=order-history">View order history</a></li>
-            {% comment %}AU
-            <li><a href="/pages/returns">Return or replace items</a></li>
-            <li><a href="/account?view=review-products">Write a product review</a></li>
-            {% endcomment %}
-          </ul>
+          {% if settings['is_lookbook'] == false %}
+          <div class="u-block u-marginBottom1x">
+            <h5>{{ 'customer.account.purchase_history' | t }}</h5>
+            <ul class="no-bullets">
+              <li><a href="/account?view=order-history">View order history</a></li>
+              {% comment %}AU
+              <li><a href="/pages/returns">Return or replace items</a></li>
+              <li><a href="/account?view=review-products">Write a product review</a></li>
+              {% endcomment %}
+            </ul>
+          </div>
+          {% endif %}
         </div>
-      {% endif %}
-    </div>
 
-    {% comment %}AU{% endcomment %}
-    <div class="grid__item large--one-third medium--one-half">
-      <div class="u-block u-marginBottom1x">
-        <h5>Wishlist</h5>
-        <ul class="no-bullets">
-          <li><a href="/pages/wishlist">View wishlist</a></li>
-        </ul>
-      </div>
+        {% comment %}AU{% endcomment %}
+        <div class="grid__item large--one-third medium--one-half">
+          <div class="u-block u-marginBottom1x">
+            <h5>Wishlist</h5>
+            <ul class="no-bullets">
+              <li><a href="/pages/wishlist">View wishlist</a></li>
+            </ul>
+          </div>
 
-      <div class="u-block u-marginBottom1x">
-        <h5>Help</h5>
-        <ul class="no-bullets">
-          <li><a href="http://help.decathlon.com.au/support/solutions" target="_blank">FAQ</a></li>
-          <li><a href="/pages/contact-us">Contact us</a></li>
-        </ul>
-      </div>
-    </div>
-  
-    <div class="grid__item large--one-third">
-      <div class="account-addresses">
-        <h5>{{ 'customer.account.addresses' | t }}</h5>
+          <div class="u-block u-marginBottom1x">
+            <h5>Help</h5>
+            <ul class="no-bullets">
+              <li><a href="http://help.decathlon.com/" target="_blank">FAQ</a></li>
+              <li><a href="/pages/contact-us">Contact us</a></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="grid__item large--one-third">
+          <div class="account-addresses">
+            <h5>{{ 'customer.account.addresses' | t }}</h5>
 
-        {% comment %}<h5>{{ customer.name }}</h5>{% endcomment %}
+            {% comment %}<h5>{{ customer.name }}</h5>{% endcomment %}
 
-        {% if customer.default_address != nil and customer.default_address.address1 != blank %}
-          <p class="address--default">
-            <strong>{{ customer.default_address.address1 }}{%- if customer.default_address.address2 != "" -%}, {{ customer.default_address.address2 }}{%- endif -%}</strong>
+            {% if customer.default_address != nil and customer.default_address.address1 != blank %}
+            <p class="address--default">
+              <strong>{{ customer.default_address.address1 }}{%- if customer.default_address.address2 != "" -%}, {{ customer.default_address.address2 }}{%- endif -%}</strong>
 
-            <br/>
+              <br/>
 
-            {% if customer.default_address.city != "" %}
+              {% if customer.default_address.city != "" %}
               {{ customer.default_address.city }},
-            {% endif %}
+              {% endif %}
 
-            {% if customer.default_address.province_code != "" %}
+              {% if customer.default_address.province_code != "" %}
               {{ customer.default_address.province_code | upcase }}
-            {% endif %}
+              {% endif %}
 
-            {% if customer.default_address.zip != "" %}
+              {% if customer.default_address.zip != "" %}
               {{ customer.default_address.zip | upcase }}<br>
-            {% endif %}
+              {% endif %}
 
-            {% if customer.default_address.country != "" %}
+              {% if customer.default_address.country != "" %}
               {{ customer.default_address.country }}<br>
-            {% endif %}
+              {% endif %}
 
-            {% if customer.default_address.phone != "" %}
+              {% if customer.default_address.phone != "" %}
               {{ customer.default_address.phone }}
+              {% endif %}
+            </p>
             {% endif %}
-          </p>
-        {% endif %}
 
-        <ul class="no-bullets">
-        {% if customer.addresses_count > 0 %}
-          <li><a href="#" class="show_edit_form">{{ 'customer.account.view_addresses' | t }}</a></li>
-        {% endif %}
-          <li><a href="/account/addresses#add">{{ 'customer.addresses.add_new' | t }}</a></li>
-        </ul>
+            <ul class="no-bullets">
+              {% if customer.addresses_count > 0 %}
+              <li><a href="#" class="show_edit_form">{{ 'customer.account.view_addresses' | t }}</a></li>
+              {% endif %}
+              <li><a href="/account/addresses#add">{{ 'customer.addresses.add_new' | t }}</a></li>
+            </ul>
+          </div>
+        </div>
       </div>
-    </div>
     </div>
   </div>
-</div>
 
-<script>
-  window.vars.showDetailsForm = {{ get_account_info | json }};
-  window.vars.customerEmail = {{ customer.email | json }};
-</script>
+  <script>
+    window.vars.showDetailsForm = {{ get_account_info | json }};
+    window.vars.customerEmail = {{ customer.email | json }};
+  </script>
