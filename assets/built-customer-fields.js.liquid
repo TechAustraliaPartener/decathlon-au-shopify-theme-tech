@@ -1,35 +1,159 @@
-import { C as Cookies } from './built-toConsumableArray-0fbe23f7.js';
+import './built-toConsumableArray-0fbe23f7.js';
 
 jQuery(document).ready(function () {
-  jQuery('#accountInfo input, #accountEdit input').on('change', function () {
-    var $registerField = jQuery(this);
-    var $hiddenCustomerField = jQuery("#customer-fields input[name=\"" + $registerField.attr('name') + "\"]");
-
-    if ($hiddenCustomerField.length > 0) {
-      if ($registerField.attr('type') === 'checkbox') {
-        $hiddenCustomerField.prop('checked', $registerField.prop('checked'));
-      } else if ($registerField.attr('type') === 'select') {
-        $hiddenCustomerField.val($registerField.val());
-      } else {
-        var prefix = $registerField.data('prefix');
-        var val = prefix ? prefix + $registerField.val() : $registerField.val();
-        $hiddenCustomerField.val(val);
-      }
+  jQuery('#cf_accept_terms').on('change', function () {
+    if (jQuery('#cf_accept_terms').is(':checked')) {
+      jQuery('#cf_accept_terms').prop("checked", true);
+      jQuery('#cf_accept_terms').val('true');
+    } else {
+      jQuery('#cf_accept_terms').prop("checked", false);
+      jQuery('#cf_accept_terms').val('');
     }
   });
-  jQuery('#accountInfo select, #accountEdit select').on('change', function () {
-    var $registerField = jQuery(this);
-    var $hiddenCustomerField = jQuery("#customer-fields select[name=\"" + $registerField.attr('name') + "\"]");
 
-    if ($hiddenCustomerField.length > 0) {
-      $hiddenCustomerField.val($registerField.val());
+  function getCookie(name) {
+    var cookieArr = document.cookie.split(";");
+
+    for (var i = 0; i < cookieArr.length; i++) {
+      var cookiePair = cookieArr[i].split("=");
+
+      if (name == cookiePair[0].trim()) {
+        return decodeURIComponent(cookiePair[1]);
+      }
+    }
+  }
+
+  jQuery('#settingAccountSpiner').show();
+
+  if (getCookie('is_from_registration')) {
+    jQuery('.registration-confirm-message').show();
+    document.cookie = "is_from_registration=; max-age=0";
+  }
+
+  jQuery('input, select').on('blur', function () {
+    jQuery(this).removeClass('error');
+  });
+  jQuery('#editDetails').click(function (e) {
+    e.preventDefault();
+    jQuery('#detailsDisplay').fadeOut(200, function () {
+      jQuery('#accountEdit').fadeIn();
+    });
+  });
+  jQuery('.show_edit_form').click(function (e) {
+    e.preventDefault();
+    jQuery('#editDetails').click();
+  });
+  jQuery('#updateMarketing').click(function (e) {
+    e.preventDefault();
+    jQuery('[data-marketing-hide]').hide();
+    jQuery('[data-marketing-show]').show();
+    jQuery('#detailsDisplay').fadeOut(200, function () {
+      jQuery('#accountEdit').fadeIn();
+    });
+  });
+  jQuery(document).on('click', '#cancelEditAccount', function (e) {
+    e.preventDefault();
+    jQuery('#accountEdit').fadeOut(200, function () {
+      jQuery('[data-marketing-hide]').show();
+      jQuery('[data-marketing-show]').hide();
+      jQuery('#detailsDisplay').fadeIn();
+    });
+  });
+  jQuery(document).on('change', '#cf_accept_marketing', function (e) {
+    if (jQuery('#cf_accept_marketing').is(':checked')) {
+      jQuery('#cf_accept_marketing').prop("checked", true);
+      jQuery('#cf_accept_marketing').val('true');
+    } else {
+      jQuery('#cf_accept_marketing').prop("checked", false);
+      jQuery('#cf_accept_marketing').val('');
+    }
+  });
+  document.addEventListener('cf:customer_saved', function (event) {
+    setTimeout(function () {
+      window.location.reload();
+    }, 2000);
+  });
+  var checkbox_accept_marketing = setInterval(function () {
+    if (jQuery('[data-cf-loaded]').length) {
+      jQuery('#settingAccountSpiner').hide();
+
+      if (jQuery('#cf_accept_marketing').attr('checked')) {
+        jQuery('#cf_accept_marketing').prop("checked", true);
+        jQuery('#cf_accept_marketing').val('true');
+        clearInterval(checkbox_accept_marketing);
+      }
+    }
+  }, 100);
+  var hasError = false,
+      errorMessage = [],
+      $accept_terms = jQuery('input[name="customer[accepts_terms_conditions]"]');
+  jQuery('#cf_phone_number').on('input', function () {
+    this.value = parseInt(this.value.replace(/[^0-9]/g, ''), 10) || '';
+  });
+  jQuery('input[name="customer[postcode]"]').on('input', function () {
+    this.value = parseInt(this.value.replace(/[^0-9]/g, ''), 10) || '';
+  });
+
+  function validate() {
+    errorMessage = [];
+    jQuery('#cf_form_custom .required').each(function () {
+      if (!jQuery(this).val() || jQuery(this).val() === '') {
+        errorMessage.push('error: ' + jQuery(this).attr("name"));
+        jQuery(this).addClass('error');
+      } else {
+        jQuery(this).removeClass('error');
+      }
+    });
+
+    if (!jQuery('#cf_accept_terms').is(':checked')) {
+      jQuery('#cf_accept_terms').addClass('error');
+      errorMessage.push('error');
+    } else {
+      jQuery('#cf_accept_terms').removeClass('error');
     }
 
-    var $hiddenCustomerField2 = jQuery("#customer-fields input[name=\"" + $registerField.attr('name') + "\"]");
+    hasError = errorMessage.length ? true : false;
+  }
 
-    if ($hiddenCustomerField2.length > 0) {
-      $hiddenCustomerField2.val($registerField.val());
+  jQuery('.btn-submit-cf').on('click', function (e) {
+    jQuery('#cf_phone_number_hidden').val('+61' + jQuery('#cf_phone_number').val());
+    var customerEmail = window.vars.customerEmail;
+
+    if (jQuery('#accountInfo').length) {
+      document.cookie = "is_from_registration=1; max-age=" + 60 * 5;
     }
+
+    validate();
+
+    if (!hasError) {
+      jQuery('#accountEditSpiner').show();
+      jQuery('html, body').animate({
+        scrollTop: 0
+      }, 100);
+      return true;
+    }
+
+    return false;
+  });
+  jQuery('.general-popup .modal_close').on('click', function () {
+    var $popup = jQuery(this).parents('.general-popup');
+    $popup.hide();
+
+    if ($popup.attr('id') === 'welcomePopup') {
+      location.reload();
+    }
+  });
+  jQuery('.general-popup .modal_background').on('click', function () {
+    var $popup = jQuery(this).parents('.general-popup');
+    $popup.hide();
+
+    if ($popup.attr('id') === 'welcomePopup') {
+      location.reload();
+    }
+  });
+  jQuery('[data-open-popup]').on('click', function () {
+    var $popup = jQuery(jQuery(this).attr('href'));
+    $popup.show();
   });
   var address_input = document.getElementById('google_address');
   var options = {
@@ -70,204 +194,9 @@ jQuery(document).ready(function () {
         postalCode = item.long_name;
       }
     });
-    jQuery('input[name="customer[addresses][][address1]"]').val(streetNumber + " " + streetName);
-    jQuery('input[name="customer[addresses][][city]"]').val("" + suburb);
+    jQuery('input[name="customer[addresses][address1]"]').val(streetNumber + " " + streetName);
+    jQuery('input[name="customer[addresses][city]"]').val("" + suburb);
     jQuery('input[name="customer[postcode]"]').val("" + postalCode);
-    jQuery('select[name="customer[addresses][][province]"]').val(regionName);
-  }
-
-  jQuery('#accountInfo form').find('input, select').trigger('change');
-
-  window.addSpace = function ($input) {
-    $input.val($input.val() + " ");
-  };
-
-  jQuery('.general-popup .modal_close').on('click', function () {
-    var $popup = jQuery(this).parents('.general-popup');
-    $popup.hide();
-
-    if ($popup.attr('id') === 'welcomePopup') {
-      location.reload();
-    }
-  });
-  jQuery('.general-popup .modal_background').on('click', function () {
-    var $popup = jQuery(this).parents('.general-popup');
-    $popup.hide();
-
-    if ($popup.attr('id') === 'welcomePopup') {
-      location.reload();
-    }
-  });
-  jQuery('[data-open-popup]').on('click', function () {
-    var $popup = jQuery(jQuery(this).attr('href'));
-    $popup.show();
-  });
-
-  if (jQuery('#accountEdit').length > 0) {
-    jQuery('.edit-form .birthday_wrap').hide();
-  }
-
-  jQuery('input[name="customer[addresses][][phone]"]').on('input', function () {
-    this.value = parseInt(this.value.replace(/[^0-9]/g, ''), 10) || '';
-  });
-  jQuery('input[name="customer[postcode]"]').on('input', function () {
-    this.value = parseInt(this.value.replace(/[^0-9]/g, ''), 10) || '';
-  });
-  jQuery('[data-submit]').on('submit', function (e) {
-    var error = false;
-    var $email = jQuery('input[name="customer[email]"]');
-    var $first_name = jQuery('.copy-create input[name="customer[first_name]"]');
-    var $last_name = jQuery('.copy-create input[name="customer[last_name]"]');
-    var $gender = jQuery('.copy-create select[name="customer[gender]"]');
-    var $province = jQuery('.copy-create select[name="customer[addresses][][province]"]');
-    var $suburb = jQuery('.copy-create input[name="customer[addresses][][city]"]');
-    var $preferred_store = jQuery('.copy-create select[name="customer[preferred_store]"]');
-    var $birthday = jQuery('.copy-create input[name="customer[birthday]"]');
-    var $phone = jQuery('.copy-create input[name="customer[addresses][][phone]"]');
-    var $address1 = jQuery('.copy-create input[name="customer[addresses][][address1]"]');
-    var $post_code = jQuery('.copy-create input[name="customer[postcode]"]');
-    var $terms_conditions = jQuery('.copy-create input[name="customer[accepts_terms_conditions]"]');
-    var $accepts_marketing = jQuery('.copy-create input[name="customer[accepts_marketing]"]');
-    var $realAcceptsMarketing = jQuery('#customer-fields input[name="customer[accepts_marketing]"]');
-    var $falseGenderSelect = jQuery('.copy-create select[name="customer[gender]"]');
-    var $falseStateSelect = jQuery('.copy-create select[name="customer[addresses][][province]"]');
-    e.preventDefault();
-
-    if (jQuery(jQuery(this).data('submit')).length > 0) {
-      if (!$first_name.val()) {
-        $first_name.addClass('error');
-        error = true;
-      } else {
-        $first_name.removeClass('error');
-      }
-
-      if (!$last_name.val()) {
-        $last_name.addClass('error');
-        error = true;
-      } else {
-        $last_name.removeClass('error');
-      }
-
-      if ($falseGenderSelect.find('option:selected').prop('disabled')) {
-        $falseGenderSelect.addClass('error');
-        error = true;
-      } else {
-        $falseGenderSelect.removeClass('error');
-      }
-
-      if (!$birthday.val()) {
-        $birthday.addClass('error');
-        error = true;
-      } else {
-        $birthday.removeClass('error');
-      }
-
-      if (!$phone.val()) {
-        $phone.addClass('error');
-        error = true;
-      } else {
-        $phone.removeClass('error');
-      }
-
-      if (!$address1.val()) {
-        $address1.addClass('error');
-        error = true;
-      } else {
-        $address1.removeClass('error');
-      }
-
-      if (!$post_code.val()) {
-        $post_code.addClass('error');
-        error = true;
-      } else {
-        $post_code.removeClass('error');
-      }
-
-      if (!$preferred_store.val()) {
-        $preferred_store.addClass('error');
-        error = true;
-      } else {
-        $preferred_store.removeClass('error');
-      }
-
-      if ($falseStateSelect.find('option:selected').prop('disabled')) {
-        $falseStateSelect.addClass('error');
-        error = true;
-      } else {
-        $falseStateSelect.removeClass('error');
-      }
-
-      if (!$suburb.val()) {
-        $suburb.addClass('error');
-        error = true;
-      } else {
-        $suburb.removeClass('error');
-      }
-
-      if (!$terms_conditions.is(':checked')) {
-        $terms_conditions.addClass('error');
-        error = true;
-      } else {
-        $terms_conditions.removeClass('error');
-      }
-
-      if (!error) {
-        var _customerEmail = window.vars.customerEmail;
-
-        if ($realAcceptsMarketing.is(':checked')) {
-          var inFiveMinutes = new Date(new Date().getTime() + 5 * 60 * 1000);
-          Cookies.set('optedInAt', _customerEmail, {
-            expires: inFiveMinutes
-          });
-        }
-
-        $email.val(_customerEmail);
-        jQuery(jQuery(this).data('submit')).submit();
-      }
-    }
-  });
-  jQuery('#editDetails').click(function (e) {
-    e.preventDefault();
-    jQuery('#detailsDisplay').fadeOut(200, function () {
-      jQuery('#accountEdit').fadeIn();
-    });
-    jQuery('#accountEdit form').find('input, select').trigger('change');
-  });
-  jQuery('#updateMarketing').click(function (e) {
-    e.preventDefault();
-    jQuery('[data-marketing-hide]').hide();
-    jQuery('[data-marketing-show]').show();
-    jQuery('#detailsDisplay').fadeOut(200, function () {
-      jQuery('#accountEdit').fadeIn();
-    });
-    jQuery('#accountEdit form').find('input, select').trigger('change');
-  });
-  jQuery('#cancelEditAccount').click(function (e) {
-    e.preventDefault();
-    jQuery('#accountEdit').fadeOut(200, function () {
-      jQuery('[data-marketing-hide]').show();
-      jQuery('[data-marketing-show]').hide();
-      jQuery('#detailsDisplay').fadeIn();
-    });
-    jQuery('#accountInfo form').find('input, select').trigger('change');
-  });
-  jQuery('.show_edit_form').click(function (e) {
-    e.preventDefault();
-    jQuery('#editDetails').click();
-  });
-  jQuery('input, select').on('blur', function () {
-    jQuery(this).removeClass('error');
-  });
-  var _window$vars = window.vars,
-      showDetailsForm = _window$vars.showDetailsForm,
-      customerEmail = _window$vars.customerEmail;
-  var optedIn = Cookies.get('optedInAt') === customerEmail;
-
-  if (showDetailsForm && !optedIn) {
-    jQuery('#accountInfo').addClass('in');
-    jQuery('.grid__item.fade').remove();
-  } else {
-    jQuery('#accountInfo').remove();
-    jQuery('.grid__item').addClass('in');
+    jQuery('select[name="customer[addresses][province]"]').val(regionName);
   }
 });
