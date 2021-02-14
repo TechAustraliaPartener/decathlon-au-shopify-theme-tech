@@ -491,10 +491,10 @@
               "ready": "Ready to collect in 2 hours",
               "ready_checkout": "Pickup: Ready in 2 Hours",
               "id": "1793",
-              "tooltip_hours": true,
-              "is_same_hours_weekly": false,
+              "tooltip_hours": false,
+              "is_same_hours_weekly": true,
               "hours_0_open": "1000",
-              "hours_0_close": "1900",
+              "hours_0_close": "1700",
               "hours_1_open": "0900",
               "hours_1_close": "1900",
               "hours_2_open": "0900",
@@ -507,7 +507,7 @@
               "hours_5_close": "1900",
               "hours_6_open": "0900",
               "hours_6_close": "1900",
-              "announcement": "",
+              "announcement": "<p>Due to Lockdown restrictions in VIC, In-Store Shopping is not available. Stores are only open for click &amp; collect <\/p>",
               "address_type_boolean": true,
               "is_residential": false,
               "is_warehouse": false,
@@ -535,10 +535,10 @@
               "ready": "Ready to collect in 2 hours",
               "ready_checkout": "Pickup: Ready in 2 Hours",
               "id": "1792",
-              "tooltip_hours": true,
-              "is_same_hours_weekly": false,
-              "hours_0_open": "0930",
-              "hours_0_close": "1930",
+              "tooltip_hours": false,
+              "is_same_hours_weekly": true,
+              "hours_0_open": "1000",
+              "hours_0_close": "1700",
               "hours_1_open": "0930",
               "hours_1_close": "1930",
               "hours_2_open": "0930",
@@ -551,7 +551,7 @@
               "hours_5_close": "1930",
               "hours_6_open": "0900",
               "hours_6_close": "2000",
-              "announcement": "",
+              "announcement": "<p>Due to Lockdown restrictions in VIC, In-Store Shopping is not available. Stores are only open for click &amp; collect <\/p>",
               "address_type_boolean": true,
               "is_residential": false,
               "is_warehouse": false,
@@ -579,10 +579,10 @@
               "ready": "Ready to collect in 2 hours",
               "ready_checkout": "Pickup: Ready in 2 Hours",
               "id": "1790",
-              "tooltip_hours": true,
-              "is_same_hours_weekly": false,
-              "hours_0_open": "0900",
-              "hours_0_close": "2000",
+              "tooltip_hours": false,
+              "is_same_hours_weekly": true,
+              "hours_0_open": "1000",
+              "hours_0_close": "1700",
               "hours_1_open": "0900",
               "hours_1_close": "2000",
               "hours_2_open": "0900",
@@ -595,7 +595,7 @@
               "hours_5_close": "2000",
               "hours_6_open": "0900",
               "hours_6_close": "2000",
-              "announcement": "",
+              "announcement": "<p>Due to Lockdown restrictions in VIC, In-Store Shopping is not available. Stores are only open for click &amp; collect <\/p>",
               "address_type_boolean": true,
               "is_residential": false,
               "is_warehouse": false,
@@ -828,9 +828,9 @@
               "name": "Mornington (3931)",
               "title": "Mornington, 3931, Pick Up Only",
               "online_inventory_source": false,
-              "enable_c_c": true,
+              "enable_c_c": false,
               "duplicate": "Moorabbin",
-              "test_mode": false,
+              "test_mode": true,
               "street1": "4\/68 Barkly Street",
               "city": "Mornington",
               "zip": "3931",
@@ -976,6 +976,45 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
+          "1589172506799": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_5_dd2a9505-0704-4bb8-8c6e-7ada886284d3.png",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "Pilates At Home",
+              "banner_subtitle": "<p><strong>Elastic Bands, Dumbbells, Mats &amp; Ankle Weights<\/strong><\/p>",
+              "button_new_window": false,
+              "button_title": "Shop Now",
+              "button_url": "shopify:\/\/collections\/pilates-equipment-accessories"
+            }
+          },
+          "4cf92f46-c528-4e84-a6a7-8781c5769a26": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_ef9c9dfc-9402-4329-9247-368b055777dd.png",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "Cycling",
+              "banner_subtitle": "<p><strong>Everyday Low Price on MTBs, Road Bikes, Kids Bikes &amp; Hybrids<\/strong><\/p>",
+              "button_new_window": false,
+              "button_title": "SHOP BIKES",
+              "button_url": "shopify:\/\/collections\/bikes"
+            }
+          },
+          "7b73c2da-dac9-47d8-a5d3-99e46591c1aa": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_3_168daa06-a81d-4cf5-a999-c3b5068fab69.png",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "Get a $20 Discount Code When You Sign Up",
+              "banner_subtitle": "",
+              "button_new_window": false,
+              "button_title": "Sign Up Now",
+              "button_url": "shopify:\/\/pages\/decathlon-membership"
+            }
+          },
           "9f05d3c1-98d7-40bb-8141-4d7e1523647b": {
             "type": "slide",
             "settings": {
@@ -989,37 +1028,26 @@
               "button_url": "shopify:\/\/collections\/tennis"
             }
           },
-          "4cf92f46-c528-4e84-a6a7-8781c5769a26": {
+          "0d0f420b-7d8b-418e-9a65-5cb5ed5e54d6": {
             "type": "slide",
             "settings": {
               "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_7_1b56b225-74be-4c3b-97dc-17b75ee79abc.png",
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
               "banner_title": "Easybreath Snorkeling Mask",
-              "banner_subtitle": "<p><strong>An innovation by Decathlon<\/strong><\/p>",
+              "banner_subtitle": "<p><strong>An Innovation By Decathlon<\/strong><\/p>",
               "button_new_window": false,
               "button_title": "Discover Snorkeling",
               "button_url": "shopify:\/\/collections\/snorkeling"
             }
-          },
-          "1589172506799": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_5_dd2a9505-0704-4bb8-8c6e-7ada886284d3.png",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": "Pilates At Home",
-              "banner_subtitle": "<p><strong>Elastic Bands, Dumbbells, Mats &amp; Ankle Weights<\/strong><\/p>",
-              "button_new_window": false,
-              "button_title": "Shop Now",
-              "button_url": "shopify:\/\/collections\/pilates-equipment-accessories"
-            }
           }
         },
         "block_order": [
-          "9f05d3c1-98d7-40bb-8141-4d7e1523647b",
+          "1589172506799",
           "4cf92f46-c528-4e84-a6a7-8781c5769a26",
-          "1589172506799"
+          "7b73c2da-dac9-47d8-a5d3-99e46591c1aa",
+          "9f05d3c1-98d7-40bb-8141-4d7e1523647b",
+          "0d0f420b-7d8b-418e-9a65-5cb5ed5e54d6"
         ],
         "settings": {}
       },
@@ -1061,11 +1089,11 @@
         "type": "slider_image_section",
         "settings": {
           "homepage_slider_image_title": "By Category",
-          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_3_7fe3395d-0a6e-4611-b14b-3f616a2b7df0.png",
-          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/fitness-electronics",
+          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_8_6c179d77-8ec5-482a-aa73-23dd6ea37fe4.png",
+          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/garden-games",
           "checkbox_image_1": true,
-          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_1_53a0c954-1ec5-48ae-8090-356f7be9dcd5.png",
-          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/valentines-gift-guide",
+          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_3_7fe3395d-0a6e-4611-b14b-3f616a2b7df0.png",
+          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/fitness-electronics",
           "checkbox_image_2": true,
           "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_2.png",
           "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/weekly-deals",
