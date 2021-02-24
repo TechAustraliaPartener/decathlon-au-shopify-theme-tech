@@ -31,11 +31,11 @@
     "header_support_link": "https:\/\/help.decathlon.com.au\/support\/home",
     "header_store_label": "Stores",
     "header_sign_in_label": "Sign In",
-    "megamenu_image": "shopify:\/\/shop_images\/Copy_of_SIDE_NAV_1_309b8603-3bad-42a8-a266-c313ed3d8c9c.png",
-    "megamenu_title": "Weekly Deals!",
-    "megamenu_subtitle": "Up to 24% Off Scooters",
-    "megamenu_link": "shopify:\/\/collections\/weekly-deals",
-    "megamenu_bg_colour": "#ff0000",
+    "megamenu_image": "shopify:\/\/shop_images\/Copy_of_SIDE_NAV_1_cd1e1fee-f00a-4920-935f-988b5244450e.png",
+    "megamenu_title": "Camping Made Easy!",
+    "megamenu_subtitle": "Camping Tents & Shelters",
+    "megamenu_link": "shopify:\/\/collections\/tents-shelters",
+    "megamenu_bg_colour": "#1c82c3",
     "custom_fields_terms_conditions": "I agree to the <a href=\"\/pages\/terms-and-conditions-membership\" target=\"_blank\">T&Cs<\/a> and <a href=\"\/pages\/privacy-policy\" target=\"_blank\">Privacy Policy<\/a> for creating an account.",
     "is_lookbook": false,
     "product_returns_text": "Easy 365 days return",
@@ -494,7 +494,7 @@
               "tooltip_hours": false,
               "is_same_hours_weekly": true,
               "hours_0_open": "1000",
-              "hours_0_close": "1700",
+              "hours_0_close": "1900",
               "hours_1_open": "0900",
               "hours_1_close": "1900",
               "hours_2_open": "0900",
@@ -507,7 +507,7 @@
               "hours_5_close": "1900",
               "hours_6_open": "0900",
               "hours_6_close": "1900",
-              "announcement": "<p>Due to Lockdown restrictions in VIC, In-Store Shopping is not available. Stores are only open for click &amp; collect <\/p>",
+              "announcement": "",
               "address_type_boolean": true,
               "is_residential": false,
               "is_warehouse": false,
@@ -551,7 +551,7 @@
               "hours_5_close": "1930",
               "hours_6_open": "0900",
               "hours_6_close": "2000",
-              "announcement": "<p>Due to Lockdown restrictions in VIC, In-Store Shopping is not available. Stores are only open for click &amp; collect <\/p>",
+              "announcement": "",
               "address_type_boolean": true,
               "is_residential": false,
               "is_warehouse": false,
@@ -595,7 +595,7 @@
               "hours_5_close": "2000",
               "hours_6_open": "0900",
               "hours_6_close": "2000",
-              "announcement": "<p>Due to Lockdown restrictions in VIC, In-Store Shopping is not available. Stores are only open for click &amp; collect <\/p>",
+              "announcement": "",
               "address_type_boolean": true,
               "is_residential": false,
               "is_warehouse": false,
@@ -708,8 +708,8 @@
               "email": "customer.service@decathlon.com",
               "phone_number": "(02) 9157 5799",
               "company": "Decathlon",
-              "ready": "Collect in 3 business days after placing your order",
-              "ready_checkout": "Collect in 3 business days after placing your order",
+              "ready": "Collect in 3-5 business days after placing your order",
+              "ready_checkout": "Collect in 3-5 business days after placing your order",
               "id": "1790-0004",
               "tooltip_hours": true,
               "is_same_hours_weekly": false,
@@ -976,17 +976,17 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
-          "1589172506799": {
+          "9f05d3c1-98d7-40bb-8141-4d7e1523647b": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_5_dd2a9505-0704-4bb8-8c6e-7ada886284d3.png",
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_5_988ed89d-330e-4598-87b1-fdf70234afa8.png",
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
-              "banner_title": "Pilates At Home",
-              "banner_subtitle": "<p><strong>Elastic Bands, Dumbbells, Mats &amp; Ankle Weights<\/strong><\/p>",
+              "banner_title": ".",
+              "banner_subtitle": "",
               "button_new_window": false,
               "button_title": "Shop Now",
-              "button_url": "shopify:\/\/collections\/pilates-equipment-accessories"
+              "button_url": "shopify:\/\/collections\/all-sale-products"
             }
           },
           "4cf92f46-c528-4e84-a6a7-8781c5769a26": {
@@ -995,7 +995,7 @@
               "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_ef9c9dfc-9402-4329-9247-368b055777dd.png",
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
-              "banner_title": "Cycling",
+              "banner_title": "Top Bikes At Low Prices",
               "banner_subtitle": "<p><strong>Everyday Low Price on MTBs, Road Bikes, Kids Bikes &amp; Hybrids<\/strong><\/p>",
               "button_new_window": false,
               "button_title": "SHOP BIKES",
@@ -1015,54 +1015,54 @@
               "button_url": "shopify:\/\/pages\/decathlon-membership"
             }
           },
-          "9f05d3c1-98d7-40bb-8141-4d7e1523647b": {
+          "0d0f420b-7d8b-418e-9a65-5cb5ed5e54d6": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_10.png",
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_4_2e8bebf6-3aec-41da-b0f2-58ffbc0dcb29.png",
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
-              "banner_title": "Tennis Deals",
-              "banner_subtitle": "<p><strong>Big Brands At Low Prices<\/strong><\/p>",
+              "banner_title": "Build Your Home Gym Today",
+              "banner_subtitle": "<p><strong>Weights, Press Bench, Dumbbells &amp; More<\/strong><\/p>",
               "button_new_window": false,
-              "button_title": "Shop Now",
-              "button_url": "shopify:\/\/collections\/tennis"
+              "button_title": "Shop Bodybuilding",
+              "button_url": "shopify:\/\/collections\/bodybuilding-equipment"
             }
           },
-          "0d0f420b-7d8b-418e-9a65-5cb5ed5e54d6": {
+          "1589172506799": {
             "type": "slide",
             "settings": {
               "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_7_1b56b225-74be-4c3b-97dc-17b75ee79abc.png",
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
-              "banner_title": "Easybreath Snorkeling Mask",
-              "banner_subtitle": "<p><strong>An Innovation By Decathlon<\/strong><\/p>",
+              "banner_title": "The Original Easybreath Snorkeling Mask",
+              "banner_subtitle": "<p><strong>Full Face Snorkeling Mask, Snorkels, Aquashoes &amp; More<\/strong><\/p>",
               "button_new_window": false,
-              "button_title": "Discover Snorkeling",
+              "button_title": "Shop Snorkeling",
               "button_url": "shopify:\/\/collections\/snorkeling"
             }
           }
         },
         "block_order": [
-          "1589172506799",
+          "9f05d3c1-98d7-40bb-8141-4d7e1523647b",
           "4cf92f46-c528-4e84-a6a7-8781c5769a26",
           "7b73c2da-dac9-47d8-a5d3-99e46591c1aa",
-          "9f05d3c1-98d7-40bb-8141-4d7e1523647b",
-          "0d0f420b-7d8b-418e-9a65-5cb5ed5e54d6"
+          "0d0f420b-7d8b-418e-9a65-5cb5ed5e54d6",
+          "1589172506799"
         ],
         "settings": {}
       },
       "1590735691745": {
         "type": "slider_image_section",
         "settings": {
-          "homepage_slider_image_title": "By Sport",
-          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_20.png",
-          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/boxing",
+          "homepage_slider_image_title": "Top Deals",
+          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_14_71b27c16-2c00-4ea8-b8a2-3d21dde42e71.png",
+          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/products\/nerf-supersoaker-piranha",
           "checkbox_image_1": true,
-          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_19.png",
-          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/soccer-futsal",
+          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_15_2bbf9298-2907-4d36-8d94-5c0603545b10.png",
+          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/products\/intex-mushroom-inflatable-baby-pool",
           "checkbox_image_2": true,
-          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_21.png",
-          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/running-gear-clothes",
+          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_16_1e135ba7-b471-409f-8996-8911670a0285.png",
+          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/all-sale-products?q=&hPP=24&idx=shopify_products&p=0&dFR%5Bvendor%5D%5B0%5D=ALLIANCE&dFR%5Bvendor%5D%5B1%5D=COMPANION&dFR%5Bvendor%5D%5B2%5D=WAHU&dFR%5Bvendor%5D%5B3%5D=LIFE&dFR%5Bvendor%5D%5B4%5D=INTEX&dFR%5Bvendor%5D%5B5%5D=ITIWIT&is_v=1",
           "checkbox_image_3": true,
           "homepage_slider_image_redirection_4": "",
           "checkbox_image_4": false
@@ -1071,15 +1071,15 @@
       "1597283878337": {
         "type": "slider_image_section",
         "settings": {
-          "homepage_slider_image_title": "Top Picks",
-          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_6.png",
-          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/products\/oxelo-play-500-kids-cruiser-skateboard-160794",
+          "homepage_slider_image_title": "Summer Sale",
+          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_9_c3e2a8bf-c805-4a30-8a4f-cc8d4f79eb84.png",
+          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/products\/powertrain-adjustable-bench",
           "checkbox_image_1": true,
-          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_7_9a95d0d7-6565-4e8d-a98c-aa3fbdeb01c3.png",
-          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/products\/oxelo-play-5-kids-scooter-6382",
+          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_11_718a8394-5e65-4959-a4ca-54d43c06a9f9.png",
+          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/products\/companion-sunpro-adustable-gazebo-420d-24m-x-24m?variant=32171588583535",
           "checkbox_image_2": true,
-          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_4_284e7335-4a40-4da6-a135-23414659fde3.png",
-          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/products\/clr-900-adult-dry-pitch-football-boots-192455",
+          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_13.png",
+          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/products\/ppt-530-free-table-tennis-table",
           "checkbox_image_3": true,
           "homepage_slider_image_redirection_4": "",
           "checkbox_image_4": false
@@ -1095,8 +1095,8 @@
           "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_3_7fe3395d-0a6e-4611-b14b-3f616a2b7df0.png",
           "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/fitness-electronics",
           "checkbox_image_2": true,
-          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_2.png",
-          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/weekly-deals",
+          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_17_905c60a0-3474-4511-b9d3-896c4995c08d.png",
+          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/search?q=Active%20wear&hPP=24&idx=shopify_products&p=0&dFR%5Bnamed_tags.GENDER_ID%5D%5B0%5D=3&is_v=1",
           "checkbox_image_3": true,
           "homepage_slider_image_redirection_4": "",
           "checkbox_image_4": false
@@ -1106,8 +1106,8 @@
     "content_for_index": [
       "1568939434006",
       "1597283878337",
-      "1602562605803",
-      "1590735691745"
+      "1590735691745",
+      "1602562605803"
     ]
   },
   "presets": {
