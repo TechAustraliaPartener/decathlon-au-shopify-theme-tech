@@ -341,13 +341,22 @@
     );
 
     // Banner
-    if (window.algolia_custom_widgets.banner) {
+    if (window.algolia_custom_widgets.desktopBanner) {
       instant.search.addWidget({
         render(options) {
-          var bannerExists = $('.collection-custom-banner-desktop').length > 0;
+          var bannerExists = $('#desktopAlgoliaCollectionBanner').length > 0;
           if (!bannerExists) {
-            $(window.algolia_custom_widgets.banner).insertBefore('.ais-input');
-            $('.collection-custom-banner-mobile').prependTo('.main-content');
+            $(window.algolia_custom_widgets.desktopBanner).insertBefore('.ais-input');
+          }
+        },
+      });
+    }
+    if (window.algolia_custom_widgets.mobileBanner) {
+      instant.search.addWidget({
+        render(options) {
+          var bannerExists = $('#mobileAlgoliaCollectionBanner').length > 0;
+          if (!bannerExists) {
+            $(window.algolia_custom_widgets.mobileBanner).prependTo('.main-content');
           }
         },
       });
