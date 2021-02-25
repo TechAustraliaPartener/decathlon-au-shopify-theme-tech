@@ -1070,6 +1070,7 @@
       },
       "1597283878337": {
         "type": "slider_image_section",
+        "disabled": true,
         "settings": {
           "homepage_slider_image_title": "Summer Sale",
           "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_9_c3e2a8bf-c805-4a30-8a4f-cc8d4f79eb84.png",
