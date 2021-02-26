@@ -37,6 +37,11 @@ customer.metafields.customr.accepts_terms_conditions %}
 {% endif %}
 {% endfor %}
 
+<script>
+  window.vars = window.vars || {};
+  window.vars.has_accepted_marketing = {{ has_accepted_marketing }};
+</script>
+
 
 <div class="wrapper u-paddingTopBottom4x u-marginBottom4x">
   {% if customer.first_name != blank %}

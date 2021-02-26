@@ -26,7 +26,7 @@ $(document).ready(function () {
 
   $('#settingAccountSpiner').show();
 
-  if (getCookie('is_from_registration')) {
+  if (getCookie('is_from_registration') && window.vars.has_accepted_marketing) {
     $('.registration-confirm-message').show();
     document.cookie = "is_from_registration=; max-age=0";
   }
