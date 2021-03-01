@@ -1027,27 +1027,13 @@
               "button_title": "Shop Bodybuilding",
               "button_url": "shopify:\/\/collections\/bodybuilding-equipment"
             }
-          },
-          "1589172506799": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_7_1b56b225-74be-4c3b-97dc-17b75ee79abc.png",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": "The Original Easybreath Snorkeling Mask",
-              "banner_subtitle": "<p><strong>Full Face Snorkeling Mask, Snorkels, Aquashoes &amp; More<\/strong><\/p>",
-              "button_new_window": false,
-              "button_title": "Shop Snorkeling",
-              "button_url": "shopify:\/\/collections\/snorkeling"
-            }
           }
         },
         "block_order": [
           "9f05d3c1-98d7-40bb-8141-4d7e1523647b",
           "4cf92f46-c528-4e84-a6a7-8781c5769a26",
           "7b73c2da-dac9-47d8-a5d3-99e46591c1aa",
-          "0d0f420b-7d8b-418e-9a65-5cb5ed5e54d6",
-          "1589172506799"
+          "0d0f420b-7d8b-418e-9a65-5cb5ed5e54d6"
         ],
         "settings": {}
       },
