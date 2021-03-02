@@ -86,11 +86,11 @@ const initVueATC = () => {
         let stockRemoveClass = '';
 
         // If variant is in stock for delivery in locations contributing to online inventory
-        if (delivery.available > 1) {
+        if (delivery.available > 2) {
           stockInfoMessage = translations.in_stock;
           stockAddClass = IN_STOCK_CLASS;
           stockRemoveClass = LOW_STOCK_CLASS;
-        } else if (delivery.available == 1) {
+        } else if (delivery.available <= 2 && delivery.available > 0) {
           stockInfoMessage = translations.low_stock;
           stockAddClass = LOW_STOCK_CLASS;
           stockRemoveClass = IN_STOCK_CLASS;
