@@ -31,10 +31,10 @@
     "header_support_link": "https:\/\/help.decathlon.com.au\/support\/home",
     "header_store_label": "Stores",
     "header_sign_in_label": "Sign In",
-    "megamenu_image": "shopify:\/\/shop_images\/Copy_of_SIDE_NAV_1_cd1e1fee-f00a-4920-935f-988b5244450e.png",
-    "megamenu_title": "Camping Made Easy!",
-    "megamenu_subtitle": "Camping Tents & Shelters",
-    "megamenu_link": "shopify:\/\/collections\/tents-shelters",
+    "megamenu_image": "shopify:\/\/shop_images\/Copy_of_SIDE_NAV_2.png",
+    "megamenu_title": "Yoga By Decathlon",
+    "megamenu_subtitle": "Explore New Arrivals",
+    "megamenu_link": "shopify:\/\/collections\/yoga",
     "megamenu_bg_colour": "#1c82c3",
     "custom_fields_terms_conditions": "I agree to the <a href=\"\/pages\/terms-and-conditions-membership\" target=\"_blank\">T&Cs<\/a> and <a href=\"\/pages\/privacy-policy\" target=\"_blank\">Privacy Policy<\/a> for creating an account.",
     "is_lookbook": false,
@@ -605,28 +605,28 @@
           "1584593816398": {
             "type": "store",
             "settings": {
-              "name": "The Surfboard Warehouse C&C (2100)",
-              "title": "TSBW Brookvale, 2100, Pick Up Only",
+              "name": "South Morang C&C (3752)",
+              "title": "South Morang, 3752, Pick Up Only",
               "online_inventory_source": false,
-              "enable_c_c": false,
-              "duplicate": "Tempe",
-              "test_mode": true,
-              "street1": "535 Pittwater Road",
-              "city": "Brookvale",
-              "zip": "2100",
-              "state": "NSW",
+              "enable_c_c": true,
+              "duplicate": "Knoxfield",
+              "test_mode": false,
+              "street1": "10\/340 McDonalds Rd",
+              "city": "South Morang",
+              "zip": "3752",
+              "state": "VIC",
               "country": "AU",
-              "checkout_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_2_aeef06e3-6593-4a1d-9a58-9dd9d5c3ab18.png",
+              "checkout_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_16_e4824a61-1262-4242-beef-1d8e225b35a0.png",
               "email": "customer.service@decathlon.com",
               "phone_number": "02 9905 9427",
               "company": "Decathlon",
-              "ready": "Collect 2 business days after placing order.",
-              "ready_checkout": "Collect 2 business days after placing order.",
-              "id": "1789-0001",
+              "ready": "Collect 2-3 business days after placing order.",
+              "ready_checkout": "Collect 2-3 business days after placing order.",
+              "id": "1793-0004",
               "tooltip_hours": false,
               "is_same_hours_weekly": true,
               "hours_0_open": "0900",
-              "hours_0_close": "1700",
+              "hours_0_close": "1730",
               "hours_1_open": "0900",
               "hours_1_close": "1700",
               "hours_2_open": "0900",
@@ -976,30 +976,56 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
-          "9f05d3c1-98d7-40bb-8141-4d7e1523647b": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_5_988ed89d-330e-4598-87b1-fdf70234afa8.png",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": ".",
-              "banner_subtitle": "",
-              "button_new_window": false,
-              "button_title": "Shop Now",
-              "button_url": "shopify:\/\/collections\/all-sale-products"
-            }
-          },
           "4cf92f46-c528-4e84-a6a7-8781c5769a26": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_ef9c9dfc-9402-4329-9247-368b055777dd.png",
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_19_832218f8-b5f1-4006-9050-9c1406395dc7.png",
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
-              "banner_title": "Top Bikes At Low Prices",
+              "banner_title": "Deals On Wheels",
               "banner_subtitle": "<p><strong>Everyday Low Price on MTBs, Road Bikes, Kids Bikes &amp; Hybrids<\/strong><\/p>",
               "button_new_window": false,
               "button_title": "SHOP BIKES",
-              "button_url": "shopify:\/\/collections\/bikes"
+              "button_url": "https:\/\/www.decathlon.com.au\/collections\/bikes\/?itm_source=decathlon.com.au&itm_medium=homepage&itm_campaign=cycling&itm_content=hero1&itm_term=bikes"
+            }
+          },
+          "a0f45f18-a85b-42cf-a280-a280f09ef2e5": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_22_53f65feb-488d-4ec2-a829-3c68f807f1bd.png",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "Get Active",
+              "banner_subtitle": "<p><strong>Men&#x27;s T-Shirts, Tanks &amp; Shorts From $9 <\/strong><\/p>",
+              "button_new_window": false,
+              "button_title": "Shop Men's Activewear",
+              "button_url": "shopify:\/\/collections\/mens-activewear"
+            }
+          },
+          "51eee9ea-9fdc-4cb9-a425-86b4178aebdc": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_23_e7c61647-a022-4857-9f54-c7a67267180b.png",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "Back To The Training Grounds",
+              "banner_subtitle": "<p><strong>Soccer Boots, Apparel &amp; Training Gear<\/strong><\/p>",
+              "button_new_window": false,
+              "button_title": "Shop Soccer",
+              "button_url": "shopify:\/\/collections\/soccer-futsal"
+            }
+          },
+          "be8a57cd-6996-45ff-aeba-3b17edc91d7e": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_18_6582403f-c826-4089-9280-7984126433ce.png",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "20% Off Adidas Punching Bags",
+              "banner_subtitle": "",
+              "button_new_window": false,
+              "button_title": "Shop now",
+              "button_url": "shopify:\/\/collections\/adidas-boxing-bags"
             }
           },
           "7b73c2da-dac9-47d8-a5d3-99e46591c1aa": {
@@ -1014,41 +1040,29 @@
               "button_title": "Sign Up Now",
               "button_url": "shopify:\/\/pages\/decathlon-membership"
             }
-          },
-          "0d0f420b-7d8b-418e-9a65-5cb5ed5e54d6": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_4_2e8bebf6-3aec-41da-b0f2-58ffbc0dcb29.png",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": "Build Your Home Gym Today",
-              "banner_subtitle": "<p><strong>Weights, Press Bench, Dumbbells &amp; More<\/strong><\/p>",
-              "button_new_window": false,
-              "button_title": "Shop Bodybuilding",
-              "button_url": "shopify:\/\/collections\/bodybuilding-equipment"
-            }
           }
         },
         "block_order": [
-          "9f05d3c1-98d7-40bb-8141-4d7e1523647b",
           "4cf92f46-c528-4e84-a6a7-8781c5769a26",
-          "7b73c2da-dac9-47d8-a5d3-99e46591c1aa",
-          "0d0f420b-7d8b-418e-9a65-5cb5ed5e54d6"
+          "a0f45f18-a85b-42cf-a280-a280f09ef2e5",
+          "51eee9ea-9fdc-4cb9-a425-86b4178aebdc",
+          "be8a57cd-6996-45ff-aeba-3b17edc91d7e",
+          "7b73c2da-dac9-47d8-a5d3-99e46591c1aa"
         ],
         "settings": {}
       },
       "1590735691745": {
         "type": "slider_image_section",
         "settings": {
-          "homepage_slider_image_title": "Top Deals",
-          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_14_71b27c16-2c00-4ea8-b8a2-3d21dde42e71.png",
-          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/products\/nerf-supersoaker-piranha",
+          "homepage_slider_image_title": "Back To The Outdoors",
+          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_28.png",
+          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/hiking-trekking",
           "checkbox_image_1": true,
-          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_15_2bbf9298-2907-4d36-8d94-5c0603545b10.png",
-          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/products\/intex-mushroom-inflatable-baby-pool",
+          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_29.png",
+          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/women-hiking-waterproof-jackets-ponchos",
           "checkbox_image_2": true,
-          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_16_1e135ba7-b471-409f-8996-8911670a0285.png",
-          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/all-sale-products?q=&hPP=24&idx=shopify_products&p=0&dFR%5Bvendor%5D%5B0%5D=ALLIANCE&dFR%5Bvendor%5D%5B1%5D=COMPANION&dFR%5Bvendor%5D%5B2%5D=WAHU&dFR%5Bvendor%5D%5B3%5D=LIFE&dFR%5Bvendor%5D%5B4%5D=INTEX&dFR%5Bvendor%5D%5B5%5D=ITIWIT&is_v=1",
+          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_30.png",
+          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/blogs\/buying-guides\/how-to-choose-a-camping-tent",
           "checkbox_image_3": true,
           "homepage_slider_image_redirection_4": "",
           "checkbox_image_4": false
@@ -1058,15 +1072,15 @@
         "type": "slider_image_section",
         "disabled": true,
         "settings": {
-          "homepage_slider_image_title": "Summer Sale",
-          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_9_c3e2a8bf-c805-4a30-8a4f-cc8d4f79eb84.png",
-          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/products\/powertrain-adjustable-bench",
+          "homepage_slider_image_title": "Weekly Deals",
+          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_22.png",
+          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/pages\/weekly-deals",
           "checkbox_image_1": true,
-          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_11_718a8394-5e65-4959-a4ca-54d43c06a9f9.png",
-          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/products\/companion-sunpro-adustable-gazebo-420d-24m-x-24m?variant=32171588583535",
+          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_23.png",
+          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/products\/oxelo-mid7-kids-scooter-9-14-years-13302",
           "checkbox_image_2": true,
-          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_13.png",
-          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/products\/ppt-530-free-table-tennis-table",
+          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_24.png",
+          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/products\/oxelo-mid9-kids-scooter-172604",
           "checkbox_image_3": true,
           "homepage_slider_image_redirection_4": "",
           "checkbox_image_4": false
@@ -1075,9 +1089,9 @@
       "1602562605803": {
         "type": "slider_image_section",
         "settings": {
-          "homepage_slider_image_title": "By Category",
-          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_8_6c179d77-8ec5-482a-aa73-23dd6ea37fe4.png",
-          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/garden-games",
+          "homepage_slider_image_title": "Get Active",
+          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_25.png",
+          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/products\/mens-slim-t-shirt-500-marl?",
           "checkbox_image_1": true,
           "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_3_7fe3395d-0a6e-4611-b14b-3f616a2b7df0.png",
           "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/fitness-electronics",
