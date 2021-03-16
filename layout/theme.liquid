@@ -259,8 +259,7 @@
 {% comment %}
   Add the page template as a class for easy page or template specific styling.
 {% endcomment %}
-<body id="{% if collection %}{{ collection.handle }}{% else %}{{ page_title | handle }}{% endif %}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }} {% if template.suffix != blank %}template-suffix-{{ template.suffix }}{% endif %} is-shortNav{% if settings['is_lookbook'] == true %} is-wishlistOnly{% endif %}{% if cart.item_count > 0 %} has-itemsInCart{% endif %}{% if product and product.tags contains 'allow sale' %} is-sellableProduct{% endif %}" {% if template_name %}data-gtm-template="{{template_name}}"{% endif %}>
-
+<body id="{% if collection %}{{ collection.handle }}{% else %}{{ page_title | handle }}{% endif %}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }} {% if template.suffix != blank %}template-suffix-{{ template.suffix }}{% endif %} is-shortNav{% if settings['is_lookbook'] == true %} is-wishlistOnly{% endif %}{% if cart.item_count > 0 %} has-itemsInCart{% endif %}{% if product and product.tags contains 'allow sale' %} is-sellableProduct{% endif %}" {% if template_name %}data-gtm-template="{{template_name}}"{% endif %}>  
   {% include 'js-gtm-body' %}
 
   {% section 'add-on-products' %}
@@ -454,5 +453,8 @@
   </script>
   {% include 'js-jsonld-sitelinks-searchbox' %}
   <script src="//instant.page/5.1.0" type="module" integrity="sha384-by67kQnR+pyfy8yWP4kPO12fHKRLHZPfEsiSXR8u2IKcTdxD805MGUXBzVPnkLHw"></script>
+  
+  <script>
+	console.log('KADAWLKDNAKLDNLADW', {{ collection.metafields.merchandising.link | json }}, {{ collection.metafields.merchandising.desktop | json }}, {{ collection.metafields.merchandising.mobile | json }});</script>
 </body>
 </html>
