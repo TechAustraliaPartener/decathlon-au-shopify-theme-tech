@@ -985,8 +985,8 @@
               "banner_title": "Deals On Wheels",
               "banner_subtitle": "<p><strong>Everyday Low Price on MTBs, Road Bikes, Kids Bikes &amp; Hybrids<\/strong><\/p>",
               "button_new_window": false,
-              "button_title": "SHOP BIKES",
-              "button_url": "https:\/\/www.decathlon.com.au\/collections\/bikes\/?itm_source=decathlon.com.au&itm_medium=homepage&itm_campaign=cycling&itm_content=hero1&itm_term=bikes"
+              "button_title": "Explore Cycling",
+              "button_url": "shopify:\/\/collections\/cycling"
             }
           },
           "a0f45f18-a85b-42cf-a280-a280f09ef2e5": {
@@ -1025,7 +1025,7 @@
               "banner_subtitle": "",
               "button_new_window": false,
               "button_title": "Shop now",
-              "button_url": "shopify:\/\/collections\/adidas-boxing-bags"
+              "button_url": "shopify:\/\/collections\/boxing"
             }
           },
           "7b73c2da-dac9-47d8-a5d3-99e46591c1aa": {
