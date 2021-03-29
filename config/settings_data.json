@@ -31,11 +31,11 @@
     "header_support_link": "https:\/\/help.decathlon.com.au\/support\/home",
     "header_store_label": "Stores",
     "header_sign_in_label": "Sign In",
-    "megamenu_image": "shopify:\/\/shop_images\/Copy_of_SIDE_NAV_2.png",
-    "megamenu_title": "Yoga By Decathlon",
-    "megamenu_subtitle": "Explore New Arrivals",
-    "megamenu_link": "shopify:\/\/collections\/yoga",
-    "megamenu_bg_colour": "#1c82c3",
+    "megamenu_image": "shopify:\/\/shop_images\/Copy_of_SIDE_NAV_7.png",
+    "megamenu_title": "Best-Selling Sports Gear",
+    "megamenu_subtitle": "Discover Our All-Time Best Sellers",
+    "megamenu_link": "shopify:\/\/collections\/top-picks",
+    "megamenu_bg_colour": "#0082c3",
     "custom_fields_terms_conditions": "I agree to the <a href=\"\/pages\/terms-and-conditions-membership\" target=\"_blank\">T&Cs<\/a> and <a href=\"\/pages\/privacy-policy\" target=\"_blank\">Privacy Policy<\/a> for creating an account.",
     "is_lookbook": false,
     "product_returns_text": "Easy 365 days return",
@@ -976,30 +976,43 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
+          "7b73c2da-dac9-47d8-a5d3-99e46591c1aa": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_36.png",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "Reconnect with the great outdoors",
+              "banner_subtitle": "",
+              "button_new_window": false,
+              "button_title": "SHOP Hiking & trekking",
+              "button_url": "shopify:\/\/collections\/hiking-trekking"
+            }
+          },
           "4cf92f46-c528-4e84-a6a7-8781c5769a26": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_19_832218f8-b5f1-4006-9050-9c1406395dc7.png",
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_32.png",
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
-              "banner_title": "Deals On Wheels",
-              "banner_subtitle": "<p><strong>Everyday Low Price on MTBs, Road Bikes, Kids Bikes &amp; Hybrids<\/strong><\/p>",
+              "banner_title": "Our Best Selling MTB",
+              "banner_subtitle": "<p><strong>Rockrider ST 100 MTB 27.5&quot;<\/strong><\/p>",
               "button_new_window": false,
-              "button_title": "Explore Cycling",
-              "button_url": "shopify:\/\/collections\/cycling"
+              "button_title": "Shop Now",
+              "button_url": "shopify:\/\/products\/rockrider-st-100-mountain-bike-193771"
             }
           },
           "a0f45f18-a85b-42cf-a280-a280f09ef2e5": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_22_53f65feb-488d-4ec2-a829-3c68f807f1bd.png",
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_37.png",
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
-              "banner_title": "Get Active",
-              "banner_subtitle": "<p><strong>Men&#x27;s T-Shirts, Tanks &amp; Shorts From $9 <\/strong><\/p>",
+              "banner_title": "Explore Kayaking",
+              "banner_subtitle": "<p><strong>Kayaks, Paddles, Dry Bags &amp; More.<\/strong><\/p>",
               "button_new_window": false,
-              "button_title": "Shop Men's Activewear",
-              "button_url": "shopify:\/\/collections\/mens-activewear"
+              "button_title": "Shop Now",
+              "button_url": "shopify:\/\/collections\/kayaking"
             }
           },
           "51eee9ea-9fdc-4cb9-a425-86b4178aebdc": {
@@ -1027,42 +1040,29 @@
               "button_title": "Shop now",
               "button_url": "shopify:\/\/collections\/boxing"
             }
-          },
-          "7b73c2da-dac9-47d8-a5d3-99e46591c1aa": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_3_168daa06-a81d-4cf5-a999-c3b5068fab69.png",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": "Get a $20 Discount Code When You Sign Up",
-              "banner_subtitle": "",
-              "button_new_window": false,
-              "button_title": "Sign Up Now",
-              "button_url": "shopify:\/\/pages\/decathlon-membership"
-            }
           }
         },
         "block_order": [
+          "7b73c2da-dac9-47d8-a5d3-99e46591c1aa",
           "4cf92f46-c528-4e84-a6a7-8781c5769a26",
           "a0f45f18-a85b-42cf-a280-a280f09ef2e5",
           "51eee9ea-9fdc-4cb9-a425-86b4178aebdc",
-          "be8a57cd-6996-45ff-aeba-3b17edc91d7e",
-          "7b73c2da-dac9-47d8-a5d3-99e46591c1aa"
+          "be8a57cd-6996-45ff-aeba-3b17edc91d7e"
         ],
         "settings": {}
       },
       "1590735691745": {
         "type": "slider_image_section",
         "settings": {
-          "homepage_slider_image_title": "Back To The Outdoors",
-          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_28.png",
-          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/hiking-trekking",
+          "homepage_slider_image_title": "Explore Camping",
+          "homepage_slider_image_1": "shopify:\/\/shop_images\/2.png",
+          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/sleeping-equipment",
           "checkbox_image_1": true,
-          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_29.png",
-          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/women-hiking-waterproof-jackets-ponchos",
+          "homepage_slider_image_2": "shopify:\/\/shop_images\/4.png",
+          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/camping-equipment",
           "checkbox_image_2": true,
-          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_30.png",
-          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/blogs\/buying-guides\/how-to-choose-a-camping-tent",
+          "homepage_slider_image_3": "shopify:\/\/shop_images\/3.png",
+          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/hydration-food-storage",
           "checkbox_image_3": true,
           "homepage_slider_image_redirection_4": "",
           "checkbox_image_4": false
@@ -1072,15 +1072,15 @@
         "type": "slider_image_section",
         "disabled": true,
         "settings": {
-          "homepage_slider_image_title": "Weekly Deals",
-          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_22.png",
-          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/pages\/weekly-deals",
+          "homepage_slider_image_title": "This Weekend Only",
+          "homepage_slider_image_1": "shopify:\/\/shop_images\/4_8603d1c0-0255-4ce5-8753-c8e8f300b2e4.png",
+          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/products\/2-seconds-pop-up-fresh-black-camping-tent-3-person-142651?variant=30895604662383",
           "checkbox_image_1": true,
-          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_23.png",
-          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/products\/oxelo-mid7-kids-scooter-9-14-years-13302",
+          "homepage_slider_image_2": "shopify:\/\/shop_images\/5.png",
+          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/products\/camping-tent-2-seconds-easy-fresh-black-2-person?variant=31318853714031",
           "checkbox_image_2": true,
-          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_24.png",
-          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/products\/oxelo-mid9-kids-scooter-172604",
+          "homepage_slider_image_3": "shopify:\/\/shop_images\/6.png",
+          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/products\/arpenaz-3-fresh-black-camping-tent-3-person-142656?variant=30895604793455",
           "checkbox_image_3": true,
           "homepage_slider_image_redirection_4": "",
           "checkbox_image_4": false
@@ -1090,16 +1090,51 @@
         "type": "slider_image_section",
         "settings": {
           "homepage_slider_image_title": "Get Active",
-          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_25.png",
-          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/products\/mens-slim-t-shirt-500-marl?",
+          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_40.png",
+          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/weight-training",
           "checkbox_image_1": true,
-          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_3_7fe3395d-0a6e-4611-b14b-3f616a2b7df0.png",
-          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/fitness-electronics",
+          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_42.png",
+          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/womens-activewear",
           "checkbox_image_2": true,
-          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_17_905c60a0-3474-4511-b9d3-896c4995c08d.png",
-          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/search?q=Active%20wear&hPP=24&idx=shopify_products&p=0&dFR%5Bnamed_tags.GENDER_ID%5D%5B0%5D=3&is_v=1",
+          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_41.png",
+          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/mens-activewear",
           "checkbox_image_3": true,
           "homepage_slider_image_redirection_4": "",
+          "checkbox_image_4": false
+        }
+      },
+      "161676069181163e17": {
+        "type": "slider_image_section",
+        "settings": {
+          "homepage_slider_image_title": "Kids Corner",
+          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_44.png",
+          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/kids-bikes-balance-bikes",
+          "checkbox_image_1": true,
+          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_46.png",
+          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/target-games",
+          "checkbox_image_2": true,
+          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_48.png",
+          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/search?q=kids%20soccer&hPP=24&idx=shopify_products_recently_ordered_count_desc&p=0&is_v=1",
+          "checkbox_image_3": true,
+          "homepage_slider_image_redirection_4": "",
+          "checkbox_image_4": false
+        }
+      },
+      "1616763819ce6b8f96": {
+        "type": "slider_image_section",
+        "settings": {
+          "homepage_slider_image_title": "Recommended",
+          "homepage_slider_image_1": "shopify:\/\/shop_images\/10_6582dcd1-deed-4ea9-828f-02008bb816e2.png",
+          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/top-picks",
+          "checkbox_image_1": true,
+          "homepage_slider_image_2": "shopify:\/\/shop_images\/12.png",
+          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/garden-games",
+          "checkbox_image_2": true,
+          "homepage_slider_image_3": "shopify:\/\/shop_images\/11_f1b657c5-6a32-4107-83e2-9874e274a370.png",
+          "homepage_slider_image_redirection_3": "",
+          "checkbox_image_3": true,
+          "homepage_slider_image_4": "shopify:\/\/shop_images\/11_f1b657c5-6a32-4107-83e2-9874e274a370.png",
+          "homepage_slider_image_redirection_4": "https:\/\/decathlon.com.au\/collections\/trail-running-gear-clothes",
           "checkbox_image_4": false
         }
       }
@@ -1108,7 +1143,9 @@
       "1568939434006",
       "1597283878337",
       "1590735691745",
-      "1602562605803"
+      "1602562605803",
+      "161676069181163e17",
+      "1616763819ce6b8f96"
     ]
   },
   "presets": {
