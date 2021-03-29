@@ -1027,27 +1027,13 @@
               "button_title": "Shop Soccer",
               "button_url": "shopify:\/\/collections\/soccer-futsal"
             }
-          },
-          "be8a57cd-6996-45ff-aeba-3b17edc91d7e": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_18_6582403f-c826-4089-9280-7984126433ce.png",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": "20% Off Adidas Punching Bags",
-              "banner_subtitle": "",
-              "button_new_window": false,
-              "button_title": "Shop now",
-              "button_url": "shopify:\/\/collections\/boxing"
-            }
           }
         },
         "block_order": [
           "7b73c2da-dac9-47d8-a5d3-99e46591c1aa",
           "4cf92f46-c528-4e84-a6a7-8781c5769a26",
           "a0f45f18-a85b-42cf-a280-a280f09ef2e5",
-          "51eee9ea-9fdc-4cb9-a425-86b4178aebdc",
-          "be8a57cd-6996-45ff-aeba-3b17edc91d7e"
+          "51eee9ea-9fdc-4cb9-a425-86b4178aebdc"
         ],
         "settings": {}
       },
@@ -1131,7 +1117,7 @@
           "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/garden-games",
           "checkbox_image_2": true,
           "homepage_slider_image_3": "shopify:\/\/shop_images\/11_f1b657c5-6a32-4107-83e2-9874e274a370.png",
-          "homepage_slider_image_redirection_3": "",
+          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/trail-running-gear-clothes",
           "checkbox_image_3": true,
           "homepage_slider_image_4": "shopify:\/\/shop_images\/11_f1b657c5-6a32-4107-83e2-9874e274a370.png",
           "homepage_slider_image_redirection_4": "https:\/\/decathlon.com.au\/collections\/trail-running-gear-clothes",
