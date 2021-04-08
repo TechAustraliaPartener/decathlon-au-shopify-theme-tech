@@ -407,14 +407,81 @@ $(document).on('cart.ready', function (event, cart) {
   tryInit();
 });
 
-document.addEventListener('tomitLoaded', function () {
-  window.tomitProductInventoryInfo
-    .getProductsInventoryInformation(window.vars.tomitCartPayload)
-    .then(function (inventory) {
-      invInit = inventory;
-      console.log('INV READY', inventory);
-      tryInit();
-    });
+document.addEventListener('tomitLoaded', async () => {
+
+  const { vars, tomitProductInventoryInfo } = window;
+  const { getProductsInventoryInformation, getVariantInventory } = window.tomitProductInventoryInfo;
+  const { tomitCartPayload, tomitCartVariants } = vars;
+
+  const getVariantInventoryAndHandleErrors = async (vID) => {
+    let response;
+    try {
+      response = await getVariantInventory(vID);
+    } catch(err) {
+      console.error('Error getting inventory', err);
+      response = undefined;
+    }
+
+    return response;
+  }
+
+  console.log('AKLDNA');
+  let inventoryInfo = await getProductsInventoryInformation(tomitCartPayload);
+  console.log('ANDJKADNKJAW', inventoryInfo);
+
+  let missingInventoryVariants;
+  const inventoryInfoVariants = Object.entries(inventoryInfo).map(([k, v]) => v?.product?.variants);
+  let inventoryInfoVariantIDs = Object.entries(inventoryInfo).map(([k, v]) => Object.keys(v?.product?.variants));
+  inventoryInfoVariantIDs = inventoryInfoVariantIDs.reduce((acc, val) => acc.concat(val), []);
+  console.log(inventoryInfoVariantIDs);
+
+  missingInventoryVariants = tomitCartVariants.filter(vID => inventoryInfoVariantIDs.indexOf(String(vID)) === -1);
+  console.log(missingInventoryVariants);
+
+  const getMissingInventoryCalls = missingInventoryVariants.map(vID => getVariantInventoryAndHandleErrors(vID));
+
+  let missingInventory = await Promise.all(getMissingInventoryCalls);
+  console.log(missingInventory);
+  missingInventory = missingInventory.filter(i => i !== undefined);
+
+  console.log('WOO', missingInventory);
+
+  const retrievedVariantInventories = missingInventory.map(inventoryData => Object.entries(inventoryData?.product?.variants)[0]);
+  console.log(retrievedVariantInventories);
+  retrievedVariantInventories.forEach(([k, v]) => {
+
+    console.log('ABDKABKJAWD', k, v);
+
+    // Fix: just use strings for all IDs, at least it'll be consistent
+
+    console.log(tomitCartVariants, k);
+    const variantIndex = tomitCartVariants.indexOf(parseInt(k));
+    console.log(variantIndex);
+    const inventoryProductID = tomitCartPayload[variantIndex];
+    console.log(inventoryProductID);
+
+    const inventoryProduct = inventoryInfo[String(inventoryProductID)];
+    const inventoryProductVariants = inventoryProduct?.product?.variants;
+    console.log(inventoryProduct);
+    inventoryProductVariants[k] = v;
+  });
+
+  invInit = inventoryInfo;
+  console.log('INV READY', inventoryInfo);
+  tryInit();
+
+
+  // missingInventoryVariants = inventoryInfoProducts.map(product => product.variants)
+
+  
+
+  // window.tomitProductInventoryInfo
+    // .getProductsInventoryInformation(window.vars.tomitCartPayload)
+    // .then(function (inventory) {
+    //   invInit = inventory;
+    //   console.log('INV READY', inventory);
+    //   tryInit();
+    // });
 });
 
 function tryInit() {

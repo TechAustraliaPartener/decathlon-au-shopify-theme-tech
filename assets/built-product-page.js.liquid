@@ -1,4 +1,4 @@
-import { V as Vue } from './built-vue.esm-661ab646.js';
+import { V as Vue } from './built-vue.esm-a9b2b31f.js';
 import { J as JS_PREFIX, C as CSS_PREFIX, b as CSS_UTILITY_PREFIX, c as IS_HIDDEN_CLASS } from './built-fetch-stores-13903880.js';
 import { _ as _toConsumableArray } from './built-toConsumableArray-0fbe23f7.js';
 import { i as init$f } from './built-recently-viewed-799d64d9.js';
@@ -735,7 +735,26 @@ var getVariantOptions = function getVariantOptions(variant) {
  */
 
 var isVariantAvailable = function isVariantAvailable(variant) {
-  return variant && variant.available;
+  var variantInventory = window.productJSON.variants.find(function (v) {
+    return v.id === variant.id;
+  });
+  var variantLocationsInventory = (window.inventories || {})[variant.id];
+  var isAvailable = false;
+
+  if (variantLocationsInventory) {
+    var inventoryItem = variantLocationsInventory.inventoryItem;
+    var delivery = inventoryItem.delivery,
+        locations = inventoryItem.locations;
+    var filteredLocations = locations.filter(function (loc) {
+      return loc.available > 0;
+    });
+    isAvailable = filteredLocations.length > 0 || delivery.available > 0;
+  } else {
+    return variant && variant.available;
+  } // return variant && variant.available;
+
+
+  return isAvailable;
 };
 /**
  * Helper to know if a product variant is "out of stock"
@@ -1880,6 +1899,7 @@ var validationTextEl$1 = document.querySelector('.js-de-validation-message');
 var variantInventory = window.firstVariant;
 variantInventory.tagged_bis_hidden = window.vars.productJSON.tags.includes('bis-hidden');
 variantInventory.is_size_selected = false;
+variantInventory.artificially_unavailable = false;
 var translations = window.translations.product_stock;
 var IN_STOCK_CLASS = 'in_stock';
 var LOW_STOCK_CLASS = 'low_stock';
@@ -1941,7 +1961,13 @@ var initVueATC = function initVueATC() {
         }); // item is available if there is at least one stock in any location or delivery/online
         // mutatedInventory.available = (delivery.available > 0 || filteredLocations.length > 0 || filteredOnline.length > 0);
 
-        mutatedInventory.available = filteredLocations.length > 0;
+        mutatedInventory.available = filteredLocations.length > 0 || delivery.available > 0;
+        mutatedInventory.artificially_unavailable = locations.length < 1 && delivery.available < 1;
+
+        if (filteredLocations.length < 1 && delivery.available < 1) {
+          jQuery('.js-de-validation-message').text('Out of stock');
+        }
+
         var availablePerLocation = filteredLocations.map(function (location) {
           return location.available;
         });
@@ -4989,6 +5015,13 @@ var setUpListeners = function setUpListeners() {
   onVariantModification(function () {
     var fullState = getComputedState(state$4.getState());
     updateOptionStates(fullState);
+  }); // For triggering swatches UI update after inventory has been loaded
+
+  document.addEventListener('tomitProductLoaded', function (e, data) {
+    setTimeout(function () {
+      var fullState = getComputedState(state$4.getState());
+      updateOptionStates(fullState);
+    }, 100);
   });
 }; // Handles variant change
 

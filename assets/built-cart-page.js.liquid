@@ -1,4 +1,4 @@
-import { V as Vue } from './built-vue.esm-661ab646.js';
+import { V as Vue } from './built-vue.esm-a9b2b31f.js';
 
 /* global CartJS, Shopify */
 
@@ -149,7 +149,7 @@ function addMasterStoresData(inventoryItem, item) {
         return obj.name === loc.duplicate;
       });
 
-      if (thisLoc && thisLoc.name !== 'Genesis' && item.grams <= 22000) {
+      if (thisLoc && (thisLoc.name !== 'Genesis' || item.grams <= 22000)) {
         var duplicateLoc = JSON.parse(JSON.stringify(thisLoc));
         duplicateLoc.name = loc.name;
         inventoryItem.locations.push(duplicateLoc);
@@ -392,10 +392,131 @@ jQuery(document).on('cart.ready', function (event, cart) {
   tryInit();
 });
 document.addEventListener('tomitLoaded', function () {
-  window.tomitProductInventoryInfo.getProductsInventoryInformation(window.vars.tomitCartPayload).then(function (inventory) {
-    invInit = inventory;
-    console.log('INV READY', inventory);
-    tryInit();
+  return new Promise(function ($return, $error) {
+    var _window, vars, tomitProductInventoryInfo, _window$tomitProductI, getProductsInventoryInformation, getVariantInventory, tomitCartPayload, tomitCartVariants, getVariantInventoryAndHandleErrors, inventoryInfo, missingInventoryVariants, inventoryInfoVariants, inventoryInfoVariantIDs, getMissingInventoryCalls, missingInventory, retrievedVariantInventories;
+
+    _window = window, vars = _window.vars, tomitProductInventoryInfo = _window.tomitProductInventoryInfo;
+    _window$tomitProductI = window.tomitProductInventoryInfo, getProductsInventoryInformation = _window$tomitProductI.getProductsInventoryInformation, getVariantInventory = _window$tomitProductI.getVariantInventory;
+    tomitCartPayload = vars.tomitCartPayload, tomitCartVariants = vars.tomitCartVariants;
+
+    getVariantInventoryAndHandleErrors = function getVariantInventoryAndHandleErrors(vID) {
+      return new Promise(function ($return, $error) {
+        var response;
+
+        var $Try_1_Post = function () {
+          try {
+            return $return(response);
+          } catch ($boundEx) {
+            return $error($boundEx);
+          }
+        };
+
+        var $Try_1_Catch = function (err) {
+          try {
+            console.error('Error getting inventory', err);
+            response = undefined;
+            return $Try_1_Post();
+          } catch ($boundEx) {
+            return $error($boundEx);
+          }
+        };
+
+        try {
+          return Promise.resolve(getVariantInventory(vID)).then(function ($await_2) {
+            try {
+              response = $await_2;
+              return $Try_1_Post();
+            } catch ($boundEx) {
+              return $Try_1_Catch($boundEx);
+            }
+          }, $Try_1_Catch);
+        } catch (err) {
+          $Try_1_Catch(err);
+        }
+      });
+    };
+
+    console.log('AKLDNA');
+    return Promise.resolve(getProductsInventoryInformation(tomitCartPayload)).then(function ($await_3) {
+      try {
+        inventoryInfo = $await_3;
+        console.log('ANDJKADNKJAW', inventoryInfo);
+        inventoryInfoVariants = Object.entries(inventoryInfo).map(function (_ref) {
+          var _v$product;
+
+          var k = _ref[0],
+              v = _ref[1];
+          return v == null ? void 0 : (_v$product = v.product) == null ? void 0 : _v$product.variants;
+        });
+        inventoryInfoVariantIDs = Object.entries(inventoryInfo).map(function (_ref2) {
+          var _v$product2;
+
+          var k = _ref2[0],
+              v = _ref2[1];
+          return Object.keys(v == null ? void 0 : (_v$product2 = v.product) == null ? void 0 : _v$product2.variants);
+        });
+        inventoryInfoVariantIDs = inventoryInfoVariantIDs.reduce(function (acc, val) {
+          return acc.concat(val);
+        }, []);
+        console.log(inventoryInfoVariantIDs);
+        missingInventoryVariants = tomitCartVariants.filter(function (vID) {
+          return inventoryInfoVariantIDs.indexOf(String(vID)) === -1;
+        });
+        console.log(missingInventoryVariants);
+        getMissingInventoryCalls = missingInventoryVariants.map(function (vID) {
+          return getVariantInventoryAndHandleErrors(vID);
+        });
+        return Promise.resolve(Promise.all(getMissingInventoryCalls)).then(function ($await_4) {
+          try {
+            missingInventory = $await_4;
+            console.log(missingInventory);
+            missingInventory = missingInventory.filter(function (i) {
+              return i !== undefined;
+            });
+            console.log('WOO', missingInventory);
+            retrievedVariantInventories = missingInventory.map(function (inventoryData) {
+              var _inventoryData$produc;
+
+              return Object.entries(inventoryData == null ? void 0 : (_inventoryData$produc = inventoryData.product) == null ? void 0 : _inventoryData$produc.variants)[0];
+            });
+            console.log(retrievedVariantInventories);
+            retrievedVariantInventories.forEach(function (_ref3) {
+              var _inventoryProduct$pro;
+
+              var k = _ref3[0],
+                  v = _ref3[1];
+              console.log('ABDKABKJAWD', k, v); // Fix: just use strings for all IDs, at least it'll be consistent
+
+              console.log(tomitCartVariants, k);
+              var variantIndex = tomitCartVariants.indexOf(parseInt(k));
+              console.log(variantIndex);
+              var inventoryProductID = tomitCartPayload[variantIndex];
+              console.log(inventoryProductID);
+              var inventoryProduct = inventoryInfo[String(inventoryProductID)];
+              var inventoryProductVariants = inventoryProduct == null ? void 0 : (_inventoryProduct$pro = inventoryProduct.product) == null ? void 0 : _inventoryProduct$pro.variants;
+              console.log(inventoryProduct);
+              inventoryProductVariants[k] = v;
+            });
+            invInit = inventoryInfo;
+            console.log('INV READY', inventoryInfo);
+            tryInit(); // missingInventoryVariants = inventoryInfoProducts.map(product => product.variants)
+            // window.tomitProductInventoryInfo
+            // .getProductsInventoryInformation(window.vars.tomitCartPayload)
+            // .then(function (inventory) {
+            //   invInit = inventory;
+            //   console.log('INV READY', inventory);
+            //   tryInit();
+            // });
+
+            return $return();
+          } catch ($boundEx) {
+            return $error($boundEx);
+          }
+        }, $error);
+      } catch ($boundEx) {
+        return $error($boundEx);
+      }
+    }, $error);
   });
 });
 

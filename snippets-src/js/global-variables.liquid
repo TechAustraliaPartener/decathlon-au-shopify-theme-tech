@@ -35,7 +35,8 @@
   window.vars.iconAvailable = `{% include 'assets-icons-available' with class: 'de-Icon de-u-spaceRight06' %}`;
   window.vars.iconUnavailable = `{% include 'assets-icons-unavailable' with class: 'de-Icon de-u-spaceRight06' %}`;
   window.vars.cartPayload = {{ cart | json }};
-  window.vars.tomitCartPayload = [{{ cart.items | map: 'product' | map: 'id' | join: ', ' }}];
+  window.vars.tomitCartPayload = {{ cart.items | map: 'product' | map: 'id' | json }};
+  window.vars.tomitCartVariants = {{ cart.items | map: 'id' | json }};
   window.vars.deliveryOption = (window.vars.favStore ? localStorage.getItem('deliveryOption') : 'Delivery') || 'Delivery';
   window.vars.customer = {% if customer %}{
     id: {{ customer.id }},
