@@ -535,10 +535,10 @@
               "ready": "Ready to collect in 2 hours",
               "ready_checkout": "Pickup: Ready in 2 Hours",
               "id": "1792",
-              "tooltip_hours": false,
-              "is_same_hours_weekly": true,
-              "hours_0_open": "1000",
-              "hours_0_close": "1700",
+              "tooltip_hours": true,
+              "is_same_hours_weekly": false,
+              "hours_0_open": "0930",
+              "hours_0_close": "1930",
               "hours_1_open": "0930",
               "hours_1_close": "1930",
               "hours_2_open": "0930",
@@ -623,7 +623,7 @@
               "ready": "Collect 2-3 business days after placing order.",
               "ready_checkout": "Collect 2-3 business days after placing order.",
               "id": "1793-0004",
-              "tooltip_hours": false,
+              "tooltip_hours": true,
               "is_same_hours_weekly": true,
               "hours_0_open": "0900",
               "hours_0_close": "1730",
@@ -639,7 +639,7 @@
               "hours_5_close": "1700",
               "hours_6_open": "0900",
               "hours_6_close": "1700",
-              "announcement": "<p>Click and Collect Decathlon products at The Surfboard Warehouse Brookvale. <br\/><br\/>Wait for your confirmation email before collecting your order.<\/p>",
+              "announcement": "<p>Limited products available for in-store shopping at this click &amp; collect point.<\/p><p>We recommend doing an online click &amp; collect to secure your products.<\/p>",
               "address_type_boolean": true,
               "is_residential": false,
               "is_warehouse": false,
@@ -786,7 +786,7 @@
               "online_inventory_source": false,
               "enable_c_c": true,
               "duplicate": "Knoxfield",
-              "test_mode": false,
+              "test_mode": true,
               "street1": "29-31 High Street",
               "city": "Berwick",
               "zip": "3806",
@@ -914,7 +914,7 @@
             "type": "store",
             "settings": {
               "name": "The Surfboard Warehouse Brookvale",
-              "title": "The Surfboard Warehouse, 2100, Pick Up Only",
+              "title": "TSBW Brookvale, 2100, Pick Up Only",
               "online_inventory_source": false,
               "enable_c_c": true,
               "duplicate": "Tempe",
@@ -982,24 +982,24 @@
               "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_36.png",
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
-              "banner_title": "Reconnect with the great outdoors",
+              "banner_title": "Back To The Great Outdoors",
               "banner_subtitle": "",
               "button_new_window": false,
-              "button_title": "SHOP Hiking & trekking",
+              "button_title": "Explore Hiking",
               "button_url": "shopify:\/\/collections\/hiking-trekking"
             }
           },
-          "4cf92f46-c528-4e84-a6a7-8781c5769a26": {
+          "48027428-b184-4ac2-948e-7622de218caf": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_32.png",
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_42.png",
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
-              "banner_title": "Our Best Selling MTB",
-              "banner_subtitle": "<p><strong>Rockrider ST 100 MTB 27.5&quot;<\/strong><\/p>",
+              "banner_title": "<span style=\"color: #333333;\">Running Shoes<\/span>",
+              "banner_subtitle": "",
               "button_new_window": false,
               "button_title": "Shop Now",
-              "button_url": "shopify:\/\/products\/rockrider-st-100-mountain-bike-193771"
+              "button_url": "https:\/\/decathlon.com.au\/search?q=Running+Shoes"
             }
           },
           "a0f45f18-a85b-42cf-a280-a280f09ef2e5": {
@@ -1015,6 +1015,19 @@
               "button_url": "shopify:\/\/collections\/kayaking"
             }
           },
+          "4cf92f46-c528-4e84-a6a7-8781c5769a26": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_32.png",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "Our Best Selling MTB",
+              "banner_subtitle": "<p><strong>Rockrider ST 100 MTB 27.5&quot;<\/strong><\/p>",
+              "button_new_window": false,
+              "button_title": "Shop Now",
+              "button_url": "shopify:\/\/collections\/mountain-bike"
+            }
+          },
           "51eee9ea-9fdc-4cb9-a425-86b4178aebdc": {
             "type": "slide",
             "settings": {
@@ -1027,28 +1040,43 @@
               "button_title": "Shop Soccer",
               "button_url": "shopify:\/\/collections\/soccer-futsal"
             }
+          },
+          "89f864d1-551e-4c01-a77e-5055b0859b0e": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_43.png",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "<span style=\"color: #333333;\">Our All Time Best-Sellers<\/span>",
+              "banner_subtitle": "",
+              "button_new_window": false,
+              "button_title": "Shop Now",
+              "button_url": "shopify:\/\/collections\/top-picks"
+            }
           }
         },
         "block_order": [
           "7b73c2da-dac9-47d8-a5d3-99e46591c1aa",
-          "4cf92f46-c528-4e84-a6a7-8781c5769a26",
+          "48027428-b184-4ac2-948e-7622de218caf",
           "a0f45f18-a85b-42cf-a280-a280f09ef2e5",
-          "51eee9ea-9fdc-4cb9-a425-86b4178aebdc"
+          "4cf92f46-c528-4e84-a6a7-8781c5769a26",
+          "51eee9ea-9fdc-4cb9-a425-86b4178aebdc",
+          "89f864d1-551e-4c01-a77e-5055b0859b0e"
         ],
         "settings": {}
       },
       "1590735691745": {
         "type": "slider_image_section",
         "settings": {
-          "homepage_slider_image_title": "Explore Camping",
-          "homepage_slider_image_1": "shopify:\/\/shop_images\/2.png",
-          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/sleeping-equipment",
+          "homepage_slider_image_title": "More Hiking",
+          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_55.png",
+          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/hiking-water-bottles-flasks",
           "checkbox_image_1": true,
-          "homepage_slider_image_2": "shopify:\/\/shop_images\/4.png",
-          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/camping-equipment",
+          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_57.png",
+          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/hiking-lamps-torches-headlamps",
           "checkbox_image_2": true,
-          "homepage_slider_image_3": "shopify:\/\/shop_images\/3.png",
-          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/hydration-food-storage",
+          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_58.png",
+          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/hiking-trekking-poles",
           "checkbox_image_3": true,
           "homepage_slider_image_redirection_4": "",
           "checkbox_image_4": false
@@ -1059,16 +1087,17 @@
         "disabled": true,
         "settings": {
           "homepage_slider_image_title": "This Weekend Only",
-          "homepage_slider_image_1": "shopify:\/\/shop_images\/4_8603d1c0-0255-4ce5-8753-c8e8f300b2e4.png",
-          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/products\/2-seconds-pop-up-fresh-black-camping-tent-3-person-142651?variant=30895604662383",
+          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_63.png",
+          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/products\/country-walking-backpack-mh100-10-litre",
           "checkbox_image_1": true,
-          "homepage_slider_image_2": "shopify:\/\/shop_images\/5.png",
-          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/products\/camping-tent-2-seconds-easy-fresh-black-2-person?variant=31318853714031",
+          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_64.png",
+          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/products\/nh-100-20l-hiking-backpack-301674",
           "checkbox_image_2": true,
-          "homepage_slider_image_3": "shopify:\/\/shop_images\/6.png",
-          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/products\/arpenaz-3-fresh-black-camping-tent-3-person-142656?variant=30895604793455",
+          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_66.png",
+          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/products\/nh-500-adult-hiking-bakcpack-30l-156341",
           "checkbox_image_3": true,
-          "homepage_slider_image_redirection_4": "",
+          "homepage_slider_image_4": "shopify:\/\/shop_images\/HP_Section_450_X_280_60.png",
+          "homepage_slider_image_redirection_4": "https:\/\/decathlon.com.au\/products\/trekking-travel-backpack-40-litres-travel-100",
           "checkbox_image_4": false
         }
       },
@@ -1123,14 +1152,51 @@
           "homepage_slider_image_redirection_4": "https:\/\/decathlon.com.au\/collections\/trail-running-gear-clothes",
           "checkbox_image_4": false
         }
+      },
+      "161715071292816218": {
+        "type": "slider_image_section",
+        "disabled": true,
+        "settings": {
+          "homepage_slider_image_title": "News",
+          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_49.png",
+          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/pages\/delivery-click-and-collect",
+          "checkbox_image_1": true,
+          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_50.png",
+          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/pages\/delivery-click-and-collect",
+          "checkbox_image_2": true,
+          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_51.png",
+          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/pages\/store-locator",
+          "checkbox_image_3": true,
+          "homepage_slider_image_redirection_4": "",
+          "checkbox_image_4": false
+        }
+      },
+      "16171919053e0748b9": {
+        "type": "slider_image_section",
+        "settings": {
+          "homepage_slider_image_title": "Popular Brands",
+          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_52.png",
+          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/brands-nike",
+          "checkbox_image_1": true,
+          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_53.png",
+          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/brands-puma",
+          "checkbox_image_2": true,
+          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_54.png",
+          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/skechers",
+          "checkbox_image_3": true,
+          "homepage_slider_image_redirection_4": "",
+          "checkbox_image_4": false
+        }
       }
     },
     "content_for_index": [
       "1568939434006",
       "1597283878337",
       "1590735691745",
-      "1602562605803",
       "161676069181163e17",
+      "1602562605803",
+      "161715071292816218",
+      "16171919053e0748b9",
       "1616763819ce6b8f96"
     ]
   },
