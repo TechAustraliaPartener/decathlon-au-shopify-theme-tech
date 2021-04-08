@@ -438,22 +438,15 @@ document.addEventListener('tomitLoaded', async () => {
   missingInventoryVariants = tomitCartVariants.filter(vID => inventoryInfoVariantIDs.indexOf(String(vID)) === -1);
   console.log(missingInventoryVariants);
 
-  const getMissingInventoryCalls = missingInventoryVariants.map(vID => getVariantInventoryAndHandleErrors(vID));
+  for (var i = missingInventoryVariants.length - 1; i >= 0; i--) {
+    const missingInventoryVariant = missingInventoryVariants[i];
 
-  let missingInventory = await Promise.all(getMissingInventoryCalls);
-  console.log(missingInventory);
-  missingInventory = missingInventory.filter(i => i !== undefined);
+    let variantInventory = await getVariantInventoryAndHandleErrors(missingInventoryVariant);
+    if (variantInventory === undefined) {
+      return;
+    }
 
-  console.log('WOO', missingInventory);
-
-  const retrievedVariantInventories = missingInventory.map(inventoryData => Object.entries(inventoryData?.product?.variants)[0]);
-  console.log(retrievedVariantInventories);
-  retrievedVariantInventories.forEach(([k, v]) => {
-
-    console.log('ABDKABKJAWD', k, v);
-
-    // Fix: just use strings for all IDs, at least it'll be consistent
-
+    const [k, v] = Object.entries(variantInventory?.product?.variants)[0];
     console.log(tomitCartVariants, k);
     const variantIndex = tomitCartVariants.indexOf(parseInt(k));
     console.log(variantIndex);
@@ -464,24 +457,11 @@ document.addEventListener('tomitLoaded', async () => {
     const inventoryProductVariants = inventoryProduct?.product?.variants;
     console.log(inventoryProduct);
     inventoryProductVariants[k] = v;
-  });
+  }
 
   invInit = inventoryInfo;
   console.log('INV READY', inventoryInfo);
   tryInit();
-
-
-  // missingInventoryVariants = inventoryInfoProducts.map(product => product.variants)
-
-  
-
-  // window.tomitProductInventoryInfo
-    // .getProductsInventoryInformation(window.vars.tomitCartPayload)
-    // .then(function (inventory) {
-    //   invInit = inventory;
-    //   console.log('INV READY', inventory);
-    //   tryInit();
-    // });
 });
 
 function tryInit() {

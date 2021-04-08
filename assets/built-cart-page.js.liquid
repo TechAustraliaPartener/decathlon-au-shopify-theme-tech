@@ -393,7 +393,7 @@ jQuery(document).on('cart.ready', function (event, cart) {
 });
 document.addEventListener('tomitLoaded', function () {
   return new Promise(function ($return, $error) {
-    var _window, vars, tomitProductInventoryInfo, _window$tomitProductI, getProductsInventoryInformation, getVariantInventory, tomitCartPayload, tomitCartVariants, getVariantInventoryAndHandleErrors, inventoryInfo, missingInventoryVariants, inventoryInfoVariants, inventoryInfoVariantIDs, getMissingInventoryCalls, missingInventory, retrievedVariantInventories;
+    var _window, vars, tomitProductInventoryInfo, _window$tomitProductI, getProductsInventoryInformation, getVariantInventory, tomitCartPayload, tomitCartVariants, getVariantInventoryAndHandleErrors, inventoryInfo, missingInventoryVariants, inventoryInfoVariants, inventoryInfoVariantIDs, i, _variantInventory$pro, _inventoryProduct$pro, missingInventoryVariant, variantInventory, _Object$entries$, k, v, variantIndex, inventoryProductID, inventoryProduct, inventoryProductVariants;
 
     _window = window, vars = _window.vars, tomitProductInventoryInfo = _window.tomitProductInventoryInfo;
     _window$tomitProductI = window.tomitProductInventoryInfo, getProductsInventoryInformation = _window$tomitProductI.getProductsInventoryInformation, getVariantInventory = _window$tomitProductI.getVariantInventory;
@@ -422,9 +422,9 @@ document.addEventListener('tomitLoaded', function () {
         };
 
         try {
-          return Promise.resolve(getVariantInventory(vID)).then(function ($await_2) {
+          return Promise.resolve(getVariantInventory(vID)).then(function ($await_4) {
             try {
-              response = $await_2;
+              response = $await_4;
               return $Try_1_Post();
             } catch ($boundEx) {
               return $Try_1_Catch($boundEx);
@@ -437,86 +437,95 @@ document.addEventListener('tomitLoaded', function () {
     };
 
     console.log('AKLDNA');
-    return Promise.resolve(getProductsInventoryInformation(tomitCartPayload)).then(function ($await_3) {
+    return Promise.resolve(getProductsInventoryInformation(tomitCartPayload)).then(function ($await_5) {
       try {
-        inventoryInfo = $await_3;
-        console.log('ANDJKADNKJAW', inventoryInfo);
-        inventoryInfoVariants = Object.entries(inventoryInfo).map(function (_ref) {
-          var _v$product;
+        {
+          inventoryInfo = $await_5;
+          console.log('ANDJKADNKJAW', inventoryInfo);
+          inventoryInfoVariants = Object.entries(inventoryInfo).map(function (_ref) {
+            var _v$product;
 
-          var k = _ref[0],
-              v = _ref[1];
-          return v == null ? void 0 : (_v$product = v.product) == null ? void 0 : _v$product.variants;
-        });
-        inventoryInfoVariantIDs = Object.entries(inventoryInfo).map(function (_ref2) {
-          var _v$product2;
+            var k = _ref[0],
+                v = _ref[1];
+            return v == null ? void 0 : (_v$product = v.product) == null ? void 0 : _v$product.variants;
+          });
+          inventoryInfoVariantIDs = Object.entries(inventoryInfo).map(function (_ref2) {
+            var _v$product2;
 
-          var k = _ref2[0],
-              v = _ref2[1];
-          return Object.keys(v == null ? void 0 : (_v$product2 = v.product) == null ? void 0 : _v$product2.variants);
-        });
-        inventoryInfoVariantIDs = inventoryInfoVariantIDs.reduce(function (acc, val) {
-          return acc.concat(val);
-        }, []);
-        console.log(inventoryInfoVariantIDs);
-        missingInventoryVariants = tomitCartVariants.filter(function (vID) {
-          return inventoryInfoVariantIDs.indexOf(String(vID)) === -1;
-        });
-        console.log(missingInventoryVariants);
-        getMissingInventoryCalls = missingInventoryVariants.map(function (vID) {
-          return getVariantInventoryAndHandleErrors(vID);
-        });
-        return Promise.resolve(Promise.all(getMissingInventoryCalls)).then(function ($await_4) {
-          try {
-            missingInventory = $await_4;
-            console.log(missingInventory);
-            missingInventory = missingInventory.filter(function (i) {
-              return i !== undefined;
-            });
-            console.log('WOO', missingInventory);
-            retrievedVariantInventories = missingInventory.map(function (inventoryData) {
-              var _inventoryData$produc;
+            var k = _ref2[0],
+                v = _ref2[1];
+            return Object.keys(v == null ? void 0 : (_v$product2 = v.product) == null ? void 0 : _v$product2.variants);
+          });
+          inventoryInfoVariantIDs = inventoryInfoVariantIDs.reduce(function (acc, val) {
+            return acc.concat(val);
+          }, []);
+          console.log(inventoryInfoVariantIDs);
+          missingInventoryVariants = tomitCartVariants.filter(function (vID) {
+            return inventoryInfoVariantIDs.indexOf(String(vID)) === -1;
+          });
+          console.log(missingInventoryVariants);
+          i = missingInventoryVariants.length - 1;
+          var $Loop_2_trampoline;
 
-              return Object.entries(inventoryData == null ? void 0 : (_inventoryData$produc = inventoryData.product) == null ? void 0 : _inventoryData$produc.variants)[0];
-            });
-            console.log(retrievedVariantInventories);
-            retrievedVariantInventories.forEach(function (_ref3) {
-              var _inventoryProduct$pro;
+          function $Loop_2_step() {
+            i--;
+            return $Loop_2;
+          }
 
-              var k = _ref3[0],
-                  v = _ref3[1];
-              console.log('ABDKABKJAWD', k, v); // Fix: just use strings for all IDs, at least it'll be consistent
+          function $Loop_2() {
+            if (i >= 0) {
+              missingInventoryVariant = missingInventoryVariants[i];
+              return Promise.resolve(getVariantInventoryAndHandleErrors(missingInventoryVariant)).then(function ($await_6) {
+                try {
+                  variantInventory = $await_6;
 
-              console.log(tomitCartVariants, k);
-              var variantIndex = tomitCartVariants.indexOf(parseInt(k));
-              console.log(variantIndex);
-              var inventoryProductID = tomitCartPayload[variantIndex];
-              console.log(inventoryProductID);
-              var inventoryProduct = inventoryInfo[String(inventoryProductID)];
-              var inventoryProductVariants = inventoryProduct == null ? void 0 : (_inventoryProduct$pro = inventoryProduct.product) == null ? void 0 : _inventoryProduct$pro.variants;
-              console.log(inventoryProduct);
-              inventoryProductVariants[k] = v;
-            });
+                  if (variantInventory === undefined) {
+                    return $return();
+                  }
+
+                  _Object$entries$ = Object.entries(variantInventory == null ? void 0 : (_variantInventory$pro = variantInventory.product) == null ? void 0 : _variantInventory$pro.variants)[0], k = _Object$entries$[0], v = _Object$entries$[1];
+                  console.log(tomitCartVariants, k);
+                  variantIndex = tomitCartVariants.indexOf(parseInt(k));
+                  console.log(variantIndex);
+                  inventoryProductID = tomitCartPayload[variantIndex];
+                  console.log(inventoryProductID);
+                  inventoryProduct = inventoryInfo[String(inventoryProductID)];
+                  inventoryProductVariants = inventoryProduct == null ? void 0 : (_inventoryProduct$pro = inventoryProduct.product) == null ? void 0 : _inventoryProduct$pro.variants;
+                  console.log(inventoryProduct);
+                  inventoryProductVariants[k] = v;
+                  return $Loop_2_step;
+                } catch ($boundEx) {
+                  return $error($boundEx);
+                }
+              }, $error);
+            } else return [1];
+          }
+
+          return ($Loop_2_trampoline = function (q) {
+            while (q) {
+              if (q.then) return void q.then($Loop_2_trampoline, $error);
+
+              try {
+                if (q.pop) {
+                  if (q.length) return q.pop() ? $Loop_2_exit.call(this) : q;else q = $Loop_2_step;
+                } else q = q.call(this);
+              } catch (_exception) {
+                return $error(_exception);
+              }
+            }
+          }.bind(this))($Loop_2);
+
+          function $Loop_2_exit() {
             invInit = inventoryInfo;
             console.log('INV READY', inventoryInfo);
-            tryInit(); // missingInventoryVariants = inventoryInfoProducts.map(product => product.variants)
-            // window.tomitProductInventoryInfo
-            // .getProductsInventoryInformation(window.vars.tomitCartPayload)
-            // .then(function (inventory) {
-            //   invInit = inventory;
-            //   console.log('INV READY', inventory);
-            //   tryInit();
-            // });
-
+            tryInit();
             return $return();
-          } catch ($boundEx) {
-            return $error($boundEx);
           }
-        }, $error);
+        }
       } catch ($boundEx) {
         return $error($boundEx);
       }
-    }, $error);
+    }.bind(this), $error);
   });
 });
 
