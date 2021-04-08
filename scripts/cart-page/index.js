@@ -425,38 +425,46 @@ document.addEventListener('tomitLoaded', async () => {
     return response;
   }
 
-  console.log('AKLDNA');
+  console.log(1);
   let inventoryInfo = await getProductsInventoryInformation(tomitCartPayload);
-  console.log('ANDJKADNKJAW', inventoryInfo);
+  console.log(2, inventoryInfo);
 
-  let missingInventoryVariants;
-  const inventoryInfoVariants = Object.entries(inventoryInfo).map(([k, v]) => v?.product?.variants);
-  let inventoryInfoVariantIDs = Object.entries(inventoryInfo).map(([k, v]) => Object.keys(v?.product?.variants));
-  inventoryInfoVariantIDs = inventoryInfoVariantIDs.reduce((acc, val) => acc.concat(val), []);
-  console.log(inventoryInfoVariantIDs);
+  try {
+    let missingInventoryVariants;
+    const inventoryInfoVariants = Object.entries(inventoryInfo).map(([k, v]) => v?.product?.variants);
+    let inventoryInfoVariantIDs = Object.entries(inventoryInfo).map(([k, v]) => Object.keys(v?.product?.variants));
+    inventoryInfoVariantIDs = inventoryInfoVariantIDs.reduce((acc, val) => acc.concat(val), []);
+    console.log(3, inventoryInfoVariantIDs);
 
-  missingInventoryVariants = tomitCartVariants.filter(vID => inventoryInfoVariantIDs.indexOf(String(vID)) === -1);
-  console.log(missingInventoryVariants);
+    missingInventoryVariants = tomitCartVariants.filter(vID => inventoryInfoVariantIDs.indexOf(String(vID)) === -1);
+    console.log(4, missingInventoryVariants);
 
-  for (var i = missingInventoryVariants.length - 1; i >= 0; i--) {
-    const missingInventoryVariant = missingInventoryVariants[i];
+    if (missingInventoryVariants.length > 0) {
 
-    let variantInventory = await getVariantInventoryAndHandleErrors(missingInventoryVariant);
-    if (variantInventory === undefined) {
-      return;
+      for (var i = missingInventoryVariants.length - 1; i >= 0; i--) {
+        const missingInventoryVariant = missingInventoryVariants[i];
+
+        let variantInventory = await getVariantInventoryAndHandleErrors(missingInventoryVariant);
+        if (variantInventory === undefined) {
+          return;
+        }
+
+        const [k, v] = Object.entries(variantInventory?.product?.variants)[0];
+        console.log(5, tomitCartVariants, k);
+        const variantIndex = tomitCartVariants.indexOf(parseInt(k));
+        console.log(6, variantIndex);
+        const inventoryProductID = tomitCartPayload[variantIndex];
+        console.log(7, inventoryProductID);
+
+        const inventoryProduct = inventoryInfo[String(inventoryProductID)];
+        const inventoryProductVariants = inventoryProduct?.product?.variants;
+        console.log(8, inventoryProduct);
+        inventoryProductVariants[k] = v;
+      }
+
     }
-
-    const [k, v] = Object.entries(variantInventory?.product?.variants)[0];
-    console.log(tomitCartVariants, k);
-    const variantIndex = tomitCartVariants.indexOf(parseInt(k));
-    console.log(variantIndex);
-    const inventoryProductID = tomitCartPayload[variantIndex];
-    console.log(inventoryProductID);
-
-    const inventoryProduct = inventoryInfo[String(inventoryProductID)];
-    const inventoryProductVariants = inventoryProduct?.product?.variants;
-    console.log(inventoryProduct);
-    inventoryProductVariants[k] = v;
+  } catch(err) {
+    console.error('Error getting variant inventories', err);
   }
 
   invInit = inventoryInfo;
