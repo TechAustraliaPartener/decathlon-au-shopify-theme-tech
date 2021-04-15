@@ -192,6 +192,11 @@ var decathlonCheckout = (function(decathlonCheckout, $) {
   discountMessagePrepayment.initialize = function(initializeOptions) {
     options = initializeOptions;
 
+    // Make sure to display propper shipping method state
+    // https://app.clickup.com/t/7qym8y
+    displayValidShippingMethod();
+    
+
     $(DISCOUNT_SECTION_SELECTOR).each(function() {
       if (!$(this).parents('.tag').length) {
         if ($(this).find('.tags-list').length) {
@@ -274,6 +279,35 @@ var decathlonCheckout = (function(decathlonCheckout, $) {
 
   return decathlonCheckout;
 })(decathlonCheckout || {}, jQuery || Checkout.jQuery);
+
+/**
+ * This function prevents showing invalid shipping methods after applying discount code
+ * in the checkout
+ * https://app.clickup.com/t/7qym8y
+ */
+function displayValidShippingMethod() {
+  var isDelivery  = window.deliveryMethod === 'Delivery';
+  var shippingMethod = '';
+
+  $('.section--shipping-method .content-box [data-shipping-method]').each(function(index, element) {
+    shippingMethod = $(this).attr('data-shipping-method');
+
+    if(!isDelivery) {
+      if(shippingMethod !== 'shopify-Pickup-0.00') {
+        // Remove DOM instead of just .hide() for security
+        $(this).closest('.content-box__row').remove();
+      }
+
+    } else {
+      if (shippingMethod === 'shopify-Pickup-0.00') {
+        // Remove DOM instead of just .hide() for security
+        $(this).closest('.content-box__row').remove();
+      }
+    }
+    
+   });
+
+}
 
 /**
  * Custom checkout initialisation.
