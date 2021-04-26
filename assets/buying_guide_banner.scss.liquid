@@ -1,0 +1,79 @@
+.buying_guide_banner {
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (min-width: 800px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    // background-color: #eee;
+  }
+
+  .teammate_container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    color: white;
+    background-color: #0082c3;
+    height: 36px;
+    padding-left: 12px;
+    border-radius: 0 18px 18px 0;
+    
+    @media screen and (min-width: 720px) {
+      flex: 2;
+      white-space: nowrap;
+    }
+  }
+
+  .buying_guide_label {
+    flex: 1;
+    font-weight: 600;
+    margin-right: 1rem;
+  }
+
+  .teammate_image_wrapper {
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
+    border: 1px solid #ff0000;
+    overflow: hidden;
+  }
+
+  .teammate_image {
+    object-fit: cover;
+  }
+
+  .guide_container {
+    padding: 6px 12px;
+    background-color: #eee;
+    font-size: 0.8rem ;
+    font-weight: 600;
+    line-height: 18px;
+    
+    @media screen and (min-width: 800px) {
+      flex: 3;
+      padding: 9px 12px;
+      white-space: nowrap;
+    }
+
+    a {
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+  }
+}
+
+/* Added div to increase specificity */
+div.buying_guide_wrapper_desktop {
+  display: none;
+  margin-bottom: 8px;
+  
+  @media screen and (min-width: 769px) {
+    display: block;
+  }
+}
+
+div.buying_guide_wrapper_mobile {
+  @media screen and (min-width: 769px) {
+    display: none;
+  }
+}

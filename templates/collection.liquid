@@ -1,3 +1,5 @@
+<div class="buying_guide_wrapper_mobile">{% render 'buying_guide_banner' %}</div>
+
 {% render 'shogun-products', content: collection %}
 {% comment %}Preserve collection in true_collection for use later{% endcomment %}
 {% assign true_collection = collection %}
@@ -44,6 +46,7 @@
 {% include 'helpers-template-name' %}
 
 {% include 'collection-header-js' %}
+
 {% if collection.image %}
     <div class="collectionImage medium-down--hide" style="background-image:url('{{ collection.image | img_url: 'master' }}'); " data-background-image="{{ collection.image | img_url: 'master' }}">
         <div class="wrapper">
