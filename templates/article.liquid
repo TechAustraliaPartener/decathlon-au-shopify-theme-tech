@@ -230,35 +230,39 @@
       button_adtl_classes: ' btn--blog u-marginBottom6x',
       button_title: 'Explore Careers' %}
   {% else %}
-  <div class="blogCards blogCards-related">
-    <h4 class="text-center u-marginBottom2x">Related Posts</h4>
-    <div class="grid-uniform u-flex-list u-flex-list--line{% if blog.articles.size <= 2 %} u-centerCards{% endif %} js-slick--attr" data-slick='{ "infinite": true, "autoplay": false, "slidesToShow": 1, "dots": true, "arrows": false, "mobileFirst": true, "responsive": [ { "breakpoint": 768, "settings": "unslick" } ] }'>
-    {% assign featured_articles = false %}
-    {% for blog in linklists['all-blogs'].links %}
-      {% if featured_articles %}
-        {% assign featured_articles = featured_articles | concat: blog.object.articles %}
-      {% else %}
-        {% assign featured_articles = blog.object.articles %}
-      {% endif %}
-    {% endfor %}
+  
+    {% comment %}
+      <div class="blogCards blogCards-related">
+        <h4 class="text-center u-marginBottom2x">Related Posts</h4>
+        <div class="grid-uniform u-flex-list u-flex-list--line{% if blog.articles.size <= 2 %} u-centerCards{% endif %} js-slick--attr" data-slick='{ "infinite": true, "autoplay": false, "slidesToShow": 1, "dots": true, "arrows": false, "mobileFirst": true, "responsive": [ { "breakpoint": 768, "settings": "unslick" } ] }'>
+        {% assign featured_articles = false %}
+        {% for blog in linklists['all-blogs'].links %}
+          {% if featured_articles %}
+            {% assign featured_articles = featured_articles | concat: blog.object.articles %}
+          {% else %}
+            {% assign featured_articles = blog.object.articles %}
+          {% endif %}
+        {% endfor %}
 
-    {% assign featured_articles = featured_articles | sort: 'published_at' | reverse %}
-    {% assign current_article = article %}
-    {%- for article in featured_articles -%}
-      {% if forloop.index > 4 %}{% break %}{% endif %}
-      {%- unless article.id == current_article.id -%}
-        {% include 'compositions-blog-get-for-article', blogs: linklists['all-blogs'].links, article: article %}
-        {% include 'compositions-blog-grid-item', size_classes: 'large--one-third' %}
-      {%- endunless -%}
-    {%- endfor -%}
+        {% assign featured_articles = featured_articles | sort: 'published_at' | reverse %}
+        {% assign current_article = article %}
+        {%- for article in featured_articles -%}
+          {% if forloop.index > 4 %}{% break %}{% endif %}
+          {%- unless article.id == current_article.id -%}
+            {% include 'compositions-blog-get-for-article', blogs: linklists['all-blogs'].links, article: article %}
+            {% include 'compositions-blog-grid-item', size_classes: 'large--one-third' %}
+          {%- endunless -%}
+        {%- endfor -%}
+        </div>
     </div>
-  </div>
+    {% endcomment %}
 
-  {% assign button_url = '/blogs/' | append: blog.handle %}
+    {% assign button_url = '/blogs/' | append: blog.handle %}
     {% include 'elements-button',
       button_wrapper: 'text-center u-block u-marginBottom4x',
       button_adtl_classes: ' btn--blog',
-      button_title: 'Explore Our Playbook' %}
+      button_title: 'More Blogs' %}
+
   {% endif %}
 
 </div>
@@ -377,4 +381,5 @@ $(function() {
     }
   }
 </script>
+
 
