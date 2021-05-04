@@ -645,6 +645,7 @@
       "card_number_tip": "This number should be 16 digits long.",
       "pin_code_label": "PIN Code:",
       "pin_code_tip": "This code should be 4 digits.",
+      "note": "Note: selecting REDEEM, will debit your Gift Card. Only select redeem if you want to order this product",
       "submit": "Redeem",
       "close": "Close",
       "success": "Success! Your code for [amount] is [code] and will be automatically applied to your order.",

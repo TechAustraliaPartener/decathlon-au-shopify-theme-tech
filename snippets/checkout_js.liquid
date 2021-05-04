@@ -26,6 +26,7 @@
         <input name="eanCode" id="eanCode" type="text" pattern="\d{4}" title="{{ 'checkout_gift_card.modal.pin_code_tip' | t }}" maxlength="4" placeholder="____" required>
       </div>
       <div class="errorMessage spacing" id="errorMessage"></div>
+      <div class="modal_note">{{ 'checkout_gift_card.modal.note' | t }}</div>
       <input name="amount" type="hidden" value="{{ checkout.total_price | divided_by: 100.00 }}">
       <div class="inputWrap spacing">
         <button type="submit" class="btn">{{ 'checkout_gift_card.modal.submit' | t }}</button>
