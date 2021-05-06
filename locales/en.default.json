@@ -139,7 +139,7 @@
       "details": "Account Details",
       "view_addresses": "Manage your Addresses",
       "return": "Return to Account Overview",
-      "welcome_form_title": "Thanks for joining us! Update your details below to receive your $20 Discount code",
+      "welcome_form_title": "Thanks for joining us! Update your details below to receive your $10 Discount code",
       "hasnt_accepted_marketing_title": "Hey, want to receive the latest deals ?",
       "marketing_optin": "Keep me up to date on news and exclusive offers",
       "welcome_heading": "Thank you for signing up!",
@@ -268,7 +268,7 @@
       "state": "State",
       "preferred_store": "Preferred Store",
       "stores": "Tempe, NSW|Auburn, NSW|Box Hill, VIC|Knoxfield, VIC|Moorabbin, VIC|South Morang, VIC|No stores around me",
-      "marketing_optin": "Sign me up to the newsletter to receive a $20 discount code",
+      "marketing_optin": "Sign me up to the newsletter to receive a $10 discount code",
       "marketing_optin_edit": "Keep me up to date on exclusive news and offers"
     }
   },
