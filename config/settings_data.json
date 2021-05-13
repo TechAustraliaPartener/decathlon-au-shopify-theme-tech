@@ -582,14 +582,14 @@
               "id": "1790",
               "tooltip_hours": false,
               "is_same_hours_weekly": true,
-              "hours_0_open": "1000",
-              "hours_0_close": "1700",
+              "hours_0_open": "0900",
+              "hours_0_close": "1800",
               "hours_1_open": "0900",
-              "hours_1_close": "2000",
+              "hours_1_close": "1800",
               "hours_2_open": "0900",
-              "hours_2_close": "2000",
+              "hours_2_close": "1800",
               "hours_3_open": "0900",
-              "hours_3_close": "2000",
+              "hours_3_close": "1800",
               "hours_4_open": "0900",
               "hours_4_close": "2000",
               "hours_5_open": "0900",
@@ -624,10 +624,10 @@
               "ready": "Collect 2-3 business days after placing order.",
               "ready_checkout": "Collect 2-3 business days after placing order.",
               "id": "1793-0004",
-              "tooltip_hours": true,
+              "tooltip_hours": false,
               "is_same_hours_weekly": true,
-              "hours_0_open": "0900",
-              "hours_0_close": "1730",
+              "hours_0_open": "1000",
+              "hours_0_close": "1700",
               "hours_1_open": "0900",
               "hours_1_close": "1700",
               "hours_2_open": "0900",
@@ -753,8 +753,8 @@
               "email": "customer.service@decathlon.com",
               "phone_number": "(02) 9157 5799",
               "company": "Decathlon",
-              "ready": "Order now, collect the next day. Ready to collect in 2 business days. Bulky items are not available at this location",
-              "ready_checkout": "Order now, collect the next day. Ready to collect in 2 business days. Bulky items are not available at this location",
+              "ready": "Ready to collect in 2 business days. Bulky items are not available at this location",
+              "ready_checkout": "Ready to collect in 2 business days. Bulky items are not available at this location",
               "id": "1791-0003",
               "tooltip_hours": true,
               "is_same_hours_weekly": false,
@@ -963,7 +963,7 @@
               "online_inventory_source": false,
               "enable_c_c": true,
               "duplicate": "Moorabbin",
-              "test_mode": true,
+              "test_mode": false,
               "street1": "179 Barkly Street",
               "city": "St Kilda",
               "zip": "3182",
@@ -1022,10 +1022,36 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
+          "6b851202-2e46-4bf8-93fb-d0bfe77ac93b": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_38_-min.png",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "Winter Deals Are Here",
+              "banner_subtitle": "",
+              "button_new_window": false,
+              "button_title": "Shop Now",
+              "button_url": "shopify:\/\/pages\/winter-special-buys"
+            }
+          },
+          "a0f45f18-a85b-42cf-a280-a280f09ef2e5": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_40_-min.png",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "Get free tennis balls",
+              "banner_subtitle": "<p><strong>When you spend $120 or more online on any tennis.<\/strong><\/p>",
+              "button_new_window": false,
+              "button_title": "SHOP NOW",
+              "button_url": "shopify:\/\/collections\/tennis"
+            }
+          },
           "4cf92f46-c528-4e84-a6a7-8781c5769a26": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_25_-min.png",
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_26_-min.png",
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
               "banner_title": "Gear Up For Winter Running",
@@ -1035,79 +1061,39 @@
               "button_url": "shopify:\/\/collections\/running-gear-clothes"
             }
           },
-          "726616ab-9821-4a57-8fc8-24601fdfe32e": {
+          "ca41c3a0-a8d7-4fb6-aede-d4d0bcd2f834": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_12_44f99dc1-d731-4744-af45-6275b6088629.png",
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_41_-min.png",
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
-              "banner_title": "Something For Every Mum",
-              "banner_subtitle": "",
-              "button_new_window": false,
-              "button_title": "shop gift ideas",
-              "button_url": "shopify:\/\/collections\/mothers-day"
-            }
-          },
-          "a0f45f18-a85b-42cf-a280-a280f09ef2e5": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_14.png",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": "Autumn\/Winter Collection",
-              "banner_subtitle": "",
-              "button_new_window": false,
-              "button_title": "Shop Jackets",
-              "button_url": "https:\/\/decathlon.com.au\/search?q=jackets"
-            }
-          },
-          "33ba9d56-15b3-4c6c-bd4e-b2cec63a1698": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_15_f92a1e56-704a-4bdc-a100-d7ac73a84a68.png",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": "New Release",
-              "banner_subtitle": "<p><strong>Puma Now Available Online<\/strong><\/p>",
-              "button_new_window": false,
-              "button_title": "Shop Puma",
-              "button_url": "shopify:\/\/collections\/puma"
-            }
-          },
-          "7b73c2da-dac9-47d8-a5d3-99e46591c1aa": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_19_832218f8-b5f1-4006-9050-9c1406395dc7.png",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": "Bike Shop",
-              "banner_subtitle": "<p><strong>Bikes Starting at $89. Fast Delivery &amp; Free In-Store Pick Up<\/strong><\/p>",
+              "banner_title": "Pilates At Home",
+              "banner_subtitle": "<p><strong>Everyday Low Price Equipment, Apparel &amp; Accessories<\/strong><\/p>",
               "button_new_window": false,
               "button_title": "Shop Now",
-              "button_url": "shopify:\/\/collections\/bikes"
+              "button_url": "shopify:\/\/collections\/yoga-pilates"
             }
           },
-          "6b851202-2e46-4bf8-93fb-d0bfe77ac93b": {
+          "4f274a92-226b-4a9e-bc23-c49dd5ab1130": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_17_-min.png",
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_42_-min.png",
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
-              "banner_title": "All Your Camping Gear Under 1 Roof",
+              "banner_title": "Explore Hiking",
               "banner_subtitle": "",
               "button_new_window": false,
-              "button_title": "Shop Now",
-              "button_url": "shopify:\/\/collections\/camping"
+              "button_title": "shop now",
+              "button_url": "shopify:\/\/collections\/hiking-trekking"
             }
           }
         },
         "block_order": [
-          "4cf92f46-c528-4e84-a6a7-8781c5769a26",
-          "726616ab-9821-4a57-8fc8-24601fdfe32e",
+          "6b851202-2e46-4bf8-93fb-d0bfe77ac93b",
           "a0f45f18-a85b-42cf-a280-a280f09ef2e5",
-          "33ba9d56-15b3-4c6c-bd4e-b2cec63a1698",
-          "7b73c2da-dac9-47d8-a5d3-99e46591c1aa",
-          "6b851202-2e46-4bf8-93fb-d0bfe77ac93b"
+          "4cf92f46-c528-4e84-a6a7-8781c5769a26",
+          "ca41c3a0-a8d7-4fb6-aede-d4d0bcd2f834",
+          "4f274a92-226b-4a9e-bc23-c49dd5ab1130"
         ],
         "settings": {}
       },
@@ -1130,6 +1116,7 @@
       },
       "1597283878337": {
         "type": "slider_image_section",
+        "disabled": true,
         "settings": {
           "homepage_slider_image_title": "Online Deals",
           "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_38_63796aa0-198b-42a8-8a96-ce20cd8e5dac.png",
@@ -1149,15 +1136,15 @@
       "1602562605803": {
         "type": "slider_image_section",
         "settings": {
-          "homepage_slider_image_title": "Get Active",
-          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_40.png",
-          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/weight-training",
+          "homepage_slider_image_title": "Winter Is Here",
+          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_44_-min.png",
+          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/mens-winter-snow-clothing",
           "checkbox_image_1": true,
-          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_42.png",
-          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/womens-activewear",
+          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_45_-min.png",
+          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/womens-winter-snow-clothing",
           "checkbox_image_2": true,
-          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_41.png",
-          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/mens-activewear",
+          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_43_-min.png",
+          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/kids-winter-snow-clothing",
           "checkbox_image_3": true,
           "homepage_slider_image_redirection_4": "",
           "checkbox_image_4": false
@@ -1183,15 +1170,15 @@
       "1616763819ce6b8f96": {
         "type": "slider_image_section",
         "settings": {
-          "homepage_slider_image_title": "Gift Ideas",
-          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_22_18ce9e2e-7202-471e-a068-b4776077f58b.png",
-          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/fitness-watch",
+          "homepage_slider_image_title": "Everyday Low Price",
+          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_47_-min.png",
+          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/bodyboard-skimboard",
           "checkbox_image_1": true,
-          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_23_a7c5b50e-cc31-4815-8601-d3c7a15d7e8f.png",
-          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/exercise-mat",
+          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_49_-min.png",
+          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/cycling",
           "checkbox_image_2": true,
-          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_24_dc5ca1f1-8a79-4d1c-b4d5-c30989c5cf07.png",
-          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/all-shoes",
+          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_48_-min.png",
+          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/golf-clothing-golf-equipment",
           "checkbox_image_3": true,
           "homepage_slider_image_redirection_4": "",
           "checkbox_image_4": false
@@ -1201,15 +1188,15 @@
         "type": "slider_image_section",
         "disabled": true,
         "settings": {
-          "homepage_slider_image_title": "Deals",
-          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_37_fabaaa1b-5c0d-4ffa-a0a2-3d6e60b3993e.png",
-          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/studio-bikes-and-exercise-bikes",
+          "homepage_slider_image_title": "Weekend Deal",
+          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_40_-min.png",
+          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/mens-swimsuits",
           "checkbox_image_1": true,
-          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_35_ec44dc24-fe04-4744-8c0a-eb12a21d6090.png",
-          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/elliptical-machine-and-cross-trainers",
+          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_41_-min.png",
+          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/womens-swimsuits",
           "checkbox_image_2": true,
-          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_36_e6d83ee3-b737-416a-94b2-0e11ab25b67b.png",
-          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/treadmills",
+          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_42_-min.png",
+          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/weekly-deals",
           "checkbox_image_3": true,
           "homepage_slider_image_redirection_4": "",
           "checkbox_image_4": false
@@ -1217,6 +1204,7 @@
       },
       "16171919053e0748b9": {
         "type": "slider_image_section",
+        "disabled": true,
         "settings": {
           "homepage_slider_image_title": "Popular Brands",
           "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_52.png",
@@ -1235,11 +1223,11 @@
     },
     "content_for_index": [
       "1568939434006",
-      "1597283878337",
+      "1602562605803",
       "161715071292816218",
+      "1597283878337",
       "1616763819ce6b8f96",
       "1590735691745",
-      "1602562605803",
       "161676069181163e17",
       "16171919053e0748b9"
     ]
