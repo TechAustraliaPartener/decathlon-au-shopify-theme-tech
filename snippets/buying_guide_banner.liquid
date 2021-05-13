@@ -1,0 +1,12 @@
+{{ 'buying_guide_banner.scss.css' | asset_url | stylesheet_tag }}
+
+{% if collection.metafields.merchandising.guide %}
+  <div class="buying_guide_banner">
+    <div class="teammate_container">
+      <div class="buying_guide_label">{{ 'collections.general.buying_guide' | t }}</div>
+      <div class="teammate_image_wrapper" style="background-image: url({{ 'teammate.png' | asset_img_url: 'medium' }});"></div>
+    </div>
+    
+    <div class="guide_container">{{ collection.metafields.merchandising.guide }}</div>
+  </div>
+{% endif %}

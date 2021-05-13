@@ -21,4 +21,5 @@ src/css/*
 !/snippets/nav-*
 !/snippets/breadcrumb-*
 !/snippets/vue*
+!/snippets/buying_guide*
 theme.zip
