@@ -68,7 +68,7 @@
         "tag": "In-Store Shopping"
       }
     ],
-    "schedule": "\r<br>Monday: 9:30am - 7:00pm\r<br>Tuesday: 9:30 am–7:00 pm\r<br>Wednesday: 9:30 am–7:00 pm\r<br>Thursday: 9:30 am–7:00 pm\r<br>Friday: 9:30 am–7:00 pm\r<br>Saturday: 9:00 am–8:00 pm\r<br>Sunday: 9:30am - 7:00pm",
+    "schedule": "Monday: 9:00am - 6:30pm\r<br>Tuesday: 9:00am - 6:30pm\r<br>Wednesday: 9:00am - 6:30pm\r<br>Thursday: 9:00am - 6:30pm\r<br>Friday: 9:00am - 6:30pm\r<br>Saturday: 9:00 am–7:00 pm\r<br>Sunday: 10:00am - 6:00pm",
     "marker_image": "\/\/cdn.shopify.com\/s\/files\/1\/0066\/6563\/3903\/t\/431\/assets\/scasl_1613627669map-marker-inactive_compact.png",
     "address": "249 Middleborough Rd,",
     "country": "Australia",
