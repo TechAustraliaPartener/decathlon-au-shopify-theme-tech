@@ -476,7 +476,7 @@
             "settings": {
               "name": "Knoxfield",
               "title": "Knoxfield Store, 3180",
-              "online_inventory_source": true,
+              "online_inventory_source": false,
               "enable_c_c": true,
               "duplicate": "",
               "test_mode": false,
@@ -1032,7 +1032,7 @@
               "banner_subtitle": "",
               "button_new_window": false,
               "button_title": "Shop Now",
-              "button_url": "shopify:\/\/pages\/winter-special-buys"
+              "button_url": "shopify:\/\/collections\/winter-snow-sports"
             }
           },
           "a0f45f18-a85b-42cf-a280-a280f09ef2e5": {
