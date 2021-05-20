@@ -8,6 +8,7 @@ $white: #ffffff;
 $yellow_price: #ffea28;
 $orange: #ec6607;
 $price_reduction: #e20c18;
+$colorSecondary: {{ settings.color_secondary }};
 
 html {
   scroll-behavior: smooth;
@@ -454,17 +455,17 @@ html {
     &::after {
       transform: skew(-15deg);
       -webkit-transform: skew(-15deg);
-      background-color: #ccfb00;
+      background-color: $colorSecondary;
       right: -20px;
       width: 50px;
-      background: #ccfb00;
+      background: $colorSecondary;
       content: "";
       height: 100%;
       position: absolute;
       top: 0;
     }
     &::before {
-      background: #ccfb00;
+      background: $colorSecondary;
       content: "";
       height: 100%;
       right: 100%;
