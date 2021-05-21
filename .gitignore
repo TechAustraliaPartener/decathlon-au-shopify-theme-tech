@@ -23,4 +23,5 @@ src/css/*
 !/snippets/vue*
 !/snippets/buying_guide*
 !/snippets/ufe*
+!/snippets/smile*
 theme.zip
