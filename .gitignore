@@ -22,4 +22,5 @@ src/css/*
 !/snippets/breadcrumb-*
 !/snippets/vue*
 !/snippets/buying_guide*
+!/snippets/ufe*
 theme.zip
