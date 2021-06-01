@@ -230,7 +230,6 @@
       button_adtl_classes: ' btn--blog u-marginBottom6x',
       button_title: 'Explore Careers' %}
   {% else %}
-  
     {% comment %}
       <div class="blogCards blogCards-related">
         <h4 class="text-center u-marginBottom2x">Related Posts</h4>
@@ -254,15 +253,14 @@
           {%- endunless -%}
         {%- endfor -%}
         </div>
-    </div>
+      </div>
     {% endcomment %}
 
-    {% assign button_url = '/blogs/' | append: blog.handle %}
+  {% assign button_url = '/blogs/' | append: blog.handle %}
     {% include 'elements-button',
       button_wrapper: 'text-center u-block u-marginBottom4x',
       button_adtl_classes: ' btn--blog',
-      button_title: 'More Blogs' %}
-
+      button_title: 'blogs.article.more_blogs' %}
   {% endif %}
 
 </div>
