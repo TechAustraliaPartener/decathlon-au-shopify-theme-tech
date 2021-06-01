@@ -44,7 +44,8 @@
       "newer_post": "Newer Post",
       "tags": "Tags",
       "comment_meta_html": "{{ author }} on {{ date }}",
-      "read_more": "Read more"
+      "read_more": "Read more",
+      "more_blogs": "More Blogs"
     },
     "comments": {
       "title": "Leave a comment",
