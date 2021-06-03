@@ -184,7 +184,7 @@
 
       var html = ['<div class="de-SwatchObjects de-SwatchObjects--productTile de-u-padEnds06 js-de-ColorSwatches">',
         '<a class="de-SwatchObjects-item de-ColorSwatches-color" aria-label="Colors available" title="' + product.title + '" href="' + '/products/' + product.handle + '">',
-        '<img class="de-SwatchObject-image de-u-block" src="' + imgUrl + '">',
+        '<img class="de-SwatchObject-image de-u-block" src="' + imgUrl + '" alt="' + product.title + '">',
         '</a>'].join('');
 
       if (colorValueTags.length > 1) {

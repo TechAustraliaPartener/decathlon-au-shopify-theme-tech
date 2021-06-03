@@ -65,7 +65,7 @@
               class="de-u-block"
               src="{{ option_thumb | img_url: "100x", format: "pjpg" }}"
               srcset="{{ image_srcset }}"
-              alt="" />
+              alt="{{ product.title | append: " - " | append: clean_color}}" />
           {% else %}
             <div class="de-SwatchObjects-noimage
                         option--color-{{ clean_color | downcase }}">
