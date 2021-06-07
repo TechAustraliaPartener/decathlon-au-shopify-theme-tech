@@ -3,6 +3,7 @@
 
 import $ from 'jquery';
 import './buybox';
+import * as carouselSwiper from './carousel-swiper';
 import * as carousel from './carousel';
 import * as carouselContext from './carousel-context';
 import * as collapse from './collapse';
@@ -199,6 +200,7 @@ const init = async () => {
   reviewsInit();
   recentlyViewed.init();
   carousel.init();
+  carouselSwiper.init();
   carouselContext.init();
   collapse.init();
   addToCart.init();

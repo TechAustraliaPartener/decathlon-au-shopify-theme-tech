@@ -108,6 +108,11 @@
   </style>
   {{ 'cadence.scss.css' | asset_url | stylesheet_tag }}
   {{ 'menu.scss.css' | asset_url | stylesheet_tag }}
+
+  {% if template contains 'product' %}
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  {% endif %}
+
   {% if template == "product" and product.metafields.global.features != blank %}
     {{ 'built-product-page.css' | asset_url | stylesheet_tag }}
   {% else %}

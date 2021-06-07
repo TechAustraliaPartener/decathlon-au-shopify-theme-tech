@@ -393,3 +393,116 @@
     padding: 25px 55px;
   }
 }
+
+
+
+/* SwiperJS */
+.swiper_products_tile_carousel_container {
+  overflow: hidden;
+  margin: 0 -1rem;
+  position: relative;
+
+  @media screen and (min-width: 40em) {
+    margin: 0;
+    padding: 25px 40px;
+  }
+
+  @media screen and (min-width: 60em) {
+    margin: 0;
+    padding: 25px 50px;
+  }
+}
+
+.swiper_products_tile_carousel {
+  position: relative;
+
+  padding: 0 1rem 0 .5rem;
+
+  @media screen and (min-width: 40em) {
+    padding: 0;
+    overflow: hidden;
+  }
+}
+
+.swiper_products_tile_carousel .swiper-wrapper {
+  // padding: 0 1rem 0 .5rem;
+
+  @media screen and (min-width: 40em) {
+    padding: 0;
+  }
+}
+
+
+.swiper_products_tile_carousel .swiper-slide {
+  
+  @media screen and(max-width: 39rem) {
+    width: 41% !important;
+  }
+
+  
+  @media screen and (min-width: 40em) {
+    width: 33.33%;
+  }
+
+  @media screen and (min-width: 64em) {
+    width: 25%;
+  }
+
+  @media screen and (min-width: 85.375em) {
+    width: 20%;
+  }
+
+  @media screen and (min-width: 100em) {
+    width: 16.6666666667%;
+  }
+}
+
+.swiper_products_tile_carousel .swiper-slide:last-child {
+  // padding-right: 4%;
+  // width: 45%;
+
+  // @media screen and (min-width: 40em) {
+  //   padding-right: 0;
+  //   width: 100%;
+  // }
+}
+
+
+.swiper_products_tile_carousel_container .swiper-button-prev:after,
+.swiper_products_tile_carousel_container .swiper-button-next:after {
+  display: none;
+}
+
+.swiper_products_tile_carousel_container .swiper-button-next .de-ProductTileCarousel-button:first-child .de-ProductTileCarousel-svg {
+  transform: rotate(360deg);
+}
+
+
+.swiper_products_tile_carousel_container .swiper-button-prev {
+  display: block;
+  width: auto;
+  left: 0;
+  margin-top: 0;
+  height: auto;
+}
+
+
+.swiper_products_tile_carousel_container .swiper-button-next {
+  display: block;
+  width: auto;
+  right: 0;
+  margin-top: 0;
+  height: auto;
+}
+
+.swiper-slide .de-ProductTile {
+  display: none;
+}
+
+.swiper-slide.loaded .de-ProductTile {
+  display: block;
+}
+
+.swiper-slide.loaded .product_tile_skeleton {
+  display: none;
+}
