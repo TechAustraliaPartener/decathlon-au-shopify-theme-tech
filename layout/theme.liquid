@@ -94,6 +94,17 @@
   <!-- google -->
   {% if settings.google_site_id %}<meta name="google-site-verification" content="{{ settings.google_site_id }}"/>{% endif %}
 
+  <!-- og:image settings - homepage, search and collections (default) should display decathlon logo. collections with image should show the image and products should show the feature image -->
+  {% if template.name == 'product' %}
+    <meta property="og:image" content="http:{{ image.src | product_img_url: '1200x1200' }}">
+  {% else %}
+    {% if page_image %}
+      <meta property="og:image" content="http:{{ page_image | img_url: '1200x1200' }}">
+    {% else %}
+      <meta property="og:image" content="https://cdn.shopify.com/s/files/1/0066/6563/3903/files/meta_tag_image.png?v=1623038552">
+    {% endif %}
+  {% endif %}
+
   <!-- CSS ================================================== -->
   {{ 'fonts.scss.css' | asset_url | stylesheet_tag }}
   {% include 'slick-styles' %}
