@@ -15,6 +15,7 @@
               <th class="orderTh">{{ 'customer.orders.payment_status' | t }}</th>
               <th class="orderTh">{{ 'customer.orders.fulfillment_status' | t }}</th>
               <th class="orderTh">{{ 'customer.orders.total' | t }}</th>
+              <th>Need a Tax Invoice?</th>
             </tr>
           </thead>
           <tbody>
@@ -25,6 +26,7 @@
                 <td class="orderTd">{{ order.financial_status_label }}</td>
                 <td class="orderTd">{{ order.fulfillment_status_label }}</td>
                 <td class="orderTd">{{ order.total_price | money }}</td>
+                <td><a target='_blank' href='https://decathlon.com.au/apps/download-pdf/orders/e1856497a630a23add52/{{ order.id | times: 8857 }}/{{ order.name | handleize }}.pdf'>Download PDF</a></td>
               </tr>
             {% endfor %}
           </tbody>
