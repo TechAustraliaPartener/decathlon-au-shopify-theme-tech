@@ -50,7 +50,13 @@ if (step === 'shipping_method') {
     if (window.vars.cartTotalWeight > window.vars.freeShippingWeightLimit) {
       const freeStandardShippingElement = document
         .querySelector('[data-shipping-method="shopify-Free%20Standard%20Shipping-0.00"]');
+      const expressShippingElement = document
+        .querySelector('[data-shipping-method^="Shippit-shippit_express_"]');
+
       if (freeStandardShippingElement) {
+        freeStandardShippingElement.parentNode.remove();
+      }
+      if (expressShippingElement) {
         freeStandardShippingElement.parentNode.remove();
       } 
     }
