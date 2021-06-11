@@ -130,7 +130,7 @@
               The checkout JS (scripts/checkout/index.js)
               will show and add UI functionality.
             {% endcomment %}
-             {% if checkout.attributes.checkout_option == 'Delivery' %}
+             {% if checkout.attributes.delivery_mode == 'Delivery' %}
               <div class="de-Grid de-Grid--withGutter">
                 <div class="de-pickship-btn-container de-u-size1of1 de-u-spaceBottom">
                   <button class="btn de-pickship-btn js-de-active-pickship-btn">
@@ -215,19 +215,19 @@
     {% include 'js-master-stores' %}
     
     <script>
-      window.deliveryMethod = '{{ checkout.attributes.checkout_option }}';
+      window.deliveryMethod = '{{ checkout.attributes.delivery_mode }}';
       console.log(document.location.search);
 
-      var checkoutOptionStored = localStorage.getItem('checkoutOptionStored');
-      var checkoutOption = '{{ checkout.attributes.checkout_option }}';
-      {% if checkout != blank and checkout.attributes.checkout_option != blank and order == blank %}
-        if ((!checkoutOptionStored || checkoutOption !== checkoutOptionStored) && checkoutOption !== '') {
+      var deliveryModeStored = localStorage.getItem('deliveryModeStored');
+      var deliveryMode = '{{ checkout.attributes.delivery_mode }}';
+      {% if checkout != blank and checkout.attributes.delivery_mode != blank and order == blank %}
+        if ((!deliveryModeStored || deliveryMode !== deliveryModeStored) && deliveryMode !== '') {
           if (location.search !== '?step=contact_information') {
             location.search = '?step=contact_information';
           }
         }
       {% endif %}
-      localStorage.setItem('checkoutOptionStored', checkoutOption);
+      localStorage.setItem('deliveryModeStored', deliveryMode);
 
       var favStoreStored = localStorage.getItem('favStoreStored');
       var favStore = localStorage.getItem('favoritedStore');
