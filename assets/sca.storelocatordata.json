@@ -68,7 +68,7 @@
         "tag": "In-Store Shopping"
       }
     ],
-    "schedule": "Monday: 9:00am - 6:30pm\r<br>Tuesday: 9:00am - 6:30pm\r<br>Wednesday: 9:00am - 6:30pm\r<br>Thursday: 9:00am - 6:30pm\r<br>Friday: 9:00am - 6:30pm\r<br>Saturday: 9:00 am–7:00 pm\r<br>Sunday: 10:00am - 6:00pm",
+    "schedule": "VIC circuit breaker - C&C only from 10am - 5pm \r<br>\r<br>Monday: 9:00am - 6:30pm\r<br>Tuesday: 9:00am - 6:30pm\r<br>Wednesday: 9:00am - 6:30pm\r<br>Thursday: 9:00am - 6:30pm\r<br>Friday: 9:00am - 6:30pm\r<br>Saturday: 9:00 am–7:00 pm\r<br>Sunday: 10:00am - 6:00pm",
     "marker_image": "\/\/cdn.shopify.com\/s\/files\/1\/0066\/6563\/3903\/t\/431\/assets\/scasl_1613627669map-marker-inactive_compact.png",
     "address": "249 Middleborough Rd,",
     "country": "Australia",
@@ -126,7 +126,7 @@
         "tag": "In-Store Shopping"
       }
     ],
-    "schedule": "Monday: 9 am–6 pm\r<br>Tuesday: 9 am–6 pm\r<br>Wednesday: 9 am–6 pm\r<br>Thursday: 9 am–8 pm\r<br>Friday: 9 am–8 pm\r<br>Saturday: 9 am–8 pm\r<br>Sunday: 9 am–6 pm\r<br>",
+    "schedule": "VIC circuit breaker - C&C only from 10am - 5pm \r<br>\r<br>Monday: 9 am–6 pm\r<br>Tuesday: 9 am–6 pm\r<br>Wednesday: 9 am–6 pm\r<br>Thursday: 9 am–8 pm\r<br>Friday: 9 am–8 pm\r<br>Saturday: 9 am–8 pm\r<br>Sunday: 9 am–6 pm\r<br>",
     "marker_image": "\/\/cdn.shopify.com\/s\/files\/1\/0066\/6563\/3903\/t\/441\/assets\/scasl_1615717926map-marker-inactive_compact.png",
     "address": "405 Boundary Rd,",
     "country": "Australia",
@@ -155,7 +155,7 @@
         "tag": "In-Store Shopping"
       }
     ],
-    "schedule": "Monday: 9 am–6 pm\r<br>Tuesday: 9 am–6 pm\r<br>Wednesday: 9 am–6 pm\r<br>Thursday: 9 am–6 pm\r<br>Friday: 9 am–6 pm\r<br>Saturday: 9 am–6 pm\r<br>Sunday: 10 am–5 pm",
+    "schedule": "VIC circuit breaker - C&C only from 10am - 5pm \r<br>\r<br>Monday: 9 am–6 pm\r<br>Tuesday: 9 am–6 pm\r<br>Wednesday: 9 am–6 pm\r<br>Thursday: 9 am–6 pm\r<br>Friday: 9 am–6 pm\r<br>Saturday: 9 am–6 pm\r<br>Sunday: 10 am–5 pm",
     "marker_image": "\/\/cdn.shopify.com\/s\/files\/1\/0066\/6563\/3903\/t\/441\/assets\/scasl_1615717896map-marker-inactive_compact.png",
     "address": "1464 Ferntree Gully Rd",
     "country": "Australia",
@@ -189,52 +189,6 @@
     "city": "Fitzroy",
     "postal": "3065",
     "priority": 3
-  },
-  {
-    "lat": "-37.8469048",
-    "lng": "144.9931388",
-    "id": 7552344,
-    "name": "Commercial Road Pharmacy Prahran",
-    "description": "You can now order your products online and collect them from one of our partners. Wait for your ready to collect confirmation email before picking up your order.\r<br>\r<br>NOTE: Please confirm opening hours for public holidays through the hosting company website",
-    "tagsvalue": "Free Click & Collect,Pick up in 3 business days",
-    "tags": [
-      {
-        "tag": "Free Click & Collect"
-      },
-      {
-        "tag": "Pick up in 3 business days"
-      }
-    ],
-    "schedule": "Monday: 8:00 am - 6:00 pm\r<br>Tuesday: 8:00 am - 6:00 pm\r<br>Wednesday: 8:00 am - 6:00 pm\r<br>Thursday: 8:00 am - 6:00 pm\r<br>Friday: 8:00 am - 6:00 pm\r<br>Saturday: 8:00 am - 5:00 pm\r<br>Sunday: closed",
-    "address": "1\/212 Commercial Road",
-    "country": "Australia",
-    "state": "Victoria",
-    "city": "Prahran",
-    "postal": "3136",
-    "priority": 1
-  },
-  {
-    "lat": "-33.9224438",
-    "lng": "151.1662343",
-    "id": 7552345,
-    "name": "De Been 100% Jiu Jitsu St Kilda",
-    "description": "You can now order your products online and collect them from one of our partners. Wait for your ready to collect confirmation email before picking up your order.\r<br>\r<br>NOTE: Please confirm opening hours for public holidays through the hosting company website",
-    "tagsvalue": "Free Click & Collect,Pick up in 3 business days",
-    "tags": [
-      {
-        "tag": "Free Click & Collect"
-      },
-      {
-        "tag": "Pick up in 3 business days"
-      }
-    ],
-    "schedule": "Monday: 3:00 pm - 7:00 pm\r<br>Tuesday: 5:00 pm - 7:00 pm\r<br>Wednesday: 3:00 pm - 7:00 pm\r<br>Thursday: 5:00 pm - 7:00 pm\r<br>Friday: 2:00 pm - 4:00 pm\r<br>Saturday: 10:00 am - 12:00 pm\r<br>Sunday: Closed",
-    "address": "179 Barkly St",
-    "country": "Australia",
-    "state": "Victoria",
-    "city": "St Kilda",
-    "postal": "3182",
-    "priority": 1
   },
   {
     "lat": "-33.7609519",
@@ -388,7 +342,7 @@
         "tag": "Pick up in 2 business days"
       }
     ],
-    "schedule": "Monday - Sunday: 10 am - 5 pm",
+    "schedule": "VIC circuit breaker - C&C only from 12pm - 4pm \r<br>\r<br>",
     "marker_image": "\/\/cdn.shopify.com\/s\/files\/1\/0066\/6563\/3903\/t\/441\/assets\/scasl_1615717763map-marker-inactive_compact.png",
     "address": "10\/340 McDonalds Rd",
     "country": "Australia",
