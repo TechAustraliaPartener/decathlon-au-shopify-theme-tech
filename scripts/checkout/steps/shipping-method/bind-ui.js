@@ -37,6 +37,7 @@ const hideShippingMethods = () => {
   const pickupMethod = document
     .querySelector(SELECTORS.PICKUP_SHIPPING_METHOD)
     .getAttribute('data-shipping-method');
+
   for (let i = 0, length = radios.length; i < length; i++) {
     const currentMethod = radios[i].getAttribute('data-shipping-method');
     if (pickupMethod !== currentMethod) {
@@ -48,8 +49,30 @@ const hideShippingMethods = () => {
   }
 };
 
+const selectFirstVisibleRate = () => {
+  const radios = document.querySelectorAll('.radio-wrapper');
+  const radiosArray = Array.prototype.slice.call(radios);
+  const anyChecked = radiosArray.map(r => r.querySelector('input').checked).some(c => c === true);
+  if (!anyChecked) {
+    radiosArray[0].querySelector('input').checked = true;
+  }
+}
+
+window.selectFirstVisibleRate = selectFirstVisibleRate;
+
 const bindUI = () => {
   hideElements([loadingOverlay, loadingImage]);
+
+  if (window.vars.cartTotalWeight > 7000) {
+    const freeStandardShippingElement = document
+      .querySelector('[data-shipping-method="shopify-Free%20Standard%20Shipping-0.00"]');
+    if (freeStandardShippingElement) {
+      freeStandardShippingElement.parentNode.remove();
+    } 
+  }
+
+  selectFirstVisibleRate();
+
   if (STATE.deliveryMethod === DELIVERY_METHODS.SHIP) {
     if (document.querySelector(SELECTORS.PICKUP_SHIPPING_METHOD)) {
       updateShippingMethod();

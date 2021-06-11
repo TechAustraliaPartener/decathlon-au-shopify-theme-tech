@@ -42,6 +42,14 @@
       window.vars.cartPayload = {
         items: [{% for id in checkout_items_ids %}{ variant_id: {{ id }} }{% unless forloop.last %},{% endunless %}{% endfor %}]
       };
+
+      {% assign cart_total_weight = 0 %}
+      {% assign line_item_weights = checkout.line_items | map: 'grams' %}
+      {% for weight in line_item_weights %}
+        {% assign cart_total_weight = cart_total_weight | plus: weight %}
+      {% endfor %}
+
+      window.vars.cartTotalWeight = {{ cart_total_weight | json }};
     </script>
 
     {% if settings.use_algolia %}
@@ -63,6 +71,7 @@
 
 </head>
   <body>
+
     {% include 'js-gtm-body' %}
 
     <div class="visually-hidden">

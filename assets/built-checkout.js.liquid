@@ -717,8 +717,34 @@ var hideShippingMethods = function hideShippingMethods() {
   }
 };
 
+var selectFirstVisibleRate = function selectFirstVisibleRate() {
+  var radios = document.querySelectorAll('.radio-wrapper');
+  var radiosArray = Array.prototype.slice.call(radios);
+  var anyChecked = radiosArray.map(function (r) {
+    return r.querySelector('input').checked;
+  }).some(function (c) {
+    return c === true;
+  });
+
+  if (!anyChecked) {
+    radiosArray[0].querySelector('input').checked = true;
+  }
+};
+
+window.selectFirstVisibleRate = selectFirstVisibleRate;
+
 var bindUI$1 = function bindUI() {
   hideElements([loadingOverlay$1, loadingImage$1]);
+
+  if (window.vars.cartTotalWeight > 7000) {
+    var freeStandardShippingElement = document.querySelector('[data-shipping-method="shopify-Free%20Standard%20Shipping-0.00"]');
+
+    if (freeStandardShippingElement) {
+      freeStandardShippingElement.parentNode.remove();
+    }
+  }
+
+  selectFirstVisibleRate();
 
   if (STATE.deliveryMethod === DELIVERY_METHODS.SHIP) {
     if (document.querySelector(CUSTOM_UI_SELECTORS$1.PICKUP_SHIPPING_METHOD)) {
