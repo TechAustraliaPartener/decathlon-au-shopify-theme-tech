@@ -1025,7 +1025,7 @@
           "c35f85ac-8b34-453a-828d-936ccb46c6ac": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_57_-min.png",
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_60_-min_1.png",
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
               "banner_title": "25% Off MTB",
@@ -1074,19 +1074,6 @@
               "button_url": "shopify:\/\/collections\/soccer-futsal"
             }
           },
-          "6a53a41b-3a03-48b5-8ac3-cc4d7fbfa89c": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_58_-min.png",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": "Yoga For Everyone",
-              "banner_subtitle": "<p><strong>50% Off Selected Yoga<\/strong><\/p>",
-              "button_new_window": false,
-              "button_title": "SHOP NOW",
-              "button_url": "shopify:\/\/collections\/yoga-pilates"
-            }
-          },
           "a0f45f18-a85b-42cf-a280-a280f09ef2e5": {
             "type": "slide",
             "settings": {
@@ -1106,7 +1093,6 @@
           "bfbf1b1d-c4a6-498f-b6cc-9ff9ed1f11b4",
           "4bc8f53f-630c-47ef-a977-51c0fceb46d3",
           "2caa2b9a-c14a-4ac9-a17f-3052f5ed338f",
-          "6a53a41b-3a03-48b5-8ac3-cc4d7fbfa89c",
           "a0f45f18-a85b-42cf-a280-a280f09ef2e5"
         ],
         "settings": {}
