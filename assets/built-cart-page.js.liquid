@@ -1,4 +1,5 @@
 import { V as Vue } from './built-vue.esm-661ab646.js';
+import { i as init } from './built-carousel-swiper-3bbece75.js';
 
 /* global CartJS, Shopify */
 
@@ -584,3 +585,8 @@ function displayPaymentGateway(price, threshold, gateway) {
   jQuery(".cart-" + gateway + "-info").toggleClass(dNoneClassName, price < threshold);
   jQuery(".cart-" + gateway + "-disabled-info").toggleClass(dNoneClassName, price >= threshold);
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+  console.log('hey...');
+  init();
+});

@@ -1,0 +1,128 @@
+{% comment %} 
+
+  Product Tile Carousel
+
+  Snippet parameters (documentation based off of JSDoc style): 
+  - {object[]} products: The products to render in the carousel
+  - {number} [limit]: The products loop limit
+  - {boolean} [inventory_status]: Controls render of the inventory status
+  - {boolean} [delivery_options]: Controls render of the delivery options
+  - {string} [slide_breakpoints_type]: type of the products carousel to configure the slide breakpoints
+
+  Example:
+  {% include 'components-product-tile-carousel',
+    products: collections['trending-products'].products,
+    limit: 20,
+    inventory_status: false,
+    delivery_options: false
+  %}
+
+{% endcomment %}
+
+{% comment %} 
+  Set some defaults for optional parameters 
+{% endcomment %}
+{% unless limit %}
+  {% assign limit = 15 %}
+{% endunless %}
+
+{% capture arrow_previous_button %}
+  <button 
+    aria-label="Scroll to previous set of products"
+    type="button" 
+    class="de-ProductTileCarousel-button slick-prev"
+    data-gtm-id="Product Tile Carousel Control"
+    data-gtm-category="Tiles"
+    data-gtm-event="customer-interaction"
+  >
+    {% include 'assets-icons-arrow-extended-right', class: 'de-ProductTileCarousel-svg', direction_in_title: 'previous' %}
+  </button>
+{% endcapture %}
+
+{% capture arrow_next_button %}
+  <button 
+    aria-label="Scroll to next set of products"
+    type="button" 
+    class="de-ProductTileCarousel-button slick-next"
+    data-gtm-id="Product Tile Carousel Control"
+    data-gtm-category="Tiles"
+    data-gtm-event="customer-interaction"
+  >
+    {% include 'assets-icons-arrow-extended-right', class: 'de-ProductTileCarousel-svg', direction_in_title: 'next' %}
+  </button>
+{% endcapture %}
+
+{% comment %}
+  @TODO:
+  Use translation keys for the aria-label value, "Product Collection"
+  @see https://www.shopify.com/partners/blog/translation-keys
+{% endcomment %}
+
+{% comment %} Product Tile Carousel Swiper {% endcomment %}
+
+<div class="swiper_products_tile_carousel_container {{name_class}}">
+  
+  <div class="swiper_products_tile_carousel">
+    <div class="swiper-wrapper">
+      {% if handles %}
+        {% for handle in handles limit: limit %}
+          {% assign carousel_product = all_products[handle] %}
+          {%- if carousel_product.available -%}
+            {% comment %} Product Tile Carousel Slide {% endcomment %}
+            <div class="swiper-slide">
+            {% include 'components-product-tile',
+              product: carousel_product,
+              class: "de-ProductTileCarousel-item",
+              delivery_options: delivery_options,
+              inventory_status: inventory_status,
+            %}
+            {% render 'components-product_tile_skeleton' %}
+            </div>
+          {%- endif -%}
+        {% endfor %}
+      {% else %}
+        {% for carousel_product in products limit: limit %}
+          {%- if carousel_product.available -%}
+            {% comment %} Product Tile Carousel Slide {% endcomment %}
+            <div class="swiper-slide">
+            {% include 'components-product-tile',
+              product: carousel_product,
+              class: "de-ProductTileCarousel-item",
+              delivery_options: delivery_options,
+              inventory_status: inventory_status,
+            %}
+            {% render 'components-product_tile_skeleton' %}
+            </div>
+          {%- endif -%}
+        {% endfor %}
+      {% endif %}
+    </div>
+    
+  </div>
+
+  <!-- Add Arrows -->
+  <div class="swiper-button-next">
+    <button 
+      aria-label="Scroll to next set of products"
+      type="button" 
+      class="de-ProductTileCarousel-button slick-next"
+      data-gtm-id="Product Tile Carousel Control"
+      data-gtm-category="Tiles"
+      data-gtm-event="customer-interaction"
+    >
+      {% include 'assets-icons-arrow-extended-right', class: 'de-ProductTileCarousel-svg', direction_in_title: 'next' %}
+    </button>
+  </div>
+  <div class="swiper-button-prev">
+    <button 
+      aria-label="Scroll to previous set of products"
+      type="button" 
+      class="de-ProductTileCarousel-button slick-prev"
+      data-gtm-id="Product Tile Carousel Control"
+      data-gtm-category="Tiles"
+      data-gtm-event="customer-interaction"
+    >
+      {% include 'assets-icons-arrow-extended-right', class: 'de-ProductTileCarousel-svg', direction_in_title: 'previous' %}
+    </button>
+  </div>
+</div>

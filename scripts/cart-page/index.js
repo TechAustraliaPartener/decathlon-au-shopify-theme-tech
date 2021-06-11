@@ -2,6 +2,7 @@
 
 import $ from 'jquery';
 import Vue from 'vue/dist/vue.esm.js';
+import * as carouselSwiper from '../product-page/carousel-swiper';
 
 Vue.config.errorHandler = (err, vm, info) => {
   var cart = CartJS.cart || window.vars.cartPayload;
@@ -496,3 +497,9 @@ function displayPaymentGateway(price, threshold, gateway) {
   $(`.cart-${gateway}-info`).toggleClass(dNoneClassName, price < threshold);
   $(`.cart-${gateway}-disabled-info`).toggleClass(dNoneClassName, price >= threshold);
 }
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('hey...')
+  carouselSwiper.init();
+});

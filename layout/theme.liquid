@@ -109,7 +109,7 @@
   {{ 'cadence.scss.css' | asset_url | stylesheet_tag }}
   {{ 'menu.scss.css' | asset_url | stylesheet_tag }}
 
-  {% if template contains 'product' %}
+  {% if template contains 'product' or template contains "cart" or template == "index"  %}
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
   {% endif %}
 
