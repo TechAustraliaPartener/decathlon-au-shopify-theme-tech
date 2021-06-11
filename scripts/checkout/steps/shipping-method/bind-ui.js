@@ -65,16 +65,6 @@ window.selectFirstVisibleRate = selectFirstVisibleRate;
 const bindUI = () => {
   hideElements([loadingOverlay, loadingImage]);
 
-  if (window.vars.cartTotalWeight > window.vars.freeShippingWeightLimit) {
-    const freeStandardShippingElement = document
-      .querySelector('[data-shipping-method="shopify-Free%20Standard%20Shipping-0.00"]');
-    if (freeStandardShippingElement) {
-      freeStandardShippingElement.parentNode.remove();
-    } 
-  }
-
-  selectFirstVisibleRate();
-
   if (STATE.deliveryMethod === DELIVERY_METHODS.SHIP) {
     if (document.querySelector(SELECTORS.PICKUP_SHIPPING_METHOD)) {
       updateShippingMethod();

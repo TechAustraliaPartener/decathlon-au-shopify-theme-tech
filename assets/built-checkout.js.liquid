@@ -739,16 +739,6 @@ window.selectFirstVisibleRate = selectFirstVisibleRate;
 var bindUI$1 = function bindUI() {
   hideElements([loadingOverlay$1, loadingImage$1]);
 
-  if (window.vars.cartTotalWeight > window.vars.freeShippingWeightLimit) {
-    var freeStandardShippingElement = document.querySelector('[data-shipping-method="shopify-Free%20Standard%20Shipping-0.00"]');
-
-    if (freeStandardShippingElement) {
-      freeStandardShippingElement.parentNode.remove();
-    }
-  }
-
-  selectFirstVisibleRate();
-
   if (STATE.deliveryMethod === DELIVERY_METHODS.SHIP) {
     if (document.querySelector(CUSTOM_UI_SELECTORS$1.PICKUP_SHIPPING_METHOD)) {
       updateShippingMethod();
@@ -1121,6 +1111,7 @@ var updateUI$4 = function updateUI() {
   fixCustomCheckoutLinks();
 };
 
+var _Shopify, _Shopify$Checkout;
 /**
  * Initialize custom JS functionality
  */
@@ -1149,4 +1140,34 @@ var init = function init() {
  */
 
 
-document.addEventListener('page:load', init);
+document.addEventListener('page:load', init); // Separate JS
+
+var step = (_Shopify = Shopify) == null ? void 0 : (_Shopify$Checkout = _Shopify.Checkout) == null ? void 0 : _Shopify$Checkout.step;
+
+var selectFirstVisibleRate$1 = function selectFirstVisibleRate() {
+  var radios = document.querySelectorAll('.radio-wrapper');
+  var radiosArray = Array.prototype.slice.call(radios);
+  var anyChecked = radiosArray.map(function (r) {
+    return r.querySelector('input').checked;
+  }).some(function (c) {
+    return c === true;
+  });
+
+  if (!anyChecked && radiosArray[0]) {
+    radiosArray[0].querySelector('input').checked = true;
+  }
+};
+
+if (step === 'shipping_method') {
+  $(document).on('page:load page:change', function () {
+    if (window.vars.cartTotalWeight > window.vars.freeShippingWeightLimit) {
+      var freeStandardShippingElement = document.querySelector('[data-shipping-method="shopify-Free%20Standard%20Shipping-0.00"]');
+
+      if (freeStandardShippingElement) {
+        freeStandardShippingElement.parentNode.remove();
+      }
+    }
+
+    selectFirstVisibleRate$1();
+  });
+}
