@@ -1022,17 +1022,43 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
+          "f4d95c1c-f8e1-4b4f-b472-20c2d65dca5a": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_61_-min.png",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "Up to 50% Off Selected Yoga",
+              "banner_subtitle": "<p><strong>Ends Tuesday<\/strong><\/p>",
+              "button_new_window": false,
+              "button_title": "SHOP NOW",
+              "button_url": "shopify:\/\/collections\/yoga-pilates"
+            }
+          },
           "c35f85ac-8b34-453a-828d-936ccb46c6ac": {
             "type": "slide",
             "settings": {
               "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_60_-min_1.png",
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
-              "banner_title": "25% Off MTB",
-              "banner_subtitle": "<p><strong>25% Off when you bundle up expires soon<\/strong><\/p>",
+              "banner_title": "25% Off ST 500 Range",
+              "banner_subtitle": "<p><strong>25% Off when you bundle, limited time only<\/strong><\/p>",
               "button_new_window": false,
               "button_title": "Shop MTB & Accessories",
               "button_url": "shopify:\/\/collections\/cycling"
+            }
+          },
+          "2caa2b9a-c14a-4ac9-a17f-3052f5ed338f": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_9_-min.png",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "Soccer For All",
+              "banner_subtitle": "<p><strong>Euro 2020 Fan Gear & More<\/strong><\/p>",
+              "button_new_window": false,
+              "button_title": "SHOP NOW",
+              "button_url": "shopify:\/\/collections\/soccer-futsal"
             }
           },
           "bfbf1b1d-c4a6-498f-b6cc-9ff9ed1f11b4": {
@@ -1061,19 +1087,6 @@
               "button_url": "shopify:\/\/collections\/weight-training"
             }
           },
-          "2caa2b9a-c14a-4ac9-a17f-3052f5ed338f": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_9_-min.png",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": "Soccer For All",
-              "banner_subtitle": "",
-              "button_new_window": false,
-              "button_title": "SHOP NOW",
-              "button_url": "shopify:\/\/collections\/soccer-futsal"
-            }
-          },
           "a0f45f18-a85b-42cf-a280-a280f09ef2e5": {
             "type": "slide",
             "settings": {
@@ -1089,10 +1102,11 @@
           }
         },
         "block_order": [
+          "f4d95c1c-f8e1-4b4f-b472-20c2d65dca5a",
           "c35f85ac-8b34-453a-828d-936ccb46c6ac",
+          "2caa2b9a-c14a-4ac9-a17f-3052f5ed338f",
           "bfbf1b1d-c4a6-498f-b6cc-9ff9ed1f11b4",
           "4bc8f53f-630c-47ef-a977-51c0fceb46d3",
-          "2caa2b9a-c14a-4ac9-a17f-3052f5ed338f",
           "a0f45f18-a85b-42cf-a280-a280f09ef2e5"
         ],
         "settings": {}
