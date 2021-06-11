@@ -50,6 +50,7 @@
       {% endfor %}
 
       window.vars.cartTotalWeight = {{ cart_total_weight | json }};
+      window.vars.freeShippingWeightLimit = {{ settings.free_shipping_max_weight }};
     </script>
 
     {% if settings.use_algolia %}

@@ -24,9 +24,11 @@ const updateShippingMethod = () => {
       }
     }
   }
-  hideElements([
-    document.querySelector(SELECTORS.PICKUP_SHIPPING_METHOD).parentNode
-  ]);
+  if (document.querySelector(SELECTORS.PICKUP_SHIPPING_METHOD)) {
+    hideElements([
+      document.querySelector(SELECTORS.PICKUP_SHIPPING_METHOD).parentNode
+    ]);
+  }
   //
   // document.querySelector('.content-box__row:nth-child(3)').style.borderTop =
   //  'none';
@@ -63,7 +65,7 @@ window.selectFirstVisibleRate = selectFirstVisibleRate;
 const bindUI = () => {
   hideElements([loadingOverlay, loadingImage]);
 
-  if (window.vars.cartTotalWeight > 7000) {
+  if (window.vars.cartTotalWeight > window.vars.freeShippingWeightLimit) {
     const freeStandardShippingElement = document
       .querySelector('[data-shipping-method="shopify-Free%20Standard%20Shipping-0.00"]');
     if (freeStandardShippingElement) {
