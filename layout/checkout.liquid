@@ -72,7 +72,6 @@
 
 </head>
   <body>
-
     {% include 'js-gtm-body' %}
 
     <div class="visually-hidden">
@@ -178,7 +177,18 @@
             {% endif %}
 
             {% capture layout_content %}{{ content_for_layout }}{% endcapture %}
-            {{ layout_content | replace: login_link_default, login_link_override }}
+
+            {% capture checkout_option_input %}
+              {%- assign managed_attributes = 'checkout_option' | split: ',' -%}
+              {%- for attribute in checkout.attributes -%}
+                {%- unless managed_attributes contains attribute.first -%}
+                  <input type="hidden" data-checkout-field="checkout[attributes][{{ attribute.first }}]" name="checkout[attributes][{{ attribute.first }}]" value="{{ attribute.last }}" />
+                {%- endunless -%}
+              {%- endfor -%}
+              <input type="hidden" name="checkout[attributes][checkout_option]" value="{{ checkout.attributes.delivery_mode }}"></form>
+            {% endcapture %}
+
+            {{ layout_content | replace: login_link_default, login_link_override | replace: '</form>', checkout_option_input }}
 
             {{ thank_you_review_link }}
 
