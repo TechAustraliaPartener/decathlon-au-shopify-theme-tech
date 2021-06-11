@@ -230,7 +230,7 @@
     });
 
     autocomplete.$input.on('autocomplete:selected', function (obj, datum, name) {
-      if (algolia.config.analytics_enabled) {
+      if (algolia.config.analytics_enabled && window.aa) {
         window.aa('click', { objectID: datum.objectID, position: datum._position, queryID: datum._queryID });
       }
       if (name === 'products') {
