@@ -726,7 +726,7 @@ var selectFirstVisibleRate = function selectFirstVisibleRate() {
     return c === true;
   });
 
-  if (!anyChecked) {
+  if (!anyChecked && radiosArray[0]) {
     radiosArray[0].querySelector('input').checked = true;
   }
 };

@@ -53,7 +53,7 @@ const selectFirstVisibleRate = () => {
   const radios = document.querySelectorAll('.radio-wrapper');
   const radiosArray = Array.prototype.slice.call(radios);
   const anyChecked = radiosArray.map(r => r.querySelector('input').checked).some(c => c === true);
-  if (!anyChecked) {
+  if (!anyChecked && radiosArray[0]) {
     radiosArray[0].querySelector('input').checked = true;
   }
 }
