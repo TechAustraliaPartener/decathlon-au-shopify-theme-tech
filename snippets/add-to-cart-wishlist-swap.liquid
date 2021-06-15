@@ -2,6 +2,6 @@
 window.addToWishlist = {{ settings['is_lookbook'] }};
 
 $(function() {
-  window.wishlistSwap = decathlon ? decathlon.wishlistSwap() : function() { return console.log('TO DO: Solve decathlon not found') };
+  window.wishlistSwap = window.decathlon ? window.decathlon.wishlistSwap() : function() { return console.log('TO DO: Solve decathlon not found') };
 });
 </script>
