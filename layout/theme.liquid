@@ -254,7 +254,10 @@
 
   {% render 'shogun-head' %}
   {% render 'customer-fields', customer_api: true, version: '4.3.2' %}
-{% include 'ufe-offer' %}</head>
+  {% comment %}
+  {% include 'ufe-offer' %}
+  {% endcomment %}
+</head>
 
 {% comment %}
   Add the page template as a class for easy page or template specific styling.
