@@ -257,10 +257,12 @@
     {% endcomment %}
 
   {% assign button_url = '/blogs/' | append: blog.handle %}
+    {% assign button_title = 'blogs.article.more_blogs' | t %}
+
     {% include 'elements-button',
       button_wrapper: 'text-center u-block u-marginBottom4x',
       button_adtl_classes: ' btn--blog',
-      button_title: 'blogs.article.more_blogs' %}
+      button_title: button_title %}
   {% endif %}
 
 </div>
