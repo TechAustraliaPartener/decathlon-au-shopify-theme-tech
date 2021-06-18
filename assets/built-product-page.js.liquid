@@ -111,6 +111,13 @@ var HIDE_OVERFLOW_Y_CLASS = CSS_UTILITY_PREFIX + "overflowYNone";
 var IS_OPEN = CSS_PREFIX + "is-open";
 
 // @ts-check
+
+/**
+ * #mk70af
+ * Remove declaration of jquery here. Use the global jQuery declaration instead with the global declaration of slick carousel.
+ * 
+ */
+
 /**
  * Root element(s)
  */
@@ -122,7 +129,7 @@ var FEATURE_CAROUSEL_ACTIVE_SELECTOR = FEATURE_CAROUSEL_SELECTOR + "." + IS_ACTI
 var THUMBNAIL_CAROUSEL_SELECTOR = "." + JS_PREFIX + "SlickCarouselThumbnail";
 var THUMBNAIL_CAROUSEL_ACTIVE_SELECTOR = THUMBNAIL_CAROUSEL_SELECTOR + "." + IS_ACTIVE_CLASS;
 var SLIDE_CAROUSEL_SELECTOR = "." + JS_PREFIX + "SlickCarouselSlide";
-var $galleryCounter = jQuery("." + JS_PREFIX + "ProductGallery-countValue");
+var $galleryCounter = $("." + JS_PREFIX + "ProductGallery-countValue");
 /**
  * Global active carousel index
  */
@@ -133,6 +140,16 @@ var activeSlideIndex = 0;
  */
 
 var allSlideTotalsMatch = true;
+/**
+ * Main carousel instance
+ */
+
+var $featureCarouselInstance = null;
+/**
+ * Thumbnail carousel instance
+ */
+
+var $thumbnailCarouselInstance = null;
 /**
  * Partial carousel settings
  */
@@ -153,8 +170,8 @@ var THUMB_CURSOR_GRAB_CLASS = CSS_UTILITY_PREFIX + "cursorGrab";
  */
 
 var loadImages = function loadImages() {
-  jQuery(CONTAINER_CAROUSEL_ACTIVE_SELECTOR + " " + SLIDE_CAROUSEL_SELECTOR).each(function () {
-    var $slide = jQuery(this); // Remove placeholder background color once image has loaded
+  $(CONTAINER_CAROUSEL_ACTIVE_SELECTOR + " " + SLIDE_CAROUSEL_SELECTOR).each(function () {
+    var $slide = $(this); // Remove placeholder background color once image has loaded
 
     $slide.on('load', function () {
       $slide.removeClass(CSS_UTILITY_PREFIX + "bgSilver " + CSS_UTILITY_PREFIX + "bgWhite");
@@ -185,8 +202,8 @@ var loadImages = function loadImages() {
 
 var initAllSlideTotalsMatch = function initAllSlideTotalsMatch() {
   var previousSlideTotal = null;
-  jQuery(FEATURE_CAROUSEL_SELECTOR).each(function (index, featureCarousel) {
-    var slideTotal = jQuery(featureCarousel).children().length;
+  $(FEATURE_CAROUSEL_SELECTOR).each(function (index, featureCarousel) {
+    var slideTotal = $(featureCarousel).children().length;
 
     if (previousSlideTotal !== null && slideTotal !== previousSlideTotal) {
       allSlideTotalsMatch = false;
@@ -216,11 +233,11 @@ var getSlideCount = function getSlideCount() {
      */
     this.$slideTrack.find('.slick-slide').each(function (index, slide) {
       var offsetPoint = slide.offsetLeft;
-      var outerSize = jQuery(slide).outerWidth();
+      var outerSize = $(slide).outerWidth();
 
       if (_this.options.vertical === true) {
         offsetPoint = slide.offsetTop;
-        outerSize = jQuery(slide).outerHeight();
+        outerSize = $(slide).outerHeight();
       }
 
       if (offsetPoint - centerOffset + outerSize / 2 > _this.swipeLeft * -1) {
@@ -228,7 +245,7 @@ var getSlideCount = function getSlideCount() {
         return false;
       }
     });
-    slidesTraversed = Math.abs(Number(jQuery(swipedSlide).attr('data-slick-index')) - this.currentSlide) || 1;
+    slidesTraversed = Math.abs(Number($(swipedSlide).attr('data-slick-index')) - this.currentSlide) || 1;
     return slidesTraversed;
   }
 
@@ -270,7 +287,7 @@ var getNavigableIndexes = function getNavigableIndexes() {
 
 
 var improveCarouselSwipeResponse = function improveCarouselSwipeResponse() {
-  jQuery(THUMBNAIL_CAROUSEL_ACTIVE_SELECTOR).each(function () {
+  $(THUMBNAIL_CAROUSEL_ACTIVE_SELECTOR).each(function () {
     // @ts-ignore
     this.slick.getSlideCount = getSlideCount; // @ts-ignore
 
@@ -310,7 +327,7 @@ var updateGalleryCounter = function updateGalleryCounter(counterData) {
 
 
 var updateThumbnailCursors = function updateThumbnailCursors(thumbnailCount) {
-  var buttonElements = jQuery(THUMBNAIL_CAROUSEL_ACTIVE_SELECTOR + " button");
+  var buttonElements = $(THUMBNAIL_CAROUSEL_ACTIVE_SELECTOR + " button");
 
   if (thumbnailCount > THUMB_SLIDES_SCROLL_GATE) {
     buttonElements.addClass(THUMB_CURSOR_GRAB_CLASS);
@@ -324,9 +341,10 @@ var updateThumbnailCursors = function updateThumbnailCursors(thumbnailCount) {
 
 
 var initCarousel = function initCarousel() {
-  var $featureCarouselActive = jQuery(FEATURE_CAROUSEL_ACTIVE_SELECTOR);
-  var $thumbnailCarouselActive = jQuery(THUMBNAIL_CAROUSEL_ACTIVE_SELECTOR);
-  var activeSlideTotal = jQuery(FEATURE_CAROUSEL_ACTIVE_SELECTOR + ":first " + SLIDE_CAROUSEL_SELECTOR + ":not(.slick-cloned)").length;
+  var $featureCarouselActive = null;
+  $featureCarouselActive = $(FEATURE_CAROUSEL_ACTIVE_SELECTOR);
+  var $thumbnailCarouselActive = $(THUMBNAIL_CAROUSEL_ACTIVE_SELECTOR);
+  var activeSlideTotal = $(FEATURE_CAROUSEL_ACTIVE_SELECTOR + ":first " + SLIDE_CAROUSEL_SELECTOR + ":not(.slick-cloned)").length;
   /**
    * Reset index when all slides do not match in length
    */
@@ -369,12 +387,12 @@ var initCarousel = function initCarousel() {
     loadImages();
     updateThumbnailCursors(activeSlideTotal);
   });
-  $featureCarouselActive.slick(Object.assign({}, sharedConfig, {
+  $featureCarouselInstance = $featureCarouselActive.slick(Object.assign({}, sharedConfig, {
     asNavFor: $thumbnailCarouselActive,
     slidesToShow: 1,
     waitForAnimate: false
   }));
-  $thumbnailCarouselActive.slick(Object.assign({}, sharedConfig, {
+  $thumbnailCarouselInstance = $thumbnailCarouselActive.slick(Object.assign({}, sharedConfig, {
     asNavFor: $featureCarouselActive,
     focusOnSelect: true,
     slidesToShow: THUMB_SLIDES_TO_SHOW,
@@ -392,9 +410,9 @@ var initCarousel = function initCarousel() {
 
 
 var prepCarousel = function prepCarousel(containerClass) {
-  jQuery(containerClass).addClass(IS_ACTIVE_CLASS);
-  jQuery(containerClass + " > " + FEATURE_CAROUSEL_SELECTOR).addClass(IS_ACTIVE_CLASS);
-  jQuery(containerClass + " > " + THUMBNAIL_CAROUSEL_SELECTOR).addClass(IS_ACTIVE_CLASS);
+  $(containerClass).addClass(IS_ACTIVE_CLASS);
+  $(containerClass + " > " + FEATURE_CAROUSEL_SELECTOR).addClass(IS_ACTIVE_CLASS);
+  $(containerClass + " > " + THUMBNAIL_CAROUSEL_SELECTOR).addClass(IS_ACTIVE_CLASS);
 };
 /**
  * Destroy and clean up carousel
@@ -402,13 +420,13 @@ var prepCarousel = function prepCarousel(containerClass) {
 
 
 var destroyCarousel = function destroyCarousel() {
-  var $containerCarouselActive = jQuery(CONTAINER_CAROUSEL_ACTIVE_SELECTOR);
-  var $featureCarouselActive = jQuery(FEATURE_CAROUSEL_ACTIVE_SELECTOR);
-  var $thumbnailCarouselActive = jQuery(THUMBNAIL_CAROUSEL_ACTIVE_SELECTOR);
-  $featureCarouselActive.slick('unslick');
-  $thumbnailCarouselActive.slick('unslick');
-  $featureCarouselActive.off();
-  $thumbnailCarouselActive.off();
+  var $containerCarouselActive = $(CONTAINER_CAROUSEL_ACTIVE_SELECTOR);
+  var $featureCarouselActive = $(FEATURE_CAROUSEL_ACTIVE_SELECTOR);
+  var $thumbnailCarouselActive = $(THUMBNAIL_CAROUSEL_ACTIVE_SELECTOR);
+  $featureCarouselInstance.slick('unslick');
+  $thumbnailCarouselInstance.slick('unslick');
+  $featureCarouselInstance.off();
+  $thumbnailCarouselInstance.off();
   $featureCarouselActive.removeClass(IS_ACTIVE_CLASS);
   $thumbnailCarouselActive.removeClass(IS_ACTIVE_CLASS);
   $containerCarouselActive.removeClass(IS_ACTIVE_CLASS);
@@ -420,14 +438,14 @@ var destroyCarousel = function destroyCarousel() {
 
 var handleWindowResize = function handleWindowResize() {
   var timeout = null;
-  jQuery(window).resize(function () {
+  $(window).resize(function () {
     clearTimeout(timeout);
     timeout = setTimeout(function () {
-      var $featureCarouselActive = jQuery(FEATURE_CAROUSEL_ACTIVE_SELECTOR);
-      var $thumbnailCarouselActive = jQuery(THUMBNAIL_CAROUSEL_ACTIVE_SELECTOR); // Sync slide index when switching between carousels (desktop vs mobile carousels)
+      var $featureCarouselActive = $(FEATURE_CAROUSEL_ACTIVE_SELECTOR);
+      var $thumbnailCarouselActive = $(THUMBNAIL_CAROUSEL_ACTIVE_SELECTOR); // Sync slide index when switching between carousels (desktop vs mobile carousels)
 
-      $featureCarouselActive.slick('slickGoTo', activeSlideIndex);
-      $thumbnailCarouselActive.slick('slickGoTo', activeSlideIndex);
+      $featureCarouselInstance.slick('slickGoTo', activeSlideIndex);
+      $thumbnailCarouselInstance.slick('slickGoTo', activeSlideIndex);
     }, 250);
   });
 };
@@ -440,13 +458,15 @@ var handleWindowResize = function handleWindowResize() {
 var onColorSelect = function onColorSelect(color) {
   var containerClass = CONTAINER_CAROUSEL_SELECTOR + "[data-color=\"" + color.toLowerCase() + "\"]"; // Breaking up the work into separate tasks because Slick clogs the main thread a lot
 
-  setTimeout(function () {
+  var timeout1 = setTimeout(function () {
+    clearTimeout(timeout1);
     destroyCarousel();
     prepCarousel(containerClass);
-  });
-  setTimeout(function () {
+  }, 100);
+  var timeout2 = setTimeout(function () {
+    clearTimeout(timeout2);
     initCarousel();
-  });
+  }, 150);
 };
 /**
  * Put all functions that need to run on product-page load here

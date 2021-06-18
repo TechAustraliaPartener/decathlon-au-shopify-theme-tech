@@ -1,7 +1,12 @@
 // @ts-check
 import { IS_ACTIVE_CLASS, CSS_UTILITY_PREFIX, JS_PREFIX } from './constants';
 // @todo Consider removing jQuery dependency
-import $ from 'jquery';
+
+/**
+ * #mk70af
+ * Remove declaration of jquery here. Use the global jQuery declaration instead with the global declaration of slick carousel.
+ * 
+ */
 
 /**
  * Root element(s)
@@ -26,6 +31,16 @@ let activeSlideIndex = 0;
 let allSlideTotalsMatch = true;
 
 /**
+ * Main carousel instance
+ */
+ let $featureCarouselInstance = null;
+
+/**
+ * Thumbnail carousel instance
+ */
+ let $thumbnailCarouselInstance = null; 
+
+/**
  * Partial carousel settings
  */
 const THUMB_SLIDES_TO_SHOW = 5;
@@ -39,6 +54,7 @@ const THUMB_SLIDES_SCROLL_GATE = 5;
  * Utility class that adds cursor: grab;
  */
 const THUMB_CURSOR_GRAB_CLASS = `${CSS_UTILITY_PREFIX}cursorGrab`;
+
 
 /**
  * Load carousel images
@@ -202,7 +218,8 @@ const updateThumbnailCursors = thumbnailCount => {
  * Initialize carousel
  */
 const initCarousel = () => {
-  const $featureCarouselActive = $(FEATURE_CAROUSEL_ACTIVE_SELECTOR);
+  let $featureCarouselActive = null;
+  $featureCarouselActive = $(FEATURE_CAROUSEL_ACTIVE_SELECTOR);
   const $thumbnailCarouselActive = $(THUMBNAIL_CAROUSEL_ACTIVE_SELECTOR);
   const activeSlideTotal = $(
     `${FEATURE_CAROUSEL_ACTIVE_SELECTOR}:first ${SLIDE_CAROUSEL_SELECTOR}:not(.slick-cloned)`
@@ -222,6 +239,7 @@ const initCarousel = () => {
     infinite: true,
     initialSlide: activeSlideIndex
   };
+
   /**
    * Keep activeSlideIndex in sync with active slide
    * Keep gallery counter in sync with active slide value and slide total
@@ -244,13 +262,17 @@ const initCarousel = () => {
     loadImages();
     updateThumbnailCursors(activeSlideTotal);
   });
-  $featureCarouselActive.slick({
+
+  
+  $featureCarouselInstance = $featureCarouselActive.slick({
     ...sharedConfig,
     asNavFor: $thumbnailCarouselActive,
     slidesToShow: 1,
     waitForAnimate: false
   });
-  $thumbnailCarouselActive.slick({
+
+
+  $thumbnailCarouselInstance = $thumbnailCarouselActive.slick({
     ...sharedConfig,
     asNavFor: $featureCarouselActive,
     focusOnSelect: true,
@@ -284,10 +306,14 @@ const destroyCarousel = () => {
   const $containerCarouselActive = $(CONTAINER_CAROUSEL_ACTIVE_SELECTOR);
   const $featureCarouselActive = $(FEATURE_CAROUSEL_ACTIVE_SELECTOR);
   const $thumbnailCarouselActive = $(THUMBNAIL_CAROUSEL_ACTIVE_SELECTOR);
-  $featureCarouselActive.slick('unslick');
-  $thumbnailCarouselActive.slick('unslick');
-  $featureCarouselActive.off();
-  $thumbnailCarouselActive.off();
+
+
+  $featureCarouselInstance.slick('unslick');
+  $thumbnailCarouselInstance.slick('unslick');
+
+  $featureCarouselInstance.off();
+  $thumbnailCarouselInstance.off();
+
   $featureCarouselActive.removeClass(IS_ACTIVE_CLASS);
   $thumbnailCarouselActive.removeClass(IS_ACTIVE_CLASS);
   $containerCarouselActive.removeClass(IS_ACTIVE_CLASS);
@@ -304,8 +330,8 @@ const handleWindowResize = () => {
       const $featureCarouselActive = $(FEATURE_CAROUSEL_ACTIVE_SELECTOR);
       const $thumbnailCarouselActive = $(THUMBNAIL_CAROUSEL_ACTIVE_SELECTOR);
       // Sync slide index when switching between carousels (desktop vs mobile carousels)
-      $featureCarouselActive.slick('slickGoTo', activeSlideIndex);
-      $thumbnailCarouselActive.slick('slickGoTo', activeSlideIndex);
+      $featureCarouselInstance.slick('slickGoTo', activeSlideIndex);
+      $thumbnailCarouselInstance.slick('slickGoTo', activeSlideIndex);
     }, 250);
   });
 };
@@ -317,13 +343,16 @@ const handleWindowResize = () => {
 export const onColorSelect = color => {
   const containerClass = `${CONTAINER_CAROUSEL_SELECTOR}[data-color="${color.toLowerCase()}"]`;
   // Breaking up the work into separate tasks because Slick clogs the main thread a lot
-  setTimeout(() => {
+
+  const timeout1 = setTimeout(() => {
+    clearTimeout(timeout1);
     destroyCarousel();
     prepCarousel(containerClass);
-  });
-  setTimeout(() => {
+  }, 100);
+  const timeout2 = setTimeout(() => {
+    clearTimeout(timeout2);
     initCarousel();
-  });
+  }, 150);
 };
 
 /**
