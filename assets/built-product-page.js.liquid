@@ -342,16 +342,10 @@ var updateThumbnailCursors = function updateThumbnailCursors(thumbnailCount) {
 
 
 var initCarousel = function initCarousel() {
-<<<<<<< HEAD
   var $featureCarouselActive = null;
   $featureCarouselActive = $(FEATURE_CAROUSEL_ACTIVE_SELECTOR);
   var $thumbnailCarouselActive = $(THUMBNAIL_CAROUSEL_ACTIVE_SELECTOR);
   var activeSlideTotal = $(FEATURE_CAROUSEL_ACTIVE_SELECTOR + ":first " + SLIDE_CAROUSEL_SELECTOR + ":not(.slick-cloned)").length;
-=======
-  var $featureCarouselActive = jQuery(FEATURE_CAROUSEL_ACTIVE_SELECTOR);
-  var $thumbnailCarouselActive = jQuery(THUMBNAIL_CAROUSEL_ACTIVE_SELECTOR);
-  var activeSlideTotal = jQuery(FEATURE_CAROUSEL_ACTIVE_SELECTOR + ":first " + SLIDE_CAROUSEL_SELECTOR + ":not(.slick-cloned)").length;
->>>>>>> #6ft1d4 - add swiper carousel and skeleton loader to home and cart pages
   /**
    * Reset index when all slides do not match in length
    */
@@ -469,18 +463,11 @@ var onColorSelect = function onColorSelect(color) {
     clearTimeout(timeout1);
     destroyCarousel();
     prepCarousel(containerClass);
-<<<<<<< HEAD
   }, 100);
   var timeout2 = setTimeout(function () {
     clearTimeout(timeout2);
     initCarousel();
   }, 150);
-=======
-  });
-  setTimeout(function () {
-    initCarousel();
-  });
->>>>>>> #6ft1d4 - add swiper carousel and skeleton loader to home and cart pages
 };
 /**
  * Put all functions that need to run on product-page load here
