@@ -274,7 +274,7 @@
     "threshold_for_afterpay_checkout_message": "[gateway] is available on orders over [threshold]",
     "threshold_for_zip_pay_enabled": true,
     "threshold_for_zip_pay_gateway": "Zip Pay",
-    "threshold_for_zip_pay_threshold": "10",
+    "threshold_for_zip_pay_threshold": "200",
     "threshold_for_zip_pay_cart_message": "[gateway] is available on orders over [threshold]",
     "threshold_for_zip_pay_product_message": "[gateway] is available on orders over [threshold]",
     "threshold_for_zip_pay_checkout_message": "[gateway] is available on orders over [threshold]",
@@ -1025,14 +1025,53 @@
           "f4d95c1c-f8e1-4b4f-b472-20c2d65dca5a": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_62_-min.png",
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_67_-min.png",
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
-              "banner_title": "Euro 2020 Fan Gear",
-              "banner_subtitle": "<p><strong>Shop Limited Edition 2020 Fan Gear<\/strong><\/p>",
+              "banner_title": "Winter Sale",
+              "banner_subtitle": "<p><strong>Everything Must Go!<\/strong><\/p>",
+              "button_new_window": false,
+              "button_title": "SHOP Winter Apparel",
+              "button_url": "shopify:\/\/collections\/season-sale"
+            }
+          },
+          "bfbf1b1d-c4a6-498f-b6cc-9ff9ed1f11b4": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_68_-min.png",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "Fan Gear",
+              "banner_subtitle": "<p><strong>Shop for Euro 2020 Fan Gear. Available for a limited time only.<\/strong><\/p>",
+              "button_new_window": false,
+              "button_title": "Shop Now",
+              "button_url": "shopify:\/\/collections\/euro-2020"
+            }
+          },
+          "23d77cce-d9a3-4151-a246-0b8a77ef03ab": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_66_-min.png",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "50% Off Ski Equipment",
+              "banner_subtitle": "<p><strong>On Sale Friday 8 pm<\/strong><\/p>",
               "button_new_window": false,
               "button_title": "SHOP NOW",
-              "button_url": "shopify:\/\/collections\/soccer-futsal"
+              "button_url": "shopify:\/\/pages\/winter-special-buys"
+            }
+          },
+          "a0f45f18-a85b-42cf-a280-a280f09ef2e5": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_55_-min.png",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "Cycling In Winter",
+              "banner_subtitle": "<p><strong>Cycling Equipment, Accessories & Winter Clothing<\/strong><\/p>",
+              "button_new_window": false,
+              "button_title": "SHOP NOW",
+              "button_url": "shopify:\/\/collections\/cycling"
             }
           },
           "4bc8f53f-630c-47ef-a977-51c0fceb46d3": {
@@ -1047,39 +1086,14 @@
               "button_title": "SHOP NOW",
               "button_url": "shopify:\/\/collections\/weight-training"
             }
-          },
-          "bfbf1b1d-c4a6-498f-b6cc-9ff9ed1f11b4": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_1_222dcd47-11a0-4290-add7-9d4b9a425abd.png",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": "Play At Home",
-              "banner_subtitle": "",
-              "button_new_window": false,
-              "button_title": "Shop Backyard Games",
-              "button_url": "shopify:\/\/collections\/garden-games"
-            }
-          },
-          "a0f45f18-a85b-42cf-a280-a280f09ef2e5": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_40_-min.png",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": "Get free tennis balls",
-              "banner_subtitle": "<p><strong>When you spend $120 or more online on any tennis gear<\/strong><\/p>",
-              "button_new_window": false,
-              "button_title": "SHOP NOW",
-              "button_url": "shopify:\/\/collections\/tennis"
-            }
           }
         },
         "block_order": [
           "f4d95c1c-f8e1-4b4f-b472-20c2d65dca5a",
-          "4bc8f53f-630c-47ef-a977-51c0fceb46d3",
           "bfbf1b1d-c4a6-498f-b6cc-9ff9ed1f11b4",
-          "a0f45f18-a85b-42cf-a280-a280f09ef2e5"
+          "23d77cce-d9a3-4151-a246-0b8a77ef03ab",
+          "a0f45f18-a85b-42cf-a280-a280f09ef2e5",
+          "4bc8f53f-630c-47ef-a977-51c0fceb46d3"
         ],
         "settings": {}
       },
@@ -1095,43 +1109,6 @@
           "checkbox_image_2": true,
           "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_31_5435c110-cc03-4d11-8104-4f613f7fb45c.png",
           "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/kids-all-jackets",
-          "checkbox_image_3": true,
-          "homepage_slider_image_redirection_4": "",
-          "checkbox_image_4": false
-        }
-      },
-      "1597283878337": {
-        "type": "slider_image_section",
-        "disabled": true,
-        "settings": {
-          "homepage_slider_image_title": "Online Deals",
-          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_38_63796aa0-198b-42a8-8a96-ce20cd8e5dac.png",
-          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/products\/softachery-100-archery-set-302266?variant=30913068761199",
-          "checkbox_image_1": true,
-          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_25_5314e988-8901-44cf-ad01-f39b68becb46.png",
-          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/products\/country-walking-backpack-mh100-10-litre",
-          "checkbox_image_2": true,
-          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_39_6cab0024-468f-4b0a-80e4-53424ef9498f.png",
-          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/pages\/decathlon-membership",
-          "checkbox_image_3": true,
-          "homepage_slider_image_4": "shopify:\/\/shop_images\/HP_Section_450_X_280_18_36355c26-934a-4d9c-b57e-3016ca58c68a.png",
-          "homepage_slider_image_redirection_4": "https:\/\/decathlon.com.au\/products\/btwin-500-robot-kids-bike-14",
-          "checkbox_image_4": false
-        }
-      },
-      "1602562605803": {
-        "type": "slider_image_section",
-        "disabled": true,
-        "settings": {
-          "homepage_slider_image_title": "Winter Is Here",
-          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_44_-min.png",
-          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/mens-winter-snow-clothing",
-          "checkbox_image_1": true,
-          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_45_-min.png",
-          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/womens-winter-snow-clothing",
-          "checkbox_image_2": true,
-          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_43_-min.png",
-          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/kids-winter-snow-clothing",
           "checkbox_image_3": true,
           "homepage_slider_image_redirection_4": "",
           "checkbox_image_4": false
@@ -1156,6 +1133,7 @@
       },
       "1616763819ce6b8f96": {
         "type": "slider_image_section",
+        "disabled": true,
         "settings": {
           "homepage_slider_image_title": "Wearable Fitness Tech",
           "homepage_slider_image_1": "shopify:\/\/shop_images\/Garmin_Watch_-_Homepage_section-min.png",
@@ -1171,55 +1149,18 @@
           "checkbox_image_4": false
         }
       },
-      "161715071292816218": {
-        "type": "slider_image_section",
-        "disabled": true,
-        "settings": {
-          "homepage_slider_image_title": "Weekend Deal",
-          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_40_-min.png",
-          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/mens-swimsuits",
-          "checkbox_image_1": true,
-          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_41_-min.png",
-          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/womens-swimsuits",
-          "checkbox_image_2": true,
-          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_42_-min.png",
-          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/weekly-deals",
-          "checkbox_image_3": true,
-          "homepage_slider_image_redirection_4": "",
-          "checkbox_image_4": false
-        }
-      },
       "16171919053e0748b9": {
         "type": "slider_image_section",
-        "disabled": true,
         "settings": {
-          "homepage_slider_image_title": "Limited Offers",
-          "homepage_slider_image_1": "shopify:\/\/shop_images\/Tri-banner_-_Winter_Cycling_-_ST_540_Bundle.jpg",
-          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/products\/rockrider-st-540-mountain-bike?",
+          "homepage_slider_image_title": "Backyard Fun",
+          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_8_-min.png",
+          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/pages\/backyard-games",
           "checkbox_image_1": true,
-          "homepage_slider_image_2": "shopify:\/\/shop_images\/Tri-banner_-_Winter_Cycling_-_Bike_Trainers.jpg",
-          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/bike-turbo-trainers",
+          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_6_-min.png",
+          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/badminton-nets-kids-set",
           "checkbox_image_2": true,
-          "homepage_slider_image_3": "shopify:\/\/shop_images\/Tri-banner_-_Winter_Cycling_-_Cycling_Clothing.jpg",
-          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/winter-cycling-clothing",
-          "checkbox_image_3": true,
-          "homepage_slider_image_redirection_4": "",
-          "checkbox_image_4": false
-        }
-      },
-      "1622102057b92681c0": {
-        "type": "slider_image_section",
-        "disabled": true,
-        "settings": {
-          "homepage_slider_image_title": "WINTER DEAL",
-          "homepage_slider_image_1": "shopify:\/\/shop_images\/image1.jpg",
-          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/snow-base-layers",
-          "checkbox_image_1": true,
-          "homepage_slider_image_2": "shopify:\/\/shop_images\/image2.jpg",
-          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/ski-snowboard-equipment",
-          "checkbox_image_2": true,
-          "homepage_slider_image_3": "shopify:\/\/shop_images\/image3.jpg",
-          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/snow-clothing-accessories",
+          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_7_-min.png",
+          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/bowling-games",
           "checkbox_image_3": true,
           "homepage_slider_image_redirection_4": "",
           "checkbox_image_4": false
@@ -1229,12 +1170,8 @@
     "content_for_index": [
       "1568939434006",
       "16171919053e0748b9",
-      "1602562605803",
-      "161715071292816218",
-      "1597283878337",
       "1590735691745",
       "1616763819ce6b8f96",
-      "1622102057b92681c0",
       "161676069181163e17"
     ]
   },
