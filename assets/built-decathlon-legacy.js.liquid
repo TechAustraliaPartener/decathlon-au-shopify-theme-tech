@@ -398,6 +398,8 @@
 
   /* global Cookies, jQuery, BlueLikeNeon, s3, DecathlonCustomer */
 
+  window.jQuery = window.$ = jQuery;
+
   var loadImages = function loadImages() {
     jQuery('img[data-src]').each(function (i, el) {
       jQuery(el).attr('src', jQuery(el).attr('data-src'));

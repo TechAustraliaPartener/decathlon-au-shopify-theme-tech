@@ -16,7 +16,7 @@
   @supports (display: grid) {
     .de-AddToCartActions {
       display: grid; /* 2 */
-      grid-template-columns: 72px 1fr 72px; /* 4 */
+      grid-template-columns: 1fr 72px; /* 4 */
     }
   }
 }

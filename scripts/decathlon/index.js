@@ -4,6 +4,8 @@ import './user_id';
 /* eslint-disable complexity, @cloudfour/no-param-reassign, no-redeclare, eqeqeq, no-negated-condition, radix, block-scoped-var, no-var, no-alert, no-new, @cloudfour/unicorn/explicit-length-check, max-params, no-new-func */
 /* global Cookies, jQuery, BlueLikeNeon, s3, DecathlonCustomer */
 
+window.jQuery = window.$ = jQuery;
+
 const loadImages = () => {
   $('img[data-src]').each((i, el) => {
     $(el).attr('src', $(el).attr('data-src'));

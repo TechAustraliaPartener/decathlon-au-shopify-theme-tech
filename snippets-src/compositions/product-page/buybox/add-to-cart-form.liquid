@@ -72,16 +72,19 @@
   <div
     class="de-AddToCartActions de-u-spaceBottom2">
 
+    <input type="number" name="quantity" id="Quantity" class="de-u-hidden" value="1" min="1" max="1">
+
+    {% comment %}
     <div class="de-ProductQuantity de-u-hidden de-u-md-block">
       <label for="Quantity" class="quantity-selector visually-hidden">
           {{ 'products.product.quantity' | t }} of items to add to the cart.
       </label>
-      {% comment %}
+      % comment %}
         The class name 'quantity-selector' is used by JS to condition the
         appearance of quantity inputs based on variant availability
 
         @see: assets/timber.js.liquid
-      {% endcomment %}
+      % endcomment %}
       <input
         class="de-ProductQuantity-input
               de-u-textSizeBase quantity-selector
@@ -92,6 +95,7 @@
         value="1"
         min="1">
     </div>
+    {% endcomment %}
 
     <div class="de-ProductAddToCart">
       {% render 'vue_add_to_cart_button' %}
