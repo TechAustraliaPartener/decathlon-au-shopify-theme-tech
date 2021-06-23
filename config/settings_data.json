@@ -31,11 +31,11 @@
     "header_support_link": "https:\/\/help.decathlon.com.au\/support\/home",
     "header_store_label": "Stores",
     "header_sign_in_label": "Sign In",
-    "megamenu_image": "shopify:\/\/shop_images\/Copy_of_SIDE_NAV_2_-min.png",
-    "megamenu_title": "Season Sale",
-    "megamenu_subtitle": "End Of Season Sale",
-    "megamenu_link": "shopify:\/\/collections\/season-sale",
-    "megamenu_bg_colour": "#ff0000",
+    "megamenu_image": "shopify:\/\/shop_images\/Copy_of_SIDE_NAV_3.png",
+    "megamenu_title": "25% Off Kids Puma Apparel",
+    "megamenu_subtitle": "EOFY Sale",
+    "megamenu_link": "shopify:\/\/collections\/puma",
+    "megamenu_bg_colour": "#ec2018",
     "custom_fields_terms_conditions": "I agree to the <a href=\"\/pages\/terms-and-conditions-membership\" target=\"_blank\">T&Cs<\/a> and <a href=\"\/pages\/privacy-policy\" target=\"_blank\">Privacy Policy<\/a> for creating an account.",
     "is_lookbook": false,
     "product_returns_text": "Easy 365 days return",
@@ -797,23 +797,10 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
-          "f4d95c1c-f8e1-4b4f-b472-20c2d65dca5a": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_67_-min.png",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": "Winter Sale",
-              "banner_subtitle": "<p><strong>Everything Must Go!<\/strong><\/p>",
-              "button_new_window": false,
-              "button_title": "SHOP Winter Apparel",
-              "button_url": "shopify:\/\/collections\/season-sale"
-            }
-          },
           "0515f8bb-ba49-4792-8904-772e52c17293": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_71_-min.png",
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_73_-min.png",
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
               "banner_title": "End Of Financial Year Sale",
@@ -821,6 +808,19 @@
               "button_new_window": false,
               "button_title": "SHOP NOW",
               "button_url": "shopify:\/\/pages\/end-of-financial-year-sale"
+            }
+          },
+          "f4d95c1c-f8e1-4b4f-b472-20c2d65dca5a": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_72_-min.png",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "50% Off Kids Scooters",
+              "banner_subtitle": "<p><strong>Ends Next Wednesday<\/strong><\/p>",
+              "button_new_window": false,
+              "button_title": "SHOP Kids Scooters",
+              "button_url": "shopify:\/\/collections\/kids-scooters"
             }
           },
           "bfbf1b1d-c4a6-498f-b6cc-9ff9ed1f11b4": {
@@ -836,32 +836,6 @@
               "button_url": "shopify:\/\/collections\/euro-2020"
             }
           },
-          "f9561ef2-e400-4b38-95b8-d6716c32b7f0": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_66_-min.png",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": "Winter At Decathlon",
-              "banner_subtitle": "<p><strong>Exclusive deals and guaranteed low prices on Snow Gear<\/strong><\/p>",
-              "button_new_window": false,
-              "button_title": "Shop Now",
-              "button_url": "shopify:\/\/pages\/winter-special-buys"
-            }
-          },
-          "a0f45f18-a85b-42cf-a280-a280f09ef2e5": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_70_-min.png",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": "Cycling In Winter",
-              "banner_subtitle": "<p><strong>Cycling Equipment, Accessories & Winter Clothing<\/strong><\/p>",
-              "button_new_window": false,
-              "button_title": "SHOP NOW",
-              "button_url": "shopify:\/\/collections\/cycling"
-            }
-          },
           "4bc8f53f-630c-47ef-a977-51c0fceb46d3": {
             "type": "slide",
             "settings": {
@@ -874,15 +848,27 @@
               "button_title": "SHOP NOW",
               "button_url": "shopify:\/\/collections\/weight-training"
             }
+          },
+          "f9561ef2-e400-4b38-95b8-d6716c32b7f0": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_66_-min.png",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "Winter At Decathlon",
+              "banner_subtitle": "<p><strong>Exclusive deals and guaranteed low prices on Snow Gear<\/strong><\/p>",
+              "button_new_window": false,
+              "button_title": "Shop Now",
+              "button_url": "shopify:\/\/pages\/winter-special-buys"
+            }
           }
         },
         "block_order": [
-          "f4d95c1c-f8e1-4b4f-b472-20c2d65dca5a",
           "0515f8bb-ba49-4792-8904-772e52c17293",
+          "f4d95c1c-f8e1-4b4f-b472-20c2d65dca5a",
           "bfbf1b1d-c4a6-498f-b6cc-9ff9ed1f11b4",
-          "f9561ef2-e400-4b38-95b8-d6716c32b7f0",
-          "a0f45f18-a85b-42cf-a280-a280f09ef2e5",
-          "4bc8f53f-630c-47ef-a977-51c0fceb46d3"
+          "4bc8f53f-630c-47ef-a977-51c0fceb46d3",
+          "f9561ef2-e400-4b38-95b8-d6716c32b7f0"
         ],
         "settings": {}
       },
@@ -907,14 +893,14 @@
         "type": "slider_image_section",
         "settings": {
           "homepage_slider_image_title": "Trending Categories",
-          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_52_2124ed89-4ef6-404b-b915-4b0867ef83ed.png",
-          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/pages\/backyard-games",
+          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_62_-min.png",
+          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/kids-scooters",
           "checkbox_image_1": true,
-          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_51_e7554fef-023e-437d-ac57-2732e567296c.png",
-          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/yoga-pilates",
+          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_63_-min.png",
+          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/puma",
           "checkbox_image_2": true,
-          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_53_6e08cf41-159f-4054-9b59-c0295b099185.png",
-          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/kids-scooters",
+          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_52_2124ed89-4ef6-404b-b915-4b0867ef83ed.png",
+          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/pages\/backyard-games",
           "checkbox_image_3": true,
           "homepage_slider_image_redirection_4": "",
           "checkbox_image_4": false
