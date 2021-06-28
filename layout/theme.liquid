@@ -270,18 +270,12 @@
 
   {% render 'shogun-head' %}
   {% render 'customer-fields', customer_api: true, version: '4.3.2' %}
-  {% comment %}{% include 'ufe-offer' %}{% endcomment %}
+  {% include 'ufe-offer' %}
 
   <!-- REAMAZE INTEGRATION START - DO NOT REMOVE -->
 {% render 'reamaze-config' %}
 {% render 'reamaze-sso' %}
 <!-- REAMAZE INTEGRATION END - DO NOT REMOVE -->
-  
-  <style>
-    .ufe-core {
-      display: none !important;
-    }
-  </style>
 
 </head>
 
