@@ -407,19 +407,19 @@
               "tooltip_hours": true,
               "is_same_hours_weekly": false,
               "hours_0_open": "0900",
-              "hours_0_close": "1900",
+              "hours_0_close": "1800",
               "hours_1_open": "0900",
-              "hours_1_close": "2000",
+              "hours_1_close": "1800",
               "hours_2_open": "0900",
-              "hours_2_close": "2000",
+              "hours_2_close": "1800",
               "hours_3_open": "0900",
-              "hours_3_close": "2000",
+              "hours_3_close": "1800",
               "hours_4_open": "0900",
-              "hours_4_close": "2100",
+              "hours_4_close": "1800",
               "hours_5_open": "0900",
-              "hours_5_close": "2000",
+              "hours_5_close": "1800",
               "hours_6_open": "0900",
-              "hours_6_close": "2000",
+              "hours_6_close": "1800",
               "announcement": "",
               "address_type_boolean": false,
               "is_residential": false,
@@ -451,19 +451,19 @@
               "tooltip_hours": true,
               "is_same_hours_weekly": false,
               "hours_0_open": "1000",
-              "hours_0_close": "1900",
+              "hours_0_close": "1700",
               "hours_1_open": "1000",
-              "hours_1_close": "1900",
+              "hours_1_close": "1700",
               "hours_2_open": "1000",
-              "hours_2_close": "1900",
+              "hours_2_close": "1700",
               "hours_3_open": "1000",
-              "hours_3_close": "1900",
+              "hours_3_close": "1700",
               "hours_4_open": "1000",
-              "hours_4_close": "2000",
+              "hours_4_close": "1700",
               "hours_5_open": "1000",
-              "hours_5_close": "2000",
+              "hours_5_close": "1700",
               "hours_6_open": "1000",
-              "hours_6_close": "2000",
+              "hours_6_close": "1700",
               "announcement": "",
               "address_type_boolean": true,
               "is_residential": false,
@@ -797,19 +797,6 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
-          "0515f8bb-ba49-4792-8904-772e52c17293": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_73_-min.png",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": "End Of Financial Year Sale",
-              "banner_subtitle": "<p><strong>Save up to 50% Off your favorite sports<\/strong><\/p>",
-              "button_new_window": false,
-              "button_title": "SHOP NOW",
-              "button_url": "shopify:\/\/pages\/end-of-financial-year-sale"
-            }
-          },
           "f4d95c1c-f8e1-4b4f-b472-20c2d65dca5a": {
             "type": "slide",
             "settings": {
@@ -823,6 +810,32 @@
               "button_url": "shopify:\/\/collections\/kids-scooters"
             }
           },
+          "4bc8f53f-630c-47ef-a977-51c0fceb46d3": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789-min_1_68516b2d-ea35-4483-bc81-c9cc5293e2fc.png",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "Home Gym Equipment",
+              "banner_subtitle": "<p><strong>Weights, Benches & Barbells<\/strong><\/p>",
+              "button_new_window": false,
+              "button_title": "SHOP NOW",
+              "button_url": "shopify:\/\/collections\/weight-training"
+            }
+          },
+          "0515f8bb-ba49-4792-8904-772e52c17293": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_73_-min.png",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "End Of Financial Year Sale",
+              "banner_subtitle": "<p><strong>Save up to 50% Off your favorite sports<\/strong><\/p>",
+              "button_new_window": false,
+              "button_title": "SHOP NOW",
+              "button_url": "shopify:\/\/pages\/end-of-financial-year-sale"
+            }
+          },
           "bfbf1b1d-c4a6-498f-b6cc-9ff9ed1f11b4": {
             "type": "slide",
             "settings": {
@@ -834,19 +847,6 @@
               "button_new_window": false,
               "button_title": "Shop Now",
               "button_url": "shopify:\/\/collections\/euro-2020"
-            }
-          },
-          "4bc8f53f-630c-47ef-a977-51c0fceb46d3": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789-min_1_68516b2d-ea35-4483-bc81-c9cc5293e2fc.png",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": "Build Your Home Gym",
-              "banner_subtitle": "",
-              "button_new_window": false,
-              "button_title": "SHOP NOW",
-              "button_url": "shopify:\/\/collections\/weight-training"
             }
           },
           "f9561ef2-e400-4b38-95b8-d6716c32b7f0": {
@@ -864,10 +864,10 @@
           }
         },
         "block_order": [
-          "0515f8bb-ba49-4792-8904-772e52c17293",
           "f4d95c1c-f8e1-4b4f-b472-20c2d65dca5a",
-          "bfbf1b1d-c4a6-498f-b6cc-9ff9ed1f11b4",
           "4bc8f53f-630c-47ef-a977-51c0fceb46d3",
+          "0515f8bb-ba49-4792-8904-772e52c17293",
+          "bfbf1b1d-c4a6-498f-b6cc-9ff9ed1f11b4",
           "f9561ef2-e400-4b38-95b8-d6716c32b7f0"
         ],
         "settings": {}
@@ -893,14 +893,14 @@
         "type": "slider_image_section",
         "settings": {
           "homepage_slider_image_title": "Trending Categories",
-          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_62_-min.png",
-          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/kids-scooters",
+          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_52_2124ed89-4ef6-404b-b915-4b0867ef83ed.png",
+          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/pages\/backyard-games",
           "checkbox_image_1": true,
           "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_63_-min.png",
           "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/puma",
           "checkbox_image_2": true,
-          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_52_2124ed89-4ef6-404b-b915-4b0867ef83ed.png",
-          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/pages\/backyard-games",
+          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_62_-min.png",
+          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/kids-scooters",
           "checkbox_image_3": true,
           "homepage_slider_image_redirection_4": "",
           "checkbox_image_4": false
@@ -922,12 +922,30 @@
           "homepage_slider_image_redirection_4": "",
           "checkbox_image_4": false
         }
+      },
+      "1624675489449e2491": {
+        "type": "slider_image_section",
+        "settings": {
+          "homepage_slider_image_title": "Trending Sports",
+          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_64_-min.png",
+          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/yoga-pilates",
+          "checkbox_image_1": true,
+          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_65_-min.png",
+          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/cycling",
+          "checkbox_image_2": true,
+          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_67_-min.png",
+          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/cardio-training-equipment",
+          "checkbox_image_3": true,
+          "homepage_slider_image_redirection_4": "",
+          "checkbox_image_4": false
+        }
       }
     },
     "content_for_index": [
       "1568939434006",
       "161676069181163e17",
       "16171919053e0748b9",
+      "1624675489449e2491",
       "1590735691745"
     ]
   },
