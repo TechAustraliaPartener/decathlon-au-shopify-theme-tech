@@ -37,24 +37,35 @@ document.addEventListener('page:load', init);
 // Separate JS
 const step = Shopify?.Checkout?.step;
 
-
-
 window.selectFirstVisibleRate = selectFirstVisibleRate;
+
+const { cartTotal, cartTotalWeight, freeShippingWeightLimit } = window?.vars || {};
 
 if (step === 'shipping_method') {
   $(document).on('page:load page:change', () => {
-    if (window.vars.cartTotalWeight > window.vars.freeShippingWeightLimit) {
-      const freeStandardShippingElement = document
-        .querySelector('[data-shipping-method="shopify-Free%20Standard%20Shipping-0.00"]');
-      const expressShippingElement = document
-        .querySelector('[data-shipping-method^="Shippit-shippit_express_"]');
 
+    const standardShippingElement = document
+      .querySelector('[data-shipping-method^="Shippit-shippit_standard_"]');
+    const freeStandardShippingElement = document
+      .querySelector('[data-shipping-method="shopify-Free%20Standard%20Shipping-0.00"]');
+    const expressShippingElement = document
+      .querySelector('[data-shipping-method^="Shippit-shippit_express_"]');
+
+    if (cartTotalWeight > freeShippingWeightLimit) {
       if (freeStandardShippingElement) {
         freeStandardShippingElement.parentNode.remove();
       }
       if (expressShippingElement) {
         freeStandardShippingElement.parentNode.remove();
       } 
+    } else if (cartTotal > 11999) {
+      if (standardShippingElement) {
+        standardShippingElement.parentNode.remove();
+      }
+    } else {
+      if (freeStandardShippingElement) {
+        freeStandardShippingElement.parentNode.remove();
+      }
     }
 
     selectFirstVisibleRate();
