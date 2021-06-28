@@ -2,6 +2,7 @@ import { DELIVERY_METHODS } from './constants';
 import STATE from './state';
 import bindUI from './bind-ui';
 import updateUI from './update-ui';
+import { selectFirstVisibleRate } from './ui-helpers';
 import { getObjectFromSessionStorage } from '../utilities/storage';
 
 /**
@@ -36,14 +37,9 @@ document.addEventListener('page:load', init);
 // Separate JS
 const step = Shopify?.Checkout?.step;
 
-const selectFirstVisibleRate = () => {
-  const radios = document.querySelectorAll('.radio-wrapper');
-  const radiosArray = Array.prototype.slice.call(radios);
-  const anyChecked = radiosArray.map(r => r.querySelector('input').checked).some(c => c === true);
-  if (!anyChecked && radiosArray[0]) {
-    radiosArray[0].querySelector('input').checked = true;
-  }
-}
+
+
+window.selectFirstVisibleRate = selectFirstVisibleRate;
 
 if (step === 'shipping_method') {
   $(document).on('page:load page:change', () => {

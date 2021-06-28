@@ -62,3 +62,15 @@ export const enableInput = input => {
   if (!input) return;
   input.disabled = false;
 };
+
+/**
+ * Selects the first visible shipping rates
+ */
+export const selectFirstVisibleRate = () => {
+  const radios = document.querySelectorAll('.radio-wrapper');
+  const radiosArray = Array.prototype.slice.call(radios);
+  const anyChecked = radiosArray.map(r => r.querySelector('input').checked).some(c => c === true);
+  if (!anyChecked && radiosArray[0]) {
+    radiosArray[0].querySelector('input').checked = true;
+  }
+}
