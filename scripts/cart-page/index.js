@@ -259,10 +259,26 @@ const initCartDisplay = cart => {
         }
       },
       setDeliveryOption(event) {
+        const app = this;
+
         localStorage.setItem('deliveryOption', event.target.value);
         window.vars.deliveryOption =
           localStorage.getItem('deliveryOption') || 'Delivery';
         this.$data.deliveryOption = window.vars.deliveryOption;
+
+        const checkoutBtn = $('.checkout-btn');
+        checkoutBtn.prop('disabled', true);
+        CartJS.setAttributes({
+          'delivery_mode': window.vars.deliveryOption,
+          'pickup_location': app.deliveryOption !== 'Delivery' ? app.favStore?.street1 : 'none'
+        }, {
+          'success': function() {
+            checkoutBtn.prop('disabled', false);
+          },
+          'error': function() {
+            location.reload();
+          }
+        });
       },
       checkAvailability(item) {
         const app = this;
