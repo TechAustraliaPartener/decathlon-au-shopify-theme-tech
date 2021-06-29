@@ -208,6 +208,16 @@ function supplementCart(cart) {
  * Attach listeners to open collapse elements
  */
 const initCartDisplay = cart => {
+  let { favStore, deliveryOption } = window.vars || {};
+  CartJS.setAttributes({
+    'delivery_mode': deliveryOption,
+    'pickup_location': deliveryOption !== 'Delivery' ? favStore?.street1 : 'none'
+  }, {
+    'error': function() {
+      location.reload();
+    }
+  });
+
   window.cartDisplay = new Vue({
     el: '#cartDisplay',
     data: {
@@ -266,7 +276,7 @@ const initCartDisplay = cart => {
           localStorage.getItem('deliveryOption') || 'Delivery';
         this.$data.deliveryOption = window.vars.deliveryOption;
 
-        const checkoutBtn = $('.checkout-btn');
+        const checkoutBtn = $('[name="checkout"]');
         checkoutBtn.prop('disabled', true);
         CartJS.setAttributes({
           'delivery_mode': window.vars.deliveryOption,
