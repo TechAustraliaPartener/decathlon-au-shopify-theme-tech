@@ -421,6 +421,11 @@ const initCartDisplay = cart => {
         });
 
         return false;
+      },
+      fakeCheckout(event) {
+        const app = this;
+        console.log("event-----", event)
+        app.prepareCart(event);
       }
     }
   });
