@@ -28,13 +28,13 @@
     "img_logo": "shopify:\/\/shop_images\/logo_small_9355cf1c-7626-4ada-916d-d809a214ca37.png",
     "enable_meet_decathlon": true,
     "header_support_label": "Support",
-    "header_support_link": "https:\/\/help.decathlon.com.au\/support\/home",
+    "header_support_link": "https:\/\/decathlon.com.au\/pages\/contact-and-help",
     "header_store_label": "Stores",
     "header_sign_in_label": "Sign In",
-    "megamenu_image": "shopify:\/\/shop_images\/Copy_of_SIDE_NAV_3.png",
-    "megamenu_title": "25% Off Kids Puma Apparel",
-    "megamenu_subtitle": "EOFY Sale",
-    "megamenu_link": "shopify:\/\/collections\/puma",
+    "megamenu_image": "shopify:\/\/shop_images\/Copy_of_SIDE_NAV_5_-min.png",
+    "megamenu_title": "Winter Sale",
+    "megamenu_subtitle": "Fleeces, Layers, Jackets & More",
+    "megamenu_link": "shopify:\/\/collections\/season-sale",
     "megamenu_bg_colour": "#ec2018",
     "custom_fields_terms_conditions": "I agree to the <a href=\"\/pages\/terms-and-conditions-membership\" target=\"_blank\">T&Cs<\/a> and <a href=\"\/pages\/privacy-policy\" target=\"_blank\">Privacy Policy<\/a> for creating an account.",
     "is_lookbook": false,
@@ -274,7 +274,7 @@
     "threshold_for_afterpay_checkout_message": "[gateway] is available on orders over [threshold]",
     "threshold_for_zip_pay_enabled": true,
     "threshold_for_zip_pay_gateway": "Zip Pay",
-    "threshold_for_zip_pay_threshold": "200",
+    "threshold_for_zip_pay_threshold": "10",
     "threshold_for_zip_pay_cart_message": "[gateway] is available on orders over [threshold]",
     "threshold_for_zip_pay_product_message": "[gateway] is available on orders over [threshold]",
     "threshold_for_zip_pay_checkout_message": "[gateway] is available on orders over [threshold]",
@@ -407,7 +407,7 @@
               "tooltip_hours": true,
               "is_same_hours_weekly": false,
               "hours_0_open": "0900",
-              "hours_0_close": "1800",
+              "hours_0_close": "1700",
               "hours_1_open": "0900",
               "hours_1_close": "1800",
               "hours_2_open": "0900",
@@ -697,9 +697,9 @@
               "name": "UFC Westfield Parramatta (2150)",
               "title": "UFC Westfield Parramatta, 2150, Pick Up Only",
               "online_inventory_source": false,
-              "enable_c_c": true,
+              "enable_c_c": false,
               "duplicate": "Auburn",
-              "test_mode": false,
+              "test_mode": true,
               "street1": "Aird Street",
               "city": "Parramatta",
               "zip": "2150",
@@ -728,7 +728,7 @@
               "hours_5_close": "2100",
               "hours_6_open": "0700",
               "hours_6_close": "1500",
-              "announcement": "<p>Wait for your Ready to Pick up Your Email. <br\/><br\/><strong>Note:<\/strong> Bikes, Surfboards, Treadmills, Table Tennis Tables &amp; other bulky items won&#x27;t be available for Click &amp; Collect at this location.<\/p>",
+              "announcement": "<p>Wait for your Ready to Pick up Your Email. <br\/><br\/><strong>Note:<\/strong> Bikes, Surfboards, Treadmills, Table Tennis Tables & other bulky items won't be available for Click & Collect at this location.<\/p>",
               "address_type_boolean": true,
               "is_residential": false,
               "is_warehouse": false,
@@ -758,8 +758,8 @@
               "id": "1789-0001",
               "tooltip_hours": false,
               "is_same_hours_weekly": true,
-              "hours_0_open": "0900",
-              "hours_0_close": "1700",
+              "hours_0_open": "1000",
+              "hours_0_close": "1500",
               "hours_1_open": "0900",
               "hours_1_close": "2100",
               "hours_2_open": "0900",
@@ -797,17 +797,17 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
-          "f4d95c1c-f8e1-4b4f-b472-20c2d65dca5a": {
+          "0515f8bb-ba49-4792-8904-772e52c17293": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_72_-min.png",
+              "banner_bg_image": "shopify:\/\/shop_images\/QmFubmVyX3Nob3BpZnkgKEhQKSAxNDQweDc4OSAoNzcpLW1pbi5wbmc.png",
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
-              "banner_title": "50% Off Kids Scooters",
-              "banner_subtitle": "<p><strong>Ends Next Wednesday<\/strong><\/p>",
+              "banner_title": "Free Shipping on all Bikes",
+              "banner_subtitle": "<p><strong>Free Shipping to NSW on all Bikes. Offer ends Sunday night<\/strong><\/p>",
               "button_new_window": false,
-              "button_title": "SHOP Kids Scooters",
-              "button_url": "shopify:\/\/collections\/kids-scooters"
+              "button_title": "Shop bikes",
+              "button_url": "shopify:\/\/collections\/bikes"
             }
           },
           "4bc8f53f-630c-47ef-a977-51c0fceb46d3": {
@@ -817,23 +817,36 @@
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
               "banner_title": "Home Gym Equipment",
-              "banner_subtitle": "<p><strong>Weights, Benches & Barbells<\/strong><\/p>",
+              "banner_subtitle": "<p><strong>Free Shipping to NSW on all orders above $30<\/strong><\/p>",
               "button_new_window": false,
               "button_title": "SHOP NOW",
               "button_url": "shopify:\/\/collections\/weight-training"
             }
           },
-          "0515f8bb-ba49-4792-8904-772e52c17293": {
+          "d0460c49-f98d-4b03-a169-d3d6ac6f694f": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_73_-min.png",
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_78_-min.png",
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
-              "banner_title": "End Of Financial Year Sale",
-              "banner_subtitle": "<p><strong>Save up to 50% Off your favorite sports<\/strong><\/p>",
+              "banner_title": "Fun With The Family",
+              "banner_subtitle": "<p><strong>Free Shipping on Table Tennis Tables to NSW.<\/strong><\/p>",
               "button_new_window": false,
               "button_title": "SHOP NOW",
-              "button_url": "shopify:\/\/pages\/end-of-financial-year-sale"
+              "button_url": "shopify:\/\/collections\/table-tennis"
+            }
+          },
+          "dd06a840-15c7-4c6b-8a64-5e42fc7ac653": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_79_-min.png",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "Winter Sale",
+              "banner_subtitle": "<p><strong>50% Off Fleeces & Down Jackets. Ends Sunday. Free shipping to NSW above $30<\/strong><\/p>",
+              "button_new_window": false,
+              "button_title": "SHOP NOW",
+              "button_url": "shopify:\/\/collections\/season-sale"
             }
           },
           "bfbf1b1d-c4a6-498f-b6cc-9ff9ed1f11b4": {
@@ -864,9 +877,10 @@
           }
         },
         "block_order": [
-          "f4d95c1c-f8e1-4b4f-b472-20c2d65dca5a",
-          "4bc8f53f-630c-47ef-a977-51c0fceb46d3",
           "0515f8bb-ba49-4792-8904-772e52c17293",
+          "4bc8f53f-630c-47ef-a977-51c0fceb46d3",
+          "d0460c49-f98d-4b03-a169-d3d6ac6f694f",
+          "dd06a840-15c7-4c6b-8a64-5e42fc7ac653",
           "bfbf1b1d-c4a6-498f-b6cc-9ff9ed1f11b4",
           "f9561ef2-e400-4b38-95b8-d6716c32b7f0"
         ],
@@ -892,15 +906,15 @@
       "161676069181163e17": {
         "type": "slider_image_section",
         "settings": {
-          "homepage_slider_image_title": "Trending Categories",
-          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_52_2124ed89-4ef6-404b-b915-4b0867ef83ed.png",
-          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/pages\/backyard-games",
+          "homepage_slider_image_title": "Free Shipping Alert",
+          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_79.png",
+          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/bikes",
           "checkbox_image_1": true,
-          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_63_-min.png",
-          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/puma",
+          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_80.png",
+          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/cardio-training-equipment",
           "checkbox_image_2": true,
-          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_62_-min.png",
-          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/kids-scooters",
+          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_81.png",
+          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/camping-tents",
           "checkbox_image_3": true,
           "homepage_slider_image_redirection_4": "",
           "checkbox_image_4": false
@@ -913,8 +927,8 @@
           "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_54_03945e3a-6786-471f-bfa6-1c1f79245305.png",
           "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/products\/trek-100-mens-down-jacket-326648?",
           "checkbox_image_1": true,
-          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_56.png",
-          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/winter-snow-sports",
+          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_82_-min.png",
+          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/products\/powertrain-adjustable-bench",
           "checkbox_image_2": true,
           "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_61_c378d5ef-84b6-4667-8c54-db3aa30999f1.png",
           "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/products\/mh120-mens-hiking-fleece-jacket-176453",
@@ -939,10 +953,28 @@
           "homepage_slider_image_redirection_4": "",
           "checkbox_image_4": false
         }
+      },
+      "162484396028e9efd8": {
+        "type": "slider_image_section",
+        "settings": {
+          "homepage_slider_image_title": "Top Picks",
+          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_75.png",
+          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/products\/cross-training-push-up-wheel-143811",
+          "checkbox_image_1": true,
+          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_73.png",
+          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/products\/weight-training-dumbell-kit-10kg-171338",
+          "checkbox_image_2": true,
+          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_74.png",
+          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/resistance-bands",
+          "checkbox_image_3": true,
+          "homepage_slider_image_redirection_4": "",
+          "checkbox_image_4": false
+        }
       }
     },
     "content_for_index": [
       "1568939434006",
+      "162484396028e9efd8",
       "161676069181163e17",
       "16171919053e0748b9",
       "1624675489449e2491",
