@@ -219,7 +219,10 @@
               <a href="/collections" class="btn btn--text">Continue Shopping</a>
               <span style="padding: 0 .5em 0 .25em;">or</span>
               {% endcomment %}
-              <input type="submit" name="checkout" id="checkoutBtn" class="btn btn--fill checkout-btn" value="{{ 'cart.general.checkout' | t }}"> :
+              <input type="submit" name="checkout" id="checkoutBtn" class="btn btn--fill checkout-btn" value="{{ 'cart.general.checkout' | t }}">
+              {% comment %}
+              Use the fake checkout button to avoid concurrently triggering the form submit action
+              {% endcomment %}
               <a v-on:click="fakeCheckout($event)" class="btn btn--fill checkout-btn">{{ 'cart.general.checkout' | t }}</a>
             </p>
           </div>

@@ -405,14 +405,14 @@ const initCartDisplay = cart => {
           const item = app.cart.items[i];
           const currentMax = app.currentMax(item);
           if (item.quantity > currentMax) {
-            updateCartPayload[item.variant_id] = currentMax;
+            // instead of updating product quantity, simply remove the unavailable products instead of adding to the array to update quantities
+            if(currentMax < 1){
+              CartJS.removeItemById(item.variant_id)
+            }else{
+              updateCartPayload[item.variant_id] = currentMax;
+            }
           }
         }
-
-        if (JSON.stringify(updateCartPayload) === '{}') {
-          return true;
-        }
-        event.preventDefault();
 
         CartJS.updateItemQuantitiesById(updateCartPayload, {
           success() {
@@ -424,7 +424,7 @@ const initCartDisplay = cart => {
       },
       fakeCheckout(event) {
         const app = this;
-        console.log("event-----", event)
+        // execute cart preparation (remove unavailable products if necessary)
         app.prepareCart(event);
       }
     }
