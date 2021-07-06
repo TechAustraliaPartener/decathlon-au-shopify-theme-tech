@@ -223,7 +223,7 @@
               {% comment %}
               Use the fake checkout button to avoid concurrently triggering the form submit action
               {% endcomment %}
-              <a v-on:click="fakeCheckout($event)" class="btn btn--fill checkout-btn">{{ 'cart.general.checkout' | t }}</a>
+              <a v-on:click="fakeCheckout($event)" id="fake-checkoutBtn" class="u-textBold ufe-btn chkout animate__animated animate__fadeIn ">{{ 'cart.general.checkout' | t }}</a>
             </p>
           </div>
         </div>

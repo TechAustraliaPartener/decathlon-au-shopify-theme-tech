@@ -420,11 +420,18 @@ const initCartDisplay = cart => {
           }
         });
 
+        // Delay checkout, as this seems to be needed in safari.
+        setTimeout(function(){
+          console.log("checking out----------", app, updateCartPayload)
+          $("#checkoutBtn").click()
+        },5000);
+
         return false;
       },
       fakeCheckout(event) {
         const app = this;
         // execute cart preparation (remove unavailable products if necessary)
+        $('#fake-checkoutBtn').removeClass("btn btn--fill checkout-btn").addClass("uloader utext-hide");
         app.prepareCart(event);
       }
     }
