@@ -67,6 +67,22 @@
     display:none;
   }
 
+  #fake-checkoutBtn {
+    font-weight:600;
+    cursor:pointer;
+    font-size:1.2em;
+    background-color:#1c82c3;
+    border-radius: 0;
+  }
+
+  #fake-checkoutBtn:hover {
+    color:white;
+  }
+
+  #fake-checkoutBtn.uloader::before {
+    color:white;
+  }
+
 </style>
 
 {% if settings['is_lookbook'] == false %}
@@ -223,7 +239,7 @@
               {% comment %}
               Use the fake checkout button to avoid concurrently triggering the form submit action
               {% endcomment %}
-              <a v-on:click="fakeCheckout($event)" id="fake-checkoutBtn" class="u-textBold ufe-btn chkout animate__animated animate__fadeIn ">{{ 'cart.general.checkout' | t }}</a>
+              <a v-on:click="fakeCheckout($event)" id="fake-checkoutBtn" class="u-textBold ufe-btn chkout animate__animated animate__fadeIn "><span>{{ 'cart.general.checkout' | t }}</span></a>
             </p>
           </div>
         </div>
