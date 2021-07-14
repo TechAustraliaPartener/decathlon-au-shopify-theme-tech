@@ -16,17 +16,6 @@ function moveRefineSearch() {
 }
 
 window.addEventListener('load', function() {
-  const heightDesc = $(
-    '.collection-description .description-content div'
-  ).height();
-
-  if (heightDesc <= 44) {
-    $('.read-more-description').hide();
-  }
-
-  if (heightDesc <= 44) {
-    $('.read-more-description').hide();
-  }
 
   if ($('.algolia-wrapper').length > 0) {
     moveRefineSearch();

@@ -362,17 +362,6 @@
       });
     }
 
-    function showReadMore() {
-      if ($('.description-main-content').outerHeight(true) < 110) {
-        //console.log('OUTERHEIGHT: ' + $('.description-main-content').outerHeight(true));
-        $('.read-more-description').hide();
-        //console.log('HIDE READMORE');
-      } else {
-        $('.read-more-description').show()
-        //console.log('SHOW READMORE');
-      }
-    }
-
     // Collection title and description
     if (window.algolia_custom_widgets.description) {
       instant.search.addWidget({
@@ -386,8 +375,6 @@
           }
         },
       });
-
-      showReadMore();
 
     }
 
