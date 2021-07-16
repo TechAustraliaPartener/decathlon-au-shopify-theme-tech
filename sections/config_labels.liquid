@@ -20,6 +20,7 @@
           .label_combo_{{ titles | reverse | join: ' ' | handleize }} .label_{{ titles | last | handleize }} {
             background-color: {{ block.settings.bg_colour_2 }} !important;
             color: {{ block.settings.text_colour_2 }} !important;
+            order: 2;
           }
         {%- endif -%}
     {% endcase %}
