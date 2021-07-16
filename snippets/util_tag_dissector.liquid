@@ -1,0 +1,21 @@
+{%- comment -%}
+  This snippet transforms a tag in the format "[Prefix]:[Value]" into useful components.
+
+  Usage:
+  {% capture tag_attrs %}{%- render 'util_tag_dissector', tag: tag -%}{% endcapture %}
+  {% assign tag_attrs = tag_attrs | split: '|||' %}
+  {% assign tag_prefix = tag_attrs | first %}
+  {% assign tag_value = tag_attrs | last %}
+{%- endcomment -%}
+
+{%- assign tag_parts = tag | split: ":" -%}
+{%- assign tag_prefix = tag_parts.first -%}
+{%- assign tag_prefix_comp = tag_parts.first | downcase -%}
+{%- assign tag_value = "" -%}
+{%- for tag_part in tag_parts -%}
+  {%- unless forloop.first -%}
+    {%- assign tag_value = tag_value | append: ':' | append: tag_part -%}
+  {%- endunless -%}
+{%- endfor -%}
+{%- assign tag_value = tag_value | remove_first: ':' -%}
+{{ tag_prefix }}|||{{ tag_prefix_comp }}|||{{ tag_value }}

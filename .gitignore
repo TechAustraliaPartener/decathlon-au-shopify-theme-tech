@@ -24,4 +24,5 @@ src/css/*
 !/snippets/buying_guide*
 !/snippets/ufe*
 !/snippets/smile*
+!/snippets/util_*
 theme.zip
