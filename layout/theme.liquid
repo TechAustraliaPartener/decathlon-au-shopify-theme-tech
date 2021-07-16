@@ -317,6 +317,7 @@
         <div>
           <main class="main-content" role="main">
             {{ content_for_layout }}
+            {% render 'createur_test_labels' %}
           </main>
           {% if display_recently_viewed %}
             <section id="recently-viewed-products-section" class="recently-viewed-algolia de-ProductInfoSection border-bottom--none" aria-labelledby="Section-additional-info">

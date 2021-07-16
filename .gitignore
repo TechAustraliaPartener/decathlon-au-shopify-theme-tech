@@ -25,4 +25,5 @@ src/css/*
 !/snippets/ufe*
 !/snippets/smile*
 !/snippets/util_*
+!/snippets/createur_*
 theme.zip
