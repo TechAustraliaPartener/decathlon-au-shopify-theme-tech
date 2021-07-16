@@ -11,11 +11,13 @@
       {% when 'combo' %}
         {%- if block.settings.title != blank -%}
           {% assign titles = block.settings.title | split: ',' %}
-          .label_combo_{{ block.settings.title | handleize }} .label_{{ titles | first | handleize }} {
+          .label_combo_{{ block.settings.title | handleize }} .label_{{ titles | first | handleize }},
+          .label_combo_{{ titles | reverse | join: ' ' | handleize }} .label_{{ titles | first | handleize }} {
             background-color: {{ block.settings.bg_colour_1 }} !important;
             color: {{ block.settings.text_colour_1 }} !important;
           }
-          .label_combo_{{ block.settings.title | handleize }} .label_{{ titles | last | handleize }} {
+          .label_combo_{{ block.settings.title | handleize }} .label_{{ titles | last | handleize }},
+          .label_combo_{{ titles | reverse | join: ' ' | handleize }} .label_{{ titles | last | handleize }} {
             background-color: {{ block.settings.bg_colour_2 }} !important;
             color: {{ block.settings.text_colour_2 }} !important;
           }
