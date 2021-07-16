@@ -1,0 +1,46 @@
+<style>
+  {% for block in section.blocks %}
+    {%- if block.settings.title != blank -%}
+      .label_{{ block.settings.title | handleize }} {
+        background-color: {{ block.settings.bg_colour }};
+        color: {{ block.settings.text_colour }};
+      }
+    {%- endif -%}
+  {% endfor %}
+</style>
+
+{% schema %}
+  {
+    "name": "Label Colours",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "In this section, you can choose the background colour and copy colour for labels, as they appear on products and product tiles."
+      }
+    ],
+    "blocks": [
+      {
+        "type": "label",
+        "name": "Label",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Name",
+            "info": "This should match the text of the label: tag, after 'label:'. This allows us to pair the styling to the label."
+          },
+          {
+            "type": "color",
+            "id": "bg_colour",
+            "label": "Background"
+          },
+          {
+            "type": "color",
+            "id": "text_colour",
+            "label": "Text"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
