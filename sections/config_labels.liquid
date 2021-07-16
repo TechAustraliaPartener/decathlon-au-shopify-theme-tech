@@ -1,11 +1,26 @@
 <style>
   {% for block in section.blocks %}
-    {%- if block.settings.title != blank -%}
-      .label_{{ block.settings.title | handleize }} {
-        background-color: {{ block.settings.bg_colour }} !important;
-        color: {{ block.settings.text_colour }} !important;
-      }
-    {%- endif -%}
+    {% case block.type %}
+      {% when 'label' %}
+        {%- if block.settings.title != blank -%}
+          .label_{{ block.settings.title | handleize }} {
+            background-color: {{ block.settings.bg_colour }} !important;
+            color: {{ block.settings.text_colour }} !important;
+          }
+        {%- endif -%}
+      {% when 'combo' %}
+        {%- if block.settings.title != blank -%}
+          {% assign titles = block.settings.title | split: ',' %}
+          .label_combo_{{ block.settings.title | handleize }} .label_{{ titles | first | handleize }} {
+            background-color: {{ block.settings.bg_colour_1 }} !important;
+            color: {{ block.settings.text_colour_1 }} !important;
+          }
+          .label_combo_{{ block.settings.title | handleize }} .label_{{ titles | last | handleize }} {
+            background-color: {{ block.settings.bg_colour_2 }} !important;
+            color: {{ block.settings.text_colour_2 }} !important;
+          }
+        {%- endif -%}
+    {% endcase %}
   {% endfor %}
 </style>
 
@@ -37,6 +52,46 @@
           {
             "type": "color",
             "id": "text_colour",
+            "label": "Text"
+          }
+        ]
+      },
+      {
+        "type": "combo",
+        "name": "Combo",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Names",
+            "info": "Enter label names in the format 'Label 1,Label 2'. This will ensure that if these two labels are on a product, they'll both show, in this order, and the styling set in this block will override their individual styling."
+          },
+          {
+            "type": "header",
+            "content": "Label 1"
+          },
+          {
+            "type": "color",
+            "id": "bg_colour_1",
+            "label": "Background"
+          },
+          {
+            "type": "color",
+            "id": "text_colour_1",
+            "label": "Text"
+          },
+          {
+            "type": "header",
+            "content": "Label 2"
+          },
+          {
+            "type": "color",
+            "id": "bg_colour_2",
+            "label": "Background"
+          },
+          {
+            "type": "color",
+            "id": "text_colour_2",
             "label": "Text"
           }
         ]
