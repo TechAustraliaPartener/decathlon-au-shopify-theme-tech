@@ -123,15 +123,7 @@
           return t.toLowerCase();
         });
         if (lowercaseTags.indexOf('clearance') > -1) {
-          //return '<div class="ais-hit--label clearance">Sale</div>';
-          //return '<div class="ais-hit--label clearance">Sale {{'lowest price' | handleize}}</div><div class="ais-hit--label label_{{ 'Lowest Price' | handleize }}">Lowest Price</div>';
           tagLabels.push({class: 'clearance', label: 'Sale'});
-        } else if (lowercaseTags.indexOf('innovation') > -1) {
-          //return '<div class="ais-hit--label innovation">Top Picks</div>';
-          tagLabels.push({class: 'innovation', label: 'Top Picks'});
-        } else if (lowercaseTags.indexOf('new') > -1) {
-          //return '<div class="ais-hit--label new_release">New Release</div>';
-          tagLabels.push({class: 'new_release', label: 'New Release'});
         }
       }
 
@@ -141,14 +133,7 @@
         console.log("LABElS------", thisLabels);
 
         if (thisLabels.filter(function (e) { return e.replace('<span class="ais-highlight">', '').replace('</span>', '') === 'Clearance'; }).length > 0) {
-          //return '<div class="ais-hit--label clearance">Sale</div>';
           tagLabels.push({class: 'clearance', label: 'Sale'});
-        } else if (thisLabels.filter(function (e) { return e.replace('<span class="ais-highlight">', '').replace('</span>', '') === 'Innovation'; }).length > 0) {
-          //return '<div class="ais-hit--label innovation">Top Picks</div>';
-          tagLabels.push({class: 'innovation', label: 'Top Picks'});
-        } else if (thisLabels.filter(function (e) { return e.replace('<span class="ais-highlight">', '').replace('</span>', '') === 'new'; }).length > 0) {
-          //return '<div class="ais-hit--label new_release">New Release</div>';
-          tagLabels.push({class: 'new_release', label: 'New Release'});
         }
       }
 
