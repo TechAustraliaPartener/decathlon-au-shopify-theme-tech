@@ -114,32 +114,56 @@
       return render(text).toLowerCase().toLocaleString();
     },
     label: function label() {
+
+      let tagLabels = [];
+
       if (this.tags) {
+        console.log("TAGS_--------", this.tags, this.named_tags, this)
         var lowercaseTags = this.tags.map(function (t) {
           return t.toLowerCase();
         });
         if (lowercaseTags.indexOf('clearance') > -1) {
-          return '<div class="ais-hit--label clearance">Sale</div>';
+          //return '<div class="ais-hit--label clearance">Sale</div>';
+          //return '<div class="ais-hit--label clearance">Sale {{'lowest price' | handleize}}</div><div class="ais-hit--label label_{{ 'Lowest Price' | handleize }}">Lowest Price</div>';
+          tagLabels.push({class: 'clearance', label: 'Sale'});
         } else if (lowercaseTags.indexOf('innovation') > -1) {
-          return '<div class="ais-hit--label innovation">Top Picks</div>';
+          //return '<div class="ais-hit--label innovation">Top Picks</div>';
+          tagLabels.push({class: 'innovation', label: 'Top Picks'});
         } else if (lowercaseTags.indexOf('new') > -1) {
-          return '<div class="ais-hit--label new_release">New Release</div>';
+          //return '<div class="ais-hit--label new_release">New Release</div>';
+          tagLabels.push({class: 'new_release', label: 'New Release'});
         }
       }
 
       if (this.named_tags && this.named_tags.Label) {
         var thisLabels = typeof this.named_tags.Label === 'object' ? [this.named_tags.Label] : this.named_tags.Label;
         thisLabels = Array.isArray(thisLabels) ? thisLabels : [thisLabels];
-        //console.log(thisLabels);
+        console.log("LABElS------", thisLabels);
 
         if (thisLabels.filter(function (e) { return e.replace('<span class="ais-highlight">', '').replace('</span>', '') === 'Clearance'; }).length > 0) {
-          return '<div class="ais-hit--label clearance">Sale</div>';
+          //return '<div class="ais-hit--label clearance">Sale</div>';
+          tagLabels.push({class: 'clearance', label: 'Sale'});
         } else if (thisLabels.filter(function (e) { return e.replace('<span class="ais-highlight">', '').replace('</span>', '') === 'Innovation'; }).length > 0) {
-          return '<div class="ais-hit--label innovation">Top Picks</div>';
+          //return '<div class="ais-hit--label innovation">Top Picks</div>';
+          tagLabels.push({class: 'innovation', label: 'Top Picks'});
         } else if (thisLabels.filter(function (e) { return e.replace('<span class="ais-highlight">', '').replace('</span>', '') === 'new'; }).length > 0) {
-          return '<div class="ais-hit--label new_release">New Release</div>';
+          //return '<div class="ais-hit--label new_release">New Release</div>';
+          tagLabels.push({class: 'new_release', label: 'New Release'});
         }
       }
+
+      let combo_class = "";
+      if(this.named_tags.label && this.named_tags.label.length > 0){
+
+        for(let n = 0; n < this.named_tags.label.length; n++){
+          let handle = this.named_tags.label[n].replace(" ","-").toLowerCase();
+          tagLabels.push({class: handle, label: this.named_tags.label[n]})
+          combo_class += handle + (n < this.named_tags.label.length - 1 ? "-":"");
+        }
+      }
+
+      console.log("TAGS_-----------", tagLabels, combo_class);
+
       return '';
     },
     rating: function rating() {
@@ -175,10 +199,10 @@
       colorValueTags = Array.isArray(colorValueTags) ? colorValueTags : [colorValueTags];
       var colors = colorValueTags.length - 1;
 
-      /* var variantImages = (((this || {}).meta || {}).variants || {}).images;   
+      /* var variantImages = (((this || {}).meta || {}).variants || {}).images;
 
       if (!variantImages) { */
-      
+
       /* Null checker for product_image. If a product has no images, it uses Shopify's default "No Image" Placeholder */
       var imgUrl = product && product.product_image ? product.product_image.replace('.jpg', '_medium.jpg') : '';
 
@@ -242,7 +266,7 @@
           '</a>'
         ].join(''));
       }
-      
+
       variantThumbnailsDisplay.slice(0, 3);
 
       thumbnailsDisplay.push(variantThumbnailsDisplay.join(''));
@@ -289,7 +313,7 @@
         return render('<div class="h3 vendor_logo_fallback de-u-spaceTop04">' + this.vendor + '</div>');
         {% comment %} Return Decathlon logo{% endcomment %}
         {% comment %}
-        return render(`<svg viewBox="0 0 109.42541 24" width="109.42541" height="24" role="img" class="de-u-spaceTop04 de-subBrandLogo" 
+        return render(`<svg viewBox="0 0 109.42541 24" width="109.42541" height="24" role="img" class="de-u-spaceTop04 de-subBrandLogo"
           data-gtm-event="customer-interaction"
           data-gtm-id="Decathlon Brand | https://${Shopify.shop + '/products/' + this.handle}"
           data-gtm-category="{{ data_gtm_category }}"
