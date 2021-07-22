@@ -5,12 +5,59 @@
  * 1. Improve documentation/comments
  */
 
- .de-ProductFlag {
-  line-height: 1.2;
-  padding: 0.38125em 0.75375em;
-  position: absolute;
-  right: 0;
-  text-transform: uppercase;
-  top: 0;
-  z-index: 1;
+.de-CustomLabels {
+
+   .label_combo {
+       width: 100%;
+       text-align: right;
+       display: flex;
+       flex:1 1 0px;
+       flex-direction: column;
+       align-items: center;
+   }
+
+   .de-ProductTile {
+     .label_combo {
+       position: absolute;
+       right:0;
+     }
+   }
+
+   .de-ProductFlag {
+      position: relative;
+      line-height: 1.2;
+      padding: 0.38125em 0.75375em;
+      right: 0;
+      text-transform: uppercase;
+      top: 0;
+      z-index: 1;
+      margin-left: auto;
+
+      background-color: #0080c4;
+      color: white;
+  }
+}
+
+.de-ProductTile-showcase {
+  .de-CustomLabels {
+    position:absolute;
+    width:100%;
+
+    .de-ProductFlag {
+       position: absolute;
+       margin-left:-30px;
+       text-align:left;
+     }
+
+    .label_combo {
+      align-items: flex-start;
+
+      .de-ProductFlag {
+       position: relative;
+     }
+    }
+
+
+  }
+
 }

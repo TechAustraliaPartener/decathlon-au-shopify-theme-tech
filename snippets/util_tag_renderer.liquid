@@ -1,0 +1,20 @@
+<div class="de-CustomLabels">
+  {% assign combo_labels = labels | replace: ",", "-" | handleize %}
+  {% assign labels = labels | split: "," %}
+
+  {%- if labels.size > 1 -%}
+  <div class="label_combo label_combo_{{ combo_labels }}" style="display: flex;">
+  {%- endif -%}
+
+  {% for label in labels %}
+    <span data-flag="{{ product.id }}" class="de-ProductFlag de-u-textMedium js-de-ProductFlag
+      {% unless label %}de-u-hidden{% endunless %} {{ class }} label_{{ label | handleize }}">
+      <span class="de-u-hiddenVisually">Special product, </span>{{ label }}
+    </span>
+  {% endfor %}
+
+  {% if labels.size > 1 %}
+  </div>
+  {% endif %}
+
+</div>
