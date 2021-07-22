@@ -37,27 +37,24 @@
   ./scripts/product-page/product-flags.js
 {% endcomment %}
 
-{% assign label = false %}
+{% assign label = "" %}
 {% if on_sale %}
   {% comment %}
     Last call flag needs to take priority over other flags
   {% endcomment %}
-  {% assign label = 'Sale' %}
-{% else %}
-  {% for tag in product.tags %}
-    {% capture tag_attrs %}{%- render 'util_tag_dissector', tag: tag -%}{% endcapture %}
-    {% assign tag_attrs = tag_attrs | split: '|||' %}
-    {% assign tag_prefix = tag_attrs | first %}
-    {% assign tag_prefix_comp = tag_prefix | downcase %}
-    {% assign tag_value = tag_attrs | last %}
-
-    {% if tag_prefix_comp == 'label' %}
-      {% assign label = tag_value %}
-    {% endif %}
-  {% endfor %}
+  {% assign label = label | append: 'Sale,' %}
 {% endif %}
+{% for tag in product.tags %}
+  {% capture tag_attrs %}{%- render 'util_tag_dissector', tag: tag -%}{% endcapture %}
+  {% assign tag_attrs = tag_attrs | split: '|||' %}
+  {% assign tag_prefix = tag_attrs | first %}
+  {% assign tag_prefix_comp = tag_prefix | downcase %}
+  {% assign tag_value = tag_attrs | last %}
 
-<span data-flag="{{ product.id }}" class="de-ProductFlag de-u-textMedium js-de-ProductFlag
-  {% unless label %}de-u-hidden{% endunless %} {{ class }} label_{{ label | handleize }}">
-  <span class="de-u-hiddenVisually">Special product, </span>{{ label }}
-</span>
+  {% if tag_prefix_comp == 'label' %}
+    {% assign label = label | append: tag_value | append: "," %}
+
+  {% endif %}
+{% endfor %}
+
+{%- render 'util_tag_renderer', labels: label -%}
