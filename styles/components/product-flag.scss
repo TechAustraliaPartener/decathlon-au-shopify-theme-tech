@@ -5,15 +5,31 @@
  * 1. Improve documentation/comments
  */
 
-.de-CustomLabels {
+ .de-ProductTitleLockup-price {
+   margin-top:1.5em;
+ }
+
+.CustomLabels {
+    position: absolute;
+    width: 100%;
+    text-align:right;
 
    .label_combo {
-       width: 100%;
-       text-align: right;
-       display: flex;
-       flex:1 1 0px;
-       flex-direction: column;
-       align-items: center;
+       // width: 100%;
+       // text-align: right;
+       // display: flex;
+       // flex:1 1 0px;
+       // flex-direction: column;
+       // align-items: center;
+
+      width: 25%;
+      text-align: right;
+      display: flex;
+      flex: 1 1 0px;
+      flex-direction: column;
+      align-items: center;
+      right: 0;
+      margin-left: auto;
    }
 
    .de-ProductTile {
@@ -23,7 +39,7 @@
      }
    }
 
-   .de-ProductFlag {
+   .ProductFlag {
       position: relative;
       line-height: 1.2;
       padding: 0.38125em 0.75375em;
@@ -32,6 +48,8 @@
       top: 0;
       z-index: 1;
       margin-left: auto;
+      width:100%;
+      text-align:center;
 
       background-color: #0080c4;
       color: white;
@@ -39,21 +57,29 @@
 }
 
 .de-ProductTile-showcase {
-  .de-CustomLabels {
+  .CustomLabels {
     position:absolute;
     width:100%;
 
-    .de-ProductFlag {
+    .ProductFlag {
        position: absolute;
        margin-left:-30px;
-       text-align:left;
+       text-align:center;
+       width:40%;
+       left:0;
      }
 
     .label_combo {
       align-items: flex-start;
+      width:100%;
 
-      .de-ProductFlag {
+      .ProductFlag {
        position: relative;
+       text-align:center;
+       margin-left:-30;
+       left:0;
+       right:auto;
+
      }
     }
 
