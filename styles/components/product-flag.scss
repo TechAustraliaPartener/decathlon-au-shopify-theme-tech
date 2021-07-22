@@ -87,3 +87,18 @@
   }
 
 }
+
+.ais-tag-combo {
+  display: flex;
+  flex: 1 1 0px;
+  flex-direction: column;
+  align-items: flex-start;
+  /* -webkit-text-stroke-width: thin; */
+  width: 100%;
+  position: absolute;
+
+  .ais-hit--label {
+    width:30%;
+    position:relative;
+  }
+}

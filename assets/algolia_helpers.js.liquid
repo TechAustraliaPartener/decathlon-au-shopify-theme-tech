@@ -118,7 +118,7 @@
       let tagLabels = [];
 
       if (this.tags) {
-        console.log("TAGS_--------", this.tags, this.named_tags, this)
+        //console.log("TAGS_--------", this.tags, this.named_tags, this)
         var lowercaseTags = this.tags.map(function (t) {
           return t.toLowerCase();
         });
@@ -157,12 +157,22 @@
 
         for(let n = 0; n < this.named_tags.label.length; n++){
           let handle = this.named_tags.label[n].replace(" ","-").toLowerCase();
-          tagLabels.push({class: handle, label: this.named_tags.label[n]})
+          tagLabels.push({class: 'label_' + handle, label: this.named_tags.label[n]})
           combo_class += handle + (n < this.named_tags.label.length - 1 ? "-":"");
         }
       }
 
-      console.log("TAGS_-----------", tagLabels, combo_class);
+      console.log("TAGS_-----------", combo_class);
+
+      let classStr = "label_combo_" + combo_class;
+      let str = '<div class="ais-tag-combo '+ classStr +'">';
+      tagLabels.forEach(lab => {
+        str += '<div class="ais-hit--label '+ lab.class +'">'+ lab.label +'</div>';
+      });
+
+      str += '</div>';
+
+      return str;
 
       return '';
     },
