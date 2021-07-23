@@ -2,9 +2,9 @@
   {% assign combo_labels = labels | replace: ",", "-" | handleize %}
   {% assign labels = labels | split: "," %}
 
-  {%- if labels.size > 1 -%}
-  <div class="label_combo label_combo_{{ combo_labels }}" style="display: flex;">
-  {%- endif -%}
+
+  <div class="label_combo {% if labels.size > 1 %}label_combo_{{ combo_labels }}{% endif %}" style="display: flex;">
+
 
   {% for label in labels %}
     <span data-flag="{{ product.id }}" class="ProductFlag
@@ -13,8 +13,6 @@
     </span>
   {% endfor %}
 
-  {% if labels.size > 1 %}
   </div>
-  {% endif %}
 
 </div>
