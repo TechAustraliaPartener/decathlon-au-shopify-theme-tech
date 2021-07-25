@@ -166,6 +166,10 @@
                 <span>
                   <input type="radio" name="attributes[checkout_option]" value="Delivery" :checked="deliveryOption === 'Delivery'" @change="setDeliveryOption($event)">
                   <label>Delivery</label>
+                <br>
+                  <label><strong>Delivery Update</strong></label>
+				<br>
+                  <label>Bulky items such as Bikes, Fitness Machines, Table Tennis Tables, Surfboards and more, are currently unavailable for delivery.</label>        
                 </span>
                 <span class="click-collect">
                   <input type="radio" name="attributes[checkout_option]" value="Click &amp; Collect" :checked="deliveryOption === 'Click &amp; Collect'" @change="setDeliveryOption($event)">
