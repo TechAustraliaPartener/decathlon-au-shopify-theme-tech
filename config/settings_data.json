@@ -63,10 +63,10 @@
     "blue_band__fact_one_link": "https:\/\/decathlon-aus.reamaze.com\/kb\/delivery\/how-much-does-shipping-cost",
     "blue_band__fact_two_icon": "shopify:\/\/shop_images\/pickup.png",
     "blue_band__fact_two_text": "Free In-Store Click & Collect",
-    "blue_band__fact_two_link": "",
+    "blue_band__fact_two_link": "https:\/\/decathlon-aus.reamaze.com\/kb\/click-and-collect",
     "blue_band__fact_three_icon": "shopify:\/\/shop_images\/returns.png",
     "blue_band__fact_three_text": "<u>Easy 365 Days Return<\/u>",
-    "blue_band__fact_three_link": "https:\/\/decathlonaustralia.freshdesk.com\/support\/solutions\/articles\/8000059284-what-is-your-returns-and-exchanges-policy-",
+    "blue_band__fact_three_link": "https:\/\/decathlon-aus.reamaze.com\/kb\/returns-and-exchange",
     "blue_band__fact_four_icon": "shopify:\/\/shop_images\/star_d0ff1cba-9d45-4c1d-bf01-a5a431b5e5fd.png",
     "blue_band__fact_four_text": "91% of Products have 4 to 5 Stars",
     "blue_band__fact_four_link": "",
@@ -797,6 +797,45 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
+          "a7ecf45b-4c34-43fd-b26a-27854bc92661": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_1_-min_175bc739-c1e9-4907-93a6-ff2bb7a29f39.png",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "Winter Sale",
+              "banner_subtitle": "<p><strong>Winter Clothing, Runners & Fitness Gear<\/strong><\/p>",
+              "button_new_window": false,
+              "button_title": "Shop Now",
+              "button_url": "shopify:\/\/collections\/season-sale"
+            }
+          },
+          "d0460c49-f98d-4b03-a169-d3d6ac6f694f": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_83_-min.png",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "Yoga & Pilates At Home",
+              "banner_subtitle": "<p><strong>Everyday Low Price Pilates & Yoga Equipment<\/strong><\/p>",
+              "button_new_window": false,
+              "button_title": "SHOP NOW",
+              "button_url": "shopify:\/\/collections\/yoga-pilates"
+            }
+          },
+          "69eb90be-815c-49b2-9896-8e5419d9120f": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_5_-min_1.png",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "Play At Home",
+              "banner_subtitle": "<p><strong>Backyard Fun To Keep Everyone Healthy & Busy<\/strong><\/p>",
+              "button_new_window": false,
+              "button_title": "Shop Now",
+              "button_url": "shopify:\/\/collections\/backyard-games"
+            }
+          },
           "4bc8f53f-630c-47ef-a977-51c0fceb46d3": {
             "type": "slide",
             "settings": {
@@ -822,53 +861,14 @@
               "button_title": "Shop bikes",
               "button_url": "shopify:\/\/collections\/bikes"
             }
-          },
-          "d0460c49-f98d-4b03-a169-d3d6ac6f694f": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_78_-min.png",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": "Fun With The Family",
-              "banner_subtitle": "<p><strong>Shop Backyard Games<\/strong><\/p>",
-              "button_new_window": false,
-              "button_title": "SHOP NOW",
-              "button_url": "shopify:\/\/collections\/backyard-games"
-            }
-          },
-          "a7ecf45b-4c34-43fd-b26a-27854bc92661": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_1_-min_175bc739-c1e9-4907-93a6-ff2bb7a29f39.png",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": "Winter Clothing",
-              "banner_subtitle": "<p><strong>Winter Jackets, Trackies, Fleeces & More<\/strong><\/p>",
-              "button_new_window": false,
-              "button_title": "Shop Now",
-              "button_url": "shopify:\/\/collections\/challenge-the-cold-winter-clothing"
-            }
-          },
-          "69eb90be-815c-49b2-9896-8e5419d9120f": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_83_-min.png",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": "Health & Wellness",
-              "banner_subtitle": "<p><strong>Discover our top selection of product ideas to keep you healthy and zen at home.<\/strong><\/p>",
-              "button_new_window": false,
-              "button_title": "Discover Products",
-              "button_url": "shopify:\/\/collections\/recovery-care"
-            }
           }
         },
         "block_order": [
-          "4bc8f53f-630c-47ef-a977-51c0fceb46d3",
-          "0515f8bb-ba49-4792-8904-772e52c17293",
-          "d0460c49-f98d-4b03-a169-d3d6ac6f694f",
           "a7ecf45b-4c34-43fd-b26a-27854bc92661",
-          "69eb90be-815c-49b2-9896-8e5419d9120f"
+          "d0460c49-f98d-4b03-a169-d3d6ac6f694f",
+          "69eb90be-815c-49b2-9896-8e5419d9120f",
+          "4bc8f53f-630c-47ef-a977-51c0fceb46d3",
+          "0515f8bb-ba49-4792-8904-772e52c17293"
         ],
         "settings": {}
       },
@@ -909,6 +909,7 @@
       },
       "16171919053e0748b9": {
         "type": "slider_image_section",
+        "disabled": true,
         "settings": {
           "homepage_slider_image_title": "This Week's Highlight",
           "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_1_-min_da654cbb-0877-42f2-8323-1abbfc198ec2.png",
@@ -980,8 +981,8 @@
       "1568939434006",
       "1624675489449e2491",
       "16171919053e0748b9",
-      "162484396028e9efd8",
       "1590735691745",
+      "162484396028e9efd8",
       "161676069181163e17",
       "16258130231a808884"
     ]
