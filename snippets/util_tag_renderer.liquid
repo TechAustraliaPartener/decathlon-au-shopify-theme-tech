@@ -5,12 +5,15 @@
 
   <div class="label_combo {% if labels.size > 1 %}label_combo_{{ combo_labels }}{% endif %}" style="display: flex;">
 
-
+  {% assign ctr = 0 %}
   {% for label in labels %}
+    {% if ctr < 2 %}
     <span data-flag="{{ product.id }}" class="ProductFlag
       {% unless label %}de-u-hidden{% endunless %} {{ class }} label_{{ label | handleize }}">
       <span class="de-u-hiddenVisually">Special product, </span>{{ label }}
     </span>
+    {% endif %}
+    {% assign ctr = ctr | plus: 1 %}
   {% endfor %}
 
   </div>
