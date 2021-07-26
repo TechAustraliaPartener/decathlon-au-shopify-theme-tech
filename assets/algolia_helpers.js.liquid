@@ -141,9 +141,12 @@
       if(this.named_tags.label && this.named_tags.label.length > 0){
 
         for(let n = 0; n < this.named_tags.label.length; n++){
-          let handle = this.named_tags.label[n].replace(" ","-").toLowerCase();
-          tagLabels.push({class: 'label_' + handle, label: this.named_tags.label[n]})
-          combo_class += handle + (n < this.named_tags.label.length - 1 ? "-":"");
+          if(tagLabels.length < 2){
+            let handle = this.named_tags.label[n].replace(" ","-").toLowerCase();
+            tagLabels.push({class: 'label_' + handle, label: this.named_tags.label[n]})
+            combo_class += handle + (n < this.named_tags.label.length - 1 ? "-":"");
+          }
+
         }
       }
 
