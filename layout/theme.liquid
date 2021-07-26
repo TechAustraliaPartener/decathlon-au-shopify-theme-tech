@@ -316,8 +316,7 @@
       <div class="de-PageWrap-main" {% if settings.hide_header == true %}style="padding-top: 0;"{% endif %}>
         <div>
           <main class="main-content" role="main">
-            {{ content_for_layout }}
-            {% render 'createur_test_labels' %}
+            {{ content_for_layout }}            
           </main>
           {% if display_recently_viewed %}
             <section id="recently-viewed-products-section" class="recently-viewed-algolia de-ProductInfoSection border-bottom--none" aria-labelledby="Section-additional-info">
