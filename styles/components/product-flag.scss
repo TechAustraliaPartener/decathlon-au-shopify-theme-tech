@@ -109,10 +109,30 @@
   .ais-hit--label {
     width:55% !important;
   }
+  .CustomLabels {
+    .label_combo {
+      align-items: flex-start !important;
+      margin-left:0 !important;
+    }
+  }
 }
 
 @media screen and (max-width:1199px) {
   .ais-hit--label {
-    width:40% !important;
+    width:48% !important;
+  }
+  .CustomLabels {
+    font-size:0.8em;
+  }
+}
+
+@media screen and (max-width:600px) {
+  .CustomLabels {
+    .label_combo {
+      .ProductFlag {
+        margin-left:0px;
+      }
+
+    }
   }
 }
