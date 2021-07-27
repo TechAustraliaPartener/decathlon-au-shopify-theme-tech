@@ -99,7 +99,20 @@
   position: absolute;
 
   .ais-hit--label {
-    width:30%;
+    width:38%;
     position:relative;
+    white-space:nowrap;
+  }
+}
+
+@media screen and (max-width:1344px) and (min-width: 1200px) {
+  .ais-hit--label {
+    width:55% !important;
+  }
+}
+
+@media screen and (max-width:1199px) {
+  .ais-hit--label {
+    width:40% !important;
   }
 }
