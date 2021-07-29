@@ -12,7 +12,7 @@ shipping_rates.delete_if do |shipping_rate|
     rate_name_upcase == ("FREE STANDARD SHIPPING") or rate_name_upcase == ("EXPRESS SHIPPING")
   else
     # Offer free standard shipping is cart total is greater than $79
-    if cart.subtotal_price > Money.new(cents: 7900)
+    if cart.subtotal_price >= Money.new(cents: 7900)
       rate_name_upcase == ("STANDARD SHIPPING")
     else
       rate_name_upcase == ("FREE STANDARD SHIPPING")
