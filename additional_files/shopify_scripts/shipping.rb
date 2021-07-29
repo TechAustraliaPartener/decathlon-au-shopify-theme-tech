@@ -1,34 +1,35 @@
-puts Input.shipping_rates.map { |rate| rate.name }
+cart = Input.cart
+shipping_rates = Input.shipping_rates
 
-Input.shipping_rates.delete_if do |shipping_rate|
-  cart = Input.cart
-  # puts cart.total_weight
-  # puts cart.subtotal_price
+puts shipping_rates.map { |rate| rate.name }
+
+shipping_rates.delete_if do |shipping_rate|
   
-  # Delete free and express shipping line if cart weight > 20kg
+  rate_name_upcase = shipping_rate.name.upcase
+  
+  # Delete free and express shipping line if cart weight > 19kg
   if cart.total_weight > 19000
-    shipping_rate.name == ("Free Standard Shipping") or
-    shipping_rate.name == ("Express Shipping")
-  else 
+    rate_name_upcase == ("FREE STANDARD SHIPPING") or rate_name_upcase == ("EXPRESS SHIPPING")
+  else
     if cart.subtotal_price > Money.new(cents: 7900)
-      shipping_rate.name.upcase == ("STANDARD SHIPPING")
+      rate_name_upcase == ("STANDARD SHIPPING")
     else
-      shipping_rate.name == ("Free Standard Shipping")
+      rate_name_upcase == ("FREE STANDARD SHIPPING")
     end
   end
 end
 
-puts Input.shipping_rates.map { |rate| rate.name }
+puts shipping_rates.map { |rate| rate.name }
 
-if Input.shipping_rates.length == 1 && Input.shipping_rates[0]
-  Input.shipping_rates.delete_if do |shipping_rate|
+if shipping_rates.length == 1 && shipping_rates[0]
+  shipping_rates.delete_if do |shipping_rate|
     shipping_rate.name.upcase.include? "PICKUP"
   end
 end 
 
-puts Input.shipping_rates.map { |rate| rate.name }
+puts shipping_rates.map { |rate| rate.name }
 
-Output.shipping_rates = Input.shipping_rates
+Output.shipping_rates = shipping_rates
 
 
 
