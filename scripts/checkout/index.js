@@ -39,7 +39,9 @@ const step = Shopify?.Checkout?.step;
 
 window.selectFirstVisibleRate = selectFirstVisibleRate;
 
-const { cartTotal, cartTotalWeight, freeShippingWeightLimit } = window?.vars || {};
+const { cartTotal, cartTotalWeight, freeShippingPriceThreshold, freeShippingWeightLimit } = window?.vars || {};
+console.log(cartTotal, freeShippingPriceThreshold);
+console.log(cartTotalWeight, freeShippingWeightLimit);
 
 if (step === 'shipping_method') {
   $(document).on('page:load page:change', () => {
@@ -56,9 +58,9 @@ if (step === 'shipping_method') {
         freeStandardShippingElement.parentNode.remove();
       }
       if (expressShippingElement) {
-        freeStandardShippingElement.parentNode.remove();
+        expressShippingElement.parentNode.remove();
       } 
-    } else if (cartTotal > 11999) {
+    } else if (cartTotal >= freeShippingPriceThreshold) {
       if (standardShippingElement) {
         standardShippingElement.parentNode.remove();
       }

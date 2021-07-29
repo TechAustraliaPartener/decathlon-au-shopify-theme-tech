@@ -51,6 +51,7 @@
 
       window.vars.cartTotalWeight = {{ cart_total_weight | json }};
       window.vars.freeShippingWeightLimit = {{ settings.free_shipping_max_weight }};
+      window.vars.freeShippingPriceThreshold = {{ settings.free_shipping_threshold | times: 100 }};
       window.vars.cartTotal = {{ checkout.total_price }};
     </script>
 
