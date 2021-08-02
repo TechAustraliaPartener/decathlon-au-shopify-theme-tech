@@ -251,6 +251,7 @@ const initCartDisplay = cart => {
         CartJS.updateItem(lineIndex, newQty);
       },
       setFavStore(event) {
+        console.log('setFavStore');
         const masterStore = window.masterStores.find(obj => {
           return obj.id === event.target.value;
         });
@@ -262,16 +263,18 @@ const initCartDisplay = cart => {
           );
           this.changeWholeData(window.vars.favStore, 'favStore');
 
-          localStorage.setItem('deliveryOption', 'Click & Collect');
-          window.vars.deliveryOption =
-            localStorage.getItem('deliveryOption') || 'Delivery';
-          this.$data.deliveryOption = window.vars.deliveryOption;
+          // localStorage.setItem('deliveryOption', 'Click & Collect');
+          // window.vars.deliveryOption =
+          //   localStorage.getItem('deliveryOption') || 'Delivery';
+          // this.$data.deliveryOption = window.vars.deliveryOption;
+          this.setDeliveryOption(undefined, 'Click & Collect');
         }
       },
-      setDeliveryOption(event) {
+      setDeliveryOption(event, valueOverride) {
+        console.log('setDeliveryOption');
         const app = this;
 
-        localStorage.setItem('deliveryOption', event.target.value);
+        localStorage.setItem('deliveryOption', event ? event.target.value : valueOverride);
         window.vars.deliveryOption =
           localStorage.getItem('deliveryOption') || 'Delivery';
         this.$data.deliveryOption = window.vars.deliveryOption;
