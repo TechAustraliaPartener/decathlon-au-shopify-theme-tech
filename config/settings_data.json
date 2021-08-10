@@ -1402,6 +1402,24 @@
               "bg_colour_2": "#ffcb60",
               "text_colour_2": "#ff7e00"
             }
+          },
+          "fa9e14af-086a-413f-b3d9-7c8c8912fbb8": {
+            "type": "combo",
+            "settings": {
+              "title": "Lowest Price,Rigo Test",
+              "bg_colour_1": "#a95536",
+              "text_colour_1": "#ffffff",
+              "bg_colour_2": "#1cc3b4",
+              "text_colour_2": "#d12525"
+            }
+          },
+          "6bf673f7-c57f-494d-93ae-ac4f95416b57": {
+            "type": "label",
+            "settings": {
+              "title": "New Arrival",
+              "bg_colour": "#d9ce2a",
+              "text_colour": "#3370ac"
+            }
           }
         },
         "block_order": [
@@ -1419,7 +1437,8 @@
           "26076a3f-98ab-4565-ba49-84843cf8bfca",
           "22cc446b-d257-45ff-a99a-5840376d78fc",
           "7f9c88e9-e668-4ac4-a713-e696f1e193a8",
-          "f8057dbf-e27c-4eed-adc0-17c069770eb1","48e6544f-655c-487c-92a0-437a9b8b64c9"
+          "f8057dbf-e27c-4eed-adc0-17c069770eb1",
+          "48e6544f-655c-487c-92a0-437a9b8b64c9"
         ],
         "settings": {}
       }
