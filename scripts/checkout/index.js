@@ -61,11 +61,11 @@ if (step === 'shipping_method') {
         expressShippingElement.parentNode.remove();
       } 
     } else if (cartTotal >= freeShippingPriceThreshold) {
-      if (standardShippingElement) {
+      if (standardShippingElement && freeStandardShippingElement) {
         standardShippingElement.parentNode.remove();
       }
     } else {
-      if (freeStandardShippingElement) {
+      if (standardShippingElement && freeStandardShippingElement) {
         freeStandardShippingElement.parentNode.remove();
       }
     }
