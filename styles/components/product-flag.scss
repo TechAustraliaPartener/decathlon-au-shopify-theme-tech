@@ -90,20 +90,17 @@
   flex-direction: column;
   align-items: flex-start;
   /* -webkit-text-stroke-width: thin; */
-  width: 100%;
+  width: auto;
   position: absolute;
 
   .ais-hit--label {
-    width:38%;
-    position:relative;
-    white-space:nowrap;
+    position: relative;
+    white-space: nowrap;
+    width: 100%;
   }
 }
 
 @media screen and (max-width:1344px) and (min-width: 1200px) {
-  .ais-hit--label {
-    width:55% !important;
-  }
   .CustomLabels {
     .label_combo {
       align-items: flex-start !important;
@@ -113,11 +110,8 @@
 }
 
 @media screen and (max-width:1199px) {
-  .ais-hit--label {
-    width:48% !important;
-  }
   .CustomLabels {
-    font-size:0.8em;
+    font-size: 0.8em;
   }
 }
 
@@ -127,7 +121,6 @@
       .ProductFlag {
         margin-left:0px;
       }
-
     }
   }
 }

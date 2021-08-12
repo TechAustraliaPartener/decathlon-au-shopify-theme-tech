@@ -110,59 +110,32 @@
     handleize: function handleize(text, render) {
       return render(text).toLowerCase().replace(/[^\w\u00C0-\u024f]+/g, "-").replace(/^-+|-+$/g, "").toLocaleString();
     },
-    lowercase: function handleize(text, render) {
+    lowercase: function lowercase(text, render) {
       return render(text).toLowerCase().toLocaleString();
     },
     label: function label() {
+      let labels = this?.named_tags?.label;
+      let tags = this?.tags;
 
-      let tagLabels = [];
+      tags = tags ? (Array.isArray(tags) ? tags : [tags]) : [];
+      let hasSaleTag = tags.some(tag => tag.toLowerCase() === 'clearance');
 
-      if (this.tags) {
-        //console.log("TAGS_--------", this.tags, this.named_tags, this)
-        var lowercaseTags = this.tags.map(function (t) {
-          return t.toLowerCase();
-        });
-        if (lowercaseTags.indexOf('clearance') > -1) {
-          tagLabels.push({class: 'clearance', label: 'Sale'});
-        }
-      }
+      let labelsOutput = '';
 
-      if (this.named_tags && this.named_tags.Label) {
-        var thisLabels = typeof this.named_tags.Label === 'object' ? [this.named_tags.Label] : this.named_tags.Label;
-        thisLabels = Array.isArray(thisLabels) ? thisLabels : [thisLabels];
-        console.log("LABElS------", thisLabels);
+      labels = labels ? (Array.isArray(labels) ? labels : [labels]) : [];
+      const comboClass = labels.length > 1 ? `label_combo_${ labels.map(label => handleize(label)).join('-') }` : '';
 
-        if (thisLabels.filter(function (e) { return e.replace('<span class="ais-highlight">', '').replace('</span>', '') === 'Clearance'; }).length > 0) {
-          tagLabels.push({class: 'clearance', label: 'Sale'});
-        }
-      }
-
-      let combo_class = "";
-      if(this.named_tags.label && this.named_tags.label.length > 0){
-
-        for(let n = 0; n < this.named_tags.label.length; n++){
-          if(tagLabels.length < 2){
-            let handle = this.named_tags.label[n].replace(" ","-").toLowerCase();
-            tagLabels.push({class: 'label_' + handle, label: this.named_tags.label[n]})
-            combo_class += handle + (n < this.named_tags.label.length - 1 ? "-":"");
-          }
-
-        }
-      }
-
-      console.log("TAGS_-----------", combo_class);
-
-      let classStr = "label_combo_" + combo_class;
-      let str = '<div class="ais-tag-combo '+ classStr +'">';
-      tagLabels.forEach(lab => {
-        str += '<div class="ais-hit--label '+ lab.class +'">'+ lab.label +'</div>';
+      let innerLabels = labels.map(label => {
+        return `<div class="ais-hit--label label_${ handleize(label) }">${ label }</div>`;
       });
+      if (hasSaleTag) {
+        innerLabels.unshift(`<div class="ais-hit--label clearance">Sale</div>`);
+      }
+      innerLabels = innerLabels.slice(0, 2);
 
-      str += '</div>';
+      labelsOutput = `<div class="ais-tag-combo ${ comboClass }">${ innerLabels.join('') }</div>`;
 
-      return str;
-
-      return '';
+      return labelsOutput;
     },
     rating: function rating() {
       if (!this || !this.meta || !this.meta.ratings || !this.meta.reviews.product_rating) {
@@ -410,3 +383,8 @@
     return res;
   }, {});
 }(algoliaShopify));
+
+const handleize = (text) => {
+  console.log(text);
+  return text.toLowerCase().replace(/[^\w\u00C0-\u024f]+/g, "-").replace(/^-+|-+$/g, "").toLocaleString();
+};
