@@ -59,34 +59,29 @@
 
 .de-ProductTile-showcase {
   .CustomLabels {
-    position:absolute;
-    width:100%;
+    position: absolute;
+    left: 0;
+    width: auto;
 
     .ProductFlag {
-       position: absolute;
-       margin-left:-30px;
-       text-align:center;
-       width:50%;
-       left:0;
-     }
+      position: absolute;
+      text-align: center;
+      min-width: 50%;
+      left: 0;
+    }
 
     .label_combo {
       align-items: flex-start;
-      width:100%;
+      width: 100%;
 
       .ProductFlag {
-       position: relative;
-       text-align:center;
-       margin-left:-30;
-       left:0;
-       right:auto;
-
-     }
+        position: relative;
+        text-align: center;
+        left: 0;
+        right: auto;
+      }
     }
-
-
   }
-
 }
 
 .ais-tag-combo {
