@@ -1388,7 +1388,7 @@
           "6bf673f7-c57f-494d-93ae-ac4f95416b57": {
             "type": "label",
             "settings": {
-              "title": "ONLINE ONLY",
+              "title": "Online Only",
               "bg_colour": "#0082c3",
               "text_colour": "#ffffff"
             }
@@ -1396,7 +1396,7 @@
           "7b8ddd36-e9ed-4b45-adb6-809e7d0e6755": {
             "type": "label",
             "settings": {
-              "title": "NEW RELEASE",
+              "title": "New Release",
               "bg_colour": "#0082c3",
               "text_colour": "#ffffff"
             }
@@ -1404,7 +1404,7 @@
           "9cfe0f64-734f-49b4-b750-6d38e0ed13b6": {
             "type": "label",
             "settings": {
-              "title": "ECO-FRIENDLY",
+              "title": "Eco-Friendly",
               "bg_colour": "#88c698",
               "text_colour": "#ffffff"
             }
@@ -1412,7 +1412,7 @@
           "c6eb59bf-e729-4f2c-9eae-9dacbd9cf499": {
             "type": "label",
             "settings": {
-              "title": "TOP PICKS",
+              "title": "Top Picks",
               "bg_colour": "#cbfb00",
               "text_colour": "#333333"
             }
@@ -1420,7 +1420,7 @@
           "fa9e14af-086a-413f-b3d9-7c8c8912fbb8": {
             "type": "combo",
             "settings": {
-              "title": "WEEKLY DEALS,LOWEST PRICE",
+              "title": "Weekly Deals,Lowest Price",
               "bg_colour_1": "#a95536",
               "text_colour_1": "#ffffff",
               "bg_colour_2": "#1cc3b4",
@@ -1430,7 +1430,7 @@
           "cf1d1728-9c3c-46b1-ba79-7876e700690b": {
             "type": "combo",
             "settings": {
-              "title": "NEW RELEASE,ECO-FRIENDLY",
+              "title": "New Release,Eco-Friendly",
               "bg_colour_1": "#24a92c",
               "text_colour_1": "#000000",
               "bg_colour_2": "#317dae",
