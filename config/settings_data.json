@@ -1385,40 +1385,56 @@
               "text_colour_2": "#ffffff"
             }
           },
-          "ad2f449b-334c-4b8e-b29c-caed1367ff3b": {
+          "6bf673f7-c57f-494d-93ae-ac4f95416b57": {
             "type": "label",
             "settings": {
-              "title": "Sale",
-              "bg_colour": "#e53322",
+              "title": "ONLINE ONLY",
+              "bg_colour": "#0082c3",
               "text_colour": "#ffffff"
             }
           },
-          "48e6544f-655c-487c-92a0-437a9b8b64c9": {
-            "type": "combo",
+          "7b8ddd36-e9ed-4b45-adb6-809e7d0e6755": {
+            "type": "label",
             "settings": {
-              "title": "Best Value,Lowest Price",
-              "bg_colour_1": "#ff7e7e",
-              "text_colour_1": "#aaf7d4",
-              "bg_colour_2": "#ffcb60",
-              "text_colour_2": "#ff7e00"
+              "title": "NEW RELEASE",
+              "bg_colour": "#0082c3",
+              "text_colour": "#ffffff"
+            }
+          },
+          "9cfe0f64-734f-49b4-b750-6d38e0ed13b6": {
+            "type": "label",
+            "settings": {
+              "title": "ECO-FRIENDLY",
+              "bg_colour": "#88c698",
+              "text_colour": "#ffffff"
+            }
+          },
+          "c6eb59bf-e729-4f2c-9eae-9dacbd9cf499": {
+            "type": "label",
+            "settings": {
+              "title": "TOP PICKS",
+              "bg_colour": "#cbfb00",
+              "text_colour": "#333333"
             }
           },
           "fa9e14af-086a-413f-b3d9-7c8c8912fbb8": {
             "type": "combo",
             "settings": {
-              "title": "Lowest Price,Rigo Test",
+              "title": "WEEKLY DEALS,LOWEST PRICE",
               "bg_colour_1": "#a95536",
               "text_colour_1": "#ffffff",
               "bg_colour_2": "#1cc3b4",
               "text_colour_2": "#d12525"
             }
           },
-          "6bf673f7-c57f-494d-93ae-ac4f95416b57": {
-            "type": "label",
+          "cf1d1728-9c3c-46b1-ba79-7876e700690b": {
+            "type": "combo",
             "settings": {
-              "title": "New Arrival",
-              "bg_colour": "#d9ce2a",
-              "text_colour": "#3370ac"
+              "title": "NEW RELEASE,ECO-FRIENDLY",
+              "bg_colour_1": "#24a92c",
+              "text_colour_1": "#000000",
+              "bg_colour_2": "#317dae",
+              "text_colour_2": "#ffffff"
             }
           }
         },
