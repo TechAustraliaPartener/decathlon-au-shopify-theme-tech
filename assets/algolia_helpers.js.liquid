@@ -114,8 +114,8 @@
       return render(text).toLowerCase().toLocaleString();
     },
     label: function label() {
-      let labels = this?.named_tags?.label;
-      let tags = this?.tags;
+      let labels = ((this || {}).named_tags || {}).label;
+      let tags = (this || {}).tags;
 
       tags = tags ? (Array.isArray(tags) ? tags : [tags]) : [];
       let hasSaleTag = tags.some(tag => tag.toLowerCase() === 'clearance');
