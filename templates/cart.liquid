@@ -64,7 +64,20 @@
   .btn--shopNow { display: none; }
 
   #checkoutBtn {
-    display:none;
+    /* display:none; */
+    font-weight:600;
+    cursor:pointer;
+    font-size:1.2em;
+    background-color:#1c82c3;
+    border-radius: 0;
+  }
+
+  #checkoutBtn:hover {
+    color:white;
+  }
+
+  #checkoutBtn.uloader::before {
+    color:white;
   }
 
   #fake-checkoutBtn {
@@ -129,7 +142,11 @@
           </p>
         {% endraw %}
       </div>
-      <form action="/cart?is-online-store-checkout=true" method="post" novalidate class="cart table-wrap js-de-cart" v-on:submit="prepareCart($event)">
+      <form action="/cart?is-online-store-checkout=true" 
+            method="post" 
+            novalidate 
+            class="cart table-wrap js-de-cart" 
+            id="main-cart">
         <table class="cart-table full table--responsive">
           <thead class="cart__row cart__header-labels">
             <th>&nbsp;</th>
@@ -232,11 +249,16 @@
               <a href="/collections" class="btn btn--text">Continue Shopping</a>
               <span style="padding: 0 .5em 0 .25em;">or</span>
               {% endcomment %}
-              <input type="submit" name="checkout" id="checkoutBtn" class="btn btn--fill checkout-btn" value="{{ 'cart.general.checkout' | t }}">
-              {% comment %}
-              Use the fake checkout button to avoid concurrently triggering the form submit action
-              {% endcomment %}
-              <a v-on:click="fakeCheckout($event)" id="fake-checkoutBtn" class="u-textBold ufe-btn chkout animate__animated animate__fadeIn "><span>{{ 'cart.general.checkout' | t }}</span></a>
+              <input type="hidden" 
+                    name="checkout"  
+                    value="{{ 'cart.general.checkout' | t }}">
+              <button 
+                type="button" 
+                id="checkoutBtn" 
+                class="u-textBold ufe-btn chkout animate__animated animate__fadeIn " 
+                value="{{ 'cart.general.checkout' | t }}"
+                v-on:click="fakeCheckout($event)"
+                ><span>{{ 'cart.general.checkout' | t }}</span></button>
             </p>
           </div>
         </div>

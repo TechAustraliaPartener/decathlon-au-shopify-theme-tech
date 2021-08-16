@@ -292,6 +292,9 @@ const initCartDisplay = cart => {
             location.reload();
           }
         });
+
+
+
       },
       checkAvailability(item) {
         const app = this;
@@ -398,6 +401,8 @@ const initCartDisplay = cart => {
       prepareCart(event) {
         const app = this;
 
+        $('#checkoutBtn').removeClass("btn btn--fill checkout-btn").addClass("uloader utext-hide");
+
         if (app.override) {
           return true;
         }
@@ -418,18 +423,19 @@ const initCartDisplay = cart => {
         }
 
         CartJS.updateItemQuantitiesById(updateCartPayload, {
-          success() {
+          success(data) {
             app.$data.override = true;
+            console.log("checking out----------", app, updateCartPayload, data)
+            // Update cart form DOM with updated cart data
+            app.changeWholeData(supplementCart(data), 'cart');
+            // 3 seconds delay to make sure the DOM was updated with the new cart values before submitting the form to checkout
+            setTimeout(function(){
+              // Trigger manual form submit
+              $( "#main-cart" ).submit();
+            },3000);
           }
         });
 
-        // Delay checkout, as this seems to be needed in safari.
-        setTimeout(function(){
-          console.log("checking out----------", app, updateCartPayload)
-          $("#checkoutBtn").click()
-        },5000);
-
-        return false;
       },
       fakeCheckout(event) {
         const app = this;
@@ -521,16 +527,25 @@ function tryInit() {
 }
 
 $(document).on('cart.requestComplete', function (event, cart) {
-  window.cartDisplay.changeWholeData(supplementCart(cart), 'cart');
-  $('.js-de-cart__subtotal').text(Shopify.formatMoney(cart.total_price));
-  $('.afterpay-info strong').text(Shopify.formatMoney(cart.total_price / 4));
-  $('#CartCount').text(cart.item_count);
-  if (window.vars.thresholdForGateways.afterpay.enabled && window.vars.thresholdForGateways.afterpay.threshold && cart) {
-    displayPaymentGateway(cart.total_price, window.vars.thresholdForGateways.afterpay.threshold * 100, 'afterpay');
+  console.log('cart update....', cart)
+
+  try {
+    window.cartDisplay.changeWholeData(supplementCart(cart), 'cart');
+    
+    $('.js-de-cart__subtotal').text(Shopify.formatMoney(cart.total_price));
+    $('.afterpay-info strong').text(Shopify.formatMoney(cart.total_price / 4));
+    $('#CartCount').text(cart.item_count);
+    if (window.vars.thresholdForGateways.afterpay.enabled && window.vars.thresholdForGateways.afterpay.threshold && cart) {
+      displayPaymentGateway(cart.total_price, window.vars.thresholdForGateways.afterpay.threshold * 100, 'afterpay');
+    }
+    if (window.vars.thresholdForGateways.zipPay.enabled && window.vars.thresholdForGateways.zipPay.threshold && cart) {
+      displayPaymentGateway(cart.total_price, window.vars.thresholdForGateways.zipPay.threshold * 100, 'zip-pay');
+    }
+
+  } catch(error) {
+    Rollbar.error('Cart update error', error);
   }
-  if (window.vars.thresholdForGateways.zipPay.enabled && window.vars.thresholdForGateways.zipPay.threshold && cart) {
-    displayPaymentGateway(cart.total_price, window.vars.thresholdForGateways.zipPay.threshold * 100, 'zip-pay');
-  }
+
 });
 
 function displayPaymentGateway(price, threshold, gateway) {
