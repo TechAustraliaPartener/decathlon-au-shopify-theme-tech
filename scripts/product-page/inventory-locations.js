@@ -19,6 +19,9 @@ const emptyData = {
   favStore: window.vars.favStore
 };
 
+
+const productStockTranslations = window.translations.product_stock;
+
 const storesSort = window.masterStores.map(a => a.name);
 
 const militaryTo12hFormat = time => {
@@ -224,8 +227,14 @@ function addMasterStoresData(inventoryItem, state) {
 const initInventoryLocations = () => {
   document.addEventListener('tomitProductLoaded', function (e, data) {
     // alert('PRODUCT LOADED');
-    window.inventories =
-      window.tomitProductInventoryInfo.activeProduct.variants;
+    window.inventories = window.tomitProductInventoryInfo.activeProduct.variants;
+    
+    if(!window.inventories) {
+      // Show error in the stock indicator above add to cart if no inventory data was returned
+      $('.js-de-stock-info-message .message').text(productStockTranslations.stock_data_not_available);
+      $('.js-de-stock-info-message').addClass('not_available').removeClass('loading');
+      $('.js-de-stock-info-message .lds-ring').css({"display":"none"});
+    }
 
     for (let i = window.vars.productJSON.variants.length - 1; i >= 0; i--) {
       var v = window.vars.productJSON.variants[i];

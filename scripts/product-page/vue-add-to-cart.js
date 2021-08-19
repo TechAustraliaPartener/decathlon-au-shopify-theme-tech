@@ -10,6 +10,7 @@ variantInventory.is_size_selected = false;
 variantInventory.artificially_unavailable = false;
 
 const translations = window.translations.product_stock;
+const LOADING_CLASS = 'loading';
 const IN_STOCK_CLASS = 'in_stock';
 const LOW_STOCK_CLASS = 'low_stock';
 const addToCartDrawerEnabled = window.add_to_cart_drawer_enabled;
@@ -35,8 +36,9 @@ const initVueATC = () => {
 
         // Use Shopify availability on load while remote inventory is being loaded
         if (variantInventory && variantInventory.available) {
-          $('.js-de-stock-info-message').text(translations.in_stock);
-          $('.js-de-stock-info-message').addClass(IN_STOCK_CLASS).removeClass(LOW_STOCK_CLASS).css({"display":"block"});
+          $('.js-de-stock-info-message .message').text(translations.retrieving_stock);
+          $('.js-de-stock-info-message').addClass(LOADING_CLASS).css({"display":"block"});
+          $('.js-de-stock-info-message .lds-ring').css({"display":"inline-block"});
         }
 
         const variantLocationsInventory = (window.inventories || {})[variant];
@@ -103,13 +105,16 @@ const initVueATC = () => {
           }
         }
 
-        $('.js-de-stock-info-message').text(stockInfoMessage);
-        $('.js-de-stock-info-message').addClass(stockAddClass).removeClass(stockRemoveClass);
-        if ($('.js-de-stock-info-message').text().length > 0) {
+        $('.js-de-stock-info-message .message').text(stockInfoMessage);
+        $('.js-de-stock-info-message').addClass(stockAddClass).removeClass(stockRemoveClass).removeClass(LOADING_CLASS);
+
+        if ($('.js-de-stock-info-message .message').text().length > 0) {
           $('.js-de-stock-info-message').css({"display":"block"});
         } else {
           $('.js-de-stock-info-message').css({"display":"none"});
         }
+
+        $('.js-de-stock-info-message .lds-ring').css({"display":"none"});
 
         return mutatedInventory;
       },
@@ -119,7 +124,7 @@ const initVueATC = () => {
         if (!this.$data.is_size_selected) {
           event.preventDefault();
           validationTextEl.textContent = "Select a size";
-          $('.js-de-stock-info-message').text('');
+          $('.js-de-stock-info-message .message').text('');
           return;
         }
 
@@ -128,7 +133,7 @@ const initVueATC = () => {
         if (!variant) {
           event.preventDefault();
           validationTextEl.textContent = "Unavailable";
-          $('.js-de-stock-info-message').text('');
+          $('.js-de-stock-info-message .message').text('');
           return;
         }
 
