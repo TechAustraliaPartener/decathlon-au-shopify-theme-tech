@@ -6,13 +6,13 @@
  */
 
  .de-ProductTitleLockup-price {
-   margin-top:1.5em;
+   margin-top: 1.5em;
  }
 
 .CustomLabels {
     position: absolute;
-    width: 100%;
-    text-align:right;
+    width: auto;
+    right: 0;
 
    .label_combo {
        // width: 100%;
@@ -22,20 +22,16 @@
        // flex-direction: column;
        // align-items: center;
 
-      width: 25%;
-      text-align: right;
       display: flex;
       flex: 1 1 0px;
       flex-direction: column;
       align-items: center;
-      right: 0;
-      margin-left: auto;
    }
 
    .de-ProductTile {
      .label_combo {
        position: absolute;
-       right:0;
+       right: 0;
      }
    }
 
@@ -47,10 +43,10 @@
       text-transform: uppercase;
       top: 0;
       z-index: 1;
-      margin-left: auto;
-      width:100%;
-      text-align:center;
+      width: 100%;
+      text-align: center;
       white-space: nowrap;
+      font-weight: bold;
 
       background-color: #0080c4;
       color: white;
@@ -61,24 +57,24 @@
   .CustomLabels {
     position: absolute;
     left: 0;
+    right: unset;
     width: auto;
 
     .ProductFlag {
       position: absolute;
       text-align: center;
-      min-width: 50%;
       left: 0;
+      width: auto;
     }
 
     .label_combo {
       align-items: flex-start;
-      width: 100%;
+      width: auto;
 
       .ProductFlag {
         position: relative;
         text-align: center;
-        left: 0;
-        right: auto;
+        width: 100%;
       }
     }
   }
