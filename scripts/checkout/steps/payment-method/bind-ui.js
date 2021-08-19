@@ -28,9 +28,9 @@ const clearBillingAddress = () => {
 };
 
 const bindUI = () => {
-  // Clear auto-filled billing address fields
-  clearBillingAddress();
   hideElements([loadingOverlay, loadingImage]);
+  const hasErrorInDiffBillingAddress = $('#section--billing-address__different .field__message--error').length > 0;
+
   if (STATE.deliveryMethod === DELIVERY_METHODS.PICKUP) {
     hideElements(billingAddressChoices);
     hideElements([shipToMap]);
@@ -46,7 +46,11 @@ const bindUI = () => {
       'checkout_different_billing_address_false'
     );
     if (elementExists(sameBillingShippingAddress)) {
-      sameBillingShippingAddress.click();
+
+      if(!hasErrorInDiffBillingAddress) {
+        sameBillingShippingAddress.click();
+      }
+
     }
   }
 };
