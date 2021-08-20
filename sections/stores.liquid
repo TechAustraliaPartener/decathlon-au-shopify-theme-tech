@@ -48,12 +48,12 @@
     var hoursOrder = [1, 2, 3, 4, 5, 6, 0];
 
     // sort weekHours into the chronological Monday - Sunday order before using the array.
-    weekHours = weekHours.sort(function(a, b) {
+    const sortedWeekHours = [...weekHours].sort(function(a, b) {
       return hoursOrder.indexOf(refWeekHours.indexOf(JSON.stringify(a))) - hoursOrder.indexOf(refWeekHours.indexOf(JSON.stringify(b)));
     });
 
     // the map function allows us to perform a similar action on each item in the array, such as adding a bunch of identical html.
-    return weekHours.map(function(dayHours) {
+    return sortedWeekHours.map(function(dayHours) {
       return '<li><span class="weekday">' + dayHours.day + '</span> <span class="tooltip-hours">' + dayHours.display +'</span></li>';
     }).join('');
   }
@@ -62,7 +62,7 @@
   {% for block in section.blocks %}
     var store = window.masterStores[{{ forloop.index0 }}];
 
-    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     store.hours = [];
     for (var i = 0; i < 7; i++) {
       var day = days[i];
