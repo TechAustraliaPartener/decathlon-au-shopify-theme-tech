@@ -49,6 +49,7 @@ const bindUI = () => {
 
       if(!hasErrorInDiffBillingAddress) {
         sameBillingShippingAddress.click();
+        clearBillingAddress();
       }
 
     }
