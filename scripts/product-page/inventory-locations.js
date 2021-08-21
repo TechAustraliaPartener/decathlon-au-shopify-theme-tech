@@ -73,7 +73,11 @@ function addMasterStoresData(inventoryItem, state) {
     var weekday = new Date().getDay();
     var openHour = masterLoc['hours_' + (masterLoc.is_same_hours_weekly ? 0 : weekday) + '_open'];
     var closeHour = masterLoc['hours_' + (masterLoc.is_same_hours_weekly ? 0 : weekday) + '_close'];
-    if (openHour === '0000' && closeHour === '0000') {
+
+    const tomorrowOpenHour = masterLoc['hours_' + (masterLoc.is_same_hours_weekly ? 0 : (weekday + 1 === 7 ? 0 : weekday + 1)) + '_open'];
+    const tomorrowCloseHour = masterLoc['hours_' + (masterLoc.is_same_hours_weekly ? 0 : (weekday + 1 === 7 ? 0 : weekday + 1)) + '_close'];
+
+    if (openHour === '0000' && closeHour === '0000' && !(tomorrowOpenHour === '0000' && tomorrowCloseHour === '0000')) {
       var weekday = weekday + 1;
       if (weekday > 6) {
         var weekday = 0;
@@ -91,6 +95,7 @@ function addMasterStoresData(inventoryItem, state) {
         var nameDay = day;
       }
     }
+
     if (thisLoc) {
       thisLoc.title = masterLoc.title;
 
@@ -130,11 +135,20 @@ function addMasterStoresData(inventoryItem, state) {
       var formattedCloseHour = militaryTo12hFormat(closeHour);
 
       thisLoc.is_same_hours_weekly = masterLoc.is_same_hours_weekly;
-      if (thisLoc.is_same_hours_weekly === true) {
-        thisLoc.hours = 'Open ' + formattedOpenHour + '-' + formattedCloseHour;
-      } else {
-        thisLoc.hours = nameDay + ' ' + formattedOpenHour + '-' + formattedCloseHour;
-      }
+
+      const hoursDisplay = 
+        formattedOpenHour === formattedCloseHour ? 
+          `Closed ${ thisLoc.is_same_hours_weekly ? '' : nameDay }`
+        : 
+          `${ thisLoc.is_same_hours_weekly ? 
+              'Open' 
+            : 
+              nameDay 
+            } ${ formattedOpenHour } - ${ formattedCloseHour }`;
+
+      thisLoc.hours = hoursDisplay;
+
+      console.log('BJAKDBKJABDWJKBDWKAJBJKWDABJKDAW', thisLoc.title, thisLoc.hours);
       thisLoc.street1 = masterLoc.street1;
       thisLoc.city = masterLoc.city;
       thisLoc.zip = masterLoc.zip;
