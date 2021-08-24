@@ -1404,7 +1404,7 @@
           "9cfe0f64-734f-49b4-b750-6d38e0ed13b6": {
             "type": "label",
             "settings": {
-              "title": "Eco-Friendly",
+              "title": "Eco-Design",
               "bg_colour": "#88c698",
               "text_colour": "#ffffff"
             }
@@ -1413,28 +1413,18 @@
             "type": "label",
             "settings": {
               "title": "Top Picks",
-              "bg_colour": "#cbfb00",
+              "bg_colour": "#ffea28",
               "text_colour": "#333333"
             }
           },
-          "fa9e14af-086a-413f-b3d9-7c8c8912fbb8": {
+          "7b27a0f1-dd9f-41ee-9e69-c57fd687ed6e": {
             "type": "combo",
             "settings": {
-              "title": "Weekly Deals,Lowest Price",
-              "bg_colour_1": "#a95536",
-              "text_colour_1": "#ffffff",
-              "bg_colour_2": "#1cc3b4",
-              "text_colour_2": "#d12525"
-            }
-          },
-          "cf1d1728-9c3c-46b1-ba79-7876e700690b": {
-            "type": "combo",
-            "settings": {
-              "title": "New Release,Eco-Friendly",
-              "bg_colour_1": "#24a92c",
-              "text_colour_1": "#000000",
-              "bg_colour_2": "#317dae",
-              "text_colour_2": "#ffffff"
+              "title": "Lowest Price,Best Value",
+              "bg_colour_1": "#ffea28",
+              "text_colour_1": "#333333",
+              "bg_colour_2": "#1c82c3",
+              "text_colour_2": "#fafafa"
             }
           }
         },
