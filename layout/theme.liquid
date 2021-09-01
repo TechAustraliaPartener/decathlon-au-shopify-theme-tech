@@ -150,6 +150,8 @@
     {{ 'built-recently-viewed.css' | asset_url | stylesheet_tag }}
   {% endif %}
 
+  {{ 'built-home.css' | asset_url | stylesheet_tag }}
+
   {% comment %}
     @TODO
     1. Determine when this was commented out and why.
@@ -332,6 +334,9 @@
     {% endif %}
  </div>
 
+
+  <!-- For Lazyloading -->
+  <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.4.0/dist/lazyload.min.js"></script>
 
   {{ 'timber.js' | asset_url | script_tag }}
   {% include 'polyfills' %}

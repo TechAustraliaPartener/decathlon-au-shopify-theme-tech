@@ -1,0 +1,11 @@
+<a href="{{settings.link}}" class="top_category top_category_{{index}}">
+  <div class="image_container">
+    <img 
+      class="lazy" 
+      alt="{{settings.image.alt}}"
+      data-src="lazy.jpg"
+      data-srcset="{{ settings.image | img_url: 'x70' }} 1x, {{ settings.image | img_url: 'x140' }} 2x"
+      >
+  </div>
+  <span class="top_category_title">{{ settings.title }}</span>
+</a>

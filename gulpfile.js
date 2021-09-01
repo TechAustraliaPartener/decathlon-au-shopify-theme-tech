@@ -170,7 +170,8 @@ gulp.task('styles', function () {
     .src([
       `${STYLES_PATH}product-page/index.scss`,
       `${STYLES_PATH}product-tile/index.scss`,
-      `${STYLES_PATH}recently-viewed/index.scss`
+      `${STYLES_PATH}recently-viewed/index.scss`,
+      `${STYLES_PATH}home/index.scss`
     ], { base: STYLES_PATH })
     .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
     .pipe(
