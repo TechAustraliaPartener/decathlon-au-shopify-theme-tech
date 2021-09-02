@@ -1,0 +1,14 @@
+<a href="{{settings.link}}" class="trending_category_tile">
+  <!-- Skeleton loader here -->
+  <div class="trending_category_image_container">
+    <img 
+      class="lazy trending_category_image" 
+      alt="{{settings.image.alt}}"
+      data-src="{{ settings.image | img_url: '180x230' }}"
+      data-srcset="{{ settings.image | img_url: '180x230' }} 1x, {{ settings.image | img_url: '360x460' }} 2x"
+      >
+  </div>
+  <div class="trending_category_title_container">
+    <span class="trending_category_title">{{settings.title}}</span>
+  </div>
+</a>

@@ -1,0 +1,61 @@
+<div class="section_title_container">
+  <h3 class="section_title">{{ section.settings.title }}</h3>
+</div>
+
+<div class="swiper_trending_categories_carousel_container">
+  <div class="swiper_trending_categories_carousel">
+    <div class="swiper-wrapper">
+      {% for block in section.blocks %}
+        {% if block.type == 'category_tile' %}
+        <div class="swiper-slide">
+          {% render 'components-trending_category', settings: block.settings %}
+        </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Trending Categories",
+  "tag": "section",
+  "class": "trending_categories_section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title"
+    }
+  ],
+  "blocks": [
+    {
+     "name": "Category",
+     "type": "category_tile",
+     "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "Upload image in 294 x 364 dimensions"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Button link"
+        }
+     ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [{
+    "name": "Trending Categories"
+  }]
+}
+{% endschema %}

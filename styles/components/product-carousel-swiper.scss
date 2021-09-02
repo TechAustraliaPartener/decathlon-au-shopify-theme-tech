@@ -1,8 +1,9 @@
 /* SwiperJS */
 .swiper_products_tile_carousel_container {
   overflow: hidden;
-  margin: 0 -1rem;
+  margin: 0;
   position: relative;
+  width: 100%;
 
   @media screen and (min-width: 40em) {
     margin: 0;
