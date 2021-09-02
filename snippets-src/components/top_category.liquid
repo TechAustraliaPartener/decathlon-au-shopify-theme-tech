@@ -3,7 +3,7 @@
     <img 
       class="lazy" 
       alt="{{settings.image.alt}}"
-      data-src="lazy.jpg"
+      data-src="{{ settings.image | img_url: 'x70' }}"
       data-srcset="{{ settings.image | img_url: 'x70' }} 1x, {{ settings.image | img_url: 'x140' }} 2x"
       >
   </div>
