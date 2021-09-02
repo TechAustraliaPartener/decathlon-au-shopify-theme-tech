@@ -74,6 +74,7 @@
   margin-bottom: 15px;
   position: relative;
   overflow: hidden;
+  min-height: 140px;
 }
 
 .trending_category_tile .trending_category_image_container:after {
@@ -106,8 +107,8 @@
   height: 100%;
 }
 
-.trending_category_image_container .trending_category_image.loaded + .skeleton-box {
-  display: none;
+.trending_category_title_container {
+  position: relative;
 }
 
 .trending_category_tile .trending_category_title {
@@ -124,6 +125,7 @@
   color: #090B0A;
 }
 
+
 @media screen and (min-width: 768px) {
 
   .trending_category_tile .trending_category_title {
@@ -138,4 +140,17 @@
     font-size: 1rem;
     font-size: 16px;
   }
+}
+
+.trending_category_tile .skeleton-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+}
+
+.trending_category_tile.lazy_loaded .skeleton-box {
+  display: none;
 }

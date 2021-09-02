@@ -6,9 +6,12 @@
       alt="{{settings.image.alt}}"
       data-src="{{ settings.image | img_url: '180x230' }}"
       data-srcset="{{ settings.image | img_url: '180x230' }} 1x, {{ settings.image | img_url: '360x460' }} 2x"
+      data-lazy-function="onTrendingCategoryImageLoad"
       >
+      <div class="skeleton-box"></div>
   </div>
   <div class="trending_category_title_container">
     <span class="trending_category_title">{{settings.title}}</span>
+    <div class="skeleton-box"></div>
   </div>
 </a>
