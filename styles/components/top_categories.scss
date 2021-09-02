@@ -5,13 +5,11 @@
 } 
 
 .top_categories_section {
-  padding: 3.2rem 20px .75rem;
+  margin: 1.5rem 0 0;
 }
 
 .top_categories_section .container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
+  padding: 0 15px;
 }
 
 .top_category {
@@ -70,7 +68,7 @@
 
 @media screen and (min-width: 1200px) {
   .top_categories_section {
-    padding: 3.2rem 0 .75rem;
+    margin: 1.5rem 0 0;
   }
 
   .top_categories_item {

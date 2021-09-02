@@ -13,15 +13,15 @@
 
 <style>
     {% for block in section.blocks %}
-      .top_categories_item_{{forloop.index}} .top_category {
+      #shopify-section-{{section.id}} .top_categories_item_{{forloop.index}} .top_category {
         background-color: {{block.settings.background_color}};
       }
 
-      .top_categories_item_{{forloop.index}} .top_category:hover {
+      #shopify-section-{{section.id}} .top_categories_item_{{forloop.index}} .top_category:hover {
         background-color: {{block.settings.hover_background_color}};
       }
 
-      .top_categories_item_{{forloop.index}} .top_category_title {
+      #shopify-section-{{section.id}} .top_categories_item_{{forloop.index}} .top_category_title {
         color: {{block.settings.text_color}};
       }
     {% endfor %}

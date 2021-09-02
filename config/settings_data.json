@@ -1497,9 +1497,18 @@
           "6bf673f7-c57f-494d-93ae-ac4f95416b57": {
             "type": "label",
             "settings": {
+<<<<<<< HEAD
               "title": "Online Only",
               "bg_colour": "#0082c3",
               "text_colour": "#ffffff"
+=======
+              "title": "Man",
+              "image": "shopify:\/\/shop_images\/top-categories-man.png",
+              "text_color": "#090b0a",
+              "background_color": "#eff1f1",
+              "hover_background_color": "#beccda",
+              "link": "shopify:\/\/collections\/all"
+>>>>>>> #6u6mv7 - CSS adjustments to make elements fluid, regardless of desktop screen size
             }
           },
           "e27f167b-9a15-49c6-86cc-d5749a582ffc": {
