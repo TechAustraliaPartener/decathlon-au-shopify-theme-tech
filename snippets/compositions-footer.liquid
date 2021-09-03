@@ -1,3 +1,11 @@
+{% comment %}
+When page is not home, blue-band should be loaded in the footer instead within banner-hero
+as blue-band is used on pages like https://decathlon.com.au/collections/womens-overtrousers
+{% endcomment %}
+{% if template != "index" %}
+{% include 'blue-band', footer_blue_banner: true %}
+{% endif %}
+
 <!-- Footer Products Slider -->
 {% if template == "index" and settings.footer_slider_products == true %}
   <div class="trendingProducts u-block">
