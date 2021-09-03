@@ -274,7 +274,11 @@
     "sections": {
       "frontpage_title": "Frontpage Collection",
       "featured_title": "Featured Collections",
-      "news_title": "Our Home Playbook"
+      "news_title": "Our Home Playbook",
+      "featured_collection": {
+        "section_linkout_label": "See all",
+        "no_products": "There are no products in the collection."
+      }
     },
     "onboarding": {
       "modal_title": "Almost there...",

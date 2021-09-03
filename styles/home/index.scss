@@ -1,2 +1,28 @@
 @import '../components/top_categories';
 @import '../components/trending_categories';
+@import '../components/featured_collection';
+
+
+/* Shared Styles in Homepage */
+.section_with_title .section_title_container {
+  padding: 0 20px;
+  margin-bottom: 20px;
+}
+
+.section_with_title .section_title {
+  display: inline-block;
+  font-size: 22px;
+  font-size: 1.375rem;
+  padding: 0 0 7px;
+  border-bottom: 3px solid #FFE724;
+  margin: 0 16px 0 0;
+}
+
+.section_with_title .section_linkout {
+  display: inline-block;
+  color: #0075BC;
+  font-size: 22px;
+  font-size: 1.375rem;
+  padding: 0 0 7px;
+  font-family: avalon_mediumbold, HelveticaNeue ,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}

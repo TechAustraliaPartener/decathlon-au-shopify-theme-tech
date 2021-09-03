@@ -6,22 +6,6 @@ as blue-band is used on pages like https://decathlon.com.au/collections/womens-o
 {% include 'blue-band', footer_blue_banner: true %}
 {% endif %}
 
-<!-- Footer Products Slider -->
-{% if template == "index" and settings.footer_slider_products == true %}
-  <div class="trendingProducts u-block">
-    <h3 class="text-center">{% if settings['is_lookbook'] == true %}Popular Products{% else %}Trending Products{% endif %}</h3>
-    <div class="de-u-padSides06 de-u-md-padSides03">
-      {% assign products = collections['trending-products'].products %}
-      {% include 'components-product_tile_carousel_swiper',
-        products: products,
-        limit: 20,
-        inventory_status: false,
-        delivery_options: false
-       %}
-    </div>
-  </div>
-{% endif %}
-
 <!-- begin site-footer -->
 <footer class="site-footer small--text-center" role="contentinfo">
   <div class="wrapper">

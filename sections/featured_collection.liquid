@@ -1,0 +1,49 @@
+{% assign section_title = section.settings.title %}
+{% assign section_collection = section.settings.section_collection %}
+{% assign section_linkout_label = 'homepage.sections.featured_collection.section_linkout_label' | t %}
+{% assign no_products_message = 'homepage.sections.featured_collection.no_products' | t %}
+{% assign products = section_collection.products %}
+
+<div class="section_title_container">
+  <h3 class="section_title">{{ section_title }}</h3>
+  {% if products.size > 0  %}
+  <a class="section_linkout" href="{{ section_collection.url }}">{{section_linkout_label }}</a>
+  {% endif %}
+</div>
+
+<div class="carousel_container">
+  {% if products.size > 0  %}
+  {% include 'components-product_tile_carousel_swiper',
+    products: products,
+    limit: 20,
+    inventory_status: false,
+    delivery_options: false
+   %}
+   {% else %}
+    <span class="no_products">{{There are no products in the collection.}}</span>
+   {% endif %}
+</div>
+
+
+{% schema %}
+  {
+    "name": "Featured Collection",
+    "tag": "section",
+    "class": "featured_collection_section section_with_title",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Section Title"
+      },
+      {
+        "type": "collection",
+        "id": "section_collection",
+        "label": "Collection"
+      }
+    ],
+    "presets": [{
+      "name": "Featured Collection"
+    }]
+  }
+{% endschema %}
