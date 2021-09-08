@@ -158,7 +158,7 @@ $(document).ready(() => {
   }
   function getCountry(decathlon) {
     // Try to get country from cookie data
-    const loc = decathlon.getData('locale');
+    const loc = typeof decathlon === 'object' && 'getData' in decathlon ? decathlon.getData('locale') : false;
     if (loc) {
       return [countryURL[loc.country_code], loc.country_name];
     }
