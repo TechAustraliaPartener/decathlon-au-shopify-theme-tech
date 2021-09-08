@@ -119,10 +119,6 @@
       "modal_title": "This page will show all of your store's products",
       "no_products_html": "There are no products yet, but once you begin adding them they will show up here regardless if they are in a collection.",
       "add_product": "Add Product"
-    },
-    "read_more_toggle": {
-      "read_more_text": "Read more",
-      "show_less_text": "Show less"
     }
   },
   "contact": {
