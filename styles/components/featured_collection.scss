@@ -2,6 +2,10 @@
   margin: 30px 0;
 }
 
+.featured_collection_section.section_with_title  .section_title_container{
+  margin-bottom: 0;
+}
+
 .featured_collection_section .carousel_container {
   width: 100%;
   padding: 0 10px;
@@ -15,4 +19,14 @@
 
 .featured_collection_section .no_products{
   padding: 0 10px;
+}
+
+.featured_collection_section .de-ProductTile-showcase {
+  padding: 2rem .5625rem 0;
+}
+
+@media (min-width: 40em) {
+  .featured_collection_section .de-ProductTile-showcase {
+    padding: 2rem 1.602rem 0;
+  }
 }

@@ -26,3 +26,9 @@
   padding: 0 0 7px;
   font-family: avalon_mediumbold, HelveticaNeue ,"Helvetica Neue",Helvetica,Arial,sans-serif;
 }
+
+.clearfix:before,
+.clearfix:after {
+  content: "";
+  display: table;
+} 
