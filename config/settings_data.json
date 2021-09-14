@@ -653,9 +653,9 @@
               "name": "Fitzroy C&C (3065)",
               "title": "Fitzroy, 3065, Pick Up Only",
               "online_inventory_source": false,
-              "enable_c_c": false,
+              "enable_c_c": true,
               "duplicate": "Box Hill",
-              "test_mode": true,
+              "test_mode": false,
               "street1": "125 Johnston Street",
               "city": "Fitzroy",
               "zip": "3065",
@@ -1042,6 +1042,226 @@
               "is_warehouse": false,
               "validated": false
             }
+          },
+          "9c63104d-4e62-4470-ae42-6cec6669d8a2": {
+            "type": "store",
+            "settings": {
+              "name": "Bentleigh, 3204, Pick Up Only",
+              "title": "Bentleigh, 3204, Pick Up Only",
+              "online_inventory_source": false,
+              "enable_c_c": true,
+              "duplicate": "Moorabbin",
+              "test_mode": false,
+              "street1": "16 Evelyn Street",
+              "city": "Bentleigh",
+              "zip": "3204",
+              "state": "VIC",
+              "country": "AU",
+              "checkout_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_19_762ce620-1383-4524-858e-dc0b081c8be7.png",
+              "email": "customer.service@decathlon.com",
+              "phone_number": "(02) 9157 5799",
+              "company": "Decathlon",
+              "ready": "If ordered before 12pm, collect the same day",
+              "ready_checkout": "If ordered before 12pm, collect the same day",
+              "id": "1790-0006",
+              "tooltip_hours": true,
+              "is_same_hours_weekly": false,
+              "hours_0_open": "0000",
+              "hours_0_close": "0000",
+              "hours_1_open": "1900",
+              "hours_1_close": "2030",
+              "hours_2_open": "1900",
+              "hours_2_close": "2030",
+              "hours_3_open": "1900",
+              "hours_3_close": "2030",
+              "hours_4_open": "1900",
+              "hours_4_close": "2030",
+              "hours_5_open": "1900",
+              "hours_5_close": "2030",
+              "hours_6_open": "0000",
+              "hours_6_close": "0000",
+              "announcement": "<p>This is not a physical store. Returns cannot be made here<\/p>",
+              "address_type_boolean": true,
+              "is_residential": false,
+              "is_warehouse": false,
+              "validated": false
+            }
+          },
+          "7b56ecfe-a44a-4095-bec6-114d9ff24970": {
+            "type": "store",
+            "settings": {
+              "name": "Skye, 3977, Pick Up Only",
+              "title": "Skye, 3977, Pick Up Only",
+              "online_inventory_source": false,
+              "enable_c_c": true,
+              "duplicate": "Moorabbin",
+              "test_mode": false,
+              "street1": "30 Edinburgh Drive",
+              "city": "Skye",
+              "zip": "3977",
+              "state": "VIC",
+              "country": "AU",
+              "checkout_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_20_6dcff347-bad6-44a1-8a76-c34a166fca48.png",
+              "email": "customer.service@decathlon.com",
+              "phone_number": "(02) 9157 5799",
+              "company": "Decathlon",
+              "ready": "Collect in 4 business days",
+              "ready_checkout": "Collect in 4 business days",
+              "id": "1790-0007",
+              "tooltip_hours": true,
+              "is_same_hours_weekly": false,
+              "hours_0_open": "0000",
+              "hours_0_close": "0000",
+              "hours_1_open": "0900",
+              "hours_1_close": "1100",
+              "hours_2_open": "0900",
+              "hours_2_close": "1100",
+              "hours_3_open": "0900",
+              "hours_3_close": "1100",
+              "hours_4_open": "0900",
+              "hours_4_close": "1100",
+              "hours_5_open": "0900",
+              "hours_5_close": "1100",
+              "hours_6_open": "0000",
+              "hours_6_close": "0000",
+              "announcement": "<p>This is not a physical store. Returns cannot be made here<\/p>",
+              "address_type_boolean": true,
+              "is_residential": false,
+              "is_warehouse": false,
+              "validated": false
+            }
+          },
+          "fc805a4f-6a75-4e02-8355-6dd561091ff8": {
+            "type": "store",
+            "settings": {
+              "name": "St Kilda, 3182, Pick Up Only",
+              "title": "St Kilda, 3182, Pick Up Only",
+              "online_inventory_source": false,
+              "enable_c_c": true,
+              "duplicate": "Moorabbin",
+              "test_mode": false,
+              "street1": "22 Dalgety Street",
+              "city": "St Kilda",
+              "zip": "3182",
+              "state": "VIC",
+              "country": "AU",
+              "checkout_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_21_42007ac4-e54e-4f10-97a0-1f28d39a7140.png",
+              "email": "customer.service@decathlon.com",
+              "phone_number": "(02) 9157 5799",
+              "company": "Decathlon",
+              "ready": "Collect in 4 business days",
+              "ready_checkout": "Collect in 4 business days",
+              "id": "1790-0008",
+              "tooltip_hours": true,
+              "is_same_hours_weekly": false,
+              "hours_0_open": "0000",
+              "hours_0_close": "0000",
+              "hours_1_open": "0000",
+              "hours_1_close": "0000",
+              "hours_2_open": "1530",
+              "hours_2_close": "1730",
+              "hours_3_open": "1530",
+              "hours_3_close": "1730",
+              "hours_4_open": "1530",
+              "hours_4_close": "1730",
+              "hours_5_open": "1530",
+              "hours_5_close": "1730",
+              "hours_6_open": "0000",
+              "hours_6_close": "0000",
+              "announcement": "<p>This is not a physical store. Returns cannot be made here<\/p>",
+              "address_type_boolean": true,
+              "is_residential": false,
+              "is_warehouse": false,
+              "validated": false
+            }
+          },
+          "9ac106a6-4a7c-4b00-840e-c21fce97c2f6": {
+            "type": "store",
+            "settings": {
+              "name": "Macquarie, 2113, Pick Up Only",
+              "title": "Macquarie, 2113, Pick Up Only",
+              "online_inventory_source": false,
+              "enable_c_c": true,
+              "duplicate": "Auburn",
+              "test_mode": true,
+              "street1": "1 Saunders Close",
+              "city": "Macquarie Park",
+              "zip": "2113",
+              "state": "NSW",
+              "country": "AU",
+              "checkout_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_22_86d0de63-6690-4b4a-a2d9-c21a00991cda.png",
+              "email": "customer.service@decathlon.com",
+              "phone_number": "(02) 9157 5799",
+              "company": "Decathlon",
+              "ready": "Ready to collect in 3 business days",
+              "ready_checkout": "Ready to collect in 3 business days",
+              "id": "",
+              "tooltip_hours": true,
+              "is_same_hours_weekly": false,
+              "hours_0_open": "0000",
+              "hours_0_close": "0000",
+              "hours_1_open": "1700",
+              "hours_1_close": "1830",
+              "hours_2_open": "1700",
+              "hours_2_close": "1830",
+              "hours_3_open": "1700",
+              "hours_3_close": "1830",
+              "hours_4_open": "1700",
+              "hours_4_close": "1830",
+              "hours_5_open": "1700",
+              "hours_5_close": "1830",
+              "hours_6_open": "0000",
+              "hours_6_close": "0000",
+              "announcement": "<p>This is not a physical store. Returns cannot be made here<\/p>",
+              "address_type_boolean": true,
+              "is_residential": false,
+              "is_warehouse": false,
+              "validated": false
+            }
+          },
+          "a809509e-5453-4ba5-ab4c-e6b0917cefdb": {
+            "type": "store",
+            "settings": {
+              "name": "North Rocks, 2151, Pick Up Only",
+              "title": "North Rocks, 2151, Pick Up Only",
+              "online_inventory_source": false,
+              "enable_c_c": true,
+              "duplicate": "",
+              "test_mode": true,
+              "street1": "23-25 North Rocks Road",
+              "city": "North Rocks",
+              "zip": "2151",
+              "state": "NSW",
+              "country": "AU",
+              "checkout_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_23_38a1d18f-90ff-4f54-86cd-be8aa86418f1.png",
+              "email": "customer.service@decathlon.com",
+              "phone_number": "(02) 9157 5799",
+              "company": "Decathlon",
+              "ready": "Ready to collect in 3 business days",
+              "ready_checkout": "Ready to collect in 3 business days",
+              "id": "",
+              "tooltip_hours": true,
+              "is_same_hours_weekly": false,
+              "hours_0_open": "0000",
+              "hours_0_close": "0000",
+              "hours_1_open": "1700",
+              "hours_1_close": "1830",
+              "hours_2_open": "1700",
+              "hours_2_close": "1830",
+              "hours_3_open": "1700",
+              "hours_3_close": "1830",
+              "hours_4_open": "1700",
+              "hours_4_close": "1830",
+              "hours_5_open": "1700",
+              "hours_5_close": "1830",
+              "hours_6_open": "0000",
+              "hours_6_close": "0000",
+              "announcement": "<p>This is not a physical store. Returns cannot be made here<\/p>",
+              "address_type_boolean": true,
+              "is_residential": false,
+              "is_warehouse": false,
+              "validated": false
+            }
           }
         },
         "block_order": [
@@ -1060,7 +1280,12 @@
           "c6351114-ec6d-4359-b44d-d4c29baed848",
           "c33a2032-e5ad-4b30-9e6d-bd9b26bb82b2",
           "5655fa19-81be-42d8-b5e5-8d930fc15679",
-          "4c90425f-fb91-4709-b7f1-246700324116"
+          "4c90425f-fb91-4709-b7f1-246700324116",
+          "9c63104d-4e62-4470-ae42-6cec6669d8a2",
+          "7b56ecfe-a44a-4095-bec6-114d9ff24970",
+          "fc805a4f-6a75-4e02-8355-6dd561091ff8",
+          "9ac106a6-4a7c-4b00-840e-c21fce97c2f6",
+          "a809509e-5453-4ba5-ab4c-e6b0917cefdb"
         ],
         "settings": {}
       },
@@ -1162,6 +1387,7 @@
       },
       "161676069181163e17": {
         "type": "slider_image_section",
+        "disabled": true,
         "settings": {
           "homepage_slider_image_title": "Eco Design",
           "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_12_-min.png",
@@ -1179,6 +1405,7 @@
       },
       "16171919053e0748b9": {
         "type": "slider_image_section",
+        "disabled": true,
         "settings": {
           "homepage_slider_image_title": "Back To Sport",
           "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_9_68e18aba-1c8e-4519-8f1b-12814dd893a5.png",
@@ -1214,6 +1441,7 @@
       },
       "162484396028e9efd8": {
         "type": "slider_image_section",
+        "disabled": true,
         "settings": {
           "homepage_slider_image_title": "Top Picks",
           "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_75.png",
@@ -1231,6 +1459,7 @@
       },
       "16258130231a808884": {
         "type": "slider_image_section",
+        "disabled": true,
         "settings": {
           "homepage_slider_image_title": "Membership Benefits",
           "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_86_-min.png",
@@ -1384,48 +1613,6 @@
               "bg_colour_2": "#1c82c3",
               "text_colour_2": "#ffffff"
             }
-          },
-          "6bf673f7-c57f-494d-93ae-ac4f95416b57": {
-            "type": "label",
-            "settings": {
-              "title": "Online Only",
-              "bg_colour": "#0082c3",
-              "text_colour": "#ffffff"
-            }
-          },
-          "7b8ddd36-e9ed-4b45-adb6-809e7d0e6755": {
-            "type": "label",
-            "settings": {
-              "title": "New Release",
-              "bg_colour": "#0082c3",
-              "text_colour": "#ffffff"
-            }
-          },
-          "9cfe0f64-734f-49b4-b750-6d38e0ed13b6": {
-            "type": "label",
-            "settings": {
-              "title": "Eco-Design",
-              "bg_colour": "#88c698",
-              "text_colour": "#ffffff"
-            }
-          },
-          "c6eb59bf-e729-4f2c-9eae-9dacbd9cf499": {
-            "type": "label",
-            "settings": {
-              "title": "Top Picks",
-              "bg_colour": "#ffea28",
-              "text_colour": "#333333"
-            }
-          },
-          "7b27a0f1-dd9f-41ee-9e69-c57fd687ed6e": {
-            "type": "combo",
-            "settings": {
-              "title": "Lowest Price,Best Value",
-              "bg_colour_1": "#ffea28",
-              "text_colour_1": "#333333",
-              "bg_colour_2": "#1c82c3",
-              "text_colour_2": "#fafafa"
-            }
           }
         },
         "block_order": [
@@ -1443,8 +1630,7 @@
           "26076a3f-98ab-4565-ba49-84843cf8bfca",
           "22cc446b-d257-45ff-a99a-5840376d78fc",
           "7f9c88e9-e668-4ac4-a713-e696f1e193a8",
-          "f8057dbf-e27c-4eed-adc0-17c069770eb1",
-          "48e6544f-655c-487c-92a0-437a9b8b64c9"
+          "f8057dbf-e27c-4eed-adc0-17c069770eb1"
         ],
         "settings": {}
       }
