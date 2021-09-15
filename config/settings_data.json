@@ -1367,96 +1367,6 @@
         ],
         "settings": {}
       },
-      "1590735691745": {
-        "type": "slider_image_section",
-        "disabled": true,
-        "settings": {
-          "homepage_slider_image_title": "Rediscover",
-          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_4_-min.png",
-          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/womens-activewear",
-          "checkbox_image_1": true,
-          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_6_-min_652a3e87-4208-4bb3-864c-2f03c8756c2c.png",
-          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/fresh-black-tents",
-          "checkbox_image_2": true,
-          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_5_-min.png",
-          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/hiking-trekking",
-          "checkbox_image_3": true,
-          "homepage_slider_image_redirection_4": "",
-          "checkbox_image_4": false
-        }
-      },
-      "161676069181163e17": {
-        "type": "slider_image_section",
-        "disabled": true,
-        "settings": {
-          "homepage_slider_image_title": "Eco Design",
-          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_12_-min.png",
-          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/pages\/eco-design-explained",
-          "checkbox_image_1": true,
-          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_13_-min.png",
-          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/womens-eco-design",
-          "checkbox_image_2": true,
-          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_14_-min.png",
-          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/mens-eco-design",
-          "checkbox_image_3": true,
-          "homepage_slider_image_redirection_4": "",
-          "checkbox_image_4": false
-        }
-      },
-      "16171919053e0748b9": {
-        "type": "slider_image_section",
-        "disabled": true,
-        "settings": {
-          "homepage_slider_image_title": "Back To Sport",
-          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_9_68e18aba-1c8e-4519-8f1b-12814dd893a5.png",
-          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/collections\/hiking-trekking",
-          "checkbox_image_1": true,
-          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_10_9d5913bd-e934-4976-874e-f6a2034543a9.png",
-          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/collections\/running-gear-clothes",
-          "checkbox_image_2": true,
-          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_8_4d3f29d2-a20d-41b3-b38f-c88fb89bdf0d.png",
-          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/cycling",
-          "checkbox_image_3": true,
-          "homepage_slider_image_redirection_4": "",
-          "checkbox_image_4": false
-        }
-      },
-      "1624675489449e2491": {
-        "type": "slider_image_section",
-        "disabled": true,
-        "settings": {
-          "homepage_slider_image_title": "Trending In Outdoors",
-          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_5_a4516aa9-b5a6-48fc-a426-ecd050b94a42.png",
-          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/products\/1-2-person-inflatable-cruising-kayak-163732",
-          "checkbox_image_1": true,
-          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_6_65edc1da-a590-46ae-80f7-b15b3234ef0b.png",
-          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/products\/camping-tent-2-seconds-easy-fresh-black-2-person",
-          "checkbox_image_2": true,
-          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_7_26360a12-10c7-4326-8bd5-00bc4d908e6d.png",
-          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/snow-base-layers",
-          "checkbox_image_3": true,
-          "homepage_slider_image_redirection_4": "",
-          "checkbox_image_4": false
-        }
-      },
-      "162484396028e9efd8": {
-        "type": "slider_image_section",
-        "disabled": true,
-        "settings": {
-          "homepage_slider_image_title": "Top Picks",
-          "homepage_slider_image_1": "shopify:\/\/shop_images\/HP_Section_450_X_280_75.png",
-          "homepage_slider_image_redirection_1": "https:\/\/decathlon.com.au\/products\/cross-training-push-up-wheel-143811",
-          "checkbox_image_1": true,
-          "homepage_slider_image_2": "shopify:\/\/shop_images\/HP_Section_450_X_280_73.png",
-          "homepage_slider_image_redirection_2": "https:\/\/decathlon.com.au\/products\/weight-training-dumbell-kit-10kg-171338",
-          "checkbox_image_2": true,
-          "homepage_slider_image_3": "shopify:\/\/shop_images\/HP_Section_450_X_280_74.png",
-          "homepage_slider_image_redirection_3": "https:\/\/decathlon.com.au\/collections\/resistance-bands",
-          "checkbox_image_3": true,
-          "homepage_slider_image_redirection_4": "",
-          "checkbox_image_4": false
-        }
-      },
       "16258130231a808884": {
         "type": "slider_image_section",
         "disabled": true,
@@ -1633,16 +1543,317 @@
           "f8057dbf-e27c-4eed-adc0-17c069770eb1"
         ],
         "settings": {}
+      },
+      "163107170023281063": {
+        "type": "top_categories",
+        "blocks": {
+          "9718a5a8-65a5-48fb-a58b-c6238bb78960": {
+            "type": "category",
+            "settings": {
+              "title": "Woman",
+              "image": "shopify:\/\/shop_images\/top-categories-women.png",
+              "text_color": "#090b0a",
+              "background_color": "#eff1f1",
+              "hover_background_color": "#f3f3f3",
+              "link": "shopify:\/\/pages\/women-sports-apparel-footwear-copy"
+            }
+          },
+          "04eb074d-6845-49dc-917d-3ff13f1fb30e": {
+            "type": "category",
+            "settings": {
+              "title": "Man",
+              "image": "shopify:\/\/shop_images\/top-categories-man_2x_2563b6fb-86a6-4c38-a1ac-cb0a7f03a359.png",
+              "text_color": "#090b0a",
+              "background_color": "#eff1f1",
+              "hover_background_color": "#f3f3f3",
+              "link": "shopify:\/\/pages\/men-sports-apparel-footwear"
+            }
+          },
+          "38cf3fa3-23be-4a21-8ce3-5d37ded9f8f4": {
+            "type": "category",
+            "settings": {
+              "title": "Kids",
+              "image": "shopify:\/\/shop_images\/top-categories-child.png",
+              "text_color": "#252527",
+              "background_color": "#eff1f1",
+              "hover_background_color": "#f3f3f3",
+              "link": "\/"
+            }
+          },
+          "c5bd0b0f-516e-4db7-926f-46c215e1fbdf": {
+            "type": "category",
+            "settings": {
+              "title": "ECO-DESIGN",
+              "image": "shopify:\/\/shop_images\/top-categories-ecodesign.png",
+              "text_color": "#ffffff",
+              "background_color": "#44644c",
+              "hover_background_color": "#80c29c",
+              "link": "shopify:\/\/pages\/eco-design-explained"
+            }
+          },
+          "b001623f-dab9-4e48-be17-0e57d5678647": {
+            "type": "category",
+            "settings": {
+              "title": "Partner Brand",
+              "image": "shopify:\/\/shop_images\/top-categories-partner-brand.png",
+              "text_color": "#252527",
+              "background_color": "#eff1f1",
+              "hover_background_color": "#f3f3f3",
+              "link": "shopify:\/\/collections\/the-surfboard-warehouse"
+            }
+          },
+          "a35476da-14f6-4892-a5e1-c136b3406867": {
+            "type": "category",
+            "settings": {
+              "title": "Sale",
+              "image": "shopify:\/\/shop_images\/top-categories-tips.png",
+              "text_color": "#ffffff",
+              "background_color": "#ff252e",
+              "hover_background_color": "#ff0000",
+              "link": "shopify:\/\/collections\/all-sale-products"
+            }
+          }
+        },
+        "block_order": [
+          "9718a5a8-65a5-48fb-a58b-c6238bb78960",
+          "04eb074d-6845-49dc-917d-3ff13f1fb30e",
+          "38cf3fa3-23be-4a21-8ce3-5d37ded9f8f4",
+          "c5bd0b0f-516e-4db7-926f-46c215e1fbdf",
+          "b001623f-dab9-4e48-be17-0e57d5678647",
+          "a35476da-14f6-4892-a5e1-c136b3406867"
+        ],
+        "settings": {}
+      },
+      "163107231999d8b130": {
+        "type": "featured_collection",
+        "settings": {
+          "title": "Backyard Games",
+          "section_collection": "backyard-games"
+        }
+      },
+      "163107313302287377": {
+        "type": "trending_categories",
+        "blocks": {
+          "c2d5bbf2-defb-4062-8a7c-9c520db2185d": {
+            "type": "category_tile",
+            "settings": {
+              "title": "Fitness Equipment",
+              "image": "shopify:\/\/shop_images\/tc-fitness.png",
+              "link": "shopify:\/\/collections\/cardio-training-equipment"
+            }
+          },
+          "2aabd1f3-b77e-4418-843c-995e61af21e7": {
+            "type": "category_tile",
+            "settings": {
+              "title": "Weight Training",
+              "image": "shopify:\/\/shop_images\/PK_Hantle_NEW_2_---_Expires_on_31-08-2025_1.jpg",
+              "link": "shopify:\/\/collections\/weight-training"
+            }
+          },
+          "5577a84d-44d2-461d-bb74-80a640ebe253": {
+            "type": "category_tile",
+            "settings": {
+              "title": "Mountain Bikes",
+              "image": "shopify:\/\/shop_images\/PK_Rowery_NEW_1_---_Expires_on_31-08-2025.jpg",
+              "link": "shopify:\/\/collections\/mountain-bike"
+            }
+          },
+          "e6009045-e924-463e-b297-09c2cd29d848": {
+            "type": "category_tile",
+            "settings": {
+              "title": "Backpacks",
+              "image": "shopify:\/\/shop_images\/tc-bags.png",
+              "link": "shopify:\/\/collections\/backpacks-daypacks"
+            }
+          },
+          "95c908d1-9a7d-43d6-816b-3a50b9f7b0d8": {
+            "type": "category_tile",
+            "settings": {
+              "title": "Aquashoes",
+              "image": "shopify:\/\/shop_images\/Aquashoes_PK_new_---_Expires_on_23-07-2025.jpg",
+              "link": "shopify:\/\/collections\/aqua-shoes"
+            }
+          },
+          "c74e811a-531f-4b53-89db-8ad5d6ea006d": {
+            "type": "category_tile",
+            "settings": {
+              "title": "Kids Bikes",
+              "image": "shopify:\/\/shop_images\/PK_Rowery_dla_dzieci_2_---_Expires_on_09-09-2025.jpg",
+              "link": "shopify:\/\/collections\/kids-bikes-balance-bikes"
+            }
+          }
+        },
+        "block_order": [
+          "c2d5bbf2-defb-4062-8a7c-9c520db2185d",
+          "2aabd1f3-b77e-4418-843c-995e61af21e7",
+          "5577a84d-44d2-461d-bb74-80a640ebe253",
+          "e6009045-e924-463e-b297-09c2cd29d848",
+          "95c908d1-9a7d-43d6-816b-3a50b9f7b0d8",
+          "c74e811a-531f-4b53-89db-8ad5d6ea006d"
+        ],
+        "settings": {
+          "title": "Trending Categories"
+        }
+      },
+      "1631574985450cb50b": {
+        "type": "featured_collection",
+        "settings": {
+          "title": "Weight Training",
+          "section_collection": "weight-training"
+        }
+      },
+      "1631575670c2f740cc": {
+        "type": "top_categories",
+        "disabled": true,
+        "blocks": {
+          "dbd20735-45c8-4cb1-a17e-7eb9ac916ea3": {
+            "type": "category",
+            "settings": {
+              "title": "Adidas",
+              "image": "shopify:\/\/shop_images\/adidas_2016_Expires_on_05_01_2021_1.png",
+              "text_color": "#333333",
+              "background_color": "#ffffff",
+              "hover_background_color": "#f3f3f3",
+              "link": "shopify:\/\/collections\/adidas"
+            }
+          },
+          "f91bf947-3318-4fb0-aa6c-8b47673fd0b2": {
+            "type": "category",
+            "settings": {
+              "title": "Quechua",
+              "image": "shopify:\/\/shop_images\/logo_quechua_black-01_---_Expires_on_09-07-2024_1.png",
+              "text_color": "#333333",
+              "background_color": "#ffffff",
+              "hover_background_color": "#f3f3f3",
+              "link": ""
+            }
+          },
+          "d3ff3d2a-fecc-4748-92c0-8d4ea3edfdca": {
+            "type": "category",
+            "settings": {
+              "title": "Nike",
+              "image": "shopify:\/\/shop_images\/nike_---_Expires_on_17-12-2022.png",
+              "text_color": "#333333",
+              "background_color": "#ffffff",
+              "hover_background_color": "#f3f3f3",
+              "link": "shopify:\/\/collections\/brands-nike"
+            }
+          },
+          "cad41965-9ac3-47f9-abb2-ebadc5fa965b": {
+            "type": "category",
+            "settings": {
+              "title": "Puma",
+              "text_color": "#333333",
+              "background_color": "#ffffff",
+              "hover_background_color": "#f3f3f3",
+              "link": "shopify:\/\/collections\/puma"
+            }
+          },
+          "763aec3f-1a3c-4543-92fd-082eb63f3edb": {
+            "type": "category",
+            "settings": {
+              "title": "2XU",
+              "text_color": "#333333",
+              "background_color": "#ffffff",
+              "hover_background_color": "#f3f3f3",
+              "link": "shopify:\/\/collections\/2xu"
+            }
+          },
+          "1513b91f-4b19-43bf-a0f6-65ae2830eee1": {
+            "type": "category",
+            "settings": {
+              "title": "Garmin",
+              "text_color": "#333333",
+              "background_color": "#ffffff",
+              "hover_background_color": "#f3f3f3",
+              "link": "shopify:\/\/collections\/garmin-watches"
+            }
+          }
+        },
+        "block_order": [
+          "dbd20735-45c8-4cb1-a17e-7eb9ac916ea3",
+          "f91bf947-3318-4fb0-aa6c-8b47673fd0b2",
+          "d3ff3d2a-fecc-4748-92c0-8d4ea3edfdca",
+          "cad41965-9ac3-47f9-abb2-ebadc5fa965b",
+          "763aec3f-1a3c-4543-92fd-082eb63f3edb",
+          "1513b91f-4b19-43bf-a0f6-65ae2830eee1"
+        ],
+        "settings": {}
+      },
+      "16316085202ea5cf79": {
+        "type": "trending_categories",
+        "blocks": {
+          "24a46da8-7f15-4e2c-aa20-558f5e037a41": {
+            "type": "category_tile",
+            "settings": {
+              "title": "Hiking",
+              "image": "shopify:\/\/shop_images\/PK_Spodnie_trekkingowe_1_---_Expires_on_09-09-2025.jpg",
+              "link": "shopify:\/\/collections\/hiking-trekking"
+            }
+          },
+          "2161fbad-02eb-48c1-9a11-4481251537ae": {
+            "type": "category_tile",
+            "settings": {
+              "title": "Running",
+              "image": "shopify:\/\/shop_images\/Odziez_do_biegania_1_PK_---_Expires_on_20-08-2025.jpg",
+              "link": "shopify:\/\/collections\/running-gear-clothes"
+            }
+          },
+          "f553a06c-1d16-4cd4-b9f2-2eea43b5aa9c": {
+            "type": "category_tile",
+            "settings": {
+              "title": "Snorkeling",
+              "image": "shopify:\/\/shop_images\/Untitled_design_24.png",
+              "link": "shopify:\/\/collections\/snorkeling"
+            }
+          },
+          "711f34cb-b34c-4c8f-8e88-ce5c95240666": {
+            "type": "category_tile",
+            "settings": {
+              "title": "Yoga & Pilates",
+              "image": "shopify:\/\/shop_images\/Akcesorie_treningowe_2_PK_---_Expires_on_02-08-2025_1.jpg",
+              "link": "shopify:\/\/collections\/yoga-pilates"
+            }
+          },
+          "e946fff5-5695-4ed3-a886-269cd8000e8d": {
+            "type": "category_tile",
+            "settings": {
+              "title": "Camping",
+              "image": "shopify:\/\/shop_images\/PK_Materace_kempingowe_1_---_Expires_on_20-07-2025.jpg",
+              "link": "shopify:\/\/collections\/camping"
+            }
+          },
+          "e1091c93-4efb-4738-b3f6-3a711db62e82": {
+            "type": "category_tile",
+            "settings": {
+              "title": "Kayaking",
+              "image": "shopify:\/\/shop_images\/Untitled_design_25.png",
+              "link": "shopify:\/\/collections\/kayaking"
+            }
+          }
+        },
+        "block_order": [
+          "24a46da8-7f15-4e2c-aa20-558f5e037a41",
+          "2161fbad-02eb-48c1-9a11-4481251537ae",
+          "f553a06c-1d16-4cd4-b9f2-2eea43b5aa9c",
+          "711f34cb-b34c-4c8f-8e88-ce5c95240666",
+          "e946fff5-5695-4ed3-a886-269cd8000e8d",
+          "e1091c93-4efb-4738-b3f6-3a711db62e82"
+        ],
+        "settings": {
+          "title": "Sports You May Like!"
+        }
       }
     },
     "content_for_index": [
       "1568939434006",
-      "161676069181163e17",
-      "162484396028e9efd8",
-      "1624675489449e2491",
-      "16171919053e0748b9",
-      "1590735691745",
-      "16258130231a808884"
+      "163107170023281063",
+      "163107313302287377",
+      "1631574985450cb50b",
+      "16316085202ea5cf79",
+      "16258130231a808884",
+      "163107231999d8b130",
+      "1631575670c2f740cc"
     ]
   },
   "presets": {
