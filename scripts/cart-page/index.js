@@ -431,15 +431,17 @@ const initCartDisplay = cart => {
             // 3 seconds delay to make sure the DOM was updated with the new cart values before submitting the form to checkout
             setTimeout(function(){
               // Trigger manual form submit
-              $( "#main-cart" ).submit();
+              $("#checkoutBtn").click()
             },3000);
           }
         });
 
+        return false;
       },
       fakeCheckout(event) {
         const app = this;
         // execute cart preparation (remove unavailable products if necessary)
+        // For some reason we need this fake checkout button  and trigger button click submit via javascript code to make UFE work
         $('#fake-checkoutBtn').removeClass("btn btn--fill checkout-btn").addClass("uloader utext-hide");
         app.prepareCart(event);
       }
