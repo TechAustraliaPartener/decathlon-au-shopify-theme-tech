@@ -274,8 +274,7 @@
     "sections": {
       "frontpage_title": "Frontpage Collection",
       "featured_title": "Featured Collections",
-      "news_title": "Our Home Playbook",
-      "featured_collection": {
+      "news_title": "Our Home Playbook","featured_collection": {
         "section_linkout_label": "See all",
         "no_products": "There are no products in the collection."
       }
@@ -335,11 +334,9 @@
       "compare_at": "Compare at",
       "quantity": "Quantity",
       "add_to_cart": "Add to Cart",
-      "add_to_wishlist": "Add to Wishlist",
-      "stock_data_not_available": "Stock information is not available",
+      "add_to_wishlist": "Add to Wishlist","stock_data_not_available": "Stock information is not available",
       "out_of_stock": "Out of Stock",
-      "email_when_available": "Email me when available",
-      "retrieving_stock": "Retrieving Stock",
+      "email_when_available": "Email me when available","retrieving_stock": "Retrieving Stock",
       "in_stock": "In Stock",
       "low_stock": "Low Stock",
       "pickup_only": "Pickup Only",
