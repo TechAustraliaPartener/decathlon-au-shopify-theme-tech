@@ -204,6 +204,9 @@
                   <input type="radio" name="attributes[delivery_mode]" value="Delivery" :checked="deliveryOption === 'Delivery'" @change="setDeliveryOption($event)">
                   <label>Delivery</label>
                 <br>
+                  <label><strong>Delivery Delays</strong></label>
+				<br>
+                  <label>Please note that AusPost and TnT are experiencing up to 4 weeks delays in deliveries.</label>        
                 </span>
                 <span class="click-collect">
                   <input type="radio" name="attributes[delivery_mode]" value="Click &amp; Collect" :checked="deliveryOption === 'Click &amp; Collect'" @change="setDeliveryOption($event)">
