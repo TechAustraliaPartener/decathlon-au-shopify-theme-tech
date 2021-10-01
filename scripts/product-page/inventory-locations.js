@@ -19,6 +19,7 @@ const emptyData = {
   favStore: window.vars.favStore
 };
 
+window.translations = window.translations || {};
 
 const productStockTranslations = window.translations.product_stock;
 
@@ -255,6 +256,7 @@ const initInventoryLocations = () => {
     }
 
     Object.values(window.inventories).forEach(variant => {
+      var deliveryWindow = 'product_availability' in window.translations ? window.translations['product_availability']['delivery_duration'] : '2-6 day delivery in Metro areas';
       var locs = variant.inventoryItem.locations;
       var onlineInventoryLocs = locs.filter(loc => window.onlineInventoryStores.indexOf(loc.name) !== -1);
       var onlineInventoryItem;
@@ -266,7 +268,7 @@ const initInventoryLocations = () => {
           name: 'Delivery',
           available: totalAvailable,
           inStock: totalAvailable > 0 ? 1 : 0,
-          hours: '2-6 day delivery in Metro areas',
+          hours: deliveryWindow,
           availability: {
             class: totalAvailable > 2 ? 'in' : (totalAvailable > 0 ? 'low' : 'out'),
             text: totalAvailable > 2 ? 'In Stock' : (totalAvailable > 0 ? 'Low Stock' : 'Out of Stock')
@@ -283,7 +285,7 @@ const initInventoryLocations = () => {
             class: 'out',
             text: 'Out of Stock'
           },
-          hours: '2-6 day delivery in Metro areas'
+          hours: deliveryWindow
         }
       }
 

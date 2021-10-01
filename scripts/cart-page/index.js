@@ -20,7 +20,7 @@ Vue.config.errorHandler = (err, vm, info) => {
         url: item.url,
       }
     })
-  }
+  };
 
   console.log('Vue error', err);
   Rollbar.error("Vue error", {
@@ -61,6 +61,10 @@ Vue.config.errorHandler = (err, vm, info) => {
   }
 }
 
+
+window.translations = window.translations || {};
+var deliveryWindow = 'product_availability' in window.translations ? window.translations['product_availability']['delivery_duration'] : '2-6 day delivery in Metro areas';
+
 let cartInit = false;
 let invInit = false;
 
@@ -91,7 +95,7 @@ const emptyDelivery = {
     class: 'out',
     text: 'Out of Stock'
   },
-  hours: '2-6 day delivery in Metro areas'
+  hours: deliveryWindow
 };
 
 function addMasterStoresData(inventoryItem, item) {
@@ -110,7 +114,7 @@ function addMasterStoresData(inventoryItem, item) {
       name: 'Delivery',
       available: totalAvailable,
       inStock: totalAvailable > 0 ? 1 : 0,
-      hours: '2-6 day delivery in Metro areas',
+      hours: deliveryWindow,
       availability: {
         class: totalAvailable > 2 ? 'in' : (totalAvailable > 0 ? 'low' : 'out'),
         text: totalAvailable > 2 ? 'In Stock' : (totalAvailable > 0 ? 'Low Stock' : 'Out of Stock')
@@ -127,7 +131,7 @@ function addMasterStoresData(inventoryItem, item) {
         class: 'out',
         text: 'Out of Stock'
       },
-      hours: '2-6 day delivery in Metro areas'
+      hours: deliveryWindow
     }
   }
 
