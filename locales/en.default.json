@@ -698,6 +698,9 @@
       },
       "shipping_errors": {
         "shipping_method_not_available": "Unfortunately some items in your cart cannot be shipped to the designated location. Please make sure your address is correct or contact us."
+      },
+      "marketing": {
+        "accept_marketing_checkbox_label": "Subscribe for 30% off delivery & to hear about upcoming promotions. (excludes express delivery & bulky items)"
       }
     },
     "notices": {
