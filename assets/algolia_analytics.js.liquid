@@ -12,13 +12,13 @@
   })
 
   // Track CTR for products
-  algolia.clickTracker = function (e) {
+  algolia.clickTracker = function (object) {
 
     // Get the data from the product that was clicked
     const data = {
-      objectID: e.currentTarget.getAttribute('data-algolia-objectid'),
-      position: parseInt(e.currentTarget.getAttribute('data-algolia-position')),
-      queryID: e.currentTarget.getAttribute('data-algolia-queryid')
+      objectID: object.getAttribute('data-algolia-objectid'),
+      position: parseInt(object.getAttribute('data-algolia-position')),
+      queryID: object.getAttribute('data-algolia-queryid')
     };
 
     // Track the CTR for that product
@@ -31,7 +31,6 @@
       // Get any data previously stored
       const previousClickItemsString = localStorage.getItem('algolia_analytics_clicked_objects') || '[]';
       const previousClickItems = JSON.parse(previousClickItemsString);
-
       // Add the current products data to local storage
       previousClickItems.push(data)
       localStorage.setItem('algolia_analytics_clicked_objects', JSON.stringify(previousClickItems))
