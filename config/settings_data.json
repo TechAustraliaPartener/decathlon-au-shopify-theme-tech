@@ -1610,12 +1610,12 @@
           "b001623f-dab9-4e48-be17-0e57d5678647": {
             "type": "category",
             "settings": {
-              "title": "Partner Brand",
-              "image": "shopify:\/\/shop_images\/top-categories-partner-brand.png",
-              "text_color": "#252527",
+              "title": "Membership Benefits",
+              "image": "shopify:\/\/shop_images\/MVP.png",
+              "text_color": "#0082c3",
               "background_color": "#eff1f1",
               "hover_background_color": "#f3f3f3",
-              "link": "shopify:\/\/collections\/the-surfboard-warehouse"
+              "link": "shopify:\/\/pages\/decathlon-membership"
             }
           },
           "a35476da-14f6-4892-a5e1-c136b3406867": {
