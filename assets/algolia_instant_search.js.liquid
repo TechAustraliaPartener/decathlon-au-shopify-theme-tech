@@ -661,6 +661,20 @@
     $hiding.remove();
   });
 
+  const insertSecondBanner = () => {
+    if (window.algolia_custom_widgets.secondBanner) {
+      const twelfthOrLastItem = $('.ais-hits--item').eq(11).length ? $('.ais-hits--item').eq(11) : $('.ais-hits--item').last();
+      console.log(twelfthOrLastItem);
+      const bannerExists = $('#secondBanner').length > 0;
+
+      if (bannerExists) {
+        $('#secondBanner').remove();
+      }
+
+      $(window.algolia_custom_widgets.secondBanner).insertAfter(twelfthOrLastItem);
+    }
+  }
+
   instant.search.on('render', function () {
     var n = $('.ais-pagination--item__page').length;
     if (n <= 1) {
@@ -740,6 +754,8 @@
       mainImage.attr('style', 'background-image: url(' + thumbnail + ') !important;');
     });
     */
+
+    insertSecondBanner();
   });
 
   $(document).ready(function () {
