@@ -5,8 +5,9 @@
       title : `{{ collection.title }}`,
       description : `{% capture collection_description %}{% include 'algolia_custom_collection_description' %}{% endcapture %}{{ collection_description }}`,
       desktopBanner : `{% capture banner %}{% render 'algolia_custom_banner', collection: collection, viewport: 'desktop' %}{% endcapture %}{{ banner }}`,
-      secondBanner : `{% capture banner %}{% render 'algolia_dev_custom_banner', collection: collection, viewport: 'desktop' %}{% endcapture %}{{ banner }}`,
-      mobileBanner : `{% capture banner %}{% render 'algolia_custom_banner', collection:  collection, viewport: 'mobile' %}{% endcapture %}{{ banner }}`
+      mobileBanner : `{% capture banner %}{% render 'algolia_custom_banner', collection:  collection, viewport: 'mobile' %}{% endcapture %}{{ banner }}`,
+      desktopBanner_2 : `{% capture banner %}{% render 'algolia_custom_banner_2', collection: collection, viewport: 'desktop' %}{% endcapture %}{{ banner }}`,
+      mobileBanner_2 : `{% capture banner %}{% render 'algolia_custom_banner_2', collection:  collection, viewport: 'mobile' %}{% endcapture %}{{ banner }}`
     {% endif %}
   };
 </script>

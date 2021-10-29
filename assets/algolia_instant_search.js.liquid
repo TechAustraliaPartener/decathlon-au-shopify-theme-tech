@@ -662,16 +662,20 @@
   });
 
   const insertSecondBanner = () => {
-    if (window.algolia_custom_widgets.secondBanner) {
-      const twelfthOrLastItem = $('.ais-hits--item').eq(11).length ? $('.ais-hits--item').eq(11) : $('.ais-hits--item').last();
-      console.log(twelfthOrLastItem);
-      const bannerExists = $('#secondBanner').length > 0;
+    const twelfthOrLastItem = $('.ais-hits--item').eq(11).length ? $('.ais-hits--item').eq(11) : $('.ais-hits--item').last();
+    // Desktop
+    if (window.algolia_custom_widgets.desktopBanner_2) {
+      const banner = $('#desktopAlgoliaCollectionBanner_2')
+      if (banner.length > 0) banner.remove()
 
-      if (bannerExists) {
-        $('#secondBanner').remove();
-      }
+      $(window.algolia_custom_widgets.desktopBanner_2).insertAfter(twelfthOrLastItem);
+    }
+    // Mobile
+    if (window.algolia_custom_widgets.mobileBanner_2) {
+      const banner = $('#mobileAlgoliaCollectionBanner_2')
+      if (banner.length > 0) banner.remove()
 
-      $(window.algolia_custom_widgets.secondBanner).insertAfter(twelfthOrLastItem);
+      $(window.algolia_custom_widgets.mobileBanner_2).insertAfter(twelfthOrLastItem);
     }
   }
 
