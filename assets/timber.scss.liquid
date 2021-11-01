@@ -10466,7 +10466,8 @@ $color-out: #ff0000;
     font-size: 36px;
   }
 
-  .collection-custom-banner-mobile {
+  .collection-custom-banner-mobile,
+  .collection-custom-banner-mobile-2 {
     display: none;
     img {
       width: 100%;
@@ -10475,6 +10476,10 @@ $color-out: #ff0000;
 
   .collection-custom-banner-desktop {
     display: block;
+  }
+
+  .collection-custom-banner-desktop-2 {
+    display: inline-block;
   }
 
   @media only screen and (max-width: 768px) {
@@ -10490,11 +10495,15 @@ $color-out: #ff0000;
     top: -36px;
     border-bottom: 0;
     }
-    .collection-custom-banner-desktop {
+    .collection-custom-banner-desktop, 
+    .collection-custom-banner-desktop-2 {
       display: none;
     }
     .collection-custom-banner-mobile {
       display: block;
+    }
+    .collection-custom-banner-mobile-2 {
+      display: inline-block;
     }
   }
 
