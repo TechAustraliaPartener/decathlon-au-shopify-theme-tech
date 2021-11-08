@@ -1346,6 +1346,7 @@
           },
           "d0460c49-f98d-4b03-a169-d3d6ac6f694f": {
             "type": "slide",
+            "disabled": true,
             "settings": {
               "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_15_-min.png",
               "slide_bg_position": "75% -50px",
@@ -1359,6 +1360,7 @@
           },
           "a7ecf45b-4c34-43fd-b26a-27854bc92661": {
             "type": "slide",
+            "disabled": true,
             "settings": {
               "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_16_-min.png",
               "slide_bg_position": "75% -50px",
@@ -1869,7 +1871,6 @@
       },
       "163487525380dd83d2": {
         "type": "featured_collection",
-        "disabled": true,
         "settings": {
           "title": "Spend & Save with our Bundle Deals!",
           "section_collection": "bundle-deals"
@@ -1877,6 +1878,7 @@
       },
       "1635925029af8d201f": {
         "type": "featured_collection",
+        "disabled": true,
         "settings": {
           "title": "Discover our Innovation",
           "section_collection": "innovation-by-decathlon"
