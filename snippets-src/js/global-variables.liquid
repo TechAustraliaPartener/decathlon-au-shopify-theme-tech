@@ -69,6 +69,17 @@
       }
     }
   };
+  window.vars.productTags = {
+    {%- capture tags_data -%}
+      {%- for item in cart.items -%}
+        , {{ item.product_id }}: {{ item.product.tags | json }}
+      {%- endfor -%}
+      {%- if product -%}
+        , {{ product.id }}: {{ product.tags | json }}
+      {%- endif -%}
+    {%- endcapture -%}
+    {{ tags_data | remove_first: ',' }}
+  };
 </script>
 
 {% include 'js-algolia-custom-widgets' %}
