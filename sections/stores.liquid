@@ -89,6 +89,17 @@
       {% assign store_page_name = block.settings.name | handleize | replace: '-', '' %}
       store.page_info_url = '/pages/store-{{ store_page_name }}';
     {% endunless %}
+
+    store.tag_exclusion_1 = {{ block.settings.tag_exclusion_1 | json }};
+    store.tag_exclusion_message_1 = {{ block.settings.tag_exclusion_message_1 | newline_to_br | json }};
+    store.tag_exclusion_2 = {{ block.settings.tag_exclusion_2 | json }};
+    store.tag_exclusion_message_2 = {{ block.settings.tag_exclusion_message_2 | newline_to_br | json }};
+    store.tag_exclusion_3 = {{ block.settings.tag_exclusion_3 | json }};
+    store.tag_exclusion_message_3 = {{ block.settings.tag_exclusion_message_3 | newline_to_br | json }};
+    store.tag_exclusion_4 = {{ block.settings.tag_exclusion_4 | json }};
+    store.tag_exclusion_message_4 = {{ block.settings.tag_exclusion_message_4 | newline_to_br | json }};
+    store.tag_exclusion_5 = {{ block.settings.tag_exclusion_5 | json }};
+    store.tag_exclusion_message_5 = {{ block.settings.tag_exclusion_message_5 | newline_to_br | json }};
   {% endfor %}
 
   window.masterStoresVisual = JSON.parse(JSON.stringify(window.masterStores));
@@ -360,6 +371,61 @@
             "id": "announcement",
             "label": "Announcement",
             "info": "(Optional) This copy will be displayed at the bottom of the store hours tooltip."
+          },
+          {
+            "type": "header",
+            "content": "Tag Exclusions",
+            "info": "Products with these tags will appear as unavailable at this location, and the set message will show."
+          },
+          {
+            "type": "text",
+            "id": "tag_exclusion_1",
+            "label": "Tag 1"
+          },
+          {
+            "type": "textarea",
+            "id": "tag_exclusion_message_1",
+            "label": "Message 1"
+          },
+          {
+            "type": "text",
+            "id": "tag_exclusion_2",
+            "label": "Tag 2"
+          },
+          {
+            "type": "textarea",
+            "id": "tag_exclusion_message_2",
+            "label": "Message 2"
+          },
+          {
+            "type": "text",
+            "id": "tag_exclusion_3",
+            "label": "Tag 3"
+          },
+          {
+            "type": "textarea",
+            "id": "tag_exclusion_message_3",
+            "label": "Message 3"
+          },
+          {
+            "type": "text",
+            "id": "tag_exclusion_4",
+            "label": "Tag 4"
+          },
+          {
+            "type": "textarea",
+            "id": "tag_exclusion_message_4",
+            "label": "Message 4"
+          },
+          {
+            "type": "text",
+            "id": "tag_exclusion_5",
+            "label": "Tag 5"
+          },
+          {
+            "type": "textarea",
+            "id": "tag_exclusion_message_5",
+            "label": "Message 5"
           },
           {
             "type": "header",
