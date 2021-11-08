@@ -103,6 +103,21 @@ function addMasterStoresData(inventoryItem, state) {
     if (thisLoc) {
       thisLoc.title = masterLoc.title;
 
+      // Exclude products by tags set in section settings
+      const productTags = window.vars.productJSON.tags;
+      const { tag_exclusion_1, tag_exclusion_message_1, tag_exclusion_2, tag_exclusion_message_2, tag_exclusion_3, tag_exclusion_message_3, tag_exclusion_4, tag_exclusion_message_4, tag_exclusion_5, tag_exclusion_message_5 } = masterLoc;
+      const tagExclusions = [tag_exclusion_1, tag_exclusion_2, tag_exclusion_3, tag_exclusion_4, tag_exclusion_5];
+      const tagExclusionMessages = [tag_exclusion_message_1, tag_exclusion_message_2, tag_exclusion_message_3, tag_exclusion_message_4, tag_exclusion_message_5]
+
+      const excludedTag = tagExclusions.findIndex(tag => productTags.indexOf(tag) !== -1);
+
+      if (excludedTag !== -1) {
+        thisLoc.available = 0;
+      }
+      
+      const excludedMessage = tagExclusionMessages[excludedTag];
+      // Exclusion
+
       if (thisLoc.available > 0) {
         thisLoc.ready = '<span>' + masterLoc.ready + '</span>';
       } else {
@@ -122,7 +137,8 @@ function addMasterStoresData(inventoryItem, state) {
       } else {
         thisLoc.availability = {
           class: 'out',
-          text: 'Out of Stock'
+          text: 'Out of Stock',
+          ...excludedMessage && { excludedMessage: excludedMessage }
         };
       }
 

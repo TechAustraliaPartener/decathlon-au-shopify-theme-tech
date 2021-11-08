@@ -93,7 +93,10 @@
         <div class="t-table" v-else-if="id" id="locsTable">
           <div class="t-row" v-for="location in stateLocations">
             <div class="t-cell title"><span v-text="location.title"></span><span v-if="favStore && location.name === favStore.name">{% endraw %}{% include 'assets-icons-flag' with class: 'de-u-textBlack de-Icon de-u-spaceLeft06' %}{% raw %}</span></div>
-            <div class="t-cell ready" v-html="location.ready"></div>
+            <div class="t-cell ready">
+              <div v-html="location.ready"></div>
+              <div v-html="location.availability.excludedMessage"></div>
+            </div>
             <div class="t-cell availability" v-bind:class="location.availability.class" v-text="location.availability.text"></div>
             <div class="t-cell hours tooltipOpener" v-if="location.tooltip_hours === true" v-text="location.hours"></div>
             <div class="t-cell hours" v-else v-text="location.hours"></div>

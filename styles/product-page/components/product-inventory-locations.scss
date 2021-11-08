@@ -92,6 +92,9 @@
 
       .ready {
         width: 200px;
+        display: flex;
+        flex-direction: column;
+        line-height: 1.2;
       }
 
       .availability {
