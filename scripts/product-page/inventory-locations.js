@@ -152,7 +152,6 @@ function addMasterStoresData(inventoryItem, state) {
 
       thisLoc.hours = hoursDisplay;
 
-      console.log('BJAKDBKJABDWJKBDWKAJBJKWDABJKDAW', thisLoc.title, thisLoc.hours);
       thisLoc.street1 = masterLoc.street1;
       thisLoc.city = masterLoc.city;
       thisLoc.zip = masterLoc.zip;
