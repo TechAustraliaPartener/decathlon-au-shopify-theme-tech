@@ -429,7 +429,6 @@ const initCartDisplay = cart => {
         CartJS.updateItemQuantitiesById(updateCartPayload, {
           success(data) {
             app.$data.override = true;
-            console.log("checking out----------", app, updateCartPayload, data)
             // Update cart form DOM with updated cart data
             app.changeWholeData(supplementCart(data), 'cart');
             // 3 seconds delay to make sure the DOM was updated with the new cart values before submitting the form to checkout
@@ -457,7 +456,6 @@ const initCartDisplay = cart => {
 
 $(document).on('cart.ready', function (event, cart) {
   cartInit = cart;
-  console.log('CART READY', event, cart);
   tryInit();
 });
 
@@ -479,20 +477,15 @@ document.addEventListener('tomitLoaded', async () => {
     return response;
   }
 
-  console.log(1);
   let inventoryInfo = await getProductsInventoryInformation(tomitCartPayload);
-  console.log(2, inventoryInfo);
 
   try {
     let missingInventoryVariants;
     const inventoryInfoVariants = Object.entries(inventoryInfo).map(([k, v]) => v?.product?.variants);
     let inventoryInfoVariantIDs = Object.entries(inventoryInfo).map(([k, v]) => Object.keys(v?.product?.variants));
     inventoryInfoVariantIDs = inventoryInfoVariantIDs.reduce((acc, val) => acc.concat(val), []);
-    console.log(3, inventoryInfoVariantIDs);
 
     missingInventoryVariants = tomitCartVariants.filter(vID => inventoryInfoVariantIDs.indexOf(String(vID)) === -1);
-    console.log(4, missingInventoryVariants);
-
     if (missingInventoryVariants.length > 0) {
 
       for (var i = missingInventoryVariants.length - 1; i >= 0; i--) {
@@ -504,15 +497,11 @@ document.addEventListener('tomitLoaded', async () => {
         }
 
         const [k, v] = Object.entries(variantInventory?.product?.variants)[0];
-        console.log(5, tomitCartVariants, k);
         const variantIndex = tomitCartVariants.indexOf(parseInt(k));
-        console.log(6, variantIndex);
         const inventoryProductID = tomitCartPayload[variantIndex];
-        console.log(7, inventoryProductID);
 
         const inventoryProduct = inventoryInfo[String(inventoryProductID)];
         const inventoryProductVariants = inventoryProduct?.product?.variants;
-        console.log(8, inventoryProduct);
         inventoryProductVariants[k] = v;
       }
 
@@ -522,7 +511,6 @@ document.addEventListener('tomitLoaded', async () => {
   }
 
   invInit = inventoryInfo;
-  console.log('INV READY', inventoryInfo);
   tryInit();
 });
 
@@ -533,8 +521,6 @@ function tryInit() {
 }
 
 $(document).on('cart.requestComplete', function (event, cart) {
-  console.log('cart update....', cart)
-
   try {
     window.cartDisplay.changeWholeData(supplementCart(cart), 'cart');
     
@@ -562,6 +548,5 @@ function displayPaymentGateway(price, threshold, gateway) {
 
 
 document.addEventListener('DOMContentLoaded', function() {
-  console.log('hey...')
   carouselSwiper.init();
 });
