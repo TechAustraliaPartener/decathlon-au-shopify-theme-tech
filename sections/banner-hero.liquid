@@ -8,7 +8,7 @@
 
     {% for block in section.blocks %}
 
-      <a href="{{ block.settings.button_url }}" class="banner--slide" {% if block.settings.button_new_window == true %}target="_blank" {% endif %} title="{{ block.settings.button_title }}">
+      <a href="{{ block.settings.link_url }}" class="banner--slide" {% if block.settings.link_new_window == true %}target="_blank" {% endif %} title="{{ block.settings.link_title }}">
         <div class="banner banner--billboard loading{{ banner_adtl_classes }}"{% if block.settings.banner_bg_image != blank %} data-background-image="{{ block.settings.banner_bg_image | img_url: 'master' }}"{% endif %}{% if banner_bg_position != blank %} style="background-position: {{ block.settings.banner_bg_position }}"{% endif %} id="banner-slide-{{ forloop.index }}">
           {% comment %} <div id="bannerOverlay" class="banner--billboard__overlay loading"></div> {% endcomment %}
 
@@ -23,10 +23,10 @@
               {%- endif -%}
 
               {%- if block.settings.banner_subtitle != blank -%}
-                <p class="banner-subtitle{% unless block.settings.button_url %} u-marginBottom0x{% endunless %}">{{ block.settings.banner_subtitle }}</p>
+                <p class="banner-subtitle{% unless block.settings.button_title %} u-marginBottom0x{% endunless %}">{{ block.settings.banner_subtitle }}</p>
               {%- endif -%}
 
-              {%- if block.settings.button_url != blank -%}
+              {%- if block.settings.button_title != blank -%}
                 <p class="banner-btnContainer">
                   <button class="btn">
                     {{ block.settings.button_title }}
@@ -84,19 +84,24 @@ to overlap.
           "label": "Add a subtitle for your slide"
         },
         {
-          "type": "checkbox",
-          "id": "button_new_window",
-          "label": "Do you want the button to open a new tab?"
-        },
-        {
           "type": "text",
           "id": "button_title",
-          "label": "Add a title for the button of your slide"
+          "label": "Add a button, saying:"
         },
         {
           "type": "url",
-          "id": "button_url",
-          "label": "Add a link for the button of your slide"
+          "id": "link_url",
+          "label": "Add a link for the slide"
+        },
+        {
+          "type": "text",
+          "id": "link_title",
+          "label": "Add a title for the link"
+        },
+        {
+          "type": "checkbox",
+          "id": "link_new_window",
+          "label": "Open the link in a new tab?"
         }
       ]
     }
