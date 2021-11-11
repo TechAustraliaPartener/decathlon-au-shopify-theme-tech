@@ -169,6 +169,22 @@ function addMasterStoresData(inventoryItem, item) {
 
     if (!alreadyAdded) {
       inventoryItem.locations.push(emptyLoc(masterLoc.name));
+    } else {
+      const productTags = item.tags;
+      const { tag_exclusion_1, tag_exclusion_message_1, tag_exclusion_2, tag_exclusion_message_2, tag_exclusion_3, tag_exclusion_message_3, tag_exclusion_4, tag_exclusion_message_4, tag_exclusion_5, tag_exclusion_message_5 } = masterLoc;
+      const tagExclusions = [tag_exclusion_1, tag_exclusion_2, tag_exclusion_3, tag_exclusion_4, tag_exclusion_5];
+      const tagExclusionMessages = [tag_exclusion_message_1, tag_exclusion_message_2, tag_exclusion_message_3, tag_exclusion_message_4, tag_exclusion_message_5];
+
+      const excludedTag = tagExclusions.findIndex(tag => productTags.indexOf(tag) !== -1);
+
+      if (excludedTag !== -1) {
+        alreadyAdded.available = 0;
+        alreadyAdded.inStock = 0;
+        alreadyAdded.q = 0;
+      }
+      
+      const excludedMessage = tagExclusionMessages[excludedTag];
+      alreadyAdded.excludedMessage = excludedMessage;
     }
   }
 
@@ -399,6 +415,26 @@ const initCartDisplay = cart => {
             } unavailable for ${app.deliveryOption
             } will be removed from your cart`;
         }
+
+        return '';
+      },
+      productExclusionMessages() {
+        const app = this;
+        const items = app.$data.cart.items;
+
+        if (app.deliveryOption === 'Delivery') {
+          return '';
+        }
+
+        const favStoreLocs = items.map(i => i.locations).map(ls => ls.find(l => l.name === app.favStore.name)).filter(m => m !== undefined);
+
+        if (!(favStoreLocs && favStoreLocs.length > 0)) {
+          return '';
+        }
+
+        const excludedMessages = favStoreLocs.map(l => l.excludedMessage).filter(m => m !== undefined)
+        const uniqueExcludedMessages = [...new Set(excludedMessages)];
+        return uniqueExcludedMessages.join('<div class="cart_spacer"></div>');
 
         return '';
       },

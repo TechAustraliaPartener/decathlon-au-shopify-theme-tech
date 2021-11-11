@@ -229,7 +229,9 @@
                   </select>
                 </span>
               </p>
-              <p v-html="cartModificationsMessage()" class="qty-update">
+              <p v-html="productExclusionMessages()" class="cart_alert">
+              </p>
+              <p v-html="cartModificationsMessage()" class="cart_alert">
                 3 items unavailable for Click &amp; Collect will be removed from your cart
               </p>
             </div>
