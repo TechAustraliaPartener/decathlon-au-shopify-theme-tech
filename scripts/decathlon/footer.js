@@ -119,7 +119,10 @@ $(document).ready(() => {
         .eq(1)
         .addClass('active');
     });
-    $('.blue-band-icon').click(function() {
+    $('.blue-band-icon').click(function(e) {
+      e.stopPropagation();
+      e.preventDefault();
+
       $(this)
         .parent()
         .parent()
