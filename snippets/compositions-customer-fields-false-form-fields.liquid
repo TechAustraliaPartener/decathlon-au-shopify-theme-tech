@@ -3,7 +3,7 @@
 {% endif %}
 
 <div id="cf_form_custom">
-{% form 'create_customer', data-cf-view: '', rv-cf-custom-form: '', data-cf-form-id: '2qtel9' %}
+{% form 'create_customer', data-cf-view: '', rv-cf-custom-form: '', data-cf-form-id: '2qtel9', action: '' %}
 <input type="hidden" name="login" value="false" />
 <input type="hidden" name="redirect_url" value="/account" />
 <input type="hidden" name="redirect" value="false" />
@@ -56,8 +56,7 @@
 <div data-marketing-hide>
   <input name="customer[postcode]" type="text" class="required" maxlength="4" placeholder="{{ 'customer.custom_fields.post_code' | t }}"/>
   </div>
-  {% assign address_province_names = 'Australian Capital Territory|New South Wales|Northern Territory|Queensland|South
-  Australia|Tasmania|Victoria|Western Australia' | split: "|" %}
+  {% assign address_province_names = 'Australian Capital Territory|New South Wales|Northern Territory|Queensland|South Australia|Tasmania|Victoria|Western Australia' | split: "|" %}
   <div data-marketing-hide>
     <select name="customer[addresses][province]" class="required">
       <option selected disabled hidden>{{ 'customer.custom_fields.state' | t }}</option>
