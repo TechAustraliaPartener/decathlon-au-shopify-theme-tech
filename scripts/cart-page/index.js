@@ -175,6 +175,7 @@ function addMasterStoresData(inventoryItem, item) {
       const tagExclusions = [tag_exclusion_1, tag_exclusion_2, tag_exclusion_3, tag_exclusion_4, tag_exclusion_5];
       const tagExclusionMessages = [tag_exclusion_message_1, tag_exclusion_message_2, tag_exclusion_message_3, tag_exclusion_message_4, tag_exclusion_message_5];
 
+      console.log(item, productTags);
       const excludedTag = tagExclusions.findIndex(tag => productTags.indexOf(tag) !== -1);
 
       if (excludedTag !== -1) {
@@ -193,6 +194,10 @@ function addMasterStoresData(inventoryItem, item) {
 
 function supplementCart(cart) {
   console.log(cart, invInit);
+
+  cart.items.forEach(item => {
+    item.tags = window.vars.productTags[item.product_id];
+  });
 
   for (let i = cart.items.length - 1; i >= 0; i--) {
     const item = cart.items[i];
