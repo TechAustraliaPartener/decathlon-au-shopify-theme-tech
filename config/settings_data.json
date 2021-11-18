@@ -1319,6 +1319,19 @@
               "button_url": "https:\/\/decathlon.com.au\/pages\/gift-ideas"
             }
           },
+          "cf196505-4a85-4297-8619-7d38658039ea": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/homepage_banner_2.png",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "Bikes in stock",
+              "banner_subtitle": "<p><strong>Shop our huge range of Hybrid and Mountain bikes!<\/strong><\/p>",
+              "button_new_window": false,
+              "button_title": "Shop Now",
+              "button_url": "shopify:\/\/collections\/bikes"
+            }
+          },
           "28836101-ac70-46b8-9ae2-ab9030d5b356": {
             "type": "slide",
             "settings": {
@@ -1362,6 +1375,7 @@
         "block_order": [
           "16b62988-4f85-4905-835d-49641a78664c",
           "bdd68b02-f297-4109-a6fb-0c679ebad026",
+          "cf196505-4a85-4297-8619-7d38658039ea",
           "28836101-ac70-46b8-9ae2-ab9030d5b356",
           "4bc8f53f-630c-47ef-a977-51c0fceb46d3",
           "eb4ba4b1-0624-4636-9586-d2cc512bf13d"
