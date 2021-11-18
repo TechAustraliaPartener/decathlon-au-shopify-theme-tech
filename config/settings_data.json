@@ -1301,9 +1301,10 @@
               "banner_intro": "",
               "banner_title": "50% off Camping Favourites!",
               "banner_subtitle": "<p><strong>Prepare for that much-needed nature escape with 50% off selected camping favourites!<\/strong><\/p>",
-              "button_new_window": false,
+              "link_new_window": false,
               "button_title": "Shop Now",
-              "button_url": "shopify:\/\/collections\/camping"
+              "link_title": "Shop Now",
+              "link_url": "shopify:\/\/collections\/camping"
             }
           },
           "bdd68b02-f297-4109-a6fb-0c679ebad026": {
@@ -1314,9 +1315,10 @@
               "banner_intro": "",
               "banner_title": "Gifts for All",
               "banner_subtitle": "<p><strong>We have handpicked our best gifts for your loved ones!<\/strong><\/p>",
-              "button_new_window": false,
+              "link_new_window": false,
               "button_title": "Find the perfect gift!",
-              "button_url": "https:\/\/decathlon.com.au\/pages\/gift-ideas"
+              "link_title": "Find the perfect gift!",
+              "link_url": "https:\/\/decathlon.com.au\/pages\/gift-ideas"
             }
           },
           "cf196505-4a85-4297-8619-7d38658039ea": {
@@ -1327,9 +1329,10 @@
               "banner_intro": "",
               "banner_title": "Bikes in stock",
               "banner_subtitle": "<p><strong>Shop our huge range of Hybrid and Mountain bikes!<\/strong><\/p>",
-              "button_new_window": false,
+              "link_new_window": false,
               "button_title": "Shop Now",
-              "button_url": "shopify:\/\/collections\/bikes"
+              "link_title": "Shop Now",
+              "link_url": "shopify:\/\/collections\/bikes"
             }
           },
           "28836101-ac70-46b8-9ae2-ab9030d5b356": {
@@ -1340,9 +1343,10 @@
               "banner_intro": "",
               "banner_title": "Innovation by Decathlon",
               "banner_subtitle": "<p><strong>We innovate to bring joy to our customers everyday. In return, we get to experience the joys of making sports accessible to everybody around the world.<\/strong><\/p>",
-              "button_new_window": false,
+              "link_new_window": false,
               "button_title": "Learn More",
-              "button_url": "shopify:\/\/pages\/joy-of-innovation"
+              "link_title": "Learn More",
+              "link_url": "shopify:\/\/pages\/joy-of-innovation"
             }
           },
           "4bc8f53f-630c-47ef-a977-51c0fceb46d3": {
@@ -1353,9 +1357,10 @@
               "banner_intro": "",
               "banner_title": "New this Summer!",
               "banner_subtitle": "<p><strong>Discover out hot new releases for this summer.<\/strong><\/p>",
-              "button_new_window": false,
+              "link_new_window": false,
               "button_title": "SHOP NOW",
-              "button_url": "shopify:\/\/collections\/water-sports-new-arrivals"
+              "link_title": "SHOP NOW",
+              "link_url": "shopify:\/\/collections\/water-sports-new-arrivals"
             }
           },
           "eb4ba4b1-0624-4636-9586-d2cc512bf13d": {
@@ -1366,9 +1371,10 @@
               "banner_intro": "",
               "banner_title": "30% Off Delivery* For MVP",
               "banner_subtitle": "<p><strong>Get lifetime returns simply by subscribing to our promotions & specials.<\/strong><\/p>",
-              "button_new_window": false,
+              "link_new_window": false,
               "button_title": "Join Now",
-              "button_url": "shopify:\/\/pages\/decathlon-membership"
+              "link_title": "Join Now",
+              "link_url": "shopify:\/\/pages\/decathlon-membership"
             }
           }
         },
