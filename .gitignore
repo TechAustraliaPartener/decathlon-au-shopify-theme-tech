@@ -26,4 +26,5 @@ src/css/*
 !/snippets/smile*
 !/snippets/util_*
 !/snippets/createur_*
+!/snippets/alert-come-back*
 theme.zip
