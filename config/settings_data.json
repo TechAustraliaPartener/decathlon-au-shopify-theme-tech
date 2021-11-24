@@ -23,7 +23,7 @@
     "color_footer_bg": "#1f1f1f",
     "color_footer_text": "#aabdb9",
     "color_footer_social_link": "#bbbbbb",
-    "logo_use_image": false,
+    "logo_use_image": true,
     "svg_logo": "black_logo.svg",
     "img_logo": "shopify:\/\/shop_images\/logo_small_9355cf1c-7626-4ada-916d-d809a214ca37.png",
     "enable_meet_decathlon": true,
@@ -31,11 +31,11 @@
     "header_support_link": "https:\/\/decathlon.com.au\/pages\/contact-and-help",
     "header_store_label": "Stores",
     "header_sign_in_label": "Sign In",
-    "megamenu_image": "shopify:\/\/shop_images\/Copy_of_SIDE_NAV_aac4035b-6e8c-4216-8d9f-e4ee4c5f20de.png",
-    "megamenu_title": "Summer Specials",
-    "megamenu_subtitle": "Early Access!",
-    "megamenu_link": "shopify:\/\/pages\/summer-sports",
-    "megamenu_bg_colour": "#1c82c3",
+    "megamenu_image": "shopify:\/\/shop_images\/Enjoy_up_to_50_off_a_range_of_different_products_this_Black_Friday_1.png",
+    "megamenu_title": "Black Friday Deals",
+    "megamenu_subtitle": "Shop Now!",
+    "megamenu_link": "shopify:\/\/collections\/black-friday-sale",
+    "megamenu_bg_colour": "#1f1f1f",
     "custom_fields_terms_conditions": "I agree to the <a href=\"\/pages\/terms-and-conditions-membership\" target=\"_blank\">T&Cs<\/a> and <a href=\"\/pages\/privacy-policy\" target=\"_blank\">Privacy Policy<\/a> for creating an account.",
     "is_lookbook": false,
     "product_returns_text": "Lifetime Returns* For MVP",
@@ -758,20 +758,20 @@
               "id": "1789-0001",
               "tooltip_hours": true,
               "is_same_hours_weekly": false,
-              "hours_0_open": "09000",
-              "hours_0_close": "1700",
-              "hours_1_open": "09000",
-              "hours_1_close": "1700",
-              "hours_2_open": "09000",
-              "hours_2_close": "1700",
-              "hours_3_open": "09000",
-              "hours_3_close": "1700",
-              "hours_4_open": "09000",
-              "hours_4_close": "1700",
-              "hours_5_open": "09000",
-              "hours_5_close": "1700",
-              "hours_6_open": "09000",
-              "hours_6_close": "1700",
+              "hours_0_open": "0000",
+              "hours_0_close": "0000",
+              "hours_1_open": "1000",
+              "hours_1_close": "1500",
+              "hours_2_open": "1000",
+              "hours_2_close": "1500",
+              "hours_3_open": "1000",
+              "hours_3_close": "1500",
+              "hours_4_open": "1000",
+              "hours_4_close": "1500",
+              "hours_5_open": "1000",
+              "hours_5_close": "1500",
+              "hours_6_open": "1000",
+              "hours_6_close": "1500",
               "announcement": "<p>Opening hours have been adjusted due to NSW Lockdowns<br\/>Ready to collect in 3 business days.<\/p>",
               "address_type_boolean": true,
               "is_residential": false,
@@ -1022,20 +1022,20 @@
               "id": "1789-0012",
               "tooltip_hours": true,
               "is_same_hours_weekly": false,
-              "hours_0_open": "1000",
-              "hours_0_close": "1600",
-              "hours_1_open": "1000",
-              "hours_1_close": "1600",
-              "hours_2_open": "0900",
-              "hours_2_close": "1700",
-              "hours_3_open": "0900",
-              "hours_3_close": "1700",
-              "hours_4_open": "0900",
-              "hours_4_close": "1700",
-              "hours_5_open": "0900",
-              "hours_5_close": "1700",
-              "hours_6_open": "0900",
-              "hours_6_close": "1700",
+              "hours_0_open": "1100",
+              "hours_0_close": "1500",
+              "hours_1_open": "0000",
+              "hours_1_close": "0000",
+              "hours_2_open": "1130",
+              "hours_2_close": "1600",
+              "hours_3_open": "1130",
+              "hours_3_close": "1600",
+              "hours_4_open": "1130",
+              "hours_4_close": "1600",
+              "hours_5_open": "1130",
+              "hours_5_close": "1600",
+              "hours_6_open": "1000",
+              "hours_6_close": "1600",
               "announcement": "<p>This is not a Decathlon store. Await for your Ready to Pick up confirmation email, before picking up your order.<\/p>",
               "address_type_boolean": true,
               "is_residential": false,
@@ -1292,99 +1292,50 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
-          "16b62988-4f85-4905-835d-49641a78664c": {
+          "b4f4b4f8-7f8a-4891-9d14-0a036a69c0d6": {
             "type": "slide",
-            "disabled": true,
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/homepage_banner_1_2223e328-a5b1-4d5c-b64a-199fe9774f08.png",
+              "banner_bg_image": "shopify:\/\/shop_images\/homepage_banner_923bb7e3-dfd4-42e6-b69c-56d9ab6c7573.png",
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
-              "banner_title": "50% off Camping Favourites!",
-              "banner_subtitle": "<p><strong>Prepare for that much-needed nature escape with 50% off selected camping favourites!<\/strong><\/p>",
-              "link_new_window": false,
+              "banner_title": "Black Friday has started early!",
+              "banner_subtitle": "<p><strong>Enjoy up to 50% off a range of different products this Black Friday!<\/strong><\/p>",
+              "button_new_window": false,
               "button_title": "Shop Now",
-              "link_title": "Shop Now",
-              "link_url": "shopify:\/\/collections\/camping"
-            }
-          },
-          "bdd68b02-f297-4109-a6fb-0c679ebad026": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Gift_ideas_landing_copy_1.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": "Gifts for All",
-              "banner_subtitle": "<p><strong>We have handpicked our best gifts for your loved ones!<\/strong><\/p>",
-              "link_new_window": false,
-              "button_title": "Find the perfect gift!",
-              "link_title": "Find the perfect gift!",
-              "link_url": "https:\/\/decathlon.com.au\/pages\/gift-ideas"
-            }
-          },
-          "cf196505-4a85-4297-8619-7d38658039ea": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/homepage_banner_2.png",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": "Bikes in stock",
-              "banner_subtitle": "<p><strong>Shop our huge range of Hybrid and Mountain bikes!<\/strong><\/p>",
-              "link_new_window": false,
-              "button_title": "Shop Now",
-              "link_title": "Shop Now",
-              "link_url": "shopify:\/\/collections\/bikes"
-            }
-          },
-          "28836101-ac70-46b8-9ae2-ab9030d5b356": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_35_-min.png",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": "Innovation by Decathlon",
-              "banner_subtitle": "<p><strong>We innovate to bring joy to our customers everyday. In return, we get to experience the joys of making sports accessible to everybody around the world.<\/strong><\/p>",
-              "link_new_window": false,
-              "button_title": "Learn More",
-              "link_title": "Learn More",
-              "link_url": "shopify:\/\/pages\/joy-of-innovation"
-            }
-          },
-          "4bc8f53f-630c-47ef-a977-51c0fceb46d3": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_790_02_1.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": "New this Summer!",
-              "banner_subtitle": "<p><strong>Discover out hot new releases for this summer.<\/strong><\/p>",
-              "link_new_window": false,
-              "button_title": "SHOP NOW",
-              "link_title": "SHOP NOW",
-              "link_url": "shopify:\/\/collections\/water-sports-new-arrivals"
+              "button_url": "shopify:\/\/collections\/black-friday-sale"
             }
           },
           "eb4ba4b1-0624-4636-9586-d2cc512bf13d": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/web_banner_2.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/homepage_banner_923bb7e3-dfd4-42e6-b69c-56d9ab6c7573.png",
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
               "banner_title": "30% Off Delivery* For MVP",
               "banner_subtitle": "<p><strong>Get lifetime returns simply by subscribing to our promotions & specials.<\/strong><\/p>",
-              "link_new_window": false,
+              "button_new_window": false,
               "button_title": "Join Now",
-              "link_title": "Join Now",
-              "link_url": "shopify:\/\/pages\/decathlon-membership"
+              "button_url": "shopify:\/\/pages\/decathlon-membership"
+            }
+          },
+          "bdd68b02-f297-4109-a6fb-0c679ebad026": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/homepage_banner_923bb7e3-dfd4-42e6-b69c-56d9ab6c7573.png",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "Gifts for All",
+              "banner_subtitle": "<p><strong>We have handpicked our best gifts for your loved ones this Christmas!<\/strong><\/p>",
+              "button_new_window": false,
+              "button_title": "Find the perfect gift!",
+              "button_url": "https:\/\/decathlon.com.au\/pages\/gift-ideas"
             }
           }
         },
         "block_order": [
-          "16b62988-4f85-4905-835d-49641a78664c",
-          "bdd68b02-f297-4109-a6fb-0c679ebad026",
-          "cf196505-4a85-4297-8619-7d38658039ea",
-          "28836101-ac70-46b8-9ae2-ab9030d5b356",
-          "4bc8f53f-630c-47ef-a977-51c0fceb46d3",
-          "eb4ba4b1-0624-4636-9586-d2cc512bf13d"
+          "b4f4b4f8-7f8a-4891-9d14-0a036a69c0d6",
+          "eb4ba4b1-0624-4636-9586-d2cc512bf13d",
+          "bdd68b02-f297-4109-a6fb-0c679ebad026"
         ],
         "settings": {}
       },
@@ -1411,7 +1362,7 @@
             "type": "label",
             "settings": {
               "title": "Sale",
-              "bg_colour": "#e20c18",
+              "bg_colour": "#ff0000",
               "text_colour": "#ffffff"
             }
           },
@@ -1534,6 +1485,14 @@
               "bg_colour": "#333333",
               "text_colour": "#ffffff"
             }
+          },
+          "07a953fb-cbae-4fe7-bd72-dc1eb00045ec": {
+            "type": "label",
+            "settings": {
+              "title": "Black Friday Deal",
+              "bg_colour": "#1f1f1f",
+              "text_colour": "#ffffff"
+            }
           }
         },
         "block_order": [
@@ -1552,7 +1511,8 @@
           "22cc446b-d257-45ff-a99a-5840376d78fc",
           "7f9c88e9-e668-4ac4-a713-e696f1e193a8",
           "f8057dbf-e27c-4eed-adc0-17c069770eb1",
-          "4a64b4cb-1338-48f3-9582-151d2698b239"
+          "4a64b4cb-1338-48f3-9582-151d2698b239",
+          "07a953fb-cbae-4fe7-bd72-dc1eb00045ec"
         ],
         "settings": {}
       },
@@ -1617,12 +1577,12 @@
           "a35476da-14f6-4892-a5e1-c136b3406867": {
             "type": "category",
             "settings": {
-              "title": "Sale",
+              "title": "Black Friday Deals",
               "image": "shopify:\/\/shop_images\/top-categories-tips.png",
               "text_color": "#ffffff",
-              "background_color": "#ff252e",
-              "hover_background_color": "#ff0000",
-              "link": "shopify:\/\/collections\/all-sale-products"
+              "background_color": "#1f1f1f",
+              "hover_background_color": "#1f1f1f",
+              "link": "shopify:\/\/collections\/black-friday-sale"
             }
           }
         },
@@ -1639,8 +1599,8 @@
       "163107231999d8b130": {
         "type": "featured_collection",
         "settings": {
-          "title": "Backyard Games",
-          "section_collection": "backyard-games"
+          "title": "Don't Miss These Black Friday Deals!",
+          "section_collection": "black-friday-sale"
         }
       },
       "163107313302287377": {
@@ -1649,49 +1609,49 @@
           "c2d5bbf2-defb-4062-8a7c-9c520db2185d": {
             "type": "category_tile",
             "settings": {
-              "title": "Camping Tents",
-              "image": "shopify:\/\/shop_images\/homepage_section.png",
-              "link": "shopify:\/\/collections\/camping-tents"
+              "title": "SUP Atlantis Air",
+              "image": "shopify:\/\/shop_images\/black_friday_06_1_.pdf_1.png",
+              "link": "https:\/\/decathlon.com.au\/products\/atlantis-atlantis-air?variant=32077671628911"
             }
           },
           "2aabd1f3-b77e-4418-843c-995e61af21e7": {
             "type": "category_tile",
             "settings": {
-              "title": "Weight Training",
-              "image": "shopify:\/\/shop_images\/PK_Hantle_NEW_2_---_Expires_on_31-08-2025_1.jpg",
-              "link": "shopify:\/\/collections\/weight-training"
+              "title": "Fresh & Black Tent",
+              "image": "shopify:\/\/shop_images\/black_friday_05_1_.pdf.png",
+              "link": "https:\/\/decathlon.com.au\/products\/air-seconds-4-2-fresh-black-inflatable-camping-tent-4-person-157654?variant=39814172639343"
             }
           },
           "5577a84d-44d2-461d-bb74-80a640ebe253": {
             "type": "category_tile",
             "settings": {
-              "title": "Mountain Bikes",
-              "image": "shopify:\/\/shop_images\/Untitled_design_32.png",
-              "link": "shopify:\/\/collections\/mountain-bike"
+              "title": "Powertrain Treadmill",
+              "image": "shopify:\/\/shop_images\/black_friday_04_1_.pdf.png",
+              "link": "https:\/\/decathlon.com.au\/products\/k1000-powertrain-foldable-treadmill"
             }
           },
           "e6009045-e924-463e-b297-09c2cd29d848": {
             "type": "category_tile",
             "settings": {
-              "title": "SUP",
-              "image": "shopify:\/\/shop_images\/homepage_section_1.png",
-              "link": "shopify:\/\/collections\/stand-up-paddle"
+              "title": "E-Motion 10 Scooter",
+              "image": "shopify:\/\/shop_images\/black_friday_03_1_.pdf.png",
+              "link": "https:\/\/decathlon.com.au\/products\/globber-e-motion-15-14-electric-scooter-black-blue?variant=32041153822831"
             }
           },
           "95c908d1-9a7d-43d6-816b-3a50b9f7b0d8": {
             "type": "category_tile",
             "settings": {
-              "title": "Aquashoes",
-              "image": "shopify:\/\/shop_images\/Aquashoes_PK_new_---_Expires_on_23-07-2025.jpg",
-              "link": "shopify:\/\/collections\/aqua-shoes"
+              "title": "ST 100 Mountain Bike",
+              "image": "shopify:\/\/shop_images\/black_friday_07_1_.pdf.png",
+              "link": "https:\/\/decathlon.com.au\/products\/rockrider-st-100-mountain-bike-193771"
             }
           },
           "c74e811a-531f-4b53-89db-8ad5d6ea006d": {
             "type": "category_tile",
             "settings": {
-              "title": "Beach Essentials",
-              "image": "shopify:\/\/shop_images\/homepage_section_2.png",
-              "link": "shopify:\/\/collections\/beach-specials"
+              "title": "Shop all Deals!",
+              "image": "shopify:\/\/shop_images\/black_friday_02_1_.pdf.png",
+              "link": "shopify:\/\/collections\/black-friday-sale"
             }
           }
         },
@@ -1704,105 +1664,31 @@
           "c74e811a-531f-4b53-89db-8ad5d6ea006d"
         ],
         "settings": {
-          "title": "Trending This Summer!"
+          "title": "Trending This Black Friday"
         }
       },
       "1631574985450cb50b": {
         "type": "featured_collection",
         "settings": {
-          "title": "Discover our Lowest Price, Best Value Products",
-          "section_collection": "lowest-price-best-value"
-        }
-      },
-      "16316085202ea5cf79": {
-        "type": "trending_categories",
-        "blocks": {
-          "24a46da8-7f15-4e2c-aa20-558f5e037a41": {
-            "type": "category_tile",
-            "settings": {
-              "title": "Hiking",
-              "image": "shopify:\/\/shop_images\/PK_Spodnie_trekkingowe_1_---_Expires_on_09-09-2025.jpg",
-              "link": "shopify:\/\/collections\/hiking-trekking"
-            }
-          },
-          "2161fbad-02eb-48c1-9a11-4481251537ae": {
-            "type": "category_tile",
-            "settings": {
-              "title": "Running",
-              "image": "shopify:\/\/shop_images\/Odziez_do_biegania_1_PK_---_Expires_on_20-08-2025.jpg",
-              "link": "shopify:\/\/collections\/running-gear-clothes"
-            }
-          },
-          "f553a06c-1d16-4cd4-b9f2-2eea43b5aa9c": {
-            "type": "category_tile",
-            "settings": {
-              "title": "Snorkeling",
-              "image": "shopify:\/\/shop_images\/Untitled_design_24.png",
-              "link": "shopify:\/\/collections\/snorkeling"
-            }
-          },
-          "711f34cb-b34c-4c8f-8e88-ce5c95240666": {
-            "type": "category_tile",
-            "settings": {
-              "title": "Yoga & Pilates",
-              "image": "shopify:\/\/shop_images\/Akcesorie_treningowe_2_PK_---_Expires_on_02-08-2025_1.jpg",
-              "link": "shopify:\/\/collections\/yoga-pilates"
-            }
-          },
-          "e946fff5-5695-4ed3-a886-269cd8000e8d": {
-            "type": "category_tile",
-            "settings": {
-              "title": "Camping",
-              "image": "shopify:\/\/shop_images\/PK_Materace_kempingowe_1_---_Expires_on_20-07-2025.jpg",
-              "link": "shopify:\/\/collections\/camping"
-            }
-          },
-          "e1091c93-4efb-4738-b3f6-3a711db62e82": {
-            "type": "category_tile",
-            "settings": {
-              "title": "Kayaking",
-              "image": "shopify:\/\/shop_images\/Untitled_design_25.png",
-              "link": "shopify:\/\/collections\/kayaking"
-            }
-          }
-        },
-        "block_order": [
-          "24a46da8-7f15-4e2c-aa20-558f5e037a41",
-          "2161fbad-02eb-48c1-9a11-4481251537ae",
-          "f553a06c-1d16-4cd4-b9f2-2eea43b5aa9c",
-          "711f34cb-b34c-4c8f-8e88-ce5c95240666",
-          "e946fff5-5695-4ed3-a886-269cd8000e8d",
-          "e1091c93-4efb-4738-b3f6-3a711db62e82"
-        ],
-        "settings": {
-          "title": "Sports You May Like!"
+          "title": "Innovation By Decathlon",
+          "section_collection": "innovation-by-decathlon"
         }
       },
       "163487525380dd83d2": {
         "type": "featured_collection",
         "settings": {
-          "title": "Spend & Save with our Bundle Deals!",
+          "title": "Spend & Save This Black Friday",
           "section_collection": "bundle-deals"
-        }
-      },
-      "1636691641cba493ff": {
-        "type": "featured_collection",
-        "disabled": true,
-        "settings": {
-          "title": "50% off Camping Favourites",
-          "section_collection": "camping"
         }
       }
     },
     "content_for_index": [
       "1568939434006",
       "163107170023281063",
-      "1636691641cba493ff",
-      "163487525380dd83d2",
       "163107313302287377",
-      "1631574985450cb50b",
-      "16316085202ea5cf79",
-      "163107231999d8b130"
+      "163107231999d8b130",
+      "163487525380dd83d2",
+      "1631574985450cb50b"
     ]
   },
   "presets": {
