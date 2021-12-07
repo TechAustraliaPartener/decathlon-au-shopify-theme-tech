@@ -1151,6 +1151,7 @@
           },
           "4c90425f-fb91-4709-b7f1-246700324116": {
             "type": "store",
+            "disabled": true,
             "settings": {
               "name": "TSBW Miranda, 2228, Pick Up Only",
               "title": "TSBW Miranda, 2228, Pick Up Only",
