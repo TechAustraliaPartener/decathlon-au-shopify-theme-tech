@@ -538,7 +538,7 @@
               "hours_5_close": "1800",
               "hours_6_open": "0900",
               "hours_6_close": "1800",
-              "announcement": "<p>Melbourne Cup Opening Hours 10:00 - 17:00<\/p>",
+              "announcement": "<p>Holiday Opening Hours:<br\/>Friday 24th December: 9:00 am - 6:00 pm <br\/>Saturday 25th December: CLOSED<br\/>Sunday 26th December: 9:00 am - 6:00 pm <br\/>Monday 27th December: 10:00 am - 6:00 pm<br\/>Tuesday 28th December: 10:00 am - 6:00 pm<br\/>Friday 31st December: 9:00 am - 6:00 pm <br\/><br\/>Saturday 1st January: 10:00 am - 6:00 pm  <br\/>Monday 3rd January: 10:00 am - 5:00 pm<br\/>Thursday 26th January: 10:00 am - 5:00pm<\/p>",
               "tag_exclusion_1": "",
               "tag_exclusion_message_1": "",
               "tag_exclusion_2": "",
