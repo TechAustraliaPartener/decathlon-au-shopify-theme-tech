@@ -234,39 +234,52 @@ init()
   .catch(error => console.error(error));
 
 //GOOGLE TRANSLATE
-var TRANSLATE_API_KEY = 'AIzaSyBmV081v1C1hz45hJpCpcprUPOhrNqDekY';
+var TRANSLATE_API_KEY = 'AIzaSyAkXb918cp932bUuHutJiiGOH5yAIZttQM';
 var SOURCE_LANGUAGE = '';
 var TARGET_LANGUAGE = 'en';
 
 function translateReview(text, parentEl, type) {
-  var translateURL = "https://www.googleapis.com/language/translate/v2" + "?key=" + TRANSLATE_API_KEY + "&source=" + SOURCE_LANGUAGE + "&target=" + TARGET_LANGUAGE + "&q=" + text + "&format=text&callback=?";
-  $.getJSON(translateURL, function (result) {
-    if (!result.error) {
-      console.log('CONTENTS: ' + result.data.translations[0].translatedText);
-      parentEl.find('.review-' + type + '-translated').text(result.data.translations[0].translatedText);
-      show_review(parentEl, 'original', 'translated');
-      parentEl.addClass('translated');
-    } else {
-      console.log(result.error);
+  $.ajax({
+    method: 'GET',
+    url: 'https://translation.googleapis.com/language/translate/v2',
+    dataType: 'jsonp',
+    data: {
+      key: TRANSLATE_API_KEY,
+      source: SOURCE_LANGUAGE,
+      target: TARGET_LANGUAGE,
+      q: text,
+      format: 'html'
+    },
+    success: function(result) {
+      if (!result.error) {
+        console.log('CONTENTS: ' + result.data.translations[0].translatedText);
+        parentEl.find('.review-' + type + '-translated').html(result.data.translations[0].translatedText);
+        show_review(parentEl, 'original', 'translated');
+        parentEl.addClass('translated');
+      } else {
+        console.log(result.error);
+      }
     }
   });
 }
 
-$('.btn-original').on('click', function (e) {
+$(document).on('click', '.btn-original', function (e) {
   e.preventDefault();
   var parentEl = $(this).closest('.de-CustomerReview');
   show_review(parentEl, 'translated', 'original');
 });
 
-$('.btn-translated').on('click', function (e) {
+$(document).on('click', '.btn-translated', function (e) {
   e.preventDefault();
   var parentEl = $(this).closest('.de-CustomerReview');
   var title = parentEl.find('.review-title-original').html();
   var body = parentEl.find('.review-body p').html();
+  var answer = parentEl.find('.review-answer-original').html();
 
   if (!parentEl.hasClass('translated')) {
     translateReview(title, parentEl, 'title');
     translateReview(body, parentEl, 'body');
+    translateReview(answer, parentEl, 'answer');
   } else {
     console.log('Already translated');
     show_review(parentEl, 'original', 'translated');
@@ -276,8 +289,10 @@ $('.btn-translated').on('click', function (e) {
 function show_review(parentEl, h, s) {
   parentEl.find('.review-title-' + s).show();
   parentEl.find('.review-body-' + s).show();
+  parentEl.find('.review-answer-' + s).show();
   parentEl.find('.review-title-' + h).hide();
   parentEl.find('.review-body-' + h).hide();
+  parentEl.find('.review-answer-' + h).hide();
   parentEl.find('.btn-' + h).addClass('active');
   parentEl.find('.btn-' + s).removeClass('active');
 }

@@ -255,8 +255,8 @@ because metafields can't be floats
             {% endcomment %}
             {{ review.body }}
             {% if review.language != 'en' %}
-          <p class="de-u-spaceNone review-body-translated"></p>
-          {% endif %}
+              <p class="de-u-spaceNone review-body-translated"></p>
+            {% endif %}
           </p>
         </div>
 
@@ -278,13 +278,13 @@ because metafields can't be floats
             {% endif %}
 
             {% if review_country_code %}
-            {% assign country_full = 'countries_by_code.' | append: review_country_code | t %}
-            Reviewed in {{ country_full }}
-            {% if review.language != 'en' %}
-            <a href="#" class="btn-gt-translate btn-original">{{ 'products.translation_text.original' | t }}</a>
-            <a href="#"
-              class="btn-gt-translate btn-translated active">{{ 'products.translation_text.translate' | t }}</a>
-            {% endif %}
+              {% assign country_full = 'countries_by_code.' | append: review_country_code | t %}
+              Reviewed in {{ country_full }}
+              {% if review.language != 'en' %}
+                <a href="#" class="btn-gt-translate btn-original">{{ 'products.translation_text.original' | t }}</a>
+                <a href="#"
+                  class="btn-gt-translate btn-translated active">{{ 'products.translation_text.translate' | t }}</a>
+              {% endif %}
             {% endif %}
 
             {% if review.purchase_checked %}
@@ -319,8 +319,10 @@ because metafields can't be floats
         <div class="de-CustomerReview-response de-u-spaceTop6" tabindex="0" data-review-id="{{review.answer.id}}">
           {% include 'assets-logos-decathlon-chat'
                     with class: 'de-DecathlonChatBubble' %}
-          <div>
+          <div class="review-answer-original">
             {{ review.answer.body }}
+          </div>
+          <div class="review-answer-translated">
           </div>
           {% if answer_date %}
           <div class="de-u-textShrink1 de-u-textDarkGray">
@@ -391,20 +393,25 @@ because metafields can't be floats
                     </div>
                   {{/if}}
                   {{#if title}}
-                    <div class="de-u-textGrow3 de-u-textMedium
-                      de-u-lineHeight2 de-u-padBottom06">
-                      {{ title }}
-                    </div>
+                  <div class="de-u-textGrow3 de-u-textMedium
+                              de-u-lineHeight2 de-u-padBottom06 review-title-original">
+                    {{ title }}
+                  </div>
+                  <div class="de-u-textGrow3 de-u-textMedium
+                              de-u-lineHeight2 de-u-padBottom06 review-title-translated">
+                  </div>
                   {{/if}}
                 </div>
               {{/if_or}}
 
-              <p class="de-u-spaceNone">
-                {{!--  @TODO
-                review use of body vs bodyHTML and raw rendering of HTML
-                --}}
-                {{ body }}
-              </p>
+              <div class="review-body">
+                <p class="de-u-spaceNone review-body-original">
+                  {{ body }}
+                  {{#isNotEnglish language country }}
+                    <p class="de-u-spaceNone review-body-translated"></p>
+                  {{/isNotEnglish}}    
+                </p>
+              </div>
 
               <div class="de-Grid de-u-padTop06">
                 <div class="de-u-size4of6 de-u-textDarkGray">
@@ -422,6 +429,18 @@ because metafields can't be floats
                     {{#if country_label}}
                       {{#each country_label}}
                         Reviewed in {{this}}
+                        {{#isNotEnglish ../language ../country }}
+                          <a href="#" class="btn-gt-translate btn-original">
+                            {% endraw %}
+                              {{ 'products.translation_text.original' | t }}
+                            {% raw%}
+                          </a>
+                          <a href="#" class="btn-gt-translate btn-translated active">
+                            {% endraw %}
+                              {{ 'products.translation_text.translate' | t }}
+                            {% raw%}
+                          </a>
+                        {{/isNotEnglish}}          
                       {{/each}}                        
                     {{/if}}
                   {{/if_or}}
@@ -454,8 +473,10 @@ because metafields can't be floats
                 tabindex="0"
                 data-review-id="{{answer.id}}">
                 {{> logo_no_bg }}
-                <div>
+                <div class="review-answer-original">
                   {{{ answer.body }}}
+                </div>
+                <div class="review-answer-translated">
                 </div>
                 {{#if answer.created_at }}
                   <div class="de-u-textShrink1 de-u-textDarkGray">

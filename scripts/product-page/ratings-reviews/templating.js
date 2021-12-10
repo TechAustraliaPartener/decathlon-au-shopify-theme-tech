@@ -150,6 +150,53 @@ const _handlebarsInit = () => {
   });
 
   /**
+   * Output if expression a and b are equals
+   * @params {*} a - 1st param
+   * @params {*} b - 2nd param
+   * {{#ifeq cond1 cond2 }}
+   *  <p>Cond 1 and cond 2 are equals</p>
+   * {{/ifeq}}
+   */
+  Handlebars.registerHelper('ifeq', function(a, b, options) {
+    if(a === b) {
+      return options.fn(this);
+    }
+    return options.inverse(this);
+  });
+
+  /**
+   * Output if expression a and b are not equals
+   * @params {*} a - 1st param
+   * @params {*} b - 2nd param
+   * {{#ifeq cond1 cond2 }}
+   *  <p>Cond 1 and cond 2 are not equals</p>
+   * {{/ifeq}}
+   */
+  Handlebars.registerHelper('ifneq', function(a, b, options) {
+    if(a !== b) {
+      return options.fn(this);
+    }
+    return options.inverse(this);
+  });
+
+  /**
+   * Output if expression language is not `en` or country in the falseEnCountries
+   * @params {*} language
+   * @params {*} country
+   * Example usage:
+   * {{#isNotEnglish 'fr' 'FR' }}
+   *  <p>Not english</p>
+   * {{/isNotEnglish}}
+   */
+  Handlebars.registerHelper('isNotEnglish', function(language, country, options) {
+    const falseEnCountries = ['TH']; // Country codes where review language is `en` but clearly is not in english
+    if(language !== 'en' || falseEnCountries.includes(country)) {
+      return options.fn(this);
+    }
+    return options.inverse(this);
+  });
+
+  /**
    * Register handlebars partials (SVG icon snippets) to inject into JS-templated reviews
    */
   if (verifiedPurchaseIconTplEl) {
