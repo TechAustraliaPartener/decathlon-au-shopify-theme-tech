@@ -268,13 +268,13 @@
     "returns_policy_default": "Lifetime Returns* For MVP (see T&Cs)",
     "threshold_for_afterpay_enabled": true,
     "threshold_for_afterpay_gateway": "Afterpay",
-    "threshold_for_afterpay_threshold": "200",
+    "threshold_for_afterpay_threshold": "50",
     "threshold_for_afterpay_cart_message": "[gateway] is available on orders over [threshold]",
     "threshold_for_afterpay_product_message": "[gateway] is available on orders over [threshold]",
     "threshold_for_afterpay_checkout_message": "[gateway] is available on orders over [threshold]",
     "threshold_for_zip_pay_enabled": true,
     "threshold_for_zip_pay_gateway": "Zip Pay",
-    "threshold_for_zip_pay_threshold": "200",
+    "threshold_for_zip_pay_threshold": "50",
     "threshold_for_zip_pay_cart_message": "[gateway] is available on orders over [threshold]",
     "threshold_for_zip_pay_product_message": "[gateway] is available on orders over [threshold]",
     "threshold_for_zip_pay_checkout_message": "[gateway] is available on orders over [threshold]",
@@ -523,7 +523,7 @@
               "ready_checkout": "Pickup: Ready in 2 Hours",
               "id": "1793",
               "tooltip_hours": false,
-              "is_same_hours_weekly": true,
+              "is_same_hours_weekly": false,
               "hours_0_open": "1000",
               "hours_0_close": "1800",
               "hours_1_open": "0900",
@@ -577,7 +577,7 @@
               "ready_checkout": "Pickup: Ready in 2 Hours",
               "id": "1792",
               "tooltip_hours": false,
-              "is_same_hours_weekly": true,
+              "is_same_hours_weekly": false,
               "hours_0_open": "1000",
               "hours_0_close": "1900",
               "hours_1_open": "0900",
@@ -719,6 +719,7 @@
           },
           "1584595062323": {
             "type": "store",
+            "disabled": true,
             "settings": {
               "name": "Fitzroy C&C (3065)",
               "title": "Fitzroy, 3065, Pick Up Only",
@@ -1970,8 +1971,8 @@
       "16375487170499d43e": {
         "type": "featured_collection",
         "settings": {
-          "title": "Keeping You Dry",
-          "section_collection": "rain-jackets-pants"
+          "title": "Bikes",
+          "section_collection": "bikes"
         }
       },
       "1638397571a0f32a07": {
