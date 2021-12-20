@@ -34,13 +34,17 @@
 } 
 
 .large--hide .de-u-textBold.de-u-textCapitalize {
-  max-width: 250px;
+  max-width: 30em;
 
   @media screen and (max-width: 480px) {
-    max-width: 170px;
+    max-width: 12em;
   }
 
-  @media screen and (max-width: 360px) {
-    max-width: 100px;
+  @media screen and (max-width: 350px) {
+    max-width: 8em;
+  }
+
+  @media screen and (max-width: 320px) {
+    max-width: 6em;
   }
 }
