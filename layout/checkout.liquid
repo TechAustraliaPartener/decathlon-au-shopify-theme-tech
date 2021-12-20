@@ -190,7 +190,17 @@
               <input type="hidden" name="checkout[attributes][checkout_option]" value="{{ checkout.attributes.delivery_mode }}"></form>
             {% endcapture %}
 
-            {{ layout_content | replace: login_link_default, login_link_override | replace: '</form>', checkout_option_input }}
+            {% assign contact_html_default = '<p class="layout-flex__item"' %}
+            {%- capture contact_html_override -%}
+              <p class="layout-flex__item">{{ 'shopify.checkout.contact.message' | t }}</p>
+              {{ contact_html_default }}
+            {%- endcapture -%}
+
+            {{ layout_content 
+              | replace: login_link_default, login_link_override 
+              | replace: '</form>', checkout_option_input 
+              | replace_first: contact_html_default, contact_html_override 
+            }}
 
             {{ thank_you_review_link }}
 

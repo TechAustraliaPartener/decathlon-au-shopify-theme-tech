@@ -672,7 +672,8 @@
         "province_label": "State",
         "province_placeholder": "State",
         "zip_code_label": "Post code",
-        "zip_code_placeholder": "Post code"
+        "zip_code_placeholder": "Post code",
+        "message": "We're a membership only warehouse. Complete your details to finalise your purchase. Our membership is FREE &amp; will give you access to benefits such as lifetime returns"
       },
       "shipping": {
         "title": "Shipping",
