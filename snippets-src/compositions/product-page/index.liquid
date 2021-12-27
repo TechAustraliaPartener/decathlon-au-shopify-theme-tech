@@ -39,6 +39,11 @@
   {% capture model_code %}{{ product.variants.first.option3 }}{% endcapture %}
 {% endif %}
 
+<script>
+  window.vars = window.vars || {};
+  window.vars.productModelCode = '{{ model_code }}';
+</script>
+
 {%- assign product_images = product.images -%}
 {%- assign context_photo_delimiter = '[[contextphoto]]' -%}
 {%- assign has_context_photo = false -%}

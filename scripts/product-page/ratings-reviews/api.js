@@ -6,7 +6,6 @@
 
 import { encode } from 'qss';
 import { REVIEWS_BASE_URL, REVIEWS_BASE_QUERY_PARAMS } from './constants';
-import { modelCode } from './template-data';
 import { DEBUG } from '../../shared/config';
 
 /**
@@ -40,6 +39,7 @@ export const fetchReviews = queryParams => {
    * Check for necessary model code value before calling the API - also cannot
    * be an empty string
    */
+  const modelCode = window.vars.productModelCode;
   if (typeof modelCode === 'string' && modelCode) {
     return fetchProductReviewsData({ modelCode, queryParams });
   }
