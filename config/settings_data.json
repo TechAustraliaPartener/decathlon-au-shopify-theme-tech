@@ -23,7 +23,7 @@
     "color_footer_bg": "#1f1f1f",
     "color_footer_text": "#aabdb9",
     "color_footer_social_link": "#bbbbbb",
-    "logo_use_image": true,
+    "logo_use_image": false,
     "svg_logo": "xmas_new_option3-01.svg",
     "img_logo": "shopify:\/\/shop_images\/logo_small_9355cf1c-7626-4ada-916d-d809a214ca37.png",
     "enable_meet_decathlon": true,
@@ -31,10 +31,10 @@
     "header_support_link": "https:\/\/decathlon.com.au\/pages\/contact-and-help",
     "header_store_label": "Stores",
     "header_sign_in_label": "Sign In",
-    "megamenu_image": "shopify:\/\/shop_images\/Enjoy_up_to_50_off_a_range_of_different_products_this_Black_Friday_2.png",
-    "megamenu_title": "24 Days of Sports",
+    "megamenu_image": "shopify:\/\/shop_images\/Untitled_design_bf23cc8c-6b6f-400f-adbc-af12406790a4.png",
+    "megamenu_title": "Summer Favs",
     "megamenu_subtitle": "Explore Now",
-    "megamenu_link": "shopify:\/\/pages\/christmas",
+    "megamenu_link": "shopify:\/\/collections\/water-sports-new-arrivals",
     "megamenu_bg_colour": "#1c82c3",
     "custom_fields_terms_conditions": "I agree to the <a href=\"\/pages\/terms-and-conditions-membership\" target=\"_blank\">T&Cs<\/a> and <a href=\"\/pages\/privacy-policy\" target=\"_blank\">Privacy Policy<\/a> for creating an account.",
     "is_lookbook": false,
@@ -417,19 +417,19 @@
               "tooltip_hours": true,
               "is_same_hours_weekly": false,
               "hours_0_open": "0900",
-              "hours_0_close": "2000",
+              "hours_0_close": "1900",
               "hours_1_open": "0900",
-              "hours_1_close": "2100",
+              "hours_1_close": "2000",
               "hours_2_open": "0900",
-              "hours_2_close": "2100",
+              "hours_2_close": "2000",
               "hours_3_open": "0900",
-              "hours_3_close": "2100",
+              "hours_3_close": "2000",
               "hours_4_open": "0900",
               "hours_4_close": "2100",
               "hours_5_open": "0900",
-              "hours_5_close": "2100",
+              "hours_5_close": "2000",
               "hours_6_open": "0900",
-              "hours_6_close": "2100",
+              "hours_6_close": "2000",
               "announcement": "<p>In line with NSW public health order you must wear a mask and check in to enter stores with proof of vaccination or medical exemption.<\/p>",
               "tag_exclusion_1": "",
               "tag_exclusion_message_1": "",
@@ -1503,31 +1503,45 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
-          "9f9bc753-96f7-4897-a64d-d053992b857c": {
+          "011e5d69-64dd-4103-b889-0bd9ae315822": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/24_days_homepage_1440_x_789_02_1_a81fcfe5-ed6c-4928-9147-0e89f358b855.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/HP_slider.jpg",
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "shopify:\/\/pages\/christmas",
-              "link_title": "",
+              "banner_title": "New Year New You",
+              "banner_subtitle": "<p>Get all your essentials to help you smash your 2022 goals.<\/p>",
+              "button_title": "Shop Now",
+              "link_url": "shopify:\/\/collections\/new-year-new-you",
+              "link_title": "New Year New You",
               "link_new_window": false
             }
           },
           "bdd68b02-f297-4109-a6fb-0c679ebad026": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Gift_ideas_landing_copy_1.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/image.png",
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
-              "banner_title": "Gifts for All",
-              "banner_subtitle": "<p><strong>We have handpicked our best gifts for your loved ones!<\/strong><\/p>",
-              "button_title": "Find the perfect gift!",
-              "link_url": "https:\/\/decathlon.com.au\/pages\/gift-ideas",
-              "link_title": "Find the perfect gift!",
+              "banner_title": "Ready to Roll",
+              "banner_subtitle": "<p><strong>Hybrid, MTB and Kids Bikes in stock!<\/strong><\/p>",
+              "button_title": "Shop Now",
+              "link_url": "shopify:\/\/collections\/bikes",
+              "link_title": "Hybrid, MTB and Kids Bikes in stock!",
+              "link_new_window": false
+            }
+          },
+          "7e2d6218-f68d-406b-a84b-3e38063de2c9": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/easybreath-003-Expires-on-01-06-2021_---_Expires_on_06-04-2025.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "New this Summer!",
+              "banner_subtitle": "<p><strong>Discover out hot new releases for this summer.<\/strong><\/p>",
+              "button_title": "SHOP NOW",
+              "link_url": "shopify:\/\/collections\/water-sports-new-arrivals",
+              "link_title": "",
               "link_new_window": false
             }
           },
@@ -1544,27 +1558,13 @@
               "link_title": "Join Now",
               "link_new_window": false
             }
-          },
-          "7e2d6218-f68d-406b-a84b-3e38063de2c9": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/homepage_banner_6b89d550-2283-410f-b908-8aa1159da7bf.png",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": "We are open later",
-              "banner_subtitle": "<p><strong>We are open so you can fill those last minute Christmas Gifts!<\/strong><\/p>",
-              "button_title": "View Hours",
-              "link_url": "https:\/\/decathlon.com.au\/pages\/store-locator",
-              "link_title": "",
-              "link_new_window": false
-            }
           }
         },
         "block_order": [
-          "9f9bc753-96f7-4897-a64d-d053992b857c",
+          "011e5d69-64dd-4103-b889-0bd9ae315822",
           "bdd68b02-f297-4109-a6fb-0c679ebad026",
-          "eb4ba4b1-0624-4636-9586-d2cc512bf13d",
-          "7e2d6218-f68d-406b-a84b-3e38063de2c9"
+          "7e2d6218-f68d-406b-a84b-3e38063de2c9",
+          "eb4ba4b1-0624-4636-9586-d2cc512bf13d"
         ],
         "settings": {}
       },
@@ -1885,7 +1885,7 @@
           "c74e811a-531f-4b53-89db-8ad5d6ea006d"
         ],
         "settings": {
-          "title": "Trending This Christmas"
+          "title": "Trending This Summer"
         }
       },
       "1631574985450cb50b": {
@@ -1963,15 +1963,15 @@
       "163487525380dd83d2": {
         "type": "featured_collection",
         "settings": {
-          "title": "Spend & Save this Christmas",
+          "title": "Spend & Save this Summer",
           "section_collection": "bundle-deals"
         }
       },
       "16375487170499d43e": {
         "type": "featured_collection",
         "settings": {
-          "title": "Bikes",
-          "section_collection": "bikes"
+          "title": "Australian Open 2022",
+          "section_collection": "tennis"
         }
       },
       "1638397571a0f32a07": {
