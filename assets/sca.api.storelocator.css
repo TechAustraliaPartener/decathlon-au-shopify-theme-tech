@@ -42,7 +42,7 @@
 .scasl-info-location, .scasl-location-list { float: left; }
 #scasl-list-container {background-color: #fff !important;border-bottom: 1px solid #ccc; }
 #scasl-list-container.list-focus, .scasl-view-map-btn { border: 1px solid #5a5a5a !important; background: rgb(238, 238, 238) none repeat scroll 0% 0% !important; }
-.scasl-tags { background: url("//cdn.secomapp.com/storelocator/assets/cdn/img/tag.png") no-repeat scroll 0 1px transparent; padding: 2px 10px 0 16px; float: left;background-position-y:4px;}
+.scasl-tags { background: url("https://sl.amaicdn.com/assets/cdn/img/tag.png") no-repeat scroll 0 1px transparent; padding: 2px 10px 0 16px; float: left;background-position-y:4px;}
 .bh-sl-container .form-input, .bh-sl-container .form-input input, .bh-sl-container .form-input select { width: 100% !important; opacity: 1 !important;}
 #bh-sl-user-location input {max-width: none !important;}
 
