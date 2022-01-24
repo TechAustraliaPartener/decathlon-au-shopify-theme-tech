@@ -321,37 +321,41 @@
     },
     getRRPPrices: function getRRPPrices() {
       console.log('Checking RRP');
+      try {
+        if (!this || !this.meta || !this.meta.global || !this.meta.global.model_RRPprices) {
+          console.log('No RRP', this.meta.global.model_RRPprices);
+          return '';
+        }
 
-      if (!this || !this.meta || !this.meta.global || !this.meta.global.model_RRPprices) {
-        console.log('No RRP', this.meta.global.model_RRPprices);
+        var rrp_prices = JSON.parse(this.meta.global.model_RRPprices);
+
+        if (!rrp_prices.rrp_prices) {
+          console.log('No RRP', this.meta.global.model_RRPprices);
+          return '';
+        }
+
+        const rrp_to_show = rrp_prices['rrp_prices'].find(item => {
+          return item.modelcode == this.option3;
+        });
+
+        if (!rrp_to_show || !rrp_to_show.PriceRRP) {
+          console.log('No RRP', this.meta.global.model_RRPprices);
+          return '';
+        }
+
+        if (rrp_to_show.PriceRRP < this.price) {
+          console.log('No RRP', this.meta.global.model_RRPprices);
+          return '';
+        }
+
+        const rrp = (parseInt(rrp_to_show.PriceRRP, 10) / 100).toFixed(2);
+
+        return `<div class="rrp-price de-u-textShrink1 de-u-textMedium de-rrp-tooltipOpener" style="width: fit-content;" >RRP*: <span> ${'$' + rrp}</span></div>
+        <div class="de-rrp-tooltip">${ window.vars.translations.products.general.rrp_price_info}</div>`;
+      } catch (error) {
+        console.error(error);
         return '';
       }
-
-      var rrp_prices = JSON.parse(this.meta.global.model_RRPprices);
-
-      if (!rrp_prices.rrp_prices) {
-        console.log('No RRP', this.meta.global.model_RRPprices);
-        return '';
-      }
-
-      const rrp_to_show = rrp_prices['rrp_prices'].find(item => {
-        return item.modelcode == this.option3;
-      });
-
-      if (!rrp_to_show || !rrp_to_show.PriceRRP) {
-        console.log('No RRP', this.meta.global.model_RRPprices);
-        return '';
-      }
-
-      if (rrp_to_show.PriceRRP < this.price) {
-        console.log('No RRP', this.meta.global.model_RRPprices);
-        return '';
-      }
-
-      const rrp = (parseInt(rrp_to_show.PriceRRP, 10) / 100).toFixed(2);
-
-      return `<div class="rrp-price de-u-textShrink1 de-u-textMedium de-rrp-tooltipOpener" style="width: fit-content;" >RRP*: <span> ${'$' + rrp}</span></div>
-      <div class="de-rrp-tooltip">${ window.vars.translations.products.general.rrp_price_info}</div>`;
     }
   };
 
