@@ -393,6 +393,60 @@
               "validated": false
             }
           },
+          "4c90425f-fb91-4709-b7f1-246700324116": {
+            "type": "store",
+            "settings": {
+              "name": "Westfield Miranda, 2228, Pick Up Only",
+              "title": "Westfield Miranda, 2228, Pick Up Only",
+              "online_inventory_source": false,
+              "enable_c_c": true,
+              "duplicate": "Tempe",
+              "test_mode": false,
+              "street1": "600 Kingsway Westfield",
+              "city": "Miranda",
+              "zip": "2228",
+              "state": "NSW",
+              "country": "AU",
+              "checkout_image": "shopify:\/\/shop_images\/Annotation_2022-01-12_143641.png",
+              "email": "customer.service@decathlon.com",
+              "phone_number": "0420 450 076",
+              "company": "Decathlon",
+              "ready": "Ready to collect in 3 business days",
+              "ready_checkout": "Ready to collect in 3 business days",
+              "id": "1789-0012",
+              "tooltip_hours": true,
+              "is_same_hours_weekly": false,
+              "hours_0_open": "1000",
+              "hours_0_close": "1800",
+              "hours_1_open": "0930",
+              "hours_1_close": "1800",
+              "hours_2_open": "0930",
+              "hours_2_close": "1800",
+              "hours_3_open": "0930",
+              "hours_3_close": "1800",
+              "hours_4_open": "0930",
+              "hours_4_close": "2100",
+              "hours_5_open": "0930",
+              "hours_5_close": "1800",
+              "hours_6_open": "0930",
+              "hours_6_close": "1800",
+              "announcement": "<p>This is not a Decathlon store. Await for your Ready to Pick up confirmation email, before picking up your order.<\/p>",
+              "tag_exclusion_1": "",
+              "tag_exclusion_message_1": "",
+              "tag_exclusion_2": "",
+              "tag_exclusion_message_2": "",
+              "tag_exclusion_3": "",
+              "tag_exclusion_message_3": "",
+              "tag_exclusion_4": "",
+              "tag_exclusion_message_4": "",
+              "tag_exclusion_5": "",
+              "tag_exclusion_message_5": "",
+              "address_type_boolean": true,
+              "is_residential": false,
+              "is_warehouse": false,
+              "validated": false
+            }
+          },
           "1573517807768": {
             "type": "store",
             "settings": {
@@ -576,7 +630,7 @@
               "ready": "Ready to collect in 2 hours",
               "ready_checkout": "Pickup: Ready in 2 Hours",
               "id": "1792",
-              "tooltip_hours": false,
+              "tooltip_hours": true,
               "is_same_hours_weekly": false,
               "hours_0_open": "1000",
               "hours_0_close": "1900",
@@ -587,12 +641,12 @@
               "hours_3_open": "0900",
               "hours_3_close": "1900",
               "hours_4_open": "0900",
-              "hours_4_close": "2000",
+              "hours_4_close": "1900",
               "hours_5_open": "0900",
-              "hours_5_close": "2000",
+              "hours_5_close": "1900",
               "hours_6_open": "0900",
               "hours_6_close": "2000",
-              "announcement": "<p>Melbourne Cup Opening Hours 10:00 - 19:00<\/p>",
+              "announcement": "",
               "tag_exclusion_1": "",
               "tag_exclusion_message_1": "",
               "tag_exclusion_2": "",
@@ -695,9 +749,9 @@
               "hours_3_open": "0900",
               "hours_3_close": "1900",
               "hours_4_open": "0900",
-              "hours_4_close": "2100",
+              "hours_4_close": "1900",
               "hours_5_open": "0900",
-              "hours_5_close": "2100",
+              "hours_5_close": "1900",
               "hours_6_open": "0900",
               "hours_6_close": "1900",
               "announcement": "",
@@ -771,60 +825,6 @@
               "validated": false
             }
           },
-          "1585053394899": {
-            "type": "store",
-            "settings": {
-              "name": "UFC Westfield Parramatta (2150)",
-              "title": "UFC Westfield Parramatta, 2150, Pick Up Only",
-              "online_inventory_source": false,
-              "enable_c_c": false,
-              "duplicate": "Auburn",
-              "test_mode": true,
-              "street1": "Aird Street",
-              "city": "Parramatta",
-              "zip": "2150",
-              "state": "NSW",
-              "country": "AU",
-              "checkout_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_1a18e5e3-e835-4fdc-b00c-397f1abcdc3e.jpg",
-              "email": "customer.service@decathlon.com",
-              "phone_number": "(02) 9157 5799",
-              "company": "Decathlon",
-              "ready": "Ready to collect in 2 business days. Bulky items are not available at this location",
-              "ready_checkout": "Ready to collect in 2 business days. Bulky items are not available at this location",
-              "id": "1791-0003",
-              "tooltip_hours": true,
-              "is_same_hours_weekly": false,
-              "hours_0_open": "0700",
-              "hours_0_close": "1500",
-              "hours_1_open": "0700",
-              "hours_1_close": "2100",
-              "hours_2_open": "0700",
-              "hours_2_close": "2100",
-              "hours_3_open": "0700",
-              "hours_3_close": "2100",
-              "hours_4_open": "0900",
-              "hours_4_close": "2100",
-              "hours_5_open": "0700",
-              "hours_5_close": "2100",
-              "hours_6_open": "0700",
-              "hours_6_close": "1500",
-              "announcement": "<p>Wait for your Ready to Pick up Your Email. <br\/><br\/><strong>Note:<\/strong> Bikes, Surfboards, Treadmills, Table Tennis Tables & other bulky items won't be available for Click & Collect at this location.<\/p>",
-              "tag_exclusion_1": "",
-              "tag_exclusion_message_1": "",
-              "tag_exclusion_2": "",
-              "tag_exclusion_message_2": "",
-              "tag_exclusion_3": "",
-              "tag_exclusion_message_3": "",
-              "tag_exclusion_4": "",
-              "tag_exclusion_message_4": "",
-              "tag_exclusion_5": "",
-              "tag_exclusion_message_5": "",
-              "address_type_boolean": true,
-              "is_residential": false,
-              "is_warehouse": false,
-              "validated": false
-            }
-          },
           "439603b4-c7c5-475d-a765-2d3d92e529fa": {
             "type": "store",
             "settings": {
@@ -879,8 +879,64 @@
               "validated": false
             }
           },
+          "1585053394899": {
+            "type": "store",
+            "disabled": true,
+            "settings": {
+              "name": "UFC Westfield Parramatta (2150)",
+              "title": "UFC Westfield Parramatta, 2150, Pick Up Only",
+              "online_inventory_source": false,
+              "enable_c_c": false,
+              "duplicate": "Auburn",
+              "test_mode": true,
+              "street1": "Aird Street",
+              "city": "Parramatta",
+              "zip": "2150",
+              "state": "NSW",
+              "country": "AU",
+              "checkout_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_1a18e5e3-e835-4fdc-b00c-397f1abcdc3e.jpg",
+              "email": "customer.service@decathlon.com",
+              "phone_number": "(02) 9157 5799",
+              "company": "Decathlon",
+              "ready": "Ready to collect in 2 business days. Bulky items are not available at this location",
+              "ready_checkout": "Ready to collect in 2 business days. Bulky items are not available at this location",
+              "id": "1791-0003",
+              "tooltip_hours": true,
+              "is_same_hours_weekly": false,
+              "hours_0_open": "0700",
+              "hours_0_close": "1500",
+              "hours_1_open": "0700",
+              "hours_1_close": "2100",
+              "hours_2_open": "0700",
+              "hours_2_close": "2100",
+              "hours_3_open": "0700",
+              "hours_3_close": "2100",
+              "hours_4_open": "0900",
+              "hours_4_close": "2100",
+              "hours_5_open": "0700",
+              "hours_5_close": "2100",
+              "hours_6_open": "0700",
+              "hours_6_close": "1500",
+              "announcement": "<p>Wait for your Ready to Pick up Your Email. <br\/><br\/><strong>Note:<\/strong> Bikes, Surfboards, Treadmills, Table Tennis Tables & other bulky items won't be available for Click & Collect at this location.<\/p>",
+              "tag_exclusion_1": "",
+              "tag_exclusion_message_1": "",
+              "tag_exclusion_2": "",
+              "tag_exclusion_message_2": "",
+              "tag_exclusion_3": "",
+              "tag_exclusion_message_3": "",
+              "tag_exclusion_4": "",
+              "tag_exclusion_message_4": "",
+              "tag_exclusion_5": "",
+              "tag_exclusion_message_5": "",
+              "address_type_boolean": true,
+              "is_residential": false,
+              "is_warehouse": false,
+              "validated": false
+            }
+          },
           "e9b454e7-c621-41e8-90ca-e97d7fb3c188": {
             "type": "store",
+            "disabled": true,
             "settings": {
               "name": "Coogee, 2034, Pick Up Only",
               "title": "Coogee, 2034, Pick Up Only",
@@ -935,6 +991,7 @@
           },
           "078e25fb-1051-4647-961b-503c02bd5d84": {
             "type": "store",
+            "disabled": true,
             "settings": {
               "name": "Maroubra, 2035, Pick Up Only",
               "title": "Maroubra, 2035, Pick Up Only",
@@ -989,6 +1046,7 @@
           },
           "c6351114-ec6d-4359-b44d-d4c29baed848": {
             "type": "store",
+            "disabled": true,
             "settings": {
               "name": "Randwick, 2031, Pick Up Only",
               "title": "Randwick, 2031, Pick Up Only",
@@ -1043,6 +1101,7 @@
           },
           "c33a2032-e5ad-4b30-9e6d-bd9b26bb82b2": {
             "type": "store",
+            "disabled": true,
             "settings": {
               "name": "Menai, 2234, Pick Up Only",
               "title": "Menai, 2234, Pick Up Only",
@@ -1097,6 +1156,7 @@
           },
           "5655fa19-81be-42d8-b5e5-8d930fc15679": {
             "type": "store",
+            "disabled": true,
             "settings": {
               "name": "Bondi, 2026, Pick Up Only",
               "title": "Bondi, 2026, Pick Up Only",
@@ -1149,63 +1209,9 @@
               "validated": false
             }
           },
-          "4c90425f-fb91-4709-b7f1-246700324116": {
-            "type": "store",
-            "disabled": true,
-            "settings": {
-              "name": "TSBW Miranda, 2228, Pick Up Only",
-              "title": "TSBW Miranda, 2228, Pick Up Only",
-              "online_inventory_source": false,
-              "enable_c_c": true,
-              "duplicate": "Tempe",
-              "test_mode": false,
-              "street1": "569 Kingsway",
-              "city": "Miranda",
-              "zip": "2228",
-              "state": "NSW",
-              "country": "AU",
-              "checkout_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_14_a1b24e7d-2155-4495-8d74-eb99d06a1e84.png",
-              "email": "customer.service@decathlon.com",
-              "phone_number": "(02) 9157 5799",
-              "company": "Decathlon",
-              "ready": "Ready to collect in 3 business days",
-              "ready_checkout": "Ready to collect in 3 business days",
-              "id": "1789-0012",
-              "tooltip_hours": true,
-              "is_same_hours_weekly": false,
-              "hours_0_open": "1000",
-              "hours_0_close": "1600",
-              "hours_1_open": "1000",
-              "hours_1_close": "1600",
-              "hours_2_open": "0900",
-              "hours_2_close": "1700",
-              "hours_3_open": "0900",
-              "hours_3_close": "1700",
-              "hours_4_open": "0900",
-              "hours_4_close": "1700",
-              "hours_5_open": "0900",
-              "hours_5_close": "1700",
-              "hours_6_open": "0900",
-              "hours_6_close": "1700",
-              "announcement": "<p>This is not a Decathlon store. Await for your Ready to Pick up confirmation email, before picking up your order.<\/p>",
-              "tag_exclusion_1": "CC-Product-Block",
-              "tag_exclusion_message_1": "This product is unable to be collected from this Pick-Up location due to it being oversized.",
-              "tag_exclusion_2": "",
-              "tag_exclusion_message_2": "",
-              "tag_exclusion_3": "",
-              "tag_exclusion_message_3": "",
-              "tag_exclusion_4": "",
-              "tag_exclusion_message_4": "",
-              "tag_exclusion_5": "",
-              "tag_exclusion_message_5": "",
-              "address_type_boolean": true,
-              "is_residential": false,
-              "is_warehouse": false,
-              "validated": false
-            }
-          },
           "9c63104d-4e62-4470-ae42-6cec6669d8a2": {
             "type": "store",
+            "disabled": true,
             "settings": {
               "name": "Bentleigh, 3204, Pick Up Only",
               "title": "Bentleigh, 3204, Pick Up Only",
@@ -1260,6 +1266,7 @@
           },
           "7b56ecfe-a44a-4095-bec6-114d9ff24970": {
             "type": "store",
+            "disabled": true,
             "settings": {
               "name": "Skye, 3977, Pick Up Only",
               "title": "Skye, 3977, Pick Up Only",
@@ -1314,6 +1321,7 @@
           },
           "fc805a4f-6a75-4e02-8355-6dd561091ff8": {
             "type": "store",
+            "disabled": true,
             "settings": {
               "name": "St Kilda, 3182, Pick Up Only",
               "title": "St Kilda, 3182, Pick Up Only",
@@ -1368,6 +1376,7 @@
           },
           "9ac106a6-4a7c-4b00-840e-c21fce97c2f6": {
             "type": "store",
+            "disabled": true,
             "settings": {
               "name": "Macquarie Park, 2113, Pick Up Only",
               "title": "Macquarie Park, 2113, Pick Up Only",
@@ -1422,6 +1431,7 @@
           },
           "a809509e-5453-4ba5-ab4c-e6b0917cefdb": {
             "type": "store",
+            "disabled": true,
             "settings": {
               "name": "North Rocks, 2151, Pick Up Only",
               "title": "North Rocks, 2151, Pick Up Only",
@@ -1477,6 +1487,7 @@
         },
         "block_order": [
           "9d340a86-d725-4469-86ae-400161f36dc8",
+          "4c90425f-fb91-4709-b7f1-246700324116",
           "1573517807768",
           "1573521318543",
           "1573522627790",
@@ -1484,14 +1495,13 @@
           "1573530372429",
           "81a3d3c6-c69a-4593-8e50-a00364330f37",
           "1584595062323",
-          "1585053394899",
           "439603b4-c7c5-475d-a765-2d3d92e529fa",
+          "1585053394899",
           "e9b454e7-c621-41e8-90ca-e97d7fb3c188",
           "078e25fb-1051-4647-961b-503c02bd5d84",
           "c6351114-ec6d-4359-b44d-d4c29baed848",
           "c33a2032-e5ad-4b30-9e6d-bd9b26bb82b2",
           "5655fa19-81be-42d8-b5e5-8d930fc15679",
-          "4c90425f-fb91-4709-b7f1-246700324116",
           "9c63104d-4e62-4470-ae42-6cec6669d8a2",
           "7b56ecfe-a44a-4095-bec6-114d9ff24970",
           "fc805a4f-6a75-4e02-8355-6dd561091ff8",
@@ -1503,6 +1513,49 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
+          "3ec6778f-1852-47ff-b97b-748a8d271aea": {
+            "type": "slide",
+            "disabled": true,
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/weekly-deal3.png",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "Up to 30% off selected inflatables",
+              "banner_subtitle": "<p><strong>We’ve got you covered with stand up paddleboards to explore the sea from above or inflatable tents to explore nature.<\/strong><\/p>",
+              "button_title": "Shop Now",
+              "link_url": "shopify:\/\/collections\/up-to-30-off-inflatables",
+              "link_title": "Up to 30% off selected inflatables",
+              "link_new_window": false
+            }
+          },
+          "623e46b1-2abc-4e5b-8ceb-3ca5e428998a": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/HP_banner_Miranda.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "Miranda we are coming!",
+              "banner_subtitle": "<p><strong>Decathlon Miranda is opening in March! Sign up now to keep up-to-date with all our news.<\/strong><\/p>",
+              "button_title": "Sign Up",
+              "link_url": "https:\/\/decathlon.com.au\/pages\/store-miranda",
+              "link_title": "Sign Up Miranda",
+              "link_new_window": false
+            }
+          },
+          "5ba578f5-4011-4cf5-a159-987b086c80a7": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/homepage_banner_1_1d2b7969-1a1f-48c3-b93c-11e0cf6df6f8.png",
+              "slide_bg_position": "75% -50px",
+              "banner_intro": "",
+              "banner_title": "Let's Play Tennis",
+              "banner_subtitle": "<p><strong>We've got all your needs covered for tennis at affordable prices!<\/strong><\/p>",
+              "button_title": "Shop Now",
+              "link_url": "shopify:\/\/collections\/tennis",
+              "link_title": "Shop Tennis",
+              "link_new_window": false
+            }
+          },
           "011e5d69-64dd-4103-b889-0bd9ae315822": {
             "type": "slide",
             "settings": {
@@ -1530,41 +1583,14 @@
               "link_title": "Hybrid, MTB and Kids Bikes in stock!",
               "link_new_window": false
             }
-          },
-          "7e2d6218-f68d-406b-a84b-3e38063de2c9": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/easybreath-003-Expires-on-01-06-2021_---_Expires_on_06-04-2025.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": "New this Summer!",
-              "banner_subtitle": "<p><strong>Discover out hot new releases for this summer.<\/strong><\/p>",
-              "button_title": "SHOP NOW",
-              "link_url": "shopify:\/\/collections\/water-sports-new-arrivals",
-              "link_title": "",
-              "link_new_window": false
-            }
-          },
-          "eb4ba4b1-0624-4636-9586-d2cc512bf13d": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/web_banner_2.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": "Lifetime Returns for All MVPS",
-              "banner_subtitle": "<p><strong>Get lifetime returns simply by subscribing to our promotions & specials.<\/strong><\/p>",
-              "button_title": "Join Now",
-              "link_url": "shopify:\/\/pages\/decathlon-membership",
-              "link_title": "Join Now",
-              "link_new_window": false
-            }
           }
         },
         "block_order": [
+          "3ec6778f-1852-47ff-b97b-748a8d271aea",
+          "623e46b1-2abc-4e5b-8ceb-3ca5e428998a",
+          "5ba578f5-4011-4cf5-a159-987b086c80a7",
           "011e5d69-64dd-4103-b889-0bd9ae315822",
-          "bdd68b02-f297-4109-a6fb-0c679ebad026",
-          "7e2d6218-f68d-406b-a84b-3e38063de2c9",
-          "eb4ba4b1-0624-4636-9586-d2cc512bf13d"
+          "bdd68b02-f297-4109-a6fb-0c679ebad026"
         ],
         "settings": {}
       },
@@ -1816,14 +1842,6 @@
         ],
         "settings": {}
       },
-      "163107231999d8b130": {
-        "type": "featured_collection",
-        "disabled": true,
-        "settings": {
-          "title": "Backyard Games",
-          "section_collection": "backyard-games"
-        }
-      },
       "163107313302287377": {
         "type": "trending_categories",
         "blocks": {
@@ -1886,14 +1904,6 @@
         ],
         "settings": {
           "title": "Trending This Summer"
-        }
-      },
-      "1631574985450cb50b": {
-        "type": "featured_collection",
-        "disabled": true,
-        "settings": {
-          "title": "Discover our Lowest Price, Best Value Products",
-          "section_collection": "lowest-price-best-value"
         }
       },
       "16316085202ea5cf79": {
@@ -1962,9 +1972,10 @@
       },
       "163487525380dd83d2": {
         "type": "featured_collection",
+        "disabled": true,
         "settings": {
-          "title": "Spend & Save this Summer",
-          "section_collection": "bundle-deals"
+          "title": "Up to 30% off selected inflatables",
+          "section_collection": "up-to-30-off-inflatables"
         }
       },
       "16375487170499d43e": {
@@ -1974,25 +1985,22 @@
           "section_collection": "tennis"
         }
       },
-      "1638397571a0f32a07": {
+      "1642116157c0ce923f": {
         "type": "featured_collection",
-        "disabled": true,
         "settings": {
-          "title": "Day 3: 30% off Googles & Swimwear",
-          "section_collection": "swimming"
+          "title": "School Holidays Fun",
+          "section_collection": "backyard-games"
         }
       }
     },
     "content_for_index": [
       "1568939434006",
       "163107170023281063",
-      "1638397571a0f32a07",
-      "163107313302287377",
+      "16375487170499d43e",
       "163487525380dd83d2",
-      "1631574985450cb50b",
-      "16316085202ea5cf79",
-      "163107231999d8b130",
-      "16375487170499d43e"
+      "163107313302287377",
+      "1642116157c0ce923f",
+      "16316085202ea5cf79"
     ]
   },
   "presets": {
