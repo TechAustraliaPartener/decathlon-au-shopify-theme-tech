@@ -684,8 +684,8 @@
               "ready": "Ready to collect in 2 hours",
               "ready_checkout": "Pickup: Ready in 2 Hours",
               "id": "1790",
-              "tooltip_hours": false,
-              "is_same_hours_weekly": true,
+              "tooltip_hours": true,
+              "is_same_hours_weekly": false,
               "hours_0_open": "1000",
               "hours_0_close": "1900",
               "hours_1_open": "0900",
@@ -695,12 +695,12 @@
               "hours_3_open": "0900",
               "hours_3_close": "1900",
               "hours_4_open": "0900",
-              "hours_4_close": "2000",
+              "hours_4_close": "1900",
               "hours_5_open": "0900",
-              "hours_5_close": "2000",
+              "hours_5_close": "1900",
               "hours_6_open": "0900",
-              "hours_6_close": "2000",
-              "announcement": "<p>Melbourne Cup Opening Hours (10am - 6pm)<\/p>",
+              "hours_6_close": "1900",
+              "announcement": "",
               "tag_exclusion_1": "",
               "tag_exclusion_message_1": "",
               "tag_exclusion_2": "",
@@ -1515,16 +1515,15 @@
         "blocks": {
           "3ec6778f-1852-47ff-b97b-748a8d271aea": {
             "type": "slide",
-            "disabled": true,
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/weekly-deal3.png",
+              "banner_bg_image": "shopify:\/\/shop_images\/back-to-school1.jpg",
               "slide_bg_position": "75% -50px",
               "banner_intro": "",
-              "banner_title": "Up to 30% off selected inflatables",
-              "banner_subtitle": "<p><strong>We’ve got you covered with stand up paddleboards to explore the sea from above or inflatable tents to explore nature.<\/strong><\/p>",
+              "banner_title": "Back to school, back to sport!",
+              "banner_subtitle": "<p><strong>Affordable and high-quality sports gear to get your kids back to sports this year!<\/strong><\/p>",
               "button_title": "Shop Now",
-              "link_url": "shopify:\/\/collections\/up-to-30-off-inflatables",
-              "link_title": "Up to 30% off selected inflatables",
+              "link_url": "shopify:\/\/collections\/back-to-school-essentials",
+              "link_title": "Back to Sport",
               "link_new_window": false
             }
           },
@@ -1544,6 +1543,7 @@
           },
           "5ba578f5-4011-4cf5-a159-987b086c80a7": {
             "type": "slide",
+            "disabled": true,
             "settings": {
               "banner_bg_image": "shopify:\/\/shop_images\/homepage_banner_1_1d2b7969-1a1f-48c3-b93c-11e0cf6df6f8.png",
               "slide_bg_position": "75% -50px",
@@ -1980,6 +1980,7 @@
       },
       "16375487170499d43e": {
         "type": "featured_collection",
+        "disabled": true,
         "settings": {
           "title": "Australian Open 2022",
           "section_collection": "tennis"
