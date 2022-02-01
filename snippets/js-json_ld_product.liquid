@@ -41,7 +41,7 @@
       "offerCount": "{{ product.variants.size }}",
       "offers": [
         {%- for variant in product.variants -%}
-          {% include 'json_ld_product_images' %}
+          {% include 'js-json_ld_product_images' %}
           {
             "@type" : "Offer",
             "availability" : "http://schema.org/{%- if product.available -%}InStock{%- else -%}OutOfStock{%- endif -%}",
