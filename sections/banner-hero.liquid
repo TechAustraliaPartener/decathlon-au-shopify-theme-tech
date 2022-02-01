@@ -4,11 +4,40 @@
   "autoplaySpeed": 7000,
   "slidesToShow": 1,
   "arrows": true,
-  "adaptiveHeight": false }'>
+  "adaptiveHeight": false,
+  "responsive": [
+    {
+      "breakpoint": 479,
+      "settings": {
+        "adaptiveHeight": true
+      }
+    }
+  ]}'>
 
     {% for block in section.blocks %}
 
       <a href="{{ block.settings.link_url | default: '#' }}" class="banner--slide" {% if block.settings.link_new_window == true %}target="_blank" {% endif %} title="{{ block.settings.link_title }}">
+        
+        {% assign banner_mobile = block.settings.banner_mobile_image | default: block.settings.banner_bg_image %}
+        <style>
+          :root {
+            --banner{{ forloop.index }}Height: {{ 100 | divided_by: banner_mobile.aspect_ratio }}vw;
+          }
+
+          #banner-slide-{{ forloop.index }} {
+            background: url({{ block.settings.banner_bg_image | img_url: 'master' | json }});
+          }
+
+          @media (max-width: 479px) {
+            #banner-slide-{{ forloop.index }} {
+              background-image: url({{ banner_mobile | img_url: 'master' | json }}) !important;
+              background-size: cover;
+              background-position: center;
+              height: var(--banner{{ forloop.index }}Height);
+            }
+          }
+        </style>
+
         <div class="banner banner--billboard loading{{ banner_adtl_classes }}"{% if block.settings.banner_bg_image != blank %} data-background-image="{{ block.settings.banner_bg_image | img_url: 'master' }}"{% endif %}{% if banner_bg_position != blank %} style="background-position: {{ block.settings.banner_bg_position }}"{% endif %} id="banner-slide-{{ forloop.index }}">
           {% comment %} <div id="bannerOverlay" class="banner--billboard__overlay loading"></div> {% endcomment %}
 
@@ -60,13 +89,18 @@ to overlap.
         {
           "type": "image_picker",
           "id": "banner_bg_image",
-          "label": "Select a background image"
+          "label": "Desktop Image"
         },
         {
           "type": "text",
           "id": "slide_bg_position",
-          "label": "Set the CSS position of your background",
+          "label": "Set the CSS position of your desktop background",
           "default": "75% -50px"
+        },
+        {
+          "type": "image_picker",
+          "id": "banner_mobile_image",
+          "label": "Mobile Image"
         },
         {
           "type": "text",

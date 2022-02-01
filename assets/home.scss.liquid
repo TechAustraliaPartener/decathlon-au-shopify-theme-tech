@@ -2475,7 +2475,13 @@ body.is-rollingUpBanner .popup { margin-top: -100vh; }
 
 .slick-initialized .trendingProducts-product,
 .slick-initialized .getGoingPack-product,
-.slick-initialized .banner--slide { display: block; }
+.slick-initialized .banner--slide { 
+  display: block; 
+  @media (max-width: 479px) {
+    padding-top: 46px;
+    padding-bottom: 94px;
+  }
+}
 
 
 .banner--billboard[data-background-image^="//cdn.shopify.com/s/files/1/1298/0469/t/1/assets/homepage_slider_banner_2_background_image.jpg"] { background-position: top right; }
