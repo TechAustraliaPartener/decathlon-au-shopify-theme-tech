@@ -25,7 +25,7 @@
           }
 
           #banner-slide-{{ forloop.index }} {
-            background: url({{ block.settings.banner_bg_image | img_url: 'master' | json }});
+            background-image: url({{ block.settings.banner_bg_image | img_url: 'master' | json }});
           }
 
           @media (max-width: 479px) {
