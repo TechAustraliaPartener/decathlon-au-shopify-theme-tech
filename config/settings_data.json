@@ -1541,21 +1541,6 @@
               "link_new_window": false
             }
           },
-          "5ba578f5-4011-4cf5-a159-987b086c80a7": {
-            "type": "slide",
-            "disabled": true,
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/homepage_banner_1_1d2b7969-1a1f-48c3-b93c-11e0cf6df6f8.png",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": "Let's Play Tennis",
-              "banner_subtitle": "<p><strong>We've got all your needs covered for tennis at affordable prices!<\/strong><\/p>",
-              "button_title": "Shop Now",
-              "link_url": "shopify:\/\/collections\/tennis",
-              "link_title": "Shop Tennis",
-              "link_new_window": false
-            }
-          },
           "011e5d69-64dd-4103-b889-0bd9ae315822": {
             "type": "slide",
             "settings": {
@@ -1588,7 +1573,6 @@
         "block_order": [
           "3ec6778f-1852-47ff-b97b-748a8d271aea",
           "623e46b1-2abc-4e5b-8ceb-3ca5e428998a",
-          "5ba578f5-4011-4cf5-a159-987b086c80a7",
           "011e5d69-64dd-4103-b889-0bd9ae315822",
           "bdd68b02-f297-4109-a6fb-0c679ebad026"
         ],
@@ -1972,25 +1956,23 @@
       },
       "163487525380dd83d2": {
         "type": "featured_collection",
-        "disabled": true,
         "settings": {
-          "title": "Up to 30% off selected inflatables",
-          "section_collection": "up-to-30-off-inflatables"
+          "title": "Fitness Watches",
+          "section_collection": "fitness-watch"
         }
       },
       "16375487170499d43e": {
         "type": "featured_collection",
-        "disabled": true,
         "settings": {
-          "title": "Australian Open 2022",
-          "section_collection": "tennis"
+          "title": "Lowest Price, Best Value",
+          "section_collection": "lowest-price-best-value"
         }
       },
       "1642116157c0ce923f": {
         "type": "featured_collection",
         "settings": {
-          "title": "School Holidays Fun",
-          "section_collection": "backyard-games"
+          "title": "Back to School",
+          "section_collection": "back-to-school-essentials"
         }
       }
     },
@@ -1998,10 +1980,10 @@
       "1568939434006",
       "163107170023281063",
       "16375487170499d43e",
-      "163487525380dd83d2",
       "163107313302287377",
       "1642116157c0ce923f",
-      "16316085202ea5cf79"
+      "16316085202ea5cf79",
+      "163487525380dd83d2"
     ]
   },
   "presets": {
