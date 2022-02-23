@@ -4,14 +4,23 @@
 
 
   <div class="label_combo {% if labels.size > 1 %}label_combo_{{ combo_labels }}{% endif %}" style="display: flex;">
-
   {% assign ctr = 0 %}
   {% for label in labels %}
     {% if ctr < 2 %}
-    <span data-flag="{{ product.id }}" class="ProductFlag
-      {% unless label %}de-u-hidden{% endunless %} {{ class }} label_{{ label | handleize }}">
-      <span class="de-u-hiddenVisually">Special product, </span>{{ label }}
-    </span>
+    {% if template contains 'product' %}
+      {% capture label_info -%} {% render 'util_get_label_info' label: label %} {%- endcapture %}
+    {% endif %}
+    <div class="label_container {% if label_info == blank -%} no-tooltip {%- endif %}">
+      <span data-flag="{{ product.id }}" class="ProductFlag
+        {% unless label %}de-u-hidden{% endunless %} {{ class }} label_{{ label | handleize }}">
+        <span class="de-u-hiddenVisually">Special product, </span>{{ label }}
+      </span>
+      {% if label_info != blank %}
+        <div class="label_info de-rrp-tooltip">
+          {{ label_info }}
+        </div>
+      {% endif %}
+    </div>
     {% endif %}
     {% assign ctr = ctr | plus: 1 %}
   {% endfor %}

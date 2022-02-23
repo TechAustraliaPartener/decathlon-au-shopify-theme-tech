@@ -1,0 +1,3 @@
+{% assign label_handleize =  label | handleize %}
+{% assign handle = 'label-info/' | append: label_handleize %}
+{{- articles[handle].content -}}

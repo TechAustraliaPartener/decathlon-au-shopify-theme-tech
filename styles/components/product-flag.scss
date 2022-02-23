@@ -28,6 +28,31 @@
       align-items: center;
    }
 
+   .label_container {
+      position: relative;
+      display: flex;
+      width: 100%;
+      cursor: pointer;
+   }
+
+   .label_container.no-tooltip {
+      cursor: default;
+   }
+
+   .label_container:hover .label_info {
+      display: block;
+      min-width: 200px;
+      left: calc(100% - 200px);
+      font-size: 1em;
+      color: #1f1f1f;
+      cursor: default;
+      pointer-events: none;
+
+      &:after {
+        left: 160px;
+      }
+   }
+
    .de-ProductTile {
      .label_combo {
        position: absolute;
