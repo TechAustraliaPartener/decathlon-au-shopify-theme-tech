@@ -193,6 +193,15 @@ export const loadNewReviews = isMoreReviewRequest => {
       if (!isMoreReviewRequest) {
         resetReviews();
       }
+
+      try {
+        const { reviews_excluded_countries, reviews_min_rating } = window.vars.themeSettings;
+
+        data.items = data.items.filter(i => reviews_excluded_countries.indexOf(i.country) === -1);
+      } catch (err) {
+        console.error(err);
+      }
+
       return templateNewReviews(data.items);
     })
     /**
