@@ -95,6 +95,7 @@ const showMoreReviews = (
  * with the page)
  */
 const clearLoadedReviews = () => {
+  toggleLoadMoreReviewsButton();
   getLoadedReviews().forEach(review => review.parentNode.removeChild(review));
 };
 
@@ -107,6 +108,7 @@ const clearLoadedReviews = () => {
 const resetReviews = () => {
   clearLoadedReviews();
   hideAllReviews();
+  toggleLoadMoreReviewsButton();
 };
 
 /**
@@ -127,6 +129,16 @@ const setLoadingState = () => {
     REVIEWS_LOADING_TIMEOUT
   );
 };
+
+const toggleLoadMoreReviewsButton = (hide) => {
+  const loadMoreReviewsButton = document.querySelector('.js-de-moreReviewsButton');
+  if (hide) {
+    loadMoreReviewsButton.classList.add('_vanish'); 
+    return;
+  }
+
+  loadMoreReviewsButton.classList.remove('_vanish');
+}
 
 /**
  * Fetches reviews from the API and renders the data to the page using a
@@ -205,6 +217,10 @@ export const loadNewReviews = isMoreReviewRequest => {
         );
       } catch (err) {
         console.error(err);
+      }
+
+      if (data.items.length === 0) {
+        toggleLoadMoreReviewsButton(true);
       }
 
       return templateNewReviews(data.items);
@@ -286,6 +302,7 @@ const moreReviewsRequestHandler = event => {
 export const resetDefaultReviewsDisplay = () => {
   clearLoadedReviews();
   showMoreReviews({ reviews: [...prerenderedReviewList], reset: true });
+  toggleLoadMoreReviewsButton();
 };
 
 /**
