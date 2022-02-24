@@ -182,6 +182,9 @@ because metafields can't be floats
         </label>
       </div>
     </div>
+
+    {% assign reviews_from_metafields = product.metafields.reviews.recent_reviews_object.items %}
+
     {% comment %}
     @TODO
     1. Determine how default number of pre-loaded reviews is set and try to
@@ -189,7 +192,24 @@ because metafields can't be floats
     (default now is 15)
     2. Document the above
     {% endcomment %}
-    {% assign total_prerendered_reviews = product.metafields.reviews.recent_reviews_object.items | size %}
+    {% assign total_prerendered_reviews = reviews_from_metafields | size %}
+
+    {% comment %} Filter reviews by country {% endcomment %}
+    {% assign excluded_countries = settings.reviews_excluded_countries | split: ',' %}
+    {% comment %} Filter reviews by rating {% endcomment %}
+    {% assign min_rating = settings.reviews_min_rating %}
+
+    {% comment %}
+    {% assign reviews_by_country = product.metafields.reviews.recent_reviews_object.items | map: 'country_label' %}
+    {{ product.metafields.reviews.recent_reviews_object.items | where: 'country_label', 'IN' }}
+    {% endcomment %}
+
+    {% for review in  in reviews_from_metafields %}
+      {% if excluded_countries contains review.country_label or review.note < min_rating %}
+        {% assign total_prerendered_reviews = total_prerendered_reviews | minus: 1 %}
+      {% endif %}
+    {% endfor %}
+
     {% comment %}
     a11y references:
     https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions#Advanced_live_regions
@@ -210,7 +230,9 @@ because metafields can't be floats
       from a value set in a liquid variable
       {% endcomment %}
       {% assign looplimit = reviews_per_page %}
-      {% for review in product.metafields.reviews.recent_reviews_object.items %}
+      {% for review in reviews_from_metafields %}
+        {% unless excluded_countries contains review.country_label or review.note < min_rating %}
+
       {% assign rating_percentage = review.note | plus: 0 | times: 20 %}
       {% assign review_date = review.created_at | date: "%-m/%-e/%Y" %}
       {% assign review_country_code = review.country_label | downcase %}
@@ -221,6 +243,8 @@ because metafields can't be floats
         tabindex="0" itemprop="review" itemtype="http://schema.org/Review" itemscope>
         {% if review.note || review.title %}
         <div class="de-CustomerReview-title">
+          {{ excluded_countries }}
+          {{ review.country_label }}
           {% if review.note %}
           <div class="de-u-textGrow1 de-u-padRight06 de-u-padBottom06
                       de-lg-padBottomNone de-u-flex de-u-flexAlignItemsCenter" itemprop="reviewRating"
@@ -348,6 +372,8 @@ because metafields can't be floats
         </div>
         {% endif %}
       </div>
+
+        {% endunless %}
       {% endfor %}
     </div>
     {% comment %}
