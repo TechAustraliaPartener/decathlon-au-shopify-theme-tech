@@ -198,6 +198,7 @@ because metafields can't be floats
     {% assign excluded_countries = settings.reviews_excluded_countries | split: ',' %}
     {% comment %} Filter reviews by rating {% endcomment %}
     {% assign min_rating = settings.reviews_min_rating %}
+    {% assign review_filters_and = settings.review_filters_and %}
 
     {% comment %}
     {% assign reviews_by_country = product.metafields.reviews.recent_reviews_object.items | map: 'country_label' %}
@@ -205,8 +206,14 @@ because metafields can't be floats
     {% endcomment %}
 
     {% for review in  in reviews_from_metafields %}
-      {% if excluded_countries contains review.country_label or review.note < min_rating %}
-        {% assign total_prerendered_reviews = total_prerendered_reviews | minus: 1 %}
+      {% if review_filters_and %}
+        {% if excluded_countries contains review.country_label and review.note < min_rating %}
+          {% assign total_prerendered_reviews = total_prerendered_reviews | minus: 1 %}
+        {% endif %}
+      {% else %}
+        {% if excluded_countries contains review.country_label or review.note < min_rating %}
+          {% assign total_prerendered_reviews = total_prerendered_reviews | minus: 1 %}
+        {% endif %}
       {% endif %}
     {% endfor %}
 
@@ -231,149 +238,15 @@ because metafields can't be floats
       {% endcomment %}
       {% assign looplimit = reviews_per_page %}
       {% for review in reviews_from_metafields %}
-        {% unless excluded_countries contains review.country_label or review.note < min_rating %}
-
-      {% assign rating_percentage = review.note | plus: 0 | times: 20 %}
-      {% assign review_date = review.created_at | date: "%-m/%-e/%Y" %}
-      {% assign review_country_code = review.country_label | downcase %}
-      <div class="de-CustomerReview js-de-CustomerReview
-                        js-de-CustomerReview-preloaded de-u-padBottom3
-                        de-u-spaceBottom3
-                        {% if (forloop.index > looplimit) %} de-u-hidden{% endif %}" data-review-id="{{review.id}}"
-        tabindex="0" itemprop="review" itemtype="http://schema.org/Review" itemscope>
-        {% if review.note || review.title %}
-        <div class="de-CustomerReview-title">
-          {{ excluded_countries }}
-          {{ review.country_label }}
-          {% if review.note %}
-          <div class="de-u-textGrow1 de-u-padRight06 de-u-padBottom06
-                      de-lg-padBottomNone de-u-flex de-u-flexAlignItemsCenter" itemprop="reviewRating"
-            itemtype="http://schema.org/Rating" itemscope>
-            <div class="de-StarRating">
-              <div class="de-StarRating-fill" style="width: {{ rating_percentage }}%">
-              </div>
-            </div>
-            <meta itemprop="ratingValue" content="{{ review.note }}" />
-            <meta itemprop="bestRating" content="5" />
-          </div>
-          {% endif %}
-          {% if review.title %}
-          <div class="de-u-textGrow3 de-u-textMedium
-                      de-u-lineHeight2 de-u-padBottom06 review-title-original">
-            {{ review.title }}
-          </div>
-          <div class="de-u-textGrow3 de-u-textMedium
-                      de-u-lineHeight2 de-u-padBottom06 review-title-translated">
-            {% comment %}
-            Translated title here
-            {% endcomment %}
-          </div>
-          {% endif %}
-        </div>
+        {% if review_filters_and %}
+          {% unless excluded_countries contains review.country_label and review.note < min_rating %}
+            {% render 'elements-product_review', review: review %}
+          {% endunless %}
+        {% else %}
+          {% unless excluded_countries contains review.country_label or review.note < min_rating %}
+            {% render 'elements-product_review', review: review %}
+          {% endunless %}
         {% endif %}
-        <div class="review-body">
-          <p class="de-u-spaceNone review-body-original">
-            {% comment %}
-            @TODO
-            Review use of body vs bodyHTML and raw rendering of HTML
-            {% endcomment %}
-            {{ review.body }}
-            {% if review.language != 'en' %}
-              <p class="de-u-spaceNone review-body-translated"></p>
-            {% endif %}
-          </p>
-        </div>
-
-
-        <div class="de-Grid de-u-padTop06">
-          <div class="de-u-size4of6 de-u-textDarkGray">
-            {% if review.firstname || review_date %}
-            {% if review.firstname %}
-            <div class="de-u-textMedium" itemprop="author" itemtype="http://schema.org/Person" itemscope>
-              {{ review.firstname }}
-            </div>
-            <meta itemprop="name" content="{{ review.firstname }}" />
-            {% endif %}
-            {% if review_date %}
-            <div class="de-u-textShrink1 de-u-textDarkGray">
-              {{ review_date }}
-            </div>
-            {% endif %}
-            {% endif %}
-
-            {% if review_country_code %}
-              {% assign country_full = 'countries_by_code.' | append: review_country_code | t %}
-              Reviewed in {{ country_full }}
-              {% if review.language != 'en' %}
-                <a href="#" class="btn-gt-translate btn-original">{{ 'products.translation_text.original' | t }}</a>
-                <a href="#"
-                  class="btn-gt-translate btn-translated active">{{ 'products.translation_text.translate' | t }}</a>
-              {% endif %}
-            {% endif %}
-
-            {% if review.purchase_checked %}
-            <div class="de-u-flex de-u-flexAlignItemsCenter de-u-spaceTop06">
-              {% include 'assets-icons-checkmark-badge'
-                        with class: 'de-Icon de-u-textGrow5 de-u-padRight06' %}
-              verified purchase
-
-              <!-- <div>Language: {{review.language}}</div> -->
-            </div>
-            {% endif %}
-          </div>
-          {% comment %}
-          @TODO -
-          Reimplement when voting API becomes usable
-          {% endcomment %}
-          {% comment %}
-          <div class="de-u-size2of6 de-u-flex de-u-flexJustifyEnd
-                    de-u-flexAlignItemsEnd">
-            <button class="de-u-flex de-u-textBlue de-u-textMedium
-                              js-de-CustomerReview-vote" data-review-vote-url="{{review.url_vote}}"
-              href="{{review.url_vote}}">
-              Helpful Review?
-              {% include 'assets-icons-upvote-thumb'
-                        with class: 'de-Icon de-u-spaceLeft06 de-u-textGrow2' %}
-            </button>
-          </div>
-          {% endcomment %}
-        </div>
-        {% if review.answer %}
-        {% assign answer_date = review.answer.created_at | date: "%-m/%-e/%Y" %}
-        <div class="de-CustomerReview-response de-u-spaceTop6" tabindex="0" data-review-id="{{review.answer.id}}">
-          {% include 'assets-logos-decathlon-chat'
-                    with class: 'de-DecathlonChatBubble' %}
-          <div class="review-answer-original">
-            {{ review.answer.body }}
-          </div>
-          <div class="review-answer-translated">
-          </div>
-          {% if answer_date %}
-          <div class="de-u-textShrink1 de-u-textDarkGray">
-            {{ answer_date }}
-          </div>
-          {% endif %}
-          {% comment %}
-          @TODO -
-          Reimplement when voting API becomes usable
-          Modify review url for answers
-          {% endcomment %}
-          {% comment %}
-          <div class="de-u-flex de-u-flexJustifyStart">
-            <button class="de-u-flex de-u-textBlue de-u-textMedium
-                                js-de-CustomerReview-vote" data-review-vote-url="{{review.url_vote}}"
-              href="{{review.url_vote}}">
-              Helpful Response?
-              {% include 'assets-icons-upvote-thumb'
-                          with class: 'de-Icon de-u-spaceLeft06 de-u-textGrow2' %}
-            </button>
-          </div>
-          {% endcomment %}
-        </div>
-        {% endif %}
-      </div>
-
-        {% endunless %}
       {% endfor %}
     </div>
     {% comment %}

@@ -2275,6 +2275,13 @@
         "id": "reviews_excluded_countries",
         "label": "Excluded Countries",
         "info": "Enter a CSV of country codes to exclude those reviews."
+      },
+      {
+        "id": "review_filters_and",
+        "type": "checkbox",
+        "label": "Turn on AND logic?",
+        "info": "If this is on, only reviews that satisfy both filters will be excluded.",
+        "default": true
       }
     ]
   }

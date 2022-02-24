@@ -108,5 +108,6 @@
   window.vars.themeSettings = {
     reviews_excluded_countries: {{ settings.reviews_excluded_countries | split: ',' | json }},
     reviews_min_rating: {{ settings.reviews_min_rating | json }},
+    review_filters_and: {{ review_filters_and | json }},
   }
 </script>
