@@ -41,7 +41,7 @@
     "product_returns_text": "Lifetime Returns* For MVP",
     "product_shipping_text": "Free shipping for orders above $150 (excludes bulky orders)",
     "product_bulk_returns_text": "Lifetime Returns* For MVP",
-    "product_bulk_shipping_text": "Check shipping rates at checkout",
+    "product_bulk_shipping_text": "Delivery from $50 Sydney Metro, confirmation at the checkout!",
     "show_associated_products_carousel_on_product_page": true,
     "show_similar_products_carousel_on_product_page": true,
     "show_recently_viewed_carousel_on_product_page": true,
@@ -471,19 +471,19 @@
               "tooltip_hours": true,
               "is_same_hours_weekly": false,
               "hours_0_open": "0900",
-              "hours_0_close": "2000",
+              "hours_0_close": "1900",
               "hours_1_open": "0900",
-              "hours_1_close": "2100",
+              "hours_1_close": "2000",
               "hours_2_open": "0900",
-              "hours_2_close": "2100",
+              "hours_2_close": "2000",
               "hours_3_open": "0900",
-              "hours_3_close": "2100",
+              "hours_3_close": "2000",
               "hours_4_open": "0900",
               "hours_4_close": "2100",
               "hours_5_open": "0900",
-              "hours_5_close": "2100",
+              "hours_5_close": "2000",
               "hours_6_open": "0900",
-              "hours_6_close": "2100",
+              "hours_6_close": "2000",
               "announcement": "<p>In line with NSW public health order you must wear a mask and check in to enter stores with proof of vaccination or medical exemption.<\/p>",
               "tag_exclusion_1": "",
               "tag_exclusion_message_1": "",
@@ -1513,15 +1513,47 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
-          "3ec6778f-1852-47ff-b97b-748a8d271aea": {
+          "bdd68b02-f297-4109-a6fb-0c679ebad026": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/back-to-school1.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/homepage_banner_c2dd224c-c29d-4f59-87a8-2089b915cce1.png",
               "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Untitled_design_7_8f54c515-c3df-4cea-bf0c-a5be0b9f4dd4.png",
               "banner_intro": "",
-              "banner_title": "Back to school, back to sport!",
-              "banner_subtitle": "<p><strong>Affordable and high-quality sports gear to get your kids back to sports this year!<\/strong><\/p>",
+              "banner_title": "Bike Delivery for Metro NSW* from $50",
+              "banner_subtitle": "<p><strong>Enjoy Bike delivery from $50 to our Metro NSW residents.<\/strong><\/p>",
               "button_title": "Shop Now",
+              "link_url": "shopify:\/\/collections\/bikes",
+              "link_title": "Bikes",
+              "link_new_window": false
+            }
+          },
+          "031bbb08-5e30-443d-9d87-351970f1ff5e": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Untitled_design_9.png",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Untitled_design_8_de0fde00-4520-428b-bd91-c2b1eb44f716.png",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "https:\/\/decathlon.com.au\/pages\/how-to-choose-running-shoe",
+              "link_title": "Shoe Selector",
+              "link_new_window": false
+            }
+          },
+          "3ec6778f-1852-47ff-b97b-748a8d271aea": {
+            "type": "slide",
+            "disabled": true,
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Untitled_design_4_cea01415-4fba-499b-8307-287e439a8ac7.png",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Untitled.png",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
               "link_url": "shopify:\/\/collections\/back-to-school-essentials",
               "link_title": "Back to Sport",
               "link_new_window": false
@@ -1532,55 +1564,61 @@
             "settings": {
               "banner_bg_image": "shopify:\/\/shop_images\/HP_banner_Miranda.jpg",
               "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Untitled_design_6.png",
               "banner_intro": "",
               "banner_title": "Miranda we are coming!",
               "banner_subtitle": "<p><strong>Decathlon Miranda is opening in March! Sign up now to keep up-to-date with all our news.<\/strong><\/p>",
               "button_title": "Sign Up",
-              "link_url": "https:\/\/decathlon.com.au\/pages\/store-miranda",
+              "link_url": "https:\/\/login.decathlon.net\/?client_id=e57b2db5-07ff-468e-a8da-85af418a1691#\/sign-up",
               "link_title": "Sign Up Miranda",
               "link_new_window": false
             }
           },
           "011e5d69-64dd-4103-b889-0bd9ae315822": {
             "type": "slide",
+            "disabled": true,
             "settings": {
               "banner_bg_image": "shopify:\/\/shop_images\/HP_slider.jpg",
               "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Untitled_design_5.png",
               "banner_intro": "",
               "banner_title": "New Year New You",
-              "banner_subtitle": "<p>Get all your essentials to help you smash your 2022 goals.<\/p>",
+              "banner_subtitle": "<p><strong>Get all your essentials to help you smash your 2022 goals.<\/strong><\/p>",
               "button_title": "Shop Now",
               "link_url": "shopify:\/\/collections\/new-year-new-you",
               "link_title": "New Year New You",
               "link_new_window": false
             }
-          },
-          "bdd68b02-f297-4109-a6fb-0c679ebad026": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/image.png",
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": "Ready to Roll",
-              "banner_subtitle": "<p><strong>Hybrid, MTB and Kids Bikes in stock!<\/strong><\/p>",
-              "button_title": "Shop Now",
-              "link_url": "shopify:\/\/collections\/bikes",
-              "link_title": "Hybrid, MTB and Kids Bikes in stock!",
-              "link_new_window": false
-            }
           }
         },
         "block_order": [
+          "bdd68b02-f297-4109-a6fb-0c679ebad026",
+          "031bbb08-5e30-443d-9d87-351970f1ff5e",
           "3ec6778f-1852-47ff-b97b-748a8d271aea",
           "623e46b1-2abc-4e5b-8ceb-3ca5e428998a",
-          "011e5d69-64dd-4103-b889-0bd9ae315822",
-          "bdd68b02-f297-4109-a6fb-0c679ebad026"
+          "011e5d69-64dd-4103-b889-0bd9ae315822"
         ],
         "settings": {}
       },
       "config_labels": {
         "type": "config_labels",
         "blocks": {
+          "6ce7f996-a1da-41a1-aa2c-8186ed782432": {
+            "type": "label",
+            "settings": {
+              "title": "$50 Delivery*",
+              "bg_colour": "#e20c18",
+              "text_colour": "#ffffff"
+            }
+          },
+          "88049bc3-32eb-421b-ab69-0320c3a68f7c": {
+            "type": "label",
+            "settings": {
+              "title": "$75 Delivery*",
+              "bg_colour": "#e20c18",
+              "text_colour": "#ffffff"
+            }
+          },
           "e27f167b-9a15-49c6-86cc-d5749a582ffc": {
             "type": "label",
             "settings": {
@@ -1727,6 +1765,8 @@
           }
         },
         "block_order": [
+          "6ce7f996-a1da-41a1-aa2c-8186ed782432",
+          "88049bc3-32eb-421b-ab69-0320c3a68f7c",
           "e27f167b-9a15-49c6-86cc-d5749a582ffc",
           "add54ffc-96a7-4a8e-9da6-0cd98b86bb70",
           "ad2f449b-334c-4b8e-b29c-caed1367ff3b",
@@ -1970,6 +2010,7 @@
       },
       "1642116157c0ce923f": {
         "type": "featured_collection",
+        "disabled": true,
         "settings": {
           "title": "Back to School",
           "section_collection": "back-to-school-essentials"
@@ -1981,9 +2022,9 @@
       "163107170023281063",
       "16375487170499d43e",
       "163107313302287377",
-      "1642116157c0ce923f",
+      "163487525380dd83d2",
       "16316085202ea5cf79",
-      "163487525380dd83d2"
+      "1642116157c0ce923f"
     ]
   },
   "presets": {
