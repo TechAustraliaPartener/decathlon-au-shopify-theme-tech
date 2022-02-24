@@ -2257,5 +2257,25 @@
         "default": "Free 2 Hour contactless Click & Collect"
       }
     ]
+  },
+  {
+    "name": "Product Page Reviews",
+    "settings": [
+      {
+        "type": "range",
+        "id": "reviews_min_rating",
+        "min": 0,
+        "max": 5,
+        "step": 1,
+        "label": "Minimum Rating",
+        "default": 0
+      },
+      {
+        "type": "text",
+        "id": "reviews_excluded_countries",
+        "label": "Excluded Countries",
+        "info": "Enter a CSV of country codes to exclude those reviews."
+      }
+    ]
   }
 ]
