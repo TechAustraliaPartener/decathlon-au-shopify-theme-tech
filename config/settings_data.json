@@ -31,10 +31,10 @@
     "header_support_link": "https:\/\/decathlon.com.au\/pages\/contact-and-help",
     "header_store_label": "Stores",
     "header_sign_in_label": "Sign In",
-    "megamenu_image": "shopify:\/\/shop_images\/Untitled_design_bf23cc8c-6b6f-400f-adbc-af12406790a4.png",
-    "megamenu_title": "Summer Favs",
-    "megamenu_subtitle": "Explore Now",
-    "megamenu_link": "shopify:\/\/collections\/water-sports-new-arrivals",
+    "megamenu_image": "shopify:\/\/shop_images\/Enjoy_up_to_50_off_a_range_of_different_products_this_Black_Friday_3.png",
+    "megamenu_title": "Summer Sale",
+    "megamenu_subtitle": "Shop Now!",
+    "megamenu_link": "shopify:\/\/collections\/summer-sale",
     "megamenu_bg_colour": "#1c82c3",
     "custom_fields_terms_conditions": "I agree to the <a href=\"\/pages\/terms-and-conditions-membership\" target=\"_blank\">T&Cs<\/a> and <a href=\"\/pages\/privacy-policy\" target=\"_blank\">Privacy Policy<\/a> for creating an account.",
     "is_lookbook": false,
@@ -1513,6 +1513,21 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
+          "be634640-3bfa-4b9a-9d9a-7627d56fb9ac": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Untitled_design_11.png",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_b254832d-a015-464b-904c-c5ed1a89aad4.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "shopify:\/\/collections\/summer-sale",
+              "link_title": "Summer Sale",
+              "link_new_window": false
+            }
+          },
           "bdd68b02-f297-4109-a6fb-0c679ebad026": {
             "type": "slide",
             "settings": {
@@ -1543,22 +1558,6 @@
               "link_new_window": false
             }
           },
-          "3ec6778f-1852-47ff-b97b-748a8d271aea": {
-            "type": "slide",
-            "disabled": true,
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Untitled_design_4_cea01415-4fba-499b-8307-287e439a8ac7.png",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Untitled.png",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "shopify:\/\/collections\/back-to-school-essentials",
-              "link_title": "Back to Sport",
-              "link_new_window": false
-            }
-          },
           "623e46b1-2abc-4e5b-8ceb-3ca5e428998a": {
             "type": "slide",
             "settings": {
@@ -1573,30 +1572,13 @@
               "link_title": "Sign Up Miranda",
               "link_new_window": false
             }
-          },
-          "011e5d69-64dd-4103-b889-0bd9ae315822": {
-            "type": "slide",
-            "disabled": true,
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/HP_slider.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Untitled_design_5.png",
-              "banner_intro": "",
-              "banner_title": "New Year New You",
-              "banner_subtitle": "<p><strong>Get all your essentials to help you smash your 2022 goals.<\/strong><\/p>",
-              "button_title": "Shop Now",
-              "link_url": "shopify:\/\/collections\/new-year-new-you",
-              "link_title": "New Year New You",
-              "link_new_window": false
-            }
           }
         },
         "block_order": [
+          "be634640-3bfa-4b9a-9d9a-7627d56fb9ac",
           "bdd68b02-f297-4109-a6fb-0c679ebad026",
           "031bbb08-5e30-443d-9d87-351970f1ff5e",
-          "3ec6778f-1852-47ff-b97b-748a8d271aea",
-          "623e46b1-2abc-4e5b-8ceb-3ca5e428998a",
-          "011e5d69-64dd-4103-b889-0bd9ae315822"
+          "623e46b1-2abc-4e5b-8ceb-3ca5e428998a"
         ],
         "settings": {}
       },
@@ -2010,21 +1992,20 @@
       },
       "1642116157c0ce923f": {
         "type": "featured_collection",
-        "disabled": true,
         "settings": {
-          "title": "Back to School",
-          "section_collection": "back-to-school-essentials"
+          "title": "Summer Sale",
+          "section_collection": "summer-sale"
         }
       }
     },
     "content_for_index": [
       "1568939434006",
       "163107170023281063",
-      "16375487170499d43e",
+      "1642116157c0ce923f",
       "163107313302287377",
-      "163487525380dd83d2",
+      "16375487170499d43e",
       "16316085202ea5cf79",
-      "1642116157c0ce923f"
+      "163487525380dd83d2"
     ]
   },
   "presets": {
