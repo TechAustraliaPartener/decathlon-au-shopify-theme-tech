@@ -160,12 +160,15 @@
   {{ 'patterns-toolkit.css' | asset_url | stylesheet_tag }}
   {{ 'shogun-overrides.scss.css' | asset_url | stylesheet_tag }}
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
   <!-- Header hook for plugins ================================================== -->
   {{ content_for_header }}
   {% include 'js-rollbar-init' %}
   {% include 'oldIE-js' %}
 
   {{ 'jquery.min.js' | asset_url | script_tag }}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
   {{ 'modernizr.min.js' | asset_url | script_tag }}
 
   {% if template.name == '404' %}  
