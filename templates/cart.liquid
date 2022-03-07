@@ -86,14 +86,28 @@
     font-size:1.2em;
     background-color:#1c82c3;
     border-radius: 0;
+    position: relative;
   }
 
   #fake-checkoutBtn:hover {
     color:white;
   }
 
+  #fake-checkoutBtn.uloader {
+    background-color: white;
+  }
+
   #fake-checkoutBtn.uloader::before {
-    color:white;
+    color: white;
+    content: " ";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    background-size: 40px 40px;
+    background-image: url('{{ 'decathlon-loader.gif' | asset_url }}');
+    transform: translate(-50%, -50%);
   }
 
 </style>

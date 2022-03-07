@@ -447,7 +447,7 @@ const initCartDisplay = cart => {
       prepareCart(event) {
         const app = this;
 
-        $('#checkoutBtn').removeClass("btn btn--fill checkout-btn").addClass("uloader utext-hide");
+        $('#checkoutBtn').addClass("uloader utext-hide");
 
         if (app.override) {
           return true;
@@ -487,7 +487,7 @@ const initCartDisplay = cart => {
         const app = this;
         // execute cart preparation (remove unavailable products if necessary)
         // For some reason we need this fake checkout button  and trigger button click submit via javascript code to make UFE work
-        $('#fake-checkoutBtn').removeClass("btn btn--fill checkout-btn").addClass("uloader utext-hide");
+        $('#fake-checkoutBtn').addClass("uloader utext-hide");
         app.prepareCart(event);
       }
     }
