@@ -4,6 +4,17 @@
   {% endfor %}
 </div>
 
+{% for block in section.blocks %}
+  <div id="{{ block.id }}" class="modal bnpl_modal">
+    <h2>{{ block.settings.modal_title }}</h2>
+
+    {{ block.settings.price_text | replace: '[price]', '<span class="populate_instalments" data-block-id="block_id"></span>' | replace: 'block_id', block.id }}
+
+    {{ block.settings.modal_footer }}
+    <a href="#" rel="modal:close">Close</a>
+  </div>
+{% endfor %}
+
 <script>
   window.bnpl = window.bnpl || {};
   {% for block in section.blocks %}
@@ -26,18 +37,9 @@
       }
     });
   }
+
+  window.updateInstalments(window.vars.productJSON.price);
 </script>
-
-{% for block in section.blocks %}
-  <div id="{{ block.id }}" class="modal bnpl_modal">
-    <h2>{{ block.settings.modal_title }}</h2>
-
-    {{ block.settings.price_text | replace: '[price]', '<span class="populate_instalments" data-block-id="block_id"></span>' | replace: 'block_id', block.id }}
-
-    {{ block.settings.modal_footer }}
-    <a href="#" rel="modal:close">Close</a>
-  </div>
-{% endfor %}
 
 {% schema %}
   {
