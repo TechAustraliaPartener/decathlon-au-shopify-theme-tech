@@ -94,6 +94,8 @@ state.onChange(
       if (window.vueATC) {
         window.vueATC.changeVariant(variant.id);
       }
+      // Update BNPL payment snippet modal data
+      if (window.updateInstalments) window.updateInstalments(variant.price);
     } else {
       window.vars.selectedVariant = null;
       if (window.inventoryLocationsDisplay && window.inventories) {
