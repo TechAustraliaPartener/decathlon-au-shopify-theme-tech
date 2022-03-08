@@ -46,7 +46,6 @@
       font-size: 1em;
       color: #1f1f1f;
       cursor: default;
-      pointer-events: none;
 
       &:after {
         left: 160px;
@@ -75,6 +74,14 @@
 
       background-color: #0080c4;
       color: white;
+  }
+}
+
+.swiper-slide-active .CustomLabels .label_container:hover .label_info {
+  left: 0;
+
+  &:after {
+    left: 30px;
   }
 }
 
