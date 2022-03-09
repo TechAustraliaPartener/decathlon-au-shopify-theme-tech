@@ -27,4 +27,5 @@ src/css/*
 !/snippets/util_*
 !/snippets/createur_*
 !/snippets/alert-come-back*
+!/snippets/insider*
 theme.zip

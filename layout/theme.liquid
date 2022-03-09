@@ -279,7 +279,8 @@
 {% render 'reamaze-sso' %}
 <!-- REAMAZE INTEGRATION END - DO NOT REMOVE -->
 
-</head>
+{% include 'insider' with 'head' %}
+ </head>
 
 {% comment %}
   Add the page template as a class for easy page or template specific styling.
@@ -494,5 +495,6 @@
 	console.log('KADAWLKDNAKLDNLADW', {{ collection.metafields.merchandising.link | json }}, {{ collection.metafields.merchandising.desktop | json }}, {{ collection.metafields.merchandising.mobile | json }});</script>
  {% include 'smile-initializer' %}
 
-</body>
+{% include 'insider' %} 
+ </body>
 </html>

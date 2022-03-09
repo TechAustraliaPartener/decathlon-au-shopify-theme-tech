@@ -72,7 +72,8 @@
 {% render 'reamaze-sso' %}
 <!-- REAMAZE INTEGRATION END - DO NOT REMOVE -->
 
-</head>
+{% include 'insider' with 'head' %}
+ </head>
   <body>
     {% include 'js-gtm-body' %}
 
@@ -323,5 +324,6 @@
     {% include 'checkout_js' %}
     {{ 'custom_checkout.js' | asset_url | script_tag }}
     {{ 'checkout.js' | asset_url | script_tag }}
-  </body>
+  {% include 'insider' %} 
+ </body>
 </html>
