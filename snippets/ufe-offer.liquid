@@ -1,5 +1,10 @@
 {%comment%} UFE Code: Don't Delete {%endcomment%}
+    {% assign isUfeInstalled = false %}
+    {% if content_for_header contains 'ufe.helixo.co' %} {% assign isUfeInstalled = true %} {% endif %}
+    
+    {% if isUfeInstalled == true %}
     <script>
+    window.isUfeInstalled = {{ isUfeInstalled }};
     {% if product %}
       {% assign cids = product.collections | map: 'id' | join: ',' %}
       {% assign tids = product.tags | join: ","  | escape %}
@@ -36,21 +41,13 @@
       });
       {% endfor %}
     {% endif %}
-    {% assign isUfeInstalled = false %}
-    {% if content_for_header contains 'ufe.helixo.co' %} {% assign isUfeInstalled = true %} {% endif %}
-    window.isUfeInstalled = {{ isUfeInstalled }};
-    function ufeScriptLoader(scriptUrl) {
-        var element = document.createElement('script');
-        element.src = scriptUrl;
-        element.type = 'text/javascript';
-        document.getElementsByTagName('head')[0].appendChild(element);
-    }
-    if(window.isUfeInstalled) console.log('%c UFE: Funnel Engines ⚡️ Full Throttle  🦾😎!', 'font-weight: bold; letter-spacing: 2px; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", Arial, sans-serif;font-size: 20px;color: rgb(25, 124, 255); text-shadow: 2px 2px 0 rgb(62, 246, 255)');
+    
+    function ufeScriptLoader(e){var t=document.createElement("script");t.src=e,t.type="text/javascript",document.getElementsByTagName("head")[0].appendChild(t)} if(window.isUfeInstalled) {console.log('%c UFE: Funnel Engines ⚡️ Full Throttle  🦾😎!', 'font-weight: bold; letter-spacing: 2px; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", Arial, sans-serif;font-size: 20px;color: rgb(25, 124, 255); text-shadow: 1px 1px 0 rgb(62, 246, 255)'); console.log(`%c\n Funnels on {{shop.name}} is powered by Upsell Funnel Engine.\n    \n     → Positive ROI Guaranteed\n     → #1 Upsell Funnel App\n     → Increased AOV & LTV\n     → All-In-One Upsell & Cross Sell\n    \n Know more: https://helixo.co/ufe \n\n    \n    `,'font-size: 12px;font-family: monospace;padding: 1px 2px;line-height: 1');}
     if(!('noModule' in HTMLScriptElement.prototype) && window.isUfeInstalled) {
         ufeScriptLoader('https://ufe.helixo.co/scripts/sdk.es5.min.js');
         console.log('UFE: ES5 Script Loading');
     }
     </script>
     
-    {% if isUfeInstalled == true %}<script async src="https://ufe.helixo.co/scripts/sdk.min.js?shop={{ shop.permanent_domain  }}"></script>{% endif %}
+    <script async src="https://ufe.helixo.co/scripts/sdk.min.js?shop={{ shop.permanent_domain  }}"></script>{% endif %}
     
