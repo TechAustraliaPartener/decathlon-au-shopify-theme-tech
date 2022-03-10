@@ -46,11 +46,11 @@ console.log(cartTotalWeight, freeShippingWeightLimit);
 if (step === 'shipping_method') {
   $(document).on('page:load page:change', () => {
 
-    const standardShippingElement = document.querySelector('[data-shipping-method^="Shippit-shippit_standard_"],[data-shipping-method^="Shippit-shippit|standard|"]');
+    const standardShippingElement = document.querySelector('[data-shipping-method^="Shippit-shippit_standard_"],[data-shipping-method^="Shippit-shippit%7Cstandard%7C"]');
 
     const freeStandardShippingElement = document.querySelector('[data-shipping-method="shopify-Free%20Standard%20Shipping-0.00"]');
 
-    const expressShippingElement = document.querySelector('[data-shipping-method^="Shippit-shippit_express_"],[data-shipping-method^="Shippit-shippit|express|"]');
+    const expressShippingElement = document.querySelector('[data-shipping-method^="Shippit-shippit_express_"],[data-shipping-method^="Shippit-shippit%7Cexpress%7C"]');
 
     if (cartTotalWeight > freeShippingWeightLimit) {
       if (freeStandardShippingElement) {
