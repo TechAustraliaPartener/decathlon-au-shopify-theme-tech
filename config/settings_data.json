@@ -1513,21 +1513,6 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
-          "be634640-3bfa-4b9a-9d9a-7627d56fb9ac": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Untitled_design_11.png",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_b254832d-a015-464b-904c-c5ed1a89aad4.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "shopify:\/\/collections\/summer-sale",
-              "link_title": "Summer Sale",
-              "link_new_window": false
-            }
-          },
           "bdd68b02-f297-4109-a6fb-0c679ebad026": {
             "type": "slide",
             "settings": {
@@ -1575,7 +1560,6 @@
           }
         },
         "block_order": [
-          "be634640-3bfa-4b9a-9d9a-7627d56fb9ac",
           "bdd68b02-f297-4109-a6fb-0c679ebad026",
           "031bbb08-5e30-443d-9d87-351970f1ff5e",
           "623e46b1-2abc-4e5b-8ceb-3ca5e428998a"
@@ -1979,8 +1963,8 @@
       "163487525380dd83d2": {
         "type": "featured_collection",
         "settings": {
-          "title": "Fitness Watches",
-          "section_collection": "fitness-watch"
+          "title": "Fitness Offers",
+          "section_collection": "fitness-sale"
         }
       },
       "16375487170499d43e": {
@@ -1993,8 +1977,8 @@
       "1642116157c0ce923f": {
         "type": "featured_collection",
         "settings": {
-          "title": "Summer Sale",
-          "section_collection": "summer-sale"
+          "title": "Innovation by Decathlon",
+          "section_collection": "innovation-by-decathlon"
         }
       }
     },
