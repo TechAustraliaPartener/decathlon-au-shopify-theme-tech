@@ -6,11 +6,48 @@
 
 {% for block in section.blocks %}
   <div id="{{ block.id }}" class="modal bnpl_modal">
-    <h2>{{ block.settings.modal_title }}</h2>
+    <div class="bnpl_modal_header">
+      {{ block.settings.title }}
+    </div>
 
-    {{ block.settings.price_text | replace: '[price]', '<span class="populate_instalments" data-block-id="block_id"></span>' | replace: 'block_id', block.id }}
+    <h2 class="bnpl_modal_logo">
+      {{ block.settings.logo }}
+    </h2>
 
-    {{ block.settings.modal_footer }}
+    <h2 class="bnpl_modal_title">
+      {% assign titles = block.settings.modal_title | remove: '<p>' | remove: '</p>' | strip | newline_to_br | strip_newlines | split: "<br/>" %}
+      {% for title in titles %}
+        {% if title != blank %}
+          <span>{{ title }}</span>
+        {% endif %}
+      {% endfor %}
+    </h2>
+
+    <div class="bnpl_modal_instalment_terms">
+      {% assign terms = block.settings.instalment_terms | split: "|" %}
+      {% for term in terms %}
+        {% assign term = term | strip %}
+        <span class="bnpl_modal_instalment_term">{{ term }}</span>
+      {% endfor %}
+    </div>
+
+    <div class="bnpl_modal_price_text">
+      {{ block.settings.price_text | replace: '[price]', '<span class="populate_instalments" data-block-id="block_id"></span>' | replace: 'block_id', block.id }}
+    </div>
+
+    <div class="bnpl_modal_body">
+      {% assign items = block.settings.modal_body | remove: '<p>' | remove: '</p>' | strip | newline_to_br | strip_newlines | split: "<br/><br/>" %}
+      {% for item in items %}
+        {% if item != blank %}
+          <div class="bnpl_modal_body_item">{{ item }}</div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="bnpl_modal_footer">
+      {{ block.settings.modal_footer }}
+    </div>
+
     <a href="#" rel="modal:close">Close</a>
   </div>
 {% endfor %}
@@ -66,9 +103,15 @@
             "content": "Modal Content"
           },
           {
-            "type": "text",
+            "type": "richtext",
             "id": "modal_title",
             "label": "Modal Title"
+          },
+          {
+            "type": "text",
+            "id": "instalment_terms",
+            "label": "Instalment terms",
+            "info": "Delimiter is | eg. 'text 1 | text 2 | text 3'"
           },
           {
             "type": "text",
@@ -79,6 +122,11 @@
             "type": "text",
             "id": "price_text",
             "label": "Price Text"
+          },
+          {
+            "type": "richtext",
+            "id": "modal_body",
+            "label": "Modal Body"
           },
           {
             "type": "richtext",
