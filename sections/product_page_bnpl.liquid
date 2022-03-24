@@ -10,18 +10,18 @@
       {{ block.settings.title }}
     </div>
 
-    <h2 class="bnpl_modal_logo">
+    <div class="bnpl_modal_logo">
       {{ block.settings.logo }}
-    </h2>
+    </div>
 
-    <h2 class="bnpl_modal_title">
+    <div class="bnpl_modal_title">
       {% assign titles = block.settings.modal_title | remove: '<p>' | remove: '</p>' | strip | newline_to_br | strip_newlines | split: "<br/>" %}
       {% for title in titles %}
         {% if title != blank %}
-          <span>{{ title }}</span>
+          <strong>{{ title }}</strong>
         {% endif %}
       {% endfor %}
-    </h2>
+    </div>
 
     <div class="bnpl_modal_instalment_terms">
       {% assign terms = block.settings.instalment_terms | split: "|" %}
@@ -45,10 +45,8 @@
     </div>
 
     <div class="bnpl_modal_footer">
-      {{ block.settings.modal_footer }}
+      {{ block.settings.modal_footer | strip | newline_to_br }}
     </div>
-
-    <a href="#" rel="modal:close">Close</a>
   </div>
 {% endfor %}
 
