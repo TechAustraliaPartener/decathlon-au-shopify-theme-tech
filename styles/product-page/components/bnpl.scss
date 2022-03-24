@@ -16,11 +16,13 @@
 
 .bnpl_modal {
   padding: .25rem 0 !important;
+  margin-top: 50px;
 }
 
 .bnpl_modal strong {
-  font-size: 28px;
-  line-height: 32px;
+  font-size: 20px;
+  line-height: 24px;
+  text-transform: uppercase;
 }
 
 .bnpl_modal_header {
@@ -40,7 +42,6 @@
 .bnpl_modal_title {
   display: flex;
   flex-direction: column;
-  // justify-content: center;
   text-align: center;
   margin-bottom: 20px;
 }
@@ -63,6 +64,9 @@
 
 .bnpl_modal_body {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
 
 .bnpl_modal_body_item {
@@ -81,13 +85,14 @@
 }
 
 .bnpl_modal_footer > p {
-  padding: 20px 0.75rem 0;
+  padding: 20px 0.75rem;
   margin: 0;
 }
 
 .bnpl_modal_footer > p strong {
   font-size: inherit;
   line-height: inherit;
+  text-transform: none;
 }
 
 .bnpl_modal_footer > p a {
@@ -96,7 +101,7 @@
 
 @media screen and (min-width: 769px) {
   .bnpl_modal {
-    padding: 0.5rem 1rem;
+    max-width: 600px !important;
   }
 
   .bnpl_modal strong {
@@ -105,11 +110,36 @@
 
   .bnpl_modal_header {
     width: 100%;
+    display: block;
     padding-bottom: 2rem;
     border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 20px;
   }
 
   .bnpl_modal_logo {
-    margin-bottom: 40px;
+    margin-bottom: 10px;
+  }
+
+  .bnpl_modal_title {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .bnpl_modal_title > *:not(:last-child) {
+    margin-right: 1.25rem;
+  }
+
+  .bnpl_modal_price_text {
+    font-size: 16px;
+  }
+
+  .bnpl_modal_body {
+    flex-direction: row;
+  }  
+
+  .bnpl_modal_body_item {
+    padding: 0 0.5rem;
+    text-align: left;
+    flex: 1;
   }
 }
