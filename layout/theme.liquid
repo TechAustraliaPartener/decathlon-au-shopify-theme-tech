@@ -124,6 +124,8 @@
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
   {% endif %}
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+  
   {% if template == "product" and product.metafields.global.features != blank %}
     {{ 'built-product-page.css' | asset_url | stylesheet_tag }}
   {% else %}
@@ -159,8 +161,6 @@
   {% endcomment %}
   {{ 'patterns-toolkit.css' | asset_url | stylesheet_tag }}
   {{ 'shogun-overrides.scss.css' | asset_url | stylesheet_tag }}
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 
   <!-- Header hook for plugins ================================================== -->
   {{ content_for_header }}
