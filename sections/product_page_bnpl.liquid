@@ -15,9 +15,10 @@
     </div>
 
     <div class="bnpl_modal_title">
-      {% assign titles = block.settings.modal_title | remove: '<p>' | remove: '</p>' | strip | newline_to_br | strip_newlines | split: "<br/>" %}
+      {% assign titles = block.settings.modal_title | split: "|" %}
       {% for title in titles %}
         {% if title != blank %}
+          {% assign title = title | strip %}
           <strong>{{ title }}</strong>
         {% endif %}
       {% endfor %}
@@ -36,16 +37,17 @@
     </div>
 
     <div class="bnpl_modal_body">
-      {% assign items = block.settings.modal_body | remove: '<p>' | remove: '</p>' | strip | newline_to_br | strip_newlines | split: "<br/><br/>" %}
+      {% assign items = block.settings.modal_body | remove: '<p>' | remove: '</p>' | strip | strip_newlines | split: "<br/><br/>" %}
       {% for item in items %}
         {% if item != blank %}
+          {% assign item = item | strip %}
           <div class="bnpl_modal_body_item">{{ item }}</div>
         {% endif %}
       {% endfor %}
     </div>
 
     <div class="bnpl_modal_footer">
-      {{ block.settings.modal_footer | strip | newline_to_br }}
+      {{ block.settings.modal_footer | strip }}
     </div>
   </div>
 {% endfor %}
@@ -101,7 +103,7 @@
             "content": "Modal Content"
           },
           {
-            "type": "richtext",
+            "type": "text",
             "id": "modal_title",
             "label": "Modal Title"
           },
@@ -124,7 +126,8 @@
           {
             "type": "richtext",
             "id": "modal_body",
-            "label": "Modal Body"
+            "label": "Modal Body",
+            "info": "To separate paragraphs put 2 consecutive line breaks (Shift+Enter) in between"
           },
           {
             "type": "richtext",
