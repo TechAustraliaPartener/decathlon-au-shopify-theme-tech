@@ -1,5 +1,5 @@
 <div class="bnpl_icons bnpl_icons_desktop">
-  Buy Now, Pay Later: {% for block in section.blocks %}
+  {{ 'products.product.buy_now_pay_later' | t }} {% for block in section.blocks %}
     <a href="#{{ block.id }}" rel="modal:open">{{ block.settings.logo }}</a>
   {% endfor %}
 </div>
