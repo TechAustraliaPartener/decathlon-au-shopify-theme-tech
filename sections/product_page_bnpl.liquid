@@ -1,4 +1,4 @@
-<div class="bnpl_icons">
+<div class="bnpl_icons bnpl_icons_desktop">
   Buy Now, Pay Later: {% for block in section.blocks %}
     <a href="#{{ block.id }}" rel="modal:open">{{ block.settings.logo }}</a>
   {% endfor %}
@@ -76,6 +76,12 @@
   }
 
   window.updateInstalments(window.vars.productJSON.price);
+
+  window.addEventListener('DOMContentLoaded', function (e) {
+    var bnpl_desktop = document.querySelector('.bnpl_icons_desktop');
+    var bnpl_mobile = document.querySelector('.bnpl_icons_mobile');
+    bnpl_mobile.innerHTML = bnpl_desktop.innerHTML;
+  });
 </script>
 
 {% schema %}

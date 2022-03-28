@@ -7,8 +7,17 @@
 
 .bnpl_icons {
   font-weight: 700;
-  display: flex;
   align-items: center;
+}
+
+.bnpl_icons_desktop {
+  display: none;
+}
+
+.bnpl_icons_mobile {
+  display: flex;
+  justify-content: center;
+  margin: 0.75rem 0.25rem;
 }
 
 .bnpl_icons > * {
@@ -113,6 +122,14 @@
 @media screen and (min-width: 769px) {
   .bnpl_modal {
     max-width: 600px;
+  }
+
+  .bnpl_icons_desktop {
+    display: flex;
+  }
+
+  .bnpl_icons_mobile {
+    display: none;
   }
 
   .bnpl_modal strong {
