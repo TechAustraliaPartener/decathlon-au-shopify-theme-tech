@@ -31,15 +31,15 @@
     "header_support_link": "https:\/\/decathlon.com.au\/pages\/contact-and-help",
     "header_store_label": "Stores",
     "header_sign_in_label": "Sign In",
-    "megamenu_image": "shopify:\/\/shop_images\/Enjoy_up_to_50_off_a_range_of_different_products_this_Black_Friday_3.png",
-    "megamenu_title": "Summer Sale",
+    "megamenu_image": "shopify:\/\/shop_images\/Enjoy_up_to_50_off_a_range_of_different_products_this_Black_Friday_1aae9527-3e5f-4f57-97f2-ae032ae24147.png",
+    "megamenu_title": "Easybreath",
     "megamenu_subtitle": "Shop Now!",
-    "megamenu_link": "shopify:\/\/collections\/summer-sale",
+    "megamenu_link": "https:\/\/decathlon.com.au\/products\/easybreath-surface-snorkeling-mask-1616",
     "megamenu_bg_colour": "#1c82c3",
     "custom_fields_terms_conditions": "I agree to the <a href=\"\/pages\/terms-and-conditions-membership\" target=\"_blank\">T&Cs<\/a> and <a href=\"\/pages\/privacy-policy\" target=\"_blank\">Privacy Policy<\/a> for creating an account.",
     "is_lookbook": false,
     "product_returns_text": "Lifetime Returns* For MVP",
-    "product_shipping_text": "Free shipping for orders above $150 (excludes bulky orders)",
+    "product_shipping_text": "Free shipping for orders above $100 (excludes bulky orders)",
     "product_bulk_returns_text": "Lifetime Returns* For MVP",
     "product_bulk_shipping_text": "Delivery from $50 Sydney Metro, confirmation at the checkout!",
     "show_associated_products_carousel_on_product_page": true,
@@ -59,7 +59,7 @@
     "blue_band__yellowgram_icon": "shopify:\/\/shop_images\/delighted.png",
     "blue_band__yellowgram_text": "Delighted or Delighted",
     "blue_band__fact_one_icon": "shopify:\/\/shop_images\/shipping.png",
-    "blue_band__fact_one_text": "<u>Free Shipping Over $150 (excludes bulky orders)<\/u>",
+    "blue_band__fact_one_text": "<u>Free Shipping Over $100 (excludes bulky orders)<\/u>",
     "blue_band__fact_one_link": "https:\/\/decathlon-aus.reamaze.com\/kb\/delivery\/how-much-does-shipping-cost",
     "blue_band__fact_two_icon": "shopify:\/\/shop_images\/pickup.png",
     "blue_band__fact_two_text": "Free Click & Collect",
@@ -278,9 +278,11 @@
     "threshold_for_zip_pay_cart_message": "[gateway] is available on orders over [threshold]",
     "threshold_for_zip_pay_product_message": "[gateway] is available on orders over [threshold]",
     "threshold_for_zip_pay_checkout_message": "[gateway] is available on orders over [threshold]",
-    "free_shipping_threshold": "150",
+    "free_shipping_threshold": "100",
     "free_shipping_max_weight": "22000",
     "add_to_cart_drawer_line_2": "Free shipping for orders above $150 (excludes bulky orders)",
+    "reviews_min_rating": 3,
+    "reviews_excluded_countries": "IN",
     "checkout_header_image": "",
     "checkout_logo_position": "left",
     "checkout_logo_size": "small",
@@ -1513,18 +1515,33 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
+          "81baae96-9c0d-46ed-a7e1-7c6126e4023d": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Untitled_design_d1fb9ee7-73c7-42fa-a5b9-ffc8485fa5f3.png",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_afcb86b3-3a24-4031-b6b1-e1b5a3e6966a.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "shopify:\/\/collections\/30-off-stock-clearance",
+              "link_title": "Flash Sale",
+              "link_new_window": false
+            }
+          },
           "bdd68b02-f297-4109-a6fb-0c679ebad026": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/homepage_banner_c2dd224c-c29d-4f59-87a8-2089b915cce1.png",
+              "banner_bg_image": "shopify:\/\/shop_images\/homepage_banner_66bcf5b1-8be9-4ebb-a877-12927fa4dde2.png",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Untitled_design_7_8f54c515-c3df-4cea-bf0c-a5be0b9f4dd4.png",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Put_the_brakes_on.png",
               "banner_intro": "",
-              "banner_title": "Bike Delivery for Metro NSW* from $50",
-              "banner_subtitle": "<p><strong>Enjoy Bike delivery from $50 to our Metro NSW residents.<\/strong><\/p>",
-              "button_title": "Shop Now",
-              "link_url": "shopify:\/\/collections\/bikes",
-              "link_title": "Bikes",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/kids-bikes-balance-bikes",
+              "link_title": "Kids Bikes",
               "link_new_window": false
             }
           },
@@ -1560,6 +1577,7 @@
           }
         },
         "block_order": [
+          "81baae96-9c0d-46ed-a7e1-7c6126e4023d",
           "bdd68b02-f297-4109-a6fb-0c679ebad026",
           "031bbb08-5e30-443d-9d87-351970f1ff5e",
           "623e46b1-2abc-4e5b-8ceb-3ca5e428998a"
