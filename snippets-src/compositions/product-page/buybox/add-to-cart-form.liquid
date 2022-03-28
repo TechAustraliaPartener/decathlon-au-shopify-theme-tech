@@ -62,6 +62,8 @@
     </span>
   </div>
 
+  {% render 'createur_product_page_bnpl' %}
+
   <div class="visually-hidden" itemprop="offers" itemtype="http://schema.org/Offer" itemscope>
     <link itemprop="url" href="{{ shop.url }}{{ current_variant.url }}" />
     {%- if current_variant.available -%}
