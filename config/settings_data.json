@@ -2004,12 +2004,12 @@
             "settings": {
               "title": "ZipPay",
               "logo": "<svg viewbox=\"0 0 768 285\" fill=\"none\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\">\n<g clip-path=\"url(#clip0)\">\n<path d=\"M19.53 227.27L26.19 281.53H259.36L251.73 219.39H143.01L142.06 211.69L242.19 141.72L235.5 87.3601H2.34998L9.97998 149.49H118.88L119.83 157.26L19.53 227.27Z\" fill=\"black\"><\/path>\n<path d=\"M262.59 87.3601L286.44 281.53H519.78L495.93 87.3601H262.59Z\" fill=\"#AA8FFF\"><\/path>\n<path d=\"M764.47 157.26C759.09 113.62 724.81 87.1701 678.21 87.3601H523L546.84 281.54H616.67L611.89 242.7H685.78C743.93 242.69 770.54 206.46 764.47 157.26ZM678.23 188.26L605.23 188.34L599.51 141.74L672.92 141.8C690.18 142.01 699.01 151.73 700.44 165.03C701.32 173.59 697.4 188.25 678.23 188.25V188.26Z\" fill=\"black\"><\/path>\n<path d=\"M332.303 61.5598C344.584 48.3762 342.443 26.4212 327.522 12.522C312.601 -1.37727 290.549 -1.95741 278.269 11.2262C265.988 24.4098 268.129 46.3647 283.05 60.264C297.971 74.1632 320.023 74.7434 332.303 61.5598Z\" fill=\"black\"><\/path>\n<\/g>\n<defs>\n<clippath id=\"clip0\">\n<rect width=\"768\" height=\"285\" fill=\"white\"><\/rect>\n<\/clippath>\n<\/defs>\n<\/svg>",
-              "modal_title": "<p>Zip It!<\/p>",
+              "modal_title": "Zip It!",
               "instalment_terms": "",
-              "price_formula": "`$${ (Math.round(price \/ 3) \/ 100).toFixed(2)}`",
-              "price_text": "With just 3 instalments of [price]!",
-              "modal_body": "",
-              "modal_footer": "<p>See terms <a href=\"https:\/\/zip.co\/au\/page\/terms\" target=\"_blank\" title=\"https:\/\/zip.co\/au\/page\/terms\">here<\/a><\/p>"
+              "price_formula": "",
+              "price_text": "",
+              "modal_body": "<p><strong>Add it<br\/><\/strong>Add what you want to cart.<strong><br\/><br\/>Zip it<\/strong><br\/>Select ZIP at checkout.<br\/><br\/><strong>Own it<\/strong><br\/>You choose how you pay it back over time.<\/p>",
+              "modal_footer": "<p>Zip Pay is for purchases under $1000 Interest free always.1<br\/>Zip Money is for purchases over $1000 interest terms available.2<br\/><br\/>(1) For Zip Pay - Minimum monthly repayments are required. A monthly account fee of $7.95 applies. This fee is waived each month you pay your statement closing balance, in full, by the due date. Available to approved applicants only.<a href=\"https:\/\/zip.co\/au\/page\/zip-pay-terms\" target=\"_blank\">T&Cs apply.<\/a><\/p><p>(2) For Zip Money - Available to approved applicants only. Minimum monthly repayments are required. Paying only the minimum monthly repayment amount will not pay out the purchase within the interest free period. Any balance outstanding at the expiry of the interest free will be charged at the standard annual percentage rate, currently 19.9%. A $7.95 monthly account fee applies. A one-off establishment fee may apply for new customers. Terms & Conditions apply and are available on application. See your contract for further details. Credit provided by ZipMoney Payments Pty Ltd (ABN 58 164 440 993), Australian Credit Licence Number 441878)<\/p>"
             }
           }
         },
