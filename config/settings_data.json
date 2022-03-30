@@ -865,8 +865,8 @@
               "hours_6_open": "09000",
               "hours_6_close": "1700",
               "announcement": "<p>Opening hours have been adjusted due to NSW Lockdowns<br\/>Ready to collect in 3 business days.<\/p>",
-              "tag_exclusion_1": "CC-Product-Block",
-              "tag_exclusion_message_1": "This product is unable to be collected from this Pick-Up location due to it being oversized.",
+              "tag_exclusion_1": "",
+              "tag_exclusion_message_1": "",
               "tag_exclusion_2": "",
               "tag_exclusion_message_2": "",
               "tag_exclusion_3": "",
@@ -1515,33 +1515,18 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
-          "81baae96-9c0d-46ed-a7e1-7c6126e4023d": {
+          "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Untitled_design_d1fb9ee7-73c7-42fa-a5b9-ffc8485fa5f3.png",
+              "banner_bg_image": "shopify:\/\/shop_images\/homepage_banner_c2dd224c-c29d-4f59-87a8-2089b915cce1.png",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_afcb86b3-3a24-4031-b6b1-e1b5a3e6966a.jpg",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Untitled_design_7_8f54c515-c3df-4cea-bf0c-a5be0b9f4dd4.png",
               "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "shopify:\/\/collections\/30-off-stock-clearance",
-              "link_title": "Flash Sale",
-              "link_new_window": false
-            }
-          },
-          "bdd68b02-f297-4109-a6fb-0c679ebad026": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/homepage_banner_66bcf5b1-8be9-4ebb-a877-12927fa4dde2.png",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Put_the_brakes_on.png",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/collections\/kids-bikes-balance-bikes",
-              "link_title": "Kids Bikes",
+              "banner_title": "Bike Delivery for Metro NSW* from $50",
+              "banner_subtitle": "<p><strong>Enjoy Bike delivery from $50 to our Metro NSW residents.<\/strong><\/p>",
+              "button_title": "Shop Now",
+              "link_url": "shopify:\/\/collections\/bikes",
+              "link_title": "Bikes",
               "link_new_window": false
             }
           },
@@ -1568,7 +1553,7 @@
               "banner_mobile_image": "shopify:\/\/shop_images\/Untitled_design_6.png",
               "banner_intro": "",
               "banner_title": "Miranda we are coming!",
-              "banner_subtitle": "<p><strong>Decathlon Miranda is opening in March! Sign up now to keep up-to-date with all our news.<\/strong><\/p>",
+              "banner_subtitle": "<p><strong>Decathlon Miranda is opening in April! Sign up now to keep up-to-date with all our news.<\/strong><\/p>",
               "button_title": "Sign Up",
               "link_url": "https:\/\/login.decathlon.net\/?client_id=e57b2db5-07ff-468e-a8da-85af418a1691#\/sign-up",
               "link_title": "Sign Up Miranda",
@@ -1577,8 +1562,7 @@
           }
         },
         "block_order": [
-          "81baae96-9c0d-46ed-a7e1-7c6126e4023d",
-          "bdd68b02-f297-4109-a6fb-0c679ebad026",
+          "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb",
           "031bbb08-5e30-443d-9d87-351970f1ff5e",
           "623e46b1-2abc-4e5b-8ceb-3ca5e428998a"
         ],
