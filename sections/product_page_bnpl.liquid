@@ -1,6 +1,37 @@
 <div class="bnpl_icons bnpl_icons_desktop">
-  {{ 'products.product.buy_now_pay_later' | t }} {% for block in section.blocks %}
-    <a href="#{{ block.id }}" rel="modal:open">{{ block.settings.logo }}</a>
+  {{ 'products.product.buy_now_pay_later' | t }}
+  {% for block in section.blocks %}
+    {% case forloop.index0 %}
+      {% comment %} 0 = afterpay {% endcomment %}
+      {% when 0 %}
+        {% assign threshold = settings.threshold_for_afterpay_threshold | times: 100 %}
+        {% assign threshold_gateway = settings.threshold_for_afterpay_gateway %}
+        {% assign threshold_message = settings.threshold_for_afterpay_product_message %}
+      {% comment %} 1 = zip pay {% endcomment %}
+      {% when 1 %}
+        {% assign threshold = settings.threshold_for_zip_pay_threshold | times: 100 %}
+        {% assign threshold_gateway = settings.threshold_for_zip_pay_gateway %}
+        {% assign threshold_message = settings.threshold_for_zip_pay_product_message %}
+      {% endcase %}
+
+    {% if product.selected_variant %}
+      {% assign selected_variant_or_product_price = product.selected_variant.price %}
+    {% else %}
+      {% assign selected_variant_or_product_price = product.price %}
+    {% endif %}
+
+    {% if selected_variant_or_product_price >= threshold %}
+      <a href="#{{ block.id }}" rel="modal:open">{{ block.settings.logo }}</a>
+    {% else %}
+      <span class="bnpl_icons_threshold_message">
+        {% assign threshold_money = threshold | money_without_trailing_zeros %}
+        <strong>{{ block.settings.title }}</strong>
+        {{ threshold_message
+          | replace: '[gateway]', settings.threshold_gateway 
+          | replace: '[threshold]', threshold_money
+        }}
+      </span>
+    {% endif %}
   {% endfor %}
 </div>
 

@@ -171,3 +171,15 @@
     flex: 1;
   }
 }
+
+@media screen and (min-width: 960px) {
+  .bnpl_icons_desktop {
+    max-width: 520px;
+    flex-wrap: wrap;
+  }
+}
+
+.bnpl_icons_threshold_message {
+  font-size: 13px;
+  font-weight: normal;
+}
