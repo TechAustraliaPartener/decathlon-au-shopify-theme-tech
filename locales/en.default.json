@@ -343,6 +343,7 @@
       "in_stock": "In Stock",
       "low_stock": "Low Stock",
       "pickup_only": "Pickup Only",
+      "oversell": "Product available for delivery. Ships within 3 weeks",
       "wishlist_disabled_message": "Create an account or sign in to save your wishlist",
       "buy_now_pay_later": "Buy now, Pay later:"
     },

@@ -49,9 +49,15 @@ const initVueATC = () => {
       mutateWithLocations(variantInventory, variantLocationsInventory) {
         var mutatedInventory = variantInventory;
 
-        const { inventoryItem } = variantLocationsInventory;
+        const { inventoryItem, inventoryPolicy } = variantLocationsInventory;
         const { delivery, locations, online } = inventoryItem;
 
+        // Oversell flags
+        const oversellThreshold = window.productOversellThreshold * -1;
+        const variantWithQuantity = window.variantsWithInventoryQuantity.find(({ id }) => id == variant.id);
+        const variantQuantity = variantWithQuantity ? variantWithQuantity.inventory_quantity : undefined;
+        const variantIsAllowedToOversell = inventoryPolicy === 'CONTINUE' && variantQuantity >= oversellThreshold;
+        
         /*
           'locations' from itemInventory already only account for stores which have Click & Collect enabled in Settings
           This checks whether the specific product is available in any of those locations, or in delivery/online and sets availability accordingly.
@@ -68,10 +74,13 @@ const initVueATC = () => {
 
         // item is available if there is at least one stock in any location or delivery/online
         // mutatedInventory.available = (delivery.available > 0 || filteredLocations.length > 0 || filteredOnline.length > 0);
-        mutatedInventory.available = (filteredLocations.length > 0 || delivery.available > 0);
+        mutatedInventory.available = (filteredLocations.length > 0 || delivery.available > 0 || variantIsAllowedToOversell);
         mutatedInventory.artificially_unavailable = (locations.length < 1 && delivery.available < 1);
 
-        if (filteredLocations.length < 1 && delivery.available < 1) {
+        if (filteredLocations.length < 1 && 
+          delivery.available < 1 && 
+          variantIsAllowedToOversell === false
+        ) {
           $('.js-de-validation-message').text('Out of stock');
         }
 
@@ -94,6 +103,10 @@ const initVueATC = () => {
           stockRemoveClass = LOW_STOCK_CLASS;
         } else if (delivery.available <= 2 && delivery.available > 0) {
           stockInfoMessage = translations.low_stock;
+          stockAddClass = LOW_STOCK_CLASS;
+          stockRemoveClass = IN_STOCK_CLASS;
+        } else if (variantIsAllowedToOversell) {
+          stockInfoMessage = translations.oversell;
           stockAddClass = LOW_STOCK_CLASS;
           stockRemoveClass = IN_STOCK_CLASS;
         } else {

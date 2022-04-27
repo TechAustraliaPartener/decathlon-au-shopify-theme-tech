@@ -17,13 +17,27 @@
       {% include 'moment-timezone.js' %}
       <script>
         window.firstVariant = {{ product.selected_or_first_available_variant | json }};
-        
+        window.testVariant = {{ product.selected_or_first_available_variant.inventory_quantity | json }};
         {% comment %} Oversell threshold {% endcomment %}
         {% if product.metafields.my_fields.oversell_threshold %}
           window.productOversellThreshold = {{ product.metafields.my_fields.oversell_threshold }};
         {% else %}
           window.productOversellThreshold = {{ settings.global_oversell_threshold }};
         {% endif %}
+        {% comment %} 
+          Create a new JS variant array that has a inventory_quantity
+          as for some reason Shopify doesn't populate the inventory_quantity field automatically with JSON filter
+          See post: https://community.shopify.com/c/shopify-apis-and-sdks/why-would-product-variants-be-missing-the-inventory-policy-field/td-p/1153789
+
+          Also it seems that this object `window.tomitProductInventoryInfo.activeProduct.variants` 
+          `inventoryItem.available` field always returns 0 even though the quantity is below 0
+        {% endcomment %}
+        window.variantsWithInventoryQuantity = [];
+        {% for variant in product.variants %}
+          var variant = {{ variant | json }};
+          variant.inventory_quantity = {{ variant.inventory_quantity | json }};
+          window.variantsWithInventoryQuantity.push(variant);
+        {% endfor %}
       </script>
       <script defer type="module" src="{{ 'built-product-page.js' | asset_url }}"></script>
     {% endif %}
