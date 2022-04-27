@@ -2292,7 +2292,7 @@
         "type": "number",
         "id": "global_oversell_threshold",
         "label": "Oversell maximum product quantity threshold",
-        "default": 5
+        "default": 10
       }
     ]
   }
