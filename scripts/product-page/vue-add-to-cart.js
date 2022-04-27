@@ -51,14 +51,16 @@ const initVueATC = () => {
       mutateWithLocations(variantInventory, variantLocationsInventory) {
         var mutatedInventory = variantInventory;
 
-        const { inventoryItem, inventoryPolicy } = variantLocationsInventory;
+        const { inventoryItem } = variantLocationsInventory;
         const { delivery, locations, online } = inventoryItem;
 
         // Oversell flags
         const oversellThreshold = window.productOversellThreshold * -1;
-        const variantWithQuantity = window.variantsWithInventoryQuantity.find(({ id }) => id == variant.id);
-        const variantQuantity = variantWithQuantity ? variantWithQuantity.inventory_quantity : undefined;
-        const variantIsAllowedToOversell = inventoryPolicy === 'CONTINUE' && variantQuantity >= oversellThreshold;
+        const variantWithInventoryData = window.variantsWithInventoryData.find(({ id }) => id == variant.id);
+        const inventoryQuantity = variantWithInventoryData ? variantWithInventoryData.inventory_quantity : undefined;
+        const inventoryPolicy = variantWithInventoryData ? variantWithInventoryData.inventory_policy : undefined;
+        const variantIsAllowedToOversell = inventoryPolicy === 'continue' && inventoryQuantity >= oversellThreshold;
+        // console.log({ variantIsAllowedToOversell, inventoryPolicy, inventoryQuantity, oversellThreshold })
         
         /*
           'locations' from itemInventory already only account for stores which have Click & Collect enabled in Settings

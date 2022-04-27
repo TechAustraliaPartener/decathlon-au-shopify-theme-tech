@@ -25,18 +25,19 @@
           window.productOversellThreshold = {{ settings.global_oversell_threshold }};
         {% endif %}
         {% comment %} 
-          Create a new JS variant array that has a inventory_quantity
-          as for some reason Shopify doesn't populate the inventory_quantity field automatically with JSON filter
+          Create a new JS variant array with `inventory_policy` and `inventory_quantity` field
+          as for some reason Shopify doesn't populate the invetory fields automatically with JSON filter
           See post: https://community.shopify.com/c/shopify-apis-and-sdks/why-would-product-variants-be-missing-the-inventory-policy-field/td-p/1153789
 
           Also it seems that this object `window.tomitProductInventoryInfo.activeProduct.variants` 
           `inventoryItem.available` field always returns 0 even though the quantity is below 0
         {% endcomment %}
-        window.variantsWithInventoryQuantity = [];
+        window.variantsWithInventoryData = [];
         {% for variant in product.variants %}
           var variant = {{ variant | json }};
+          variant.inventory_policy = {{ variant.inventory_policy | json }};
           variant.inventory_quantity = {{ variant.inventory_quantity | json }};
-          window.variantsWithInventoryQuantity.push(variant);
+          window.variantsWithInventoryData.push(variant);
         {% endfor %}
       </script>
       <script defer type="module" src="{{ 'built-product-page.js' | asset_url }}"></script>
