@@ -39,6 +39,8 @@ const initVueATC = () => {
           $('.js-de-stock-info-message .message').text(translations.retrieving_stock);
           $('.js-de-stock-info-message').addClass(LOADING_CLASS).css({"display":"block"});
           $('.js-de-stock-info-message .lds-ring').css({"display":"inline-block"});
+          // Disable add to cart button while retrieving stocks
+          $('#AddToCart').prop('disabled', true);
         }
 
         const variantLocationsInventory = (window.inventories || {})[variant];
@@ -117,6 +119,9 @@ const initVueATC = () => {
             stockRemoveClass = IN_STOCK_CLASS;
           }
         }
+
+        // Enable add to cart button once stock data has been retrieve
+        $('#AddToCart').prop('disabled', false);
 
         $('.js-de-stock-info-message .message').text(stockInfoMessage);
         $('.js-de-stock-info-message').addClass(stockAddClass).removeClass(stockRemoveClass).removeClass(LOADING_CLASS);
