@@ -2284,5 +2284,16 @@
         "default": true
       }
     ]
+  },
+  {
+    "name": "Global Oversell Threshold",
+    "settings": [
+      {
+        "type": "number",
+        "id": "global_oversell_threshold",
+        "label": "Oversell maximum product quantity threshold",
+        "default": 5
+      }
+    ]
   }
 ]

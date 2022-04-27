@@ -17,6 +17,13 @@
       {% include 'moment-timezone.js' %}
       <script>
         window.firstVariant = {{ product.selected_or_first_available_variant | json }};
+        
+        {% comment %} Oversell threshold {% endcomment %}
+        {% if product.metafields.my_fields.oversell_threshold %}
+          window.productOversellThreshold = {{ product.metafields.my_fields.oversell_threshold }};
+        {% else %}
+          window.productOversellThreshold = {{ settings.global_oversell_threshold }};
+        {% endif %}
       </script>
       <script defer type="module" src="{{ 'built-product-page.js' | asset_url }}"></script>
     {% endif %}
