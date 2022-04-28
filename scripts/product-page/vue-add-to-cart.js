@@ -59,7 +59,7 @@ const initVueATC = () => {
         const variantWithInventoryData = window.variantsWithInventoryData.find(({ id }) => id == variant.id);
         const inventoryQuantity = variantWithInventoryData ? variantWithInventoryData.inventory_quantity : undefined;
         const inventoryPolicy = variantWithInventoryData ? variantWithInventoryData.inventory_policy : undefined;
-        const variantIsAllowedToOversell = inventoryPolicy === 'continue' && inventoryQuantity >= oversellThreshold;
+        const variantIsAllowedToOversell = inventoryPolicy === 'continue' && inventoryQuantity > oversellThreshold;
         // console.log({ variantIsAllowedToOversell, inventoryPolicy, inventoryQuantity, oversellThreshold })
         
         /*
