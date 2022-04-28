@@ -2,6 +2,7 @@
 
 import $ from 'jquery';
 import Vue from 'vue/dist/vue.esm.js';
+import { checkIfVariantIsAllowedToOversell } from './product-data';
 
 const validationTextEl = document.querySelector('.js-de-validation-message');
 const variantInventory = window.firstVariant;
@@ -51,16 +52,12 @@ const initVueATC = () => {
       mutateWithLocations(variantInventory, variantLocationsInventory) {
         var mutatedInventory = variantInventory;
 
-        const { inventoryItem } = variantLocationsInventory;
+        const { inventoryItem, id } = variantLocationsInventory;
+        const variantId = id;
         const { delivery, locations, online } = inventoryItem;
 
         // Oversell flags
-        const oversellThreshold = window.productOversellThreshold * -1;
-        const variantWithInventoryData = window.variantsWithInventoryData.find(({ id }) => id == variant.id);
-        const inventoryQuantity = variantWithInventoryData ? variantWithInventoryData.inventory_quantity : undefined;
-        const inventoryPolicy = variantWithInventoryData ? variantWithInventoryData.inventory_policy : undefined;
-        const variantIsAllowedToOversell = inventoryPolicy === 'continue' && inventoryQuantity > oversellThreshold;
-        // console.log({ variantIsAllowedToOversell, inventoryPolicy, inventoryQuantity, oversellThreshold })
+        const variantIsAllowedToOversell = checkIfVariantIsAllowedToOversell(variantId);
         
         /*
           'locations' from itemInventory already only account for stores which have Click & Collect enabled in Settings
@@ -78,12 +75,12 @@ const initVueATC = () => {
 
         // item is available if there is at least one stock in any location or delivery/online
         // mutatedInventory.available = (delivery.available > 0 || filteredLocations.length > 0 || filteredOnline.length > 0);
-        mutatedInventory.available = (filteredLocations.length > 0 || delivery.available > 0 || variantIsAllowedToOversell);
+        mutatedInventory.available = (filteredLocations.length > 0 || delivery.available > 0 || (delivery.available === 0 && variantIsAllowedToOversell === true));
         mutatedInventory.artificially_unavailable = (locations.length < 1 && delivery.available < 1);
 
         if (filteredLocations.length < 1 && 
           delivery.available < 1 && 
-          variantIsAllowedToOversell === false
+          (delivery.available === 0 && variantIsAllowedToOversell === false)
         ) {
           $('.js-de-validation-message').text('Out of stock');
         }
@@ -109,7 +106,7 @@ const initVueATC = () => {
           stockInfoMessage = translations.low_stock;
           stockAddClass = LOW_STOCK_CLASS;
           stockRemoveClass = IN_STOCK_CLASS;
-        } else if (variantIsAllowedToOversell) {
+        } else if (delivery.available === 0 && variantIsAllowedToOversell) {
           stockInfoMessage = translations.oversell;
           stockAddClass = LOW_STOCK_CLASS;
           stockRemoveClass = IN_STOCK_CLASS;

@@ -207,6 +207,19 @@ export const getVariantOptions = variant => ({
   model: variant[MODEL_OPTION]
 });
 
+export const checkIfVariantIsAllowedToOversell = (variantId) => {
+  if (!window.productOversellThreshold && !window.variantsWithInventoryData) return false;
+  
+  const oversellThreshold = window.productOversellThreshold * -1;
+  const variantWithInventoryData = window.variantsWithInventoryData.find(({ id }) => id == variantId);
+  const inventoryQuantity = variantWithInventoryData ? variantWithInventoryData.inventory_quantity : undefined;
+  const inventoryPolicy = variantWithInventoryData ? variantWithInventoryData.inventory_policy : undefined;
+  const variantIsAllowedToOversell = inventoryPolicy === 'continue' && inventoryQuantity > oversellThreshold;
+  // console.log('Test checkIfVariantIsAllowedToOversell', { variantId, variantIsAllowedToOversell, inventoryPolicy, inventoryQuantity, oversellThreshold })
+
+  return variantIsAllowedToOversell;
+}
+
 /**
  * Helper to know if a product variant is available
  * @param {Variant} variant
@@ -228,7 +241,12 @@ export const isVariantAvailable = variant => {
 
     isAvailable = (filteredLocations.length > 0 || delivery.available > 0);
   } else {
-    return variant && variant.available;
+    isAvailable = variant && variant.available;
+  }
+
+  // If unavailable check if it oversell
+  if (variant && isAvailable === false) {
+    isAvailable = checkIfVariantIsAllowedToOversell(variant.id);
   }
 
   // return variant && variant.available;
