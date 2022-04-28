@@ -38,17 +38,17 @@
     "megamenu_bg_colour": "#1c82c3",
     "custom_fields_terms_conditions": "I agree to the <a href=\"\/pages\/terms-and-conditions-membership\" target=\"_blank\">T&Cs<\/a> and <a href=\"\/pages\/privacy-policy\" target=\"_blank\">Privacy Policy<\/a> for creating an account.",
     "is_lookbook": false,
-    "product_returns_text": "Lifetime Returns* For MVP",
-    "product_shipping_text": "Free shipping for orders above $100 (excludes bulky orders)",
-    "product_bulk_returns_text": "Lifetime Returns* For MVP",
-    "product_bulk_shipping_text": "Delivery from $50 Sydney Metro, confirmation at the checkout!",
+    "product_returns_text": "Easy Returns | Lifetime For MVPs*",
+    "product_shipping_text": "Australia Wide Delivery",
+    "product_bulk_returns_text": "Easy Returns | Lifetime For MVPs*",
+    "product_bulk_shipping_text": "Australia Wide Delivery",
     "show_associated_products_carousel_on_product_page": true,
     "show_similar_products_carousel_on_product_page": true,
-    "show_recently_viewed_carousel_on_product_page": true,
+    "show_recently_viewed_carousel_on_product_page": false,
     "algolia_variant_image_dimensions": "600x600",
     "algolia_size_sorting_order": "3XS,2XS,XS,XS-S,XS\/S,S,S-M,S\/M,M,M-L,M\/L,L,L-XL,L\/XL,XL,2XL,3XL,4XL,5XL",
-    "show_recently_viewed_carousel_on_collection_page": true,
-    "show_recently_viewed_carousel_on_search_page": true,
+    "show_recently_viewed_carousel_on_collection_page": false,
+    "show_recently_viewed_carousel_on_search_page": false,
     "footer_slider_products": true,
     "footer_slider_products_title": "",
     "footer_slider_products_collection": "trending-products",
@@ -57,18 +57,18 @@
     "newsletter_form_action": "",
     "blue_band__home_title": "Our Promise:",
     "blue_band__yellowgram_icon": "shopify:\/\/shop_images\/delighted.png",
-    "blue_band__yellowgram_text": "Delighted or Delighted",
+    "blue_band__yellowgram_text": "<strong>Satisfaction is our Mission!<\/strong>",
     "blue_band__fact_one_icon": "shopify:\/\/shop_images\/shipping.png",
-    "blue_band__fact_one_text": "<u>Free Shipping Over $100 (excludes bulky orders)<\/u>",
+    "blue_band__fact_one_text": "<strong>Australia Wide Delivery<\/strong>",
     "blue_band__fact_one_link": "https:\/\/decathlon-aus.reamaze.com\/kb\/delivery\/how-much-does-shipping-cost",
     "blue_band__fact_two_icon": "shopify:\/\/shop_images\/pickup.png",
-    "blue_band__fact_two_text": "Free Click & Collect",
+    "blue_band__fact_two_text": "<strong>2hr Click & Collect<\/strong>",
     "blue_band__fact_two_link": "https:\/\/decathlon-aus.reamaze.com\/kb\/click-and-collect",
     "blue_band__fact_three_icon": "shopify:\/\/shop_images\/returns.png",
-    "blue_band__fact_three_text": "<u>Lifetime Returns* For MVP<\/u>",
+    "blue_band__fact_three_text": "<strong>Easy Returns<\/strong>",
     "blue_band__fact_three_link": "https:\/\/decathlon-aus.reamaze.com\/kb\/returns-and-exchange",
     "blue_band__fact_four_icon": "shopify:\/\/shop_images\/star_d0ff1cba-9d45-4c1d-bf01-a5a431b5e5fd.png",
-    "blue_band__fact_four_text": "91% of Products have 4 to 5 Stars",
+    "blue_band__fact_four_text": "<strong>Famous Decathlon Quality<\/strong> - 91% of Products have 4 to 5 Stars",
     "blue_band__fact_four_link": "",
     "cart_notes_enable": false,
     "cart_vendor_enable": false,
@@ -262,10 +262,10 @@
     "exception_page_handle": "",
     "hide_header": false,
     "hide_footer": false,
-    "returns_policy_bulky_and_safety": "Product can only be returned if proved faulty",
-    "returns_policy_safety": "Product can only be returned if proved faulty",
-    "returns_policy_bulky": "Lifetime Returns* For MVP (see T&Cs)",
-    "returns_policy_default": "Lifetime Returns* For MVP (see T&Cs)",
+    "returns_policy_bulky_and_safety": "On Faulty Goods",
+    "returns_policy_safety": "On Faulty Goods",
+    "returns_policy_bulky": "Easy Returns",
+    "returns_policy_default": "Easy Returns",
     "threshold_for_afterpay_enabled": true,
     "threshold_for_afterpay_gateway": "Afterpay",
     "threshold_for_afterpay_threshold": "50",
@@ -278,10 +278,12 @@
     "threshold_for_zip_pay_cart_message": "[gateway] is available on orders over [threshold]",
     "threshold_for_zip_pay_product_message": "[gateway] is available on orders over [threshold]",
     "threshold_for_zip_pay_checkout_message": "[gateway] is available on orders over [threshold]",
-    "free_shipping_threshold": "100",
+    "free_shipping_threshold": "50",
     "free_shipping_max_weight": "22000",
-    "add_to_cart_drawer_line_2": "Free shipping for orders above $150 (excludes bulky orders)",
-    "reviews_min_rating": 3,
+    "add_to_cart_drawer_line_1": "Easy Returns",
+    "add_to_cart_drawer_line_2": "Free delivery for orders above $50* (Bulky Items Syd. Metro Only)",
+    "add_to_cart_drawer_line_3": "2 Hour Click & Collect",
+    "reviews_min_rating": 2,
     "reviews_excluded_countries": "IN",
     "checkout_header_image": "",
     "checkout_logo_position": "left",
@@ -398,11 +400,11 @@
           "4c90425f-fb91-4709-b7f1-246700324116": {
             "type": "store",
             "settings": {
-              "name": "Westfield Miranda, 2228, Pick Up Only",
-              "title": "Westfield Miranda, 2228, Pick Up Only",
+              "name": "Miranda",
+              "title": "Miranda Store, 2228",
               "online_inventory_source": false,
               "enable_c_c": true,
-              "duplicate": "Tempe",
+              "duplicate": "",
               "test_mode": false,
               "street1": "600 Kingsway Westfield",
               "city": "Miranda",
@@ -413,9 +415,9 @@
               "email": "customer.service@decathlon.com",
               "phone_number": "0420 450 076",
               "company": "Decathlon",
-              "ready": "Ready to collect in 3 business days",
-              "ready_checkout": "Ready to collect in 3 business days",
-              "id": "1789-0012",
+              "ready": "Pickup: Ready in 2 Hours",
+              "ready_checkout": "Pickup: Ready in 2 Hours",
+              "id": "2881",
               "tooltip_hours": true,
               "is_same_hours_weekly": false,
               "hours_0_open": "1000",
@@ -432,7 +434,7 @@
               "hours_5_close": "1800",
               "hours_6_open": "0930",
               "hours_6_close": "1800",
-              "announcement": "<p>This is not a Decathlon store. Await for your Ready to Pick up confirmation email, before picking up your order.<\/p>",
+              "announcement": "",
               "tag_exclusion_1": "",
               "tag_exclusion_message_1": "",
               "tag_exclusion_2": "",
@@ -883,42 +885,41 @@
           },
           "1585053394899": {
             "type": "store",
-            "disabled": true,
             "settings": {
-              "name": "UFC Westfield Parramatta (2150)",
-              "title": "UFC Westfield Parramatta, 2150, Pick Up Only",
+              "name": "STM Bondi",
+              "title": "STM Bondi, 2022, Pickup Only",
               "online_inventory_source": false,
-              "enable_c_c": false,
-              "duplicate": "Auburn",
-              "test_mode": true,
-              "street1": "Aird Street",
-              "city": "Parramatta",
-              "zip": "2150",
+              "enable_c_c": true,
+              "duplicate": "Tempe",
+              "test_mode": false,
+              "street1": "426 Oxford St",
+              "city": "Bondi Junction",
+              "zip": "2022",
               "state": "NSW",
               "country": "AU",
-              "checkout_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_1a18e5e3-e835-4fdc-b00c-397f1abcdc3e.jpg",
+              "checkout_image": "shopify:\/\/shop_images\/STMBondi.png",
               "email": "customer.service@decathlon.com",
-              "phone_number": "(02) 9157 5799",
+              "phone_number": "(02) 9386 0430",
               "company": "Decathlon",
-              "ready": "Ready to collect in 2 business days. Bulky items are not available at this location",
-              "ready_checkout": "Ready to collect in 2 business days. Bulky items are not available at this location",
+              "ready": "Ready to collect in 3 business days.",
+              "ready_checkout": "Ready to collect in 3 business days.",
               "id": "1791-0003",
               "tooltip_hours": true,
               "is_same_hours_weekly": false,
-              "hours_0_open": "0700",
-              "hours_0_close": "1500",
-              "hours_1_open": "0700",
-              "hours_1_close": "2100",
-              "hours_2_open": "0700",
-              "hours_2_close": "2100",
-              "hours_3_open": "0700",
-              "hours_3_close": "2100",
-              "hours_4_open": "0900",
-              "hours_4_close": "2100",
-              "hours_5_open": "0700",
-              "hours_5_close": "2100",
-              "hours_6_open": "0700",
-              "hours_6_close": "1500",
+              "hours_0_open": "1000",
+              "hours_0_close": "1700",
+              "hours_1_open": "1000",
+              "hours_1_close": "1700",
+              "hours_2_open": "1000",
+              "hours_2_close": "1700",
+              "hours_3_open": "1000",
+              "hours_3_close": "1700",
+              "hours_4_open": "1000",
+              "hours_4_close": "1900",
+              "hours_5_open": "1000",
+              "hours_5_close": "1700",
+              "hours_6_open": "1000",
+              "hours_6_close": "1700",
               "announcement": "<p>Wait for your Ready to Pick up Your Email. <br\/><br\/><strong>Note:<\/strong> Bikes, Surfboards, Treadmills, Table Tennis Tables & other bulky items won't be available for Click & Collect at this location.<\/p>",
               "tag_exclusion_1": "",
               "tag_exclusion_message_1": "",
@@ -1521,17 +1522,64 @@
               "banner_bg_image": "shopify:\/\/shop_images\/homepage_banner_c2dd224c-c29d-4f59-87a8-2089b915cce1.png",
               "slide_bg_position": "75% -50px",
               "banner_mobile_image": "shopify:\/\/shop_images\/Untitled_design_7_8f54c515-c3df-4cea-bf0c-a5be0b9f4dd4.png",
-              "banner_intro": "",
-              "banner_title": "Bike Delivery for Metro NSW* from $50",
-              "banner_subtitle": "<p><strong>Enjoy Bike delivery from $50 to our Metro NSW residents.<\/strong><\/p>",
+              "banner_intro": "<span style=\"background-color: #e6e6e6; color: #000000;\">Limited Time Only<\/span>",
+              "banner_title": "<span style=\"background-color: #e6e6e6; color: #000000;\">Free Bike Delivery<\/span>",
+              "banner_subtitle": "<p>*Sydney Metro Only, Confirmation at the Checkout. Limited Time Only<\/p>",
               "button_title": "Shop Now",
               "link_url": "shopify:\/\/collections\/bikes",
               "link_title": "Bikes",
               "link_new_window": false
             }
           },
+          "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/weekly-deal3.png",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/weekly-deal3.png",
+              "banner_intro": "<span style=\"background-color: #e6e6e6; color: #000000;\">Discover the Decathlon Difference<\/span>",
+              "banner_title": "<span style=\"background-color: #e6e6e6; color: #000000;\">Australia's Premier Outdoor & Sports Destination<\/span>",
+              "banner_subtitle": "<p>Since 1976, Decathlon has designed, Engineered & Manufactured some of the worlds best sporting goods. And now, for a limited time - Get FREE Shipping on orders over $50<\/p>",
+              "button_title": "VIEW INNOVATIONS",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/innovation-by-decathlon",
+              "link_title": "",
+              "link_new_window": false
+            }
+          },
+          "623e46b1-2abc-4e5b-8ceb-3ca5e428998a": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/HP_banner_Miranda.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Untitled_design_6.png",
+              "banner_intro": "<span style=\"background-color: #e6e6e6; color: #000000;\">Now open!<\/span>",
+              "banner_title": "<span style=\"background-color: #e6e6e6; color: #000000;\">Westfield Miranda<\/span>",
+              "banner_subtitle": "<p>Become a Member Today!<\/p>",
+              "button_title": "Sign Up",
+              "link_url": "https:\/\/login.decathlon.net\/?client_id=e57b2db5-07ff-468e-a8da-85af418a1691#\/sign-up",
+              "link_title": "Sign Up Miranda",
+              "link_new_window": false
+            }
+          },
+          "79522152-c757-4b60-a1be-2d1e49198982": {
+            "type": "slide",
+            "disabled": true,
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_74d4728d-1ab0-477b-ab5d-fa889ddd08a4.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_11ff39d5-af3b-4b1f-88fe-54ff7cf820d5.jpg",
+              "banner_intro": "<span style=\"background-color: #e6e6e6; color: #000000;\">Our Most Popular Bikes & Kids Scooters<\/span>",
+              "banner_title": "<span style=\"background-color: #e6e6e6; color: #000000;\">Discover the range!<\/span>",
+              "banner_subtitle": "<p>*Discover Decathlon's amazing range of Bikes and Scooters!<\/p>",
+              "button_title": "SHOP NOW",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/cycling-gear",
+              "link_title": "Shop Now",
+              "link_new_window": false
+            }
+          },
           "031bbb08-5e30-443d-9d87-351970f1ff5e": {
             "type": "slide",
+            "disabled": true,
             "settings": {
               "banner_bg_image": "shopify:\/\/shop_images\/Untitled_design_9.png",
               "slide_bg_position": "75% -50px",
@@ -1545,26 +1593,28 @@
               "link_new_window": false
             }
           },
-          "623e46b1-2abc-4e5b-8ceb-3ca5e428998a": {
+          "d8afea3b-5e9e-4300-9be9-704fdb285552": {
             "type": "slide",
+            "disabled": true,
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/HP_banner_Miranda.jpg",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Untitled_design_6.png",
               "banner_intro": "",
-              "banner_title": "Miranda we are coming!",
-              "banner_subtitle": "<p><strong>Decathlon Miranda is opening in April! Sign up now to keep up-to-date with all our news.<\/strong><\/p>",
-              "button_title": "Sign Up",
-              "link_url": "https:\/\/login.decathlon.net\/?client_id=e57b2db5-07ff-468e-a8da-85af418a1691#\/sign-up",
-              "link_title": "Sign Up Miranda",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "",
+              "link_title": "",
               "link_new_window": false
             }
           }
         },
         "block_order": [
           "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb",
+          "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b",
+          "623e46b1-2abc-4e5b-8ceb-3ca5e428998a",
+          "79522152-c757-4b60-a1be-2d1e49198982",
           "031bbb08-5e30-443d-9d87-351970f1ff5e",
-          "623e46b1-2abc-4e5b-8ceb-3ca5e428998a"
+          "d8afea3b-5e9e-4300-9be9-704fdb285552"
         ],
         "settings": {}
       },
@@ -1790,6 +1840,17 @@
               "link": "shopify:\/\/pages\/kids-sports-apparel-footwear"
             }
           },
+          "a35476da-14f6-4892-a5e1-c136b3406867": {
+            "type": "category",
+            "settings": {
+              "title": "30% Clearance Items",
+              "image": "shopify:\/\/shop_images\/top-categories-tips.png",
+              "text_color": "#ffffff",
+              "background_color": "#ff252e",
+              "hover_background_color": "#ff0000",
+              "link": "https:\/\/decathlon.com.au\/collections\/30-off-stock-clearance"
+            }
+          },
           "c5bd0b0f-516e-4db7-926f-46c215e1fbdf": {
             "type": "category",
             "settings": {
@@ -1811,31 +1872,21 @@
               "hover_background_color": "#f3f3f3",
               "link": "shopify:\/\/pages\/decathlon-membership"
             }
-          },
-          "a35476da-14f6-4892-a5e1-c136b3406867": {
-            "type": "category",
-            "settings": {
-              "title": "Sale",
-              "image": "shopify:\/\/shop_images\/top-categories-tips.png",
-              "text_color": "#ffffff",
-              "background_color": "#ff252e",
-              "hover_background_color": "#ff0000",
-              "link": "shopify:\/\/collections\/all-sale-products"
-            }
           }
         },
         "block_order": [
           "9718a5a8-65a5-48fb-a58b-c6238bb78960",
           "04eb074d-6845-49dc-917d-3ff13f1fb30e",
           "38cf3fa3-23be-4a21-8ce3-5d37ded9f8f4",
+          "a35476da-14f6-4892-a5e1-c136b3406867",
           "c5bd0b0f-516e-4db7-926f-46c215e1fbdf",
-          "b001623f-dab9-4e48-be17-0e57d5678647",
-          "a35476da-14f6-4892-a5e1-c136b3406867"
+          "b001623f-dab9-4e48-be17-0e57d5678647"
         ],
         "settings": {}
       },
       "163107313302287377": {
         "type": "trending_categories",
+        "disabled": true,
         "blocks": {
           "c2d5bbf2-defb-4062-8a7c-9c520db2185d": {
             "type": "category_tile",
@@ -1847,6 +1898,7 @@
           },
           "2aabd1f3-b77e-4418-843c-995e61af21e7": {
             "type": "category_tile",
+            "disabled": true,
             "settings": {
               "title": "Weight Training",
               "image": "shopify:\/\/shop_images\/PK_Hantle_NEW_2_---_Expires_on_31-08-2025_1.jpg",
@@ -1895,7 +1947,7 @@
           "c74e811a-531f-4b53-89db-8ad5d6ea006d"
         ],
         "settings": {
-          "title": "Trending This Summer"
+          "title": "Enjoy the Outdoors"
         }
       },
       "16316085202ea5cf79": {
@@ -1959,27 +2011,27 @@
           "e1091c93-4efb-4738-b3f6-3a711db62e82"
         ],
         "settings": {
-          "title": "Sports You May Like!"
+          "title": "Outdoor Sports You May Like!"
         }
       },
       "163487525380dd83d2": {
         "type": "featured_collection",
         "settings": {
-          "title": "Fitness Offers",
-          "section_collection": "fitness-sale"
+          "title": "Keep warm with Decathlon",
+          "section_collection": "thermal-winter-layers"
         }
       },
       "16375487170499d43e": {
         "type": "featured_collection",
         "settings": {
-          "title": "Lowest Price, Best Value",
-          "section_collection": "lowest-price-best-value"
+          "title": "Decathlon Originals",
+          "section_collection": "decathlon-originals"
         }
       },
       "1642116157c0ce923f": {
         "type": "featured_collection",
         "settings": {
-          "title": "Innovation by Decathlon",
+          "title": "Decathlon Innovation",
           "section_collection": "innovation-by-decathlon"
         }
       },
@@ -2018,16 +2070,40 @@
           "6df2c7a4-5e5d-47fe-b1e9-c78d013ebd2d"
         ],
         "settings": {}
+      },
+      "1650950354346fb7a1": {
+        "type": "featured_collection",
+        "settings": {
+          "title": "Popular Bikes with Free Delivery*",
+          "section_collection": "bikes"
+        }
+      },
+      "16509507269dac2990": {
+        "type": "featured_collection",
+        "settings": {
+          "title": "Keep Dry with Decathlon",
+          "section_collection": "rain-jackets-pants"
+        }
+      },
+      "1650960580e9623e99": {
+        "type": "featured_collection",
+        "settings": {
+          "title": "Clearance - 30% OFF at Checkout",
+          "section_collection": "30-off-stock-clearance"
+        }
       }
     },
     "content_for_index": [
       "1568939434006",
       "163107170023281063",
+      "1650960580e9623e99",
+      "1650950354346fb7a1",
+      "16509507269dac2990",
+      "163487525380dd83d2",
       "1642116157c0ce923f",
-      "163107313302287377",
       "16375487170499d43e",
-      "16316085202ea5cf79",
-      "163487525380dd83d2"
+      "163107313302287377",
+      "16316085202ea5cf79"
     ]
   },
   "presets": {
