@@ -17,7 +17,6 @@
       {% include 'moment-timezone.js' %}
       <script>
         window.firstVariant = {{ product.selected_or_first_available_variant | json }};
-        window.testVariant = {{ product.selected_or_first_available_variant.inventory_quantity | json }};
         {% comment %} Oversell threshold {% endcomment %}
         {% if product.metafields.my_fields.oversell_threshold %}
           window.productOversellThreshold = {{ product.metafields.my_fields.oversell_threshold }};
@@ -53,6 +52,30 @@
     <script defer nomodule src="{{ 'built-cart-page.js' | asset_url }}"></script>
     <script type="module" src="{{ 'built-product-tile.js' | asset_url }}"></script>
     <script type="module" src="{{ 'built-product-carousel.js' | asset_url }}"></script>
+    <script>
+      {% comment %} 
+        line items with variant `inventory_policy`, `inventory_quantity`, 
+        and product-level oversell threshold
+      {% endcomment %}
+      window.itemsWithVariantInventoryData = [];
+      window.cartItems = {{ cart.items | json }};
+      {% for line_item in cart.items %}
+        var lineItem = {{ line_item | json }};
+        var variant = {{ line_item.variant | json }};
+        variant.inventory_policy = {{ line_item.variant.inventory_policy | json }};
+        variant.inventory_quantity = {{ line_item.variant.inventory_quantity | json }};
+        lineItem.variant = variant;
+        
+        {% comment %} Product oversell threshold {% endcomment %}
+        {% if line_item.product.metafields.my_fields.oversell_threshold %}
+          lineItem.productOversellThreshold = {{ line_item.product.metafields.my_fields.oversell_threshold }};
+        {% else %}
+          lineItem.productOversellThreshold = {{ settings.global_oversell_threshold }};
+        {% endif %}
+
+        window.itemsWithVariantInventoryData.push(lineItem);
+      {% endfor %}
+    </script>
   {% when 'collection' %}
     <script defer src="{{ 'built-collection-page.js' | asset_url }}"></script>
     {% if settings.show_recently_viewed_carousel_on_collection_page %}

@@ -336,6 +336,11 @@ const initCartDisplay = cart => {
           });
         }
 
+        // We only support overselling for delivery only
+        if (app.deliveryOption === 'Delivery' && checkLoc.inStock === 0) {
+          checkLoc.inStock = this.checkIfItemIsAllowedToOversell(item.id) > 0
+        }
+
         return checkLoc.inStock > 0 ? 'in' : 'out';
       },
       currentMax(item) {
@@ -350,6 +355,11 @@ const initCartDisplay = cart => {
           checkLoc = item.locations.find(obj => {
             return obj.name === app.favStore.name;
           });
+        }
+
+        // We only support overselling for delivery only
+        if (app.deliveryOption === 'Delivery' && checkLoc.available === 0) {
+          checkLoc.available = this.checkIfItemIsAllowedToOversell(item.id)
         }
 
         return checkLoc.available;
@@ -376,21 +386,58 @@ const initCartDisplay = cart => {
         console.log('favStore', checkLoc.available);
         return checkLoc ? checkLoc.available : 0;
       },
+      /**
+       * Check if the cart item's variant is allowed to oversell
+       * 
+       * @param {number} itemId 
+       * @returns {number} Returns available quantity if it is allowed to oversell. Otherwise, return 0
+       */
+      checkIfItemIsAllowedToOversell(itemId) {
+        const { variant, productOversellThreshold } = window.itemsWithVariantInventoryData.find(({id}) => id === itemId);
+        const oversellThreshold = productOversellThreshold * -1;
+        const inventoryQuantity = variant ? variant.inventory_quantity : undefined;
+        const inventoryPolicy = variant ? variant.inventory_policy : undefined;
+        const variantIsAllowedToOversell = inventoryPolicy === 'continue' && inventoryQuantity > oversellThreshold;
+        // console.log({
+        //   oversellThreshold,
+        //   inventoryQuantity,
+        //   inventoryPolicy,
+        //   variantIsAllowedToOversell,
+        // })
+        
+        return variantIsAllowedToOversell 
+          ? productOversellThreshold + inventoryQuantity
+          : 0;
+      },
       availabilityMessages(item) {
         var messages = [];
         const app = this;
 
         const delivery = item.delivery;
-        var deliveryMessage = `<div class="${delivery.inStock ? (item.quantity <= delivery.available ? 'available' : 'low') : 'unavailable'}"><p>${delivery.inStock ? (item.quantity <= delivery.available ? 'Available' : 'Not all items available') : 'Unavailable'} for delivery</p></div>`;
+        let available = delivery.available;
+        let inStock = delivery.inStock
+        let oversell = this.checkIfItemIsAllowedToOversell(item.id);
+        if (available === 0) { 
+          available = oversell
+          inStock = oversell > 0
+        }
+
+        var deliveryMessage = `<div class="${inStock ? (item.quantity <= available ? 'available' : 'low') : 'unavailable'}"><p>${inStock ? (item.quantity <= available ? 'Available' : 'Not all items available') : 'Unavailable'} for delivery</p></div>`;
         messages.push(deliveryMessage);
 
         if (app.favStore && app.favStore.name) {
           const favStoreInventory = item.locations.find(obj => {
             return obj.name === app.favStore.name;
           });
-          var ccMessage = `<div class="${favStoreInventory.inStock ? (item.quantity <= favStoreInventory.available ? 'available' : 'low') : 'unavailable'}"><p>${favStoreInventory.inStock ? (item.quantity <= favStoreInventory.available ? 'Available' : 'Not all items available') : 'Unavailable'} for click & collect</p></div>`;
-          if (favStoreInventory.excludedMessage) ccMessage = ccMessage.replace('Unavailable for click & collect', favStoreInventory.excludedMessage);
-          messages.push(ccMessage);
+          // If oversell is true, the message should always be "Unavailable for click and collect" as we only support "Delivery" option for oversell products
+          if (oversell) {
+            ccMessage = `<div class="unavailable"><p>Unavailable for click & collect</p></div>`
+            messages.push(ccMessage)
+          } else {
+            var ccMessage = `<div class="${favStoreInventory.inStock ? (item.quantity <= favStoreInventory.available ? 'available' : 'low') : 'unavailable'}"><p>${favStoreInventory.inStock ? (item.quantity <= favStoreInventory.available ? 'Available' : 'Not all items available') : 'Unavailable'} for click & collect</p></div>`;
+            if (favStoreInventory.excludedMessage) ccMessage = ccMessage.replace('Unavailable for click & collect', favStoreInventory.excludedMessage);
+            messages.push(ccMessage);
+          }
         }
 
         return messages.join('');
