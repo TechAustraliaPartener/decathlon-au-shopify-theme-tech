@@ -26,15 +26,15 @@
     "logo_use_image": false,
     "svg_logo": "xmas_new_option3-01.svg",
     "img_logo": "shopify:\/\/shop_images\/logo_small_9355cf1c-7626-4ada-916d-d809a214ca37.png",
-    "enable_meet_decathlon": true,
-    "header_support_label": "Support",
+    "enable_meet_decathlon": false,
+    "header_support_label": "Help",
     "header_support_link": "https:\/\/decathlon.com.au\/pages\/contact-and-help",
-    "header_store_label": "Stores",
-    "header_sign_in_label": "Sign In",
+    "header_store_label": "Find a Store",
+    "header_sign_in_label": "Login",
     "megamenu_image": "shopify:\/\/shop_images\/Enjoy_up_to_50_off_a_range_of_different_products_this_Black_Friday_1aae9527-3e5f-4f57-97f2-ae032ae24147.png",
-    "megamenu_title": "Easybreath",
-    "megamenu_subtitle": "Shop Now!",
-    "megamenu_link": "https:\/\/decathlon.com.au\/products\/easybreath-surface-snorkeling-mask-1616",
+    "megamenu_title": "The Original Easybreath",
+    "megamenu_subtitle": "Discover More",
+    "megamenu_link": "https:\/\/decathlon.com.au\/search?q=subea%20easybreath&hPP=24&idx=shopify_products_recently_ordered_count_desc&p=0&is_v=1",
     "megamenu_bg_colour": "#1c82c3",
     "custom_fields_terms_conditions": "I agree to the <a href=\"\/pages\/terms-and-conditions-membership\" target=\"_blank\">T&Cs<\/a> and <a href=\"\/pages\/privacy-policy\" target=\"_blank\">Privacy Policy<\/a> for creating an account.",
     "is_lookbook": false,
@@ -886,8 +886,8 @@
           "1585053394899": {
             "type": "store",
             "settings": {
-              "name": "STM Bondi",
-              "title": "STM Bondi, 2022, Pickup Only",
+              "name": "STM Bondi Junction",
+              "title": "STM Bondi Junction, 2022, Pickup Only",
               "online_inventory_source": false,
               "enable_c_c": true,
               "duplicate": "Tempe",
@@ -1516,6 +1516,21 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
+          "b3d1ab5c-d67b-4ad9-8414-a93439802cdd": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Treadmill_1440_x_789px.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Treadmill_478_x_300px.jpg",
+              "banner_intro": "<span style=\"background-color: #e6e6e6; color: #000000;\">Limited Time Only<\/span>",
+              "banner_title": "<span style=\"background-color: #e6e6e6; color: #000000;\">Free Treadmill Delivery<\/span>",
+              "banner_subtitle": "<p>*T3 & T5 Freeform Treadmills only. Sydney Metro Only, Confirmation at the Checkout.<\/p>",
+              "button_title": "SHOP NOW",
+              "link_url": "shopify:\/\/collections\/freeform-treadmills",
+              "link_title": "Free delivery",
+              "link_new_window": false
+            }
+          },
           "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb": {
             "type": "slide",
             "settings": {
@@ -1592,29 +1607,15 @@
               "link_title": "Shoe Selector",
               "link_new_window": false
             }
-          },
-          "d8afea3b-5e9e-4300-9be9-704fdb285552": {
-            "type": "slide",
-            "disabled": true,
-            "settings": {
-              "slide_bg_position": "75% -50px",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "",
-              "link_title": "",
-              "link_new_window": false
-            }
           }
         },
         "block_order": [
+          "b3d1ab5c-d67b-4ad9-8414-a93439802cdd",
           "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb",
           "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b",
           "623e46b1-2abc-4e5b-8ceb-3ca5e428998a",
           "79522152-c757-4b60-a1be-2d1e49198982",
-          "031bbb08-5e30-443d-9d87-351970f1ff5e",
-          "d8afea3b-5e9e-4300-9be9-704fdb285552"
+          "031bbb08-5e30-443d-9d87-351970f1ff5e"
         ],
         "settings": {}
       },
@@ -2011,7 +2012,7 @@
           "e1091c93-4efb-4738-b3f6-3a711db62e82"
         ],
         "settings": {
-          "title": "Outdoor Sports You May Like!"
+          "title": "Popular Categories"
         }
       },
       "163487525380dd83d2": {
@@ -2091,6 +2092,20 @@
           "title": "Clearance - 30% OFF at Checkout",
           "section_collection": "30-off-stock-clearance"
         }
+      },
+      "165115029729e3ba5b": {
+        "type": "featured_collection",
+        "settings": {
+          "title": "Gear Up with Decathlon",
+          "section_collection": "soccer-training-equipment"
+        }
+      },
+      "1651153473715f6dc1": {
+        "type": "featured_collection",
+        "settings": {
+          "title": "Top Sellers",
+          "section_collection": "trending-products"
+        }
       }
     },
     "content_for_index": [
@@ -2100,6 +2115,8 @@
       "1650950354346fb7a1",
       "16509507269dac2990",
       "163487525380dd83d2",
+      "165115029729e3ba5b",
+      "1651153473715f6dc1",
       "1642116157c0ce923f",
       "16375487170499d43e",
       "163107313302287377",
