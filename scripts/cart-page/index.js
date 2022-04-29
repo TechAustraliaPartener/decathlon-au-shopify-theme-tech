@@ -429,9 +429,15 @@ const initCartDisplay = cart => {
           const favStoreInventory = item.locations.find(obj => {
             return obj.name === app.favStore.name;
           });
-          // If oversell is true, the message should always be "Unavailable for click and collect" as we only support "Delivery" option for oversell products
+          /**
+           * If oversell is true, the message should always be "Unavailable for click and collect" as we only support "Delivery" option for oversell products
+           * And add `Product available for delivery. Ships within 3 weeks` message
+           **/ 
           if (oversell) {
-            ccMessage = `<div class="unavailable"><p>Unavailable for click & collect</p></div>`
+            ccMessage = `
+              <div class="low"><p>${window.translations.product_stock.oversell_cart || ''}</p></div>
+              <div class="unavailable"><p>Unavailable for click & collect</p></div>
+            `;
             messages.push(ccMessage)
           } else {
             var ccMessage = `<div class="${favStoreInventory.inStock ? (item.quantity <= favStoreInventory.available ? 'available' : 'low') : 'unavailable'}"><p>${favStoreInventory.inStock ? (item.quantity <= favStoreInventory.available ? 'Available' : 'Not all items available') : 'Unavailable'} for click & collect</p></div>`;
