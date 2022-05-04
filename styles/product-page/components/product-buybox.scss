@@ -61,6 +61,24 @@
     color: $color-low;
   }
 
+  &.oversell .message {
+    text-align: right;
+
+    @media (min-width: $breakpoint-lg) {
+      text-align: left;
+    }
+  }
+
+  &.oversell .message > :nth-child(1){
+    color: #7ABE02;
+    display: block;
+  }
+
+  &.oversell .message > :nth-child(2){
+    color: #47741E;
+    display: block;
+  }
+
 }
 
 .js-de-stock-info-message {

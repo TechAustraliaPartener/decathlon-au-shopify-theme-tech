@@ -343,8 +343,9 @@
       "in_stock": "In Stock",
       "low_stock": "Low Stock",
       "pickup_only": "Pickup Only",
-      "oversell": "Product available for delivery. Ships within 3 weeks",
-      "oversell_cart": "Ships within 3 weeks",
+      "oversell_available": "Available to Order",
+      "oversell_eta": "ETA: 10-15 Business Days",
+      "oversell_cart": "ETA: 10-15 Business Days",
       "wishlist_disabled_message": "Create an account or sign in to save your wishlist",
       "buy_now_pay_later": "Buy now, Pay later:"
     },

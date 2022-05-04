@@ -14,6 +14,7 @@ const translations = window.translations.product_stock;
 const LOADING_CLASS = 'loading';
 const IN_STOCK_CLASS = 'in_stock';
 const LOW_STOCK_CLASS = 'low_stock';
+const OVERSELL_CLASS = 'oversell';
 const addToCartDrawerEnabled = window.add_to_cart_drawer_enabled;
 
 const initVueATC = () => {
@@ -107,9 +108,13 @@ const initVueATC = () => {
           stockAddClass = LOW_STOCK_CLASS;
           stockRemoveClass = IN_STOCK_CLASS;
         } else if (delivery.available === 0 && variantIsAllowedToOversell) {
-          stockInfoMessage = translations.oversell;
-          stockAddClass = LOW_STOCK_CLASS;
+          stockInfoMessage = `<span>${translations.oversell_available}</span> <span>${translations.oversell_eta}</span>`;
+          stockAddClass = OVERSELL_CLASS;
           stockRemoveClass = IN_STOCK_CLASS;
+          // Update locations inventory delivery data
+          delivery.ready = translations.oversell_available;
+          delivery.availability.class = 'in';
+          delivery.availability.text = translations.oversell_eta
         } else {
           // If variant is NOT in stock for delivery but available in locations offering Click & Collect
           if (locationsAvailable > 0) {
@@ -122,7 +127,7 @@ const initVueATC = () => {
         // Enable add to cart button once stock data has been retrieve
         $('#AddToCart').prop('disabled', false);
 
-        $('.js-de-stock-info-message .message').text(stockInfoMessage);
+        $('.js-de-stock-info-message .message').html(stockInfoMessage);
         $('.js-de-stock-info-message').addClass(stockAddClass).removeClass(stockRemoveClass).removeClass(LOADING_CLASS);
 
         if ($('.js-de-stock-info-message .message').text().length > 0) {

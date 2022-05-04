@@ -435,7 +435,7 @@ const initCartDisplay = cart => {
            **/ 
           if (oversell) {
             ccMessage = `
-              <div class="low"><p>${window.translations.product_stock.oversell_cart || ''}</p></div>
+              <div class="available"><p>${window.translations.product_stock.oversell_cart || ''}</p></div>
               <div class="unavailable"><p>Unavailable for click & collect</p></div>
             `;
             messages.push(ccMessage)
