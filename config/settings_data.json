@@ -1516,39 +1516,23 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
-          "fd42a414-bdb4-4ea1-8aa3-f6105401b6a2": {
+          "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/15_off_Sitewide_V2_1440_x_789px.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/Supplements_1440_x_789px_00794abf-4191-46e5-a448-fc6522e0176d.jpg",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/15_off_Sitewide_V2_478_x_300px.jpg",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Supplements_478_x_300px_286f1ba3-3333-4ad3-bd1d-24a4e5bead6d.jpg",
               "banner_intro": "",
-              "banner_title": "15% OFF SITEWIDE EXTENDED^",
-              "banner_subtitle": "<p>^7pm 03.05.2022 - 7am AEST 05.05.2022. Discount at cart. Offer not valid instore. Offer on full price items only, whilst stocks last.<\/p>",
+              "banner_title": "Free Supplements Delivery*",
+              "banner_subtitle": "<p>*Free shipping at cart. Limited time. Limited stock available. Exclusions apply.<\/p>",
               "button_title": "SHOP NOW",
-              "link_url": "shopify:\/\/collections\/flash-sale",
-              "link_title": "",
-              "link_new_window": false
-            }
-          },
-          "b83588ec-aca2-4329-8760-9267d96f1b3e": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Mothers_Day_1440_x_789px.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Mothers_Day_478_x_300px.jpg",
-              "banner_intro": "",
-              "banner_title": "<span style=\"background-color: #e6e6e6; color: #000000;\">Don't Forget About Mother's Day<\/span>",
-              "banner_subtitle": "<p>*Limited stock available. Exclusions apply. Selected products, colours & sizes. T&Cs apply.<\/p>",
-              "button_title": "SHOP NOW",
-              "link_url": "shopify:\/\/collections\/mothers-day-gifts",
+              "link_url": "shopify:\/\/collections\/free-delivery-on-supplements",
               "link_title": "",
               "link_new_window": false
             }
           },
           "145847d3-2db7-45f7-8ef6-38db22a4156a": {
             "type": "slide",
-            "disabled": true,
             "settings": {
               "banner_bg_image": "shopify:\/\/shop_images\/Puma_1440_x_789px.jpg",
               "slide_bg_position": "75% -50px",
@@ -1577,21 +1561,6 @@
               "link_new_window": false
             }
           },
-          "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Supplements_1440_x_789px_00794abf-4191-46e5-a448-fc6522e0176d.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Supplements_478_x_300px_286f1ba3-3333-4ad3-bd1d-24a4e5bead6d.jpg",
-              "banner_intro": "",
-              "banner_title": "Free Supplements Delivery*",
-              "banner_subtitle": "<p>*Free shipping at cart. Limited time. Limited stock available. Exclusions apply.<\/p>",
-              "button_title": "SHOP NOW",
-              "link_url": "shopify:\/\/collections\/free-delivery-on-supplements",
-              "link_title": "",
-              "link_new_window": false
-            }
-          },
           "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb": {
             "type": "slide",
             "settings": {
@@ -1607,17 +1576,17 @@
               "link_new_window": false
             }
           },
-          "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b": {
+          "b83588ec-aca2-4329-8760-9267d96f1b3e": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/weekly-deal3.png",
+              "banner_bg_image": "shopify:\/\/shop_images\/Mothers_Day_1440_x_789px.jpg",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/weekly-deal3.png",
-              "banner_intro": "<span style=\"background-color: #e6e6e6; color: #000000;\">Discover the Decathlon Difference<\/span>",
-              "banner_title": "<span style=\"background-color: #e6e6e6; color: #000000;\">Australia's Premier Outdoor & Sports Destination<\/span>",
-              "banner_subtitle": "<p>Since 1976, Decathlon has designed, Engineered & Manufactured some of the worlds best sporting goods. And now, for a limited time - Get FREE Shipping on orders over $50<\/p>",
-              "button_title": "VIEW INNOVATIONS",
-              "link_url": "https:\/\/decathlon.com.au\/collections\/innovation-by-decathlon",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Mothers_Day_478_x_300px.jpg",
+              "banner_intro": "",
+              "banner_title": "<span style=\"background-color: #e6e6e6; color: #000000;\">Don't Forget About Mother's Day<\/span>",
+              "banner_subtitle": "<p>*Limited stock available. Exclusions apply. Selected products, colours & sizes. T&Cs apply.<\/p>",
+              "button_title": "SHOP NOW",
+              "link_url": "shopify:\/\/collections\/mothers-day-gifts",
               "link_title": "",
               "link_new_window": false
             }
@@ -1636,17 +1605,65 @@
               "link_title": "Sign Up Miranda",
               "link_new_window": false
             }
+          },
+          "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/weekly-deal3.png",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/weekly-deal3.png",
+              "banner_intro": "<span style=\"background-color: #e6e6e6; color: #000000;\">Discover the Decathlon Difference<\/span>",
+              "banner_title": "<span style=\"background-color: #e6e6e6; color: #000000;\">Australia's Premier Outdoor & Sports Destination<\/span>",
+              "banner_subtitle": "<p>Since 1976, Decathlon has designed, Engineered & Manufactured some of the worlds best sporting goods. And now, for a limited time - Get FREE Shipping on orders over $50<\/p>",
+              "button_title": "VIEW INNOVATIONS",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/innovation-by-decathlon",
+              "link_title": "",
+              "link_new_window": false
+            }
+          },
+          "031bbb08-5e30-443d-9d87-351970f1ff5e": {
+            "type": "slide",
+            "disabled": true,
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Untitled_design_9.png",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Untitled_design_8_de0fde00-4520-428b-bd91-c2b1eb44f716.png",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "https:\/\/decathlon.com.au\/pages\/how-to-choose-running-shoe",
+              "link_title": "Shoe Selector",
+              "link_new_window": false
+            }
+          },
+          "79522152-c757-4b60-a1be-2d1e49198982": {
+            "type": "slide",
+            "disabled": true,
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_74d4728d-1ab0-477b-ab5d-fa889ddd08a4.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_11ff39d5-af3b-4b1f-88fe-54ff7cf820d5.jpg",
+              "banner_intro": "<span style=\"background-color: #e6e6e6; color: #000000;\">Our Most Popular Bikes & Kids Scooters<\/span>",
+              "banner_title": "<span style=\"background-color: #e6e6e6; color: #000000;\">Discover the range!<\/span>",
+              "banner_subtitle": "<p>*Discover Decathlon's amazing range of Bikes and Scooters!<\/p>",
+              "button_title": "SHOP NOW",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/cycling-gear",
+              "link_title": "Shop Now",
+              "link_new_window": false
+            }
           }
         },
         "block_order": [
-          "fd42a414-bdb4-4ea1-8aa3-f6105401b6a2",
-          "b83588ec-aca2-4329-8760-9267d96f1b3e",
+          "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9",
           "145847d3-2db7-45f7-8ef6-38db22a4156a",
           "b3d1ab5c-d67b-4ad9-8414-a93439802cdd",
-          "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9",
           "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb",
+          "b83588ec-aca2-4329-8760-9267d96f1b3e",
+          "623e46b1-2abc-4e5b-8ceb-3ca5e428998a",
           "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b",
-          "623e46b1-2abc-4e5b-8ceb-3ca5e428998a"
+          "031bbb08-5e30-443d-9d87-351970f1ff5e",
+          "79522152-c757-4b60-a1be-2d1e49198982"
         ],
         "settings": {}
       },
@@ -1816,7 +1833,7 @@
           "b6c50233-aad8-4a5a-8216-cdf77b1a7b69": {
             "type": "label",
             "settings": {
-              "title": "15% OFF*",
+              "title": "Free Delivery*",
               "bg_colour": "#f20b0b",
               "text_colour": "#ffffff"
             }
@@ -1883,7 +1900,6 @@
           },
           "a35476da-14f6-4892-a5e1-c136b3406867": {
             "type": "category",
-            "disabled": true,
             "settings": {
               "title": "30% Clearance Items",
               "image": "shopify:\/\/shop_images\/top-categories-tips.png",
@@ -2129,7 +2145,6 @@
       },
       "1650960580e9623e99": {
         "type": "featured_collection",
-        "disabled": true,
         "settings": {
           "title": "Clearance - 30% OFF at Checkout",
           "section_collection": "30-off-stock-clearance"
