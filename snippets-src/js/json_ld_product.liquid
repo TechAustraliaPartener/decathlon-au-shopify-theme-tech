@@ -2,6 +2,9 @@
 {% include 'js-json_ld_product_images' %}
 {% assign product_rating = product.metafields.ratings.product_rating %}
 {% assign reviews_count = product.metafields.reviews.recent_reviews | split: '{"total_item_count"=>' | last | split: "," | first | abs %}
+
+{% assign total_review_item_count = product.metafields.reviews.recent_reviews_object.total_item_count | plus: 0 %}
+
 {%- assign price_valid_until = 'now' | date: '%s' | plus: 31536000 | date: '%Y-%m-%d' -%}
 
 <script type="application/ld+json">
@@ -21,15 +24,15 @@
     "sku": "{{ current_variant.sku }}",
   {%- endif -%}
   "brand": {
-    "@type": "Thing",
+    "@type": "Brand",
     "name": "{{ product.vendor | escape }}"
   },
   {% if product_rating %}
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "{{ product_rating }}"
-      {% if reviews_count %}
-        ,"reviewCount": "{{ reviews_count }}"
+      {% if total_review_item_count %}
+        ,"reviewCount": "{{ total_review_item_count }}"
       {% endif %}
     },
   {% endif %}
