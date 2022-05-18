@@ -1516,6 +1516,21 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
+          "c8d43091-004a-4ebf-962d-d1a8a9a36725": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Snow_Sale_Starts_1440_x_789px_b7d1e398-cb8b-4044-8913-a71fc1ed1b38.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Snow_Sale_Starts_478_x_300px_836aebc9-7dfd-4ed4-a8a1-d17845d73777.jpg",
+              "banner_intro": "",
+              "banner_title": "Up to 50% off Snow Sale",
+              "banner_subtitle": "<p><em>^Up to 50% off selected products colours, models. Sale ends 29\/05 11.59pm AEST or until stocks last.<\/em><\/p>",
+              "button_title": "SHOP NOW",
+              "link_url": "shopify:\/\/collections\/decathlon-snow-sale",
+              "link_title": "",
+              "link_new_window": false
+            }
+          },
           "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9": {
             "type": "slide",
             "settings": {
@@ -1527,21 +1542,6 @@
               "banner_subtitle": "<p>*Free shipping at cart. Limited time. Limited stock available. Exclusions apply.<\/p>",
               "button_title": "SHOP NOW",
               "link_url": "shopify:\/\/collections\/free-delivery-on-supplements",
-              "link_title": "",
-              "link_new_window": false
-            }
-          },
-          "145847d3-2db7-45f7-8ef6-38db22a4156a": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Puma_1440_x_789px.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Puma_478_x_300px.jpg",
-              "banner_intro": "<span style=\"background-color: #e6e6e6; color: #000000;\">*Prices already marked. Selected products, colours and sizes only. T&Cs apply.<\/span>",
-              "banner_title": "<span style=\"background-color: #e6e6e6; color: #000000;\">20% off All Puma Women's Apparel*<\/span>",
-              "banner_subtitle": "",
-              "button_title": "SHOP NOW",
-              "link_url": "https:\/\/decathlon.com.au\/search?q=puma&hPP=24&idx=shopify_products&p=0&dFR%5Bnamed_tags.GENDER_ID%5D%5B0%5D=3&is_v=1",
               "link_title": "",
               "link_new_window": false
             }
@@ -1576,21 +1576,6 @@
               "link_new_window": false
             }
           },
-          "b83588ec-aca2-4329-8760-9267d96f1b3e": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Mothers_Day_1440_x_789px.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Mothers_Day_478_x_300px.jpg",
-              "banner_intro": "",
-              "banner_title": "<span style=\"background-color: #e6e6e6; color: #000000;\">Don't Forget About Mother's Day<\/span>",
-              "banner_subtitle": "<p>*Limited stock available. Exclusions apply. Selected products, colours & sizes. T&Cs apply.<\/p>",
-              "button_title": "SHOP NOW",
-              "link_url": "shopify:\/\/collections\/mothers-day-gifts",
-              "link_title": "",
-              "link_new_window": false
-            }
-          },
           "623e46b1-2abc-4e5b-8ceb-3ca5e428998a": {
             "type": "slide",
             "settings": {
@@ -1617,6 +1602,54 @@
               "banner_subtitle": "<p>Since 1976, Decathlon has designed, Engineered & Manufactured some of the worlds best sporting goods. And now, for a limited time - Get FREE Shipping on orders over $50<\/p>",
               "button_title": "VIEW INNOVATIONS",
               "link_url": "https:\/\/decathlon.com.au\/collections\/innovation-by-decathlon",
+              "link_title": "",
+              "link_new_window": false
+            }
+          },
+          "3e042199-9da3-4514-87ba-d462754ab771": {
+            "type": "slide",
+            "disabled": true,
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_2da08c93-6ddc-4025-b45c-68e51a2ff78e.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_f7253ad4-6340-4b1a-a01d-b1e4304ae518.jpg",
+              "banner_intro": "",
+              "banner_title": "Snow Sale Starts Wednesday",
+              "banner_subtitle": "<p><em>^Up to 50% off selected products. Sale ends Sunday 29th May 11.59pm AEST or until stocks last. Selected products, colours, models only.<\/em><\/p>",
+              "button_title": "Explore The Range",
+              "link_url": "shopify:\/\/collections\/decathlon-snow-sale",
+              "link_title": "",
+              "link_new_window": false
+            }
+          },
+          "0e3f284b-4302-4200-8eb1-f98ce34415af": {
+            "type": "slide",
+            "disabled": true,
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_19a96368-ef52-4d6e-a960-0e73249eccbb.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_caa6f87a-1e43-4193-b755-eee85d19967c.jpg",
+              "banner_intro": "",
+              "banner_title": "Join the Club to Shop with us & Get Rewarded",
+              "banner_subtitle": "",
+              "button_title": "BECOME A MVP TODAY",
+              "link_url": "https:\/\/login.decathlon.net\/?client_id=e57b2db5-07ff-468e-a8da-85af418a1691#\/sign-up",
+              "link_title": "",
+              "link_new_window": false
+            }
+          },
+          "145847d3-2db7-45f7-8ef6-38db22a4156a": {
+            "type": "slide",
+            "disabled": true,
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Puma_1440_x_789px.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Puma_478_x_300px.jpg",
+              "banner_intro": "<span style=\"background-color: #e6e6e6; color: #000000;\">*Prices already marked. Selected products, colours and sizes only. T&Cs apply.<\/span>",
+              "banner_title": "<span style=\"background-color: #e6e6e6; color: #000000;\">20% off All Puma Women's Apparel*<\/span>",
+              "banner_subtitle": "",
+              "button_title": "SHOP NOW",
+              "link_url": "https:\/\/decathlon.com.au\/search?q=puma&hPP=24&idx=shopify_products&p=0&dFR%5Bnamed_tags.GENDER_ID%5D%5B0%5D=3&is_v=1",
               "link_title": "",
               "link_new_window": false
             }
@@ -1655,13 +1688,15 @@
           }
         },
         "block_order": [
+          "c8d43091-004a-4ebf-962d-d1a8a9a36725",
           "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9",
-          "145847d3-2db7-45f7-8ef6-38db22a4156a",
           "b3d1ab5c-d67b-4ad9-8414-a93439802cdd",
           "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb",
-          "b83588ec-aca2-4329-8760-9267d96f1b3e",
           "623e46b1-2abc-4e5b-8ceb-3ca5e428998a",
           "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b",
+          "3e042199-9da3-4514-87ba-d462754ab771",
+          "0e3f284b-4302-4200-8eb1-f98ce34415af",
+          "145847d3-2db7-45f7-8ef6-38db22a4156a",
           "031bbb08-5e30-443d-9d87-351970f1ff5e",
           "79522152-c757-4b60-a1be-2d1e49198982"
         ],
@@ -1670,19 +1705,11 @@
       "config_labels": {
         "type": "config_labels",
         "blocks": {
-          "6ce7f996-a1da-41a1-aa2c-8186ed782432": {
+          "b6c50233-aad8-4a5a-8216-cdf77b1a7b69": {
             "type": "label",
             "settings": {
-              "title": "$50 Delivery*",
-              "bg_colour": "#e20c18",
-              "text_colour": "#ffffff"
-            }
-          },
-          "88049bc3-32eb-421b-ab69-0320c3a68f7c": {
-            "type": "label",
-            "settings": {
-              "title": "$75 Delivery*",
-              "bg_colour": "#e20c18",
+              "title": "Free Delivery*",
+              "bg_colour": "#0082c3",
               "text_colour": "#ffffff"
             }
           },
@@ -1829,19 +1856,10 @@
               "bg_colour": "#333333",
               "text_colour": "#ffffff"
             }
-          },
-          "b6c50233-aad8-4a5a-8216-cdf77b1a7b69": {
-            "type": "label",
-            "settings": {
-              "title": "Free Delivery*",
-              "bg_colour": "#f20b0b",
-              "text_colour": "#ffffff"
-            }
           }
         },
         "block_order": [
-          "6ce7f996-a1da-41a1-aa2c-8186ed782432",
-          "88049bc3-32eb-421b-ab69-0320c3a68f7c",
+          "b6c50233-aad8-4a5a-8216-cdf77b1a7b69",
           "e27f167b-9a15-49c6-86cc-d5749a582ffc",
           "add54ffc-96a7-4a8e-9da6-0cd98b86bb70",
           "ad2f449b-334c-4b8e-b29c-caed1367ff3b",
@@ -1857,8 +1875,7 @@
           "22cc446b-d257-45ff-a99a-5840376d78fc",
           "7f9c88e9-e668-4ac4-a713-e696f1e193a8",
           "f8057dbf-e27c-4eed-adc0-17c069770eb1",
-          "4a64b4cb-1338-48f3-9582-151d2698b239",
-          "b6c50233-aad8-4a5a-8216-cdf77b1a7b69"
+          "4a64b4cb-1338-48f3-9582-151d2698b239"
         ],
         "settings": {}
       },
@@ -2011,6 +2028,14 @@
       "16316085202ea5cf79": {
         "type": "trending_categories",
         "blocks": {
+          "f553a06c-1d16-4cd4-b9f2-2eea43b5aa9c": {
+            "type": "category_tile",
+            "settings": {
+              "title": "Skiing",
+              "image": "shopify:\/\/shop_images\/Skiing-Category_a5d04c11-2d1e-498a-b8de-bac3e7b1d074.jpg",
+              "link": "shopify:\/\/collections\/winter-snow-sports"
+            }
+          },
           "24a46da8-7f15-4e2c-aa20-558f5e037a41": {
             "type": "category_tile",
             "settings": {
@@ -2025,14 +2050,6 @@
               "title": "Running",
               "image": "shopify:\/\/shop_images\/Odziez_do_biegania_1_PK_---_Expires_on_20-08-2025.jpg",
               "link": "shopify:\/\/collections\/running-gear-clothes"
-            }
-          },
-          "f553a06c-1d16-4cd4-b9f2-2eea43b5aa9c": {
-            "type": "category_tile",
-            "settings": {
-              "title": "Snorkeling",
-              "image": "shopify:\/\/shop_images\/Untitled_design_24.png",
-              "link": "shopify:\/\/collections\/snorkeling"
             }
           },
           "711f34cb-b34c-4c8f-8e88-ce5c95240666": {
@@ -2061,9 +2078,9 @@
           }
         },
         "block_order": [
+          "f553a06c-1d16-4cd4-b9f2-2eea43b5aa9c",
           "24a46da8-7f15-4e2c-aa20-558f5e037a41",
           "2161fbad-02eb-48c1-9a11-4481251537ae",
-          "f553a06c-1d16-4cd4-b9f2-2eea43b5aa9c",
           "711f34cb-b34c-4c8f-8e88-ce5c95240666",
           "e946fff5-5695-4ed3-a886-269cd8000e8d",
           "e1091c93-4efb-4738-b3f6-3a711db62e82"
@@ -2146,7 +2163,7 @@
       "1650960580e9623e99": {
         "type": "featured_collection",
         "settings": {
-          "title": "Clearance - 30% OFF at Checkout",
+          "title": "Clearance",
           "section_collection": "30-off-stock-clearance"
         }
       },
@@ -2160,20 +2177,20 @@
       "1651153473715f6dc1": {
         "type": "featured_collection",
         "settings": {
-          "title": "Top Sellers",
-          "section_collection": "trending-products"
+          "title": "Trending Snow Sale Deals!",
+          "section_collection": "snow-sale"
         }
       }
     },
     "content_for_index": [
       "1568939434006",
       "163107170023281063",
-      "1650960580e9623e99",
+      "1651153473715f6dc1",
       "1650950354346fb7a1",
       "16509507269dac2990",
       "163487525380dd83d2",
+      "1650960580e9623e99",
       "165115029729e3ba5b",
-      "1651153473715f6dc1",
       "1642116157c0ce923f",
       "16375487170499d43e",
       "163107313302287377",
