@@ -114,6 +114,18 @@
 
 {% if settings['is_lookbook'] == false %}
 
+{% comment %} Get the SKUs of overselling line items {% endcomment %}
+{% assign oversell_SKUs = '' %}
+{% for item in cart.items %}
+  {% if item.variant.inventory_quantity <= 0 and item.variant.inventory_policy == 'continue' %}
+    {% if oversell_SKUs == empty %}
+      {% assign oversell_SKUs = item.variant.sku %}
+    {% else %}
+      {% assign oversell_SKUs = oversell_SKUs | append: ',' | append: item.variant.sku %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
 <div class="u-paddingTopBottom4x u-marginBottom4x">
   <div class="wrapper wrapper--midWidth">
   {% if cart.item_count > 0 %}
@@ -162,6 +174,7 @@
             class="cart table-wrap js-de-cart" 
             id="main-cart">
         <table class="cart-table full table--responsive">
+          <input type="hidden" name="attributes[oversell_items]" value="{{ oversell_SKUs }}">
           <thead class="cart__row cart__header-labels">
             <th>&nbsp;</th>
             <th class="u-textUppercase u-textBold">{{ 'cart.label.product' | t }}</th>
