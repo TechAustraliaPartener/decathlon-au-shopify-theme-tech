@@ -215,9 +215,16 @@ export const checkIfVariantIsAllowedToOversell = (variantId) => {
   const inventoryQuantity = variantWithInventoryData ? variantWithInventoryData.inventory_quantity : undefined;
   const inventoryPolicy = variantWithInventoryData ? variantWithInventoryData.inventory_policy : undefined;
   const variantIsAllowedToOversell = inventoryPolicy === 'continue' && inventoryQuantity > oversellThreshold;
-  // console.log('Test checkIfVariantIsAllowedToOversell', { variantId, variantIsAllowedToOversell, inventoryPolicy, inventoryQuantity, oversellThreshold })
+  // console.log('Test checkIfVariantIsAllowedToOversell', { variantId, variantWithInventoryData, variantIsAllowedToOversell, inventoryPolicy, inventoryQuantity, oversellThreshold })
 
   return variantIsAllowedToOversell;
+}
+
+export const checkIfVariantIsNonInventory = (variantId) => {
+  if (!window.variantsWithInventoryData) return false;
+  const variantWithInventoryData = window.variantsWithInventoryData.find(({ id }) => id == variantId);
+  const variantIsAllowedToOversell = checkIfVariantIsAllowedToOversell(variantId);
+  return variantWithInventoryData.available && variantIsAllowedToOversell === false;
 }
 
 /**
@@ -244,9 +251,9 @@ export const isVariantAvailable = variant => {
     isAvailable = variant && variant.available;
   }
 
-  // If unavailable check if it oversell
+  // If unavailable check if it oversell or is a non-inventory
   if (variant && isAvailable === false) {
-    isAvailable = checkIfVariantIsAllowedToOversell(variant.id);
+    isAvailable = checkIfVariantIsAllowedToOversell(variant.id) || checkIfVariantIsNonInventory(variant.id);
   }
 
   // return variant && variant.available;

@@ -2,7 +2,10 @@
 
 import $ from 'jquery';
 import Vue from 'vue/dist/vue.esm.js';
-import { checkIfVariantIsAllowedToOversell } from './product-data';
+import { 
+  checkIfVariantIsAllowedToOversell,
+  checkIfVariantIsNonInventory
+} from './product-data';
 
 const validationTextEl = document.querySelector('.js-de-validation-message');
 const variantInventory = window.firstVariant;
@@ -59,7 +62,9 @@ const initVueATC = () => {
 
         // Oversell flags
         const variantIsAllowedToOversell = checkIfVariantIsAllowedToOversell(variantId);
-        
+        // Non-inventory flags
+        const variantIsNonInventory = checkIfVariantIsNonInventory(variantId)
+
         /*
           'locations' from itemInventory already only account for stores which have Click & Collect enabled in Settings
           This checks whether the specific product is available in any of those locations, or in delivery/online and sets availability accordingly.
@@ -76,12 +81,18 @@ const initVueATC = () => {
 
         // item is available if there is at least one stock in any location or delivery/online
         // mutatedInventory.available = (delivery.available > 0 || filteredLocations.length > 0 || filteredOnline.length > 0);
-        mutatedInventory.available = (filteredLocations.length > 0 || delivery.available > 0 || (delivery.available === 0 && variantIsAllowedToOversell === true));
+        mutatedInventory.available = (
+          filteredLocations.length > 0 || 
+          delivery.available > 0 || 
+          (delivery.available === 0 && variantIsAllowedToOversell === true) ||
+          variantIsNonInventory === true
+        );
         mutatedInventory.artificially_unavailable = (locations.length < 1 && delivery.available < 1);
 
         if (filteredLocations.length < 1 && 
           delivery.available < 1 && 
-          (delivery.available === 0 && variantIsAllowedToOversell === false)
+          (delivery.available === 0 && variantIsAllowedToOversell === false) &&
+          variantIsNonInventory === false
         ) {
           $('.js-de-validation-message').text('Out of stock');
         }
@@ -115,6 +126,10 @@ const initVueATC = () => {
           delivery.ready = translations.oversell_available;
           delivery.availability.class = 'in';
           delivery.availability.text = translations.oversell_eta
+        } else if (variantIsNonInventory) {
+          stockInfoMessage = translations.in_stock;
+          stockAddClass = IN_STOCK_CLASS;
+          stockRemoveClass = LOW_STOCK_CLASS;
         } else {
           // If variant is NOT in stock for delivery but available in locations offering Click & Collect
           if (locationsAvailable > 0) {
