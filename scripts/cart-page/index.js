@@ -338,8 +338,11 @@ const initCartDisplay = cart => {
 
         // We only support overselling for delivery only
         if (app.deliveryOption === 'Delivery' && checkLoc.inStock === 0) {
-          checkLoc.inStock = this.checkIfItemIsAllowedToOversell(item.id) > 0
+          checkLoc.inStock = this.checkIfItemIsAllowedToOversell(item.id) > 0 || this.checkIfItemIsNonInventory(item.id)
         }
+
+        // Only allow gift cards to be checked out if delivery option is delivery
+        if (app.deliveryOption !== 'Delivery' && item.gift_card) return 'out'
 
         return checkLoc.inStock > 0 ? 'in' : 'out';
       },
@@ -359,8 +362,11 @@ const initCartDisplay = cart => {
 
         // We only support overselling for delivery only
         if (app.deliveryOption === 'Delivery' && checkLoc.available === 0) {
-          checkLoc.available = this.checkIfItemIsAllowedToOversell(item.id)
+          checkLoc.available = this.checkIfItemIsAllowedToOversell(item.id) || this.checkIfItemIsNonInventory(item.id)
         }
+
+        // Only allow gift cards to be checked out if delivery option is delivery
+        if (app.deliveryOption !== 'Delivery' && item.gift_card) return 0
 
         return checkLoc.available;
       },
@@ -409,6 +415,18 @@ const initCartDisplay = cart => {
           ? productOversellThreshold + inventoryQuantity
           : 0;
       },
+      /**
+       * Check if the cart item's variant is Non-inventory
+       * 
+       * @param {number} itemId 
+       * @returns {number} - returns 99 stocks if item is a non-inventory otherwise 0
+       */
+      checkIfItemIsNonInventory(itemId) {
+        const { variant } = window.itemsWithVariantInventoryData.find(({id}) => id === itemId);
+        const oversell = this.checkIfItemIsAllowedToOversell(itemId);
+        const nonInventory = variant.available && !oversell
+        return nonInventory ? 99 : 0
+      },
       availabilityMessages(item) {
         var messages = [];
         const app = this;
@@ -417,12 +435,21 @@ const initCartDisplay = cart => {
         let available = delivery.available;
         let inStock = delivery.inStock
         let oversell = this.checkIfItemIsAllowedToOversell(item.id);
-        if (available === 0) { 
+        let itemIsNonInventory = this.checkIfItemIsNonInventory(item.id);
+
+        if (itemIsNonInventory) {
+          inStock = true
+        } else if (available === 0) { 
           available = oversell
           inStock = oversell > 0
         }
 
-        var deliveryMessage = `<div class="${inStock ? (item.quantity <= available ? 'available' : 'low') : 'unavailable'}"><p>${inStock ? (item.quantity <= available ? 'Available' : 'Not all items available') : 'Unavailable'} for delivery</p></div>`;
+        const availableCondition = item.quantity <= available || itemIsNonInventory
+        var deliveryMessage = `
+          <div class="${inStock ? (availableCondition ? 'available' : 'low') : 'unavailable'}">
+            <p>${inStock ? (availableCondition ? 'Available' : 'Not all items available') : 'Unavailable'} for delivery</p>
+          </div>
+        `;
         messages.push(deliveryMessage);
 
         if (app.favStore && app.favStore.name) {
@@ -455,6 +482,7 @@ const initCartDisplay = cart => {
         const app = this;
         const items = app.$data.cart.items;
         let itemsToRemove = 0;
+        let hasGiftCard = false;
 
         for (let i = items.length - 1; i >= 0; i--) {
           const item = items[i];
@@ -467,15 +495,18 @@ const initCartDisplay = cart => {
             });
           }
 
+          if (hasGiftCard === false) hasGiftCard = item.gift_card
+
           if (checkLoc.inStock < 1) {
             itemsToRemove++;
           }
         }
 
         if (itemsToRemove > 0) {
-          return `${itemsToRemove} ${itemsToRemove > 1 ? 'items' : 'item'
-            } unavailable for ${app.deliveryOption
-            } will be removed from your cart`;
+          return `${itemsToRemove} ${itemsToRemove > 1 ? 'items' : 'item'} 
+            unavailable for ${app.deliveryOption} will be removed from your cart 
+            ${hasGiftCard ? '\n' + window.translations.product_stock.giftcards_cart : ''}
+          `;
         }
 
         return '';
