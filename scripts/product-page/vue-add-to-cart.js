@@ -130,6 +130,10 @@ const initVueATC = () => {
           stockInfoMessage = translations.in_stock;
           stockAddClass = IN_STOCK_CLASS;
           stockRemoveClass = LOW_STOCK_CLASS;
+          // Update locations inventory delivery data
+          delivery.ready = translations.oversell_available;
+          delivery.availability.class = 'in';
+          delivery.availability.text = translations.in_stock
         } else {
           // If variant is NOT in stock for delivery but available in locations offering Click & Collect
           if (locationsAvailable > 0) {

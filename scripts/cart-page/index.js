@@ -505,7 +505,7 @@ const initCartDisplay = cart => {
         if (itemsToRemove > 0) {
           return `${itemsToRemove} ${itemsToRemove > 1 ? 'items' : 'item'} 
             unavailable for ${app.deliveryOption} will be removed from your cart 
-            ${hasGiftCard ? '\n' + window.translations.product_stock.giftcards_cart : ''}
+            ${hasGiftCard ? '<br/>' + window.translations.product_stock.giftcards_cart : ''}
           `;
         }
 
