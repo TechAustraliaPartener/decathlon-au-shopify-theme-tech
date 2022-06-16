@@ -94,7 +94,7 @@
   <br {% if marketing_hidden %}data-marketing-show style="display: none;" {% endif %} />
 </p>
 <p data-marketing-hide>
-  <input type="checkbox" name="customer[accepts_terms_conditions]" id="cf_accept_terms" class="required" {% if customer.metafields.customer_fields.data.accepts_terms_conditions %} checked value="true" {% endif %}> <span
+  <input type="checkbox" name="customer[accepts_terms_conditions]" id="cf_accept_terms" {% if customer.metafields.customer_fields.data.accepts_terms_conditions != blank %} checked value="true" {% endif %}> <span
     data-marketing-hide>{{ settings.custom_fields_terms_conditions }}</span>
 </p>
 <input type="hidden" name=customer[addresses][country] value="Australia" />

@@ -1,6 +1,11 @@
 import Cookies from 'js-cookie';
 import $ from 'jquery';
 
+document.addEventListener('DOMContentLoaded', function() {
+  // Prefill value
+  $('#cf_accept_terms').prop('checked', $('#cf_accept_terms').val() === 'true');
+});
+
 $(document).ready(function () {
 
   $('#cf_accept_terms').on('change', function () {
