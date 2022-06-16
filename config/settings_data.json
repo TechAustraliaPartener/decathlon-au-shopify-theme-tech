@@ -31,10 +31,10 @@
     "header_support_link": "https:\/\/decathlon.com.au\/pages\/contact-and-help",
     "header_store_label": "Find a Store",
     "header_sign_in_label": "Login",
-    "megamenu_image": "shopify:\/\/shop_images\/Enjoy_up_to_50_off_a_range_of_different_products_this_Black_Friday_1aae9527-3e5f-4f57-97f2-ae032ae24147.png",
-    "megamenu_title": "The Original Easybreath",
-    "megamenu_subtitle": "Discover More",
-    "megamenu_link": "https:\/\/decathlon.com.au\/search?q=subea%20easybreath&hPP=24&idx=shopify_products_recently_ordered_count_desc&p=0&is_v=1",
+    "megamenu_image": "shopify:\/\/shop_images\/Snow_Campaign_MegaMenu_v6.jpg",
+    "megamenu_title": "Designed in the French Alps",
+    "megamenu_subtitle": "Sports For All | All for Sport",
+    "megamenu_link": "shopify:\/\/collections\/decathlon-snow-sale",
     "megamenu_bg_colour": "#1c82c3",
     "custom_fields_terms_conditions": "I agree to the <a href=\"\/pages\/terms-and-conditions-membership\" target=\"_blank\">T&Cs<\/a> and <a href=\"\/pages\/privacy-policy\" target=\"_blank\">Privacy Policy<\/a> for creating an account.",
     "is_lookbook": false,
@@ -43,7 +43,7 @@
     "product_bulk_returns_text": "Easy Returns | Lifetime For MVPs*",
     "product_bulk_shipping_text": "Australia Wide Delivery",
     "show_associated_products_carousel_on_product_page": true,
-    "show_similar_products_carousel_on_product_page": true,
+    "show_similar_products_carousel_on_product_page": false,
     "show_recently_viewed_carousel_on_product_page": false,
     "algolia_variant_image_dimensions": "600x600",
     "algolia_size_sorting_order": "3XS,2XS,XS,XS-S,XS\/S,S,S-M,S\/M,M,M-L,M\/L,L,L-XL,L\/XL,XL,2XL,3XL,4XL,5XL",
@@ -62,7 +62,7 @@
     "blue_band__fact_one_text": "<strong>Australia Wide Delivery<\/strong>",
     "blue_band__fact_one_link": "https:\/\/decathlon-aus.reamaze.com\/kb\/delivery\/how-much-does-shipping-cost",
     "blue_band__fact_two_icon": "shopify:\/\/shop_images\/pickup.png",
-    "blue_band__fact_two_text": "<strong>2hr Click & Collect<\/strong>",
+    "blue_band__fact_two_text": "<strong>1hr Click & Collect<\/strong>",
     "blue_band__fact_two_link": "https:\/\/decathlon-aus.reamaze.com\/kb\/click-and-collect",
     "blue_band__fact_three_icon": "shopify:\/\/shop_images\/returns.png",
     "blue_band__fact_three_text": "<strong>Easy Returns<\/strong>",
@@ -278,11 +278,11 @@
     "threshold_for_zip_pay_cart_message": "[gateway] is available on orders over [threshold]",
     "threshold_for_zip_pay_product_message": "[gateway] is available on orders over [threshold]",
     "threshold_for_zip_pay_checkout_message": "[gateway] is available on orders over [threshold]",
-    "free_shipping_threshold": "50",
+    "free_shipping_threshold": "100",
     "free_shipping_max_weight": "22000",
     "add_to_cart_drawer_line_1": "Easy Returns",
-    "add_to_cart_drawer_line_2": "Free delivery for orders above $50* (Bulky Items Syd. Metro Only)",
-    "add_to_cart_drawer_line_3": "2 Hour Click & Collect",
+    "add_to_cart_drawer_line_2": "Free delivery for orders above $100* (Bulky Items Syd. Metro Only)",
+    "add_to_cart_drawer_line_3": "1 Hour Click & Collect",
     "reviews_min_rating": 2,
     "reviews_excluded_countries": "IN",
     "checkout_header_image": "",
@@ -415,8 +415,8 @@
               "email": "customer.service@decathlon.com",
               "phone_number": "0420 450 076",
               "company": "Decathlon",
-              "ready": "Pickup: Ready in 2 Hours",
-              "ready_checkout": "Pickup: Ready in 2 Hours",
+              "ready": "Pickup: Ready in 1 Hour",
+              "ready_checkout": "Pickup: Ready in 1 Hour",
               "id": "2881",
               "tooltip_hours": true,
               "is_same_hours_weekly": false,
@@ -469,8 +469,8 @@
               "email": "customer.service@decathlon.com",
               "phone_number": "(02) 9157 5799",
               "company": "Decathlon",
-              "ready": "Ready to collect in 2 hours",
-              "ready_checkout": "Pickup: Ready in 2 Hours",
+              "ready": "Ready to collect in 1 hour",
+              "ready_checkout": "Pickup: Ready in 1 Hour",
               "id": "1789",
               "tooltip_hours": true,
               "is_same_hours_weekly": false,
@@ -523,8 +523,8 @@
               "email": "customer.service@decathlon.com",
               "phone_number": "(02) 9157 5799",
               "company": "Decathlon",
-              "ready": "Ready to collect in 2 hours",
-              "ready_checkout": "Pickup: Ready in 2 Hours",
+              "ready": "Ready to collect in 1 hour",
+              "ready_checkout": "Pickup: Ready in 1 Hour",
               "id": "1791",
               "tooltip_hours": true,
               "is_same_hours_weekly": false,
@@ -577,8 +577,8 @@
               "email": "customer.service@decathlon.com",
               "phone_number": "(02) 9157 5799",
               "company": "Decathlon",
-              "ready": "Ready to collect in 2 hours",
-              "ready_checkout": "Pickup: Ready in 2 Hours",
+              "ready": "Ready to collect in 1 hour",
+              "ready_checkout": "Pickup: Ready in 1 Hour",
               "id": "1793",
               "tooltip_hours": false,
               "is_same_hours_weekly": false,
@@ -631,8 +631,8 @@
               "email": "customer.service@decathlon.com",
               "phone_number": "(02) 9157 5799",
               "company": "Decathlon",
-              "ready": "Ready to collect in 2 hours",
-              "ready_checkout": "Pickup: Ready in 2 Hours",
+              "ready": "Ready to collect in 1 hour",
+              "ready_checkout": "Pickup: Ready in 1 Hour",
               "id": "1792",
               "tooltip_hours": true,
               "is_same_hours_weekly": false,
@@ -685,8 +685,8 @@
               "email": "customer.service@decathlon.com",
               "phone_number": "(02) 9157 5799",
               "company": "Decathlon",
-              "ready": "Ready to collect in 2 hours",
-              "ready_checkout": "Pickup: Ready in 2 Hours",
+              "ready": "Ready to collect in 1 hour",
+              "ready_checkout": "Pickup: Ready in 1 Hour",
               "id": "1790",
               "tooltip_hours": true,
               "is_same_hours_weekly": false,
@@ -745,7 +745,7 @@
               "tooltip_hours": true,
               "is_same_hours_weekly": false,
               "hours_0_open": "0900",
-              "hours_0_close": "1900",
+              "hours_0_close": "1800",
               "hours_1_open": "0900",
               "hours_1_close": "1900",
               "hours_2_open": "0900",
@@ -757,7 +757,7 @@
               "hours_5_open": "0900",
               "hours_5_close": "1900",
               "hours_6_open": "0900",
-              "hours_6_close": "1900",
+              "hours_6_close": "1800",
               "announcement": "",
               "tag_exclusion_1": "",
               "tag_exclusion_message_1": "",
@@ -848,7 +848,7 @@
               "phone_number": "(02) 9157 5799",
               "company": "Decathlon",
               "ready": "Ready to collect in 3 business days.",
-              "ready_checkout": "Ready to collect in 3 business days.",
+              "ready_checkout": "Ready to collect in 2-3 business days.",
               "id": "1789-0001",
               "tooltip_hours": true,
               "is_same_hours_weekly": false,
@@ -902,7 +902,7 @@
               "phone_number": "(02) 9386 0430",
               "company": "Decathlon",
               "ready": "Ready to collect in 3 business days.",
-              "ready_checkout": "Ready to collect in 3 business days.",
+              "ready_checkout": "Ready to collect in 2-3 business days.",
               "id": "1791-0003",
               "tooltip_hours": true,
               "is_same_hours_weekly": false,
@@ -939,43 +939,42 @@
           },
           "e9b454e7-c621-41e8-90ca-e97d7fb3c188": {
             "type": "store",
-            "disabled": true,
             "settings": {
-              "name": "Coogee, 2034, Pick Up Only",
-              "title": "Coogee, 2034, Pick Up Only",
+              "name": "Decathlon CBD",
+              "title": "Dymocks CBD, 2000, Pickup Only",
               "online_inventory_source": false,
-              "enable_c_c": false,
+              "enable_c_c": true,
               "duplicate": "Tempe",
-              "test_mode": true,
-              "street1": "23-25 Vicar Street",
-              "city": "Coogee",
-              "zip": "2034",
+              "test_mode": false,
+              "street1": "424-430 George Street",
+              "city": "Sydney",
+              "zip": "2000",
               "state": "NSW",
               "country": "AU",
-              "checkout_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_9.png",
+              "checkout_image": "shopify:\/\/shop_images\/DymocksCBD.png",
               "email": "customer.service@decathlon.com",
-              "phone_number": "(02) 9157 5799",
+              "phone_number": "(02) 9235 0155",
               "company": "Decathlon",
-              "ready": "If ordered before 12pm, collect the same day",
-              "ready_checkout": "If ordered before 12pm, collect the same day. Limited opening hours please check",
-              "id": "1789-0007",
+              "ready": "Ready to collect in 3 business days.",
+              "ready_checkout": "Ready to collect in 3 business days.",
+              "id": "1789-0014",
               "tooltip_hours": true,
               "is_same_hours_weekly": false,
-              "hours_0_open": "0000",
-              "hours_0_close": "0000",
-              "hours_1_open": "1830",
-              "hours_1_close": "1930",
-              "hours_2_open": "1830",
-              "hours_2_close": "1930",
-              "hours_3_open": "1830",
-              "hours_3_close": "1930",
-              "hours_4_open": "1830",
-              "hours_4_close": "1930",
-              "hours_5_open": "1830",
-              "hours_5_close": "1930",
-              "hours_6_open": "0000",
-              "hours_6_close": "0000",
-              "announcement": "<p>This is not a physical store. Returns cannot be made here<\/p>",
+              "hours_0_open": "1000",
+              "hours_0_close": "1500",
+              "hours_1_open": "0900",
+              "hours_1_close": "1900",
+              "hours_2_open": "0900",
+              "hours_2_close": "1900",
+              "hours_3_open": "0900",
+              "hours_3_close": "1900",
+              "hours_4_open": "0900",
+              "hours_4_close": "2000",
+              "hours_5_open": "0900",
+              "hours_5_close": "1900",
+              "hours_6_open": "0900",
+              "hours_6_close": "1800",
+              "announcement": "<p>This is not a physical store. Returns cannot be made here.<\/p>",
               "tag_exclusion_1": "",
               "tag_exclusion_message_1": "",
               "tag_exclusion_2": "",
@@ -1516,32 +1515,48 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
-          "c8d43091-004a-4ebf-962d-d1a8a9a36725": {
+          "3e042199-9da3-4514-87ba-d462754ab771": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Snow_Sale_Starts_1440_x_789px_b7d1e398-cb8b-4044-8913-a71fc1ed1b38.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/Snow_Campaign_Desktop_v3.jpg",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Snow_Sale_Starts_478_x_300px_836aebc9-7dfd-4ed4-a8a1-d17845d73777.jpg",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Snow_Campaign_Mobile.jpg",
               "banner_intro": "",
-              "banner_title": "Up to 50% off Snow Sale",
-              "banner_subtitle": "<p><em>^Up to 50% off selected products colours, models. Sale ends 29\/05 11.59pm AEST or until stocks last.<\/em><\/p>",
-              "button_title": "SHOP NOW",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
               "link_url": "shopify:\/\/collections\/decathlon-snow-sale",
               "link_title": "",
               "link_new_window": false
             }
           },
-          "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9": {
+          "145847d3-2db7-45f7-8ef6-38db22a4156a": {
+            "type": "slide",
+            "disabled": true,
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/HomePageBanner-Wedze-v1.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/HomePageBanner-Mobile-Wedze-v1_d930ad8b-8bc1-4614-83b1-3bba36259e40.jpg",
+              "banner_intro": "",
+              "banner_title": "SNOW SEASON IS HERE!",
+              "banner_subtitle": "<p>Gear up for the snow season! 1HR Click & Collect.<\/p>",
+              "button_title": "SHOP NOW",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/winter-snow-sports",
+              "link_title": "",
+              "link_new_window": false
+            }
+          },
+          "79522152-c757-4b60-a1be-2d1e49198982": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Supplements_1440_x_789px_00794abf-4191-46e5-a448-fc6522e0176d.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/Decathlon_-_Flash_Sale_-_Desktop_-_V1b.jpg",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Supplements_478_x_300px_286f1ba3-3333-4ad3-bd1d-24a4e5bead6d.jpg",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Decathlon_-_Flash_Sale_-_Mobile_-_V1b.jpg",
               "banner_intro": "",
-              "banner_title": "Free Supplements Delivery*",
-              "banner_subtitle": "<p>*Free shipping at cart. Limited time. Limited stock available. Exclusions apply.<\/p>",
-              "button_title": "SHOP NOW",
-              "link_url": "shopify:\/\/collections\/free-delivery-on-supplements",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/decathlon-flash-sale?q=&hPP=24&idx=shopify_products_price_desc&p=0&is_v=1",
               "link_title": "",
               "link_new_window": false
             }
@@ -1549,15 +1564,45 @@
           "b3d1ab5c-d67b-4ad9-8414-a93439802cdd": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Treadmill_1440_x_789px.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/Polar_Garmin_Sale_1440_x_789px.jpg",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Treadmill_478_x_300px.jpg",
-              "banner_intro": "<span style=\"background-color: #e6e6e6; color: #000000;\">Limited Time Only<\/span>",
-              "banner_title": "<span style=\"background-color: #e6e6e6; color: #000000;\">Free Treadmill Delivery<\/span>",
-              "banner_subtitle": "<p>*T3 & T5 Freeform Treadmills only. Sydney Metro Only, Confirmation at the Checkout.<\/p>",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Polar_Garmin_Sale_478_x_300px.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "shopify:\/\/collections\/watch-sale",
+              "link_title": "",
+              "link_new_window": false
+            }
+          },
+          "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_a109167c-0ea6-42af-a8a2-76eaa0e1e6d8.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_55972778-4c1e-4237-b804-ab23ec2b8c93.jpg",
+              "banner_intro": "",
+              "banner_title": "<span style=\"color: #000000;\">Discover Decathlon's Trekking Brand, Forclaz<\/span>",
+              "banner_subtitle": "",
               "button_title": "SHOP NOW",
-              "link_url": "shopify:\/\/collections\/freeform-treadmills",
-              "link_title": "Free delivery",
+              "link_url": "https:\/\/decathlon.com.au\/search?q=forclaz",
+              "link_title": "",
+              "link_new_window": false
+            }
+          },
+          "0e3f284b-4302-4200-8eb1-f98ce34415af": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_19a96368-ef52-4d6e-a960-0e73249eccbb.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_caa6f87a-1e43-4193-b755-eee85d19967c.jpg",
+              "banner_intro": "",
+              "banner_title": "Join the Club to Shop with us & Get Rewarded",
+              "banner_subtitle": "",
+              "button_title": "BECOME A MVP TODAY",
+              "link_url": "shopify:\/\/pages\/decathlon-membership",
+              "link_title": "",
               "link_new_window": false
             }
           },
@@ -1576,8 +1621,73 @@
               "link_new_window": false
             }
           },
+          "e9b4daa6-6eee-441b-b76d-9c3ff012fde9": {
+            "type": "slide",
+            "disabled": true,
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Gift_Cards_1440_x_789px.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Gift_Cards_478_x_300px.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "shopify:\/\/products\/decathlon-gift-card",
+              "link_title": "Shop Gift Cards",
+              "link_new_window": false
+            }
+          },
+          "748c6a7e-732f-486d-a653-eb425a670bc5": {
+            "type": "slide",
+            "disabled": true,
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/EOFY_Innovation_Sale_1440_x_789px.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/EOFY_Innovation_Sale_478_x_300px.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "shopify:\/\/pages\/end-of-financial-year-sale",
+              "link_title": "EOFY Sale",
+              "link_new_window": false
+            }
+          },
+          "c8d43091-004a-4ebf-962d-d1a8a9a36725": {
+            "type": "slide",
+            "disabled": true,
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Seasonal_Discount_1440_x_789px.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Seasonal_Discount_478_x_300px.jpg",
+              "banner_intro": "",
+              "banner_title": "Stay Warm, Stay Dry, Stay Active",
+              "banner_subtitle": "<p>Sale ends June 12 11.59pm AEST or until stocks last, select products, colours, models. T&Cs apply.<\/p>",
+              "button_title": "SHOP NOW",
+              "link_url": "shopify:\/\/collections\/season-sale",
+              "link_title": "",
+              "link_new_window": false
+            }
+          },
+          "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9": {
+            "type": "slide",
+            "disabled": true,
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Supplements_1440_x_789px_00794abf-4191-46e5-a448-fc6522e0176d.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Supplements_478_x_300px_286f1ba3-3333-4ad3-bd1d-24a4e5bead6d.jpg",
+              "banner_intro": "",
+              "banner_title": "Free Supplements Delivery*",
+              "banner_subtitle": "<p>*Free shipping at cart. Limited time. Limited stock available. Exclusions apply.<\/p>",
+              "button_title": "SHOP NOW",
+              "link_url": "shopify:\/\/collections\/free-delivery-on-supplements",
+              "link_title": "",
+              "link_new_window": false
+            }
+          },
           "623e46b1-2abc-4e5b-8ceb-3ca5e428998a": {
             "type": "slide",
+            "disabled": true,
             "settings": {
               "banner_bg_image": "shopify:\/\/shop_images\/HP_banner_Miranda.jpg",
               "slide_bg_position": "75% -50px",
@@ -1591,125 +1701,64 @@
               "link_new_window": false
             }
           },
-          "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/weekly-deal3.png",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/weekly-deal3.png",
-              "banner_intro": "<span style=\"background-color: #e6e6e6; color: #000000;\">Discover the Decathlon Difference<\/span>",
-              "banner_title": "<span style=\"background-color: #e6e6e6; color: #000000;\">Australia's Premier Outdoor & Sports Destination<\/span>",
-              "banner_subtitle": "<p>Since 1976, Decathlon has designed, Engineered & Manufactured some of the worlds best sporting goods. And now, for a limited time - Get FREE Shipping on orders over $50<\/p>",
-              "button_title": "VIEW INNOVATIONS",
-              "link_url": "https:\/\/decathlon.com.au\/collections\/innovation-by-decathlon",
-              "link_title": "",
-              "link_new_window": false
-            }
-          },
-          "3e042199-9da3-4514-87ba-d462754ab771": {
-            "type": "slide",
-            "disabled": true,
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_2da08c93-6ddc-4025-b45c-68e51a2ff78e.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_f7253ad4-6340-4b1a-a01d-b1e4304ae518.jpg",
-              "banner_intro": "",
-              "banner_title": "Snow Sale Starts Wednesday",
-              "banner_subtitle": "<p><em>^Up to 50% off selected products. Sale ends Sunday 29th May 11.59pm AEST or until stocks last. Selected products, colours, models only.<\/em><\/p>",
-              "button_title": "Explore The Range",
-              "link_url": "shopify:\/\/collections\/decathlon-snow-sale",
-              "link_title": "",
-              "link_new_window": false
-            }
-          },
-          "0e3f284b-4302-4200-8eb1-f98ce34415af": {
-            "type": "slide",
-            "disabled": true,
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_19a96368-ef52-4d6e-a960-0e73249eccbb.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_caa6f87a-1e43-4193-b755-eee85d19967c.jpg",
-              "banner_intro": "",
-              "banner_title": "Join the Club to Shop with us & Get Rewarded",
-              "banner_subtitle": "",
-              "button_title": "BECOME A MVP TODAY",
-              "link_url": "https:\/\/login.decathlon.net\/?client_id=e57b2db5-07ff-468e-a8da-85af418a1691#\/sign-up",
-              "link_title": "",
-              "link_new_window": false
-            }
-          },
-          "145847d3-2db7-45f7-8ef6-38db22a4156a": {
-            "type": "slide",
-            "disabled": true,
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Puma_1440_x_789px.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Puma_478_x_300px.jpg",
-              "banner_intro": "<span style=\"background-color: #e6e6e6; color: #000000;\">*Prices already marked. Selected products, colours and sizes only. T&Cs apply.<\/span>",
-              "banner_title": "<span style=\"background-color: #e6e6e6; color: #000000;\">20% off All Puma Women's Apparel*<\/span>",
-              "banner_subtitle": "",
-              "button_title": "SHOP NOW",
-              "link_url": "https:\/\/decathlon.com.au\/search?q=puma&hPP=24&idx=shopify_products&p=0&dFR%5Bnamed_tags.GENDER_ID%5D%5B0%5D=3&is_v=1",
-              "link_title": "",
-              "link_new_window": false
-            }
-          },
           "031bbb08-5e30-443d-9d87-351970f1ff5e": {
             "type": "slide",
             "disabled": true,
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Untitled_design_9.png",
+              "banner_bg_image": "shopify:\/\/shop_images\/CFV2_1440_x_789px.jpg",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Untitled_design_8_de0fde00-4520-428b-bd91-c2b1eb44f716.png",
+              "banner_mobile_image": "shopify:\/\/shop_images\/CFV2_478_x_300px_ccbbca41-621d-4078-bfc5-64fb5aeb805f.jpg",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
               "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/pages\/how-to-choose-running-shoe",
-              "link_title": "Shoe Selector",
-              "link_new_window": false
-            }
-          },
-          "79522152-c757-4b60-a1be-2d1e49198982": {
-            "type": "slide",
-            "disabled": true,
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_74d4728d-1ab0-477b-ab5d-fa889ddd08a4.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_11ff39d5-af3b-4b1f-88fe-54ff7cf820d5.jpg",
-              "banner_intro": "<span style=\"background-color: #e6e6e6; color: #000000;\">Our Most Popular Bikes & Kids Scooters<\/span>",
-              "banner_title": "<span style=\"background-color: #e6e6e6; color: #000000;\">Discover the range!<\/span>",
-              "banner_subtitle": "<p>*Discover Decathlon's amazing range of Bikes and Scooters!<\/p>",
-              "button_title": "SHOP NOW",
-              "link_url": "https:\/\/decathlon.com.au\/collections\/cycling-gear",
-              "link_title": "Shop Now",
+              "link_url": "shopify:\/\/collections\/annual-snow-gear-sale",
+              "link_title": "",
               "link_new_window": false
             }
           }
         },
         "block_order": [
+          "3e042199-9da3-4514-87ba-d462754ab771",
+          "145847d3-2db7-45f7-8ef6-38db22a4156a",
+          "79522152-c757-4b60-a1be-2d1e49198982",
+          "b3d1ab5c-d67b-4ad9-8414-a93439802cdd",
+          "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b",
+          "0e3f284b-4302-4200-8eb1-f98ce34415af",
+          "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb",
+          "e9b4daa6-6eee-441b-b76d-9c3ff012fde9",
+          "748c6a7e-732f-486d-a653-eb425a670bc5",
           "c8d43091-004a-4ebf-962d-d1a8a9a36725",
           "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9",
-          "b3d1ab5c-d67b-4ad9-8414-a93439802cdd",
-          "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb",
           "623e46b1-2abc-4e5b-8ceb-3ca5e428998a",
-          "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b",
-          "3e042199-9da3-4514-87ba-d462754ab771",
-          "0e3f284b-4302-4200-8eb1-f98ce34415af",
-          "145847d3-2db7-45f7-8ef6-38db22a4156a",
-          "031bbb08-5e30-443d-9d87-351970f1ff5e",
-          "79522152-c757-4b60-a1be-2d1e49198982"
+          "031bbb08-5e30-443d-9d87-351970f1ff5e"
         ],
         "settings": {}
       },
       "config_labels": {
         "type": "config_labels",
         "blocks": {
+          "52509a9f-f1a2-431a-a20b-69ef147bfe97": {
+            "type": "label",
+            "settings": {
+              "title": "EOFY BONUS OFFER*",
+              "bg_colour": "#ff0000",
+              "text_colour": "#ffffff"
+            }
+          },
           "b6c50233-aad8-4a5a-8216-cdf77b1a7b69": {
             "type": "label",
             "settings": {
               "title": "Free Delivery*",
               "bg_colour": "#0082c3",
+              "text_colour": "#ffffff"
+            }
+          },
+          "5ee40677-48a0-43eb-9280-2af48a62e84c": {
+            "type": "label",
+            "settings": {
+              "title": "Important Notice",
+              "bg_colour": "#ff0000",
               "text_colour": "#ffffff"
             }
           },
@@ -1859,7 +1908,9 @@
           }
         },
         "block_order": [
+          "52509a9f-f1a2-431a-a20b-69ef147bfe97",
           "b6c50233-aad8-4a5a-8216-cdf77b1a7b69",
+          "5ee40677-48a0-43eb-9280-2af48a62e84c",
           "e27f167b-9a15-49c6-86cc-d5749a582ffc",
           "add54ffc-96a7-4a8e-9da6-0cd98b86bb70",
           "ad2f449b-334c-4b8e-b29c-caed1367ff3b",
@@ -1915,15 +1966,15 @@
               "link": "shopify:\/\/pages\/kids-sports-apparel-footwear"
             }
           },
-          "a35476da-14f6-4892-a5e1-c136b3406867": {
+          "b001623f-dab9-4e48-be17-0e57d5678647": {
             "type": "category",
             "settings": {
-              "title": "30% Clearance Items",
-              "image": "shopify:\/\/shop_images\/top-categories-tips.png",
-              "text_color": "#ffffff",
-              "background_color": "#ff252e",
-              "hover_background_color": "#ff0000",
-              "link": "https:\/\/decathlon.com.au\/collections\/30-off-stock-clearance"
+              "title": "Become a MVP Today!",
+              "image": "shopify:\/\/shop_images\/MVP.png",
+              "text_color": "#0082c3",
+              "background_color": "#eff1f1",
+              "hover_background_color": "#f3f3f3",
+              "link": "shopify:\/\/pages\/decathlon-membership"
             }
           },
           "c5bd0b0f-516e-4db7-926f-46c215e1fbdf": {
@@ -1934,18 +1985,18 @@
               "text_color": "#ffffff",
               "background_color": "#44644c",
               "hover_background_color": "#80c29c",
-              "link": "shopify:\/\/pages\/eco-design-explained"
+              "link": "https:\/\/decathlon.com.au\/collections\/eco-design"
             }
           },
-          "b001623f-dab9-4e48-be17-0e57d5678647": {
+          "a35476da-14f6-4892-a5e1-c136b3406867": {
             "type": "category",
             "settings": {
-              "title": "Membership Benefits",
-              "image": "shopify:\/\/shop_images\/MVP.png",
-              "text_color": "#0082c3",
-              "background_color": "#eff1f1",
-              "hover_background_color": "#f3f3f3",
-              "link": "shopify:\/\/pages\/decathlon-membership"
+              "title": "Clearance Items",
+              "image": "shopify:\/\/shop_images\/top-categories-tips.png",
+              "text_color": "#ffffff",
+              "background_color": "#ff252e",
+              "hover_background_color": "#ff0000",
+              "link": "https:\/\/decathlon.com.au\/collections\/30-off-stock-clearance"
             }
           }
         },
@@ -1953,9 +2004,9 @@
           "9718a5a8-65a5-48fb-a58b-c6238bb78960",
           "04eb074d-6845-49dc-917d-3ff13f1fb30e",
           "38cf3fa3-23be-4a21-8ce3-5d37ded9f8f4",
-          "a35476da-14f6-4892-a5e1-c136b3406867",
+          "b001623f-dab9-4e48-be17-0e57d5678647",
           "c5bd0b0f-516e-4db7-926f-46c215e1fbdf",
-          "b001623f-dab9-4e48-be17-0e57d5678647"
+          "a35476da-14f6-4892-a5e1-c136b3406867"
         ],
         "settings": {}
       },
@@ -2036,6 +2087,22 @@
               "link": "shopify:\/\/collections\/winter-snow-sports"
             }
           },
+          "711f34cb-b34c-4c8f-8e88-ce5c95240666": {
+            "type": "category_tile",
+            "settings": {
+              "title": "Basketball",
+              "image": "shopify:\/\/shop_images\/Basketball-HERO_v2.jpg",
+              "link": "https:\/\/decathlon.com.au\/collections\/basketball-gear"
+            }
+          },
+          "e1091c93-4efb-4738-b3f6-3a711db62e82": {
+            "type": "category_tile",
+            "settings": {
+              "title": "Cycling",
+              "image": "shopify:\/\/shop_images\/Cyclyng-Hero-Homepage_v1.jpg",
+              "link": "https:\/\/decathlon.com.au\/pages\/cycling"
+            }
+          },
           "24a46da8-7f15-4e2c-aa20-558f5e037a41": {
             "type": "category_tile",
             "settings": {
@@ -2052,14 +2119,6 @@
               "link": "shopify:\/\/collections\/running-gear-clothes"
             }
           },
-          "711f34cb-b34c-4c8f-8e88-ce5c95240666": {
-            "type": "category_tile",
-            "settings": {
-              "title": "Yoga & Pilates",
-              "image": "shopify:\/\/shop_images\/Akcesorie_treningowe_2_PK_---_Expires_on_02-08-2025_1.jpg",
-              "link": "shopify:\/\/collections\/yoga-pilates"
-            }
-          },
           "e946fff5-5695-4ed3-a886-269cd8000e8d": {
             "type": "category_tile",
             "settings": {
@@ -2067,47 +2126,39 @@
               "image": "shopify:\/\/shop_images\/PK_Materace_kempingowe_1_---_Expires_on_20-07-2025.jpg",
               "link": "shopify:\/\/collections\/camping"
             }
-          },
-          "e1091c93-4efb-4738-b3f6-3a711db62e82": {
-            "type": "category_tile",
-            "settings": {
-              "title": "Kayaking",
-              "image": "shopify:\/\/shop_images\/Untitled_design_25.png",
-              "link": "shopify:\/\/collections\/kayaking"
-            }
           }
         },
         "block_order": [
           "f553a06c-1d16-4cd4-b9f2-2eea43b5aa9c",
+          "711f34cb-b34c-4c8f-8e88-ce5c95240666",
+          "e1091c93-4efb-4738-b3f6-3a711db62e82",
           "24a46da8-7f15-4e2c-aa20-558f5e037a41",
           "2161fbad-02eb-48c1-9a11-4481251537ae",
-          "711f34cb-b34c-4c8f-8e88-ce5c95240666",
-          "e946fff5-5695-4ed3-a886-269cd8000e8d",
-          "e1091c93-4efb-4738-b3f6-3a711db62e82"
+          "e946fff5-5695-4ed3-a886-269cd8000e8d"
         ],
         "settings": {
-          "title": "Popular Categories"
+          "title": "Trending Categories"
         }
       },
       "163487525380dd83d2": {
         "type": "featured_collection",
         "settings": {
           "title": "Keep warm with Decathlon",
-          "section_collection": "thermal-winter-layers"
+          "section_collection": "hiking-fleeces"
         }
       },
       "16375487170499d43e": {
         "type": "featured_collection",
         "settings": {
-          "title": "Decathlon Originals",
-          "section_collection": "decathlon-originals"
+          "title": "Decathlon Cardio Equipment",
+          "section_collection": "cardio-training-equipment"
         }
       },
       "1642116157c0ce923f": {
         "type": "featured_collection",
         "settings": {
-          "title": "Decathlon Innovation",
-          "section_collection": "innovation-by-decathlon"
+          "title": "NBA Finals with Tarmak",
+          "section_collection": "nba-tarmak"
         }
       },
       "product_page_bnpl": {
@@ -2156,19 +2207,20 @@
       "16509507269dac2990": {
         "type": "featured_collection",
         "settings": {
-          "title": "Keep Dry with Decathlon",
-          "section_collection": "rain-jackets-pants"
+          "title": "Surfing in Winter? We got you covered!",
+          "section_collection": "surfing-in-winter"
         }
       },
       "1650960580e9623e99": {
         "type": "featured_collection",
         "settings": {
-          "title": "Clearance",
-          "section_collection": "30-off-stock-clearance"
+          "title": "Trending Ski & Snow Gear",
+          "section_collection": "decathlon-snow-sale"
         }
       },
       "165115029729e3ba5b": {
         "type": "featured_collection",
+        "disabled": true,
         "settings": {
           "title": "Gear Up with Decathlon",
           "section_collection": "soccer-training-equipment"
@@ -2177,24 +2229,24 @@
       "1651153473715f6dc1": {
         "type": "featured_collection",
         "settings": {
-          "title": "Trending Snow Sale Deals!",
-          "section_collection": "snow-sale"
+          "title": "Watch Clearance - Limited Time Only!",
+          "section_collection": "watch-clearance"
         }
       }
     },
     "content_for_index": [
       "1568939434006",
       "163107170023281063",
+      "16316085202ea5cf79",
+      "1650960580e9623e99",
       "1651153473715f6dc1",
-      "1650950354346fb7a1",
+      "1642116157c0ce923f",
       "16509507269dac2990",
       "163487525380dd83d2",
-      "1650960580e9623e99",
+      "1650950354346fb7a1",
       "165115029729e3ba5b",
-      "1642116157c0ce923f",
       "16375487170499d43e",
-      "163107313302287377",
-      "16316085202ea5cf79"
+      "163107313302287377"
     ]
   },
   "presets": {
