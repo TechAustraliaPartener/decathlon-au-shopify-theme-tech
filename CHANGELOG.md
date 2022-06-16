@@ -5,13 +5,16 @@ This is Decathlon's shopify theme changelog.
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - For guidance on the format of the changelog, please visit [the changelog guide documentation in clickup](https://app.clickup.com/2702900/v/dc/2jfhm-1108).
 
+### [`1.12.4`] 2022-06-16 Hotfix - `4cd4c7f3`
+- Fixed:
+  - [2ew8vnp - fix bug where the customer profile's terms & condition checkbox isn't being pre-filled](https://github.com/dktunited/decathlon-shopify-theme-australia/commit/4cd4c7f385d276f958ffb639a07b2ec14b111434)
 
 ### [`1.12.3`] 2022-05-18 Hotfix - `151461ea`
 - Changed:
   - [production download snippet and templates changes](https://github.com/dktunited/decathlon-shopify-theme-australia/commit/0c9c017937b4cdd9248d3eabc71b181a94808f5d)
   - [production download config](https://github.com/dktunited/decathlon-shopify-theme-australia/commit/17b8253432e27fb140d12b10e2fd456d18f07ab1)
 - Fixed:
-  - [#2cdcczv - fix google json ld errors](https://github.com/dktunited/decathlon-shopify-theme-australia/commit/151461ea0d92101a2a6a77e8e708f69a70094d72)
+  - [2cdcczv - fix google json ld errors](https://github.com/dktunited/decathlon-shopify-theme-australia/commit/151461ea0d92101a2a6a77e8e708f69a70094d72)
 
 ### [`1.12.0`] 2022-04-31 UAT Release - `16d71b27`
 UAT release containing the [Buy Now Pay Later Payment Snippets on the Product Page feature](https://app.clickup.com/t/23ej6h0).
