@@ -1518,7 +1518,7 @@
           "3e042199-9da3-4514-87ba-d462754ab771": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Snow_Campaign_Desktop_v3.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/Snow_Campaign_Desktop_v4.jpg",
               "slide_bg_position": "75% -50px",
               "banner_mobile_image": "shopify:\/\/shop_images\/Snow_Campaign_Mobile.jpg",
               "banner_intro": "",
@@ -1532,16 +1532,30 @@
           },
           "145847d3-2db7-45f7-8ef6-38db22a4156a": {
             "type": "slide",
-            "disabled": true,
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/HomePageBanner-Wedze-v1.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/Yoga_Sale_1440_x_789px.jpg",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/HomePageBanner-Mobile-Wedze-v1_d930ad8b-8bc1-4614-83b1-3bba36259e40.jpg",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Yoga_Sale_478_x_300px.jpg",
               "banner_intro": "",
-              "banner_title": "SNOW SEASON IS HERE!",
-              "banner_subtitle": "<p>Gear up for the snow season! 1HR Click & Collect.<\/p>",
-              "button_title": "SHOP NOW",
-              "link_url": "https:\/\/decathlon.com.au\/collections\/winter-snow-sports",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "shopify:\/\/collections\/yoga-sale",
+              "link_title": "Shop Yoga Sale",
+              "link_new_window": false
+            }
+          },
+          "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Tarmak-NBA-Finals-Desktop.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Tarmak-NBA-Finals-Mobile_v2.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "https:\/\/decathlon.com.au\/search?q=tarmak",
               "link_title": "",
               "link_new_window": false
             }
@@ -1557,36 +1571,6 @@
               "banner_subtitle": "",
               "button_title": "",
               "link_url": "https:\/\/decathlon.com.au\/collections\/decathlon-flash-sale?q=&hPP=24&idx=shopify_products_price_desc&p=0&is_v=1",
-              "link_title": "",
-              "link_new_window": false
-            }
-          },
-          "b3d1ab5c-d67b-4ad9-8414-a93439802cdd": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Polar_Garmin_Sale_1440_x_789px.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Polar_Garmin_Sale_478_x_300px.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "shopify:\/\/collections\/watch-sale",
-              "link_title": "",
-              "link_new_window": false
-            }
-          },
-          "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_a109167c-0ea6-42af-a8a2-76eaa0e1e6d8.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_55972778-4c1e-4237-b804-ab23ec2b8c93.jpg",
-              "banner_intro": "",
-              "banner_title": "<span style=\"color: #000000;\">Discover Decathlon's Trekking Brand, Forclaz<\/span>",
-              "banner_subtitle": "",
-              "button_title": "SHOP NOW",
-              "link_url": "https:\/\/decathlon.com.au\/search?q=forclaz",
               "link_title": "",
               "link_new_window": false
             }
@@ -1618,6 +1602,22 @@
               "button_title": "Shop Now",
               "link_url": "shopify:\/\/collections\/bikes",
               "link_title": "Bikes",
+              "link_new_window": false
+            }
+          },
+          "b3d1ab5c-d67b-4ad9-8414-a93439802cdd": {
+            "type": "slide",
+            "disabled": true,
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Polar_Garmin_Sale_1440_x_789px.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Polar_Garmin_Sale_478_x_300px.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "shopify:\/\/collections\/watch-sale",
+              "link_title": "",
               "link_new_window": false
             }
           },
@@ -1721,11 +1721,11 @@
         "block_order": [
           "3e042199-9da3-4514-87ba-d462754ab771",
           "145847d3-2db7-45f7-8ef6-38db22a4156a",
-          "79522152-c757-4b60-a1be-2d1e49198982",
-          "b3d1ab5c-d67b-4ad9-8414-a93439802cdd",
           "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b",
+          "79522152-c757-4b60-a1be-2d1e49198982",
           "0e3f284b-4302-4200-8eb1-f98ce34415af",
           "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb",
+          "b3d1ab5c-d67b-4ad9-8414-a93439802cdd",
           "e9b4daa6-6eee-441b-b76d-9c3ff012fde9",
           "748c6a7e-732f-486d-a653-eb425a670bc5",
           "c8d43091-004a-4ebf-962d-d1a8a9a36725",
@@ -2090,9 +2090,17 @@
           "711f34cb-b34c-4c8f-8e88-ce5c95240666": {
             "type": "category_tile",
             "settings": {
-              "title": "Basketball",
-              "image": "shopify:\/\/shop_images\/Basketball-HERO_v2.jpg",
-              "link": "https:\/\/decathlon.com.au\/collections\/basketball-gear"
+              "title": "Yoga & Pilates",
+              "image": "shopify:\/\/shop_images\/Yoga-HERO_v1.jpg",
+              "link": "https:\/\/decathlon.com.au\/collections\/yoga-pilates"
+            }
+          },
+          "2161fbad-02eb-48c1-9a11-4481251537ae": {
+            "type": "category_tile",
+            "settings": {
+              "title": "Running",
+              "image": "shopify:\/\/shop_images\/Odziez_do_biegania_1_PK_---_Expires_on_20-08-2025.jpg",
+              "link": "shopify:\/\/collections\/running-gear-clothes"
             }
           },
           "e1091c93-4efb-4738-b3f6-3a711db62e82": {
@@ -2111,14 +2119,6 @@
               "link": "shopify:\/\/collections\/hiking-trekking"
             }
           },
-          "2161fbad-02eb-48c1-9a11-4481251537ae": {
-            "type": "category_tile",
-            "settings": {
-              "title": "Running",
-              "image": "shopify:\/\/shop_images\/Odziez_do_biegania_1_PK_---_Expires_on_20-08-2025.jpg",
-              "link": "shopify:\/\/collections\/running-gear-clothes"
-            }
-          },
           "e946fff5-5695-4ed3-a886-269cd8000e8d": {
             "type": "category_tile",
             "settings": {
@@ -2131,9 +2131,9 @@
         "block_order": [
           "f553a06c-1d16-4cd4-b9f2-2eea43b5aa9c",
           "711f34cb-b34c-4c8f-8e88-ce5c95240666",
+          "2161fbad-02eb-48c1-9a11-4481251537ae",
           "e1091c93-4efb-4738-b3f6-3a711db62e82",
           "24a46da8-7f15-4e2c-aa20-558f5e037a41",
-          "2161fbad-02eb-48c1-9a11-4481251537ae",
           "e946fff5-5695-4ed3-a886-269cd8000e8d"
         ],
         "settings": {
@@ -2150,12 +2150,13 @@
       "16375487170499d43e": {
         "type": "featured_collection",
         "settings": {
-          "title": "Decathlon Cardio Equipment",
-          "section_collection": "cardio-training-equipment"
+          "title": "Discover our Yoga Collection",
+          "section_collection": "yoga-sale"
         }
       },
       "1642116157c0ce923f": {
         "type": "featured_collection",
+        "disabled": true,
         "settings": {
           "title": "NBA Finals with Tarmak",
           "section_collection": "nba-tarmak"
@@ -2239,13 +2240,13 @@
       "163107170023281063",
       "16316085202ea5cf79",
       "1650960580e9623e99",
+      "16375487170499d43e",
       "1651153473715f6dc1",
       "1642116157c0ce923f",
       "16509507269dac2990",
       "163487525380dd83d2",
       "1650950354346fb7a1",
       "165115029729e3ba5b",
-      "16375487170499d43e",
       "163107313302287377"
     ]
   },
