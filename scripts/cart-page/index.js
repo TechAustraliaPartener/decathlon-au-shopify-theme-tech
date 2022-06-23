@@ -436,7 +436,10 @@ const initCartDisplay = cart => {
           if (oversell) {
             ccMessage = `
               <div class="available"><p>${window.translations.product_stock.oversell_cart || ''}</p></div>
-              <div class="unavailable"><p>Unavailable for click & collect</p></div>
+              ${favStoreInventory.inStock === 0 
+                ? `<div class="unavailable"><p>Unavailable for click & collect</p></div>`
+                : `<div class="available"><p>Available for click & collect</p></div>`
+              }
             `;
             messages.push(ccMessage)
           } else {
