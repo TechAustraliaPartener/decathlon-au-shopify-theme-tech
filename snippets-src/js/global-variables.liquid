@@ -80,6 +80,7 @@
     {%- endcapture -%}
     {{ tags_data | remove_first: ',' }}
   };
+  window.vars.show_product_rrp_in_algolia_search_result = {{ settings.show_product_rrp_in_algolia_search_result | json }}
 </script>
 
 {% include 'js-algolia-custom-widgets' %}

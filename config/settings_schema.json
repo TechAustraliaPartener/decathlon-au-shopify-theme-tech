@@ -2286,6 +2286,21 @@
     ]
   },
   {
+    "name": "Product RRP (Recommended Retail Price)",
+    "settings": [
+      {
+        "id": "show_product_rrp_in_product_page",
+        "type": "checkbox",
+        "label": "Show Product RRP in product page"
+      },
+      {
+        "id": "show_product_rrp_in_algolia_search_result",
+        "type": "checkbox",
+        "label": "Show Product RRP in Algolia search result"
+      }
+    ]
+  },
+  {
     "name": "Global Oversell Threshold",
     "settings": [
       {

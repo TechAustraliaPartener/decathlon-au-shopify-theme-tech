@@ -322,6 +322,11 @@
     getRRPPrices: function getRRPPrices() {
       console.log('Checking RRP');
       try {
+        if (!window.vars.show_product_rrp_in_algolia_search_result) {
+          console.log('RRP is disabled in the theme settings');
+          return ''
+        }
+
         if (!this || !this.meta || !this.meta.global || !this.meta.global.model_RRPprices) {
           console.log('No RRP', this.meta.global.model_RRPprices);
           return '';
