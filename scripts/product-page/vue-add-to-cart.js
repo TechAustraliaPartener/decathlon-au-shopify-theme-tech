@@ -122,10 +122,20 @@ const initVueATC = () => {
           stockInfoMessage = `<span>${translations.oversell_available}</span> <span>${translations.oversell_eta}</span>`;
           stockAddClass = OVERSELL_CLASS;
           stockRemoveClass = IN_STOCK_CLASS;
+
           // Update locations inventory delivery data
           delivery.ready = translations.oversell_available;
           delivery.availability.class = 'in';
           delivery.availability.text = translations.oversell_eta
+
+          // Check if variant is available in at least one location for c&c
+          if (variantLocationsInventory.inventoryItem) {
+            const { locations } = variantLocationsInventory.inventoryItem
+            const availableLocs = locations.filter(({ available }) => parseInt(available) > 0)
+            if (availableLocs.length > 0) {
+              stockInfoMessage += `<span>${translations.oversell_click_and_collect}<span>`;
+            }
+          }
         } else if (variantIsNonInventory) {
           stockInfoMessage = translations.in_stock;
           stockAddClass = IN_STOCK_CLASS;

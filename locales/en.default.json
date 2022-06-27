@@ -347,6 +347,7 @@
       "oversell_eta": "ETA: 10-15 Business Days",
       "oversell_cart": "ETA: 10-15 Business Days",
       "giftcards_cart": "Giftcards are only available for delivery",
+      "oversell_click_and_collect": "Available in selected stores for click and collect",
       "wishlist_disabled_message": "Create an account or sign in to save your wishlist",
       "buy_now_pay_later": "Buy now, Pay later:"
     },

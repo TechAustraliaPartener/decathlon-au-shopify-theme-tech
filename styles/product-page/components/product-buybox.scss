@@ -69,7 +69,8 @@
     }
   }
 
-  &.oversell .message > :nth-child(1){
+  &.oversell .message > :nth-child(1),
+  &.oversell .message > :nth-child(3){
     color: #7ABE02;
     display: block;
   }
