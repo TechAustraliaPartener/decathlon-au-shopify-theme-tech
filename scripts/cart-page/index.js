@@ -445,38 +445,37 @@ const initCartDisplay = cart => {
         }
 
         const availableCondition = item.quantity <= available || itemIsNonInventory
-        var deliveryMessage = `
+        messages.push(`
           <div class="${inStock ? (availableCondition ? 'available' : 'low') : 'unavailable'}">
             <p>${inStock ? (availableCondition ? 'Available' : 'Not all items available') : 'Unavailable'} for delivery</p>
           </div>
-        `;
-        messages.push(deliveryMessage);
+        `);
+
+        // Oversell message condition for each delivery option
+        if (oversell && (
+            (app.deliveryOption !== 'Delivery' && delivery.inStock === 0) || 
+            (app.deliveryOption === 'Delivery' && delivery.inStock === true)
+          )
+        ) {
+          messages.push(`
+            <div class="available">
+              <p>${window.translations.product_stock.oversell_cart || ''}</p>
+            </div>
+          `);
+        } 
 
         if (app.favStore && app.favStore.name) {
           const favStoreInventory = item.locations.find(obj => {
             return obj.name === app.favStore.name;
           });
 
-          var ccMessage = '';
-          // console.log({ name: item.title, available: delivery.available, inStock: delivery.inStock, oversell })
-          // Oversell message condition for each delivery option
-          if (oversell && (
-              (app.deliveryOption !== 'Delivery' && delivery.inStock === 0) || 
-              (app.deliveryOption === 'Delivery' && delivery.inStock === true)
-            )
-          ) {
-            ccMessage += `
-              <div class="available"><p>${window.translations.product_stock.oversell_cart || ''}</p></div>
-            `;
-          } 
-
-          ccMessage += `
+          var ccMessage = `
             <div class="${favStoreInventory.inStock ? (item.quantity <= favStoreInventory.available ? 'available' : 'low') : 'unavailable'}">
               <p>
                 ${favStoreInventory.inStock ? (item.quantity <= favStoreInventory.available ? 'Available' : 'Not all items available') : 'Unavailable'} for click & collect
               </p>
             </div>`;
-
+          
           if (favStoreInventory.excludedMessage) ccMessage = ccMessage.replace('Unavailable for click & collect', favStoreInventory.excludedMessage);
           messages.push(ccMessage);
         }
