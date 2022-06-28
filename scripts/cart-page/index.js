@@ -456,24 +456,29 @@ const initCartDisplay = cart => {
           const favStoreInventory = item.locations.find(obj => {
             return obj.name === app.favStore.name;
           });
-          /**
-           * If oversell is true, the message should always be "Unavailable for click and collect" as we only support "Delivery" option for oversell products
-           * And add `Product available for delivery. Ships within 3 weeks` message
-           **/ 
-          if (oversell) {
-            ccMessage = `
+
+          var ccMessage = '';
+          // console.log({ name: item.title, available: delivery.available, inStock: delivery.inStock, oversell })
+          // Oversell message condition for each delivery option
+          if (oversell && (
+              (app.deliveryOption !== 'Delivery' && delivery.inStock === 0) || 
+              (app.deliveryOption === 'Delivery' && delivery.inStock === true)
+            )
+          ) {
+            ccMessage += `
               <div class="available"><p>${window.translations.product_stock.oversell_cart || ''}</p></div>
-              ${favStoreInventory.inStock === 0 
-                ? `<div class="unavailable"><p>Unavailable for click & collect</p></div>`
-                : `<div class="available"><p>Available for click & collect</p></div>`
-              }
             `;
-            messages.push(ccMessage)
-          } else {
-            var ccMessage = `<div class="${favStoreInventory.inStock ? (item.quantity <= favStoreInventory.available ? 'available' : 'low') : 'unavailable'}"><p>${favStoreInventory.inStock ? (item.quantity <= favStoreInventory.available ? 'Available' : 'Not all items available') : 'Unavailable'} for click & collect</p></div>`;
-            if (favStoreInventory.excludedMessage) ccMessage = ccMessage.replace('Unavailable for click & collect', favStoreInventory.excludedMessage);
-            messages.push(ccMessage);
-          }
+          } 
+
+          ccMessage += `
+            <div class="${favStoreInventory.inStock ? (item.quantity <= favStoreInventory.available ? 'available' : 'low') : 'unavailable'}">
+              <p>
+                ${favStoreInventory.inStock ? (item.quantity <= favStoreInventory.available ? 'Available' : 'Not all items available') : 'Unavailable'} for click & collect
+              </p>
+            </div>`;
+
+          if (favStoreInventory.excludedMessage) ccMessage = ccMessage.replace('Unavailable for click & collect', favStoreInventory.excludedMessage);
+          messages.push(ccMessage);
         }
 
         return messages.join('');
