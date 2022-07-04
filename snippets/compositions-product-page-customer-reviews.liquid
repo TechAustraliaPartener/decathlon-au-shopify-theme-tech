@@ -16,6 +16,18 @@ because metafields can't be floats
 {% assign total_item_count = product.metafields.reviews.recent_reviews_object.total_item_count | plus: 0 %}
 {% assign reviews_per_page = 3 %}
 
+{% comment %} 
+  Deduct the total_item_count with the stars that are below the settings.reviews_min_rating 
+{% endcomment %}
+{% assign review_counts_per_star = product.metafields.reviews.recent_reviews_object.notes %}
+{% assign to_deduct = 0 %}
+{% for review_count in review_counts_per_star %}
+  {% if review_count.number < settings.reviews_min_rating %}
+    {% assign to_deduct = to_deduct | plus: review_count.count %}
+  {% endif %}
+{% endfor %}
+{% assign total_item_count = total_item_count | minus: to_deduct %}
+
 {%- capture write_a_review_url -%}
 {% if model_code %}https://reviews.decathlon.com/en_AU/review/new/sform/product/{{ model_code }}{% endif %}
 {%- endcapture -%}
@@ -65,35 +77,37 @@ because metafields can't be floats
     <div class="de-ReviewMatrix de-u-padTop03">
       <div class="de-ReviewMatrix de-u-padTop03" id="de-ReviewMatrix-container">
         {% for rating in ratings %}
-        {% assign stars_fill = rating.number | times: STAR_RATING_PERCENTAGE_MULTIPLIER %}
-        {% assign stars_percentage = rating.count | divided_by: total_ratings_count | times: 100 %}
-        <button
-          aria-label="Show {{rating.number}}-star reviews ({{rating.count}}, {{stars_percentage | round: 0 }} percent of total reviews)."
-          aria-controls="de-CustomerReviews-container" class="de-CustomerReview-filter js-de-CustomerReview-filter"
-          data-star-rating="{{ rating.number }}">
+          {% if rating.number >= settings.reviews_min_rating %}
+            {% assign stars_fill = rating.number | times: STAR_RATING_PERCENTAGE_MULTIPLIER %}
+            {% assign stars_percentage = rating.count | divided_by: total_ratings_count | times: 100 %}
+            <button
+              aria-label="Show {{rating.number}}-star reviews ({{rating.count}}, {{stars_percentage | round: 0 }} percent of total reviews)."
+              aria-controls="de-CustomerReviews-container" class="de-CustomerReview-filter js-de-CustomerReview-filter"
+              data-star-rating="{{ rating.number }}">
 
-          <div class="de-CustomerReviews-starContainer
-                         de-u-flex">
-            <div class="de-StarRating">
-              <div class="de-StarRating-fill" style="width: {{ stars_fill }}%">
+              <div class="de-CustomerReviews-starContainer
+                            de-u-flex">
+                <div class="de-StarRating">
+                  <div class="de-StarRating-fill" style="width: {{ stars_fill }}%">
+                  </div>
+                </div>
+                <div class="de-CustomerReviews-count
+                              de-u-textDarkGray de-u-textMedium de-u-padLeft06 de-u-lineHeight2">
+                  {{ rating.count }}
+                </div>
               </div>
-            </div>
-            <div class="de-CustomerReviews-count
-                           de-u-textDarkGray de-u-textMedium de-u-padLeft06 de-u-lineHeight2">
-              {{ rating.count }}
-            </div>
-          </div>
 
-          <div class="de-ReviewMatrix-graph
-                          js-de-CustomerReview-filter" data-star-rating="{{ rating.number }}">
-            <svg height="8px" width="100%">
-              <rect class="total" width="100%" height="8px" fill="#d8d8d8">
-              </rect>
-              <rect class="completed" width="{{ stars_percentage }}%" height="8px" fill="#0082c3">
-              </rect>
-            </svg>
-          </div>
-        </button>
+              <div class="de-ReviewMatrix-graph
+                              js-de-CustomerReview-filter" data-star-rating="{{ rating.number }}">
+                <svg height="8px" width="100%">
+                  <rect class="total" width="100%" height="8px" fill="#d8d8d8">
+                  </rect>
+                  <rect class="completed" width="{{ stars_percentage }}%" height="8px" fill="#0082c3">
+                  </rect>
+                </svg>
+              </div>
+            </button>
+          {% endif %}
         {% endfor %}
       </div>
     </div>
