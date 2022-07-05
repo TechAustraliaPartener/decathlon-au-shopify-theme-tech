@@ -31,10 +31,10 @@
     "header_support_link": "https:\/\/decathlon.com.au\/pages\/contact-and-help",
     "header_store_label": "Find a Store",
     "header_sign_in_label": "Login",
-    "megamenu_image": "shopify:\/\/shop_images\/Snow_Sale_Last_Days_360_x_360.jpg",
-    "megamenu_title": "Ski & Snow Gear Sale!",
-    "megamenu_subtitle": "Designed in the French Alps",
-    "megamenu_link": "shopify:\/\/collections\/decathlon-snow-sale",
+    "megamenu_image": "shopify:\/\/shop_images\/Bikes_Sale_360_x_360.jpg",
+    "megamenu_title": "Wheelie Good Deals",
+    "megamenu_subtitle": "Up to 20% off Full Price Bikes",
+    "megamenu_link": "shopify:\/\/collections\/bikes-sales",
     "megamenu_bg_colour": "#1c82c3",
     "custom_fields_terms_conditions": "I agree to the <a href=\"\/pages\/terms-and-conditions-membership\" target=\"_blank\">T&Cs<\/a> and <a href=\"\/pages\/privacy-policy\" target=\"_blank\">Privacy Policy<\/a> for creating an account.",
     "is_lookbook": false,
@@ -278,13 +278,14 @@
     "threshold_for_zip_pay_cart_message": "[gateway] is available on orders over [threshold]",
     "threshold_for_zip_pay_product_message": "[gateway] is available on orders over [threshold]",
     "threshold_for_zip_pay_checkout_message": "[gateway] is available on orders over [threshold]",
-    "free_shipping_threshold": "100",
+    "free_shipping_threshold": "150",
     "free_shipping_max_weight": "22000",
     "add_to_cart_drawer_line_1": "Easy Returns",
-    "add_to_cart_drawer_line_2": "Free delivery for orders above $100* (Bulky Items Syd. Metro Only)",
+    "add_to_cart_drawer_line_2": "Free delivery for orders above $150* (Bulky Items Syd. Metro Only)",
     "add_to_cart_drawer_line_3": "1 Hour Click & Collect",
     "reviews_min_rating": 2,
     "reviews_excluded_countries": "IN",
+    "review_filters_and": true,
     "checkout_header_image": "",
     "checkout_logo_position": "left",
     "checkout_logo_size": "small",
@@ -1515,18 +1516,18 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
-          "3e042199-9da3-4514-87ba-d462754ab771": {
+          "748c6a7e-732f-486d-a653-eb425a670bc5": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Snow_Sale_Last_Days_1440_x_789px.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/Bikes_Sale_1440_x_789px.jpg",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Snow_Sale_Last_Days_478_x_300px.jpg",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Bikes_Sale_478_x_300px.jpg",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
               "button_title": "",
-              "link_url": "shopify:\/\/collections\/decathlon-snow-sale",
-              "link_title": "",
+              "link_url": "shopify:\/\/collections\/bikes-sales",
+              "link_title": "Bikes sale",
               "link_new_window": false
             }
           },
@@ -1545,19 +1546,64 @@
               "link_new_window": false
             }
           },
-          "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b": {
+          "3e042199-9da3-4514-87ba-d462754ab771": {
             "type": "slide",
-            "disabled": true,
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Tarmak-NBA-Finals-Desktop.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/Winter_Warmers_1440_x_789px.jpg",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Tarmak-NBA-Finals-Mobile_v2.jpg",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Winter_Warmers_478_x_300px.jpg",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
               "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/search?q=tarmak",
+              "link_url": "shopify:\/\/collections\/thermal-winter-layers-sale",
+              "link_title": "Thermal & Winter Layers",
+              "link_new_window": false
+            }
+          },
+          "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Artengo-Home_page_v2.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Artengo-Home_page_mobile_v2.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/tennis?q=&hPP=24&idx=shopify_products_price_desc&p=0&dFR%5Bvendor%5D%5B0%5D=ARTENGO&is_v=1",
               "link_title": "",
+              "link_new_window": false
+            }
+          },
+          "0e3f284b-4302-4200-8eb1-f98ce34415af": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_19a96368-ef52-4d6e-a960-0e73249eccbb.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_caa6f87a-1e43-4193-b755-eee85d19967c.jpg",
+              "banner_intro": "",
+              "banner_title": "Join the Club to Shop with us & Get Rewarded",
+              "banner_subtitle": "",
+              "button_title": "BECOME A MVP TODAY",
+              "link_url": "shopify:\/\/pages\/decathlon-membership",
+              "link_title": "",
+              "link_new_window": false
+            }
+          },
+          "145847d3-2db7-45f7-8ef6-38db22a4156a": {
+            "type": "slide",
+            "disabled": true,
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/EOFY_Sale_1440_x_789px.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/EOFY_Sale_478_x_300px.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "shopify:\/\/pages\/end-of-financial-year-sale",
+              "link_title": "Shop EOFY 15% off Sitewide",
               "link_new_window": false
             }
           },
@@ -1577,52 +1623,6 @@
               "link_new_window": false
             }
           },
-          "145847d3-2db7-45f7-8ef6-38db22a4156a": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Yoga_Sale_1440_x_789px.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Yoga_Sale_478_x_300px.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "shopify:\/\/collections\/yoga-sale",
-              "link_title": "Shop Yoga Sale",
-              "link_new_window": false
-            }
-          },
-          "0e3f284b-4302-4200-8eb1-f98ce34415af": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_19a96368-ef52-4d6e-a960-0e73249eccbb.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_caa6f87a-1e43-4193-b755-eee85d19967c.jpg",
-              "banner_intro": "",
-              "banner_title": "Join the Club to Shop with us & Get Rewarded",
-              "banner_subtitle": "",
-              "button_title": "BECOME A MVP TODAY",
-              "link_url": "shopify:\/\/pages\/decathlon-membership",
-              "link_title": "",
-              "link_new_window": false
-            }
-          },
-          "b3d1ab5c-d67b-4ad9-8414-a93439802cdd": {
-            "type": "slide",
-            "disabled": true,
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Polar_Garmin_Sale_1440_x_789px.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Polar_Garmin_Sale_478_x_300px.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "shopify:\/\/collections\/watch-sale",
-              "link_title": "",
-              "link_new_window": false
-            }
-          },
           "e9b4daa6-6eee-441b-b76d-9c3ff012fde9": {
             "type": "slide",
             "disabled": true,
@@ -1636,38 +1636,6 @@
               "button_title": "",
               "link_url": "shopify:\/\/products\/decathlon-gift-card",
               "link_title": "Shop Gift Cards",
-              "link_new_window": false
-            }
-          },
-          "748c6a7e-732f-486d-a653-eb425a670bc5": {
-            "type": "slide",
-            "disabled": true,
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/EOFY_Innovation_Sale_1440_x_789px.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/EOFY_Innovation_Sale_478_x_300px.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "shopify:\/\/pages\/end-of-financial-year-sale",
-              "link_title": "EOFY Sale",
-              "link_new_window": false
-            }
-          },
-          "c8d43091-004a-4ebf-962d-d1a8a9a36725": {
-            "type": "slide",
-            "disabled": true,
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Seasonal_Discount_1440_x_789px.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Seasonal_Discount_478_x_300px.jpg",
-              "banner_intro": "",
-              "banner_title": "Stay Warm, Stay Dry, Stay Active",
-              "banner_subtitle": "<p>Sale ends June 12 11.59pm AEST or until stocks last, select products, colours, models. T&Cs apply.<\/p>",
-              "button_title": "SHOP NOW",
-              "link_url": "shopify:\/\/collections\/season-sale",
-              "link_title": "",
               "link_new_window": false
             }
           },
@@ -1702,38 +1670,19 @@
               "link_title": "Sign Up Miranda",
               "link_new_window": false
             }
-          },
-          "031bbb08-5e30-443d-9d87-351970f1ff5e": {
-            "type": "slide",
-            "disabled": true,
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/CFV2_1440_x_789px.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/CFV2_478_x_300px_ccbbca41-621d-4078-bfc5-64fb5aeb805f.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "shopify:\/\/collections\/annual-snow-gear-sale",
-              "link_title": "",
-              "link_new_window": false
-            }
           }
         },
         "block_order": [
-          "3e042199-9da3-4514-87ba-d462754ab771",
-          "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb",
-          "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b",
-          "79522152-c757-4b60-a1be-2d1e49198982",
-          "145847d3-2db7-45f7-8ef6-38db22a4156a",
-          "0e3f284b-4302-4200-8eb1-f98ce34415af",
-          "b3d1ab5c-d67b-4ad9-8414-a93439802cdd",
-          "e9b4daa6-6eee-441b-b76d-9c3ff012fde9",
           "748c6a7e-732f-486d-a653-eb425a670bc5",
-          "c8d43091-004a-4ebf-962d-d1a8a9a36725",
+          "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb",
+          "3e042199-9da3-4514-87ba-d462754ab771",
+          "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b",
+          "0e3f284b-4302-4200-8eb1-f98ce34415af",
+          "145847d3-2db7-45f7-8ef6-38db22a4156a",
+          "79522152-c757-4b60-a1be-2d1e49198982",
+          "e9b4daa6-6eee-441b-b76d-9c3ff012fde9",
           "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9",
-          "623e46b1-2abc-4e5b-8ceb-3ca5e428998a",
-          "031bbb08-5e30-443d-9d87-351970f1ff5e"
+          "623e46b1-2abc-4e5b-8ceb-3ca5e428998a"
         ],
         "settings": {}
       },
@@ -1887,6 +1836,14 @@
               "bg_colour": "#ff0000",
               "text_colour": "#fff9f9"
             }
+          },
+          "051b9d5d-329d-4532-8515-a335befea71c": {
+            "type": "label",
+            "settings": {
+              "title": "CLEARANCE",
+              "bg_colour": "#c7000b",
+              "text_colour": "#ffffff"
+            }
           }
         },
         "block_order": [
@@ -1906,7 +1863,8 @@
           "7f9c88e9-e668-4ac4-a713-e696f1e193a8",
           "f8057dbf-e27c-4eed-adc0-17c069770eb1",
           "4a64b4cb-1338-48f3-9582-151d2698b239",
-          "74970dc7-8d7e-44a9-908f-148a8e9fbaf0"
+          "74970dc7-8d7e-44a9-908f-148a8e9fbaf0",
+          "051b9d5d-329d-4532-8515-a335befea71c"
         ],
         "settings": {}
       },
@@ -2067,12 +2025,20 @@
               "link": "shopify:\/\/collections\/winter-snow-sports"
             }
           },
-          "e946fff5-5695-4ed3-a886-269cd8000e8d": {
+          "e1091c93-4efb-4738-b3f6-3a711db62e82": {
             "type": "category_tile",
             "settings": {
-              "title": "Camping",
-              "image": "shopify:\/\/shop_images\/Camping-Hero-Homepage_v1.jpg",
-              "link": "shopify:\/\/collections\/camping"
+              "title": "Cycling",
+              "image": "shopify:\/\/shop_images\/Cyclyng-Hero-Homepage_v1.jpg",
+              "link": "https:\/\/decathlon.com.au\/pages\/cycling"
+            }
+          },
+          "2161fbad-02eb-48c1-9a11-4481251537ae": {
+            "type": "category_tile",
+            "settings": {
+              "title": "Tennis",
+              "image": "shopify:\/\/shop_images\/Tenni-HERO.jpg",
+              "link": "https:\/\/decathlon.com.au\/collections\/tennis"
             }
           },
           "711f34cb-b34c-4c8f-8e88-ce5c95240666": {
@@ -2083,20 +2049,12 @@
               "link": "https:\/\/decathlon.com.au\/collections\/skate-roller-scooter-clearance"
             }
           },
-          "2161fbad-02eb-48c1-9a11-4481251537ae": {
+          "e946fff5-5695-4ed3-a886-269cd8000e8d": {
             "type": "category_tile",
             "settings": {
-              "title": "Running",
-              "image": "shopify:\/\/shop_images\/Odziez_do_biegania_1_PK_---_Expires_on_20-08-2025.jpg",
-              "link": "shopify:\/\/collections\/running-gear-clothes"
-            }
-          },
-          "e1091c93-4efb-4738-b3f6-3a711db62e82": {
-            "type": "category_tile",
-            "settings": {
-              "title": "Cycling",
-              "image": "shopify:\/\/shop_images\/Cyclyng-Hero-Homepage_v1.jpg",
-              "link": "https:\/\/decathlon.com.au\/pages\/cycling"
+              "title": "Camping",
+              "image": "shopify:\/\/shop_images\/Camping-Hero-Homepage_v1.jpg",
+              "link": "shopify:\/\/collections\/camping"
             }
           },
           "24a46da8-7f15-4e2c-aa20-558f5e037a41": {
@@ -2110,10 +2068,10 @@
         },
         "block_order": [
           "f553a06c-1d16-4cd4-b9f2-2eea43b5aa9c",
-          "e946fff5-5695-4ed3-a886-269cd8000e8d",
-          "711f34cb-b34c-4c8f-8e88-ce5c95240666",
-          "2161fbad-02eb-48c1-9a11-4481251537ae",
           "e1091c93-4efb-4738-b3f6-3a711db62e82",
+          "2161fbad-02eb-48c1-9a11-4481251537ae",
+          "711f34cb-b34c-4c8f-8e88-ce5c95240666",
+          "e946fff5-5695-4ed3-a886-269cd8000e8d",
           "24a46da8-7f15-4e2c-aa20-558f5e037a41"
         ],
         "settings": {
@@ -2123,15 +2081,15 @@
       "163487525380dd83d2": {
         "type": "featured_collection",
         "settings": {
-          "title": "Keep warm with Decathlon",
-          "section_collection": "hiking-fleeces"
+          "title": "Stay Warm with Decathlon this winter!",
+          "section_collection": "winter-clothing-and-footwear"
         }
       },
       "16375487170499d43e": {
         "type": "featured_collection",
         "settings": {
-          "title": "Discover our Yoga Collection",
-          "section_collection": "yoga-sale"
+          "title": "Keep the rain away!",
+          "section_collection": "waterproof-jacket-ponchos-pants"
         }
       },
       "1642116157c0ce923f": {
@@ -2181,22 +2139,22 @@
       "1650950354346fb7a1": {
         "type": "featured_collection",
         "settings": {
-          "title": "Popular Bikes with Free Delivery*",
-          "section_collection": "bikes"
+          "title": "Up to 25% off Scooters & Skateboards",
+          "section_collection": "wheels-sports"
         }
       },
       "16509507269dac2990": {
         "type": "featured_collection",
         "settings": {
-          "title": "Checkout our Winter Cycling Gear",
-          "section_collection": "winter-cycling-clothing"
+          "title": "Trending Tennis Products",
+          "section_collection": "tennis"
         }
       },
       "1650960580e9623e99": {
         "type": "featured_collection",
         "settings": {
-          "title": "Trending Ski & Snow Gear",
-          "section_collection": "decathlon-snow-sale"
+          "title": "Wheelie Good Deals - Up to 20% off Full Priced Bikes",
+          "section_collection": "bikes-sales"
         }
       },
       "165115029729e3ba5b": {
@@ -2219,13 +2177,13 @@
       "1568939434006",
       "163107170023281063",
       "16316085202ea5cf79",
-      "1650960580e9623e99",
       "16375487170499d43e",
-      "1651153473715f6dc1",
-      "1642116157c0ce923f",
-      "16509507269dac2990",
-      "163487525380dd83d2",
+      "1650960580e9623e99",
       "1650950354346fb7a1",
+      "163487525380dd83d2",
+      "1651153473715f6dc1",
+      "16509507269dac2990",
+      "1642116157c0ce923f",
       "165115029729e3ba5b",
       "163107313302287377"
     ]
