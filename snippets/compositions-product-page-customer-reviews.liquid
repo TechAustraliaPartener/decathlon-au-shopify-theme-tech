@@ -16,6 +16,7 @@ because metafields can't be floats
 {% capture total_item_count -%}
   {% render 'compositions-product-page-total-reviews-count' %}
 {%- endcapture %}
+{% assign total_item_count = total_item_count | plus: 0 %}
 {% assign reviews_per_page = 3 %}
 
 {%- capture write_a_review_url -%}
@@ -188,7 +189,6 @@ because metafields can't be floats
     </div>
 
     {% assign reviews_from_metafields = product.metafields.reviews.recent_reviews_object.items %}
-<pre>{{ reviews_from_metafields }}</pre>
     {% comment %}
     @TODO
     1. Determine how default number of pre-loaded reviews is set and try to
@@ -242,7 +242,9 @@ because metafields can't be floats
       {% endcomment %}
       {% assign looplimit = reviews_per_page %}
       {% for review in reviews_from_metafields %}
-        {% if review.number < settings.reviews_min_rating %}
+        {% comment %} Convert review.note to number {% endcomment %}
+        {% assign stars = review.note | plus: 0 %} 
+        {% if stars >= settings.reviews_min_rating %}
           {% if review_filters_and %}
             {% unless excluded_countries contains review.country_label and review.note < min_rating %}
               {% render 'elements-product_review', review: review %}
