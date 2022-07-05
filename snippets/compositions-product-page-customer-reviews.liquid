@@ -13,20 +13,10 @@ because metafields can't be floats
 {% endcomment %}
 {% assign product_rating = product.metafields.reviews.product_rating | plus: 0 %}
 {% assign rating_average = product_rating | times: 20 %}
-{% assign total_item_count = product.metafields.reviews.recent_reviews_object.total_item_count | plus: 0 %}
+{% capture total_item_count -%}
+  {% render 'compositions-product-page-total-reviews-count' %}
+{%- endcapture %}
 {% assign reviews_per_page = 3 %}
-
-{% comment %} 
-  Deduct the total_item_count with the stars that are below the settings.reviews_min_rating 
-{% endcomment %}
-{% assign review_counts_per_star = product.metafields.reviews.recent_reviews_object.notes %}
-{% assign to_deduct = 0 %}
-{% for review_count in review_counts_per_star %}
-  {% if review_count.number < settings.reviews_min_rating %}
-    {% assign to_deduct = to_deduct | plus: review_count.count %}
-  {% endif %}
-{% endfor %}
-{% assign total_item_count = total_item_count | minus: to_deduct %}
 
 {%- capture write_a_review_url -%}
 {% if model_code %}https://reviews.decathlon.com/en_AU/review/new/sform/product/{{ model_code }}{% endif %}
@@ -198,7 +188,7 @@ because metafields can't be floats
     </div>
 
     {% assign reviews_from_metafields = product.metafields.reviews.recent_reviews_object.items %}
-
+<pre>{{ reviews_from_metafields }}</pre>
     {% comment %}
     @TODO
     1. Determine how default number of pre-loaded reviews is set and try to
@@ -252,15 +242,17 @@ because metafields can't be floats
       {% endcomment %}
       {% assign looplimit = reviews_per_page %}
       {% for review in reviews_from_metafields %}
-        {% if review_filters_and %}
-          {% unless excluded_countries contains review.country_label and review.note < min_rating %}
-            {% render 'elements-product_review', review: review %}
-          {% endunless %}
-        {% else %}
-          {% unless excluded_countries contains review.country_label or review.note < min_rating %}
-            {% render 'elements-product_review', review: review %}
-          {% endunless %}
-        {% endif %}
+        {% if review.number < settings.reviews_min_rating %}
+          {% if review_filters_and %}
+            {% unless excluded_countries contains review.country_label and review.note < min_rating %}
+              {% render 'elements-product_review', review: review %}
+            {% endunless %}
+          {% else %}
+            {% unless excluded_countries contains review.country_label or review.note < min_rating %}
+              {% render 'elements-product_review', review: review %}
+            {% endunless %}
+          {% endif %}
+        {% endif %}      
       {% endfor %}
     </div>
     {% comment %}
