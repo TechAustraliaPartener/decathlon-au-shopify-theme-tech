@@ -210,10 +210,11 @@ export const loadNewReviews = isMoreReviewRequest => {
         const { reviews_excluded_countries, reviews_min_rating, review_filters_and } = window.vars.themeSettings;
 
         data.items = data.items.filter(i => 
-          review_filters_and ?
-            reviews_excluded_countries.indexOf(i.country) === -1 && i.note >= reviews_min_rating
-          :
-            reviews_excluded_countries.indexOf(i.country) === -1 || i.note >= reviews_min_rating
+          reviews_excluded_countries.length > 0
+            ? review_filters_and 
+              ? reviews_excluded_countries.indexOf(i.country) === -1 && i.note >= reviews_min_rating
+              : reviews_excluded_countries.indexOf(i.country) === -1 || i.note >= reviews_min_rating
+            : i.note >= reviews_min_rating
         );
       } catch (err) {
         console.error(err);
