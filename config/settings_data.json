@@ -31,10 +31,10 @@
     "header_support_link": "https:\/\/decathlon.com.au\/pages\/contact-and-help",
     "header_store_label": "Find a Store",
     "header_sign_in_label": "Login",
-    "megamenu_image": "shopify:\/\/shop_images\/Bikes_Sale_360_x_360.jpg",
-    "megamenu_title": "Wheelie Good Deals",
-    "megamenu_subtitle": "Up to 20% off Full Price Bikes",
-    "megamenu_link": "shopify:\/\/collections\/bikes-sales",
+    "megamenu_image": "shopify:\/\/shop_images\/Sports_in_Winter_v2_360_x_360.jpg",
+    "megamenu_title": "Save Up to 50% off",
+    "megamenu_subtitle": "Stay warm, dry & active this winter!",
+    "megamenu_link": "shopify:\/\/pages\/sports-in-winter",
     "megamenu_bg_colour": "#1c82c3",
     "custom_fields_terms_conditions": "I agree to the <a href=\"\/pages\/terms-and-conditions-membership\" target=\"_blank\">T&Cs<\/a> and <a href=\"\/pages\/privacy-policy\" target=\"_blank\">Privacy Policy<\/a> for creating an account.",
     "is_lookbook": false,
@@ -1516,6 +1516,21 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
+          "85c47718-39c5-4752-aa58-3e34ef8c0a97": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Sports_in_Winter_v2_1440_x_789px.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Sports_in_Winter_v2_478_x_300px.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "shopify:\/\/pages\/sports-in-winter",
+              "link_title": "Shop Sports In Winter",
+              "link_new_window": false
+            }
+          },
           "748c6a7e-732f-486d-a653-eb425a670bc5": {
             "type": "slide",
             "settings": {
@@ -1546,21 +1561,6 @@
               "link_new_window": false
             }
           },
-          "3e042199-9da3-4514-87ba-d462754ab771": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Winter_Warmers_1440_x_789px.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Winter_Warmers_478_x_300px.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "shopify:\/\/collections\/thermal-winter-layers-sale",
-              "link_title": "Thermal & Winter Layers",
-              "link_new_window": false
-            }
-          },
           "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b": {
             "type": "slide",
             "settings": {
@@ -1588,6 +1588,22 @@
               "button_title": "BECOME A MVP TODAY",
               "link_url": "shopify:\/\/pages\/decathlon-membership",
               "link_title": "",
+              "link_new_window": false
+            }
+          },
+          "3e042199-9da3-4514-87ba-d462754ab771": {
+            "type": "slide",
+            "disabled": true,
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Winter_Warmers_1440_x_789px.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Winter_Warmers_478_x_300px.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "shopify:\/\/collections\/thermal-winter-layers-sale",
+              "link_title": "Thermal & Winter Layers",
               "link_new_window": false
             }
           },
@@ -1673,11 +1689,12 @@
           }
         },
         "block_order": [
+          "85c47718-39c5-4752-aa58-3e34ef8c0a97",
           "748c6a7e-732f-486d-a653-eb425a670bc5",
           "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb",
-          "3e042199-9da3-4514-87ba-d462754ab771",
           "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b",
           "0e3f284b-4302-4200-8eb1-f98ce34415af",
+          "3e042199-9da3-4514-87ba-d462754ab771",
           "145847d3-2db7-45f7-8ef6-38db22a4156a",
           "79522152-c757-4b60-a1be-2d1e49198982",
           "e9b4daa6-6eee-441b-b76d-9c3ff012fde9",
@@ -1709,16 +1726,16 @@
             "type": "label",
             "settings": {
               "title": "Lowest Price",
-              "bg_colour": "#ffea28",
-              "text_colour": "#333333"
+              "bg_colour": "#1783c4",
+              "text_colour": "#f9ec24"
             }
           },
           "add54ffc-96a7-4a8e-9da6-0cd98b86bb70": {
             "type": "label",
             "settings": {
               "title": "Best Value",
-              "bg_colour": "#1c82c3",
-              "text_colour": "#ffffff"
+              "bg_colour": "#f9ec24",
+              "text_colour": "#1783c4"
             }
           },
           "ad2f449b-334c-4b8e-b29c-caed1367ff3b": {
@@ -2081,8 +2098,8 @@
       "163487525380dd83d2": {
         "type": "featured_collection",
         "settings": {
-          "title": "Stay Warm with Decathlon this winter!",
-          "section_collection": "winter-clothing-and-footwear"
+          "title": "Save Up to 50% Off - Stay warm, dry & active this winter!",
+          "section_collection": "season-sale"
         }
       },
       "16375487170499d43e": {
@@ -2177,10 +2194,10 @@
       "1568939434006",
       "163107170023281063",
       "16316085202ea5cf79",
+      "163487525380dd83d2",
       "16375487170499d43e",
       "1650960580e9623e99",
       "1650950354346fb7a1",
-      "163487525380dd83d2",
       "1651153473715f6dc1",
       "16509507269dac2990",
       "1642116157c0ce923f",
