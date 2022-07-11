@@ -338,7 +338,7 @@ const initCartDisplay = cart => {
 
         // We only support overselling for delivery only
         if (app.deliveryOption === 'Delivery' && checkLoc.inStock === 0) {
-          checkLoc.inStock = this.checkIfItemIsAllowedToOversell(item.id) > 0 || this.checkIfItemIsNonInventory(item.id)
+          checkLoc.inStock = this.checkIfItemIsAllowedToOversell(item.id) > 0 || this.checkIfItemIsNonInventory(item)
         }
 
         // Only allow gift cards to be checked out if delivery option is delivery
@@ -362,7 +362,7 @@ const initCartDisplay = cart => {
 
         // We only support overselling for delivery only
         if (app.deliveryOption === 'Delivery' && checkLoc.available === 0) {
-          checkLoc.available = this.checkIfItemIsAllowedToOversell(item.id) || this.checkIfItemIsNonInventory(item.id)
+          checkLoc.available = this.checkIfItemIsAllowedToOversell(item.id) || this.checkIfItemIsNonInventory(item)
         }
 
         // Only allow gift cards to be checked out if delivery option is delivery
@@ -421,9 +421,14 @@ const initCartDisplay = cart => {
        * @param {number} itemId 
        * @returns {number} - returns 99 stocks if item is a non-inventory otherwise 0
        */
-      checkIfItemIsNonInventory(itemId) {
-        const { variant } = window.itemsWithVariantInventoryData.find(({id}) => id === itemId);
-        const oversell = this.checkIfItemIsAllowedToOversell(itemId);
+      checkIfItemIsNonInventory(item) {
+        const { delivery, locations } = item;
+        const filteredLocations = locations.filter(loc => loc.available > 0);
+        // Variant should be unavailable for both delivery and pickup to consider as non-inventory
+        if (filteredLocations.length > 0 || delivery.available > 0) return false;
+
+        const { variant } = window.itemsWithVariantInventoryData.find(({id}) => id === item.id);
+        const oversell = this.checkIfItemIsAllowedToOversell(item.id);
         const nonInventory = variant.available && !oversell
         return nonInventory ? 99 : 0
       },
@@ -435,7 +440,7 @@ const initCartDisplay = cart => {
         let available = delivery.available;
         let inStock = delivery.inStock
         let oversell = this.checkIfItemIsAllowedToOversell(item.id);
-        let itemIsNonInventory = this.checkIfItemIsNonInventory(item.id);
+        let itemIsNonInventory = this.checkIfItemIsNonInventory(item);
 
         if (itemIsNonInventory) {
           inStock = true

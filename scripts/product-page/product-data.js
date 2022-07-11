@@ -222,8 +222,17 @@ export const checkIfVariantIsAllowedToOversell = (variantId) => {
 
 export const checkIfVariantIsNonInventory = (variantId) => {
   if (!window.variantsWithInventoryData) return false;
+
+  // Check variant availability for delivery and pickup
+  const variantLocationsInventory = (window.inventories || {})[variantId];
+  const { delivery, locations } = variantLocationsInventory.inventoryItem;
+  const filteredLocations = locations.filter(loc => loc.available > 0);
+  // Variant should be unavailable for both delivery and pickup to consider as non-inventory
+  if (filteredLocations.length > 0 || delivery.available > 0) return false;
+
   const variantWithInventoryData = window.variantsWithInventoryData.find(({ id }) => id == variantId);
   const variantIsAllowedToOversell = checkIfVariantIsAllowedToOversell(variantId);
+  console.log({variantWithInventoryData, variantIsAllowedToOversell});
   return variantWithInventoryData.available && variantIsAllowedToOversell === false;
 }
 
