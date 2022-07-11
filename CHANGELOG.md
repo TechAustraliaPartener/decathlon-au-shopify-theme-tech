@@ -5,6 +5,9 @@ This is Decathlon's shopify theme changelog.
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - For guidance on the format of the changelog, please visit [the changelog guide documentation in clickup](https://app.clickup.com/2702900/v/dc/2jfhm-1108).
 
+### [`1.14.1`] - 2022-07-05 Hotfix - `9eaa3840`
+- [2kpmjcy - fix non inventory conditions](https://github.com/dktunited/decathlon-shopify-theme-australia/search?q=2kpmjcy&type=commits)
+
 ### [`1.14.0`] - 2022-07-05 UAT Release - `6340fc8a`
 - [2d2zjyq - Extend the overselling mechanic to support non-inventory products](https://github.com/dktunited/decathlon-shopify-theme-australia/search?q=2d2zjyq&type=commits)
 - [2dzkh08 - Remove the RRP Tooltip and additional pricing information feature](https://github.com/dktunited/decathlon-shopify-theme-australia/search?q=2dzkh08&type=commits)
