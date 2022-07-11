@@ -1546,6 +1546,21 @@
               "link_new_window": false
             }
           },
+          "3e042199-9da3-4514-87ba-d462754ab771": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_c1d92ede-d76f-443c-9ff2-a341a5818622.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_cffcee3f-c864-4e1a-9500-f0e1d9a61e29.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/road-bikes",
+              "link_title": "",
+              "link_new_window": false
+            }
+          },
           "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb": {
             "type": "slide",
             "settings": {
@@ -1561,8 +1576,24 @@
               "link_new_window": false
             }
           },
+          "145847d3-2db7-45f7-8ef6-38db22a4156a": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_9b598681-9aa5-4804-aaa4-b9d9caf7fd5f.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_fecad428-e4ca-4bb9-bcc5-e79871b00153.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/smart-buys",
+              "link_title": "",
+              "link_new_window": false
+            }
+          },
           "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b": {
             "type": "slide",
+            "disabled": true,
             "settings": {
               "banner_bg_image": "shopify:\/\/shop_images\/Artengo-Home_page_v2.jpg",
               "slide_bg_position": "75% -50px",
@@ -1588,38 +1619,6 @@
               "button_title": "BECOME A MVP TODAY",
               "link_url": "shopify:\/\/pages\/decathlon-membership",
               "link_title": "",
-              "link_new_window": false
-            }
-          },
-          "3e042199-9da3-4514-87ba-d462754ab771": {
-            "type": "slide",
-            "disabled": true,
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Winter_Warmers_1440_x_789px.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Winter_Warmers_478_x_300px.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "shopify:\/\/collections\/thermal-winter-layers-sale",
-              "link_title": "Thermal & Winter Layers",
-              "link_new_window": false
-            }
-          },
-          "145847d3-2db7-45f7-8ef6-38db22a4156a": {
-            "type": "slide",
-            "disabled": true,
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/EOFY_Sale_1440_x_789px.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/EOFY_Sale_478_x_300px.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "shopify:\/\/pages\/end-of-financial-year-sale",
-              "link_title": "Shop EOFY 15% off Sitewide",
               "link_new_window": false
             }
           },
@@ -1691,11 +1690,11 @@
         "block_order": [
           "85c47718-39c5-4752-aa58-3e34ef8c0a97",
           "748c6a7e-732f-486d-a653-eb425a670bc5",
+          "3e042199-9da3-4514-87ba-d462754ab771",
           "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb",
+          "145847d3-2db7-45f7-8ef6-38db22a4156a",
           "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b",
           "0e3f284b-4302-4200-8eb1-f98ce34415af",
-          "3e042199-9da3-4514-87ba-d462754ab771",
-          "145847d3-2db7-45f7-8ef6-38db22a4156a",
           "79522152-c757-4b60-a1be-2d1e49198982",
           "e9b4daa6-6eee-441b-b76d-9c3ff012fde9",
           "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9",
@@ -1808,16 +1807,6 @@
               "text_colour_2": "#fafafa"
             }
           },
-          "26076a3f-98ab-4565-ba49-84843cf8bfca": {
-            "type": "combo",
-            "settings": {
-              "title": "Bundle Offer,Online Only",
-              "bg_colour_1": "#e75109",
-              "text_colour_1": "#ffffff",
-              "bg_colour_2": "#0082c3",
-              "text_colour_2": "#fafafa"
-            }
-          },
           "7f9c88e9-e668-4ac4-a713-e696f1e193a8": {
             "type": "combo",
             "settings": {
@@ -1846,19 +1835,19 @@
               "text_colour": "#ffffff"
             }
           },
-          "74970dc7-8d7e-44a9-908f-148a8e9fbaf0": {
-            "type": "label",
-            "settings": {
-              "title": "EOFY 15% OFF*",
-              "bg_colour": "#ff0000",
-              "text_colour": "#fff9f9"
-            }
-          },
           "051b9d5d-329d-4532-8515-a335befea71c": {
             "type": "label",
             "settings": {
               "title": "CLEARANCE",
               "bg_colour": "#c7000b",
+              "text_colour": "#ffffff"
+            }
+          },
+          "af7243fd-6fab-4a70-aef8-d718d402d934": {
+            "type": "label",
+            "settings": {
+              "title": "Online Clearance",
+              "bg_colour": "#e21f26",
               "text_colour": "#ffffff"
             }
           }
@@ -1876,12 +1865,11 @@
           "7b27a0f1-dd9f-41ee-9e69-c57fd687ed6e",
           "21cbe9ff-5012-4881-904e-7443a4af6fcb",
           "203eac2f-7a40-47a1-b441-b6edd838f4ca",
-          "26076a3f-98ab-4565-ba49-84843cf8bfca",
           "7f9c88e9-e668-4ac4-a713-e696f1e193a8",
           "f8057dbf-e27c-4eed-adc0-17c069770eb1",
           "4a64b4cb-1338-48f3-9582-151d2698b239",
-          "74970dc7-8d7e-44a9-908f-148a8e9fbaf0",
-          "051b9d5d-329d-4532-8515-a335befea71c"
+          "051b9d5d-329d-4532-8515-a335befea71c",
+          "af7243fd-6fab-4a70-aef8-d718d402d934"
         ],
         "settings": {}
       },
@@ -2104,6 +2092,7 @@
       },
       "16375487170499d43e": {
         "type": "featured_collection",
+        "disabled": true,
         "settings": {
           "title": "Keep the rain away!",
           "section_collection": "waterproof-jacket-ponchos-pants"
