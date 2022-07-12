@@ -1741,7 +1741,7 @@
             "type": "label",
             "settings": {
               "title": "Sale",
-              "bg_colour": "#e20c18",
+              "bg_colour": "#e21f26",
               "text_colour": "#ffffff"
             }
           },
@@ -1901,12 +1901,12 @@
           "38cf3fa3-23be-4a21-8ce3-5d37ded9f8f4": {
             "type": "category",
             "settings": {
-              "title": "Kids",
-              "image": "shopify:\/\/shop_images\/top-categories-child.png",
-              "text_color": "#252527",
-              "background_color": "#eff1f1",
-              "hover_background_color": "#f3f3f3",
-              "link": "shopify:\/\/pages\/kids-sports-apparel-footwear"
+              "title": "Repairs & Services",
+              "image": "shopify:\/\/shop_images\/service-icon_v3.png",
+              "text_color": "#ffffff",
+              "background_color": "#0082c3",
+              "hover_background_color": "#0082c3",
+              "link": "https:\/\/decathlon.com.au\/pages\/workshop-services"
             }
           },
           "a35476da-14f6-4892-a5e1-c136b3406867": {
@@ -1916,7 +1916,7 @@
               "image": "shopify:\/\/shop_images\/top-categories-tips.png",
               "text_color": "#ffffff",
               "background_color": "#0182c3",
-              "hover_background_color": "#ffea28",
+              "hover_background_color": "#0182c3",
               "link": "https:\/\/decathlon.com.au\/collections\/smart-buys"
             }
           },
@@ -2151,6 +2151,7 @@
       },
       "16509507269dac2990": {
         "type": "featured_collection",
+        "disabled": true,
         "settings": {
           "title": "Trending Tennis Products",
           "section_collection": "tennis"
