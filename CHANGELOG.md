@@ -5,7 +5,10 @@ This is Decathlon's shopify theme changelog.
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - For guidance on the format of the changelog, please visit [the changelog guide documentation in clickup](https://app.clickup.com/2702900/v/dc/2jfhm-1108).
 
-### [`1.14.1`] - 2022-07-05 Hotfix - `9eaa3840`
+### [`1.14.2`] - 2022-07-12 Hotfix - ` b6171569`
+- [2kwd85w - fix an error that prevents users from selecting a variant](https://github.com/dktunited/decathlon-shopify-theme-australia/search?q=2kwd85w&type=commits)
+
+### [`1.14.1`] - 2022-07-11 Hotfix - `9eaa3840`
 - [2kpmjcy - fix non inventory conditions](https://github.com/dktunited/decathlon-shopify-theme-australia/search?q=2kpmjcy&type=commits)
 
 ### [`1.14.0`] - 2022-07-05 UAT Release - `6340fc8a`
