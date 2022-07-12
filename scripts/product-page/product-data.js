@@ -225,6 +225,8 @@ export const checkIfVariantIsNonInventory = (variantId) => {
 
   // Check variant availability for delivery and pickup
   const variantLocationsInventory = (window.inventories || {})[variantId];
+  if (!variantLocationsInventory) return false;
+
   const { delivery, locations } = variantLocationsInventory.inventoryItem;
   const filteredLocations = locations.filter(loc => loc.available > 0);
   // Variant should be unavailable for both delivery and pickup to consider as non-inventory
