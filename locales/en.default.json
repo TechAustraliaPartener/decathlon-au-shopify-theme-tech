@@ -249,6 +249,7 @@
       "email": "Email",
       "password": "Password",
       "submit": "Create",
+      "back_to_login": "Back to Sign In",
       "cancel": "Return to Store",
       "disclaimer_html": "When you create an account, you agree to Decathlon's <a href=\"\/pages\/terms\">Terms&nbsp;of&nbsp;Use<\/a> and consent to its <a href=\"\/pages\/privacy-policy\">Privacy&nbsp;Policy<\/a>."
     },
@@ -257,6 +258,9 @@
       "first_name": "First Name",
       "last_name": "Last Name",
       "gender": "Gender",
+      "email": "Email",
+      "password": "Password",
+      "password_confirmation": "Password Confirmation",
       "phone": "Mobile Phone",
       "birthday": "Date of Birth",
       "address": "Address",
@@ -268,6 +272,12 @@
       "stores": "Miranda, NSW|Tempe, NSW|Auburn, NSW|Box Hill, VIC|Knoxfield, VIC|Moorabbin, VIC|South Morang, VIC|No stores around me",
       "marketing_optin": "Sign me up as a MVP and receive a $20 discount code",
       "marketing_optin_edit": "Become a MVP and keep me up to date on exclusive news and offers"
+    },
+    "custom_fields_errors": {
+      "email_taken": "Email has already been taken.",
+      "email_invalid": "Email is invalid.",
+      "password_short": "Password is too short (minimum is 5 characters)",
+      "password_mismatch": "Password confirmation must match the provided password."
     }
   },
   "homepage": {

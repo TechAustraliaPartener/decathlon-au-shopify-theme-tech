@@ -1,0 +1,76 @@
+<div class="u-block u-paddingTopBottom6x">
+
+  <div class="wrapper wrapper--midWidth">
+    <h1 class="h3 text-center">{{ 'customer.register.title' | t }}</h1>
+
+    <div class="form-vertical alert-form">
+      
+      {% form 'create_customer', action: '', data-cf-view: '', rv-cf-custom-form: '', data-cf-form-id: '2qtel9' %}
+        <ul class="u-marginBottom1x text-center errors list-none u-block" rv-if="has_error">
+          <li rv-each-error="errors.base">
+            <span rv-text="error"></span>
+          </li>  
+          <li rv-each-error="errors.email">
+            <span rv-if="error | eq 'taken'">
+              {{ 'customer.custom_fields_errors.email_taken' | t }}
+            </span>
+            <span rv-if="error | eq 'invalid'">
+              {{ 'customer.custom_fields_errors.email_invalid' | t }}
+            </span>
+          </li>
+          <li rv-each-error="errors.password">
+            <span rv-if="error | eq 'too_short'">
+              {{ 'customer.custom_fields_errors.password_short' | t }}
+            </span>
+          </li>
+          <li rv-each-error="errors.password_confirmation">
+            <span rv-if="error | eq 'must_match_password'">
+              {{ 'customer.custom_fields_errors.password_mismatch' | t }}
+            </span>
+          </li>
+        </ul>
+        
+        <input type="hidden" name="redirect_url" value="/account" />
+        
+        <div data-marketing-hide>
+          <label>{{ 'customer.custom_fields.email' | t }} <span class="text-red">*</span></label><br>
+          <input name="customer[email]" type="text" class="required" required />
+        </div>
+        <div data-marketing-hide>
+          <label>{{ 'customer.custom_fields.password' | t }} <span class="text-red">*</span></label><br>
+          <input name="customer[password]" type="password" class="required" required />
+        </div>
+        <div data-marketing-hide style="margin-bottom: 2em;">
+          <label>{{ 'customer.custom_fields.password_confirmation' | t }} <span class="text-red">*</span></label><br>
+          <input name="customer[password_confirmation]" type="password" class="required" required />
+        </div>
+        <p class="disclaimer">{{ section.settings.disclaimer }}</p>
+        <input type="hidden" name=customer[addresses][country] value="Australia" />
+        <p>
+          <button class="cf-submit-form cf-button btn btn--fill btn--full" type="submit">
+            {{ 'customer.register.submit' | t }}
+          </button>
+        </p>
+        <p class="u-marginTop2x text-center">
+          <a class="btn btn--text" href="/account/login">
+            {{ 'customer.register.back_to_login' | t }}
+          </a>
+        </p>
+      {% endform %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Register",
+    "settings": [
+      {
+        "type": "richtext",
+        "id": "disclaimer",
+        "label": "Disclaimer",
+        "default": "<p>When you create an account, you agree to Decathlon's <a href=\"/pages\/terms\">Terms&nbsp;of&nbsp;Use<\/a> and consent to its <a href=\"/pages\/privacy-policy\">Privacy&nbsp;Policy<\/a>.<\/p>"
+      }
+    ]
+  }
+{% endschema %}
