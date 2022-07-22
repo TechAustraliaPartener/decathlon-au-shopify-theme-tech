@@ -67,7 +67,10 @@
           </div>
           {% else %}
             <p class="grid__item u-marginTop1x">
-              <a href="{{ settings.register_portal_url | default: '/account/register' }}" class="btn">{{ 'layout.customer.create_account' | t }}</a>
+              {% if settings.register_portal_url == blank %}
+                {% assign block_class = 'u-block' %}
+              {% endif %}
+              <a href="{{ settings.register_portal_url | default: '/account/register' }}" class="btn {{ block_class }}">{{ 'layout.customer.create_account' | t }}</a>
             </p>
 
           {% endif %}
