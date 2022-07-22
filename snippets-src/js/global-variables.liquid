@@ -17,8 +17,8 @@
 {% assign rrpMetafields = product.metafields.global.model_RRPprices %}
 <script>
   window.vars = window.vars || {};
-  window.vars.loginUrl = "{{ settings.login_portal_url }}";
-  window.vars.registerUrl = "{{ settings.register_portal_url }}";
+  window.vars.loginUrl = "{{ settings.login_portal_url | default: '/account/login' }}";
+  window.vars.registerUrl = "{{ settings.register_portal_url | default: '/account/register' }}";
   window.vars.inventoryType = "{{ settings.inventory_type }}";
   window.vars.outOfStockHandling = "{{ settings.out_of_stock_handling }}";
   window.vars.pickupDisplay = "{{ settings.pickup_display }}";

@@ -23,7 +23,7 @@
   </a>
 {% else %}
   <a
-    href="{{ settings.login_portal_url }}"
+    href="{{ settings.login_portal_url | default: '/account/login' }}"
     class="de-MenuBar-action menu-bar-menu-item-action"
     data-gtm-event="customer-interaction"
     data-gtm-id="My Account"

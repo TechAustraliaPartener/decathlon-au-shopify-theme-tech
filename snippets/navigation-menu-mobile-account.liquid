@@ -20,7 +20,7 @@
 			{% include 'patterns-icons-chevron', class: "de-MenuList-icon", role: 'presentation' %}
 		</a>
 	{% else %}
-		<a class="de-MenuList-item de-MenuList-item--muted" href="{{ settings.login_portal_url }}">
+		<a class="de-MenuList-item de-MenuList-item--muted" href="{{ settings.login_portal_url | default: '/account/login' }}">
 			{% include 'patterns-icons-user',
 				class: 'de-MenuList-icon de-u-textGrow3',
 				role: 'presentation' %}
