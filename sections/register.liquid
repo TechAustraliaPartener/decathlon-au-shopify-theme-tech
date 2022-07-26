@@ -48,7 +48,15 @@
         <input type="hidden" name=customer[addresses][country] value="Australia" />
         <p>
           <button class="cf-submit-form cf-button btn btn--fill btn--full" type="submit">
-            {{ 'customer.register.submit' | t }}
+            <span rv-unless="customer_saving | or redirecting">
+              {{ 'customer.register.submit' | t }}
+            </span>
+            <span rv-if="customer_saving">
+              {{ 'customer.register.submitting' | t }}
+            </span>
+            <span rv-if="redirecting">
+              {{ 'customer.register.redirecting' | t }}
+            </span>
           </button>
         </p>
         <p class="u-marginTop2x text-center">

@@ -249,6 +249,8 @@
       "email": "Email",
       "password": "Password",
       "submit": "Create",
+      "submitting": "Submitting...",
+      "redirecting": "Redirecting...",
       "back_to_login": "Back to Sign In",
       "cancel": "Return to Store",
       "disclaimer_html": "When you create an account, you agree to Decathlon's <a href=\"\/pages\/terms\">Terms&nbsp;of&nbsp;Use<\/a> and consent to its <a href=\"\/pages\/privacy-policy\">Privacy&nbsp;Policy<\/a>."
