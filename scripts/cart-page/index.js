@@ -490,6 +490,16 @@ const initCartDisplay = cart => {
         }
 
         if (app.favStore && app.favStore.name) {
+          // Gift card will always be unavailable for click & collect
+          if (item.gift_card) {
+            messages.push(`
+              <div class="unavailable">
+                <p>Unavailable for click & collect</p>
+              </div>
+            `); 
+            return messages.join('');
+          }
+
           const favStoreInventory = item.locations.find(obj => {
             return obj.name === app.favStore.name;
           });
@@ -526,7 +536,7 @@ const initCartDisplay = cart => {
 
           if (hasGiftCard === false) hasGiftCard = item.gift_card
 
-          if (checkLoc.inStock < 1) {
+          if (checkLoc.inStock < 1 || (app.deliveryOption !== 'Delivery' && item.gift_card === true)) {
             itemsToRemove++;
           }
         }
