@@ -31,10 +31,10 @@
     "header_support_link": "https:\/\/decathlon.com.au\/pages\/contact-and-help",
     "header_store_label": "Find a Store",
     "header_sign_in_label": "Login",
-    "megamenu_image": "shopify:\/\/shop_images\/Sports_in_Winter_v2_360_x_360.jpg",
-    "megamenu_title": "Save Up to 50% off",
-    "megamenu_subtitle": "Stay warm, dry & active this winter!",
-    "megamenu_link": "shopify:\/\/pages\/sports-in-winter",
+    "megamenu_image": "shopify:\/\/shop_images\/Seaon_sale_360_x_360_f8b6eda8-fe35-48b4-afbd-a591988def52.jpg",
+    "megamenu_title": "Season Sale",
+    "megamenu_subtitle": "Up to 70% off Season Sale",
+    "megamenu_link": "shopify:\/\/pages\/season-sale",
     "megamenu_bg_colour": "#1c82c3",
     "custom_fields_terms_conditions": "I agree to the <a href=\"\/pages\/terms-and-conditions-membership\" target=\"_blank\">T&Cs<\/a> and <a href=\"\/pages\/privacy-policy\" target=\"_blank\">Privacy Policy<\/a> for creating an account.",
     "is_lookbook": false,
@@ -1519,35 +1519,36 @@
           "85c47718-39c5-4752-aa58-3e34ef8c0a97": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Sports_in_Winter_v2_1440_x_789px.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/Season_sale_1440_x_789px.jpg",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Sports_in_Winter_v2_478_x_300px.jpg",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Season_sale_478_x_300px.jpg",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
               "button_title": "",
-              "link_url": "shopify:\/\/pages\/sports-in-winter",
-              "link_title": "Shop Sports In Winter",
+              "link_url": "shopify:\/\/pages\/season-sale",
+              "link_title": "Shop End of Season Sale",
               "link_new_window": false
             }
           },
-          "748c6a7e-732f-486d-a653-eb425a670bc5": {
+          "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Bikes_Sale_1440_x_789px.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/EcoDesign-Banner-HP.jpg",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Bikes_Sale_478_x_300px.jpg",
+              "banner_mobile_image": "shopify:\/\/shop_images\/EcoDesign-Mobile.jpg",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
               "button_title": "",
-              "link_url": "shopify:\/\/collections\/bikes-sales",
-              "link_title": "Bikes sale",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/eco-design",
+              "link_title": "",
               "link_new_window": false
             }
           },
           "3e042199-9da3-4514-87ba-d462754ab771": {
             "type": "slide",
+            "disabled": true,
             "settings": {
               "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_c1d92ede-d76f-443c-9ff2-a341a5818622.jpg",
               "slide_bg_position": "75% -50px",
@@ -1561,23 +1562,39 @@
               "link_new_window": false
             }
           },
-          "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb": {
+          "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_1085d739-891a-4e2d-ae2c-200b95270322.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/Running_1440_x_789px.jpg",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_8601c29c-870b-451c-bd8b-d4633385d039.jpg",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Running_478_x_300px.jpg",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
               "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/collections\/wheels-sports",
+              "link_url": "shopify:\/\/collections\/running-clearance",
+              "link_title": "",
+              "link_new_window": false
+            }
+          },
+          "0e3f284b-4302-4200-8eb1-f98ce34415af": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_19a96368-ef52-4d6e-a960-0e73249eccbb.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_caa6f87a-1e43-4193-b755-eee85d19967c.jpg",
+              "banner_intro": "",
+              "banner_title": "Join the Club to Shop with us & Get Rewarded",
+              "banner_subtitle": "",
+              "button_title": "BECOME A MVP TODAY",
+              "link_url": "shopify:\/\/pages\/decathlon-membership",
               "link_title": "",
               "link_new_window": false
             }
           },
           "145847d3-2db7-45f7-8ef6-38db22a4156a": {
             "type": "slide",
+            "disabled": true,
             "settings": {
               "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_9b598681-9aa5-4804-aaa4-b9d9caf7fd5f.jpg",
               "slide_bg_position": "75% -50px",
@@ -1607,18 +1624,19 @@
               "link_new_window": false
             }
           },
-          "0e3f284b-4302-4200-8eb1-f98ce34415af": {
+          "748c6a7e-732f-486d-a653-eb425a670bc5": {
             "type": "slide",
+            "disabled": true,
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_19a96368-ef52-4d6e-a960-0e73249eccbb.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/Bikes_Sale_1440_x_789px.jpg",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_caa6f87a-1e43-4193-b755-eee85d19967c.jpg",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Bikes_Sale_478_x_300px.jpg",
               "banner_intro": "",
-              "banner_title": "Join the Club to Shop with us & Get Rewarded",
+              "banner_title": "",
               "banner_subtitle": "",
-              "button_title": "BECOME A MVP TODAY",
-              "link_url": "shopify:\/\/pages\/decathlon-membership",
-              "link_title": "",
+              "button_title": "",
+              "link_url": "shopify:\/\/collections\/bikes-sales",
+              "link_title": "Bikes sale",
               "link_new_window": false
             }
           },
@@ -1654,22 +1672,6 @@
               "link_new_window": false
             }
           },
-          "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9": {
-            "type": "slide",
-            "disabled": true,
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Supplements_1440_x_789px_00794abf-4191-46e5-a448-fc6522e0176d.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Supplements_478_x_300px_286f1ba3-3333-4ad3-bd1d-24a4e5bead6d.jpg",
-              "banner_intro": "",
-              "banner_title": "Free Supplements Delivery*",
-              "banner_subtitle": "<p>*Free shipping at cart. Limited time. Limited stock available. Exclusions apply.<\/p>",
-              "button_title": "SHOP NOW",
-              "link_url": "shopify:\/\/collections\/free-delivery-on-supplements",
-              "link_title": "",
-              "link_new_window": false
-            }
-          },
           "623e46b1-2abc-4e5b-8ceb-3ca5e428998a": {
             "type": "slide",
             "disabled": true,
@@ -1689,15 +1691,15 @@
         },
         "block_order": [
           "85c47718-39c5-4752-aa58-3e34ef8c0a97",
-          "748c6a7e-732f-486d-a653-eb425a670bc5",
-          "3e042199-9da3-4514-87ba-d462754ab771",
           "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb",
+          "3e042199-9da3-4514-87ba-d462754ab771",
+          "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9",
+          "0e3f284b-4302-4200-8eb1-f98ce34415af",
           "145847d3-2db7-45f7-8ef6-38db22a4156a",
           "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b",
-          "0e3f284b-4302-4200-8eb1-f98ce34415af",
+          "748c6a7e-732f-486d-a653-eb425a670bc5",
           "79522152-c757-4b60-a1be-2d1e49198982",
           "e9b4daa6-6eee-441b-b76d-9c3ff012fde9",
-          "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9",
           "623e46b1-2abc-4e5b-8ceb-3ca5e428998a"
         ],
         "settings": {}
@@ -1742,22 +1744,6 @@
             "settings": {
               "title": "Sale",
               "bg_colour": "#e21f26",
-              "text_colour": "#ffffff"
-            }
-          },
-          "653f011d-9dae-438d-81e7-7ec6fbdfe4f6": {
-            "type": "label",
-            "settings": {
-              "title": "Bundle Offer",
-              "bg_colour": "#e75109",
-              "text_colour": "#ffffff"
-            }
-          },
-          "6bf673f7-c57f-494d-93ae-ac4f95416b57": {
-            "type": "label",
-            "settings": {
-              "title": "Online Only",
-              "bg_colour": "#8126a3",
               "text_colour": "#ffffff"
             }
           },
@@ -1807,16 +1793,6 @@
               "text_colour_2": "#fafafa"
             }
           },
-          "7f9c88e9-e668-4ac4-a713-e696f1e193a8": {
-            "type": "combo",
-            "settings": {
-              "title": "Online Only,Eco-Design",
-              "bg_colour_1": "#1c82c3",
-              "text_colour_1": "#ffffff",
-              "bg_colour_2": "#88c698",
-              "text_colour_2": "#ffffff"
-            }
-          },
           "f8057dbf-e27c-4eed-adc0-17c069770eb1": {
             "type": "combo",
             "settings": {
@@ -1850,6 +1826,22 @@
               "bg_colour": "#e21f26",
               "text_colour": "#ffffff"
             }
+          },
+          "049c5622-6f00-46a8-ba5f-cbc412867ba1": {
+            "type": "label",
+            "settings": {
+              "title": "Price Drop",
+              "bg_colour": "#ffea28",
+              "text_colour": "#1c82c3"
+            }
+          },
+          "1d30eacb-2c42-4bad-93fb-48f2c55e7004": {
+            "type": "label",
+            "settings": {
+              "title": "Online Only",
+              "bg_colour": "#1c82c3",
+              "text_colour": "#ffffff"
+            }
           }
         },
         "block_order": [
@@ -1858,39 +1850,27 @@
           "e27f167b-9a15-49c6-86cc-d5749a582ffc",
           "add54ffc-96a7-4a8e-9da6-0cd98b86bb70",
           "ad2f449b-334c-4b8e-b29c-caed1367ff3b",
-          "653f011d-9dae-438d-81e7-7ec6fbdfe4f6",
-          "6bf673f7-c57f-494d-93ae-ac4f95416b57",
           "9cfe0f64-734f-49b4-b750-6d38e0ed13b6",
           "7b8ddd36-e9ed-4b45-adb6-809e7d0e6755",
           "7b27a0f1-dd9f-41ee-9e69-c57fd687ed6e",
           "21cbe9ff-5012-4881-904e-7443a4af6fcb",
           "203eac2f-7a40-47a1-b441-b6edd838f4ca",
-          "7f9c88e9-e668-4ac4-a713-e696f1e193a8",
           "f8057dbf-e27c-4eed-adc0-17c069770eb1",
           "4a64b4cb-1338-48f3-9582-151d2698b239",
           "051b9d5d-329d-4532-8515-a335befea71c",
-          "af7243fd-6fab-4a70-aef8-d718d402d934"
+          "af7243fd-6fab-4a70-aef8-d718d402d934",
+          "049c5622-6f00-46a8-ba5f-cbc412867ba1",
+          "1d30eacb-2c42-4bad-93fb-48f2c55e7004"
         ],
         "settings": {}
       },
       "163107170023281063": {
         "type": "top_categories",
         "blocks": {
-          "9718a5a8-65a5-48fb-a58b-c6238bb78960": {
-            "type": "category",
-            "settings": {
-              "title": "Woman",
-              "image": "shopify:\/\/shop_images\/top-categories-women.png",
-              "text_color": "#090b0a",
-              "background_color": "#eff1f1",
-              "hover_background_color": "#f3f3f3",
-              "link": "shopify:\/\/pages\/women-sports-apparel-footwear-copy"
-            }
-          },
           "04eb074d-6845-49dc-917d-3ff13f1fb30e": {
             "type": "category",
             "settings": {
-              "title": "Man",
+              "title": "Mens",
               "image": "shopify:\/\/shop_images\/top-categories-man_2x_2563b6fb-86a6-4c38-a1ac-cb0a7f03a359.png",
               "text_color": "#090b0a",
               "background_color": "#eff1f1",
@@ -1898,36 +1878,25 @@
               "link": "shopify:\/\/pages\/men-sports-apparel-footwear"
             }
           },
-          "38cf3fa3-23be-4a21-8ce3-5d37ded9f8f4": {
+          "9718a5a8-65a5-48fb-a58b-c6238bb78960": {
             "type": "category",
             "settings": {
-              "title": "Repairs & Services",
-              "image": "shopify:\/\/shop_images\/service-icon_v3.png",
-              "text_color": "#ffffff",
-              "background_color": "#0082c3",
-              "hover_background_color": "#0082c3",
-              "link": "https:\/\/decathlon.com.au\/pages\/workshop-services"
-            }
-          },
-          "a35476da-14f6-4892-a5e1-c136b3406867": {
-            "type": "category",
-            "settings": {
-              "title": "Smart Buys",
-              "image": "shopify:\/\/shop_images\/top-categories-tips.png",
-              "text_color": "#ffffff",
-              "background_color": "#0182c3",
-              "hover_background_color": "#0182c3",
-              "link": "https:\/\/decathlon.com.au\/collections\/smart-buys"
+              "title": "Womens",
+              "image": "shopify:\/\/shop_images\/top-categories-women.png",
+              "text_color": "#090b0a",
+              "background_color": "#eff1f1",
+              "hover_background_color": "#f3f3f3",
+              "link": "shopify:\/\/pages\/women-sports-apparel-footwear-copy"
             }
           },
           "b001623f-dab9-4e48-be17-0e57d5678647": {
             "type": "category",
             "settings": {
-              "title": "Become a MVP Today!",
-              "image": "shopify:\/\/shop_images\/MVP.png",
-              "text_color": "#0082c3",
-              "background_color": "#eff1f1",
-              "hover_background_color": "#f3f3f3",
+              "title": "Become an MVP Today!",
+              "image": "shopify:\/\/shop_images\/mvp_v2.png",
+              "text_color": "#ffffff",
+              "background_color": "#ec6607",
+              "hover_background_color": "#ec6607",
               "link": "shopify:\/\/pages\/decathlon-membership"
             }
           },
@@ -1941,15 +1910,37 @@
               "hover_background_color": "#80c29c",
               "link": "https:\/\/decathlon.com.au\/collections\/eco-design"
             }
+          },
+          "a35476da-14f6-4892-a5e1-c136b3406867": {
+            "type": "category",
+            "settings": {
+              "title": "Lowest Price, Best Value",
+              "image": "shopify:\/\/shop_images\/price-tag_v3.png",
+              "text_color": "#ffea28",
+              "background_color": "#0182c3",
+              "hover_background_color": "#0182c3",
+              "link": "https:\/\/decathlon.com.au\/collections\/smart-buys"
+            }
+          },
+          "38cf3fa3-23be-4a21-8ce3-5d37ded9f8f4": {
+            "type": "category",
+            "settings": {
+              "title": "Repairs & Services",
+              "image": "shopify:\/\/shop_images\/service_white.png",
+              "text_color": "#ffffff",
+              "background_color": "#0082c3",
+              "hover_background_color": "#0082c3",
+              "link": "https:\/\/decathlon.com.au\/pages\/workshop-services"
+            }
           }
         },
         "block_order": [
-          "9718a5a8-65a5-48fb-a58b-c6238bb78960",
           "04eb074d-6845-49dc-917d-3ff13f1fb30e",
-          "38cf3fa3-23be-4a21-8ce3-5d37ded9f8f4",
-          "a35476da-14f6-4892-a5e1-c136b3406867",
+          "9718a5a8-65a5-48fb-a58b-c6238bb78960",
           "b001623f-dab9-4e48-be17-0e57d5678647",
-          "c5bd0b0f-516e-4db7-926f-46c215e1fbdf"
+          "c5bd0b0f-516e-4db7-926f-46c215e1fbdf",
+          "a35476da-14f6-4892-a5e1-c136b3406867",
+          "38cf3fa3-23be-4a21-8ce3-5d37ded9f8f4"
         ],
         "settings": {}
       },
@@ -2022,36 +2013,12 @@
       "16316085202ea5cf79": {
         "type": "trending_categories",
         "blocks": {
-          "f553a06c-1d16-4cd4-b9f2-2eea43b5aa9c": {
-            "type": "category_tile",
-            "settings": {
-              "title": "Skiing",
-              "image": "shopify:\/\/shop_images\/Skiing-Category_a5d04c11-2d1e-498a-b8de-bac3e7b1d074.jpg",
-              "link": "shopify:\/\/collections\/winter-snow-sports"
-            }
-          },
           "e1091c93-4efb-4738-b3f6-3a711db62e82": {
             "type": "category_tile",
             "settings": {
               "title": "Cycling",
-              "image": "shopify:\/\/shop_images\/Cyclyng-Hero-Homepage_v1.jpg",
-              "link": "https:\/\/decathlon.com.au\/pages\/cycling"
-            }
-          },
-          "2161fbad-02eb-48c1-9a11-4481251537ae": {
-            "type": "category_tile",
-            "settings": {
-              "title": "Soccer",
-              "image": "shopify:\/\/shop_images\/Soccer-CAT-HERO.jpg",
-              "link": "https:\/\/decathlon.com.au\/collections\/soccer-clothes"
-            }
-          },
-          "711f34cb-b34c-4c8f-8e88-ce5c95240666": {
-            "type": "category_tile",
-            "settings": {
-              "title": "Scooters",
-              "image": "shopify:\/\/shop_images\/Scooters-Hero-Homepage.jpg",
-              "link": "https:\/\/decathlon.com.au\/collections\/skate-roller-scooter-clearance"
+              "image": "shopify:\/\/shop_images\/MountainBike-CAT_HERO.jpg",
+              "link": "https:\/\/decathlon.com.au\/collections\/mountain-bike"
             }
           },
           "e946fff5-5695-4ed3-a886-269cd8000e8d": {
@@ -2060,6 +2027,30 @@
               "title": "Camping",
               "image": "shopify:\/\/shop_images\/Camping-Hero-Homepage_v1.jpg",
               "link": "shopify:\/\/collections\/camping"
+            }
+          },
+          "2161fbad-02eb-48c1-9a11-4481251537ae": {
+            "type": "category_tile",
+            "settings": {
+              "title": "Basketball",
+              "image": "shopify:\/\/shop_images\/Basketball-CAT_HERO.jpg",
+              "link": "https:\/\/decathlon.com.au\/collections\/basketball-hoops-backboards"
+            }
+          },
+          "711f34cb-b34c-4c8f-8e88-ce5c95240666": {
+            "type": "category_tile",
+            "settings": {
+              "title": "Surfing",
+              "image": "shopify:\/\/shop_images\/Surfing_CAT-HERO.jpg",
+              "link": "https:\/\/decathlon.com.au\/collections\/mens-surf-wetsuits"
+            }
+          },
+          "f553a06c-1d16-4cd4-b9f2-2eea43b5aa9c": {
+            "type": "category_tile",
+            "settings": {
+              "title": "Skiing",
+              "image": "shopify:\/\/shop_images\/Skiing-Category_a5d04c11-2d1e-498a-b8de-bac3e7b1d074.jpg",
+              "link": "shopify:\/\/collections\/winter-snow-sports"
             }
           },
           "24a46da8-7f15-4e2c-aa20-558f5e037a41": {
@@ -2072,11 +2063,11 @@
           }
         },
         "block_order": [
-          "f553a06c-1d16-4cd4-b9f2-2eea43b5aa9c",
           "e1091c93-4efb-4738-b3f6-3a711db62e82",
+          "e946fff5-5695-4ed3-a886-269cd8000e8d",
           "2161fbad-02eb-48c1-9a11-4481251537ae",
           "711f34cb-b34c-4c8f-8e88-ce5c95240666",
-          "e946fff5-5695-4ed3-a886-269cd8000e8d",
+          "f553a06c-1d16-4cd4-b9f2-2eea43b5aa9c",
           "24a46da8-7f15-4e2c-aa20-558f5e037a41"
         ],
         "settings": {
@@ -2086,7 +2077,7 @@
       "163487525380dd83d2": {
         "type": "featured_collection",
         "settings": {
-          "title": "Save Up to 50% Off - Stay warm, dry & active this winter!",
+          "title": "End Of Season Sale - Up to 70% Off",
           "section_collection": "season-sale"
         }
       },
@@ -2145,8 +2136,8 @@
       "1650950354346fb7a1": {
         "type": "featured_collection",
         "settings": {
-          "title": "Up to 25% off Scooters & Skateboards",
-          "section_collection": "wheels-sports"
+          "title": "Stay Warm at Training",
+          "section_collection": "soccer-base-layers"
         }
       },
       "16509507269dac2990": {
@@ -2160,16 +2151,15 @@
       "1650960580e9623e99": {
         "type": "featured_collection",
         "settings": {
-          "title": "Wheelie Good Deals - Up to 20% off Full Priced Bikes",
-          "section_collection": "bikes-sales"
+          "title": "Run your own race - Decathlon Running Sale",
+          "section_collection": "running-clearance"
         }
       },
       "165115029729e3ba5b": {
         "type": "featured_collection",
-        "disabled": true,
         "settings": {
-          "title": "Gear Up with Decathlon",
-          "section_collection": "soccer-training-equipment"
+          "title": "Sustainability & Eco Design at Decathlon",
+          "section_collection": "eco-design"
         }
       },
       "1651153473715f6dc1": {
@@ -2185,13 +2175,13 @@
       "163107170023281063",
       "16316085202ea5cf79",
       "163487525380dd83d2",
-      "16375487170499d43e",
-      "1650960580e9623e99",
       "1650950354346fb7a1",
+      "165115029729e3ba5b",
+      "1650960580e9623e99",
+      "16375487170499d43e",
       "1651153473715f6dc1",
       "16509507269dac2990",
       "1642116157c0ce923f",
-      "165115029729e3ba5b",
       "163107313302287377"
     ]
   },
