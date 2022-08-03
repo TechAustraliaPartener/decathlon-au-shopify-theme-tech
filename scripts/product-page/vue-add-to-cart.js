@@ -153,6 +153,17 @@ const initVueATC = () => {
           }
         }
 
+        // Gift card availability message override
+        if (window.vars.productJSON.gift_card === true && // product is a gift card
+          window.vars.gift_card_availability_message && // gift card availability message is enabled
+          (delivery.available > 0 || stockAddClass == OVERSELL_CLASS) // is available or overselling
+        ) {
+          stockInfoMessage = window.vars.gift_card_availability_message;
+          delivery.availability.text = window.vars.gift_card_availability_message;
+          stockAddClass = IN_STOCK_CLASS;
+          stockRemoveClass = LOW_STOCK_CLASS;
+        }
+
         // Enable add to cart button once stock data has been retrieve
         $('#AddToCart').prop('disabled', false);
 

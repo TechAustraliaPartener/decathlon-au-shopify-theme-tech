@@ -469,6 +469,26 @@ const initCartDisplay = cart => {
           `);
         } 
 
+        // Gift card availability message override
+        if (item.gift_card === true && // line item is a gift card
+          window.vars.gift_card_availability_message && // gift card availability message is enabled
+          (inStock || oversell) // is available or overselling
+        ) {
+          messages = [`
+            <div class="available">
+              <p>${window.vars.gift_card_availability_message}</p>
+            </div>
+          `];
+
+          if (!availableCondition) {
+            messages.push(`
+              <div class="low">
+                <p>Not all items available for delivery</p>
+              </div>
+            `);
+          }
+        }
+
         if (app.favStore && app.favStore.name) {
           const favStoreInventory = item.locations.find(obj => {
             return obj.name === app.favStore.name;

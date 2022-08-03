@@ -2310,5 +2310,17 @@
         "default": 10
       }
     ]
+  },
+  {
+    "name": "Gift Card Availability Message",
+    "settings": [
+      {
+        "type": "text",
+        "id": "gift_card_availability_message",
+        "label": "Gift Card Availability Message",
+        "info": "Custom availability message for gift cards. Set this to empty to disable custom message.",
+        "default": "Gift card available for delivery"
+      }
+    ]
   }
 ]
