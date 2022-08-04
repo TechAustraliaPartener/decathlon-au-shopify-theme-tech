@@ -24,6 +24,7 @@
   window.vars.pickupDisplay = "{{ settings.pickup_display }}";
   {% if product %}
     window.vars.productJSON = {{ product | json }};
+    window.vars.productJSON.gift_card = {{ product.gift_card? | json }};
     window.vars.rrpMetafields = {{ rrpMetafields | json }};
     window.vars.selectedVariant = {{ product.selected_variant | json }};
   {% endif %}
@@ -81,6 +82,7 @@
     {{ tags_data | remove_first: ',' }}
   };
   window.vars.show_product_rrp_in_algolia_search_result = {{ settings.show_product_rrp_in_algolia_search_result | json }}
+  window.vars.gift_card_availability_message = {{ settings.gift_card_availability_message | json }}
 </script>
 
 {% include 'js-algolia-custom-widgets' %}
