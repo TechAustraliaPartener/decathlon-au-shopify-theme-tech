@@ -5,6 +5,9 @@ This is Decathlon's shopify theme changelog.
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - For guidance on the format of the changelog, please visit [the changelog guide documentation in clickup](https://app.clickup.com/2702900/v/dc/2jfhm-1108).
 
+### [`1.15.0`] - 2022-08-02 UAT Release - ` 668b25d7`
+- [29gdyfe - Update Reviews Filter logic to Support AND or OR via settings and recalculate totals](https://github.com/dktunited/decathlon-shopify-theme-australia/search?q=29gdyfe&type=commits)
+
 ### [`1.14.3`] - 2022-07-15 Hotfix - ` 806dc234`
 - [2mde7un - fix scrolling on shogun pages when on mobile and desktop](https://github.com/dktunited/decathlon-shopify-theme-australia/search?q=2mde7un&type=commits)
 
