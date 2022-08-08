@@ -59,9 +59,9 @@
     "blue_band__yellowgram_icon": "shopify:\/\/shop_images\/delighted.png",
     "blue_band__yellowgram_text": "<strong>Satisfaction is our Mission!<\/strong>",
     "blue_band__fact_one_icon": "shopify:\/\/shop_images\/shipping.png",
-    "blue_band__fact_one_text": "<strong>Australia Wide Delivery<\/strong>",
+    "blue_band__fact_one_text": "<strong>Free Shipping above $150*<\/strong>",
     "blue_band__fact_one_link": "https:\/\/decathlon-aus.reamaze.com\/kb\/delivery\/how-much-does-shipping-cost",
-    "blue_band__fact_two_icon": "shopify:\/\/shop_images\/pickup.png",
+    "blue_band__fact_two_icon": "shopify:\/\/shop_images\/c_c_HP_icon_3e70d737-fbbf-4447-9300-324327b0ee7e.png",
     "blue_band__fact_two_text": "<strong>1hr Click & Collect<\/strong>",
     "blue_band__fact_two_link": "https:\/\/decathlon-aus.reamaze.com\/kb\/click-and-collect",
     "blue_band__fact_three_icon": "shopify:\/\/shop_images\/returns.png",
@@ -416,8 +416,8 @@
               "email": "customer.service@decathlon.com",
               "phone_number": "0420 450 076",
               "company": "Decathlon",
-              "ready": "Pickup: Ready in 1 Hour",
-              "ready_checkout": "Pickup: Ready in 1 Hour",
+              "ready": "Ready to collect in 1 hour",
+              "ready_checkout": "Ready to collect in 1 hour",
               "id": "2881",
               "tooltip_hours": true,
               "is_same_hours_weekly": false,
@@ -471,7 +471,7 @@
               "phone_number": "(02) 9157 5799",
               "company": "Decathlon",
               "ready": "Ready to collect in 1 hour",
-              "ready_checkout": "Pickup: Ready in 1 Hour",
+              "ready_checkout": "Ready to collect in 1 hour",
               "id": "1789",
               "tooltip_hours": true,
               "is_same_hours_weekly": false,
@@ -525,7 +525,7 @@
               "phone_number": "(02) 9157 5799",
               "company": "Decathlon",
               "ready": "Ready to collect in 1 hour",
-              "ready_checkout": "Pickup: Ready in 1 Hour",
+              "ready_checkout": "Ready to collect in 1 hour",
               "id": "1791",
               "tooltip_hours": true,
               "is_same_hours_weekly": false,
@@ -996,40 +996,40 @@
             "type": "store",
             "disabled": true,
             "settings": {
-              "name": "Maroubra, 2035, Pick Up Only",
-              "title": "Maroubra, 2035, Pick Up Only",
+              "name": "Decathlon Burwood",
+              "title": "Dymocks Burwood, 2134, Pickup Only",
               "online_inventory_source": false,
-              "enable_c_c": false,
-              "duplicate": "Tempe",
-              "test_mode": true,
-              "street1": "5 Bellevue Street",
-              "city": "Maroubra",
-              "zip": "2035",
+              "enable_c_c": true,
+              "duplicate": "Auburn",
+              "test_mode": false,
+              "street1": "Westfield Burwood, Shop 323, Level 2\/100 Burwood Rd",
+              "city": "Burwood",
+              "zip": "2134",
               "state": "NSW",
               "country": "AU",
-              "checkout_image": "shopify:\/\/shop_images\/Banner_shopify_HP_1440x789_10_5fe7babc-8a47-4bd0-a873-146227e82c9c.png",
+              "checkout_image": "shopify:\/\/shop_images\/Dymocks-BW.png",
               "email": "customer.service@decathlon.com",
-              "phone_number": "(02) 9157 5799",
+              "phone_number": "(02) 9744 1286",
               "company": "Decathlon",
-              "ready": "If ordered before 12pm, collect the same day",
-              "ready_checkout": "If ordered before 12pm, collect the same day. Limited opening hours please check",
-              "id": "1789-0008",
+              "ready": "Ready to collect in 3 business days.",
+              "ready_checkout": "Ready to collect in 3 business days.",
+              "id": "1791-0006",
               "tooltip_hours": true,
               "is_same_hours_weekly": false,
-              "hours_0_open": "0000",
-              "hours_0_close": "0000",
-              "hours_1_open": "1830",
-              "hours_1_close": "1930",
-              "hours_2_open": "1830",
-              "hours_2_close": "1930",
-              "hours_3_open": "1830",
-              "hours_3_close": "1930",
-              "hours_4_open": "1830",
-              "hours_4_close": "1930",
-              "hours_5_open": "1830",
-              "hours_5_close": "1930",
-              "hours_6_open": "0000",
-              "hours_6_close": "0000",
+              "hours_0_open": "1000",
+              "hours_0_close": "1800",
+              "hours_1_open": "0930",
+              "hours_1_close": "1800",
+              "hours_2_open": "0930",
+              "hours_2_close": "1800",
+              "hours_3_open": "0930",
+              "hours_3_close": "1800",
+              "hours_4_open": "0930",
+              "hours_4_close": "2100",
+              "hours_5_open": "0930",
+              "hours_5_close": "1800",
+              "hours_6_open": "0900",
+              "hours_6_close": "1800",
               "announcement": "<p>This is not a store. Returns cannot be made here<\/p>",
               "tag_exclusion_1": "",
               "tag_exclusion_message_1": "",
@@ -1546,33 +1546,17 @@
               "link_new_window": false
             }
           },
-          "3e042199-9da3-4514-87ba-d462754ab771": {
+          "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b": {
             "type": "slide",
-            "disabled": true,
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_c1d92ede-d76f-443c-9ff2-a341a5818622.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/Artengo-Home_page_v2.jpg",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_cffcee3f-c864-4e1a-9500-f0e1d9a61e29.jpg",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Artengo-Home_page_mobile_v2.jpg",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
               "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/collections\/road-bikes",
-              "link_title": "",
-              "link_new_window": false
-            }
-          },
-          "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Running_1440_x_789px.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Running_478_x_300px.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "shopify:\/\/collections\/running-clearance",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/tennis?q=&hPP=24&idx=shopify_products_price_desc&p=0&dFR%5Bvendor%5D%5B0%5D=ARTENGO&is_v=1",
               "link_title": "",
               "link_new_window": false
             }
@@ -1592,6 +1576,38 @@
               "link_new_window": false
             }
           },
+          "3e042199-9da3-4514-87ba-d462754ab771": {
+            "type": "slide",
+            "disabled": true,
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_c1d92ede-d76f-443c-9ff2-a341a5818622.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_cffcee3f-c864-4e1a-9500-f0e1d9a61e29.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/road-bikes",
+              "link_title": "",
+              "link_new_window": false
+            }
+          },
+          "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9": {
+            "type": "slide",
+            "disabled": true,
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Running_1440_x_789px.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Running_478_x_300px.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "shopify:\/\/collections\/running-clearance",
+              "link_title": "",
+              "link_new_window": false
+            }
+          },
           "145847d3-2db7-45f7-8ef6-38db22a4156a": {
             "type": "slide",
             "disabled": true,
@@ -1604,22 +1620,6 @@
               "banner_subtitle": "",
               "button_title": "",
               "link_url": "https:\/\/decathlon.com.au\/collections\/smart-buys",
-              "link_title": "",
-              "link_new_window": false
-            }
-          },
-          "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b": {
-            "type": "slide",
-            "disabled": true,
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Artengo-Home_page_v2.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Artengo-Home_page_mobile_v2.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/collections\/tennis?q=&hPP=24&idx=shopify_products_price_desc&p=0&dFR%5Bvendor%5D%5B0%5D=ARTENGO&is_v=1",
               "link_title": "",
               "link_new_window": false
             }
@@ -1692,11 +1692,11 @@
         "block_order": [
           "85c47718-39c5-4752-aa58-3e34ef8c0a97",
           "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb",
+          "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b",
+          "0e3f284b-4302-4200-8eb1-f98ce34415af",
           "3e042199-9da3-4514-87ba-d462754ab771",
           "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9",
-          "0e3f284b-4302-4200-8eb1-f98ce34415af",
           "145847d3-2db7-45f7-8ef6-38db22a4156a",
-          "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b",
           "748c6a7e-732f-486d-a653-eb425a670bc5",
           "79522152-c757-4b60-a1be-2d1e49198982",
           "e9b4daa6-6eee-441b-b76d-9c3ff012fde9",
@@ -2135,6 +2135,7 @@
       },
       "1650950354346fb7a1": {
         "type": "featured_collection",
+        "disabled": true,
         "settings": {
           "title": "Stay Warm at Training",
           "section_collection": "soccer-base-layers"
@@ -2151,8 +2152,8 @@
       "1650960580e9623e99": {
         "type": "featured_collection",
         "settings": {
-          "title": "Run your own race - Decathlon Running Sale",
-          "section_collection": "running-clearance"
+          "title": "Get Ready This Camping Season With Decathlon",
+          "section_collection": "camping-tents"
         }
       },
       "165115029729e3ba5b": {
@@ -2175,10 +2176,10 @@
       "163107170023281063",
       "16316085202ea5cf79",
       "163487525380dd83d2",
-      "1650950354346fb7a1",
-      "165115029729e3ba5b",
       "1650960580e9623e99",
       "16375487170499d43e",
+      "1650950354346fb7a1",
+      "165115029729e3ba5b",
       "1651153473715f6dc1",
       "16509507269dac2990",
       "1642116157c0ce923f",
