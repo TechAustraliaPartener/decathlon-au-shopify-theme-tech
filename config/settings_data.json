@@ -1750,8 +1750,8 @@
           "9cfe0f64-734f-49b4-b750-6d38e0ed13b6": {
             "type": "label",
             "settings": {
-              "title": "Eco-Design",
-              "bg_colour": "#88c698",
+              "title": "ECODESIGN",
+              "bg_colour": "#4d6f56",
               "text_colour": "#ffffff"
             }
           },
@@ -1791,16 +1791,6 @@
               "text_colour_1": "#fafafa",
               "bg_colour_2": "#1c82c3",
               "text_colour_2": "#fafafa"
-            }
-          },
-          "f8057dbf-e27c-4eed-adc0-17c069770eb1": {
-            "type": "combo",
-            "settings": {
-              "title": "Eco-Design,New Release",
-              "bg_colour_1": "#88c698",
-              "text_colour_1": "#fafafa",
-              "bg_colour_2": "#1c82c3",
-              "text_colour_2": "#ffffff"
             }
           },
           "4a64b4cb-1338-48f3-9582-151d2698b239": {
@@ -1855,7 +1845,6 @@
           "7b27a0f1-dd9f-41ee-9e69-c57fd687ed6e",
           "21cbe9ff-5012-4881-904e-7443a4af6fcb",
           "203eac2f-7a40-47a1-b441-b6edd838f4ca",
-          "f8057dbf-e27c-4eed-adc0-17c069770eb1",
           "4a64b4cb-1338-48f3-9582-151d2698b239",
           "051b9d5d-329d-4532-8515-a335befea71c",
           "af7243fd-6fab-4a70-aef8-d718d402d934",
@@ -1903,7 +1892,7 @@
           "c5bd0b0f-516e-4db7-926f-46c215e1fbdf": {
             "type": "category",
             "settings": {
-              "title": "ECO-DESIGN",
+              "title": "ECODESIGN",
               "image": "shopify:\/\/shop_images\/top-categories-ecodesign.png",
               "text_color": "#ffffff",
               "background_color": "#44644c",
