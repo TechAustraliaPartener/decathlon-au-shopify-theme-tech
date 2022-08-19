@@ -277,6 +277,14 @@
   {% render 'customer-fields', customer_api: true, version: '4.3.2' %}
   {% include 'ufe-offer' %}
 
+  <!-- Maintenance Page -->
+  <style>
+    .shogun-root p a, #shogun-modal-container p a {
+      font-size: inherit;
+      text-decoration: underline;
+    }
+  </style>
+
   <!-- REAMAZE INTEGRATION START - DO NOT REMOVE -->
 {% render 'reamaze-config' %}
 {% render 'reamaze-sso' %}
