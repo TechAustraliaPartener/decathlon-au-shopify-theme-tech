@@ -160,8 +160,12 @@
     {{ 'zoom.css' | asset_url | stylesheet_tag }}
   {% endcomment %}
   {{ 'patterns-toolkit.css' | asset_url | stylesheet_tag }}
-  {{ 'shogun-overrides.scss.css' | asset_url | stylesheet_tag }}
 
+  {%- unless template.suffix == 'shogun.no-overrides' -%}
+  {{ 'shogun-overrides.scss.css' | asset_url | stylesheet_tag }}
+  {%- endunless -%}
+
+  
   <!-- Header hook for plugins ================================================== -->
   {{ content_for_header }}
   {% include 'js-rollbar-init' %}

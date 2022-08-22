@@ -118,7 +118,9 @@ This file can be re-written at any time.
     }
   </style>
   {{ 'cadence.scss.css' | asset_url | stylesheet_tag }}
+  {%- unless template.suffix == 'shogun.no-overrides' -%}
   {{ 'shogun-overrides.scss.css' | asset_url | stylesheet_tag }}
+  {%- endunless -%}
 
 
   {% comment %}
