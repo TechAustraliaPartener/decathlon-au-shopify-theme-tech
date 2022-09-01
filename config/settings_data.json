@@ -31,10 +31,10 @@
     "header_support_link": "https:\/\/decathlon.com.au\/pages\/contact-and-help",
     "header_store_label": "Find a Store",
     "header_sign_in_label": "Login",
-    "megamenu_image": "shopify:\/\/shop_images\/Eco-Design-Learn-More-Mobile.jpg",
-    "megamenu_title": "Check out our Eco-Design Range!",
-    "megamenu_subtitle": "Recycle 60 Bottles to Produce A Fleece",
-    "megamenu_link": "shopify:\/\/collections\/eco-design",
+    "megamenu_image": "shopify:\/\/shop_images\/Sports_in_Spring_360_x_360.jpg",
+    "megamenu_title": "Shop Sport In Spring Sale",
+    "megamenu_subtitle": "Start Spring Sport Season with Decathlon",
+    "megamenu_link": "shopify:\/\/pages\/spring-into-sport",
     "megamenu_bg_colour": "#1c82c3",
     "custom_fields_terms_conditions": "I agree to the <a href=\"\/pages\/terms-and-conditions-membership\" target=\"_blank\">T&Cs<\/a> and <a href=\"\/pages\/privacy-policy\" target=\"_blank\">Privacy Policy<\/a> for creating an account.",
     "is_lookbook": false,
@@ -1516,6 +1516,66 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
+          "748c6a7e-732f-486d-a653-eb425a670bc5": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Sports_in_Spring_1440_x_789px.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Sports_in_Spring_478_x_300px.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "shopify:\/\/pages\/spring-into-sport",
+              "link_title": "Shop Sport In Spring Sale",
+              "link_new_window": false
+            }
+          },
+          "85c47718-39c5-4752-aa58-3e34ef8c0a97": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Fathers_Day_1440_x_789px_1ecdbc5d-49a6-4ede-ac02-2b6dca7ce6ad.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Fathers_Day_478_x_300px_bd752667-400d-4acb-aeb4-54ee7e7e4ec6.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "shopify:\/\/pages\/father-s-day-sale",
+              "link_title": "Shop Father's Day Gifts",
+              "link_new_window": false
+            }
+          },
+          "3e042199-9da3-4514-87ba-d462754ab771": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Puma_25off_1440_x_789px.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Puma_25off_478_x_300px.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "shopify:\/\/collections\/big-brand-sale",
+              "link_title": "Shop 25% off Puma",
+              "link_new_window": false
+            }
+          },
+          "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/BOGO_Nutrition_1440_x_789px_d1eeba54-33f7-461e-b4ea-8de64cd570e0.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/BOGO_Nutrition_478_x_300px_ce313e07-9be9-4393-8814-0f4a2ab84d2e.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "shopify:\/\/collections\/health-nutrition-sale",
+              "link_title": "Health & Nutrition Sale",
+              "link_new_window": false
+            }
+          },
           "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb": {
             "type": "slide",
             "settings": {
@@ -1548,6 +1608,7 @@
           },
           "0e3f284b-4302-4200-8eb1-f98ce34415af": {
             "type": "slide",
+            "disabled": true,
             "settings": {
               "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_19a96368-ef52-4d6e-a960-0e73249eccbb.jpg",
               "slide_bg_position": "75% -50px",
@@ -1561,67 +1622,19 @@
               "link_new_window": false
             }
           },
-          "85c47718-39c5-4752-aa58-3e34ef8c0a97": {
+          "e9b4daa6-6eee-441b-b76d-9c3ff012fde9": {
             "type": "slide",
             "disabled": true,
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Season_Sale_Last_Days_1440_x_789px.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/Gift_Cards_1440_x_789px.jpg",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Season_Sale_Last_Days_478_x_300px.jpg",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Gift_Cards_478_x_300px.jpg",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
               "button_title": "",
-              "link_url": "shopify:\/\/pages\/season-sale",
-              "link_title": "Shop End of Season Sale",
-              "link_new_window": false
-            }
-          },
-          "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9": {
-            "type": "slide",
-            "disabled": true,
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/BOGO_Nutrition_1440_x_789px_d1eeba54-33f7-461e-b4ea-8de64cd570e0.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/BOGO_Nutrition_478_x_300px_ce313e07-9be9-4393-8814-0f4a2ab84d2e.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "shopify:\/\/collections\/health-nutrition-sale",
-              "link_title": "Health & Nutrition Sale",
-              "link_new_window": false
-            }
-          },
-          "748c6a7e-732f-486d-a653-eb425a670bc5": {
-            "type": "slide",
-            "disabled": true,
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Best_Sellers_1440_x_789px.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Best_Sellers_478_x_300px.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "",
-              "link_title": "Decathlon's Best Sellers",
-              "link_new_window": false
-            }
-          },
-          "3e042199-9da3-4514-87ba-d462754ab771": {
-            "type": "slide",
-            "disabled": true,
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_c1d92ede-d76f-443c-9ff2-a341a5818622.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_cffcee3f-c864-4e1a-9500-f0e1d9a61e29.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/collections\/road-bikes",
-              "link_title": "",
+              "link_url": "https:\/\/decathlon.com.au\/products\/decathlon-australia-physical-gift-card?variant=40920115904623",
+              "link_title": "Shop Gift Cards",
               "link_new_window": false
             }
           },
@@ -1657,22 +1670,6 @@
               "link_new_window": false
             }
           },
-          "e9b4daa6-6eee-441b-b76d-9c3ff012fde9": {
-            "type": "slide",
-            "disabled": true,
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Gift_Cards_1440_x_789px.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Gift_Cards_478_x_300px.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "shopify:\/\/products\/decathlon-gift-card",
-              "link_title": "Shop Gift Cards",
-              "link_new_window": false
-            }
-          },
           "623e46b1-2abc-4e5b-8ceb-3ca5e428998a": {
             "type": "slide",
             "disabled": true,
@@ -1691,16 +1688,16 @@
           }
         },
         "block_order": [
+          "748c6a7e-732f-486d-a653-eb425a670bc5",
+          "85c47718-39c5-4752-aa58-3e34ef8c0a97",
+          "3e042199-9da3-4514-87ba-d462754ab771",
+          "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9",
           "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb",
           "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b",
           "0e3f284b-4302-4200-8eb1-f98ce34415af",
-          "85c47718-39c5-4752-aa58-3e34ef8c0a97",
-          "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9",
-          "748c6a7e-732f-486d-a653-eb425a670bc5",
-          "3e042199-9da3-4514-87ba-d462754ab771",
+          "e9b4daa6-6eee-441b-b76d-9c3ff012fde9",
           "145847d3-2db7-45f7-8ef6-38db22a4156a",
           "79522152-c757-4b60-a1be-2d1e49198982",
-          "e9b4daa6-6eee-441b-b76d-9c3ff012fde9",
           "623e46b1-2abc-4e5b-8ceb-3ca5e428998a"
         ],
         "settings": {}
@@ -1825,6 +1822,38 @@
               "bg_colour": "#1c82c3",
               "text_colour": "#ffffff"
             }
+          },
+          "e2db735a-2836-49c7-8089-1f57e2a97432": {
+            "type": "label",
+            "settings": {
+              "title": "15% OFF*",
+              "bg_colour": "#e21f26",
+              "text_colour": "#ffffff"
+            }
+          },
+          "c39bc0a4-c1c1-43d8-a4ea-546ee6a36d94": {
+            "type": "label",
+            "settings": {
+              "title": "WAS $79",
+              "bg_colour": "#1c82c3",
+              "text_colour": "#ffffff"
+            }
+          },
+          "7d18489a-7919-48e6-af12-aa78223bdab7": {
+            "type": "label",
+            "settings": {
+              "title": "WAS $9",
+              "bg_colour": "#1c82c3",
+              "text_colour": "#ffffff"
+            }
+          },
+          "73203065-e6da-425e-9414-f16552e970b5": {
+            "type": "label",
+            "settings": {
+              "title": "WAS $69",
+              "bg_colour": "#1c82c3",
+              "text_colour": "#ffffff"
+            }
           }
         },
         "block_order": [
@@ -1841,7 +1870,11 @@
           "4a64b4cb-1338-48f3-9582-151d2698b239",
           "051b9d5d-329d-4532-8515-a335befea71c",
           "049c5622-6f00-46a8-ba5f-cbc412867ba1",
-          "1d30eacb-2c42-4bad-93fb-48f2c55e7004"
+          "1d30eacb-2c42-4bad-93fb-48f2c55e7004",
+          "e2db735a-2836-49c7-8089-1f57e2a97432",
+          "c39bc0a4-c1c1-43d8-a4ea-546ee6a36d94",
+          "7d18489a-7919-48e6-af12-aa78223bdab7",
+          "73203065-e6da-425e-9414-f16552e970b5"
         ],
         "settings": {}
       },
@@ -1870,15 +1903,15 @@
               "link": "shopify:\/\/pages\/women-sports-apparel-footwear-copy"
             }
           },
-          "b001623f-dab9-4e48-be17-0e57d5678647": {
+          "a35476da-14f6-4892-a5e1-c136b3406867": {
             "type": "category",
             "settings": {
-              "title": "Become an MVP Today!",
-              "image": "shopify:\/\/shop_images\/mvp_v2.png",
-              "text_color": "#ffffff",
-              "background_color": "#ec6607",
-              "hover_background_color": "#ec6607",
-              "link": "shopify:\/\/pages\/decathlon-membership"
+              "title": "KIDS",
+              "image": "shopify:\/\/shop_images\/Kids-Top-Category-1.jpg",
+              "text_color": "#090b0a",
+              "background_color": "#eff1f1",
+              "hover_background_color": "#f3f3f3",
+              "link": "https:\/\/decathlon.com.au\/collections\/kids-eco-design"
             }
           },
           "c5bd0b0f-516e-4db7-926f-46c215e1fbdf": {
@@ -1892,15 +1925,15 @@
               "link": "https:\/\/decathlon.com.au\/collections\/eco-design"
             }
           },
-          "a35476da-14f6-4892-a5e1-c136b3406867": {
+          "b001623f-dab9-4e48-be17-0e57d5678647": {
             "type": "category",
             "settings": {
-              "title": "Lowest Price, Best Value",
-              "image": "shopify:\/\/shop_images\/price-tag_v3.png",
-              "text_color": "#ffea28",
-              "background_color": "#0182c3",
-              "hover_background_color": "#0182c3",
-              "link": "https:\/\/decathlon.com.au\/collections\/smart-buys"
+              "title": "Become an MVP Today!",
+              "image": "shopify:\/\/shop_images\/mvp_v2.png",
+              "text_color": "#ffffff",
+              "background_color": "#ec6607",
+              "hover_background_color": "#ec6607",
+              "link": "shopify:\/\/pages\/decathlon-membership"
             }
           },
           "38cf3fa3-23be-4a21-8ce3-5d37ded9f8f4": {
@@ -1918,9 +1951,9 @@
         "block_order": [
           "04eb074d-6845-49dc-917d-3ff13f1fb30e",
           "9718a5a8-65a5-48fb-a58b-c6238bb78960",
-          "b001623f-dab9-4e48-be17-0e57d5678647",
-          "c5bd0b0f-516e-4db7-926f-46c215e1fbdf",
           "a35476da-14f6-4892-a5e1-c136b3406867",
+          "c5bd0b0f-516e-4db7-926f-46c215e1fbdf",
+          "b001623f-dab9-4e48-be17-0e57d5678647",
           "38cf3fa3-23be-4a21-8ce3-5d37ded9f8f4"
         ],
         "settings": {}
@@ -2057,15 +2090,13 @@
       },
       "163487525380dd83d2": {
         "type": "featured_collection",
-        "disabled": true,
         "settings": {
-          "title": "Last Days of Season Sale - Up to 70% Off",
-          "section_collection": "season-sale"
+          "title": "25% off Popular Puma Picks",
+          "section_collection": "big-brand-sale"
         }
       },
       "16375487170499d43e": {
         "type": "featured_collection",
-        "disabled": true,
         "settings": {
           "title": "Buy 2, get 62% off the 2nd!",
           "section_collection": "health-nutrition-sale"
@@ -2073,10 +2104,9 @@
       },
       "1642116157c0ce923f": {
         "type": "featured_collection",
-        "disabled": true,
         "settings": {
-          "title": "NBA Finals with Tarmak",
-          "section_collection": "nba-tarmak"
+          "title": "Start Spring Sport Season with Decathlon",
+          "section_collection": "spring-sale"
         }
       },
       "product_page_bnpl": {
@@ -2132,6 +2162,7 @@
       },
       "1650960580e9623e99": {
         "type": "featured_collection",
+        "disabled": true,
         "settings": {
           "title": "Get Ready This Camping Season With Decathlon",
           "section_collection": "camping-tents"
@@ -2139,6 +2170,7 @@
       },
       "165115029729e3ba5b": {
         "type": "featured_collection",
+        "disabled": true,
         "settings": {
           "title": "Sustainability & Eco Design at Decathlon",
           "section_collection": "eco-design"
@@ -2157,14 +2189,14 @@
       "1568939434006",
       "163107170023281063",
       "16316085202ea5cf79",
+      "1642116157c0ce923f",
       "16509507269dac2990",
+      "163487525380dd83d2",
+      "16375487170499d43e",
       "1650960580e9623e99",
       "165115029729e3ba5b",
       "1651153473715f6dc1",
-      "163487525380dd83d2",
-      "16375487170499d43e",
       "1650950354346fb7a1",
-      "1642116157c0ce923f",
       "163107313302287377"
     ]
   },
