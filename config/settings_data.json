@@ -38,8 +38,8 @@
     "megamenu_bg_colour": "#1c82c3",
     "custom_fields_terms_conditions": "I agree to the <a href=\"\/pages\/terms-and-conditions-membership\" target=\"_blank\">T&Cs<\/a> and <a href=\"\/pages\/privacy-policy\" target=\"_blank\">Privacy Policy<\/a> for creating an account.",
     "is_lookbook": false,
-    "product_returns_text": "Easy Returns | Lifetime For MVPs*",
-    "product_shipping_text": "Australia Wide Delivery",
+    "product_returns_text": "Easy Returns",
+    "product_shipping_text": "Flat Rate Shipping*",
     "product_bulk_returns_text": "Easy Returns | Lifetime For MVPs*",
     "product_bulk_shipping_text": "Australia Wide Delivery",
     "show_associated_products_carousel_on_product_page": true,
@@ -1531,8 +1531,24 @@
               "link_new_window": false
             }
           },
+          "145847d3-2db7-45f7-8ef6-38db22a4156a": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/price_drop-Home-page-banner.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_2e9b7989-78cc-4464-b5d5-b3fb7c51ad19.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "https:\/\/decathlon.com.au\/pages\/price-drop",
+              "link_title": "",
+              "link_new_window": false
+            }
+          },
           "85c47718-39c5-4752-aa58-3e34ef8c0a97": {
             "type": "slide",
+            "disabled": true,
             "settings": {
               "banner_bg_image": "shopify:\/\/shop_images\/Fathers_Day_1440_x_789px_1ecdbc5d-49a6-4ede-ac02-2b6dca7ce6ad.jpg",
               "slide_bg_position": "75% -50px",
@@ -1543,6 +1559,22 @@
               "button_title": "",
               "link_url": "shopify:\/\/pages\/father-s-day-sale",
               "link_title": "Shop Father's Day Gifts",
+              "link_new_window": false
+            }
+          },
+          "79522152-c757-4b60-a1be-2d1e49198982": {
+            "type": "slide",
+            "disabled": true,
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Weekend_Deals_1440_x_789px_3fe70527-3d23-4c1a-9c72-fdd82ef3fc76.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Weekend_Deals_478_x_300px_43deec8d-fff1-48df-8394-9423e2049e06.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "shopify:\/\/collections\/weekend-deals-3-sep",
+              "link_title": "Shop Weekend Deals",
               "link_new_window": false
             }
           },
@@ -1638,38 +1670,6 @@
               "link_new_window": false
             }
           },
-          "145847d3-2db7-45f7-8ef6-38db22a4156a": {
-            "type": "slide",
-            "disabled": true,
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_9b598681-9aa5-4804-aaa4-b9d9caf7fd5f.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_fecad428-e4ca-4bb9-bcc5-e79871b00153.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/collections\/smart-buys",
-              "link_title": "",
-              "link_new_window": false
-            }
-          },
-          "79522152-c757-4b60-a1be-2d1e49198982": {
-            "type": "slide",
-            "disabled": true,
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Decathlon_-_Flash_Sale_-_Desktop_-_V1b.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Decathlon_-_Flash_Sale_-_Mobile_-_V1b.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/collections\/decathlon-flash-sale?q=&hPP=24&idx=shopify_products_price_desc&p=0&is_v=1",
-              "link_title": "",
-              "link_new_window": false
-            }
-          },
           "623e46b1-2abc-4e5b-8ceb-3ca5e428998a": {
             "type": "slide",
             "disabled": true,
@@ -1689,15 +1689,15 @@
         },
         "block_order": [
           "748c6a7e-732f-486d-a653-eb425a670bc5",
+          "145847d3-2db7-45f7-8ef6-38db22a4156a",
           "85c47718-39c5-4752-aa58-3e34ef8c0a97",
+          "79522152-c757-4b60-a1be-2d1e49198982",
           "3e042199-9da3-4514-87ba-d462754ab771",
           "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9",
           "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb",
           "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b",
           "0e3f284b-4302-4200-8eb1-f98ce34415af",
           "e9b4daa6-6eee-441b-b76d-9c3ff012fde9",
-          "145847d3-2db7-45f7-8ef6-38db22a4156a",
-          "79522152-c757-4b60-a1be-2d1e49198982",
           "623e46b1-2abc-4e5b-8ceb-3ca5e428998a"
         ],
         "settings": {}
@@ -1854,6 +1854,30 @@
               "bg_colour": "#1c82c3",
               "text_colour": "#ffffff"
             }
+          },
+          "520a0cb6-c4d9-429e-9ad0-767ea3ecfe69": {
+            "type": "label",
+            "settings": {
+              "title": "WAS $29",
+              "bg_colour": "#1c82c3",
+              "text_colour": "#ffffff"
+            }
+          },
+          "de31599f-8db8-461a-92cb-2aa7d4130373": {
+            "type": "label",
+            "settings": {
+              "title": "WAS $59",
+              "bg_colour": "#1c82c3",
+              "text_colour": "#ffffff"
+            }
+          },
+          "dd26d96b-b330-44e5-85e9-9dd7e63a7fb1": {
+            "type": "label",
+            "settings": {
+              "title": "WAS $99",
+              "bg_colour": "#1c82c3",
+              "text_colour": "#ffffff"
+            }
           }
         },
         "block_order": [
@@ -1874,7 +1898,10 @@
           "e2db735a-2836-49c7-8089-1f57e2a97432",
           "c39bc0a4-c1c1-43d8-a4ea-546ee6a36d94",
           "7d18489a-7919-48e6-af12-aa78223bdab7",
-          "73203065-e6da-425e-9414-f16552e970b5"
+          "73203065-e6da-425e-9414-f16552e970b5",
+          "520a0cb6-c4d9-429e-9ad0-767ea3ecfe69",
+          "de31599f-8db8-461a-92cb-2aa7d4130373",
+          "dd26d96b-b330-44e5-85e9-9dd7e63a7fb1"
         ],
         "settings": {}
       },
@@ -2147,17 +2174,16 @@
       },
       "1650950354346fb7a1": {
         "type": "featured_collection",
-        "disabled": true,
         "settings": {
-          "title": "Stay Warm at Training",
-          "section_collection": "soccer-base-layers"
+          "title": "Swim into Spring with Decathlon",
+          "section_collection": "swimming"
         }
       },
       "16509507269dac2990": {
         "type": "featured_collection",
         "settings": {
-          "title": "Trending Father's Day Gift Ideas",
-          "section_collection": "gift-ideas-fathers-day"
+          "title": "Price Drop Deals!",
+          "section_collection": "price-drop"
         }
       },
       "1650960580e9623e99": {
@@ -2190,13 +2216,13 @@
       "163107170023281063",
       "16316085202ea5cf79",
       "1642116157c0ce923f",
-      "16509507269dac2990",
+      "1650950354346fb7a1",
+      "165115029729e3ba5b",
       "163487525380dd83d2",
+      "16509507269dac2990",
       "16375487170499d43e",
       "1650960580e9623e99",
-      "165115029729e3ba5b",
       "1651153473715f6dc1",
-      "1650950354346fb7a1",
       "163107313302287377"
     ]
   },
