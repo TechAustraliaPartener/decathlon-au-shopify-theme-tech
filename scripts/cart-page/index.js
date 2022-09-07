@@ -234,9 +234,13 @@ function supplementCart(cart) {
  */
 const initCartDisplay = cart => {
   let { favStore, deliveryOption } = window.vars || {};
+
+  // console.log(favStore)
+
   CartJS.setAttributes({
     'delivery_mode': deliveryOption,
-    'pickup_location': deliveryOption !== 'Delivery' ? favStore?.street1 : 'none'
+    'pickup_location': deliveryOption !== 'Delivery' ? favStore?.street1 : 'none',
+    'pickup_confirmation_message': favStore?.['email_confirmation_message'] ? favStore['email_confirmation_message'] : ''
   }, {
     'error': function() {
       location.reload();
@@ -306,9 +310,15 @@ const initCartDisplay = cart => {
 
         const checkoutBtn = $('[name="checkout"]');
         checkoutBtn.prop('disabled', true);
+
+
+        // console.log(app.favStore)
+        // console.log(app.favStore?.['email_confirmation_message'] ? app.favStore['email_confirmation_messaage'] : '');
+
         CartJS.setAttributes({
           'delivery_mode': window.vars.deliveryOption,
-          'pickup_location': app.deliveryOption !== 'Delivery' ? app.favStore?.street1 : 'none'
+          'pickup_location': app.deliveryOption !== 'Delivery' ? app.favStore?.street1 : 'none',
+          'pickup_confirmation_message': app.favStore?.['email_confirmation_message'] ? app.favStore['email_confirmation_message'] : ''
         }, {
           'success': function() {
             checkoutBtn.prop('disabled', false);
