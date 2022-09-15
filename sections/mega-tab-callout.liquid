@@ -1,0 +1,116 @@
+<!-- 
+  Megatab hierarchy of settings
+  1) Individually Set Mega callout set in Mega Tab Callouts Section
+  2) If no callout is individually set, then it'll proceed to
+  apply settings in Default Megamenu Callout if Default/Override Settings is enabled
+
+  This section accepts
+  Megatab - link handle from link_list
+ -->
+
+{% for block in settings.blocks %}
+  {% if block.megamenu == megatab %}
+  <p>"megatab"</p>
+    {% if block.display_callout %}
+      {% include 'compositions-header-nav-wide-extras'
+          img: block.megamenu_image
+          title: block.megamenu_title
+          subtitle: block.megamenu_subtitle
+          callout_link: block.megamenu_link
+          bg_color: block.megamenu_bg_colour
+      %}
+  <p>"megatab display"</p>
+    {% endif %}
+  {% elsif block.img == blank %}
+      {% if settings.megamenu_set_for_all == default %}
+        <p>"megatab no display"</p>
+          
+        {% include 'compositions-header-nav-wide-extras'
+          img: settings.megamenu_image
+          title: settings.megamenu_title
+          subtitle: settings.megamenu_subtitle
+          callout_link: settings.megamenu_link
+          bg_color: settings.megamenu_bg_colour
+      %}
+      {% endif %}
+  {% endif %}
+{% endfor %}
+{% if settings.megamenu_set_for_all == override %}
+  <p>"override display"</p>
+
+  {% include 'compositions-header-nav-wide-extras'
+    img: settings.megamenu_image
+    title: settings.megamenu_title
+    subtitle: settings.megamenu_subtitle
+    callout_link: settings.megamenu_link
+    bg_color: settings.megamenu_bg_colour
+  %}
+  {% else %}
+  <p>"no display"</p>
+    
+{% endif %}
+
+{% schema %}
+  {
+      "name": "Mega Tab Callouts",
+      "blocks": [
+        {
+            "type": "tab-callout",
+            "name": "Tab Callout",
+            "settings": [
+                {
+                  "id": "megamenu",
+                  "type": "text",
+                  "label": "Mega Tab Parent",
+                  "info": "Place the Mega Tab's link without the `#`, eg. clearance"
+
+              },
+                {
+                    "id": "display-callout",
+                    "type": "radio",
+                    "label": "Show Callout on this Tab?",
+                    "options": [
+                        {
+                            "value": "default",
+                            "label": "Show callout"
+                        },
+                        {
+                            "value": "hidden",
+                            "label": "Hide callout"
+                        }
+                    ]
+                },
+                {
+                    "id": "megamenu_image",
+                    "type": "image_picker",
+                    "label": "Select an image (.png or .jpg)"
+                },
+                {
+                    "id": "megamenu_title",
+                    "type": "text",
+                    "label": "Add a megamenu title",
+                    "default": "Last Call"
+                },
+                {
+                    "id": "megamenu_subtitle",
+                    "type": "text",
+                    "label": "Add a megamenu title",
+                    "default": "End of Season Deals"
+                },
+                {
+                    "id": "megamenu_link",
+                    "type": "url",
+                    "label": "Define a megamenu link url"
+                },
+                {
+                    "id": "megamenu_bg_colour",
+                    "type": "color",
+                    "label": "Choose a background color for your first link",
+                    "default": "#666"
+                }
+         
+            ]
+        }
+      ]
+  }
+  {% endschema %}
