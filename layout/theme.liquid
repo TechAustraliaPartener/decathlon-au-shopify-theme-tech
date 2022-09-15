@@ -54,6 +54,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="facebook-domain-verification" content="2tjyg7urynyxfj4553rpfqq6oibs89" />
 
+  <!-- Hreflang settings -->
+  <link rel="alternate" hreflang="x-default" href="decathlon.com.au"/>
+  <link rel="alternate" href="{{ canonical_url | replace: shop.domain, 'decathlon.com.au' }}" hreflang="en" />
+  <link rel="alternate" href="{{ canonical_url | replace: shop.domain, 'decathlon.com' }}" hreflang="en-us" />
+  <link rel="alternate" href="{{ canonical_url | replace: shop.domain, 'decathlon.fr' }}" hreflang="fr-fr" />
+  <link rel="alternate" href="{{ canonical_url | replace: shop.domain, 'decathlon.co.uk' }}" hreflang="en-gb" />
+
   {% comment %}Favicon{% endcomment %}
   <link rel="apple-touch-icon" sizes="180x180" href="{{ 'apple-touch-icon.png' | asset_url }}">
   <link rel="icon" type="image/png" href="{{ 'favicon-32x32.png' | asset_url }}" sizes="32x32">
