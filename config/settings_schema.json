@@ -280,22 +280,9 @@
     "settings": [
       {
         "id": "megamenu_set_for_all",
-        "type": "radio",
-        "label": "Display settings for Default Callout",
-        "options": [
-          {
-            "value": "override",
-            "label": "Use this for all tabs"
-          },
-          {
-            "value": "default",
-            "label": "Use as default fallback callout if no callout was set"
-          },
-          {
-            "value": "disabled",
-            "label": "Disable Default Callout"
-          }
-        ]
+        "type": "checkbox",
+        "label": "Display these callout settings for each Megatab?",
+        "default": false
       },
       {
         "id": "megamenu_image",
