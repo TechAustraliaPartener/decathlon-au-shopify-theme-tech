@@ -708,9 +708,10 @@
       "order_summary": {
         "taxes_label": "GST",
         "vat_label_html": "Including {{amount}} in GST",
-        "gift_card_and_discount_title": "Discount code",
-        "gift_card_and_discount_label": "Discount code",
-        "gift_card_and_discount_placeholder": "Discount code"
+        "gift_card_and_discount_title": "Discount code or Shopify Gift Card",
+        "gift_card_and_discount_label": "Discount code or Shopify Gift Card",
+        "gift_card_and_discount_placeholder": "Discount code or Shopify Gift Card",
+        "discount_placeholder": "Discount code or Shopify Gift Card"
       },
       "field_errors": {
         "address_city_blank": "Enter a suburb"
@@ -719,7 +720,7 @@
         "shipping_method_not_available": "Unfortunately some items in your cart cannot be shipped to the designated location. Please make sure your address is correct or contact us."
       },
       "marketing": {
-        "accept_marketing_checkbox_label": "Subscribe for 30% off delivery & to hear about upcoming promotions. (excludes express delivery & bulky items)"
+        "accept_marketing_checkbox_label": "Subscribe to hear about upcoming promotions."
       }
     },
     "notices": {

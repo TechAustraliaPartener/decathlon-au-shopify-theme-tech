@@ -31,15 +31,15 @@
     "header_support_link": "https:\/\/decathlon.com.au\/pages\/contact-and-help",
     "header_store_label": "Find a Store",
     "header_sign_in_label": "Login",
-    "megamenu_image": "shopify:\/\/shop_images\/Sports_in_Spring_360_x_360.jpg",
-    "megamenu_title": "Shop Sport In Spring Sale",
-    "megamenu_subtitle": "Start Spring Sport Season with Decathlon",
-    "megamenu_link": "shopify:\/\/pages\/spring-into-sport",
+    "megamenu_image": "shopify:\/\/shop_images\/Price_Drops_300_x_300.jpg",
+    "megamenu_title": "For the quality you love!",
+    "megamenu_subtitle": "",
+    "megamenu_link": "shopify:\/\/collections\/price-drop",
     "megamenu_bg_colour": "#1c82c3",
     "custom_fields_terms_conditions": "I agree to the <a href=\"\/pages\/terms-and-conditions-membership\" target=\"_blank\">T&Cs<\/a> and <a href=\"\/pages\/privacy-policy\" target=\"_blank\">Privacy Policy<\/a> for creating an account.",
     "is_lookbook": false,
     "product_returns_text": "Easy Returns",
-    "product_shipping_text": "Flat Rate Shipping*",
+    "product_shipping_text": "$12.99 Flat Rate Shipping*",
     "product_bulk_returns_text": "Easy Returns | Lifetime For MVPs*",
     "product_bulk_shipping_text": "Australia Wide Delivery",
     "show_associated_products_carousel_on_product_page": true,
@@ -1516,8 +1516,84 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
+          "145847d3-2db7-45f7-8ef6-38db22a4156a": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/price_drop-Home-page-banner.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_2e9b7989-78cc-4464-b5d5-b3fb7c51ad19.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "https:\/\/decathlon.com.au\/pages\/price-drop",
+              "link_title": "",
+              "link_new_window": false
+            }
+          },
+          "579ee1c6-8cb9-4350-95e5-fb83a1397d90": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Domyos_EL520_Cross_Trainer_1440_x_789px.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Domyos_EL520_Cross_Trainer_478_x_300px.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "shopify:\/\/products\/el-520-self-powered-cross-trainer-301940",
+              "link_title": "Shop Now Domyos Self-Powered Cross Trainer",
+              "link_new_window": false
+            }
+          },
+          "3e042199-9da3-4514-87ba-d462754ab771": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Running_1440_x_789px_4aaaf396-4e69-4049-a0df-16785db33605.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Running_478_x_300px_436c7af3-38a8-4951-b440-fa22adbc93a6.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "shopify:\/\/collections\/running-shoes",
+              "link_title": "Shop Running Sale",
+              "link_new_window": false
+            }
+          },
+          "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/EcoDesign-Banner-HP.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/EcoDesign-Mobile.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/eco-design?q=&hPP=24&idx=shopify_products&p=0&dFR%5Bproduct_type%5D%5B0%5D=Fleece&is_v=1",
+              "link_title": "",
+              "link_new_window": false
+            }
+          },
+          "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Artengo-Home_page_v2.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Artengo-Home_page_mobile_v2.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/tennis?q=&hPP=24&idx=shopify_products_price_desc&p=0&dFR%5Bvendor%5D%5B0%5D=ARTENGO&is_v=1",
+              "link_title": "",
+              "link_new_window": false
+            }
+          },
           "748c6a7e-732f-486d-a653-eb425a670bc5": {
             "type": "slide",
+            "disabled": true,
             "settings": {
               "banner_bg_image": "shopify:\/\/shop_images\/Sports_in_Spring_1440_x_789px.jpg",
               "slide_bg_position": "75% -50px",
@@ -1531,18 +1607,19 @@
               "link_new_window": false
             }
           },
-          "145847d3-2db7-45f7-8ef6-38db22a4156a": {
+          "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9": {
             "type": "slide",
+            "disabled": true,
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/price_drop-Home-page-banner.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/BOGO_Nutrition_1440_x_789px_d1eeba54-33f7-461e-b4ea-8de64cd570e0.jpg",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_2e9b7989-78cc-4464-b5d5-b3fb7c51ad19.jpg",
+              "banner_mobile_image": "shopify:\/\/shop_images\/BOGO_Nutrition_478_x_300px_ce313e07-9be9-4393-8814-0f4a2ab84d2e.jpg",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
               "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/pages\/price-drop",
-              "link_title": "",
+              "link_url": "shopify:\/\/collections\/health-nutrition-sale",
+              "link_title": "Health & Nutrition Sale",
               "link_new_window": false
             }
           },
@@ -1575,66 +1652,6 @@
               "button_title": "",
               "link_url": "shopify:\/\/collections\/weekend-deals-3-sep",
               "link_title": "Shop Weekend Deals",
-              "link_new_window": false
-            }
-          },
-          "3e042199-9da3-4514-87ba-d462754ab771": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Puma_25off_1440_x_789px.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Puma_25off_478_x_300px.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "shopify:\/\/collections\/big-brand-sale",
-              "link_title": "Shop 25% off Puma",
-              "link_new_window": false
-            }
-          },
-          "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/BOGO_Nutrition_1440_x_789px_d1eeba54-33f7-461e-b4ea-8de64cd570e0.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/BOGO_Nutrition_478_x_300px_ce313e07-9be9-4393-8814-0f4a2ab84d2e.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "shopify:\/\/collections\/health-nutrition-sale",
-              "link_title": "Health & Nutrition Sale",
-              "link_new_window": false
-            }
-          },
-          "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/EcoDesign-Banner-HP.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/EcoDesign-Mobile.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/collections\/eco-design?q=&hPP=24&idx=shopify_products&p=0&dFR%5Bproduct_type%5D%5B0%5D=Fleece&is_v=1",
-              "link_title": "",
-              "link_new_window": false
-            }
-          },
-          "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Artengo-Home_page_v2.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Artengo-Home_page_mobile_v2.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/collections\/tennis?q=&hPP=24&idx=shopify_products_price_desc&p=0&dFR%5Bvendor%5D%5B0%5D=ARTENGO&is_v=1",
-              "link_title": "",
               "link_new_window": false
             }
           },
@@ -1688,14 +1705,15 @@
           }
         },
         "block_order": [
-          "748c6a7e-732f-486d-a653-eb425a670bc5",
           "145847d3-2db7-45f7-8ef6-38db22a4156a",
-          "85c47718-39c5-4752-aa58-3e34ef8c0a97",
-          "79522152-c757-4b60-a1be-2d1e49198982",
+          "579ee1c6-8cb9-4350-95e5-fb83a1397d90",
           "3e042199-9da3-4514-87ba-d462754ab771",
-          "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9",
           "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb",
           "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b",
+          "748c6a7e-732f-486d-a653-eb425a670bc5",
+          "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9",
+          "85c47718-39c5-4752-aa58-3e34ef8c0a97",
+          "79522152-c757-4b60-a1be-2d1e49198982",
           "0e3f284b-4302-4200-8eb1-f98ce34415af",
           "e9b4daa6-6eee-441b-b76d-9c3ff012fde9",
           "623e46b1-2abc-4e5b-8ceb-3ca5e428998a"
@@ -1726,7 +1744,7 @@
             "settings": {
               "title": "Lowest Price",
               "bg_colour": "#1783c4",
-              "text_colour": "#f9ec24"
+              "text_colour": "#ffffff"
             }
           },
           "add54ffc-96a7-4a8e-9da6-0cd98b86bb70": {
@@ -1734,7 +1752,7 @@
             "settings": {
               "title": "Best Value",
               "bg_colour": "#f9ec24",
-              "text_colour": "#1783c4"
+              "text_colour": "#1f1f1f"
             }
           },
           "ad2f449b-334c-4b8e-b29c-caed1367ff3b": {
@@ -1765,10 +1783,10 @@
             "type": "combo",
             "settings": {
               "title": "Lowest Price,Best Value",
-              "bg_colour_1": "#ffea28",
-              "text_colour_1": "#333333",
-              "bg_colour_2": "#1c82c3",
-              "text_colour_2": "#fafafa"
+              "bg_colour_1": "#1c82c3",
+              "text_colour_1": "#ffffff",
+              "bg_colour_2": "#ffea28",
+              "text_colour_2": "#1f1f1f"
             }
           },
           "21cbe9ff-5012-4881-904e-7443a4af6fcb": {
@@ -1878,6 +1896,38 @@
               "bg_colour": "#1c82c3",
               "text_colour": "#ffffff"
             }
+          },
+          "1b5b400c-162b-46f0-b6c7-0d8f07b8eebb": {
+            "type": "label",
+            "settings": {
+              "title": "WAS $12",
+              "bg_colour": "#1c82c3",
+              "text_colour": "#ffffff"
+            }
+          },
+          "2762fdc2-e694-473a-b64b-686212c219fd": {
+            "type": "label",
+            "settings": {
+              "title": "WAS $399",
+              "bg_colour": "#1c82c3",
+              "text_colour": "#ffffff"
+            }
+          },
+          "831b01d5-44df-4e26-82ff-7de5b0bfc9c0": {
+            "type": "label",
+            "settings": {
+              "title": "WAS $549",
+              "bg_colour": "#1c82c3",
+              "text_colour": "#ffffff"
+            }
+          },
+          "8fab8f3d-e02e-4e37-bf4b-e662f218b7dc": {
+            "type": "label",
+            "settings": {
+              "title": "WAS $125",
+              "bg_colour": "#1c82c3",
+              "text_colour": "#ffffff"
+            }
           }
         },
         "block_order": [
@@ -1901,7 +1951,11 @@
           "73203065-e6da-425e-9414-f16552e970b5",
           "520a0cb6-c4d9-429e-9ad0-767ea3ecfe69",
           "de31599f-8db8-461a-92cb-2aa7d4130373",
-          "dd26d96b-b330-44e5-85e9-9dd7e63a7fb1"
+          "dd26d96b-b330-44e5-85e9-9dd7e63a7fb1",
+          "1b5b400c-162b-46f0-b6c7-0d8f07b8eebb",
+          "2762fdc2-e694-473a-b64b-686212c219fd",
+          "831b01d5-44df-4e26-82ff-7de5b0bfc9c0",
+          "8fab8f3d-e02e-4e37-bf4b-e662f218b7dc"
         ],
         "settings": {}
       },
@@ -1970,7 +2024,7 @@
               "image": "shopify:\/\/shop_images\/service_white.png",
               "text_color": "#ffffff",
               "background_color": "#0082c3",
-              "hover_background_color": "#0082c3",
+              "hover_background_color": "#ffea28",
               "link": "https:\/\/decathlon.com.au\/pages\/workshop-services"
             }
           }
@@ -2054,6 +2108,22 @@
       "16316085202ea5cf79": {
         "type": "trending_categories",
         "blocks": {
+          "f553a06c-1d16-4cd4-b9f2-2eea43b5aa9c": {
+            "type": "category_tile",
+            "settings": {
+              "title": "Swimming",
+              "image": "shopify:\/\/shop_images\/Swimminh-CAT_HERO.jpg",
+              "link": "shopify:\/\/collections\/swimming"
+            }
+          },
+          "24a46da8-7f15-4e2c-aa20-558f5e037a41": {
+            "type": "category_tile",
+            "settings": {
+              "title": "Hiking",
+              "image": "shopify:\/\/shop_images\/PK_Spodnie_trekkingowe_1_---_Expires_on_09-09-2025.jpg",
+              "link": "shopify:\/\/collections\/hiking-trekking"
+            }
+          },
           "e1091c93-4efb-4738-b3f6-3a711db62e82": {
             "type": "category_tile",
             "settings": {
@@ -2081,35 +2151,19 @@
           "711f34cb-b34c-4c8f-8e88-ce5c95240666": {
             "type": "category_tile",
             "settings": {
-              "title": "Surfing",
-              "image": "shopify:\/\/shop_images\/Surfing_CAT-HERO.jpg",
-              "link": "https:\/\/decathlon.com.au\/collections\/mens-surf-wetsuits"
-            }
-          },
-          "f553a06c-1d16-4cd4-b9f2-2eea43b5aa9c": {
-            "type": "category_tile",
-            "settings": {
-              "title": "Skiing",
-              "image": "shopify:\/\/shop_images\/Skiing-Category_a5d04c11-2d1e-498a-b8de-bac3e7b1d074.jpg",
-              "link": "shopify:\/\/collections\/winter-snow-sports"
-            }
-          },
-          "24a46da8-7f15-4e2c-aa20-558f5e037a41": {
-            "type": "category_tile",
-            "settings": {
-              "title": "Hiking",
-              "image": "shopify:\/\/shop_images\/PK_Spodnie_trekkingowe_1_---_Expires_on_09-09-2025.jpg",
-              "link": "shopify:\/\/collections\/hiking-trekking"
+              "title": "Kayaking",
+              "image": "shopify:\/\/shop_images\/Kayaking_CAT-HERO.jpg",
+              "link": "shopify:\/\/collections\/kayaking"
             }
           }
         },
         "block_order": [
+          "f553a06c-1d16-4cd4-b9f2-2eea43b5aa9c",
+          "24a46da8-7f15-4e2c-aa20-558f5e037a41",
           "e1091c93-4efb-4738-b3f6-3a711db62e82",
           "e946fff5-5695-4ed3-a886-269cd8000e8d",
           "2161fbad-02eb-48c1-9a11-4481251537ae",
-          "711f34cb-b34c-4c8f-8e88-ce5c95240666",
-          "f553a06c-1d16-4cd4-b9f2-2eea43b5aa9c",
-          "24a46da8-7f15-4e2c-aa20-558f5e037a41"
+          "711f34cb-b34c-4c8f-8e88-ce5c95240666"
         ],
         "settings": {
           "title": "Trending Categories"
@@ -2118,12 +2172,13 @@
       "163487525380dd83d2": {
         "type": "featured_collection",
         "settings": {
-          "title": "25% off Popular Puma Picks",
-          "section_collection": "big-brand-sale"
+          "title": "Run Your Race this Marathon Season with Decathlon",
+          "section_collection": "running-shoes"
         }
       },
       "16375487170499d43e": {
         "type": "featured_collection",
+        "disabled": true,
         "settings": {
           "title": "Buy 2, get 62% off the 2nd!",
           "section_collection": "health-nutrition-sale"
@@ -2132,7 +2187,7 @@
       "1642116157c0ce923f": {
         "type": "featured_collection",
         "settings": {
-          "title": "Start Spring Sport Season with Decathlon",
+          "title": "Trending Spring Deals!",
           "section_collection": "spring-sale"
         }
       },
@@ -2209,6 +2264,13 @@
           "title": "Decathlon's Smart Buys",
           "section_collection": "smart-buys"
         }
+      },
+      "166270596352f8a275": {
+        "type": "featured_collection",
+        "settings": {
+          "title": "Spend $100, get $20 off selected Cycling Clothing & Accessories",
+          "section_collection": "cycling-clothing-bike-accessories"
+        }
       }
     },
     "content_for_index": [
@@ -2216,10 +2278,11 @@
       "163107170023281063",
       "16316085202ea5cf79",
       "1642116157c0ce923f",
-      "1650950354346fb7a1",
-      "165115029729e3ba5b",
-      "163487525380dd83d2",
       "16509507269dac2990",
+      "1650950354346fb7a1",
+      "166270596352f8a275",
+      "163487525380dd83d2",
+      "165115029729e3ba5b",
       "16375487170499d43e",
       "1650960580e9623e99",
       "1651153473715f6dc1",
