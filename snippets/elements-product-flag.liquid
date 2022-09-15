@@ -52,7 +52,10 @@
   {% assign tag_value = tag_attrs | last %}
 
   {% if tag_prefix_comp == 'label' %}
-    {% assign label = label | append: tag_value | append: "," %}
+    {% assign temp_tag_value = tag_value | upcase | strip %}
+    {% unless temp_tag_value == 'ECO-DESIGN' %}
+      {% assign label = label | append: tag_value | append: "," %}
+    {% endunless %}
 
   {% endif %}
 {% endfor %}

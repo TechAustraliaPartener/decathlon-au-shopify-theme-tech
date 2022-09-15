@@ -30,6 +30,10 @@
       .replace(/'/g, '&#039;');
   }
 
+  function removeUnwantedTagsForDisplay(tag) {
+    return tag.toUpperCase() != 'ECO-DESIGN'
+  }
+
   algolia.helpers = {
     formatNumber: function formatNumber(text, render) {
       return Number(render(text)).toLocaleString();
@@ -122,8 +126,15 @@
 
       let labelsOutput = '';
 
-      labels = labels ? (Array.isArray(labels) ? labels : [labels]) : [];
+
+      // console.log('labels before')
+      // console.log(labels)
+
+      labels = labels ? (Array.isArray(labels) ? labels.filter(removeUnwantedTagsForDisplay) : [labels].filter(removeUnwantedTagsForDisplay)) : [];
       const comboClass = labels.length > 1 ? `label_combo_${ labels.map(label => handleize(label)).join('-') }` : '';
+
+      // console.log('labels')
+      // console.log(labels)
 
       let innerLabels = labels.map(label => {
         return `<div class="ais-hit--label label_${ handleize(label) }">${ label }</div>`;
