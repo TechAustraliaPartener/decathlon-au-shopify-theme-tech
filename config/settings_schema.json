@@ -276,8 +276,14 @@
     ]
   },
   {
-    "name": "Megamenu",
+    "name": "Default Megamenu Callout",
     "settings": [
+      {
+        "id": "megamenu_set_for_all",
+        "type": "checkbox",
+        "label": "Display these callout settings for each Megatab?",
+        "default": false
+      },
       {
         "id": "megamenu_image",
         "type": "image_picker",
