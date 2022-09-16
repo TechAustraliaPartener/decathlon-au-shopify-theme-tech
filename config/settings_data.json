@@ -1516,6 +1516,37 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
+          "79522152-c757-4b60-a1be-2d1e49198982": {
+            "type": "slide",
+            "disabled": true,
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Weekend_Deals_1440_x_789px_3fe70527-3d23-4c1a-9c72-fdd82ef3fc76.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Weekend_Deals_478_x_300px_43deec8d-fff1-48df-8394-9423e2049e06.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "shopify:\/\/collections\/weekend-deals-17-sep",
+              "link_title": "Shop Weekend Deals",
+              "link_new_window": false
+            }
+          },
+          "85c47718-39c5-4752-aa58-3e34ef8c0a97": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/20off_Cycling_Accessories_1440_x_789px.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/20off_Cycling_Accessories_478_x_300px.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "shopify:\/\/collections\/cycling-clothing-bike-accessories",
+              "link_title": "Shop $20 off Cycling Clothing & Accessories",
+              "link_new_window": false
+            }
+          },
           "145847d3-2db7-45f7-8ef6-38db22a4156a": {
             "type": "slide",
             "settings": {
@@ -1561,6 +1592,21 @@
               "link_new_window": false
             }
           },
+          "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Artengo-Home_page_v2.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Artengo-Home_page_mobile_v2.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/tennis?q=&hPP=24&idx=shopify_products_price_desc&p=0&dFR%5Bvendor%5D%5B0%5D=ARTENGO&is_v=1",
+              "link_title": "",
+              "link_new_window": false
+            }
+          },
           "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb": {
             "type": "slide",
             "disabled": true,
@@ -1573,21 +1619,6 @@
               "banner_subtitle": "",
               "button_title": "",
               "link_url": "https:\/\/decathlon.com.au\/collections\/eco-design?q=&hPP=24&idx=shopify_products&p=0&dFR%5Bproduct_type%5D%5B0%5D=Fleece&is_v=1",
-              "link_title": "",
-              "link_new_window": false
-            }
-          },
-          "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Artengo-Home_page_v2.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Artengo-Home_page_mobile_v2.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/collections\/tennis?q=&hPP=24&idx=shopify_products_price_desc&p=0&dFR%5Bvendor%5D%5B0%5D=ARTENGO&is_v=1",
               "link_title": "",
               "link_new_window": false
             }
@@ -1621,38 +1652,6 @@
               "button_title": "",
               "link_url": "shopify:\/\/collections\/health-nutrition-sale",
               "link_title": "Health & Nutrition Sale",
-              "link_new_window": false
-            }
-          },
-          "85c47718-39c5-4752-aa58-3e34ef8c0a97": {
-            "type": "slide",
-            "disabled": true,
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Fathers_Day_1440_x_789px_1ecdbc5d-49a6-4ede-ac02-2b6dca7ce6ad.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Fathers_Day_478_x_300px_bd752667-400d-4acb-aeb4-54ee7e7e4ec6.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "shopify:\/\/pages\/father-s-day-sale",
-              "link_title": "Shop Father's Day Gifts",
-              "link_new_window": false
-            }
-          },
-          "79522152-c757-4b60-a1be-2d1e49198982": {
-            "type": "slide",
-            "disabled": true,
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Weekend_Deals_1440_x_789px_3fe70527-3d23-4c1a-9c72-fdd82ef3fc76.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Weekend_Deals_478_x_300px_43deec8d-fff1-48df-8394-9423e2049e06.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "shopify:\/\/collections\/weekend-deals-3-sep",
-              "link_title": "Shop Weekend Deals",
               "link_new_window": false
             }
           },
@@ -1706,15 +1705,15 @@
           }
         },
         "block_order": [
+          "79522152-c757-4b60-a1be-2d1e49198982",
+          "85c47718-39c5-4752-aa58-3e34ef8c0a97",
           "145847d3-2db7-45f7-8ef6-38db22a4156a",
           "579ee1c6-8cb9-4350-95e5-fb83a1397d90",
           "3e042199-9da3-4514-87ba-d462754ab771",
-          "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb",
           "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b",
+          "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb",
           "748c6a7e-732f-486d-a653-eb425a670bc5",
           "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9",
-          "85c47718-39c5-4752-aa58-3e34ef8c0a97",
-          "79522152-c757-4b60-a1be-2d1e49198982",
           "0e3f284b-4302-4200-8eb1-f98ce34415af",
           "e9b4daa6-6eee-441b-b76d-9c3ff012fde9",
           "623e46b1-2abc-4e5b-8ceb-3ca5e428998a"
@@ -2008,12 +2007,12 @@
           "c5bd0b0f-516e-4db7-926f-46c215e1fbdf": {
             "type": "category",
             "settings": {
-              "title": "ECODESIGN",
-              "image": "shopify:\/\/shop_images\/top-categories-ecodesign.png",
+              "title": "CLEARANCE",
+              "image": "shopify:\/\/shop_images\/price_tag_cd0cdfdf-ce7b-4ffc-8068-ba2393cb50f1.png",
               "text_color": "#ffffff",
-              "background_color": "#44644c",
-              "hover_background_color": "#80c29c",
-              "link": "https:\/\/decathlon.com.au\/collections\/eco-design"
+              "background_color": "#e21f26",
+              "hover_background_color": "#e21f26",
+              "link": "https:\/\/decathlon.com.au\/collections\/decathlon-clearance"
             }
           },
           "b001623f-dab9-4e48-be17-0e57d5678647": {
@@ -2255,8 +2254,8 @@
         "type": "featured_collection",
         "disabled": true,
         "settings": {
-          "title": "Get Ready This Camping Season With Decathlon",
-          "section_collection": "camping-tents"
+          "title": "Crazy Weekend Deals on Backpacks!",
+          "section_collection": "weekend-deals-17-sep"
         }
       },
       "165115029729e3ba5b": {
@@ -2287,14 +2286,14 @@
       "1568939434006",
       "163107170023281063",
       "16316085202ea5cf79",
+      "1650960580e9623e99",
+      "166270596352f8a275",
       "1642116157c0ce923f",
       "16509507269dac2990",
       "1650950354346fb7a1",
-      "166270596352f8a275",
       "163487525380dd83d2",
       "165115029729e3ba5b",
       "16375487170499d43e",
-      "1650960580e9623e99",
       "1651153473715f6dc1",
       "163107313302287377"
     ]
