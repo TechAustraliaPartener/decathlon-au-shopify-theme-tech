@@ -1563,6 +1563,7 @@
           },
           "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb": {
             "type": "slide",
+            "disabled": true,
             "settings": {
               "banner_bg_image": "shopify:\/\/shop_images\/EcoDesign-Banner-HP.jpg",
               "slide_bg_position": "75% -50px",
@@ -1928,6 +1929,14 @@
               "bg_colour": "#1c82c3",
               "text_colour": "#ffffff"
             }
+          },
+          "6cdded25-a535-4f69-8986-e6a4a6ab2665": {
+            "type": "label",
+            "settings": {
+              "title": "GET $20 OFF*",
+              "bg_colour": "#ff8700",
+              "text_colour": "#ffffff"
+            }
           }
         },
         "block_order": [
@@ -1955,7 +1964,8 @@
           "1b5b400c-162b-46f0-b6c7-0d8f07b8eebb",
           "2762fdc2-e694-473a-b64b-686212c219fd",
           "831b01d5-44df-4e26-82ff-7de5b0bfc9c0",
-          "8fab8f3d-e02e-4e37-bf4b-e662f218b7dc"
+          "8fab8f3d-e02e-4e37-bf4b-e662f218b7dc",
+          "6cdded25-a535-4f69-8986-e6a4a6ab2665"
         ],
         "settings": {}
       },
