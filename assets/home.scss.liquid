@@ -2434,6 +2434,19 @@ body.is-rollingUpBanner .popup { margin-top: -100vh; }
   text-align: left;
   position: relative;
 
+  // Mobile
+  max-height: 512px !important;
+
+  // Tablet
+  @media only screen and (min-width: 768px) {
+    max-height: 700px !important;
+  }
+
+  // Desktop
+  @media only screen and (min-width: 1200px) {
+    max-height: 947px !important;
+  }
+
   @media only screen and (max-width: $blueband) {
       padding: 0;
   }
