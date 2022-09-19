@@ -15,7 +15,7 @@
         {% include 'patterns-icons-chevron', class: 'de-MenuList-icon', role: 'presentation' %}
       </a>
     </li> {% endcomment %}
-    {% if title != blank and subtitle != blank and callout_link != blank %}
+
       <li>
         <a class="de-MenuList-item de-MenuList-item--lastcall de-u-padSides2" href="{{ callout_link }}" style="background-color: {{ bg_colour }};">
           <div class="de-MenuList-content">
@@ -25,7 +25,6 @@
           {% include 'patterns-icons-chevron', class: 'de-MenuList-icon', role: 'presentation' %}
         </a>
       </li>
-    {% endif %}
     </ul>
   <div class="de-u-pad2">
     <ul class="de-u-listReset de-u-spaceNone de-u-lineHeight3">
