@@ -49,7 +49,7 @@
                     bg_color: block.settings.megamenu_bg_colour
                   %}
                 {% else%}
-                  {% if settings.megamenu_set_for_all == "default"  %}
+                {% if settings.megamenu_set_for_all == "default" %}
                     {% include 'compositions-header-nav-wide-extras'
                       img: settings.megamenu_image
                       title: settings.megamenu_title
