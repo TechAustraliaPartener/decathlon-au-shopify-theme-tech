@@ -281,7 +281,6 @@
       {
         "id": "megamenu_set_for_all",
         "type": "radio",
-        "default": "default",
         "label": "Display settings for Default Callout",
         "options": [
           {

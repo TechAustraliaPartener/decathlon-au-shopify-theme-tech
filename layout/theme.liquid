@@ -305,9 +305,6 @@
 <body id="{% if collection %}{{ collection.handle }}{% else %}{{ page_title | handle }}{% endif %}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }} {% if template.suffix != blank %}template-suffix-{{ template.suffix }}{% endif %} is-shortNav{% if settings['is_lookbook'] == true %} is-wishlistOnly{% endif %}{% if cart.item_count > 0 %} has-itemsInCart{% endif %}{% if product and product.tags contains 'allow sale' %} is-sellableProduct{% endif %}" {% if template_name %}data-gtm-template="{{template_name}}"{% endif %}>  
   {% include 'js-gtm-body' %}
 
-  {% section 'mega-tab-callout' %}
-  {% assign callouts = section.settings.blocks %}
-
   {% section 'config_labels' %}
 
   {% section 'add-on-products' %}

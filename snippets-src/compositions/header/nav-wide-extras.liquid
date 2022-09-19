@@ -15,16 +15,18 @@
         {% include 'patterns-icons-chevron', class: 'de-MenuList-icon', role: 'presentation' %}
       </a>
     </li> {% endcomment %}
-    <li>
-      <a class="de-MenuList-item de-MenuList-item--lastcall de-u-padSides2" href="{{ callout_link }}" style="background-color: {{ bg_colour }};">
-        <div class="de-MenuList-content">
-          <h5 class="de-MenuList-heading">{{ title }}</h5>
-          <p class="de-MenuList-summary">{{ subtitle }}</p>
-        </div>
-        {% include 'patterns-icons-chevron', class: 'de-MenuList-icon', role: 'presentation' %}
-      </a>
-    </li>
-  </ul>
+    {% if title != blank and subtitle != blank and callout_link != blank %}
+      <li>
+        <a class="de-MenuList-item de-MenuList-item--lastcall de-u-padSides2" href="{{ callout_link }}" style="background-color: {{ bg_colour }};">
+          <div class="de-MenuList-content">
+            <h5 class="de-MenuList-heading">{{ title }}</h5>
+            <p class="de-MenuList-summary">{{ subtitle }}</p>
+          </div>
+          {% include 'patterns-icons-chevron', class: 'de-MenuList-icon', role: 'presentation' %}
+        </a>
+      </li>
+    {% endif %}
+    </ul>
   <div class="de-u-pad2">
     <ul class="de-u-listReset de-u-spaceNone de-u-lineHeight3">
       {% for link in linklists.additional-shopping.links %}
