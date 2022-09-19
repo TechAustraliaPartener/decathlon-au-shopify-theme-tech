@@ -2305,6 +2305,52 @@
           "title": "Spend $100, get $20 off selected Cycling Clothing & Accessories",
           "section_collection": "cycling-clothing-bike-accessories"
         }
+      },
+      "header-megatab": {
+        "type": "header-megatab",
+        "blocks": {
+          "24520136-7b91-4d6e-a38d-a97474253d15": {
+            "type": "tab-callout",
+            "settings": {
+              "megamenu": "mens",
+              "display_callout": true,
+              "megamenu_image": "shopify:\/\/shop_images\/50off_Backpacks_478_x_300px_8b82d760-133d-490f-90e3-74d5c84ce4bc.jpg",
+              "megamenu_title": "Last Call",
+              "megamenu_subtitle": "End of Season Deals",
+              "megamenu_link": "\/",
+              "megamenu_bg_colour": "#666666"
+            }
+          },
+          "0c817bd4-f5e5-4ada-9a30-3a003c891bc2": {
+            "type": "tab-callout",
+            "settings": {
+              "megamenu": "clearance",
+              "display_callout": false,
+              "megamenu_image": "shopify:\/\/shop_images\/50off_Backpacks_1440_x_789px_2df85130-0c9e-4978-a04a-c21af2be7a48.jpg",
+              "megamenu_title": "",
+              "megamenu_subtitle": "",
+              "megamenu_link": "",
+              "megamenu_bg_colour": "#666666"
+            }
+          },
+          "3c6494e9-c7e5-403f-a903-61df3dedaf5b": {
+            "type": "tab-callout",
+            "settings": {
+              "megamenu": "womens",
+              "display_callout": true,
+              "megamenu_title": "Hello",
+              "megamenu_subtitle": "",
+              "megamenu_link": "",
+              "megamenu_bg_colour": "#666666"
+            }
+          }
+        },
+        "block_order": [
+          "24520136-7b91-4d6e-a38d-a97474253d15",
+          "0c817bd4-f5e5-4ada-9a30-3a003c891bc2",
+          "3c6494e9-c7e5-403f-a903-61df3dedaf5b"
+        ],
+        "settings": {}
       }
     },
     "content_for_index": [
