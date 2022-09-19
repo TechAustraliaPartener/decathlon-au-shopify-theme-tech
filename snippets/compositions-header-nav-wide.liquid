@@ -31,7 +31,6 @@
           %}
         {% else %}
           {% for block in callout_blocks %}
-          <p>{{ block.settings.display_callout}}</p>
             {% if block.settings.display_callout and block.settings.megamenu contains menu_handle%}
               {% if block.settings.megamenu_image != blank  %}
                 {% include 'compositions-header-nav-wide-extras'
