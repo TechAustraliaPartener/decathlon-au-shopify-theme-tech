@@ -89,7 +89,8 @@
   {% endif %}
   
   <label {% if marketing_hidden %}data-marketing-show style="display: none;" {% endif %}>
-    {% if marketing_text %}{{ marketing_text }}{% else %}{{ 'customer.custom_fields.marketing_optin' | t }}{% endif %}</label>
+    {% if marketing_text %}{{
+    marketing_text }}{% else %}{{ 'customer.custom_fields.marketing_optin' | t }}{% endif %}</label>
   <br {% if marketing_hidden %}data-marketing-show style="display: none;" {% endif %} />
 </p>
 <p data-marketing-hide>

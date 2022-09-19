@@ -281,7 +281,6 @@
       {
         "id": "megamenu_set_for_all",
         "type": "radio",
-        "default": "default",
         "label": "Display settings for Default Callout",
         "options": [
           {
@@ -312,7 +311,7 @@
       {
         "id": "megamenu_subtitle",
         "type": "text",
-        "label": "Add a megamenu title",
+        "label": "Add a megamenu subtitle",
         "default": "End of Season Deals"
       },
       {
