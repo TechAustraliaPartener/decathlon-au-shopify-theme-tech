@@ -21,7 +21,52 @@
         </div>
       </div>
       <div class="de-u-size1of5 de-u-xl-size1of6 de-u-bgWhite">
-        {% include 'compositions-header-nav-wide-extras' %}
+        {% if settings.megamenu_set_for_all == "override" %}
+          {% include 'compositions-header-nav-wide-extras'
+            img: settings.megamenu_image
+            title: settings.megamenu_title
+            subtitle: settings.megamenu_subtitle
+            callout_link: settings.megamenu_link
+            bg_color: settings.megamenu_bg_colour
+          %}
+        {% else %}
+          {% for block in callout_blocks %}
+          <p>{{ block.settings.display_callout}}</p>
+            {% if block.settings.display_callout and block.settings.megamenu contains menu_handle%}
+              {% if block.settings.megamenu_image != blank  %}
+                {% include 'compositions-header-nav-wide-extras'
+                  img: block.settings.megamenu_image
+                  title: block.settings.megamenu_title
+                  subtitle: block.settings.megamenu_subtitle
+                  callout_link: block.settings.megamenu_link
+                  bg_color: block.settings.megamenu_bg_colour
+                %}
+              {% elsif block.settings.megamenu_image == blank and settings.megamenu_set_for_all == "default" %}
+                {% include 'compositions-header-nav-wide-extras'
+                  img: settings.megamenu_image
+                  title: settings.megamenu_title
+                  subtitle: settings.megamenu_subtitle
+                  callout_link: settings.megamenu_link
+                  bg_color: settings.megamenu_bg_colour
+                %}
+              {% endif %}
+            {% elsif block.settings.display_callout == false and block.settings.megamenu contains menu_handle%}
+                <div class="de-u-sizeFull"></div>
+            {% endif %}
+            {% unless block.settings.megamenu contains menu_handle %}
+              {% if settings.megamenu_set_for_all == "default" %}
+                {% include 'compositions-header-nav-wide-extras'
+                  img: settings.megamenu_image
+                  title: settings.megamenu_title
+                  subtitle: settings.megamenu_subtitle
+                  callout_link: settings.megamenu_link
+                  bg_color: settings.megamenu_bg_colour
+                %}
+              {% endif %}
+            {% endunless %}
+          
+          {% endfor %}
+        {% endif %}
       </div>
     </div>
   </nav>
@@ -44,3 +89,4 @@
     {% endfor %}
   </ul>
 </div>
+
