@@ -1520,15 +1520,15 @@
             "type": "slide",
             "disabled": true,
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/50off_Backpacks_1440_x_789px.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/Fitness_COOP_1440_x_789px.jpg",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/50off_Backpacks_478_x_300px.jpg",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Fitness_COOP_478_x_300px.jpg",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
               "button_title": "",
-              "link_url": "shopify:\/\/collections\/weekend-deals-17-sep",
-              "link_title": "Shop Weekend Deals",
+              "link_url": "shopify:\/\/collections\/spring-fitness-sale",
+              "link_title": "Shop Spring Fitness",
               "link_new_window": false
             }
           },
@@ -1577,6 +1577,21 @@
               "link_new_window": false
             }
           },
+          "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Artengo-Home_page_v2.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Artengo-Home_page_mobile_v2.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/tennis?q=&hPP=24&idx=shopify_products_price_desc&p=0&dFR%5Bvendor%5D%5B0%5D=ARTENGO&is_v=1",
+              "link_title": "",
+              "link_new_window": false
+            }
+          },
           "3e042199-9da3-4514-87ba-d462754ab771": {
             "type": "slide",
             "disabled": true,
@@ -1590,21 +1605,6 @@
               "button_title": "",
               "link_url": "shopify:\/\/collections\/running-shoes",
               "link_title": "Shop Running Sale",
-              "link_new_window": false
-            }
-          },
-          "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Artengo-Home_page_v2.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Artengo-Home_page_mobile_v2.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/collections\/tennis?q=&hPP=24&idx=shopify_products_price_desc&p=0&dFR%5Bvendor%5D%5B0%5D=ARTENGO&is_v=1",
-              "link_title": "",
               "link_new_window": false
             }
           },
@@ -1710,8 +1710,8 @@
           "145847d3-2db7-45f7-8ef6-38db22a4156a",
           "85c47718-39c5-4752-aa58-3e34ef8c0a97",
           "579ee1c6-8cb9-4350-95e5-fb83a1397d90",
-          "3e042199-9da3-4514-87ba-d462754ab771",
           "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b",
+          "3e042199-9da3-4514-87ba-d462754ab771",
           "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb",
           "748c6a7e-732f-486d-a653-eb425a670bc5",
           "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9",
@@ -2256,8 +2256,8 @@
         "type": "featured_collection",
         "disabled": true,
         "settings": {
-          "title": "Crazy Weekend Deals on Backpacks!",
-          "section_collection": "weekend-deals-17-sep"
+          "title": "Find Your Fit With Decathlon - Sale On Now",
+          "section_collection": "spring-fitness-sale"
         }
       },
       "165115029729e3ba5b": {
