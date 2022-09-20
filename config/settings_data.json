@@ -1520,30 +1520,15 @@
             "type": "slide",
             "disabled": true,
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Weekend_Deals_1440_x_789px_3fe70527-3d23-4c1a-9c72-fdd82ef3fc76.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/50off_Backpacks_1440_x_789px.jpg",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Weekend_Deals_478_x_300px_43deec8d-fff1-48df-8394-9423e2049e06.jpg",
+              "banner_mobile_image": "shopify:\/\/shop_images\/50off_Backpacks_478_x_300px.jpg",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
               "button_title": "",
               "link_url": "shopify:\/\/collections\/weekend-deals-17-sep",
               "link_title": "Shop Weekend Deals",
-              "link_new_window": false
-            }
-          },
-          "85c47718-39c5-4752-aa58-3e34ef8c0a97": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/20off_Cycling_Accessories_1440_x_789px.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/20off_Cycling_Accessories_478_x_300px.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "shopify:\/\/collections\/cycling-clothing-bike-accessories",
-              "link_title": "Shop $20 off Cycling Clothing & Accessories",
               "link_new_window": false
             }
           },
@@ -1559,6 +1544,21 @@
               "button_title": "",
               "link_url": "https:\/\/decathlon.com.au\/pages\/price-drop",
               "link_title": "",
+              "link_new_window": false
+            }
+          },
+          "85c47718-39c5-4752-aa58-3e34ef8c0a97": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/20off_Cycling_Accessories_1440_x_789px.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/20off_Cycling_Accessories_478_x_300px.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "shopify:\/\/collections\/cycling-clothing-bike-accessories",
+              "link_title": "Shop $20 off Cycling Clothing & Accessories",
               "link_new_window": false
             }
           },
@@ -1579,6 +1579,7 @@
           },
           "3e042199-9da3-4514-87ba-d462754ab771": {
             "type": "slide",
+            "disabled": true,
             "settings": {
               "banner_bg_image": "shopify:\/\/shop_images\/Running_1440_x_789px_4aaaf396-4e69-4049-a0df-16785db33605.jpg",
               "slide_bg_position": "75% -50px",
@@ -1706,8 +1707,8 @@
         },
         "block_order": [
           "79522152-c757-4b60-a1be-2d1e49198982",
-          "85c47718-39c5-4752-aa58-3e34ef8c0a97",
           "145847d3-2db7-45f7-8ef6-38db22a4156a",
+          "85c47718-39c5-4752-aa58-3e34ef8c0a97",
           "579ee1c6-8cb9-4350-95e5-fb83a1397d90",
           "3e042199-9da3-4514-87ba-d462754ab771",
           "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b",
@@ -2008,7 +2009,7 @@
             "type": "category",
             "settings": {
               "title": "CLEARANCE",
-              "image": "shopify:\/\/shop_images\/price_tag_cd0cdfdf-ce7b-4ffc-8068-ba2393cb50f1.png",
+              "image": "shopify:\/\/shop_images\/price_tag_v1.png",
               "text_color": "#ffffff",
               "background_color": "#e21f26",
               "hover_background_color": "#e21f26",
@@ -2029,12 +2030,12 @@
           "38cf3fa3-23be-4a21-8ce3-5d37ded9f8f4": {
             "type": "category",
             "settings": {
-              "title": "Repairs & Services",
-              "image": "shopify:\/\/shop_images\/service_white.png",
+              "title": "Lowest Price, Best Value",
+              "image": "shopify:\/\/shop_images\/price_tag_v1.png",
               "text_color": "#ffffff",
               "background_color": "#0082c3",
-              "hover_background_color": "#ffea28",
-              "link": "https:\/\/decathlon.com.au\/pages\/workshop-services"
+              "hover_background_color": "#1c82c3",
+              "link": "https:\/\/decathlon.com.au\/collections\/lowest-price-best-value"
             }
           }
         },
@@ -2180,6 +2181,7 @@
       },
       "163487525380dd83d2": {
         "type": "featured_collection",
+        "disabled": true,
         "settings": {
           "title": "Run Your Race this Marathon Season with Decathlon",
           "section_collection": "running-shoes"
@@ -2287,8 +2289,8 @@
       "163107170023281063",
       "16316085202ea5cf79",
       "1650960580e9623e99",
-      "166270596352f8a275",
       "1642116157c0ce923f",
+      "166270596352f8a275",
       "16509507269dac2990",
       "1650950354346fb7a1",
       "163487525380dd83d2",
