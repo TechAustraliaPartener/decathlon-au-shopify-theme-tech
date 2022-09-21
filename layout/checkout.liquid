@@ -332,8 +332,7 @@
     {% include 'checkout_js' %}
     {{ 'custom_checkout.js' | asset_url | script_tag }}
     {{ 'checkout.js' | asset_url | script_tag }}
-
-    {%- comment -%}Keyword hiding in the title{%- endcomment -%}
+    <!-- Keyword hiding -->
     <script>
       (function() {
         var invalidKeywords = window.vars.ecoHideContent['eco_hide_strings'] || [];
