@@ -5,7 +5,8 @@
 {%- assign product_images = product.images -%}
 {%- assign context_photo_delimiter = '[[contextphoto]]' -%}
 {%- assign feature_photo = false -%}
-{% assign invalid_tags = settings.eco_hide_tags %}
+{% assign invalid_tags = settings.eco_hide_tags | split: ',' %}
+{% assign invalid_strings = settings.eco_hide_strings | split: ',' %}
 
 {%- comment -%}
   `product_image_index` is the position of the product image to show
@@ -43,10 +44,24 @@
     {% assign featureicon = featurearray['icon'] %}
     {% assign featuretitle = featurearray['title'] %}
     {% assign featuretitle_uppercase = featuretitle | upcase %}
+    {% assign does_have_invalid_content = false %}
+
+    {% for invalid_string in invalid_strings %}
+      {% if featuretitle contains invalid_string %}
+        {% assign does_have_invalid_content = true %}
+      {% endif %}
+    {% endfor %}
+    
+    {% for invalid_tag in invalid_tags %}
+      {% if featuretitle_uppercase contains invalid_tag %}
+        {% assign does_have_invalid_content = true %}
+      {% endif %}
+    {% endfor %}
 
     {% unless featurearray == blank 
         or featuretitle == 'Environmental impact' 
-        or invalid_tags contains featuretitle_uppercase %}
+        or does_have_invalid_content
+         %}
       {%- assign product_features_qty = product_features_qty | plus: 1 -%}
       <section
         class="ProductFeature de-u-size1of1 de-u-md-size1of2 de-u-lg-size3of6

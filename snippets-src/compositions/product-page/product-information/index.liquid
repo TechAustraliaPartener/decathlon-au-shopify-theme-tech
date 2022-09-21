@@ -6,6 +6,12 @@
 {% assign productinfo = product.metafields.global['product_info'] %}
 {% assign iterator = 0 %}
 
+
+{% assign invalid_tags = settings.eco_hide_tags | split: ',' %}
+{% assign invalid_strings = settings.eco_hide_strings | split: ',' %}
+{% assign does_have_invalid_content = false %}
+
+
 {% comment %}
   Determine whether there is more than one spec section, in order
   to control column layout
@@ -21,6 +27,19 @@
   {%- capture content -%}
     {%- for specs in productinfo -%}
       {%- assign spec = specs[1] -%}
+      {% assign does_have_invalid_content = false %}
+
+      {% for invalid_string in invalid_strings %}
+        {% if spec.name contains invalid_string %}
+          {% assign does_have_invalid_content = true %}
+        {% endif %}
+      {% endfor %}
+
+      {% for invalid_tag in invalid_tags %}
+        {% if spec.name  contains invalid_tag %}
+          {% assign does_have_invalid_content = true %}
+        {% endif %}
+      {% endfor %}
 
       {% comment %}
         Check to see if the spec is an empty array and check for specs like
@@ -28,7 +47,7 @@
         have an associated description.
       {% endcomment %}
 
-      {%- unless spec == blank or spec['description'] == blank -%}
+      {%- unless spec == blank or spec['description'] == blank or does_have_invalid_content -%}
         {%- if spec['name'] == 'Composition' -%}
           {% comment %}
             Capture the composition item because it needs to be displayed first
