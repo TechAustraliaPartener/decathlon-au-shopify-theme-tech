@@ -192,7 +192,7 @@
                   </a>
                 </td>
                 <td>
-                  <a v-bind:href="item.url" class="h6 u-marginBottom0x" v-text="item.product_title"></a>
+                  <a v-bind:href="item.url" class="h6 u-marginBottom0x" v-text="filterInvalidKeywords(item.product_title)"></a>
                   <small class="u-textUppercase u-textBold u-block" v-if="item.variant_title.indexOf('Default') < 0" v-text="item.variant_title"></small>
                   <div class="item-messages" v-html="availabilityMessages(item)">
 

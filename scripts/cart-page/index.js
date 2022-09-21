@@ -61,6 +61,10 @@ Vue.config.errorHandler = (err, vm, info) => {
   }
 }
 
+function removeFromString(arr,str){
+  let regex = new RegExp("\\b"+arr.join('|')+"\\b","gi")
+  return str.replace(regex, '')
+}
 
 window.translations = window.translations || {};
 var deliveryWindow = 'product_availability' in window.translations ? window.translations['product_availability']['delivery_duration'] : '2-6 day delivery in Metro areas';
@@ -355,6 +359,13 @@ const initCartDisplay = cart => {
         if (app.deliveryOption !== 'Delivery' && item.gift_card) return 'out'
 
         return checkLoc.inStock > 0 ? 'in' : 'out';
+      },
+      filterInvalidKeywords(title) {
+        var invalidKeywords = window.vars.ecoHideContent['eco_hide_strings'] || [];
+        
+        var filteredTitle = removeFromString(invalidKeywords,title);
+
+        return filteredTitle;
       },
       currentMax(item) {
         // Let availabilities = item.locations.map(a => a.available);

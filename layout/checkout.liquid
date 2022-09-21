@@ -55,6 +55,13 @@
       window.vars.cartTotal = {{ checkout.total_price }};
     </script>
 
+    <script>
+      window.vars.ecoHideContent = {
+        eco_hide_strings: {{ settings.eco_hide_strings | split: ',' | json }},
+        eco_hide_tags: {{ settings.eco_hide_tags | split: ',' | json }},
+      };
+    </script>
+
     {% if settings.use_algolia %}
       {% include 'layout-algolia-head' %}
     {% endif %}
@@ -325,6 +332,31 @@
     {% include 'checkout_js' %}
     {{ 'custom_checkout.js' | asset_url | script_tag }}
     {{ 'checkout.js' | asset_url | script_tag }}
+
+    {%- comment -%}Keyword hiding in the title{%- endcomment -%}
+    <script>
+      (function() {
+        var invalidKeywords = window.vars.ecoHideContent['eco_hide_strings'] || [];
+        
+
+        function removeFromString(arr,str){
+          let regex = new RegExp("\\b"+arr.join('|')+"\\b","gi")
+          return str.replace(regex, '')
+        }
+
+        $('.product__description .product__description__name').each(function(v){
+            var $this = $(this);
+            var copy = $this.text();
+
+            var filteredTitle = removeFromString(invalidKeywords,copy);
+
+            console.log(filteredTitle)
+            
+            $this.text(filteredTitle);
+        });
+
+      })();
+    </script>
   {% include 'insider' %} 
  </body>
 </html>
