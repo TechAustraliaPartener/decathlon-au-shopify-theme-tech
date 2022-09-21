@@ -50,10 +50,12 @@
   {% assign tag_prefix = tag_attrs | first %}
   {% assign tag_prefix_comp = tag_prefix | downcase %}
   {% assign tag_value = tag_attrs | last %}
+  
+  {% assign invalid_tags = settings.eco_hide_tags %}
 
   {% if tag_prefix_comp == 'label' %}
     {% assign temp_tag_value = tag_value | upcase | strip %}
-    {% unless temp_tag_value == 'ECO-DESIGN' %}
+    {% unless invalid_tags contains temp_tag_value %}
       {% assign label = label | append: tag_value | append: "," %}
     {% endunless %}
 

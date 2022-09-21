@@ -1,0 +1,10 @@
+{% assign invalid_strings = settings.eco_hide_strings | split: ',' %}
+{% assign product_title = product.title | default: title | escape %}
+
+{% for invalid_string in invalid_strings  %}
+  {% if product_title contains invalid_string %}
+    {% assign product_title = product_title | remove: invalid_string %}
+  {% endif %}
+{% endfor %}
+
+{{ product_title | escape }}

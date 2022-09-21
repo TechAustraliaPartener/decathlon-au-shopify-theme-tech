@@ -15,7 +15,7 @@
 {% assign product_rating = product.metafields.reviews.product_rating | plus: 0 %}
 {% assign rating_average = product_rating | times: 20 %}
 {% capture total_item_count -%}
-  {% render 'compositions-product-page-total-reviews-count' %}
+  {% render 'compositions-product-page-total-reviews-count', product: product %}
 {%- endcapture %}
 <span class="de-StarRating de-u-spaceRight06 {{ star_rating_class }}">
   <span class="de-StarRating-fill" style="width: {{ rating_average }}%"></span>

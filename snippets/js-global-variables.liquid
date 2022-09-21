@@ -114,3 +114,10 @@
     review_filters_and: {{ review_filters_and | json }},
   }
 </script>
+
+<script>
+  window.vars.ecoHideContent = {
+    eco_hide_strings: {{ settings.eco_hide_strings | split: ',' | json }},
+    eco_hide_tags: {{ settings.eco_hide_tags | split: ',' | json }},
+  };
+</script>

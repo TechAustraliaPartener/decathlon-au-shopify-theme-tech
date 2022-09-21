@@ -2322,5 +2322,24 @@
         "default": "Gift card available for delivery"
       }
     ]
+  },
+  {
+    "name": "Eco Content Hiding",
+    "settings": [
+      {
+        "type": "text",
+        "id": "eco_hide_strings",
+        "label": "Eco words to be hidden",
+        "info": "These are exact strings in CSV that needs to be hidden in the front-end. The words here must match exactly the case of the word being removed.",
+        "default": "Eco-Friendly"
+      },
+      {
+        "type": "text",
+        "id": "eco_hide_tags",
+        "label": "Eco tags to be hidden",
+        "info": "These are the tags in CSV that needs to be hidden in the front-end.",
+        "default": "ECO-DESIGN,ECODESIGN"
+      }
+    ]
   }
 ]

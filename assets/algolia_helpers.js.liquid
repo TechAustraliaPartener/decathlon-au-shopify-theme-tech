@@ -21,6 +21,11 @@
     return res;
   }
 
+  function removeFromString(arr,str){
+    let regex = new RegExp("\\b"+arr.join('|')+"\\b","gi")
+    return str.replace(regex, '')
+  }
+
   var escapeHtml = function escapeHtml(unsafe) {
     return (unsafe || '')
       .replace(/&/g, '&amp;')
@@ -31,7 +36,9 @@
   }
 
   function removeUnwantedTagsForDisplay(tag) {
-    return tag.toUpperCase() != 'ECO-DESIGN'
+    var invalidKeywords = window.vars.ecoHideContent['eco_hide_tags'] || [];
+
+    return !invalidKeywords.includes(tag.toUpperCase())
   }
 
   algolia.helpers = {
@@ -87,9 +94,12 @@
       return escapeHtml(res);
     },
     fullHTMLTitle: function fullHTMLTitle() {
-      var res = this._highlightResult.title.value;
+      var invalidKeywords = window.vars.ecoHideContent['eco_hide_strings'] || [];
+
+      var res = removeFromString(invalidKeywords,this._highlightResult.title.value);
+
       if (!this._distinct && this.variant_title && this.variant_title !== 'Default Title' && this.variant_title !== 'Default') {
-        res += ' <span class="algolia-variant">(' + this._highlightResult.variant_title.value + ')</span>';
+        res += ' <span class="algolia-variant">(' + this._highlightResult.variant_title.value + ')est</span>';
       }
 
       return res;
