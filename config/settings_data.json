@@ -31,10 +31,10 @@
     "header_support_link": "https:\/\/decathlon.com.au\/pages\/contact-and-help",
     "header_store_label": "Find a Store",
     "header_sign_in_label": "Login",
-    "megamenu_image": "shopify:\/\/shop_images\/Price_Drops_300_x_300.jpg",
-    "megamenu_title": "For the quality you love!",
+    "megamenu_image": "shopify:\/\/shop_images\/360_x_360.jpg",
+    "megamenu_title": "Great Spring Fitness Deals!",
     "megamenu_subtitle": "",
-    "megamenu_link": "shopify:\/\/collections\/price-drop",
+    "megamenu_link": "https:\/\/decathlon.com.au\/pages\/fitness-spring-sale",
     "megamenu_bg_colour": "#1c82c3",
     "custom_fields_terms_conditions": "I agree to the <a href=\"\/pages\/terms-and-conditions-membership\" target=\"_blank\">T&Cs<\/a> and <a href=\"\/pages\/privacy-policy\" target=\"_blank\">Privacy Policy<\/a> for creating an account.",
     "is_lookbook": false,
@@ -286,7 +286,7 @@
     "reviews_min_rating": 2,
     "reviews_excluded_countries": "IN",
     "review_filters_and": true,
-    "eco_hide_strings": "Eco-Friendly,Eco-friendly",
+    "eco_hide_strings": "Eco-Friendly,Eco-friendly,eco-friendly,ORGANIC,ECO FRIENDLY,ECOFRIENDLY,ECO-FRIENDLY,ECO CONCEPT,ECO-CONCEPT,ECO-DESIGN,ECODESIGN,ECO-DESIGNED,ECO-CONCEIVED,ECO-CONCEIVE,ECOCONCEIVED,ECOCONCEIVE,ECO-CONCEPTION,ECOCONCEPTION,EVIRONMENTALLY-FRIENDLY,EVIRONMENTALLY FRIENDLY,ECO-FRIENDLY,RECYCLE,RECYCLED,RECYCLING,UPCYCLE,ENVIRONMENTAL IMPACT,ECOLOGICAL CONCEPT,ENVIRONMENTAL APPROACH,ECOLOGY,ENVIRONMENT,CARBON FOOTPRINT,SUSTAINABLE DEVELOPMENT,CO2,organic,eco friendly,ecofriendly,eco-friendly,eco concept,eco-concept,eco-design,ecodesign,eco-designed,eco-conceived,eco-conceive,ecoconceived,ecoconceive,eco-conception,ecoconception,evironmentally-friendly,evironmentally friendly,eco-friendly,recycle,recycled,recycling,upcycle,environmental impact,ecological concept,environmental approach,ecology,environment,carbon footprint,sustainable development,co2,Organic,Eco friendly,Ecofriendly,Eco-friendly,Eco concept,Eco-concept,Eco-design,Ecodesign,Eco-designed,Eco-conceived,Eco-conceive,Ecoconceived,Ecoconceive,Eco-conception,Ecoconception,Evironmentally-friendly,Evironmentally friendly,Eco-friendly,Recycle,recycled,recycling,Upcycle,Environmental impact,Ecological concept,Environmental approach,Ecology,Environment,Carbon footprint,Sustainable development,Co2",
     "checkout_header_image": "",
     "checkout_logo_position": "left",
     "checkout_logo_size": "small",
@@ -1538,19 +1538,18 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
-          "79522152-c757-4b60-a1be-2d1e49198982": {
+          "3e042199-9da3-4514-87ba-d462754ab771": {
             "type": "slide",
-            "disabled": true,
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Fitness_COOP_1440_x_789px.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_ed30b8f1-1898-4b4b-8dbb-a29164ec1e0d.jpg",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Fitness_COOP_478_x_300px.jpg",
+              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_1dec3cd3-eef0-464e-90a7-6c9865979913.jpg",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
               "button_title": "",
-              "link_url": "shopify:\/\/collections\/spring-fitness-sale",
-              "link_title": "Shop Spring Fitness",
+              "link_url": "https:\/\/decathlon.com.au\/pages\/fitness-spring-sale",
+              "link_title": "Fitness Spring Deals",
               "link_new_window": false
             }
           },
@@ -1602,31 +1601,31 @@
           "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Artengo-Home_page_v2.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_3f772e1b-2fd2-46e1-8f84-3105d57e1412.jpg",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Artengo-Home_page_mobile_v2.jpg",
+              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_45561942-300f-4655-9c1b-1323892a32b6.jpg",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
               "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/collections\/tennis?q=&hPP=24&idx=shopify_products_price_desc&p=0&dFR%5Bvendor%5D%5B0%5D=ARTENGO&is_v=1",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/road-bikes",
               "link_title": "",
               "link_new_window": false
             }
           },
-          "3e042199-9da3-4514-87ba-d462754ab771": {
+          "79522152-c757-4b60-a1be-2d1e49198982": {
             "type": "slide",
             "disabled": true,
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Running_1440_x_789px_4aaaf396-4e69-4049-a0df-16785db33605.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/Fitness_COOP_1440_x_789px.jpg",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Running_478_x_300px_436c7af3-38a8-4951-b440-fa22adbc93a6.jpg",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Fitness_COOP_478_x_300px.jpg",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
               "button_title": "",
-              "link_url": "shopify:\/\/collections\/running-shoes",
-              "link_title": "Shop Running Sale",
+              "link_url": "shopify:\/\/collections\/spring-fitness-sale",
+              "link_title": "Shop Spring Fitness",
               "link_new_window": false
             }
           },
@@ -1682,13 +1681,13 @@
             "type": "slide",
             "disabled": true,
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_19a96368-ef52-4d6e-a960-0e73249eccbb.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/MVP-Banner-Desktop.jpg",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_caa6f87a-1e43-4193-b755-eee85d19967c.jpg",
+              "banner_mobile_image": "shopify:\/\/shop_images\/MVP-Banner-Mobile.jpg",
               "banner_intro": "",
-              "banner_title": "Join the Club to Shop with us & Get Rewarded",
+              "banner_title": "",
               "banner_subtitle": "",
-              "button_title": "BECOME A MVP TODAY",
+              "button_title": "",
               "link_url": "shopify:\/\/pages\/decathlon-membership",
               "link_title": "",
               "link_new_window": false
@@ -1728,12 +1727,12 @@
           }
         },
         "block_order": [
-          "79522152-c757-4b60-a1be-2d1e49198982",
+          "3e042199-9da3-4514-87ba-d462754ab771",
           "145847d3-2db7-45f7-8ef6-38db22a4156a",
           "85c47718-39c5-4752-aa58-3e34ef8c0a97",
           "579ee1c6-8cb9-4350-95e5-fb83a1397d90",
           "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b",
-          "3e042199-9da3-4514-87ba-d462754ab771",
+          "79522152-c757-4b60-a1be-2d1e49198982",
           "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb",
           "748c6a7e-732f-486d-a653-eb425a670bc5",
           "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9",
