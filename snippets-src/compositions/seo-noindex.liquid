@@ -1,0 +1,43 @@
+{%- assign pages_noindex = settings.meta_noindex_pages -%}
+{%- assign collections_noindex = settings.meta_noindex_collections -%}
+{%- assign products_noindex = settings.meta_noindex_products -%}
+
+
+{% if template contains 'page' %}
+  {% assign pages_handles_no_index_items = pages_noindex | split: ',' %}
+  {% for page_handle in pages_handles_no_index_items %}
+
+    {%- if page_handle == handle -%}
+      <!-- SEO blocked /pages/{{handle}} -->
+      <meta name="robots" content="noindex">
+      {% break %}
+    {%- endif -%}
+
+  {% endfor %}
+{% endif %}
+
+{% if template contains 'collection' %}
+  {% assign collection_handles_no_index_items = collections_noindex | split: ',' %}
+
+  {% for collection_handle in collection_handles_no_index_items %}
+
+    {%- if collection_handle == handle -%}
+      <!-- SEO blocked /collections/{{handle}} -->
+      <meta name="robots" content="noindex">
+      {% break %}
+    {%- endif -%}
+
+  {% endfor %}
+{% endif %}
+
+{% if template contains 'product' %}
+  {% if product.tags contains 'noindex' %}
+    <meta name="robots" content="noindex">
+  {% endif %}
+{% endif %}
+
+{% if template contains 'article' %}
+  {% if article.tags contains 'noindex' %}
+    <meta name="robots" content="noindex">
+  {% endif %}
+{% endif %}

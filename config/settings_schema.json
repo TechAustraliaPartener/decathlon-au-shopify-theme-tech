@@ -2327,18 +2327,35 @@
     "name": "Eco Content Hiding",
     "settings": [
       {
-        "type": "text",
+        "type": "textarea",
         "id": "eco_hide_strings",
         "label": "Eco words to be hidden",
         "info": "These are exact strings in CSV that needs to be hidden in the front-end. The words here must match exactly the case of the word being removed.",
         "default": "Eco-Friendly"
       },
       {
-        "type": "text",
+        "type": "textarea",
         "id": "eco_hide_tags",
         "label": "Eco tags to be hidden",
         "info": "These are the tags in CSV that needs to be hidden in the front-end.",
         "default": "ECO-DESIGN,ECODESIGN"
+      }
+    ]
+  },
+  {
+    "name": "SEO noindex settings",
+    "settings": [
+      {
+        "id": "meta_noindex_collections",
+        "type": "textarea",
+        "label": "Collection handles with noindex",
+        "info": "These are collection handles that we will prevent search engines from indexing"
+      },
+      {
+        "id": "meta_noindex_pages",
+        "type": "textarea",
+        "label": "Page handles with noindex",
+        "info": "These are page handles that we will prevent search engines from indexing"
       }
     ]
   }
