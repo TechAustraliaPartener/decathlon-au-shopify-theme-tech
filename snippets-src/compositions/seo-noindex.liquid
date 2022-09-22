@@ -2,7 +2,6 @@
 {%- assign collections_noindex = settings.meta_noindex_collections -%}
 {%- assign products_noindex = settings.meta_noindex_products -%}
 
-
 {% if template contains 'page' %}
   {% assign pages_handles_no_index_items = pages_noindex | split: ',' %}
   {% for page_handle in pages_handles_no_index_items %}

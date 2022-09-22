@@ -90,8 +90,10 @@
   </div>
 </header>
 
-{% assign callout_blocks = section.blocks %}
-{% include 'compositions-header-nav-wide' %}
+
+{% include 'compositions-header-nav-wide'
+  callout_blocks: section.blocks
+%}
 
 <script>
   let opened = false;
