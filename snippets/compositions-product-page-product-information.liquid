@@ -29,15 +29,15 @@
       {%- assign spec = specs[1] -%}
       {% assign does_have_invalid_content = false %}
 
-      {% for invalid_string in invalid_strings %}
-        {% if spec.name contains invalid_string %}
+      {% for invalid_string in invalid_strings  %}
+        {% if spec.name contains invalid_string or spec['description'] contains invalid_string %}
           {% assign does_have_invalid_content = true %}
         {% endif %}
       {% endfor %}
 
       {% for invalid_tag in invalid_tags %}
-        {% if spec.name  contains invalid_tag %}
-          {% assign does_have_invalid_content = true %}
+        {% if spec.name contains invalid_tag or spec['description'] contains invalid_tag %}
+          {% assign does_have_invalid_content = true %} 
         {% endif %}
       {% endfor %}
 

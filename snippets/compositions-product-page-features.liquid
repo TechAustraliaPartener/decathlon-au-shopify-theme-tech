@@ -47,13 +47,13 @@
     {% assign does_have_invalid_content = false %}
 
     {% for invalid_string in invalid_strings %}
-      {% if featuretitle contains invalid_string %}
+      {% if featuretitle contains invalid_string or featurearray['text'] contains invalid_string %}
         {% assign does_have_invalid_content = true %}
       {% endif %}
     {% endfor %}
     
     {% for invalid_tag in invalid_tags %}
-      {% if featuretitle_uppercase contains invalid_tag %}
+      {% if featuretitle_uppercase contains invalid_tag or featurearray['text'] contains invalid_tag %}
         {% assign does_have_invalid_content = true %}
       {% endif %}
     {% endfor %}
