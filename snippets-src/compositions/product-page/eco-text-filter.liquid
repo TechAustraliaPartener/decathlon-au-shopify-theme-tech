@@ -1,0 +1,10 @@
+{% assign invalid_strings = settings.eco_hide_strings | split: ',' %}
+{% assign text_content = content | default: ''  %}
+
+{% for invalid_string in invalid_strings  %}
+  {% if text_content contains invalid_string %}
+    {% assign text_content = text_content | remove: invalid_string %}
+  {% endif %}
+{% endfor %}
+
+{{ text_content }}
