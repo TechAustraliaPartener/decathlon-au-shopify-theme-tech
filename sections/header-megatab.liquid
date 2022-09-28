@@ -1,0 +1,166 @@
+<div class="de-PageWrap-menu de-PageWrap-narrowMenu" data-de-page-wrap-action="closeMenu">
+  <nav class="de-PageWrap-narrowMenuInner" id="demo-side" data-de-page-wrap-cancel="" aria-hidden="false">
+    {% include 'compositions-header-nav-narrow' %}
+  </nav>
+</div>
+
+{% if settings.enable_meet_decathlon == true %}
+<div class="de-PageWrap-menu de-PageWrap-wideMenu de-PageWrap-psnMeetDecathlon" data-de-page-wrap-action="closeMenu">
+  {% render 'compositions-header-nav-wide-meet-decathlon' %}
+</div>
+{% endif %}
+
+<header class="de-PageWrap-header js-de-PageWrap-header">
+  <div class="de-PageWrap-headerPrimary">
+    <div class="de-PageWrap-narrowMenuControl">
+      <div class="de-MenuBar">
+        <button class="de-MenuBar-action de-MenuBar-action--stack" id="data-MenuBar-narrow"
+          data-gtm-event="customer-interaction" data-gtm-id="Hamburger Menu" data-gtm-category="Header"
+          data-de-page-wrap-action="toggleMenu" data-de-page-wrap-target="demo-side">
+          {% include 'patterns-icons-bars'
+            with class: 'de-MenuBar-icon' %}
+          <span class="de-MenuBar-label">Menu</span>
+        </button>
+      </div>
+    </div>
+    <div class="de-PageWrap-logo" itemscope itemtype="http://schema.org/Organization">
+      {% if settings.logo_use_image %}
+      <a href="/" title="Decathlon">
+        {% if settings.svg_logo != blank %}
+        <img src="{{ settings.svg_logo | file_url }}" alt="Decathlon logo" />
+        {% else %}
+        <img src="{{ settings.img_logo }}" alt="Decathlon logo" />
+        {% endif %}
+      </a>
+      {% else %}
+      {% include 'patterns-branding-logo' with
+          titleId:'logo-title',
+          href: '/',
+          class: 'de-PageWrap-logoImage' %}
+      {% endif %}
+    </div>
+  </div>
+  <nav class="de-PageWrap-headerSecondary">
+    <ul class="de-MenuBar">
+      <li class="de-PageWrap-headerTertiaryControl">
+        <button id="demo-search-input-toggler" class="de-MenuBar-action" data-gtm-event="customer-interaction"
+          data-gtm-id="Magnifying Glass" data-gtm-category="Header" data-de-page-wrap-action="toggleExpand"
+          data-de-page-wrap-target="demo-search">
+          {% include 'patterns-icons-search'
+              with class: 'de-MenuBar-icon' %}
+        </button>
+      </li>
+      <li class="de-u-hidden de-u-lg-block">
+        {% if settings.enable_meet_decathlon == true %}
+        <button class="de-MenuBar-action de-u-textGrow1" data-gtm-event="customer-interaction"
+          data-gtm-id="Meet Decathlon" data-gtm-category="Header" data-de-page-wrap-action="toggleMenu"
+          data-de-page-wrap-target="meet-decathlon" data-de-page-wrap-hover="true">
+          <span class="de-MenuBar-label">{{ linklists["meet-decathlon"].title }}</span>
+        </button>
+        {% endif %}
+      </li>
+      <li class='de-u-hidden de-u-sm-block'>
+        {% include 'compositions-header-support' %}
+      </li>
+      <li class='de-u-hidden de-u-sm-block'>
+        {% include 'compositions-header-store-finder' %}
+      </li>
+      <li class="de-u-hidden de-u-sm-block">
+        {% include 'compositions-header-greeting' %}
+      </li>
+      <li>
+        {% include 'compositions-header-cart' %}
+      </li>
+    </ul>
+  </nav>
+  <div class="searchbar-overlay"></div>
+  <div class="de-PageWrap-headerTertiary" id="demo-search">
+    <div class="de-SingleInputForm adept-autocomplete-search">
+      <form action="/search">
+        <input id="demo-search-input" class="de-Input de-SingleInputForm-input" data-gtm-event="customer-interaction"
+          data-gtm-id="Search Bar" data-gtm-category="Header" type="search" name="q"
+          placeholder="{%- include 'search-placeholder' -%}">
+        <button class="de-SingleInputForm-action" data-gtm-event="customer-interaction" data-gtm-id="Magnifying Glass"
+          data-gtm-category="Header">
+          {% include 'patterns-icons-search', class: 'de-u-textGrow3', role: 'presentation' %}
+          <span class="de-u-hiddenVisually">Search</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</header>
+
+{% assign callout_blocks = section.blocks %}
+{% include 'compositions-header-nav-wide' %}
+
+<script>
+  let opened = false;
+
+  jQuery(function ($) {
+    $('#demo-search-input-toggler').on('click', function (event) {
+
+      if (!opened) {
+        $('#demo-search-input').focus();
+        opened = true;
+      } else {
+        opened = false;
+      }
+    });
+  });
+</script>
+
+{% schema %}
+  {
+      "name": "Mega Tab Callouts",
+      "tag": "section",
+      "blocks": [
+        {
+            "type": "tab-callout",
+            "name": "Tab Callout",
+            "settings": [
+              {
+                  "id": "megamenu",
+                  "type": "text",
+                  "label": "Mega Tab Parent",
+                  "info": "Place the Mega Tab's link without the `#`, eg. clearance"
+              },
+              {
+                "id": "display_callout",
+                "type": "checkbox",
+                "label": "Display Callout on this Tab?",
+                "default": true
+              },
+              {
+                "id": "megamenu_image",
+                "type": "image_picker",
+                "label": "Select an image (.png or .jpg)"
+              },
+              {
+                "id": "megamenu_title",
+                "type": "text",
+                "label": "Add a megamenu title",
+                "default": "Last Call"
+              },
+              {
+                "id": "megamenu_subtitle",
+                "type": "text",
+                "label": "Add a megamenu subtitle",
+                "default": "End of Season Deals"
+              },
+              {
+                "id": "megamenu_link",
+                "type": "url",
+                "label": "Define a megamenu link url"
+              },
+              {
+                "id": "megamenu_bg_colour",
+                "type": "color",
+                "label": "Choose a background color for your first link",
+                "default": "#666"
+              }
+         
+            ]
+        }
+      ]
+  }
+  {% endschema %}
