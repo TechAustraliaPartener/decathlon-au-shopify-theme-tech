@@ -38,9 +38,9 @@
     "megamenu_bg_colour": "#1c82c3",
     "custom_fields_terms_conditions": "I agree to the <a href=\"\/pages\/terms-and-conditions-membership\" target=\"_blank\">T&Cs<\/a> and <a href=\"\/pages\/privacy-policy\" target=\"_blank\">Privacy Policy<\/a> for creating an account.",
     "is_lookbook": false,
-    "product_returns_text": "Easy Returns",
-    "product_shipping_text": "$12.99 Flat Rate Shipping*",
-    "product_bulk_returns_text": "Easy Returns | Lifetime For MVPs*",
+    "product_returns_text": "Lifetime Returns For Members*",
+    "product_shipping_text": "Australia Wide Delivery*",
+    "product_bulk_returns_text": "Lifetime Returns For Members*",
     "product_bulk_shipping_text": "Australia Wide Delivery",
     "show_associated_products_carousel_on_product_page": true,
     "show_similar_products_carousel_on_product_page": false,
@@ -286,7 +286,7 @@
     "reviews_min_rating": 2,
     "reviews_excluded_countries": "IN",
     "review_filters_and": true,
-    "eco_hide_strings": "(e)co-design,Eco-Friendly,Eco-friendly,eco-friendly,ORGANIC,ECO FRIENDLY,ECOFRIENDLY,ECO-FRIENDLY,ECO CONCEPT,ECO-CONCEPT,ECO-DESIGN,ECODESIGN,ECO-DESIGNED,ECO-CONCEIVED,ECO-CONCEIVE,ECOCONCEIVED,ECOCONCEIVE,ECO-CONCEPTION,ECOCONCEPTION,EVIRONMENTALLY-FRIENDLY,EVIRONMENTALLY FRIENDLY,ECO-FRIENDLY,RECYCLE,RECYCLED,RECYCLING,UPCYCLE,ENVIRONMENTAL IMPACT,ECOLOGICAL CONCEPT,ENVIRONMENTAL APPROACH,ECOLOGY,ENVIRONMENT,CARBON FOOTPRINT,SUSTAINABLE DEVELOPMENT,CO2,organic,eco friendly,ecofriendly,eco-friendly,eco concept,eco-concept,eco-design,ecodesign,eco-designed,eco-conceived,eco-conceive,ecoconceived,ecoconceive,eco-conception,ecoconception,evironmentally-friendly,evironmentally friendly,eco-friendly,recycle,recycled,recycling,upcycle,environmental impact,ecological concept,environmental approach,ecology,environment,carbon footprint,sustainable development,co2,Organic,Eco friendly,Ecofriendly,Eco-friendly,Eco concept,Eco-concept,Eco-design,Ecodesign,Eco-designed,Eco-conceived,Eco-conceive,Ecoconceived,Ecoconceive,Eco-conception,Ecoconception,Evironmentally-friendly,Evironmentally friendly,Eco-friendly,Recycle,recycled,recycling,Upcycle,Environmental impact,Ecological concept,Environmental approach,Ecology,Environment,Carbon footprint,Sustainable development,Co2",
+    "eco_hide_strings": "(e)co-design,Eco-Designed,Eco-Friendly,Eco-friendly,eco-friendly,ORGANIC,ECO FRIENDLY,ECOFRIENDLY,ECO-FRIENDLY,ECO CONCEPT,ECO-CONCEPT,ECO-DESIGN,ECODESIGN,ECO-DESIGNED,ECO-CONCEIVED,ECO-CONCEIVE,ECOCONCEIVED,ECOCONCEIVE,ECO-CONCEPTION,ECOCONCEPTION,EVIRONMENTALLY-FRIENDLY,EVIRONMENTALLY FRIENDLY,ECO-FRIENDLY,RECYCLE,RECYCLED,RECYCLING,UPCYCLE,ENVIRONMENTAL IMPACT,ECOLOGICAL CONCEPT,ENVIRONMENTAL APPROACH,ECOLOGY,ENVIRONMENT,CARBON FOOTPRINT,SUSTAINABLE DEVELOPMENT,CO2,organic,eco friendly,ecofriendly,eco-friendly,eco concept,eco-concept,eco-design,ecodesign,eco-designed,eco-conceived,eco-conceive,ecoconceived,ecoconceive,eco-conception,ecoconception,evironmentally-friendly,evironmentally friendly,eco-friendly,recycle,recycled,recycling,upcycle,environmental impact,ecological concept,environmental approach,ecology,environment,carbon footprint,sustainable development,co2,Organic,Eco friendly,Ecofriendly,Eco-friendly,Eco concept,Eco-concept,Eco-design,Ecodesign,Eco-designed,Eco-conceived,Eco-conceive,Ecoconceived,Ecoconceive,Eco-conception,Ecoconception,Evironmentally-friendly,Evironmentally friendly,Eco-friendly,Recycle,recycled,recycling,Upcycle,Environmental impact,Ecological concept,Environmental approach,Ecology,Environment,Carbon footprint,Sustainable development,Co2",
     "meta_noindex_collections": "",
     "meta_noindex_pages": "",
     "checkout_header_image": "",
@@ -2025,7 +2025,7 @@
               "text_color": "#090b0a",
               "background_color": "#eff1f1",
               "hover_background_color": "#f3f3f3",
-              "link": "https:\/\/decathlon.com.au\/collections\/kids-eco-design"
+              "link": "https:\/\/decathlon.com.au\/pages\/kids-sports-apparel-footwear"
             }
           },
           "c5bd0b0f-516e-4db7-926f-46c215e1fbdf": {
