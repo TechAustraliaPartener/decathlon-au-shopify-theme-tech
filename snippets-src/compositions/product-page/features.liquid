@@ -111,7 +111,7 @@
         itemprop="description"
       >
         {% render 'compositions-product-page-title-filter', product: product %}.
-        {{ madefor | escape }}
+        {% render 'compositions-product-page-eco-text-filter', content: madefor %}
       </h3>
       <p class="de-u-spaceNone de-u-textSizeBase de-u-textDarkGray">
         {% render 'compositions-product-page-eco-text-filter', content: catchline %}
