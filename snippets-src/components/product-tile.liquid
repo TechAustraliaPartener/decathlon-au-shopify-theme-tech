@@ -70,7 +70,7 @@ Example:
                  de-u-textMedium de-u-textShrink1 de-u-lg-textGrow1 de-u-lineHeight2"
           data-gtm-event="{{ data_gtm_event }}" data-gtm-category="{{ data_gtm_category }}"
           data-gtm-id="Product Title | {{ product.url }}" data-gtm-actions="click" data-gtm-delegate="child">
-          {{ product.title }}
+          {% render 'compositions-product-page-eco-text-filter', content: product.title %}
         </h4>
       </header>
 
