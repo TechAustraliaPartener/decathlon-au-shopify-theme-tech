@@ -26,6 +26,15 @@
     return str.replace(regex, '')
   }
 
+  function removeHTMLTags(htmlText) {
+    var html = htmlText;
+    var div = document.createElement("div");
+    div.innerHTML = html;
+    var text = div.textContent || div.innerText || "";
+    return text;
+}
+
+
   var escapeHtml = function escapeHtml(unsafe) {
     return (unsafe || '')
       .replace(/&/g, '&amp;')
@@ -96,7 +105,15 @@
     fullHTMLTitle: function fullHTMLTitle() {
       var invalidKeywords = window.vars.ecoHideContent['eco_hide_strings'] || [];
 
-      var res = removeFromString(invalidKeywords,this._highlightResult.title.value);
+      var titleWithoutHTML = removeHTMLTags(this._highlightResult.title.value);
+
+      // console.log(titleWithoutHTML);
+
+      var res = removeFromString(invalidKeywords,titleWithoutHTML);
+
+      // console.log('this._highlightResult.title.value')
+      // console.log(this._highlightResult.title.value)
+      // console.log(res)
 
       if (!this._distinct && this.variant_title && this.variant_title !== 'Default Title' && this.variant_title !== 'Default') {
         res += ' <span class="algolia-variant">(' + this._highlightResult.variant_title.value + ')est</span>';
