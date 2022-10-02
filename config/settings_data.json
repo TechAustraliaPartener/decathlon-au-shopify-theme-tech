@@ -31,10 +31,10 @@
     "header_support_link": "https:\/\/decathlon.com.au\/pages\/contact-and-help",
     "header_store_label": "Find a Store",
     "header_sign_in_label": "Login",
-    "megamenu_image": "shopify:\/\/shop_images\/Fitness_COOP_360_x_360.jpg",
-    "megamenu_title": "Shop Fitness Spring Sale",
-    "megamenu_subtitle": "Find Your Fit With Decathlon",
-    "megamenu_link": "shopify:\/\/collections\/spring-fitness-sale",
+    "megamenu_image": "shopify:\/\/shop_images\/Weekend_Deals_300_x_300_27477306-febc-4c1c-bfdc-249575b00c59.jpg",
+    "megamenu_title": "Shop Crazy Weekend Deals",
+    "megamenu_subtitle": "Selected Kayaks & SUPs",
+    "megamenu_link": "https:\/\/decathlon.com.au\/collections\/weekend-deal-1-oct?q=&hPP=24&idx=shopify_products_price_desc&p=0&is_v=1",
     "megamenu_bg_colour": "#1c82c3",
     "custom_fields_terms_conditions": "I agree to the <a href=\"\/pages\/terms-and-conditions-membership\" target=\"_blank\">T&Cs<\/a> and <a href=\"\/pages\/privacy-policy\" target=\"_blank\">Privacy Policy<\/a> for creating an account.",
     "is_lookbook": false,
@@ -286,7 +286,7 @@
     "reviews_min_rating": 2,
     "reviews_excluded_countries": "IN",
     "review_filters_and": true,
-    "eco_hide_strings": "(e)co-design,Eco-Designed,eco-designed,Eco-Friendly,Eco-friendly,eco-friendly,ORGANIC,ECO FRIENDLY,ECOFRIENDLY,ECO-FRIENDLY,ECO CONCEPT,ECO-CONCEPT,ECO-DESIGN,ECODESIGN,ECO-DESIGNED,ECO-CONCEIVED,ECO-CONCEIVE,ECOCONCEIVED,ECOCONCEIVE,ECO-CONCEPTION,ECOCONCEPTION,EVIRONMENTALLY-FRIENDLY,EVIRONMENTALLY FRIENDLY,ECO-FRIENDLY,RECYCLE,RECYCLED,RECYCLING,UPCYCLE,ENVIRONMENTAL IMPACT,ECOLOGICAL CONCEPT,ENVIRONMENTAL APPROACH,ECOLOGY,ENVIRONMENT,CARBON FOOTPRINT,SUSTAINABLE DEVELOPMENT,CO2,organic,eco friendly,ecofriendly,eco-friendly,eco concept,eco-concept,eco-design,ecodesign,eco-conceived,eco-conceive,ecoconceived,ecoconceive,eco-conception,ecoconception,evironmentally-friendly,evironmentally friendly,eco-friendly,recycle,recycled,recycling,upcycle,environmental impact,ecological concept,environmental approach,ecology,environment,carbon footprint,sustainable development,co2,Organic,Eco friendly,Ecofriendly,Eco-friendly,Eco concept,Eco-concept,Eco-design,Ecodesign,Eco-designed,Eco-conceived,Eco-conceive,Ecoconceived,Ecoconceive,Eco-conception,Ecoconception,Evironmentally-friendly,Evironmentally friendly,Eco-friendly,Recycle,recycled,recycling,Upcycle,Environmental impact,Ecological concept,Environmental approach,Ecology,Environment,Carbon footprint,Sustainable development,Co2,CO₂",
+    "eco_hide_strings": "(e)co-design,Eco-Designed,eco-designed,Eco-Friendly,Eco-friendly,eco-friendly,ORGANIC,ECO FRIENDLY,ECOFRIENDLY,ECO-FRIENDLY,ECO CONCEPT,ECO-CONCEPT,ECO-DESIGN,ECODESIGN,ECO-DESIGNED,ECO-CONCEIVED,ECO-CONCEIVE,ECOCONCEIVED,ECOCONCEIVE,ECO-CONCEPTION,ECOCONCEPTION,EVIRONMENTALLY-FRIENDLY,ENVIRONMENTALLY FRIENDLY,ECO-FRIENDLY,RECYCLE,RECYCLED,RECYCLING,UPCYCLE,ENVIRONMENTAL IMPACT,ECOLOGICAL CONCEPT,ENVIRONMENTAL APPROACH,ECOLOGY,ENVIRONMENT,CARBON FOOTPRINT,SUSTAINABLE DEVELOPMENT,CO2,organic,eco friendly,ecofriendly,eco-friendly,eco concept,eco-concept,eco-design,ecodesign,eco-conceived,eco-conceive,ecoconceived,ecoconceive,eco-conception,ecoconception,evironmentally-friendly,environmentally friendly,eco-friendly,recycle,recycled,recycling,upcycle,environmental impact,ecological concept,environmental approach,ecology,environment,carbon footprint,sustainable development,co2,Organic,Eco friendly,Ecofriendly,Eco-friendly,Eco concept,Eco-concept,Eco-design,Ecodesign,Eco-designed,Eco-conceived,Eco-conceive,Ecoconceived,Ecoconceive,Eco-conception,Ecoconception,Evironmentally-friendly,Environmentally friendly,Eco-friendly,Recycle,recycled,recycling,Upcycle,Environmental impact,Ecological concept,Environmental approach,Ecology,Environment,Carbon footprint,Sustainable development,Co2,CO₂",
     "meta_noindex_collections": "",
     "meta_noindex_pages": "",
     "checkout_header_image": "",
@@ -1540,8 +1540,24 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
+          "79522152-c757-4b60-a1be-2d1e49198982": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Weekend_Deals_1440_x_789px_124063f6-5f8f-4515-b982-2fec7e405154.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Weekend_Deals_478_x_300px_5c3121fe-a399-4064-ae83-2585dc969218.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/weekend-deal-1-oct?q=&hPP=24&idx=shopify_products_price_desc&p=0&is_v=1",
+              "link_title": "Shop Crazy Weekend Deals",
+              "link_new_window": false
+            }
+          },
           "3e042199-9da3-4514-87ba-d462754ab771": {
             "type": "slide",
+            "disabled": true,
             "settings": {
               "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_ed30b8f1-1898-4b4b-8dbb-a29164ec1e0d.jpg",
               "slide_bg_position": "75% -50px",
@@ -1588,7 +1604,7 @@
           "579ee1c6-8cb9-4350-95e5-fb83a1397d90": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Running_2_1440_x_789px.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/Running_2_1440_x_789px_f8030858-0e10-43f4-837c-da402db2be95.jpg",
               "slide_bg_position": "75% -50px",
               "banner_mobile_image": "shopify:\/\/shop_images\/Running_2_478_x_300px.jpg",
               "banner_intro": "",
@@ -1628,22 +1644,6 @@
               "button_title": "",
               "link_url": "https:\/\/decathlon.com.au\/collections\/road-bikes",
               "link_title": "",
-              "link_new_window": false
-            }
-          },
-          "79522152-c757-4b60-a1be-2d1e49198982": {
-            "type": "slide",
-            "disabled": true,
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Weekend_Deals_1440_x_789px_124063f6-5f8f-4515-b982-2fec7e405154.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Weekend_Deals_478_x_300px_5c3121fe-a399-4064-ae83-2585dc969218.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/collections\/weekend-deal-24-sep?q=&hPP=24&idx=shopify_products_price_desc&p=0&is_v=1",
-              "link_title": "Shop Crazy Weekend Deals",
               "link_new_window": false
             }
           },
@@ -1729,13 +1729,13 @@
           }
         },
         "block_order": [
+          "79522152-c757-4b60-a1be-2d1e49198982",
           "3e042199-9da3-4514-87ba-d462754ab771",
           "145847d3-2db7-45f7-8ef6-38db22a4156a",
           "85c47718-39c5-4752-aa58-3e34ef8c0a97",
           "579ee1c6-8cb9-4350-95e5-fb83a1397d90",
           "0e3f284b-4302-4200-8eb1-f98ce34415af",
           "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b",
-          "79522152-c757-4b60-a1be-2d1e49198982",
           "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb",
           "748c6a7e-732f-486d-a653-eb425a670bc5",
           "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9",
@@ -2204,10 +2204,9 @@
       },
       "163487525380dd83d2": {
         "type": "featured_collection",
-        "disabled": true,
         "settings": {
-          "title": "Run Your Race this Marathon Season with Decathlon",
-          "section_collection": "running-shoes"
+          "title": "25% OFF Selected Kayaks & SUPs. Limited Stock!",
+          "section_collection": "weekend-deal-1-oct"
         }
       },
       "16375487170499d43e": {
@@ -2279,6 +2278,7 @@
       },
       "1650960580e9623e99": {
         "type": "featured_collection",
+        "disabled": true,
         "settings": {
           "title": "Find Your Fit With Decathlon - Sale On Now",
           "section_collection": "spring-fitness-sale"
@@ -2311,13 +2311,13 @@
       "1568939434006",
       "163107170023281063",
       "16316085202ea5cf79",
+      "163487525380dd83d2",
       "1650960580e9623e99",
-      "166270596352f8a275",
       "16509507269dac2990",
+      "166270596352f8a275",
       "165115029729e3ba5b",
       "1642116157c0ce923f",
       "1650950354346fb7a1",
-      "163487525380dd83d2",
       "16375487170499d43e",
       "1651153473715f6dc1",
       "163107313302287377"
