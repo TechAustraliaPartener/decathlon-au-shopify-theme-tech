@@ -70,9 +70,9 @@ window.handleCallback = function() {
   {{ content_for_header }}
   {% include 'js-rollbar-init' %}
   {% include 'oldIE-js' %}
-  {{ 'jquery.min.js' | asset_url | script_tag }}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-  {{ 'modernizr.min.js' | asset_url | script_tag }}
+  <script src="{{ 'jquery.min.js' | asset_url }}" defer></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+  <script src="{{ 'modernizr.min.js' | asset_url }}" defer></script>
   <script>
     jQuery(function() {
       CartJS.init({{ cart | json }}, {
@@ -151,8 +151,9 @@ window.handleCallback = function() {
   {{ content_for_layout }}
   
   <!-- For Lazyloading -->
-  <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.4.0/dist/lazyload.min.js"></script>
-  {{ 'timber.js' | asset_url | script_tag }}
+  <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.4.0/dist/lazyload.min.js"></script>
+  <script defer src="timber.js"></script>
+  
   {% include 'polyfills' %}
   {% if settings.use_persistent_cart %}
     <script defer type="module" src="{{ 'built-persistent-cart.js' | asset_url }}"></script>
@@ -174,9 +175,10 @@ window.handleCallback = function() {
       - http://shopify.com/timber#ajax-cart
   {% endcomment %}
   {% if settings.ajax_cart_method == "drawer" %}
-    {{ 'handlebars.min.js' | asset_url | script_tag }}
+    <script defer src="handlebars.min.js"></script>
+
     {% include 'compositions-ajax-cart-template' %}
-    {{ 'ajax-cart.js' | asset_url | script_tag }}
+    <script defer src="ajax-cart.js"></script>
     <script>
       jQuery(function($) {
         if ($('.timber-activeProduct').length > 0) {
@@ -196,8 +198,9 @@ window.handleCallback = function() {
       });
     </script>
   {% endif %}
-  {{ 'slick.min.js' | asset_url | script_tag }}
-  {{ 'js.cookie.min.js' | asset_url | script_tag }}
+    <script defer src="slick.min.js"></script>
+    <script defer src="js.cookie.min.js"></script>
+  
   {% if pageUsesAppMate %}
     <!-- Wishlist -->
     {% include 'compositions-appmate-wishlist-king' %}
@@ -289,7 +292,7 @@ window.handleCallback = function() {
     })();
   </script>
   {% include 'js-jsonld-sitelinks-searchbox' %}
-  <script src="//instant.page/5.1.0" type="module" integrity="sha384-by67kQnR+pyfy8yWP4kPO12fHKRLHZPfEsiSXR8u2IKcTdxD805MGUXBzVPnkLHw"></script>
+  <script defer src="//instant.page/5.1.0" type="module" integrity="sha384-by67kQnR+pyfy8yWP4kPO12fHKRLHZPfEsiSXR8u2IKcTdxD805MGUXBzVPnkLHw"></script>
  {% include 'smile-initializer' %}
 {% include 'insider' %} 
 </body>

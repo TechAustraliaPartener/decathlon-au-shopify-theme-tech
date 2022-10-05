@@ -39,7 +39,9 @@
  %}
   {{ content_for_header }}
   
- </head>
+ 
+  {% render 'shogun-head' %}
+</head>
 {% comment %}
   Add the page template as a class for easy page or template specific styling.
 <{% endcomment %}
