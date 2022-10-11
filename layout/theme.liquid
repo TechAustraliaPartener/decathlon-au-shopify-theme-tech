@@ -77,6 +77,12 @@
     <title>
     Order | {{shop.name}}
     </title>
+
+<!-- Avada Boost Sales Script -->
+{% include 'avada-boost-sales' %}
+<!-- /Avada Boost Sales Script -->
+
+
   {% else %}
     <title>
       {% include 'helpers-meta-title' %}
@@ -504,7 +510,7 @@
   </script>
 
   {% comment %}
-    Capture a customer ID (will be undefined if there's not a customer yet, but that's good).
+    Capture a customer ID (will be  if there's not a customer yet, but that's good).
     Used by Persistent Cart JS
   {% endcomment %}
   <input type="hidden" class="js-de-cart-count" value="{{ cart.item_count }}">
