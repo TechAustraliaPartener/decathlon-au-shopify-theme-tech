@@ -36,7 +36,7 @@
     "megamenu_title": "Shop Our Range of Price Drops",
     "megamenu_subtitle": "Starting from $6",
     "megamenu_link": "shopify:\/\/collections\/price-drop",
-    "megamenu_bg_colour": "#1c82c3",
+    "megamenu_bg_colour": "#1c82c1",
     "custom_fields_terms_conditions": "I agree to the <a href=\"\/pages\/terms-and-conditions-membership\" target=\"_blank\">T&Cs<\/a> and <a href=\"\/pages\/privacy-policy\" target=\"_blank\">Privacy Policy<\/a> for creating an account.",
     "is_lookbook": false,
     "product_returns_text": "Lifetime Returns For Members*",
@@ -287,7 +287,7 @@
     "reviews_min_rating": 2,
     "reviews_excluded_countries": "IN",
     "review_filters_and": true,
-    "eco_hide_strings": "(e)co-design,Eco-Designed,eco-designed,Eco-Friendly,Eco-friendly,eco-friendly,ORGANIC,ECO FRIENDLY,ECOFRIENDLY,ECO-FRIENDLY,ECO CONCEPT,ECO-CONCEPT,ECO-DESIGN,ECODESIGN,ECO-DESIGNED,ECO-CONCEIVED,ECO-CONCEIVE,ECOCONCEIVED,ECOCONCEIVE,ECO-CONCEPTION,ECOCONCEPTION,EVIRONMENTALLY-FRIENDLY,ENVIRONMENTALLY FRIENDLY,ECO-FRIENDLY,RECYCLE,RECYCLED,RECYCLING,UPCYCLE,ENVIRONMENTAL IMPACT,ECOLOGICAL CONCEPT,ENVIRONMENTAL APPROACH,ECOLOGY,ENVIRONMENT,CARBON FOOTPRINT,SUSTAINABLE DEVELOPMENT,CO2,organic,eco friendly,ecofriendly,eco-friendly,eco concept,eco-concept,eco-design,ecodesign,eco-conceived,eco-conceive,ecoconceived,ecoconceive,eco-conception,ecoconception,evironmentally-friendly,environmentally friendly,eco-friendly,recycle,recycled,recycling,upcycle,environmental impact,ecological concept,environmental approach,ecology,environment,carbon footprint,sustainable development,co2,Organic,Eco friendly,Ecofriendly,Eco-friendly,Eco concept,Eco-concept,Eco-design,Ecodesign,Eco-designed,Eco-conceived,Eco-conceive,Ecoconceived,Ecoconceive,Eco-conception,Ecoconception,Evironmentally-friendly,Environmentally friendly,Eco-friendly,Recycle,recycled,recycling,Upcycle,Environmental impact,Ecological concept,Environmental approach,Ecology,Environment,Carbon footprint,Sustainable development,Co2,CO₂",
+    "eco_hide_strings": "(e)co-design,Eco-Designed,eco-designed,Eco-Friendly,Eco-friendly,eco-friendly,ORGANIC,ECO FRIENDLY,ECOFRIENDLY,ECO-FRIENDLY,ECO CONCEPT,ECO-CONCEPT,ECO-DESIGN,ECODESIGN,ECO-DESIGNED,ECO-CONCEIVED,ECO-CONCEIVE,ECOCONCEIVED,ECOCONCEIVE,ECO-CONCEPTION,ECOCONCEPTION,EVIRONMENTALLY-FRIENDLY,ENVIRONMENTALLY FRIENDLY,ECO-FRIENDLY,RECYCLE,RECYCLED,RECYCLING,UPCYCLE,ENVIRONMENTAL IMPACT,ECOLOGICAL CONCEPT,ENVIRONMENTAL APPROACH,ECOLOGY,ENVIRONMENT,CARBON FOOTPRINT,SUSTAINABLE DEVELOPMENT,CO2,organic,eco friendly,ecofriendly,eco-friendly,eco concept,eco-concept,eco-design,ecodesign,eco-conceived,eco-conceive,ecoconceived,ecoconceive,eco-conception,ecoconception,evironmentally-friendly,environmentally friendly,eco-friendly,recycle,recycled,recycling,upcycle,environmental impact,ecological concept,environmental approach,ecology,environment,carbon footprint,sustainable development,co2,Organic,Eco friendly,Ecofriendly,Eco-friendly,Eco concept,Eco-concept,Eco-design,Ecodesign,Eco-designed,Eco-conceived,Eco-conceive,Ecoconceived,Ecoconceive,Eco-conception,Ecoconception,Evironmentally-friendly,Environmentally friendly,Eco-friendly,Recycle,recycled,recycling,Upcycle,Environmental impact,Ecological concept,Environmental approach,Ecology,Environment,Carbon footprint,Sustainable development,Co2,CO₂,Recycled,paulownia,Paulownia",
     "meta_noindex_collections": "",
     "meta_noindex_pages": "",
     "checkout_header_image": "",
@@ -1541,22 +1541,6 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
-          "79522152-c757-4b60-a1be-2d1e49198982": {
-            "type": "slide",
-            "disabled": true,
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Weekend_Deals_1440_x_789px_124063f6-5f8f-4515-b982-2fec7e405154.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Weekend_Deals_478_x_300px_5c3121fe-a399-4064-ae83-2585dc969218.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/collections\/weekend-deal-1-oct?q=&hPP=24&idx=shopify_products_price_desc&p=0&is_v=1",
-              "link_title": "Shop Crazy Weekend Deals",
-              "link_new_window": false
-            }
-          },
           "145847d3-2db7-45f7-8ef6-38db22a4156a": {
             "type": "slide",
             "settings": {
@@ -1602,18 +1586,33 @@
               "link_new_window": false
             }
           },
-          "579ee1c6-8cb9-4350-95e5-fb83a1397d90": {
+          "748c6a7e-732f-486d-a653-eb425a670bc5": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Running_2_1440_x_789px_f8030858-0e10-43f4-837c-da402db2be95.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/Domyos_EL520_Cross_Trainer_1440_x_789px_7c431a3c-dd6e-4eee-bced-03763741b59f.jpg",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Running_2_478_x_300px.jpg",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Domyos_EL520_Cross_Trainer_478_x_300px_31f48f3d-84dc-4e62-99c8-727a7a6f1250.jpg",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
               "button_title": "",
-              "link_url": "shopify:\/\/collections\/running-shoes",
-              "link_title": "Shop Running Shoes",
+              "link_url": "https:\/\/decathlon.com.au\/products\/el-520-self-powered-cross-trainer-301940?variant=40916684996719?utm_source=homepage&utm_medium=onsite&utm_campaign=OctoberHomepage&utm_id=&utm_content=HeroBanner",
+              "link_title": "Shop Domyos EL520 Self-Powered Cross Trainer",
+              "link_new_window": false
+            }
+          },
+          "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Nabaiji_HomePage_Carrousel.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Nabaiji_HomePage_Carrousel_mobile.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/swimming-goggles?utm_source=homepage&utm_medium=onsite&utm_campaign=ClearerUnderWater&utm_id=&utm_content=HeroBanner",
+              "link_title": "",
               "link_new_window": false
             }
           },
@@ -1632,19 +1631,35 @@
               "link_new_window": false
             }
           },
-          "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b": {
+          "579ee1c6-8cb9-4350-95e5-fb83a1397d90": {
             "type": "slide",
             "disabled": true,
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_3f772e1b-2fd2-46e1-8f84-3105d57e1412.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/Gift_Cards_v2_1440_x_789px.jpg",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_45561942-300f-4655-9c1b-1323892a32b6.jpg",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Gift_Cards_v2_478_x_300px.jpg",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
               "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/collections\/road-bikes",
-              "link_title": "",
+              "link_url": "https:\/\/decathlon.com.au\/products\/decathlon-australia-physical-gift-card?",
+              "link_title": "Gift Your Loved One a Decathlon Gift Card",
+              "link_new_window": false
+            }
+          },
+          "79522152-c757-4b60-a1be-2d1e49198982": {
+            "type": "slide",
+            "disabled": true,
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Weekend_Deals_1440_x_789px_124063f6-5f8f-4515-b982-2fec7e405154.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Weekend_Deals_478_x_300px_5c3121fe-a399-4064-ae83-2585dc969218.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/weekend-deal-1-oct?q=&hPP=24&idx=shopify_products_price_desc&p=0&is_v=1",
+              "link_title": "Shop Crazy Weekend Deals",
               "link_new_window": false
             }
           },
@@ -1661,22 +1676,6 @@
               "button_title": "",
               "link_url": "https:\/\/decathlon.com.au\/collections\/eco-design?q=&hPP=24&idx=shopify_products&p=0&dFR%5Bproduct_type%5D%5B0%5D=Fleece&is_v=1",
               "link_title": "",
-              "link_new_window": false
-            }
-          },
-          "748c6a7e-732f-486d-a653-eb425a670bc5": {
-            "type": "slide",
-            "disabled": true,
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Sports_in_Spring_1440_x_789px.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Sports_in_Spring_478_x_300px.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "shopify:\/\/pages\/spring-into-sport",
-              "link_title": "Shop Sport In Spring Sale",
               "link_new_window": false
             }
           },
@@ -1730,15 +1729,15 @@
           }
         },
         "block_order": [
-          "79522152-c757-4b60-a1be-2d1e49198982",
           "145847d3-2db7-45f7-8ef6-38db22a4156a",
           "85c47718-39c5-4752-aa58-3e34ef8c0a97",
           "3e042199-9da3-4514-87ba-d462754ab771",
-          "579ee1c6-8cb9-4350-95e5-fb83a1397d90",
-          "0e3f284b-4302-4200-8eb1-f98ce34415af",
-          "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b",
-          "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb",
           "748c6a7e-732f-486d-a653-eb425a670bc5",
+          "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b",
+          "0e3f284b-4302-4200-8eb1-f98ce34415af",
+          "579ee1c6-8cb9-4350-95e5-fb83a1397d90",
+          "79522152-c757-4b60-a1be-2d1e49198982",
+          "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb",
           "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9",
           "e9b4daa6-6eee-441b-b76d-9c3ff012fde9",
           "623e46b1-2abc-4e5b-8ceb-3ca5e428998a"
@@ -2280,8 +2279,8 @@
         "type": "featured_collection",
         "disabled": true,
         "settings": {
-          "title": "Find Your Fit With Decathlon - Sale On Now",
-          "section_collection": "spring-fitness-sale"
+          "title": "Stay Dry with Decathlon",
+          "section_collection": "rain-jackets-pants"
         }
       },
       "165115029729e3ba5b": {
@@ -2314,16 +2313,70 @@
             "settings": {
               "megamenu_parent": "fitness-health",
               "display_callout": true,
-              "megamenu_image": "shopify:\/\/shop_images\/Running_2_360_x_360px.jpg",
-              "megamenu_title": "Last Call",
-              "megamenu_subtitle": "End of Season Deals",
+              "megamenu_image": "shopify:\/\/shop_images\/Fitness-Mega-MENU.jpg",
+              "megamenu_title": "SHOP NOW",
+              "megamenu_subtitle": "Great Deals on Running Gear!",
               "megamenu_link": "https:\/\/decathlon.com.au\/collections\/running-shoes",
+              "megamenu_bg_colour": "#1c82c1"
+            }
+          },
+          "cb38dab6-ed1f-429b-a98e-72acc0e07c49": {
+            "type": "tab-callout",
+            "settings": {
+              "megamenu_parent": "cycling",
+              "display_callout": true,
+              "megamenu_image": "shopify:\/\/shop_images\/360_x_360_3b15a846-ad58-4c21-b9ab-966002f030a1.jpg",
+              "megamenu_title": "SHOP NOW",
+              "megamenu_subtitle": "Buy Cycling gear & SAVE!",
+              "megamenu_link": "shopify:\/\/collections\/cycling-clothing-bike-accessories",
+              "megamenu_bg_colour": "#1c82c3"
+            }
+          },
+          "5f676f08-13e2-4f7f-abc1-9e7dc877615b": {
+            "type": "tab-callout",
+            "settings": {
+              "megamenu_parent": "camping-outdoors",
+              "display_callout": true,
+              "megamenu_image": "shopify:\/\/shop_images\/Van-Top-tent.jpg",
+              "megamenu_title": "Looking for a tent?",
+              "megamenu_subtitle": "Explore Our Range",
+              "megamenu_link": "https:\/\/decathlon.com.au\/collections\/camping-gear",
+              "megamenu_bg_colour": "#1c82c3"
+            }
+          },
+          "fe11e3a8-e660-4eb3-a13c-bc7fee55ba93": {
+            "type": "tab-callout",
+            "disabled": true,
+            "settings": {
+              "megamenu_parent": "shop-all-sports",
+              "display_callout": true,
+              "megamenu_image": "shopify:\/\/shop_images\/Gift_Cards_v2_360_x360_47795b22-af32-4554-97cb-0b126dfa8ccf.jpg",
+              "megamenu_title": "Unlock The World of Sports",
+              "megamenu_subtitle": "Gift Your Loved One a Decathlon Gift Card",
+              "megamenu_link": "shopify:\/\/products\/decathlon-australia-physical-gift-card",
+              "megamenu_bg_colour": "#1c82c3"
+            }
+          },
+          "0fca52ae-b265-4490-bacb-d71127ec0d28": {
+            "type": "tab-callout",
+            "disabled": true,
+            "settings": {
+              "megamenu_parent": "top-brands",
+              "display_callout": true,
+              "megamenu_image": "shopify:\/\/shop_images\/Gift_Cards_v2_360_x360_47795b22-af32-4554-97cb-0b126dfa8ccf.jpg",
+              "megamenu_title": "Unlock The World of Sports",
+              "megamenu_subtitle": "Gift Your Loved One a Decathlon Gift Card",
+              "megamenu_link": "shopify:\/\/products\/decathlon-australia-physical-gift-card",
               "megamenu_bg_colour": "#1c82c3"
             }
           }
         },
         "block_order": [
-          "373c21e9-d7f3-448a-b99a-756ca60e545b"
+          "373c21e9-d7f3-448a-b99a-756ca60e545b",
+          "cb38dab6-ed1f-429b-a98e-72acc0e07c49",
+          "5f676f08-13e2-4f7f-abc1-9e7dc877615b",
+          "fe11e3a8-e660-4eb3-a13c-bc7fee55ba93",
+          "0fca52ae-b265-4490-bacb-d71127ec0d28"
         ],
         "settings": {}
       }
@@ -2332,12 +2385,12 @@
       "1568939434006",
       "163107170023281063",
       "16316085202ea5cf79",
+      "1650960580e9623e99",
       "16509507269dac2990",
       "1650950354346fb7a1",
       "166270596352f8a275",
       "163487525380dd83d2",
       "165115029729e3ba5b",
-      "1650960580e9623e99",
       "1642116157c0ce923f",
       "16375487170499d43e",
       "1651153473715f6dc1",
