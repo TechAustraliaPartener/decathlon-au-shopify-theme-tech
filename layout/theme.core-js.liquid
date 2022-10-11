@@ -235,7 +235,7 @@ window.handleCallback = function() {
   {% endcomment %}
   {{ 'built-decathlon-legacy.js' | asset_url | script_tag }}
   {{ 'patterns-toolkit.js' | asset_url | script_tag }}
-  {% include 'layout-template-scripts' %}
+  {% include 'layout-template-scripts-defer' %}
   {% comment %}{% include 'decathlon-wishlist' %}{% endcomment %}
   {% comment %}{% include 'zendesk-chat' %}{% endcomment %}
   {% include 'add-to-cart-wishlist-swap' %}

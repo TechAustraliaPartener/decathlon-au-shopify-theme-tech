@@ -202,7 +202,7 @@
     {% endif %}
  </div>
   <!-- For Lazyloading -->
-  <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.4.0/dist/lazyload.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.4.0/dist/lazyload.min.js"></script>
   {{ 'timber.js' | asset_url | script_tag }}
   {% include 'polyfills' %}
   {% if settings.use_persistent_cart %}
@@ -340,7 +340,7 @@
     })();
   </script>
   {% include 'js-jsonld-sitelinks-searchbox' %}
-  <script src="//instant.page/5.1.0" type="module" integrity="sha384-by67kQnR+pyfy8yWP4kPO12fHKRLHZPfEsiSXR8u2IKcTdxD805MGUXBzVPnkLHw"></script>
+  <script defer src="//instant.page/5.1.0" type="module" integrity="sha384-by67kQnR+pyfy8yWP4kPO12fHKRLHZPfEsiSXR8u2IKcTdxD805MGUXBzVPnkLHw"></script>
  {% include 'smile-initializer' %}
 {% include 'insider' %} 
  </body>
