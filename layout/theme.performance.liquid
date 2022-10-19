@@ -1,3 +1,4 @@
+{% assign template = 'index' %} <!-- Hardcoding the template to display -->
 {%- assign pageUsesAppMate = settings.app_wk_enabled -%}
 {%- if template == 'index' or template contains 'collection.' or template == 'search' or template == 'cart' -%}
   {%- assign pageUsesAppMate = false -%}
@@ -7,6 +8,8 @@
 {%- endif -%}
 {% comment %} For Google Tag Manager {% endcomment %}
 {% include 'helpers-template-name' %}
+
+
 <!doctype html>
 <!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!--[if IE 9 ]><html class="ie9 no-js" lang="en"> <![endif]-->
@@ -18,7 +21,6 @@
   {% else %}
     {% assign qrRedirectUrl = 'https://shopify-decathlon-proxy-s.herokuapp.com' %}
   {% endif %}
-
   <script type="text/javascript">
   (function() {
     var pathname = window.location.pathname;
@@ -27,12 +29,10 @@
     }
   })();
   </script>
-
   <script type="text/javascript">
     window.mapMarkerActiveIcon = "{{'map-marker-active.png' | asset_url}}";
     window.mapMarkerInactiveIcon = "{{'map-marker-inactive.png' | asset_url}}";
   </script>
-
   <script defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkXb918cp932bUuHutJiiGOH5yAIZttQM&libraries=places&callback=handleCallback">
   </script>
@@ -42,162 +42,44 @@
     };
   </script>
 
-  {% render 'compositions-seo-noindex' %}
-
-  {% include 'layout-account-portal-redirects' %}
-
-  {% include 'js-gtm-datalayer-visit' %}
-  {% include 'js-gtm-head' %}
-
   <!-- Basic page needs ================================================== -->
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="facebook-domain-verification" content="2tjyg7urynyxfj4553rpfqq6oibs89" />
-
-  <!-- Hreflang settings -->
-  <link rel="alternate" hreflang="x-default" href="decathlon.com.au"/>
-  <link rel="alternate" href="{{ canonical_url | replace: shop.domain, 'decathlon.com.au' }}" hreflang="en" />
-  <link rel="alternate" href="{{ canonical_url | replace: shop.domain, 'decathlon.com' }}" hreflang="en-us" />
-  <link rel="alternate" href="{{ canonical_url | replace: shop.domain, 'decathlon.fr' }}" hreflang="fr-fr" />
-  <link rel="alternate" href="{{ canonical_url | replace: shop.domain, 'decathlon.co.uk' }}" hreflang="en-gb" />
-
-  {% comment %}Favicon{% endcomment %}
-  <link rel="apple-touch-icon" sizes="180x180" href="{{ 'apple-touch-icon.png' | asset_url }}">
-  <link rel="icon" type="image/png" href="{{ 'favicon-32x32.png' | asset_url }}" sizes="32x32">
-  <link rel="icon" type="image/png" href="{{ 'favicon-16x16.png' | asset_url }}" sizes="16x16">
-  <link rel="manifest" href="{{ 'site.webmanifest' | asset_url }}">
-  <link rel="mask-icon" href="{{ 'safari-pinned-tab.svg' | asset_url }}" color="#0080c4">
-  <meta name="apple-mobile-web-app-title" content="Decathlon">
-  <meta name="application-name" content="Decathlon">
-  <meta name="msapplication-TileColor" content="#0080c4">
-  <meta name="theme-color" content="#0080c4">
-
-  <!-- Title and description ============================================= -->
-  {% if page_title == 'order-newstore' %}
-    <title>
-    Order | {{shop.name}}
-    </title>
-  {% else %}
-    <title>
-      {% include 'helpers-meta-title' %}
-    </title>
-  {% endif %}
-
-  {% if page_description %}
-  <meta name="description" content="{{ page_description | escape }}">
-  {% endif %}
-
-  <!-- Helpers ================================================== -->
-  {% include 'social-meta-tags' %}
-  {% unless canonical_url contains 'search' %}
-    <link rel="canonical" href="{{ canonical_url | split: '?' | first }}">
-  {% else %}
-    <link rel="canonical" href="{{ canonical_url | split: '/tag' | first }}">
-  {% endunless %}
-  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no, user-scalable=0">
-  <meta name="theme-color" content="{{ settings.color_primary }}">
-
-  <!-- pinterest -->
-  {% if settings.pinterest_id %}<meta name="p:domain_verify" content="{{ settings.pinterest_id }}"/>{% endif %}
-
-  <!-- google -->
-  {% if settings.google_site_id %}<meta name="google-site-verification" content="{{ settings.google_site_id }}"/>{% endif %}
-
-  <!-- og:image settings - homepage, search and collections (default) should display decathlon logo. collections with image should show the image and products should show the feature image -->
-  {% if template.name == 'product' %}
-    <meta property="og:image" content="http:{{ image.src | product_img_url: '1200x1200' }}">
-  {% else %}
-    {% if page_image %}
-      <meta property="og:image" content="http:{{ page_image | img_url: '1200x1200' }}">
-    {% else %}
-      <meta property="og:image" content="https://cdn.shopify.com/s/files/1/0066/6563/3903/files/meta_tag_image.png?v=1623038552">
-    {% endif %}
-  {% endif %}
-
+  {% include 'helpers-template-head' 
+  shop: shop
+  canonical_url: canonical_url
+  page_image: page_image
+  image: image
+  page_title: page_title
+  settings: settings
+ %}
+ {% include 'helpers-template-analytics' 
+  shop: shop
+  canonical_url: canonical_url
+ %}
   <!-- CSS ================================================== -->
-  {{ 'fonts.scss.css' | asset_url | stylesheet_tag }}
-  {% include 'slick-styles' %}
-  {% if template == "index" %}
-  {{ 'home.scss.css' | asset_url | stylesheet_tag }}
-  {% else %}
-  {{ 'timber.scss.css' | asset_url | stylesheet_tag }}
-  {% endif %}
-  {{ 'adeptMind.scss.css' | asset_url | stylesheet_tag }}
-  <style>
-    .de-PageWrap-main .breadcrumb{margin-top:0.5em}
-  </style>
-  {{ 'cadence.scss.css' | asset_url | stylesheet_tag }}
-  {{ 'menu.scss.css' | asset_url | stylesheet_tag }}
-
-  {% if template contains 'product' or template contains "cart" or template == "index"  %}
-  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-  {% endif %}
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-  
-  {% if template == "product" and product.metafields.global.features != blank %}
-    {{ 'built-product-page.css' | asset_url | stylesheet_tag }}
-  {% else %}
-    {% comment %}
-      TODO - Remove IcoMoon CSS when remaining icons are refactored
-      Making conditional to not load on new product page, where it's not needed
-    {% endcomment %}
-    {{ 'icomoon.scss.css' | asset_url | stylesheet_tag }}
-  {% endif %}
-  
-  {% if template == "index" or template == "cart" or template.name == "collection" or template.name == "search" or template.name == "product" %}
-    {{ 'built-product-tile.css' | asset_url | stylesheet_tag }}
-  {% endif %}
-
+  {% include 'helpers-template-css' 
+    template: template 
+    product: product
+    pageUsesAppMate: pageUsesAppMate
+  %}
   {% if template == 'search' and settings.show_recently_viewed_carousel_on_search_page %}
     {% assign display_recently_viewed = true %}
   {% endif %}
-
   {% if template == 'collection' and settings.show_recently_viewed_carousel_on_collection_page %}
     {% assign display_recently_viewed = true %}
-  {% endif %}
-
-  {% if display_recently_viewed %}
     {{ 'built-recently-viewed.css' | asset_url | stylesheet_tag }}
   {% endif %}
-
-  {{ 'built-home.css' | asset_url | stylesheet_tag }}
-
   {% comment %}
     @TODO
     1. Determine when this was commented out and why.
     {{ 'zoom.css' | asset_url | stylesheet_tag }}
   {% endcomment %}
-  {{ 'patterns-toolkit.css' | asset_url | stylesheet_tag }}
-
-  {%- unless template.suffix == 'shogun.no-overrides' -%}
-  {{ 'shogun-overrides.scss.css' | asset_url | stylesheet_tag }}
-  {%- endunless -%}
-
-  
   <!-- Header hook for plugins ================================================== -->
   {{ content_for_header }}
   {% include 'js-rollbar-init' %}
   {% include 'oldIE-js' %}
-
   {{ 'jquery.min.js' | asset_url | script_tag }}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
   {{ 'modernizr.min.js' | asset_url | script_tag }}
-
-  {% if template.name == '404' %}  
-    <script>
-      location.href = '/pages/404'
-    </script>
-  {% endif %}
-
-  {% comment %}
-    If you store has customer accounts disabled, you can remove the following JS file
-  {% endcomment %}
-  {% if template contains 'customers' %}
-    {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
-  {% endif %}
-
-  {{ 'cart.min.js' | asset_url | script_tag }}
   <script>
     jQuery(function() {
       CartJS.init({{ cart | json }}, {
@@ -210,10 +92,8 @@
       });
     });
   </script>
-
   {% include 'js-global-variables' %}
   {% include 'js-dmp-tag' %}
-
   {% if settings.use_alternate_banner == false %}
     <!--
       * The intent of this block is to render (3) preload links
@@ -234,15 +114,7 @@
       {% endfor %}
     {% endif %}
   {% endif %}
-
-  {% comment %} wishlist {% endcomment %}
-  {% if pageUsesAppMate %}
-    {% include 'compositions-appmate-wishlist-king' %}
-  {% endif %}
-
-  {% comment %}
-    script for Minubo
-  {% endcomment %}
+  <!-- script for Minubo -->
   <script>
    window.dataLayer = window.dataLayer || [];
    dataLayer.push({
@@ -261,7 +133,6 @@
       'cart_products': '{{cart.items}}'
    });
   </script>
-
   <script>
     // Adeptmind script overrides the global replaceState with a new one that only
     // intermittently works, so this script preserves the original
@@ -269,27 +140,9 @@
     window.realReplaceState = history.replaceState.bind(window.history)
   </script>
 
-  {% if settings.use_adeptmind %}
-    {% comment %} adeptMind {% endcomment %}
-    <style id="adeptmind-css">.template-search main{opacity: 0; pointer-events:none}</style>
-    <link href="//s3.us-east-2.amazonaws.com/adept-shop-ui/production/dc2bc6f9-e0b9-4fa8-9678-3aacb9640f23/adeptmind-styles.css" rel="stylesheet" type="text/css" media="all" />
-    {% if shop.secure_url == "https://www.decathlon.com" %}
-      <script async id="adeptmind-js" src="https://s3.us-east-2.amazonaws.com/adept-shop-ui/prod/dc2bc6f9-e0b9-4fa8-9678-3aacb9640f23/EA5C467F-BD87-495F-ABAA-73473DA91574.js"></script>
-    {% else %}
-      <script async id="adeptmind-js" src="https://s3.us-east-2.amazonaws.com/adept-shop-ui/stage/dc2bc6f9-e0b9-4fa8-9678-3aacb9640f23/C6F81754-93AC-4B29-87C8-DDB7ADAFAB86.js"></script>
-    {% endif %}
-  {% endif %}
-
-  {% if settings.use_algolia %}
-    {% include 'layout-algolia-head' %}
-  {% endif %}
-
-  
-
   {% render 'shogun-head' %}
   {% render 'customer-fields', customer_api: true, version: '4.3.2' %}
   {% include 'ufe-offer' %}
-
   <!-- Maintenance Page -->
   <style>
     .shogun-root p a, #shogun-modal-container p a {
@@ -297,25 +150,19 @@
       text-decoration: underline;
     }
   </style>
-
   <!-- REAMAZE INTEGRATION START - DO NOT REMOVE -->
 {% render 'reamaze-config' %}
 {% render 'reamaze-sso' %}
 <!-- REAMAZE INTEGRATION END - DO NOT REMOVE -->
-
 {% include 'insider' with 'head' %}
  </head>
-
 {% comment %}
   Add the page template as a class for easy page or template specific styling.
 {% endcomment %}
 <body id="{% if collection %}{{ collection.handle }}{% else %}{{ page_title | handle }}{% endif %}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }} {% if template.suffix != blank %}template-suffix-{{ template.suffix }}{% endif %} is-shortNav{% if settings['is_lookbook'] == true %} is-wishlistOnly{% endif %}{% if cart.item_count > 0 %} has-itemsInCart{% endif %}{% if product and product.tags contains 'allow sale' %} is-sellableProduct{% endif %}" {% if template_name %}data-gtm-template="{{template_name}}"{% endif %}>  
   {% include 'js-gtm-body' %}
-
   {% section 'config_labels' %}
-
   {% section 'add-on-products' %}
-
   <div class="de-PageWrap de-Drawer-wrap js-de-PageWrap js-de-Drawer-wrap">
     {% assign pages_to_show = settings.exception_page_handle | split: ',' %}
     {% assign page_exception = false %}
@@ -329,16 +176,12 @@
       {% unless settings.hide_header == true %}
         {% section 'header-megatab' %}
       {% endunless %}
-
       {% if settings.ajax_cart_method == "drawer" %}
         {% include 'compositions-ajax-cart-drawer' %}
       {% endif %}
-
     	{% if settings.use_gateway == true and template == "index" %}
-
         {% include 'gateway' %}
     	{% endif %}
-
   <!--  <div id="PageContainer" class="is-moved-by-drawer"> -->
       <div class="de-PageWrap-main" {% if settings.hide_header == true %}style="padding-top: 0;"{% endif %}>
         <div>
@@ -358,19 +201,14 @@
       </div>
     {% endif %}
  </div>
-
-
   <!-- For Lazyloading -->
   <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.4.0/dist/lazyload.min.js"></script>
-
   {{ 'timber.js' | asset_url | script_tag }}
   {% include 'polyfills' %}
   {% if settings.use_persistent_cart %}
     <script defer type="module" src="{{ 'built-persistent-cart.js' | asset_url }}"></script>
   {% endif %}
-
   {% comment %}{% include '_live-search' %}{% endcomment %}
-
   {% comment %}
     Template-specific js
   {% endcomment %}
@@ -381,7 +219,6 @@
       });
     {% endif %}
   </script>
-
   {% comment %}
     Ajaxify your cart with this plugin.
     Documentation:
@@ -408,24 +245,21 @@
         // Bind to 'ajaxCart.afterCartLoad' to run any javascript after the cart has loaded in the DOM
         timber.RightDrawer.open();
       });
-
     </script>
   {% endif %}
-
   {{ 'slick.min.js' | asset_url | script_tag }}
   {{ 'js.cookie.min.js' | asset_url | script_tag }}
-
   {% if pageUsesAppMate %}
+    <!-- Wishlist -->
+    {% include 'compositions-appmate-wishlist-king' %}
     <script>
     ;(function(window, $, Cookies) {
     $(function() {
-
       // Alan - 030618 - added for native app to clear localStorage
       if (Cookies.get('noLocalStorage')) {
         localStorage.clear();
         Cookies.remove('noLocalStorage');
       }
-
     try {
       Appmate.wk.ready(function(data) {
         Cookies.set('helpdesk', {
@@ -434,17 +268,14 @@
         }, { domain: '.decathlon.com' });
       });
     } catch(e) {}
-
     });
     })(window, jQuery, Cookies);
     </script>
   {% endif %}
-
   {% comment %}
   {{ 'zoom.js' | asset_url | script_tag }}
   {{ 'transition.js' | asset_url | script_tag }}
   {% endcomment %}
-
   {% comment %}
   We are always loading the legacy version of decathlon.js
   because it needs to be executed synchronously, blocking html parsing,
@@ -452,20 +283,14 @@
   {% endcomment %}
   {{ 'built-decathlon-legacy.js' | asset_url | script_tag }}
   {{ 'patterns-toolkit.js' | asset_url | script_tag }}
-
   {% include 'layout-template-scripts' %}
-
   {% comment %}{% include 'decathlon-wishlist' %}{% endcomment %}
   {% comment %}{% include 'zendesk-chat' %}{% endcomment %}
-
   {% include 'add-to-cart-wishlist-swap' %}
-
   {% if shop.metafields.customers.api_endpoint %}
     <div id="decathlon-customer-api" data-api-root="{{ shop.metafields.customers.api_endpoint }}"></div>
   {% endif %}
-
   <script>window.shipStates = ['all'];</script>
-
   <script type="text/javascript">
 	  var mouseflowCrossDomainSupport = true;
 	  window._mfq = window._mfq || [];
@@ -476,7 +301,6 @@
 		  document.getElementsByTagName("head")[0].appendChild(mf);
 	  })();
   </script>
-
   <script>
     window.translations = window.translations || {};
     window.translations.add_to_cart_drawer = {
@@ -502,14 +326,12 @@
     };
     window.add_to_cart_drawer_enabled = {{ settings.add_to_cart_drawer_enabled }};
   </script>
-
   {% comment %}
     Capture a customer ID (will be undefined if there's not a customer yet, but that's good).
     Used by Persistent Cart JS
   {% endcomment %}
   <input type="hidden" class="js-de-cart-count" value="{{ cart.item_count }}">
   <input type="hidden" class="js-de-cid" value="{{ customer.id }}">
-
   <script type="text/javascript">
     (function() {
       var avm = document.createElement('script'); avm.type = 'text/javascript'; avm.async = true;
@@ -519,9 +341,7 @@
   </script>
   {% include 'js-jsonld-sitelinks-searchbox' %}
   <script src="//instant.page/5.1.0" type="module" integrity="sha384-by67kQnR+pyfy8yWP4kPO12fHKRLHZPfEsiSXR8u2IKcTdxD805MGUXBzVPnkLHw"></script>
-  
  {% include 'smile-initializer' %}
-
 {% include 'insider' %} 
  </body>
 </html>

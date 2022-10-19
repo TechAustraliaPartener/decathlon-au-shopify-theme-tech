@@ -1,0 +1,299 @@
+{% assign template = 'index' %}
+{%- assign pageUsesAppMate = settings.app_wk_enabled -%}
+{%- if template == 'index' or template contains 'collection.' or template == 'search' or template == 'cart' -%}
+  {%- assign pageUsesAppMate = false -%}
+{%- elsif template == 'product' and product.metafields.global.features != blank -%}
+  {% comment %} New Product Page {% endcomment %}
+  {% assign pageUsesAppMate = true %}
+{%- endif -%}
+{% comment %} For Google Tag Manager {% endcomment %}
+{% include 'helpers-template-name' %}
+
+<!doctype html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="ie9 no-js" lang="en"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  
+
+  <!-- Basic page needs ================================================== -->
+  {% include 'helpers-template-head' 
+  shop: shop
+  canonical_url: canonical_url
+  page_image: page_image
+  image: image
+  page_title: page_title
+  settings: settings
+ %}
+ {% include 'helpers-template-head-scripts' 
+  template: template
+%}
+<!-- Qr redirect ================================================== -->
+{% if shop.url == 'https://www.decathlon.com' %}
+{% assign qrRedirectUrl = 'https://shopify-decathlon-proxy-p.herokuapp.com' %}
+{% else %}
+{% assign qrRedirectUrl = 'https://shopify-decathlon-proxy-s.herokuapp.com' %}
+{% endif %}
+<script type="text/javascript">
+(function() {
+var pathname = window.location.pathname;
+if (pathname.substring(0, 3) === '/qr') {
+  window.location = "{{qrRedirectUrl}}" + pathname;
+}
+})();
+</script>
+<script type="text/javascript">
+window.mapMarkerActiveIcon = "{{'map-marker-active.png' | asset_url}}";
+window.mapMarkerInactiveIcon = "{{'map-marker-inactive.png' | asset_url}}";
+</script>
+<script defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkXb918cp932bUuHutJiiGOH5yAIZttQM&libraries=places&callback=handleCallback">
+</script>
+<script type="text/javascript">
+window.handleCallback = function() {
+  console.log('Places API successfully loaded');
+};
+</script>
+
+  {{ content_for_header }}
+  {% include 'components-critical-article' 
+      type: 'js'%}
+  
+  {% if template == 'search' and settings.show_recently_viewed_carousel_on_search_page %}
+    {% assign display_recently_viewed = true %}
+  {% endif %}
+  {% if template == 'collection' and settings.show_recently_viewed_carousel_on_collection_page %}
+    {% assign display_recently_viewed = true %}
+    {{ 'built-recently-viewed.css' | asset_url | stylesheet_tag }}
+  {% endif %}
+  <!-- Header hook for plugins ================================================== -->
+  {{ content_for_header }}
+  {% include 'js-rollbar-init' %}
+  {% include 'oldIE-js' %}
+  <script src="{{ 'jquery.min.js' | asset_url }}" defer></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+  <script src="{{ 'modernizr.min.js' | asset_url }}" defer></script>
+  <script>
+    jQuery(function() {
+      CartJS.init({{ cart | json }}, {
+        dataAPI: true,
+        currency: '{{ shop.currency }}',
+        moneyFormat: '{{ shop.money_format }}',
+        moneyWithCurrencyFormat: '{{ shop.money_with_currency_format }}',
+        weightUnit: 'kg',
+        weightPrecision: 1
+      });
+    });
+  </script>
+  {% include 'js-global-variables' %}
+  {% include 'js-dmp-tag' %}
+  {% if settings.use_alternate_banner == false %}
+    <!--
+      * The intent of this block is to render (3) preload links
+      * containing the background banner image URLs, which are used
+      * for templates/index.liquid only. <link rel="preload"> elements
+      * must be placed with the <head> block, and so the following variables
+      * are repeated: [slideName, slideImage, banner_bg_image_size,
+      * banner_bg_image]. Any changes made to these variables should also
+      * be updated within templates/index.liquid.
+-->
+    {% if template contains 'index' %}
+      {% for i in (1..3) %}
+        {% assign slideName = 'homepage_main_banner_' | append: i | append: '_'  %}
+        {% assign slideImage = slideName | append: 'background_image.jpg'  %}
+        {% assign banner_bg_image_size = '1600x' %}
+        {% assign banner_bg_image = slideImage | asset_img_url: banner_bg_image_size, format: 'pjpg' %}
+        <link rel="preload" href="{{ banner_bg_image }}" as="image">
+      {% endfor %}
+    {% endif %}
+  {% endif %}
+  <!-- script for Minubo -->
+  <script>
+   window.dataLayer = window.dataLayer || [];
+   dataLayer.push({
+      'random': Math.random().toString(36).substr(2,9),
+      'timestamp': new Date().getTime(),
+      'page_title': '{{ page_title }}',
+      'page_template': '{{template}}',
+      'product_id': '{{ product.id }}',
+      'product_price': '{{ product.price }}',
+      'product_type': '{{ product.type }}',
+      'product_collections': '{{ product.collections }}',
+      'product_available': '{{ product.available }}',
+      'email_user': '{{customer.email}}',
+      'customer_id': '{{customer.id}}',
+      'cart_amount': '{{cart.total_price}}',
+      'cart_products': '{{cart.items}}'
+   });
+  </script>
+  <script>
+    // Adeptmind script overrides the global replaceState with a new one that only
+    // intermittently works, so this script preserves the original
+    // Include this even without Adeptmind, because other scripts in the theme use it.
+    window.realReplaceState = history.replaceState.bind(window.history)
+  </script>
+
+  {% render 'shogun-head' %}
+  {% render 'customer-fields', customer_api: true, version: '4.3.2' %}
+  {% include 'ufe-offer' %}
+
+    <!-- REAMAZE INTEGRATION START - DO NOT REMOVE -->
+{% render 'reamaze-config' %}
+{% render 'reamaze-sso' %}
+<!-- REAMAZE INTEGRATION END - DO NOT REMOVE -->
+{% include 'insider' with 'head' %}
+ </head>
+ </head>
+{% comment %}
+  Add the page template as a class for easy page or template specific styling.
+<{% endcomment %}
+<body>
+  {{ content_for_layout }}
+  
+  <!-- For Lazyloading -->
+  <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.4.0/dist/lazyload.min.js"></script>
+  <script defer src="timber.js"></script>
+  
+  {% include 'polyfills' %}
+  {% if settings.use_persistent_cart %}
+    <script defer type="module" src="{{ 'built-persistent-cart.js' | asset_url }}"></script>
+  {% endif %}
+  {% comment %}{% include '_live-search' %}{% endcomment %}
+  {% comment %}
+    Template-specific js
+  {% endcomment %}
+  <script>
+    {% if resetPassword %}
+      $(function() {
+        timber.resetPasswordSuccess();
+      });
+    {% endif %}
+  </script>
+  {% comment %}
+    Ajaxify your cart with this plugin.
+    Documentation:
+      - http://shopify.com/timber#ajax-cart
+  {% endcomment %}
+  {% if settings.ajax_cart_method == "drawer" %}
+    <script defer src="handlebars.min.js"></script>
+
+    {% include 'compositions-ajax-cart-template' %}
+    <script defer src="ajax-cart.js"></script>
+    <script>
+      jQuery(function($) {
+        if ($('.timber-activeProduct').length > 0) {
+          ajaxCart.init({
+            formSelector: '.addToCartForm',
+            cartContainer: '#CartContainer',
+            addToCartSelector: '.addToCart',
+            cartCountSelector: '#CartCount',
+            cartCostSelector: '#CartCost',
+            moneyFormat: {{ shop.money_format | json }}
+          });
+        }
+      });
+      jQuery('body').on('ajaxCart.afterCartLoad', function(evt, cart) {
+        // Bind to 'ajaxCart.afterCartLoad' to run any javascript after the cart has loaded in the DOM
+        timber.RightDrawer.open();
+      });
+    </script>
+  {% endif %}
+    <script defer src="slick.min.js"></script>
+    <script defer src="js.cookie.min.js"></script>
+  
+  {% if pageUsesAppMate %}
+    <!-- Wishlist -->
+    {% include 'compositions-appmate-wishlist-king' %}
+    <script>
+    ;(function(window, $, Cookies) {
+    $(function() {
+      // Alan - 030618 - added for native app to clear localStorage
+      if (Cookies.get('noLocalStorage')) {
+        localStorage.clear();
+        Cookies.remove('noLocalStorage');
+      }
+    try {
+      Appmate.wk.ready(function(data) {
+        Cookies.set('helpdesk', {
+          cartCount: {{ cart.item_count }},
+          wishlistCount: Appmate.wk.collection.items.length
+        }, { domain: '.decathlon.com' });
+      });
+    } catch(e) {}
+    });
+    })(window, jQuery, Cookies);
+    </script>
+  {% endif %}
+  {% comment %}
+  {{ 'zoom.js' | asset_url | script_tag }}
+  {{ 'transition.js' | asset_url | script_tag }}
+  {% endcomment %}
+  {% comment %}
+  We are always loading the legacy version of decathlon.js
+  because it needs to be executed synchronously, blocking html parsing,
+  because inline scripts depend on it
+  {% endcomment %}
+  {{ 'built-decathlon-legacy.js' | asset_url | script_tag }}
+  {{ 'patterns-toolkit.js' | asset_url | script_tag }}
+  {% include 'layout-template-scripts' %}
+  {% comment %}{% include 'decathlon-wishlist' %}{% endcomment %}
+  {% comment %}{% include 'zendesk-chat' %}{% endcomment %}
+  {% include 'add-to-cart-wishlist-swap' %}
+  {% if shop.metafields.customers.api_endpoint %}
+    <div id="decathlon-customer-api" data-api-root="{{ shop.metafields.customers.api_endpoint }}"></div>
+  {% endif %}
+  <script>window.shipStates = ['all'];</script>
+  <script type="text/javascript">
+	  var mouseflowCrossDomainSupport = true;
+	  window._mfq = window._mfq || [];
+	  (function() {
+		  var mf = document.createElement("script");
+		  mf.type = "text/javascript"; mf.async = true;
+		  mf.src = "//cdn.mouseflow.com/projects/3c536446-71f3-4a65-8c6e-6e254c934dff.js";
+		  document.getElementsByTagName("head")[0].appendChild(mf);
+	  })();
+  </script>
+  <script>
+    window.translations = window.translations || {};
+    window.translations.add_to_cart_drawer = {
+      line_one: '{{ settings.add_to_cart_drawer_line_1 }}',
+      line_two: '{{ settings.add_to_cart_drawer_line_2 }}',
+      line_three: '{{ settings.add_to_cart_drawer_line_3 }}'
+    };
+    window.translations.product_stock = {
+      retrieving_stock: "{{ 'products.product.retrieving_stock' | t }}",
+      stock_data_not_available: "{{ 'products.product.stock_data_not_available' | t }}",
+      out_of_stock: "{{ 'products.product.out_of_stock' | t }}",
+      in_stock: "{{ 'products.product.in_stock' | t }}",
+      low_stock: "{{ 'products.product.low_stock' | t }}",
+      pickup_only: "{{ 'products.product.pickup_only' | t }}",
+      oversell_available: "{{ 'products.product.oversell_available' | t }}",
+      oversell_eta: "{{ 'products.product.oversell_eta' | t }}",
+      oversell_cart: "{{ 'products.product.oversell_cart' | t }}",
+      giftcards_cart: "{{ 'products.product.giftcards_cart' | t }}",
+      oversell_click_and_collect: "{{ 'products.product.oversell_click_and_collect' | t }}",
+    };
+    window.translations.product_availability = {
+      delivery_duration: "{{ 'product_availability.delivery_duration' | t }}"
+    };
+    window.add_to_cart_drawer_enabled = {{ settings.add_to_cart_drawer_enabled }};
+  </script>
+  {% comment %}
+    Capture a customer ID (will be undefined if there's not a customer yet, but that's good).
+    Used by Persistent Cart JS
+  {% endcomment %}
+  <input type="hidden" class="js-de-cart-count" value="{{ cart.item_count }}">
+  <input type="hidden" class="js-de-cid" value="{{ customer.id }}">
+  <script type="text/javascript">
+    (function() {
+      var avm = document.createElement('script'); avm.type = 'text/javascript'; avm.async = true;
+      avm.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdn.avmws.com/1016785/';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(avm, s);
+    })();
+  </script>
+  {% include 'js-jsonld-sitelinks-searchbox' %}
+  <script defer src="//instant.page/5.1.0" type="module" integrity="sha384-by67kQnR+pyfy8yWP4kPO12fHKRLHZPfEsiSXR8u2IKcTdxD805MGUXBzVPnkLHw"></script>
+ {% include 'smile-initializer' %}
+{% include 'insider' %} 
+</body>
+</html>

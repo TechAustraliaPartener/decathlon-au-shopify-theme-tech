@@ -1,0 +1,46 @@
+<!-- For Google Tag Manager -->
+{% include 'helpers-template-name' %}
+<!DOCTYPE html>
+<html>
+  <head>
+    {% include 'js-gtm-datalayer-visit' %}
+    {% include 'js-gtm-head' %}
+    <!-- Basic page needs ================================================== -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+  
+    {{ content_for_header }}
+      <!-- Critical CSS -->
+    {% include 'components-critical-home' 
+      type: 'both'%}
+    <meta name="robots" content="noindex">
+
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      dataLayer.push({
+         'random': Math.random().toString(36).substr(2,9),
+         'timestamp': new Date().getTime(),
+         'page_title': '{{ page_title }}',
+         'page_template': '{{template}}',
+         'product_id': '{{ product.id }}',
+         'product_price': '{{ product.price }}',
+         'product_type': '{{ product.type }}',
+         'product_collections': '{{ product.collections }}',
+         'product_available': '{{ product.available }}',
+         'email_user': '{{customer.email}}',
+         'customer_id': '{{customer.id}}',
+         'cart_amount': '{{cart.total_price}}',
+         'cart_products': '{{cart.items}}'
+      });
+     </script>
+  
+  {% render 'shogun-head' %}
+</head>
+  <body>
+    {% include 'js-gtm-body' %}
+    <main role="main">
+      {{ content_for_layout }}
+    </main>
+  </body>
+ </html>

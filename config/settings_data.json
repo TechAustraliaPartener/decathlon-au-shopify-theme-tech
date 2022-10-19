@@ -31,10 +31,11 @@
     "header_support_link": "https:\/\/decathlon.com.au\/pages\/contact-and-help",
     "header_store_label": "Find a Store",
     "header_sign_in_label": "Login",
-    "megamenu_image": "shopify:\/\/shop_images\/Fitness_COOP_360_x_360.jpg",
-    "megamenu_title": "Shop Fitness Spring Sale",
-    "megamenu_subtitle": "Find Your Fit With Decathlon",
-    "megamenu_link": "shopify:\/\/collections\/spring-fitness-sale",
+    "megamenu_set_for_all": "default",
+    "megamenu_image": "shopify:\/\/shop_images\/Price_Drops_300_x_300_2dc9364d-cf99-4e87-9b2f-af302abbc4a2.jpg",
+    "megamenu_title": "Shop Our Range of Price Drops",
+    "megamenu_subtitle": "Starting from $6",
+    "megamenu_link": "shopify:\/\/collections\/price-drop",
     "megamenu_bg_colour": "#1c82c3",
     "custom_fields_terms_conditions": "I agree to the <a href=\"\/pages\/terms-and-conditions-membership\" target=\"_blank\">T&Cs<\/a> and <a href=\"\/pages\/privacy-policy\" target=\"_blank\">Privacy Policy<\/a> for creating an account.",
     "is_lookbook": false,
@@ -1540,18 +1541,19 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
-          "3e042199-9da3-4514-87ba-d462754ab771": {
+          "79522152-c757-4b60-a1be-2d1e49198982": {
             "type": "slide",
+            "disabled": true,
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_ed30b8f1-1898-4b4b-8dbb-a29164ec1e0d.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/Weekend_Deals_1440_x_789px_124063f6-5f8f-4515-b982-2fec7e405154.jpg",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_1dec3cd3-eef0-464e-90a7-6c9865979913.jpg",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Weekend_Deals_478_x_300px_5c3121fe-a399-4064-ae83-2585dc969218.jpg",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
               "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/pages\/fitness-spring-sale",
-              "link_title": "Fitness Spring Deals",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/weekend-deal-1-oct?q=&hPP=24&idx=shopify_products_price_desc&p=0&is_v=1",
+              "link_title": "Shop Crazy Weekend Deals",
               "link_new_window": false
             }
           },
@@ -1582,6 +1584,21 @@
               "button_title": "",
               "link_url": "shopify:\/\/collections\/cycling-clothing-bike-accessories",
               "link_title": "Shop $20 off Cycling Clothing & Accessories",
+              "link_new_window": false
+            }
+          },
+          "3e042199-9da3-4514-87ba-d462754ab771": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Easybreath_Mask_1440_x_789px.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Easybreath_Mask_478_x_300px.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/price-drop?q=&hPP=24&idx=shopify_products&p=0&dFR%5Bvendor%5D%5B0%5D=SUBEA&is_v=1",
+              "link_title": "Shop Easybreath Snorkel Mask",
               "link_new_window": false
             }
           },
@@ -1628,22 +1645,6 @@
               "button_title": "",
               "link_url": "https:\/\/decathlon.com.au\/collections\/road-bikes",
               "link_title": "",
-              "link_new_window": false
-            }
-          },
-          "79522152-c757-4b60-a1be-2d1e49198982": {
-            "type": "slide",
-            "disabled": true,
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Weekend_Deals_1440_x_789px_124063f6-5f8f-4515-b982-2fec7e405154.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Weekend_Deals_478_x_300px_5c3121fe-a399-4064-ae83-2585dc969218.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/collections\/weekend-deal-24-sep?q=&hPP=24&idx=shopify_products_price_desc&p=0&is_v=1",
-              "link_title": "Shop Crazy Weekend Deals",
               "link_new_window": false
             }
           },
@@ -1729,13 +1730,13 @@
           }
         },
         "block_order": [
-          "3e042199-9da3-4514-87ba-d462754ab771",
+          "79522152-c757-4b60-a1be-2d1e49198982",
           "145847d3-2db7-45f7-8ef6-38db22a4156a",
           "85c47718-39c5-4752-aa58-3e34ef8c0a97",
+          "3e042199-9da3-4514-87ba-d462754ab771",
           "579ee1c6-8cb9-4350-95e5-fb83a1397d90",
           "0e3f284b-4302-4200-8eb1-f98ce34415af",
           "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b",
-          "79522152-c757-4b60-a1be-2d1e49198982",
           "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb",
           "748c6a7e-732f-486d-a653-eb425a670bc5",
           "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9",
@@ -2204,10 +2205,9 @@
       },
       "163487525380dd83d2": {
         "type": "featured_collection",
-        "disabled": true,
         "settings": {
-          "title": "Run Your Race this Marathon Season with Decathlon",
-          "section_collection": "running-shoes"
+          "title": "Shop our range camping gear",
+          "section_collection": "camping-gear"
         }
       },
       "16375487170499d43e": {
@@ -2264,10 +2264,9 @@
       },
       "1650950354346fb7a1": {
         "type": "featured_collection",
-        "disabled": true,
         "settings": {
-          "title": "Swim into Spring with Decathlon",
-          "section_collection": "swimming"
+          "title": "Clearer Under Water",
+          "section_collection": "swimming-goggles"
         }
       },
       "16509507269dac2990": {
@@ -2279,6 +2278,7 @@
       },
       "1650960580e9623e99": {
         "type": "featured_collection",
+        "disabled": true,
         "settings": {
           "title": "Find Your Fit With Decathlon - Sale On Now",
           "section_collection": "spring-fitness-sale"
@@ -2305,19 +2305,40 @@
           "title": "Spend $100, get $20 off selected Cycling Clothing & Accessories",
           "section_collection": "cycling-clothing-bike-accessories"
         }
+      },
+      "header-megatab": {
+        "type": "header-megatab",
+        "blocks": {
+          "373c21e9-d7f3-448a-b99a-756ca60e545b": {
+            "type": "tab-callout",
+            "settings": {
+              "megamenu_parent": "fitness-health",
+              "display_callout": true,
+              "megamenu_image": "shopify:\/\/shop_images\/Running_2_360_x_360px.jpg",
+              "megamenu_title": "Last Call",
+              "megamenu_subtitle": "End of Season Deals",
+              "megamenu_link": "https:\/\/decathlon.com.au\/collections\/running-shoes",
+              "megamenu_bg_colour": "#1c82c3"
+            }
+          }
+        },
+        "block_order": [
+          "373c21e9-d7f3-448a-b99a-756ca60e545b"
+        ],
+        "settings": {}
       }
     },
     "content_for_index": [
       "1568939434006",
       "163107170023281063",
       "16316085202ea5cf79",
-      "1650960580e9623e99",
-      "166270596352f8a275",
       "16509507269dac2990",
-      "165115029729e3ba5b",
-      "1642116157c0ce923f",
       "1650950354346fb7a1",
+      "166270596352f8a275",
       "163487525380dd83d2",
+      "165115029729e3ba5b",
+      "1650960580e9623e99",
+      "1642116157c0ce923f",
       "16375487170499d43e",
       "1651153473715f6dc1",
       "163107313302287377"

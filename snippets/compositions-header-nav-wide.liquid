@@ -21,7 +21,60 @@
         </div>
       </div>
       <div class="de-u-size1of5 de-u-xl-size1of6 de-u-bgWhite">
-        {% include 'compositions-header-nav-wide-extras' %}
+        {% assign callout_count = 0 %}
+
+        {% for block in callout_blocks %}
+          {% if block.settings.megamenu_parent == link.handle %}
+            {% assign callout_count = callout_count | plus: 1 %}
+          {% endif %}
+        {% endfor %}
+        {% if settings.megamenu_set_for_all == "override" %}
+          {% include 'compositions-header-nav-wide-extras'
+            img: settings.megamenu_image
+            title: settings.megamenu_title
+            subtitle: settings.megamenu_subtitle
+            callout_link: settings.megamenu_link
+            bg_colour: settings.megamenu_bg_colour
+          %}
+        {% else %}
+          {% if settings.megamenu_set_for_all != "override" and callout_count > 0 %}
+            {% for block in callout_blocks %}
+            {% if block.settings.display_callout and block.settings.megamenu_parent == link.handle%}
+                {% if block.settings.megamenu_image != blank %}
+                  {% include 'compositions-header-nav-wide-extras'
+                    img: block.settings.megamenu_image
+                    title: block.settings.megamenu_title
+                    subtitle: block.settings.megamenu_subtitle
+                    callout_link: block.settings.megamenu_link
+                    bg_colour: block.settings.megamenu_bg_colour
+                  %}
+                {% else%}
+                {% if settings.megamenu_set_for_all == "default" %}
+                    {% include 'compositions-header-nav-wide-extras'
+                      img: settings.megamenu_image
+                      title: settings.megamenu_title
+                      subtitle: settings.megamenu_subtitle
+                      callout_link: settings.megamenu_link
+                      bg_colour: settings.megamenu_bg_colour
+                    %}
+                  {% endif %}
+                {% endif %}
+              {% elsif block.settings.display_callout == false and block.settings.megamenu_parent == link.handle%}
+                <div class="de-u-sizeFull"></div>
+              {% endif %}
+            {% endfor %}
+          {% else %}
+              {%if settings.megamenu_set_for_all == "default" %}
+                {% include 'compositions-header-nav-wide-extras'
+                  img: settings.megamenu_image
+                  title: settings.megamenu_title
+                  subtitle: settings.megamenu_subtitle
+                  callout_link: settings.megamenu_link
+                  bg_colour: settings.megamenu_bg_colour
+                %}
+            {% endif %}
+          {% endif %}
+        {% endif %}
       </div>
     </div>
   </nav>
@@ -44,3 +97,4 @@
     {% endfor %}
   </ul>
 </div>
+
