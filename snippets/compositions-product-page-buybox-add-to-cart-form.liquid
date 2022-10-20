@@ -43,11 +43,11 @@
       {% include 'compositions-product-price-crossed-out', variant: current_variant %}
       {% include 'compositions-product-price-rrp', variant: current_variant, product: product, tooltip_top: true, id: true %}
     </div>
-    <span
+    {%- comment -%} <span
       class="de-u-textRed de-u-lineHeight2 de-u-textGrow2
              js-de-validation-message"
       aria-live="polite">
-    </span>
+    </span> {%- endcomment -%}
   </div>
 
   {% render 'createur_product_page_bnpl' %}

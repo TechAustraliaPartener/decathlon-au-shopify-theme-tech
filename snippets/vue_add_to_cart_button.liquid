@@ -1,6 +1,6 @@
 <div id="addToCartButton" v-cloak>
+  {%- comment -%} Remove artificially_unavailable since it's not needed anymore after removing dependence to TomIT {%- endcomment -%}
   {% raw %}
-    {%- comment -%} Remove artificially_unavailable since it's not needed anymore after removing dependence to TomIT {%- endcomment -%}
     <button 
       v-bind:disabled="!available && (tagged_bis_hidden) && is_size_selected"
       v-bind:class="{ alt: !(!available && (!tagged_bis_hidden) && is_size_selected) }"
