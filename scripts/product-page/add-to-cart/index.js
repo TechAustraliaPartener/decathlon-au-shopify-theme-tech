@@ -165,9 +165,10 @@ const render = ({
       regardless of the availability of `addToCartButtonEl` or `addToCartButtonTextEl` */
   // console.log('render')
 
-  if (validationTextEl) {
-    validationTextEl.textContent = validationText;
-  }
+  // Hide Out of Stock
+  // if (validationTextEl) {
+  //   validationTextEl.textContent = validationText;
+  // }
 
   if (stockMessageTextEl && stockMessageTextEl.textContent && validationTextEl.textContent !== '') {
     stockMessageTextEl.textContent = '';

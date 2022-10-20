@@ -87,7 +87,7 @@ const initVueATC = () => {
           (delivery.available === 0 && variantIsAllowedToOversell === false) &&
           variantIsNonInventory === false
         ) {
-          $('.js-de-validation-message').text('Out of stock');
+          // $('.js-de-validation-message').text('Out of stock');
         }
 
         const availablePerLocation = filteredLocations.map(location => {
