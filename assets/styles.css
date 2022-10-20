@@ -2,3 +2,7 @@
   display: inline-flex;
   width: 100%;
 }
+
+.de-ProductPageTopShelf .de-ProductPageTopShelf-fulfillment {
+  border-bottom: 3px solid #ffea28;
+}

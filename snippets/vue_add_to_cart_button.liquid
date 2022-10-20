@@ -1,9 +1,10 @@
 <div id="addToCartButton" v-cloak>
   {% raw %}
+    {%- comment -%} Remove artificially_unavailable since it's not needed anymore after removing dependence to TomIT {%- endcomment -%}
     <button 
-      v-bind:disabled="!available && (tagged_bis_hidden || artificially_unavailable) && is_size_selected"
-      v-bind:class="{ alt: !(!available && (!tagged_bis_hidden || !artificially_unavailable) && is_size_selected) }"
-      v-on:click="showModal(id, (!available && (!tagged_bis_hidden || !artificially_unavailable) && is_size_selected), $event)"
+      v-bind:disabled="!available && (tagged_bis_hidden) && is_size_selected"
+      v-bind:class="{ alt: !(!available && (!tagged_bis_hidden) && is_size_selected) }"
+      v-on:click="showModal(id, (!available && (!tagged_bis_hidden) && is_size_selected), $event)"
       type="submit"
       name="add"
       id="AddToCart"
@@ -13,7 +14,6 @@
       data-drawer-prevent-default="false">
       <span v-text="{% endraw %}available ? '{{ 'products.product.add_to_cart' | t }}' : !is_size_selected ?
         '{{ 'products.product.add_to_cart' | t }}' : tagged_bis_hidden ?
-        '{{ 'products.product.out_of_stock' | t }}' : artificially_unavailable ?
         '{{ 'products.product.out_of_stock' | t }}' : '{{ 'products.product.email_when_available' | t }}' {% raw %}">
         {% endraw %}{{ 'products.product.out_of_stock' | t }}{% raw %}
       </span>

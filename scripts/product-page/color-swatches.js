@@ -52,6 +52,8 @@ const onColorSelect = function() {
   });
 };
 
+// If there is only 1 color swatch, this will be triggered and will do a javascript
+// initiated click event to select the first color
 const selectSingleColorOptions = () => {
   if ($colorSwatchesOptions.length === 1) {
     $colorSwatchesOptions[0].click();
