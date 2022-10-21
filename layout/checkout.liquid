@@ -140,29 +140,6 @@
               will show and add UI functionality.
             {% endcomment %}
 
-            <div class="de-Grid de-Grid--withGutter" style="display:none;">
-              <div class="de-pickship-btn-container de-u-size1of2 de-u-spaceBottom">
-                <button class="btn js-de-toggle-shipping de-pickship-btn de-u-hidden">
-                  <span class="btn__content">{% include 'ship-icon' %} Delivery</span>
-                </button>
-              </div>
-              <div class="de-pickship-btn-container de-u-size1of2 de-u-spaceBottom">
-                <button class="btn js-de-toggle-pickup de-pickship-btn de-u-hidden">
-                  <span class="btn__content">{% include 'pickup-icon' %} Pickup in Store</span>
-                </button>
-              </div>
-            </div>
-
-            <div class="js-de-pickup-content de-pickup-content de-u-hidden">
-              <div class="js-de-pickup-location-map de-pickup-location-map">
-                <img src="{{ 'no-selection-map2.jpg' | asset_url }}" class="js-de-pickup-location-map-img de-pickup-location-map-img" alt="">
-              </div>
-              <h2 class="de-location-heading de-u-spaceTop2">Select location</h2>
-              <hr class="de-u-bgBlue de-location-hr de-u-spaceEnds2">
-              <ul class="js-de-pickup-locations de-pickup-locations de-Grid de-Grid--withGutter"></ul>
-              <hr class="de-u-bgLime de-location-hr de-u-spaceEnds2">
-            </div>
-
             {% if settings.show_reviewlink %}
               {% unless order.cancelled %}
                 {% capture thank_you_review_link %}{% include 'thankyou_review' %}{% endcapture %}
