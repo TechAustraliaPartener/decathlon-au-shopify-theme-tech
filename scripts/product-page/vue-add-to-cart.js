@@ -195,6 +195,7 @@ const initVueATC = () => {
         // Opens Back in Stock Popover Modal
         if (isEmailButton) {
           event.preventDefault();
+          
           window.BISPopover.show({ variantId: variantId });
 
           $('#addToCartButton .js-de-Drawer-toggle').attr("data-drawer-action", '');
@@ -209,6 +210,8 @@ const initVueATC = () => {
 
           return;
         } else {
+          console.log('addToCartDrawerEnabled');
+
           if (addToCartDrawerEnabled) {
             $('#addToCartButton .js-de-Drawer-toggle').attr("data-drawer-action", 'open');
           }

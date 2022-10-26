@@ -308,3 +308,9 @@ function show_review(parentEl, h, s) {
   parentEl.find('.btn-' + h).addClass('active');
   parentEl.find('.btn-' + s).removeClass('active');
 }
+
+$(window).on('load', function(){
+  console.log('done loading...')
+  // Hide the add to cart first and show it when the page has finished loading.
+  $('#addToCartButton').show();
+})
