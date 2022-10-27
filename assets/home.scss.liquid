@@ -2313,6 +2313,13 @@ body.is-rollingUpBanner .popup { margin-top: -100vh; }
   margin: 0;
   text-transform: uppercase;
   font-size: $space*.9;
+  display: flex;
+  justify-content: flex-start
+}
+
+.footerNav__child{
+  list-style: none;
+  margin: 0;
 }
 
 .mobile-footer .footerNav-item {
@@ -2321,7 +2328,12 @@ body.is-rollingUpBanner .popup { margin-top: -100vh; }
   width: 49.5%;
   text-align: left;
 }
-.footerNav-item { margin: 0 0 $space; }
+.footerNav-item { 
+  margin: 0 0 $space; 
+  max-width: 200px;
+}
+.footerNav>.footerNav-item{ padding: 0 0.5rem;}
+.footerNav-link.__header {font-weight: 700;}
 .footerNav-link { color: $colorFooterText; }
 .social-icons li { width: 3%; }
 

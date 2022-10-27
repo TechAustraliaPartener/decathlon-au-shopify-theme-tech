@@ -22,14 +22,23 @@ as blue-band is used on pages like https://decathlon.com.au/collections/womens-o
       {% if settings.footer_social_enable %}
         {% include 'compositions-footer-social', adtl_social_classes: ' large--one-third mobile-footer-social' %}
       {% endif %}
-      <ul class="grid--full footerNav mobile-footer-nav u-paddingTopBottom4x">
-        {% for link in linklists.footer.links %}
-        <li class="grid__item large--one-third medium--one-half footerNav-item{% if link.active %} footerNav-item--active{% endif %}">
-          <a href="{{ link.url }}" class="footerNav-link">{{ link.title }}</a>
-        </li>
-        {% endfor %}
-      </ul>
-      <div class="u-block mobile-footer-copyright footer-copyright">
+    <ul class="grid--full">
+      {% for link in linklists['footer'].links %}
+      <li class="grid__item">
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      </li>
+      {% if link.links != blank %}
+        <ul class="">
+          {% for child_link in link.links %}
+            <a href="{{ child_link.url }}" class="">{{ child_link.title }}</a>
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+      {% endfor %}
+    </ul>
+
+    <div class="u-block mobile-footer-copyright footer-copyright">
         <img class="u-marginLeft1x" src="{{ "afterpay.svg" | asset_url }}" alt="Afterpay"></a>
         <img class="u-marginLeft1x" src="{{ "zip-new1.svg" | asset_url }}" alt="Zip"></a>
         <img class="u-marginLeft1x" src="{{ "visa-new.svg" | asset_url }}" alt="VISA"></a>
@@ -45,11 +54,20 @@ as blue-band is used on pages like https://decathlon.com.au/collections/womens-o
     </div> <!-- end of mobile-footer -->
 
     <div class="grid--full desktop-footer">
-      <div class="grid__item large--six-tenths">
+      <div class="grid__item ">
         <ul class="grid--full footerNav">
           {% for link in linklists.footer.links %}
-          <li class="grid__item large--one-third medium--one-half footerNav-item{% if link.active %} footerNav-item--active{% endif %}">
-            <a href="{{ link.url }}" class="footerNav-link">{{ link.title }}</a>
+          <li class="grid__item footerNav-item">
+            <p class="footerNav-link __header">{{ link.title }}</a>
+            {% if link.links != blank %}
+              <ul class="footerNav__child">
+                {% for child_link in link.links %}
+                <li class="footerNav-item {% if link.active %} footerNav-item--active{% endif %}">
+                  <a href="{{ child_link.url }}" class="footerNav-link">{{ child_link.title }}</a>
+                </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
           </li>
           {% endfor %}
         </ul>
