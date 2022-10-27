@@ -24,12 +24,14 @@ as blue-band is used on pages like https://decathlon.com.au/collections/womens-o
       {% endif %}
     <ul class="grid--full mobile-footer footerNav__accordion u-paddingTopBottom4x">
       {% for link in linklists['footer'].links %}
-      <li class="grid__item footerNav-item">
-        <p class="footerNav-link footerNav__header">{{ link.title }}
-        {% include 'patterns-icons-chevron',
-        class: "de-MenuList-icon"
-        role: 'presentation' %}
-        </p>
+      <li class="grid__item footerNav-item -trigger">
+        <div class="footerNav__header">
+          <p class="footerNav-link">{{ link.title }}
+          {% include 'patterns-icons-chevron',
+          class: "de-MenuList-icon"
+          role: 'presentation' %}
+          </p>
+        </div>
         {% if link.links != blank %}
           <ul class="footerNav__content footerNav__child">
             {% for child_link in link.links %}
@@ -127,4 +129,15 @@ as blue-band is used on pages like https://decathlon.com.au/collections/womens-o
 var sports = [{%- for link in linklists['all-sports'].links -%}
 { "title": "{{ link.object.title | capitalize }}", "url": "{{ link.object.url }}", "image": "{{ link.object.title | downcase | prepend: 'sportsSearch-' | append: '.jpg' | file_url }}" }{%- if forloop.last != true -%},{%- endif -%}
 {%- endfor -%}]
+
+document.addEventListener('DOMContentLoaded', () => {
+  const triggers = document.querySelectorAll('.footerNav__header')
+//.footerNav__accordion>
+  for (const trigger of triggers) {
+    trigger.addEventListener('click', function(){
+      this.parentElement.classList.toggle('expanded')
+    })
+  }
+})
+
 </script>
