@@ -22,18 +22,25 @@ as blue-band is used on pages like https://decathlon.com.au/collections/womens-o
       {% if settings.footer_social_enable %}
         {% include 'compositions-footer-social', adtl_social_classes: ' large--one-third mobile-footer-social' %}
       {% endif %}
-    <ul class="grid--full">
+    <ul class="grid--full mobile-footer footerNav__accordion u-paddingTopBottom4x">
       {% for link in linklists['footer'].links %}
-      <li class="grid__item">
-        <a href="{{ link.url }}">{{ link.title }}</a>
+      <li class="grid__item footerNav-item">
+        <p class="footerNav-link footerNav__header">{{ link.title }}
+        {% include 'patterns-icons-chevron',
+        class: "de-MenuList-icon"
+        role: 'presentation' %}
+        </p>
+        {% if link.links != blank %}
+          <ul class="footerNav__content footerNav__child">
+            {% for child_link in link.links %}
+              <li class="footerNav-item {% if link.active %} footerNav-item--active{% endif %}">
+                <a href="{{ child_link.url }}" class="footerNav-link">{{ child_link.title }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+          <hr class="footerNav__hr">
+        {% endif %}
       </li>
-      {% if link.links != blank %}
-        <ul class="">
-          {% for child_link in link.links %}
-            <a href="{{ child_link.url }}" class="">{{ child_link.title }}</a>
-          {% endfor %}
-        </ul>
-      {% endif %}
 
       {% endfor %}
     </ul>
