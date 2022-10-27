@@ -143,11 +143,14 @@ const onAddToCartClick = event => {
 };
 
 export const onVariantSelect = newVariant => {
+
+  // console.log('onVariantSelect')
+  // console.log(getUIState(newVariant));
+
   state.updateState({
     ...DEFAULT_MODULE_STATE,
     ...getUIState(newVariant),
     currentVariant: newVariant,
-
   });
 };
 
@@ -160,9 +163,12 @@ const render = ({
 }) => {
   /*  Give priority to the error messages. This ensures the UI gets updated
       regardless of the availability of `addToCartButtonEl` or `addToCartButtonTextEl` */
-  if (validationTextEl) {
-    validationTextEl.textContent = validationText;
-  }
+  // console.log('render')
+
+  // Hide Out of Stock
+  // if (validationTextEl) {
+  //   validationTextEl.textContent = validationText;
+  // }
 
   if (stockMessageTextEl && stockMessageTextEl.textContent && validationTextEl.textContent !== '') {
     stockMessageTextEl.textContent = '';
@@ -176,6 +182,9 @@ const render = ({
   // }
 
   if (!addToCartButtonEl || !addToCartButtonTextEl) return;
+
+  // console.log('isAddToCartButtonDisabled || isLoading');
+  // console.log(isAddToCartButtonDisabled || isLoading);
 
   addToCartButtonEl.disabled = isAddToCartButtonDisabled || isLoading;
   const buttonText = isLoading ? 'Adding to cart' : addToCartButtonText;
