@@ -1676,6 +1676,9 @@ label.error {
   @include at-query ($min, $large) {
     padding: ($gutter * 2) 0;
   }
+  // .de-footer-icon {
+  //   fill: $colorFooterText;
+  // }
 }
 
 // Make accent color
@@ -2360,9 +2363,10 @@ body.is-rollingUpBanner .popup { margin-top: -100vh; }
 
 .mobile-footer .footerNav__hr {
   display: block;
-  width: 100;
+  width: 100%;
   margin: 0;
-  border: 0.5px solid inherit;
+  border-top: 0.5px solid $colorFooterText;
+  opacity: 0;
 }
 
 .mobile-footer .footerNav__content{

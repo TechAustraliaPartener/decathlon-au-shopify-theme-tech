@@ -1987,6 +1987,9 @@ label.error {
   @include at-query ($min, $large) {
     padding: ($gutter * 2) 0;
   }
+  // .de-footer-icon {
+  //   fill: $colorFooterText;
+  // }
 }
 
 /*============================================================================
@@ -2764,6 +2767,11 @@ input.btn:focus {
   text-align: center;
 }
 
+.mobile-footer .footerNav__content{
+  display: block;
+  width: 100%;
+}
+
 .state-dropdown-list {
   display: none;
   list-style: none;
@@ -3396,7 +3404,7 @@ body.is-rollingUpBanner .popup { margin-top: -100vh; }
 
 .site-footer { @include block(); z-index: 10; }
 
-.footerNav {
+.footerNav, .mobile-footer {
   font-family: $secondaryFontStack;
   list-style: none;
   letter-spacing: 1px;
@@ -3405,13 +3413,82 @@ body.is-rollingUpBanner .popup { margin-top: -100vh; }
   font-size: $space*.9;
 }
 
-.mobile-footer .footerNav-item {
-  display: inline-block;
-  vertical-align: top;
-  width: 49.5%;
-  text-align: left;
+.footerNav{
+  display: flex;
+  justify-content: flex-start;
 }
-.footerNav-item { margin: 0 0 $space; }
+
+.footerNav__child{
+  list-style: none;
+  margin: 0;
+  text-transform: capitalize;
+}
+
+.mobile-footer .footerNav__header {
+  display: block;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  position: relative;
+  font-size: 1rem;
+  height: 50px;
+  transition: 0.5s;
+  margin: 0;
+}
+.mobile-footer .footerNav__header .footerNav-link {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.mobile-footer .footerNav__header .footerNav-link { margin: 0 }
+.mobile-footer .footerNav__header .footerNav-link .de-Icon {
+  transform: rotate(90deg);
+  transition: 0.5s;
+}
+
+.mobile-footer .footerNav-item.-trigger.expanded .de-Icon {
+  transform: rotate(-90deg);
+}
+
+.mobile-footer .footerNav__hr {
+  display: block;
+  width: 100%;
+  margin: 0;
+  border-top: 0.5px solid $colorFooterText;
+  opacity: 0;
+}
+
+.mobile-footer .footerNav__content{
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  transition: 0.5s;
+}
+.mobile-footer .footerNav-item.-trigger.expanded>.footerNav__content {
+  height: fit-content;
+
+}
+
+
+.mobile-footer .footerNav-item{
+  display: block;
+  vertical-align: top;
+  width: 100%;
+  text-align: left;
+  max-width: none;
+  font-size: 1rem;
+  margin: 0;
+  min-height: 40px;
+}
+
+.footerNav-item { 
+  margin: 0 0 $space; 
+  max-width: 200px;
+}
+.footerNav>.footerNav-item{ padding: 0 0.5rem;}
+.footerNav-link.__header {font-weight: 700;}
 .footerNav-link { color: $colorFooterText; }
 .social-icons li { width: 3%; }
 
