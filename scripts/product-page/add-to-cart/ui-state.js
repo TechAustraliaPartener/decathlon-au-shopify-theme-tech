@@ -41,7 +41,6 @@ export const getShopifyErrorUIState = shopifyErrorMessage => {
   // https://app.gitbook.com/@decathlonusa/s/shopify/product-feature/product-page#inventory-cases
   if (isErrorScenario1(shopifyErrorMessage)) {
     if (isNonFollowedProduct()) {
-      // console.log('isNonFollowedProduct');
       return {
         ...defaultShopifyErrorUIState,
         addToCartButtonText: PRODUCT_PAGE_COPY.SOLD_OUT,
@@ -89,11 +88,8 @@ export const getShopifyErrorUIState = shopifyErrorMessage => {
 };
 
 export const getUIState = variant => {
-  // console.log('getUIState');
-
   if (!variant) {
     if (variants.every(isVariantOutOfStock)) {
-      // console.log('isVariantOutOfStock');
       //alert(window.vars.productJSON.tags.includes('clearance'));
       return {
         ...DEFAULT_UI_STATE,
@@ -110,7 +106,6 @@ export const getUIState = variant => {
   }
 
   if (isVariantSoldOut(variant)) {
-    // console.log('isVariantSoldOut');
     return {
       ...DEFAULT_UI_STATE,
       addToCartButtonText: PRODUCT_PAGE_COPY.SOLD_OUT,
@@ -121,8 +116,6 @@ export const getUIState = variant => {
   }
 
   if (isVariantOutOfStock(variant)) {
-    // console.log('isVariantOutOfStock');
-
     return {
       ...DEFAULT_UI_STATE,
       addToCartButtonText:
@@ -136,8 +129,6 @@ export const getUIState = variant => {
   }
 
   if (isVariantCC(variant)) {
-    // console.log('isVariantCC');
-
     return {
       ...DEFAULT_UI_STATE,
       addToCartButtonText: 'Click & Collect',

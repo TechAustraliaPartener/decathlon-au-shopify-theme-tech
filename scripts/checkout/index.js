@@ -9,7 +9,12 @@ import { getObjectFromSessionStorage } from '../utilities/storage';
  * Initialize custom JS functionality
  */
 const init = () => {
-  STATE.deliveryMethod = DELIVERY_METHODS.SHIP;
+  // Set delivery method - Default to ship, set pick if selection is stored.
+  if (getObjectFromSessionStorage('delivery_method') === 'pickup') {
+    STATE.deliveryMethod = DELIVERY_METHODS.PICKUP;
+  } else {
+    STATE.deliveryMethod = DELIVERY_METHODS.SHIP;
+  }
 
   // Look for preferred store in sessionStorage and set global state.
   if (getObjectFromSessionStorage('pickup_store')) {
@@ -35,8 +40,8 @@ const step = Shopify?.Checkout?.step;
 window.selectFirstVisibleRate = selectFirstVisibleRate;
 
 const { cartTotal, cartTotalWeight, freeShippingPriceThreshold, freeShippingWeightLimit } = window?.vars || {};
-// console.log(cartTotal, freeShippingPriceThreshold);
-// console.log(cartTotalWeight, freeShippingWeightLimit);
+console.log(cartTotal, freeShippingPriceThreshold);
+console.log(cartTotalWeight, freeShippingWeightLimit);
 
 if (step === 'shipping_method') {
   $(document).on('page:load page:change', () => {

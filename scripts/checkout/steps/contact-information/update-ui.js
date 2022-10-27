@@ -18,15 +18,25 @@ const { CLASSES, COPY } = config;
 const updateUI = () => {
   // Capture the current selected delivery method
   const deliveryMethod = STATE.deliveryMethod;
-
-  $('[data-address-field="company"]').show();
-  shipToggleBtn.classList.add(CLASSES.ACTIVE_SHIPPICK_BTN);
-  pickupToggleBtn.classList.remove(CLASSES.ACTIVE_SHIPPICK_BTN);
-  hideElements([pickupContent]);
-  hideElements([document.querySelector(SELECTORS.PICKUP_CONTINUE_BTN)]);
-  showElements(deliveryElements);
-  showElements([continueBtn, shippingAddressHeader, userAddressList]);
-  shippingAddressHeader.textContent = COPY.SHIPPING_ADDRESS_HEADING;
+  if (deliveryMethod === DELIVERY_METHODS.PICKUP) {
+    $('[data-address-field="company"]').hide();
+    pickupToggleBtn.classList.add(CLASSES.ACTIVE_SHIPPICK_BTN);
+    shipToggleBtn.classList.remove(CLASSES.ACTIVE_SHIPPICK_BTN);
+    hideElements(deliveryElements);
+    hideElements([continueBtn, shippingAddressHeader, userAddressList]);
+    showElements([pickupContent]);
+    showElements([document.querySelector(SELECTORS.PICKUP_CONTINUE_BTN)]);
+  }
+  if (deliveryMethod === DELIVERY_METHODS.SHIP) {
+    $('[data-address-field="company"]').show();
+    shipToggleBtn.classList.add(CLASSES.ACTIVE_SHIPPICK_BTN);
+    pickupToggleBtn.classList.remove(CLASSES.ACTIVE_SHIPPICK_BTN);
+    hideElements([pickupContent]);
+    hideElements([document.querySelector(SELECTORS.PICKUP_CONTINUE_BTN)]);
+    showElements(deliveryElements);
+    showElements([continueBtn, shippingAddressHeader, userAddressList]);
+    shippingAddressHeader.textContent = COPY.SHIPPING_ADDRESS_HEADING;
+  }
 };
 
 export default updateUI;

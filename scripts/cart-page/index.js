@@ -242,9 +242,9 @@ const initCartDisplay = cart => {
   // console.log(favStore)
 
   CartJS.setAttributes({
-    'delivery_mode': 'Delivery',
-    'pickup_location': 'none',
-    'pickup_confirmation_message': ''
+    'delivery_mode': deliveryOption,
+    'pickup_location': deliveryOption !== 'Delivery' ? favStore?.street1 : 'none',
+    'pickup_confirmation_message': favStore?.['email_confirmation_message'] ? favStore['email_confirmation_message'] : ''
   }, {
     'error': function() {
       location.reload();
@@ -320,9 +320,9 @@ const initCartDisplay = cart => {
         // console.log(app.favStore?.['email_confirmation_message'] ? app.favStore['email_confirmation_messaage'] : '');
 
         CartJS.setAttributes({
-          'delivery_mode': 'Delivery',
-          'pickup_location': 'none',
-          'pickup_confirmation_message': ''
+          'delivery_mode': window.vars.deliveryOption,
+          'pickup_location': app.deliveryOption !== 'Delivery' ? app.favStore?.street1 : 'none',
+          'pickup_confirmation_message': app.favStore?.['email_confirmation_message'] ? app.favStore['email_confirmation_message'] : ''
         }, {
           'success': function() {
             checkoutBtn.prop('disabled', false);
@@ -648,8 +648,63 @@ $(document).on('cart.ready', function (event, cart) {
   tryInit();
 });
 
+document.addEventListener('tomitLoaded', async () => {
+
+  const { vars, tomitProductInventoryInfo } = window;
+  const { getProductsInventoryInformation, getVariantInventory } = window.tomitProductInventoryInfo;
+  const { tomitCartPayload, tomitCartVariants } = vars;
+
+  const getVariantInventoryAndHandleErrors = async (vID) => {
+    let response;
+    try {
+      response = await getVariantInventory(vID);
+    } catch(err) {
+      console.error('Error getting inventory', err);
+      response = undefined;
+    }
+
+    return response;
+  }
+
+  let inventoryInfo = await getProductsInventoryInformation(tomitCartPayload);
+
+  try {
+    let missingInventoryVariants;
+    const inventoryInfoVariants = Object.entries(inventoryInfo).map(([k, v]) => v?.product?.variants);
+    let inventoryInfoVariantIDs = Object.entries(inventoryInfo).map(([k, v]) => Object.keys(v?.product?.variants));
+    inventoryInfoVariantIDs = inventoryInfoVariantIDs.reduce((acc, val) => acc.concat(val), []);
+
+    missingInventoryVariants = tomitCartVariants.filter(vID => inventoryInfoVariantIDs.indexOf(String(vID)) === -1);
+    if (missingInventoryVariants.length > 0) {
+
+      for (var i = missingInventoryVariants.length - 1; i >= 0; i--) {
+        const missingInventoryVariant = missingInventoryVariants[i];
+
+        let variantInventory = await getVariantInventoryAndHandleErrors(missingInventoryVariant);
+        if (variantInventory === undefined) {
+          return;
+        }
+
+        const [k, v] = Object.entries(variantInventory?.product?.variants)[0];
+        const variantIndex = tomitCartVariants.indexOf(parseInt(k));
+        const inventoryProductID = tomitCartPayload[variantIndex];
+
+        const inventoryProduct = inventoryInfo[String(inventoryProductID)];
+        const inventoryProductVariants = inventoryProduct?.product?.variants;
+        inventoryProductVariants[k] = v;
+      }
+
+    }
+  } catch(err) {
+    console.error('Error getting variant inventories', err);
+  }
+
+  invInit = inventoryInfo;
+  tryInit();
+});
+
 function tryInit() {
-  if (cartInit) {
+  if (cartInit && invInit) {
     initCartDisplay(cartInit);
   }
 }

@@ -65,30 +65,22 @@ const setUpListeners = () => {
     updateOptionStates(fullState);
   });
   // For triggering swatches UI update after inventory has been loaded
-
-  // Remove tomit
-  // document.addEventListener('tomitProductLoaded', function (e, data) {
-  //   setTimeout(() => {
-  //     const fullState = getComputedState(state.getState());
-  //     updateOptionStates(fullState);
-  //   }, 100);
-  // });
-
+  document.addEventListener('tomitProductLoaded', function (e, data) {
+    setTimeout(() => {
+      const fullState = getComputedState(state.getState());
+      updateOptionStates(fullState);
+    }, 100);
+  });
 };
 
 // Handles variant change
 state.onChange(
   state => {
-    // This is where the variant gets fetched given the state
     const variant = getVariantFromState(state);
     addToCart.onVariantSelect(variant);
     productFlags.onVariantSelect(variant);
     sizeSwatches.onVariantSelect(variant);
     updateUrlVariant(variant && variant.id);
-
-    // console.log('state', state);
-    // console.log('variant', variant);
-
     if (variant) {
       // MasterSelect requires a full variant to update
       masterSelect.onVariantSelect(variant);
@@ -104,8 +96,6 @@ state.onChange(
       }
       // Update BNPL payment snippet modal data
       if (window.updateInstalments) window.updateInstalments(variant.price);
-      
-      // Toggle add to cart button
     } else {
       window.vars.selectedVariant = null;
       if (window.inventoryLocationsDisplay && window.inventories) {
@@ -220,7 +210,7 @@ const init = async () => {
   stickyNav.init();
   modal.init();
   vueATC.init();
-  // inventoryLocations.init();
+  inventoryLocations.init();
   drawer.init();
   faqs.init();
   const urlVariant = selectUrlVariant();
@@ -308,9 +298,3 @@ function show_review(parentEl, h, s) {
   parentEl.find('.btn-' + h).addClass('active');
   parentEl.find('.btn-' + s).removeClass('active');
 }
-
-$(window).on('load', function(){
-  console.log('done loading...')
-  // Hide the add to cart first and show it when the page has finished loading.
-  $('#addToCartButton').show();
-})

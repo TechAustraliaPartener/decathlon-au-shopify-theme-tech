@@ -427,10 +427,6 @@ const toggleHandler = function(event) {
     event.preventDefault();
   }
 
-  if(window.vars.selectedVariant && !window.vars.selectedVariant.available) {
-    return;
-  }
-
   const drawerEl = document.getElementById(drawerId);
 
   // No need to run any further logic if we have no drawer to work with

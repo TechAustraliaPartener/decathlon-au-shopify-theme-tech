@@ -481,16 +481,16 @@ const bindUI = () => {
     }
   });
 
-  // async function fetchStoreList() {
-  //   try {
-  //     const stores = window.masterStores;
-  //     return stores;
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
+  async function fetchStoreList() {
+    try {
+      const stores = window.masterStores;
+      return stores;
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
-  // fetchStoreList().then(stores => buildStoreList(stores));
+  fetchStoreList().then(stores => buildStoreList(stores));
 };
 
 export default bindUI;

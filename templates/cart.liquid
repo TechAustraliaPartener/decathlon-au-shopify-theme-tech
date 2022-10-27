@@ -143,6 +143,31 @@
     </div>
 
     <div id="cartDisplay" class="de-u-fade">
+      <div class="cart-select-store">
+        <div class="d-flex-column">
+          {% include 'assets-icons-store' with class: 'de-u-textBlue de-Icon' %}
+          <a href='/pages/store-finder' target='_blank' title='Stores' class='fav-store-btn'><strong>Stores</strong></a>
+        </div>
+        {% raw %}
+          <p v-if="favStore.name" class="fav-store-selected">
+            Your favourite store is:&nbsp;<span class="fav-store-name">
+              <select name="favStore" @change="setFavStore($event)">
+                <option v-if="!favStore.name" value="" disabled="" :selected="!favStore.name">Please select</option>
+                <option v-for="store in pickupStores" v-bind:value="store.id" :selected="favStore.name && store.name === favStore.name" v-text="store.title"></option>
+              </select>
+            </span>
+          </p>
+          <p v-else class="no-fav-store-selected">
+            To enable Click & Collect, <strong>select your favourite store:</strong>&nbsp;
+            <span class="fav-store-name">
+              <select name="favStore" @change="setFavStore($event)">
+                <option v-if="!favStore.name" value="" disabled="" :selected="!favStore.name">Please select</option>
+                <option v-for="store in pickupStores" v-bind:value="store.id" :selected="favStore.name && store.name === favStore.name" v-text="store.title"></option>
+              </select>
+            </span>
+          </p>
+        {% endraw %}
+      </div>
       <form action="/cart?is-online-store-checkout=true" 
             method="post" 
             novalidate 
@@ -160,7 +185,7 @@
           </thead>
           <tbody>
             {% raw %}
-              <tr class="cart__row table__section" v-for="(item, index) in cart.items">
+              <tr class="cart__row table__section" v-for="(item, index) in cart.items" v-bind:class="checkAvailability(item)">
                 <td>
                   <a v-bind:href="item.url" class="cart__image">
                     <img v-bind:src="item.image" v-bind:alt="item.title">
@@ -169,6 +194,9 @@
                 <td>
                   <a v-bind:href="item.url" class="h6 u-marginBottom0x" v-text="filterInvalidKeywords(item.product_title)"></a>
                   <small class="u-textUppercase u-textBold u-block" v-if="item.variant_title.indexOf('Default') < 0" v-text="item.variant_title"></small>
+                  <div class="item-messages" v-html="availabilityMessages(item)">
+
+                  </div>
                 </td>
                 {% endraw %}<td data-label="{{ 'cart.label.price' | t }}">{% raw %}
                   <span class="h6 text-center" v-text="money(item.price)"></span>
@@ -195,6 +223,43 @@
           {% comment %}To Do: Re-add Notes and settings integration{% endcomment %}
           {% raw %}
             <div class="grid__item large--two-thirds one-whole">
+              <p class="fav-store-selected shipping-selector" v-if="favStore.name">
+                <span>
+                  <b>Select your shipping method:</b>
+                </span>
+                <span>
+                  <input type="radio" name="attributes[delivery_mode]" value="Delivery" :checked="deliveryOption === 'Delivery'" @change="setDeliveryOption($event)">
+                  <label>Delivery</label>
+               <!-- <br>
+                  <label><strong>Delivery Delays</strong></label>
+				<br>
+                  <label>Please note that AusPost and TnT are experiencing up to 4 weeks delays in deliveries.</label>        
+                -->
+                </span>
+                <span class="click-collect">
+                  <input type="radio" name="attributes[delivery_mode]" value="Click &amp; Collect" :checked="deliveryOption === 'Click &amp; Collect'" @change="setDeliveryOption($event)">
+                  <label>Click &amp; Collect from</label> 
+                  <span class="fav-store-name">
+                    <select name="favStore" @change="setFavStore($event)">
+                      <option v-if="!favStore.name" value="" disabled="" :selected="!favStore.name">Please select</option>
+                      <option v-for="store in pickupStores" v-bind:value="store.id" :selected="favStore.name && store.name === favStore.name" v-text="store.title"></option>
+                    </select>
+                  </span>
+                </span>
+              </p>
+              <p class="no-fav-store-selected" v-else>
+                <input type="hidden" name="attributes[delivery_mode]" value="Delivery">
+                To enable Click &amp; Collect,<br><strong>select your favourite store:</strong>&nbsp;
+                <span class="fav-store-name">
+                  <select name="favStore" @change="setFavStore($event)">
+                    <option v-if="!favStore.name" value="" disabled="" :selected="!favStore.name">Please select</option>
+                    <option v-for="store in pickupStores" v-bind:value="store.id" :selected="favStore.name && store.name === favStore.name" v-text="store.title"></option>
+                  </select>
+                </span>
+              </p>
+              <p v-html="cartModificationsMessage()" class="cart_alert">
+                3 items unavailable for Click &amp; Collect will be removed from your cart
+              </p>
             </div>
           {% endraw %}
 

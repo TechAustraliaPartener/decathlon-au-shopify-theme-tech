@@ -18,8 +18,10 @@ const logState = () => {
  * @see https://github.com/decathlon-usa/shopify-theme-decathlonusa/pull/101#discussion_r253569982
  */
 const STATE = {
-  _deliveryMethod: 'ship',
-  _pickupStore: null,
+  _deliveryMethod: window.deliveryMethod === 'Delivery' ? 'ship' : 'pickup',
+  _pickupStore: !!localStorage.getItem('favoritedStore')
+    ? JSON.parse(localStorage.getItem('favoritedStore')).id
+    : null,
   //_pickupStore: null,
   /**
    * For the purposes of steps and pages, don't use setters and getters
@@ -43,5 +45,9 @@ const STATE = {
     logState();
   }
 };
+
+if (STATE._pickupStore === null && STATE._deliveryMethod === 'pickup') {
+  window.location.href = '/cart';
+}
 
 export default STATE;

@@ -21,8 +21,6 @@ const OVERSELL_CLASS = 'oversell';
 const addToCartDrawerEnabled = window.add_to_cart_drawer_enabled;
 
 const initVueATC = () => {
-  // console.log('variantInventory', variantInventory);
-
   window.vueATC = new Vue({
     el: '#addToCartButton',
     data: variantInventory,
@@ -40,6 +38,15 @@ const initVueATC = () => {
       },
       changeVariant(variant) {
         const variantInventory = window.productJSON.variants.find(v => v.id === variant);
+
+        // Use Shopify availability on load while remote inventory is being loaded
+        if (variantInventory && variantInventory.available) {
+          $('.js-de-stock-info-message .message').text(translations.retrieving_stock);
+          $('.js-de-stock-info-message').addClass(LOADING_CLASS).css({"display":"block"});
+          $('.js-de-stock-info-message .lds-ring').css({"display":"inline-block"});
+          // Disable add to cart button while retrieving stocks
+          $('#AddToCart').prop('disabled', true);
+        }
 
         const variantLocationsInventory = (window.inventories || {})[variant];
         const calculatedInventory = variantLocationsInventory ? this.mutateWithLocations(variantInventory, variantLocationsInventory) : variantInventory;
@@ -87,7 +94,7 @@ const initVueATC = () => {
           (delivery.available === 0 && variantIsAllowedToOversell === false) &&
           variantIsNonInventory === false
         ) {
-          // $('.js-de-validation-message').text('Out of stock');
+          $('.js-de-validation-message').text('Out of stock');
         }
 
         const availablePerLocation = filteredLocations.map(location => {
@@ -195,7 +202,6 @@ const initVueATC = () => {
         // Opens Back in Stock Popover Modal
         if (isEmailButton) {
           event.preventDefault();
-          
           window.BISPopover.show({ variantId: variantId });
 
           $('#addToCartButton .js-de-Drawer-toggle').attr("data-drawer-action", '');
@@ -210,8 +216,6 @@ const initVueATC = () => {
 
           return;
         } else {
-          console.log('addToCartDrawerEnabled');
-
           if (addToCartDrawerEnabled) {
             $('#addToCartButton .js-de-Drawer-toggle').attr("data-drawer-action", 'open');
           }
