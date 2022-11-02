@@ -23,7 +23,7 @@ as blue-band is used on pages like https://decathlon.com.au/collections/womens-o
         {% include 'compositions-footer-social', adtl_social_classes: ' large--one-third mobile-footer-social' %}
       {% endif %}
     <ul class="grid--full mobile-footer footerNav__accordion u-paddingTopBottom4x">
-      {% for link in linklists['footer'].links %}
+      {% for link in settings.footer_nav_menu.links %}
       <li class="grid__item footerNav-item -trigger">
         <div class="footerNav__header">
           <p class="footerNav-link">{{ link.title }}
@@ -65,7 +65,7 @@ as blue-band is used on pages like https://decathlon.com.au/collections/womens-o
     <div class="grid--full desktop-footer">
       <div class="grid__item ">
         <ul class="grid--full footerNav">
-          {% for link in linklists.footer.links %}
+          {% for link in settings.footer_nav_menu.links %}
           <li class="grid__item footerNav-item">
             <p class="footerNav-link __header">{{ link.title }}</a>
             {% if link.links != blank %}

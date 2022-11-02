@@ -468,6 +468,11 @@
     "name": "Footer",
     "settings": [
       {
+        "type": "link_list",
+        "id": "footer_nav_menu",
+        "label": "Footer Navigation Menu"
+      },
+      {
         "type": "header",
         "content": "Products Slider"
       },
