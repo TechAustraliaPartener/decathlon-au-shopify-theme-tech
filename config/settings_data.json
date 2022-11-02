@@ -1587,6 +1587,21 @@
               "link_new_window": false
             }
           },
+          "748c6a7e-732f-486d-a653-eb425a670bc5": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Artengo-Home_page_v2_1cf520bd-c9d1-486d-9be4-7a31275bb8fd.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Artengo-Home_page_mobile_v2_a813d66b-5a55-431c-a839-ee5f88d66ac3.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "https:\/\/decathlon.com.au\/pages\/decathlon-artengo",
+              "link_title": "",
+              "link_new_window": false
+            }
+          },
           "579ee1c6-8cb9-4350-95e5-fb83a1397d90": {
             "type": "slide",
             "settings": {
@@ -1604,6 +1619,7 @@
           },
           "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b": {
             "type": "slide",
+            "disabled": true,
             "settings": {
               "banner_bg_image": "shopify:\/\/shop_images\/Nabaiji_HomePage_Carrousel.jpg",
               "slide_bg_position": "75% -50px",
@@ -1645,21 +1661,6 @@
               "button_title": "",
               "link_url": "shopify:\/\/collections\/cycling-clothing-bike-accessories",
               "link_title": "Shop $20 off Cycling Clothing & Accessories",
-              "link_new_window": false
-            }
-          },
-          "748c6a7e-732f-486d-a653-eb425a670bc5": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Artengo-Home_page_v2_1cf520bd-c9d1-486d-9be4-7a31275bb8fd.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Artengo-Home_page_mobile_v2_a813d66b-5a55-431c-a839-ee5f88d66ac3.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/pages\/decathlon-artengo",
-              "link_title": "",
               "link_new_window": false
             }
           },
@@ -1731,11 +1732,11 @@
           "e9b4daa6-6eee-441b-b76d-9c3ff012fde9",
           "79522152-c757-4b60-a1be-2d1e49198982",
           "145847d3-2db7-45f7-8ef6-38db22a4156a",
+          "748c6a7e-732f-486d-a653-eb425a670bc5",
           "579ee1c6-8cb9-4350-95e5-fb83a1397d90",
           "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b",
           "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9",
           "85c47718-39c5-4752-aa58-3e34ef8c0a97",
-          "748c6a7e-732f-486d-a653-eb425a670bc5",
           "0e3f284b-4302-4200-8eb1-f98ce34415af",
           "623e46b1-2abc-4e5b-8ceb-3ca5e428998a",
           "3e042199-9da3-4514-87ba-d462754ab771",
@@ -2237,6 +2238,7 @@
       },
       "1642116157c0ce923f": {
         "type": "featured_collection",
+        "disabled": true,
         "settings": {
           "title": "Discover Our Surfing Range",
           "section_collection": "surfing"
@@ -2303,7 +2305,7 @@
       "165115029729e3ba5b": {
         "type": "featured_collection",
         "settings": {
-          "title": "Adventure Calls - Shop Kayaks, SUPs, Tents & Bikes",
+          "title": "Adventure Calls - Great Deals on Outdoor Equipment!",
           "section_collection": "outdoor-sports-sale"
         }
       },
@@ -2354,7 +2356,7 @@
             "settings": {
               "megamenu_parent": "shop-all-sports",
               "display_callout": true,
-              "megamenu_image": "shopify:\/\/shop_images\/Outdoor_Sports_360_x_360.jpg",
+              "megamenu_image": "shopify:\/\/shop_images\/Outdoor_Sports_315_x_235_41eaf218-1254-4312-9019-878890ea4006.jpg",
               "megamenu_title": "Adventure Calls - Shop the Range Now",
               "megamenu_subtitle": "Kayaks, SUPs, Tents, Bikes & More",
               "megamenu_link": "https:\/\/decathlon.com.au\/pages\/outdoor-sports-sale",
