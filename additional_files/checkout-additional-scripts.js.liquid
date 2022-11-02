@@ -1,26 +1,207 @@
+{% comment %}
+This script exists in the Order status page settings in shopify admin dashboard:
+https://decathlon-australia.myshopify.com/admin/settings/checkout
+{% endcomment %}
 <script>
   window.firstAccessed = false;
   {% if first_time_accessed %}
     window.firstAccessed = true;
   {% endif %}
 </script>
-
 <script async src="https://t.cfjump.com/tag/59240"></script>
 
 {% if first_time_accessed %}
+    <script>
+        (function(a,b,c){a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments);};a[c]=a[b];})(window,"CommissionFactory","cf");
+
+        cf("set", "order", "{{ order.order_number }}");
+        cf("set", "amount", "{{ order.subtotal_price | money_without_currency }}");
+        cf("set", "currency", "{{ shop.currency }}");
+        {% if order.discounts %}cf("set", "coupon", "{{ order.discounts.first.code }}");{% endif %}
+        {% if order.customer %}cf("set", "customer", {% if order.customer.orders_count == 1 %}"new"{% else %}"return"{% endif %});{% endif %}
+
+        {% for line_item in order.line_items %}
+            cf("add", "items", { "sku": "{{ line_item.sku }}", "price": "{{ line_item.price | money_without_currency }}", "quantity": "{{ line_item.quantity }}" });
+        {% endfor %}
+
+        cf("track");
+    </script>
+{% endif %}
+
+{% if order.id != blank or checkout.order_id != blank %}
   <script>
-    (function(a,b,c){a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments);};a[c]=a[b];})(window,"CommissionFactory","cf");
-
-    cf("set", "order", "{{ order.order_number }}");
-    cf("set", "amount", "{{ order.subtotal_price | money_without_currency }}");
-    cf("set", "currency", "{{ shop.currency }}");
-    {% if order.discounts %}cf("set", "coupon", "{{ order.discounts.first.code }}");{% endif %}
-    {% if order.customer %}cf("set", "customer", {% if order.customer.orders_count == 1 %}"new"{% else %}"return"{% endif %});{% endif %}
-
-    {% for line_item in order.line_items %}
-      cf("add", "items", { "sku": "{{ line_item.sku }}", "price": "{{ line_item.price | money_without_currency }}", "quantity": "{{ line_item.quantity }}" });
-    {% endfor %}
-
-    cf("track");
+    Checkout.$(function() {
+      Shopify.Checkout.OrderStatus.addContentBox(
+       '<h2>Need a receipt?</h2>',
+       '<p><a target="_blank" class="btn btn--subdued btn--size-small" href="https://decathlon.com.au/apps/download-pdf/orders/e1856497a630a23add52/{{ order.id | default: checkout.order_id | times: 8857 }}/{{ order.name | handleize }}.pdf">Download PDF receipt</a></p>'
+      )
+    });
   </script>
+{% endif %}
+
+{% if first_time_accessed %}
+<script>
+  {% capture user_object %}
+  {% if customer %}    
+  ,user: {
+    user_id: "{{customer.id}}"
+    , name: "{{customer.first_name}}"
+    , surname: "{{customer.last_name}}"
+    , email : "{{customer.email}}"
+    , has_transacted :{% if customer.orders_count > 0 %} true {% else %} false {% endif %}
+    , transaction_count : {{customer.orders_count}}
+    , transaction_count : {{customer.orders_count}}
+    , email_optin : {% if customer.accepts_marketing %} true {% else %} false {% endif %}
+    , sms_optin : {% if customer.accepts_marketing %} true {% else %} false {% endif %}
+    , phone_number : "{{customer.phone}}"
+  }
+  {% else %}
+  ,user: {
+    language : "{{shop.locale}}"
+  }
+  {% endif %}
+  {% endcapture %}
+
+{% capture thankyou_object %}
+    , transaction: {
+    currency : "{{shop.currency}}"
+    , total : {{checkout.total_price | money_without_currency | replace: ',', '' }} 
+    , order_id : "{{checkout.order_id}}"
+   , line_items : {% for item in checkout.line_items %}
+        {% assign product = item.product %}
+        {% if first_comma == true %},{% endif %}
+        {% assign first_comma = true %}
+        {
+         product: {
+          id : "{{product.handle}}"
+          , name : "{{product.title}}" 
+          , currency : "{{shop.currency}}"
+          {% if product.compare_at_price_min > 0 %}
+          , unit_price : {{product.compare_at_price_min | money_without_currency | replace: ',', '' }}
+          {% endif %}
+          , unit_sale_price : {{product.price | money_without_currency | replace: ',', '' }}
+          , url : "{{shop.secure_url}}{{product.url}}"
+          , product_image_url : "https:{{product.featured_image.src | img_url : 'master'}}" 
+        } 
+      , quantity : "{{item.quantity}}"
+       , subtotal : {{item.original_line_price | money_without_currency | replace: ',', '' }}
+       }
+        {% endfor %}
+
+    
+    {% endcapture %}
+    window.insider_object = {
+      version : "1.0"
+      , page: {
+        "type": "Confirmation"
+
+      }
+      {{user_object}}
+      {{thankyou_object}}
+    }
+  }
+
+</script>
+<script async src="//{{shop.metafields.insider.insider_partner}}.api.useinsider.com/ins.js?id={{shop.metafields.insider.insider_api_key}}"></script>
+{% endif %}<script>
+  window.firstAccessed = false;
+  {% if first_time_accessed %}
+    window.firstAccessed = true;
+  {% endif %}
+</script>
+<script async src="https://t.cfjump.com/tag/59240"></script>
+
+{% if first_time_accessed %}
+    <script>
+        (function(a,b,c){a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments);};a[c]=a[b];})(window,"CommissionFactory","cf");
+
+        cf("set", "order", "{{ order.order_number }}");
+        cf("set", "amount", "{{ order.subtotal_price | money_without_currency }}");
+        cf("set", "currency", "{{ shop.currency }}");
+        {% if order.discounts %}cf("set", "coupon", "{{ order.discounts.first.code }}");{% endif %}
+        {% if order.customer %}cf("set", "customer", {% if order.customer.orders_count == 1 %}"new"{% else %}"return"{% endif %});{% endif %}
+
+        {% for line_item in order.line_items %}
+            cf("add", "items", { "sku": "{{ line_item.sku }}", "price": "{{ line_item.price | money_without_currency }}", "quantity": "{{ line_item.quantity }}" });
+        {% endfor %}
+
+        cf("track");
+    </script>
+{% endif %}
+
+{% if order.id != blank or checkout.order_id != blank %}
+  <script>
+    Checkout.$(function() {
+      Shopify.Checkout.OrderStatus.addContentBox(
+       '<h2>Need a receipt?</h2>',
+       '<p><a target="_blank" class="btn btn--subdued btn--size-small" href="https://decathlon.com.au/apps/download-pdf/orders/e1856497a630a23add52/{{ order.id | default: checkout.order_id | times: 8857 }}/{{ order.name | handleize }}.pdf">Download PDF receipt</a></p>'
+      )
+    });
+  </script>
+{% endif %}
+
+{% if first_time_accessed %}
+<script>
+  {% capture user_object %}
+  {% if customer %}    
+  ,user: {
+    user_id: "{{customer.id}}"
+    , name: "{{customer.first_name}}"
+    , surname: "{{customer.last_name}}"
+    , email : "{{customer.email}}"
+    , has_transacted :{% if customer.orders_count > 0 %} true {% else %} false {% endif %}
+    , transaction_count : {{customer.orders_count}}
+    , transaction_count : {{customer.orders_count}}
+    , email_optin : {% if customer.accepts_marketing %} true {% else %} false {% endif %}
+    , sms_optin : {% if customer.accepts_marketing %} true {% else %} false {% endif %}
+    , phone_number : "{{customer.phone}}"
+  }
+  {% else %}
+  ,user: {
+    language : "{{shop.locale}}"
+  }
+  {% endif %}
+  {% endcapture %}
+
+{% capture thankyou_object %}
+    , transaction: {
+    currency : "{{shop.currency}}"
+    , total : {{checkout.total_price | money_without_currency | replace: ',', '' }} 
+    , order_id : "{{checkout.order_id}}"
+   , line_items : {% for item in checkout.line_items %}
+        {% assign product = item.product %}
+        {% if first_comma == true %},{% endif %}
+        {% assign first_comma = true %}
+        {
+         product: {
+          id : "{{product.handle}}"
+          , name : "{{product.title}}" 
+          , currency : "{{shop.currency}}"
+          {% if product.compare_at_price_min > 0 %}
+          , unit_price : {{product.compare_at_price_min | money_without_currency | replace: ',', '' }}
+          {% endif %}
+          , unit_sale_price : {{product.price | money_without_currency | replace: ',', '' }}
+          , url : "{{shop.secure_url}}{{product.url}}"
+          , product_image_url : "https:{{product.featured_image.src | img_url : 'master'}}" 
+        } 
+      , quantity : "{{item.quantity}}"
+       , subtotal : {{item.original_line_price | money_without_currency | replace: ',', '' }}
+       }
+        {% endfor %}
+
+    
+    {% endcapture %}
+    window.insider_object = {
+      version : "1.0"
+      , page: {
+        "type": "Confirmation"
+
+      }
+      {{user_object}}
+      {{thankyou_object}}
+    }
+  }
+
+</script>
+<script async src="//{{shop.metafields.insider.insider_partner}}.api.useinsider.com/ins.js?id={{shop.metafields.insider.insider_api_key}}"></script>
 {% endif %}
