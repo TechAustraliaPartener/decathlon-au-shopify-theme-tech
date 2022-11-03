@@ -1976,6 +1976,14 @@
               "bg_colour": "#1c82c3",
               "text_colour": "#ffffff"
             }
+          },
+          "b353807e-4f41-4356-becd-7984dabfe053": {
+            "type": "label",
+            "settings": {
+              "title": "WAS $219",
+              "bg_colour": "#1c82c3",
+              "text_colour": "#ffffff"
+            }
           }
         },
         "block_order": [
@@ -2006,7 +2014,8 @@
           "831b01d5-44df-4e26-82ff-7de5b0bfc9c0",
           "8fab8f3d-e02e-4e37-bf4b-e662f218b7dc",
           "6cdded25-a535-4f69-8986-e6a4a6ab2665",
-          "6f8f3605-b7a3-4057-b742-c73123a30e96"
+          "6f8f3605-b7a3-4057-b742-c73123a30e96",
+          "b353807e-4f41-4356-becd-7984dabfe053"
         ],
         "settings": {}
       },
@@ -2092,23 +2101,29 @@
       },
       "163107313302287377": {
         "type": "trending_categories",
-        "disabled": true,
         "blocks": {
-          "c2d5bbf2-defb-4062-8a7c-9c520db2185d": {
+          "e6009045-e924-463e-b297-09c2cd29d848": {
             "type": "category_tile",
             "settings": {
-              "title": "Camping Tents",
-              "image": "shopify:\/\/shop_images\/homepage_section.png",
-              "link": "shopify:\/\/collections\/camping-tents"
+              "title": "Stand Up Paddleboards (SUP)",
+              "image": "shopify:\/\/shop_images\/homepage_section_1.png",
+              "link": "shopify:\/\/collections\/stand-up-paddle"
             }
           },
           "2aabd1f3-b77e-4418-843c-995e61af21e7": {
             "type": "category_tile",
-            "disabled": true,
             "settings": {
-              "title": "Weight Training",
-              "image": "shopify:\/\/shop_images\/PK_Hantle_NEW_2_---_Expires_on_31-08-2025_1.jpg",
-              "link": "shopify:\/\/collections\/weight-training"
+              "title": "Kayaking",
+              "image": "shopify:\/\/shop_images\/Kayaking_CAT-HERO_eace7f95-5b5c-49fd-b699-0ccbbf3e6c3c.jpg",
+              "link": "https:\/\/decathlon.com.au\/collections\/kayaking"
+            }
+          },
+          "c2d5bbf2-defb-4062-8a7c-9c520db2185d": {
+            "type": "category_tile",
+            "settings": {
+              "title": "Camping Tents",
+              "image": "shopify:\/\/shop_images\/Camping-HERO.jpg",
+              "link": "shopify:\/\/collections\/camping-tents"
             }
           },
           "5577a84d-44d2-461d-bb74-80a640ebe253": {
@@ -2117,14 +2132,6 @@
               "title": "Mountain Bikes",
               "image": "shopify:\/\/shop_images\/Untitled_design_32.png",
               "link": "shopify:\/\/collections\/mountain-bike"
-            }
-          },
-          "e6009045-e924-463e-b297-09c2cd29d848": {
-            "type": "category_tile",
-            "settings": {
-              "title": "SUP",
-              "image": "shopify:\/\/shop_images\/homepage_section_1.png",
-              "link": "shopify:\/\/collections\/stand-up-paddle"
             }
           },
           "95c908d1-9a7d-43d6-816b-3a50b9f7b0d8": {
@@ -2145,20 +2152,29 @@
           }
         },
         "block_order": [
-          "c2d5bbf2-defb-4062-8a7c-9c520db2185d",
-          "2aabd1f3-b77e-4418-843c-995e61af21e7",
-          "5577a84d-44d2-461d-bb74-80a640ebe253",
           "e6009045-e924-463e-b297-09c2cd29d848",
+          "2aabd1f3-b77e-4418-843c-995e61af21e7",
+          "c2d5bbf2-defb-4062-8a7c-9c520db2185d",
+          "5577a84d-44d2-461d-bb74-80a640ebe253",
           "95c908d1-9a7d-43d6-816b-3a50b9f7b0d8",
           "c74e811a-531f-4b53-89db-8ad5d6ea006d"
         ],
         "settings": {
-          "title": "Enjoy the Outdoors"
+          "title": "Enjoy the Outdoors with Decathlon"
         }
       },
       "16316085202ea5cf79": {
         "type": "trending_categories",
+        "disabled": true,
         "blocks": {
+          "711f34cb-b34c-4c8f-8e88-ce5c95240666": {
+            "type": "category_tile",
+            "settings": {
+              "title": "Kayaking",
+              "image": "shopify:\/\/shop_images\/Kayaking_CAT-HERO.jpg",
+              "link": "shopify:\/\/collections\/kayaking"
+            }
+          },
           "e946fff5-5695-4ed3-a886-269cd8000e8d": {
             "type": "category_tile",
             "settings": {
@@ -2183,14 +2199,6 @@
               "link": "https:\/\/decathlon.com.au\/collections\/mountain-bike"
             }
           },
-          "711f34cb-b34c-4c8f-8e88-ce5c95240666": {
-            "type": "category_tile",
-            "settings": {
-              "title": "Kayaking",
-              "image": "shopify:\/\/shop_images\/Kayaking_CAT-HERO.jpg",
-              "link": "shopify:\/\/collections\/kayaking"
-            }
-          },
           "24a46da8-7f15-4e2c-aa20-558f5e037a41": {
             "type": "category_tile",
             "settings": {
@@ -2209,10 +2217,10 @@
           }
         },
         "block_order": [
+          "711f34cb-b34c-4c8f-8e88-ce5c95240666",
           "e946fff5-5695-4ed3-a886-269cd8000e8d",
           "f553a06c-1d16-4cd4-b9f2-2eea43b5aa9c",
           "e1091c93-4efb-4738-b3f6-3a711db62e82",
-          "711f34cb-b34c-4c8f-8e88-ce5c95240666",
           "24a46da8-7f15-4e2c-aa20-558f5e037a41",
           "2161fbad-02eb-48c1-9a11-4481251537ae"
         ],
@@ -2232,7 +2240,7 @@
         "type": "featured_collection",
         "disabled": true,
         "settings": {
-          "title": "Buy 2, get 62% off the 2nd!",
+          "title": "Great deals on",
           "section_collection": "health-nutrition-sale"
         }
       },
@@ -2297,6 +2305,7 @@
       },
       "1650960580e9623e99": {
         "type": "featured_collection",
+        "disabled": true,
         "settings": {
           "title": "Decathlon Innovation Products",
           "section_collection": "innovation-by-decathlon"
@@ -2305,7 +2314,7 @@
       "165115029729e3ba5b": {
         "type": "featured_collection",
         "settings": {
-          "title": "Adventure Calls - Great Deals on Outdoor Equipment!",
+          "title": "Trending Deals on Outdoor Equipment!",
           "section_collection": "outdoor-sports-sale"
         }
       },
@@ -2428,6 +2437,7 @@
     "content_for_index": [
       "1568939434006",
       "163107170023281063",
+      "163107313302287377",
       "16316085202ea5cf79",
       "165115029729e3ba5b",
       "1651153473715f6dc1",
@@ -2437,8 +2447,7 @@
       "166270596352f8a275",
       "163487525380dd83d2",
       "1650950354346fb7a1",
-      "16375487170499d43e",
-      "163107313302287377"
+      "16375487170499d43e"
     ]
   },
   "presets": {
