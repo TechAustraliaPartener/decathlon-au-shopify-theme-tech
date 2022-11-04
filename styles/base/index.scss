@@ -2,6 +2,34 @@
 @import './base.scss';
 @import './state.scss';
 
+.--desktop-only{
+  display: none;
+}
+.--mobile-only{
+  display: block;
+  height: 100%;
+}
+.logo-link-wrapper{
+  position: relative;
+  display: block;
+  height: 100%;
+}
+@media screen and (min-width: 40em) {
+  
+  .logo-link-wrapper{
+    position: relative;
+    display: block;
+    height: auto;
+  }
+  .--desktop-only{
+    display: block;
+    padding-right: 6px;
+  }
+  .--mobile-only{
+    display: none;
+  }
+}
+
 .position--relative {
   position: relative;
 }

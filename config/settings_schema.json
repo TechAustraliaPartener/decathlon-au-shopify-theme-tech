@@ -232,9 +232,22 @@
         "content": "Logo"
       },
       {
-        "type": "checkbox",
+
+        "type": "radio",
         "id": "logo_use_image",
-        "label": "Use custom logo"
+        "label": "Select which logos to use",
+        "default": "img-logos",
+        "options": [
+
+          {
+            "label": "SVG custom logos",
+            "value": "svg-logos"
+          },
+          {
+            "label": "Image custom logos",
+            "value": "img-logos"
+          }
+        ]
       },
       {
         "type": "checkbox",
@@ -244,14 +257,25 @@
       },
       {
         "type": "text",
-        "id": "svg_logo",
-        "label": "Custom SVG logo",
+        "id": "svg_mobile_logo",
+        "label": "Custom Mobile SVG logo",
+        "info": "To be added to the files settings"
+      },
+      {
+        "type": "text",
+        "id": "svg_desktop_logo",
+        "label": "Custom Desktop SVG logo",
         "info": "To be added to the files settings"
       },
       {
         "type": "image_picker",
-        "id": "img_logo",
-        "label": "Custom image logo"
+        "id": "img_mobile_logo",
+        "label": "Custom Mobile image logo"
+      },
+      {
+        "type": "image_picker",
+        "id": "img_desktop_logo",
+        "label": "Custom Desktop image logo"
       },
       {
         "type": "checkbox",

@@ -11,6 +11,7 @@
 {% endif %}
 
 <header class="de-PageWrap-header js-de-PageWrap-header">
+  <div class="searchbar-overlay"></div>
   <div class="de-PageWrap-headerPrimary">
     <div class="de-PageWrap-narrowMenuControl">
       <div class="de-MenuBar">
@@ -19,44 +20,75 @@
           data-de-page-wrap-action="toggleMenu" data-de-page-wrap-target="demo-side">
           {% include 'patterns-icons-bars'
             with class: 'de-MenuBar-icon' %}
-          <span class="de-MenuBar-label">Menu</span>
         </button>
       </div>
     </div>
     
     <div class="de-PageWrap-logo {% if settings.maximize_logo_space == true %}maximize-container{% endif %}" itemscope itemtype="http://schema.org/Organization">
-      {% if settings.logo_use_image %}
-      <a href="/" title="Decathlon">
-        {% if settings.svg_logo != blank %}
-        <img src="{{ settings.svg_logo | file_url }}" 
-        srcset="{{ settings.svg_logo | file_url: '240x' }} 240w,
-        {{ settings.svg_logo | file_url: '480x' }} 480w,
-        {{ settings.svg_logo | file_url: '720x' }} 720w,
-        {{ settings.svg_logo | file_url: '323x' }} 323w,
-        {{ settings.svg_logo | file_url: '646x' }} 646w,
-        {{ settings.svg_logo | file_url: '969x' }} 969w"
-        alt="Decathlon logo"/>
-        {% else %}
-        <img src="{{ settings.img_logo | img_url }}" alt="Decathlon logo" />
-        {% endif %}
-      </a>
+      {% if settings.logo_use_image == "svg-logos" %}
+        <a href="/" class="logo-link-wrapper" title="Decathlon">
+          {% if settings.svg_mobile_logo != blank or settings.svg_desktop_logo != blank  %}
+            {% if settings.svg_mobile_logo != blank %}
+              <img src="{{ settings.svg_mobile_logo | file_url }}" class="--mobile-only" alt="Decathlon logo" />
+            {% endif%}
+            {% if settings.svg_desktop_logo != blank %}
+              <img src="{{ settings.svg_desktop_logo | file_url }}" class="--desktop-only" alt="Decathlon logo" />
+            {% endif%}
+            {%comment%} 
+              srcset="{{ settings.svg_logo | file_url: '240x' }} 240w,
+              {{ settings.svg_logo | file_url: '480x' }} 480w,
+              {{ settings.svg_logo | file_url: '720x' }} 720w,
+              {{ settings.svg_logo | file_url: '323x' }} 323w,
+              {{ settings.svg_logo | file_url: '646x' }} 646w,
+              {{ settings.svg_logo | file_url: '969x' }} 969w"
+            {%endcomment%}
+          {% endif%}
+        </a>
       {% else %}
-      {% include 'patterns-branding-logo' with
-          titleId:'logo-title',
-          href: '/',
-          class: 'de-PageWrap-logoImage' %}
+        {% if settings.img_mobile_logo != blank or settings.img_desktop_logo != blank  %}
+          <a href="/" class="logo-link-wrapper" title="Decathlon">
+          {% if settings.img_mobile_logo != blank %}
+            <img src="{{ settings.img_mobile_logo | img_url }}" class="--mobile-only" alt="Decathlon logo" />
+          {% endif %}
+          {% if settings.img_desktop_logo != blank %}
+            <img src="{{ settings.img_desktop_logo | img_url }}" class="--desktop-only" alt="Decathlon logo" />
+          {% else %}
+                {% include 'patterns-branding-logo' with
+                titleId:'logo-title',
+                href: '/',
+                class: 'de-PageWrap-logoImage --desktop-only' %}
+          {% endif %}
+          </a>
+        {% endif %}
       {% endif %}
     </div>
   </div>
+
   <nav class="de-PageWrap-headerSecondary">
     <ul class="de-MenuBar">
       <li class="de-PageWrap-headerTertiaryControl">
+        {%- comment -%}
+        
         <button id="demo-search-input-toggler" class="de-MenuBar-action" data-gtm-event="customer-interaction"
           data-gtm-id="Magnifying Glass" data-gtm-category="Header" data-de-page-wrap-action="toggleExpand"
           data-de-page-wrap-target="demo-search">
           {% include 'patterns-icons-search'
               with class: 'de-MenuBar-icon' %}
         </button>
+        {%- endcomment -%}
+
+        <div class="de-SingleInputForm adept-autocomplete-search">
+          <form action="/search">
+            <input id="demo-search-input" class="de-Input de-SingleInputForm-input" data-gtm-event="customer-interaction"
+              data-gtm-id="Search Bar" data-gtm-category="Header" type="search" name="q"
+              placeholder="{%- include 'search-placeholder' -%}">
+            <button class="de-SingleInputForm-action" data-gtm-event="customer-interaction" data-gtm-id="Magnifying Glass"
+              data-gtm-category="Header">
+              {% include 'patterns-icons-search', class: 'de-u-textGrow3', role: 'presentation' %}
+              <span class="de-u-hiddenVisually">Search</span>
+            </button>
+          </form>
+        </div>
       </li>
       <li class="de-u-hidden de-u-lg-block">
         {% if settings.enable_meet_decathlon == true %}
@@ -81,7 +113,6 @@
       </li>
     </ul>
   </nav>
-  <div class="searchbar-overlay"></div>
   <div class="de-PageWrap-headerTertiary" id="demo-search">
     <div class="de-SingleInputForm adept-autocomplete-search">
       <form action="/search">
