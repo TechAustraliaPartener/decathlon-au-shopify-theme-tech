@@ -54,29 +54,34 @@
 
       <div class="ais-search-header">
         <div class="ais-stats-container"></div>
+      </div>
+
+      <div class="search-result-container">
+        <p class="search-result-indicator">Results for {{ search.terms }}</p>
+      </div>
+
+      <div class="ais-search-header">
+        <div class="ais-stats-container"></div>
+        <div id="ais-sort-filter">
+          <div class="ais-sort">
+            [[# multipleSortOrders ]]
+            [[ translations.sortBy ]]
+            {% include 'assets-icons-chevron-down' with class: 'de-Icon de-u-spaceLeft06' %}
+            <span class="ais-sort-orders-container"></span>
+            [[/ multipleSortOrders ]]
+                                                                                                                                              
+            [[^ multipleSortOrders ]]
+            [[ translations.sortBy ]] [[ translations.relevance ]]
+            [[/ multipleSortOrders ]]
+          </div>
+          <div class="ais-facets-button">
+            Show filters
+          </div>
+        </div>
+        <div class="ais-hits-container ais-results-as-block"></div>
 
       </div>
-      <div id="ais-sort-filter">
-        <div class="ais-sort">
-          [[# multipleSortOrders ]]
-          [[ translations.sortBy ]]
-          {% include 'assets-icons-chevron-down' with class: 'de-Icon de-u-spaceLeft06' %}
-          <span class="ais-sort-orders-container"></span>
-          [[/ multipleSortOrders ]]
-                                                                                                                                            
-          [[^ multipleSortOrders ]]
-          [[ translations.sortBy ]] [[ translations.relevance ]]
-          [[/ multipleSortOrders ]]
-        </div>
-        <div class="ais-facets-button">
-          Show filters
-        </div>
-      </div>
-      <div class="ais-hits-container ais-results-as-block"></div>
 
     </div>
-
   </div>
-
-
 </div>
