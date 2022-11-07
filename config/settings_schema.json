@@ -259,7 +259,7 @@
         "type": "text",
         "id": "svg_mobile_logo",
         "label": "Custom Mobile SVG logo",
-        "info": "To be added to the files settings"
+        "info": "Use 1:1 image aspect ratio, and to be added to the files settings"
       },
       {
         "type": "text",
@@ -270,7 +270,7 @@
       {
         "type": "image_picker",
         "id": "img_mobile_logo",
-        "label": "Custom Mobile image logo"
+        "label": "Custom Mobile image logo. Use 1:1 image aspect ratio."
       },
       {
         "type": "image_picker",
