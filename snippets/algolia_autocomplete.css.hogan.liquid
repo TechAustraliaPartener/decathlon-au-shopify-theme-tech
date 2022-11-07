@@ -192,10 +192,10 @@
 }
 
 .aa-dropdown-menu-size-xs .aa-dataset-products .aa-suggestion,
-.aa-dropdown-menu-size-sm .aa-dataset-products .aa-suggestion {
+.aa-dropdown-menu-size-sm .aa-dataset-products .aa-suggestion,
+.aa-dropdown-menu-size-md .aa-dataset-products .aa-suggestion{
   width: 100%;
 }
-
 .aa-dropdown-menu .aa-product {
   position: relative;
   min-height: 56px; /* $img_size + 2 * $v_padding */
@@ -354,10 +354,26 @@
 
 .price-review-container {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 }
 
 
 .price-review-container .ais-rating {
-  margin: 0 0 0 10px !important;
+  margin:  0 !important;
 }
+
+.aa-dropdown-menu .aa-product-price{
+  margin: 0 10px 5px 0;
+}
+
+
+.aa-dropdown-menu-size-lg .aa-right-column {
+  width: 75%;
+  padding-left: 10px;
+}
+
+.aa-dropdown-menu-size-lg .aa-left-column {
+  width: 25%;
+  padding-right: 0px;
+}
+
