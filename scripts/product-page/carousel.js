@@ -218,6 +218,8 @@ const updateThumbnailCursors = thumbnailCount => {
  * Initialize carousel
  */
 const initCarousel = () => {
+  let $autoplaySpeed = parseInt(`{{ settings.autoplay_feature_product_carousel_speed }}`)*1000
+  let $delaySeconds = parseInt(`{{ settings.autoplay_feature_product_carousel_delay }}`)*1000;
   let $featureCarouselActive = null;
   $featureCarouselActive = $(FEATURE_CAROUSEL_ACTIVE_SELECTOR);
   const $thumbnailCarouselActive = $(THUMBNAIL_CAROUSEL_ACTIVE_SELECTOR);
@@ -268,7 +270,8 @@ const initCarousel = () => {
     ...sharedConfig,
     asNavFor: $thumbnailCarouselActive,
     slidesToShow: 1,
-    waitForAnimate: false
+    waitForAnimate: false,
+    autoplaySpeed: $autoplaySpeed,
   });
 
 
@@ -283,6 +286,12 @@ const initCarousel = () => {
     touchThreshold: 30
   });
   improveCarouselSwipeResponse();
+
+  setTimeout(function (){
+    $featureCarouselActive.slick("slickSetOption", "autoplay", true, true)
+    $thumbnailCarouselActive.slick("slickSetOption", "autoplay", true, true)
+
+  }, $delaySeconds )
 };
 
 /**

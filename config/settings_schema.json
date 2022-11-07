@@ -415,6 +415,25 @@
         "content": "Products slider"
       },
       {
+        "id": "autoplay_feature_product_carousel_speed",
+        "label": "Autoplay Speed (in seconds)",
+        "type": "range",
+        "default": 5,
+        "min": 2,
+        "max": 10,
+        "step": 1
+      },
+      {
+        "id": "autoplay_feature_product_carousel_delay",
+        "label": "Autoplay Delay (in seconds)",
+        "type": "range",
+        "default": 10,
+        "min": 0,
+        "max": 20,
+        "step": 2,
+        "info": "Amount of time before Featured Carousel will auto-advance display of other product images."
+      },
+      {
         "id": "show_associated_products_carousel_on_product_page",
         "type": "checkbox",
         "label": "Show Frequently Bought Together Products slider"
