@@ -53,7 +53,6 @@
     position: relative;
     top: 0;
     left: 0;
-
     display: block;
 }
 .slick-track:before,
@@ -115,3 +114,51 @@
 .slick-arrow.slick-hidden {
     display: none;
 }
+#de-CarouselFeature .slick-current {
+  animation: bounceToLeft 1.5s cubic-bezier(0.55, 0.06, 0.68, 0.19) 2;
+  -webkit-animation:bounceToLeft 1.5s cubic-bezier(0.55, 0.06, 0.68, 0.19) 2;
+}
+@media screen and (min-width : 40em) {
+  .de-CarouselThumbnail .slick-current {
+    animation: bounce 1.5s cubic-bezier(0.55, 0.06, 0.68, 0.19) 2;
+    -webkit-animation:bounce 1.5s cubic-bezier(0.55, 0.06, 0.68, 0.19) 2;
+  }
+  
+ 
+  #de-CarouselFeature .slick-current {
+    animation: none;
+    -webkit-animation: none;
+  }
+}
+
+@keyframes bounce {
+  0%   { transform: scale(1,1)    translateY(0); }
+  20%  { transform: scale(1.1,.9) translateY(0); }
+  30%  { transform: scale(.9,1.1) translateY(-15px);}
+  50%  { transform: scale(1,1) translateY(0); }
+  100% { transform: scale(1,1) translateY(0); }
+}
+@-webkit-keyframes bounce {
+  0%   { transform: scale(1,1)    translateY(0); }
+  20%  { transform: scale(1.1,.9) translateY(0); }
+  30%  { transform: scale(.9,1.1) translateY(-15px);}
+  50%  { transform: scale(1,1) translateY(0); }
+  100% { transform: scale(1,1) translateY(0); }
+}
+
+@keyframes bounceToLeft {
+  0%   { transform: scale(1,1)    translateY(0) translateX(0px); }
+  20%  { transform: scale(1.1,.9) translateY(0); }
+  30%  { transform: scale(.9,1.1) translateY(-30px);}
+  70%  { transform: scale(1,1) translateY(10px) translateX(-30px); }
+  100% { transform: scale(1,1) translateY(0) translateX(0px); }
+}
+
+@-webkit-keyframes bounceToLeft {
+  0%   { transform: scale(1,1)    translateY(0) translateX(0px); }
+  20%  { transform: scale(1.1,.9) translateY(0); }
+  30%  { transform: scale(.9,1.1) translateY(-30px);}
+  70%  { transform: scale(1,1) translateY(10px) translateX(-30px); }
+  100% { transform: scale(1,1) translateY(0) translateX(0px); }
+}
+
