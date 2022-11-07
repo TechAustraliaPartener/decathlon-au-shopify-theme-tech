@@ -81,7 +81,6 @@
 .de-CarouselContainer {
   overflow: hidden;
 }
-
 @media (min-width: $breakpoint-md) {
   .de-CarouselFeature {
     .slick-slide {
@@ -90,6 +89,12 @@
       right: -1px;
     }
   }
+  .de-CarouselThumbnail {
+    .slick-track {
+    padding: 5px 0;
+    }
+  }
+
 }
 
 /**
