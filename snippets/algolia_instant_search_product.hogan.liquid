@@ -48,10 +48,15 @@
       [[/ _highlightResult.tags ]]
     </p>
 
-    [[# helpers.getShippingInfo ]]
-    [[/ helpers.getShippingInfo ]]
-    [[# helpers.getClickAndCollectInfo ]]
-    [[/ helpers.getClickAndCollectInfo ]]
+
+    {% if settings.enabled_algolia_shipping_message  %}
+      [[# helpers.getShippingInfo ]]
+      [[/ helpers.getShippingInfo ]]
+    {% endif %}
+    {% if settings.enabled_algolia_cc_message  %}
+      [[# helpers.getClickAndCollectInfo ]]
+      [[/ helpers.getClickAndCollectInfo ]]
+    {% endif %}
     [[# helpers.getRRPPrices ]]
     [[/ helpers.getRRPPrices ]]
     [[# helpers.setupTooltip ]]

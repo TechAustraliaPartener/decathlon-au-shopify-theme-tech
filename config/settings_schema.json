@@ -2432,5 +2432,40 @@
         "info": "These are page handles that we will prevent search engines from indexing"
       }
     ]
+  },
+  {
+    "name": "Product Card Powered By Algolia",
+    "settings": [      
+      {
+        "type": "checkbox",
+        "id": "enabled_algolia_shipping_message",
+        "label": "Enable Shipping Message",
+        "default": true
+      },     
+      {
+        "type": "checkbox",
+        "id": "enabled_algolia_cc_message",
+        "label": "Enable Click & Collect Message",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Product Card Powered By Shopify",
+    "settings": [      
+      {
+        "type": "checkbox",
+        "id": "enabled_shopify_shipping_message",
+        "label": "Enable Shipping Message",
+        "default": true
+      },     
+      {
+        "type": "checkbox",
+        "id": "enabled_shopify_cc_message",
+        "label": "Enable Click & Collect Message",
+        "default": true
+      }
+      
+    ]
   }
 ]
