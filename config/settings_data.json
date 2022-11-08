@@ -32,9 +32,9 @@
     "header_store_label": "Find a Store",
     "header_sign_in_label": "Login",
     "megamenu_set_for_all": "default",
-    "megamenu_image": "shopify:\/\/shop_images\/Outdoor_Sports_315_x_235.jpg",
-    "megamenu_title": "Adventure Calls",
-    "megamenu_subtitle": "Shop Deals on Kayaks, SUPs, Tents & Bikes",
+    "megamenu_image": "shopify:\/\/shop_images\/Price_Drops_300_x_300_218d2d57-85b0-4870-8147-2b428bd3adc5.jpg",
+    "megamenu_title": "Shop Decathlon's Range of Price Drops",
+    "megamenu_subtitle": "Starting from $6",
     "megamenu_link": "https:\/\/decathlon.com.au\/pages\/outdoor-sports-sale",
     "megamenu_bg_colour": "#1c82c1",
     "custom_fields_terms_conditions": "I agree to the <a href=\"\/pages\/terms-and-conditions-membership\" target=\"_blank\">T&Cs<\/a> and <a href=\"\/pages\/privacy-policy\" target=\"_blank\">Privacy Policy<\/a> for creating an account.",
@@ -518,7 +518,7 @@
             "settings": {
               "name": "Auburn",
               "title": "Auburn Store, 2144",
-              "online_inventory_source": false,
+              "online_inventory_source": true,
               "enable_c_c": true,
               "duplicate": "",
               "test_mode": false,
@@ -1543,32 +1543,17 @@
         "blocks": {
           "e9b4daa6-6eee-441b-b76d-9c3ff012fde9": {
             "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Outdoor_Sports_1440_x_789px.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Outdoor_Sports_478_x_300px.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/pages\/outdoor-sports-sale",
-              "link_title": "Adventure Calls - Shop the Range Now!",
-              "link_new_window": false
-            }
-          },
-          "79522152-c757-4b60-a1be-2d1e49198982": {
-            "type": "slide",
             "disabled": true,
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Crazy_Weekend_Deals_Tents_1440_x_789px.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/Sports_in_Summer_1440_x_789px.jpg",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Crazy_Weekend_Deals_Tents_478_x_300px.jpg",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Sports_in_Summer_478_x_300px.jpg",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
               "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/collections\/weekend-deals-29-oct?q=&hPP=24&idx=shopify_products_price_desc&p=0&is_v=1",
-              "link_title": "Shop Weekend Deals - 30% off Tents",
+              "link_url": "shopify:\/\/pages\/easiest-summer-ever",
+              "link_title": "Easiest Summer Ever - Shop Summer Essentials",
               "link_new_window": false
             }
           },
@@ -1584,6 +1569,21 @@
               "button_title": "",
               "link_url": "https:\/\/decathlon.com.au\/pages\/price-drop",
               "link_title": "",
+              "link_new_window": false
+            }
+          },
+          "85c47718-39c5-4752-aa58-3e34ef8c0a97": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/20off_Cycling_Accessories_1440_x_789px.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/20off_Cycling_Accessories_478_x_300px.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "shopify:\/\/collections\/cycling-clothing-bike-accessories",
+              "link_title": "Shop $20 off Cycling Clothing & Accessories",
               "link_new_window": false
             }
           },
@@ -1614,6 +1614,37 @@
               "button_title": "",
               "link_url": "https:\/\/decathlon.com.au\/products\/decathlon-australia-physical-gift-card?",
               "link_title": "Gift Your Loved One a Decathlon Gift Card",
+              "link_new_window": false
+            }
+          },
+          "0e3f284b-4302-4200-8eb1-f98ce34415af": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/MVP-Banner-Desktop.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/MVP-Banner-Mobile.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "shopify:\/\/pages\/decathlon-membership",
+              "link_title": "",
+              "link_new_window": false
+            }
+          },
+          "79522152-c757-4b60-a1be-2d1e49198982": {
+            "type": "slide",
+            "disabled": true,
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Crazy_Weekend_Deals_Tents_1440_x_789px.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Crazy_Weekend_Deals_Tents_478_x_300px.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/weekend-deals-29-oct?q=&hPP=24&idx=shopify_products_price_desc&p=0&is_v=1",
+              "link_title": "Shop Weekend Deals - 30% off Tents",
               "link_new_window": false
             }
           },
@@ -1649,36 +1680,6 @@
               "link_new_window": false
             }
           },
-          "85c47718-39c5-4752-aa58-3e34ef8c0a97": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/20off_Cycling_Accessories_1440_x_789px.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/20off_Cycling_Accessories_478_x_300px.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "shopify:\/\/collections\/cycling-clothing-bike-accessories",
-              "link_title": "Shop $20 off Cycling Clothing & Accessories",
-              "link_new_window": false
-            }
-          },
-          "0e3f284b-4302-4200-8eb1-f98ce34415af": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/MVP-Banner-Desktop.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/MVP-Banner-Mobile.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "shopify:\/\/pages\/decathlon-membership",
-              "link_title": "",
-              "link_new_window": false
-            }
-          },
           "623e46b1-2abc-4e5b-8ceb-3ca5e428998a": {
             "type": "slide",
             "disabled": true,
@@ -1692,22 +1693,6 @@
               "button_title": "",
               "link_url": "https:\/\/decathlon.com.au\/collections\/nba-tarmak?q=&hPP=24&idx=shopify_products_price_desc&p=0&is_v=1?utm_source=homepage&utm_medium=onsite&utm_campaign=NBAXTARMAK&utm_id=&utm_content=HeroBanner",
               "link_title": "Shop NBA X Tarmak",
-              "link_new_window": false
-            }
-          },
-          "3e042199-9da3-4514-87ba-d462754ab771": {
-            "type": "slide",
-            "disabled": true,
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Easybreath_Mask_1440_x_789px.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Easybreath_Mask_478_x_300px.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/collections\/price-drop?q=&hPP=24&idx=shopify_products&p=0&dFR%5Bvendor%5D%5B0%5D=SUBEA&is_v=1",
-              "link_title": "Shop Easybreath Snorkel Mask",
               "link_new_window": false
             }
           },
@@ -1730,16 +1715,15 @@
         },
         "block_order": [
           "e9b4daa6-6eee-441b-b76d-9c3ff012fde9",
-          "79522152-c757-4b60-a1be-2d1e49198982",
           "145847d3-2db7-45f7-8ef6-38db22a4156a",
+          "85c47718-39c5-4752-aa58-3e34ef8c0a97",
           "748c6a7e-732f-486d-a653-eb425a670bc5",
           "579ee1c6-8cb9-4350-95e5-fb83a1397d90",
+          "0e3f284b-4302-4200-8eb1-f98ce34415af",
+          "79522152-c757-4b60-a1be-2d1e49198982",
           "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b",
           "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9",
-          "85c47718-39c5-4752-aa58-3e34ef8c0a97",
-          "0e3f284b-4302-4200-8eb1-f98ce34415af",
           "623e46b1-2abc-4e5b-8ceb-3ca5e428998a",
-          "3e042199-9da3-4514-87ba-d462754ab771",
           "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb"
         ],
         "settings": {}
@@ -2240,13 +2224,12 @@
         "type": "featured_collection",
         "disabled": true,
         "settings": {
-          "title": "Great deals on",
-          "section_collection": "health-nutrition-sale"
+          "title": "Your Easiest Summer Ever - Shop Summer Essentials Now",
+          "section_collection": "easiest-summer-ever"
         }
       },
       "1642116157c0ce923f": {
         "type": "featured_collection",
-        "disabled": true,
         "settings": {
           "title": "Discover Our Surfing Range",
           "section_collection": "surfing"
@@ -2313,6 +2296,7 @@
       },
       "165115029729e3ba5b": {
         "type": "featured_collection",
+        "disabled": true,
         "settings": {
           "title": "Trending Deals on Outdoor Equipment!",
           "section_collection": "outdoor-sports-sale"
@@ -2362,6 +2346,7 @@
           },
           "fe11e3a8-e660-4eb3-a13c-bc7fee55ba93": {
             "type": "tab-callout",
+            "disabled": true,
             "settings": {
               "megamenu_parent": "shop-all-sports",
               "display_callout": true,
@@ -2412,12 +2397,12 @@
             "type": "tab-callout",
             "disabled": true,
             "settings": {
-              "megamenu_parent": "camping-outdoors",
+              "megamenu_parent": "shop-all-sports",
               "display_callout": true,
-              "megamenu_image": "shopify:\/\/shop_images\/Crazy_Weekend_Deals_Tents_315_x_235px.jpg",
-              "megamenu_title": "Weekend Deals",
-              "megamenu_subtitle": "30% off Selected Tents",
-              "megamenu_link": "https:\/\/decathlon.com.au\/collections\/weekend-deals-29-oct?q=&hPP=24&idx=shopify_products_price_desc&p=0&is_v=1",
+              "megamenu_image": "shopify:\/\/shop_images\/Sports_in_Summer_315_x_235.jpg",
+              "megamenu_title": "Easiest Summer Ever",
+              "megamenu_subtitle": "Shop Summer Essentials Here!",
+              "megamenu_link": "shopify:\/\/pages\/easiest-summer-ever",
               "megamenu_bg_colour": "#1c82c3"
             }
           }
@@ -2439,15 +2424,15 @@
       "163107170023281063",
       "163107313302287377",
       "16316085202ea5cf79",
+      "16375487170499d43e",
+      "16509507269dac2990",
+      "1642116157c0ce923f",
+      "166270596352f8a275",
+      "1650960580e9623e99",
       "165115029729e3ba5b",
       "1651153473715f6dc1",
-      "1642116157c0ce923f",
-      "16509507269dac2990",
-      "1650960580e9623e99",
-      "166270596352f8a275",
       "163487525380dd83d2",
-      "1650950354346fb7a1",
-      "16375487170499d43e"
+      "1650950354346fb7a1"
     ]
   },
   "presets": {
