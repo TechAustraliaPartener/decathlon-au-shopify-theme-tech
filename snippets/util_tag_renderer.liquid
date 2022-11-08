@@ -1,7 +1,9 @@
 <div class="CustomLabels">
   {% assign combo_labels = labels | replace: ",", "-" | handleize %}
   {% assign labels = labels | split: "," %}
-
+  {% unless labels contains 'Sale' %}
+    {% assign labels = labels | reverse %}
+  {% endunless %}
 
   <div class="label_combo {% if labels.size > 1 %}label_combo_{{ combo_labels }}{% endif %}" style="display: flex;">
   {% assign ctr = 0 %}
