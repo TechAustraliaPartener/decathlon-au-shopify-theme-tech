@@ -1,5 +1,15 @@
 <div data-algolia-position="[[ productPosition ]]" data-algolia-queryid="[[ queryID ]]" data-algolia-objectid="[[ objectID ]]" class="ais-hit ais-product [[# helpers.priceHide ]][[/ helpers.priceHide ]]" data-handle="[[ handle ]]" data-variant-id="[[ objectID ]]" data-distinct="[[ _distinct ]]">
 
+  <header class="decathlon-product-header">
+    <div class="col decathlon-product-header__brand-icon">
+      [[# helpers.subBrandLogo ]]
+      [[/ helpers.subBrandLogo ]]
+    </div>
+    <div class="col">
+      <a href="#" class="decathlon-product-header__brand-link">Learn More</a>
+    </div>
+  </header>
+  
   [[# helpers.label ]]
   [[/ helpers.label ]]
 
@@ -11,11 +21,7 @@
   [[/ helpers.thumbnails ]]
 
   <div class="ais-hit--details">
-
-    <header class="de-ProductTile-header" style="border-top: none;">
-      [[# helpers.subBrandLogo ]]
-      [[/ helpers.subBrandLogo ]]
-    </header>
+    
     <p class="ais-hit--title">
       <a data-algolia-position="[[ productPosition ]]" data-algolia-queryid="[[ queryID ]]" data-algolia-objectid="[[ objectID ]]" href="[[# helpers.instantsearchLink ]][[/ helpers.instantsearchLink ]]" onclick="void(0)" title="[[# helpers.fullTitle ]][[/ helpers.fullTitle ]]">
         [[# helpers.fullHTMLTitle ]][[/ helpers.fullHTMLTitle ]]
