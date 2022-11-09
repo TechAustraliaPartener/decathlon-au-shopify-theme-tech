@@ -33,6 +33,8 @@ Example:
 {% comment %} Begin ProductTile pattern {% endcomment %}
 <article class="de-ProductTile de-u-lineHeight3 js-de-ProductTile {{ class }} {% if added_item_drawer == true %}de-is-loading de-Skeleton{% endif %}" {% comment %} TODO Remove
   `data-product-title` if not needed, eventually {% endcomment %} data-product-title="{{ product.title }}">
+  
+  <div class="de-productTile-top-container">
   <section class="de-ProductTile-showcase js-de-ProductTile-showcase">
     {% comment %} Product Flag {% endcomment %}
     {% include 'elements-product-flag' with class: 'de-u-textShrink2 de-u-md-Grow1' %}
@@ -47,6 +49,20 @@ Example:
         data-gtm-category="{{ data_gtm_category }}">
     </a>  
   </section>
+
+  <section class="de-RatingContainer">
+    {% comment %} Reviews {% endcomment %}
+    <div class="de-RatingItem de-u-flex de-u-flexAlignItemsCenter de-u-spaceTop06 de-u-lineHeight1"
+      data-gtm-id="Product Reviews | {{ product.url }}" data-gtm-category="{{ data_gtm_category }}"
+      data-gtm-event="{{ data_gtm_event }}" data-gtm-actions="click" data-gtm-delegate="child">
+      {% include 'elements-product-rating--stars-total',
+        star_rating_class: 'de-StarRating--small',
+        item_count_class: 'de-u-textDarkGray de-u-textShrink2 de-u-md-textShrink1'
+      %}
+    </div>
+
+  </section>
+</div>
 
   <section class="de-ProductTile-info">
     {% comment %} Color Swatches {% endcomment %}
@@ -74,18 +90,6 @@ Example:
         </h4>
       </header>
 
-      <section>
-        {% comment %} Reviews {% endcomment %}
-        <div class="de-u-flex de-u-flexAlignItemsCenter de-u-spaceTop06 de-u-lineHeight1"
-          data-gtm-id="Product Reviews | {{ product.url }}" data-gtm-category="{{ data_gtm_category }}"
-          data-gtm-event="{{ data_gtm_event }}" data-gtm-actions="click" data-gtm-delegate="child">
-          {% include 'elements-product-rating--stars-total',
-            star_rating_class: 'de-StarRating--small',
-            item_count_class: 'de-u-textDarkGray de-u-textShrink2 de-u-md-textShrink1'
-          %}
-        </div>
-
-      </section>
     </a>
 
     {% comment %} Price {% endcomment %}
