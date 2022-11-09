@@ -1041,3 +1041,26 @@ a.ais--product-img-container {
   padding: 5px 5px 5px 0;
   border-radius: 1px;
 }
+
+.template-collection .ais-block .ais-search-header{
+  margin-top: 0 !important;
+}
+.template-collection .ais-page .ais-search-header{
+  padding: 0;
+}
+
+
+@media screen and (min-width: 815px){
+  .ais-page .ais-facets {
+    position: sticky !important;
+    top: 120px;
+    overflow-y: scroll;
+    height: calc(100vh - 120px);
+  }  
+}
+
+@media screen and (min-width: 59.9991em) and (min-width: 815px){
+  .ais-page .ais-facets {
+    top: 0;
+  }  
+}

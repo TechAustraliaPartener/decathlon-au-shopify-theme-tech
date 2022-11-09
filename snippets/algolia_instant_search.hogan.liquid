@@ -1,4 +1,21 @@
 <div class="ais-page">
+  <div class="ais-key-visual">
+    <div class="ais-input">
+      <div class="ais-input--label">
+        [[ translations.search ]]
+      </div>
+      <div class="ais-search-box-container"></div>
+      <div class="ais-input-button">
+        <div class="ais-clear-input-icon"></div>
+        <a href="https://www.algolia.com/?utm_source=shopify&utm_medium=link&utm_campaign=instantsearch-[[ storeName ]]" title="Search by Algolia - Click to know more">
+          <div class="ais-algolia-icon"></div>
+        </a>
+      </div>
+    </div>
+    <div class="ais_banner_container" id="ais_banner_container">
+    </div>    
+    <div class="buying_guide_wrapper_desktop">{% render 'buying_guide_banner' %}</div>
+  </div>
 
   <div class="ais-facets ais-facets--loading">
     <div class="ais-facets__buttons">
@@ -24,22 +41,6 @@
     [[/ facets ]]
   </div>
   <div class="ais-block">
-    <div class="ais-input">
-      <div class="ais-input--label">
-        [[ translations.search ]]
-      </div>
-      <div class="ais-search-box-container"></div>
-      <div class="ais-input-button">
-        <div class="ais-clear-input-icon"></div>
-        <a href="https://www.algolia.com/?utm_source=shopify&utm_medium=link&utm_campaign=instantsearch-[[ storeName ]]" title="Search by Algolia - Click to know more">
-          <div class="ais-algolia-icon"></div>
-        </a>
-      </div>
-    </div>
-    <div class="ais_banner_container" id="ais_banner_container">
-    </div>
-    
-    <div class="buying_guide_wrapper_desktop">{% render 'buying_guide_banner' %}</div>
 
     <div class="ais-search-header">
       <div class="ais-stats-container"></div>

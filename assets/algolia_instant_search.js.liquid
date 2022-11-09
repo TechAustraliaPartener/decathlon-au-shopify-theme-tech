@@ -381,7 +381,7 @@
     if (window.algolia_custom_widgets.title) {
       instant.search.addWidget({
         render(options) {
-          var $block = $('.ais-block');
+          var $block = $('.ais-key-visual');
           var titleExists = $block.find('.collection-title-top').length > 0;
           if (!titleExists) {
             $block.prepend('<h2 class="collection-title-top">' + window.algolia_custom_widgets.title + '</h2>');
