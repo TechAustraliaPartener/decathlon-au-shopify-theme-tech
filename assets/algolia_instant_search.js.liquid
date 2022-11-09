@@ -397,7 +397,7 @@
           var $facets = $('.ais-facets');
           var menuExists = $('.breadcrumb-item.top-level').length > 0;
           if (!menuExists) {
-            $facets.prepend(window.algolia_custom_widgets.menu);
+            $facets.append(window.algolia_custom_widgets.menu);
           }
         },
       });
