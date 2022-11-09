@@ -167,7 +167,7 @@
         return `<div class="ais-hit--label label_${ handleize(label) }">${ label }</div>`;
       });
       if (hasSaleTag) {
-        innerLabels.unshift(`<div class="ais-hit--label clearance">Sale</div>`);
+        innerLabels.unshift(`<div class="ais-hit--label clearance">{{ 'products.product.label_clearance' | t }}</div>`);
       }
       innerLabels = innerLabels.slice(0, 2);
 
