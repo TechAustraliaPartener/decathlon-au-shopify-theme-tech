@@ -1,0 +1,109 @@
+<div class="section_title_container">
+  <h3 class="section_title">{{ section.settings.title }}</h3>
+</div>
+
+<div class="section_content_wrapper">
+  {% for block in section.blocks %}
+  {% if block.settings.tile_link_behaviour != "default" %}
+    {% capture link_bv %}target="_blank"{% endcapture %}
+  {% else %}
+    {% assign link_bv = "" %}  
+  {% endif %}
+    <div class="tile-box">
+      <a href="{{block.settings.tile_url}}" {{link_bv}}>
+        <img class="tile-image" width="400" height="400"
+          src="{{ block.settings.tile_img | img_url: '400x' }}"
+          srcset="{{ block.settings.tile_img | img_url: '750x' }} 1024w,
+          {{ block.settings.tile_img | img_url: '400x' }} 768w,
+          {{ block.settings.tile_img | img_url: '360x' }} 640w,
+          ">
+      </a>
+      <div class="tile-content">
+        <a href="{{block.settings.tile_url}}" {{link_bv}}>
+          <h4 class="tile-title">{{block.settings.tile_title}}</h4>
+        </a>
+        <div class="title-subtitle">
+          {{block.settings.tile_subtitle}}
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+{% schema %}
+{
+  "name": "Three Tile Content",
+  "class": "three-title-content section_with_title",
+  "settings": [
+     {
+        "type": "text",
+        "id": "title",
+        "label": "Section Title"
+      }
+  ],
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "type": "tile",
+      "name": "Tile",
+      "settings": [
+        {
+          "id": "tile_img",
+          "type": "image_picker",
+          "label": "Tile Image"
+        },
+        {
+          "id": "tile_url",
+          "type": "url",
+          "label": "Tile link"
+        },
+        {
+          "id": "tile_link_behaviour",
+          "type": "radio",
+          "label": "Link should open...",
+          "options": [
+            {
+              "value": "default",
+              "label": "on the same Page"
+            },
+            {
+              "value": "new_tab",
+              "label": "on a new Tab"
+            }
+          ]
+        },
+        {
+          "id": "tile_title",
+          "type": "text",
+          "label": "Tile Title"
+        },
+        {
+          "id": "tile_subtitle",
+          "type": "richtext",
+          "label": "Tile Subtitle"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Three Tile Content",
+      "settings": {
+        "title": "Three Tile Content"
+      },
+      "blocks": [
+        {
+          "type": "tile"
+        },
+        {
+          "type": "tile"
+        },
+        {
+          "type": "tile"
+        }
+      ]
+    }
+  ]
+  
+}
+{% endschema %}
