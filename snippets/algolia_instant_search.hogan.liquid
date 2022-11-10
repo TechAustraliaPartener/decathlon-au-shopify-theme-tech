@@ -18,28 +18,38 @@
   </div>
 
   <div class="ais-facets ais-facets--loading">
-    <div class="ais-facets__buttons">
-      <button class="ais-facets__clear-all-button">Clear All</button>
-      <button class="ais-facets__done-button">Done</button>
-    </div>
-    <div class="ais-current-refined-values-container"></div>
-    <div class="ais-facets__group ais-facets__group--sort">
-      <div class="ais-sort-orders-header">
-        <span>Sort By</span>
-        {% include 'assets-icons-chevron-down' with class: 'de-Icon' %}
+    <div class="ais-filter-container">
+      <div class="ais-filter-sticky">
+        <div class="ais-facets__buttons">
+          <button class="ais-facets__clear-all-button">Clear All</button>
+          <button class="ais-facets__done-button">Done</button>
+        </div>
+        <div class="ais-current-refined-values-container"></div>
+
       </div>
-      [[# multipleSortOrders ]]
-      <span class="ais-sort-orders-container--drawer"></span>
-      [[/ multipleSortOrders ]]
-                  
-                      [[^ multipleSortOrders ]]
-                      [[ translations.sortBy ]] [[ translations.relevance ]]
-                      [[/ multipleSortOrders ]]
     </div>
-    [[# facets ]]
-    <div class="ais-facets__group ais-facet-[[ type ]] ais-facet-[[ escapedName ]]"></div>
-    [[/ facets ]]
+    <div class="sticky-container">
+      <div class="ais-facets__group ais-facets__group--sort">
+        <div class="ais-sort-orders-header">
+          <span>Sort By</span>
+          {% include 'assets-icons-chevron-down' with class: 'de-Icon' %}
+        </div>
+        [[# multipleSortOrders ]]
+        <span class="ais-sort-orders-container--drawer"></span>
+        [[/ multipleSortOrders ]]
+                    
+        [[^ multipleSortOrders ]]
+        [[ translations.sortBy ]] [[ translations.relevance ]]
+        [[/ multipleSortOrders ]]
+      </div>
+  
+      [[# facets ]]
+      <div class="ais-facets__group ais-facet-[[ type ]] ais-facet-[[ escapedName ]]"></div>
+      [[/ facets ]]
+      
+    </div>
   </div>
+
   <div class="ais-block">
 
     <div class="ais-search-header">

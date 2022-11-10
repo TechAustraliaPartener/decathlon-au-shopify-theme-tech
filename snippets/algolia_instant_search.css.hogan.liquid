@@ -1051,17 +1051,46 @@ a.ais--product-img-container {
 
 
 @media screen and (min-width: 815px){
-  .ais-page .ais-facets {
+  .ais-page .ais-facets{
     position: sticky !important;
     top: 120px;
     overflow-y: scroll;
-    height: calc(100vh - 120px);
+    height: 100vh;
   }  
+
+  .ais-page .ais-facets::-webkit-scrollbar {
+    width: 8px;
+  }
+   
+  .ais-facets::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+  }
+   
+  .ais-facets::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+  }
+
+
+  .sticky-container,
+  .ais-filter-container{
+    position: relative;
+  }
+
+  .sticky-container .ais-facet--header.ais-header,
+  .ais-filter-sticky{
+    position: sticky;
+    top: 0;
+    background-color: #FFF ;
+    z-index: 999;
+  }
+  
 }
 
-@media screen and (min-width: 59.9991em) and (min-width: 815px){
+@media screen and (max-width: 59.9991em) and (min-width: 815px){
   .ais-page .ais-facets {
-    top: 0;
+    top: 65px;
   }  
 }
 
@@ -1069,3 +1098,5 @@ a.ais--product-img-container {
 .schema-algolia-brand{
   height: 24px;
 }
+
+
