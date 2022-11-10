@@ -2435,13 +2435,29 @@
   },
   {
     "name": "Product Card Powered By Algolia",
-    "settings": [      
+    "settings": [
+      {
+        "type": "text",
+        "id": "schema_algolia_brand_text",
+        "label": "Brand Logo Link Text",
+        "default": "Learn More"
+      },
+      {
+        "type": "image_picker",
+        "id": "schema_algolia_default_logo",
+        "label": "Default Brand Logo"
+      },
+      {
+        "type": "url",
+        "id": "schema_algolia_default_link",
+        "label": "Link"
+      },
       {
         "type": "checkbox",
         "id": "enabled_algolia_shipping_message",
         "label": "Enable Shipping Message",
         "default": true
-      },     
+      },
       {
         "type": "checkbox",
         "id": "enabled_algolia_cc_message",
@@ -2452,20 +2468,19 @@
   },
   {
     "name": "Product Card Powered By Shopify",
-    "settings": [      
+    "settings": [
       {
         "type": "checkbox",
         "id": "enabled_shopify_shipping_message",
         "label": "Enable Shipping Message",
         "default": true
-      },     
+      },
       {
         "type": "checkbox",
         "id": "enabled_shopify_cc_message",
         "label": "Enable Click & Collect Message",
         "default": true
       }
-      
     ]
   }
 ]
