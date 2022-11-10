@@ -84,12 +84,13 @@ const render = ({ variant, isShown }) => {
   // IF YOU UPDATE THIS
   // You must also update the corresponding liquid code for server-render
   // ./snippets/product-flag.liquid
+  updateFlag(null, ''); // The flag will hide
   // Last call flag needs to take priority over other flags
-  if (isOnSale) {
-    updateFlag('Sale', 'de-u-bgRed de-u-textWhite');
-  } else {
-    updateFlag(null, ''); // The flag will hide
-  }
+  // if (isOnSale) {
+  //   updateFlag('Sale', 'de-u-bgRed de-u-textWhite');
+  // } else {
+  //   updateFlag(null, ''); // The flag will hide
+  // }
 };
 
 state.onChange(render);
