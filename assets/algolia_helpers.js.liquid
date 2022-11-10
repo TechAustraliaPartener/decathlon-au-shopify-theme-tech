@@ -149,7 +149,7 @@
       let tags = (this || {}).tags;
 
       tags = tags ? (Array.isArray(tags) ? tags : [tags]) : [];
-      let hasSaleTag = tags.some(tag => tag.toLowerCase() === 'clearance');
+      let hasSaleTag = tags.some(tag => tag.toLowerCase() === 'clearance') || tags.some(tag => tag.toLowerCase() === 'sale');
 
       let labelsOutput = '';
 
