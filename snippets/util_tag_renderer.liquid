@@ -1,9 +1,6 @@
 <div class="CustomLabels">
   {% assign combo_labels = labels | replace: ",", "-" | handleize %}
   {% assign labels = labels | split: "," %}
-  {% unless labels contains 'Sale' %}
-    {% assign labels = labels | reverse %}
-  {% endunless %}
 
   <div class="label_combo {% if labels.size > 1 %}label_combo_{{ combo_labels }}{% endif %}" style="display: flex;">
   {% assign ctr = 0 %}
@@ -12,11 +9,12 @@
     {% if template contains 'product' %}
       {% capture label_info -%} {% render 'util_get_label_info' label: label %} {%- endcapture %}
     {% endif %}
-    <div class="label_container {% if label_info == blank -%} no-tooltip {%- endif %}">
+    <div class="label_container {% if label_info == blank -%} no-tooltip {%- endif %} label_{{ label | handleize }}">
       <span data-flag="{{ product.id }}" class="ProductFlag
         {% unless label %}de-u-hidden{% endunless %} {{ class }} label_{{ label | handleize }}">
         <span class="de-u-hiddenVisually">Special product, </span>{{ label }}
       </span>
+      
       {% if label_info != blank %}
         <div class="label_info de-rrp-tooltip">
           {{ label_info }}
