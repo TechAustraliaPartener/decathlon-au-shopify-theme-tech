@@ -91,12 +91,14 @@
 
 <script>
   window.vars.subBrandLogos = {};
+  window.vars.subBrandLink = {};
   {% for item in linklists.sub-brands.links %}
-
+    {% assign brand_logo_link = 'https://decathlon-australia.myshopify.com/#allsix' | split: "#" | first %}
     {% assign brand_logo_prefix = 'assets-logos-brands-' %}
     {% assign brand_logo_name = item.url | remove: "#" %}
     {% assign brand_logo_filename = brand_logo_prefix | append: brand_logo_name %}
-
+    
+    window.vars.subBrandLink['{{ brand_logo_name }}'] = '{{ brand_logo_link }}';
     window.vars.subBrandLogos['{{ brand_logo_name }}'] = `{% include brand_logo_filename, 
       class: 'de-u-spaceTop04 de-subBrandLogo', 
       data_gtm_category: 'Tiles',
