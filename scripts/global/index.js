@@ -162,3 +162,9 @@ $( document ).ready(function() {
     }
   }
 });
+$(window).bind('load', function() {
+  var $filterCount = $('.ais-current-refined-values--item').length;
+  if ( $filterCount > 0 ){
+    $('.ais-facets-button').append(' ('+ $filterCount + ')')
+  }
+})

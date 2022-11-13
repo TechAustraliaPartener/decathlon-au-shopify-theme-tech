@@ -193,10 +193,9 @@
         var $button = $('.ais-facets-button');
         var $buttonDone = $('.ais-facets__done-button');
         var searchWasExpandedOnOpen = false;
-
         function toggleDrawer() {
-          var $facets = $('.ais-facets');
-
+          var $facets = $('.ais-facets'); 
+          var $filterCount = $('.ais-current-refined-values--item').length; 
           if ($('.ais-page').hasClass('ais-page--loaded')) {
 
             if ($facets.hasClass('ais-facets__shown')) {
@@ -218,6 +217,9 @@
                 $('.de-Drawer-wrap .de-PageWrap-headerTertiaryControl .de-MenuBar-action').attr('aria-expanded', 'true');
                 $('.de-Drawer-wrap').addClass('de-is-expanded');
                 searchWasExpandedOnOpen = false;
+              }
+              if ($filterCount > 0){
+                $button.append(' ('+ $filterCount + ')');
               }
 
               // End: Customisations
@@ -263,6 +265,8 @@
               // End: Customisations
             }
           }
+                  
+
         }
 
         $button.on('click', function () {
