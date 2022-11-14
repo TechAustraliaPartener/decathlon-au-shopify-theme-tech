@@ -13,10 +13,10 @@
     var comparing = +compare_at_price && +compare_at_price > +price,
       discount_ratio = 1.0 - price_ratio,
       res = formatPrice(price);
-    if (comparing) {
-      res += ' <span class="ais-hit--price-striked"><span>' + formatPrice(compare_at_price) + '</span></span> ';
-      res += ' <span class="ais-hit--price-discount" style="font-weight: ' + (Math.floor(discount_ratio * 10) * 100) + ';">-' + Math.floor(discount_ratio * 100) + '%</span>';
-    }
+      if (comparing) {
+        res += ' <span class="ais-hit--price-striked"><span>' + formatPrice(compare_at_price) + '</span></span> ';
+        res += ' <span class="ais-hit--price-discount" style="font-weight: ' + (Math.floor(discount_ratio * 10) * 100) + ';">-' + Math.floor(discount_ratio * 100) + '%</span>';
+      }
 
     return res;
   }
@@ -221,23 +221,23 @@
         '<img class="de-SwatchObject-image de-u-block" src="' + imgUrl + '" alt="' + product.title + '">',
         '</a>'].join('');
 
-      if (colorValueTags.length > 1) {
+        if (colorValueTags.length > 1) {
 
-        var colourOrColours = (colorValueTags.length > 2) ? 'Colours' : 'Colour';
-
-        html += ['<span class="wrap">',
-          '<a class="de-SwatchObjects-item de-ColorSwatches-color de-u-textDarkGray" ' + 'href="' + '/products/' + product.handle + '"' + '>',
-          '<span aria-hidden="true">+</span>',
-          colors,
-          '</a>',
-          '<a class="de-ColorSwatches-color label" style="color:#464646;" ' + 'href="' + '/products/' + product.handle + '"' + '>',
-          colourOrColours,
-          '</a>',
-          '</span>'
-        ].join('');
-      }
-
-      return html + '</div>';
+          var colourOrColours = (colorValueTags.length > 2) ? 'Colours' : 'Colour';
+  
+          html += ['<span class="wrap">',
+            '<a class="de-SwatchObjects-item de-ColorSwatches-color de-u-textDarkGray" ' + 'href="' + '/products/' + product.handle + '"' + '>',
+            '<span aria-hidden="true">+</span>',
+            colors,
+            '</a>',
+            '<a class="de-ColorSwatches-color label" style="color:#464646;" ' + 'href="' + '/products/' + product.handle + '"' + '>',
+            colourOrColours,
+            '</a>',
+            '</span>'
+          ].join('');
+        }
+  
+        return html + '</div>';
       /* }
 
       variantImages = variantImages.split('||');

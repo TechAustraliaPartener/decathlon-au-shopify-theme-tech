@@ -167,9 +167,18 @@ $(window).bind('load', function() {
   if ( $filterCount > 0 ){
     $('.ais-facets-button').append(' ('+ $filterCount + ')')
   }
+
 })
 
+$(window).scroll(function(){
+  if (showMoreInViewport($('.ais-hits--showmore'))){
+      $('.ais-hits--showmore button').trigger('click');
+  }
+});
 function showMoreInViewport(obj){
+
+  // FOR infinitHits && Pagination
+  if ($('#ais_banner_container').length > 0){
     var documentViewTop = $(window).scrollTop();
     var documentViewBottom = documentViewTop + $(window).height();
 
@@ -177,9 +186,14 @@ function showMoreInViewport(obj){
     var elementBottom = elementTop + $(obj).height();
 
     return ((elementBottom <= documentViewBottom) && (elementTop >= documentViewTop));
+  }
 }
+
 $(window).scroll(function(){
   if (showMoreInViewport($('.ais-hits--showmore'))){
       $('.ais-hits--showmore button').trigger('click');
-   }
+  }
 });
+    
+
+

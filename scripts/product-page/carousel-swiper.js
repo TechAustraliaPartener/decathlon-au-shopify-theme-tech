@@ -6,6 +6,12 @@ const SWIPER_PREV_BUTTON_CLASS = '.swiper-button-prev';
 const SWIPER_CAROUSEL_CLASS = '.swiper_products_tile_carousel';
 const SWIPER_SLIDE_CLASS = '.swiper-slide';
 
+
+const CAROUSEL_SWATCH_CONTAINER_CLASS = '.swiper_products_swatch_carousel_container';
+const SWIPER_SWATCH_CAROUSEL_CLASS = '.swiper_products_swatch_carousel';
+const SWIPER_SWATCH_NEXT_BUTTON_CLASS = '.swiper-swatch-button-next';
+const SWIPER_SWATCH_PREV_BUTTON_CLASS = '.swiper-swatch-button-prev';
+
 function createOnPageResize(swiper) {
   return function() {
     if(window.innerWidth >= 640) {
@@ -26,7 +32,11 @@ function initCarousel(element) {
   const prevElement = element.querySelector(SWIPER_PREV_BUTTON_CLASS);
   const carousel = element.querySelector(SWIPER_CAROUSEL_CLASS);
 
-  console.log(nextElement, prevElement, carousel);
+  const swatch = element.querySelector(SWIPER_SWATCH_CAROUSEL_CLASS);
+  const nextSwatchElement = element.querySelector(SWIPER_SWATCH_NEXT_BUTTON_CLASS);
+  const prevSwatchElement = element.querySelector(SWIPER_SWATCH_PREV_BUTTON_CLASS);
+
+  console.log('I AM LOOKING FOR THIS' + nextElement, prevElement, carousel, swatch);
 
   const carouselSwiper = new Swiper(carousel, {
     slidesPerView: 'auto',
@@ -76,23 +86,52 @@ function initCarousel(element) {
       },
     }
   });
+
+  const swatchSwiper = new Swiper(swatch, {
+    slidesPerView: 4,
+    spaceBetween: 0,
+    lazy: true,
+    loop: true,
+    navigation: {
+      nextEl: nextSwatchElement,
+      prevEl: prevSwatchElement,
+    },
+    on: {
+      init: function () {
+        $(SWIPER_SLIDE_CLASS).addClass('loaded');
+      },
+    }
+  });
+  
+  
+  
+  
+  
   const onPageResize = createOnPageResize(carouselSwiper);
+  const onSwatchPageResize = createOnPageResize(swatchSwiper);
 
   
 
   window.addEventListener('resize', function() {
     onPageResize();
+    onSwatchPageResize();
   });
 }
 
 
 function initCarousels() {
   const carouselContainers = document.querySelectorAll(CAROUSEL_CONTAINER_CLASS);
+  const carouselSwatchContainers = document.querySelectorAll(CAROUSEL_SWATCH_CONTAINER_CLASS);
 
   const carousels = Array.prototype.slice.call(carouselContainers);
+  const carouselSwatches = Array.prototype.slice.call(carouselSwatchContainers);
 
   carousels.forEach(carousel => {
     initCarousel(carousel);
+  });
+  
+  carouselSwatches.forEach(swatch => {
+    initCarousel(swatch);
   });
 }
 

@@ -73,3 +73,37 @@
 	padding: 5px 5px 5px 0;
 	border-radius: 1px
 }
+
+.swiper-swatch-button-prev button.de-ProductTileCarousel-button,
+.swiper-swatch-button-next button.de-ProductTileCarousel-button{
+  background: #fafafa !important; // Need to override
+  border: 1px solid #f3f3f3;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: block;
+}
+
+.swiper-swatch-button-next button.de-ProductTileCarousel-button.slick-prev .de-ProductTileCarousel-svg {
+  transform: rotate(360deg) ;
+}
+
+.swiper_products_swatch_carousel_container{
+  display: flex;
+  flex-direction: row;
+}
+
+.swiper-swatch-button-prev,
+.swiper-swatch-button-next{
+  width: 10%;
+}
+.swiper_products_swatch_carousel{
+  width: 80%;
+  overflow: hidden;
+}
+
+.swiper_products_swatch_carousel a.de-SwatchObjects-item {
+  width: 40px;
+  min-width: 40px !important;
+}
+
