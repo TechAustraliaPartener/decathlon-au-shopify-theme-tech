@@ -168,3 +168,18 @@ $(window).bind('load', function() {
     $('.ais-facets-button').append(' ('+ $filterCount + ')')
   }
 })
+
+function showMoreInViewport(obj){
+    var documentViewTop = $(window).scrollTop();
+    var documentViewBottom = documentViewTop + $(window).height();
+
+    var elementTop = $(obj).offset().top;
+    var elementBottom = elementTop + $(obj).height();
+
+    return ((elementBottom <= documentViewBottom) && (elementTop >= documentViewTop));
+}
+$(window).scroll(function(){
+  if (showMoreInViewport($('.ais-hits--showmore'))){
+      $('.ais-hits--showmore button').trigger('click');
+   }
+});
