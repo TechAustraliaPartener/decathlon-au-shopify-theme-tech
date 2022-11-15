@@ -16,7 +16,7 @@
   margin: 0;
   padding: 0;
 
-  line-height: 1.6;
+  line-height: 1;
   font-size: initial;
 }
 
@@ -708,7 +708,7 @@
 }
 
 .ais-page .ais-search-header {
-  font-size: 1em;
+  font-size: 0.85em;
 }
 
 .ais-page .ais-search-header * {
@@ -822,7 +822,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
 
-  line-height: 1.6;
+  line-height: 1.3;
 }
 
 .ais-page .ais-hit--title {
@@ -916,7 +916,7 @@
   margin-left: 5%;
 }
 
-.ais-results-size-sm .ais-page .ais-results-as-block > div > div:nth-of-type(3n + 1) .ais-hit {
+.ais-results-size-sm .ais-page .ais-results-as-block > div > div > div:nth-of-type(3n + 1) .ais-hit {
   margin-left: 0;
 }
 
@@ -926,8 +926,8 @@
   margin-left: 5%;
 }
 
-.ais-results-size-md .ais-page .ais-results-as-block > div > div:nth-of-type(4n + 1) .ais-hit,
-.ais-results-size-lg .ais-page .ais-results-as-block > div > div:nth-of-type(4n + 1) .ais-hit {
+.ais-results-size-md .ais-page .ais-results-as-block > div > div > div:nth-of-type(4n + 1) .ais-hit,
+.ais-results-size-lg .ais-page .ais-results-as-block > div > div > div:nth-of-type(4n + 1) .ais-hit {
   margin-left: 0;
   clear: both;
 }
@@ -958,10 +958,10 @@
 .ais-page .ais-pagination--item {
   display: inline-block;
 
-  width: 48px;
-  height: 48px;
+  width: 32px;
+  height: 32px;
 
-  margin: 8px;
+  margin: 0px 5px;
 
   border: 1px solid #e0e0e0;
   border-radius: 2px;
@@ -974,25 +974,16 @@
 }
 
 .ais-page .ais-pagination--link {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
+  display: inline-block;
 
   width: 100%;
   height: 100%;
 
   padding: 5px 0;
 
-  font-size: 1em;
+  font-size: 0.9em;
   color: [[ colors.main ]];
 }
-.ais-pagination--item__first .ais-pagination--link,
-.ais-pagination--item__previous .ais-pagination--link,
-.ais-pagination--item__next .ais-pagination--link, 
-.ais-pagination--item__last .ais-pagination--link {
-  font-size: 1.3750em;
-
-} 
 
 /* Colleciton page ratings */
 .ais-page .ais-rating {
@@ -1004,4 +995,154 @@
   font-size: 1.2em;
   line-height: 1;
   margin-bottom: 4px;
+}
+
+.decathlon-product-header .row{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(172, 179, 184, 0.5);
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+
+header.decathlon-product-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(172, 179, 184, 0.5);
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+.ais-results-size-xs header.decathlon-product-header {
+  flex-direction: column;
+  align-items: flex-start;
+}
+a.decathlon-product-header__brand-link {
+  color: #1e1e1e;
+  font-size: 14px;
+  font-family: avalonmedium,Helvetica Neue,Helvetica,Arial,sans-serif!important;
+  font-weight: 400!important;
+}
+
+div.decathlon-product-header__brand-icon *{
+  margin: 0 !important;
+  padding: 0 !important;
+}
+div.decathlon-product-header__brand-icon .h3.vendor_logo_fallback {
+  font-size: 18px;
+  padding: 4px 0 5px 0 !important;
+}
+.ais-results-size-xs header.decathlon-product-header {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+
+a.ais--product-img-container {
+  position: relative;
+}
+.ais--product-img-container .ais-rating {
+  position: absolute;
+  bottom: 0;
+  background-color: rgba(253,253,253,0.8);
+  padding: 5px 5px 5px 0;
+  border-radius: 1px;
+}
+
+.template-collection .ais-block .ais-search-header{
+  margin-top: 0 !important;
+}
+.template-collection .ais-page .ais-search-header{
+  padding: 0;
+}
+
+@media screen and (min-width: 815px){
+  .ais-page .ais-facets{
+    position: sticky !important;
+    top: 120px;
+    overflow-y: scroll;
+    height: 100vh;
+  }  
+
+  .ais-page .ais-facets::-webkit-scrollbar {
+    width: 8px;
+  }
+   
+  .ais-facets::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+  }
+   
+  .ais-facets::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+  }
+
+
+  .sticky-container,
+  .ais-filter-container{
+    position: relative;
+  }
+
+  .sticky-container .ais-facet--header.ais-header{
+    position: sticky;
+    top: 0;
+    background-color: #FFF ;
+    z-index: 999;
+  }
+  
+}
+
+@media screen and (max-width: 59.9991em) and (min-width: 815px){
+  .ais-page .ais-facets {
+    top: 65px;
+  }  
+}
+
+
+.schema-algolia-brand{
+  height: 24px;
+}
+.template-collection .ais-page .ais-pagination {
+  clear: both;
+  float: none;
+  margin: 0;
+  text-align: center;
+}
+
+
+.de-padding10.de-u-textSizeBase.large--hide {
+  margin-top: 30px;
+}
+.ais-page div.ais-pagination-container {
+  margin-top: -65px;
+  margin-bottom: 35px;
+}
+
+.template-collection .ais-results-size-md .ais-page .ais-pagination-container,
+.template-collection .ais-results-size-lg .ais-page .ais-pagination-container {
+  margin: 0;
+}
+.template-collection .ais-results-size-md .ais-page .ais-pagination,
+.template-collection .ais-results-size-lg .ais-page .ais-pagination {
+  text-align: right;
+}
+.ais-hits--showmore{
+  position: relative;
+}
+.ais-hits--showmore button{
+  color: transparent;
+  position: absolute;
+}
+#ais-sort-filter.sticky-active{
+  margin: 0 -15px;
+  position: sticky !important;
+  margin-top: -43px
+}
+@media screen and (min-width: 480px) {
+  #ais-sort-filter.sticky-active{
+    margin: 0 -30px;
+    margin-top: -43px
+  }  
 }
