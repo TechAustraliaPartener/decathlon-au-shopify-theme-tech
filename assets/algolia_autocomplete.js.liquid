@@ -1,3 +1,6 @@
+
+
+
 (function (algolia) {
   if (!algolia.config.autocomplete_enabled) return;
 
@@ -120,6 +123,57 @@
       .addClass('aa-dropdown-menu-size-' + suffix);
   }
 
+  function extractSubmittedSearchTeam(formValuesArray) {
+    let searchQueryObj;
+
+    if(Array.isArray(formValuesArray)) {
+      searchQueryObj = formValuesArray.find(function(element) {
+        return element.name === 'q'
+      })
+
+      return 'value' in searchQueryObj && searchQueryObj['value'] ? searchQueryObj['value'] : ''
+    }
+
+    return ''
+  }
+
+  function storeRecentSearchTerm(searchTerm) {
+    const currentRecentSearchTerms = localStorage.getItem('DecAURecentSearches');
+    let currentSearchTermsArray;
+    let uniqueCurrentSearchTermsArray;
+    let newRecentSearchTerms;
+
+    if(currentRecentSearchTerms) {
+      // Get the string of recent search terms
+      currentSearchTermsArray = currentRecentSearchTerms.split('|||');
+
+      // Push the newly searched term in front of the array
+      currentSearchTermsArray.unshift(searchTerm);
+      // Limit the array to 10 items only
+      currentSearchTermsArray = currentSearchTermsArray.slice(0,10);
+
+      // Set() gets the list of array search terms and creates a new array with only unique values
+      uniqueCurrentSearchTermsArray = new Set(currentSearchTermsArray);
+
+      // Convert Set() of values back into array
+      uniqueCurrentSearchTermsArray = Array.from(uniqueCurrentSearchTermsArray.values())
+
+      // Store the CSV of recent search terms back into localstorage
+      localStorage.setItem('DecAURecentSearches', uniqueCurrentSearchTermsArray.join('|||'))
+
+    } else {
+      localStorage.setItem('DecAURecentSearches', searchTerm);
+    }
+    
+  }
+
+  function displayRecentSearchTerms() {
+    const currentRecentSearchTerms = localStorage.getItem('DecAURecentSearches');
+    console.log('currentRecentSearchTerms in localstorage: ', currentRecentSearchTerms)
+
+    $('.searchbar-overlay').html(currentRecentSearchTerms);
+  }
+
   autocomplete = algolia.autocomplete = {
     articles: {
       enabled: algolia.config.index_articles,
@@ -208,6 +262,8 @@
       autocompleteSection('products')
     ]));
 
+    console.log(autocomplete.$input);
+
     // Hack to handle buggy onclick event on iOS
     autocomplete.$input.each(function () {
       var data = $(this).data('aaAutocomplete');
@@ -241,6 +297,9 @@
       } else {
         window.location.href = '/' + name + '/' + datum.handle;
       }
+
+
+      console.log('autocomplete:selected')
     })
 
     autocomplete.$input.on('autocomplete:redrawn', function () {
@@ -249,18 +308,33 @@
 
     autocomplete.$input.on('focus', function () {
       $backdrop.show();
-    });
+      console.log('backdrop showing...')
 
+      // Show recent searches
+      displayRecentSearchTerms();
+    });
 
 
     autocomplete.$input.on('blur', function () {
       $backdrop.hide();
+
     });
+
 
     $(window).resize(function () {
       autocomplete.$input.each(function () {
         readjust($(this));
       });
     });
+
+
+    // Store recent searches on form submit
+    $('form[action="/search"]').on('submit', function(e) {
+      var formValuesArray = $(this).serializeArray();
+      const searchValue = extractSubmittedSearchTeam(formValuesArray);
+      console.log('searchValue', searchValue);
+      storeRecentSearchTerm(searchValue);
+    });
+
   });
 }(algoliaShopify));
