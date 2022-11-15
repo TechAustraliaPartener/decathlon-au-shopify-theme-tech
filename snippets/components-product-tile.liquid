@@ -91,7 +91,7 @@ Example:
       </header>
 
     </a>
-
+    <a class="de-u-linkClean" href="{{ product.url }}">
     {% comment %} Price {% endcomment %}
     {% assign data_gtm_id = "Price | " | append: product.url %}
     {% include 'elements-product-tile-price',
@@ -101,16 +101,17 @@ Example:
       data_gtm_actions: 'click',
       data_gtm_delegate: 'child'
     %}
+    </a>
 
     {% comment %}
     Shipping Info
     {% endcomment %}
-
+    <a class="de-u-linkClean" href="{{ product.url }}">
     {% assign fs_min_price = settings.free_shipping_threshold | abs | times: 100 %}
     {% assign fs_max_weight = settings.free_shipping_max_weight | abs %}
     {% assign v = product.selected_or_first_available_variant %}
-
-    
+    </a>
+    <a class="de-u-linkClean" href="{{ product.url }}">
     {% if settings.enabled_shopify_shipping_message  %}
       {% if product.price >= fs_min_price and v.weight <= fs_max_weight %}
         <div class="product-tile-shipping-info de-u-textShrink1 de-u-textMedium">{{ 'products.delivery_text.free_shipping_message' | t }}</div>
@@ -118,43 +119,51 @@ Example:
         <div class="product-tile-shipping-info de-u-textShrink1 de-u-textMedium">{{ 'products.delivery_text.free_shipping_threshold_message' | t | replace: '[threshold]', settings.free_shipping_threshold }}</div>
       {% endif %}
     {% endif %}
+    </a>
 
 
     {% comment %}
     Click & Collect info
     By default "Free Click & Collect" is shown
     {% endcomment %}
-
+    <a class="de-u-linkClean" href="{{ product.url }}">
     {% if settings.enabled_shopify_cc_message  %}
       {% if true %}
         <div class="product-tile-shipping-info de-u-textShrink1 de-u-textMedium">{{ 'products.delivery_text.free_pickup' | t }}</div>
       {% endif %}
+    </a>
 
     {% comment %}
     RRP PRICE
     {% endcomment %}
+    <a class="de-u-linkClean" href="{{ product.url }}">
       {% if true %}
       {% include 'compositions-product-price-rrp', variant: current_variant, product: product, tooltip_top: true %}
       {% endif %}
     {% endif %}
+    </a>
 
     {% comment %}
     Inventory Status
     TODO To be implemented in future release
     {% endcomment %}
+    <a class="de-u-linkClean" href="{{ product.url }}">
     {% unless inventory_status == false %}
     {% include 'elements-product-tile-inventory-status' %}
     {% endunless %}
+    </a>
 
     {% comment %}
     Fulfillment Info
     TODO To be implemented in future release
     {% endcomment %}
+    <a class="de-u-linkClean" href="{{ product.url }}">
     {% unless delivery_options == false %}
     <footer>
       {% include 'elements-product-tile-delivery-options' %}
     </footer>
     {% endunless %}
+    </a>
 
     {% comment %} TODO Figure out when this should be used {% endcomment %}
     {% if product.buttonBuyingOptions == true %}
