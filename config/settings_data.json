@@ -32,10 +32,10 @@
     "header_store_label": "Find a Store",
     "header_sign_in_label": "Login",
     "megamenu_set_for_all": "default",
-    "megamenu_image": "shopify:\/\/shop_images\/Price_Drops_300_x_300_218d2d57-85b0-4870-8147-2b428bd3adc5.jpg",
-    "megamenu_title": "Shop Decathlon's Range of Price Drops",
-    "megamenu_subtitle": "Starting from $6",
-    "megamenu_link": "https:\/\/decathlon.com.au\/pages\/outdoor-sports-sale",
+    "megamenu_image": "shopify:\/\/shop_images\/Sports_in_Summer_315_x_235.jpg",
+    "megamenu_title": "Shop Summer Essentials Now",
+    "megamenu_subtitle": "Deals on Kayaks, Tents, Trampolines & many more",
+    "megamenu_link": "shopify:\/\/pages\/easiest-summer-ever",
     "megamenu_bg_colour": "#1c82c1",
     "custom_fields_terms_conditions": "I agree to the <a href=\"\/pages\/terms-and-conditions-membership\" target=\"_blank\">T&Cs<\/a> and <a href=\"\/pages\/privacy-policy\" target=\"_blank\">Privacy Policy<\/a> for creating an account.",
     "is_lookbook": false,
@@ -518,7 +518,7 @@
             "settings": {
               "name": "Auburn",
               "title": "Auburn Store, 2144",
-              "online_inventory_source": true,
+              "online_inventory_source": false,
               "enable_c_c": true,
               "duplicate": "",
               "test_mode": false,
@@ -1541,9 +1541,24 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
-          "e9b4daa6-6eee-441b-b76d-9c3ff012fde9": {
+          "79522152-c757-4b60-a1be-2d1e49198982": {
             "type": "slide",
             "disabled": true,
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Weekend_Deals_Kayaks_1440_x_789px.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Weekend_Deals_Kayaks_478_x_300px.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "shopify:\/\/collections\/weekend-deal-12-nov",
+              "link_title": "Shop Weekend Deals - 50% off Selected Kayaks & SUPs",
+              "link_new_window": false
+            }
+          },
+          "e9b4daa6-6eee-441b-b76d-9c3ff012fde9": {
+            "type": "slide",
             "settings": {
               "banner_bg_image": "shopify:\/\/shop_images\/Sports_in_Summer_1440_x_789px.jpg",
               "slide_bg_position": "75% -50px",
@@ -1554,6 +1569,21 @@
               "button_title": "",
               "link_url": "shopify:\/\/pages\/easiest-summer-ever",
               "link_title": "Easiest Summer Ever - Shop Summer Essentials",
+              "link_new_window": false
+            }
+          },
+          "623e46b1-2abc-4e5b-8ceb-3ca5e428998a": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/V2_B900_BOX_NBA_BASKETBALL_HOOP3.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/V2_B900_BOX_NBA_BASKETBALL_HOOP.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "https:\/\/decathlon.com.au\/products\/basketball-hoop-b900-box-nba?variant=40917786624111",
+              "link_title": "",
               "link_new_window": false
             }
           },
@@ -1572,8 +1602,24 @@
               "link_new_window": false
             }
           },
+          "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Nabaiji_HomePage_Carrousel.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Nabaiji_HomePage_Carrousel_mobile.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/swimming-goggles?utm_source=homepage&utm_medium=onsite&utm_campaign=ClearerUnderWater&utm_id=&utm_content=HeroBanner",
+              "link_title": "",
+              "link_new_window": false
+            }
+          },
           "85c47718-39c5-4752-aa58-3e34ef8c0a97": {
             "type": "slide",
+            "disabled": true,
             "settings": {
               "banner_bg_image": "shopify:\/\/shop_images\/20off_Cycling_Accessories_1440_x_789px.jpg",
               "slide_bg_position": "75% -50px",
@@ -1589,6 +1635,7 @@
           },
           "748c6a7e-732f-486d-a653-eb425a670bc5": {
             "type": "slide",
+            "disabled": true,
             "settings": {
               "banner_bg_image": "shopify:\/\/shop_images\/Artengo-Home_page_v2_1cf520bd-c9d1-486d-9be4-7a31275bb8fd.jpg",
               "slide_bg_position": "75% -50px",
@@ -1632,38 +1679,6 @@
               "link_new_window": false
             }
           },
-          "79522152-c757-4b60-a1be-2d1e49198982": {
-            "type": "slide",
-            "disabled": true,
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Crazy_Weekend_Deals_Tents_1440_x_789px.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Crazy_Weekend_Deals_Tents_478_x_300px.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/collections\/weekend-deals-29-oct?q=&hPP=24&idx=shopify_products_price_desc&p=0&is_v=1",
-              "link_title": "Shop Weekend Deals - 30% off Tents",
-              "link_new_window": false
-            }
-          },
-          "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b": {
-            "type": "slide",
-            "disabled": true,
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Nabaiji_HomePage_Carrousel.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Nabaiji_HomePage_Carrousel_mobile.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/collections\/swimming-goggles?utm_source=homepage&utm_medium=onsite&utm_campaign=ClearerUnderWater&utm_id=&utm_content=HeroBanner",
-              "link_title": "",
-              "link_new_window": false
-            }
-          },
           "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9": {
             "type": "slide",
             "disabled": true,
@@ -1677,22 +1692,6 @@
               "button_title": "",
               "link_url": "shopify:\/\/pages\/bodyscience-giveaway-competition",
               "link_title": "Bodyscience Giveaway Competition",
-              "link_new_window": false
-            }
-          },
-          "623e46b1-2abc-4e5b-8ceb-3ca5e428998a": {
-            "type": "slide",
-            "disabled": true,
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Tarmak-NBA-Finals-Desktop_ef03e4b9-1fb7-476f-b6f0-46db6f6a9109.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Tarmak-NBA-Finals-Mobile_v2_81a280ac-e90d-4518-87f8-e35c773c9e55.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/collections\/nba-tarmak?q=&hPP=24&idx=shopify_products_price_desc&p=0&is_v=1?utm_source=homepage&utm_medium=onsite&utm_campaign=NBAXTARMAK&utm_id=&utm_content=HeroBanner",
-              "link_title": "Shop NBA X Tarmak",
               "link_new_window": false
             }
           },
@@ -1714,16 +1713,16 @@
           }
         },
         "block_order": [
+          "79522152-c757-4b60-a1be-2d1e49198982",
           "e9b4daa6-6eee-441b-b76d-9c3ff012fde9",
+          "623e46b1-2abc-4e5b-8ceb-3ca5e428998a",
           "145847d3-2db7-45f7-8ef6-38db22a4156a",
+          "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b",
           "85c47718-39c5-4752-aa58-3e34ef8c0a97",
           "748c6a7e-732f-486d-a653-eb425a670bc5",
           "579ee1c6-8cb9-4350-95e5-fb83a1397d90",
           "0e3f284b-4302-4200-8eb1-f98ce34415af",
-          "79522152-c757-4b60-a1be-2d1e49198982",
-          "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b",
           "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9",
-          "623e46b1-2abc-4e5b-8ceb-3ca5e428998a",
           "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb"
         ],
         "settings": {}
@@ -2222,9 +2221,8 @@
       },
       "16375487170499d43e": {
         "type": "featured_collection",
-        "disabled": true,
         "settings": {
-          "title": "Your Easiest Summer Ever - Shop Summer Essentials Now",
+          "title": "Trending Summer Deals",
           "section_collection": "easiest-summer-ever"
         }
       },
@@ -2288,10 +2286,9 @@
       },
       "1650960580e9623e99": {
         "type": "featured_collection",
-        "disabled": true,
         "settings": {
-          "title": "Decathlon Innovation Products",
-          "section_collection": "innovation-by-decathlon"
+          "title": "Celebrate Football with Decathlon",
+          "section_collection": "soccer-futsal"
         }
       },
       "165115029729e3ba5b": {
@@ -2306,8 +2303,8 @@
         "type": "featured_collection",
         "disabled": true,
         "settings": {
-          "title": "Shop Weekend Deals - 30% off These Tents",
-          "section_collection": "weekend-deals-29-oct"
+          "title": "50% off Selected Kayaks & SUPs",
+          "section_collection": "weekend-deal-12-nov"
         }
       },
       "166270596352f8a275": {
@@ -2334,6 +2331,7 @@
           },
           "5f676f08-13e2-4f7f-abc1-9e7dc877615b": {
             "type": "tab-callout",
+            "disabled": true,
             "settings": {
               "megamenu_parent": "camping-outdoors",
               "display_callout": true,
@@ -2383,6 +2381,7 @@
           },
           "491b6777-803d-4a4a-ba1b-dc74efee6454": {
             "type": "tab-callout",
+            "disabled": true,
             "settings": {
               "megamenu_parent": "water-sports",
               "display_callout": true,
@@ -2395,7 +2394,6 @@
           },
           "2b653902-1728-4183-810e-9094dcf48376": {
             "type": "tab-callout",
-            "disabled": true,
             "settings": {
               "megamenu_parent": "shop-all-sports",
               "display_callout": true,
@@ -2424,13 +2422,13 @@
       "163107170023281063",
       "163107313302287377",
       "16316085202ea5cf79",
+      "1651153473715f6dc1",
       "16375487170499d43e",
+      "1650960580e9623e99",
       "16509507269dac2990",
       "1642116157c0ce923f",
       "166270596352f8a275",
-      "1650960580e9623e99",
       "165115029729e3ba5b",
-      "1651153473715f6dc1",
       "163487525380dd83d2",
       "1650950354346fb7a1"
     ]
