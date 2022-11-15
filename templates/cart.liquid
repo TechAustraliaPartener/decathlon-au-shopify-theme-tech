@@ -84,13 +84,16 @@
     font-weight:600;
     cursor:pointer;
     font-size:1.2em;
-    background-color:#1c82c3;
+    background: linear-gradient(to bottom, #4bafec, #1179c2);
+    color: $color-white !important;
     border-radius: 0;
     position: relative;
   }
 
   #fake-checkoutBtn:hover {
     color:white;
+    background: linear-gradient(to bottom, #82c6f1, #53a6d9) !important;
+
   }
 
   #fake-checkoutBtn.uloader {
@@ -228,8 +231,8 @@
                   <b>Select your shipping method:</b>
                 </span>
                 <span>
-                  <input type="radio" name="attributes[delivery_mode]" value="Delivery" :checked="deliveryOption === 'Delivery'" @change="setDeliveryOption($event)">
-                  <label>Delivery</label>
+                  <input type="radio" name="attributes[delivery_mode]" id="radio-delivery" value="Delivery" :checked="deliveryOption === 'Delivery'" @change="setDeliveryOption($event)">
+                  <label for="radio-delivery">Delivery</label>
                <!-- <br>
                   <label><strong>Delivery Delays</strong></label>
 				<br>
@@ -237,8 +240,8 @@
                 -->
                 </span>
                 <span class="click-collect">
-                  <input type="radio" name="attributes[delivery_mode]" value="Click &amp; Collect" :checked="deliveryOption === 'Click &amp; Collect'" @change="setDeliveryOption($event)">
-                  <label>Click &amp; Collect from</label> 
+                  <input type="radio" name="attributes[delivery_mode]" id="radio-click-collect"value="Click &amp; Collect" :checked="deliveryOption === 'Click &amp; Collect'" @change="setDeliveryOption($event)">
+                  <label for="radio-click-collect">Click &amp; Collect from</label> 
                   <span class="fav-store-name">
                     <select name="favStore" @change="setFavStore($event)">
                       <option v-if="!favStore.name" value="" disabled="" :selected="!favStore.name">Please select</option>
