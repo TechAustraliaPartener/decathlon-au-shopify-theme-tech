@@ -238,8 +238,7 @@
         "label": "Select which logos to use",
         "default": "img-logos",
         "options": [
-
-          {
+          { 
             "label": "SVG custom logos",
             "value": "svg-logos"
           },
@@ -263,7 +262,7 @@
       },
       {
         "type": "text",
-        "id": "svg_desktop_logo",
+        "id": "svg_desktop_logo", 
         "label": "Custom Desktop SVG logo",
         "info": "To be added to the files settings"
       },
