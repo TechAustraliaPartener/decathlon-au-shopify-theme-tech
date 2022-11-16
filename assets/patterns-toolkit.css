@@ -438,9 +438,9 @@ svg {
 .de-PageWrap-headerPrimary {
     background-color: #fff;
     display: flex;
-    flex: 1 1 auto;
+    flex: 1 0 auto;
     position: relative;
-    z-index: 1;
+    z-index: 1
 }
 @media (min-width: 40em) {
     .de-PageWrap-headerPrimary {
@@ -466,6 +466,7 @@ svg {
     align-items: center;
     display: flex;
     flex: 0 1 185.75097px;
+    margin: 0 4px;
 }
 .de-PageWrap-logoWrap {
     display: flex;
@@ -510,7 +511,7 @@ svg {
 }
 .de-PageWrap-headerSecondary {
     background-color: #fff;
-    flex: 0 0 auto;
+    flex: 0 1 auto;
     order: 1;
     padding-left: 20.256px;
     position: relative;
