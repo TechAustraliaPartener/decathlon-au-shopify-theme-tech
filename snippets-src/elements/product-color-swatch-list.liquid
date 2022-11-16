@@ -1,235 +1,224 @@
 {% comment %}
+  Developer Note:
+  1. `de-ColorSwatchList-action` should work as a `<span>`, `<div>`,
+     or `<button>`.
+  2. The current method of attaching `de-is-active` to the first color
+     swatch in the forloop is intended for prototyping purposes only.
+     The `de-is-active` CSS class will be added via JS for actual implementation.
+{% endcomment %}
 
-    Developer Note:
-    1. `de-ColorSwatchList-action` should work as a `<span>`, `<div>`,
-       or `<button>`.
-    2. The current method of attaching `de-is-active` to the first color
-       swatch in the forloop is intended for prototyping purposes only.
-       The `de-is-active` CSS class will be added via JS for actual implementation.
-  {% endcomment %}
-  
-  {% comment %}
-    Check if product has 'Color' variant option
-  {% endcomment %}
-  
-  {% for option in product.options %}
-    {% if option == 'Color' %}
-      {% assign colors = '' %}
-      {% assign opt = 'option' | append: forloop.index %}
-      {% break %}
-    {% endif %}
-  {% endfor %}
-  
-  {% assign color_delimiter = ',,' %}
-  {% assign attribute_delimiter = '||' %}
-  {% assign prices_delimiter = '==' %}
-  
-  {% comment %}
-    Build array of colors with important data attached
-  {% endcomment %}
-  {%- for variant in product.variants -%}
-    {%- if variant -%}
-      {%- assign color_array = colors | split: color_delimiter -%}
-      {%- assign color_exists = false -%}
-      {%- for col in color_array -%}
-        {%- assign c = col | split: attribute_delimiter %}
-        {% comment %}
-          If color already exists in array, don't add it
-        {% endcomment %}
-        {%- if c[0] == variant[opt] -%}
-          {%- assign color_exists = true -%}
-          {% comment %}
-            Update existing color price and availability
-          {% endcomment %}
-        {%- endif -%}
-      {%- endfor -%}
-      {%- unless color_exists -%}
+{% comment %}
+  Check if product has 'Color' variant option
+{% endcomment %}
+
+{% for option in product.options %}
+  {% if option == 'Color' %}
+    {% assign colors = '' %}
+    {% assign opt = 'option' | append: forloop.index %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% assign color_delimiter = ',,' %}
+{% assign attribute_delimiter = '||' %}
+{% assign prices_delimiter = '==' %}
+
+{% comment %}
+  Build array of colors with important data attached
+{% endcomment %}
+{%- for variant in product.variants -%}
+  {%- if variant -%}
+    {%- assign color_array = colors | split: color_delimiter -%}
+    {%- assign color_exists = false -%}
+    {%- for col in color_array -%}
+      {%- assign c = col | split: attribute_delimiter %}
       {% comment %}
-        If color does not exist in array, add it
+        If color already exists in array, don't add it
       {% endcomment %}
-        {%- assign obj = '' -%}
+      {%- if c[0] == variant[opt] -%}
+        {%- assign color_exists = true -%}
         {% comment %}
-          Color Name (Referenced as col[0] later)
+          Update existing color price and availability
         {% endcomment %}
-        {%- assign obj = variant[opt]  -%}
-        {%- assign img = variant.image | img_url: 'large' -%}
-        {%- assign img_alt = variant.image.alt -%}
-        {%- assign price = variant.price | money -%}
-        {%- assign compare = variant.compare_at_price | money -%}
-        {%- capture prices -%}
-          {%- for product_variant in product.variants -%}
-            {%- if product_variant[opt] == obj -%}
-              {{- product_variant.price | append: prices_delimiter -}}
-            {%- endif -%}
-          {%- endfor -%}
-        {%- endcapture -%}
-        {%- capture available -%}
-          {%- for product_variant in product.variants -%}
-            {%- if product_variant[opt] == obj -%}
-              {{- product_variant.available -}} {{- prices_delimiter -}}
-            {%- endif -%}
-          {%- endfor -%}
-        {%- endcapture -%}
-        {% comment %}
-          Find second image for color
-        {% endcomment %}
-        {% for image in product.images %}
-          {% if image == variant.image %}
-            {%- assign img2 = product.images[forloop.index] | img_url: 'large' -%}
-            {%- assign img2_alt = product.images[forloop.index].alt -%}
-            {% break %}
-          {% endif %}
-        {% endfor %}
-        {% comment %}
-          Color Image #1 (Referenced as col[1] later)
-        {% endcomment %}
-        {%- assign obj = obj | append: attribute_delimiter | append: img -%}
-        {% comment %}
-          Variant ID (Referenced as col[2] later)
-        {% endcomment %}
-        {%- assign obj = obj | append: attribute_delimiter | append: variant.id -%}
-        {% comment %}
-          Variant Price (Referenced as col[3] later)
-        {% endcomment %}
-        {%- assign obj = obj | append: attribute_delimiter | append: price -%}
-        {% comment %}
-          Variant Compare Price (Referenced as col[4] later)
-        {% endcomment %}
-        {%- assign obj = obj | append: attribute_delimiter | append: compare -%}
-        {% comment %}
-          Variant Availability (Referenced as col[5] later)
-        {% endcomment %}
-        {%- assign obj = obj | append: attribute_delimiter | append: available -%}
-        {% comment %}
-          Color Image #2 (Referenced as col[6] later)
-        {% endcomment %}
-        {%- assign obj = obj | append: attribute_delimiter | append: img2 -%}
-        {% comment %}
-          Variant Color Prices (Referenced as col[7] later)
-        {% endcomment %}
-        {%- assign obj = obj | append: attribute_delimiter | append: prices -%}
-        {% comment %}
-          Variant URL (Referenced as col[8] later)
-        {% endcomment %}
-        {%- assign obj = obj | append: attribute_delimiter | append: variant.url -%}
-        {% comment %}
-          Color Image #1 Alt Text (Referenced as col[9] later)
-        {% endcomment %}
-        {%- assign obj = obj | append: attribute_delimiter | append: img_alt -%}
-        {% comment %}
-          Color Image #2 Alt Text(Referenced as col[10] later)
-        {% endcomment %}
-        {%- assign obj = obj | append: attribute_delimiter | append: img2_alt -%}
-        {%- assign colors = colors | append: obj | append: color_delimiter -%}
-      {%- endunless -%}
-    {%- endif -%}
-  {%- endfor -%}
-  
-  {%- assign colors = colors | split: color_delimiter -%}
-  
-  {% assign total_color_count = colors.size %}
-  {% assign max_colors_to_display = 10 %}
-  {% assign real_max = max_colors_to_display | plus: 1 %}
-  {% if total_color_count == real_max %}
-    {% assign max_colors_to_display = real_max %}
+      {%- endif -%}
+    {%- endfor -%}
+    {%- unless color_exists -%}
+    {% comment %}
+      If color does not exist in array, add it
+    {% endcomment %}
+      {%- assign obj = '' -%}
+      {% comment %}
+        Color Name (Referenced as col[0] later)
+      {% endcomment %}
+      {%- assign obj = variant[opt]  -%}
+      {%- assign img = variant.image | img_url: 'large' -%}
+      {%- assign img_alt = variant.image.alt -%}
+      {%- assign price = variant.price | money -%}
+      {%- assign compare = variant.compare_at_price | money -%}
+      {%- capture prices -%}
+        {%- for product_variant in product.variants -%}
+          {%- if product_variant[opt] == obj -%}
+            {{- product_variant.price | append: prices_delimiter -}}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endcapture -%}
+      {%- capture available -%}
+        {%- for product_variant in product.variants -%}
+          {%- if product_variant[opt] == obj -%}
+            {{- product_variant.available -}} {{- prices_delimiter -}}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endcapture -%}
+      {% comment %}
+        Find second image for color
+      {% endcomment %}
+      {% for image in product.images %}
+        {% if image == variant.image %}
+          {%- assign img2 = product.images[forloop.index] | img_url: 'large' -%}
+          {%- assign img2_alt = product.images[forloop.index].alt -%}
+          {% break %}
+        {% endif %}
+      {% endfor %}
+      {% comment %}
+        Color Image #1 (Referenced as col[1] later)
+      {% endcomment %}
+      {%- assign obj = obj | append: attribute_delimiter | append: img -%}
+      {% comment %}
+        Variant ID (Referenced as col[2] later)
+      {% endcomment %}
+      {%- assign obj = obj | append: attribute_delimiter | append: variant.id -%}
+      {% comment %}
+        Variant Price (Referenced as col[3] later)
+      {% endcomment %}
+      {%- assign obj = obj | append: attribute_delimiter | append: price -%}
+      {% comment %}
+        Variant Compare Price (Referenced as col[4] later)
+      {% endcomment %}
+      {%- assign obj = obj | append: attribute_delimiter | append: compare -%}
+      {% comment %}
+        Variant Availability (Referenced as col[5] later)
+      {% endcomment %}
+      {%- assign obj = obj | append: attribute_delimiter | append: available -%}
+      {% comment %}
+        Color Image #2 (Referenced as col[6] later)
+      {% endcomment %}
+      {%- assign obj = obj | append: attribute_delimiter | append: img2 -%}
+      {% comment %}
+        Variant Color Prices (Referenced as col[7] later)
+      {% endcomment %}
+      {%- assign obj = obj | append: attribute_delimiter | append: prices -%}
+      {% comment %}
+        Variant URL (Referenced as col[8] later)
+      {% endcomment %}
+      {%- assign obj = obj | append: attribute_delimiter | append: variant.url -%}
+      {% comment %}
+        Color Image #1 Alt Text (Referenced as col[9] later)
+      {% endcomment %}
+      {%- assign obj = obj | append: attribute_delimiter | append: img_alt -%}
+      {% comment %}
+        Color Image #2 Alt Text(Referenced as col[10] later)
+      {% endcomment %}
+      {%- assign obj = obj | append: attribute_delimiter | append: img2_alt -%}
+      {%- assign colors = colors | append: obj | append: color_delimiter -%}
+    {%- endunless -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- assign colors = colors | split: color_delimiter -%}
+
+{% assign total_color_count = colors.size %}
+{% assign max_colors_to_display = 3 %}
+{% assign real_max = max_colors_to_display | plus: 1 %}
+{% if total_color_count == real_max %}
+  {% assign max_colors_to_display = real_max %}
+{% endif %}
+
+{% assign bulk_shipping = false %}
+{% if product.tags contains 'Shipping: Bulk' %}
+  {% assign bulk_shipping = true %}
+{% endif %}
+
+<div
+  class="de-SwatchObjects de-SwatchObjects--productTile de-u-padEnds06 js-de-ColorSwatches"
+  aria-label="Colors available"
+>
+
+  {% for c in colors limit: max_colors_to_display %}
+    {%- assign color_row = c | split: attribute_delimiter -%}
+    {% assign color_prices = color_row[7] | split: prices_delimiter %}
+    {% assign free_shipping = true %}
+    {% for price in color_prices %}
+      {% assign price_converted_to_number = price | plus: 0 %}
+      {% if price_converted_to_number < 5000 %}
+        {% assign free_shipping = false %}
+      {% endif %}
+    {% endfor %}
+    {% comment %}
+      TODO
+      • Consider accessibility
+      • Test via screen reader
+    {% endcomment %}
+    {% assign color_availability = color_row[5] | split: prices_delimiter %}
+    <a
+      class="de-SwatchObjects-item de-ColorSwatches-color js-de-ColorSwatchList-action {% unless color_availability contains 'true' %}de-u-hidden{% endunless %}"
+      title="{{ color_row[0] }}"
+      href="{{ color_row[8] }}"
+      data-variant="{{ color_row[2] }}"
+      data-color="{{ color_row[0] }}"
+      data-image="{{ color_row[1] }}"
+      data-image-alt="{% include 'func-extract-alt-copy' with alt: color_row[9] %}"
+      data-image2="{{ color_row[6] }}"
+      data-image2-alt="{% include 'func-extract-alt-copy' with alt: color_row[10] %}"
+      {% comment %} TODO Do we still need data-price and data-compare? {% endcomment %}
+      data-price="{{ color_row[3] }}"
+      {% if color_row[3] < color_row[4] %}
+        data-compare="{{ color_row[4] }}"
+      {% endif %}
+      data-prices="{{ color_row[7] }}"
+      data-prices-delimiter="{{ prices_delimiter }}"
+      data-available="{{ color_row[5] }}"
+      itemprop="color"
+      data-product-id="{{ product.id }}"
+      data-price-varies="{{ product.price_varies }}"
+      data-compare-at-price="{{ product.compare_at_price }}"
+      data-compare-at-price-varies="{{ product.compare_at_price_varies }}"
+      data-is-free-shipping="{{ free_shipping }}"
+      data-is-bulk-shipping="{{ bulk_shipping }}"
+      data-gtm-event="customer-interaction"
+      data-gtm-id="Swatch {{ forloop.index }} / {{ colors.size }} | {{ product.url }}"
+      data-gtm-category="Tiles"
+    >
+      <img class="de-SwatchObject-image de-u-block" src="{{ color_row[1] | replace: '_large.', '_64x64.' }}" alt="{% include 'func-extract-alt-copy' with alt: color_row[9] %}">
+    </a>
+  {% endfor %}
+
+  {% if total_color_count > max_colors_to_display %}
+    {% assign remaining_color_count = total_color_count | minus: max_colors_to_display %}
+    <a class="de-SwatchObjects-item de-ColorSwatches-color de-u-textDarkGray" href="{{ product.url }}">
+      {% comment %}
+        TODO
+        • Use translation keys
+      {% endcomment %}
+      <span aria-hidden="true">+</span>
+      {{remaining_color_count}}
+      <span class="de-u-hiddenVisually">more available {{ remaining_color_count | pluralize: 'color', 'colors' }}</span>
+    </a>
   {% endif %}
-  
-  {% assign bulk_shipping = false %}
-  {% if product.tags contains 'Shipping: Bulk' %}
-    {% assign bulk_shipping = true %}
-  {% endif %}
-  
-  <!-- Slider main container -->
-  <div class="swiper_products_swatch_carousel_container">
-  
-  
-    <!-- If we need navigation buttons -->
-    {% if total_color_count >= 4 %}
-      <div class="swiper-swatch-button-prev">
-        
-        <button 
-          aria-label="Scroll to next set of products"
-          type="button" 
-          class="de-ProductTileCarousel-button slick-next"
-          data-gtm-id="Product Tile Carousel Control"
-          data-gtm-category="Tiles"
-          data-gtm-event="customer-interaction"
-        >
-          {% include 'assets-icons-arrow-extended-right', class: 'de-ProductTileCarousel-svg', direction_in_title: 'next' %}
-        </button>
-      </div>
-    {% endif %}
-  
-    <!-- Additional required wrapper -->
-    <div class="swiper_products_swatch_carousel">
-      
-      <div class="swiper-wrapper">
-        <!-- Slides -->
-        {% for c in colors limit: max_colors_to_display %}
-          {%- assign color_row = c | split: attribute_delimiter -%}
-          {% assign color_prices = color_row[7] | split: prices_delimiter %}
-          {% assign free_shipping = true %}
-          {% for price in color_prices %}
-            {% assign price_converted_to_number = price | plus: 0 %}
-            {% if price_converted_to_number < 5000 %}
-              {% assign free_shipping = false %}
-            {% endif %}
-          {% endfor %}
-          <div class="swiper-slide">
-            {% assign color_availability = color_row[5] | split: prices_delimiter %}
-            <a
-              class="de-SwatchObjects-item de-ColorSwatches-color js-de-ColorSwatchList-action {% unless color_availability contains 'true' %}de-u-hidden{% endunless %}"
-              title="{{ color_row[0] }}"
-              href="{{ color_row[8] }}"
-              data-variant="{{ color_row[2] }}"
-              data-color="{{ color_row[0] }}"
-              data-image="{{ color_row[1] }}"
-              data-image-alt="{% include 'func-extract-alt-copy' with alt: color_row[9] %}"
-              data-image2="{{ color_row[6] }}"
-              data-image2-alt="{% include 'func-extract-alt-copy' with alt: color_row[10] %}"
-              {% comment %} TODO Do we still need data-price and data-compare? {% endcomment %}
-              data-price="{{ color_row[3] }}"
-              {% if color_row[3] < color_row[4] %}
-                data-compare="{{ color_row[4] }}"
-              {% endif %}
-              data-prices="{{ color_row[7] }}"
-              data-prices-delimiter="{{ prices_delimiter }}"
-              data-available="{{ color_row[5] }}"
-              itemprop="color"
-              data-product-id="{{ product.id }}"
-              data-price-varies="{{ product.price_varies }}"
-              data-compare-at-price="{{ product.compare_at_price }}"
-              data-compare-at-price-varies="{{ product.compare_at_price_varies }}"
-              data-is-free-shipping="{{ free_shipping }}"
-              data-is-bulk-shipping="{{ bulk_shipping }}"
-              data-gtm-event="customer-interaction"
-              data-gtm-id="Swatch {{ forloop.index }} / {{ colors.size }} | {{ product.url }}"
-              data-gtm-category="Tiles"
-            >
-              <img class="de-SwatchObject-image de-u-block" src="{{ color_row[1] | replace: '_large.', '_64x64.' }}" alt="{% include 'func-extract-alt-copy' with alt: color_row[9] %}">
-            </a>
-          </div>
-        {% endfor %}
-        
-      </div>
-  
-    </div>
-  
-    <!-- If we need navigation buttons -->  
-    {% if total_color_count >= 4 %}
-      <div class="swiper-swatch-button-next">
-        
-        <button 
-          aria-label="Scroll to previous set of products"
-          type="button" 
-          class="de-ProductTileCarousel-button slick-prev"
-          data-gtm-id="Product Tile Carousel Control"
-          data-gtm-category="Tiles"
-          data-gtm-event="customer-interaction"
-        >
-          {% include 'assets-icons-arrow-extended-right', class: 'de-ProductTileCarousel-svg', direction_in_title: 'previous' %}
-        </button>
-      </div>
-    {% endif %}
-  
-  </div>
+</div>
+
+{% comment %}
+  JS will convert out any `de-ColorSwatchList-action` elements into `<button>`
+  elements to progressively enhance the experience.
+  Below is an example of what the `<button>` markup should look like.
+{% endcomment %}
+{% comment %}
+  TODO Remove example HTML below
+{% endcomment %}
+<button
+  class="de-ColorSwatchList-action
+          {% if forloop.first %}de-is-active{% endif %}
+          de-u-bg{{color.name}}"
+  itemprop="color"
+>
+  <span class="de-u-hiddenVisually">{{color.name}}</span>
+</button>

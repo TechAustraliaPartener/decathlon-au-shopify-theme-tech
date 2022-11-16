@@ -66,6 +66,11 @@
 	position: relative
 }
 
+.de-productTile-top-container .de-RatingContainer {
+  position: relative;
+  z-index: 2;
+}
+
 .de-RatingItem {
 	position: absolute;
 	bottom: 0;
@@ -89,8 +94,14 @@
 }
 
 .swiper_products_swatch_carousel_container{
-  display: flex;
+  display: none;
   flex-direction: row;
+}
+
+@media screen and (min-width: 1024px) {
+  .swiper_products_swatch_carousel_container{
+    display: flex
+  };
 }
 
 .swiper-swatch-button-prev,
@@ -107,3 +118,79 @@
   min-width: 40px !important;
 }
 
+
+// Carousel Swiper
+.standalone-product-tile-thumbnail {
+  display: block;
+}
+
+.swiper-product-tile-image-container {
+  display: none;
+}
+
+.swiper-product-tile-image-container .swiper-wrapper {
+  overflow: hidden;
+}
+
+.swiper-product-tile-image-container .swiper-product-tile-image .swiper-slide{
+  width: 100% !important;
+}
+
+
+.swiper-product-tile-image-container .product-tile-swiper-button-next {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 44px;
+  height: 44px;
+  margin-top: calc(0px - (44px/ 2));
+  z-index: 10;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: grey;
+}
+
+.swiper-product-tile-image-container .product-tile-swiper-button-prev {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 44px;
+  height: 44px;
+  margin-top: calc(0px - (44px/ 2));
+  z-index: 10;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: grey;
+}
+
+.swiper-product-tile-image-container .product-tile-swiper-button-next::before {
+  border-style: solid;
+  border-width: 0.35em 0.35em 0 0;
+  content: "";
+  display: inline-block;
+  height: 1.15em;
+  left: 0.15em;
+  position: relative;
+  top: 0.15em;
+  transform: rotate(45deg);
+  vertical-align: top;
+  width: 1.15em;
+}
+
+.swiper-product-tile-image-container .product-tile-swiper-button-prev::before {
+  border-style: solid;
+  border-width: 0.35em 0.35em 0 0;
+  content: "";
+  display: inline-block;
+  height: 1.15em;
+  right: 0.15em;
+  position: relative;
+  top: 0.15em;
+  transform: rotate(230deg);
+  vertical-align: top;
+  width: 1.15em;
+}

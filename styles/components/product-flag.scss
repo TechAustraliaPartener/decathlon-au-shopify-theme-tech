@@ -91,6 +91,8 @@
     left: 0;
     right: unset;
     width: auto;
+    z-index: 2;
+    font-size: 0.6em;
 
     .ProductFlag {
       position: absolute;
@@ -137,7 +139,7 @@
   }
 }
 
-@media screen and (max-width:1199px) {
+@media screen and (min-width:768px) {
   .CustomLabels {
     font-size: 0.8em;
   }

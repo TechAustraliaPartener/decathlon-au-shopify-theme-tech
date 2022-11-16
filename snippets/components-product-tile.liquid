@@ -40,7 +40,42 @@ Example:
       {% include 'elements-product-flag' with class: 'de-u-textShrink2 de-u-md-Grow1' %}
 
       {% comment %} Product Image(s) {% endcomment %}
-      <a href="{{ product.url }}">
+      <div class="swiper-product-tile-image-container">
+        <div class="swiper-product-tile-image">
+          <!-- Additional required wrapper -->
+          <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide">
+              <a href="{{ product.url }}">
+                {% assign alt = product.first_available_variant.image.alt %}
+                <img alt="{% include 'func-extract-alt-copy' with alt %}"
+                  class="de-ProductTile-showcaseImage js-de-ProductTile-featureImage"
+                  src="{% if product.first_available_variant.image %}{{ product.first_available_variant.image | img_url: 'large' }}{% else %}{{ product.featured_image | img_url: 'large' }}{% endif %}"
+                  data-gtm-delegate="child" data-gtm-event="{{ data_gtm_event }}" data-gtm-id="Hero Image | {{ product.url }}"
+                  data-gtm-category="{{ data_gtm_category }}">
+              </a>
+            </div>
+            <!-- Slides -->
+            <div class="swiper-slide">
+              <a href="{{ product.url }}">
+                {% assign alt = product.first_available_variant.image.alt %}
+                <img alt="{% include 'func-extract-alt-copy' with alt %}"
+                  class="de-ProductTile-showcaseImage js-de-ProductTile-featureImage"
+                  src="https://dummyimage.com/500x500/000/fff"
+                  data-gtm-delegate="child" data-gtm-event="{{ data_gtm_event }}" data-gtm-id="Hero Image | {{ product.url }}"
+                  data-gtm-category="{{ data_gtm_category }}">
+              </a>
+            </div>
+          </div>
+
+          <!-- If we need navigation buttons -->
+          <div class="product-tile-swiper-button-prev"></div>
+          <div class="product-tile-swiper-button-next"></div>
+
+        </div>
+      </div>
+
+      <a class="standalone-product-tile-thumbnail" href="{{ product.url }}">
         {% assign alt = product.first_available_variant.image.alt %}
         <img alt="{% include 'func-extract-alt-copy' with alt %}"
           class="de-ProductTile-showcaseImage js-de-ProductTile-featureImage"

@@ -1,4 +1,4 @@
-import Swiper, { Navigation, Pagination, Lazy, Autoplay } from 'swiper';
+import Swiper, { Navigation, Pagination, Lazy, Autoplay, EffectFade } from 'swiper';
 
 const CAROUSEL_CONTAINER_CLASS = '.swiper_products_tile_carousel_container';
 const SWIPER_NEXT_BUTTON_CLASS = '.swiper-button-next';
@@ -11,6 +11,8 @@ const CAROUSEL_SWATCH_CONTAINER_CLASS = '.swiper_products_swatch_carousel_contai
 const SWIPER_SWATCH_CAROUSEL_CLASS = '.swiper_products_swatch_carousel';
 const SWIPER_SWATCH_NEXT_BUTTON_CLASS = '.swiper-swatch-button-next';
 const SWIPER_SWATCH_PREV_BUTTON_CLASS = '.swiper-swatch-button-prev';
+
+const SWIPER_PRODUCT_TILE_CLASS = '.de-ProductTileCarousel-item';
 
 function createOnPageResize(swiper) {
   return function() {
@@ -32,11 +34,6 @@ function initCarousel(element) {
   const prevElement = element.querySelector(SWIPER_PREV_BUTTON_CLASS);
   const carousel = element.querySelector(SWIPER_CAROUSEL_CLASS);
 
-  const swatch = element.querySelector(SWIPER_SWATCH_CAROUSEL_CLASS);
-  const nextSwatchElement = element.querySelector(SWIPER_SWATCH_NEXT_BUTTON_CLASS);
-  const prevSwatchElement = element.querySelector(SWIPER_SWATCH_PREV_BUTTON_CLASS);
-
-  console.log('I AM LOOKING FOR THIS' + nextElement, prevElement, carousel, swatch);
 
   const carouselSwiper = new Swiper(carousel, {
     slidesPerView: 'auto',
@@ -86,12 +83,36 @@ function initCarousel(element) {
       },
     }
   });
+  
+  const onPageResize = createOnPageResize(carouselSwiper);
+
+
+  window.addEventListener('resize', function() {
+    onPageResize();
+  });
+}
+
+
+function initProductTileCarousel(element) {
+
+  const nextElement = element.querySelector('.product-tile-swiper-button-next');
+  const prevElement = element.querySelector('.product-tile-swiper-button-prev');
+  const carousel = element.querySelector('.swiper-product-tile-image');
+
+  const swatch = element.querySelector(SWIPER_SWATCH_CAROUSEL_CLASS);
+  const nextSwatchElement = element.querySelector(SWIPER_SWATCH_NEXT_BUTTON_CLASS);
+  const prevSwatchElement = element.querySelector(SWIPER_SWATCH_PREV_BUTTON_CLASS);
+
+  console.log('carousel', carousel);
+
 
   const swatchSwiper = new Swiper(swatch, {
     slidesPerView: 4,
     spaceBetween: 0,
     lazy: true,
-    loop: true,
+    loop: false,
+    watchSlidesVisibility: true,
+    watchSlidesProgress: true,
     navigation: {
       nextEl: nextSwatchElement,
       prevEl: prevSwatchElement,
@@ -102,37 +123,60 @@ function initCarousel(element) {
       },
     }
   });
-  
-  
-  
-  
-  
-  const onPageResize = createOnPageResize(carouselSwiper);
-  const onSwatchPageResize = createOnPageResize(swatchSwiper);
+
+
+  const productTileCarousel = new Swiper(carousel, {
+    slidesPerView: 1, 
+    spaceBetween: 0,
+    lazy: false,
+    loop: false,
+    effect: "fade",
+    noSwiping: true,
+    navigation: {
+      nextEl: nextElement,
+      prevEl: prevElement,
+    },
+    on: {
+      init: function () {
+        $(SWIPER_SLIDE_CLASS).addClass('loaded');
+      }
+    },
+    thumbs: {
+      swiper: swatchSwiper
+    }
+  });
 
   
 
   window.addEventListener('resize', function() {
-    onPageResize();
-    onSwatchPageResize();
   });
 }
 
 
+
 function initCarousels() {
   const carouselContainers = document.querySelectorAll(CAROUSEL_CONTAINER_CLASS);
-  const carouselSwatchContainers = document.querySelectorAll(CAROUSEL_SWATCH_CONTAINER_CLASS);
+  let productTile;
 
   const carousels = Array.prototype.slice.call(carouselContainers);
-  const carouselSwatches = Array.prototype.slice.call(carouselSwatchContainers);
+  let productTileArray;
+
 
   carousels.forEach(carousel => {
     initCarousel(carousel);
   });
   
-  carouselSwatches.forEach(swatch => {
-    initCarousel(swatch);
-  });
+  // carouselSwatches.forEach(swatch => {
+  //   initCarousel(swatch);
+  // });
+
+  // productTile = document.querySelectorAll(SWIPER_PRODUCT_TILE_CLASS);
+  // productTileArray = Array.prototype.slice.call(productTile);
+
+  // productTileArray.forEach(carousel => {
+  //   initProductTileCarousel(carousel);
+  // });
+
 }
 
 
@@ -140,7 +184,7 @@ function initCarousels() {
  * Put all functions that need to run on product-page load here
  */
 export const init = () => {
-  Swiper.use([Navigation, Pagination, Lazy, Autoplay]);
+  Swiper.use([Navigation, Pagination, Lazy, Autoplay, EffectFade]);
 
   initCarousels();
 };
