@@ -263,6 +263,12 @@ const initCarousel = () => {
     });
     loadImages();
     updateThumbnailCursors(activeSlideTotal);
+    setTimeout(function() {
+      $('.de-CarouselFeature .slick-track').animate({
+        left: '-100px'}, 1000, "swing", function(){
+        $(this).animate({left:'0'})
+      });
+    }, 1000)
   });
 
   
