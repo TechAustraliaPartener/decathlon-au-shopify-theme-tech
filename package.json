@@ -12,10 +12,12 @@
   "main": "index.js",
   "scripts": {
     "dev": "theme watch & gulp",
-    "start": "theme watch & gulp",
-    "watch": "theme watch & gulp",
-    "b": "gulp b",
-    "build": "gulp build",
+    "predeploy": "gulp build",
+    "deploy": "theme deploy assets config layout locales sections snippets templates",
+    "prezip": "gulp build",
+    "zip": "bestzip theme.zip assets config layout locales sections snippets templates",
+    "sync": "theme download config locales templates/*.json",
+    "reconcile": "theme download",
     "check-lint": "prettier --list-different '{scripts,cypress}/**/*.js' && eslint '{scripts,cypress}/**/*.js'",
     "lint": "prettier --write '{scripts,cypress}/**/*.js' && eslint --fix '{scripts,cypress}/**/*.js'",
     "prettylint": "prettylint '{scripts,cypress}/**/*.js'",
@@ -23,14 +25,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "type:watch": "tsc -p jsconfig.json -w",
-    "cypress:open": "cypress open",
-    "predeploy": "gulp build",
-    "deploy": "theme deploy assets config layout locales sections snippets templates",
-    "prezip": "gulp build",
-    "zip": "bestzip theme.zip assets config layout locales sections snippets templates",
-    "sync": "theme download config locales templates/*.json",
-    "rec": "theme download",
-    "reconcile": "theme download"
+    "cypress:open": "cypress open"
   },
   "engines": {
     "node": ">=10",
