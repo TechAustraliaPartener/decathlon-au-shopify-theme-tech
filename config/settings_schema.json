@@ -2472,13 +2472,13 @@
         "type": "checkbox",
         "id": "enabled_shopify_shipping_message",
         "label": "Enable Shipping Message",
-        "default": true
+        "default": false
       },
       {
         "type": "checkbox",
         "id": "enabled_shopify_cc_message",
         "label": "Enable Click & Collect Message",
-        "default": true
+        "default": false
       }
     ]
   }
