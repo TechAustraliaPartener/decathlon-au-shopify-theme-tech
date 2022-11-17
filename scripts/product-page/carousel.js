@@ -263,12 +263,6 @@ const initCarousel = () => {
     });
     loadImages();
     updateThumbnailCursors(activeSlideTotal);
-    setTimeout(function() {
-      $('.de-CarouselFeature .slick-track').animate({
-        left: '-100px'}, 1000, "swing", function(){
-        $(this).animate({left:'0'})
-      });
-    }, 1000)
   });
 
   
@@ -371,10 +365,32 @@ export const onColorSelect = color => {
 };
 
 /**
+ * Add Bounce Effect Image sliders
+ * Mobile with the Main Feature slider
+ * and Desktop with the Thumbnail slider 
+ *  
+ */
+const animateBounce  = () => {
+  var mobile = window.matchMedia("only screen and (max-width: 800px)").matches
+  if(mobile){
+    $('.de-CarouselFeature .slick-track').animate({
+      left: '-100px'}, 500, "swing", function(){
+      $(this).animate({left:'0'})
+    });
+  } else{
+    $('.de-CarouselThumbnail .slick-track').animate({
+      top: '-50px'}, 250, "swing", function(){
+      $(this).animate({top:'0'})
+    });
+  }
+}
+
+/**
  * Put all functions that need to run on product-page load here
  */
 export const init = () => {
   initAllSlideTotalsMatch();
   initCarousel();
   handleWindowResize();
+  setTimeout(animateBounce, 1000);
 };
