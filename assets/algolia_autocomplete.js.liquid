@@ -1,6 +1,3 @@
-
-
-
 (function (algolia) {
   if (!algolia.config.autocomplete_enabled) return;
 
@@ -169,9 +166,35 @@
 
   function displayRecentSearchTerms() {
     const currentRecentSearchTerms = localStorage.getItem('DecAURecentSearches');
-    console.log('currentRecentSearchTerms in localstorage: ', currentRecentSearchTerms)
+    // console.log('currentRecentSearchTerms in localstorage: ', currentRecentSearchTerms.length)
 
-    $('.searchbar-overlay').html(currentRecentSearchTerms);
+    if(currentRecentSearchTerms.length >= 1){
+
+      searchTerms = currentRecentSearchTerms.split('|||');
+      var html = ['<div class="recent-search-results"><div class="recent-search-header">RECENT SEARCHES</div>'].join('');
+      searchTerms.slice(0 ,3).forEach(terms => {
+        html += '<a href="https://decathlon.com.au/search?q='+ terms +'" class="search-terms-link">' + terms + '</a>'
+        console.log(terms );
+      })
+      $('.recent-searches-container').html(html + '</div>');
+
+    }
+
+    // SEPARATE CONTAINER FOR RECENT SEARCH    
+    // searchTerms = currentRecentSearchTerms.split('|||');
+    // var html = ['<div class="recent-searches">',
+    //             '<div class="recent-search-header">RECENT SEARCHES</div>'].join('');
+    // searchTerms.forEach(terms => {
+    //   html += '<a href="#" class="search-terms-link">' + terms + '</a>'
+    //   console.log(terms );
+    // })
+
+    // console.log($('.de-PageWrap-headerPrimary').css('width'))
+
+    // $('.searchbar-overlay').html(html + '</div>');
+    // $('.recent-searches').css('width', 
+    //   $('.de-PageWrap-headerTertiary .adept-autocomplete-search').css('width')
+    // );
   }
 
   autocomplete = algolia.autocomplete = {
@@ -262,8 +285,6 @@
       autocompleteSection('products')
     ]));
 
-    console.log(autocomplete.$input);
-
     // Hack to handle buggy onclick event on iOS
     autocomplete.$input.each(function () {
       var data = $(this).data('aaAutocomplete');
@@ -335,6 +356,16 @@
       console.log('searchValue', searchValue);
       storeRecentSearchTerm(searchValue);
     });
+
+    // Display Search Term in Search Form Input
+    function displaySearchTerm(){
+      let searchParams = new URLSearchParams(window.location.search)
+      if(searchParams.has('q')){
+        var term = searchParams.get('q');
+        $('#demo-search-input.aa-input').val(term);
+      }
+    }
+    displaySearchTerm();
 
   });
 }(algoliaShopify));
