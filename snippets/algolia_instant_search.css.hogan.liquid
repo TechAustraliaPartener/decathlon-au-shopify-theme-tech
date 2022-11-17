@@ -1004,7 +1004,7 @@
   border-bottom: 1px solid rgba(172, 179, 184, 0.5);
   margin-bottom: 10px;
   padding-bottom: 10px;
-}
+} 
 
 header.decathlon-product-header {
   display: flex;
@@ -1062,7 +1062,7 @@ a.ais--product-img-container {
     position: sticky !important;
     top: 120px;
     overflow-y: scroll;
-    height: 100vh;
+    height: 82vh;
   }  
 
   .ais-page .ais-facets::-webkit-scrollbar {
@@ -1085,7 +1085,8 @@ a.ais--product-img-container {
     position: relative;
   }
 
-  .sticky-container .ais-facet--header.ais-header{
+  .sticky-container .ais-facet--header.ais-header,
+  .ais-filter-sticky{
     position: sticky;
     top: 0;
     background-color: #FFF ;
@@ -1145,4 +1146,14 @@ a.ais--product-img-container {
     margin: 0 -30px;
     margin-top: -43px
   }  
+}
+
+
+@media screen and (min-width: 815px) {
+  .sticky-filters-results-container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
 }

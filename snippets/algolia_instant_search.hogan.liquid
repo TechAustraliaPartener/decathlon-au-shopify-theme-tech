@@ -17,62 +17,64 @@
     <div class="buying_guide_wrapper_desktop">{% render 'buying_guide_banner' %}</div>
     
   </div>
-  <div class="ais-pagination-container"></div>
-
-  <div class="ais-facets ais-facets--loading">
-    <div class="ais-filter-container">
-        <div class="ais-facets__buttons">
-          <button class="ais-facets__clear-all-button">Clear All</button>
-          <button class="ais-facets__done-button">Done</button>
-        </div>
-        <div class="ais-current-refined-values-container"></div>
-
-    </div>
-    <div class="sticky-container">
-      <div class="ais-facets__group ais-facets__group--sort">
-        <div class="ais-sort-orders-header">
-          <span>Sort By</span>
-          {% include 'assets-icons-chevron-down' with class: 'de-Icon' %}
-        </div>
-        [[# multipleSortOrders ]]
-        <span class="ais-sort-orders-container--drawer"></span>
-        [[/ multipleSortOrders ]]
-                    
-        [[^ multipleSortOrders ]]
-        [[ translations.sortBy ]] [[ translations.relevance ]]
-        [[/ multipleSortOrders ]]
-      </div>
+  <div class="ais-pagination-container"></div> 
   
-      [[# facets ]]
-      <div class="ais-facets__group ais-facet-[[ type ]] ais-facet-[[ escapedName ]]"></div>
-      [[/ facets ]]
-      
-    </div>
-  </div>
-
-  <div class="ais-block">
-
-    <div class="ais-search-header">
-      <div class="ais-stats-container"></div>
-
-    </div>
-    <div id="ais-sort-filter">
-      <div class="ais-sort">
-        [[# multipleSortOrders ]]
-        [[ translations.sortBy ]]
-        {% include 'assets-icons-chevron-down' with class: 'de-Icon de-u-spaceLeft06' %}
-        <span class="ais-sort-orders-container"></span>
-        [[/ multipleSortOrders ]]
-                                                                                                                                          
-        [[^ multipleSortOrders ]]
-        [[ translations.sortBy ]] [[ translations.relevance ]]
-        [[/ multipleSortOrders ]]
+  <div class="sticky-filters-results-container">
+    <div class="ais-facets ais-facets--loading">
+      <div class="ais-filter-container">
+          <div class="ais-facets__buttons">
+            <button class="ais-facets__clear-all-button">Clear All</button>
+            <button class="ais-facets__done-button">Done</button>
+          </div>
+          <div class="ais-current-refined-values-container"></div>
       </div>
-      <div class="ais-facets-button">
-        Show filters
+      <div class="sticky-container">
+        <div class="ais-facets__group ais-facets__group--sort">
+          <div class="ais-sort-orders-header">
+            <span>Sort By</span>
+            {% include 'assets-icons-chevron-down' with class: 'de-Icon' %}
+          </div>
+          [[# multipleSortOrders ]]
+          <span class="ais-sort-orders-container--drawer"></span>
+          [[/ multipleSortOrders ]]
+                      
+          [[^ multipleSortOrders ]]
+          [[ translations.sortBy ]] [[ translations.relevance ]]
+          [[/ multipleSortOrders ]]
+        </div>
+    
+        [[# facets ]]
+        <div class="ais-facets__group ais-facet-[[ type ]] ais-facet-[[ escapedName ]]"></div>
+        [[/ facets ]]
+        
       </div>
     </div>
-    <div class="ais-hits-container ais-results-as-block"></div>
+
+    <div class="ais-block">
+
+      <div class="ais-search-header">
+        <div class="ais-stats-container"></div>
+
+      </div>
+      <div id="ais-sort-filter">
+        <div class="ais-sort">
+          [[# multipleSortOrders ]]
+          [[ translations.sortBy ]]
+          {% include 'assets-icons-chevron-down' with class: 'de-Icon de-u-spaceLeft06' %}
+          <span class="ais-sort-orders-container"></span>
+          [[/ multipleSortOrders ]]
+                                                                                                                                            
+          [[^ multipleSortOrders ]]
+          [[ translations.sortBy ]] [[ translations.relevance ]]
+          [[/ multipleSortOrders ]]
+        </div>
+        <div class="ais-facets-button">
+          Show filters
+        </div>
+      </div>
+      <div class="ais-hits-container ais-results-as-block"></div>
+
+    </div>
 
   </div>
 
