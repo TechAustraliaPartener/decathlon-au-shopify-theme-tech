@@ -438,9 +438,9 @@ svg {
 .de-PageWrap-headerPrimary {
     background-color: #fff;
     display: flex;
-    flex: 1 0 auto;
+    flex: 1 0 100px;
     position: relative;
-    z-index: 1
+    z-index: 1;
 }
 @media (min-width: 40em) {
     .de-PageWrap-headerPrimary {
@@ -504,6 +504,7 @@ svg {
     padding-left: 20.256px;
     padding-right: 20.256px;
 }
+
 @media (max-width: 59.999em) {
     .de-PageWrap-wideMenuControl {
         display: none;
