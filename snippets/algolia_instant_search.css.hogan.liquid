@@ -1014,7 +1014,9 @@ header.decathlon-product-header {
   border-bottom: 1px solid rgba(172, 179, 184, 0.5);
   margin-bottom: 10px;
   padding-bottom: 10px;
+  position: relative;
 }
+
 .ais-results-size-xs header.decathlon-product-header {
   flex-direction: column;
   align-items: flex-start;
@@ -1196,5 +1198,29 @@ a.ais--product-img-container {
 @media screen and (min-width: 800px) {
   .template-search .main-content{
     padding-top: 20px;
+  }
+}
+
+
+{%- comment -%} Learn more link. {%- endcomment -%}
+.decathlon-product-header__brand-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.decathlon-product-header__brand-link span {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+
+  .decathlon-product-header__brand-link span {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 3px;
   }
 }

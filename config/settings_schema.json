@@ -2436,12 +2436,6 @@
     "name": "Product Tiles in Algolia Pages",
     "settings": [
       {
-        "type": "text",
-        "id": "schema_algolia_brand_text",
-        "label": "Brand Logo Link Text",
-        "default": "Learn More"
-      },
-      {
         "type": "image_picker",
         "id": "schema_algolia_default_logo",
         "label": "Default Brand Logo"
@@ -2449,19 +2443,19 @@
       {
         "type": "url",
         "id": "schema_algolia_default_link",
-        "label": "Link"
+        "label": "Default Decathlon Brand Link"
       },
       {
         "type": "checkbox",
         "id": "enabled_algolia_shipping_message",
         "label": "Enable Shipping Message",
-        "default": true
+        "default": false
       },
       {
         "type": "checkbox",
         "id": "enabled_algolia_cc_message",
         "label": "Enable Click & Collect Message",
-        "default": true
+        "default": false
       }
     ]
   },

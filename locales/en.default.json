@@ -378,6 +378,9 @@
     "translation_text": {
       "translate": "Translate",
       "original": "Show Original"
+    },
+    "product_tile": {
+      "brand_learn_more": "Learn more"
     }
   },
   "product_locations": {

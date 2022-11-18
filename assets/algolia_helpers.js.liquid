@@ -318,7 +318,7 @@
       var brand_logo_name = this.vendor.toLowerCase().replace(/[^\w\u00C0-\u024f]+/g, "-").replace(/^-+|-+$/g, "").toLocaleString().replace(/-/g, '');
       const htmlBrand1 = '<header class="decathlon-product-header"><div class="col decathlon-product-header__brand-icon">';
       const htmlBrand2 = '</div><div class="col"><a href="';
-      const htmlBrand3 = '" class="decathlon-product-header__brand-link">{{ settings.schema_algolia_brand_text }}</a></div></header>'
+      const htmlBrand3 = '" class="decathlon-product-header__brand-link"><span>{{ 'products.product_tile.brand_learn_more' | t }}</span></a></div></header>'
       
       if (this.vendor != no_vendor_testing && this.vendor != no_vendor_production && (((window || {}).vars || {}).subBrandLogos || {})[brand_logo_name]) {
 
