@@ -402,6 +402,7 @@ svg {
 .de-PageWrap-subHeader {
     top: 58px;
     z-index: 999;
+    left: 0;
 }
 @media (max-width: 59.999em) {
     .de-PageWrap-narrowMenu.de-is-open ~ .de-PageWrap-header {
@@ -680,6 +681,49 @@ svg {
         transform: translateX(85vw) translateY(58.448px);
     }
 }
+
+
+.--desktop-only{
+  display: none;
+}
+.--mobile-only{
+  display: block;
+  height: 100%;
+}
+.logo-link-wrapper{
+  position: relative;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.searchbar-overlay{
+  top: 46.192px;
+}
+.de-PageWrap-headerTertiaryControl{
+  margin-right: 14px;
+}
+
+@media screen and (min-width: 40em) {
+  
+  .logo-link-wrapper{
+    position: relative;
+    display: block;
+    height: auto;
+  }
+  .--desktop-only{
+    display: block;
+    padding-right: 6px;
+  }
+  .--mobile-only{
+    display: none;
+  }
+  
+  .searchbar-overlay{
+    top: 0;
+  }
+}
+
 .de-SingleInputForm {
     position: relative;
     width: 100%;
