@@ -1,3 +1,6 @@
+// Theme settings that defines how much recent searches you can show.
+var maxRecentSearchItems = {{ settings.maximum_recent_searches }};
+
 (function (algolia) {
   if (!algolia.config.autocomplete_enabled) return;
 
@@ -165,14 +168,15 @@
   }
 
   function displayRecentSearchTerms() {
+    const numberOfRecentSearchTerms = maxRecentSearchItems;
     const currentRecentSearchTerms = localStorage.getItem('DecAURecentSearches');
     // console.log('currentRecentSearchTerms in localstorage: ', currentRecentSearchTerms.length)
 
-    if(currentRecentSearchTerms.length >= 1){
+    if(currentRecentSearchTerms.length >= 1 && numberOfRecentSearchTerms > 0){
 
       searchTerms = currentRecentSearchTerms.split('|||');
       var html = ['<div class="recent-search-results"><div class="recent-search-header">RECENT SEARCHES</div>'].join('');
-      searchTerms.slice(0 ,3).forEach(terms => {
+      searchTerms.slice(0,numberOfRecentSearchTerms).forEach(terms => {
         html += '<a href="https://decathlon.com.au/search?q='+ terms +'" class="search-terms-link">' + terms + '</a>'
         console.log(terms );
       })
@@ -329,8 +333,6 @@
 
     autocomplete.$input.on('focus', function () {
       $backdrop.show();
-      console.log('backdrop showing...')
-
       // Show recent searches
       displayRecentSearchTerms();
     });
@@ -338,7 +340,6 @@
 
     autocomplete.$input.on('blur', function () {
       $backdrop.hide();
-
     });
 
 

@@ -2433,7 +2433,7 @@
     ]
   },
   {
-    "name": "Product Card Powered By Algolia",
+    "name": "Product Tiles in Algolia Pages",
     "settings": [
       {
         "type": "text",
@@ -2466,7 +2466,7 @@
     ]
   },
   {
-    "name": "Product Card Powered By Shopify",
+    "name": "Product Tile Settings",
     "settings": [
       {
         "type": "checkbox",
@@ -2479,6 +2479,17 @@
         "id": "enabled_shopify_cc_message",
         "label": "Enable Click & Collect Message",
         "default": false
+      }
+    ]
+  },
+  {
+    "name": "Search Bar Settings",
+    "settings": [
+      {
+        "type": "number",
+        "id": "maximum_recent_searches",
+        "label": "Maximum recent searches. Max of 10 only.",
+        "default": 3
       }
     ]
   }
