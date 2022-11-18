@@ -29,14 +29,19 @@ $button-background-hover-alt: #fd7c20;//#fff382;
   }
 
   &.alt {
-    background-color: $color-lime;
+    background-color: $color-orange;
     color: $color-white;
-    border: $border-width-md solid $color-lime;
+    border: $border-width-md solid $color-orange;
     &:hover {
       background-color: $button-background-hover-alt;
       border-color: $button-background-hover-alt;
       color: $color-white;
     }
+  }
+
+  &.js-de-PostAddToCart-checkout{
+    background-color: #EC6607;
+    border-color: #EC6607;
   }
 
   &[disabled] {
