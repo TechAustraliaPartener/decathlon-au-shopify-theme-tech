@@ -374,7 +374,7 @@ const animateBounce  = () => {
   var mobile = window.matchMedia("only screen and (max-width: 800px)").matches
   if(mobile){
     $('.de-CarouselFeature .slick-track').animate({
-      left: '-100px'}, 500, "swing", function(){
+      left: '-100px'}, 300, "swing", function(){
       $(this).animate({left:'0'})
     });
   } else{
