@@ -8,8 +8,7 @@
     "colorSwatches"
     "sizeSwatches"
     "addToCart"
-    "fulfillmentInfo"
-    "locationsInventory"
+    "fulfillmentLocationInfo"
     "modelCode";
   grid-template-columns: 1fr;
 }
@@ -21,8 +20,8 @@
       "gallery colorSwatches"
       "gallery sizeSwatches"
       "gallery addToCart"
-      "gallery fulfillmentInfo"
-      "gallery locationsInventory"
+      "gallery fulfillmentLocationInfo"
+      "gallery fulfillmentLocationInfo"
       "gallery modelCode"
       "gallery .";
     grid-template-columns: 1fr 1fr;
@@ -53,13 +52,13 @@
   grid-area: addToCart;
 }
 
-.de-ProductPageTopShelf-fulfillment {
-  grid-area: fulfillmentInfo;
+.de-ProductPageTopShelf-fulfillment-location {
+  grid-area: fulfillmentLocationInfo;
 }
 
-.de-ProductPageTopShelf-locationsInventory {
-  grid-area: locationsInventory;
-}
+// .de-ProductPageTopShelf-locationsInventory {
+//   grid-area: locationsInventory;
+// }
 
 .de-ProductPageTopShelf-modelCode {
   grid-area: modelCode;
