@@ -18,6 +18,11 @@
 
  .de-ProductAnchor {
   display: block;
-  margin-top: -130px;
-  padding-top: 130px;
+  margin: 0;
+  padding: 0;
+
+ @media (min-width: $breakpoint-md) {
+   margin-top: -130px;
+   padding-top: 130px;
+ }
 }

@@ -543,6 +543,26 @@
   display: none; 
 }
 
+.display-table .radio-wrapper{
+  display: flex;
+  align-items: center;
+}
+
+.display-table .radio__input {
+  display: block;
+}
+.display-table .radio__label__primary{
+  display: flex;
+  align-items: center;
+}
 .display-table .radio__label {
-  display: inline-table;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
+}
+.payment-method-wrapper .radio__label__accessory {
+  position: absolute;
+  right: 0;
+  pointer-events: none;
 }
