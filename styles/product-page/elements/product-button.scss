@@ -12,7 +12,7 @@
  */
 
 $button-background-hover: #429dd7;
-$button-background-hover-alt: #fff382;
+$button-background-hover-alt: #fd7c20;//#fff382;
 
 .de-Button {
   -moz-user-select: none;
@@ -30,12 +30,12 @@ $button-background-hover-alt: #fff382;
 
   &.alt {
     background-color: $color-lime;
-    color: $color-black;
+    color: $color-white;
     border: $border-width-md solid $color-lime;
     &:hover {
       background-color: $button-background-hover-alt;
       border-color: $button-background-hover-alt;
-      color: $color-black;
+      color: $color-white;
     }
   }
 
