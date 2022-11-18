@@ -114,8 +114,6 @@ $colorNavText: #333;
 // Site Footer
 $colorFooterBg: {{ settings.color_footer_bg }};
 $colorFooterText: {{ settings.color_footer_text }};
-$colorFooterSocialIcons: {{ settings.color_footer_social_link }};
-
 
 // Logo max width
 $logoMaxWidth: {{ settings.logo_max_width | default: '450' | remove: 'px' }}px;
@@ -1774,46 +1772,6 @@ label.error {
   }
 }
 
-.--desktop-only{
-  display: none;
-}
-.--mobile-only{
-  display: block;
-  height: 100%;
-}
-.logo-link-wrapper{
-  position: relative;
-  display: flex;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-}
-.searchbar-overlay{
-  top: 46.192px;
-}
-.de-PageWrap-headerTertiaryControl{
-  margin-right: 14px;
-}
-
-@media screen and (min-width: 40em) {
-  
-  .logo-link-wrapper{
-    position: relative;
-    display: block;
-    height: auto;
-  }
-  .--desktop-only{
-    display: block;
-    padding-right: 6px;
-  }
-  .--mobile-only{
-    display: none;
-  }
-  
-  .searchbar-overlay{
-    top: 0;
-  }
-}
 /*============================================================================
   #Site Nav and Dropdowns
 ==============================================================================*/
@@ -2028,9 +1986,6 @@ label.error {
 
   @include at-query ($min, $large) {
     padding: ($gutter * 2) 0;
-  }
-  .de-footer-icon {
-    fill: $colorFooterSocialIcons; 
   }
 }
 
@@ -2754,16 +2709,16 @@ input.btn:focus {
 .footerCountriesLink { text-align: center; line-height: 38px; }
 
 .footerCountriesLink a {
-  color: $colorFooterText;
+  color: $lightGray;
   font-family: $regularFont;
   font-size: 0.9em;
   &:hover {
-    color: lighten($colorFooterText, 10%);
+    color: lighten($lightGray, 10%);
   }
 }
 
 .footer-copyright {
-  color: $colorFooterText;
+  color: $midGray;
   font-size: 0.8em;
   display: inline-block;
   text-align: center;
@@ -2807,11 +2762,6 @@ input.btn:focus {
   max-width: 100%;
   width: 100%;
   text-align: center;
-}
-
-.mobile-footer .footerNav__content{
-  display: block;
-  width: 100%;
 }
 
 .state-dropdown-list {
@@ -3443,6 +3393,7 @@ body.is-rollingUpBanner .popup { margin-top: -100vh; }
   right: 100%;
   left: auto;
 }
+
 
 .site-footer { @include block(); z-index: 10; }
 
@@ -8531,7 +8482,7 @@ body:first-of-type .header-cartWrapper {
 .blue-band--footer { margin-top: 0em; }
 .blue-band--footer .blue-band--footer-logo,
 .blue-band--footer .large--one-fifth { width: 20%; }
-.footer-copyright { color: $colorFooterText; font-size: 0.8em; display: inline-block; vertical-align: middle;}
+.footer-copyright { color: $midGray; font-size: 0.8em; display: inline-block; vertical-align: middle;}
 
 
 .newsletterSignupForm.input-group { display: table; }
@@ -10056,7 +10007,7 @@ html {
         }
       }
       .ais-hit--price {
-        font-size: 17px;
+        font-size: 1em;
         line-height: 1.6;
         font-family: "avalonmedium","HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif;
         color: #1f1f1f;
@@ -10194,7 +10145,7 @@ html {
     top: 6px;
     left: 0;
     right: auto;
-    font-size: 11px !important;
+    font-size: 0.75em !important;
     font-family: avalonmedium,Helvetica Neue,Helvetica,Arial,sans-serif;
     font-weight: 400;
     line-height: 1.2;
@@ -10606,7 +10557,7 @@ $color-out: #ff0000;
 /* Fix for Sticky Banner on Algolia-powered phone views obscuring Breadcrumbs or Number of Returned Results */
 @media only screen and (max-width: 768px) {
   .template-collection:not(.template-suffix-multi) .main-content, .template-search .main-content {
-    /* padding-top: 50px; */
+    padding-top: 50px;
   }
 }
 
@@ -10705,7 +10656,7 @@ $color-out: #ff0000;
     }
     .ais-search-header {
     position: relative;
-    top: -36px;
+    top: -40px;
     border-bottom: 0;
     }
     .collection-custom-banner-desktop, 
