@@ -15,10 +15,8 @@
     <div class="ais_banner_container" id="ais_banner_container">
     </div>    
     <div class="buying_guide_wrapper_desktop">{% render 'buying_guide_banner' %}</div>
-    
   </div>
   <div class="ais-pagination-container"></div> 
-  
   <div class="sticky-filters-results-container">
     <div class="ais-facets ais-facets--loading">
       <div class="ais-filter-container">
@@ -32,7 +30,9 @@
         <div class="ais-facets__group ais-facets__group--sort">
           <div class="ais-sort-orders-header">
             <span>Sort By</span>
+            {%- comment -%}
             {% include 'assets-icons-chevron-down' with class: 'de-Icon' %}
+            {%- endcomment -%}
           </div>
           [[# multipleSortOrders ]]
           <span class="ais-sort-orders-container--drawer"></span>
@@ -51,10 +51,14 @@
     </div>
 
     <div class="ais-block">
-
+      {%- if search.terms -%}
+        <h2 class="collection-title-top search-result-container --desktop">
+          <span class="search-result-indicator">Results for <strong>"{{ search.terms }}"</strong></span>
+        </h2>
+        {%- endif -%}
       <div class="ais-search-header ais-search-header-container">
         {%- if search.terms -%}
-        <div class="search-result-container">
+        <div class="search-result-container --mobile">
           <p class="search-result-indicator">Results for <strong>"{{ search.terms }}"</strong></p>
         </div>
         {%- endif -%}
@@ -62,10 +66,14 @@
       </div>
 
       <div id="ais-sort-filter">
+        
         <div class="ais-sort">
           [[# multipleSortOrders ]]
           [[ translations.sortBy ]]
+          {%- comment -%}
+
           {% include 'assets-icons-chevron-down' with class: 'de-Icon de-u-spaceLeft06' %}
+          {%- endcomment -%}
           <span class="ais-sort-orders-container"></span>
           [[/ multipleSortOrders ]]
                                                                                                                                             
@@ -73,10 +81,16 @@
           [[ translations.sortBy ]] [[ translations.relevance ]]
           [[/ multipleSortOrders ]]
         </div>
+       
         <div class="ais-facets-button">
           Show filters
         </div>
       </div>
+          <!-- <div class="ais-pagination-container"></div> 
+          <div class="ais-stats-container ais-search-header-col"></div>
+      </div> -->
+
+     
 
       <div class="ais-hits-container ais-results-as-block"></div>
 
