@@ -149,10 +149,20 @@ svg {
     padding: 0 10.128px;
     position: relative;
 }
+
+.de-PageWrap-headerSecondary .de-MenuBar {
+  margin: 0;
+  padding: 0;
+}
 @media (min-width: 40em) {
     .de-MenuBar {
         height: 58.448px;
     }
+    
+  .de-PageWrap-headerSecondary .de-MenuBar {
+    margin: 0 -20.256px;
+    padding: 0 10.128px;
+  }
 }
 .de-MenuBar-list {
     padding-left: 0;
@@ -242,21 +252,33 @@ svg {
 }
 .de-MenuBar-action--primary {
     background-color: #ffea28;
-    margin-left: 10.128px;
-    margin-right: 10.128px;
+    margin-left: 0;
+    margin-right: 0;
     padding-right: 13.504px;
 }
-.de-MenuBar-action--primary:before {
+
+@media (min-width: 40em) {
+  
+  .de-MenuBar-action--primary {
+    margin-left: 10.128px;
+    margin-right: 10.128px;
+  }
+  .de-MenuBar-action--primary:before {
     background-color: #ffea28;
     content: "";
     height: inherit;
     position: absolute;
     right: 100%;
     top: 0;
+     margin-left: 10.128px;
+    margin-right: 0;
     -webkit-transform: translateX(50%) skewX(-10deg);
     transform: translateX(50%) skewX(-10deg);
     width: 10.128px;
 }
+
+}
+
 .de-MenuBar-action--stack {
     flex-direction: column;
 }
@@ -271,7 +293,7 @@ svg {
     margin-right: 6.24px;
 }
 .de-MenuBar-action--stack .de-MenuBar-icon {
-    font-size: 22.784px;
+    font-size: 30px;
     margin-left: 0;
     margin-right: 0;
 }
@@ -439,12 +461,14 @@ svg {
 .de-PageWrap-headerPrimary {
     background-color: #fff;
     display: flex;
-    flex: 1 0 100px;
+    justify-content: space-between;
+    flex: 0 100px;
     position: relative;
     z-index: 1;
 }
 @media (min-width: 40em) {
     .de-PageWrap-headerPrimary {
+        justify-content: center;
         flex: 0 0 auto;
     }
 }
@@ -466,8 +490,8 @@ svg {
 .de-PageWrap-logo {
     align-items: center;
     display: flex;
+    justify-content: flex-end;
     flex: 0 1 185.75097px;
-    margin: 0 4px;
 }
 .de-PageWrap-logoWrap {
     display: flex;
@@ -515,13 +539,13 @@ svg {
     background-color: #fff;
     flex: 0 1 auto;
     order: 1;
-    padding-left: 20.256px;
     position: relative;
     z-index: 1;
 }
 @media (min-width: 40em) {
     .de-PageWrap-headerTertiaryControl {
         display: none;
+        margin-right: 14px;
     }
 }
 .de-PageWrap-headerTertiary {
@@ -552,6 +576,7 @@ svg {
 @media (min-width: 40em) {
     .de-PageWrap-headerTertiary {
         flex: 1 0;
+        margin-right: 8px;
     }
 }
 @media (min-width: 60em) {
@@ -694,14 +719,19 @@ svg {
   position: relative;
   display: flex;
   height: 100%;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.logo-link-wrapper>.--mobile-only{
+  justify-content: flex-end;
+  align-items: flex-end;
 }
 .searchbar-overlay{
   top: 46.192px;
 }
+
 .de-PageWrap-headerTertiaryControl{
-  margin-right: 14px;
+  margin-right: -5px;
 }
 
 @media screen and (min-width: 40em) {
