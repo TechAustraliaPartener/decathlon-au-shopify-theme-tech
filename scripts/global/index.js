@@ -170,11 +170,21 @@ $(window).bind('load', function() {
 
 })
 
-$(window).scroll(function(){
-  if (showMoreInViewport($('.ais-hits--showmore'))){
-      $('.ais-hits--showmore button').trigger('click');
-  }
-});
+function debounce(func, wait, immediate) {
+	var timeout;
+	return function() {
+		var context = this, args = arguments;
+		var later = function() {
+			timeout = null;
+			if (!immediate) func.apply(context, args);
+		};
+		var callNow = immediate && !timeout;
+		clearTimeout(timeout);
+		timeout = setTimeout(later, wait);
+		if (callNow) func.apply(context, args);
+	};
+};
+
 function showMoreInViewport(obj){
 
   // FOR infinitHits && Pagination
@@ -189,11 +199,12 @@ function showMoreInViewport(obj){
   }
 }
 
-$(window).scroll(function(){
+// Implement debounce to prevent accidental multiple jquery triggers that causes the pagination to jump to pages beyond what algolia offers.
+$(window).scroll(debounce(function(){
   if (showMoreInViewport($('.ais-hits--showmore'))){
+    // $('.ais-hits--showmore button')
+    if($('.ais-hits--showmore button').attr('disabled') !== 'disabled') {
       $('.ais-hits--showmore button').trigger('click');
+    }
   }
-});
-    
-
-
+}, 250));
