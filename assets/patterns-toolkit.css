@@ -145,8 +145,8 @@ svg {
     height: 46.192px;
     line-height: 1;
     list-style: none;
-    margin: 0 -20.256px;
-    padding: 0 10.128px;
+    /* margin: 0 -20.256px; */
+    /* padding: 0 10.128px; */
     position: relative;
 }
 
@@ -491,7 +491,7 @@ svg {
     align-items: center;
     display: flex;
     justify-content: flex-end;
-    flex: 0 1 185.75097px;
+    /* flex: 0 1 185.75097px; */
 }
 .de-PageWrap-logoWrap {
     display: flex;
@@ -537,11 +537,18 @@ svg {
 }
 .de-PageWrap-headerSecondary {
     background-color: #fff;
-    flex: 0 1 auto;
+    flex: 1;
     order: 1;
     position: relative;
     z-index: 1;
 }
+
+@media screen and (min-width: 768px) {
+  .de-PageWrap-headerSecondary {
+    flex: 0;
+  }
+}
+
 @media (min-width: 40em) {
     .de-PageWrap-headerTertiaryControl {
         display: none;
@@ -732,6 +739,7 @@ svg {
 
 .de-PageWrap-headerTertiaryControl{
   margin-right: -5px;
+  flex: 1;
 }
 
 @media screen and (min-width: 40em) {
