@@ -477,6 +477,11 @@ svg {
     justify-content: center;
     min-width: 46.192px;
 }
+
+.de-PageWrap-narrowMenuControl .de-MenuBar {
+  width: 50px;
+}
+
 @media (min-width: 40em) {
     .de-PageWrap-narrowMenuControl {
         min-width: 58.448px;
@@ -729,10 +734,13 @@ svg {
   justify-content: flex-end;
   align-items: flex-end;
 }
+
 .logo-link-wrapper>.--mobile-only{
   justify-content: flex-end;
   align-items: flex-end;
+  width: 46px;
 }
+
 .searchbar-overlay{
   top: 46.192px;
 }
