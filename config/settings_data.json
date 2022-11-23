@@ -24,23 +24,23 @@
     "color_footer_text": "#aabdb9",
     "color_footer_social_link": "#bbbbbb",
     "logo_use_image": false,
-    "svg_logo": "xmas_new_option3-01.svg",
-    "img_logo": "shopify:\/\/shop_images\/logo_small_9355cf1c-7626-4ada-916d-d809a214ca37.png",
+    "svg_logo": "Logo_Decathlon_True-Black.svg",
+    "img_logo": "shopify:\/\/shop_images\/BF-Logo-1.jpg",
     "enable_meet_decathlon": false,
     "header_support_label": "Help",
     "header_support_link": "https:\/\/decathlon.com.au\/pages\/contact-and-help",
     "header_store_label": "Find a Store",
     "header_sign_in_label": "Login",
-    "megamenu_set_for_all": "default",
-    "megamenu_image": "shopify:\/\/shop_images\/Sports_in_Summer_315_x_235.jpg",
-    "megamenu_title": "Shop Summer Essentials Now",
-    "megamenu_subtitle": "Deals on Kayaks, Tents, Trampolines & many more",
-    "megamenu_link": "shopify:\/\/pages\/easiest-summer-ever",
+    "megamenu_set_for_all": "override",
+    "megamenu_image": "shopify:\/\/shop_images\/Mega_menu_tile_315_x_235px_5510f3c4-ca1e-4e00-9746-8a0bff6fd175.jpg",
+    "megamenu_title": "Black Friday Sale On Now!",
+    "megamenu_subtitle": "Up to 60% off",
+    "megamenu_link": "shopify:\/\/pages\/black-friday-sale",
     "megamenu_bg_colour": "#1c82c1",
     "custom_fields_terms_conditions": "I agree to the <a href=\"\/pages\/terms-and-conditions-membership\" target=\"_blank\">T&Cs<\/a> and <a href=\"\/pages\/privacy-policy\" target=\"_blank\">Privacy Policy<\/a> for creating an account.",
     "is_lookbook": false,
     "product_returns_text": "Lifetime Returns For Members*",
-    "product_shipping_text": "Australia Wide Delivery*",
+    "product_shipping_text": "Australia Wide Delivery* (3-4 day shipping)",
     "product_bulk_returns_text": "Lifetime Returns For Members*",
     "product_bulk_shipping_text": "Australia Wide Delivery",
     "show_associated_products_carousel_on_product_page": true,
@@ -1543,46 +1543,45 @@
         "blocks": {
           "79522152-c757-4b60-a1be-2d1e49198982": {
             "type": "slide",
-            "disabled": true,
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Weekend_Deals_Kayaks_1440_x_789px.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/Home_Page_Desktop_banner_1440_x_789px_4f25bbb8-9031-472f-99fd-c2cf9fd82599.jpg",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Weekend_Deals_Kayaks_478_x_300px.jpg",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Home_Mobile_banner_478_x_300px_7896b1c7-a3c2-469b-9faf-027073beda68.jpg",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
               "button_title": "",
-              "link_url": "shopify:\/\/collections\/weekend-deal-12-nov",
-              "link_title": "Shop Weekend Deals - 50% off Selected Kayaks & SUPs",
+              "link_url": "https:\/\/decathlon.com.au\/pages\/black-friday-sale",
+              "link_title": "",
               "link_new_window": false
             }
           },
           "e9b4daa6-6eee-441b-b76d-9c3ff012fde9": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Sports_in_Summer_1440_x_789px.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/25_off_Kids_Bikes.jpg",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Sports_in_Summer_478_x_300px.jpg",
+              "banner_mobile_image": "shopify:\/\/shop_images\/25_off_Kids_Bikes_2c93d67e-78fc-44d4-b1bf-aa8b51d27e77.jpg",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
               "button_title": "",
-              "link_url": "shopify:\/\/pages\/easiest-summer-ever",
-              "link_title": "Easiest Summer Ever - Shop Summer Essentials",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/black-friday-kids-bike-sale",
+              "link_title": "",
               "link_new_window": false
             }
           },
           "623e46b1-2abc-4e5b-8ceb-3ca5e428998a": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/V2_B900_BOX_NBA_BASKETBALL_HOOP3.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/25_off_Kids_Scooters_0c726b5b-45e4-4ea7-9bf3-77a22db82ea1.jpg",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/V2_B900_BOX_NBA_BASKETBALL_HOOP.jpg",
+              "banner_mobile_image": "shopify:\/\/shop_images\/25_off_Kids_Scooters.jpg",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
               "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/products\/basketball-hoop-b900-box-nba?variant=40917786624111",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/black-friday-kids-scooter-sale",
               "link_title": "",
               "link_new_window": false
             }
@@ -1590,14 +1589,14 @@
           "145847d3-2db7-45f7-8ef6-38db22a4156a": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/price_drop-Home-page-banner.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/20_off_Bodyboards_7d5c0d8e-875f-4334-94f1-5eb9675cfd68.jpg",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_2e9b7989-78cc-4464-b5d5-b3fb7c51ad19.jpg",
+              "banner_mobile_image": "shopify:\/\/shop_images\/20_off_Bodyboards_1b0f89aa-5b6d-4f9d-b978-d73b94ce0f0c.jpg",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
               "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/pages\/price-drop",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/black-friday-bodyboard-sale",
               "link_title": "",
               "link_new_window": false
             }
@@ -1605,52 +1604,51 @@
           "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Nabaiji_HomePage_Carrousel.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/20_OFF_Selected_Shoes_d8a0daa6-3516-4224-b8b4-8c2fc1dd8507.jpg",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Nabaiji_HomePage_Carrousel_mobile.jpg",
+              "banner_mobile_image": "shopify:\/\/shop_images\/20_Off_Selected_Shoes_7c952d4e-c114-442d-a406-a7ccf4444784.jpg",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
               "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/collections\/swimming-goggles?utm_source=homepage&utm_medium=onsite&utm_campaign=ClearerUnderWater&utm_id=&utm_content=HeroBanner",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/black-friday-shoes-sale",
               "link_title": "",
               "link_new_window": false
             }
           },
           "85c47718-39c5-4752-aa58-3e34ef8c0a97": {
             "type": "slide",
-            "disabled": true,
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/20off_Cycling_Accessories_1440_x_789px.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/40_off_Down_Jackets.jpg",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/20off_Cycling_Accessories_478_x_300px.jpg",
+              "banner_mobile_image": "shopify:\/\/shop_images\/40_off_Down_Jackets_1.jpg",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
               "button_title": "",
-              "link_url": "shopify:\/\/collections\/cycling-clothing-bike-accessories",
-              "link_title": "Shop $20 off Cycling Clothing & Accessories",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/black-friday-down-jacket-sale",
+              "link_title": "",
               "link_new_window": false
             }
           },
           "748c6a7e-732f-486d-a653-eb425a670bc5": {
             "type": "slide",
-            "disabled": true,
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Artengo-Home_page_v2_1cf520bd-c9d1-486d-9be4-7a31275bb8fd.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/40_off_Snow_Gear.jpg",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Artengo-Home_page_mobile_v2_a813d66b-5a55-431c-a839-ee5f88d66ac3.jpg",
+              "banner_mobile_image": "shopify:\/\/shop_images\/40_off_Snow_Gear_1.jpg",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
               "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/pages\/decathlon-artengo",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/black-friday-snow-gear-sale",
               "link_title": "",
               "link_new_window": false
             }
           },
           "579ee1c6-8cb9-4350-95e5-fb83a1397d90": {
             "type": "slide",
+            "disabled": true,
             "settings": {
               "banner_bg_image": "shopify:\/\/shop_images\/Gift_Cards_v2_1440_x_789px.jpg",
               "slide_bg_position": "75% -50px",
@@ -1666,6 +1664,7 @@
           },
           "0e3f284b-4302-4200-8eb1-f98ce34415af": {
             "type": "slide",
+            "disabled": true,
             "settings": {
               "banner_bg_image": "shopify:\/\/shop_images\/MVP-Banner-Desktop.jpg",
               "slide_bg_position": "75% -50px",
@@ -1856,14 +1855,6 @@
               "text_colour": "#ffffff"
             }
           },
-          "e2db735a-2836-49c7-8089-1f57e2a97432": {
-            "type": "label",
-            "settings": {
-              "title": "15% OFF*",
-              "bg_colour": "#e21f26",
-              "text_colour": "#ffffff"
-            }
-          },
           "c39bc0a4-c1c1-43d8-a4ea-546ee6a36d94": {
             "type": "label",
             "settings": {
@@ -1967,6 +1958,14 @@
               "bg_colour": "#1c82c3",
               "text_colour": "#ffffff"
             }
+          },
+          "867f5753-c6db-4f3f-921c-ac547b5ebfb3": {
+            "type": "label",
+            "settings": {
+              "title": "GET 10% OFF",
+              "bg_colour": "#000000",
+              "text_colour": "#ffffff"
+            }
           }
         },
         "block_order": [
@@ -1985,7 +1984,6 @@
           "051b9d5d-329d-4532-8515-a335befea71c",
           "049c5622-6f00-46a8-ba5f-cbc412867ba1",
           "1d30eacb-2c42-4bad-93fb-48f2c55e7004",
-          "e2db735a-2836-49c7-8089-1f57e2a97432",
           "c39bc0a4-c1c1-43d8-a4ea-546ee6a36d94",
           "7d18489a-7919-48e6-af12-aa78223bdab7",
           "73203065-e6da-425e-9414-f16552e970b5",
@@ -1998,7 +1996,8 @@
           "8fab8f3d-e02e-4e37-bf4b-e662f218b7dc",
           "6cdded25-a535-4f69-8986-e6a4a6ab2665",
           "6f8f3605-b7a3-4057-b742-c73123a30e96",
-          "b353807e-4f41-4356-becd-7984dabfe053"
+          "b353807e-4f41-4356-becd-7984dabfe053",
+          "867f5753-c6db-4f3f-921c-ac547b5ebfb3"
         ],
         "settings": {}
       },
@@ -2088,62 +2087,62 @@
           "e6009045-e924-463e-b297-09c2cd29d848": {
             "type": "category_tile",
             "settings": {
-              "title": "Stand Up Paddleboards (SUP)",
-              "image": "shopify:\/\/shop_images\/homepage_section_1.png",
-              "link": "shopify:\/\/collections\/stand-up-paddle"
-            }
-          },
-          "2aabd1f3-b77e-4418-843c-995e61af21e7": {
-            "type": "category_tile",
-            "settings": {
-              "title": "Kayaking",
-              "image": "shopify:\/\/shop_images\/Kayaking_CAT-HERO_eace7f95-5b5c-49fd-b699-0ccbbf3e6c3c.jpg",
-              "link": "https:\/\/decathlon.com.au\/collections\/kayaking"
+              "title": "Quechua Air Seconds Inflatable 6 Person Tent",
+              "image": "shopify:\/\/shop_images\/HERO-3.jpg",
+              "link": "https:\/\/decathlon.com.au\/products\/air-seconds-polycotton-inflatable-6-person-tent-1"
             }
           },
           "c2d5bbf2-defb-4062-8a7c-9c520db2185d": {
             "type": "category_tile",
             "settings": {
-              "title": "Camping Tents",
-              "image": "shopify:\/\/shop_images\/Camping-HERO.jpg",
-              "link": "shopify:\/\/collections\/camping-tents"
+              "title": "Quecha Family Camping tent with poles - 5 Person",
+              "image": "shopify:\/\/shop_images\/HERO-8.jpg",
+              "link": "https:\/\/decathlon.com.au\/products\/3-8m-rigid-double-kayak?variant=40918131736687"
+            }
+          },
+          "2aabd1f3-b77e-4418-843c-995e61af21e7": {
+            "type": "category_tile",
+            "settings": {
+              "title": "Rooftop Tent Van 500 Fresh & Black 2 P",
+              "image": "shopify:\/\/shop_images\/Hero3---ROOF-TENT.jpg",
+              "link": "https:\/\/decathlon.com.au\/products\/rooftop-tent-van-500-fresh-black-2-p?variant=40978314854511"
             }
           },
           "5577a84d-44d2-461d-bb74-80a640ebe253": {
             "type": "category_tile",
             "settings": {
-              "title": "Mountain Bikes",
-              "image": "shopify:\/\/shop_images\/Untitled_design_32.png",
-              "link": "shopify:\/\/collections\/mountain-bike"
+              "title": "FT 730 Indoor Table Tennis Table",
+              "image": "shopify:\/\/shop_images\/HERO-11.jpg",
+              "link": "https:\/\/decathlon.com.au\/products\/ft-730-indoor-free-table-tennis-table?variant=40915731546223"
             }
           },
           "95c908d1-9a7d-43d6-816b-3a50b9f7b0d8": {
             "type": "category_tile",
             "settings": {
-              "title": "Aquashoes",
-              "image": "shopify:\/\/shop_images\/Aquashoes_PK_new_---_Expires_on_23-07-2025.jpg",
-              "link": "shopify:\/\/collections\/aqua-shoes"
+              "title": "Riverside 500 Trekking Hybrid Bike 28\"",
+              "image": "shopify:\/\/shop_images\/8386505-Hybrid-bike-price.jpg",
+              "link": "https:\/\/decathlon.com.au\/products\/riverside-500-trekking-hybrid-bike-145696?"
             }
           },
           "c74e811a-531f-4b53-89db-8ad5d6ea006d": {
             "type": "category_tile",
             "settings": {
-              "title": "Beach Essentials",
-              "image": "shopify:\/\/shop_images\/homepage_section_2.png",
-              "link": "shopify:\/\/collections\/beach-specials"
+              "title": "TREADMILL RUN100E CONNECTED",
+              "image": "shopify:\/\/shop_images\/HERO-2.jpg",
+              "link": "https:\/\/decathlon.com.au\/products\/treadmill-run100e-connected?variant=40917755986031"
             }
           }
         },
         "block_order": [
           "e6009045-e924-463e-b297-09c2cd29d848",
-          "2aabd1f3-b77e-4418-843c-995e61af21e7",
           "c2d5bbf2-defb-4062-8a7c-9c520db2185d",
+          "2aabd1f3-b77e-4418-843c-995e61af21e7",
           "5577a84d-44d2-461d-bb74-80a640ebe253",
           "95c908d1-9a7d-43d6-816b-3a50b9f7b0d8",
           "c74e811a-531f-4b53-89db-8ad5d6ea006d"
         ],
         "settings": {
-          "title": "Enjoy the Outdoors with Decathlon"
+          "title": "Trending Black Friday Deals. Dont miss out!"
         }
       },
       "16316085202ea5cf79": {
@@ -2222,15 +2221,15 @@
       "16375487170499d43e": {
         "type": "featured_collection",
         "settings": {
-          "title": "Trending Summer Deals",
-          "section_collection": "easiest-summer-ever"
+          "title": "25% OFF KIds Scooters",
+          "section_collection": "black-friday-kids-scooter-sale"
         }
       },
       "1642116157c0ce923f": {
         "type": "featured_collection",
         "settings": {
-          "title": "Discover Our Surfing Range",
-          "section_collection": "surfing"
+          "title": "20% OFF Selected Shoes",
+          "section_collection": "black-friday-shoes-sale"
         }
       },
       "product_page_bnpl": {
@@ -2280,38 +2279,36 @@
       "16509507269dac2990": {
         "type": "featured_collection",
         "settings": {
-          "title": "Price Drop Deals!",
-          "section_collection": "price-drop"
+          "title": "40% OFF Down Jackets",
+          "section_collection": "black-friday-down-jacket-sale"
         }
       },
       "1650960580e9623e99": {
         "type": "featured_collection",
         "settings": {
-          "title": "Celebrate Football with Decathlon",
-          "section_collection": "soccer-futsal"
+          "title": "20% OFF Bodyboards",
+          "section_collection": "black-friday-bodyboard-sale"
         }
       },
       "165115029729e3ba5b": {
         "type": "featured_collection",
-        "disabled": true,
         "settings": {
-          "title": "Trending Deals on Outdoor Equipment!",
-          "section_collection": "outdoor-sports-sale"
+          "title": "40% OFF Puma",
+          "section_collection": "puma-sale"
         }
       },
       "1651153473715f6dc1": {
         "type": "featured_collection",
-        "disabled": true,
         "settings": {
-          "title": "50% off Selected Kayaks & SUPs",
-          "section_collection": "weekend-deal-12-nov"
+          "title": "25% OFF Kids Bikes",
+          "section_collection": "black-friday-kids-bike-sale"
         }
       },
       "166270596352f8a275": {
         "type": "featured_collection",
         "settings": {
-          "title": "Spend $100, get $20 off selected Cycling Clothing & Accessories",
-          "section_collection": "cycling-clothing-bike-accessories"
+          "title": "40% OFF Snow Gear",
+          "section_collection": "black-friday-snow-gear-sale"
         }
       },
       "header-megatab": {
@@ -2331,7 +2328,6 @@
           },
           "5f676f08-13e2-4f7f-abc1-9e7dc877615b": {
             "type": "tab-callout",
-            "disabled": true,
             "settings": {
               "megamenu_parent": "camping-outdoors",
               "display_callout": true,
@@ -2339,19 +2335,6 @@
               "megamenu_title": "Looking for a tent?",
               "megamenu_subtitle": "Explore Our Range",
               "megamenu_link": "https:\/\/decathlon.com.au\/collections\/camping-gear",
-              "megamenu_bg_colour": "#1c82c3"
-            }
-          },
-          "fe11e3a8-e660-4eb3-a13c-bc7fee55ba93": {
-            "type": "tab-callout",
-            "disabled": true,
-            "settings": {
-              "megamenu_parent": "shop-all-sports",
-              "display_callout": true,
-              "megamenu_image": "shopify:\/\/shop_images\/Outdoor_Sports_315_x_235_41eaf218-1254-4312-9019-878890ea4006.jpg",
-              "megamenu_title": "Adventure Calls - Shop the Range Now",
-              "megamenu_subtitle": "Kayaks, SUPs, Tents, Bikes & More",
-              "megamenu_link": "https:\/\/decathlon.com.au\/pages\/outdoor-sports-sale",
               "megamenu_bg_colour": "#1c82c3"
             }
           },
@@ -2381,7 +2364,6 @@
           },
           "491b6777-803d-4a4a-ba1b-dc74efee6454": {
             "type": "tab-callout",
-            "disabled": true,
             "settings": {
               "megamenu_parent": "water-sports",
               "display_callout": true,
@@ -2394,6 +2376,7 @@
           },
           "2b653902-1728-4183-810e-9094dcf48376": {
             "type": "tab-callout",
+            "disabled": true,
             "settings": {
               "megamenu_parent": "shop-all-sports",
               "display_callout": true,
@@ -2408,7 +2391,6 @@
         "block_order": [
           "373c21e9-d7f3-448a-b99a-756ca60e545b",
           "5f676f08-13e2-4f7f-abc1-9e7dc877615b",
-          "fe11e3a8-e660-4eb3-a13c-bc7fee55ba93",
           "0fca52ae-b265-4490-bacb-d71127ec0d28",
           "d0eb6d46-31f5-4fbd-9b84-ba6fcd9396c7",
           "491b6777-803d-4a4a-ba1b-dc74efee6454",
@@ -2425,8 +2407,8 @@
       "1651153473715f6dc1",
       "16375487170499d43e",
       "1650960580e9623e99",
-      "16509507269dac2990",
       "1642116157c0ce923f",
+      "16509507269dac2990",
       "166270596352f8a275",
       "165115029729e3ba5b",
       "163487525380dd83d2",
