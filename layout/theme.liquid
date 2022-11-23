@@ -144,7 +144,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
   
   {% if template == "product" and product.metafields.global.features != blank %}
-    {{ 'built-product-page.css' | asset_url | stylesheet_tag }}
+    {{ 'built-product-page.css' | asset_url | stylesheet_tag }}   
+    <style>
+      /* VARIANT TICK */
+      .de-SwatchObjects .de-SwatchObjects-item.de-ColorSwatches-color.de-is-active::after {
+        background-image: url("{{ 'blue-tick.svg' | asset_url }}");
+      }
+    </style>
   {% else %}
     {% comment %}
       TODO - Remove IcoMoon CSS when remaining icons are refactored

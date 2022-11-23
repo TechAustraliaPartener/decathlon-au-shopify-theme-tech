@@ -202,6 +202,7 @@ $swatchObjects-item-unavailable-opacity: 0.4;
 .de-SwatchObjects-item.de-is-active {
   border: $border-width-md solid $color-blue !important;
   color: $color-blue;
+  position: relative;
 }
 
 /**
@@ -439,4 +440,17 @@ $swatchObjects-item-unavailable-opacity: 0.4;
 
 .de-SwatchObjects--square .de-SwatchObjects-item,.de-SwatchObjects--square .de-SwatchObjects-item:after {
     border-radius: 0
+}
+
+
+// Variant Selector Tick Mark
+.de-SwatchObjects .de-SwatchObjects-item.de-ColorSwatches-color.de-is-active::after {
+  content: "";
+  position: absolute;
+  top: calc(50% - 30px);
+  height: 60px;
+  left: calc(50% - 30px);
+  width: 60px;
+  display: block;
+  background-size: contain;
 }
