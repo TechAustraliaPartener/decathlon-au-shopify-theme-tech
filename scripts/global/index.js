@@ -205,6 +205,32 @@ $(window).scroll(debounce(function(){
     // $('.ais-hits--showmore button')
     if($('.ais-hits--showmore button').attr('disabled') !== 'disabled') {
       $('.ais-hits--showmore button').trigger('click');
+      console.log('triggering more products')
+
+    }
+  } else{
+    if(!$('#collection-search-preloader').hasClass('hidden')){
+      $('#collection-search-preloader').addClass('hidden')
+    console.log('removing preloader');
+
     }
   }
 }, 250));
+
+$(window).scroll(debounce(function(){
+  if (showMoreInViewport($('.ais-hits--showmore'))){
+    showPreloader();
+    console.log('adding preloader');
+  } else{
+    console.log('removing at end');
+    if(!$('#collection-search-preloader').hasClass('hidden') && $('.ais-hits--showmore button').attr('disabled') == 'disabled'){
+      $('#collection-search-preloader').addClass('hidden')
+    }
+  }
+}, 100));
+
+function showPreloader() {
+  if($('#collection-search-preloader').hasClass('hidden') && $('.ais-hits--showmore button').attr('disabled') !== 'disabled'){
+    $('#collection-search-preloader').removeClass('hidden')
+  }
+}
