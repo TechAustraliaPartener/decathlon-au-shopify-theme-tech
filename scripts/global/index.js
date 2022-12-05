@@ -206,13 +206,12 @@ $(window).scroll(debounce(function(){
     if($('.ais-hits--showmore button').attr('disabled') !== 'disabled') {
       $('.ais-hits--showmore button').trigger('click');
       console.log('triggering more products')
-
+    } else{
+      $('#end-results-container').removeClass('hidden')
     }
   } else{
     if(!$('#collection-search-preloader').hasClass('hidden')){
       $('#collection-search-preloader').addClass('hidden')
-    console.log('removing preloader');
-
     }
   }
 }, 250));
@@ -221,11 +220,6 @@ $(window).scroll(debounce(function(){
   if (showMoreInViewport($('.ais-hits--showmore'))){
     showPreloader();
     console.log('adding preloader');
-  } else{
-    console.log('removing at end');
-    if(!$('#collection-search-preloader').hasClass('hidden') && $('.ais-hits--showmore button').attr('disabled') == 'disabled'){
-      $('#collection-search-preloader').addClass('hidden')
-    }
   }
 }, 100));
 

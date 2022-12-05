@@ -22,7 +22,8 @@
       "results_for_html": "Your search for \"{{ terms }}\" revealed the following:",
       "title": "Search for products on our site",
       "placeholder": "Search our store",
-      "submit": "Search"
+      "submit": "Search",
+      "end_of_results": "This is the end of the search results"
     },
     "password_page": {
       "opening_soon": "Opening soon",
