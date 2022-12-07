@@ -194,3 +194,43 @@
   vertical-align: top;
   width: 1.15em;
 }
+
+
+// Product Tile Grid
+.six-tile-products {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px; 
+  flex-wrap: wrap;
+}
+
+.six-tile-products.--less-than-max {
+  justify-content: flex-start;
+}
+
+.six-tile-products .six-tiles-product{
+  width: 49%;
+}
+
+@media screen and (min-width: 768px) {
+  .six-tile-products .six-tiles-product{
+    width: 33.33%;
+  }
+}
+
+
+@media screen  and (min-width: 1280px) {
+  .six-tile-products {
+    padding: 0 20px; 
+  }
+
+  // .six-tile-products.--less-than-max {
+  //   justify-content: center;
+  // }
+
+  .six-tile-products .six-tiles-product{
+    width: 16.6666666667%;
+  }
+}
+
+ 

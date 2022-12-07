@@ -1,0 +1,145 @@
+{% comment %} GTM variables {% endcomment %}
+{% assign data_gtm_category = 'Tiles' %}
+{% assign data_gtm_event = 'customer-interaction' %}
+
+{% comment %}
+<!-- Create a list of the Collection products url for Collection Schema Markup -->
+{% endcomment %}
+{% if products_url_list == blank %}
+{% assign products_url_list = '' %}
+{% endif%}
+{% assign products_url_list = products_url_list | append: product.url | append: '**' | append: product.title | append: " | "  %}
+
+{% comment %}
+
+Product Tile
+
+@TODO: Consider a11y requirements
+
+Snippet parameters (documentation based off of JSDoc style):
+- {object} product: The product to render in the Product Tile
+- {boolean} [inventory_status]: Controls render of the inventory status
+- {boolean} [delivery_options]: Controls render of the delivery options
+
+Example:
+{% include 'components-product-tile',
+    product: collections['trending-products'].products[0],
+    inventory_status: false,
+    delivery_options: false
+  %}
+
+{% endcomment %}
+
+{% comment %} Begin ProductTile pattern {% endcomment %}
+<article class="de-ProductTile de-u-lineHeight3 js-de-ProductTile {{ class }} {% if added_item_drawer == true %}de-is-loading de-Skeleton{% endif %}" {% comment %} TODO Remove
+  `data-product-title` if not needed, eventually {% endcomment %} data-product-title="{{ product.title }}">
+  
+  <div class="de-productTile-top-container">
+    <section class="de-ProductTile-showcase js-de-ProductTile-showcase">
+      {% comment %} Product Flag {% endcomment %}
+      {% include 'elements-product-flag' with class: 'de-u-textShrink2 de-u-md-Grow1' %}
+
+      {% comment %} Product Image(s) {% endcomment %}
+      <div class="swiper-product-tile-image-container">
+        <div class="swiper-product-tile-image">
+          <!-- Additional required wrapper -->
+          <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide">
+              <a href="{{ product.url }}">
+                {% assign alt = product.first_available_variant.image.alt %}
+                <img alt="{% include 'func-extract-alt-copy' with alt %}"
+                  class="de-ProductTile-showcaseImage js-de-ProductTile-featureImage"
+                  src="{% if product.first_available_variant.image %}{{ product.first_available_variant.image | img_url: 'large' }}{% else %}{{ product.featured_image | img_url: 'large' }}{% endif %}"
+                  data-gtm-delegate="child" data-gtm-event="{{ data_gtm_event }}" data-gtm-id="Hero Image | {{ product.url }}"
+                  data-gtm-category="{{ data_gtm_category }}">
+              </a>
+            </div>
+            <!-- Slides -->
+            <div class="swiper-slide">
+              <a href="{{ product.url }}">
+                {% assign alt = product.first_available_variant.image.alt %}
+                <img alt="{% include 'func-extract-alt-copy' with alt %}"
+                  class="de-ProductTile-showcaseImage js-de-ProductTile-featureImage"
+                  src="https://dummyimage.com/500x500/000/fff"
+                  data-gtm-delegate="child" data-gtm-event="{{ data_gtm_event }}" data-gtm-id="Hero Image | {{ product.url }}"
+                  data-gtm-category="{{ data_gtm_category }}">
+              </a>
+            </div>
+          </div>
+
+          <!-- If we need navigation buttons -->
+          <div class="product-tile-swiper-button-prev"></div>
+          <div class="product-tile-swiper-button-next"></div>
+
+        </div>
+      </div>
+
+      <a class="standalone-product-tile-thumbnail" href="{{ product.url }}">
+        {% assign alt = product.first_available_variant.image.alt %}
+        <img alt="{% include 'func-extract-alt-copy' with alt %}"
+          class="de-ProductTile-showcaseImage js-de-ProductTile-featureImage"
+          src="{% if product.first_available_variant.image %}{{ product.first_available_variant.image | img_url: 'large' }}{% else %}{{ product.featured_image | img_url: 'large' }}{% endif %}"
+          data-gtm-delegate="child" data-gtm-event="{{ data_gtm_event }}" data-gtm-id="Hero Image | {{ product.url }}"
+          data-gtm-category="{{ data_gtm_category }}">
+      </a>  
+    </section>
+
+    <section class="de-RatingContainer">
+      {% comment %} Reviews {% endcomment %}
+      <div class="de-RatingItem de-u-flex de-u-flexAlignItemsCenter de-u-spaceTop06 de-u-lineHeight1"
+        data-gtm-id="Product Reviews | {{ product.url }}" data-gtm-category="{{ data_gtm_category }}"
+        data-gtm-event="{{ data_gtm_event }}" data-gtm-actions="click" data-gtm-delegate="child">
+        {% include 'elements-product-rating--stars-total',
+          star_rating_class: 'de-StarRating--small',
+          item_count_class: 'de-u-textDarkGray de-u-textShrink2 de-u-md-textShrink1'
+        %}
+      </div>
+
+    </section>
+</div>
+
+  <section class="de-ProductTile-info">
+    {% comment %} Color Swatches {% endcomment %}
+    {% include 'elements-product-color-swatch-list' %}
+
+    <a class="de-u-linkClean" href="{{ product.url }}">
+      <header class="de-ProductTile-header">
+        {% comment %} Decathlon Sub Brand Logo {% endcomment %}
+        {% assign data_gtm_id = "Decathlon Brand | " | append: product.url %}
+        {% include 'elements-product-sub-brand-logo',
+          product: product,
+          class: 'de-u-spaceTop04 de-subBrandLogo',
+          data_gtm_id: data_gtm_id,
+          data_gtm_category: data_gtm_category,
+          data_gtm_event: data_gtm_event,
+          data_gtm_actions: 'click',
+          data_gtm_delegate: 'child'
+        %}
+
+        <h4 class="de-ProductTile-title
+                 de-u-textMedium de-u-textShrink1 de-u-lg-textGrow1 de-u-lineHeight2"
+          data-gtm-event="{{ data_gtm_event }}" data-gtm-category="{{ data_gtm_category }}"
+          data-gtm-id="Product Title | {{ product.url }}" data-gtm-actions="click" data-gtm-delegate="child">
+          {% render 'compositions-product-page-eco-text-filter', content: product.title %}
+        </h4>
+      </header>
+
+    </a>
+    <a class="de-u-linkClean" href="{{ product.url }}">
+    {% comment %} Price {% endcomment %}
+    {% assign data_gtm_id = "Price | " | append: product.url %}
+    {% include 'elements-product-tile-price',
+      data_gtm_id: data_gtm_id,
+      data_gtm_category: data_gtm_category,
+      data_gtm_event: data_gtm_event,
+      data_gtm_actions: 'click',
+      data_gtm_delegate: 'child'
+    %}
+    </a>
+
+    {% if added_item_drawer == true %}
+      <a href="{{ product.url }}" class="btn btn--fill btn--full de-Button de-u-pad06 de-u-spaceBottom1 de-u-md-spaceBottomNone de-u-spaceTop1">View Product</a>
+    {% endif %}
+  </section>
+</article>
