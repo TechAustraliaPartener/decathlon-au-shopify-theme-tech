@@ -21,7 +21,7 @@
 
     main.on( 'active', function (e) {
       var rootSplide = main.root;
-      var productTile = rootSplide.closest('.de-productTile-top-container');
+      var productTile = rootSplide.closest('.js-de-ProductTile');
 
       var activeSlide = productTile.querySelector('.main-carousel .splide__slide.is-active a');
       var activeSlideURL = activeSlide.getAttribute("href");
