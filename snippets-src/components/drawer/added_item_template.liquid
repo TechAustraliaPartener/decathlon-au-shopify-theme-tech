@@ -148,8 +148,15 @@
           </h2>
           <div class="trendingProducts associated-products-carousel-container">
             {% if associated_product_handles %}
-              {% for handle in associated_product_handles limit: 8 %}
+              {%- assign handles_available = 0 -%}
+
+              {% for handle in associated_product_handles %}
                 {% assign carousel_product = all_products[handle] %}
+
+                  {%- if handles_available == 8 -%}
+                    {%- break -%}
+                  {%- endif -%}
+
                 {%- if carousel_product.available -%}
                   {% comment %} Product Tile Carousel Slide {% endcomment %}
                   {% include 'components-product-tile-thumb-carousel',
@@ -157,6 +164,7 @@
                     index: forloop.index
                     class: "de-ProductTileCarousel-item"
                   %}
+                  {%- assign handles_available = handles_available | plus: 1 -%}
                 {%- endif -%}
               {% endfor %}
             {% endif %}

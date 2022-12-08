@@ -6,8 +6,14 @@
 
   <div class="six-tile-products {{ tile_less_max_class }}">
     {% if handles.size > 0  %}
-      {% for handle in handles limit: 6 %}
+      {%- assign handles_available = 0 -%}
+      {% for handle in handles %}
         {% assign carousel_product = all_products[handle] %}
+
+        {%- if handles_available == 6 -%}
+          {%- break -%}
+        {%- endif -%}
+
         {%- if carousel_product.available -%}
           <div class="six-tiles-product">
           {% include 'components-product-tile-thumb-carousel',
@@ -16,6 +22,7 @@
             class: "de-ProductTileCarousel-item"
           %}
           </div>
+          {%- assign handles_available = handles_available | plus: 1 -%}
         {%- endif -%}
       {% endfor %}
     {%- elsif product_blocks.size > 0 -%}
