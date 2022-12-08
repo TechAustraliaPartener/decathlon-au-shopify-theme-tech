@@ -1,4 +1,9 @@
 {% if handles %}
+
+  {% if handles.size > 0 and handles.size < 6 %}
+    {%- assign tile_less_max_class = "--less-than-max" -%}
+  {% endif %}
+
   <div class="six-tile-products {{ tile_less_max_class }}">
     {% if handles.size > 0  %}
       {% for handle in handles limit: 6 %}

@@ -1,2 +1,10 @@
 {% layout none %}
-{% include 'components-product-tile', inventory_status: false, delivery_options: false %}
+{%- comment -%} {% include 'components-product-tile', inventory_status: false, delivery_options: false %} {%- endcomment -%}
+
+<div class="six-tiles-product">
+  {% include 'components-product-tile-thumb-carousel',
+      product: product,
+      index: forloop.index
+      class: "de-ProductTileCarousel-item"
+    %}
+</div>

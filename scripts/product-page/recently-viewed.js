@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import Cookies from 'js-cookie';
+import * as tileCarouselSwiper from '../home/tile-carousel-swiper';
 
 export const init = (forAlgoliaViews = false) => {
   const $section = $('.recently_viewed_products');
@@ -124,33 +125,35 @@ export const init = (forAlgoliaViews = false) => {
       return (className.match(/(^|\s)col-\S+/g) || []).join(' ');
     });
 
-    const arrowPreviousButton = $container.data('arrow-previous-button');
-    const arrowNextButton = $container.data('arrow-next-button');
-    const slidesToShow = calcSlidesToShow($(window).width());
+    tileCarouselSwiper.init();
 
-    $container.slick({
-      centerMode: false,
-      infinite: true,
-      slidesToShow,
-      slidesToScroll: slidesToShow,
-      dots: true,
-      prevArrow: arrowPreviousButton,
-      nextArrow: arrowNextButton,
-      responsive: [
-        {
-          breakpoint: 992,
-          settings: {
-            dots: false
-          }
-        }
-      ]
+    // const arrowPreviousButton = $container.data('arrow-previous-button');
+    // const arrowNextButton = $container.data('arrow-next-button');
+    // const slidesToShow = calcSlidesToShow($(window).width());
 
-    });
+    // $container.slick({
+    //   centerMode: false,
+    //   infinite: true,
+    //   slidesToShow,
+    //   slidesToScroll: slidesToShow,
+    //   dots: true,
+    //   prevArrow: arrowPreviousButton,
+    //   nextArrow: arrowNextButton,
+    //   responsive: [
+    //     {
+    //       breakpoint: 992,
+    //       settings: {
+    //         dots: false
+    //       }
+    //     }
+    //   ]
 
-    // In phone view show half of the next slide
-    if ($(window).width() < 640) {
-      $container.find('.slick-list').css('padding', '0 10% 0 0');
-    }
+    // });
+
+    // // In phone view show half of the next slide
+    // if ($(window).width() < 640) {
+    //   $container.find('.slick-list').css('padding', '0 10% 0 0');
+    // }
     setTimeout(() => {
       $container.children('article').remove();
     }, 100);
