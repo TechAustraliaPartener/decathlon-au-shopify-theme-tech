@@ -154,7 +154,12 @@ function initCarousel(element) {
 
 function initCarousels() {
   const carouselContainers = document.querySelectorAll(CAROUSEL_CONTAINER_CLASS);
-  const carousels = Array.prototype.slice.call(carouselContainers);
+  let carousels = Array.prototype.slice.call(carouselContainers);
+
+  carousels = carousels.filter(function(carouselElement) {
+    const mainCarousel = carouselElement.querySelector('.main-carousel')
+    return !mainCarousel.classList.contains('is-initialized');
+  });
 
   carousels.forEach(carousel => {
     initCarousel(carousel);
@@ -166,9 +171,10 @@ function initCarousels() {
  * Put all functions that need to run on product-page load here
  */
 export const init = () => {
-  Swiper.use([Navigation, Pagination, Lazy, Autoplay, Thumbs]);
+  // Swiper.use([Navigation, Pagination, Lazy, Autoplay, Thumbs]);
+
+  initCarousels();
 };
 
-document.addEventListener( 'DOMContentLoaded', function () {
-  initCarousels();
-})
+// document.addEventListener( 'DOMContentLoaded', function () {
+// })

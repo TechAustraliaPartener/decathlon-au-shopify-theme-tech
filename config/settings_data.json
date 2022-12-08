@@ -23,7 +23,7 @@
     "color_footer_bg": "#f7f8f9",
     "color_footer_text": "#1a2a34",
     "color_footer_social_link": "#1a2a34",
-    "logo_use_image": "svg-logos",
+    "logo_use_image": "img-logos",
     "svg_mobile_logo": "2022-10-20-decathlon-logo.svg",
     "svg_desktop_logo": "logo_small_1.svg",
     "img_mobile_logo": "shopify:\/\/shop_images\/2022-10-20-decathlon-logo.png",
@@ -295,6 +295,9 @@
     "eco_hide_strings": "(e)co-design,Eco-Designed,eco-designed,Eco-Friendly,Eco-friendly,eco-friendly,ORGANIC,ECO FRIENDLY,ECOFRIENDLY,ECO-FRIENDLY,ECO CONCEPT,ECO-CONCEPT,ECO-DESIGN,ECODESIGN,ECO-DESIGNED,ECO-CONCEIVED,ECO-CONCEIVE,ECOCONCEIVED,ECOCONCEIVE,ECO-CONCEPTION,ECOCONCEPTION,EVIRONMENTALLY-FRIENDLY,ENVIRONMENTALLY FRIENDLY,ECO-FRIENDLY,RECYCLE,RECYCLED,RECYCLING,UPCYCLE,ENVIRONMENTAL IMPACT,ECOLOGICAL CONCEPT,ENVIRONMENTAL APPROACH,ECOLOGY,ENVIRONMENT,CARBON FOOTPRINT,SUSTAINABLE DEVELOPMENT,CO2,organic,eco friendly,ecofriendly,eco-friendly,eco concept,eco-concept,eco-design,ecodesign,eco-conceived,eco-conceive,ecoconceived,ecoconceive,eco-conception,ecoconception,evironmentally-friendly,environmentally friendly,eco-friendly,recycle,recycled,recycling,upcycle,environmental impact,ecological concept,environmental approach,ecology,environment,carbon footprint,sustainable development,co2,Organic,Eco friendly,Ecofriendly,Eco-friendly,Eco concept,Eco-concept,Eco-design,Ecodesign,Eco-designed,Eco-conceived,Eco-conceive,Ecoconceived,Ecoconceive,Eco-conception,Ecoconception,Evironmentally-friendly,Environmentally friendly,Eco-friendly,Recycle,recycled,recycling,Upcycle,Environmental impact,Ecological concept,Environmental approach,Ecology,Environment,Carbon footprint,Sustainable development,Co2,CO₂,Recycled,paulownia,Paulownia,planet-friendly",
     "meta_noindex_collections": "",
     "meta_noindex_pages": "",
+    "enabled_algolia_cc_message": false,
+    "enabled_shopify_shipping_message": false,
+    "maximum_recent_searches": 3,
     "checkout_header_image": "",
     "checkout_logo_position": "left",
     "checkout_logo_size": "small",
@@ -668,7 +671,7 @@
               "hours_5_close": "1900",
               "hours_6_open": "0900",
               "hours_6_close": "2000",
-              "announcement": "",
+              "announcement": "<p><\/p>",
               "email_confirmation_message": "",
               "tag_exclusion_1": "",
               "tag_exclusion_message_1": "",
@@ -1623,7 +1626,7 @@
               "banner_mobile_image": "shopify:\/\/shop_images\/600_x_400px_dd1220e8-1f2f-48d1-ad72-95821d470189.jpg",
               "banner_intro": "",
               "banner_title": "",
-              "banner_subtitle": "",
+              "banner_subtitle": "<p><\/p>",
               "button_title": "",
               "link_url": "https:\/\/decathlon.com.au\/collections\/the-surfboard-warehouse-20-off-sale",
               "link_title": "",
@@ -1638,7 +1641,7 @@
               "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_2e9b7989-78cc-4464-b5d5-b3fb7c51ad19.jpg",
               "banner_intro": "",
               "banner_title": "",
-              "banner_subtitle": "",
+              "banner_subtitle": "<p><\/p>",
               "button_title": "",
               "link_url": "https:\/\/decathlon.com.au\/pages\/price-drop",
               "link_title": "",
@@ -2563,11 +2566,49 @@
           "default_bg": "#ffffff",
           "default_font": "#ffffff"
         }
+      },
+      "9336c2ec-4b3b-4d0b-b261-c112b61fe6d7": {
+        "type": "six-tile-products",
+        "settings": {
+          "title": "Collection Demo",
+          "section_collection": "price-drop"
+        }
+      },
+      "53ef715b-3255-45a6-9576-4c1ed49bd312": {
+        "type": "six-tile-products",
+        "blocks": {
+          "d8387b35-eca7-4698-a778-46a4800d0a6c": {
+            "type": "product",
+            "settings": {
+              "product": "1-kg-fitness-water-ball"
+            }
+          },
+          "914994ec-31b1-447c-a161-248d5e9d7e25": {
+            "type": "product",
+            "settings": {
+              "product": "1-8-m-rigid-kayak-kids"
+            }
+          },
+          "46e34286-9690-4ccc-8fde-81c3e14f5fdc": {
+            "type": "product",
+            "settings": {
+              "product": "1-bike-wall-and-ceiling-rack"
+            }
+          }
+        },
+        "block_order": [
+          "d8387b35-eca7-4698-a778-46a4800d0a6c",
+          "914994ec-31b1-447c-a161-248d5e9d7e25",
+          "46e34286-9690-4ccc-8fde-81c3e14f5fdc"
+        ],
+        "settings": {
+          "title": "Manual Products Demo",
+          "section_collection": ""
+        }
       }
     },
     "content_for_index": [
       "1568939434006",
-      "7a5aad3b-5f3a-46c1-85c7-8f90c4b232c0",
       "163107170023281063",
       "163107313302287377",
       "16316085202ea5cf79",

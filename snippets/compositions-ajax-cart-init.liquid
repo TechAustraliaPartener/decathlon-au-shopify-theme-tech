@@ -3,6 +3,90 @@
   * Legacy code setting up callbacks to events in ajax-cart.js
   */
   jQuery(function($) {
+
+  function initCarousel(parentElement) {
+
+    const mainCarousel = parentElement.querySelector('.main-carousel');
+    const thumbsCarousel = parentElement.querySelector('.thumbnail-carousel');
+
+    const slidesPerViewInThumbs = thumbsCarousel.dataset.variantsCount ? parseInt(thumbsCarousel.dataset.variantsCount) : 4;
+    
+    var main = new Splide( mainCarousel, {
+      type      : 'fade',
+      rewind    : true,
+      pagination: false,
+      arrows    : true,
+    } );
+
+
+    main.on( 'active', function (e) {
+      var rootSplide = main.root;
+      var productTile = rootSplide.closest('.de-productTile-top-container');
+
+      var activeSlide = productTile.querySelector('.main-carousel .splide__slide.is-active a');
+      var activeSlideURL = activeSlide.getAttribute("href");
+
+      var linksDOM = productTile.querySelectorAll('.de-u-linkClean');
+      var links = Array.prototype.slice.call(linksDOM);
+    
+      links.forEach(link => {
+        link.href = activeSlideURL;
+      });
+      
+    } );
+
+    var thumbnails = new Splide( thumbsCarousel, {
+      // perPage: 4,
+      width: slidesPerViewInThumbs > 4 ? 160 : slidesPerViewInThumbs * 40,
+      fixedHeight: 40,
+      fixedWidth: 40,
+      gap         : 0,
+      rewind      : true,
+      pagination  : false,
+      isNavigation: true,
+      breakpoints: {
+        1024: {
+          width: slidesPerViewInThumbs > 4 ? 160 : slidesPerViewInThumbs * 40,
+          fixedHeight: 40,
+          fixedWidth: 40,
+        },
+        1280: {
+          width: slidesPerViewInThumbs > 4 ? 140 : slidesPerViewInThumbs * 35,
+          fixedHeight: 35,
+          fixedWidth: 35,
+        },
+        1366: {
+          width: slidesPerViewInThumbs > 4 ? 160 : slidesPerViewInThumbs * 40,
+          fixedHeight: 40,
+          fixedWidth: 40,
+        },
+      }
+    } );
+
+
+    main.sync( thumbnails );
+    main.mount();
+    thumbnails.mount();
+  }
+
+  function initCarousels() {
+    const carouselContainers = document.querySelectorAll('.swiper-product-tile-image-container');
+    let carousels = Array.prototype.slice.call(carouselContainers);
+
+    // Make sure to only look for elements with uninitialized carousels
+    carousels = carousels.filter(function(carouselElement) {
+      const mainCarousel = carouselElement.querySelector('.main-carousel')
+      return !mainCarousel.classList.contains('is-initialized');
+    });
+
+    console.log(carousels);
+
+    carousels.forEach(carousel => {
+      initCarousel(carousel);
+    });
+
+  }
+
     var addedItemTemplate = Handlebars.compile($('#AddedItemTemplate').html());
 
     $('body').on('beforeAddItem.ajaxCart', function(e) {
@@ -32,6 +116,7 @@
         }
 
         thumbnail.onload = loadTemplate;
+
 
         var cartObj;
         var total_compare_at_price = 0;
@@ -105,6 +190,13 @@
         } else {
           thumbnail.src = context.image;
         }
+
+        window.setTimeout(function() {
+          //I was forced to hack triggering carousels as I can't figure out 
+          //where is the right callback function that runs after the dynamic content gets loaded within `.de-addedItemContainer`
+          initCarousels();
+        }, 1500);
+
       }
     });
   });

@@ -70,12 +70,19 @@
           {%- if carousel_product.available -%}
             {% comment %} Product Tile Carousel Slide {% endcomment %}
             <div class="swiper-slide">
-            {% include 'components-product-tile',
+            {%- comment -%} {% include 'components-product-tile',
               product: carousel_product,
               class: "de-ProductTileCarousel-item",
               delivery_options: delivery_options,
               inventory_status: inventory_status,
+            %} {%- endcomment -%}
+
+            {% include 'components-product-tile-thumb-carousel',
+              product: carousel_product,
+              index: forloop.index
+              class: "de-ProductTileCarousel-item"
             %}
+
             {% render 'components-product_tile_skeleton' %}
             </div>
           {%- endif -%}
@@ -85,12 +92,20 @@
           {%- if carousel_product.available -%}
             {% comment %} Product Tile Carousel Slide {% endcomment %}
             <div class="swiper-slide">
+              
             {% include 'components-product-tile',
               product: carousel_product,
               class: "de-ProductTileCarousel-item",
               delivery_options: delivery_options,
               inventory_status: inventory_status,
-            %}
+            %} 
+
+            {%- comment -%} {% include 'components-product-tile-thumb-carousel',
+              product: carousel_product,
+              index: forloop.index
+              class: "de-ProductTileCarousel-item"
+            %} {%- endcomment -%}
+
             {% render 'components-product_tile_skeleton' %}
             </div>
           {%- endif -%}

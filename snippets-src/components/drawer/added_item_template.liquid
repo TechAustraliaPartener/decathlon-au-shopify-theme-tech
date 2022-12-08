@@ -152,12 +152,10 @@
                 {% assign carousel_product = all_products[handle] %}
                 {%- if carousel_product.available -%}
                   {% comment %} Product Tile Carousel Slide {% endcomment %}
-                  {% include 'components-product-tile',
+                  {% include 'components-product-tile-thumb-carousel',
                     product: carousel_product,
-                    class: "de-ProductTileCarousel-item",
-                    delivery_options: delivery_options,
-                    inventory_status: inventory_status,
-                    added_item_drawer: true
+                    index: forloop.index
+                    class: "de-ProductTileCarousel-item"
                   %}
                 {%- endif -%}
               {% endfor %}

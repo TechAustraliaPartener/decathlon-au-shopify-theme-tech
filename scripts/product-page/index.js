@@ -4,6 +4,7 @@
 import $ from 'jquery';
 import './buybox';
 import * as carouselSwiper from './carousel-swiper';
+import * as tileCarouselSwiper from '../home/tile-carousel-swiper';
 import * as carousel from './carousel';
 import * as carouselContext from './carousel-context';
 import * as collapse from './collapse';
@@ -203,6 +204,7 @@ const init = async () => {
   recentlyViewed.init();
   carousel.init();
   carouselSwiper.init();
+  tileCarouselSwiper.init();
   carouselContext.init();
   collapse.init();
   addToCart.init();

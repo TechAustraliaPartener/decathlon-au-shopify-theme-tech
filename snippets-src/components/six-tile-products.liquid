@@ -1,0 +1,71 @@
+{% if handles %}
+  <div class="six-tile-products {{ tile_less_max_class }}">
+    {% if handles.size > 0  %}
+      {% for handle in handles limit: 6 %}
+        {% assign carousel_product = all_products[handle] %}
+        {%- if carousel_product.available -%}
+          <div class="six-tiles-product">
+          {% include 'components-product-tile-thumb-carousel',
+            product: carousel_product,
+            index: forloop.index
+            class: "de-ProductTileCarousel-item"
+          %}
+          </div>
+        {%- endif -%}
+      {% endfor %}
+    {%- elsif product_blocks.size > 0 -%}
+
+      {% for product_block in product_blocks limit: 6 %}
+        {% assign temp_product =  product_block.settings.product %}
+          <div class="six-tiles-product">
+          {% include 'components-product-tile-thumb-carousel',
+            product: temp_product,
+            index: forloop.index
+            class: "de-ProductTileCarousel-item"
+          %}
+          </div>
+      {% endfor %}
+    {% else %}
+      <span class="no_products">{{ 'homepage.sections.featured_collection.no_products' | t}}</span>
+    {% endif %}
+  </div>
+{% else %}
+  {% if products.size > 0 and products.size < 6 %}
+    {%- assign tile_less_max_class = "--less-than-max" -%}
+  {% endif %}
+
+  {% if product_blocks.size > 0 and product_blocks.size < 6 %}
+    {%- assign tile_less_max_class = "--less-than-max" -%}
+  {% endif %}
+
+  <div class="six-tile-products {{ tile_less_max_class }}">
+    {% if products.size > 0  %}
+      {% for product in products limit: 6 %}
+        {%- if product.available -%}
+          <div class="six-tiles-product">
+          {% include 'components-product-tile-thumb-carousel',
+            product: product,
+            index: forloop.index
+            class: "de-ProductTileCarousel-item"
+          %}
+          </div>
+        {%- endif -%}
+      {% endfor %}
+    {%- elsif product_blocks.size > 0 -%}
+
+      {% for product_block in product_blocks limit: 6 %}
+        {% assign temp_product =  product_block.settings.product %}
+          <div class="six-tiles-product">
+          {% include 'components-product-tile-thumb-carousel',
+            product: temp_product,
+            index: forloop.index
+            class: "de-ProductTileCarousel-item"
+          %}
+          </div>
+      {% endfor %}
+    {% else %}
+      <span class="no_products">{{ 'homepage.sections.featured_collection.no_products' | t}}</span>
+    {% endif %}
+  </div>
+{% endif %}
+
