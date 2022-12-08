@@ -80,6 +80,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.11.2",
+    "@splidejs/splide": "^4.1.4",
     "bestzip": "^2.1.7",
     "fast-deep-equal": "^2.0.1",
     "formdata-polyfill": "^3.0.20",

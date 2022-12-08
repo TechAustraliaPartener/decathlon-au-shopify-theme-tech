@@ -22,6 +22,7 @@
   {%- assign tile_less_max_class = "--less-than-max" -%}
 {% endif %}
 
+
 <div class="six-tile-products {{ tile_less_max_class }}">
   {% if products.size > 0  %}
     {% for product in products limit: 6 %}
@@ -29,6 +30,7 @@
         <div class="six-tiles-product">
         {% include 'components-product-tile-thumb-carousel',
           product: product,
+          index: forloop.index
           class: "de-ProductTileCarousel-item"
         %}
         </div>
@@ -41,6 +43,7 @@
         <div class="six-tiles-product">
         {% include 'components-product-tile-thumb-carousel',
           product: temp_product,
+          index: forloop.index
           class: "de-ProductTileCarousel-item"
         %}
         </div>

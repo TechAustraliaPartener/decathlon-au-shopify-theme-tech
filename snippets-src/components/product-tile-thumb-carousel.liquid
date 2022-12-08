@@ -10,6 +10,8 @@
 {% endif%}
 {% assign products_url_list = products_url_list | append: product.url | append: '**' | append: product.title | append: " | "  %}
 
+{%- assign product_variants = product.variants -%}
+
 {% comment %}
 
 Product Tile
@@ -40,68 +42,95 @@ Example:
       {% include 'elements-product-flag' with class: 'de-u-textShrink2 de-u-md-Grow1' %}
 
       {% comment %} Product Image(s) {% endcomment %}
-      <div class="swiper-product-tile-image-container">
-        <div class="swiper-product-tile-image">
-          <!-- Additional required wrapper -->
-          <div class="swiper-wrapper">
-            <!-- Slides -->
-            <div class="swiper-slide">
-              <a href="{{ product.url }}">
-                {% assign alt = product.first_available_variant.image.alt %}
-                <img alt="{% include 'func-extract-alt-copy' with alt %}"
-                  class="de-ProductTile-showcaseImage js-de-ProductTile-featureImage"
-                  src="{% if product.first_available_variant.image %}{{ product.first_available_variant.image | img_url: 'large' }}{% else %}{{ product.featured_image | img_url: 'large' }}{% endif %}"
-                  data-gtm-delegate="child" data-gtm-event="{{ data_gtm_event }}" data-gtm-id="Hero Image | {{ product.url }}"
-                  data-gtm-category="{{ data_gtm_category }}">
-              </a>
-            </div>
-            <!-- Slides -->
-            <div class="swiper-slide">
-              <a href="{{ product.url }}">
-                {% assign alt = product.first_available_variant.image.alt %}
-                <img alt="{% include 'func-extract-alt-copy' with alt %}"
-                  class="de-ProductTile-showcaseImage js-de-ProductTile-featureImage"
-                  src="https://dummyimage.com/500x500/000/fff"
-                  data-gtm-delegate="child" data-gtm-event="{{ data_gtm_event }}" data-gtm-id="Hero Image | {{ product.url }}"
-                  data-gtm-category="{{ data_gtm_category }}">
-              </a>
-            </div>
+      {%- if product_variants.size < 5 -%}
+        {%- assign hide_thumbnail_nav_arrows_class = '--hide-thumbnail-nav-arrows' -%}
+      {%- else -%}
+        {%- assign hide_thumbnail_nav_arrows_class = '' -%}
+      {%- endif -%}
+
+      {%- if product_variants.size == 1 -%}
+        {%- assign hide_nav_arrows_class = '--hide-main-nav-arrows' -%}
+      {%- else -%}
+        {%- assign hide_nav_arrows_class = '' -%}
+      {%- endif -%}
+
+
+      <div class="swiper-product-tile-image-container {{hide_thumbnail_nav_arrows_class}} {{hide_nav_arrows_class}} ">
+
+        <section
+          id="main-carousel-{{index}}"
+          class="main-carousel splide "
+        >
+          <div class="splide__track">
+            <ul class="splide__list">
+              {%- for product_variant in product_variants -%}
+              {%- assign not_available_class = '' -%}
+
+              {%- unless product_variant.available -%}
+                {%- assign not_available_class = '--variant-not-available' -%}
+              {%- endunless -%}
+
+              <li class="splide__slide">
+                <a href="{{ product_variant.url }}">
+                  {% assign alt = product_variant.first_available_variant.image.alt %}
+                  <img alt="{% include 'func-extract-alt-copy' with alt %}"
+                    class=""
+                    src="{% if product_variant.first_available_variant.image %}{{ product_variant.first_available_variant.image | img_url: 'large' }}{% else %}{{ product_variant.featured_image | img_url: 'large' }}{% endif %}"
+                    data-gtm-delegate="child" data-gtm-event="{{ data_gtm_event }}" data-gtm-id="Hero Image | {{ product_variant.url }}"
+                    data-gtm-category="{{ data_gtm_category }}">
+                </a>
+              </li>
+              {%- endfor -%}
+            </ul>
           </div>
 
-          <!-- If we need navigation buttons -->
-          <div class="product-tile-swiper-button-prev"></div>
-          <div class="product-tile-swiper-button-next"></div>
+          <section class="de-RatingContainer">
+            {% comment %} Reviews {% endcomment %}
+            <div class="de-RatingItem de-u-flex de-u-flexAlignItemsCenter de-u-spaceTop06 de-u-lineHeight1"
+              data-gtm-id="Product Reviews | {{ product.url }}" data-gtm-category="{{ data_gtm_category }}"
+              data-gtm-event="{{ data_gtm_event }}" data-gtm-actions="click" data-gtm-delegate="child">
+              {% include 'elements-product-rating--stars-total',
+                star_rating_class: 'de-StarRating--small',
+                item_count_class: 'de-u-textDarkGray de-u-textShrink2 de-u-md-textShrink1'
+              %}
+            </div>
 
-        </div>
-      </div>
+          </section>
+        </section>
+        
+        <section
+          id="thumbs-carousel-{{index}}"
+          class="thumbnail-carousel splide"
+          data-variants-count="{{product_variants.size}}"
+        >
+          <div class="splide__track">
+            <ul class="splide__list">
+              {%- for product_variant in product_variants -%}
+              {%- unless product_variant.available -%}
+                {%- assign not_available_class = '--variant-not-available' -%}
+              {%- endunless -%}
+              <li class="splide__slide {{not_available_class}}">
+                {% assign alt = product_variant.first_available_variant.image.alt %}
+                <img alt="{% include 'func-extract-alt-copy' with alt %}"
+                  class=""
+                  src="{% if product_variant.first_available_variant.image %}{{ product_variant.first_available_variant.image | img_url: 'x50' }}{% else %}{{ product_variant.featured_image | img_url: 'x50' }}{% endif %}"
+                  data-gtm-delegate="child" data-gtm-event="{{ data_gtm_event }}" data-gtm-id="Hero Image | {{ product_variant.url }}"
+                  data-gtm-category="{{ data_gtm_category }}">
+              </li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        </section>
 
-      <a class="standalone-product-tile-thumbnail" href="{{ product.url }}">
-        {% assign alt = product.first_available_variant.image.alt %}
-        <img alt="{% include 'func-extract-alt-copy' with alt %}"
-          class="de-ProductTile-showcaseImage js-de-ProductTile-featureImage"
-          src="{% if product.first_available_variant.image %}{{ product.first_available_variant.image | img_url: 'large' }}{% else %}{{ product.featured_image | img_url: 'large' }}{% endif %}"
-          data-gtm-delegate="child" data-gtm-event="{{ data_gtm_event }}" data-gtm-id="Hero Image | {{ product.url }}"
-          data-gtm-category="{{ data_gtm_category }}">
-      </a>  
+
+      </div> 
+      
     </section>
-
-    <section class="de-RatingContainer">
-      {% comment %} Reviews {% endcomment %}
-      <div class="de-RatingItem de-u-flex de-u-flexAlignItemsCenter de-u-spaceTop06 de-u-lineHeight1"
-        data-gtm-id="Product Reviews | {{ product.url }}" data-gtm-category="{{ data_gtm_category }}"
-        data-gtm-event="{{ data_gtm_event }}" data-gtm-actions="click" data-gtm-delegate="child">
-        {% include 'elements-product-rating--stars-total',
-          star_rating_class: 'de-StarRating--small',
-          item_count_class: 'de-u-textDarkGray de-u-textShrink2 de-u-md-textShrink1'
-        %}
-      </div>
-
-    </section>
-</div>
+  </div>
 
   <section class="de-ProductTile-info">
     {% comment %} Color Swatches {% endcomment %}
-    {% include 'elements-product-color-swatch-list' %}
+    {%- comment -%} {% include 'elements-product-color-swatch-list' %} {%- endcomment -%}
 
     <a class="de-u-linkClean" href="{{ product.url }}">
       <header class="de-ProductTile-header">

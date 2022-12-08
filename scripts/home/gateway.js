@@ -1,6 +1,8 @@
 import $ from 'jquery';
 import * as productCarouselSwiper from '../product-page/carousel-swiper';
 import * as homeCarouselSwiper from './carousel-swiper';
+import * as tileCarouselSwiper from './tile-carousel-swiper';
+
 
 const allowedStates = {
   AL: 'Alabama',
@@ -350,6 +352,7 @@ $(document).ready(() => {
     }
   }
 
+  tileCarouselSwiper.init();
   homeCarouselSwiper.init();
   productCarouselSwiper.init();
 });
