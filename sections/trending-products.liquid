@@ -2,10 +2,14 @@
   <div class="trendingProducts u-block">
     <h3 class="text-center">{% if settings['is_lookbook'] == true %}Popular Products{% else %}Trending Products{% endif %}</h3>
      <div class="de-u-md-padSides03"> 
-      {% include 'components-product_tile_carousel_swiper',
+      {%- comment -%} {% include 'components-product_tile_carousel_swiper',
         inventory_status: false,
         delivery_options: false,
         limit: section.settings.limit,
+        products: collections['trending-products'].products
+      %} {%- endcomment -%}
+
+      {% include 'components-six-tile-products'
         products: collections['trending-products'].products
       %}
     </div>
@@ -21,12 +25,6 @@
         "id": "show_trending_products",
         "default": false,
         "label": "Show trending products"
-      },
-      {
-        "type": "number",
-        "id": "limit",
-        "default": 20,
-        "label": "Number of items in the carousel"
       }
     ]
   }

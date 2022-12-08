@@ -11,12 +11,16 @@
   <h2 class="de-ProductInfoSection-title de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4 de-u-inlineBlock">
     You May Also Like
   </h2>
-  {% include 'components-product_tile_carousel_swiper'	
+  {%- comment -%} {% include 'components-product_tile_carousel_swiper'	
         handles: similar_products_handles,	
         name_class: 'like_suggest',
         limit: 10,	
         inventory_status: false,	
         delivery_options: false,	
-      %}
+      %} {%- endcomment -%}
+    
+  {% include 'components-six-tile-products'
+      handles: similar_products_handles,	
+  %}
 </div>
 {% endif %}
