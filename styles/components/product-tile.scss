@@ -319,3 +319,47 @@
   opacity: .75;
   filter: grayscale(1);
 }
+
+
+// Collection / Search Page
+.carousel-with-ratings-box {
+  position: relative;
+}
+
+.carousel-with-ratings-box .ais-rating {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: #fdfdfdcc;
+}
+
+.swiper-product-tile-image-container.--hide-main-nav-arrows .main-carousel .splide__arrows {
+  display: none;
+}
+
+.thumbnail-carousel {
+  margin: 0 auto;
+}
+
+.collection-carousel.--hide-thumbnail-nav-arrows .splide__arrows {
+  display: none;
+}
+
+.collection-carousel.--hide-main-nav-arrows .splide__arrows {
+  display: none;
+}
+
+.collection-carousel.main-carousel .splide__arrow--prev {
+  left: 0;
+}
+
+.collection-carousel.main-carousel .splide__arrow--next {
+  right: 0;
+}
+
+
+@media screen and (min-width: 1280px) {
+  .collection-carousel.main-carousel .splide__arrows {
+    display: none;
+  }
+}

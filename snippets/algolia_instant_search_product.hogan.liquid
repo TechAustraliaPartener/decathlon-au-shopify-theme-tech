@@ -6,15 +6,26 @@
   [[# helpers.label ]]
   [[/ helpers.label ]]
 
+{%- comment -%} 
   <a href="[[# helpers.instantsearchLink ]][[/ helpers.instantsearchLink ]]" class="ais--product-img-container">
     <div class="ais-hit--picture" style="background-image: url('[[# helpers.mediumImage ]][[/ helpers.mediumImage ]]')"></div>
 
+  </a> {%- endcomment -%}
+
+  <div class="carousel-with-ratings-box">
+    [[# helpers.carousel ]]
+    [[/ helpers.carousel]]
+
+
     [[# helpers.rating ]]
     [[/ helpers.rating ]]
-  </a>
+  </div>
 
-  [[# helpers.thumbnails ]]
-  [[/ helpers.thumbnails ]]
+  [[# helpers.carouselThumbs ]]
+  [[/ helpers.carouselThumbs]]
+
+  {%- comment -%} [[# helpers.thumbnails ]]
+  [[/ helpers.thumbnails ]] {%- endcomment -%}
 
   <div class="ais-hit--details">
     

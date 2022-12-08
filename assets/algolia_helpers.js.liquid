@@ -202,12 +202,80 @@
 
       return productRating.join('');
     },
+    carousel: function() {
+      let product = this;
+      let variantImages = JSON.parse(product.meta.variants.images);
+      let variantThumbs = 'thumbs' in variantImages ? variantImages.thumbs : [];
+
+      console.log('carousel init...');
+      console.log(product);
+      console.log(variantThumbs);
+      let html = '';
+      let modifierClasses = '';
+
+      if(variantThumbs.length == 1) {
+        modifierClasses += ' --hide-main-nav-arrows'
+      }
+
+
+      html += '<section class="main-carousel collection-carousel splide'+ modifierClasses +'">';
+      html += '<div class="splide__track">';
+      html += '<ul class="splide__list">';
+
+      variantThumbs.forEach((variant) => {
+        html += '<li class="splide__slide">';
+        html += '<a href="/products/' + variant.url + '">';
+        html += '<img alt="'+ product.title + '" src="' + variant.filename + '">';
+        html += '</a>';
+        html += '</li>';
+      });
+
+      html += '</ul>';
+      html += '</div>';
+      html += '</section>';
+
+
+      return html;
+    },
+    carouselThumbs: function() {
+      let product = this;
+      let variantImages = JSON.parse(product.meta.variants.images);
+      let variantThumbs = 'thumbs' in variantImages ? variantImages.thumbs : [];
+      let modifierClasses = '';
+      
+      if(variantThumbs.length < 5) {
+        modifierClasses += ' --hide-thumbnail-nav-arrows'
+      }
+
+      console.log('carousel thumbs init...');
+      console.log(product);
+      console.log(variantThumbs);
+      let html = '';
+
+      html += '<section class="thumbnail-carousel collection-carousel splide '+ modifierClasses +'" data-variants-count="'+ variantThumbs.length +'">';
+      html += '<div class="splide__track">';
+      html += '<ul class="splide__list">';
+
+      variantThumbs.forEach((variant) => {
+        html += '<li class="splide__slide">';
+        html += '<img alt="'+ product.title + '" src="' + variant.filename + '">';
+        html += '</li>';
+      });
+
+      html += '</ul>';
+      html += '</div>';
+      html += '</section>';
+
+
+      return html;
+    },
     thumbnails: function thumbnails() {
       var product = this;
 
       var colorValueTags = product.named_tags.MODEL;
       colorValueTags = Array.isArray(colorValueTags) ? colorValueTags : [colorValueTags];
       var colors = colorValueTags.length - 1;
+
 
       /* var variantImages = (((this || {}).meta || {}).variants || {}).images;
 

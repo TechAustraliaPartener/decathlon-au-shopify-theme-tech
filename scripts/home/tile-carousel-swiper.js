@@ -156,7 +156,6 @@ function initCarousels() {
   const carouselContainers = document.querySelectorAll(CAROUSEL_CONTAINER_CLASS);
   const carousels = Array.prototype.slice.call(carouselContainers);
 
-
   carousels.forEach(carousel => {
     initCarousel(carousel);
   });

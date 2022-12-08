@@ -135,7 +135,7 @@
   {{ 'cadence.scss.css' | asset_url | stylesheet_tag }}
   {{ 'menu.scss.css' | asset_url | stylesheet_tag }}
 
-  {% if template contains 'product' or template contains "cart" or template == "index"  %}
+  {% if template contains 'product' or template contains "cart" or template == "index" or template contains 'collection' or template contains 'search' %}
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide-core.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">

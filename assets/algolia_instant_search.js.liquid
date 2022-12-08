@@ -557,21 +557,23 @@
     // Redirect to product on click
     instant.search.addWidget({
       init: function (opts) {
-        $('.ais-hits-container').on('click', '.ais-hit', function (e) {
-          var $this = $(this),
-            handle = $this.attr('data-handle'),
-            variant_id = $this.attr('data-variant-id')
-          distinct = $this.attr('data-distinct');
 
-          var link = '/products/' + handle;
-          if (distinct !== 'true') {
-            link += '?variant=' + variant_id;
-          }
-          if (algolia.config.analytics_enabled) {
-            algolia.clickTracker(e.currentTarget);
-          }
-          window.location.href = link;
-        });
+        // $('.ais-hits-container').on('click', '.ais-hit', function (e) {
+        //   var $this = $(this),
+        //     handle = $this.attr('data-handle'),
+        //     variant_id = $this.attr('data-variant-id')
+        //   distinct = $this.attr('data-distinct');
+
+        //   var link = '/products/' + handle;
+        //   if (distinct !== 'true') {
+        //     link += '?variant=' + variant_id;
+        //   }
+        //   if (algolia.config.analytics_enabled) {
+        //     algolia.clickTracker(e.currentTarget);
+        //   }
+        //   window.location.href = link;
+        // });
+
         $('.ais-hits-container').on('click', '.ais-hit a', function (e) {
           e.stopPropagation();
           if (algolia.config.analytics_enabled) {
@@ -683,6 +685,87 @@
     }
   }
 
+  function initCarousel(parentElement) {
+
+    const mainCarousel = parentElement.querySelector('.main-carousel');
+    const thumbsCarousel = parentElement.querySelector('.thumbnail-carousel');
+
+    const slidesPerViewInThumbs = thumbsCarousel.dataset.variantsCount ? parseInt(thumbsCarousel.dataset.variantsCount) : 4;
+    
+    var main = new Splide( mainCarousel, {
+      type      : 'fade',
+      rewind    : true,
+      pagination: false,
+      arrows    : true,
+    } );
+
+
+    main.on( 'active', function (e) {
+      var rootSplide = main.root;
+      var productTile = rootSplide.closest('.ais-product');
+
+      var activeSlide = productTile.querySelector('.main-carousel .splide__slide.is-active a');
+      var activeSlideURL = activeSlide.getAttribute("href");
+
+      var linksDOM = productTile.querySelectorAll('.ais-hit--title a');
+      var links = Array.prototype.slice.call(linksDOM);
+    
+      links.forEach(link => {
+        link.href = activeSlideURL;
+      });
+      
+    } );
+
+    var thumbnails = new Splide( thumbsCarousel, {
+      // perPage: 4,
+      width: slidesPerViewInThumbs > 4 ? 160 : slidesPerViewInThumbs * 40,
+      fixedHeight: 40,
+      fixedWidth: 40,
+      gap         : 0,
+      rewind      : true,
+      pagination  : false,
+      isNavigation: true,
+      breakpoints: {
+        1024: {
+          width: slidesPerViewInThumbs > 4 ? 160 : slidesPerViewInThumbs * 40,
+          fixedHeight: 40,
+          fixedWidth: 40,
+        },
+        1280: {
+          width: slidesPerViewInThumbs > 4 ? 140 : slidesPerViewInThumbs * 35,
+          fixedHeight: 35,
+          fixedWidth: 35,
+        },
+        1366: {
+          width: slidesPerViewInThumbs > 4 ? 160 : slidesPerViewInThumbs * 40,
+          fixedHeight: 40,
+          fixedWidth: 40,
+        },
+      }
+    } );
+
+
+    main.sync( thumbnails );
+    main.mount();
+    thumbnails.mount();
+  }
+
+  function initCarousels() {
+    const carouselContainers = document.querySelectorAll('.ais-hits--item');
+    let carousels = Array.prototype.slice.call(carouselContainers);
+
+    // Make sure to only look for elements with uninitialized carousels
+    carousels = carousels.filter(function(carouselElement) {
+      const mainCarousel = carouselElement.querySelector('.main-carousel')
+      return !mainCarousel.classList.contains('is-initialized');
+    });
+
+    carousels.forEach(carousel => {
+      initCarousel(carousel);
+    });
+
+  }
+
   instant.search.on('render', function () {
     var n = $('.ais-pagination--item__page').length;
     if (n <= 1) {
@@ -752,6 +835,8 @@
       var $facetAccordion = $facet.find('.filter-accordion');
       $facetAccordion.toggleClass('expanded');
     });
+
+    initCarousels();
 
     /*
     $('.js-de-ColorSwatches .js-de-ColorSwatchList-action').bind('mouseover', function() {
