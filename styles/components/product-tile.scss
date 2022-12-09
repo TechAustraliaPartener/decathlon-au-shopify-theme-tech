@@ -281,6 +281,16 @@
   margin: 0 auto;
 }
 
+.swiper-product-tile-image-container .thumbnail-carousel.--thumbs-less-than-max,
+.ais-hits--item .thumbnail-carousel.--thumbs-less-than-max {
+  margin: 0;
+}
+
+
+.ais-hits--item .thumbnail-carousel.--thumbs-less-than-max {
+  margin: 0 1.602rem 0;
+}
+
 .thumbnail-carousel .splide__arrow--prev {
   left: -30px;
 }

@@ -247,6 +247,10 @@
         modifierClasses += ' --hide-thumbnail-nav-arrows'
       }
 
+      if(variantThumbs.length < 4) {
+        modifierClasses += ' --thumbs-less-than-max'
+      }
+
       console.log('carousel thumbs init...');
       console.log(product);
       console.log(variantThumbs);
