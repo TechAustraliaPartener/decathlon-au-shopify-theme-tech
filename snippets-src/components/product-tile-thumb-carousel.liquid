@@ -97,10 +97,17 @@ Example:
 
           </section>
         </section>
+
+
+          {%- assign thumbs_less_max_class = '' -%}
+
+        {%- if product_variants.size < 4-%}
+          {%- assign thumbs_less_max_class = ' --thumbs-less-than-max' -%}
+        {%- endif -%}
         
         <section
           id="thumbs-carousel-{{index}}"
-          class="thumbnail-carousel splide"
+          class="thumbnail-carousel splide {{thumbs_less_max_class}}"
           data-variants-count="{{product_variants.size}}"
         >
           <div class="splide__track">
