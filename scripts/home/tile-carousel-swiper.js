@@ -67,15 +67,15 @@ function initCarousel(element) {
         fixedWidth: 40,
       },
       1280: {
-        width: slidesPerViewInThumbs > 4 ? 140 : slidesPerViewInThumbs * 35,
-        fixedHeight: 35,
-        fixedWidth: 35,
+        width: slidesPerViewInThumbs > 4 ? 140 : slidesPerViewInThumbs * 30,
+        fixedHeight: 30,
+        fixedWidth: 30,
       },
       1366: {
-        width: slidesPerViewInThumbs > 4 ? 160 : slidesPerViewInThumbs * 40,
-        fixedHeight: 40,
-        fixedWidth: 40,
-      },
+        width: slidesPerViewInThumbs > 4 ? 120 : slidesPerViewInThumbs * 30,
+        fixedHeight: 30,
+        fixedWidth: 30
+      }
     }
   } );
 
