@@ -1,0 +1,65 @@
+#announcement-banner-container.announcement-active {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 8999999;
+  min-height: 30px;
+  height: fit-content;
+  max-height: 60px;
+  overflow: hidden
+}
+
+.announcement-close {
+  position: absolute;
+  right: 0;
+  padding: 8px;
+  color: #1f1f1f;
+  opacity: .7;
+}
+
+#announcement-banner-container.announcement-hidden {
+  display: none;
+}
+
+.annoucement-bar{
+  width: 100%;
+  height: 100%;
+  min-height: 30px;
+}
+
+.announcement-bar * {
+  font-weight: 600;
+  color: inherit;
+  margin-bottom: 0;
+}
+
+
+.annoucement-bar .vertical_text_slider{
+  width: 100%;
+  height: 100%;
+}
+
+#announcement-banner-container .vertical_text_item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  @media screen and (min-width: 40em) {
+    flex-direction: row;
+  }
+}
+
+#announcement-banner-container .vertical_text_item>p {
+  @media screen and (min-width: 40em) {
+    margin-right: 8px !important;
+  }
+}
+
+
+.hidden {
+  display: none;
+}
+
+time.announcement-countdown {
+  font-size: 16px
+}

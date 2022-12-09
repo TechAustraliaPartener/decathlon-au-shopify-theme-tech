@@ -1,0 +1,105 @@
+{% if section.settings.show_annoucement_bar == true %}
+  <div id="announcement-banner-container" class="announcement-active">
+      {% include 'components-banner-announcements' %}
+  </div>
+{% endif %}
+
+{% schema %}
+    {
+        "name": " Announcement Bar",
+        "class": "announcement-bar",
+        "settings": [
+            {
+                "type": "checkbox",
+                "id": "show_annoucement_bar",
+                "label": "Show the Announcement bar?",
+                "default": true
+            },
+            {
+                "type": "text",
+                "id": "rotation_delay",
+                "label": "Rotation Delay",
+                "default": "5000",
+                "info": "The value taken is in milliseconds (ms) i.e. 1 second = 1000ms"
+            },
+            {
+                "type": "text",
+                "id": "rotation_speed",
+                "label": "Rotation Speed",
+                "default": "600",
+                "info": "The value taken is in milliseconds (ms) i.e. 1 second = 1000ms"
+            },
+            {
+                "type": "color",
+                "id": "default_bg",
+                "label": "Default Background colour",
+                "default": "#fe5800"
+            },
+            {
+                "type": "color",
+                "id": "default_font",
+                "label": "Default Font colour",
+                "default": "#ffffff"
+            }
+        ],
+        "blocks": [
+            {
+            "type": "announcement_messages",
+            "name": "Announcement",
+            "settings": [
+                    {
+                        "type": "header",
+                        "content": "Countdown End(optional)"
+                    },
+                    {
+                        "id": "countdown_date",
+                        "type": "text",
+                        "label": "Countdown Date",
+                        "info": "Place date of countdown end in format YYYY-MM-DD. This is an optional value."
+                    },
+                    {
+                        "id": "countdown_time",
+                        "type": "text",
+                        "label": "Countdown Time",
+                        "info": "24 Hours Format - HH:SS"
+                    },
+                    {
+                        "type": "header",
+                        "content": "Announcement Message"
+                    },
+                    {
+                        "id": "message",
+                        "type": "richtext",
+                        "label": "Main / During Countdown Message",
+                        "info": "If you want to add a countdown based on the above settings, add a placeholder `[countdown]` in the copy that will be replaced by the countdown counter (based from Counter End setting)."
+                    },
+                    {
+                        "id": "post_message",
+                        "type": "richtext",
+                        "label": "After Countdown"
+                    },
+                    {
+                      "id": "url",
+                      "type": "url",
+                      "label": "Redirect URL?"
+                    },
+                    {
+                        "type": "header",
+                        "content": "Banner Styling"
+                    },
+                    {
+                        "type": "color",
+                        "id": "bg_colour",
+                        "label": "Background colour"
+                    },
+                    {
+                        "type": "color",
+                        "id": "font_colour",
+                        "label": "Font colour",
+                        "default": "#1F1F1F"
+                    }
+                ]
+            }
+        ]
+    }
+{% endschema %}
