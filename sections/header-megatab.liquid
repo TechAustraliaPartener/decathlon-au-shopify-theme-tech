@@ -29,7 +29,7 @@
         {% if settings.svg_logo != blank %}
         <img src="{{ settings.svg_logo | file_url }}" alt="Decathlon logo" />
         {% else %}
-        <img src="{{ settings.img_logo | img_url }}" alt="Decathlon logo" />
+        <img src="{{ settings.img_logo }}" alt="Decathlon logo" />
         {% endif %}
       </a>
       {% else %}
