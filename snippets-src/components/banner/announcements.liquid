@@ -42,10 +42,10 @@
           {% assign scroll_class = "horizontal_scroll_mobile" | append: " " | append: item.scroll_speed %}
         {% endif %}
 
-        {%- assign message =  item.message | replace: "[countdown]", counter -%}
+        {%- assign message =  item.message | strip_newlines | replace: "<p></p>" | replace: "[countdown]", counter -%}
         {% if item.post_message != blank %}
           {% unless message contains '[hidden]' %}
-            {% assign message = message | replace: message, item.post_message %}
+            {% assign message = message | replace: message, item.post_message  | strip_newlines | replace: "<p></p>" | %}
           {%- endunless -%}
         {% endif %}
       {%- endif -%}

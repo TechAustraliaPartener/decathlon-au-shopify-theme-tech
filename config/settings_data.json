@@ -2418,7 +2418,7 @@
             "settings": {
               "countdown_date": "",
               "countdown_time": "",
-              "message": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. <\/p>",
+              "message": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.<\/p>",
               "post_message": "",
               "url": "",
               "bg_colour": "#1c82c3",
@@ -2429,24 +2429,24 @@
           "96fa659b-ef93-402a-bfc3-00d291497738": {
             "type": "announcement_messages",
             "settings": {
-              "countdown_date": "2022-12-13",
-              "countdown_time": "22:00",
+              "countdown_date": "2022-12-25",
+              "countdown_time": "00:00",
               "message": "<p>It's [countdown] before Christmas!<\/p>",
               "post_message": "<p>Countdown done!<\/p>",
-              "url": "#",
+              "url": "",
               "bg_colour": "#fe5800",
-              "font_colour": "#fafafa",
+              "font_colour": "#ffffff",
               "scroll_speed": "scroll-normal"
             }
           },
           "899ddb8b-1a7d-4af1-871c-6ed9c44c9d00": {
             "type": "announcement_messages",
             "settings": {
-              "countdown_date": "2022-12-09",
+              "countdown_date": "2022-12-12",
               "countdown_time": "22:00",
               "message": "<p>Generic Message<\/p>",
               "post_message": "<p>After Countdown ...<\/p>",
-              "url": "",
+              "url": "shopify:\/\/collections\/15-sitewide",
               "bg_colour": "#ffea28",
               "font_colour": "#1f1f1f",
               "scroll_speed": "scroll-normal"

@@ -29,6 +29,7 @@
 .announcement-bar * {
   font-weight: 600;
   margin-bottom: 0;
+  color: inherit;
 }
 
 
@@ -68,16 +69,20 @@
   }
 
 }
+#announcement-banner-container .vertical_text_item a{
+  text-decoration: underline;
+}
 
 #announcement-banner-container .vertical_text_item>p {
   color: inherit;
 
   @media screen and (min-width: 40em) {
     margin-right: 8px !important;
-    width: 100%;
     text-align: center;
     text-overflow: ellipsis;
     overflow: hidden;
+    width: fit-content;
+    max-width: 100%;
   }
 }
 
