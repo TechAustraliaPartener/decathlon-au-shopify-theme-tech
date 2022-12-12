@@ -40,6 +40,8 @@
       {%- if item.message != blank -%}
         {% if item.message.size >= 55 %}
           {% assign scroll_class = "horizontal_scroll_mobile" | append: " " | append: item.scroll_speed %}
+        {%- else -%}
+          {% assign scroll_class = " " %}
         {% endif %}
 
         {%- assign message =  item.message | strip_newlines | replace: "<p></p>", " " | replace: "[countdown]", counter -%}
@@ -55,8 +57,9 @@
       {%- else -%}
         <div class="vertical_text_item {{scroll_class}} {%if forloop.first%}anim-in{%endif%}"  style="background: {{ bg }}; color: {{ fontc }}">
       {%- endif -%}
-
-        {{ message }}
+        <div class="vertical_text_wrapper">
+          {{ message }}
+        </div>
         
         {%- if item.url != blank -%}
           </a>

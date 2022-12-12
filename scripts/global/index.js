@@ -112,11 +112,8 @@ function announcement(){
 }
 $( document ).ready(function() {
   let announcementChecker = sessionStorage.getItem("announcement");
-  switch (announcementChecker){
-    case null:
+  if (announcementChecker != false){
       sessionStorage.setItem("announcement", true);
-      announcement();
-    case true:
       announcement();
       $( "#announcement-close" ).click(function() {
         $('#announcement-banner-container').addClass('hidden')
@@ -124,8 +121,5 @@ $( document ).ready(function() {
         $('.de-PageWrap-subHeader').css('top', '58px');
         sessionStorage.setItem("announcement", false);
       });
-      break;
-    default:
-      break;
   }
 });
