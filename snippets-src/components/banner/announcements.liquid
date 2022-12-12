@@ -42,18 +42,18 @@
           {% assign scroll_class = "horizontal_scroll_mobile" | append: " " | append: item.scroll_speed %}
         {% endif %}
 
-        {%- assign message =  item.message | strip_newlines | replace: "<p></p>" | replace: "[countdown]", counter -%}
+        {%- assign message =  item.message | strip_newlines | replace: "<p></p>", " " | replace: "[countdown]", counter -%}
         {% if item.post_message != blank %}
           {% unless message contains '[hidden]' %}
-            {% assign message = message | replace: message, item.post_message  | strip_newlines | replace: "<p></p>" | %}
+            {% assign message = message | replace: message, item.post_message  | strip_newlines | replace: "<p></p>", " " %}
           {%- endunless -%}
         {% endif %}
       {%- endif -%}
 
       {%- if item.url != blank -%}
-        <a href="{{ item.url }}" class="vertical_text_item {{scroll_class}}"  style="background: {{ bg }}; color: {{ fontc }};">
+        <a href="{{ item.url }}" class="vertical_text_item {{scroll_class}} {%if forloop.first%}anim-in{%endif%}"  style="background: {{ bg }}; color: {{ fontc }};">
       {%- else -%}
-        <div class="vertical_text_item {{scroll_class}}"  style="background: {{ bg }}; color: {{ fontc }}">
+        <div class="vertical_text_item {{scroll_class}} {%if forloop.first%}anim-in{%endif%}"  style="background: {{ bg }}; color: {{ fontc }}">
       {%- endif -%}
 
         {{ message }}

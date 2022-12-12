@@ -50,8 +50,8 @@
   height: 30px;
   left: 50%;
   top: 0;
-  -webkit-transform: translate3d(0, -120%, 0);
-  transform: translate3d(0, -120%, 0);
+  -webkit-transform: translate3d(0, -105%, 0);
+  transform: translate3d(0, -105%, 0);
 }
 
 #announcement-banner-container .vertical_text_item {
@@ -75,9 +75,9 @@
 
 #announcement-banner-container .vertical_text_item>p {
   color: inherit;
+  margin-right: 8px !important;
 
   @media screen and (min-width: 40em) {
-    margin-right: 8px !important;
     text-align: center;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -95,28 +95,33 @@ time.announcement-countdown {
 }
 
 .vertical_text_item:first-of-type {
-  -webkit-transform: translate3d(-50%, -120%, 0);
-  transform: translate3d(-50%, -120%, 0);
+  -webkit-transform: translate3d(-50%, -110%, 0);
+  transform: translate3d(-50%, -110%, 0);
+
+  > p {
+  transform: translate3d(-50%, -110%, 0);
+
+  }
 }
 
 .vertical_text_item.anim-in {
-  -webkit-transform: translate3d(-50%, -120%, 0);
-  transform: translate3d(-50%, -120%, 0);
-  -webkit-animation: textAnimInCenter .6s .3s forwards;
-  animation: textAnimInCenter .6s .3s forwards;
+  -webkit-transform: translate3d(-50%, -110%, 0);
+  transform: translate3d(-50%, -110%, 0);
+  -webkit-animation: textAnimInCenter .6s forwards;
+  animation: textAnimInCenter .6s forwards;
 }
 
 .vertical_text_item.anim-out {
-  -webkit-transform: translate3d(-50%, 0%, 0);
-  transform: translate3d(-50%, 0%, 0);
-  -webkit-animation: textAnimOutCenter .6s forwards;
-  animation: textAnimOutCenter .6s forwards;
+  -webkit-transform: translate3d(-50%, 10%, 0);
+  transform: translate3d(-50%, 10%, 0);
+  -webkit-animation: textAnimOutCenter .5s forwards;
+  animation: textAnimOutCenter .5s forwards;
 }
 
 @-webkit-keyframes textAnimInCenter {
   0% {
-    -webkit-transform: translate3d(-50%, -120%, 0);
-    transform: translate3d(-50%, -120%, 0);
+    -webkit-transform: translate3d(-50%, -110%, 0);
+    transform: translate3d(-50%, -110%, 0);
   }
 
   100% {
@@ -127,8 +132,8 @@ time.announcement-countdown {
 
 @keyframes textAnimInCenter {
   0% {
-    -webkit-transform: translate3d(-50%, -120%, 0);
-    transform: translate3d(-50%, -120%, 0);
+    -webkit-transform: translate3d(-50%, -110%, 0);
+    transform: translate3d(-50%, -110%, 0);
   }
 
   100% {
@@ -144,8 +149,8 @@ time.announcement-countdown {
   }
 
   100% {
-    -webkit-transform: translate3d(-50%, 120%, 0);
-    transform: translate3d(-50%, 120%, 0);
+    -webkit-transform: translate3d(-50%, 110%, 0);
+    transform: translate3d(-50%, 110%, 0);
   }
 }
 
@@ -156,8 +161,8 @@ time.announcement-countdown {
   }
 
   100% {
-    -webkit-transform: translate3d(-50%, 120%, 0);
-    transform: translate3d(-50%, 120%, 0);
+    -webkit-transform: translate3d(-50%, 110%, 0);
+    transform: translate3d(-50%, 110%, 0);
   }
 }
 
