@@ -80,6 +80,7 @@ function announcement(){
     console.log('POSITIVE')
     $('.de-PageWrap-header').css('top', '30px');
     $('.de-PageWrap-subHeader').css('top', '88px');
+    $('.de-PageWrap-prioritySportNav').css('top', '136.448px');
   }
 
   document.addEventListener('scroll', e => {
@@ -89,6 +90,7 @@ function announcement(){
 
       $('.de-PageWrap-header').css('top', '0px');
       $('.de-PageWrap-subHeader').css('top', '58px');
+      $('.de-PageWrap-prioritySportNav').css('top', '106.448px')
     }
 
     // Check if window is at top  
@@ -102,6 +104,7 @@ function announcement(){
   
         $('.de-PageWrap-header').css('top', '30px');
         $('.de-PageWrap-subHeader').css('top', '88px');
+        $('.de-PageWrap-prioritySportNav').css('top', '136.448px');
       }
     }
   })

@@ -25,6 +25,7 @@
         if (duration.asSeconds() <= 0) {
           clearInterval(intervalId);
           // hide the countdown element
+         timeElement.innerText = "[hidden]"
           timeElement.classList.add("hidden");
         } else {
           // otherwise, show the updated countdown

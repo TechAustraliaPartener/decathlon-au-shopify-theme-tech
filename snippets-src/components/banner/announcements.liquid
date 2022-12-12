@@ -30,28 +30,39 @@
         {% assign fontc = section.settings.default_font %}
       {% endif %}
       
-      <div class="vertical_text_item"  style="background: {{ bg }}; color: {{ fontc }}">
-
-        {%- if item.url != blank -%}
-          <a href="{{ item.url }}">
+      {% capture counter %}
+        {%- if item.countdown_date != null -%}
+          {%- comment -%} Increment ID {%- endcomment -%}
+        {% include 'helpers-countdown-counter.liquid' %}         
         {%- endif -%}
+      {% endcapture %}
 
-        {% capture counter %}
-          {%- if item.countdown_date != null -%}
-            {%- comment -%} Increment ID {%- endcomment -%}
-          {% include 'helpers-countdown-counter.liquid' %}         
-          {%- endif -%}
-        {% endcapture %}
+      {%- if item.message != blank -%}
+        {% if item.message.size >= 55 %}
+          {% assign scroll_class = "horizontal_scroll_mobile" | append: " " | append: item.scroll_speed %}
+        {% endif %}
 
-        {%- if item.message != null -%}
-          {{ item.message | replace: "[countdown]", counter }}
-        {%- endif -%}
+        {%- assign message =  item.message | replace: "[countdown]", counter -%}
+        {% if item.post_message != blank %}
+          {% unless message contains '[hidden]' %}
+            {% assign message = message | replace: message, item.post_message %}
+          {%- endunless -%}
+        {% endif %}
+      {%- endif -%}
 
+      {%- if item.url != blank -%}
+        <a href="{{ item.url }}" class="vertical_text_item {{scroll_class}}"  style="background: {{ bg }}; color: {{ fontc }};">
+      {%- else -%}
+        <div class="vertical_text_item {{scroll_class}}"  style="background: {{ bg }}; color: {{ fontc }}">
+      {%- endif -%}
+
+        {{ message }}
+        
         {%- if item.url != blank -%}
           </a>
+        {%- else -%}
+          </div>
         {%- endif -%}
-
-      </div>
       
     {%- endfor -%} 
     </div>
