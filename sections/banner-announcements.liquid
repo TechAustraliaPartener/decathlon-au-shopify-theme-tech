@@ -18,14 +18,14 @@
             {
                 "type": "text",
                 "id": "rotation_delay",
-                "label": "Rotation Delay",
+                "label": "Rotation Delay (ms)",
                 "default": "5000",
-                "info": "The value taken is in milliseconds (ms) i.e. 1 second = 1000ms"
+                "info": "This determines how long the text is displayed on the banner before rotating. The value taken is in milliseconds (ms) i.e. 1 second = 1000ms"
             },
             {
                 "type": "text",
                 "id": "rotation_speed",
-                "label": "Rotation Speed",
+                "label": "Rotation Speed (ms)",
                 "default": "600",
                 "info": "The value taken is in milliseconds (ms) i.e. 1 second = 1000ms"
             },
@@ -97,6 +97,38 @@
                         "id": "font_colour",
                         "label": "Font colour",
                         "default": "#1F1F1F"
+                    },
+                    {
+                        "type": "header",
+                        "content": "Banner Animation"
+                    },
+                    {
+                        "type": "text",
+                        "id": "rotation_delay",
+                        "label": "Rotation Delay (ms)",
+                        "info": "This determines how long the text is displayed on the banner before rotating. The value taken is in milliseconds (ms) i.e. 1 second = 1000ms"
+                    },
+                    {
+                        "type": "select",
+                        "id": "scroll_speed",
+                        "default": "scroll-normal",
+                        "label": "Text scroll speed",
+                        "info": "Select the text scroll speed for mobile when the message exceeds XX characters.",
+                        "options": [
+                          {
+                            "value": "scroll-slow",
+                            "label": "Slow"
+                          },
+                          {
+                            "value": "scroll-normal",
+                            "label": "Normal"
+                          },
+                          {
+                            "value": "scroll-fast",
+                            "label": "Fast"
+                          }
+                          
+                        ]
                     }
                 ]
             }

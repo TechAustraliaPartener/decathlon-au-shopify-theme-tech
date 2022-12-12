@@ -1,15 +1,22 @@
 {% assign announcement_messages = section.blocks | where: 'type', 'announcement_messages' %}
       {% assign countdown = 0 %}
       {%- if announcement_messages.size > 0 -%}
-  <div class="announcement-bar">
-    <script>
+     <script>
       window.vars = window.vars || {};
-      window.vars.rotatingAnnouncementsDelay = {{ section.settings.rotation_delay }};
       window.vars.rotatingAnnouncementsSpeed = {{ section.settings.rotation_speed }};
     </script>
-    <i id="announcement-close" class="fa fa-close announcement-close"></i>     
+  <div class="announcement-bar">
+    <div class="vertical_text_slider">
     {%- for block in announcement_messages -%}
       {%- assign item = block.settings -%}
+      {%- if item.rotation_delay != blank -%}
+        {%- assign display = item.rotation_delay -%}
+      {%- else -%}
+        {%- assign display = section.settings.rotation_delay -%}  
+      {%- endif -%}
+      <script>
+        window.vars.rotatingAnnouncementsDelay = {{ display }};
+      </script>
 
       {%  if item.bg_colour != blank %}
         {% assign bg = item.bg_colour  %}
@@ -22,18 +29,17 @@
         {%- else -%}
         {% assign fontc = section.settings.default_font %}
       {% endif %}
-
-      <div class="vertical_text_slider">
+      
       <div class="vertical_text_item"  style="background: {{ bg }}; color: {{ fontc }}">
 
-        {%- if item.url != null -%}
+        {%- if item.url != blank -%}
           <a href="{{ item.url }}">
         {%- endif -%}
 
         {% capture counter %}
           {%- if item.countdown_date != null -%}
             {%- comment -%} Increment ID {%- endcomment -%}
-          {% include 'helpers-countdown-counter.liquid' %}
+          {% include 'helpers-countdown-counter.liquid' %}         
           {%- endif -%}
         {% endcapture %}
 
@@ -41,14 +47,15 @@
           {{ item.message | replace: "[countdown]", counter }}
         {%- endif -%}
 
-        {%- if item.url != null -%}
+        {%- if item.url != blank -%}
           </a>
         {%- endif -%}
 
       </div>
-
-      </div>
+      
     {%- endfor -%} 
+    </div>
+    <i id="announcement-close" class="fa fa-close announcement-close"></i>
   </div>
   {%- else -%}
 {%- endif -%}
