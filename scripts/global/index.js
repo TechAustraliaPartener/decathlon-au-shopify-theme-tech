@@ -111,10 +111,21 @@ function announcement(){
 
 }
 $( document ).ready(function() {
-  announcement()
-  $( "#announcement-close" ).click(function() {
-    $('#announcement-banner-container').addClass('hidden')
-    $('.de-PageWrap-header').css('top', '0px');
-    $('.de-PageWrap-subHeader').css('top', '58px');
-  });
+  let announcementChecker = sessionStorage.getItem("announcement");
+  switch (announcementChecker){
+    case null:
+      sessionStorage.setItem("announcement", true);
+      announcement();
+    case true:
+      announcement();
+      $( "#announcement-close" ).click(function() {
+        $('#announcement-banner-container').addClass('hidden')
+        $('.de-PageWrap-header').css('top', '0px');
+        $('.de-PageWrap-subHeader').css('top', '58px');
+        sessionStorage.setItem("announcement", false);
+      });
+      break;
+    default:
+      break;
+  }
 });
