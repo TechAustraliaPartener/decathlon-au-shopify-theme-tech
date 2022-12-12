@@ -1,0 +1,9 @@
+
+<div class="ais-end-results-container hidden" id="end-results-container">
+
+{% if template contains 'collection' %}
+  <p>{{ 'collections.general.end_of_results' | t }}</p>
+{% else %}
+  <p>{{ 'general.search.end_of_results' | t }}</p>
+{% endif %}
+</div>

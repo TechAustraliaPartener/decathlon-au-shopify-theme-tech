@@ -23,6 +23,7 @@
       "title": "Search for products on our site",
       "placeholder": "Search our store",
       "submit": "Search",
+      "products_preloader": "Loading more search results",
       "end_of_results": "This is the end of the search results"
     },
     "password_page": {
@@ -100,7 +101,9 @@
       "items_with_count": {
         "one": "{{ count }} item",
         "other": "{{ count }} items"
-      }
+      },
+      "products_preloader": "Loading more products...",
+      "end_of_results": "This is the end of this collection"
     },
     "sidebar": {
       "tags": "Tags"
