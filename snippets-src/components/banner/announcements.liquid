@@ -30,11 +30,15 @@
           {% assign scroll_class = " " %}
         {% endif %}
         {% assign pre-message =  item.message | strip_newlines | replace: "<p></p>", " " %}
+      {% else %}
+        {% assign pre-message = " " %}
       {% endif %}
+
+      
 
       {% if item.countdown_date != blank %}
         {% capture counter %}
-          {% include 'helpers-countdown-counter.liquid', post_msg_checker: '[hidden]' %}         
+          {% include 'helpers-countdown-counter.liquid', post_msg_checker: '[hidden]', countdown_class: 'announcement-countdown' %}         
         {% endcapture %}
 
         {% assign now = "now" | date: "%Y-%m-%d %H:%M" %}
@@ -43,11 +47,15 @@
         {% if now < cutoff %}
           {% assign message = pre-message | replace: "[countdown]", counter %}
         {%- else -%}
-          {% assign message = post_message | strip_newlines | replace: "<p></p>", " "%}
-          {% if item.post_message.size >= 55 %}
-            {% assign scroll_class = "horizontal_scroll_mobile" | append: " " | append: item.scroll_speed %}
+          {% if item.post_message != "blank" %}
+            {% assign message = item.post_message | strip_newlines | replace: "<p></p>", " "%}
+            {% if item.post_message.size >= 55 %}
+              {% assign scroll_class = "horizontal_scroll_mobile" | append: " " | append: item.scroll_speed %}
+            {% else %}
+              {% assign scroll_class = " " %}
+            {% endif %}
           {% else %}
-            {% assign scroll_class = " " %}
+            {% assign message = " " %}
           {% endif %}
         {% endif %}
 
