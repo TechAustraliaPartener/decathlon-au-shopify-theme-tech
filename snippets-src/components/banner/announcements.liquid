@@ -4,19 +4,12 @@
      <script>
       window.vars = window.vars || {};
       window.vars.rotatingAnnouncementsSpeed = {{ section.settings.rotation_speed }};
+      window.vars.rotatingAnnouncementsDelay =  {{ section.settings.rotation_delay }};
     </script>
   <div class="announcement-bar">
     <div class="vertical_text_slider">
     {%- for block in announcement_messages -%}
       {%- assign item = block.settings -%}
-      {%- if item.rotation_delay != blank -%}
-        {%- assign display = item.rotation_delay -%}
-      {%- else -%}
-        {%- assign display = section.settings.rotation_delay -%}  
-      {%- endif -%}
-      <script>
-        window.vars.rotatingAnnouncementsDelay = {{ display }};
-      </script>
 
       {%  if item.bg_colour != blank %}
         {% assign bg = item.bg_colour  %}
@@ -31,43 +24,47 @@
       {% endif %}
       
       {% capture counter %}
-        {%- if item.countdown_date != null -%}
+        {% if item.countdown_date != null %}
           {%- comment -%} Increment ID {%- endcomment -%}
-        {% include 'helpers-countdown-counter.liquid' %}         
-        {%- endif -%}
+        {% include 'helpers-countdown-counter.liquid', post_msg_checker: '[hidden]' %}         
+        {% endif %}
       {% endcapture %}
 
-      {%- if item.message != blank -%}
+      {% if item.message != blank %}
         {% if item.message.size >= 55 %}
           {% assign scroll_class = "horizontal_scroll_mobile" | append: " " | append: item.scroll_speed %}
-        {%- else -%}
+        {% else %}
           {% assign scroll_class = " " %}
         {% endif %}
 
-        {%- assign message =  item.message | strip_newlines | replace: "<p></p>", " " | replace: "[countdown]", counter -%}
-        {% if item.post_message != blank %}
-          {% unless message contains '[hidden]' %}
-            {% assign message = message | replace: message, item.post_message  | strip_newlines | replace: "<p></p>", " " %}
-          {%- endunless -%}
-        {% endif %}
-      {%- endif -%}
+        {% assign message =  item.message | strip_newlines | replace: "<p></p>", " " | replace: "[countdown]", counter %}{% assign message =  item.message | strip_newlines | replace: "<p></p>", " " | replace: "[countdown]", counter %}
+      {% endif %}
 
-      {%- if item.url != blank -%}
+      {% assign now = "now" | date: "%Y-%m-%d %H:%M" %}
+      {% assign cutoff = item.countdown_date | append: " " | append: item.countdown_time%}
+
+      {% if item.url != blank %}
         <a href="{{ item.url }}" class="vertical_text_item {{scroll_class}} {%if forloop.first%}anim-in{%endif%}"  style="background: {{ bg }}; color: {{ fontc }};">
-      {%- else -%}
+      {% else %}
         <div class="vertical_text_item {{scroll_class}} {%if forloop.first%}anim-in{%endif%}"  style="background: {{ bg }}; color: {{ fontc }}">
-      {%- endif -%}
-        <div class="vertical_text_wrapper">
-          {{ message }}
-        </div>
-        
-        {%- if item.url != blank -%}
-          </a>
-        {%- else -%}
-          </div>
-        {%- endif -%}
+      {% endif %}
       
-    {%- endfor -%} 
+      <div class="vertical_text_wrapper">
+        {%- comment -%} {{ message }} {%- endcomment -%}
+        {% if now < cutoff %}
+          {{ message }}
+        {%- else -%}
+          {{ item.post_message }}
+        {% endif %}
+      </div>
+      
+      {% if item.url != blank %}
+        </a>
+      {% else %}
+        </div>
+      {% endif %}
+      
+    {% endfor %} 
     </div>
     <i id="announcement-close" class="fa fa-close announcement-close"></i>
   </div>

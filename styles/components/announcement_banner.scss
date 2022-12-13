@@ -44,25 +44,21 @@
   display: none !important;
 }
 
-.vertical_text_item {
-  white-space: nowrap;
-  position: absolute;
-  height: 30px;
-  left: 50%;
-  top: 0;
-  -webkit-transform: translate3d(0, -105%, 0);
-  transform: translate3d(0, -105%, 0);
-}
 
 #announcement-banner-container .vertical_text_item {
+  white-space: nowrap;
+  position: absolute;
+  -webkit-transform: translate3d(0, -105%, 0);
+  transform: translate3d(0, -105%, 0);
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   overflow: hidden;
-  width: 100%;
+  width: 101%;
   height: 31px;
   top: -3px;
+  left: 50%;
   padding: 0 5%;
   @media screen and (min-width: 40em) {
     flex-direction: row;
@@ -73,10 +69,15 @@
   text-decoration: underline;
 }
 
-#announcement-banner-container .vertical_text_item>p {
+#announcement-banner-container .vertical_text_wrapper {
+  display: inline-flex;
   color: inherit;
-  margin-right: 8px !important;
+  
+ 
+}
 
+.vertical_text_wrapper p{
+  margin-right: 8px !important;
   @media screen and (min-width: 40em) {
     text-align: center;
     text-overflow: ellipsis;
@@ -170,10 +171,10 @@ time.announcement-countdown {
   overflow: hidden;
 }
 
-#announcement-banner-container .vertical_text_item.horizontal_scroll_mobile.scroll-slow > p{
-  -moz-transform: translateX(100%);
-  -webkit-transform: translateX(100%);
-  transform: translateX(100%);
+#announcement-banner-container .vertical_text_item.horizontal_scroll_mobile.scroll-slow > div{
+  -moz-transform: translateX(80%);
+  -webkit-transform: translateX(80%);
+  transform: translateX(80%);
   
   -moz-animation: banner-scroll 12s linear infinite;
   -webkit-animation: banner-scroll 12s linear infinite;
@@ -187,10 +188,10 @@ time.announcement-countdown {
   }
 }
 
-#announcement-banner-container .vertical_text_item.horizontal_scroll_mobile.scroll-normal > p{
-  -moz-transform: translateX(100%);
-  -webkit-transform: translateX(100%);
-  transform: translateX(100%);
+#announcement-banner-container .vertical_text_item.horizontal_scroll_mobile.scroll-normal > div{
+  -moz-transform: translateX(80%);
+  -webkit-transform: translateX(80%);
+  transform: translateX(80%);
   
   -moz-animation: banner-scroll 9s linear infinite;
   -webkit-animation: banner-scroll 9s linear infinite;
@@ -204,10 +205,10 @@ time.announcement-countdown {
 }
 
 
-#announcement-banner-container .vertical_text_item.horizontal_scroll_mobile.scroll-fast > p{
-  -moz-transform: translateX(100%);
-  -webkit-transform: translateX(100%);
-  transform: translateX(100%);
+#announcement-banner-container .vertical_text_item.horizontal_scroll_mobile.scroll-fast > div{
+  -moz-transform: translateX(80%);
+  -webkit-transform: translateX(80%);
+  transform: translateX(80%);
   
   -moz-animation: banner-scroll 6s linear infinite;
   -webkit-animation: banner-scroll 6s linear infinite;
@@ -223,21 +224,21 @@ time.announcement-countdown {
 
 /* for Firefox */
 @-moz-keyframes banner-scroll {
-  from { -moz-transform: translateX(100%); }
-  to { -moz-transform: translateX(-50%); }
+  from { -moz-transform: translateX(80%); }
+  to { -moz-transform: translateX(-100%); }
 }
 
 /* for Chrome */
 @-webkit-keyframes banner-scroll {
-  from { -webkit-transform: translateX(100%); }
+  from { -webkit-transform: translateX(80%); }
   to { -webkit-transform: translateX(-100%); }
 }
 
 @keyframes banner-scroll {
   from {
-    -moz-transform: translateX(100%);
-    -webkit-transform: translateX(100%);
-    transform: translateX(100%);
+    -moz-transform: translateX(80%);
+    -webkit-transform: translateX(80%);
+    transform: translateX(80%);
   }
   to {
     -moz-transform: translateX(-100%);
