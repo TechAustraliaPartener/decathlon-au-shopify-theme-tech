@@ -98,7 +98,6 @@ function announcement(){
       $('.de-PageWrap-prioritySportNav').css('top', '106.448px');
       $('.de-PageWrap-main.sticky-sort-filter').css('padding-top', '46px');
       $('#ais-sort-filter.sticky-active').css('top', '46px');
-      
       $('.template-collection').removeClass('with-announcement-banner');
       $('.template-search').removeClass('with-announcement-banner');
       $('.template-product').removeClass('with-announcement-banner');
@@ -138,6 +137,7 @@ $( document ).ready(function() {
         $('#announcement-banner-container').addClass('hidden');
         $('.de-PageWrap-header').css('top', '0px');
         $('.de-PageWrap-subHeader').css('top', '58px');
+        $('.de-PageWrap-prioritySportNav').css('top', '106.448px');
         $('#ais-sort-filter.sticky-active').css('top', '46px');
         $('.template-collection').removeClass('with-announcement-banner');
         $('.template-search').removeClass('with-announcement-banner');
