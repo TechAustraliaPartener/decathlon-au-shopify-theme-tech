@@ -2415,20 +2415,20 @@
         "blocks": {
           "96fa659b-ef93-402a-bfc3-00d291497738": {
             "type": "announcement_messages",
-            "disabled": true,
             "settings": {
               "countdown_date": "2022-12-25",
               "countdown_time": "00:00",
               "message": "<p>It's [countdown] before Christmas! <a href=\"\/collections\/15-sitewide\" target=\"_blank\" title=\"15% off Sitewide!\">testing link <\/a><\/p>",
               "post_message": "<p>Countdown done!<\/p>",
               "url": "",
-              "bg_colour": "#ab00fe",
+              "bg_colour": "rgba(0,0,0,0)",
               "font_colour": "#ffffff",
               "scroll_speed": "scroll-normal"
             }
           },
           "2829ac24-c64a-45c2-8248-9cac28b9345f": {
             "type": "announcement_messages",
+            "disabled": true,
             "settings": {
               "countdown_date": "",
               "countdown_time": "",
@@ -2459,7 +2459,7 @@
             "settings": {
               "countdown_date": "",
               "countdown_time": "",
-              "message": "<p>Trial<\/p>",
+              "message": "<p>Trial here<\/p>",
               "post_message": "",
               "url": "shopify:\/\/collections\/40-off-selected-surfboards-and-bodyboards",
               "bg_colour": "",

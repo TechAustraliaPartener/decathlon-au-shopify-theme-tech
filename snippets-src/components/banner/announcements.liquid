@@ -11,24 +11,17 @@
     {%- for block in announcement_messages -%}
       {%- assign item = block.settings -%}
 
-      {%  if item.bg_colour != blank or item.bg_colour != '' %}
+      {%  if item.bg_colour != 'rgba(0, 0, 0, 0)' or item.bg_colour != blank or item.bg_colour != '' %}
         {% assign bg = item.bg_colour  %}
         {%- else -%}
         {% assign bg = section.settings.default_bg %}
       {% endif %}
 
-      {%  if item.font_colour != blank or item.font_colour != '' %}
-        {% assign fontc =  item.font_colour  %}
+      {%  if item.font_colour != 'rgba(0, 0, 0, 0)' or item.font_colour != blank or item.font_colour != ''%}
+        {% assign fontc = item.font_colour  %}
         {%- else -%}
         {% assign fontc = section.settings.default_font %}
       {% endif %}
-      
-      {% capture counter %}
-        {% if item.countdown_date != null %}
-          {%- comment -%} Increment ID {%- endcomment -%}
-        {% include 'helpers-countdown-counter.liquid', post_msg_checker: '[hidden]' %}         
-        {% endif %}
-      {% endcapture %}
 
       {% if item.message != blank %}
         {% if item.message.size >= 55 %}
@@ -36,21 +29,30 @@
         {% else %}
           {% assign scroll_class = " " %}
         {% endif %}
-        {% assign pre-message =  item.message | strip_newlines | replace: "<p></p>", " " | replace: "[countdown]", counter %}
+        {% assign pre-message =  item.message | strip_newlines | replace: "<p></p>", " " %}
       {% endif %}
 
-      {% assign now = "now" | date: "%Y-%m-%d %H:%M" %}
-      {% assign cutoff = item.countdown_date | append: " " | append: item.countdown_time %}
+      {% if item.countdown_date != blank %}
+        {% capture counter %}
+          {% include 'helpers-countdown-counter.liquid', post_msg_checker: '[hidden]' %}         
+        {% endcapture %}
 
-      {% if now < cutoff %}
-        {% assign message = pre-message %}
-      {%- else -%}
-        {% assign message = item.post_message | strip_newlines | replace: "<p></p>", " "%}
-        {% if item.post_message.size >= 55 %}
-          {% assign scroll_class = "horizontal_scroll_mobile" | append: " " | append: item.scroll_speed %}
-        {% else %}
-          {% assign scroll_class = " " %}
+        {% assign now = "now" | date: "%Y-%m-%d %H:%M" %}
+        {% assign cutoff = item.countdown_date | append: " " | append: item.countdown_time %}
+
+        {% if now < cutoff %}
+          {% assign message = pre-message | replace: "[countdown]", counter %}
+        {%- else -%}
+          {% assign message = post_message | strip_newlines | replace: "<p></p>", " "%}
+          {% if item.post_message.size >= 55 %}
+            {% assign scroll_class = "horizontal_scroll_mobile" | append: " " | append: item.scroll_speed %}
+          {% else %}
+            {% assign scroll_class = " " %}
+          {% endif %}
         {% endif %}
+
+      {% else %}
+        {% assign message = pre-message %}
       {% endif %}
 
       {% if item.url != blank %}
@@ -60,7 +62,7 @@
       {% endif %}
       
       <div class="vertical_text_wrapper"  style=" color: {{ fontc }}">
-        {{ message }}
+       {{ message }}
       </div>
       
       {% if item.url != blank %}
