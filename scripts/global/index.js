@@ -81,6 +81,11 @@ function announcement(){
     $('.de-PageWrap-header').css('top', '30px');
     $('.de-PageWrap-subHeader').css('top', '88px');
     $('.de-PageWrap-prioritySportNav').css('top', '136.448px');
+    $('#ais-sort-filter.sticky-active').css('top', '76px');
+    
+    $('.template-collection').addClass('with-announcement-banner');
+    $('.template-search').addClass('with-announcement-banner');
+    $('.template-product').addClass('with-announcement-banner');
   }
 
   document.addEventListener('scroll', e => {
@@ -90,7 +95,14 @@ function announcement(){
 
       $('.de-PageWrap-header').css('top', '0px');
       $('.de-PageWrap-subHeader').css('top', '58px');
-      $('.de-PageWrap-prioritySportNav').css('top', '106.448px')
+      $('.de-PageWrap-prioritySportNav').css('top', '106.448px');
+      $('.de-PageWrap-main.sticky-sort-filter').css('padding-top', '46px');
+      $('#ais-sort-filter.sticky-active').css('top', '46px');
+      
+      $('.template-collection').removeClass('with-announcement-banner');
+      $('.template-search').removeClass('with-announcement-banner');
+      $('.template-product').removeClass('with-announcement-banner');
+      
     }
 
     // Check if window is at top  
@@ -105,6 +117,13 @@ function announcement(){
         $('.de-PageWrap-header').css('top', '30px');
         $('.de-PageWrap-subHeader').css('top', '88px');
         $('.de-PageWrap-prioritySportNav').css('top', '136.448px');
+        $('#ais-sort-filter.sticky-active').css('top', '76px');
+        
+        $('.template-collection').addClass('with-announcement-banner');
+        $('.template-search').addClass('with-announcement-banner');
+        $('.template-product').addClass('with-announcement-banner');
+       
+        
       }
     }
   })
@@ -116,9 +135,13 @@ $( document ).ready(function() {
       sessionStorage.setItem("announcement", true);
       announcement();
       $( "#announcement-close" ).click(function() {
-        $('#announcement-banner-container').addClass('hidden')
+        $('#announcement-banner-container').addClass('hidden');
         $('.de-PageWrap-header').css('top', '0px');
         $('.de-PageWrap-subHeader').css('top', '58px');
+        $('#ais-sort-filter.sticky-active').css('top', '46px');
+        $('.template-collection').removeClass('with-announcement-banner');
+        $('.template-search').removeClass('with-announcement-banner');
+        $('.template-product').removeClass('with-announcement-banner');
         sessionStorage.setItem("announcement", false);
       });
   }

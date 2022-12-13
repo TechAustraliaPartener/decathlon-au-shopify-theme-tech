@@ -2413,12 +2413,26 @@
       "banner-announcements": {
         "type": "banner-announcements",
         "blocks": {
+          "96fa659b-ef93-402a-bfc3-00d291497738": {
+            "type": "announcement_messages",
+            "settings": {
+              "countdown_date": "2022-12-25",
+              "countdown_time": "00:00",
+              "message": "<p>It's [countdown] before Christmas! <a href=\"\/collections\/15-sitewide\" target=\"_blank\" title=\"15% off Sitewide!\">testing link <\/a><\/p>",
+              "post_message": "<p>Countdown done!<\/p>",
+              "url": "",
+              "bg_colour": "#ab00fe",
+              "font_colour": "#ffffff",
+              "scroll_speed": "scroll-normal"
+            }
+          },
           "2829ac24-c64a-45c2-8248-9cac28b9345f": {
             "type": "announcement_messages",
+            "disabled": true,
             "settings": {
               "countdown_date": "",
               "countdown_time": "",
-              "message": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.<\/p>",
+              "message": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolorafdasfaaa asdfaasassasfdaaaaa.<\/p>",
               "post_message": "",
               "url": "",
               "bg_colour": "#1c82c3",
@@ -2426,37 +2440,39 @@
               "scroll_speed": "scroll-slow"
             }
           },
-          "96fa659b-ef93-402a-bfc3-00d291497738": {
-            "type": "announcement_messages",
-            "settings": {
-              "countdown_date": "2022-12-25",
-              "countdown_time": "00:00",
-              "message": "<p>It's [countdown] before Christmas!<\/p>",
-              "post_message": "<p>Countdown done!<\/p>",
-              "url": "",
-              "bg_colour": "#fe5800",
-              "font_colour": "#ffffff",
-              "scroll_speed": "scroll-normal"
-            }
-          },
           "899ddb8b-1a7d-4af1-871c-6ed9c44c9d00": {
             "type": "announcement_messages",
             "settings": {
               "countdown_date": "2022-12-12",
               "countdown_time": "22:00",
-              "message": "<p>Generic Message<\/p>",
-              "post_message": "<p>After Countdown ...<\/p>",
-              "url": "shopify:\/\/collections\/15-sitewide",
+              "message": "<p>Generic Message [countdown] <\/p>",
+              "post_message": "<p>After Countdown ... <a href=\"\/collections\/15-sitewide\" target=\"_blank\" title=\"15% off Sitewide!\">test <\/a><\/p>",
+              "url": "",
               "bg_colour": "#ffea28",
               "font_colour": "#1f1f1f",
+              "scroll_speed": "scroll-normal"
+            }
+          },
+          "a7701953-76e7-46e3-be84-bbe20fb7e813": {
+            "type": "announcement_messages",
+            "disabled": true,
+            "settings": {
+              "countdown_date": "",
+              "countdown_time": "",
+              "message": "<p>Trial Static with Banner Link and Fallback colours<\/p>",
+              "post_message": "<p>Trial<\/p>",
+              "url": "shopify:\/\/collections\/40-off-selected-surfboards-and-bodyboards",
+              "bg_colour": "",
+              "font_colour": "",
               "scroll_speed": "scroll-normal"
             }
           }
         },
         "block_order": [
-          "2829ac24-c64a-45c2-8248-9cac28b9345f",
           "96fa659b-ef93-402a-bfc3-00d291497738",
-          "899ddb8b-1a7d-4af1-871c-6ed9c44c9d00"
+          "2829ac24-c64a-45c2-8248-9cac28b9345f",
+          "899ddb8b-1a7d-4af1-871c-6ed9c44c9d00",
+          "a7701953-76e7-46e3-be84-bbe20fb7e813"
         ],
         "settings": {
           "show_annoucement_bar": true,
