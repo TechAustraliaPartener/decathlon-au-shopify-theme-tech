@@ -7,7 +7,7 @@
   z-index: 1001;
   height: 30px;
   overflow: hidden;
-  background-color: #FFFFFF;
+  background-color: #FFFFFF !important;
   pointer-events: initial;
 }
 .announcement-close {
@@ -327,4 +327,21 @@ time.announcement-countdown {
       padding-top: 136px;
     }
   }
+}
+
+#terms-of-service{
+  .de-PageWrap-main {
+    padding-top: 76px;
+  }
+  @media screen and (min-width: 40em){
+    .de-PageWrap-main {
+        padding-top: 88px;
+    }
+  }
+  @media screen and (min-width: 60em) {
+    .de-PageWrap-main {
+      padding-top: 136px;
+    }
+  }
+
 }

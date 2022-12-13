@@ -1553,7 +1553,15 @@
               "button_title": "",
               "link_url": "https:\/\/decathlon.com.au\/pages\/christmas-gift-ideas",
               "link_title": "",
-              "link_new_window": false
+              "link_new_window": false,
+              "countdown_date": "",
+              "countdown_time": "",
+              "countdown_position": "flex-start,flex-start",
+              "countdown_bold": false,
+              "countdown_italic": false,
+              "countdown_underline": false,
+              "countdown_font": false,
+              "countdown_colour": ""
             }
           },
           "748c6a7e-732f-486d-a653-eb425a670bc5": {
@@ -1584,7 +1592,15 @@
               "button_title": "",
               "link_url": "https:\/\/decathlon.com.au\/pages\/delivery-click-and-collect",
               "link_title": "",
-              "link_new_window": false
+              "link_new_window": false,
+              "countdown_date": "",
+              "countdown_time": "",
+              "countdown_position": "flex-start,flex-start",
+              "countdown_bold": false,
+              "countdown_italic": false,
+              "countdown_underline": false,
+              "countdown_font": false,
+              "countdown_colour": ""
             }
           },
           "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb": {
@@ -1630,7 +1646,15 @@
               "button_title": "",
               "link_url": "https:\/\/decathlon.com.au\/products\/decathlon-australia-physical-gift-card?",
               "link_title": "",
-              "link_new_window": false
+              "link_new_window": false,
+              "countdown_date": "",
+              "countdown_time": "",
+              "countdown_position": "flex-start,flex-start",
+              "countdown_bold": false,
+              "countdown_italic": false,
+              "countdown_underline": false,
+              "countdown_font": false,
+              "countdown_colour": ""
             }
           },
           "e9b4daa6-6eee-441b-b76d-9c3ff012fde9": {
@@ -1645,7 +1669,15 @@
               "button_title": "",
               "link_url": "shopify:\/\/pages\/music-festival-essentials",
               "link_title": "Shop All the Essentials For Your Next Gig",
-              "link_new_window": false
+              "link_new_window": false,
+              "countdown_date": "",
+              "countdown_time": "",
+              "countdown_position": "flex-start,flex-start",
+              "countdown_bold": false,
+              "countdown_italic": false,
+              "countdown_underline": false,
+              "countdown_font": false,
+              "countdown_colour": ""
             }
           },
           "579ee1c6-8cb9-4350-95e5-fb83a1397d90": {
@@ -1661,7 +1693,15 @@
               "button_title": "",
               "link_url": "https:\/\/decathlon.com.au\/products\/decathlon-australia-physical-gift-card?",
               "link_title": "Gift Your Loved One a Decathlon Gift Card",
-              "link_new_window": false
+              "link_new_window": false,
+              "countdown_date": "",
+              "countdown_time": "",
+              "countdown_position": "flex-start,flex-start",
+              "countdown_bold": false,
+              "countdown_italic": false,
+              "countdown_underline": false,
+              "countdown_font": false,
+              "countdown_colour": ""
             }
           },
           "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b": {
@@ -1677,7 +1717,15 @@
               "button_title": "",
               "link_url": "https:\/\/decathlon.com.au\/collections\/swimming-goggles?utm_source=homepage&utm_medium=onsite&utm_campaign=ClearerUnderWater&utm_id=&utm_content=HeroBanner",
               "link_title": "",
-              "link_new_window": false
+              "link_new_window": false,
+              "countdown_date": "",
+              "countdown_time": "",
+              "countdown_position": "flex-start,flex-start",
+              "countdown_bold": false,
+              "countdown_italic": false,
+              "countdown_underline": false,
+              "countdown_font": false,
+              "countdown_colour": ""
             }
           },
           "85c47718-39c5-4752-aa58-3e34ef8c0a97": {
@@ -1693,7 +1741,15 @@
               "button_title": "",
               "link_url": "shopify:\/\/collections\/cycling-clothing-bike-accessories",
               "link_title": "Shop $20 off Cycling Clothing & Accessories",
-              "link_new_window": false
+              "link_new_window": false,
+              "countdown_date": "",
+              "countdown_time": "",
+              "countdown_position": "flex-start,flex-start",
+              "countdown_bold": false,
+              "countdown_italic": false,
+              "countdown_underline": false,
+              "countdown_font": false,
+              "countdown_colour": ""
             }
           },
           "0e3f284b-4302-4200-8eb1-f98ce34415af": {
@@ -1707,6 +1763,30 @@
               "banner_subtitle": "",
               "button_title": "",
               "link_url": "shopify:\/\/pages\/decathlon-membership",
+              "link_title": "",
+              "link_new_window": false,
+              "countdown_date": "",
+              "countdown_time": "",
+              "countdown_position": "flex-start,flex-start",
+              "countdown_bold": false,
+              "countdown_italic": false,
+              "countdown_underline": false,
+              "countdown_font": false,
+              "countdown_colour": ""
+            }
+          },
+          "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb": {
+            "type": "slide",
+            "disabled": true,
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/EcoDesign-Banner-HP.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/EcoDesign-Mobile.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "<p><\/p>",
+              "button_title": "",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/eco-design?q=&hPP=24&idx=shopify_products&p=0&dFR%5Bproduct_type%5D%5B0%5D=Fleece&is_v=1",
               "link_title": "",
               "link_new_window": false
             }
