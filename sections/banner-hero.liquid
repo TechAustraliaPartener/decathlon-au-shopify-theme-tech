@@ -62,8 +62,16 @@
                   </button>
                 </p>
               {%- endif -%}
+
+
             </div>
           </div>
+        
+        {%- if block.settings.countdown_date != blank -%}
+          <p class="banner--counterContainer">
+            {% include 'components-banner-counter_widget' %}
+          </p>
+        {%- endif -%}
         </div>
       </a>
 
@@ -159,39 +167,39 @@ to overlap.
           "label": "Countdown Position",
           "options": [
             {
-              "value": "top-left",
+              "value": "flex-start,flex-start",
               "label": "Top Left"
             },
             {
-              "value": "top-centre",
+              "value": "flex-start,center",
               "label": "Top Centre"
             },
                         {
-              "value": "top-right",
+              "value": "flex-start,flex-end",
               "label": "Top Right"
             },
                         {
-              "value": "middle-left",
+              "value": "center,flex-start",
               "label": "Middle Left"
             },
                         {
-              "value": "middle-centre",
+              "value": "center,center",
               "label": "Middle Centre"
             },
                         {
-              "value": "middle-right",
+              "value": "center,flex-end",
               "label": "Middle Right"
             },
                         {
-              "value": "bottom-left",
+              "value": "flex-end,flex-start",
               "label": "Bottom Left"
             },
                         {
-              "value": "bottom-centre",
+              "value": "flex-end,center",
               "label": "Bottom Centre"
             },
                         {
-              "value": "bottom-Right",
+              "value": "flex-end,flex-end",
               "label": "Bottom Right"
             }
           ]

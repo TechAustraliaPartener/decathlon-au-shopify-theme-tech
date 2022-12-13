@@ -1,5 +1,5 @@
 {% assign countdown = countdown | plus: 1 %}
-<time id="countdown-{{ countdown }}" class="announcement-countdown"></time>          
+<time id="countdown-{{ countdown }}" class="{{ countdown_class }}"></time>          
 <script>
   $( document ).ready(function() {
     (function () {
@@ -25,7 +25,6 @@
         if (duration.asSeconds() <= 0) {
           clearInterval(intervalId);
           // hide the countdown element
-         timeElement.innerText = "[hidden]"
           timeElement.classList.add("hidden");
         } else {
           // otherwise, show the updated countdown
