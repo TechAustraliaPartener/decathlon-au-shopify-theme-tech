@@ -28,7 +28,7 @@
 
       {% if item.countdown_date != blank %}
         {% capture counter %}
-          {% include 'helpers-countdown-counter.liquid', post_msg_checker: '[hidden]', countdown_class: 'announcement-countdown' %}         
+          {% include 'helpers-countdown-counter.liquid', countdown_class: 'announcement-countdown' %}         
         {% endcapture %}
 
         {% assign now = "now" | date: "%Y-%m-%d %H:%M" %}

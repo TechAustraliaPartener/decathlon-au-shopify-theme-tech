@@ -1554,14 +1554,15 @@
               "link_url": "https:\/\/decathlon.com.au\/pages\/christmas-gift-ideas",
               "link_title": "",
               "link_new_window": false,
-              "countdown_date": "",
-              "countdown_time": "",
-              "countdown_position": "flex-start,flex-start",
-              "countdown_bold": false,
-              "countdown_italic": false,
-              "countdown_underline": false,
-              "countdown_font": false,
-              "countdown_colour": ""
+              "countdown_date": "2022-12-25",
+              "countdown_time": "12:00",
+              "countdown_position": "center,center",
+              "countdown_bold": true,
+              "countdown_italic": true,
+              "countdown_underline": true,
+              "countdown_colour": "#ffffff",
+              "countdown_font_size_m": "2.25rem",
+              "countdown_font_size_d": "3.75rem"
             }
           },
           "748c6a7e-732f-486d-a653-eb425a670bc5": {
@@ -1586,21 +1587,22 @@
               "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_cda70b83-35a5-455a-8d7b-d2abe9fa1a26.jpg",
               "slide_bg_position": "75% -50px",
               "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_38c39369-6c40-4fd0-b550-1fdf0390ab75.jpg",
-              "banner_intro": "",
-              "banner_title": "",
+              "banner_intro": "Something",
+              "banner_title": "Title",
               "banner_subtitle": "",
               "button_title": "",
               "link_url": "https:\/\/decathlon.com.au\/pages\/delivery-click-and-collect",
               "link_title": "",
               "link_new_window": false,
-              "countdown_date": "",
-              "countdown_time": "",
-              "countdown_position": "flex-start,flex-start",
-              "countdown_bold": false,
-              "countdown_italic": false,
+              "countdown_date": "2022-12-14",
+              "countdown_time": "12:00",
+              "countdown_position": "flex-start,flex-end",
+              "countdown_bold": true,
+              "countdown_italic": true,
               "countdown_underline": false,
-              "countdown_font": false,
-              "countdown_colour": ""
+              "countdown_colour": "#1f1f1f",
+              "countdown_font_size_m": "5rem",
+              "countdown_font_size_d": "120px"
             }
           },
           "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb": {
@@ -1653,12 +1655,14 @@
               "countdown_bold": false,
               "countdown_italic": false,
               "countdown_underline": false,
-              "countdown_font": false,
-              "countdown_colour": ""
+              "countdown_colour": "",
+              "countdown_font_size_m": "",
+              "countdown_font_size_d": ""
             }
           },
           "e9b4daa6-6eee-441b-b76d-9c3ff012fde9": {
             "type": "slide",
+            "disabled": true,
             "settings": {
               "banner_bg_image": "shopify:\/\/shop_images\/Festival_Edits_1440_x_789px.jpg",
               "slide_bg_position": "75% -50px",
@@ -1676,8 +1680,9 @@
               "countdown_bold": false,
               "countdown_italic": false,
               "countdown_underline": false,
-              "countdown_font": false,
-              "countdown_colour": ""
+              "countdown_colour": "",
+              "countdown_font_size_m": "",
+              "countdown_font_size_d": ""
             }
           },
           "579ee1c6-8cb9-4350-95e5-fb83a1397d90": {
@@ -1700,8 +1705,9 @@
               "countdown_bold": false,
               "countdown_italic": false,
               "countdown_underline": false,
-              "countdown_font": false,
-              "countdown_colour": ""
+              "countdown_colour": "",
+              "countdown_font_size_m": "",
+              "countdown_font_size_d": ""
             }
           },
           "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b": {
@@ -1724,8 +1730,9 @@
               "countdown_bold": false,
               "countdown_italic": false,
               "countdown_underline": false,
-              "countdown_font": false,
-              "countdown_colour": ""
+              "countdown_colour": "",
+              "countdown_font_size_m": "",
+              "countdown_font_size_d": ""
             }
           },
           "85c47718-39c5-4752-aa58-3e34ef8c0a97": {
@@ -1748,12 +1755,14 @@
               "countdown_bold": false,
               "countdown_italic": false,
               "countdown_underline": false,
-              "countdown_font": false,
-              "countdown_colour": ""
+              "countdown_colour": "",
+              "countdown_font_size_m": "",
+              "countdown_font_size_d": ""
             }
           },
           "0e3f284b-4302-4200-8eb1-f98ce34415af": {
             "type": "slide",
+            "disabled": true,
             "settings": {
               "banner_bg_image": "shopify:\/\/shop_images\/MVP-Banner-Desktop.jpg",
               "slide_bg_position": "75% -50px",
@@ -1771,8 +1780,9 @@
               "countdown_bold": false,
               "countdown_italic": false,
               "countdown_underline": false,
-              "countdown_font": false,
-              "countdown_colour": ""
+              "countdown_colour": "",
+              "countdown_font_size_m": "",
+              "countdown_font_size_d": ""
             }
           },
           "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb": {
@@ -1788,7 +1798,16 @@
               "button_title": "",
               "link_url": "https:\/\/decathlon.com.au\/collections\/eco-design?q=&hPP=24&idx=shopify_products&p=0&dFR%5Bproduct_type%5D%5B0%5D=Fleece&is_v=1",
               "link_title": "",
-              "link_new_window": false
+              "link_new_window": false,
+              "countdown_date": "",
+              "countdown_time": "",
+              "countdown_position": "flex-start,flex-start",
+              "countdown_bold": false,
+              "countdown_italic": false,
+              "countdown_underline": false,
+              "countdown_colour": "",
+              "countdown_font_size_m": "",
+              "countdown_font_size_d": ""
             }
           }
         },

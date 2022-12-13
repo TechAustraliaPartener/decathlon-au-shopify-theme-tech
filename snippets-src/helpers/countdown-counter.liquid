@@ -1,21 +1,20 @@
 {% assign countdown = countdown | plus: 1 %}
-<time id="countdown-{{ countdown }}" class="{{ countdown_class }}"></time>          
+<time id="cd-{{countdown_class}}-{{ countdown }}" class="{{ countdown_class }}"></time>          
 <script>
   $( document ).ready(function() {
     (function () {
       var timeElement, cdCounter, cdRun,eventTime, currentTime, duration, interval, intervalId;
       interval = 1000; // 1 second
-    
       // get time element
-      timeElement = document.querySelector("#countdown-{{ countdown }}");
-      console.log(timeElement)
+      timeElement = document.querySelector("#cd-{{countdown_class}}-{{ countdown }}");
       // calculate difference between two times
       eventTime = moment.tz("{{ item.countdown_date | strip_html }}T{{ item.countdown_time | strip_html }}:00", "Australia/Sydney");
       // based on time set in user's computer time / OS
       currentTime = moment.tz();
+      console.log(currentTime)
       // get duration between two times
       duration = moment.duration(eventTime.diff(currentTime));
-    
+      console.log("something hereee", eventTime, currentTime,duration)
       // loop to countdown every 1 second
       setInterval(function() {
         // get updated duration
@@ -27,12 +26,12 @@
           // hide the countdown element
           timeElement.classList.add("hidden");
         } else {
+          
           // otherwise, show the updated countdown
           if( duration.days() > 1 ){
             timeElement.innerText = duration.days() + " days";
           }
           else{
-            console.log("Less than a day!")
             timeElement.innerText = duration.hours() + ":" + duration.minutes()  + ":" + duration.seconds();
           }
           

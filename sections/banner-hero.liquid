@@ -15,17 +15,36 @@
   ]}'>
 
     {% for block in section.blocks %}
+      {% assign item = block.settings %}
+        {% assign countdown_position = item.countdown_position | split: "," %}
+        {% assign pos_y = countdown_position | first %}
+        {% assign pos_x = countdown_position | last %}
 
-      <a href="{{ block.settings.link_url | default: '#' }}" class="banner--slide" {% if block.settings.link_new_window == true %}target="_blank" {% endif %} title="{{ block.settings.link_title }}">
+
+      <a href="{{ item.link_url | default: '#' }}" class="banner--slide" {% if item.link_new_window == true %}target="_blank" {% endif %} title="{{ item.link_title }}">
         
-        {% assign banner_mobile = block.settings.banner_mobile_image | default: block.settings.banner_bg_image %}
+        {% assign banner_mobile = item.banner_mobile_image | default: item.banner_bg_image %}
         <style>
           :root {
             --banner{{ forloop.index }}Height: {{ 100 | divided_by: banner_mobile.aspect_ratio }}vw;
           }
 
           #banner-slide-{{ forloop.index }} {
-            background-image: url({{ block.settings.banner_bg_image | img_url: 'master' | json }});
+            background-image: url({{ item.banner_bg_image | img_url: 'master' | json }});
+          }
+
+          #banner-slide-{{ forloop.index }} .banner--counterContainer {
+            justify-content: {{ pos_x }};
+            align-items: {{ pos_y }};
+            font-size: {{ item.countdown_font_size_d}};
+            {% if item.countdown_underline %} text-decoration: underline; {% endif %}
+            {% if item.countdown_bold %} 
+              font-family: avalon_mediumbold,HelveticaNeue,Helvetica Neue,Helvetica,Arial,sans-serif;
+            {%- else -%}
+              font-family: avalonmedium,Helvetica Neue,Helvetica,Arial,sans-serif!important;
+            {% endif %}
+            {% if item.countdown_italic %} font-style: italic; {% endif %}
+            color: {{ item.countdown_colour}};
           }
 
           @media (max-width: 479px) {
@@ -35,30 +54,37 @@
               background-position: center;
               height: var(--banner{{ forloop.index }}Height);
             }
+            
+            #banner-slide-{{ forloop.index }} .banner--counterContainer {
+              justify-content: center;
+              align-items: {{ pos_y }};
+              font-size: {{ item.countdown_font_size_m }};
+              
+            }
           }
         </style>
 
-        <div class="banner banner--billboard loading{{ banner_adtl_classes }}"{% if block.settings.banner_bg_image != blank %} data-background-image="{{ block.settings.banner_bg_image | img_url: 'master' }}"{% endif %}{% if banner_bg_position != blank %} style="background-position: {{ block.settings.banner_bg_position }}"{% endif %} id="banner-slide-{{ forloop.index }}">
+        <div class="banner banner--billboard loading{{ banner_adtl_classes }}"{% if item.banner_bg_image != blank %} data-background-image="{{ item.banner_bg_image | img_url: 'master' }}"{% endif %}{% if banner_bg_position != blank %} style="background-position: {{ item.banner_bg_position }}"{% endif %} id="banner-slide-{{ forloop.index }}">
           {% comment %} <div id="bannerOverlay" class="banner--billboard__overlay loading"></div> {% endcomment %}
 
           <div class="wrapper u-centerVertically">
             <div class="banner-content">
-              {%- if block.settings.banner_intro != blank -%}
-                <p class="banner-intro">{{ block.settings.banner_intro }}</p>
+              {%- if item.banner_intro != blank -%}
+                <p class="banner-intro">{{ item.banner_intro }}</p>
               {%- endif -%}
 
-              {%- if block.settings.banner_title != blank -%}
-                <h2 class="banner-title">{{ block.settings.banner_title }}</h2>
+              {%- if item.banner_title != blank -%}
+                <h2 class="banner-title">{{ item.banner_title }}</h2>
               {%- endif -%}
 
-              {%- if block.settings.banner_subtitle != blank -%}
-                <p class="banner-subtitle{% unless block.settings.button_title %} u-marginBottom0x{% endunless %}">{{ block.settings.banner_subtitle }}</p>
+              {%- if item.banner_subtitle != blank -%}
+                <p class="banner-subtitle{% unless item.button_title %} u-marginBottom0x{% endunless %}">{{ item.banner_subtitle }}</p>
               {%- endif -%}
 
-              {%- if block.settings.button_title != blank -%}
+              {%- if item.button_title != blank -%}
                 <p class="banner-btnContainer">
                   <button class="btn">
-                    {{ block.settings.button_title }}
+                    {{ item.button_title }}
                   </button>
                 </p>
               {%- endif -%}
@@ -67,10 +93,10 @@
             </div>
           </div>
         
-        {%- if block.settings.countdown_date != blank -%}
-          <p class="banner--counterContainer">
-            {% include 'components-banner-counter_widget' %}
-          </p>
+        {%- if item.countdown_date != blank -%}
+          <div class="banner--counterContainer">
+              {% include 'helpers-countdown-counter.liquid', countdown_class: 'banner--countdown', item: item %}         
+          </div>
         {%- endif -%}
         </div>
       </a>
@@ -224,24 +250,25 @@ to overlap.
           "label": "Use underline font?"
         },
         {
-          "id": "countdown_font",
-          "type": "checkbox",
-          "label": "Use bold font?"
-        },
-        {
           "id": "countdown_colour",
           "type": "color",
-          "label": "Select Font Colour"
+          "label": "Select Font Colour",
+          "default": "#FFFFFF"
         },
         {
-          "id": "countdown_font_size",
-          "type": "number",
-          "label": "Font size (Mobile)"
+          "id": "countdown_font_size_m",
+          "type": "text",
+          "label": "Font size (Mobile)",
+          "info": "You may add XXpx or via X.XXrem font sizes.",
+          "default": "1.75rem"
         },
         {
-          "id": "countdown_size",
-          "type": "number",
-          "label": "Font size (Desktop)"
+          "id": "countdown_font_size_d",
+          "type": "text",
+          "label": "Font size (Desktop)",
+          "info": "You may add XXpx or via X.XXrem font sizes.",
+          "default": "2.75rem"
+
         }
 
       ]
