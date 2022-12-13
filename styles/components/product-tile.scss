@@ -296,6 +296,10 @@
   margin: 0 1.602rem 0;
 }
 
+.--thumbs-less-than-max .splide__arrows {
+  display: none;
+}
+
 .thumbnail-carousel .splide__arrow--prev {
   left: -30px;
 }
@@ -325,7 +329,10 @@
   .ais-product .thumbnail-carousel .splide__arrows {
     display: block;
   }
-  
+
+  .swiper-product-tile-image-container .thumbnail-carousel.--thumbs-less-than-max .splide__arrows {
+    display: none;
+  }
 
   .swiper-product-tile-image-container .thumbnail-carousel {
     display: block;
