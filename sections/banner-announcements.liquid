@@ -1,5 +1,5 @@
 {% if section.settings.show_annoucement_bar == true %}
-  <div id="announcement-banner-container" class="announcement-active">
+  <div id="announcement-banner-container">
       {% include 'components-banner-announcements' %}
   </div>
 {% endif %}
@@ -95,7 +95,8 @@
                     {
                         "type": "color",
                         "id": "font_colour",
-                        "label": "Font colour"
+                        "label": "Font colour",
+                        "default": "#ffffff"
                     },
                     {
                         "type": "header",

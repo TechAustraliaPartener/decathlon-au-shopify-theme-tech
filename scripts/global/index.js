@@ -75,7 +75,6 @@ $(document).ready(function() {
 
 function announcement(){
   const container = $('#announcement-banner-container');
-  
   if( container.hasClass('announcement-active') ){
     console.log('POSITIVE')
     $('.de-PageWrap-header').css('top', '30px');
@@ -87,50 +86,53 @@ function announcement(){
     $('.template-search').addClass('with-announcement-banner');
     $('.template-product').addClass('with-announcement-banner');
   }
-
-  document.addEventListener('scroll', e => {
-    if( container.hasClass('announcement-active') ){
-
-      $('#announcement-banner-container').removeClass('announcement-active').addClass('announcement-hidden')
-
-      $('.de-PageWrap-header').css('top', '0px');
-      $('.de-PageWrap-subHeader').css('top', '58px');
-      $('.de-PageWrap-prioritySportNav').css('top', '106.448px');
-      $('.de-PageWrap-main.sticky-sort-filter').css('padding-top', '46px');
-      $('#ais-sort-filter.sticky-active').css('top', '46px');
-      $('.template-collection').removeClass('with-announcement-banner');
-      $('.template-search').removeClass('with-announcement-banner');
-      $('.template-product').removeClass('with-announcement-banner');
-      
-    }
-
-    // Check if window is at top  
-    console.log(window.scrollY)
-    if( window.scrollY == 0 ){
-      console.log( container )
-
-      if( container.hasClass('announcement-hidden') ){
-        console.log( 'is it hidden?' )
-        $('#announcement-banner-container').addClass('announcement-active').removeClass('announcement-hidden')
   
-        $('.de-PageWrap-header').css('top', '30px');
-        $('.de-PageWrap-subHeader').css('top', '88px');
-        $('.de-PageWrap-prioritySportNav').css('top', '136.448px');
-        $('#ais-sort-filter.sticky-active').css('top', '76px');
-        
-        $('.template-collection').addClass('with-announcement-banner');
-        $('.template-search').addClass('with-announcement-banner');
-        $('.template-product').addClass('with-announcement-banner');
-       
+  let announcementChecker = sessionStorage.getItem("announcement");
+  if (announcementChecker){
+    document.addEventListener('scroll', e => {
+      if( container.hasClass('announcement-active') ){
+
+        $('#announcement-banner-container').removeClass('announcement-active').addClass('announcement-hidden')
+
+        $('.de-PageWrap-header').css('top', '0px');
+        $('.de-PageWrap-subHeader').css('top', '58px');
+        $('.de-PageWrap-prioritySportNav').css('top', '106.448px');
+        $('.de-PageWrap-main.sticky-sort-filter').css('padding-top', '46px');
+        $('#ais-sort-filter.sticky-active').css('top', '46px');
+        $('.template-collection').removeClass('with-announcement-banner');
+        $('.template-search').removeClass('with-announcement-banner');
+        $('.template-product').removeClass('with-announcement-banner');
         
       }
-    }
-  })
 
+      // Check if window is at top  
+      console.log(window.scrollY)
+      if( window.scrollY == 0 ){
+        console.log( container )
+
+        if( container.hasClass('announcement-hidden') ){
+          console.log( 'is it hidden?' )
+          $('#announcement-banner-container').addClass('announcement-active').removeClass('announcement-hidden')
+    
+          $('.de-PageWrap-header').css('top', '30px');
+          $('.de-PageWrap-subHeader').css('top', '88px');
+          $('.de-PageWrap-prioritySportNav').css('top', '136.448px');
+          $('#ais-sort-filter.sticky-active').css('top', '76px');
+          
+          $('.template-collection').addClass('with-announcement-banner');
+          $('.template-search').addClass('with-announcement-banner');
+          $('.template-product').addClass('with-announcement-banner');
+        }
+      }
+    })
+  }
 }
 $( document ).ready(function() {
   let announcementChecker = sessionStorage.getItem("announcement");
-  if (announcementChecker != false){
+  console.log(announcementChecker)
+  if (announcementChecker == 'true' || announcementChecker == null){
+      $('#announcement-banner-container').show();
+      $('#announcement-banner-container').addClass('announcement-active')
       sessionStorage.setItem("announcement", true);
       announcement();
       $( "#announcement-close" ).click(function() {
@@ -144,5 +146,7 @@ $( document ).ready(function() {
         $('.template-product').removeClass('with-announcement-banner');
         sessionStorage.setItem("announcement", false);
       });
+  } else{
+    $('#announcement-banner-container').hide();
   }
 });
