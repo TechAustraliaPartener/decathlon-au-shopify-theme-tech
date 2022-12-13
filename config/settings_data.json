@@ -2415,6 +2415,7 @@
         "blocks": {
           "96fa659b-ef93-402a-bfc3-00d291497738": {
             "type": "announcement_messages",
+            "disabled": true,
             "settings": {
               "countdown_date": "2022-12-25",
               "countdown_time": "00:00",
@@ -2441,6 +2442,7 @@
           },
           "899ddb8b-1a7d-4af1-871c-6ed9c44c9d00": {
             "type": "announcement_messages",
+            "disabled": true,
             "settings": {
               "countdown_date": "2022-12-13",
               "countdown_time": "22:00",

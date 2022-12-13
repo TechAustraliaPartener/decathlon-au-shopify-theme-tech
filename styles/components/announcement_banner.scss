@@ -1,13 +1,15 @@
+
 #announcement-banner-container.announcement-active {
   position: fixed;
+  display: block;
   top: 0;
   width: 100%;
   z-index: 1001;
   height: 30px;
   overflow: hidden;
   background-color: #FE5800 !important;
+  pointer-events: initial;
 }
-
 .announcement-close {
   position: absolute;
   right: 0;
@@ -15,9 +17,11 @@
   color: #1f1f1f;
   opacity: .7;
 }
-
+#announcement-banner-container,
 #announcement-banner-container.announcement-hidden {
   display: none;
+  height: 0;
+  pointer-events: none;
 }
 
 .annoucement-bar{
@@ -29,7 +33,6 @@
 .announcement-bar * {
   font-weight: 600;
   margin-bottom: 0;
-  color: inherit;
 }
 
 
@@ -65,19 +68,21 @@
   }
 
 }
-#announcement-banner-container .vertical_text_item a{
+#announcement-banner-container .vertical_text_item a,
+#announcement-banner-container a.vertical_text_item{
   text-decoration: underline;
+  color: inherit;
 }
 
 #announcement-banner-container .vertical_text_wrapper {
   display: inline-flex;
   color: inherit;
-  
  
 }
 
 .vertical_text_wrapper p{
   margin-right: 8px !important;
+  color: inherit;
   @media screen and (min-width: 40em) {
     text-align: center;
     text-overflow: ellipsis;
