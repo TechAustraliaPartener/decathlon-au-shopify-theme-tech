@@ -11,13 +11,13 @@
     {%- for block in announcement_messages -%}
       {%- assign item = block.settings -%}
 
-      {%  if item.bg_colour != 'rgba(0, 0, 0, 0)' or item.bg_colour != blank or item.bg_colour != '' %}
+      {%  if item.bg_colour != 'rgba(0, 0, 0, 0)' or item.bg_colour != 'rgba(0,0,0,0)' or item.bg_colour != '' %}
         {% assign bg = item.bg_colour  %}
         {%- else -%}
         {% assign bg = section.settings.default_bg %}
       {% endif %}
 
-      {%  if item.font_colour != 'rgba(0, 0, 0, 0)' or item.font_colour != blank or item.font_colour != ''%}
+      {%  if item.font_colour != 'rgba(0, 0, 0, 0)' or item.bg_colour != 'rgba(0,0,0,0)' or item.font_colour != ''%}
         {% assign fontc = item.font_colour  %}
         {%- else -%}
         {% assign fontc = section.settings.default_font %}
