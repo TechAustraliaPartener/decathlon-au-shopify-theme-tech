@@ -628,7 +628,7 @@
             "settings": {
               "name": "Box Hill",
               "title": "Box Hill Store, 3128",
-              "online_inventory_source": false,
+              "online_inventory_source": true,
               "enable_c_c": true,
               "duplicate": "",
               "test_mode": false,
@@ -660,7 +660,7 @@
               "hours_5_close": "1900",
               "hours_6_open": "0900",
               "hours_6_close": "2000",
-              "announcement": "<p><\/p>",
+              "announcement": "",
               "email_confirmation_message": "",
               "tag_exclusion_1": "",
               "tag_exclusion_message_1": "",
@@ -827,8 +827,8 @@
               "hours_6_close": "1700",
               "announcement": "<p>Wait for your Ready to Pick up Your Email. <br\/><br\/><strong>Note:<\/strong> Bikes, Surfboards, Treadmills, Table Tennis Tables & other bulky items won't be available for Click & Collect at this location.<\/p>",
               "email_confirmation_message": "",
-              "tag_exclusion_1": "",
-              "tag_exclusion_message_1": "",
+              "tag_exclusion_1": "Shipping: Bulk",
+              "tag_exclusion_message_1": "This product is not available from your chosen C&C location",
               "tag_exclusion_2": "",
               "tag_exclusion_message_2": "",
               "tag_exclusion_3": "",
@@ -882,8 +882,8 @@
               "hours_6_close": "1700",
               "announcement": "<p>Opening hours have been adjusted due to NSW Lockdowns<br\/>Ready to collect in 3 business days.<\/p>",
               "email_confirmation_message": "Please note that you have chosen to pick up your parcel from a partner. Employees at The Surfboard Warehouse Brookvale are not Decathlon employees and won't be able to answer your enquiries if you have any. Please contact us via chat or email for any questions regarding your order.",
-              "tag_exclusion_1": "",
-              "tag_exclusion_message_1": "",
+              "tag_exclusion_1": "Shipping: Bulk",
+              "tag_exclusion_message_1": "This product is not available from your chosen C&C location",
               "tag_exclusion_2": "",
               "tag_exclusion_message_2": "",
               "tag_exclusion_3": "",
@@ -937,8 +937,8 @@
               "hours_6_close": "1700",
               "announcement": "<p>Wait for your Ready to Pick up Your Email. <br\/><br\/><strong>Note:<\/strong> Bikes, Surfboards, Treadmills, Table Tennis Tables & other bulky items won't be available for Click & Collect at this location.<\/p>",
               "email_confirmation_message": "Please note that you have chosen to pick up your parcel from a partner. Employees at STM Bondi Junction are not Decathlon employees and won't be able to answer your enquiries if you have any. Please contact us via chat or email for any questions regarding your order.",
-              "tag_exclusion_1": "",
-              "tag_exclusion_message_1": "",
+              "tag_exclusion_1": "Shipping: Bulk",
+              "tag_exclusion_message_1": "This product is not available from your chosen C&C location",
               "tag_exclusion_2": "",
               "tag_exclusion_message_2": "",
               "tag_exclusion_3": "",
@@ -992,8 +992,8 @@
               "hours_6_close": "1800",
               "announcement": "<p>This is not a physical store. Returns cannot be made here.<\/p>",
               "email_confirmation_message": "",
-              "tag_exclusion_1": "",
-              "tag_exclusion_message_1": "",
+              "tag_exclusion_1": "Shipping: Bulk",
+              "tag_exclusion_message_1": "This product is not available from your chosen C&C location",
               "tag_exclusion_2": "",
               "tag_exclusion_message_2": "",
               "tag_exclusion_3": "",
@@ -1549,7 +1549,7 @@
               "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_15fb1b61-2d85-488b-b6ff-787f93cbf13e.jpg",
               "banner_intro": "",
               "banner_title": "",
-              "banner_subtitle": "<p><\/p>",
+              "banner_subtitle": "",
               "button_title": "",
               "link_url": "https:\/\/decathlon.com.au\/pages\/christmas-gift-ideas",
               "link_title": "",
@@ -1571,8 +1571,39 @@
               "link_new_window": false
             }
           },
+          "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_8ffabfd2-913e-429d-92fb-c0d353f412f3.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/600_x_400px.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/the-surfboard-warehouse-20-off-sale",
+              "link_title": "",
+              "link_new_window": false
+            }
+          },
+          "145847d3-2db7-45f7-8ef6-38db22a4156a": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/price_drop-Home-page-banner.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_2e9b7989-78cc-4464-b5d5-b3fb7c51ad19.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "https:\/\/decathlon.com.au\/pages\/price-drop",
+              "link_title": "",
+              "link_new_window": false
+            }
+          },
           "79522152-c757-4b60-a1be-2d1e49198982": {
             "type": "slide",
+            "disabled": true,
             "settings": {
               "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_e143e4bc-12d0-45d0-a21e-11c796719d4c.jpg",
               "slide_bg_position": "75% -50px",
@@ -1603,6 +1634,7 @@
           },
           "748c6a7e-732f-486d-a653-eb425a670bc5": {
             "type": "slide",
+            "disabled": true,
             "settings": {
               "banner_bg_image": "shopify:\/\/shop_images\/Desktop_banner_1440_x_789px_-_2.jpg",
               "slide_bg_position": "75% -50px",
@@ -1612,21 +1644,6 @@
               "banner_subtitle": "",
               "button_title": "",
               "link_url": "https:\/\/decathlon.com.au\/pages\/kipsta",
-              "link_title": "",
-              "link_new_window": false
-            }
-          },
-          "145847d3-2db7-45f7-8ef6-38db22a4156a": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/price_drop-Home-page-banner.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_2e9b7989-78cc-4464-b5d5-b3fb7c51ad19.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "<p><\/p>",
-              "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/pages\/price-drop",
               "link_title": "",
               "link_new_window": false
             }
@@ -1693,36 +1710,20 @@
               "link_title": "",
               "link_new_window": false
             }
-          },
-          "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb": {
-            "type": "slide",
-            "disabled": true,
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/EcoDesign-Banner-HP.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/EcoDesign-Mobile.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "<p><\/p>",
-              "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/collections\/eco-design?q=&hPP=24&idx=shopify_products&p=0&dFR%5Bproduct_type%5D%5B0%5D=Fleece&is_v=1",
-              "link_title": "",
-              "link_new_window": false
-            }
           }
         },
         "block_order": [
           "623e46b1-2abc-4e5b-8ceb-3ca5e428998a",
           "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9",
+          "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb",
+          "145847d3-2db7-45f7-8ef6-38db22a4156a",
           "79522152-c757-4b60-a1be-2d1e49198982",
           "e9b4daa6-6eee-441b-b76d-9c3ff012fde9",
           "748c6a7e-732f-486d-a653-eb425a670bc5",
-          "145847d3-2db7-45f7-8ef6-38db22a4156a",
           "579ee1c6-8cb9-4350-95e5-fb83a1397d90",
           "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b",
           "85c47718-39c5-4752-aa58-3e34ef8c0a97",
-          "0e3f284b-4302-4200-8eb1-f98ce34415af",
-          "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb"
+          "0e3f284b-4302-4200-8eb1-f98ce34415af"
         ],
         "settings": {}
       },
@@ -2158,12 +2159,12 @@
       "16316085202ea5cf79": {
         "type": "trending_categories",
         "blocks": {
-          "2161fbad-02eb-48c1-9a11-4481251537ae": {
+          "e946fff5-5695-4ed3-a886-269cd8000e8d": {
             "type": "category_tile",
             "settings": {
-              "title": "Football",
-              "image": "shopify:\/\/shop_images\/Football_540x690_d68ca723-7366-43a5-aa18-dd444bdd90e2.jpg",
-              "link": "https:\/\/decathlon.com.au\/pages\/kipsta"
+              "title": "Camping",
+              "image": "shopify:\/\/shop_images\/Camping-540x690.jpg",
+              "link": "shopify:\/\/collections\/camping"
             }
           },
           "f553a06c-1d16-4cd4-b9f2-2eea43b5aa9c": {
@@ -2182,22 +2183,6 @@
               "link": "https:\/\/decathlon.com.au\/collections\/mountain-bike"
             }
           },
-          "711f34cb-b34c-4c8f-8e88-ce5c95240666": {
-            "type": "category_tile",
-            "settings": {
-              "title": "Kayaking",
-              "image": "shopify:\/\/shop_images\/Kayaking_540x690_3c606b68-c86f-4dc8-ad7f-b45db30abd27.jpg",
-              "link": "shopify:\/\/collections\/kayaking"
-            }
-          },
-          "e946fff5-5695-4ed3-a886-269cd8000e8d": {
-            "type": "category_tile",
-            "settings": {
-              "title": "Camping",
-              "image": "shopify:\/\/shop_images\/Camping-540x690.jpg",
-              "link": "shopify:\/\/collections\/camping"
-            }
-          },
           "24a46da8-7f15-4e2c-aa20-558f5e037a41": {
             "type": "category_tile",
             "settings": {
@@ -2205,15 +2190,31 @@
               "image": "shopify:\/\/shop_images\/Surfing_540x690_b717b50d-d1e6-4189-9d8c-ea757c4116af.jpg",
               "link": "https:\/\/decathlon.com.au\/collections\/surfing"
             }
+          },
+          "2161fbad-02eb-48c1-9a11-4481251537ae": {
+            "type": "category_tile",
+            "settings": {
+              "title": "Football",
+              "image": "shopify:\/\/shop_images\/Football_540x690_d68ca723-7366-43a5-aa18-dd444bdd90e2.jpg",
+              "link": "https:\/\/decathlon.com.au\/pages\/kipsta"
+            }
+          },
+          "711f34cb-b34c-4c8f-8e88-ce5c95240666": {
+            "type": "category_tile",
+            "settings": {
+              "title": "Kayaking",
+              "image": "shopify:\/\/shop_images\/Kayaking_540x690_3c606b68-c86f-4dc8-ad7f-b45db30abd27.jpg",
+              "link": "shopify:\/\/collections\/kayaking"
+            }
           }
         },
         "block_order": [
-          "2161fbad-02eb-48c1-9a11-4481251537ae",
+          "e946fff5-5695-4ed3-a886-269cd8000e8d",
           "f553a06c-1d16-4cd4-b9f2-2eea43b5aa9c",
           "e1091c93-4efb-4738-b3f6-3a711db62e82",
-          "711f34cb-b34c-4c8f-8e88-ce5c95240666",
-          "e946fff5-5695-4ed3-a886-269cd8000e8d",
-          "24a46da8-7f15-4e2c-aa20-558f5e037a41"
+          "24a46da8-7f15-4e2c-aa20-558f5e037a41",
+          "2161fbad-02eb-48c1-9a11-4481251537ae",
+          "711f34cb-b34c-4c8f-8e88-ce5c95240666"
         ],
         "settings": {
           "title": "Trending Categories"
@@ -2221,18 +2222,16 @@
       },
       "163487525380dd83d2": {
         "type": "featured_collection",
-        "disabled": true,
         "settings": {
-          "title": "Get Basketball Ready - Shop NBA X Tarmak Collection",
-          "section_collection": "nba-tarmak"
+          "title": "Christmas Savings | 40% OFF Selected Surfboards and Bodyboards",
+          "section_collection": "40-off-selected-surfboards-and-bodyboards"
         }
       },
       "16375487170499d43e": {
         "type": "featured_collection",
-        "disabled": true,
         "settings": {
-          "title": "Gear Up For Summer",
-          "section_collection": "beach-sports"
+          "title": "Christmas Savings | 40% OFF Kayaks & SUPs",
+          "section_collection": "40-off-kayaks-sups"
         }
       },
       "1642116157c0ce923f": {
@@ -2281,6 +2280,7 @@
       },
       "1650950354346fb7a1": {
         "type": "featured_collection",
+        "disabled": true,
         "settings": {
           "title": "Fresh & Black Technology Tents",
           "section_collection": "fresh-black-tents"
@@ -2295,6 +2295,7 @@
       },
       "1650960580e9623e99": {
         "type": "featured_collection",
+        "disabled": true,
         "settings": {
           "title": "Celebrate Football with Decathlon",
           "section_collection": "soccer-futsal"
@@ -2302,10 +2303,9 @@
       },
       "165115029729e3ba5b": {
         "type": "featured_collection",
-        "disabled": true,
         "settings": {
-          "title": "Trending Deals on Outdoor Equipment!",
-          "section_collection": "outdoor-sports-sale"
+          "title": "Christmas Savings | 40%  OFF Surf Ponchos & Towels",
+          "section_collection": "40-off-surf-ponchos-towels"
         }
       },
       "1651153473715f6dc1": {
@@ -2376,7 +2376,6 @@
           },
           "d0eb6d46-31f5-4fbd-9b84-ba6fcd9396c7": {
             "type": "tab-callout",
-            "disabled": true,
             "settings": {
               "megamenu_parent": "cycling",
               "display_callout": true,
@@ -2409,76 +2408,6 @@
           "491b6777-803d-4a4a-ba1b-dc74efee6454"
         ],
         "settings": {}
-      },
-      "banner-announcements": {
-        "type": "banner-announcements",
-        "blocks": {
-          "96fa659b-ef93-402a-bfc3-00d291497738": {
-            "type": "announcement_messages",
-            "settings": {
-              "countdown_date": "2022-12-25",
-              "countdown_time": "00:00",
-              "message": "<p>It's [countdown] before Christmas! <a href=\"\/collections\/15-sitewide\" target=\"_blank\" title=\"15% off Sitewide!\">testing link <\/a><\/p>",
-              "post_message": "<p>Countdown done!<\/p>",
-              "url": "",
-              "bg_colour": "rgba(0,0,0,0)",
-              "font_colour": "#ffffff",
-              "scroll_speed": "scroll-normal"
-            }
-          },
-          "2829ac24-c64a-45c2-8248-9cac28b9345f": {
-            "type": "announcement_messages",
-            "settings": {
-              "countdown_date": "",
-              "countdown_time": "",
-              "message": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolorafdasfaaa asdfaasassasfdaaaaa.<\/p>",
-              "post_message": "",
-              "url": "shopify:\/\/collections\/40-off-kayaks-sups",
-              "bg_colour": "#1c82c3",
-              "font_colour": "#ffffff",
-              "scroll_speed": "scroll-slow"
-            }
-          },
-          "899ddb8b-1a7d-4af1-871c-6ed9c44c9d00": {
-            "type": "announcement_messages",
-            "settings": {
-              "countdown_date": "2022-12-12",
-              "countdown_time": "22:00",
-              "message": "<p>Generic Message [countdown] <\/p>",
-              "post_message": "<p>After Countdown ... <a href=\"\/collections\/15-sitewide\" target=\"_blank\" title=\"15% off Sitewide!\">test <\/a><\/p>",
-              "url": "",
-              "bg_colour": "#ffea28",
-              "font_colour": "#1f1f1f",
-              "scroll_speed": "scroll-normal"
-            }
-          },
-          "a7701953-76e7-46e3-be84-bbe20fb7e813": {
-            "type": "announcement_messages",
-            "settings": {
-              "countdown_date": "",
-              "countdown_time": "",
-              "message": "<p>Trial Static with Banner Link and Fallback colours<\/p>",
-              "post_message": "<p>Trial<\/p>",
-              "url": "shopify:\/\/collections\/40-off-selected-surfboards-and-bodyboards",
-              "bg_colour": "",
-              "font_colour": "",
-              "scroll_speed": "scroll-normal"
-            }
-          }
-        },
-        "block_order": [
-          "96fa659b-ef93-402a-bfc3-00d291497738",
-          "2829ac24-c64a-45c2-8248-9cac28b9345f",
-          "899ddb8b-1a7d-4af1-871c-6ed9c44c9d00",
-          "a7701953-76e7-46e3-be84-bbe20fb7e813"
-        ],
-        "settings": {
-          "show_annoucement_bar": true,
-          "rotation_delay": "6000",
-          "rotation_speed": "600",
-          "default_bg": "#fe5800",
-          "default_font": "#ffffff"
-        }
       }
     },
     "content_for_index": [
@@ -2487,14 +2416,14 @@
       "163107313302287377",
       "16316085202ea5cf79",
       "1651153473715f6dc1",
+      "16375487170499d43e",
+      "163487525380dd83d2",
+      "165115029729e3ba5b",
       "1650960580e9623e99",
+      "1642116157c0ce923f",
       "16509507269dac2990",
       "1650950354346fb7a1",
-      "1642116157c0ce923f",
-      "16375487170499d43e",
-      "166270596352f8a275",
-      "165115029729e3ba5b",
-      "163487525380dd83d2"
+      "166270596352f8a275"
     ]
   },
   "presets": {
