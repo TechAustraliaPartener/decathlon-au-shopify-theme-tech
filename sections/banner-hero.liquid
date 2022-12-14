@@ -32,7 +32,12 @@
           #banner-slide-{{ forloop.index }} {
             background-image: url({{ item.banner_bg_image | img_url: 'master' | json }});
           }
-
+          #banner-slide-{{ forloop.index }}  .banner-content .banner--counterContainer {
+            position: relative;
+            font-size: inherit;
+            color: inherit;
+          }
+      
           #banner-slide-{{ forloop.index }} .banner--counterContainer {
             justify-content: {{ pos_x }};
             align-items: {{ pos_y }};
@@ -59,26 +64,36 @@
               justify-content: center;
               align-items: {{ pos_y }};
               font-size: {{ item.countdown_font_size_m }};
-              
             }
           }
         </style>
-
+        {% capture countdown %}
+          {% include 'helpers-countdown-counter.liquid', countdown_class: 'banner--countdown', item: item, index: forloop.index %}
+        {% endcapture %}
         <div class="banner banner--billboard loading{{ banner_adtl_classes }}"{% if item.banner_bg_image != blank %} data-background-image="{{ item.banner_bg_image | img_url: 'master' }}"{% endif %}{% if banner_bg_position != blank %} style="background-position: {{ item.banner_bg_position }}"{% endif %} id="banner-slide-{{ forloop.index }}">
           {% comment %} <div id="bannerOverlay" class="banner--billboard__overlay loading"></div> {% endcomment %}
-
+          {% if item.countdown_inline == true %}
+            {% assign banner_intro = item.banner_intro | replace: '[countdown]', countdown %}
+            {% assign banner_title = item.banner_title | replace: '[countdown]', countdown %}
+            {% assign banner_subtitle = item.banner_subtitle | replace: '[countdown]', countdown %}
+          {% else %}
+            {% assign banner_intro = item.banner_intro %}
+            {% assign banner_title = item.banner_title %}
+            {% assign banner_subtitle = item.banner_subtitle %}
+          {% endif %}
+          
           <div class="wrapper u-centerVertically">
             <div class="banner-content">
               {%- if item.banner_intro != blank -%}
-                <p class="banner-intro">{{ item.banner_intro }}</p>
+                <p class="banner-intro">{{ banner_intro }}</p>
               {%- endif -%}
 
               {%- if item.banner_title != blank -%}
-                <h2 class="banner-title">{{ item.banner_title }}</h2>
+                <h2 class="banner-title">{{ banner_title }}</h2>
               {%- endif -%}
 
               {%- if item.banner_subtitle != blank -%}
-                <p class="banner-subtitle{% unless item.button_title %} u-marginBottom0x{% endunless %}">{{ item.banner_subtitle }}</p>
+                <p class="banner-subtitle{% unless item.button_title %} u-marginBottom0x{% endunless %}">{{ banner_subtitle }}</p>
               {%- endif -%}
 
               {%- if item.button_title != blank -%}
@@ -88,14 +103,12 @@
                   </button>
                 </p>
               {%- endif -%}
-
-
             </div>
           </div>
         
-        {%- if item.countdown_date != blank -%}
+        {%- if item.countdown_date != blank and item.countdown_inline == false -%}
           <div class="banner--counterContainer">
-              {% include 'helpers-countdown-counter.liquid', countdown_class: 'banner--countdown', item: item %}         
+          {{ countdown }}
           </div>
         {%- endif -%}
         </div>
@@ -150,6 +163,12 @@ to overlap.
           "type": "richtext",
           "id": "banner_subtitle",
           "label": "Add a subtitle for your slide"
+        },
+        {
+          "id": "countdown_inline",
+          "type": "checkbox",
+          "label": "Use Countdown inline?",
+          "info": "Add a [countdown] parameter in the input fields to display countdown."
         },
         {
           "type": "text",
