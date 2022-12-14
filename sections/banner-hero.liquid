@@ -76,10 +76,13 @@
             {% assign banner_intro = item.banner_intro | replace: '[countdown]', countdown %}
             {% assign banner_title = item.banner_title | replace: '[countdown]', countdown %}
             {% assign banner_subtitle = item.banner_subtitle | replace: '[countdown]', countdown %}
+            {% assign banner_cta = item.button_title | replace: '[countdown]', countdown %}
           {% else %}
             {% assign banner_intro = item.banner_intro %}
             {% assign banner_title = item.banner_title %}
             {% assign banner_subtitle = item.banner_subtitle %}
+            {% assign banner_cta = item.button_title %}
+
           {% endif %}
           
           <div class="wrapper u-centerVertically">
@@ -99,7 +102,7 @@
               {%- if item.button_title != blank -%}
                 <p class="banner-btnContainer">
                   <button class="btn">
-                    {{ item.button_title }}
+                    {{ banner_cta }}
                   </button>
                 </p>
               {%- endif -%}
