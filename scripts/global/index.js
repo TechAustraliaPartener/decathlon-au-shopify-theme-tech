@@ -79,7 +79,6 @@ function announcement(){
   let announcementChecker = sessionStorage.getItem("announcement");
   if (announcementChecker){
     if( container.hasClass('announcement-active') ){
-      console.log('POSITIVE')
       $('.de-PageWrap-header').css('top', '30px');
       $('.de-PageWrap-subHeader').css('top', '88px');
       $('.de-PageWrap-prioritySportNav').css('top', '136.448px');
@@ -110,12 +109,8 @@ function announcement(){
       }
 
       // Check if window is at top  
-      console.log(window.scrollY)
       if( window.scrollY == 0 ){
-        console.log( container )
-
         if( container.hasClass('announcement-hidden') ){
-          console.log( 'is it hidden?' )
           $('#announcement-banner-container').show();
           $('#announcement-banner-container').addClass('announcement-active').removeClass('announcement-hidden')
     
@@ -137,29 +132,26 @@ function announcement(){
 }
 $( document ).ready(function() {
   let announcementChecker = sessionStorage.getItem("announcement");
-  console.log(announcementChecker)
-  if($('#shopify-section-banner-announcements').children().length > 0 ){
-    if (announcementChecker == 'true' || announcementChecker == null){
-        $('#announcement-banner-container').show();
-        $('#announcement-banner-container').addClass('announcement-active')
-        sessionStorage.setItem("announcement", true);
-        announcement();
-        $( "#announcement-close" ).click(function() {
-          $('.de-PageWrap-header').css('top', '0px');
-          $('.de-PageWrap-subHeader').css('top', '58px');
-          $('.de-PageWrap-prioritySportNav').css('top', '106.448px');
-          $('#ais-sort-filter.sticky-active').css('top', '46px');
-          $('.template-collection').removeClass('with-announcement-banner');
-          $('.template-search').removeClass('with-announcement-banner');
-          $('.template-product').removeClass('with-announcement-banner');
-          $('.template-page').removeClass('with-announcement-banner');
-          $('#announcement-banner-container').removeClass('announcement-active');
-          $('#announcement-banner-container').hide();
-          sessionStorage.setItem("announcement", false);
-        });
-    } else{
-      $('#announcement-banner-container').hide();
-    }
+  if (announcementChecker == 'true' || announcementChecker == null){
+      $('#announcement-banner-container').show();
+      $('#announcement-banner-container').addClass('announcement-active')
+      sessionStorage.setItem("announcement", true);
+      announcement();
+      $( "#announcement-close" ).click(function() {
+        $('.de-PageWrap-header').css('top', '0px');
+        $('.de-PageWrap-subHeader').css('top', '58px');
+        $('.de-PageWrap-prioritySportNav').css('top', '106.448px');
+        $('#ais-sort-filter.sticky-active').css('top', '46px');
+        $('.template-collection').removeClass('with-announcement-banner');
+        $('.template-search').removeClass('with-announcement-banner');
+        $('.template-product').removeClass('with-announcement-banner');
+        $('.template-page').removeClass('with-announcement-banner');
+        $('#announcement-banner-container').removeClass('announcement-active');
+        $('#announcement-banner-container').hide();
+        sessionStorage.setItem("announcement", false);
+      });
+  } else{
+    $('#announcement-banner-container').hide();
   }
 });
 $(window).bind('load', function() {
@@ -205,7 +197,6 @@ $(window).scroll(debounce(function(){
     // $('.ais-hits--showmore button')
     if($('.ais-hits--showmore button').attr('disabled') !== 'disabled') {
       $('.ais-hits--showmore button').trigger('click');
-      console.log('triggering more products')
     } else{
       $('#end-results-container').removeClass('hidden')
     }
@@ -219,7 +210,6 @@ $(window).scroll(debounce(function(){
 $(window).scroll(debounce(function(){
   if (showMoreInViewport($('.ais-hits--showmore'))){
     showPreloader();
-    console.log('adding preloader');
   }
 }, 100));
 
