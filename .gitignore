@@ -3,6 +3,7 @@
 node_modules/*
 src/css/*
 .env
+.vscode
 
 # Compiled/bundled from /scripts/**
 /assets/built-*.js
