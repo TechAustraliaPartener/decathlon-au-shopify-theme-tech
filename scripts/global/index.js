@@ -138,25 +138,27 @@ function announcement(){
 $( document ).ready(function() {
   let announcementChecker = sessionStorage.getItem("announcement");
   console.log(announcementChecker)
-  if (announcementChecker == 'true' || announcementChecker == null){
-      $('#announcement-banner-container').show();
-      $('#announcement-banner-container').addClass('announcement-active')
-      sessionStorage.setItem("announcement", true);
-      announcement();
-      $( "#announcement-close" ).click(function() {
-        $('.de-PageWrap-header').css('top', '0px');
-        $('.de-PageWrap-subHeader').css('top', '58px');
-        $('.de-PageWrap-prioritySportNav').css('top', '106.448px');
-        $('#ais-sort-filter.sticky-active').css('top', '46px');
-        $('.template-collection').removeClass('with-announcement-banner');
-        $('.template-search').removeClass('with-announcement-banner');
-        $('.template-product').removeClass('with-announcement-banner');
-        $('.template-page').removeClass('with-announcement-banner');
-        $('#announcement-banner-container').removeClass('announcement-active');
-        $('#announcement-banner-container').hide();
-        sessionStorage.setItem("announcement", false);
-      });
-  } else{
-    $('#announcement-banner-container').hide();
+  if(('#shopify-section-banner-announcements').children().length > 0 ){
+    if (announcementChecker == 'true' || announcementChecker == null){
+        $('#announcement-banner-container').show();
+        $('#announcement-banner-container').addClass('announcement-active')
+        sessionStorage.setItem("announcement", true);
+        announcement();
+        $( "#announcement-close" ).click(function() {
+          $('.de-PageWrap-header').css('top', '0px');
+          $('.de-PageWrap-subHeader').css('top', '58px');
+          $('.de-PageWrap-prioritySportNav').css('top', '106.448px');
+          $('#ais-sort-filter.sticky-active').css('top', '46px');
+          $('.template-collection').removeClass('with-announcement-banner');
+          $('.template-search').removeClass('with-announcement-banner');
+          $('.template-product').removeClass('with-announcement-banner');
+          $('.template-page').removeClass('with-announcement-banner');
+          $('#announcement-banner-container').removeClass('announcement-active');
+          $('#announcement-banner-container').hide();
+          sessionStorage.setItem("announcement", false);
+        });
+    } else{
+      $('#announcement-banner-container').hide();
+    }
   }
 });
