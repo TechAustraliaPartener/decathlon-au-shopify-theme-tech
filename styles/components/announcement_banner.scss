@@ -295,13 +295,15 @@ time.announcement-countdown {
   }
   
   .main-content{
-    padding-top: 0px;
+    padding-top: 20px;
   }
-  
-  @media screen and (min-width: 30em) {
-  .main-content{
-    padding-top: 30px;
-  }
+  @media screen and (min-width: 480px) {
+    .main-content{
+      padding-top: 30px;
+    }
+    .div.buying_guide_wrapper_desktop{
+      margin-bottom: 20px;
+    }
   }
   
 }
