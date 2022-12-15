@@ -198,7 +198,9 @@ $(window).scroll(debounce(function(){
     if($('.ais-hits--showmore button').attr('disabled') !== 'disabled') {
       $('.ais-hits--showmore button').trigger('click');
     } else{
-      $('#end-results-container').removeClass('hidden')
+      $('#end-results-container').removeClass('hidden');
+      $('.ais-hits--showmore button').hide();
+      $('#collection-search-preloader').addClass('hidden')
     }
   } else{
     if(!$('#collection-search-preloader').hasClass('hidden')){
