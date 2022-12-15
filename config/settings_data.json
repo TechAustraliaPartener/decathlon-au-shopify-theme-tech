@@ -463,7 +463,7 @@
             "settings": {
               "name": "Tempe",
               "title": "Tempe Store, 2044",
-              "online_inventory_source": false,
+              "online_inventory_source": true,
               "enable_c_c": true,
               "duplicate": "",
               "test_mode": false,
@@ -2295,10 +2295,9 @@
       },
       "1650960580e9623e99": {
         "type": "featured_collection",
-        "disabled": true,
         "settings": {
-          "title": "Celebrate Football with Decathlon",
-          "section_collection": "soccer-futsal"
+          "title": "Christmas Savings | 40% OFF Selected Sun Protective Clothing",
+          "section_collection": "40-off-selected-sun-protective-clothing"
         }
       },
       "165115029729e3ba5b": {
