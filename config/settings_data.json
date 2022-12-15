@@ -1620,6 +1620,7 @@
           },
           "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb": {
             "type": "slide",
+            "disabled": true,
             "settings": {
               "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_223f97c7-b4d8-4925-9dd3-ca266652f2bf.jpg",
               "slide_bg_position": "75% -50px",
@@ -1627,14 +1628,25 @@
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "<p><\/p>",
+              "countdown_inline": false,
               "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/collections\/the-surfboard-warehouse-20-off-sale",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/eco-design?q=&hPP=24&idx=shopify_products&p=0&dFR%5Bproduct_type%5D%5B0%5D=Fleece&is_v=1",
               "link_title": "",
-              "link_new_window": false
+              "link_new_window": false,
+              "countdown_date": "",
+              "countdown_time": "",
+              "countdown_position": "flex-start,flex-start",
+              "countdown_bold": false,
+              "countdown_italic": false,
+              "countdown_underline": false,
+              "countdown_colour": "",
+              "countdown_font_size_m": "",
+              "countdown_font_size_d": ""
             }
           },
           "145847d3-2db7-45f7-8ef6-38db22a4156a": {
             "type": "slide",
+            "disabled": true,
             "settings": {
               "banner_bg_image": "shopify:\/\/shop_images\/price_drop-Home-page-banner.jpg",
               "slide_bg_position": "75% -50px",
@@ -1642,10 +1654,20 @@
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "<p><\/p>",
+              "countdown_inline": false,
               "button_title": "",
               "link_url": "https:\/\/decathlon.com.au\/pages\/price-drop",
               "link_title": "",
-              "link_new_window": false
+              "link_new_window": false,
+              "countdown_date": "",
+              "countdown_time": "",
+              "countdown_position": "flex-start,flex-start",
+              "countdown_bold": false,
+              "countdown_italic": false,
+              "countdown_underline": false,
+              "countdown_colour": "",
+              "countdown_font_size_m": "",
+              "countdown_font_size_d": ""
             }
           },
           "79522152-c757-4b60-a1be-2d1e49198982": {
@@ -1790,32 +1812,6 @@
               "countdown_inline": false,
               "button_title": "",
               "link_url": "shopify:\/\/pages\/decathlon-membership",
-              "link_title": "",
-              "link_new_window": false,
-              "countdown_date": "",
-              "countdown_time": "",
-              "countdown_position": "flex-start,flex-start",
-              "countdown_bold": false,
-              "countdown_italic": false,
-              "countdown_underline": false,
-              "countdown_colour": "",
-              "countdown_font_size_m": "",
-              "countdown_font_size_d": ""
-            }
-          },
-          "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb": {
-            "type": "slide",
-            "disabled": true,
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/EcoDesign-Banner-HP.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/EcoDesign-Mobile.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "<p><\/p>",
-              "countdown_inline": false,
-              "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/collections\/eco-design?q=&hPP=24&idx=shopify_products&p=0&dFR%5Bproduct_type%5D%5B0%5D=Fleece&is_v=1",
               "link_title": "",
               "link_new_window": false,
               "countdown_date": "",
@@ -2565,45 +2561,6 @@
           "rotation_speed": "600",
           "default_bg": "#ffffff",
           "default_font": "#ffffff"
-        }
-      },
-      "9336c2ec-4b3b-4d0b-b261-c112b61fe6d7": {
-        "type": "six-tile-products",
-        "settings": {
-          "title": "Collection Demo",
-          "section_collection": "price-drop"
-        }
-      },
-      "53ef715b-3255-45a6-9576-4c1ed49bd312": {
-        "type": "six-tile-products",
-        "blocks": {
-          "d8387b35-eca7-4698-a778-46a4800d0a6c": {
-            "type": "product",
-            "settings": {
-              "product": "1-kg-fitness-water-ball"
-            }
-          },
-          "914994ec-31b1-447c-a161-248d5e9d7e25": {
-            "type": "product",
-            "settings": {
-              "product": "1-8-m-rigid-kayak-kids"
-            }
-          },
-          "46e34286-9690-4ccc-8fde-81c3e14f5fdc": {
-            "type": "product",
-            "settings": {
-              "product": "1-bike-wall-and-ceiling-rack"
-            }
-          }
-        },
-        "block_order": [
-          "d8387b35-eca7-4698-a778-46a4800d0a6c",
-          "914994ec-31b1-447c-a161-248d5e9d7e25",
-          "46e34286-9690-4ccc-8fde-81c3e14f5fdc"
-        ],
-        "settings": {
-          "title": "Manual Products Demo",
-          "section_collection": ""
         }
       }
     },

@@ -1,10 +1,5 @@
 {{ 'collection_search_preloader.scss.css' | asset_url | stylesheet_tag }}
 
-{% if page.handle contains 'search' or page.handle contains 'collection' %}
-  {{ page.handle }} <<<<<<<<<<<<<<<<<<<<<
-{% endif %}
-
-
 <div class="ais-preloader-container hidden" id="collection-search-preloader">
   <div class="preloader">
     <img class="preloader-gif" src="{{ 'decathlon-loader.gif' | asset_url }}">
