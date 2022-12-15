@@ -265,14 +265,15 @@ time.announcement-countdown {
 
 .template-search.with-announcement-banner {
   .main-content {
-    padding-top: 120px;
+    padding-top: 70px;
   }
   #ais-sort-filter.sticky-active{
     top: 76px;
   }
-  @media screen and (min-width: 40em) {
+
+  @media screen and (min-width: 60em) {
     .main-content {
-      padding-top: 0px;
+      padding-top: 120px;
     }
     
   #ais-sort-filter.sticky-active{
@@ -292,23 +293,15 @@ time.announcement-countdown {
   #ais-sort-filter.sticky-active{
     top: 76px;
   }
-  .de-PageWrap-main{
-  padding-top: 76px !important;
-  }
   
   .main-content{
-    padding-top: 70px !important;
+    padding-top: 0px;
   }
   
-  @media screen and (min-width: 40em) {
-    .de-PageWrap-main{
-      padding-top: 126px;
-    }
-    
+  @media screen and (min-width: 30em) {
   .main-content{
-    padding-top: 50px !important;
+    padding-top: 30px;
   }
-    
   }
   
 }
