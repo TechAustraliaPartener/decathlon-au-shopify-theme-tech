@@ -2280,10 +2280,9 @@
       },
       "1650950354346fb7a1": {
         "type": "featured_collection",
-        "disabled": true,
         "settings": {
-          "title": "Fresh & Black Technology Tents",
-          "section_collection": "fresh-black-tents"
+          "title": "Christmas Savings | 40% OFF Selected Tents",
+          "section_collection": "40-off-selected-tents"
         }
       },
       "16509507269dac2990": {
@@ -2407,6 +2406,34 @@
           "491b6777-803d-4a4a-ba1b-dc74efee6454"
         ],
         "settings": {}
+      },
+      "banner-announcements": {
+        "type": "banner-announcements",
+        "blocks": {
+          "543b1783-29d8-4996-80a0-0ad6250c6206": {
+            "type": "announcement_messages",
+            "settings": {
+              "countdown_date": "2022-12-25",
+              "countdown_time": "00:12",
+              "message": "<p>Christmas Shopping? Over 1000+ product at up to 70% off - <a href=\"https:\/\/decathlon.com.au\/collections\/decathlon-clearance\" title=\"https:\/\/decathlon.com.au\/collections\/decathlon-clearance\"><strong>SHOP NOW<\/strong><\/a><\/p>",
+              "post_message": "",
+              "url": "",
+              "bg_colour": "#e20c18",
+              "font_colour": "#ffffff",
+              "scroll_speed": "scroll-normal"
+            }
+          }
+        },
+        "block_order": [
+          "543b1783-29d8-4996-80a0-0ad6250c6206"
+        ],
+        "settings": {
+          "show_annoucement_bar": true,
+          "rotation_delay": "5000",
+          "rotation_speed": "600",
+          "default_bg": "#1c82c3",
+          "default_font": "#ffffff"
+        }
       }
     },
     "content_for_index": [
@@ -2415,13 +2442,13 @@
       "163107313302287377",
       "16316085202ea5cf79",
       "1651153473715f6dc1",
+      "1650950354346fb7a1",
       "16375487170499d43e",
       "163487525380dd83d2",
       "165115029729e3ba5b",
       "1650960580e9623e99",
       "1642116157c0ce923f",
       "16509507269dac2990",
-      "1650950354346fb7a1",
       "166270596352f8a275"
     ]
   },
