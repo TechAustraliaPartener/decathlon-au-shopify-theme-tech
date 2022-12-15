@@ -138,7 +138,7 @@ function announcement(){
 $( document ).ready(function() {
   let announcementChecker = sessionStorage.getItem("announcement");
   console.log(announcementChecker)
-  if(('#shopify-section-banner-announcements').children().length > 0 ){
+  if($('#shopify-section-banner-announcements').children().length > 0 ){
     if (announcementChecker == 'true' || announcementChecker == null){
         $('#announcement-banner-container').show();
         $('#announcement-banner-container').addClass('announcement-active')
