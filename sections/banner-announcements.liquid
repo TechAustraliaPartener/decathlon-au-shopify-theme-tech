@@ -1,3 +1,10 @@
+<style>
+    #announcement-banner-container.announcement-active {
+        background-color: {{ section.settings.default_bg }} !important;
+    }
+</style>
+
+
 {% if section.settings.show_annoucement_bar == true %}
   <div id="announcement-banner-container" >
       {% include 'components-banner-announcements' %}
