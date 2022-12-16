@@ -558,9 +558,28 @@ svg {
   display: flex
 }
 
+.de-PageWrap-logo.maximize-container a{
+  height: 100%;
+}
+
+.de-PageWrap-logo.maximize-container img{
+  height: 105%;
+}
 @media (min-width:60em) {
   .de-PageWrap-logo {
     margin-left: 6.128px
+  }
+
+  .de-PageWrap-logo.maximize-container{
+    height: 100%;
+  }
+  .de-PageWrap-logo.maximize-container a{
+    height: 100%;
+    max-width: 200px;
+  }
+  
+  .de-PageWrap-logo.maximize-container img{
+    height: 105%;
   }
 }
 

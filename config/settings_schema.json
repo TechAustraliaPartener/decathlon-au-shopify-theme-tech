@@ -237,6 +237,12 @@
         "label": "Use custom logo"
       },
       {
+        "type": "checkbox",
+        "id": "maximize_logo_space",
+        "label": "Use custom bigger size for logo",
+        "info": "This setting would remove the paddings for the logo to display bigger."
+      },
+      {
         "type": "text",
         "id": "svg_logo",
         "label": "Custom SVG logo",

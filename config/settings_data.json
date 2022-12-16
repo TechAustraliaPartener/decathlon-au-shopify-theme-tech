@@ -1556,6 +1556,22 @@
               "link_new_window": false
             }
           },
+          "748c6a7e-732f-486d-a653-eb425a670bc5": {
+            "type": "slide",
+            "disabled": true,
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/V1_40_off_Selected_Kayaks_and_SUPs.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/40_off_Selected_Kayaks_and_SUPs_V1.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "button_title": "",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/40-off-kayaks-sups",
+              "link_title": "",
+              "link_new_window": false
+            }
+          },
           "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9": {
             "type": "slide",
             "settings": {
@@ -1574,9 +1590,9 @@
           "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_8ffabfd2-913e-429d-92fb-c0d353f412f3.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_223f97c7-b4d8-4925-9dd3-ca266652f2bf.jpg",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/600_x_400px.jpg",
+              "banner_mobile_image": "shopify:\/\/shop_images\/600_x_400px_dd1220e8-1f2f-48d1-ad72-95821d470189.jpg",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
@@ -1629,22 +1645,6 @@
               "button_title": "",
               "link_url": "shopify:\/\/pages\/music-festival-essentials",
               "link_title": "Shop All the Essentials For Your Next Gig",
-              "link_new_window": false
-            }
-          },
-          "748c6a7e-732f-486d-a653-eb425a670bc5": {
-            "type": "slide",
-            "disabled": true,
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Desktop_banner_1440_x_789px_-_2.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Home_Page_Desktop_banner_1440_x_789px_2.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/pages\/kipsta",
-              "link_title": "",
               "link_new_window": false
             }
           },
@@ -1714,12 +1714,12 @@
         },
         "block_order": [
           "623e46b1-2abc-4e5b-8ceb-3ca5e428998a",
+          "748c6a7e-732f-486d-a653-eb425a670bc5",
           "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9",
           "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb",
           "145847d3-2db7-45f7-8ef6-38db22a4156a",
           "79522152-c757-4b60-a1be-2d1e49198982",
           "e9b4daa6-6eee-441b-b76d-9c3ff012fde9",
-          "748c6a7e-732f-486d-a653-eb425a670bc5",
           "579ee1c6-8cb9-4350-95e5-fb83a1397d90",
           "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b",
           "85c47718-39c5-4752-aa58-3e34ef8c0a97",
@@ -2414,24 +2414,38 @@
             "type": "announcement_messages",
             "settings": {
               "countdown_date": "2022-12-25",
-              "countdown_time": "00:12",
-              "message": "<p>Christmas Shopping? Over 1000+ product at up to 70% off - <a href=\"https:\/\/decathlon.com.au\/collections\/decathlon-clearance\" title=\"https:\/\/decathlon.com.au\/collections\/decathlon-clearance\"><strong>SHOP NOW<\/strong><\/a><\/p>",
+              "countdown_time": "00:30",
+              "message": "<p>Over 1000+ products at up to 70% off - <a href=\"https:\/\/decathlon.com.au\/collections\/decathlon-clearance\" title=\"https:\/\/decathlon.com.au\/collections\/decathlon-clearance\"><strong>SHOP NOW<\/strong><\/a><\/p>",
               "post_message": "",
               "url": "",
               "bg_colour": "#e20c18",
               "font_colour": "#ffffff",
               "scroll_speed": "scroll-normal"
             }
+          },
+          "b706be1c-0750-47c9-b0f1-8278eddb14fd": {
+            "type": "announcement_messages",
+            "settings": {
+              "countdown_date": "",
+              "countdown_time": "",
+              "message": "<p>1 HR Click & Collect to get your Christmas Order! <\/p>",
+              "post_message": "",
+              "url": "",
+              "bg_colour": "#1c82c3",
+              "font_colour": "#ffffff",
+              "scroll_speed": "scroll-normal"
+            }
           }
         },
         "block_order": [
-          "543b1783-29d8-4996-80a0-0ad6250c6206"
+          "543b1783-29d8-4996-80a0-0ad6250c6206",
+          "b706be1c-0750-47c9-b0f1-8278eddb14fd"
         ],
         "settings": {
           "show_annoucement_bar": true,
           "rotation_delay": "5000",
           "rotation_speed": "600",
-          "default_bg": "#1c82c3",
+          "default_bg": "#ffffff",
           "default_font": "#ffffff"
         }
       }

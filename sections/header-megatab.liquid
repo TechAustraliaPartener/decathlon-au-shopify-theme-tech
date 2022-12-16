@@ -23,13 +23,21 @@
         </button>
       </div>
     </div>
-    <div class="de-PageWrap-logo" itemscope itemtype="http://schema.org/Organization">
+    
+    <div class="de-PageWrap-logo {% if settings.maximize_logo_space == true %}maximize-container{% endif %}" itemscope itemtype="http://schema.org/Organization">
       {% if settings.logo_use_image %}
       <a href="/" title="Decathlon">
         {% if settings.svg_logo != blank %}
-        <img src="{{ settings.svg_logo | file_url }}" alt="Decathlon logo" />
+        <img src="{{ settings.svg_logo | file_url }}" 
+        srcset="{{ settings.svg_logo | file_url: '240x' }} 240w,
+        {{ settings.svg_logo | file_url: '480x' }} 480w,
+        {{ settings.svg_logo | file_url: '720x' }} 720w,
+        {{ settings.svg_logo | file_url: '323x' }} 323w,
+        {{ settings.svg_logo | file_url: '646x' }} 646w,
+        {{ settings.svg_logo | file_url: '969x' }} 969w"
+        alt="Decathlon logo"/>
         {% else %}
-        <img src="{{ settings.img_logo }}" alt="Decathlon logo" />
+        <img src="{{ settings.img_logo | img_url }}" alt="Decathlon logo" />
         {% endif %}
       </a>
       {% else %}
