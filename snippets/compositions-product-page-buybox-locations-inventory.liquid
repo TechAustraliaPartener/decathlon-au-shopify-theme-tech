@@ -14,22 +14,10 @@
         name="state"
         placeholder="{% endraw %}{{ 'product_locations.enter_postcode' | t }}{% raw %}"
         v-model="code">
-        {% comment %}
-          TODO FIX CHECKING CONDITION FOR AUTOCLICK
-          SCHEMA:
-           {
-              "id": "product_expand_inventory_availability",
-              "type": "checkbox",
-              "label": "Expand Iventory Availability by default?",
-              "info": "Once a postcode has been entered the inventory availability section it should be opened by default on subsequent product pages."
-            },
-        Variable: {{ settings.product_expand_inventory_availability }}    
-        {% endcomment %}
       <button
         class="de-SingleInputForm-action"
         id="checkState"
-        v-on:click="evaluateState()" data-autoClick="true">
-
+        v-on:click="evaluateState()">
         {% endraw %}{% include 'patterns-icons-search', class: 'de-u-textGrow3', role: 'presentation' %}{% raw %}
         <span class="de-u-hiddenVisually">Search</span>
       </button>
@@ -135,3 +123,19 @@
     </div>
   </div>{% endraw %}
 </div>
+
+{% comment %}
+<button
+class="de-SingleInputForm-action"
+id="checkState"
+v-on:click="evaluateState()" data-autoClick="true">
+TODO FIX CHECKING CONDITION FOR AUTOCLICK
+SCHEMA:
+  {
+    "id": "product_expand_inventory_availability",
+    "type": "checkbox",
+    "label": "Expand Iventory Availability by default?",
+    "info": "Once a postcode has been entered the inventory availability section it should be opened by default on subsequent product pages."
+  },
+Variable: {{ settings.product_expand_inventory_availability }}    
+{% endcomment %}

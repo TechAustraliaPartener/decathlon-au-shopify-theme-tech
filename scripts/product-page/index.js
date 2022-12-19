@@ -234,10 +234,10 @@ init()
   .then(() => {
     displayRRPPrices(state.getState().color);
     // TODO: FIX CHECKING CONDITION FOR SETTING
-    console.log("ANGE",JSON.parse(localStorage.getItem('state_code')) != null, $('#checkState').attr("data-autoClick")  )
-  if(JSON.parse(localStorage.getItem('state_code')) != null){
-    $('#checkState').click();
-  }
+    // console.log("ANGE",JSON.parse(localStorage.getItem('state_code')) != null, $('#checkState').attr("data-autoClick")  )
+    if(JSON.parse(localStorage.getItem('state_code')) != null  ){
+      $('#checkState').click();
+    }
     return console.log('Product page initialized.');
   })
   .catch(error => console.error(error));
