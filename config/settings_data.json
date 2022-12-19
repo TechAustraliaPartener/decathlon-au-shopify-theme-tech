@@ -1561,7 +1561,7 @@
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "<p>It's [countdown] to Christmas!<\/p>",
-              "countdown_inline": false,
+              "countdown_inline": true,
               "button_title": "",
               "link_url": "https:\/\/decathlon.com.au\/pages\/christmas-gift-ideas",
               "link_title": "",
@@ -1587,10 +1587,20 @@
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
+              "countdown_inline": false,
               "button_title": "",
               "link_url": "https:\/\/decathlon.com.au\/collections\/40-off-kayaks-sups",
               "link_title": "",
-              "link_new_window": false
+              "link_new_window": false,
+              "countdown_date": "",
+              "countdown_time": "",
+              "countdown_position": "flex-start,flex-start",
+              "countdown_bold": false,
+              "countdown_italic": false,
+              "countdown_underline": false,
+              "countdown_colour": "#FFFFFF",
+              "countdown_font_size_m": "1.75rem",
+              "countdown_font_size_d": "2.75rem"
             }
           },
           "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9": {

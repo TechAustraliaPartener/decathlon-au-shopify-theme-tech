@@ -745,6 +745,10 @@ svg {
   top: 46.192px;
 }
 
+.searchbar-overlay.with-announcement-banner{
+  top: 76.192px;
+}
+
 .de-PageWrap-headerTertiaryControl{
   margin-right: -5px;
   flex: 1;
@@ -768,6 +772,10 @@ svg {
   .searchbar-overlay{
     top: 0;
   }
+  
+  .searchbar-overlay.with-announcement-banner{
+    top: 30px;
+   }
 }
 
 .de-SingleInputForm {
