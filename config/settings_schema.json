@@ -409,6 +409,7 @@
         "type": "text",
         "label": "Bulk Shipping"
       },
+     
       {
         "type": "header",
         "content": "Products slider"

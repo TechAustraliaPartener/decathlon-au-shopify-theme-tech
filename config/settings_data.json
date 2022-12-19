@@ -23,11 +23,12 @@
     "color_footer_bg": "#f7f8f9",
     "color_footer_text": "#1a2a34",
     "color_footer_social_link": "#1a2a34",
-    "logo_use_image": "img-logos",
+    "logo_use_image": "svg-logos",
+    "maximize_logo_space": true,
     "svg_mobile_logo": "2022-10-20-decathlon-logo.svg",
-    "svg_desktop_logo": "logo_small_1.svg",
+    "svg_desktop_logo": "svg_1.svg",
     "img_mobile_logo": "shopify:\/\/shop_images\/2022-10-20-decathlon-logo.png",
-    "img_desktop_logo": "shopify:\/\/shop_images\/decathlon-vector-logo_483dc4b8-d6af-4ddb-a4b5-61a61c578910.png",
+    "img_desktop_logo": "shopify:\/\/shop_images\/Decathlon_ribbon_converted_png.png",
     "enable_meet_decathlon": false,
     "header_support_label": "Help",
     "header_support_link": "https:\/\/decathlon.com.au\/pages\/contact-and-help",
@@ -45,6 +46,7 @@
     "product_shipping_text": "Australia Wide Delivery* (3-4 day shipping)",
     "product_bulk_returns_text": "Lifetime Returns For Members*",
     "product_bulk_shipping_text": "Australia Wide Delivery",
+    "product_expand_inventory_availability": true,
     "autoplay_feature_product_carousel_speed": 5,
     "autoplay_feature_product_carousel_delay": 2,
     "show_associated_products_carousel_on_product_page": true,
@@ -1598,7 +1600,7 @@
               "countdown_bold": false,
               "countdown_italic": false,
               "countdown_underline": false,
-              "countdown_colour": "#FFFFFF",
+              "countdown_colour": "#ffffff",
               "countdown_font_size_m": "1.75rem",
               "countdown_font_size_d": "2.75rem"
             }
@@ -1617,7 +1619,7 @@
               "link_url": "https:\/\/decathlon.com.au\/pages\/delivery-click-and-collect",
               "link_title": "",
               "link_new_window": false,
-              "countdown_date": "2022-12-15",
+              "countdown_date": "2022-12-19",
               "countdown_time": "22:00",
               "countdown_position": "flex-start,flex-end",
               "countdown_bold": true,
@@ -2539,10 +2541,10 @@
             "settings": {
               "countdown_date": "2022-12-25",
               "countdown_time": "00:30",
-              "message": "<p>Over 1000+ products at up to 70% off - <a href=\"https:\/\/decathlon.com.au\/collections\/decathlon-clearance\" title=\"https:\/\/decathlon.com.au\/collections\/decathlon-clearance\"><strong>SHOP NOW<\/strong><\/a><\/p>",
+              "message": "<p>[countdown] Over 1000+ products at up to 70% off - <a href=\"https:\/\/decathlon.com.au\/collections\/decathlon-clearance\" title=\"https:\/\/decathlon.com.au\/collections\/decathlon-clearance\"><strong>SHOP NOW<\/strong><\/a><\/p>",
               "post_message": "",
               "url": "",
-              "bg_colour": "#e20c18",
+              "bg_colour": "#ff0000",
               "font_colour": "#ffffff",
               "scroll_speed": "scroll-normal"
             }
@@ -2569,7 +2571,7 @@
           "show_annoucement_bar": true,
           "rotation_delay": "5000",
           "rotation_speed": "600",
-          "default_bg": "#ffffff",
+          "default_bg": "rgba(0,0,0,0)",
           "default_font": "#ffffff"
         }
       }
