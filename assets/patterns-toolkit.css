@@ -255,6 +255,11 @@ svg {
     margin-left: 0;
     margin-right: 0;
     padding-right: 13.504px;
+    height: 46.192px;
+}
+
+.de-MenuBar-action--primary .de-MenuBar-icon {
+    height: 46.192px;
 }
 
 @media (min-width: 40em) {
@@ -495,7 +500,8 @@ svg {
 .de-PageWrap-logo {
     align-items: center;
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
+    max-width: 180px;;
     /* flex: 0 1 185.75097px; */
 }
 .de-PageWrap-logoWrap {

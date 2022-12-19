@@ -61,12 +61,10 @@
   content: "";
   display: table;
 } 
-
 .large--hide .de-u-textBold.de-u-textCapitalize {
   max-width: 30em;
-
   @media screen and (max-width: 480px) {
-    max-width: 12em;
+    max-width: 9em;
   }
 
   @media screen and (max-width: 350px) {
