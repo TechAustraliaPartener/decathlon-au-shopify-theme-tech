@@ -12,6 +12,11 @@
 
 {%- assign product_variants = product.variants -%}
 
+{% assign colour_option = product.options_with_values | where: "name", "Color" | first %}
+{% assign filtered_variants_string = '' %}
+
+{% assign total_colors = colour_option.values.size %}
+
 {% comment %}
 
 Product Tile
@@ -42,13 +47,13 @@ Example:
       {% include 'elements-product-flag' with class: 'de-u-textShrink2 de-u-md-Grow1' %}
 
       {% comment %} Product Image(s) {% endcomment %}
-      {%- if product_variants.size < 5 -%}
+      {%- if total_colors < 5 -%}
         {%- assign hide_thumbnail_nav_arrows_class = '--hide-thumbnail-nav-arrows' -%}
       {%- else -%}
         {%- assign hide_thumbnail_nav_arrows_class = '' -%}
       {%- endif -%}
 
-      {%- if product_variants.size == 1 -%}
+      {%- if total_colors == 1 -%}
         {%- assign hide_nav_arrows_class = '--hide-main-nav-arrows' -%}
       {%- else -%}
         {%- assign hide_nav_arrows_class = '' -%}
@@ -63,24 +68,27 @@ Example:
         >
           <div class="splide__track">
             <ul class="splide__list">
-              {%- for product_variant in product_variants -%}
-              {%- assign not_available_class = '' -%}
+              {% for color in colour_option.values %}
+                {% assign last_color_variant = product_variants | where: "option1", color | last %}
 
-              {%- unless product_variant.available -%}
-                {%- assign not_available_class = '--variant-not-available' -%}
-              {%- endunless -%}
+                {%- assign not_available_class = '' -%}
 
-              <li class="splide__slide">
-                <a href="{{ product_variant.url }}">
-                  {% assign alt = product_variant.first_available_variant.image.alt %}
-                  <img alt="{% include 'func-extract-alt-copy' with alt %}"
-                    class=""
-                    src="{% if product_variant.first_available_variant.image %}{{ product_variant.first_available_variant.image | img_url: 'large' }}{% else %}{{ product_variant.featured_image | img_url: 'large' }}{% endif %}"
-                    data-gtm-delegate="child" data-gtm-event="{{ data_gtm_event }}" data-gtm-id="Hero Image | {{ product_variant.url }}"
-                    data-gtm-category="{{ data_gtm_category }}">
-                </a>
-              </li>
-              {%- endfor -%}
+                {%- unless last_color_variant.available -%}
+                  {%- assign not_available_class = '--variant-not-available' -%}
+                {%- endunless -%}
+  
+                <li class="splide__slide">
+                  
+                  <a href="{{ last_color_variant.url }}">
+                    {% assign alt = last_color_variant.image.alt %}
+                    <img alt="{% include 'func-extract-alt-copy' with alt %}"
+                      class="{{not_available_class}}"
+                      src="{% if last_color_variant.first_available_variant.image %}{{ last_color_variant.first_available_variant.image | img_url: 'large' }}{% else %}{{ last_color_variant.featured_image | img_url: 'large' }}{% endif %}"
+                      data-gtm-delegate="child" data-gtm-event="{{ data_gtm_event }}" data-gtm-id="Hero Image | {{ last_color_variant.url }}"
+                      data-gtm-category="{{ data_gtm_category }}">
+                  </a>
+                </li>
+              {% endfor %}
             </ul>
           </div>
 
@@ -101,30 +109,37 @@ Example:
 
           {%- assign thumbs_less_max_class = '' -%}
 
-        {%- if product_variants.size < 4-%}
+        {%- if total_colors < 4-%}
           {%- assign thumbs_less_max_class = ' --thumbs-less-than-max' -%}
         {%- endif -%}
         
         <section
           id="thumbs-carousel-{{index}}"
           class="thumbnail-carousel splide {{thumbs_less_max_class}}"
-          data-variants-count="{{product_variants.size}}"
+          data-variants-count="{{total_colors}}"
         >
           <div class="splide__track">
             <ul class="splide__list">
-              {%- for product_variant in product_variants -%}
-              {%- unless product_variant.available -%}
-                {%- assign not_available_class = '--variant-not-available' -%}
-              {%- endunless -%}
-              <li class="splide__slide {{not_available_class}}">
-                {% assign alt = product_variant.first_available_variant.image.alt %}
-                <img alt="{% include 'func-extract-alt-copy' with alt %}"
-                  class=""
-                  src="{% if product_variant.first_available_variant.image %}{{ product_variant.first_available_variant.image | img_url: 'x50' }}{% else %}{{ product_variant.featured_image | img_url: 'x50' }}{% endif %}"
-                  data-gtm-delegate="child" data-gtm-event="{{ data_gtm_event }}" data-gtm-id="Hero Image | {{ product_variant.url }}"
-                  data-gtm-category="{{ data_gtm_category }}">
-              </li>
-              {%- endfor -%}
+
+              {% for color in colour_option.values %}
+                {% assign last_color_variant = product_variants | where: "option1", color | last %}
+
+                {%- assign not_available_class = '' -%}
+
+                {%- unless last_color_variant.available -%}
+                  {%- assign not_available_class = '--variant-not-available' -%}
+                {%- endunless -%}
+
+                <li class="splide__slide">
+                  
+                  {% assign alt = last_color_variant.image.alt %}
+                  <img alt="{% include 'func-extract-alt-copy' with alt %}"
+                    class="{{not_available_class}}"
+                    src="{% if last_color_variant.first_available_variant.image %}{{ last_color_variant.first_available_variant.image | img_url: 'x50' }}{% else %}{{ last_color_variant.featured_image | img_url: 'x50' }}{% endif %}"
+                    data-gtm-delegate="child" data-gtm-event="{{ data_gtm_event }}" data-gtm-id="Hero Image | {{ last_color_variant.url }}"
+                    data-gtm-category="{{ data_gtm_category }}">
+                </li>
+              {% endfor %}
             </ul>
           </div>
         </section>
