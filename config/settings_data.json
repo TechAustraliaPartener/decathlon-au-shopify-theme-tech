@@ -2348,6 +2348,7 @@
       },
       "163487525380dd83d2": {
         "type": "featured_collection",
+        "disabled": true,
         "settings": {
           "title": "Christmas Savings | 40% OFF Selected Surfboards and Bodyboards",
           "section_collection": "40-off-selected-surfboards-and-bodyboards"
@@ -2355,6 +2356,7 @@
       },
       "16375487170499d43e": {
         "type": "featured_collection",
+        "disabled": true,
         "settings": {
           "title": "Christmas Savings | 40% OFF Kayaks & SUPs",
           "section_collection": "40-off-kayaks-sups"
@@ -2406,6 +2408,7 @@
       },
       "1650950354346fb7a1": {
         "type": "featured_collection",
+        "disabled": true,
         "settings": {
           "title": "Christmas Savings | 40% OFF Selected Tents",
           "section_collection": "40-off-selected-tents"
@@ -2413,6 +2416,7 @@
       },
       "16509507269dac2990": {
         "type": "featured_collection",
+        "disabled": true,
         "settings": {
           "title": "Price Drop Deals!",
           "section_collection": "price-drop"
@@ -2420,6 +2424,7 @@
       },
       "1650960580e9623e99": {
         "type": "featured_collection",
+        "disabled": true,
         "settings": {
           "title": "Christmas Savings | 40% OFF Selected Sun Protective Clothing",
           "section_collection": "40-off-selected-sun-protective-clothing"
@@ -2427,6 +2432,7 @@
       },
       "165115029729e3ba5b": {
         "type": "featured_collection",
+        "disabled": true,
         "settings": {
           "title": "Christmas Savings | 40%  OFF Surf Ponchos & Towels",
           "section_collection": "40-off-surf-ponchos-towels"
@@ -2434,6 +2440,7 @@
       },
       "1651153473715f6dc1": {
         "type": "featured_collection",
+        "disabled": true,
         "settings": {
           "title": "Trending Christmas Gift Ideas",
           "section_collection": "christmas-gift-ideas"
@@ -2574,6 +2581,55 @@
           "default_bg": "rgba(0,0,0,0)",
           "default_font": "#ffffff"
         }
+      },
+      "97e56cd8-c60e-48bb-b4fa-bab66af26bc9": {
+        "type": "six-tile-products",
+        "settings": {
+          "title": "Trending Christmas Gift Ideas",
+          "section_collection": "christmas-gift-ideas"
+        }
+      },
+      "dbb52da8-34db-4d1e-b30f-ccf0869094c2": {
+        "type": "six-tile-products",
+        "settings": {
+          "title": "Christmas Savings | 40% OFF Selected Tents",
+          "section_collection": "40-off-selected-tents"
+        }
+      },
+      "4b57c2bd-fed0-449b-ba34-557cb099807b": {
+        "type": "six-tile-products",
+        "settings": {
+          "title": "Christmas Savings | 40% OFF Kayaks & SUPs",
+          "section_collection": "40-off-kayaks-sups"
+        }
+      },
+      "d7e1c82a-92ec-49d9-84cb-0c0c9e0d9869": {
+        "type": "six-tile-products",
+        "settings": {
+          "title": "Christmas Savings | 40% OFF Selected Surfboards and Bodyboards",
+          "section_collection": "40-off-selected-surfboards-and-bodyboards"
+        }
+      },
+      "fb4d9836-cc8f-46f6-8713-66bfc2d766d6": {
+        "type": "six-tile-products",
+        "settings": {
+          "title": "Christmas Savings | 40%  OFF Surf Ponchos & Towels",
+          "section_collection": "40-off-surf-ponchos-towels"
+        }
+      },
+      "e6c1017d-62e5-4952-8278-459984dc8b4c": {
+        "type": "six-tile-products",
+        "settings": {
+          "title": "Christmas Savings | 40% OFF Selected Sun Protective Clothing",
+          "section_collection": "40-off-selected-sun-protective-clothing"
+        }
+      },
+      "bb05585c-9a5e-4a51-b887-208b7f7cad3d": {
+        "type": "six-tile-products",
+        "settings": {
+          "title": "Price Drop Deals!",
+          "section_collection": "price-drop"
+        }
       }
     },
     "content_for_index": [
@@ -2589,7 +2645,14 @@
       "1650960580e9623e99",
       "1642116157c0ce923f",
       "16509507269dac2990",
-      "166270596352f8a275"
+      "166270596352f8a275",
+      "97e56cd8-c60e-48bb-b4fa-bab66af26bc9",
+      "dbb52da8-34db-4d1e-b30f-ccf0869094c2",
+      "4b57c2bd-fed0-449b-ba34-557cb099807b",
+      "d7e1c82a-92ec-49d9-84cb-0c0c9e0d9869",
+      "fb4d9836-cc8f-46f6-8713-66bfc2d766d6",
+      "e6c1017d-62e5-4952-8278-459984dc8b4c",
+      "bb05585c-9a5e-4a51-b887-208b7f7cad3d"
     ]
   },
   "presets": {
