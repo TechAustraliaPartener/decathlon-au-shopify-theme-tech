@@ -10001,8 +10001,14 @@ html {
         color: #1e1e1e;
         white-space: normal;
         overflow: unset;
-        margin: 0 0 0.5em;
+        margin: 0;
         font-family: avalonmedium;
+        display: -webkit-box;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: break-word;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
 
         &::hover {
           color: #47a7e5;
@@ -10083,6 +10089,14 @@ html {
       padding-top: 10px;
       text-align: left;
       margin-top: 0;
+      min-height: 90px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      @media screen and (min-width: 768px) {
+        min-height: 80px;
+      
+      }
 
       .de-StarRating {
         background-size: auto 100%;
@@ -10147,7 +10161,7 @@ html {
     top: 6px;
     left: 0;
     right: auto;
-    font-size: 0.75em !important;
+    font-size: 14px !important;
     font-family: avalonmedium,Helvetica Neue,Helvetica,Arial,sans-serif;
     font-weight: 400;
     line-height: 1.2;

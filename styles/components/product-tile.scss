@@ -66,6 +66,36 @@
 	position: relative
 }
 
+.de-ProductTileCarousel-item .de-ProductTile-title {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  white-space: normal;
+  font-size: 16px !important;
+}
+
+.de-ProductTile-info{
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    min-height: 100px;
+    width: 100%;
+}
+.de-ProductTile-info  .de-u-linkClean,
+.de-ProductTile-info .de-ProductTile-header{
+  width: 100%;
+}
+@media (min-width: $breakpoint-md) {
+  .de-ProductTile-info{
+    min-height: 120px;
+
+  }
+}
+
 .de-productTile-top-container .de-RatingContainer {
   position: relative;
   z-index: 2;
