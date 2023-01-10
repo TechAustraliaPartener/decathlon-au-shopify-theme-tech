@@ -3,6 +3,9 @@
 {% assign brand_logo_prefix = 'assets-logos-brands-' %}
 {% assign brand_logo_name = product.vendor | downcase | handleize | remove: "-" %}
 {% assign brand_logo_filename = brand_logo_prefix | append: brand_logo_name %}
+
+
+
 {% comment %}
   Notes for use of brand_logo_filename:
   The brand_logo_name assignment uses the liquid filter handleize to remove
@@ -29,6 +32,8 @@
 {% capture logo %}
 {% if product.vendor != no_vendor_testing and
       product.vendor != no_vendor_production %}
+
+
 {% include brand_logo_filename, 
   class: class,
   data_gtm_event: data_gtm_event,
@@ -39,7 +44,6 @@
 %}
 {% endif %}
 {% endcapture %}
-
 
 <div class="sub-brand-container">
   <a href="/{{ brand_logo_handle }}" class="sub-brand-link">
