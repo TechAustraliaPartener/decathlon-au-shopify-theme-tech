@@ -5,6 +5,32 @@ This is Decathlon's shopify theme changelog.
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - For guidance on the format of the changelog, please visit [the changelog guide documentation in clickup](https://app.clickup.com/2702900/v/dc/2jfhm-1108).
 
+
+### [`1.20.0`] - 2023-01-10 - UAT - December Monthly Deployment - 860pa8fdq
+## Added
+- [3f242y9 - Implement GTM following Sparro's suggestion](https://github.com/DecathlonDigitalAU/decathlon-au-shopify-theme/commit/7ddcac3c14c475b731ee6dce2dfbfeb005cd83db)
+- 3cqpw01 - Add countdown timer to hero banner
+- 3xh4dj5 - Add Announcement Bar above Header
+- 3rj60pj - Create a 3 tile content section on the Home page
+- 3tmnmye - Create a 6-tile section using the new product tile
+- 3q8kcw4 - Add a tick mark over the selected variant
+- 3vyx6rp - Add spinner and message for endless scroll
+- 3wg6uac - Create New Product Tile
+## Changed
+- [866957mkp - Move timing of pseudo click on after TOMIT load](https://github.com/DecathlonDigitalAU/decathlon-au-shopify-theme/commit/6b1d4dc2dc3109e508be84a66da31569a70daa5a)
+- [860pap7q0 - Once a postcode has been entered the inventory availability section it should be opened by default on subsequent product pages](https://github.com/DecathlonDigitalAU/decathlon-au-shopify-theme/commit/6b1d4dc2dc3109e508be84a66da31569a70daa5a)
+- 865bakzfv - Update the header to support a logo display with no padding
+- 3vyx4r4 - Align Prices and Product Titles of Product Tiles
+- 865bamjag - Remove orange flash when Announcement Bar loads
+- 3q2yjqj - Product Page updates
+- 3wg7432 - Update Frequently Bought With and Recently Viewed mechanics to use the new product tile
+- 38zk56f - General Styling & Formatting Updates
+- 3pqjugv - Header updates
+- 3px8265 - Search and search results preview box updates
+
+### [`1.19.5`] - 2022-12-23 - Hotfix
+- [865bauwt1 - Hotfix - Increase maxPages to 99 of pagination for indexing issue on huge product collection results](https://github.com/DecathlonDigitalAU/decathlon-au-shopify-theme/commit/a9cac6b895c58118eb7f0587bd0f26ec1e23ea0f)
+
 ### [`1.19.4`] - 2022-11-08 - Reconciliation - d02a88f
 - [production download config settings](https://github.com/DecathlonDigitalAU/decathlon-au-shopify-theme/commit/d02a88fcfb82b873c61904fc02b755959e9001de)
 ### [`1.19.3`] - 2022-11-03 - Reconciliation - 6b01f7f
