@@ -776,8 +776,12 @@
     } else {
       $('.ais-pagination').show();
     }
-
+   
     $('.ais-page').addClass('ais-page--loaded');
+    setTimeout(function () {
+      $('#collection-search-preloader--full').addClass('hidden');
+    }, 1500);
+
     $('.ais-facets-button').css('color', '#1c82c3');
     $('.ais-facets').removeClass('ais-facets--loading');
 

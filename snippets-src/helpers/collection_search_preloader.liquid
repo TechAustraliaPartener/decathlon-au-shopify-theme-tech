@@ -1,6 +1,11 @@
 {{ 'collection_search_preloader.scss.css' | asset_url | stylesheet_tag }}
+{% if show_onLoad %}
+  {% assign classes = '--full-preloader' %}
+{% else %}
+  {% assign classes = 'hidden' %}  
+{% endif %}
 
-<div class="ais-preloader-container hidden" id="collection-search-preloader">
+<div class="ais-preloader-container {{classes}}" id="{{id}}">
   <div class="preloader">
     <img class="preloader-gif" src="{{ 'decathlon-loader.gif' | asset_url }}">
     <p class="preloader-copy">

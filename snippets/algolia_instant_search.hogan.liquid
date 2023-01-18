@@ -1,3 +1,7 @@
+{% render 'helpers-collection_search_preloader',
+  show_onLoad: true ,
+  id: "collection-search-preloader--full"
+  %} 
 <div class="ais-page">
   <div class="ais-key-visual">
     <div class="ais-input">
@@ -101,7 +105,10 @@
       <div class="ais-hits-container ais-results-as-block"></div>
     {% render 'helpers-collection_search_last_results' %}  
       
-    {% render 'helpers-collection_search_preloader' %}  
+    {% render 'helpers-collection_search_preloader',
+      show_onLoad: false ,
+      id: "collection-search-preloader"
+      %}  
     </div>
   </div>
 </div>
