@@ -3,6 +3,7 @@
   <section
     class="de-ProductInfoSection de-ProductInfoSection--withBorderTop de-u-md-pad"
     aria-labelledby="Section-faqs"
+    itemscope itemtype="https://schema.org/FAQPage"
   >
     <span
       id="faqs"
@@ -26,10 +27,10 @@
           {% assign a = qanda_item.answers | first %}
           {% assign country = qanda_item.context.country %}
           {% if q and a %}
-            <div class="faq_accordion">
+            <div class="faq_accordion" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
               <div class="faq_accordion_head">
                 <i class="faq_accordion_icon"></i>
-                <h3 class="faq_question de-u-textGrow2">
+                <h3 class="faq_question de-u-textGrow2" itemprop="name">
                   {{ q.content }}
                 </h3>
                 {% if q.author %}
@@ -44,9 +45,9 @@
                 {% endif %}
               </div>
               {% if a %}
-                <div class="faq_accordion_body">
+                <div class="faq_accordion_body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
                   <div class="faq_response_wrapper">
-                    <p class="faq_response">
+                    <p class="faq_response" itemprop="text">
                       {{ a.content }}
                     </p>
 

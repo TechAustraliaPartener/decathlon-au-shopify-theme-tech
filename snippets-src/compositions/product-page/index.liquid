@@ -18,6 +18,21 @@
 
 {% comment %} `product.metafields.global.videos` returns a hash list {% endcomment %}
 {% assign video_hash_list = product.metafields.global.videos %}
+
+{% comment %} 
+{% for video_hash in video_hash_list %}
+  {% assign video_obj = video_hash[1] %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org/",
+    "@type": "VideoObject",
+    "name": "{video_obj.name}",
+    "@id": "http://videolectures.net/iswc2013_guha_tunnel/",
+    "datePublished": "video_obj"
+  }
+  </script>
+{% endfor %} {% endcomment %}
+
 {% comment %} Get a string of all the video IDs {% endcomment %}
 {% capture video_id_string_list %}
   {% for video_hash in video_hash_list  %}
@@ -32,6 +47,7 @@
 
 {% assign product_has_size_chart = false %}
 {% assign product_has_custom_content = false %}
+
 
 {%- for tag in product.tags -%}
   {%- if tag contains 'Model Code: ' -%}
@@ -80,11 +96,13 @@
 {% assign product_info_id = 'product-information' %}
 {% assign product_custom_content_id = 'product-custom-content' %}
 
+{% assign product_rating = product.metafields.ratings.product_rating %}
+{% assign total_review_item_count = product.metafields.reviews.recent_reviews_object.total_item_count | plus: 0 %}
+
 <div
   id="ProductWrap"
   class="timber-activeProduct
     {% if product.options.size < 2 %} product-singleOption{% endif %}">
-
     {% comment %} Get first variant, or deep linked one {% endcomment %}
     {% assign current_variant = product.selected_or_first_available_variant %}
     <div itemscope itemtype="http://schema.org/Product">
@@ -94,6 +112,7 @@
     <div itemprop="brand" itemtype="http://schema.org/Thing" itemscope>
       <meta itemprop="name" content="{{ product.vendor }}" />
     </div>
+
 
     <div class="de-ProductPageTopShelf 
       de-Wrapper
@@ -380,6 +399,16 @@
           Capture to enable inserting content into the drawer
         {% endcomment %}
         {% capture reviews_drawer_content %}
+
+          {% if product_rating %}
+            <div itemprop="aggregateRating"
+            itemscope itemtype="https://schema.org/AggregateRating">
+              <meta itemprop="ratingValue" content="{{product_rating}}" />
+              {% if total_review_item_count %}
+              <meta itemprop="reviewCount" content="{{ total_review_item_count }}" />
+              {% endif %}
+            </div>
+          {% endif %}
           {% include 'compositions-product-page-customer-reviews' %}
         {% endcapture %}
         {% comment %}
