@@ -50,30 +50,7 @@
             "availability" : "http://schema.org/{%- if product.available -%}InStock{%- else -%}OutOfStock{%- endif -%}",
             "price" : "{{ variant.price | divided_by: 100.00 }}",
             "priceCurrency" : "{{ shop.currency }}",
-            "url" : "{{ shop.url }}{{ variant.url }}",
-            "itemOffered" :
-            {
-              "@type" : "Product",
-              {%- if variant_image_urls.size > 0 -%}
-                "image": [
-                  "{{ variant_image_urls | join: '","' }}"
-                ],
-              {%- endif -%}
-              "name" : "{{ product.title | escape }} - {{ variant.title | escape }}",
-              {%- if variant.sku != blank -%}
-                "sku": "{{ variant.sku }}",
-              {%- endif -%}
-              {%- if variant.weight != blank -%}
-                "weight": {
-                  "@type": "QuantitativeValue",
-                  {%- if variant.weight_unit != blank -%}
-                    "unitCode": "{{ variant.weight_unit }}",
-                  {%- endif -%}
-                  "value": "{{ variant.weight | weight_with_unit: variant.weight_unit }}"
-                },
-              {%- endif -%}
-              "url": "{{ shop.url }}{{ variant.url }}"
-            }
+            "url" : "{{ shop.url }}{{ variant.url }}"
           }{%- unless forloop.last -%},{%- endunless -%}
         {%- endfor -%}
       ]
