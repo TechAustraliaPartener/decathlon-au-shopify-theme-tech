@@ -20,15 +20,14 @@
     "color_borders": "#e5e5e5",
     "color_body_bg": "#ffffff",
     "color_body_text": "#1f1f1f",
-    "color_footer_bg": "#1f1f1f",
-    "color_footer_text": "#aabdb9",
-    "color_footer_social_link": "#bbbbbb",
-    "logo_use_image": "svg-logos",
-    "maximize_logo_space": true,
+    "color_footer_bg": "#f7f8f9",
+    "color_footer_text": "#1a2a34",
+    "color_footer_social_link": "#1a2a34",
+    "logo_use_image": "img-logos",
+    "maximize_logo_space": false,
     "svg_mobile_logo": "2022-10-20-decathlon-logo.svg",
     "svg_desktop_logo": "xmas_new_option3-01.svg",
     "img_mobile_logo": "shopify:\/\/shop_images\/2022-10-20-decathlon-logo.png",
-    "img_desktop_logo": "shopify:\/\/shop_images\/Untitled-1.jpg",
     "enable_meet_decathlon": false,
     "header_support_label": "Help",
     "header_support_link": "https:\/\/decathlon.com.au\/pages\/contact-and-help",
@@ -55,7 +54,6 @@
     "algolia_size_sorting_order": "3XS,2XS,XS,XS-S,XS\/S,S,S-M,S\/M,M,M-L,M\/L,L,L-XL,L\/XL,XL,2XL,3XL,4XL,5XL",
     "show_recently_viewed_carousel_on_collection_page": false,
     "show_recently_viewed_carousel_on_search_page": false,
-    "footer_nav_menu": "test-menu",
     "footer_slider_products": true,
     "footer_slider_products_title": "",
     "footer_slider_products_collection": "trending-products",
@@ -363,7 +361,7 @@
             "settings": {
               "name": "Sydney EWH",
               "title": "Sydney EWH",
-              "online_inventory_source": true,
+              "online_inventory_source": false,
               "enable_c_c": false,
               "duplicate": "",
               "test_mode": false,
@@ -394,7 +392,7 @@
               "hours_5_close": "2100",
               "hours_6_open": "0900",
               "hours_6_close": "2100",
-              "announcement": "<p><\/p>",
+              "announcement": "",
               "email_confirmation_message": "",
               "tag_exclusion_1": "",
               "tag_exclusion_message_1": "",
@@ -1550,6 +1548,57 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
+          "748c6a7e-732f-486d-a653-eb425a670bc5": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Desktop_banner_1440_x_789px.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Mobile_banner_478_x_300px.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "countdown_inline": false,
+              "button_title": "",
+              "link_url": "https:\/\/decathlon.com.au\/pages\/game-set-match",
+              "link_title": "",
+              "link_new_window": false,
+              "countdown_date": "",
+              "countdown_time": "",
+              "countdown_position": "flex-start,flex-start",
+              "countdown_bold": false,
+              "countdown_italic": false,
+              "countdown_underline": false,
+              "countdown_colour": "#ffffff",
+              "countdown_font_size_m": "1.75rem",
+              "countdown_font_size_d": "2.75rem"
+            }
+          },
+          "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9": {
+            "type": "slide",
+            "disabled": true,
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Desktop_banner_1440_x_789px_92a3c39e-36cd-4006-aa65-c6ece026729f.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Mobile_banner_478_x_300px_e269a43d-22e7-461d-828b-1a338b1e3509.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "countdown_inline": false,
+              "button_title": "",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/lunar-year-sale",
+              "link_title": "",
+              "link_new_window": false,
+              "countdown_date": "",
+              "countdown_time": "",
+              "countdown_position": "flex-start,flex-start",
+              "countdown_bold": false,
+              "countdown_italic": false,
+              "countdown_underline": false,
+              "countdown_colour": "#ffffff",
+              "countdown_font_size_m": "1.75rem",
+              "countdown_font_size_d": "2.75rem"
+            }
+          },
           "e9b4daa6-6eee-441b-b76d-9c3ff012fde9": {
             "type": "slide",
             "settings": {
@@ -1559,14 +1608,50 @@
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
+              "countdown_inline": false,
               "button_title": "",
               "link_url": "https:\/\/decathlon.com.au\/pages\/new-year-new-gear",
               "link_title": "",
-              "link_new_window": false
+              "link_new_window": false,
+              "countdown_date": "",
+              "countdown_time": "",
+              "countdown_position": "flex-start,flex-start",
+              "countdown_bold": false,
+              "countdown_italic": false,
+              "countdown_underline": false,
+              "countdown_colour": "#ffffff",
+              "countdown_font_size_m": "1.75rem",
+              "countdown_font_size_d": "2.75rem"
+            }
+          },
+          "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Desktop_banner_1440_x_789px_74748b18-2813-4472-a7cd-631114bb680f.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Mobile_banner_478_x_300px_741a3d49-936a-4805-9ccf-28ce8c9b6725.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "countdown_inline": false,
+              "button_title": "",
+              "link_url": "https:\/\/decathlon.com.au\/pages\/back-to-school",
+              "link_title": "",
+              "link_new_window": false,
+              "countdown_date": "",
+              "countdown_time": "",
+              "countdown_position": "flex-start,flex-start",
+              "countdown_bold": false,
+              "countdown_italic": false,
+              "countdown_underline": false,
+              "countdown_colour": "#ffffff",
+              "countdown_font_size_m": "1.75rem",
+              "countdown_font_size_d": "2.75rem"
             }
           },
           "145847d3-2db7-45f7-8ef6-38db22a4156a": {
             "type": "slide",
+            "disabled": true,
             "settings": {
               "banner_bg_image": "shopify:\/\/shop_images\/price_drop-Home-page-banner.jpg",
               "slide_bg_position": "75% -50px",
@@ -1574,10 +1659,20 @@
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
+              "countdown_inline": false,
               "button_title": "",
               "link_url": "https:\/\/decathlon.com.au\/collections\/price-drop",
               "link_title": "",
-              "link_new_window": false
+              "link_new_window": false,
+              "countdown_date": "",
+              "countdown_time": "",
+              "countdown_position": "flex-start,flex-start",
+              "countdown_bold": false,
+              "countdown_italic": false,
+              "countdown_underline": false,
+              "countdown_colour": "#ffffff",
+              "countdown_font_size_m": "1.75rem",
+              "countdown_font_size_d": "2.75rem"
             }
           },
           "623e46b1-2abc-4e5b-8ceb-3ca5e428998a": {
@@ -1589,10 +1684,20 @@
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
+              "countdown_inline": false,
               "button_title": "",
               "link_url": "https:\/\/decathlon.com.au\/pages\/decathlon-artengo",
               "link_title": "",
-              "link_new_window": false
+              "link_new_window": false,
+              "countdown_date": "",
+              "countdown_time": "",
+              "countdown_position": "flex-start,flex-start",
+              "countdown_bold": false,
+              "countdown_italic": false,
+              "countdown_underline": false,
+              "countdown_colour": "#ffffff",
+              "countdown_font_size_m": "1.75rem",
+              "countdown_font_size_d": "2.75rem"
             }
           },
           "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b": {
@@ -1604,10 +1709,20 @@
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
+              "countdown_inline": false,
               "button_title": "",
               "link_url": "https:\/\/decathlon.com.au\/collections\/swimming-goggles?utm_source=homepage&utm_medium=onsite&utm_campaign=ClearerUnderWater&utm_id=&utm_content=HeroBanner",
               "link_title": "",
-              "link_new_window": false
+              "link_new_window": false,
+              "countdown_date": "",
+              "countdown_time": "",
+              "countdown_position": "flex-start,flex-start",
+              "countdown_bold": false,
+              "countdown_italic": false,
+              "countdown_underline": false,
+              "countdown_colour": "#ffffff",
+              "countdown_font_size_m": "1.75rem",
+              "countdown_font_size_d": "2.75rem"
             }
           },
           "0e3f284b-4302-4200-8eb1-f98ce34415af": {
@@ -1619,58 +1734,20 @@
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
+              "countdown_inline": false,
               "button_title": "",
               "link_url": "shopify:\/\/pages\/decathlon-membership",
               "link_title": "",
-              "link_new_window": false
-            }
-          },
-          "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb": {
-            "type": "slide",
-            "disabled": true,
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Dunlop_AO_Promotion_HP_Desk.png",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Dunlop_AO_Promotion_HP_Mobile.png",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/products\/dunlop-aus-open-tennis-ball-4?variant=40918042574959",
-              "link_title": "",
-              "link_new_window": false
-            }
-          },
-          "748c6a7e-732f-486d-a653-eb425a670bc5": {
-            "type": "slide",
-            "disabled": true,
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/40__off_Decathlon_Surfboards_and_Bodyboards_1440_x_789px_56aa5514-a430-44ed-b351-b3fdcc04ada8.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/40__off_Decathlon_Surfboards_and_Bodyboards_478_x_300px.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/collections\/40-off-kayaks-sups",
-              "link_title": "",
-              "link_new_window": false
-            }
-          },
-          "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9": {
-            "type": "slide",
-            "disabled": true,
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_cda70b83-35a5-455a-8d7b-d2abe9fa1a26.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_38c39369-6c40-4fd0-b550-1fdf0390ab75.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/pages\/delivery-click-and-collect",
-              "link_title": "",
-              "link_new_window": false
+              "link_new_window": false,
+              "countdown_date": "",
+              "countdown_time": "",
+              "countdown_position": "flex-start,flex-start",
+              "countdown_bold": false,
+              "countdown_italic": false,
+              "countdown_underline": false,
+              "countdown_colour": "#ffffff",
+              "countdown_font_size_m": "1.75rem",
+              "countdown_font_size_d": "2.75rem"
             }
           },
           "79522152-c757-4b60-a1be-2d1e49198982": {
@@ -1683,10 +1760,20 @@
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
+              "countdown_inline": false,
               "button_title": "",
               "link_url": "https:\/\/decathlon.com.au\/products\/decathlon-australia-physical-gift-card?",
               "link_title": "",
-              "link_new_window": false
+              "link_new_window": false,
+              "countdown_date": "",
+              "countdown_time": "",
+              "countdown_position": "flex-start,flex-start",
+              "countdown_bold": false,
+              "countdown_italic": false,
+              "countdown_underline": false,
+              "countdown_colour": "#ffffff",
+              "countdown_font_size_m": "1.75rem",
+              "countdown_font_size_d": "2.75rem"
             }
           },
           "579ee1c6-8cb9-4350-95e5-fb83a1397d90": {
@@ -1699,10 +1786,20 @@
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
+              "countdown_inline": false,
               "button_title": "",
               "link_url": "https:\/\/decathlon.com.au\/products\/decathlon-australia-physical-gift-card?",
               "link_title": "Gift Your Loved One a Decathlon Gift Card",
-              "link_new_window": false
+              "link_new_window": false,
+              "countdown_date": "",
+              "countdown_time": "",
+              "countdown_position": "flex-start,flex-start",
+              "countdown_bold": false,
+              "countdown_italic": false,
+              "countdown_underline": false,
+              "countdown_colour": "#ffffff",
+              "countdown_font_size_m": "1.75rem",
+              "countdown_font_size_d": "2.75rem"
             }
           },
           "85c47718-39c5-4752-aa58-3e34ef8c0a97": {
@@ -1715,22 +1812,32 @@
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
+              "countdown_inline": false,
               "button_title": "",
               "link_url": "shopify:\/\/collections\/cycling-clothing-bike-accessories",
               "link_title": "Shop $20 off Cycling Clothing & Accessories",
-              "link_new_window": false
+              "link_new_window": false,
+              "countdown_date": "",
+              "countdown_time": "",
+              "countdown_position": "flex-start,flex-start",
+              "countdown_bold": false,
+              "countdown_italic": false,
+              "countdown_underline": false,
+              "countdown_colour": "#ffffff",
+              "countdown_font_size_m": "1.75rem",
+              "countdown_font_size_d": "2.75rem"
             }
           }
         },
         "block_order": [
+          "748c6a7e-732f-486d-a653-eb425a670bc5",
+          "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9",
           "e9b4daa6-6eee-441b-b76d-9c3ff012fde9",
+          "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb",
           "145847d3-2db7-45f7-8ef6-38db22a4156a",
           "623e46b1-2abc-4e5b-8ceb-3ca5e428998a",
           "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b",
           "0e3f284b-4302-4200-8eb1-f98ce34415af",
-          "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb",
-          "748c6a7e-732f-486d-a653-eb425a670bc5",
-          "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9",
           "79522152-c757-4b60-a1be-2d1e49198982",
           "579ee1c6-8cb9-4350-95e5-fb83a1397d90",
           "85c47718-39c5-4752-aa58-3e34ef8c0a97"
@@ -2223,6 +2330,7 @@
       },
       "163487525380dd83d2": {
         "type": "featured_collection",
+        "disabled": true,
         "settings": {
           "title": "Be a Champion on court with our Tennis range",
           "section_collection": "tennis"
@@ -2230,6 +2338,7 @@
       },
       "16375487170499d43e": {
         "type": "featured_collection",
+        "disabled": true,
         "settings": {
           "title": "New Year, New Gear!",
           "section_collection": "new-year-new-gear"
@@ -2237,9 +2346,10 @@
       },
       "1642116157c0ce923f": {
         "type": "featured_collection",
+        "disabled": true,
         "settings": {
-          "title": "New Year, Start Running",
-          "section_collection": "running-gear-clothes"
+          "title": "Hop into the New Year with Great deals!",
+          "section_collection": "lunar-year-sale"
         }
       },
       "product_page_bnpl": {
@@ -2280,9 +2390,10 @@
       },
       "1650950354346fb7a1": {
         "type": "featured_collection",
+        "disabled": true,
         "settings": {
-          "title": "Suit up, It's Swimming Time!",
-          "section_collection": "swimming"
+          "title": "Gear Up for Australia Day!",
+          "section_collection": "beach-specials"
         }
       },
       "16509507269dac2990": {
@@ -2295,6 +2406,7 @@
       },
       "1650960580e9623e99": {
         "type": "featured_collection",
+        "disabled": true,
         "settings": {
           "title": "Let's Go Camping",
           "section_collection": "camping"
@@ -2312,8 +2424,8 @@
         "type": "featured_collection",
         "disabled": true,
         "settings": {
-          "title": "Last Minute Trending Christmas Gift Ideas",
-          "section_collection": "christmas-gift-ideas"
+          "title": "Back to School Sports Essentials",
+          "section_collection": "back-to-school-essentials"
         }
       },
       "166270596352f8a275": {
@@ -2413,8 +2525,23 @@
       "banner-announcements": {
         "type": "banner-announcements",
         "blocks": {
+          "b706be1c-0750-47c9-b0f1-8278eddb14fd": {
+            "type": "announcement_messages",
+            "disabled": true,
+            "settings": {
+              "countdown_date": "",
+              "countdown_time": "",
+              "message": "<p>Find out if you're eligible for 3 x $50 Back to School NSW Vouchers - <a href=\"https:\/\/decathlon.com.au\/pages\/nsw-back-to-school-vouchers#\" target=\"_blank\" title=\"https:\/\/decathlon.com.au\/pages\/nsw-back-to-school-vouchers#\">Learn More<\/a><\/p>",
+              "post_message": "",
+              "url": "",
+              "bg_colour": "#1c82c3",
+              "font_colour": "#ffffff",
+              "scroll_speed": "scroll-fast"
+            }
+          },
           "543b1783-29d8-4996-80a0-0ad6250c6206": {
             "type": "announcement_messages",
+            "disabled": true,
             "settings": {
               "countdown_date": "",
               "countdown_time": "",
@@ -2425,25 +2552,11 @@
               "font_colour": "#ffffff",
               "scroll_speed": "scroll-normal"
             }
-          },
-          "b706be1c-0750-47c9-b0f1-8278eddb14fd": {
-            "type": "announcement_messages",
-            "disabled": true,
-            "settings": {
-              "countdown_date": "",
-              "countdown_time": "",
-              "message": "<p>Last minute Christmas Shopping?  1 HR Click & Collect Available<\/p>",
-              "post_message": "",
-              "url": "",
-              "bg_colour": "#1c82c3",
-              "font_colour": "#ffffff",
-              "scroll_speed": "scroll-fast"
-            }
           }
         },
         "block_order": [
-          "543b1783-29d8-4996-80a0-0ad6250c6206",
-          "b706be1c-0750-47c9-b0f1-8278eddb14fd"
+          "b706be1c-0750-47c9-b0f1-8278eddb14fd",
+          "543b1783-29d8-4996-80a0-0ad6250c6206"
         ],
         "settings": {
           "show_annoucement_bar": false,
@@ -2452,6 +2565,41 @@
           "default_bg": "#ffffff",
           "default_font": "#ffffff"
         }
+      },
+      "7abea652-1029-4ff5-909f-fb3c9356b961": {
+        "type": "six-tile-products",
+        "settings": {
+          "title": "New Year, New Gear!",
+          "section_collection": "new-year-new-gear"
+        }
+      },
+      "fb0855c8-1628-4f85-b320-abc284df58b7": {
+        "type": "six-tile-products",
+        "settings": {
+          "title": "Back to School Sports Essentials",
+          "section_collection": "back-to-school-essentials"
+        }
+      },
+      "59bd4db6-bdb1-46c5-ab8e-ed6a847dddfe": {
+        "type": "six-tile-products",
+        "settings": {
+          "title": "Be a Champion on court with our Tennis range",
+          "section_collection": "tennis"
+        }
+      },
+      "eebe1a41-f3e2-4f63-8238-9c639f6d6b73": {
+        "type": "six-tile-products",
+        "settings": {
+          "title": "Let's Go Camping",
+          "section_collection": "camping"
+        }
+      },
+      "77b0ebae-ff5d-4180-ac94-8f2d26964b83": {
+        "type": "six-tile-products",
+        "settings": {
+          "title": "Gear Up for Australia Day!",
+          "section_collection": "beach-specials"
+        }
       }
     },
     "content_for_index": [
@@ -2459,13 +2607,18 @@
       "163107170023281063",
       "163107313302287377",
       "16316085202ea5cf79",
-      "1651153473715f6dc1",
       "16375487170499d43e",
+      "7abea652-1029-4ff5-909f-fb3c9356b961",
+      "1651153473715f6dc1",
+      "fb0855c8-1628-4f85-b320-abc284df58b7",
       "1650950354346fb7a1",
+      "77b0ebae-ff5d-4180-ac94-8f2d26964b83",
       "165115029729e3ba5b",
       "163487525380dd83d2",
+      "59bd4db6-bdb1-46c5-ab8e-ed6a847dddfe",
       "1642116157c0ce923f",
       "1650960580e9623e99",
+      "eebe1a41-f3e2-4f63-8238-9c639f6d6b73",
       "16509507269dac2990",
       "166270596352f8a275"
     ]

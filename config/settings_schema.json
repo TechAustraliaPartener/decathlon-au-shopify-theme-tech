@@ -274,7 +274,7 @@
         "type": "image_picker",
         "id": "img_desktop_logo",
         "label": "Custom Desktop image logo",
-        "info": "If no IMG logo is uploaded for Desktop, it will default to display the Decathlon SVG."
+        "info": "Remove the uploaded Custom Desktop image logo to use the default Decathlon Logo SVG."
       },
       {
         "type": "checkbox",
@@ -409,7 +409,6 @@
         "type": "text",
         "label": "Bulk Shipping"
       },
-     
       {
         "type": "header",
         "content": "Products slider"
