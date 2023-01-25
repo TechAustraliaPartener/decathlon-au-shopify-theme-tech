@@ -4,6 +4,7 @@
     {%- assign tile_less_max_class = "--less-than-max" -%}
   {% endif %}
 
+
   <div class="six-tile-products {{ tile_less_max_class }}">
     {% if handles.size > 0  %}
       {%- assign handles_available = 0 -%}
@@ -42,7 +43,9 @@
     {% endif %}
   </div>
 {% else %}
-  {% if products.size > 0 and products.size < 6 %}
+  {% assign available_products = products | where: "available" %}
+  
+  {% if available_products.size > 0 and available_products.size < 6 %}
     {%- assign tile_less_max_class = "--less-than-max" -%}
   {% endif %}
 
@@ -50,9 +53,10 @@
     {%- assign tile_less_max_class = "--less-than-max" -%}
   {% endif %}
 
+
   <div class="six-tile-products {{ tile_less_max_class }}">
-    {% if products.size > 0  %}
-      {% for product in products limit: 6 %}
+    {% if available_products.size > 0  %}
+      {% for product in available_products limit: 6 %}
         {%- if product.available -%}
           <div class="six-tiles-product">
           {% include 'components-product-tile-thumb-carousel',
@@ -80,4 +84,3 @@
     {% endif %}
   </div>
 {% endif %}
-
