@@ -333,13 +333,26 @@ var maxRecentSearchItems = {{ settings.maximum_recent_searches }};
 
     autocomplete.$input.on('focus', function () {
       $backdrop.show();
+      
+      $(this).select();
       // Show recent searches
       displayRecentSearchTerms();
     });
 
 
     autocomplete.$input.on('blur', function () {
+      const numberOfRecentSearchTerms = maxRecentSearchItems;
+      const currentRecentSearchTerms = localStorage.getItem('DecAURecentSearches');
+      let searchTerms;
+
       $backdrop.hide();
+
+
+      if(currentRecentSearchTerms.length >= 1 && numberOfRecentSearchTerms > 0){
+        searchTerms = currentRecentSearchTerms.split('|||');
+
+        autocomplete.$input.autocomplete('val',searchTerms[0]);
+      }
     });
 
 
