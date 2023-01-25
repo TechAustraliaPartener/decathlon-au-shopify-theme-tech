@@ -517,9 +517,12 @@ svg {
 }
 @media (min-width:60em) {
   .de-PageWrap-logo {
-    margin-left: 6.128px
+    margin: 6.128px;
   }
 
+  .logo-link-wrapper.img_logos{
+    padding-right: 3px;
+  }
   .de-PageWrap-logo.maximize-container{
     height: 100%;
   }
@@ -770,6 +773,7 @@ svg {
   .--desktop-only{
     display: block;
     padding-right: 6px;
+    width: 100%;
   }
   .--mobile-only{
     display: none;

@@ -26,7 +26,7 @@
     
     <div class="de-PageWrap-logo {% if settings.maximize_logo_space == true %}maximize-container{% endif %}" itemscope itemtype="http://schema.org/Organization">
       {% if settings.logo_use_image == "svg-logos" %}
-        <a href="/" class="logo-link-wrapper" title="Decathlon">
+        <a href="/" class="logo-link-wrapper svg-logos" title="Decathlon">
           {% if settings.svg_mobile_logo != blank or settings.svg_desktop_logo != blank  %}
             {% if settings.svg_mobile_logo != blank %}
               <img src="{{ settings.svg_mobile_logo | file_url }}" class="--mobile-only" alt="Decathlon logo" />
@@ -46,7 +46,7 @@
         </a>
       {% else %}
         {% if settings.img_mobile_logo != blank or settings.img_desktop_logo != blank  %}
-          <a href="/" class="logo-link-wrapper" title="Decathlon">
+          <a href="/" class="logo-link-wrapper img_logos" title="Decathlon">
           {% if settings.img_mobile_logo != blank %}
             <img src="{{ settings.img_mobile_logo | img_url }}" class="--mobile-only" alt="Decathlon logo" />
           {% endif %}
