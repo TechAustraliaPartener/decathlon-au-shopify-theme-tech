@@ -463,6 +463,11 @@ svg {
         width: 100%;
     }
 }
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .de-PageWrap-subHeader {
+        overflow: auto;
+    }
+}
 .de-PageWrap-headerPrimary {
     background-color: #fff;
     display: flex;
@@ -668,6 +673,13 @@ svg {
 .de-PageWrap-narrowMenuInner {
     height: 100%;
     max-width: 85vw;
+}
+
+@media only screen and (min-width: 768px)  {
+    .de-PageWrap-narrowMenuInner {
+        max-width: 60vw;
+    }
+
 }
 .de-PageWrap-menu.de-is-opening:not(.de-is-open) .de-PageWrap-narrowMenuInner {
     -webkit-transform: translateX(-100%);

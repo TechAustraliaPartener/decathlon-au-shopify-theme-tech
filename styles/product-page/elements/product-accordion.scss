@@ -31,6 +31,25 @@
   padding: 0 1rem;
 }
 
+
+@media screen  and (min-width: 728px) and (max-width: 1024px){
+  .de-Accordion-content, #ProductWrap .de-ProductInfoSection-title,
+  .associated-products-carousel-container .six-tile-products {
+    max-width: 90vw;
+    margin: 0 5vw !important;
+  }
+
+  #reviews-drawer .de-ProductInfoSection-title{
+    margin-left: 0 !important;
+  }
+  .de-ProductPageTopShelf{
+    max-width: 90vw;
+    margin: 0 5vw !important;
+  }
+  .de-ProductMenu .de-MenuBar {
+    margin: 16px 0 !important;
+  }
+}
 /*
  * 1. Conditionally show accordion content when in a drawer
  *    @see scripts/product-page/drawer.js

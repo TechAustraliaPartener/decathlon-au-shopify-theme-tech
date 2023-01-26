@@ -253,7 +253,7 @@
 
 @media screen and (min-width: 768px) {
   .six-tile-products .six-tiles-product{
-    width: 33.33%;
+    width: 30%;
   }
   
   #recently_viewed_products_container.six-tile-products{
@@ -261,6 +261,17 @@
   }
 }
 
+
+@media screen and (min-width: 821px) {
+  .six-tile-products {
+    justify-content: flex-start;
+  }
+  
+  .six-tile-products .six-tiles-product{
+    width: 25%;
+  }
+  
+}
 
 @media screen  and (min-width: 1280px) {
   .six-tile-products {
