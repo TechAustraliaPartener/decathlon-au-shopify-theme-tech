@@ -55,6 +55,12 @@
 
 @media screen and (min-width: 768px) {
   .top_categories_item {
+    width: 30%;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .top_categories_item {
     width: 48.5%;
   }
 }
