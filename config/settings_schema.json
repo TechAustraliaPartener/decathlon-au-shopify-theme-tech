@@ -396,6 +396,18 @@
           }
         ],
         "default": "v1"
+      },
+      {
+        "type": "page",
+        "id": "cc_v1_cart_message",
+        "label": "C&C V1 Cart Content",
+        "info": "Content here are managed on pages created via shogun."
+      },
+      {
+        "type": "page",
+        "id": "cc_v2_cart_message",
+        "label": "C&C V2 Cart Content",
+        "info": "Content here are managed on pages created via shogun."
       }
     ]
   },

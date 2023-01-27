@@ -132,6 +132,19 @@
   {% if cart.item_count > 0 %}
 
     <h1 class="h3 text-center">{{ 'cart.general.title' | t }}</h1>
+
+    {% if settings.click_collect_version == 'v1' %}
+      {% assign page_handle = settings.cc_v1_cart_message.handle %}
+      <div class="cart-info">
+        {{ pages[page_handle].content }}
+      </div>
+    {% else %}
+      {% assign page_handle = settings.cc_v2_cart_message.handle %}
+      <div class="cart-info">
+        {{ pages[page_handle].content }}
+      </div>
+    {% endif %}
+
     {% comment %}
     {% if settings['is_lookbook'] == true %}
       <p class="u-textBold text-center">NOTE: Only Easybreath is available for purchase.</p>
