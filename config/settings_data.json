@@ -54,6 +54,7 @@
     "algolia_size_sorting_order": "3XS,2XS,XS,XS-S,XS\/S,S,S-M,S\/M,M,M-L,M\/L,L,L-XL,L\/XL,XL,2XL,3XL,4XL,5XL",
     "show_recently_viewed_carousel_on_collection_page": false,
     "show_recently_viewed_carousel_on_search_page": false,
+    "footer_nav_menu": "footer",
     "footer_slider_products": true,
     "footer_slider_products_title": "",
     "footer_slider_products_collection": "trending-products",
@@ -2596,6 +2597,7 @@
       },
       "77b0ebae-ff5d-4180-ac94-8f2d26964b83": {
         "type": "six-tile-products",
+        "disabled": true,
         "settings": {
           "title": "Gear Up for Australia Day!",
           "section_collection": "beach-specials"
