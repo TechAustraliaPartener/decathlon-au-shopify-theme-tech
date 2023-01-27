@@ -58,15 +58,18 @@
       [[/ _highlightResult.tags ]]
     </p>
 
+    {% if settings.click_collect_version == 'v1' %}
+      {% if settings.enabled_algolia_shipping_message  %}
+        [[# helpers.getShippingInfo ]]
+        [[/ helpers.getShippingInfo ]]
+      {% endif %}
+      {% if settings.enabled_algolia_cc_message  %}
+        [[# helpers.getClickAndCollectInfo ]]
+        [[/ helpers.getClickAndCollectInfo ]]
+      {% endif %}
+    {% endif %}
 
-    {% if settings.enabled_algolia_shipping_message  %}
-      [[# helpers.getShippingInfo ]]
-      [[/ helpers.getShippingInfo ]]
-    {% endif %}
-    {% if settings.enabled_algolia_cc_message  %}
-      [[# helpers.getClickAndCollectInfo ]]
-      [[/ helpers.getClickAndCollectInfo ]]
-    {% endif %}
+
     [[# helpers.getRRPPrices ]]
     [[/ helpers.getRRPPrices ]]
     [[# helpers.setupTooltip ]]

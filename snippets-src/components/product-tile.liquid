@@ -110,27 +110,32 @@ Example:
     {% assign fs_max_weight = settings.free_shipping_max_weight | abs %}
     {% assign v = product.selected_or_first_available_variant %}
     </a>
-    <a class="de-u-linkClean" href="{{ product.url }}">
-    {% if settings.enabled_shopify_shipping_message  %}
-      {% if product.price >= fs_min_price and v.weight <= fs_max_weight %}
-        <div class="product-tile-shipping-info de-u-textShrink1 de-u-textMedium">{{ 'products.delivery_text.free_shipping_message' | t }}</div>
-      {% else %}
-        <div class="product-tile-shipping-info de-u-textShrink1 de-u-textMedium">{{ 'products.delivery_text.free_shipping_threshold_message' | t | replace: '[threshold]', settings.free_shipping_threshold }}</div>
+    {% if settings.click_collect_version == 'v1' %}
+
+      <a class="de-u-linkClean" href="{{ product.url }}">
+      {% if settings.enabled_shopify_shipping_message  %}
+        {% if product.price >= fs_min_price and v.weight <= fs_max_weight %}
+          <div class="product-tile-shipping-info de-u-textShrink1 de-u-textMedium">{{ 'products.delivery_text.free_shipping_message' | t }}</div>
+        {% else %}
+          <div class="product-tile-shipping-info de-u-textShrink1 de-u-textMedium">{{ 'products.delivery_text.free_shipping_threshold_message' | t | replace: '[threshold]', settings.free_shipping_threshold }}</div>
+        {% endif %}
       {% endif %}
+      </a>
+
+
+      {% comment %}
+      Click & Collect info
+      By default "Free Click & Collect" is shown
+      {% endcomment %}
+      <a class="de-u-linkClean" href="{{ product.url }}">
+      {% if settings.enabled_shopify_cc_message  %}
+        {% if true %}
+          <div class="product-tile-shipping-info de-u-textShrink1 de-u-textMedium">{{ 'products.delivery_text.free_pickup' | t }}</div>
+        {% endif %}
+      </a>
+
+
     {% endif %}
-    </a>
-
-
-    {% comment %}
-    Click & Collect info
-    By default "Free Click & Collect" is shown
-    {% endcomment %}
-    <a class="de-u-linkClean" href="{{ product.url }}">
-    {% if settings.enabled_shopify_cc_message  %}
-      {% if true %}
-        <div class="product-tile-shipping-info de-u-textShrink1 de-u-textMedium">{{ 'products.delivery_text.free_pickup' | t }}</div>
-      {% endif %}
-    </a>
 
     {% comment %}
     RRP PRICE

@@ -379,6 +379,27 @@
     ]
   },
   {
+    "name": "Click & Collect",
+    "settings": [
+      {
+        "type": "radio",
+        "id": "click_collect_version",
+        "label": "Click & Collect Version",
+        "options": [
+          {
+            "value": "v1",
+            "label": "V1"
+          },
+          {
+            "value": "v2",
+            "label": "V2"
+          }
+        ],
+        "default": "v1"
+      }
+    ]
+  },
+  {
     "name": "Product Page",
     "settings": [
       {
