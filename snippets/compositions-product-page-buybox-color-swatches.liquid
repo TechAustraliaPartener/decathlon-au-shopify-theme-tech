@@ -22,6 +22,7 @@
           de-u-hidden de-u-md-block de-u-spaceBottom2
           {% endif %}">
     <strong>{{ 'products.options.color' | t | capitalize }}: </strong>
+    {%- comment -%} If the product only has one colour, it will be injected in the span below via javascript n color-swatches.js {%- endcomment -%}
     <span class="de-u-textDarkGray de-u-textMedium
                  js-de-ColorInfo">
       Select a {{ 'products.options.color' | t }}

@@ -65,18 +65,25 @@ const setUpListeners = () => {
     const fullState = getComputedState(state.getState());
     updateOptionStates(fullState);
   });
+
+
   // For triggering swatches UI update after inventory has been loaded
-  document.addEventListener('tomitProductLoaded', function (e, data) {
-    setTimeout(() => {
-      const fullState = getComputedState(state.getState());
-      updateOptionStates(fullState);
-    }, 100);
-  });
+  if(window.clickCollectVersion === "v1") {
+    document.addEventListener('tomitProductLoaded', function (e, data) {
+      setTimeout(() => {
+        const fullState = getComputedState(state.getState());
+        updateOptionStates(fullState);
+      }, 100);
+    });
+  }
+
+
 };
 
 // Handles variant change
 state.onChange(
   state => {
+    // This is where the variant gets fetched given the state
     const variant = getVariantFromState(state);
     addToCart.onVariantSelect(variant);
     productFlags.onVariantSelect(variant);
@@ -212,7 +219,11 @@ const init = async () => {
   stickyNav.init();
   modal.init();
   vueATC.init();
-  inventoryLocations.init();
+
+  if( window.clickCollectVersion === 'v1') {
+    inventoryLocations.init();
+  }
+  
   drawer.init();
   faqs.init();
   const urlVariant = selectUrlVariant();

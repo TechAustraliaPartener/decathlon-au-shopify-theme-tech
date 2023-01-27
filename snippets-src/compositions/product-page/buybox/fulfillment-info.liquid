@@ -11,7 +11,13 @@
   {% endif %}
 {% endfor %}
 
-<div class="de-ProductFulfillment de-ProductPageTopShelf-fulfillment">
+{% assign cnc_active_v2_class = '' %}
+
+{% unless settings.click_collect_version == 'v1' %}
+  {% assign cnc_active_v2_class = '--cnc-v2-active' %}
+{% endunless %}
+
+<div class="de-ProductFulfillment de-ProductPageTopShelf-fulfillment {{ cnc_active_v2_class }}">
   <div class="de-u-padBottom06">
     <div class="de-u-flex de-ProductFulfillment-option">
       {% include 'assets-icons-returns'

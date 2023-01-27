@@ -160,8 +160,10 @@ const render = ({
 }) => {
   /*  Give priority to the error messages. This ensures the UI gets updated
       regardless of the availability of `addToCartButtonEl` or `addToCartButtonTextEl` */
-  if (validationTextEl) {
-    validationTextEl.textContent = validationText;
+  if( window.clickCollectVersion === 'v1') {
+    if (validationTextEl) {
+      validationTextEl.textContent = validationText;
+    }
   }
 
   if (stockMessageTextEl && stockMessageTextEl.textContent && validationTextEl.textContent !== '') {

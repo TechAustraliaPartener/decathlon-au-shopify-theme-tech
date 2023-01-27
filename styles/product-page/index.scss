@@ -5,3 +5,8 @@
 @import './legacy/index';
 @import '../vendor/index';
 @import '../components/announcement_banner';
+
+
+.de-ProductPageTopShelf .de-ProductPageTopShelf-fulfillment.--cnc-v2-active {
+  border-bottom: 3px solid #ffea28;
+}

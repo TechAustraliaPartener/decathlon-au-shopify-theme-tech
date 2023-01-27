@@ -40,12 +40,14 @@ const initVueATC = () => {
         const variantInventory = window.productJSON.variants.find(v => v.id === variant);
 
         // Use Shopify availability on load while remote inventory is being loaded
-        if (variantInventory && variantInventory.available) {
-          $('.js-de-stock-info-message .message').text(translations.retrieving_stock);
-          $('.js-de-stock-info-message').addClass(LOADING_CLASS).css({"display":"block"});
-          $('.js-de-stock-info-message .lds-ring').css({"display":"inline-block"});
-          // Disable add to cart button while retrieving stocks
-          $('#AddToCart').prop('disabled', true);
+        if( window.clickCollectVersion === 'v1'){
+          if (variantInventory && variantInventory.available) {
+            $('.js-de-stock-info-message .message').text(translations.retrieving_stock);
+            $('.js-de-stock-info-message').addClass(LOADING_CLASS).css({"display":"block"});
+            $('.js-de-stock-info-message .lds-ring').css({"display":"inline-block"});
+            // Disable add to cart button while retrieving stocks
+            $('#AddToCart').prop('disabled', true);
+          }
         }
 
         const variantLocationsInventory = (window.inventories || {})[variant];
@@ -89,12 +91,14 @@ const initVueATC = () => {
         );
         mutatedInventory.artificially_unavailable = (locations.length < 1 && delivery.available < 1);
 
-        if (filteredLocations.length < 1 && 
-          delivery.available < 1 && 
-          (delivery.available === 0 && variantIsAllowedToOversell === false) &&
-          variantIsNonInventory === false
-        ) {
-          $('.js-de-validation-message').text('Out of stock');
+        if( window.clickCollectVersion === 'v1') {
+          if (filteredLocations.length < 1 && 
+            delivery.available < 1 && 
+            (delivery.available === 0 && variantIsAllowedToOversell === false) &&
+            variantIsNonInventory === false
+          ) {
+            $('.js-de-validation-message').text('Out of stock');
+          }
         }
 
         const availablePerLocation = filteredLocations.map(location => {

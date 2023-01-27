@@ -43,14 +43,18 @@
       {% include 'compositions-product-price-crossed-out', variant: current_variant %}
       {% include 'compositions-product-price-rrp', variant: current_variant, product: product, tooltip_top: true, id: true %}
     </div>
+    
     <span
       class="de-u-textRed de-u-lineHeight2 de-u-textGrow2
              js-de-validation-message"
       aria-live="polite">
     </span>
+    
+
+    {% if settings.click_collect_version == 'v1' %}
     <span
       class="de-u-lineHeight2 de-u-textGrow2
-             js-de-stock-info-message"
+            js-de-stock-info-message"
       aria-live="polite" style="display:none;">
       <div class="lds-ring">
         <div></div>
@@ -60,6 +64,8 @@
       </div>
       <span class="message"></span>
     </span>
+    {% endif %}
+
   </div>
 
   {% render 'createur_product_page_bnpl' %}
