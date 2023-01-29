@@ -3,7 +3,11 @@
 {% endcomment %}
 <div class="js-de-PAC-dynamic-content"></div>
 
-{% include 'components-drawer-added_item_template' %}
+{% if settings.click_collect_version == 'v1' %}
+  {% include 'components-drawer-added_item_template' %}
+{% else %}
+  {% include 'components-drawer-added_item_template_v2' %}
+{% endif %}
 
 {% comment %}
   Dynamic Yield Featured Products
