@@ -52,7 +52,7 @@
     "autoplay_feature_product_carousel_delay": 2,
     "show_associated_products_carousel_on_product_page": true,
     "show_similar_products_carousel_on_product_page": false,
-    "show_recently_viewed_carousel_on_product_page": false,
+    "show_recently_viewed_carousel_on_product_page": true,
     "algolia_variant_image_dimensions": "600x600",
     "algolia_size_sorting_order": "3XS,2XS,XS,XS-S,XS\/S,S,S-M,S\/M,M,M-L,M\/L,L,L-XL,L\/XL,XL,2XL,3XL,4XL,5XL",
     "show_recently_viewed_carousel_on_collection_page": false,

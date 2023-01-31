@@ -10291,7 +10291,7 @@ html {
 
   @media only screen and (max-width: 768px) {
     flex-direction: column;
-    text-align: center;
+    text-align: left;
     .no-fav-store-selected {
       margin-left: 0;
       strong::before {
@@ -10304,6 +10304,7 @@ html {
   }
 }
 
+.no-fav-store-selected,
 .fav-store-selected.shipping-selector {
   margin-top: 20px;
   .click-collect {
@@ -10355,10 +10356,14 @@ html {
     font-family: "avalon_mediumbold";
     color: #DD3517;
   }
-  .cart_alert,
-  .no-fav-store-selected {
+  .cart_alert{
     @media only screen and (max-width: 768px) {
       text-align: center;
+    }
+  }
+  .no-fav-store-selected {
+    @media only screen and (max-width: 768px) {
+      text-align: left;
     }
   }
 }
