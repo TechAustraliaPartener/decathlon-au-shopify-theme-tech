@@ -24,7 +24,8 @@
       "placeholder": "Search our store",
       "submit": "Search",
       "products_preloader": "Loading more search results",
-      "end_of_results": "This is the end of the search results"
+      "end_of_results": "This is the end of the search results",
+      "preloader_text": "Loading..."
     },
     "password_page": {
       "opening_soon": "Opening soon",

@@ -18,6 +18,16 @@
   </div>
   <div class="ais-pagination-container"></div> 
   <div class="sticky-filters-results-container">
+
+    <div id="search-preloader" class="search-preloader">
+      <div class="preloader">
+        <img class="preloader-gif" src="{{ 'decathlon-loader.gif' | asset_url }}">
+        <p class="preloader-copy">
+          {{ 'general.search.preloader_text' | t }}
+        </p>
+      </div>
+    </div>
+
     <div class="ais-facets ais-facets--loading">
       <div class="ais-filter-container">
           <div class="ais-facets__buttons">

@@ -997,11 +997,41 @@
   margin-left: 160px; /* $img_size + 2 * $h_padding */
 }
 
-.ais-page .ais-results-as-block .ais-hit {
-  {%- comment -%} padding: 30px 25px; /* $v_padding $h_padding */ {%- endcomment -%}
-  padding: 10px 25px; /* $v_padding $h_padding */
 
+{% comment %} Preloader styles {% endcomment %}
+.search-preloader {   
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  justify-content: center;
+  z-index: 2;
+  background: #fff;
   text-align: center;
+  padding-top: 200px;
+  display: none
+}
+
+@media screen and (min-width: 800px) {
+  .search-preloader {   
+    display: flex;
+  }
+}
+
+.search-preloader .preloader-gif {
+  width: 100px;
+  height: auto;
+}
+
+.search-preloader.--hidden {
+  display: none;
+}
+
+
+.ais-page .ais-results-as-block .ais-hit {%- comment -%} padding: 30px 25px; /* $v_padding $h_padding */ {%- endcomment -%}
+padding: 10px 25px; /* $v_padding $h_padding */
+text-align: center;
 }
 
 .ais-results-size-xs .ais-page .ais-results-as-block .ais-hit {
@@ -1283,7 +1313,7 @@ a.ais--product-img-container {
 
 @media screen and (min-width: 768px) {
   .template-search .main-content{
-    padding-top: 75px;
+    padding-top: 25px;
   }
 }
 
@@ -1292,7 +1322,6 @@ a.ais--product-img-container {
     padding-top: 20px;
   }
 }
-
 
 {%- comment -%} Learn more link. {%- endcomment -%}
 .decathlon-product-header__brand-link {
@@ -1315,3 +1344,4 @@ a.ais--product-img-container {
     top: 3px;
   }
 } -->
+

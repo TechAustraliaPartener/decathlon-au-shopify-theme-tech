@@ -196,13 +196,16 @@
         function toggleDrawer() {
           var $facets = $('.ais-facets'); 
           var $filterCount = $('.ais-current-refined-values--item').length; 
+          
           if ($('.ais-page').hasClass('ais-page--loaded')) {
+
 
             if ($facets.hasClass('ais-facets__shown')) {
               $('html').css('overflow', 'visible');
               $button.text('Show filters');
               $button.appendTo('#ais-sort-filter');
               $facets.removeClass('ais-facets__shown');
+
 
               // Start: Customisations
               $('body').removeClass('ais-drawer-open');
@@ -777,6 +780,13 @@
     $('.ais-page').addClass('ais-page--loaded');
     $('.ais-facets-button').css('color', '#1c82c3');
     $('.ais-facets').removeClass('ais-facets--loading');
+
+
+    var $searchPreloader = $('#search-preloader');
+
+    console.log('loaded...');
+    console.log($searchPreloader)
+    $searchPreloader.addClass('--hidden');
 
     var showFacetLimit = 5;
 
