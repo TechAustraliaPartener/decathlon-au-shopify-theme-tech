@@ -837,6 +837,9 @@ svg {
     background-color: #0082c3;
     color: #fff;
 }
+.de-SingleInputForm-action>svg{
+    margin: 0 auto
+}
 .de-SlideViews {
     overflow: hidden;
     position: relative;
