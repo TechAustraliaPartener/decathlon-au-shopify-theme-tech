@@ -2058,6 +2058,13 @@ label.error {
   color: $colorPrimary;
 }
 
+
+.de-PageWrap-headerSecondary .de-MenuBar-action{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 /*============================================================================
   #Site Footer
 ==============================================================================*/
@@ -9221,15 +9228,26 @@ $subheader-height: 48px;
   .main-content {
     padding-top: 70px;
   }
-  #ais-sort-filter.sticky-active{
+  /* #ais-sort-filter.sticky-active{
     top: 76px;
-  }
+  } */
   @media screen and (min-width: 40em) {
     .main-content {
       padding-top: 30px;
     }
   }
-  
+
+  @media screen and (max-width:767px){
+    #ais-sort-filter.sticky-active{
+      top: 46px;
+    }
+  }
+
+  @media screen and (min-width: 768px){
+    #ais-sort-filter.sticky-active{
+      top: 56px;
+    }
+  }  
 }
 
 .template-product.with-announcement-banner{

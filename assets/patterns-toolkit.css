@@ -155,6 +155,12 @@ svg {
   padding: 0;
 }
 @media (min-width: 40em) {
+    .de-PageWrap-headerSecondary .de-MenuBar-action{
+        min-height: 55px !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
     .de-MenuBar {
         height: 58.448px;
     }
