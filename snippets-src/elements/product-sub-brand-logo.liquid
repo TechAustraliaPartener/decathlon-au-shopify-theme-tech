@@ -17,6 +17,15 @@
   WedZe
 {% endcomment %}
 {% comment %} {{product.vendor}} {% endcomment %}
+{% assign brand_logo_handle = '' %}
+{% for link in linklists.sub-brands.links %}
+  {% assign link_title = link.title | upcase %}
+  {% assign product_vendor = product.vendor | upcase %}
+  {% if link_title == product_vendor %}
+    {% assign brand_logo_handle = link.url | remove: "#" %}
+  {% endif %}
+{% endfor %}
+
 {% capture logo %}
 {% if product.vendor != no_vendor_testing and
       product.vendor != no_vendor_production %}
@@ -30,10 +39,16 @@
 %}
 {% endif %}
 {% endcapture %}
-{% if product.vendor == no_vendor_testing
-      or product.vendor == no_vendor_production
-      or logo contains 'Liquid error' %}
-  <div class="h3 vendor_logo_fallback">{{ product.vendor }}</div>
-{% else %}
-{{ logo }}
-{% endif %}
+
+
+<div class="sub-brand-container">
+  <a href="/{{ brand_logo_handle }}" class="sub-brand-link">
+  {% if product.vendor == no_vendor_testing
+        or product.vendor == no_vendor_production
+        or logo contains 'Liquid error' %}
+    <div class="h3 vendor_logo_fallback">{{ product.vendor }}</div>
+  {% else %}
+  {{ logo }}
+  {% endif %}
+  </a>  
+</div>

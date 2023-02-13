@@ -224,7 +224,7 @@
 
       variantThumbs.forEach((variant) => {
         html += '<li class="splide__slide">';
-        html += '<a href="/products/' + variant.url + '">';
+        html += '<a href="/products/' + variant.url + '&source=algolia">';
         html += '<img alt="'+ product.title + '" src="' + variant.filename + '">';
         html += '</a>';
         html += '</li>';

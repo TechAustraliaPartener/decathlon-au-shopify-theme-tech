@@ -42,6 +42,19 @@ Example:
   `data-product-title` if not needed, eventually {% endcomment %} data-product-title="{{ product.title }}">
   
   <div class="de-productTile-top-container">
+    {% comment %} Decathlon Sub Brand Logo {% endcomment %}
+
+    {% assign data_gtm_id = "Decathlon Brand | " | append: product.url %}
+    {% include 'elements-product-sub-brand-logo',
+      product: product,
+      class: 'de-u-spaceTop04 de-subBrandLogo',
+      data_gtm_id: data_gtm_id,
+      data_gtm_category: data_gtm_category,
+      data_gtm_event: data_gtm_event,
+      data_gtm_actions: 'click',
+      data_gtm_delegate: 'child'
+    %}
+
     <section class="de-ProductTile-showcase js-de-ProductTile-showcase">
       {% comment %} Product Flag {% endcomment %}
       {% include 'elements-product-flag' with class: 'de-u-textShrink2 de-u-md-Grow1' %}
@@ -156,18 +169,7 @@ Example:
 
     <a class="de-u-linkClean" href="{{ product.url }}">
       <header class="de-ProductTile-header">
-        {% comment %} Decathlon Sub Brand Logo {% endcomment %}
-        {% assign data_gtm_id = "Decathlon Brand | " | append: product.url %}
-        {% include 'elements-product-sub-brand-logo',
-          product: product,
-          class: 'de-u-spaceTop04 de-subBrandLogo',
-          data_gtm_id: data_gtm_id,
-          data_gtm_category: data_gtm_category,
-          data_gtm_event: data_gtm_event,
-          data_gtm_actions: 'click',
-          data_gtm_delegate: 'child'
-        %}
-
+       
         <h4 class="de-ProductTile-title
                  de-u-textMedium de-u-textShrink1 de-u-lg-textGrow1 de-u-lineHeight2"
           data-gtm-event="{{ data_gtm_event }}" data-gtm-category="{{ data_gtm_category }}"

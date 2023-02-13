@@ -28,6 +28,7 @@
 
 .de-ProductTile-header {
   border-top: $border-width-sm solid $color-light-gray;
+  padding-top: 10px;
 }
 
 /* 
@@ -64,6 +65,36 @@
 
 .de-productTile-top-container {
 	position: relative
+}
+
+.sub-brand-container {
+  border-bottom: 1px solid rgba(172, 179, 184, 0.5);
+  margin-bottom: 10px;
+}
+
+.de-productTile-top-container .sub-brand-container  svg {
+  width: 100%;
+  height: auto;
+  max-width: 161px;
+}
+
+.sub-brand-link,
+.sub-brand-link:hover {
+  display: block;
+  color: #1f1f1f;
+}
+
+.sub-brand-link .vendor_logo_fallback {
+  font-size: 18px !important;
+  margin: 15px 0 8px;
+  color: #1e1e1e;
+  font-weight: 400!important;
+}
+
+@media screen  and (min-width: 1024px) {
+  .sub-brand-link .vendor_logo_fallback {
+    margin: 15px 0 10px;
+  }
 }
 
 .de-ProductTileCarousel-item .de-ProductTile-title {

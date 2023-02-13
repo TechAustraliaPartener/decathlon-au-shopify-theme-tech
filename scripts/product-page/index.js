@@ -22,7 +22,7 @@ import * as modelCode from './model-code';
 import * as productFlags from './product-flags';
 import * as addToCart from './add-to-cart';
 import * as drawer from './drawer';
-import { getUrlVariant, updateUrlVariant } from './query-string';
+import { getUrlVariant, updateUrlVariant, getProductLinkSource } from './query-string';
 import { getSelectedVariant, getVariantOptions, getModelCodeFromVariant, variants } from './product-data';
 import * as stickyNav from './sticky-nav';
 import * as recentlyViewed from './recently-viewed';
@@ -32,6 +32,7 @@ import * as faqs from './faqs';
 // import * as storePickup from './fulfillment-options';
 import * as modal from './modal';
 import { createState } from '../utilities/create-state';
+import { first } from 'lodash';
 
 const updateFulfillmentOptionsUI = null;
 
@@ -151,7 +152,14 @@ state.onChange(
 
 const selectUrlVariant = () => {
   const urlVariantId = Number(getUrlVariant());
+  const urlSource = getProductLinkSource();
   const variant = getSelectedVariant({ id: urlVariantId });
+
+  // console.log('urlSource',urlSource);
+  // console.log('colorSwatches',[...colorSwatches.swatchOptionEls]);
+  // console.log('sizeSwatches',[...sizeSwatches.swatchOptionEls]);
+  // console.log('sizeSwatches',sizeSwatches);
+
   if (variant) {
     const options = getVariantOptions(variant);
     const targetColorSwatch = [...colorSwatches.swatchOptionEls].find(
@@ -160,11 +168,44 @@ const selectUrlVariant = () => {
     const targetSizeSwatch = [...sizeSwatches.swatchOptionEls].find(
       swatch => swatch.value === options.size
     );
+
+    let firstAvailableTargetSizeSwatch = null;
+
+    if(urlSource === 'algolia') {
+
+      const productVariants = window.vars.productJSON.variants;
+      // Get the color
+      const activeColor = options.color;
+      // Look for variants with the color via window.vars.productJSON.variants
+      const activeColorVariants = productVariants.filter(function(variant) {
+        return variant.option1 === activeColor
+      });
+      // Look for the first available variant
+      const firstAvailableColorVariant = activeColorVariants.find(function(variant) {
+        return variant.available
+      });
+      // Get the size of that variant 
+      const firstAvailableColorVariantSize = firstAvailableColorVariant ? firstAvailableColorVariant.option2 : null;
+
+      // console.log('firstAvailableColorVariant', firstAvailableColorVariant);
+      // console.log('firstAvailableColorVariantSize', firstAvailableColorVariantSize);
+
+      // let defaultSizeSwatches = [...sizeSwatches.swatchOptionEls];
+      firstAvailableTargetSizeSwatch = [...sizeSwatches.swatchOptionEls].find(
+        swatch => swatch.value === firstAvailableColorVariantSize
+      );
+
+    }
+
     if (targetColorSwatch) {
       targetColorSwatch.click();
     }
     if (targetColorSwatch) {
-      targetSizeSwatch.click();
+      if(urlSource === 'algolia') {
+        firstAvailableTargetSizeSwatch ? firstAvailableTargetSizeSwatch.click() : targetSizeSwatch.click();
+      } else {
+        targetSizeSwatch.click();
+      }
     }
   } else {
     colorSwatches.selectFirstSwatch();

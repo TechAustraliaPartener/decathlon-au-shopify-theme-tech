@@ -17,6 +17,16 @@ export const getUrlVariant = () => {
   /** @type {{variant?: string}} */
   return urlParams.get('variant');
 };
+
+/**
+ * Gets the source of the link to product page 
+ */
+export const getProductLinkSource = () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  /** @type {{source?: string}} */
+  return urlParams.get('source');
+}
+
 /**
  * Updates the variant id in the URL when a new variant is selected
  *
