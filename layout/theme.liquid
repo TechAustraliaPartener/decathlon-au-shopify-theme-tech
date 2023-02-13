@@ -100,11 +100,13 @@
 
   <!-- Helpers ================================================== -->
   {% include 'social-meta-tags' %}
-  {% unless canonical_url contains 'search' %}
+  {% if canonical_url contains '/tag' %}
+    <link rel="canonical" href="{{ canonical_url | split: '/tag' | first }}">
+  {% elsif canonical_url != 'search' %}
     <link rel="canonical" href="{{ canonical_url | split: '?' | first }}">
   {% else %}
-    <link rel="canonical" href="{{ canonical_url | split: '/tag' | first }}">
-  {% endunless %}
+    <link rel="canonical" href="{{ canonical_url }}">
+  {% endif %}
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no, user-scalable=0">
   <meta name="theme-color" content="{{ settings.color_primary }}">
 
