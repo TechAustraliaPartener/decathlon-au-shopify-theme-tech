@@ -270,17 +270,20 @@ time.announcement-countdown {
   #ais-sort-filter.sticky-active{
     top: 76px;
   }
+  
 
   @media screen and (min-width: 60em) {
     .main-content {
       padding-top: 30px;
     }
-    
-  #ais-sort-filter.sticky-active{
+  }
+}
+
+
+@media screen and (min-width: 60em) {
+  .template-search.with-announcement-banner #ais-sort-filter.sticky-active{
     top: 46px;
   }
-  }
-  
 }
 
 .template-product.with-announcement-banner{

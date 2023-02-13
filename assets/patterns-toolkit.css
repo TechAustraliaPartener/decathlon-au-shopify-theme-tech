@@ -150,13 +150,21 @@ svg {
     position: relative;
 }
 
-.de-PageWrap-headerSecondary .de-MenuBar {
+@media (min-width: 768px) and (max-width: 1024px){
+    .de-MenuBar{
+      justify-content: space-between !important;
+    }
+}
+
+.de-PageWrap-headerSecondary .de-MenuBar,
+.de-PageWrap-headerSecondary .de-MenuBar li {
   margin: 0;
   padding: 0;
 }
 @media (min-width: 40em) {
-    .de-PageWrap-headerSecondary .de-MenuBar-action{
-        min-height: 55px !important;
+
+    .de-MenuBar-action.meet-decathlon-button{
+        min-height: 53px !important;
         display: flex;
         justify-content: center;
         align-items: center;

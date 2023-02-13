@@ -82,7 +82,8 @@ function announcement(){
       $('.de-PageWrap-header').css('top', '30px');
       $('.de-PageWrap-subHeader').css('top', '88px');
       $('.de-PageWrap-prioritySportNav').css('top', '136.448px');
-      // $('#ais-sort-filter.sticky-active').css('top', '76px');
+      $('.template-search  .de-PageWrap-main.sticky-sort-filter').css('padding-top', '76px');
+
       
       $('.template-collection').addClass('with-announcement-banner');
       $('.template-search').addClass('with-announcement-banner');
@@ -100,7 +101,8 @@ function announcement(){
         $('.de-PageWrap-subHeader').css('top', '58px');
         $('.de-PageWrap-prioritySportNav').css('top', '106.448px');
         $('.de-PageWrap-main.sticky-sort-filter').css('padding-top', '46px');
-        // $('#ais-sort-filter.sticky-active').css('top', '56px');
+        $('.de-PageWrap-main.sticky-sort-filter').css('padding-top', '46px');
+        $('.template-search  .de-PageWrap-main.sticky-sort-filter').css('padding-top', '46px');
         $('.template-collection').removeClass('with-announcement-banner');
         $('.template-search').removeClass('with-announcement-banner');
         $('.template-product').removeClass('with-announcement-banner');
@@ -118,7 +120,8 @@ function announcement(){
           $('.de-PageWrap-header').css('top', '30px');
           $('.de-PageWrap-subHeader').css('top', '88px');
           $('.de-PageWrap-prioritySportNav').css('top', '136.448px');
-          // $('#ais-sort-filter.sticky-active').css('top', '76px');
+        $('.template-search  .de-PageWrap-main.sticky-sort-filter').css('padding-top', '76px');
+
           
           $('.template-collection').addClass('with-announcement-banner');
           $('.template-search').addClass('with-announcement-banner');
@@ -144,7 +147,7 @@ $( document ).ready(function() {
         $('.de-PageWrap-header').css('top', '0px');
         $('.de-PageWrap-subHeader').css('top', '58px');
         $('.de-PageWrap-prioritySportNav').css('top', '106.448px');
-        // $('#ais-sort-filter.sticky-active').css('top', '46px');
+        $('.template-search .de-PageWrap-main').css('top', '76px');
         $('.template-collection').removeClass('with-announcement-banner');
         $('.template-search').removeClass('with-announcement-banner');
         $('.template-product').removeClass('with-announcement-banner');
