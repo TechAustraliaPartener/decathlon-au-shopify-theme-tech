@@ -81,7 +81,7 @@
   {% endfor %}
 </div>
 
-<div class="de-PageWrap-subHeader">
+<div class="de-PageWrap-subHeader {% if settings.use_custom_header_color_theme == true%}custom-color-theme{% endif %}">
   <ul class="de-MenuBar-list">
     {% for link in linklists.mega-tabs.links %}
       <li class="de-MenuBar-listItem">

@@ -275,6 +275,27 @@
         "id": "img_desktop_logo",
         "label": "Custom Desktop image logo",
         "info": "Remove the uploaded Custom Desktop image logo to use the default Decathlon Logo SVG."
+      },      {
+        "type": "header",
+        "content": "Color Theme"
+      },
+      {
+        "type": "checkbox",
+        "id": "use_custom_header_color_theme",
+        "label": "Use Custom Color Theme",
+        "info": "Select this to apply color theme you've selected below"
+      },
+      {
+        "type": "color",
+        "id": "custom_color_background",
+        "label": "Background Color",
+        "default": "#171a1d"
+      },
+      {
+        "type": "color",
+        "id": "custom_color_font_color",
+        "label": "Font and Icon Color",
+        "default": "#ffffff"
       },
       {
         "type": "checkbox",

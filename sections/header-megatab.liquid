@@ -1,4 +1,4 @@
-<div class="de-PageWrap-menu de-PageWrap-narrowMenu" data-de-page-wrap-action="closeMenu">
+<div class="de-PageWrap-menu de-PageWrap-narrowMenu {% if settings.use_custom_header_color_theme == true%}custom-color-theme{% endif %}" data-de-page-wrap-action="closeMenu">
   <nav class="de-PageWrap-narrowMenuInner" id="demo-side" data-de-page-wrap-cancel="" aria-hidden="false">
     {% include 'compositions-header-nav-narrow' %}
   </nav>
@@ -10,7 +10,7 @@
 </div>
 {% endif %}
 
-<header class="de-PageWrap-header js-de-PageWrap-header">
+<header class="de-PageWrap-header js-de-PageWrap-header {% if settings.use_custom_header_color_theme == true%}custom-color-theme{% endif %}">
   <div class="searchbar-overlay"></div>
   <div class="de-PageWrap-headerPrimary">
     <div class="de-PageWrap-narrowMenuControl">

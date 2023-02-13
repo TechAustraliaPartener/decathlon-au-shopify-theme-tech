@@ -111,6 +111,12 @@ $colorBorder: {{ settings.color_borders }};
 $colorNav: #f2f2f2;
 $colorNavText: #333;
 
+// Site Header
+$colorHeaderBg: #000;
+$colorHeaderNavText: #fff;
+$colorCustomHeaderBg: {{ settings.custom_color_background }};
+$colorCustomHeaderNavText: {{ settings.custom_color_font_color }};
+
 // Site Footer
 $colorFooterBg: {{ settings.color_footer_bg }};
 $colorFooterText: {{ settings.color_footer_text }};
@@ -1665,6 +1671,82 @@ label.error {
     background-color: darken($colorDrawers, 5%);
   }
 }
+
+/*============================================================================
+  #Site Header
+==============================================================================*/
+.de-PageWrap-header .de-PageWrap-headerPrimary{
+  background-color: #fff;
+}
+.de-PageWrap-header .de-PageWrap-headerSecondary {
+  background-color: #fff;
+}
+.de-PageWrap-header.custom-color-theme .de-PageWrap-headerTertiary{
+  background-color: #fff;
+}
+
+.de-PageWrap-header.custom-color-theme {
+  background-color: $colorCustomHeaderBg;
+}
+.de-PageWrap-menu {
+  background-color: rgba(172,179,184,.8);
+}
+.de-PageWrap-subHeader {
+  background-color: #fff;
+}
+.de-PageWrap-subHeader.custom-color-theme{
+  background-color: $colorCustomHeaderBg;
+  border-top: 1px solid $colorCustomHeaderNavText;
+}
+.de-PageWrap-header.custom-color-theme .de-PageWrap-headerPrimary{
+  background-color: $colorCustomHeaderBg;
+}
+.de-PageWrap-header.custom-color-theme .de-PageWrap-headerSecondary {
+  background-color: $colorCustomHeaderBg;
+}
+.de-PageWrap-header.custom-color-theme .de-PageWrap-headerTertiary{
+  background-color: $colorCustomHeaderBg;
+}
+.de-PageWrap-header.custom-color-theme .de-MenuBar-action.menu-bar-menu-item-action svg g {
+  fill: $colorCustomHeaderNavText;
+}
+.de-PageWrap-header.custom-color-theme .de-MenuBar-action.menu-bar-menu-item-action .de-MenuBar-label,
+.de-PageWrap-header.custom-color-theme .de-MenuBar-action {
+  color: $colorCustomHeaderNavText;
+}
+.de-PageWrap-header.custom-color-theme .de-PageWrap-headerPrimary .de-MenuBar-action svg line{
+  stroke: $colorCustomHeaderNavText;
+}
+.de-PageWrap-menu.custom-color-theme .de-PageWrap-narrowMenuInner{
+  background-color: $colorCustomHeaderBg;
+}
+.de-PageWrap-menu.custom-color-theme .de-PageWrap-wideMenuInner{
+  background-color: $colorCustomHeaderBg;
+}
+.de-PageWrap-menu.custom-color-theme #menu-narrow .de-MenuList-item{
+  color: $colorCustomHeaderNavText;
+  background-color: $colorCustomHeaderBg;
+}
+.de-PageWrap-menu.custom-color-theme #menu-narrow .de-MenuList-item svg g{
+  fill: $colorCustomHeaderNavText;
+}
+.de-PageWrap-menu.custom-color-theme .de-SlideViews-view#menu-narrow.de-is-active{
+  height: 100%;
+  background-color: $colorCustomHeaderBg;
+}
+
+.de-PageWrap-menu.custom-color-theme .de-SlideViews{
+  height: 100%;
+  background-color: #fff;
+
+}
+.de-PageWrap-subHeader.custom-color-theme .de-MenuBar-action{
+  color: $colorCustomHeaderNavText;
+}
+.de-PageWrap-subHeader.custom-color-theme .de-MenuBar-action:hover{
+  color: $colorPrimary;
+}
+
 
 /*============================================================================
   #Site Footer
