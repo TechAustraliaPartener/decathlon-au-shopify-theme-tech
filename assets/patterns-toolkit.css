@@ -269,7 +269,9 @@ svg {
     margin-left: 0;
     margin-right: 0;
     padding-right: 13.504px;
-    height: 46.192px;
+    min-height: 46.192px;
+    height: 100%;
+    color: #1f1f1f !important;
 }
 
 .de-MenuBar-action--primary .de-MenuBar-icon {
