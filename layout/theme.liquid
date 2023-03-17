@@ -165,6 +165,18 @@
     {% endcomment %}
     {{ 'icomoon.scss.css' | asset_url | stylesheet_tag }}
   {% endif %}
+
+  {% if template == "product.marketplace" %}
+
+  {{ 'built-product-page.css' | asset_url | stylesheet_tag }}   
+  <style>
+    /* VARIANT TICK */
+    .de-SwatchObjects .de-SwatchObjects-item.de-ColorSwatches-color.de-is-active::after {
+      background-image: url("{{ 'blue-tick.svg' | asset_url }}");
+    }
+  </style>
+
+  {% endif %}
   
   {% if template == "index" or template == "cart" or template.name == "collection" or template.name == "search" or template.name == "product" or template.name == "page" %}
     {{ 'built-product-tile.css' | asset_url | stylesheet_tag }}

@@ -1,3 +1,10 @@
+{% assign template_name = template.name | capitalize %}
+{% if template.suffix %}
+  {% assign template_suffix = template.suffix | capitalize %}
+  {% assign template_name = template_name | append: ' ' | append: template_suffix %}
+{% endif %}
+
+
 {% assign option_type = 'color' %}
 
 {% capture colors %}
@@ -15,7 +22,7 @@
 
 {% assign all_colors = colors | split: ',' %}
 
-<div class="de-ProductPageTopShelf-colorSwatches">
+<div class="de-ProductPageTopShelf-colorSwatches {{ template_name | handleize }}-template">
   <div
     class="de-u-spaceTop06 de-u-lineHeight1
           {% if all_colors.size == 1 %}

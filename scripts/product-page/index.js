@@ -10,6 +10,7 @@ import * as carouselContext from './carousel-context';
 import * as collapse from './collapse';
 import * as colorSwatches from './color-swatches';
 import * as sizeSwatches from './size-swatches';
+// import * as variantSelect from './variant-select';
 import './videos';
 import * as accordion from './accordion';
 import * as inventoryLocations from './inventory-locations';
@@ -62,6 +63,13 @@ const setUpListeners = () => {
     state.updateState({ color });
     displayRRPPrices(color);
   });
+  
+  // variantSelect.handleVariantSelect(({ size, color }) => {
+  //   console.log('p handleVariantSelect',  size, color);
+
+  //   state.updateState({  size, color });
+  // });
+
   addToCart.onVariantModification(() => {
     const fullState = getComputedState(state.getState());
     updateOptionStates(fullState);
@@ -86,10 +94,18 @@ state.onChange(
   state => {
     // This is where the variant gets fetched given the state
     const variant = getVariantFromState(state);
+
+    // console.log('index.js product state.onChange 1');
+    // console.log(state);
+
     addToCart.onVariantSelect(variant);
     productFlags.onVariantSelect(variant);
     sizeSwatches.onVariantSelect(variant);
+    // variantSelect.onVariantSelect(variant);
+
     updateUrlVariant(variant && variant.id);
+
+
     if (variant) {
       // MasterSelect requires a full variant to update
       masterSelect.onVariantSelect(variant);
@@ -121,6 +137,10 @@ state.onChange(
 // Handles color change
 state.onChange(
   ({ color }) => {
+
+    console.log('index.js product state.onChange 2');
+    console.log(state);
+
     if (!color) return;
     sizeSwatches.onColorSelect(color);
     carousel.onColorSelect(color);
@@ -134,6 +154,10 @@ state.onChange(
 // Handles swatch change (color/size)
 state.onChange(
   state => {
+
+    console.log('index.js product state.onChange 3');
+    console.log(state);
+
     const { color, size } = state;
     const variant = getVariantFromState(state);
     updateOptionStates({ color, size, variant });
@@ -155,10 +179,7 @@ const selectUrlVariant = () => {
   const urlSource = getProductLinkSource();
   const variant = getSelectedVariant({ id: urlVariantId });
 
-  // console.log('urlSource',urlSource);
-  // console.log('colorSwatches',[...colorSwatches.swatchOptionEls]);
-  // console.log('sizeSwatches',[...sizeSwatches.swatchOptionEls]);
-  // console.log('sizeSwatches',sizeSwatches);
+  console.log(variant, 'variant');
 
   if (variant) {
     const options = getVariantOptions(variant);
@@ -247,6 +268,7 @@ const displayRRPPrices = function (color) {
 const init = async () => {
   sizeSwatches.init();
   colorSwatches.init();
+  // variantSelect.init();
   setUpListeners();
   reviewsInit();
   recentlyViewed.init();

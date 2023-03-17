@@ -1,3 +1,10 @@
+{% assign template_name = template.name | capitalize %}
+{% if template.suffix %}
+  {% assign template_suffix = template.suffix | capitalize %}
+  {% assign template_name = template_name | append: ' ' | append: template_suffix %}
+{% endif %}
+
+
 {% assign option_type = 'size' %}
 {% assign sizes_delimiter = '\,' %}
 
@@ -15,7 +22,7 @@
 
 {% assign all_sizes = sizes | split: sizes_delimiter %}
 
-<div class="de-ProductPageTopShelf-sizeSwatches">
+<div class="de-ProductPageTopShelf-sizeSwatches {{ template_name | handleize }}-template">
   <div class="de-u-flex de-u-flexAlignItemsCenter de-u-flexJustifyBetween">
     <div
       class="{% if all_sizes.size == 1 %}

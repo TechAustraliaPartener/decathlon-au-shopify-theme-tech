@@ -40,6 +40,10 @@ function push(modelNumber) {
     }
   }
 
+
+  // console.log('modelNumber', modelNumber)
+  // console.log('simpleInventory', simpleInventory)
+
   // Note: If an error occur below this line, it's most likely that the Variant's "Model Code" has a space
   var stockStatusArray = simpleInventory[modelNumber].stockStatus;
   var stockStatus = 'Not Available';

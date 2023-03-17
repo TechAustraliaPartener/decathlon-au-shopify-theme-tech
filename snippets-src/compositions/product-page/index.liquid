@@ -8,6 +8,12 @@
 
 {% endcomment %}
 
+{% assign template_name = template.name | capitalize %}
+{% if template.suffix %}
+  {% assign template_suffix = template.suffix | capitalize %}
+  {% assign template_name = template_name | append: ' ' | append: template_suffix %}
+{% endif %}
+
 {% include 'section-clips' %}
 
 {% comment %} `product.metafields.global.videos` returns a hash list {% endcomment %}
@@ -91,7 +97,9 @@
 
     <div class="de-ProductPageTopShelf 
       de-Wrapper
-      de-u-spaceBottom3"
+      de-u-spaceBottom3
+      {{ template_name | handleize }}-template
+      "
     >
       <div class="de-ProductCarousel de-ProductPageTopShelf-gallery
                   de-Wrapper--fullwidth js-de-ProductGallery-showcase"
@@ -215,6 +223,7 @@
     </section>
   {% endif %}
 
+  {% if product.metafields.global.features != blank %}
   <section
     class="de-ProductInfoSection de-u-md-pad2"
     aria-labelledby="Section-features"
@@ -243,6 +252,7 @@
       accordion_content: features_accordion_content
     %}
   </section>
+  {% endif %}
 
   <section class="de-ProductInfoSection de-ProductInfoSection--silver
                   de-u-md-pad" aria-labelledby="Section-additional-info">
@@ -255,20 +265,33 @@
         <span class="visually-hidden">Additional </span>Product Information
       </h2>
     </header>
-    {% capture product_information_accordion_content %}
-    <div class="de-u-spaceTop6">
-      {% comment %}
-      Product information wired to metafields
-      {% endcomment %}
-      {% include 'compositions-product-page-product-information' %}
-  
-    </div>
-    {% endcapture %}
-    {% include 'compositions-product-page-accordion'
-              is_open: false
-              accordion_heading: "Product Information"
-              accordion_content: product_information_accordion_content
-            %}
+    {% if template_name == 'Product Marketplace' %}
+      {% capture product_information_accordion_content %}
+        <div class="de-u-spaceTop6">
+          {{ product.content }}
+        </div>
+      {% endcapture %}
+      {% include 'compositions-product-page-accordion'
+                is_open: false
+                accordion_heading: "Product Information"
+                accordion_content: product_information_accordion_content
+              %}
+    {% else %}
+      {% capture product_information_accordion_content %}
+        <div class="de-u-spaceTop6">
+          {% comment %}
+          Product information wired to metafields
+          {% endcomment %}
+          {% include 'compositions-product-page-product-information' %}
+      
+        </div>
+        {% endcapture %}
+        {% include 'compositions-product-page-accordion'
+                  is_open: false
+                  accordion_heading: "Product Information"
+                  accordion_content: product_information_accordion_content
+                %}
+    {% endif  %}
   </section> 
   
   {%- if product_has_size_chart -%}
@@ -332,6 +355,8 @@
     </section>
   {% endif %}
     
+  {% if product.metafields.reviews.recent_reviews_object != blank %}
+    
     <section
       class="de-ProductInfoSection de-ProductInfoSection--withBorderTop
              de-u-md-padEnds de-u-md-padSides
@@ -372,7 +397,9 @@
       %}
     </section>
 
-    {% include 'compositions-product-page-qanda' %}
+  {% endif %}
+
+  {% include 'compositions-product-page-qanda' %}
     
     
 

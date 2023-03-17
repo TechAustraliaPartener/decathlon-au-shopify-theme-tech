@@ -1,7 +1,15 @@
 {% include 'elements-product-title-lockup' %}
+
 {% include 'compositions-product-page-buybox-color-swatches' %}
 {% include 'compositions-product-page-buybox-size-swatches' %}
+
+{% if template.suffix == "marketplace" %}
+{% include 'compositions-product-page-buybox-marketplace-add-to-cart-form' %}
+{% else  %}
 {% include 'compositions-product-page-buybox-add-to-cart-form' %}
+{% endif %}
+
+
 <div class="de-ProductPageTopShelf-fulfillment-location">
 {% include 'compositions-product-page-buybox-fulfillment-info' %}
 {% include 'compositions-product-page-buybox-locations-inventory' %}

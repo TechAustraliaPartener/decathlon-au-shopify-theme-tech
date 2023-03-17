@@ -17,6 +17,7 @@
     For more information on products with multiple options, visit:
     - http://docs.shopify.com/support/your-website/themes/can-i-make-my-theme-use-products-with-multiple-options#update-product-liquid
   {% endcomment %}
+
   <select name="id" id="productSelect" class="product-single__variants de-u-hidden">
     {% for variant in product.variants %}
       {% if variant.available %}

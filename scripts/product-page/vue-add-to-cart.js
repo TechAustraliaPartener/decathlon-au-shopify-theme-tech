@@ -42,6 +42,8 @@ const initVueATC = () => {
         // Use Shopify availability on load while remote inventory is being loaded
         if( window.clickCollectVersion === 'v1'){
           if (variantInventory && variantInventory.available) {
+            // console.log('variantInventory', variantInventory);
+
             $('.js-de-stock-info-message .message').text(translations.retrieving_stock);
             $('.js-de-stock-info-message').addClass(LOADING_CLASS).css({"display":"block"});
             $('.js-de-stock-info-message .lds-ring').css({"display":"inline-block"});

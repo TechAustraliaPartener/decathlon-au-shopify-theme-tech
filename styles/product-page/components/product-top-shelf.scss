@@ -26,6 +26,16 @@
       "gallery .";
     grid-template-columns: 1fr 1fr;
   }
+
+  // .de-ProductPageTopShelf.product-marketplace-template {
+  //   grid-template-areas: 
+  //     "gallery titleLockup"
+  //     "gallery addToCart"
+  //     "gallery fulfillmentLocationInfo"
+  //     "gallery fulfillmentLocationInfo"
+  //     "gallery modelCode"
+  //     "gallery .";
+  // }
 }
 
 .de-ProductPageTopShelf-gallery {
@@ -62,4 +72,17 @@
 
 .de-ProductPageTopShelf-modelCode {
   grid-area: modelCode;
+}
+
+
+// .de-ProductPageTopShelf-colorSwatches.product-marketplace-template {
+//   display: none;
+// }
+
+// .de-ProductPageTopShelf-sizeSwatches.product-marketplace-template {
+//   display: none;
+// }
+
+.de-ProductPageTopShelf-addToCart.product-marketplace-template {
+  padding: 20px 0 10px;
 }
