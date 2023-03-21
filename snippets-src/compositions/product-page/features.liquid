@@ -1,6 +1,6 @@
-{% assign features = product.metafields.global['features'] %}
-{% assign madefor = product.metafields.global.made_for %}
-{% assign catchline = product.metafields.global.catchline %}
+{% assign features = product.metafields.global.features.value %}
+{% assign madefor = product.metafields.global.made_for.value %}
+{% assign catchline = product.metafields.global.catchline.value %}
 
 {%- assign product_images = product.images -%}
 {%- assign context_photo_delimiter = '[[contextphoto]]' -%}

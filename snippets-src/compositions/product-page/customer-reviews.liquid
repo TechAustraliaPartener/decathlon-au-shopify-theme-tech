@@ -11,7 +11,7 @@ The number of stars filled in will be the ceiling integer of the rating.
 Add zero to convert the string to a number, which is stored as a string
 because metafields can't be floats
 {% endcomment %}
-{% assign product_rating = product.metafields.reviews.product_rating | plus: 0 %}
+{% assign product_rating = product.metafields.reviews.product_rating.value | plus: 0 %}
 {% assign rating_average = product_rating | times: 20 %}
 {% capture total_item_count -%}
   {% render 'compositions-product-page-total-reviews-count' %}
@@ -57,12 +57,12 @@ because metafields can't be floats
     {% comment %}
     Review Matrix
     {% endcomment %}
-    {% assign ratings = product.metafields.reviews.recent_reviews_object.notes %}
+    {% assign ratings = product.metafields.reviews.recent_reviews_object.value['notes'] %}
     {% comment %}
     Multiply the total_ratings_count by 1.0 so that stars_percentage will not
     be rounded (the result will be something between 0 and 100%)
     {% endcomment %}
-    {% assign total_ratings_count = product.metafields.reviews.recent_reviews_object.total_item_rating_count | times: 1.0 %}
+    {% assign total_ratings_count = product.metafields.reviews.recent_reviews_object.total_item_rating_count.value  | times: 1.0 %}
     {% assign STAR_RATING_PERCENTAGE_MULTIPLIER = 20 %}
     {% unless total_item_count == 0 %}
     <div class="de-ReviewMatrix de-u-padTop03">
@@ -188,7 +188,7 @@ because metafields can't be floats
       </div>
     </div>
 
-    {% assign reviews_from_metafields = product.metafields.reviews.recent_reviews_object.items %}
+    {% assign reviews_from_metafields = product.metafields.reviews.recent_reviews_object.value['items'] %}
     {% comment %}
     @TODO
     1. Determine how default number of pre-loaded reviews is set and try to
@@ -205,8 +205,8 @@ because metafields can't be floats
     {% assign review_filters_and = settings.review_filters_and %}
 
     {% comment %}
-    {% assign reviews_by_country = product.metafields.reviews.recent_reviews_object.items | map: 'country_label' %}
-    {{ product.metafields.reviews.recent_reviews_object.items | where: 'country_label', 'IN' }}
+    {% assign reviews_by_country = product.metafields.reviews.recent_reviews_object.value['items'] | map: 'country_label' %}
+    {{ product.metafields.reviews.recent_reviews_object.value['items'] | where: 'country_label', 'IN' }}
     {% endcomment %}
 
     {% for review in  in reviews_from_metafields %}

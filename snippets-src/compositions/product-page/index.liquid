@@ -17,7 +17,7 @@
 {% include 'section-clips' %}
 
 {% comment %} `product.metafields.global.videos` returns a hash list {% endcomment %}
-{% assign video_hash_list = product.metafields.global.videos %}
+{% assign video_hash_list = product.metafields.global.videos.value %}
 
 {% comment %} 
 {% for video_hash in video_hash_list %}
@@ -43,6 +43,7 @@
   {% endfor %}
 {% endcapture %}
 {% comment %} Create an array of the video IDs {% endcomment %}
+
 {% assign product_video = video_id_string_list | strip | split: ',' %}
 
 {% assign product_has_size_chart = false %}
@@ -147,7 +148,7 @@
           </video>
         {% endif %}
       </div>
-
+      
       {% if product_video.size > 0 %}
         {% include 'compositions-product-page-gallery-controls' with
           class: 'de-u-bgSilver de-u-lg-hidden js-de-MobileGalleryControls',
@@ -514,7 +515,7 @@
       selectCallbackInitialized = false,
       activeColor;
 
-  productJSON.rating = '{{ product.metafields.reviews.product_rating }}';
+  productJSON.rating = {{ product.metafields.reviews.product_rating.value }};
 
   for(option in productJSON.options) {
     if (productJSON.options[option] === 'Color') {

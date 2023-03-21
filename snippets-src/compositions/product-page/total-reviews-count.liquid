@@ -1,8 +1,8 @@
 {% comment %} 
   Deduct the total_item_count with the stars that are below the settings.reviews_min_rating 
 {% endcomment %}
-{% assign total_item_count = product.metafields.reviews.recent_reviews_object.total_item_count | plus: 0 %}
-{% assign review_counts_per_star = product.metafields.reviews.recent_reviews_object.notes %}
+{% assign total_item_count = product.metafields.reviews.recent_reviews_object.value['total_item_count'] | plus: 0 %}
+{% assign review_counts_per_star = product.metafields.reviews.recent_reviews_object.value['notes'] %}
 {% assign to_deduct = 0 %}
 {% for review_count in review_counts_per_star %}
   {% if review_count.number < settings.reviews_min_rating %}
