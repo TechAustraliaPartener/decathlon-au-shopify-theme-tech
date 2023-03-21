@@ -41,13 +41,15 @@
         Product Information
       </a>
     </li>
-    {% if has_context_photo %}
-    <li class="de-u-lg-textGrow1 de-u-spaceNone">
-      <a href="#product-imageGallery" class="de-MenuBar-label de-MenuBar-action de-js-StickyMenuItem">
-        Image Gallery
-      </a>
-    </li>
-    {% endif %}
+    {% unless template_name == 'Product Marketplace' %}
+      {% if has_context_photo %}
+      <li class="de-u-lg-textGrow1 de-u-spaceNone">
+        <a href="#product-imageGallery" class="de-MenuBar-label de-MenuBar-action de-js-StickyMenuItem">
+          Image Gallery
+        </a>
+      </li>
+      {% endif %}
+  {% endunless %}
 
     {% if product.metafields.reviews.recent_reviews_object != blank %}
     <li class="de-u-lg-textGrow1 de-u-spaceNone">

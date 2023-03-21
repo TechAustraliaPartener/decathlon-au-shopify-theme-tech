@@ -325,36 +325,38 @@
                 %}
     </section>
   {%- endif -%}
+  
+  {% unless template_name == 'Product Marketplace' %}
+    {% if has_context_photo %}
 
-  {% if has_context_photo %}
-
-    <section
-      class="de-ProductInfoSection de-ProductInfoSection--withBorderTop
-              de-u-pad2 de-u-overflowXNone"
-      aria-labelledby="Section-lifestyle-images"
-    >
-      <span
-        id="product-imageGallery"
-        class="de-ProductAnchor"
-        aria-hidden="true">
-      </span>
-      <h2
-        class="de-ProductInfoSection-title
-                de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4
-                de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
-        id="Section-lifestyle-images"
+      <section
+        class="de-ProductInfoSection de-ProductInfoSection--withBorderTop
+                de-u-pad2 de-u-overflowXNone"
+        aria-labelledby="Section-lifestyle-images"
       >
-        <span class="visually-hidden">Product Lifestyle</span> Image Gallery
-      </h2>
-      <h2 class="de-u-textGrow2 de-u-md-hidden">
-        Image Gallery
-      </h2>
-      <div class="ProductImageGallery de-u-fullwidth de-u-padEnds2">
-        {% include 'compositions-product-page-image-gallery' %}
-      </div>
-    </section>
-  {% endif %}
-    
+        <span
+          id="product-imageGallery"
+          class="de-ProductAnchor"
+          aria-hidden="true">
+        </span>
+        <h2
+          class="de-ProductInfoSection-title
+                  de-u-textGrow2 de-u-md-textGrow3 de-u-lg-textGrow4
+                  de-u-spaceNone de-u-hidden de-u-md-inlineBlock"
+          id="Section-lifestyle-images"
+        >
+          <span class="visually-hidden">Product Lifestyle</span> Image Gallery
+        </h2>
+        <h2 class="de-u-textGrow2 de-u-md-hidden">
+          Image Gallery
+        </h2>
+        <div class="ProductImageGallery de-u-fullwidth de-u-padEnds2">
+          {% include 'compositions-product-page-image-gallery' %}
+        </div>
+      </section>
+    {% endif %}
+  {% endunless %} 
+  
   {% if product.metafields.reviews.recent_reviews_object != blank %}
     
     <section
