@@ -515,7 +515,11 @@
       selectCallbackInitialized = false,
       activeColor;
 
-  productJSON.rating = {{ product.metafields.reviews.product_rating.value }};
+  {% if product.metafields.reviews.product_rating.value != blank %} 
+    productJSON.rating = {{ product.metafields.reviews.product_rating.value }};
+  {% else  %}
+    productJSON.rating = "";
+  {% endif %}
 
   for(option in productJSON.options) {
     if (productJSON.options[option] === 'Color') {
