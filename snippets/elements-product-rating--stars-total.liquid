@@ -12,7 +12,7 @@
   Add zero to convert the string to a number, which is stored as a string
   because metafields can't be floats
 {% endcomment %}
-{% assign product_rating = product.metafields.reviews.product_rating | plus: 0 %}
+{% assign product_rating = product.metafields.reviews.product_rating.value | plus: 0 %}
 {% assign rating_average = product_rating | times: 20 %}
 {% capture total_item_count -%}
   {% render 'compositions-product-page-total-reviews-count', product: product %}
