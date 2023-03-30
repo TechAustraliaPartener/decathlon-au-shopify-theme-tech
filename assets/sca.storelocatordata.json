@@ -1,45 +1,59 @@
 [
   {
-    "lat": "-27.534688790863502",
-    "lng": "153.0653623635874",
-    "id": 7443729,
-    "name": "Decathlon Brisbane - Online Store",
-    "description": "Decathlon Australia Online Store. Shop online and get a free backpack when you spend $50 or more online. \r<br>\r<br>Fast delivery to Brisbane",
-    "web": "https:\/\/decathlon.com.au\/pages\/decathlon-brisbane",
-    "webdisplay": "View Offers",
-    "tagsvalue": "Online Store",
+    "lat": "-33.9222773",
+    "lng": "151.1658094",
+    "id": 6032578,
+    "name": "Decathlon Tempe",
+    "web": "https:\/\/decathlon.com.au\/pages\/store-tempe",
+    "webdisplay": "Visit store page",
+    "tagsvalue": "In-store Shopping,Bicycle Repairs,Tennis Racquet Restringing,Click & Collect Ready in 1hr",
     "tags": [
       {
-        "tag": "Online Store"
+        "tag": "In-store Shopping"
+      },
+      {
+        "tag": "Bicycle Repairs"
+      },
+      {
+        "tag": "Tennis Racquet Restringing"
+      },
+      {
+        "tag": "Click & Collect Ready in 1hr"
       }
     ],
-    "schedule": "Open 24\/7\r<br>\r<br>Delivery to Brisbane in 2-6 business days.\r<br>Delivery of bulky orders might differ",
-    "address": "Online Store",
+    "schedule": "<strong>Normal Operating Hours:<\/strong>\r<br>\r<br>Monday: 9:00 am - 8:00 pm\r<br>Tuesday: 9:00 am - 8:00 pm\r<br>Wednesday: 9:00 am - 8:00 pm\r<br>Thursday: 9:00 am - 9:00 pm\r<br>Friday: 9:00 am - 8:00 pm\r<br>Saturday: 9:00 am - 8:00 pm\r<br>Sunday: 9:00 am - 7:00 pm",
+    "marker_image": "\/\/cdn.shopify.com\/s\/files\/1\/0066\/6563\/3903\/t\/441\/assets\/scasl_1615717967map-marker-inactive_compact.png",
+    "address": "634-726 Princes Hwy, Tempe",
     "country": "Australia",
-    "state": "Queensland",
-    "priority": 3
+    "state": "New South Wales",
+    "city": "Sydney",
+    "postal": "2044",
+    "priority": 2
   },
   {
     "lat": "-33.839218",
     "lng": "151.0276685",
     "id": 6036655,
     "name": "Decathlon Auburn",
-    "description": "Shop online and pick up your order in-store for free in 2 hours.",
+    "description": "Click and Collect\r<br>Delivery from Store for Bulky Items",
     "web": "https:\/\/decathlon.com.au\/pages\/store-auburn",
     "webdisplay": "Visit store page",
-    "tagsvalue": "In-Store Shopping,Free Click & Collect,2 hours Click & Collect",
+    "tagsvalue": "In-store Shopping,Bicycle Repairs,Tennis Racquet Restringing,Click & Collect Ready in 1hr",
     "tags": [
       {
-        "tag": "In-Store Shopping"
+        "tag": "In-store Shopping"
       },
       {
-        "tag": "Free Click & Collect"
+        "tag": "Bicycle Repairs"
       },
       {
-        "tag": "2 hours Click & Collect"
+        "tag": "Tennis Racquet Restringing"
+      },
+      {
+        "tag": "Click & Collect Ready in 1hr"
       }
     ],
-    "schedule": "\r<br>Monday: 10:00 am - 7:00 pm\r<br>Tuesday: 10:00 am - 7:00 pm\r<br>Wednesday: 10:00 am - 7:00 pm\r<br>Thursday: 10:00 am - 8:00 pm\r<br>Friday: 10:00 am - 8:00 pm\r<br>Saturday: 10:00 am - 8:00 pm\r<br>Sunday: 10:00 am - 7:00 pm",
+    "schedule": "<br>\r<br><strong>Holidays Trading Hours:<\/strong>\r<br>24 Dec 2022 (Christmas Eve): 10:00am - 5:00pm\r<br>25 Dec 2022 (Christmas Day): CLOSED\r<br>26 Dec 2022 (Boxing Day): 10:00am - 8:00pm\r<br>31 Dec 2022 (New Year's Eve): 10:00am - 5:00pm\r<br>\r<br><strong>Normal Operating Hours:<\/strong>\r<br>\r<br>Monday: 10:00 am - 7:00 pm\r<br>Tuesday: 10:00 am - 7:00 pm\r<br>Wednesday: 10:00 am - 7:00 pm\r<br>Thursday: 10:00 am - 8:00 pm\r<br>Friday: 10:00 am - 8:00 pm\r<br>Saturday: 10:00 am - 8:00 pm\r<br>Sunday: 10:00 am - 7:00 pm\r<br><br>",
     "marker_image": "\/\/cdn.shopify.com\/s\/files\/1\/0066\/6563\/3903\/t\/441\/assets\/scasl_1615717910map-marker-inactive_compact.png",
     "address": "300 Parramatta Rd",
     "country": "Australia",
@@ -49,306 +63,261 @@
     "priority": 3
   },
   {
-    "lat": "-37.8379542",
-    "lng": "145.1337897",
+    "lat": "-37.8373246",
+    "lng": "145.1347381",
     "id": 6036656,
     "name": "Decathlon Box Hill",
-    "description": "Pick up your order in-store for free in 2 hours.",
+    "email": "customer.service@decathlon.com",
     "web": "https:\/\/decathlon.com.au\/pages\/store-boxhill",
     "webdisplay": "Visit store page",
-    "tagsvalue": "Free Click & Collect,2 hours Click & Collect,In-Store Shopping",
+    "tagsvalue": "In-store Shopping,Bicycle Repairs,Tennis Racquet Restringing,Click & Collect Ready in 1hr",
     "tags": [
       {
-        "tag": "Free Click & Collect"
+        "tag": "In-store Shopping"
       },
       {
-        "tag": "2 hours Click & Collect"
+        "tag": "Bicycle Repairs"
       },
       {
-        "tag": "In-Store Shopping"
+        "tag": "Tennis Racquet Restringing"
+      },
+      {
+        "tag": "Click & Collect Ready in 1hr"
       }
     ],
-    "schedule": "VIC circuit breaker - C&C only from 10am - 5pm \r<br>\r<br>Monday: 9:00am - 6:30pm\r<br>Tuesday: 9:00am - 6:30pm\r<br>Wednesday: 9:00am - 6:30pm\r<br>Thursday: 9:00am - 6:30pm\r<br>Friday: 9:00am - 6:30pm\r<br>Saturday: 9:00 am–7:00 pm\r<br>Sunday: 10:00am - 6:00pm",
+    "schedule": "Operating Hours\r<br>Monday: 9:30am - 6:30pm\r<br>Tuesday: 9:30am - 6:30pm\r<br>Wednesday: 9:30am - 6:30pm\r<br>Thursday: 10:00am - 7:00pm\r<br>Friday: 10:00am - 7:00pm\r<br>Saturday: 9:00am - 7:00pm\r<br>Sunday: 10:00am - 7:00pm",
     "marker_image": "\/\/cdn.shopify.com\/s\/files\/1\/0066\/6563\/3903\/t\/431\/assets\/scasl_1613627669map-marker-inactive_compact.png",
     "address": "249 Middleborough Rd,",
     "country": "Australia",
     "state": "Victoria",
     "city": "Box Hill South",
     "postal": "3128",
-    "priority": 3
-  },
-  {
-    "lat": "-33.9222773",
-    "lng": "151.1658094",
-    "id": 6032578,
-    "name": "Decathlon Tempe",
-    "description": "Shop online and pick up your order in-store for free in 2 hours",
-    "web": "https:\/\/decathlon.com.au\/pages\/store-tempe",
-    "webdisplay": "Visit store page",
-    "tagsvalue": "In-Store Shopping,Free Click & Collect,2 hours Click & Collect",
-    "tags": [
-      {
-        "tag": "In-Store Shopping"
-      },
-      {
-        "tag": "Free Click & Collect"
-      },
-      {
-        "tag": "2 hours Click & Collect"
-      }
-    ],
-    "schedule": "Monday: 9:00 am - 8:00 pm\r<br>Tuesday: 9:00 am - 8:00 pm\r<br>Wednesday: 9:00 am - 8:00 pm\r<br>Thursday: 9:00 am - 9:00 pm\r<br>Friday: 9:00 am - 8:00 pm\r<br>Saturday: 9:00 am - 8:00 pm\r<br>Sunday: 9:00 am - 7:00 pm",
-    "marker_image": "\/\/cdn.shopify.com\/s\/files\/1\/0066\/6563\/3903\/t\/441\/assets\/scasl_1615717967map-marker-inactive_compact.png",
-    "address": "634-726 Princes Hwy, Tempe",
-    "country": "Australia",
-    "state": "New South Wales",
-    "city": "Sydney",
-    "postal": "2044",
-    "priority": 3
+    "priority": 6
   },
   {
     "lat": "-37.9728438",
     "lng": "145.1110411",
     "id": 6036679,
     "name": "Decathlon Moorabbin",
-    "description": "Pick up your order in-store for free in 2 hours.\r<br>",
     "web": "https:\/\/decathlon.com.au\/pages\/store-moorabbin",
     "webdisplay": "Visit store page",
-    "tagsvalue": "Free Click & Collect,2 hours Click & Collect,In-Store Shopping",
+    "tagsvalue": "In-store Shopping,Bicycle Repairs,Tennis Racquet Restringing,Click & Collect Ready in 1hr",
     "tags": [
       {
-        "tag": "Free Click & Collect"
+        "tag": "In-store Shopping"
       },
       {
-        "tag": "2 hours Click & Collect"
+        "tag": "Bicycle Repairs"
       },
       {
-        "tag": "In-Store Shopping"
+        "tag": "Tennis Racquet Restringing"
+      },
+      {
+        "tag": "Click & Collect Ready in 1hr"
       }
     ],
-    "schedule": "VIC circuit breaker - C&C only from 10am - 5pm \r<br>\r<br>Monday: 9 am–6 pm\r<br>Tuesday: 9 am–6 pm\r<br>Wednesday: 9 am–6 pm\r<br>Thursday: 9 am–8 pm\r<br>Friday: 9 am–8 pm\r<br>Saturday: 9 am–8 pm\r<br>Sunday: 9 am–6 pm\r<br>",
+    "schedule": "Normal Opening Hours\r<br>\r<br>Monday: 9:00 am - 7:00 pm\r<br>Tuesday: 9:00 am - 7:00 pm\r<br>Wednesday: 9:00 am - 7:00 pm\r<br>Thursday: 9:00 am - 7:00 pm\r<br>Friday: 9:00 am - 7:00 pm\r<br>Saturday: 9:00 am - 7:00 pm\r<br>Sunday: 10:00 am - 7:00 pm",
     "marker_image": "\/\/cdn.shopify.com\/s\/files\/1\/0066\/6563\/3903\/t\/441\/assets\/scasl_1615717926map-marker-inactive_compact.png",
     "address": "405 Boundary Rd,",
     "country": "Australia",
     "state": "Victoria",
     "city": "Moorabbin Airport",
     "postal": "3194",
-    "priority": 3
+    "priority": 7
   },
   {
-    "lat": "-37.8991897",
-    "lng": "145.2418035",
+    "lat": "-37.8982315",
+    "lng": "145.2425894",
     "id": 6036680,
     "name": "Decathlon Knoxfield",
-    "description": "Pick up your order in-store for free in 2 hours.",
     "web": "https:\/\/decathlon.com.au\/pages\/store-knoxfield",
     "webdisplay": "Visit store page",
-    "tagsvalue": "Free Click & Collect,2 hours Click & Collect,In-Store Shopping",
+    "tagsvalue": "In-store Shopping,Bicycle Repairs,Tennis Racquet Restringing,Click & Collect Ready in 1hr",
     "tags": [
       {
-        "tag": "Free Click & Collect"
+        "tag": "In-store Shopping"
       },
       {
-        "tag": "2 hours Click & Collect"
+        "tag": "Bicycle Repairs"
       },
       {
-        "tag": "In-Store Shopping"
+        "tag": "Tennis Racquet Restringing"
+      },
+      {
+        "tag": "Click & Collect Ready in 1hr"
       }
     ],
-    "schedule": "VIC circuit breaker - C&C only from 10am - 5pm \r<br>\r<br>Monday: 9 am–6 pm\r<br>Tuesday: 9 am–6 pm\r<br>Wednesday: 9 am–6 pm\r<br>Thursday: 9 am–6 pm\r<br>Friday: 9 am–6 pm\r<br>Saturday: 9 am–6 pm\r<br>Sunday: 10 am–5 pm",
+    "schedule": "<br>\r<br><strong>Holidays Trading Hours:<\/strong>\r<br>24 Dec 2022 (Christmas Eve): 09:00am - 6:00pm\r<br>25 Dec 2022 (Christmas Day): CLOSED\r<br>26 Dec 2022 (Boxing Day): 10:00am - 6:00pm\r<br>\r<br><strong>Operating hours: <\/strong>\r<br>Monday: 10.00am - 6.00pm\r<br>Tuesday: 10:00am - 6.00pm\r<br>Wednesday: 10:00am - 6.00pm\r<br>Thursday: 10.00am - 6:00pm\r<br>Friday: 10:00am - 6.00pm\r<br>Saturday: 9.00am - 6.00pm\r<br>Sunday: 10am - 6.00pm",
     "marker_image": "\/\/cdn.shopify.com\/s\/files\/1\/0066\/6563\/3903\/t\/441\/assets\/scasl_1615717896map-marker-inactive_compact.png",
     "address": "1464 Ferntree Gully Rd",
     "country": "Australia",
     "state": "Victoria",
     "city": "Knoxfield",
     "postal": "3180",
-    "priority": 3
-  },
-  {
-    "lat": "-37.7982078",
-    "lng": "144.9790906",
-    "id": 6040822,
-    "name": "Fitzroy Mini Mart",
-    "description": "You can now order your products online and collect them from one of our partners. Wait for your ready to collect confirmation email before picking up your order.\r<br>",
-    "web": "https:\/\/decathlon.com.au\/pages\/store-fitzroycc3065",
-    "webdisplay": "Visit partner page",
-    "tagsvalue": "Free Click & Collect,Pick up in 3 business days",
-    "tags": [
-      {
-        "tag": "Free Click & Collect"
-      },
-      {
-        "tag": "Pick up in 3 business days"
-      }
-    ],
-    "schedule": "\r<br>Monday - Friday: 8:00 am - 5:30 pm",
-    "marker_image": "\/\/cdn.shopify.com\/s\/files\/1\/0066\/6563\/3903\/t\/431\/assets\/scasl_1613015037map-marker-inactive_compact.png",
-    "address": "125 Johnston Street,",
-    "country": "Australia",
-    "state": "Victoria",
-    "city": "Fitzroy",
-    "postal": "3065",
-    "priority": 3
+    "priority": 8
   },
   {
     "lat": "-33.7609519",
     "lng": "151.275257",
     "id": 6749584,
     "name": "The Surfboard Warehouse Brookvale",
-    "description": "You can now order your products online and collect them from one of our partners. Wait for your ready to collect confirmation email before picking up your order.\r<br>\r<br>Pick up in 2 business days for standard items and in 5 business days for bulky items (bikes, kayaks, treadmills,etc)",
+    "description": "You can now order your products online and collect them from one of our partners.\r<br>\r<br>Please wait for your ready-to-collect confirmation email before picking up your order.\r<br>\r<br>Most orders are usually ready to collect within 2-3 business days.",
     "phone": "1800 983 227",
     "web": "https:\/\/decathlon.com.au\/pages\/store-brookvalecc2100",
     "webdisplay": "View Store Page",
-    "tagsvalue": "Free Click & Collect,Pick up in 2 business days,Pick up in 5 business days",
+    "tagsvalue": "Ready in 2-3 Business Days",
     "tags": [
       {
-        "tag": "Free Click & Collect"
-      },
-      {
-        "tag": "Pick up in 2 business days"
-      },
-      {
-        "tag": "Pick up in 5 business days"
+        "tag": "Ready in 2-3 Business Days"
       }
     ],
-    "schedule": "Click & Collect hours might differ during public holidays. Visit the partner page below to learn more\r<br>\r<br>Mon - Sun | 9:00 am - 5:00 pm",
+    "schedule": "Click & Collect hours might differ during public holidays.\r<br>\r<br>Visit the partner page below to learn more\r<br>\r<br>Mon - Sat | 10:00 am - 3:00 pm\r<br>Sun | Closed",
     "marker_image": "\/\/cdn.shopify.com\/s\/files\/1\/0066\/6563\/3903\/t\/396\/assets\/scasl_1611181169map-marker-inactive_compact.png",
     "address": "535 Pittwater Rd",
     "country": "Australia",
     "state": "New South Wales",
     "city": "Brookvale",
     "postal": "2100",
-    "priority": 1
-  },
-  {
-    "lat": "-33.8173777",
-    "lng": "151.0008884",
-    "id": 6036685,
-    "name": "UFC Gym Westfield Parramatta",
-    "description": "You can now order your products online and collect them from one of our partners. Wait for your ready to collect confirmation email before picking up your order.\r<br>\r<br>NOTE: Please confirm opening hours for public holidays through the hosting company website",
-    "web": "https:\/\/decathlon.com.au\/pages\/store-ufcwestfieldparramatta2150",
-    "webdisplay": "Visit partner page",
-    "tagsvalue": "Free Click & Collect,Pick up in 2 business days",
-    "tags": [
-      {
-        "tag": "Free Click & Collect"
-      },
-      {
-        "tag": "Pick up in 2 business days"
-      }
-    ],
-    "schedule": "Monday: 7:00 am - 9:00 pm\r<br>Tuesday: 7:00 am - 9:00 pm\r<br>Wednesday: 7:00 am - 9:00 pm\r<br>Thursday: 9:00 am - 9:00 pm\r<br>Friday: 7:00 am - 9:00 pm\r<br>Saturday: 7:00 am - 3:00 pm\r<br>Sunday: 7:00 am - 3:00 pm\r<br>\r<br>",
-    "marker_image": "\/\/cdn.shopify.com\/s\/files\/1\/0066\/6563\/3903\/t\/311\/assets\/scasl_1602820356map-marker-inactive_compact.jpg",
-    "address": " Aird St",
-    "country": "Australia",
-    "state": "New South Wales",
-    "city": " Parramatta",
-    "postal": "2150",
-    "priority": 1
-  },
-  {
-    "lat": "-38.030818",
-    "lng": "145.345826",
-    "id": 6036686,
-    "name": "Berwick Newsagency",
-    "description": "You can now order your products online and collect them from one of our partners. Wait for your ready to collect confirmation email before picking up your order.\r<br>\r<br>NOTE: Please confirm opening hours for public holidays through the hosting company website",
-    "web": "https:\/\/decathlon.com.au\/pages\/store-berwick3806",
-    "webdisplay": "Visit partner page",
-    "tagsvalue": "Free Click & Collect,Pick up in 3 business days",
-    "tags": [
-      {
-        "tag": "Free Click & Collect"
-      },
-      {
-        "tag": "Pick up in 3 business days"
-      }
-    ],
-    "schedule": "Monday: 6:30 am - 5:00 pm\r<br>Tuesday:6:30 am - 5:00 pm\r<br>Wednesday: 6:30 am - 5:00 pm\r<br>Thursday: 6:30 am - 5:00 pm\r<br>Friday: 6:30 am - 5:00 pm\r<br>Saturday: 6:30 am - 4:00 pm\r<br>Sunday: 6:30 am - 11:00 am",
-    "marker_image": "\/\/cdn.shopify.com\/s\/files\/1\/0066\/6563\/3903\/t\/380\/assets\/scasl_1609721757map-marker-inactive_compact.png",
-    "address": "29-31 High St,",
-    "country": "Australia",
-    "state": "Victoria",
-    "city": "Berwick",
-    "postal": "3806",
-    "priority": 1
-  },
-  {
-    "lat": "-38.2208747",
-    "lng": "145.0392182",
-    "id": 6036687,
-    "name": "TL iRepair",
-    "description": "You can now order your products online and collect them from one of our partners. Wait for your ready-to-collect confirmation email before picking up your order.\r<br>",
-    "web": "https:\/\/decathlon.com.au\/pages\/store-frankstoncc3199",
-    "webdisplay": "Visit partner page",
-    "tagsvalue": "Free Click & Collect,Pick up in 3 business days,Pick up in 5 business days",
-    "tags": [
-      {
-        "tag": "Free Click & Collect"
-      },
-      {
-        "tag": "Pick up in 3 business days"
-      },
-      {
-        "tag": "Pick up in 5 business days"
-      }
-    ],
-    "schedule": "Click & Collect hours might differ during public holidays. Visit the partner page below to learn more\r<br>\r<br>Monday: 9:30 am - 5:30 pm\r<br>Tuesday: 9:30 am - 5:30 pm\r<br>Wednesday:  9:30 am - 5:30 pm\r<br>Thursday:  9:30 am - 6:00 pm\r<br>Friday:  9:30 am - 6:00 pm\r<br>Saturd",
-    "marker_image": "\/\/cdn.shopify.com\/s\/files\/1\/0066\/6563\/3903\/t\/431\/assets\/scasl_1614033556map-marker-inactive_compact.png",
-    "address": "2 Wells Street",
-    "country": "Australia",
-    "state": "Victoria",
-    "city": "Frankston",
-    "postal": "3199",
-    "priority": 1
-  },
-  {
-    "lat": "-37.8111568",
-    "lng": "145.2706633",
-    "id": 6036689,
-    "name": "Eastfield Newsagency South Croydon",
-    "description": "You can now order your products online and collect them from one of our partners. Wait for your ready to collect confirmation email before picking up your order.\r<br>\r<br>NOTE: Please confirm opening hours for public holidays through the hosting company website",
-    "phone": "(03) 9723 4984",
-    "tagsvalue": "Free Click & Collect,Pick up in 3 business days",
-    "tags": [
-      {
-        "tag": "Free Click & Collect"
-      },
-      {
-        "tag": "Pick up in 3 business days"
-      }
-    ],
-    "schedule": "Monday: 06:00 am - 17:15 pm\r<br>Tuesday: 06:00 am - 17:15 pm\r<br>Wednesday: 06:00 am - 17:15 pm\r<br>Thursday: 06:00 am - 17:15 pm\r<br>Friday: 06:00 am - 17:15 pm\r<br>Saturday: 07:00 am - 14:00 pm\r<br>Sunday: 08:00 am - 12:00 pm\r<br>\r<br>",
-    "address": "7 The Mall",
-    "country": "Australia",
-    "state": "Victoria",
-    "city": "South Croydon",
-    "postal": "3136",
-    "priority": 1
+    "priority": 5
   },
   {
     "lat": "-37.6488187",
     "lng": "145.0747921",
     "id": 7137507,
     "name": "Decathlon South Morang",
-    "description": "You can now order your products online and collect them from one of our partners. Wait for your ready-to-collect confirmation email before picking up your order.\r<br>",
     "web": "https:\/\/decathlon.com.au\/pages\/store-south-morang",
     "webdisplay": "Visit store page",
-    "tagsvalue": "In-Store Shopping,Pick up in 2 business days",
+    "tagsvalue": "In-store Shopping,Bicycle Repairs,Tennis Racquet Restringing,Click & Collect Ready in 1hr",
     "tags": [
       {
-        "tag": "In-Store Shopping"
+        "tag": "In-store Shopping"
       },
       {
-        "tag": "Pick up in 2 business days"
+        "tag": "Bicycle Repairs"
+      },
+      {
+        "tag": "Tennis Racquet Restringing"
+      },
+      {
+        "tag": "Click & Collect Ready in 1hr"
       }
     ],
-    "schedule": "VIC circuit breaker - C&C only from 12pm - 4pm \r<br>\r<br>",
+    "schedule": "<br>\r<br><strong>Holidays Trading Hours:<\/strong>\r<br>24 Dec 2022 (Christmas Eve): 10:00am - 6:00pm\r<br>25 Dec 2022 (Christmas Day): CLOSED\r<br>26 Dec 2022 (Boxing Day): 10:00am - 6:00pm\r<br>31 Dec 2022 (New Year's Eve): 10:00am - 6:00pm\r<br>\r<br><strong>Normal Operating Hours:<\/strong>\r<br>\r<br>Monday 10:00am-6:00pm\r<br>Tuesday 10:00am-6:00pm\r<br>Wednesday 10:00am-6:00pm\r<br>Thursday 10:00am-7:00pm\r<br>Friday 10:00am-7:00pm\r<br>Saturday 10:00am - 6:00pm\r<br>Sunday 10:00am-6:00pm\r<br><br>",
     "marker_image": "\/\/cdn.shopify.com\/s\/files\/1\/0066\/6563\/3903\/t\/441\/assets\/scasl_1615717763map-marker-inactive_compact.png",
     "address": "10\/340 McDonalds Rd",
     "country": "Australia",
     "state": "Victoria",
     "city": "South Morang",
     "postal": "3752",
+    "priority": 9
+  },
+  {
+    "lat": "-33.8688197",
+    "lng": "151.2048871",
+    "id": 7443729,
+    "name": "Decathlon CBD",
+    "description": "Click and Collect Location Only\r<br>Not a physical Decathlon Store",
+    "phone": "(02) 9235 0155",
+    "webdisplay": "View Offers",
+    "tagsvalue": "Click & Collect Only,No Instore Shopping",
+    "tags": [
+      {
+        "tag": "Click & Collect Only"
+      },
+      {
+        "tag": "No Instore Shopping"
+      }
+    ],
+    "schedule": "Monday 9:00AM: 7:00PM \r<br>Tuesday 9:00AM: 7:00PM\r<br>Wednesday 9:00AM: 7:00PM\r<br>Thursday 9:00AM: 8:00PM\r<br>Friday 9:00AM: 7:00PM\r<br>Saturday 9:00AM: 6:00PM\r<br>Sunday 10:00AM: 5:00PM\"",
+    "address": "Dymocks",
+    "address2": "424-430 George Street",
+    "country": "Australia",
+    "state": "New South Wales",
+    "city": "Sydney",
+    "postal": "2000",
+    "priority": 5
+  },
+  {
+    "lat": "-34.0343623",
+    "lng": "151.1024038",
+    "id": 9217334,
+    "name": "Decathlon Miranda",
+    "description": "New Store Now Open\r<br>\r<br>Click and Collect Available",
+    "phone": "0420 450 076",
+    "email": "customer.service@decathlon.com",
+    "web": "https:\/\/decathlon.com.au\/pages\/store-miranda",
+    "webdisplay": "decathlon.com.au\/pages\/store-miranda",
+    "tagsvalue": "Click & Collect Ready in 1hr,In-store Shopping,Bicycle Repairs,Tennis Racquet Restringing",
+    "tags": [
+      {
+        "tag": "Click & Collect Ready in 1hr"
+      },
+      {
+        "tag": "In-store Shopping"
+      },
+      {
+        "tag": "Bicycle Repairs"
+      },
+      {
+        "tag": "Tennis Racquet Restringing"
+      }
+    ],
+    "schedule": "Opening Hours:\r<br>Monday: 9.00am - 6.00pm\r<br>Tuesday: 9.00am - 6.00pm\r<br>Wednesday: 9.00am - 6.00pm\r<br>Thursday: 9.00am - 9:00pm\r<br>Friday: 9.00am - 6.00pm\r<br>Saturday: 9.00am - 6.00pm\r<br>Sunday: 10am - 6.00pm",
+    "marker_image": "https:\/\/cdn.shopify.com\/s\/files\/1\/0066\/6563\/3903\/t\/441\/assets\/scasl_1615717967map-marker-inactive_compact.png",
+    "address": "Westfields Miranda Shopping Centre",
+    "address2": "Ground Floor, Shop G109, 600 The Kingsway, Westfield",
+    "country": "Australia",
+    "state": "New South Wales",
+    "city": "Sydney",
+    "postal": "2228",
+    "priority": 4
+  },
+  {
+    "lat": "-33.891713",
+    "lng": "151.248526",
+    "id": 10698985,
+    "name": "Decathlon Bondi Junction",
+    "description": "Decathlon Bondi Junction\r<br>STM Store\r<br>426 Oxford St, Bondi Junction, NSW, 2022",
+    "email": "customer.service@decathlon.com",
+    "tagsvalue": "Ready in 2-3 Business Days,No Instore Shopping",
+    "tags": [
+      {
+        "tag": "Ready in 2-3 Business Days"
+      },
+      {
+        "tag": "No Instore Shopping"
+      }
+    ],
+    "schedule": "Monday 9:00am-5:00pm\r<br>Tuesday 9:00am-5:00pm\r<br>Wednesday 9:00am-5:00pm\r<br>Thursday 9:00am-9:00pm\r<br>Friday 9:00am-5:00pm\r<br>Saturday 9:00am - 5:00pm\r<br>Sunday 9:00am-5:00pm",
+    "address": "STM Store",
+    "address2": "426 Oxford St",
+    "country": "Australia",
+    "state": "New South Wales",
+    "city": "Bondi Junction",
+    "postal": "2022",
+    "priority": 4
+  },
+  {
+    "lat": "-33.9205155",
+    "lng": "151.1680627",
+    "id": 12668655,
+    "name": "Decathlon Sydney City",
+    "phone": "0450815760",
+    "tagsvalue": "In-store Shopping,Click & Collect Ready in 1hr",
+    "tags": [
+      {
+        "tag": "In-store Shopping"
+      },
+      {
+        "tag": "Click & Collect Ready in 1hr"
+      }
+    ],
+    "schedule": "<strong>Normal Operating Hours:<\/strong>\r<br>\r<br>Monday: 9:00 am - 6:00 pm\r<br>Tuesday: 9:00 am - 6:00 pm\r<br>Wednesday: 9:00 am - 6:00 pm\r<br>Thursday: 9:00 am - 9:00 pm\r<br>Friday: 9:00 am - 6:00 pm\r<br>Saturday: 9:00 am - 6:00 pm\r<br>Sunday: 9:00 am - 5:00 pm",
+    "address": "Ground Floor 309-315 George street",
+    "country": "Australia",
+    "state": "New South Wales",
+    "city": "Sydney",
+    "postal": "2000",
     "priority": 1
   }
 ]
