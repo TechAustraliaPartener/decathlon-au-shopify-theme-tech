@@ -3498,12 +3498,20 @@ $subheader-height: 48px;
   }
 }
 
+.de-PageWrap-main--announcement-active {
+  padding-top: 77px;
+
+  @media screen and (min-width: 768px) {
+    padding-top: 88px;
+  }
+
+  @media screen and (min-width: 60em) {
+    padding-top: 137px;
+  }
+}
+
 /* Homepage Hero */
 .template-index {
-    .de-PageWrap-main {
-        position: relative;
-        padding-top: 0;
-    }
     .main-content {
       min-height: 100vh;
     }

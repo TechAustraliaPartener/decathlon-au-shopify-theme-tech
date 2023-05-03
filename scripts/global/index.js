@@ -140,7 +140,8 @@ $( document ).ready(function() {
   let announcementChecker = sessionStorage.getItem("announcement");
   if (announcementChecker == 'true' || announcementChecker == null){
       $('#announcement-banner-container').show();
-      $('#announcement-banner-container').addClass('announcement-active')
+      $('#announcement-banner-container').addClass('announcement-active');
+      $('.de-PageWrap-main').addClass('de-PageWrap-main--announcement-active')
       sessionStorage.setItem("announcement", true);
       announcement();
       $( "#announcement-close" ).click(function() {

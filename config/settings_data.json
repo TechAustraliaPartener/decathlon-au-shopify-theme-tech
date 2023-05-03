@@ -3400,9 +3400,48 @@
           "cb72215f-d5ab-4514-89c1-93a3f6abf82d"
         ],
         "settings": {}
+      },
+      "3943f894-fafe-42d7-b2f6-c7becc6c3ec1": {
+        "type": "hero-banner",
+        "blocks": {
+          "38920c5c-4072-4405-9f54-b9ab1cfffa03": {
+            "type": "carousel-slide",
+            "settings": {
+              "title": "Slide 1",
+              "link": "#",
+              "mobile_image": "shopify:\/\/shop_images\/wk14_main_banner_2_mobile.webp",
+              "mobile_image_alt": "Mobile Alt Text",
+              "tablet_image": "shopify:\/\/shop_images\/wk18_main_banner_4_tablet.webp",
+              "tablet_image_alt": "Tablet Alt Text",
+              "desktop_image": "shopify:\/\/shop_images\/wk16_main_banner_1_nutrition_desktop.webp",
+              "desktop_image_alt": "Desktop Alt Text"
+            }
+          },
+          "18ee6eec-ad46-4a29-a6cd-5e36d0a05469": {
+            "type": "carousel-slide",
+            "settings": {
+              "title": "Slide 2",
+              "link": "#",
+              "mobile_image": "shopify:\/\/shop_images\/wk14_main_banner_2_mobile.webp",
+              "mobile_image_alt": "Mobile Alt Text",
+              "tablet_image": "shopify:\/\/shop_images\/wk18_main_banner_4_tablet.webp",
+              "tablet_image_alt": "Tablet Alt Text",
+              "desktop_image": "shopify:\/\/shop_images\/wk16_main_banner_1_nutrition_desktop.webp",
+              "desktop_image_alt": "Desktop Alt Text"
+            }
+          }
+        },
+        "block_order": [
+          "38920c5c-4072-4405-9f54-b9ab1cfffa03",
+          "18ee6eec-ad46-4a29-a6cd-5e36d0a05469"
+        ],
+        "settings": {
+          "max_percentage_height": 30
+        }
       }
     },
     "content_for_index": [
+      "3943f894-fafe-42d7-b2f6-c7becc6c3ec1",
       "1568939434006",
       "1ba4e02e-90ad-4b59-939b-9a43d0f8d792",
       "163107170023281063",
