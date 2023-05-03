@@ -1,0 +1,241 @@
+<style>
+  .qualifiers {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    white-space: normal;
+    overflow-x: auto;
+    background: rgb(231, 243, 249);
+    margin: 0;
+  }
+
+  @media screen and (min-width: 1280px) {
+    .qualifiers.qualifiers--not-max {
+      justify-content: center;
+    }
+
+  }
+
+  @media screen and (min-width: 1366px) {
+
+    .qualifiers {
+      flex-wrap: nowrap;
+      justify-content: center;
+    }
+  }
+  
+  @media screen and (min-width: 1440px) {
+    .qualifiers {
+      justify-content: center;
+      overflow-x: none;
+    }
+  }
+
+  .qualifiers__item {
+    flex-shrink: 0;
+  }
+  
+  
+  .qualifier-box {
+    display: flex;
+    align-items: center;
+    border-right: 3px solid white;
+    background: rgb(231, 243, 249);
+    padding: 10px 20px;
+    text-decoration: none;
+  }
+
+  .qualifiers__item:last-child .qualifier-box {
+    border-right: 0;
+  }
+
+  @media screen and (min-width: 1440px) {
+    .qualifiers__item {
+      flex: 1;
+    }
+  }
+  
+  .qualifier-title {
+    margin: 0;
+  }
+  
+  .qualifier-cta {
+    margin: 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  .qualifier-cta__chevron::before {
+    border-style: solid;
+    border-width: 0.25em 0.25em 0 0;
+    content: '';
+    display: inline-block;
+    height: 0.55rem;
+    left: 0.15em;
+    position: relative;
+    top: 0.15em;
+    transform: rotate(-45deg);
+    vertical-align: top;
+    width: 0.55rem;
+    
+    left: 0;
+    transform: rotate(45deg);
+  }
+  
+  .qualifier-icon-col {
+    margin-right: 14px;
+    flex-shrink: 0;
+  }
+  
+  .qualifier-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: rgb(0, 83, 125);
+    display: block;
+    min-width: 150px;
+    max-width: 210px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+
+  @media screen and (min-width: 1280px) {
+    .qualifier-title {
+      min-width: 160px;
+      max-width: 160px;
+    }
+  }
+
+  @media screen and (min-width: 1440px) {
+
+    .qualifier-title {
+      width: 225px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+  }
+  
+  .qualifier-cta {
+    font-size: 12px;
+  }
+  
+  .qualifier-cta__text {
+    margin-right: 10px;
+    text-decoration: underline;
+  }
+
+  .qualifier-cta__chevron {
+    height: 12.44px;
+  }
+  
+</style>
+
+{% if section.blocks.size > 0 %}
+  {% assign less_than_max_class = ' qualifiers--not-max' %}
+{% endif %}
+
+<ul class="qualifiers {{-less_than_max_class-}}">
+  {% for block in section.blocks %}
+    <style>
+        {% if block.settings.qualifier_bg_color %}
+        .qualifers__item--{{ block.id }} .qualifier-box {
+          background-color: {{ block.settings.qualifier_bg_color }};
+        }
+        {% endif %}
+
+        {% if block.settings.title_color %}
+        .qualifers__item--{{ block.id }} .qualifier-title{
+          color: {{ block.settings.title_color }};
+        }
+        {% endif %}
+
+        {% if block.settings.link_color %}
+        .qualifers__item--{{ block.id }} .qualifier-cta{
+          color: {{ block.settings.link_color }};
+        }
+        {% endif %}
+
+    </style>
+
+    <li class="qualifiers__item qualifers__item--{{ block.id }}">
+      <a href="{{ block.settings.link }}" class="qualifier-box">
+        {% if block.settings.icon_svg %}
+        <div class="qualifier-icon-col">
+          {{ block.settings.icon_svg }}
+        </div>
+        {% endif %}
+        <div class="qualifier-info-col">
+          {% if block.settings.title %}
+          <p class="qualifier-title">{{ block.settings.title }}</p>
+          {% endif %}
+          {% if block.settings.link_label %}
+          <p class="qualifier-cta">
+            <span class="qualifier-cta__text">{{ block.settings.link_label }}</span>
+            <span class="qualifier-cta__chevron"></span>
+          </p>
+          {% endif %}
+        </div>
+      </a>
+    </li>
+  {% endfor %}
+</ul>
+
+
+{% schema %}
+  {
+    "name": "Qualifiers",
+    "max_blocks": 6,
+    "blocks": [
+      {
+        "type": "qualifier",
+        "name": "Qualifier",
+        "settings": [
+          {
+            "type": "color",
+            "id": "qualifier_bg_color",
+            "label": "Background Color"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "color",
+            "id": "title_color",
+            "label": "Title Colour"
+          },
+          {
+            "type": "text",
+            "id": "link_label",
+            "label": "Link label"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Link"
+          },
+          {
+            "type": "color",
+            "id": "link_color",
+            "label": "Link Colour"
+          },
+          {
+            "type": "html",
+            "id": "icon_svg",
+            "label": "Icon SVG"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Qualifiers"
+      }
+    ]
+  }
+  {% endschema %}
+  
