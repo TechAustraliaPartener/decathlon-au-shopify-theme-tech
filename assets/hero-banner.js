@@ -1,12 +1,10 @@
-const swiper = new Swiper('.swiper', {
+const swiper = new Swiper('.hero-banner', {
   loop: true,
   // If we need pagination
   pagination: {
     el: '.swiper-pagination',
   },
-  // autoplay: {
-  //   delay: 5000,
-  // },
+  autoplay: true,
 
   // Navigation arrows
   // navigation: {

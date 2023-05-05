@@ -1914,6 +1914,7 @@
       },
       "1568939434006": {
         "type": "banner-hero",
+        "disabled": true,
         "blocks": {
           "623e46b1-2abc-4e5b-8ceb-3ca5e428998a": {
             "type": "slide",
@@ -1977,7 +1978,57 @@
               "banner_subtitle": "",
               "countdown_inline": false,
               "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/collections\/yoga-sale",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/snow-sale-50-off",
+              "link_title": "",
+              "link_new_window": false,
+              "countdown_date": "2023-05-20",
+              "countdown_time": "23:59",
+              "countdown_position": "flex-start,flex-start",
+              "countdown_bold": true,
+              "countdown_italic": true,
+              "countdown_underline": true,
+              "countdown_colour": "#ffffff",
+              "countdown_font_size_m": "1.75rem",
+              "countdown_font_size_d": "2.75rem"
+            }
+          },
+          "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/red_Homepage_Carousel_Desktop___1440_x_789px.png",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/red_Homepage_Carousel_Mobile___478_x_300px.png",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "countdown_inline": false,
+              "button_title": "",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/snow-sale",
+              "link_title": "",
+              "link_new_window": false,
+              "countdown_date": "",
+              "countdown_time": "",
+              "countdown_position": "flex-start,flex-start",
+              "countdown_bold": false,
+              "countdown_italic": false,
+              "countdown_underline": false,
+              "countdown_colour": "#ffffff",
+              "countdown_font_size_m": "1.75rem",
+              "countdown_font_size_d": "2.75rem"
+            }
+          },
+          "e9b4daa6-6eee-441b-b76d-9c3ff012fde9": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Desktop_banner_1440_x_789px_28425ed8-ef95-4b5f-a8ce-46d04406efcd.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Mobile_banner_478_x_300px_3152db3d-5cc9-4205-844e-e8dc13f201e0.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "countdown_inline": false,
+              "button_title": "",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/decathlon-clearance",
               "link_title": "",
               "link_new_window": false,
               "countdown_date": "",
@@ -3320,13 +3371,13 @@
           "d487a64e-df9e-44da-a0b5-84ac478cc294": {
             "type": "qualifier",
             "settings": {
-              "qualifier_bg_color": "#1c82c3",
+              "qualifier_bg_color": "rgba(0,0,0,0)",
               "title": "Free delivery above $100",
-              "title_color": "#ffea28",
+              "title_color": "rgba(0,0,0,0)",
               "link_label": "Find out more",
               "link": "#",
-              "link_color": "#ffffff",
-              "icon_svg": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" width=\"16\" height=\"16\"><path d=\"M5.977 12a2.333 2.333 0 0 1-4.62 0h-.69V4a.667.667 0 0 1 .666-.667h9.334a.667.667 0 0 1 .666.667v1.333h2l2 2.704V12h-1.356a2.333 2.333 0 0 1-4.62 0h-3.38zM10 4.667H2v5.366a2.334 2.334 0 0 1 3.775.634h3.783c.112-.236.262-.45.442-.634V4.667zm1.333 4H14v-.19l-1.339-1.81h-1.328v2zm.334 4a1 1 0 1 0 0-2.001 1 1 0 0 0 0 2zm-7-1a1 1 0 1 0-2 0 1 1 0 0 0 2 0z\"><\/path><\/svg>"
+              "link_color": "rgba(0,0,0,0)",
+              "icon_svg": ""
             }
           },
           "20d0e160-03c7-4659-93a3-064ed3aea69e": {
@@ -3368,18 +3419,17 @@
           "26e8ba73-08aa-43fc-bd57-4f6ce3202eaa": {
             "type": "qualifier",
             "settings": {
-              "qualifier_bg_color": "",
+              "qualifier_bg_color": "rgba(0,0,0,0)",
               "title": "Main Promos",
-              "title_color": "",
+              "title_color": "rgba(0,0,0,0)",
               "link_label": "Click here",
               "link": "#",
-              "link_color": "",
+              "link_color": "rgba(0,0,0,0)",
               "icon_svg": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" width=\"16\" height=\"16\"><path d=\"M5.977 12a2.333 2.333 0 0 1-4.62 0h-.69V4a.667.667 0 0 1 .666-.667h9.334a.667.667 0 0 1 .666.667v1.333h2l2 2.704V12h-1.356a2.333 2.333 0 0 1-4.62 0h-3.38zM10 4.667H2v5.366a2.334 2.334 0 0 1 3.775.634h3.783c.112-.236.262-.45.442-.634V4.667zm1.333 4H14v-.19l-1.339-1.81h-1.328v2zm.334 4a1 1 0 1 0 0-2.001 1 1 0 0 0 0 2zm-7-1a1 1 0 1 0-2 0 1 1 0 0 0 2 0z\"><\/path><\/svg>"
             }
           },
           "cb72215f-d5ab-4514-89c1-93a3f6abf82d": {
             "type": "qualifier",
-            "disabled": true,
             "settings": {
               "qualifier_bg_color": "",
               "title": "Sample text here",
@@ -3414,20 +3464,54 @@
               "tablet_image": "shopify:\/\/shop_images\/wk18_main_banner_4_tablet.webp",
               "tablet_image_alt": "Tablet Alt Text",
               "desktop_image": "shopify:\/\/shop_images\/wk16_main_banner_1_nutrition_desktop.webp",
-              "desktop_image_alt": "Desktop Alt Text"
+              "desktop_image_alt": "Desktop Alt Text",
+              "banner_intro": "Test",
+              "banner_title": "Test in  [countdown]",
+              "banner_subtitle": "<p>123 [countdown]<\/p>",
+              "countdown_inline": false,
+              "button_title": "Test",
+              "link_url": "#",
+              "link_title": "Test",
+              "link_new_window": false,
+              "countdown_date": "2023-05-20",
+              "countdown_time": "11:59",
+              "countdown_position": "flex-start,flex-end",
+              "countdown_bold": true,
+              "countdown_italic": true,
+              "countdown_underline": true,
+              "countdown_colour": "#ffffff",
+              "countdown_font_size_m": "1.75rem",
+              "countdown_font_size_d": "2.75rem"
             }
           },
           "18ee6eec-ad46-4a29-a6cd-5e36d0a05469": {
             "type": "carousel-slide",
             "settings": {
               "title": "Slide 2",
-              "link": "#",
+              "link": "shopify:\/\/products\/1-kg-medicine-ball",
               "mobile_image": "shopify:\/\/shop_images\/wk14_main_banner_2_mobile.webp",
               "mobile_image_alt": "Mobile Alt Text",
-              "tablet_image": "shopify:\/\/shop_images\/wk18_main_banner_4_tablet.webp",
+              "tablet_image": "shopify:\/\/shop_images\/wk18_main_banner_4_tablet_0013f7d8-6d67-4e45-bb1c-d4f3fb04c463.webp",
               "tablet_image_alt": "Tablet Alt Text",
               "desktop_image": "shopify:\/\/shop_images\/wk16_main_banner_1_nutrition_desktop.webp",
-              "desktop_image_alt": "Desktop Alt Text"
+              "desktop_image_alt": "Desktop Alt Text",
+              "banner_intro": "Test",
+              "banner_title": "Test 2 in  [countdown]",
+              "banner_subtitle": "<p>123 [countdown]<\/p>",
+              "countdown_inline": true,
+              "button_title": "Test",
+              "link_url": "#",
+              "link_title": "Test",
+              "link_new_window": false,
+              "countdown_date": "2023-05-20",
+              "countdown_time": "11:59",
+              "countdown_position": "flex-start,flex-end",
+              "countdown_bold": true,
+              "countdown_italic": true,
+              "countdown_underline": true,
+              "countdown_colour": "#ffffff",
+              "countdown_font_size_m": "1.75rem",
+              "countdown_font_size_d": "2.75rem"
             }
           }
         },
@@ -3436,8 +3520,120 @@
           "18ee6eec-ad46-4a29-a6cd-5e36d0a05469"
         ],
         "settings": {
-          "max_percentage_height": 30
+          "max_percentage_height": "50vh",
+          "autoplay_delay_time": 5
         }
+      },
+      "hero-banner": {
+        "type": "hero-banner",
+        "blocks": {
+          "d3123b79-6907-47e3-bda2-d7736209634b": {
+            "type": "carousel-slide",
+            "settings": {
+              "title": "Slide 1",
+              "link": "#",
+              "mobile_image": "shopify:\/\/shop_images\/wk14_main_banner_2_mobile.webp",
+              "mobile_image_alt": "Test",
+              "tablet_image": "shopify:\/\/shop_images\/wk18_main_banner_4_tablet.webp",
+              "tablet_image_alt": "Test 2",
+              "desktop_image": "shopify:\/\/shop_images\/wk16_main_banner_1_nutrition_desktop.webp",
+              "desktop_image_alt": "Test 3"
+            }
+          },
+          "5e1d77aa-d3a5-4bd4-9766-701f2e49f755": {
+            "type": "carousel-slide",
+            "settings": {
+              "title": "Slide 2",
+              "link": "#",
+              "mobile_image": "shopify:\/\/shop_images\/wk14_main_banner_2_mobile.webp",
+              "mobile_image_alt": "Test 1",
+              "tablet_image": "shopify:\/\/shop_images\/wk18_main_banner_4_tablet.webp",
+              "tablet_image_alt": "Test 2",
+              "desktop_image": "shopify:\/\/shop_images\/wk16_main_banner_1_nutrition_desktop.webp",
+              "desktop_image_alt": "Test 3"
+            }
+          }
+        },
+        "block_order": [
+          "d3123b79-6907-47e3-bda2-d7736209634b",
+          "5e1d77aa-d3a5-4bd4-9766-701f2e49f755"
+        ],
+        "settings": {
+          "max_percentage_height": "30vh"
+        }
+      },
+      "qualifiers": {
+        "type": "qualifiers",
+        "blocks": {
+          "23a19049-1efb-4794-a1fc-44be199ece3a": {
+            "type": "qualifier",
+            "settings": {
+              "qualifier_bg_color": "",
+              "title": "Test",
+              "title_color": "",
+              "link_label": "Click Here",
+              "link": "#",
+              "link_color": "",
+              "icon_svg": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" width=\"16\" height=\"16\"><path d=\"M5.977 12a2.333 2.333 0 0 1-4.62 0h-.69V4a.667.667 0 0 1 .666-.667h9.334a.667.667 0 0 1 .666.667v1.333h2l2 2.704V12h-1.356a2.333 2.333 0 0 1-4.62 0h-3.38zM10 4.667H2v5.366a2.334 2.334 0 0 1 3.775.634h3.783c.112-.236.262-.45.442-.634V4.667zm1.333 4H14v-.19l-1.339-1.81h-1.328v2zm.334 4a1 1 0 1 0 0-2.001 1 1 0 0 0 0 2zm-7-1a1 1 0 1 0-2 0 1 1 0 0 0 2 0z\"><\/path><\/svg>"
+            }
+          },
+          "d5f0947b-fa56-43be-8522-26c8fccd4ba0": {
+            "type": "qualifier",
+            "settings": {
+              "qualifier_bg_color": "",
+              "title": "Test 2",
+              "title_color": "",
+              "link_label": "Click Here",
+              "link": "",
+              "link_color": "",
+              "icon_svg": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" width=\"16\" height=\"16\"><path d=\"M5.977 12a2.333 2.333 0 0 1-4.62 0h-.69V4a.667.667 0 0 1 .666-.667h9.334a.667.667 0 0 1 .666.667v1.333h2l2 2.704V12h-1.356a2.333 2.333 0 0 1-4.62 0h-3.38zM10 4.667H2v5.366a2.334 2.334 0 0 1 3.775.634h3.783c.112-.236.262-.45.442-.634V4.667zm1.333 4H14v-.19l-1.339-1.81h-1.328v2zm.334 4a1 1 0 1 0 0-2.001 1 1 0 0 0 0 2zm-7-1a1 1 0 1 0-2 0 1 1 0 0 0 2 0z\"><\/path><\/svg>"
+            }
+          },
+          "9137a29e-cc78-49de-88b0-bd3c76b59702": {
+            "type": "qualifier",
+            "settings": {
+              "qualifier_bg_color": "",
+              "title": "Test 3",
+              "title_color": "",
+              "link_label": "Click Here",
+              "link": "#",
+              "link_color": "",
+              "icon_svg": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" width=\"16\" height=\"16\"><path d=\"M5.977 12a2.333 2.333 0 0 1-4.62 0h-.69V4a.667.667 0 0 1 .666-.667h9.334a.667.667 0 0 1 .666.667v1.333h2l2 2.704V12h-1.356a2.333 2.333 0 0 1-4.62 0h-3.38zM10 4.667H2v5.366a2.334 2.334 0 0 1 3.775.634h3.783c.112-.236.262-.45.442-.634V4.667zm1.333 4H14v-.19l-1.339-1.81h-1.328v2zm.334 4a1 1 0 1 0 0-2.001 1 1 0 0 0 0 2zm-7-1a1 1 0 1 0-2 0 1 1 0 0 0 2 0z\"><\/path><\/svg>"
+            }
+          },
+          "e83028ab-3c11-42b7-81de-b6634297c310": {
+            "type": "qualifier",
+            "settings": {
+              "qualifier_bg_color": "",
+              "title": "Test 4",
+              "title_color": "",
+              "link_label": "Click Here",
+              "link": "#",
+              "link_color": "",
+              "icon_svg": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" width=\"16\" height=\"16\"><path d=\"M5.977 12a2.333 2.333 0 0 1-4.62 0h-.69V4a.667.667 0 0 1 .666-.667h9.334a.667.667 0 0 1 .666.667v1.333h2l2 2.704V12h-1.356a2.333 2.333 0 0 1-4.62 0h-3.38zM10 4.667H2v5.366a2.334 2.334 0 0 1 3.775.634h3.783c.112-.236.262-.45.442-.634V4.667zm1.333 4H14v-.19l-1.339-1.81h-1.328v2zm.334 4a1 1 0 1 0 0-2.001 1 1 0 0 0 0 2zm-7-1a1 1 0 1 0-2 0 1 1 0 0 0 2 0z\"><\/path><\/svg>"
+            }
+          },
+          "38f097b5-c029-495d-bbdc-dcac30a933e6": {
+            "type": "qualifier",
+            "settings": {
+              "qualifier_bg_color": "",
+              "title": "Test 5",
+              "title_color": "",
+              "link_label": "Click Here",
+              "link": "#",
+              "link_color": "",
+              "icon_svg": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" width=\"16\" height=\"16\"><path d=\"M5.977 12a2.333 2.333 0 0 1-4.62 0h-.69V4a.667.667 0 0 1 .666-.667h9.334a.667.667 0 0 1 .666.667v1.333h2l2 2.704V12h-1.356a2.333 2.333 0 0 1-4.62 0h-3.38zM10 4.667H2v5.366a2.334 2.334 0 0 1 3.775.634h3.783c.112-.236.262-.45.442-.634V4.667zm1.333 4H14v-.19l-1.339-1.81h-1.328v2zm.334 4a1 1 0 1 0 0-2.001 1 1 0 0 0 0 2zm-7-1a1 1 0 1 0-2 0 1 1 0 0 0 2 0z\"><\/path><\/svg>"
+            }
+          }
+        },
+        "block_order": [
+          "23a19049-1efb-4794-a1fc-44be199ece3a",
+          "d5f0947b-fa56-43be-8522-26c8fccd4ba0",
+          "9137a29e-cc78-49de-88b0-bd3c76b59702",
+          "e83028ab-3c11-42b7-81de-b6634297c310",
+          "38f097b5-c029-495d-bbdc-dcac30a933e6"
+        ],
+        "settings": {}
       }
     },
     "content_for_index": [

@@ -83,6 +83,8 @@
   }
   
   .qualifier-icon-col {
+    min-width: 16px;
+    min-height: 1px;
     margin-right: 14px;
     flex-shrink: 0;
   }
@@ -99,10 +101,20 @@
     text-overflow: ellipsis;
   }
 
+  .qualifier-cta__text {
+    max-width: 210px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
   @media screen and (min-width: 1280px) {
     .qualifier-title {
       min-width: 160px;
+      max-width: 160px;
+    }
+
+    .qualifier-cta__text {
       max-width: 160px;
     }
   }
@@ -114,6 +126,10 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+    }
+    
+    .qualifier-cta__text {
+      max-width: 210px;
     }
     
   }
@@ -140,23 +156,23 @@
 <ul class="qualifiers {{-less_than_max_class-}}">
   {% for block in section.blocks %}
     <style>
-        {% if block.settings.qualifier_bg_color %}
+        {% unless block.settings.qualifier_bg_color.lightness == 0 %}
         .qualifers__item--{{ block.id }} .qualifier-box {
           background-color: {{ block.settings.qualifier_bg_color }};
         }
-        {% endif %}
+        {% endunless %}
 
-        {% if block.settings.title_color %}
+        {% unless block.settings.title_color.lightness == 0 %}
         .qualifers__item--{{ block.id }} .qualifier-title{
           color: {{ block.settings.title_color }};
         }
-        {% endif %}
+        {% endunless %}
 
-        {% if block.settings.link_color %}
+        {% unless block.settings.link_color.lightness == 0 %}
         .qualifers__item--{{ block.id }} .qualifier-cta{
           color: {{ block.settings.link_color }};
         }
-        {% endif %}
+        {% endunless %}
 
     </style>
 

@@ -4,60 +4,107 @@ href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
 />
 
 <style>
-  .collection-swiper .desktop-image,
-  .collection-swiper .mobile-image {
+  .hero-banner .desktop-image,
+  .hero-banner .tablet-image
+  .hero-banner .mobile-image {
     max-width: 100%;
     height: 100%;
     width: 100%;
     object-fit: cover;
     max-height: {{section.settings.max_percentage_height}};
   }
-  .collection-swiper a {
+  .hero-banner a {
     display: block;
     line-height: 0;
+    position: relative;
+    color: #fff;
   }
-  .collection-swiper a[href="#"] {
+  .hero-banner a[href="#"] {
     pointer-events: none;
     cursor: initial;
   }
   
-  .collection-swiper .tablet-image{
+  .hero-banner .tablet-image{
     display: none;
     width: 100%;
   }
  
-  .collection-swiper .desktop-image{
+  .hero-banner .desktop-image{
     display: none;
     width: 100%;
   }
   @media screen and (min-width: 768px) {
-    .collection-swiper .mobile-image {
+    .hero-banner .mobile-image {
       display: none;
     }
     
-    .collection-swiper .tablet-image{
+    .hero-banner .tablet-image{
       display: block;
     }
   }
 
   @media screen and (min-width: 1280px) {
-    .collection-swiper .tablet-image {
+    .hero-banner .tablet-image {
       display: none;
     }
     
-    .collection-swiper .desktop-image{
+    .hero-banner .desktop-image{
       display: block;
     }
   }
+
+  .carousel-content-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+  }
+
+  .hero-banner .wrapper {
+    padding: 55px 20px;
+    max-width: 1240px;
+    flex: 1;
+  }
+  
+  .hero-banner .banner-content { 
+    text-align: center; 
+  }
+
+  @media screen and (min-width: 768px) {
+    .hero-banner .banner-content {
+      text-align: left;
+    }
+  }
+
+  .hero-banner .btn {
+    background: white;
+    color: #2a2b2c;
+  }
+
+  .banner__counter-container {
+    position: absolute;
+    display: flex;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 20px;
+  }
+
+  .banner__counter-container time {
+    line-height: 1;
+  }
+
 </style>
 {{ 'component-swiper.css' | asset_url | stylesheet_tag }}
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js" defer="defer"></script>
 <script src="{{ 'hero-banner.js' | asset_url }}" defer="defer"></script>
 
-{% assign carousel_images = collection.metafields.metadata.collection_carousel_images.value %}
-{% assign carousel_images_desktop = collection.metafields.metadata.collection_carousel_images_desktop.value %}
-{% assign carousel_links = collection.metafields.metadata.collection_carousel_slide_link.value %}
+
+{% assign carousel_delay_time = section.settings.autoplay_delay_time | times: 1000  %}
 
 {%- capture carousel_images_desktop_str -%}
 {%-for image in carousel_images_desktop-%}
@@ -71,12 +118,66 @@ href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
 
 <div class="page-width">
   <!-- Slider main container -->
-  <div class="swiper collection-swiper">
+  <div class="swiper hero-banner">
     <!-- Additional required wrapper -->
     <div class="swiper-wrapper">
       <!-- Slides -->
       {% for block in section.blocks %}
-        <div class="swiper-slide">
+        <div class="swiper-slide swiper-slide--{{forloop.index}}" data-swiper-autoplay="{{ carousel_delay_time }}">
+          {% assign item = block.settings %}
+          {% assign countdown_position = item.countdown_position | split: "," %}
+          {% assign pos_y = countdown_position | first %}
+          {% assign pos_x = countdown_position | last %}
+          
+          {% capture countdown %}
+            {% include 'helpers-countdown-counter.liquid', countdown_class: 'banner--countdown', item: item, index: forloop.index %}
+          {% endcapture %}
+
+          {% if item.countdown_inline == true %}
+            {% assign banner_intro = item.banner_intro | replace: '[countdown]', countdown %}
+            {% assign banner_title = item.banner_title | replace: '[countdown]', countdown %}
+            {% assign banner_subtitle = item.banner_subtitle | replace: '[countdown]', countdown %}
+            {% assign banner_cta = item.button_title | replace: '[countdown]', countdown %}
+          {% else %}
+            {% assign banner_intro = item.banner_intro %}
+            {% assign banner_title = item.banner_title %}
+            {% assign banner_subtitle = item.banner_subtitle %}
+            {% assign banner_cta = item.button_title %}
+          {% endif %}
+
+          <style>
+
+            .swiper-slide--{{ forloop.index }}  .banner-content .banner__counter-container {
+              position: relative;
+              font-size: inherit;
+              color: inherit;
+            }
+
+            .swiper-slide--{{ forloop.index }} .banner__counter-container {
+              justify-content: {{ pos_x }};
+              align-items: {{ pos_y }};
+              font-size: {{ item.countdown_font_size_d}};
+              {% if item.countdown_underline %} text-decoration: underline; {% endif %}
+              {% if item.countdown_bold %} 
+                font-family: avalon_mediumbold,HelveticaNeue,Helvetica Neue,Helvetica,Arial,sans-serif;
+              {%- else -%}
+                font-family: avalonmedium,Helvetica Neue,Helvetica,Arial,sans-serif!important;
+              {% endif %}
+              {% if item.countdown_italic %} font-style: italic; {% endif %}
+              color: {{ item.countdown_colour}};
+            }
+
+            @media (max-width: 479px) {
+              .swiper-slide--{{ forloop.index }} .banner__counter-container {
+                justify-content: center;
+                align-items: {{ pos_y }};
+                font-size: {{ item.countdown_font_size_m }};
+              }
+            }
+            
+          </style>
+
+
           <a href="{{block.settings.link}}">
             <img src="{{ block.settings.mobile_image | image_url  }}" class="collection-carousel-image mobile-image" alt="{{ block.settings.mobile_image_alt  }}" 
             loading="lazy">
@@ -84,6 +185,41 @@ href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
             loading="lazy">
             <img src="{{ block.settings.desktop_image | image_url  }}" class="collection-carousel-image desktop-image" alt="I{{ block.settings.desktop_image_alt  }}" 
             loading="lazy">
+
+            <div class="carousel-content-container">
+              
+              <div class="wrapper u-centerVertically">
+                <div class="banner-content">
+                  {%- if item.banner_intro != blank -%}
+                    <p class="banner-intro">{{ banner_intro }}</p>
+                  {%- endif -%}
+
+                  {%- if item.banner_title != blank -%}
+                    <h2 class="banner-title">{{ banner_title }}</h2>
+                  {%- endif -%}
+
+                  {%- if item.banner_subtitle != blank -%}
+                    <div class="banner-subtitle{% unless item.button_title %} u-marginBottom0x{% endunless %}">{{ banner_subtitle }}</div>
+                  {%- endif -%}
+
+                  {%- if item.button_title != blank -%}
+                    <p class="banner-btnContainer">
+                      <button class="btn">
+                        {{ banner_cta }}
+                      </button>
+                    </p>
+                  {%- endif -%}
+                </div>
+              </div>
+            
+              {%- if item.countdown_date != blank and item.countdown_inline == false -%}
+                <div class="banner__counter-container">
+                {{ countdown }}
+                </div>
+              {%- endif -%}
+            </div>
+
+
           </a>
         </div>
       {% endfor %}
@@ -113,6 +249,12 @@ href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
         "label": "Max percentage height",
         "default": "30vh",
         "info": "Attach 'vh' unit if you want the max height to be percentage based on the screen size or 'px' if you want it to be by pixel-absolute height."
+      },
+      {
+        "type": "number",
+        "id": "autoplay_delay_time",
+        "label": "Autoplay delay time in seconds.",
+        "default": 5
       }
     ],
     "blocks": [
@@ -159,7 +301,147 @@ href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
             "type": "text",
             "id": "desktop_image_alt",
             "label": "Desktop Image Alt Text"
-          }
+          },
+        {
+          "type": "text",
+          "id": "banner_intro",
+          "label": "Add an intro for your slide"
+        },
+        {
+          "type": "text",
+          "id": "banner_title",
+          "label": "Add a title for your slide"
+        },
+        {
+          "type": "richtext",
+          "id": "banner_subtitle",
+          "label": "Add a subtitle for your slide"
+        },
+        {
+          "id": "countdown_inline",
+          "type": "checkbox",
+          "label": "Use Countdown inline?",
+          "info": "Add a [countdown] parameter in the input fields to display countdown."
+        },
+        {
+          "type": "text",
+          "id": "button_title",
+          "label": "Add a button, saying:"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Add a link for the slide"
+        },
+        {
+          "type": "text",
+          "id": "link_title",
+          "label": "Add a title for the link"
+        },
+        {
+          "type": "checkbox",
+          "id": "link_new_window",
+          "label": "Open the link in a new tab?"
+        },
+        {
+          "type": "header",
+          "content": "Countdown"
+        },
+        {
+          "id": "countdown_date",
+          "type": "text",
+          "label": "Countdown Date",
+          "info": "Place date of countdown end in format YYYY-MM-DD. This is an optional value."
+        },
+        {
+          "id": "countdown_time",
+          "type": "text",
+          "label": "Countdown Time",
+          "info": "24 Hours Format - HH:SS"
+        },
+        {
+          "id": "countdown_position",
+          "type": "select",
+          "label": "Countdown Position",
+          "options": [
+            {
+              "value": "flex-start,flex-start",
+              "label": "Top Left"
+            },
+            {
+              "value": "flex-start,center",
+              "label": "Top Centre"
+            },
+                        {
+              "value": "flex-start,flex-end",
+              "label": "Top Right"
+            },
+                        {
+              "value": "center,flex-start",
+              "label": "Middle Left"
+            },
+                        {
+              "value": "center,center",
+              "label": "Middle Centre"
+            },
+                        {
+              "value": "center,flex-end",
+              "label": "Middle Right"
+            },
+                        {
+              "value": "flex-end,flex-start",
+              "label": "Bottom Left"
+            },
+                        {
+              "value": "flex-end,center",
+              "label": "Bottom Centre"
+            },
+                        {
+              "value": "flex-end,flex-end",
+              "label": "Bottom Right"
+            }
+          ]
+        },
+         {
+          "type": "header",
+          "content": "Countdown Styling"
+        },
+        {
+          "id": "countdown_bold",
+          "type": "checkbox",
+          "label": "Use bold font?"
+        },
+        {
+          "id": "countdown_italic",
+          "type": "checkbox",
+          "label": "Use italic font?"
+        },
+        {
+          "id": "countdown_underline",
+          "type": "checkbox",
+          "label": "Use underline font?"
+        },
+        {
+          "id": "countdown_colour",
+          "type": "color",
+          "label": "Select Font Colour",
+          "default": "#FFFFFF"
+        },
+        {
+          "id": "countdown_font_size_m",
+          "type": "text",
+          "label": "Font size (Mobile)",
+          "info": "You may add XXpx or via X.XXrem font sizes.",
+          "default": "1.75rem"
+        },
+        {
+          "id": "countdown_font_size_d",
+          "type": "text",
+          "label": "Font size (Desktop)",
+          "info": "You may add XXpx or via X.XXrem font sizes.",
+          "default": "2.75rem"
+
+        }
         ]
       }
     ],
