@@ -1987,7 +1987,7 @@
               "countdown_bold": true,
               "countdown_italic": true,
               "countdown_underline": true,
-              "countdown_colour": "#ffffff",
+              "countdown_colour": "#ff0000",
               "countdown_font_size_m": "1.75rem",
               "countdown_font_size_d": "2.75rem"
             }
@@ -3465,21 +3465,21 @@
               "tablet_image_alt": "Tablet Alt Text",
               "desktop_image": "shopify:\/\/shop_images\/wk16_main_banner_1_nutrition_desktop.webp",
               "desktop_image_alt": "Desktop Alt Text",
-              "banner_intro": "Test",
-              "banner_title": "Test in  [countdown]",
+              "banner_intro": "Test intro",
+              "banner_title": "[countdown]",
               "banner_subtitle": "<p>123 [countdown]<\/p>",
-              "countdown_inline": false,
+              "countdown_inline": true,
               "button_title": "Test",
               "link_url": "#",
               "link_title": "Test",
               "link_new_window": false,
               "countdown_date": "2023-05-20",
               "countdown_time": "11:59",
-              "countdown_position": "flex-start,flex-end",
+              "countdown_position": "flex-start,flex-start",
               "countdown_bold": true,
               "countdown_italic": true,
               "countdown_underline": true,
-              "countdown_colour": "#ffffff",
+              "countdown_colour": "#ff0000",
               "countdown_font_size_m": "1.75rem",
               "countdown_font_size_d": "2.75rem"
             }
@@ -3537,7 +3537,24 @@
               "tablet_image": "shopify:\/\/shop_images\/wk18_main_banner_4_tablet.webp",
               "tablet_image_alt": "Test 2",
               "desktop_image": "shopify:\/\/shop_images\/wk16_main_banner_1_nutrition_desktop.webp",
-              "desktop_image_alt": "Test 3"
+              "desktop_image_alt": "Test 3",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "countdown_inline": false,
+              "button_title": "",
+              "link_url": "",
+              "link_title": "",
+              "link_new_window": false,
+              "countdown_date": "",
+              "countdown_time": "",
+              "countdown_position": "flex-start,flex-start",
+              "countdown_bold": false,
+              "countdown_italic": false,
+              "countdown_underline": false,
+              "countdown_colour": "#FFFFFF",
+              "countdown_font_size_m": "1.75rem",
+              "countdown_font_size_d": "2.75rem"
             }
           },
           "5e1d77aa-d3a5-4bd4-9766-701f2e49f755": {
@@ -3550,7 +3567,24 @@
               "tablet_image": "shopify:\/\/shop_images\/wk18_main_banner_4_tablet.webp",
               "tablet_image_alt": "Test 2",
               "desktop_image": "shopify:\/\/shop_images\/wk16_main_banner_1_nutrition_desktop.webp",
-              "desktop_image_alt": "Test 3"
+              "desktop_image_alt": "Test 3",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "countdown_inline": false,
+              "button_title": "",
+              "link_url": "",
+              "link_title": "",
+              "link_new_window": false,
+              "countdown_date": "",
+              "countdown_time": "",
+              "countdown_position": "flex-start,flex-start",
+              "countdown_bold": false,
+              "countdown_italic": false,
+              "countdown_underline": false,
+              "countdown_colour": "#FFFFFF",
+              "countdown_font_size_m": "1.75rem",
+              "countdown_font_size_d": "2.75rem"
             }
           }
         },
@@ -3559,7 +3593,8 @@
           "5e1d77aa-d3a5-4bd4-9766-701f2e49f755"
         ],
         "settings": {
-          "max_percentage_height": "30vh"
+          "max_percentage_height": "30vh",
+          "autoplay_delay_time": 5
         }
       },
       "qualifiers": {
