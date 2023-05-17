@@ -1,0 +1,19 @@
+{% render 'shogun-products', content: product %}
+{% include 'js-gtm-datalayer-product-stock' %}
+{% include 'shogun-products', content: product %}
+{{product.metafields.shogun.above}}
+{% comment %}
+  * Depending on the existence of a product's new metafields
+  * (e.g. `metafields.features`), conditionally serve the new or older design.
+{% endcomment %}
+
+{% comment %} Serve new product page {% endcomment %}
+
+{% section 'marketplace-duplicate-fulfillment-items' %}
+{% include 'compositions-product-page' %}
+
+{{product.metafields.shogun.below}}
+
+{%- assign price_valid_until = 'now' | date: '%s' | plus: 31536000 | date: '%Y-%m-%d' -%}
+{% include 'js-json_ld_product' %} 
+

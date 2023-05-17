@@ -166,7 +166,7 @@
     {{ 'icomoon.scss.css' | asset_url | stylesheet_tag }}
   {% endif %}
 
-  {% if template == "product.marketplace" %}
+  {% if template == "product.marketplace" or template == "product.marketplace-duplicate" %}
 
   {{ 'built-product-page.css' | asset_url | stylesheet_tag }}   
   <style>
