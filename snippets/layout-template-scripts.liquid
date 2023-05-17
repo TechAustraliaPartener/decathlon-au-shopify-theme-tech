@@ -43,7 +43,7 @@
     {% endif %}
     <script type="module" src="{{ 'built-product-carousel.js' | asset_url }}"></script>
     <script type="module" src="{{ 'built-product-tile.js' | asset_url }}"></script>
-  {% when 'product.marketplace' %}
+  {% when 'product.marketplace' or  when 'product.marketplace-duplicate' %}
     {% include 'moment.js' %}
     {% include 'moment-timezone.js' %}
     <script>
