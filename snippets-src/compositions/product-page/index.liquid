@@ -285,7 +285,7 @@
         <span class="visually-hidden">Additional </span>Product Information
       </h2>
     </header>
-    {% if template_name == 'Product Marketplace' %}
+    {% if template_name == 'Product Marketplace' or template_name == 'Product Marketplace-duplicate'  %}
       {% capture product_information_accordion_content %}
         <div class="de-u-spaceTop6">
           {{ product.content }}
@@ -346,7 +346,7 @@
     </section>
   {%- endif -%}
   
-  {% unless template_name == 'Product Marketplace' %}
+  {% unless template_name == 'Product Marketplace' or template_name == 'Product Marketplace-duplicate'  %}
     {% if has_context_photo %}
 
       <section

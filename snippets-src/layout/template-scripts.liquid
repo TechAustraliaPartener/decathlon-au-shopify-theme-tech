@@ -43,7 +43,38 @@
     {% endif %}
     <script type="module" src="{{ 'built-product-carousel.js' | asset_url }}"></script>
     <script type="module" src="{{ 'built-product-tile.js' | asset_url }}"></script>
-  {% when 'product.marketplace' or  when 'product.marketplace-duplicate' %}
+  {% when 'product.marketplace' %}
+    {% include 'moment.js' %}
+    {% include 'moment-timezone.js' %}
+    <script>
+      window.firstVariant = {{ product.selected_or_first_available_variant | json }};
+      {% comment %} Oversell threshold {% endcomment %}
+      {% if product.metafields.my_fields.oversell_threshold %}
+        window.productOversellThreshold = {{ product.metafields.my_fields.oversell_threshold }};
+      {% else %}
+        window.productOversellThreshold = {{ settings.global_oversell_threshold }};
+      {% endif %}
+      {% comment %} 
+        Create a new JS variant array with `inventory_policy` and `inventory_quantity` field
+        as for some reason Shopify doesn't populate the invetory fields automatically with JSON filter
+        See post: https://community.shopify.com/c/shopify-apis-and-sdks/why-would-product-variants-be-missing-the-inventory-policy-field/td-p/1153789
+
+        Also it seems that this object `window.tomitProductInventoryInfo.activeProduct.variants` 
+        `inventoryItem.available` field always returns 0 even though the quantity is below 0
+      {% endcomment %}
+      window.variantsWithInventoryData = [];
+      {% for variant in product.variants %}
+        var variant = {{ variant | json }};
+        variant.inventory_policy = {{ variant.inventory_policy | json }};
+        variant.inventory_quantity = {{ variant.inventory_quantity | json }};
+        window.variantsWithInventoryData.push(variant);
+      {% endfor %}
+    </script>
+    <script defer type="module" src="{{ 'built-product-page.js' | asset_url }}"></script>
+    <script type="module" src="{{ 'built-product-carousel.js' | asset_url }}"></script>
+    <script type="module" src="{{ 'built-product-tile.js' | asset_url }}"></script>
+  
+  {% when 'product.marketplace-duplicate' %}
     {% include 'moment.js' %}
     {% include 'moment-timezone.js' %}
     <script>
