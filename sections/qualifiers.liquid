@@ -84,11 +84,17 @@
   
   .qualifier-icon-col {
     min-width: 16px;
+    max-width: 25px;
     min-height: 1px;
     margin-right: 14px;
     flex-shrink: 0;
   }
   
+  .qualifier-icon {
+    width: 100%;
+    height: auto;
+  }
+
   .qualifier-title {
     font-size: 14px;
     font-weight: bold;
@@ -178,10 +184,14 @@
 
     <li class="qualifiers__item qualifers__item--{{ block.id }}">
       <a href="{{ block.settings.link }}" class="qualifier-box">
-        {% if block.settings.icon_svg %}
-        <div class="qualifier-icon-col">
-          {{ block.settings.icon_svg }}
-        </div>
+        {% if block.settings.icon_svg != blank or block.settings.icon_img != blank %}
+          <div class="qualifier-icon-col">
+            {% if block.settings.icon_svg != blank %}
+                <img src="{{ block.settings.icon_svg | image_url: width: '40x'  }}" alt="icon" class="qualifier-icon"/>
+            {% elsif block.settings.icon_img != blank %}
+                <img src="{{ block.settings.icon_img | image_url: width: '40x'  }}" alt="icon" class="qualifier-icon"/>
+            {% endif %}
+          </div>
         {% endif %}
         <div class="qualifier-info-col">
           {% if block.settings.title %}
@@ -240,9 +250,10 @@
             "label": "Link Colour"
           },
           {
-            "type": "html",
+            "type": "image_picker",
             "id": "icon_svg",
-            "label": "Icon SVG"
+            "label": "Custom Icon logo",
+            "info": "You may choose a previously added image in the files settings or upload a new one."
           }
         ]
       }
