@@ -184,14 +184,14 @@
 
     <li class="qualifiers__item qualifers__item--{{ block.id }}">
       <a href="{{ block.settings.link }}" class="qualifier-box">
-        {% if block.settings.icon_svg != blank or block.settings.icon_img != blank %}
+        {% if block.settings.icon_svg != blank %}
           <div class="qualifier-icon-col">
-            {% if block.settings.icon_svg != blank %}
-                <img src="{{ block.settings.icon_svg | image_url: width: '40x'  }}" alt="icon" class="qualifier-icon"/>
-            {% elsif block.settings.icon_img != blank %}
-                <img src="{{ block.settings.icon_img | image_url: width: '40x'  }}" alt="icon" class="qualifier-icon"/>
-            {% endif %}
-          </div>
+            <img src="{{ block.settings.icon_svg | img_url: '40x' }}"
+            srcset="{{ block.settings.icon_svg | img_url: '40x' }} 360w,
+            {{ block.settings.icon_svg | img_url: '60x' }}"
+            sizes="(min-width: 360px) 50px, 60px"
+            height="25" width="25" alt="icon" class="qualifier-icon"/>
+           </div>
         {% endif %}
         <div class="qualifier-info-col">
           {% if block.settings.title %}
@@ -253,7 +253,7 @@
             "type": "image_picker",
             "id": "icon_svg",
             "label": "Custom Icon logo",
-            "info": "You may choose a previously added image in the files settings or upload a new one."
+            "info": "You may choose a previously added image in the files settings or upload a new one. Ideal Maximum size is 50 x 50px. "
           }
         ]
       }
