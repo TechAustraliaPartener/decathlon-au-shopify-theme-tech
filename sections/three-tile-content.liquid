@@ -2,20 +2,28 @@
   <h3 class="section_title">{{ section.settings.title }}</h3>
 </div>
 <div class="section_content_wrapper">
-  {% for block in section.blocks %}
-  {% if block.settings.tile_link_behaviour != "default" %}
-    {% capture link_bv %}target="_blank"{% endcapture %}
-  {% else %}
-    {% assign link_bv = "" %}  
-  {% endif %}
+  {%- for block in section.blocks -%}
+    {%- if block.settings.tile_link_behaviour != "default" -%}
+      {%- capture link_bv -%}target="_blank"{%- endcapture -%}
+    {%- else -%}
+      {%- assign link_bv = "" -%}  
+    {%- endif -%}
     <div class="tile-box">
-      <a href="{{block.settings.tile_url}}" {{link_bv}} aria-labelledby="">
-        <img class="tile-image" width="400" height="400"
-          src="{{ block.settings.tile_img | img_url: '400x' }}"
-          srcset="{{ block.settings.tile_img | img_url: '750x' }} 1024w,
-          {{ block.settings.tile_img | img_url: '400x' }} 768w,
-          {{ block.settings.tile_img | img_url: '360x' }} 640w,
-          ">
+      <a href="{{- block.settings.tile_url -}}" {{ link_bv }} aria-labelledby="{{ block.settings.tile_title }}">
+        <img class="tile-image"
+          src="{{- block.settings.tile_img | img_url: 'master' -}}"
+          srcset="{{ block.settings.tile_img | img_url: '360x' }} 390w, 
+          {{ block.settings.tile_img | img_url: '450x' }} 640w,
+          {{ block.settings.tile_img | img_url: '500x' }} 768w,
+          {{ block.settings.tile_img | img_url: '750x' }} 1024w"
+          height="{{- block.settings.tile_img.height -}}"
+          width="{{- block.settings.tile_img.width -}}"
+          sizes="(max-width: 420px) 360px,
+          (max-width: 640px) 450px,
+          (max-width: 768px) 500px,
+          (min-width: 1024px) 750px"
+          loading="lazy"
+          >
       </a>
       <div class="tile-content">
         <a class="tile-title" href="{{block.settings.tile_url}}" {{link_bv}}>
