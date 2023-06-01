@@ -5,7 +5,8 @@
       class="lazy trending_category_image" 
       alt="{{settings.image.alt}}"
       data-src="{{ settings.image | img_url: '540x690' }}"
-      data-lazy-function="onTrendingCategoryImageLoad"
+      data-lazy-function="onTrendingCategoryImageLoad" 
+      loading="lazy"
       >
       <div class="skeleton-box"></div>
   </div>
