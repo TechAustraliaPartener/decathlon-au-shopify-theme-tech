@@ -2,7 +2,7 @@
   <div class="de-FlexEmbed">
     <div class="de-FlexEmbed-ratio de-FlexEmbed-ratio--4by3"></div>
     {%- if img != blank -%}
-      {%- assign alttext = img.alt | default: "Megamenu image hi" -%}
+      {%- assign alttext = img.alt | default: "Megamenu image" -%}
       <img src="{{ img | img_url: 'master' }}" 
       srcset="{{ img | img_url: '320x' }} 1920w,
       {{ img | img_url: '250x' }}" 
