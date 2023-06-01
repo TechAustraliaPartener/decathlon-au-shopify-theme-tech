@@ -231,51 +231,20 @@
         "type": "header",
         "content": "Logo"
       },
-      {
-        "type": "radio",
-        "id": "logo_use_image",
-        "label": "Select which logos to use",
-        "default": "img-logos",
-        "options": [
-          {
-            "label": "SVG custom logos",
-            "value": "svg-logos"
-          },
-          {
-            "label": "Image custom logos",
-            "value": "img-logos"
-          }
-        ]
-      },
-      {
-        "type": "checkbox",
-        "id": "maximize_logo_space",
-        "label": "Use custom bigger size for logo",
-        "info": "This setting would remove the paddings for the logo to display bigger."
-      },
-      {
-        "type": "text",
-        "id": "svg_mobile_logo",
-        "label": "Custom Mobile SVG logo",
-        "info": "Use 1:1 image aspect ratio, and to be added to the files settings"
-      },
-      {
-        "type": "text",
-        "id": "svg_desktop_logo",
-        "label": "Custom Desktop SVG logo",
-        "info": "To be added to the files settings"
-      },
+
       {
         "type": "image_picker",
         "id": "img_mobile_logo",
-        "label": "Custom Mobile image logo. Use 1:1 image aspect ratio."
+        "label": "Custom Mobile logo. Use 1:1 image aspect ratio.",
+        "info": "Best to upload an SVG logo but this can also accept a JPEG or PNG image format. If no logo is uploaded, it will just appear blank on mobile."
       },
       {
         "type": "image_picker",
         "id": "img_desktop_logo",
-        "label": "Custom Desktop image logo",
-        "info": "Remove the uploaded Custom Desktop image logo to use the default Decathlon Logo SVG."
-      },      {
+        "label": "Custom Desktop logo",
+        "info": "Best to upload an SVG logo but this can also accept a JPEG or PNG image format. If there's no logo uploaded, it will display the default Decathlon Logo SVG."
+      },  
+      {
         "type": "header",
         "content": "Color Theme"
       },

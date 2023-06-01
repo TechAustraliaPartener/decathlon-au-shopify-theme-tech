@@ -24,42 +24,21 @@
       </div>
     </div>
     
-    <div class="de-PageWrap-logo {% if settings.maximize_logo_space == true %}maximize-container{% endif %}" itemscope itemtype="http://schema.org/Organization">
-      {% if settings.logo_use_image == "svg-logos" %}
-        <a href="/" class="logo-link-wrapper svg-logos" title="Decathlon">
-          {% if settings.svg_mobile_logo != blank or settings.svg_desktop_logo != blank  %}
-            {% if settings.svg_mobile_logo != blank %}
-              <img src="{{ settings.svg_mobile_logo | file_url }}" class="--mobile-only" alt="Decathlon logo" />
-            {% endif%}
-            {% if settings.svg_desktop_logo != blank %}
-              <img src="{{ settings.svg_desktop_logo | file_url }}" class="--desktop-only" alt="Decathlon logo" />
-            {% endif%}
-            {%comment%} 
-              srcset="{{ settings.svg_logo | file_url: '240x' }} 240w,
-              {{ settings.svg_logo | file_url: '480x' }} 480w,
-              {{ settings.svg_logo | file_url: '720x' }} 720w,
-              {{ settings.svg_logo | file_url: '323x' }} 323w,
-              {{ settings.svg_logo | file_url: '646x' }} 646w,
-              {{ settings.svg_logo | file_url: '969x' }} 969w"
-            {%endcomment%}
-          {% endif%}
-        </a>
-      {% else %}
-        {% if settings.img_mobile_logo != blank or settings.img_desktop_logo != blank  %}
-          <a href="/" class="logo-link-wrapper img_logos" title="Decathlon">
-          {% if settings.img_mobile_logo != blank %}
-            <img src="{{ settings.img_mobile_logo | img_url }}" class="--mobile-only" alt="Decathlon logo" />
-          {% endif %}
-          {% if settings.img_desktop_logo != blank %}
-            <img src="{{ settings.img_desktop_logo | img_url }}" class="--desktop-only" alt="Decathlon logo" />
-          {% else %}
-                {% include 'patterns-branding-logo' with
-                titleId:'logo-title',
-                href: '/',
-                class: 'de-PageWrap-logoImage --desktop-only' %}
-          {% endif %}
-          </a>
+    <div class="de-PageWrap-logo" itemscope itemtype="http://schema.org/Organization">
+      {% if settings.img_mobile_logo != blank or settings.img_desktop_logo != blank  %}
+        <a href="/" class="logo-link-wrapper img_logos" title="Decathlon">
+        {% if settings.img_mobile_logo != blank %}
+          <img src="{{ settings.img_mobile_logo | img_url: '150x' }}" class="--mobile-only" alt="Decathlon logo"  height="{{ settings.img_mobile_logo.height }}" width="{{ settings.img_mobile_logo.width }}"/>
         {% endif %}
+        {% if settings.img_desktop_logo != blank %}
+          <img src="{{ settings.img_desktop_logo | img_url: '250x' }}" class="--desktop-only" alt="Decathlon logo" height="{{ settings.img_desktop_logo.height }}" width="{{ settings.img_desktop_logo.width }}"/>
+        {% else %}
+              {% include 'patterns-branding-logo' with
+              titleId:'logo-title',
+              href: '/',
+              class: 'de-PageWrap-logoImage --desktop-only' %}
+        {% endif %}
+        </a>
       {% endif %}
     </div>
   </div>
