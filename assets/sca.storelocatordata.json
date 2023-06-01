@@ -21,14 +21,15 @@
         "tag": "Click & Collect Ready in 1hr"
       }
     ],
-    "schedule": "<strong>Normal Operating Hours:<\/strong>\r<br>\r<br>Monday: 9:00 am - 8:00 pm\r<br>Tuesday: 9:00 am - 8:00 pm\r<br>Wednesday: 9:00 am - 8:00 pm\r<br>Thursday: 9:00 am - 9:00 pm\r<br>Friday: 9:00 am - 8:00 pm\r<br>Saturday: 9:00 am - 8:00 pm\r<br>Sunday: 9:00 am - 7:00 pm",
+    "schedule": "<br>\r<br><strong>Customer Service: <\/strong>02 6181 0987\r<br><br>\r<br><strong>Normal Operating Hours:<\/strong>\r<br>\r<br>Monday: 9:00 am - 8:00 pm\r<br>Tuesday: 9:00 am - 8:00 pm\r<br>Wednesday: 9:00 am - 8:00 pm\r<br>Thursday: 9:00 am - 9:00 pm\r<br>Friday: 9:00 am - 8:00 pm\r<br>Saturday: 9:00 am - 8:00 pm\r<br>Sunday: 9:00 am - 7:00 pm\r<br><br>",
     "marker_image": "\/\/cdn.shopify.com\/s\/files\/1\/0066\/6563\/3903\/t\/441\/assets\/scasl_1615717967map-marker-inactive_compact.png",
     "address": "634-726 Princes Hwy, Tempe",
     "country": "Australia",
     "state": "New South Wales",
     "city": "Sydney",
     "postal": "2044",
-    "priority": 2
+    "priority": 2,
+    "apply_to_type": 1
   },
   {
     "lat": "-33.839218",
@@ -36,6 +37,7 @@
     "id": 6036655,
     "name": "Decathlon Auburn",
     "description": "Click and Collect\r<br>Delivery from Store for Bulky Items",
+    "phone": "(02) 6181 0988",
     "web": "https:\/\/decathlon.com.au\/pages\/store-auburn",
     "webdisplay": "Visit store page",
     "tagsvalue": "In-store Shopping,Bicycle Repairs,Tennis Racquet Restringing,Click & Collect Ready in 1hr",
@@ -53,14 +55,15 @@
         "tag": "Click & Collect Ready in 1hr"
       }
     ],
-    "schedule": "<br>\r<br><strong>Holidays Trading Hours:<\/strong>\r<br>24 Dec 2022 (Christmas Eve): 10:00am - 5:00pm\r<br>25 Dec 2022 (Christmas Day): CLOSED\r<br>26 Dec 2022 (Boxing Day): 10:00am - 8:00pm\r<br>31 Dec 2022 (New Year's Eve): 10:00am - 5:00pm\r<br>\r<br><strong>Normal Operating Hours:<\/strong>\r<br>\r<br>Monday: 10:00 am - 7:00 pm\r<br>Tuesday: 10:00 am - 7:00 pm\r<br>Wednesday: 10:00 am - 7:00 pm\r<br>Thursday: 10:00 am - 8:00 pm\r<br>Friday: 10:00 am - 8:00 pm\r<br>Saturday: 10:00 am - 8:00 pm\r<br>Sunday: 10:00 am - 7:00 pm\r<br><br>",
+    "schedule": "<br>\r<br><strong>Customer Service: <\/strong>02 6181 0988 \r<br><br>\r<br><strong>Normal Operating Hours:<\/strong>\r<br>Monday: 10:00 am - 7:00 pm\r<br>Tuesday: 10:00 am - 7:00 pm\r<br>Wednesday: 10:00 am - 7:00 pm\r<br>Thursday: 10:00 am - 8:00 pm\r<br>Friday: 10:00 am - 8:00 pm\r<br>Saturday: 10:00 am - 8:00 pm\r<br>Sunday: 10:00 am - 7:00 pm\r<br><br>",
     "marker_image": "\/\/cdn.shopify.com\/s\/files\/1\/0066\/6563\/3903\/t\/441\/assets\/scasl_1615717910map-marker-inactive_compact.png",
     "address": "300 Parramatta Rd",
     "country": "Australia",
     "state": "New South Wales",
     "city": "Auburn",
     "postal": "2144",
-    "priority": 3
+    "priority": 3,
+    "apply_to_type": 1
   },
   {
     "lat": "-37.8373246",
@@ -85,14 +88,15 @@
         "tag": "Click & Collect Ready in 1hr"
       }
     ],
-    "schedule": "Operating Hours\r<br>Monday: 9:30am - 6:30pm\r<br>Tuesday: 9:30am - 6:30pm\r<br>Wednesday: 9:30am - 6:30pm\r<br>Thursday: 10:00am - 7:00pm\r<br>Friday: 10:00am - 7:00pm\r<br>Saturday: 9:00am - 7:00pm\r<br>Sunday: 10:00am - 7:00pm",
+    "schedule": "<br>\r<br><strong>Customer Service: <\/strong>03 7067 5243\r<br><br>\r<br><Strong>Normal Operating Hours:<\/Strong>\r<br>\r<br>Monday: 10:00am - 8:00pm\r<br>Tuesday: 10:00am - 8:00pm\r<br>Wednesday: 10:00am - 8:00pm\r<br>Thursday: 10:00am - 8:00pm\r<br>Friday: 10:00am - 8:00pm\r<br>Saturday: 9:00am - 8:00pm\r<br>Sunday: 10:00am - 7:00pm",
     "marker_image": "\/\/cdn.shopify.com\/s\/files\/1\/0066\/6563\/3903\/t\/431\/assets\/scasl_1613627669map-marker-inactive_compact.png",
     "address": "249 Middleborough Rd,",
     "country": "Australia",
     "state": "Victoria",
     "city": "Box Hill South",
     "postal": "3128",
-    "priority": 6
+    "priority": 6,
+    "apply_to_type": 1
   },
   {
     "lat": "-37.9728438",
@@ -116,14 +120,15 @@
         "tag": "Click & Collect Ready in 1hr"
       }
     ],
-    "schedule": "Normal Opening Hours\r<br>\r<br>Monday: 9:00 am - 7:00 pm\r<br>Tuesday: 9:00 am - 7:00 pm\r<br>Wednesday: 9:00 am - 7:00 pm\r<br>Thursday: 9:00 am - 7:00 pm\r<br>Friday: 9:00 am - 7:00 pm\r<br>Saturday: 9:00 am - 7:00 pm\r<br>Sunday: 10:00 am - 7:00 pm",
+    "schedule": "<br>\r<br><strong>Customer Service: <\/strong>03 7067 5244\r<br><br>\r<br><strong>Normal Operating hours: <\/strong>\r<br>\r<br>Monday: 9:00 am - 7:00 pm\r<br>Tuesday: 9:00 am - 7:00 pm\r<br>Wednesday: 9:00 am - 7:00 pm\r<br>Thursday: 9:00 am - 7:00 pm\r<br>Friday: 9:00 am - 7:00 pm\r<br>Saturday: 9:00 am - 7:00 pm\r<br>Sunday: 10:00 am - 7:00 pm",
     "marker_image": "\/\/cdn.shopify.com\/s\/files\/1\/0066\/6563\/3903\/t\/441\/assets\/scasl_1615717926map-marker-inactive_compact.png",
     "address": "405 Boundary Rd,",
     "country": "Australia",
     "state": "Victoria",
     "city": "Moorabbin Airport",
     "postal": "3194",
-    "priority": 7
+    "priority": 7,
+    "apply_to_type": 1
   },
   {
     "lat": "-37.8982315",
@@ -147,14 +152,15 @@
         "tag": "Click & Collect Ready in 1hr"
       }
     ],
-    "schedule": "<br>\r<br><strong>Holidays Trading Hours:<\/strong>\r<br>24 Dec 2022 (Christmas Eve): 09:00am - 6:00pm\r<br>25 Dec 2022 (Christmas Day): CLOSED\r<br>26 Dec 2022 (Boxing Day): 10:00am - 6:00pm\r<br>\r<br><strong>Operating hours: <\/strong>\r<br>Monday: 10.00am - 6.00pm\r<br>Tuesday: 10:00am - 6.00pm\r<br>Wednesday: 10:00am - 6.00pm\r<br>Thursday: 10.00am - 6:00pm\r<br>Friday: 10:00am - 6.00pm\r<br>Saturday: 9.00am - 6.00pm\r<br>Sunday: 10am - 6.00pm",
+    "schedule": "<br>\r<br><strong>Customer Service: <\/strong>03 7067 5245\r<br><br>\r<br><strong>Normal Operating hours: <\/strong>\r<br>\r<br>Monday: 10.00am - 6.00pm\r<br>Tuesday: 10:00am - 6.00pm\r<br>Wednesday: 10:00am - 6.00pm\r<br>Thursday: 10.00am - 6:00pm\r<br>Friday: 10:00am - 6.00pm\r<br>Saturday: 9.00am - 6.00pm\r<br>Sunday: 10am - 6.00pm",
     "marker_image": "\/\/cdn.shopify.com\/s\/files\/1\/0066\/6563\/3903\/t\/441\/assets\/scasl_1615717896map-marker-inactive_compact.png",
     "address": "1464 Ferntree Gully Rd",
     "country": "Australia",
     "state": "Victoria",
     "city": "Knoxfield",
     "postal": "3180",
-    "priority": 8
+    "priority": 8,
+    "apply_to_type": 1
   },
   {
     "lat": "-33.7609519",
@@ -178,7 +184,8 @@
     "state": "New South Wales",
     "city": "Brookvale",
     "postal": "2100",
-    "priority": 5
+    "priority": 10,
+    "apply_to_type": 1
   },
   {
     "lat": "-37.6488187",
@@ -202,40 +209,15 @@
         "tag": "Click & Collect Ready in 1hr"
       }
     ],
-    "schedule": "<br>\r<br><strong>Holidays Trading Hours:<\/strong>\r<br>24 Dec 2022 (Christmas Eve): 10:00am - 6:00pm\r<br>25 Dec 2022 (Christmas Day): CLOSED\r<br>26 Dec 2022 (Boxing Day): 10:00am - 6:00pm\r<br>31 Dec 2022 (New Year's Eve): 10:00am - 6:00pm\r<br>\r<br><strong>Normal Operating Hours:<\/strong>\r<br>\r<br>Monday 10:00am-6:00pm\r<br>Tuesday 10:00am-6:00pm\r<br>Wednesday 10:00am-6:00pm\r<br>Thursday 10:00am-7:00pm\r<br>Friday 10:00am-7:00pm\r<br>Saturday 10:00am - 6:00pm\r<br>Sunday 10:00am-6:00pm\r<br><br>",
+    "schedule": "<br>\r<br><strong>Customer Service: <\/strong>03 7067 5246\r<br><br>\r<br><strong>Normal Operating Hours:<\/strong>\r<br>Monday 10:00am-6:00pm\r<br>Tuesday 10:00am-6:00pm\r<br>Wednesday 10:00am-6:00pm\r<br>Thursday 10:00am-6:00pm\r<br>Friday 10:00am-6:00pm\r<br>Saturday 10:00am - 6:00pm\r<br>Sunday 10:00am-6:00pm\r<br><br>",
     "marker_image": "\/\/cdn.shopify.com\/s\/files\/1\/0066\/6563\/3903\/t\/441\/assets\/scasl_1615717763map-marker-inactive_compact.png",
     "address": "10\/340 McDonalds Rd",
     "country": "Australia",
     "state": "Victoria",
     "city": "South Morang",
     "postal": "3752",
-    "priority": 9
-  },
-  {
-    "lat": "-33.8688197",
-    "lng": "151.2048871",
-    "id": 7443729,
-    "name": "Decathlon CBD",
-    "description": "Click and Collect Location Only\r<br>Not a physical Decathlon Store",
-    "phone": "(02) 9235 0155",
-    "webdisplay": "View Offers",
-    "tagsvalue": "Click & Collect Only,No Instore Shopping",
-    "tags": [
-      {
-        "tag": "Click & Collect Only"
-      },
-      {
-        "tag": "No Instore Shopping"
-      }
-    ],
-    "schedule": "Monday 9:00AM: 7:00PM \r<br>Tuesday 9:00AM: 7:00PM\r<br>Wednesday 9:00AM: 7:00PM\r<br>Thursday 9:00AM: 8:00PM\r<br>Friday 9:00AM: 7:00PM\r<br>Saturday 9:00AM: 6:00PM\r<br>Sunday 10:00AM: 5:00PM\"",
-    "address": "Dymocks",
-    "address2": "424-430 George Street",
-    "country": "Australia",
-    "state": "New South Wales",
-    "city": "Sydney",
-    "postal": "2000",
-    "priority": 5
+    "priority": 9,
+    "apply_to_type": 1
   },
   {
     "lat": "-34.0343623",
@@ -247,7 +229,7 @@
     "email": "customer.service@decathlon.com",
     "web": "https:\/\/decathlon.com.au\/pages\/store-miranda",
     "webdisplay": "decathlon.com.au\/pages\/store-miranda",
-    "tagsvalue": "Click & Collect Ready in 1hr,In-store Shopping,Bicycle Repairs,Tennis Racquet Restringing",
+    "tagsvalue": "Click & Collect Ready in 1hr,In-store Shopping,Bicycle Repairs",
     "tags": [
       {
         "tag": "Click & Collect Ready in 1hr"
@@ -257,12 +239,9 @@
       },
       {
         "tag": "Bicycle Repairs"
-      },
-      {
-        "tag": "Tennis Racquet Restringing"
       }
     ],
-    "schedule": "Opening Hours:\r<br>Monday: 9.00am - 6.00pm\r<br>Tuesday: 9.00am - 6.00pm\r<br>Wednesday: 9.00am - 6.00pm\r<br>Thursday: 9.00am - 9:00pm\r<br>Friday: 9.00am - 6.00pm\r<br>Saturday: 9.00am - 6.00pm\r<br>Sunday: 10am - 6.00pm",
+    "schedule": "<br>\r<br><strong>Normal Operating hours: <\/strong>\r<br>\r<br>Monday: 9.00am - 6.00pm\r<br>Tuesday: 9.00am - 6.00pm\r<br>Wednesday: 9.00am - 6.00pm\r<br>Thursday: 9.00am - 9:00pm\r<br>Friday: 9.00am - 6.00pm\r<br>Saturday: 9.00am - 6.00pm\r<br>Sunday: 10am - 6.00pm",
     "marker_image": "https:\/\/cdn.shopify.com\/s\/files\/1\/0066\/6563\/3903\/t\/441\/assets\/scasl_1615717967map-marker-inactive_compact.png",
     "address": "Westfields Miranda Shopping Centre",
     "address2": "Ground Floor, Shop G109, 600 The Kingsway, Westfield",
@@ -270,7 +249,8 @@
     "state": "New South Wales",
     "city": "Sydney",
     "postal": "2228",
-    "priority": 4
+    "priority": 4,
+    "apply_to_type": 1
   },
   {
     "lat": "-33.891713",
@@ -279,45 +259,70 @@
     "name": "Decathlon Bondi Junction",
     "description": "Decathlon Bondi Junction\r<br>STM Store\r<br>426 Oxford St, Bondi Junction, NSW, 2022",
     "email": "customer.service@decathlon.com",
-    "tagsvalue": "Ready in 2-3 Business Days,No Instore Shopping",
+    "tagsvalue": "Click & Collect in 2 business days,No Instore Shopping",
     "tags": [
       {
-        "tag": "Ready in 2-3 Business Days"
+        "tag": "Click & Collect in 2 business days"
       },
       {
         "tag": "No Instore Shopping"
       }
     ],
-    "schedule": "Monday 9:00am-5:00pm\r<br>Tuesday 9:00am-5:00pm\r<br>Wednesday 9:00am-5:00pm\r<br>Thursday 9:00am-9:00pm\r<br>Friday 9:00am-5:00pm\r<br>Saturday 9:00am - 5:00pm\r<br>Sunday 9:00am-5:00pm",
+    "schedule": "<br> \r<br><strong>Normal Operating hours: <\/strong>\r<br>\r<br>Monday 9:00am-5:00pm\r<br>Tuesday 9:00am-5:00pm\r<br>Wednesday 9:00am-5:00pm\r<br>Thursday 9:00am-9:00pm\r<br>Friday 9:00am-5:00pm\r<br>Saturday 9:00am - 5:00pm\r<br>Sunday 9:00am-5:00pm",
     "address": "STM Store",
     "address2": "426 Oxford St",
     "country": "Australia",
     "state": "New South Wales",
     "city": "Bondi Junction",
     "postal": "2022",
-    "priority": 4
+    "priority": 4,
+    "apply_to_type": 1
   },
   {
-    "lat": "-33.9205155",
-    "lng": "151.1680627",
+    "lat": "-33.8660733",
+    "lng": "151.2069659",
     "id": 12668655,
     "name": "Decathlon Sydney City",
     "phone": "0450815760",
-    "tagsvalue": "In-store Shopping,Click & Collect Ready in 1hr",
+    "tagsvalue": "Click & Collect in 2 business days,In-store Shopping - Limited Range",
     "tags": [
       {
-        "tag": "In-store Shopping"
+        "tag": "Click & Collect in 2 business days"
       },
       {
-        "tag": "Click & Collect Ready in 1hr"
+        "tag": "In-store Shopping - Limited Range"
       }
     ],
-    "schedule": "<strong>Normal Operating Hours:<\/strong>\r<br>\r<br>Monday: 9:00 am - 6:00 pm\r<br>Tuesday: 9:00 am - 6:00 pm\r<br>Wednesday: 9:00 am - 6:00 pm\r<br>Thursday: 9:00 am - 9:00 pm\r<br>Friday: 9:00 am - 6:00 pm\r<br>Saturday: 9:00 am - 6:00 pm\r<br>Sunday: 9:00 am - 5:00 pm",
+    "schedule": "<br>\r<br><strong>Normal Operating Hours:<\/strong>\r<br>\r<br>Monday: 9:00 am - 6:00 pm\r<br>Tuesday: 9:00 am - 6:00 pm\r<br>Wednesday: 9:00 am - 6:00 pm\r<br>Thursday: 9:00 am - 9:00 pm\r<br>Friday: 9:00 am - 6:00 pm\r<br>Saturday: 9:00 am - 6:00 pm\r<br>Sunday: 9:00 am - 5:00 pm",
     "address": "Ground Floor 309-315 George street",
     "country": "Australia",
     "state": "New South Wales",
     "city": "Sydney",
     "postal": "2000",
-    "priority": 1
+    "priority": 1,
+    "apply_to_type": 1
+  },
+  {
+    "lat": "-33.883672781884",
+    "lng": "151.1949568593967",
+    "id": 13078113,
+    "name": "Decathlon Broadway",
+    "tagsvalue": "Click & Collect in 2 business days,In-store Shopping - Limited Range",
+    "tags": [
+      {
+        "tag": "Click & Collect in 2 business days"
+      },
+      {
+        "tag": "In-store Shopping - Limited Range"
+      }
+    ],
+    "schedule": "<strong>NOW OPEN<\/strong>",
+    "address": "Broadway Shopping Center, Level 2 next to H&M",
+    "address2": "Level 2, 1 Bay Street",
+    "country": "Australia",
+    "state": "New South Wales",
+    "city": "Glebe",
+    "priority": 4,
+    "apply_to_type": 1
   }
 ]
