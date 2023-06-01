@@ -1,9 +1,18 @@
 <div class="de-u-sizeFull">
   <div class="de-FlexEmbed">
     <div class="de-FlexEmbed-ratio de-FlexEmbed-ratio--4by3"></div>
-    {% if img != blank%}
-      <img src="{{ img | img_url: 'master' }}" alt="Megamenu image" class="de-FlexEmbed-content" onerror="this.style.display='none';">
-    {% endif %}
+    {%- if img != blank -%}
+      {%- assign alttext = img.alt | default: "Megamenu image hi" -%}
+      <img src="{{ img | img_url: 'master' }}" 
+      srcset="{{ img | img_url: '320x' }} 1920w,
+      {{ img | img_url: '250x' }}" 
+      alt="{{- alttext -}}"
+      height="{{ img.height }}"
+      width="{{ img.width }}"
+      sizes="(max-width: 1920px) 250px,(min-width: 1921px) 320px"
+      class="de-FlexEmbed-content" loading="lazy" 
+      onerror="this.style.display='none';">
+    {%- endif -%}
   </div>
   <ul class="de-MenuList">
     {% comment %} <li>
