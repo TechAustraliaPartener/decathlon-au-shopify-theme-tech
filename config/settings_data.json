@@ -37,7 +37,7 @@
     "header_sign_in_label": "Login",
     "megamenu_set_for_all": "override",
     "megamenu_image": "shopify:\/\/shop_images\/Mega_menu_tile_315_x_235px_f29e55bb-84a5-4dc8-9d3a-39d20a1634e0.jpg",
-    "megamenu_title": "DON'T MISS OUR SNOW GEAR SALE!",
+    "megamenu_title": "DON'T MISS OUR SNOW SALE!",
     "megamenu_subtitle": "",
     "megamenu_link": "https:\/\/decathlon.com.au\/collections\/snow-sale",
     "megamenu_bg_colour": "#1c82c1",
@@ -856,6 +856,116 @@
               "validated": false
             }
           },
+          "c6351114-ec6d-4359-b44d-d4c29baed848": {
+            "type": "store",
+            "settings": {
+              "name": "George Street, 2000",
+              "title": "George Street, 2000, Click & Collect",
+              "online_inventory_source": false,
+              "enable_c_c": true,
+              "duplicate": "Tempe",
+              "test_mode": false,
+              "street1": "309-315 George street",
+              "city": "Sydney",
+              "zip": "2000",
+              "state": "NSW",
+              "country": "AU",
+              "checkout_image": "shopify:\/\/shop_images\/Untitled_design_2_0f709ec8-ff65-4914-abf1-5a3b7ae2966e.png",
+              "email": "customer.service@decathlon.com",
+              "phone_number": "(02) 9157 5799",
+              "company": "Decathlon",
+              "ready": "Ready to collect in 2 business days.",
+              "ready_checkout": "Order online. Pick up in 2 business days.",
+              "id": "1789-0015",
+              "tooltip_hours": true,
+              "is_same_hours_weekly": false,
+              "hours_0_open": "1000",
+              "hours_0_close": "1700",
+              "hours_1_open": "0900",
+              "hours_1_close": "1800",
+              "hours_2_open": "0900",
+              "hours_2_close": "1800",
+              "hours_3_open": "0900",
+              "hours_3_close": "1800",
+              "hours_4_open": "0900",
+              "hours_4_close": "1800",
+              "hours_5_open": "0900",
+              "hours_5_close": "1800",
+              "hours_6_open": "1000",
+              "hours_6_close": "1700",
+              "announcement": "<p>This is a pop up store, with limited in-store shopping options.<\/p>",
+              "email_confirmation_message": "",
+              "tag_exclusion_1": "Shipping: Bulk",
+              "tag_exclusion_message_1": "This product is not available from your chosen C&C location",
+              "tag_exclusion_2": "",
+              "tag_exclusion_message_2": "",
+              "tag_exclusion_3": "",
+              "tag_exclusion_message_3": "",
+              "tag_exclusion_4": "",
+              "tag_exclusion_message_4": "",
+              "tag_exclusion_5": "",
+              "tag_exclusion_message_5": "",
+              "address_type_boolean": true,
+              "is_residential": false,
+              "is_warehouse": false,
+              "validated": false
+            }
+          },
+          "3bbe2824-687e-4a95-80f7-1650ce4e4831": {
+            "type": "store",
+            "settings": {
+              "name": "Broadway",
+              "title": "Broadway, 2037, Click & Collect",
+              "online_inventory_source": false,
+              "enable_c_c": true,
+              "duplicate": "Tempe",
+              "test_mode": false,
+              "street1": "Level 2, 1 Bay Street",
+              "city": "Glebe",
+              "zip": "2037",
+              "state": "NSW",
+              "country": "AU",
+              "checkout_image": "shopify:\/\/shop_images\/Decathlon-Broadway.png",
+              "email": "customer.service@decathlon.com",
+              "phone_number": "0491 761 112",
+              "company": "Decathlon",
+              "ready": "Ready to collect in 2 business days.",
+              "ready_checkout": "Order online. Pick up in 2 business days.",
+              "id": "1789-0016",
+              "tooltip_hours": true,
+              "is_same_hours_weekly": false,
+              "hours_0_open": "1000",
+              "hours_0_close": "1800",
+              "hours_1_open": "1000",
+              "hours_1_close": "1900",
+              "hours_2_open": "1000",
+              "hours_2_close": "1900",
+              "hours_3_open": "1000",
+              "hours_3_close": "1900",
+              "hours_4_open": "1000",
+              "hours_4_close": "2100",
+              "hours_5_open": "1000",
+              "hours_5_close": "1900",
+              "hours_6_open": "0900",
+              "hours_6_close": "1800",
+              "announcement": "<p>This is a pop up store, with limited in-store shopping options.<br\/><\/p>",
+              "email_confirmation_message": "",
+              "tag_exclusion_1": "",
+              "tag_exclusion_message_1": "",
+              "tag_exclusion_2": "",
+              "tag_exclusion_message_2": "",
+              "tag_exclusion_3": "",
+              "tag_exclusion_message_3": "",
+              "tag_exclusion_4": "",
+              "tag_exclusion_message_4": "",
+              "tag_exclusion_5": "",
+              "tag_exclusion_message_5": "",
+              "address_type_boolean": true,
+              "is_residential": false,
+              "is_warehouse": false,
+              "validated": false
+            }
+          },
           "439603b4-c7c5-475d-a765-2d3d92e529fa": {
             "type": "store",
             "settings": {
@@ -966,67 +1076,11 @@
               "validated": false
             }
           },
-          "c6351114-ec6d-4359-b44d-d4c29baed848": {
-            "type": "store",
-            "settings": {
-              "name": "George Street, 2000, Pick Up Only",
-              "title": "George Street, 2000, Click & Collect Only",
-              "online_inventory_source": false,
-              "enable_c_c": true,
-              "duplicate": "Tempe",
-              "test_mode": false,
-              "street1": "309-315 George street",
-              "city": "Sydney",
-              "zip": "2000",
-              "state": "NSW",
-              "country": "AU",
-              "checkout_image": "shopify:\/\/shop_images\/Untitled_design_2_0f709ec8-ff65-4914-abf1-5a3b7ae2966e.png",
-              "email": "customer.service@decathlon.com",
-              "phone_number": "(02) 9157 5799",
-              "company": "Decathlon",
-              "ready": "Pick up in 2 business days.",
-              "ready_checkout": "Order online. Pick up in 2 business days.",
-              "id": "1789-0015",
-              "tooltip_hours": false,
-              "is_same_hours_weekly": true,
-              "hours_0_open": "0900",
-              "hours_0_close": "1800",
-              "hours_1_open": "1830",
-              "hours_1_close": "1930",
-              "hours_2_open": "1830",
-              "hours_2_close": "1930",
-              "hours_3_open": "1830",
-              "hours_3_close": "1930",
-              "hours_4_open": "1830",
-              "hours_4_close": "1930",
-              "hours_5_open": "1830",
-              "hours_5_close": "1930",
-              "hours_6_open": "0000",
-              "hours_6_close": "0000",
-              "announcement": "<p>This is a pop up store, with limited in-store shopping options.<\/p>",
-              "email_confirmation_message": "",
-              "tag_exclusion_1": "",
-              "tag_exclusion_message_1": "",
-              "tag_exclusion_2": "",
-              "tag_exclusion_message_2": "",
-              "tag_exclusion_3": "",
-              "tag_exclusion_message_3": "",
-              "tag_exclusion_4": "",
-              "tag_exclusion_message_4": "",
-              "tag_exclusion_5": "",
-              "tag_exclusion_message_5": "",
-              "address_type_boolean": true,
-              "is_residential": false,
-              "is_warehouse": false,
-              "validated": false
-            }
-          },
           "ff8c1493-c02d-48fc-ba6b-403a7730be64": {
             "type": "store",
-            "disabled": true,
             "settings": {
               "name": "Just Sports Bankstown",
-              "title": "Just Sports Bankstown, 2200, Pickup Only",
+              "title": "Just Sports Bankstown, 2200,  Click & Collect Only",
               "online_inventory_source": false,
               "enable_c_c": true,
               "duplicate": "Tempe",
@@ -1061,8 +1115,118 @@
               "hours_6_close": "1730",
               "announcement": "",
               "email_confirmation_message": "",
-              "tag_exclusion_1": "",
-              "tag_exclusion_message_1": "",
+              "tag_exclusion_1": "Shipping: Bulk",
+              "tag_exclusion_message_1": "This product is not available from your chosen C&C location",
+              "tag_exclusion_2": "",
+              "tag_exclusion_message_2": "",
+              "tag_exclusion_3": "",
+              "tag_exclusion_message_3": "",
+              "tag_exclusion_4": "",
+              "tag_exclusion_message_4": "",
+              "tag_exclusion_5": "",
+              "tag_exclusion_message_5": "",
+              "address_type_boolean": true,
+              "is_residential": false,
+              "is_warehouse": false,
+              "validated": false
+            }
+          },
+          "44123766-9e4d-4f67-9c1a-bc9c1ca5cd51": {
+            "type": "store",
+            "settings": {
+              "name": "Just Sports Edmondson Park",
+              "title": "Just Sports Edmondson Park, 2174, Click & Collect Only",
+              "online_inventory_source": false,
+              "enable_c_c": true,
+              "duplicate": "Tempe",
+              "test_mode": false,
+              "street1": "Ed. Square, 52 Soldiers Parade",
+              "city": "Edmondson Park",
+              "zip": "2174",
+              "state": "NSW",
+              "country": "AU",
+              "checkout_image": "shopify:\/\/shop_images\/Just_Sports_Ed_Square.png",
+              "email": "customer.service@decathlon.com",
+              "phone_number": "(02) 9829 1937",
+              "company": "Decathlon",
+              "ready": "Ready to collect in 3 business days",
+              "ready_checkout": "Ready to collect in 3 business days",
+              "id": "1789-2",
+              "tooltip_hours": true,
+              "is_same_hours_weekly": false,
+              "hours_0_open": "1000",
+              "hours_0_close": "1600",
+              "hours_1_open": "0900",
+              "hours_1_close": "1730",
+              "hours_2_open": "0900",
+              "hours_2_close": "1730",
+              "hours_3_open": "0900",
+              "hours_3_close": "1730",
+              "hours_4_open": "0900",
+              "hours_4_close": "2100",
+              "hours_5_open": "0900",
+              "hours_5_close": "1730",
+              "hours_6_open": "0900",
+              "hours_6_close": "1600",
+              "announcement": "",
+              "email_confirmation_message": "",
+              "tag_exclusion_1": "Shipping: Bulk",
+              "tag_exclusion_message_1": "This product is not available from your chosen C&C location",
+              "tag_exclusion_2": "",
+              "tag_exclusion_message_2": "",
+              "tag_exclusion_3": "",
+              "tag_exclusion_message_3": "",
+              "tag_exclusion_4": "",
+              "tag_exclusion_message_4": "",
+              "tag_exclusion_5": "",
+              "tag_exclusion_message_5": "",
+              "address_type_boolean": true,
+              "is_residential": false,
+              "is_warehouse": false,
+              "validated": false
+            }
+          },
+          "53b17804-cafa-446f-a8d0-deb19d30eba9": {
+            "type": "store",
+            "settings": {
+              "name": "Just Sports Campbelltown",
+              "title": "Just Sports Campbelltown, 2560, Click & Collect Only",
+              "online_inventory_source": false,
+              "enable_c_c": true,
+              "duplicate": "Tempe",
+              "test_mode": false,
+              "street1": "271 Queen St - Campbelltown Mall - Ground Floor Shop L35\/35A",
+              "city": "Campbelltown",
+              "zip": "2560",
+              "state": "NSW",
+              "country": "AU",
+              "checkout_image": "shopify:\/\/shop_images\/JustSports_Campbeltown.png",
+              "email": "customer.service@decathlon.com",
+              "phone_number": "(02) 4627 5035",
+              "company": "Decathlon",
+              "ready": "Ready to collect in 3 business days.",
+              "ready_checkout": "Ready to collect in 3 business days.",
+              "id": "1789-3",
+              "tooltip_hours": true,
+              "is_same_hours_weekly": false,
+              "hours_0_open": "1000",
+              "hours_0_close": "1600",
+              "hours_1_open": "0900",
+              "hours_1_close": "1730",
+              "hours_2_open": "0900",
+              "hours_2_close": "1730",
+              "hours_3_open": "0900",
+              "hours_3_close": "1730",
+              "hours_4_open": "0900",
+              "hours_4_close": "2100",
+              "hours_5_open": "0900",
+              "hours_5_close": "1730",
+              "hours_6_open": "0900",
+              "hours_6_close": "1600",
+              "announcement": "",
+              "email_confirmation_message": "",
+              "tag_exclusion_1": "Shipping: Bulk",
+              "tag_exclusion_message_1": "This product is not available from your chosen C&C location",
               "tag_exclusion_2": "",
               "tag_exclusion_message_2": "",
               "tag_exclusion_3": "",
@@ -1113,62 +1277,6 @@
               "hours_5_close": "2100",
               "hours_6_open": "0900",
               "hours_6_close": "2100",
-              "announcement": "",
-              "email_confirmation_message": "",
-              "tag_exclusion_1": "",
-              "tag_exclusion_message_1": "",
-              "tag_exclusion_2": "",
-              "tag_exclusion_message_2": "",
-              "tag_exclusion_3": "",
-              "tag_exclusion_message_3": "",
-              "tag_exclusion_4": "",
-              "tag_exclusion_message_4": "",
-              "tag_exclusion_5": "",
-              "tag_exclusion_message_5": "",
-              "address_type_boolean": true,
-              "is_residential": false,
-              "is_warehouse": false,
-              "validated": false
-            }
-          },
-          "3bbe2824-687e-4a95-80f7-1650ce4e4831": {
-            "type": "store",
-            "disabled": true,
-            "settings": {
-              "name": "Broadway",
-              "title": "Broadway, 2037, Click & Collect",
-              "online_inventory_source": false,
-              "enable_c_c": true,
-              "duplicate": "Tempe",
-              "test_mode": false,
-              "street1": "Level 2, 1 Bay Street",
-              "city": "Glebe",
-              "zip": "2037",
-              "state": "NSW",
-              "country": "AU",
-              "checkout_image": "shopify:\/\/shop_images\/Decathlon-Broadway.png",
-              "email": "customer.service@decathlon.com",
-              "phone_number": "(02) 9157 5799",
-              "company": "Decathlon",
-              "ready": "Pick up in 2 business days.",
-              "ready_checkout": "Order online. Pick up in 2 business days.",
-              "id": "",
-              "tooltip_hours": false,
-              "is_same_hours_weekly": false,
-              "hours_0_open": "1000",
-              "hours_0_close": "1800",
-              "hours_1_open": "1000",
-              "hours_1_close": "1900",
-              "hours_2_open": "1000",
-              "hours_2_close": "1900",
-              "hours_3_open": "1000",
-              "hours_3_close": "1900",
-              "hours_4_open": "1000",
-              "hours_4_close": "2100",
-              "hours_5_open": "1000",
-              "hours_5_close": "1900",
-              "hours_6_open": "1000",
-              "hours_6_close": "1800",
               "announcement": "",
               "email_confirmation_message": "",
               "tag_exclusion_1": "",
@@ -1702,12 +1810,14 @@
           "1573530372429",
           "81a3d3c6-c69a-4593-8e50-a00364330f37",
           "1584595062323",
+          "c6351114-ec6d-4359-b44d-d4c29baed848",
+          "3bbe2824-687e-4a95-80f7-1650ce4e4831",
           "439603b4-c7c5-475d-a765-2d3d92e529fa",
           "1585053394899",
-          "c6351114-ec6d-4359-b44d-d4c29baed848",
           "ff8c1493-c02d-48fc-ba6b-403a7730be64",
+          "44123766-9e4d-4f67-9c1a-bc9c1ca5cd51",
+          "53b17804-cafa-446f-a8d0-deb19d30eba9",
           "cc3598c8-3af4-4edd-98ae-89451837147c",
-          "3bbe2824-687e-4a95-80f7-1650ce4e4831",
           "e9b454e7-c621-41e8-90ca-e97d7fb3c188",
           "078e25fb-1051-4647-961b-503c02bd5d84",
           "c33a2032-e5ad-4b30-9e6d-bd9b26bb82b2",
@@ -1748,18 +1858,18 @@
               "countdown_font_size_d": "2.75rem"
             }
           },
-          "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb": {
+          "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Desktop_banner_1440_x_789px_93dc0817-9b20-401f-beda-8f0489013e0c.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/Artengo-Home_page_v2_775ad44c-2625-485f-a828-e57f502b3bb2.jpg",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Mobile_banner_478_x_300px_V3_dfda0451-4a05-40c7-8918-d2b4744dfe7d.jpg",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Artengo-Home_page_mobile_v2_0a460241-cebe-4449-9868-aea48603cb6c.jpg",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
               "countdown_inline": false,
               "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/collections\/down-jackets-sale",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/tennis",
               "link_title": "",
               "link_new_window": false,
               "countdown_date": "",
@@ -1773,18 +1883,18 @@
               "countdown_font_size_d": "2.75rem"
             }
           },
-          "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9": {
+          "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Tarmak-NBA-Finals-Hero-Desktop.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/extended_Desktop_banner_1440_x_789px.jpg",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Tarmak-NBA-Finals-Hero-Mobile.jpg",
+              "banner_mobile_image": "shopify:\/\/shop_images\/extended_Mobile_banner_478_x_300px.jpg",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
               "countdown_inline": false,
               "button_title": "",
-              "link_url": "shopify:\/\/collections\/nba-tarmak",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/down-jackets-sale",
               "link_title": "",
               "link_new_window": false,
               "countdown_date": "",
@@ -1826,9 +1936,9 @@
           "e9b4daa6-6eee-441b-b76d-9c3ff012fde9": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Desktop_banner_1440_x_789px_0b032f13-f2dd-4dbe-a2ae-277360d90c43.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/Desktop_banner_1440_x_789px_28425ed8-ef95-4b5f-a8ce-46d04406efcd.jpg",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Mobile_banner_478_x_300px_6e0db02c-8789-4a35-a9f7-f8cb847f4d9e.jpg",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Mobile_banner_478_x_300px_3152db3d-5cc9-4205-844e-e8dc13f201e0.jpg",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
@@ -2032,8 +2142,8 @@
         },
         "block_order": [
           "5658b613-5180-4554-b5d3-8a63de506e65",
-          "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb",
           "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9",
+          "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb",
           "145847d3-2db7-45f7-8ef6-38db22a4156a",
           "e9b4daa6-6eee-441b-b76d-9c3ff012fde9",
           "0e3f284b-4302-4200-8eb1-f98ce34415af",
@@ -2580,7 +2690,7 @@
             "type": "category",
             "settings": {
               "title": "Mens",
-              "image": "shopify:\/\/shop_images\/top-categories-man_2x_2563b6fb-86a6-4c38-a1ac-cb0a7f03a359.png",
+              "image": "shopify:\/\/shop_images\/men_WEDZE_SKI_P_JKT_100_H_NEW_RED_AH23-removebg-preview_1_009cf6ad-3059-4be5-89d1-e9b00b37d4ee.png",
               "text_color": "#090b0a",
               "background_color": "#eff1f1",
               "hover_background_color": "#f3f3f3",
@@ -2591,7 +2701,7 @@
             "type": "category",
             "settings": {
               "title": "Womens",
-              "image": "shopify:\/\/shop_images\/top-categories-women.png",
+              "image": "shopify:\/\/shop_images\/WEDZE_SKI_P_JKT_180_W_WHITE_AH23-removebg-preview_cab350a0-da90-4aae-adf6-d4b422c0addf.png",
               "text_color": "#090b0a",
               "background_color": "#eff1f1",
               "hover_background_color": "#f3f3f3",
@@ -2602,11 +2712,11 @@
             "type": "category",
             "settings": {
               "title": "KIDS",
-              "image": "shopify:\/\/shop_images\/Kids-Top-Category-1.jpg",
+              "image": "shopify:\/\/shop_images\/luge_bebe_xwarm_AH19-removebg-preview-removebg-preview_c5f0b41a-c2d0-445f-8df8-ec5d14af05fd.png",
               "text_color": "#090b0a",
               "background_color": "#eff1f1",
               "hover_background_color": "#f3f3f3",
-              "link": "https:\/\/decathlon.com.au\/pages\/kids-sports-apparel-footwear"
+              "link": "https:\/\/decathlon.com.au\/collections\/kids-clothing-footwear"
             }
           },
           "c5bd0b0f-516e-4db7-926f-46c215e1fbdf": {
@@ -2720,36 +2830,12 @@
       "16316085202ea5cf79": {
         "type": "trending_categories",
         "blocks": {
-          "711f34cb-b34c-4c8f-8e88-ce5c95240666": {
-            "type": "category_tile",
-            "settings": {
-              "title": "Kids Winter Clothing",
-              "image": "shopify:\/\/shop_images\/Kids-Winter-HERO_v1.jpg",
-              "link": "https:\/\/decathlon.com.au\/collections\/kids-winter-snow-clothing"
-            }
-          },
           "e1091c93-4efb-4738-b3f6-3a711db62e82": {
             "type": "category_tile",
             "settings": {
-              "title": "Winter Jackets",
-              "image": "shopify:\/\/shop_images\/Winter-Jackets-Hero.jpg",
-              "link": "https:\/\/decathlon.com.au\/collections\/challenge-the-cold-all-jackets"
-            }
-          },
-          "f553a06c-1d16-4cd4-b9f2-2eea43b5aa9c": {
-            "type": "category_tile",
-            "settings": {
-              "title": "Winter Accessories",
-              "image": "shopify:\/\/shop_images\/Winter-Accesories-HERO.jpg",
-              "link": "https:\/\/decathlon.com.au\/collections\/snow-clothing-accessories"
-            }
-          },
-          "24a46da8-7f15-4e2c-aa20-558f5e037a41": {
-            "type": "category_tile",
-            "settings": {
-              "title": "Winter Fleeces",
-              "image": "shopify:\/\/shop_images\/Fleeces-HERO_v1.jpg",
-              "link": "https:\/\/decathlon.com.au\/collections\/challenge-the-cold-fleeces"
+              "title": "Tennis",
+              "image": "shopify:\/\/shop_images\/Tennis_hero-1_8153596b-079c-4e41-ae18-54d542b76b97.jpg",
+              "link": "https:\/\/decathlon.com.au\/collections\/tennis"
             }
           },
           "2161fbad-02eb-48c1-9a11-4481251537ae": {
@@ -2760,6 +2846,14 @@
               "link": "shopify:\/\/collections\/thermal-winter-layers"
             }
           },
+          "24a46da8-7f15-4e2c-aa20-558f5e037a41": {
+            "type": "category_tile",
+            "settings": {
+              "title": "Winter Fleeces",
+              "image": "shopify:\/\/shop_images\/Fleeces-HERO_v1.jpg",
+              "link": "https:\/\/decathlon.com.au\/collections\/challenge-the-cold-fleeces"
+            }
+          },
           "e946fff5-5695-4ed3-a886-269cd8000e8d": {
             "type": "category_tile",
             "settings": {
@@ -2767,15 +2861,31 @@
               "image": "shopify:\/\/shop_images\/BackPacks_hero-1_98180481-9318-4ada-a8b5-d279dfd42bda.jpg",
               "link": "https:\/\/decathlon.com.au\/collections\/hiking-backpacks"
             }
+          },
+          "711f34cb-b34c-4c8f-8e88-ce5c95240666": {
+            "type": "category_tile",
+            "settings": {
+              "title": "Wetsuits",
+              "image": "shopify:\/\/shop_images\/Surfing-HERO_e448b65e-3766-43c6-987a-864c5f7c31ec.jpg",
+              "link": "https:\/\/decathlon.com.au\/collections\/surf-wetsuits"
+            }
+          },
+          "f553a06c-1d16-4cd4-b9f2-2eea43b5aa9c": {
+            "type": "category_tile",
+            "settings": {
+              "title": "Winter Accessories",
+              "image": "shopify:\/\/shop_images\/Winter-Accesories-HERO.jpg",
+              "link": "https:\/\/decathlon.com.au\/collections\/snow-clothing-accessories"
+            }
           }
         },
         "block_order": [
-          "711f34cb-b34c-4c8f-8e88-ce5c95240666",
           "e1091c93-4efb-4738-b3f6-3a711db62e82",
-          "f553a06c-1d16-4cd4-b9f2-2eea43b5aa9c",
-          "24a46da8-7f15-4e2c-aa20-558f5e037a41",
           "2161fbad-02eb-48c1-9a11-4481251537ae",
-          "e946fff5-5695-4ed3-a886-269cd8000e8d"
+          "24a46da8-7f15-4e2c-aa20-558f5e037a41",
+          "e946fff5-5695-4ed3-a886-269cd8000e8d",
+          "711f34cb-b34c-4c8f-8e88-ce5c95240666",
+          "f553a06c-1d16-4cd4-b9f2-2eea43b5aa9c"
         ],
         "settings": {
           "title": "Trending Categories"
@@ -2908,14 +3018,13 @@
         "blocks": {
           "b706be1c-0750-47c9-b0f1-8278eddb14fd": {
             "type": "announcement_messages",
-            "disabled": true,
             "settings": {
-              "countdown_date": "2023-05-14",
-              "countdown_time": "24:00",
-              "message": "<p>Its [countdown] to Mother's Day. <a href=\"https:\/\/decathlon.com.au\/pages\/mothers-day-gift-ideas\" title=\"https:\/\/decathlon.com.au\/pages\/mothers-day-gift-ideas\">Shop<\/a> Great Gifts for Mum<\/p>",
+              "countdown_date": "",
+              "countdown_time": "",
+              "message": "<p><strong>Offer Extended: 20% OFF Puffer Jackets. <\/strong><a href=\"https:\/\/decathlon.com.au\/collections\/down-jackets-sale\" title=\"https:\/\/decathlon.com.au\/collections\/down-jackets-sale\"><strong> SHOP NOW<\/strong><\/a><\/p>",
               "post_message": "",
               "url": "",
-              "bg_colour": "#1c82c3",
+              "bg_colour": "#e51d27",
               "font_colour": "#ffffff",
               "scroll_speed": "scroll-normal"
             }
@@ -2940,7 +3049,7 @@
           "543b1783-29d8-4996-80a0-0ad6250c6206"
         ],
         "settings": {
-          "show_annoucement_bar": false,
+          "show_annoucement_bar": true,
           "rotation_delay": "5000",
           "rotation_speed": "1000",
           "default_bg": "#1c82c3",
@@ -2953,37 +3062,37 @@
           "519ef5cd-516d-47fc-82a0-5b9ffe724db8": {
             "type": "product",
             "settings": {
-              "product": "mens-warm-and-waterproof-snow-hiking-shoes-sh100-x-warm-mid"
+              "product": "mens-waterproof-winter-hiking-jacket-sh100-x-warm-10c"
             }
           },
           "8940d3cc-61df-4470-a030-0bbcd04cf377": {
             "type": "product",
             "settings": {
-              "product": "kids-waterproof-winter-hiking-parka-sh500-ultra-warm-17c-7-15-years"
+              "product": "mens-ski-base-layer-wool-bottoms-900-black"
             }
           },
           "4c348e96-3b5b-4e05-93cc-509841bc0ec8": {
             "type": "product",
             "settings": {
-              "product": "g500-adult-kids-all-weather-ski-goggles-166213"
+              "product": "kids-2-6y-waterproof-jacket-sh100-warm-pink"
             }
           },
           "bd009634-32db-40cc-b454-825a1b3e3dd0": {
             "type": "product",
             "settings": {
-              "product": "mens-hiking-warm-fleece-jacket-sh500-x-warm"
+              "product": "womens-ski-base-layer-wool-top-900"
             }
           },
           "4f4612d2-316c-480b-bc72-71ea88048f52": {
             "type": "product",
             "settings": {
-              "product": "womens-mountain-trekking-sleeveless-down-gilet-mt500"
+              "product": "womens-warm-down-ski-jacket-900-warm-navy-blue"
             }
           },
           "9374bcef-73a6-4b31-8cd4-1c20867784a9": {
             "type": "product",
             "settings": {
-              "product": "900-mens-down-ski-2nd-layer-194115"
+              "product": "womens-ski-jacket-500-sport-green"
             }
           }
         },
@@ -2996,12 +3105,24 @@
           "9374bcef-73a6-4b31-8cd4-1c20867784a9"
         ],
         "settings": {
-          "title": "Snow Sale Trending Deals",
+          "title": "New Winter Deals are in!!",
           "section_collection": ""
         }
       },
       "fb0855c8-1628-4f85-b320-abc284df58b7": {
         "type": "six-tile-products",
+        "disabled": true,
+        "blocks": {
+          "5cb5b478-21e1-4c8b-9c3f-31b551ded015": {
+            "type": "product",
+            "settings": {
+              "product": ""
+            }
+          }
+        },
+        "block_order": [
+          "5cb5b478-21e1-4c8b-9c3f-31b551ded015"
+        ],
         "settings": {
           "title": "NBA X Tarmak",
           "section_collection": "nba-tarmak"
@@ -3010,16 +3131,15 @@
       "59bd4db6-bdb1-46c5-ab8e-ed6a847dddfe": {
         "type": "six-tile-products",
         "settings": {
-          "title": "Stay Warm with us",
-          "section_collection": "winter-collection"
+          "title": "Let's Go Camping",
+          "section_collection": "camping"
         }
       },
       "eebe1a41-f3e2-4f63-8238-9c639f6d6b73": {
         "type": "six-tile-products",
-        "disabled": true,
         "settings": {
-          "title": "Sporty Gift Ideas for Mum",
-          "section_collection": "mothers-day-gifts"
+          "title": "20% OFF Puffer Jackets",
+          "section_collection": "down-jackets-sale"
         }
       },
       "77b0ebae-ff5d-4180-ac94-8f2d26964b83": {
@@ -3116,11 +3236,11 @@
       "163107170023281063",
       "16316085202ea5cf79",
       "7abea652-1029-4ff5-909f-fb3c9356b961",
-      "e2c58312-d869-42de-abd5-868dc6fc879c",
+      "eebe1a41-f3e2-4f63-8238-9c639f6d6b73",
       "8f7fbe54-e3bd-494e-a735-df53c71ba559",
       "59bd4db6-bdb1-46c5-ab8e-ed6a847dddfe",
+      "e2c58312-d869-42de-abd5-868dc6fc879c",
       "fb0855c8-1628-4f85-b320-abc284df58b7",
-      "eebe1a41-f3e2-4f63-8238-9c639f6d6b73",
       "77b0ebae-ff5d-4180-ac94-8f2d26964b83",
       "163107313302287377"
     ]
