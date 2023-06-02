@@ -184,7 +184,6 @@
     "state": "New South Wales",
     "city": "Brookvale",
     "postal": "2100",
-    "priority": 10,
     "apply_to_type": 1
   },
   {
@@ -323,6 +322,26 @@
     "state": "New South Wales",
     "city": "Glebe",
     "priority": 4,
+    "apply_to_type": 1
+  },
+  {
+    "lat": "-33.933643",
+    "lng": "151.0290524",
+    "id": 13378374,
+    "name": "Just Sports Bankstown",
+    "description": "You can now order your products online and collect them from one of our partners.",
+    "tagsvalue": "Click & Collect in 2 business days",
+    "tags": [
+      {
+        "tag": "Click & Collect in 2 business days"
+      }
+    ],
+    "schedule": "<strong>Store Hours<\/strong>\r<br>\r<br>Monday: 9am - 5.30pm\r<br>Tuesday: 9am - 5.30pm\r<br>Wednesday: 9am - 5.30pm\r<br>Thursday: 9am - 9pm\r<br>Friday: 9am - 5.30pm\r<br>Saturday: 9am - 5pm\r<br>Sunday: 10am - 5pm",
+    "address": "Unit 15\/173 Canterbury Rd",
+    "country": "Australia",
+    "state": "New South Wales",
+    "city": "Bankstown",
+    "postal": "2200",
     "apply_to_type": 1
   }
 ]
