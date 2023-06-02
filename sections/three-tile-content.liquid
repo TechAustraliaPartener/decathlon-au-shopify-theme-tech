@@ -9,7 +9,7 @@
       {%- assign link_bv = "" -%}  
     {%- endif -%}
     <div class="tile-box">
-      <a href="{{- block.settings.tile_url -}}" {{ link_bv }} aria-labelledby="{{ block.settings.tile_title }}">
+      <a href="{{- block.settings.tile_url -}}" {{ link_bv }} aria-label="{{ block.settings.tile_title }}">
         <img class="tile-image"
           srcset="{{ block.settings.tile_img | img_url: '200x' }} 390w, 
           {{ block.settings.tile_img | img_url: '360x' }} 420w,
