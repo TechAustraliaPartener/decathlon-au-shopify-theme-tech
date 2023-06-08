@@ -25,11 +25,12 @@
           (max-width: 768px) 500px,
           (min-width: 1024px) 650px"
           loading="lazy"
+          alt="{{ block.settings.tile_img.alt | default: block.settings.tile_title  }}"
           >
       </a>
       <div class="tile-content">
         <a class="tile-title" href="{{block.settings.tile_url}}" {{link_bv}}>
-          <h4>{{block.settings.tile_title}}</h4>
+          <h4>{{ block.settings.tile_title }}</h4>
         </a>
         <div class="title-subtitle">
           {{block.settings.tile_subtitle}}
