@@ -149,6 +149,7 @@ $( document ).ready(function() {
         $('.de-PageWrap-subHeader').css('top', '58px');
         $('.de-PageWrap-prioritySportNav').css('top', '106.448px');
         $('.template-search .de-PageWrap-main').css('top', '76px');
+        $('.de-PageWrap-main').removeClass('de-PageWrap-main--announcement-active');
         $('.template-collection').removeClass('with-announcement-banner');
         $('.template-search').removeClass('with-announcement-banner');
         $('.template-product').removeClass('with-announcement-banner');
