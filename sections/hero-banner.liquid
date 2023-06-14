@@ -118,12 +118,12 @@ href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
 
 <div class="page-width">
   <!-- Slider main container -->
-  <div class="swiper hero-banner">
+  <div class="swiper hero-banner" data-swiper-autoplay="{{ carousel_delay_time }}">
     <!-- Additional required wrapper -->
     <div class="swiper-wrapper">
       <!-- Slides -->
       {% for block in section.blocks %}
-        <div class="swiper-slide swiper-slide--{{forloop.index}}" data-swiper-autoplay="{{ carousel_delay_time }}">
+        <div class="swiper-slide swiper-slide--{{forloop.index}}" >
           {% assign item = block.settings %}
           {% assign countdown_position = item.countdown_position | split: "," %}
           {% assign pos_y = countdown_position | first %}
