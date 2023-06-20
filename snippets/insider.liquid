@@ -51,11 +51,11 @@
           {% for a in attrbs %}  
           {% if option == a %}  
           {% if current_index == 1 %}
-          , {{option}} : "{{ item.variant.option1 }}"
+          , "{{option}}" : "{{ item.variant.option1 }}"
           {% elsif current_index == 2 %}
-          , {{option}} : "{{ item.variant.option2 }}"
+          , "{{option}}" : "{{ item.variant.option2 }}"
           {% else %}
-          , {{option}} : "{{ item.variant.option3 }}"
+          , "{{option}}" : "{{ item.variant.option3 }}"
           {% endif %}  
           {% endif %}
           {% endfor %}
