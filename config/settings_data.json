@@ -36,10 +36,10 @@
     "header_store_label": "Find a Store",
     "header_sign_in_label": "Login",
     "megamenu_set_for_all": "override",
-    "megamenu_image": "shopify:\/\/shop_images\/Mega_menu_tile_315_x_235px_f29e55bb-84a5-4dc8-9d3a-39d20a1634e0.jpg",
-    "megamenu_title": "DON'T MISS OUR SNOW SALE!",
+    "megamenu_image": "shopify:\/\/shop_images\/Mega_315_x_235px.jpg",
+    "megamenu_title": "50% OFF ALL SNOW GEAR!",
     "megamenu_subtitle": "",
-    "megamenu_link": "https:\/\/decathlon.com.au\/collections\/snow-sale",
+    "megamenu_link": "https:\/\/decathlon.com.au\/collections\/snow-sale-50-off",
     "megamenu_bg_colour": "#1c82c1",
     "custom_fields_terms_conditions": "I agree to the <a href=\"\/pages\/terms-and-conditions-membership\" target=\"_blank\">T&Cs<\/a> and <a href=\"\/pages\/privacy-policy\" target=\"_blank\">Privacy Policy<\/a> for creating an account.",
     "is_lookbook": false,
@@ -422,7 +422,7 @@
             "settings": {
               "name": "Tempe",
               "title": "Tempe Store, 2044",
-              "online_inventory_source": false,
+              "online_inventory_source": true,
               "enable_c_c": true,
               "enable_stock_visibility": true,
               "duplicate": "",
@@ -758,7 +758,7 @@
             "settings": {
               "name": "South Morang",
               "title": "South Morang Store, 3752",
-              "online_inventory_source": false,
+              "online_inventory_source": true,
               "enable_c_c": true,
               "enable_stock_visibility": true,
               "duplicate": "",
@@ -872,7 +872,7 @@
               "title": "George Street, 2000, Click & Collect",
               "online_inventory_source": false,
               "enable_c_c": true,
-              "enable_stock_visibility": true,
+              "enable_stock_visibility": false,
               "duplicate": "Tempe",
               "test_mode": false,
               "street1": "309-315 George street",
@@ -931,7 +931,7 @@
               "enable_stock_visibility": false,
               "duplicate": "Tempe",
               "test_mode": false,
-              "street1": "Level 2, 1 Bay Street",
+              "street1": "Broadway Sydney Shopping Centre, Level 2, 1 Bay Street",
               "city": "Glebe",
               "zip": "2037",
               "state": "NSW",
@@ -984,7 +984,7 @@
               "title": "TSBW Brookvale, 2100, Click & Collect Only",
               "online_inventory_source": false,
               "enable_c_c": true,
-              "enable_stock_visibility": true,
+              "enable_stock_visibility": false,
               "duplicate": "Tempe",
               "test_mode": false,
               "street1": "535 Pittwater Rd",
@@ -1040,7 +1040,7 @@
               "title": "STM Bondi Junction, 2022, Click & Collect Only",
               "online_inventory_source": false,
               "enable_c_c": true,
-              "enable_stock_visibility": true,
+              "enable_stock_visibility": false,
               "duplicate": "Tempe",
               "test_mode": false,
               "street1": "426 Oxford St",
@@ -1096,7 +1096,7 @@
               "title": "Just Sports Bankstown, 2200,  Click & Collect Only",
               "online_inventory_source": false,
               "enable_c_c": true,
-              "enable_stock_visibility": true,
+              "enable_stock_visibility": false,
               "duplicate": "Tempe",
               "test_mode": false,
               "street1": "Unit 15\/173 Canterbury Rd",
@@ -1152,7 +1152,7 @@
               "title": "Just Sports Edmondson Park, 2174, Click & Collect Only",
               "online_inventory_source": false,
               "enable_c_c": true,
-              "enable_stock_visibility": true,
+              "enable_stock_visibility": false,
               "duplicate": "Tempe",
               "test_mode": false,
               "street1": "Ed. Square, 52 Soldiers Parade",
@@ -1208,7 +1208,7 @@
               "title": "Just Sports Campbelltown, 2560, Click & Collect Only",
               "online_inventory_source": false,
               "enable_c_c": true,
-              "enable_stock_visibility": true,
+              "enable_stock_visibility": false,
               "duplicate": "Tempe",
               "test_mode": false,
               "street1": "271 Queen St - Campbelltown Mall - Ground Floor Shop L35\/35A",
@@ -1862,15 +1862,40 @@
           "5658b613-5180-4554-b5d3-8a63de506e65": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Desktop_banner_1440_x_789px_ac6552a6-181e-4b82-8c47-db92552e2500.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_546099f6-34ad-44c0-95a6-c6d0a183e1a6.jpg",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Mobile_banner_478_x_300px_62f8af75-e447-4be5-b6d2-62957c975a31.jpg",
+              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_a7ffbc5f-08c4-49e3-a470-a3607c6e7d58.jpg",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
               "countdown_inline": false,
               "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/pages\/snow-sale",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/snow-sale-50-off",
+              "link_title": "",
+              "link_new_window": false,
+              "countdown_date": "",
+              "countdown_time": "",
+              "countdown_position": "flex-start,flex-start",
+              "countdown_bold": false,
+              "countdown_italic": false,
+              "countdown_underline": false,
+              "countdown_colour": "#ffffff",
+              "countdown_font_size_m": "1.75rem",
+              "countdown_font_size_d": "2.75rem"
+            }
+          },
+          "85c47718-39c5-4752-aa58-3e34ef8c0a97": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_15cf72af-094b-4eae-a4a6-7c47d69bf3c7.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_6de6be57-95fb-42e2-bb01-bda4776fdb9d.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "countdown_inline": false,
+              "button_title": "",
+              "link_url": "https:\/\/decathlon.com.au\/pages\/eofy-sale",
               "link_title": "",
               "link_new_window": false,
               "countdown_date": "",
@@ -1887,15 +1912,15 @@
           "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Artengo-Home_page_v2_775ad44c-2625-485f-a828-e57f502b3bb2.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/red_Homepage_Carousel_Desktop___1440_x_789px.png",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Artengo-Home_page_mobile_v2_0a460241-cebe-4449-9868-aea48603cb6c.jpg",
+              "banner_mobile_image": "shopify:\/\/shop_images\/red_Homepage_Carousel_Mobile___478_x_300px.png",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
               "countdown_inline": false,
               "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/collections\/tennis",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/snow-sale",
               "link_title": "",
               "link_new_window": false,
               "countdown_date": "",
@@ -1912,40 +1937,15 @@
           "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/extended_Desktop_banner_1440_x_789px.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_29ee92ce-36d0-463e-a2b2-9ed0db25db86.jpg",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/extended_Mobile_banner_478_x_300px.jpg",
+              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_fdfee763-c954-48f0-ac0e-4148120e1625.jpg",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
               "countdown_inline": false,
               "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/collections\/down-jackets-sale",
-              "link_title": "",
-              "link_new_window": false,
-              "countdown_date": "",
-              "countdown_time": "",
-              "countdown_position": "flex-start,flex-start",
-              "countdown_bold": false,
-              "countdown_italic": false,
-              "countdown_underline": false,
-              "countdown_colour": "#ffffff",
-              "countdown_font_size_m": "1.75rem",
-              "countdown_font_size_d": "2.75rem"
-            }
-          },
-          "145847d3-2db7-45f7-8ef6-38db22a4156a": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789.png",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300.png",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "countdown_inline": false,
-              "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/pages\/price-drop",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/yoga-sale",
               "link_title": "",
               "link_new_window": false,
               "countdown_date": "",
@@ -1984,6 +1984,31 @@
               "countdown_font_size_d": "2.75rem"
             }
           },
+          "145847d3-2db7-45f7-8ef6-38db22a4156a": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789.png",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300.png",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "countdown_inline": false,
+              "button_title": "",
+              "link_url": "https:\/\/decathlon.com.au\/pages\/price-drop",
+              "link_title": "",
+              "link_new_window": false,
+              "countdown_date": "",
+              "countdown_time": "",
+              "countdown_position": "flex-start,flex-start",
+              "countdown_bold": false,
+              "countdown_italic": false,
+              "countdown_underline": false,
+              "countdown_colour": "#ffffff",
+              "countdown_font_size_m": "1.75rem",
+              "countdown_font_size_d": "2.75rem"
+            }
+          },
           "0e3f284b-4302-4200-8eb1-f98ce34415af": {
             "type": "slide",
             "settings": {
@@ -1996,6 +2021,32 @@
               "countdown_inline": false,
               "button_title": "",
               "link_url": "shopify:\/\/pages\/decathlon-membership",
+              "link_title": "",
+              "link_new_window": false,
+              "countdown_date": "",
+              "countdown_time": "",
+              "countdown_position": "flex-start,flex-start",
+              "countdown_bold": false,
+              "countdown_italic": false,
+              "countdown_underline": false,
+              "countdown_colour": "#ffffff",
+              "countdown_font_size_m": "1.75rem",
+              "countdown_font_size_d": "2.75rem"
+            }
+          },
+          "623e46b1-2abc-4e5b-8ceb-3ca5e428998a": {
+            "type": "slide",
+            "disabled": true,
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_fc73c720-4247-4006-b8af-59b5f8c19587.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_cbb1c9eb-4a30-45cb-bfb2-aad6111e17be.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "countdown_inline": false,
+              "button_title": "",
+              "link_url": "https:\/\/decathlon.com.au\/products\/rockrider-st-100-sport-trail-bike-white?",
               "link_title": "",
               "link_new_window": false,
               "countdown_date": "",
@@ -2087,32 +2138,6 @@
               "countdown_font_size_d": "2.75rem"
             }
           },
-          "623e46b1-2abc-4e5b-8ceb-3ca5e428998a": {
-            "type": "slide",
-            "disabled": true,
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Artengo-Home_page_v2_d2d41da9-f27e-47a9-bde2-33c35df8beff.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Artengo-Home_page_mobile_v2_bd06df5a-c01c-4ea0-8197-0c64adf09566.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "countdown_inline": false,
-              "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/pages\/decathlon-artengo",
-              "link_title": "",
-              "link_new_window": false,
-              "countdown_date": "",
-              "countdown_time": "",
-              "countdown_position": "flex-start,flex-start",
-              "countdown_bold": false,
-              "countdown_italic": false,
-              "countdown_underline": false,
-              "countdown_colour": "#ffffff",
-              "countdown_font_size_m": "1.75rem",
-              "countdown_font_size_d": "2.75rem"
-            }
-          },
           "79522152-c757-4b60-a1be-2d1e49198982": {
             "type": "slide",
             "disabled": true,
@@ -2138,47 +2163,21 @@
               "countdown_font_size_m": "1.75rem",
               "countdown_font_size_d": "2.75rem"
             }
-          },
-          "85c47718-39c5-4752-aa58-3e34ef8c0a97": {
-            "type": "slide",
-            "disabled": true,
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/20off_Cycling_Accessories_1440_x_789px.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/20off_Cycling_Accessories_478_x_300px.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "countdown_inline": false,
-              "button_title": "",
-              "link_url": "shopify:\/\/collections\/cycling-clothing-bike-accessories",
-              "link_title": "Shop $20 off Cycling Clothing & Accessories",
-              "link_new_window": false,
-              "countdown_date": "",
-              "countdown_time": "",
-              "countdown_position": "flex-start,flex-start",
-              "countdown_bold": false,
-              "countdown_italic": false,
-              "countdown_underline": false,
-              "countdown_colour": "#ffffff",
-              "countdown_font_size_m": "1.75rem",
-              "countdown_font_size_d": "2.75rem"
-            }
           }
         },
         "block_order": [
           "5658b613-5180-4554-b5d3-8a63de506e65",
+          "85c47718-39c5-4752-aa58-3e34ef8c0a97",
           "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9",
           "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb",
-          "145847d3-2db7-45f7-8ef6-38db22a4156a",
           "e9b4daa6-6eee-441b-b76d-9c3ff012fde9",
+          "145847d3-2db7-45f7-8ef6-38db22a4156a",
           "0e3f284b-4302-4200-8eb1-f98ce34415af",
+          "623e46b1-2abc-4e5b-8ceb-3ca5e428998a",
           "579ee1c6-8cb9-4350-95e5-fb83a1397d90",
           "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b",
           "748c6a7e-732f-486d-a653-eb425a670bc5",
-          "623e46b1-2abc-4e5b-8ceb-3ca5e428998a",
-          "79522152-c757-4b60-a1be-2d1e49198982",
-          "85c47718-39c5-4752-aa58-3e34ef8c0a97"
+          "79522152-c757-4b60-a1be-2d1e49198982"
         ],
         "settings": {}
       },
@@ -2749,8 +2748,8 @@
             "type": "category",
             "settings": {
               "title": "Price Drop",
-              "image": "shopify:\/\/shop_images\/price-tag_v3_09ee3945-5e67-4be9-a07f-66499600584d.png",
-              "text_color": "#ffea28",
+              "image": "shopify:\/\/shop_images\/price-tag_v3_white.png",
+              "text_color": "#ffffff",
               "background_color": "#1c82c3",
               "hover_background_color": "#1c82c3",
               "link": "https:\/\/decathlon.com.au\/pages\/price-drop"
@@ -2859,9 +2858,9 @@
           "e1091c93-4efb-4738-b3f6-3a711db62e82": {
             "type": "category_tile",
             "settings": {
-              "title": "Tennis",
-              "image": "shopify:\/\/shop_images\/Tennis_hero-1_8153596b-079c-4e41-ae18-54d542b76b97.jpg",
-              "link": "https:\/\/decathlon.com.au\/collections\/tennis"
+              "title": "Yoga",
+              "image": "shopify:\/\/shop_images\/Yoga-HERO_v1_9bfd1f4b-ffe7-4738-970b-c5b44c7eb74b.jpg",
+              "link": "https:\/\/decathlon.com.au\/collections\/yoga-pilates"
             }
           },
           "2161fbad-02eb-48c1-9a11-4481251537ae": {
@@ -3047,7 +3046,7 @@
             "settings": {
               "countdown_date": "",
               "countdown_time": "",
-              "message": "<p><strong>Offer Extended: 20% OFF Puffer Jackets. <\/strong><a href=\"https:\/\/decathlon.com.au\/collections\/down-jackets-sale\" title=\"https:\/\/decathlon.com.au\/collections\/down-jackets-sale\"><strong> SHOP NOW<\/strong><\/a><\/p>",
+              "message": "<p><strong>Offer Extended: 20% OFF Puffer Jackets.  1HR FREE CLICK & COLLECT.  <\/strong><a href=\"https:\/\/decathlon.com.au\/collections\/down-jackets-sale\" title=\"https:\/\/decathlon.com.au\/collections\/down-jackets-sale\"><strong> SHOP NOW<\/strong><\/a><\/p>",
               "post_message": "",
               "url": "",
               "bg_colour": "#e51d27",
@@ -3085,53 +3084,53 @@
       "7abea652-1029-4ff5-909f-fb3c9356b961": {
         "type": "six-tile-products",
         "blocks": {
+          "9374bcef-73a6-4b31-8cd4-1c20867784a9": {
+            "type": "product",
+            "settings": {
+              "product": "hand-warmers-x-10-161196"
+            }
+          },
           "519ef5cd-516d-47fc-82a0-5b9ffe724db8": {
             "type": "product",
             "settings": {
-              "product": "mens-waterproof-winter-hiking-jacket-sh100-x-warm-10c"
+              "product": "mens-long-football-parka-trx"
             }
           },
           "8940d3cc-61df-4470-a030-0bbcd04cf377": {
             "type": "product",
             "settings": {
-              "product": "mens-ski-base-layer-wool-bottoms-900-black"
+              "product": "feet-warmers-x-10-161192"
             }
           },
           "4c348e96-3b5b-4e05-93cc-509841bc0ec8": {
             "type": "product",
             "settings": {
-              "product": "kids-2-6y-waterproof-jacket-sh100-warm-pink"
+              "product": "womens-warm-down-ski-jacket-900-warm-navy-blue"
             }
           },
           "bd009634-32db-40cc-b454-825a1b3e3dd0": {
             "type": "product",
             "settings": {
-              "product": "womens-ski-base-layer-wool-top-900"
+              "product": "kids-snowboard-jacket-snb-500-teen-girl-pink"
             }
           },
           "4f4612d2-316c-480b-bc72-71ea88048f52": {
             "type": "product",
             "settings": {
-              "product": "womens-warm-down-ski-jacket-900-warm-navy-blue"
-            }
-          },
-          "9374bcef-73a6-4b31-8cd4-1c20867784a9": {
-            "type": "product",
-            "settings": {
-              "product": "womens-ski-jacket-500-sport-green"
+              "product": "mens-warm-waterproof-snow-hiking-boots-sh500-x-warm-lace"
             }
           }
         },
         "block_order": [
+          "9374bcef-73a6-4b31-8cd4-1c20867784a9",
           "519ef5cd-516d-47fc-82a0-5b9ffe724db8",
           "8940d3cc-61df-4470-a030-0bbcd04cf377",
           "4c348e96-3b5b-4e05-93cc-509841bc0ec8",
           "bd009634-32db-40cc-b454-825a1b3e3dd0",
-          "4f4612d2-316c-480b-bc72-71ea88048f52",
-          "9374bcef-73a6-4b31-8cd4-1c20867784a9"
+          "4f4612d2-316c-480b-bc72-71ea88048f52"
         ],
         "settings": {
-          "title": "New Winter Deals are in!!",
+          "title": "Trending Winter Deals",
           "section_collection": ""
         }
       },
@@ -3164,8 +3163,8 @@
       "eebe1a41-f3e2-4f63-8238-9c639f6d6b73": {
         "type": "six-tile-products",
         "settings": {
-          "title": "20% OFF Puffer Jackets",
-          "section_collection": "down-jackets-sale"
+          "title": "30% OFF Yoga",
+          "section_collection": "yoga-sale"
         }
       },
       "77b0ebae-ff5d-4180-ac94-8f2d26964b83": {
