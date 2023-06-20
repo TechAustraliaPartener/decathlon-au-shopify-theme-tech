@@ -6,8 +6,11 @@
     "name": "Decathlon Tempe",
     "web": "https:\/\/decathlon.com.au\/pages\/store-tempe",
     "webdisplay": "Visit store page",
-    "tagsvalue": "In-store Shopping,Bicycle Repairs,Tennis Racquet Restringing,Click & Collect Ready in 1hr",
+    "tagsvalue": "Click & Collect Ready in 1hr,In-store Shopping,Bicycle Repairs,Tennis Racquet Restringing",
     "tags": [
+      {
+        "tag": "Click & Collect Ready in 1hr"
+      },
       {
         "tag": "In-store Shopping"
       },
@@ -16,18 +19,11 @@
       },
       {
         "tag": "Tennis Racquet Restringing"
-      },
-      {
-        "tag": "Click & Collect Ready in 1hr"
       }
     ],
     "schedule": "<br>\r<br><strong>Customer Service: <\/strong>02 6181 0987\r<br><br>\r<br><strong>Normal Operating Hours:<\/strong>\r<br>\r<br>Monday: 9:00 am - 8:00 pm\r<br>Tuesday: 9:00 am - 8:00 pm\r<br>Wednesday: 9:00 am - 8:00 pm\r<br>Thursday: 9:00 am - 9:00 pm\r<br>Friday: 9:00 am - 8:00 pm\r<br>Saturday: 9:00 am - 8:00 pm\r<br>Sunday: 9:00 am - 7:00 pm\r<br><br>",
-    "marker_image": "\/\/cdn.shopify.com\/s\/files\/1\/0066\/6563\/3903\/t\/441\/assets\/scasl_1615717967map-marker-inactive_compact.png",
-    "address": "634-726 Princes Hwy, Tempe",
-    "country": "Australia",
-    "state": "New South Wales",
-    "city": "Sydney",
-    "postal": "2044",
+    "marker_image": "https:\/\/cdn.shopify.com\/s\/files\/1\/0066\/6563\/3903\/t\/797\/assets\/scasl_1686286203_marketimagestore_compact.png",
+    "address": "634-726 Princes Hwy, Tempe, NSW 2044",
     "priority": 2,
     "apply_to_type": 1
   },
@@ -36,32 +32,27 @@
     "lng": "151.0276685",
     "id": 6036655,
     "name": "Decathlon Auburn",
-    "description": "Click and Collect\r<br>Delivery from Store for Bulky Items",
     "phone": "(02) 6181 0988",
     "web": "https:\/\/decathlon.com.au\/pages\/store-auburn",
     "webdisplay": "Visit store page",
-    "tagsvalue": "In-store Shopping,Bicycle Repairs,Tennis Racquet Restringing,Click & Collect Ready in 1hr",
+    "tagsvalue": "In-store Shopping,Click & Collect Ready in 1hr,Bicycle Repairs,Tennis Racquet Restringing",
     "tags": [
       {
         "tag": "In-store Shopping"
+      },
+      {
+        "tag": "Click & Collect Ready in 1hr"
       },
       {
         "tag": "Bicycle Repairs"
       },
       {
         "tag": "Tennis Racquet Restringing"
-      },
-      {
-        "tag": "Click & Collect Ready in 1hr"
       }
     ],
-    "schedule": "<br>\r<br><strong>Customer Service: <\/strong>02 6181 0988 \r<br><br>\r<br><strong>Normal Operating Hours:<\/strong>\r<br>Monday: 10:00 am - 7:00 pm\r<br>Tuesday: 10:00 am - 7:00 pm\r<br>Wednesday: 10:00 am - 7:00 pm\r<br>Thursday: 10:00 am - 8:00 pm\r<br>Friday: 10:00 am - 8:00 pm\r<br>Saturday: 10:00 am - 8:00 pm\r<br>Sunday: 10:00 am - 7:00 pm\r<br><br>",
-    "marker_image": "\/\/cdn.shopify.com\/s\/files\/1\/0066\/6563\/3903\/t\/441\/assets\/scasl_1615717910map-marker-inactive_compact.png",
-    "address": "300 Parramatta Rd",
-    "country": "Australia",
-    "state": "New South Wales",
-    "city": "Auburn",
-    "postal": "2144",
+    "schedule": "<br>\r<br><strong>Normal Operating Hours:<\/strong>\r<br>Monday: 10:00 am - 7:00 pm\r<br>Tuesday: 10:00 am - 7:00 pm\r<br>Wednesday: 10:00 am - 7:00 pm\r<br>Thursday: 10:00 am - 8:00 pm\r<br>Friday: 10:00 am - 8:00 pm\r<br>Saturday: 10:00 am - 8:00 pm\r<br>Sunday: 10:00 am - 7:00 pm\r<br><br>\r<br><strong>Customer Service: <\/strong>02 6181 0988 \r<br><br>",
+    "marker_image": "https:\/\/cdn.shopify.com\/s\/files\/1\/0066\/6563\/3903\/t\/797\/assets\/scasl_1686282844_marketimagestore_compact.png",
+    "address": "300 Parramatta Rd, Auburn, NSW 2144",
     "priority": 3,
     "apply_to_type": 1
   },
@@ -184,6 +175,7 @@
     "state": "New South Wales",
     "city": "Brookvale",
     "postal": "2100",
+    "priority": 10,
     "apply_to_type": 1
   },
   {
@@ -293,6 +285,7 @@
       }
     ],
     "schedule": "<br>\r<br><strong>Normal Operating Hours:<\/strong>\r<br>\r<br>Monday: 9:00 am - 6:00 pm\r<br>Tuesday: 9:00 am - 6:00 pm\r<br>Wednesday: 9:00 am - 6:00 pm\r<br>Thursday: 9:00 am - 9:00 pm\r<br>Friday: 9:00 am - 6:00 pm\r<br>Saturday: 9:00 am - 6:00 pm\r<br>Sunday: 9:00 am - 5:00 pm",
+    "marker_image": "https:\/\/cdn.shopify.com\/s\/files\/1\/0066\/6563\/3903\/t\/797\/assets\/scasl_1686270566_free-click-and-collect-----expires-on-08-09-2025_compact.png",
     "address": "Ground Floor 309-315 George street",
     "country": "Australia",
     "state": "New South Wales",
@@ -315,7 +308,8 @@
         "tag": "In-store Shopping - Limited Range"
       }
     ],
-    "schedule": "<strong>NOW OPEN<\/strong>",
+    "schedule": "<br>\r<br><strong>Customer Service: <\/strong>0491 761 112\r<br><br>\r<br><strong>Normal Operating Hours:<\/strong>\r<br>\r<br>Monday: 10:00 am - 7:00 pm\r<br>Tuesday: 10:00 am - 7:00 pm\r<br>Wednesday: 10:00 am - 7:00 pm\r<br>Thursday: 10:00 am - 9:00 pm\r<br>Friday: 10:00 am - 7:00 pm\r<br>Saturday: 10:00 am - 6:00 pm\r<br>Sunday: 10:00 am - 6:00 pm\r<br><br>",
+    "marker_image": "https:\/\/cdn.shopify.com\/s\/files\/1\/0066\/6563\/3903\/t\/797\/assets\/scasl_1686286038_marketimageccstorev2_compact.png",
     "address": "Broadway Shopping Center, Level 2 next to H&M",
     "address2": "Level 2, 1 Bay Street",
     "country": "Australia",
@@ -336,12 +330,10 @@
         "tag": "Click & Collect in 2 business days"
       }
     ],
-    "schedule": "<strong>Store Hours<\/strong>\r<br>\r<br>Monday: 9am - 5.30pm\r<br>Tuesday: 9am - 5.30pm\r<br>Wednesday: 9am - 5.30pm\r<br>Thursday: 9am - 9pm\r<br>Friday: 9am - 5.30pm\r<br>Saturday: 9am - 5pm\r<br>Sunday: 10am - 5pm",
-    "address": "Unit 15\/173 Canterbury Rd",
-    "country": "Australia",
-    "state": "New South Wales",
-    "city": "Bankstown",
-    "postal": "2200",
+    "schedule": "<br>\r<br><strong>Store Hours<\/strong>\r<br>\r<br>Monday: 9am - 5.30pm\r<br>Tuesday: 9am - 5.30pm\r<br>Wednesday: 9am - 5.30pm\r<br>Thursday: 9am - 9pm\r<br>Friday: 9am - 5.30pm\r<br>Saturday: 9am - 5pm\r<br>Sunday: 10am - 5pm\r<br><br>",
+    "marker_image": "https:\/\/cdn.shopify.com\/s\/files\/1\/0066\/6563\/3903\/t\/797\/assets\/scasl_1686286465_marketimageccstorev2_compact.png",
+    "address": "Unit 15\/173 Canterbury Rd, Bankstown, NSW 2200",
+    "priority": 10,
     "apply_to_type": 1
   }
 ]
