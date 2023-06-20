@@ -259,9 +259,9 @@ const initInventoryLocations = () => {
 
     // TODO: FIX CHECKING CONDITION FOR SETTING
     // console.log("ANGE",JSON.parse(localStorage.getItem('state_code')) != null, $('#checkState').attr("data-autoClick")  )
-    if(JSON.parse(localStorage.getItem('state_code')) != null  ){
-      $('#checkState').click();
-    }
+    // if(JSON.parse(localStorage.getItem('state_code')) != null  ){
+    //   $('#checkState').click();
+    // }
     
     if(!window.inventories) {
       // Show error in the stock indicator above add to cart if no inventory data was returned
