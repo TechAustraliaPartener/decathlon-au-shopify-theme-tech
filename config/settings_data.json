@@ -36,10 +36,10 @@
     "header_store_label": "Find a Store",
     "header_sign_in_label": "Login",
     "megamenu_set_for_all": "override",
-    "megamenu_image": "shopify:\/\/shop_images\/Mega_315_x_235px.jpg",
-    "megamenu_title": "50% OFF ALL SNOW GEAR!",
+    "megamenu_image": "shopify:\/\/shop_images\/Mega_menu_tile_315_x_235px_dbcb37ad-7d97-44bb-9d28-8ba87c148188.jpg",
+    "megamenu_title": "SNOW SALE ON NOW!",
     "megamenu_subtitle": "",
-    "megamenu_link": "https:\/\/decathlon.com.au\/collections\/snow-sale-50-off",
+    "megamenu_link": "https:\/\/decathlon.com.au\/pages\/snow-sale",
     "megamenu_bg_colour": "#1c82c1",
     "custom_fields_terms_conditions": "I agree to the <a href=\"\/pages\/terms-and-conditions-membership\" target=\"_blank\">T&Cs<\/a> and <a href=\"\/pages\/privacy-policy\" target=\"_blank\">Privacy Policy<\/a> for creating an account.",
     "is_lookbook": false,
@@ -1859,18 +1859,43 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
-          "5658b613-5180-4554-b5d3-8a63de506e65": {
+          "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_546099f6-34ad-44c0-95a6-c6d0a183e1a6.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_29ee92ce-36d0-463e-a2b2-9ed0db25db86.jpg",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_a7ffbc5f-08c4-49e3-a470-a3607c6e7d58.jpg",
+              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_fdfee763-c954-48f0-ac0e-4148120e1625.jpg",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
               "countdown_inline": false,
               "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/collections\/snow-sale-50-off",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/yoga-sale",
+              "link_title": "",
+              "link_new_window": false,
+              "countdown_date": "",
+              "countdown_time": "",
+              "countdown_position": "flex-start,flex-start",
+              "countdown_bold": false,
+              "countdown_italic": false,
+              "countdown_underline": false,
+              "countdown_colour": "#ffffff",
+              "countdown_font_size_m": "1.75rem",
+              "countdown_font_size_d": "2.75rem"
+            }
+          },
+          "623e46b1-2abc-4e5b-8ceb-3ca5e428998a": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Desktop_banner_1440_x_789px_09aa28a1-18ac-405e-8bc4-5dfd75c8b7b0.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Mobile_banner_478_x_300px_0bc14437-5c40-4b02-839d-94ea4fe2ed7f.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "countdown_inline": false,
+              "button_title": "",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/snow-sale",
               "link_title": "",
               "link_new_window": false,
               "countdown_date": "",
@@ -1909,18 +1934,19 @@
               "countdown_font_size_d": "2.75rem"
             }
           },
-          "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9": {
+          "5658b613-5180-4554-b5d3-8a63de506e65": {
             "type": "slide",
+            "disabled": true,
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/red_Homepage_Carousel_Desktop___1440_x_789px.png",
+              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_546099f6-34ad-44c0-95a6-c6d0a183e1a6.jpg",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/red_Homepage_Carousel_Mobile___478_x_300px.png",
+              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_a7ffbc5f-08c4-49e3-a470-a3607c6e7d58.jpg",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
               "countdown_inline": false,
               "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/collections\/snow-sale",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/snow-sale-50-off",
               "link_title": "",
               "link_new_window": false,
               "countdown_date": "",
@@ -1934,18 +1960,18 @@
               "countdown_font_size_d": "2.75rem"
             }
           },
-          "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb": {
+          "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_29ee92ce-36d0-463e-a2b2-9ed0db25db86.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/red_Homepage_Carousel_Desktop___1440_x_789px.png",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_fdfee763-c954-48f0-ac0e-4148120e1625.jpg",
+              "banner_mobile_image": "shopify:\/\/shop_images\/red_Homepage_Carousel_Mobile___478_x_300px.png",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
               "countdown_inline": false,
               "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/collections\/yoga-sale",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/snow-sale",
               "link_title": "",
               "link_new_window": false,
               "countdown_date": "",
@@ -2021,32 +2047,6 @@
               "countdown_inline": false,
               "button_title": "",
               "link_url": "shopify:\/\/pages\/decathlon-membership",
-              "link_title": "",
-              "link_new_window": false,
-              "countdown_date": "",
-              "countdown_time": "",
-              "countdown_position": "flex-start,flex-start",
-              "countdown_bold": false,
-              "countdown_italic": false,
-              "countdown_underline": false,
-              "countdown_colour": "#ffffff",
-              "countdown_font_size_m": "1.75rem",
-              "countdown_font_size_d": "2.75rem"
-            }
-          },
-          "623e46b1-2abc-4e5b-8ceb-3ca5e428998a": {
-            "type": "slide",
-            "disabled": true,
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_fc73c720-4247-4006-b8af-59b5f8c19587.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_cbb1c9eb-4a30-45cb-bfb2-aad6111e17be.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "countdown_inline": false,
-              "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/products\/rockrider-st-100-sport-trail-bike-white?",
               "link_title": "",
               "link_new_window": false,
               "countdown_date": "",
@@ -2166,14 +2166,14 @@
           }
         },
         "block_order": [
-          "5658b613-5180-4554-b5d3-8a63de506e65",
-          "85c47718-39c5-4752-aa58-3e34ef8c0a97",
-          "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9",
           "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb",
+          "623e46b1-2abc-4e5b-8ceb-3ca5e428998a",
+          "85c47718-39c5-4752-aa58-3e34ef8c0a97",
+          "5658b613-5180-4554-b5d3-8a63de506e65",
+          "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9",
           "e9b4daa6-6eee-441b-b76d-9c3ff012fde9",
           "145847d3-2db7-45f7-8ef6-38db22a4156a",
           "0e3f284b-4302-4200-8eb1-f98ce34415af",
-          "623e46b1-2abc-4e5b-8ceb-3ca5e428998a",
           "579ee1c6-8cb9-4350-95e5-fb83a1397d90",
           "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b",
           "748c6a7e-732f-486d-a653-eb425a670bc5",
@@ -3163,7 +3163,7 @@
       "eebe1a41-f3e2-4f63-8238-9c639f6d6b73": {
         "type": "six-tile-products",
         "settings": {
-          "title": "30% OFF Yoga",
+          "title": "30% OFF Yoga - Celebrate International Yoga Day",
           "section_collection": "yoga-sale"
         }
       },
