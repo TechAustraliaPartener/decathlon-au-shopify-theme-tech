@@ -61,6 +61,8 @@ Vue.config.errorHandler = (err, vm, info) => {
   }
 }
 
+window.vars.tomItLoaded = 0;
+
 function removeFromString(arr,str){
   let regex = new RegExp("\\b"+arr.join('|')+"\\b","gi")
   return str.replace(regex, '')
@@ -257,396 +259,412 @@ const initCartDisplay = cart => {
   console.log('cart', cart);
 
   try {
-    window.cartDisplay = new Vue({
-      el: '#cartDisplay',
-      data: {
-        cart: supplementCart(JSON.parse(JSON.stringify(cart))),
-        masterStores: window.masterStores,
-        pickupStores: window.masterStores.filter(loc => window.ccStores.indexOf(loc.name) !== -1),
-        favStore: window.vars.favStore || {},
-        deliveryOption: window.vars.deliveryOption,
-        override: false
-      },
-      methods: {
-        changeWholeData(newData, part) {
-          const changeData = part ? this.$data[part] : this.$data;
-          Object.keys(changeData).forEach(key => (changeData[key] = null));
-          Object.entries(newData).forEach(entry =>
-            Vue.set(changeData, entry[0], entry[1])
-          );
-  
-          if (this.$data.override) {
-            // TODO: Remove timeout and lock onto re-render
-            setTimeout(function () {
-              $('.checkout-btn').click();
-            }, 300);
-          }
+    console.log('window.vars.tomItLoaded', window.vars.tomItLoaded)
+
+    if( window.vars.tomItLoaded == 1) {
+    
+      window.cartDisplay = new Vue({
+        el: '#cartDisplay',
+        data: {
+          componentKey: 0,
+          cart: supplementCart(JSON.parse(JSON.stringify(cart))),
+          masterStores: window.masterStores,
+          pickupStores: window.masterStores.filter(loc => window.ccStores.indexOf(loc.name) !== -1),
+          favStore: window.vars.favStore || {},
+          deliveryOption: window.vars.deliveryOption,
+          override: false
         },
-        money(price) {
-          return `$${(price / 100).toFixed(2)}`;
-        },
-        updateQuantity(lineIndex, newQty) {
-          console.log('updateQuantity');
-          console.log(lineIndex, newQty);
-          CartJS.updateItem(lineIndex, newQty);
-        },
-        setFavStore(event) {
-          console.log('setFavStore');
-          const masterStore = window.masterStores.find(obj => {
-            return obj.id === event.target.value;
-          });
-  
-          if (masterStore) {
-            localStorage.setItem('favoritedStore', JSON.stringify(masterStore));
-            window.vars.favStore = JSON.parse(
-              localStorage.getItem('favoritedStore')
+        methods: {
+          forceRerender() {
+            this.componentKey += 1;
+          },
+          changeWholeData(newData, part) {
+            const changeData = part ? this.$data[part] : this.$data;
+            Object.keys(changeData).forEach(key => (changeData[key] = null));
+            Object.entries(newData).forEach(entry =>
+              Vue.set(changeData, entry[0], entry[1])
             );
-            this.changeWholeData(window.vars.favStore, 'favStore');
-  
-            // localStorage.setItem('deliveryOption', 'Click & Collect');
-            // window.vars.deliveryOption =
-            //   localStorage.getItem('deliveryOption') || 'Delivery';
-            // this.$data.deliveryOption = window.vars.deliveryOption;
-            this.setDeliveryOption(undefined, 'Click & Collect');
-          }
-        },
-        setDeliveryOption(event, valueOverride) {
-          console.log('setDeliveryOption');
-          const app = this;
-  
-          localStorage.setItem('deliveryOption', event ? event.target.value : valueOverride);
-          window.vars.deliveryOption =
-          localStorage.getItem('deliveryOption') || 'Delivery';
-          this.$data.deliveryOption = window.vars.deliveryOption;
-  
-          const checkoutBtn = $('[name="checkout"]');
-          checkoutBtn.prop('disabled', true);
-  
-  
-          // console.log(app.favStore)
-          // console.log(app.favStore?.['email_confirmation_message'] ? app.favStore['email_confirmation_messaage'] : '');
-  
-          CartJS.setAttributes({
-            'delivery_mode': window.vars.deliveryOption,
-            'pickup_location': app.deliveryOption !== 'Delivery' ? app.favStore?.street1 : 'none',
-            'pickup_confirmation_message': app.favStore?.['email_confirmation_message'] ? app.favStore['email_confirmation_message'] : ''
-          }, {
-            'success': function() {
-              checkoutBtn.prop('disabled', false);
-            },
-            'error': function() {
-              location.reload();
+    
+            if (this.$data.override) {
+              // TODO: Remove timeout and lock onto re-render
+              setTimeout(function () {
+                $('.checkout-btn').click();
+              }, 300);
             }
-          });
-  
-  
-  
-        },
-        checkAvailability(item) {
-          const app = this;
-  
-          if (!item.locations) {
-            return 'out';
-          }
-  
-          let checkLoc = item.delivery;
-  
-          if (app.deliveryOption !== 'Delivery') {
-            checkLoc = item.locations.find(obj => {
-              return obj.name === app.favStore.name;
+          },
+          money(price) {
+            return `$${(price / 100).toFixed(2)}`;
+          },
+          updateQuantity(lineIndex, newQty) {
+            console.log('updateQuantity');
+            console.log(lineIndex, newQty);
+            CartJS.updateItem(lineIndex, newQty);
+          },
+          setFavStore(event) {
+            console.log('setFavStore');
+            const masterStore = window.masterStores.find(obj => {
+              return obj.id === event.target.value;
             });
-          }
-  
-          // We only support overselling for delivery only
-          if (app.deliveryOption === 'Delivery' && checkLoc.inStock === 0) {
-            checkLoc.inStock = this.checkIfItemIsAllowedToOversell(item.id) > 0 || this.checkIfItemIsNonInventory(item)
-          }
-  
-          // Only allow gift cards to be checked out if delivery option is delivery
-          if (app.deliveryOption !== 'Delivery' && item.gift_card) return 'out'
-  
-          return checkLoc.inStock > 0 ? 'in' : 'out';
-        },
-        filterInvalidKeywords(title) {
-          var invalidKeywords = window.vars.ecoHideContent['eco_hide_strings'] || [];
-          
-          var filteredTitle = removeFromString(invalidKeywords,title);
-  
-          return filteredTitle;
-        },
-        currentMax(item) {
-          // Let availabilities = item.locations.map(a => a.available);
-          // return Math.max(checkLoc);
-  
-          const app = this;
-  
-          let checkLoc = item.delivery;
-  
-          if (app.deliveryOption !== 'Delivery') {
-            checkLoc = item.locations.find(obj => {
-              return obj.name === app.favStore.name;
-            });
-          }
-  
-          // We only support overselling for delivery only
-          if (app.deliveryOption === 'Delivery' && checkLoc.available === 0) {
-            checkLoc.available = this.checkIfItemIsAllowedToOversell(item.id) || this.checkIfItemIsNonInventory(item)
-          }
-  
-          // Only allow gift cards to be checked out if delivery option is delivery
-          if (app.deliveryOption !== 'Delivery' && item.gift_card) return 0
-  
-          return checkLoc.available;
-        },
-        deliveryMax(item) {
-          // Let availabilities = item.locations.map(a => a.available);
-          // return Math.max(checkLoc);
-  
-          const app = this;
-  
-          let checkLoc = item.delivery;
-          console.log('Delivery', checkLoc.available);
-          return checkLoc.available;
-        },
-        favStoreMax(item) {
-          // Let availabilities = item.locations.map(a => a.available);
-          // return Math.max(checkLoc);
-  
-          const app = this;
-  
-          let checkLoc = item.locations.find(obj => {
-            return obj.name === app.favStore.name;
-          });
-          console.log('favStore', checkLoc.available);
-          return checkLoc ? checkLoc.available : 0;
-        },
-        /**
-         * Check if the cart item's variant is allowed to oversell
-         * 
-         * @param {number} itemId 
-         * @returns {number} Returns available quantity if it is allowed to oversell. Otherwise, return 0
-         */
-        checkIfItemIsAllowedToOversell(itemId) {
-          const { variant, productOversellThreshold } = window.itemsWithVariantInventoryData.find(({id}) => id === itemId);
-          const oversellThreshold = productOversellThreshold * -1;
-          const inventoryQuantity = variant ? variant.inventory_quantity : undefined;
-          const inventoryPolicy = variant ? variant.inventory_policy : undefined;
-          const variantIsAllowedToOversell = inventoryPolicy === 'continue' && inventoryQuantity > oversellThreshold;
-          // console.log({
-          //   oversellThreshold,
-          //   inventoryQuantity,
-          //   inventoryPolicy,
-          //   variantIsAllowedToOversell,
-          // })
-          
-          return variantIsAllowedToOversell 
-            ? productOversellThreshold + inventoryQuantity
-            : 0;
-        },
-        /**
-         * Check if the cart item's variant is Non-inventory
-         * 
-         * @param {number} itemId 
-         * @returns {number} - returns 99 stocks if item is a non-inventory otherwise 0
-         */
-        checkIfItemIsNonInventory(item) {
-          const { delivery, locations } = item;
-          const filteredLocations = locations.filter(loc => loc.available > 0);
-          // Variant should be unavailable for both delivery and pickup to consider as non-inventory
-          if (filteredLocations.length > 0 || delivery.available > 0) return false;
-  
-          const { variant } = window.itemsWithVariantInventoryData.find(({id}) => id === item.id);
-          const oversell = this.checkIfItemIsAllowedToOversell(item.id);
-          const nonInventory = variant.available && !oversell
-          return nonInventory ? 99 : 0
-        },
-        availabilityMessages(item) {
-          var messages = [];
-          const app = this;
-  
-          const delivery = item.delivery;
-          let available = delivery.available;
-          let inStock = delivery.inStock
-          let oversell = this.checkIfItemIsAllowedToOversell(item.id);
-          let itemIsNonInventory = this.checkIfItemIsNonInventory(item);
-  
-          if (itemIsNonInventory) {
-            inStock = true
-          } else if (available === 0) { 
-            available = oversell
-            inStock = oversell > 0
-          }
-  
-          const availableCondition = item.quantity <= available || itemIsNonInventory
-          messages.push(`
-            <div class="${inStock ? (availableCondition ? 'available' : 'low') : 'unavailable'}">
-              <p>${inStock ? (availableCondition ? 'Available' : 'Not all items available') : 'Unavailable'} for delivery</p>
-            </div>
-          `);
-  
-          // Oversell message condition for each delivery option
-          if (oversell && (
-              (app.deliveryOption !== 'Delivery' && delivery.inStock === 0) || 
-              (app.deliveryOption === 'Delivery' && delivery.inStock === true)
-            )
-          ) {
-            messages.push(`
-              <div class="available">
-                <p>${window.translations.product_stock.oversell_cart || ''}</p>
-              </div>
-            `);
-          } 
-  
-          // Gift card availability message override
-          if (item.gift_card === true && // line item is a gift card
-            window.vars.gift_card_availability_message && // gift card availability message is enabled
-            (inStock || oversell) // is available or overselling
-          ) {
-            messages = [`
-              <div class="available">
-                <p>${window.vars.gift_card_availability_message}</p>
-              </div>
-            `];
-  
-            if (!availableCondition) {
-              messages.push(`
-                <div class="low">
-                  <p>Not all items available for delivery</p>
-                </div>
-              `);
+    
+            if (masterStore) {
+              localStorage.setItem('favoritedStore', JSON.stringify(masterStore));
+              window.vars.favStore = JSON.parse(
+                localStorage.getItem('favoritedStore')
+              );
+              this.changeWholeData(window.vars.favStore, 'favStore');
+    
+              // localStorage.setItem('deliveryOption', 'Click & Collect');
+              // window.vars.deliveryOption =
+              //   localStorage.getItem('deliveryOption') || 'Delivery';
+              // this.$data.deliveryOption = window.vars.deliveryOption;
+              this.setDeliveryOption(undefined, 'Click & Collect');
             }
-          }
-  
-          if (app.favStore && app.favStore.name) {
-            // Gift card will always be unavailable for click & collect
-            if (item.gift_card) {
-              messages.push(`
-                <div class="unavailable">
-                  <p>Unavailable for click & collect</p>
-                </div>
-              `); 
-              return messages.join('');
-            }
-  
-            const favStoreInventory = item.locations.find(obj => {
-              return obj.name === app.favStore.name;
+          },
+          setDeliveryOption(event, valueOverride) {
+            console.log('setDeliveryOption');
+            const app = this;
+    
+            localStorage.setItem('deliveryOption', event ? event.target.value : valueOverride);
+            window.vars.deliveryOption =
+            localStorage.getItem('deliveryOption') || 'Delivery';
+            this.$data.deliveryOption = window.vars.deliveryOption;
+    
+            const checkoutBtn = $('[name="checkout"]');
+            checkoutBtn.prop('disabled', true);
+    
+    
+            // console.log(app.favStore)
+            // console.log(app.favStore?.['email_confirmation_message'] ? app.favStore['email_confirmation_messaage'] : '');
+    
+            CartJS.setAttributes({
+              'delivery_mode': window.vars.deliveryOption,
+              'pickup_location': app.deliveryOption !== 'Delivery' ? app.favStore?.street1 : 'none',
+              'pickup_confirmation_message': app.favStore?.['email_confirmation_message'] ? app.favStore['email_confirmation_message'] : ''
+            }, {
+              'success': function() {
+                checkoutBtn.prop('disabled', false);
+              },
+              'error': function() {
+                location.reload();
+              }
             });
-  
-            var ccMessage = `
-              <div class="${favStoreInventory.inStock ? (item.quantity <= favStoreInventory.available ? 'available' : 'low') : 'unavailable'}">
-                <p>
-                  ${favStoreInventory.inStock ? (item.quantity <= favStoreInventory.available ? 'Available' : 'Not all items available') : 'Unavailable'} for click & collect
-                </p>
-              </div>`;
-            
-            if (favStoreInventory.excludedMessage) ccMessage = ccMessage.replace('Unavailable for click & collect', favStoreInventory.excludedMessage);
-            messages.push(ccMessage);
-          }
-  
-          return messages.join('');
-        },
-        cartModificationsMessage() {
-          const app = this;
-          const items = app.$data.cart.items;
-          let itemsToRemove = 0;
-          let hasGiftCard = false;
-  
-          for (let i = items.length - 1; i >= 0; i--) {
-            const item = items[i];
-  
+    
+    
+    
+          },
+          checkAvailability(item) {
+            const app = this;
+    
+            if (!item.locations) {
+              return 'out';
+            }
+    
             let checkLoc = item.delivery;
-  
+    
             if (app.deliveryOption !== 'Delivery') {
               checkLoc = item.locations.find(obj => {
                 return obj.name === app.favStore.name;
               });
             }
-  
-            if (hasGiftCard === false) hasGiftCard = item.gift_card
-  
-            if (checkLoc.inStock < 1 || (app.deliveryOption !== 'Delivery' && item.gift_card === true)) {
-              itemsToRemove++;
+    
+            // We only support overselling for delivery only
+            if (app.deliveryOption === 'Delivery' && checkLoc.inStock === 0) {
+              checkLoc.inStock = this.checkIfItemIsAllowedToOversell(item.id) > 0 || this.checkIfItemIsNonInventory(item)
             }
-          }
-  
-          if (itemsToRemove > 0) {
-            return `${itemsToRemove} ${itemsToRemove > 1 ? 'items' : 'item'} 
-              unavailable for ${app.deliveryOption} will be removed from your cart 
-              ${hasGiftCard ? '<br/>' + window.translations.product_stock.giftcards_cart : ''}
-            `;
-          }
-  
-          return '';
-        },
-        productExclusionMessages() {
-          const app = this;
-          const items = app.$data.cart.items;
-  
-          if (app.deliveryOption === 'Delivery') {
-            return '';
-          }
-  
-          const favStoreLocs = items.map(i => i.locations).map(ls => ls.find(l => l.name === app.favStore.name)).filter(m => m !== undefined);
-  
-          if (!(favStoreLocs && favStoreLocs.length > 0)) {
-            return '';
-          }
-  
-          const excludedMessages = favStoreLocs.map(l => l.excludedMessage).filter(m => m !== undefined)
-          const uniqueExcludedMessages = [...new Set(excludedMessages)];
-          return uniqueExcludedMessages.join('<div class="cart_spacer"></div>');
-  
-          return '';
-        },
-        prepareCart(event) {
-          const app = this;
-  
-          $('#checkoutBtn').addClass("uloader utext-hide");
-  
-          if (app.override) {
-            return true;
-          }
-  
-          const updateCartPayload = {};
-  
-          for (let i = app.cart.items.length - 1; i >= 0; i--) {
-            const item = app.cart.items[i];
-            const currentMax = app.currentMax(item);
-            if (item.quantity > currentMax) {
-              // instead of updating product quantity, simply remove the unavailable products instead of adding to the array to update quantities
-              if(currentMax < 1){
-                CartJS.removeItemById(item.variant_id)
-              }else{
-                updateCartPayload[item.variant_id] = currentMax;
+    
+            // Only allow gift cards to be checked out if delivery option is delivery
+            if (app.deliveryOption !== 'Delivery' && item.gift_card) return 'out'
+    
+            return checkLoc.inStock > 0 ? 'in' : 'out';
+          },
+          filterInvalidKeywords(title) {
+            var invalidKeywords = window.vars.ecoHideContent['eco_hide_strings'] || [];
+            
+            var filteredTitle = removeFromString(invalidKeywords,title);
+    
+            return filteredTitle;
+          },
+          currentMax(item) {
+            // Let availabilities = item.locations.map(a => a.available);
+            // return Math.max(checkLoc);
+    
+            const app = this;
+    
+            let checkLoc = item.delivery;
+    
+            if (app.deliveryOption !== 'Delivery') {
+              checkLoc = item.locations.find(obj => {
+                return obj.name === app.favStore.name;
+              });
+            }
+    
+            // We only support overselling for delivery only
+            if (app.deliveryOption === 'Delivery' && checkLoc.available === 0) {
+              checkLoc.available = this.checkIfItemIsAllowedToOversell(item.id) || this.checkIfItemIsNonInventory(item)
+            }
+    
+            // Only allow gift cards to be checked out if delivery option is delivery
+            if (app.deliveryOption !== 'Delivery' && item.gift_card) return 0
+    
+            return checkLoc.available;
+          },
+          deliveryMax(item) {
+            // Let availabilities = item.locations.map(a => a.available);
+            // return Math.max(checkLoc);
+    
+            const app = this;
+    
+            let checkLoc = item.delivery;
+            console.log('Delivery', checkLoc.available);
+            return checkLoc.available;
+          },
+          favStoreMax(item) {
+            // Let availabilities = item.locations.map(a => a.available);
+            // return Math.max(checkLoc);
+    
+            const app = this;
+    
+            let checkLoc = item.locations.find(obj => {
+              return obj.name === app.favStore.name;
+            });
+            console.log('favStore', checkLoc.available);
+            return checkLoc ? checkLoc.available : 0;
+          },
+          /**
+           * Check if the cart item's variant is allowed to oversell
+           * 
+           * @param {number} itemId 
+           * @returns {number} Returns available quantity if it is allowed to oversell. Otherwise, return 0
+           */
+          checkIfItemIsAllowedToOversell(itemId) {
+            const { variant, productOversellThreshold } = window.itemsWithVariantInventoryData.find(({id}) => id === itemId);
+            const oversellThreshold = productOversellThreshold * -1;
+            const inventoryQuantity = variant ? variant.inventory_quantity : undefined;
+            const inventoryPolicy = variant ? variant.inventory_policy : undefined;
+            const variantIsAllowedToOversell = inventoryPolicy === 'continue' && inventoryQuantity > oversellThreshold;
+            // console.log({
+            //   oversellThreshold,
+            //   inventoryQuantity,
+            //   inventoryPolicy,
+            //   variantIsAllowedToOversell,
+            // })
+            
+            return variantIsAllowedToOversell 
+              ? productOversellThreshold + inventoryQuantity
+              : 0;
+          },
+          /**
+           * Check if the cart item's variant is Non-inventory
+           * 
+           * @param {number} itemId 
+           * @returns {number} - returns 99 stocks if item is a non-inventory otherwise 0
+           */
+          checkIfItemIsNonInventory(item) {
+            const { delivery, locations } = item;
+            const filteredLocations = locations.filter(loc => loc.available > 0);
+            // Variant should be unavailable for both delivery and pickup to consider as non-inventory
+            if (filteredLocations.length > 0 || delivery.available > 0) return false;
+    
+            const { variant } = window.itemsWithVariantInventoryData.find(({id}) => id === item.id);
+            const oversell = this.checkIfItemIsAllowedToOversell(item.id);
+            const nonInventory = variant.available && !oversell
+            return nonInventory ? 99 : 0
+          },
+          availabilityMessages(item) {
+            var messages = [];
+            const app = this;
+    
+            const delivery = item.delivery;
+            let available = delivery.available;
+            let inStock = delivery.inStock
+            let oversell = this.checkIfItemIsAllowedToOversell(item.id);
+            let itemIsNonInventory = this.checkIfItemIsNonInventory(item);
+    
+            if (itemIsNonInventory) {
+              inStock = true
+            } else if (available === 0) { 
+              available = oversell
+              inStock = oversell > 0
+            }
+    
+            const availableCondition = item.quantity <= available || itemIsNonInventory
+            messages.push(`
+              <div class="${inStock ? (availableCondition ? 'available' : 'low') : 'unavailable'}">
+                <p>${inStock ? (availableCondition ? 'Available' : 'Not all items available') : 'Unavailable'} for delivery</p>
+              </div>
+            `);
+    
+            // Oversell message condition for each delivery option
+            if (oversell && (
+                (app.deliveryOption !== 'Delivery' && delivery.inStock === 0) || 
+                (app.deliveryOption === 'Delivery' && delivery.inStock === true)
+              )
+            ) {
+              messages.push(`
+                <div class="available">
+                  <p>${window.translations.product_stock.oversell_cart || ''}</p>
+                </div>
+              `);
+            } 
+    
+            // Gift card availability message override
+            if (item.gift_card === true && // line item is a gift card
+              window.vars.gift_card_availability_message && // gift card availability message is enabled
+              (inStock || oversell) // is available or overselling
+            ) {
+              messages = [`
+                <div class="available">
+                  <p>${window.vars.gift_card_availability_message}</p>
+                </div>
+              `];
+    
+              if (!availableCondition) {
+                messages.push(`
+                  <div class="low">
+                    <p>Not all items available for delivery</p>
+                  </div>
+                `);
               }
             }
-          }
-  
-          CartJS.updateItemQuantitiesById(updateCartPayload, {
-            success(data) {
-              app.$data.override = true;
-              // Update cart form DOM with updated cart data
-              app.changeWholeData(supplementCart(data), 'cart');
-              // 3 seconds delay to make sure the DOM was updated with the new cart values before submitting the form to checkout
-              setTimeout(function(){
-                // Trigger manual form submit
-                $("#checkoutBtn").click()
-              },3000);
+    
+            if (app.favStore && app.favStore.name) {
+              // Gift card will always be unavailable for click & collect
+              if (item.gift_card) {
+                messages.push(`
+                  <div class="unavailable">
+                    <p>Unavailable for click & collect</p>
+                  </div>
+                `); 
+                return messages.join('');
+              }
+    
+              const favStoreInventory = item.locations.find(obj => {
+                return obj.name === app.favStore.name;
+              });
+    
+              var ccMessage = `
+                <div class="${favStoreInventory.inStock ? (item.quantity <= favStoreInventory.available ? 'available' : 'low') : 'unavailable'}">
+                  <p>
+                    ${favStoreInventory.inStock ? (item.quantity <= favStoreInventory.available ? 'Available' : 'Not all items available') : 'Unavailable'} for click & collect
+                  </p>
+                </div>`;
+              
+              if (favStoreInventory.excludedMessage) ccMessage = ccMessage.replace('Unavailable for click & collect', favStoreInventory.excludedMessage);
+              messages.push(ccMessage);
             }
-          });
-  
-          return false;
-        },
-        fakeCheckout(event) {
-          console.log('fakeCheckout', event);
-          const app = this;
-          // execute cart preparation (remove unavailable products if necessary)
-          // For some reason we need this fake checkout button  and trigger button click submit via javascript code to make UFE work
-          $('#fake-checkoutBtn').addClass("uloader utext-hide");
-          app.prepareCart(event);
+    
+            return messages.join('');
+          },
+          cartModificationsMessage() {
+            const app = this;
+            const items = app.$data.cart.items;
+            let itemsToRemove = 0;
+            let hasGiftCard = false;
+    
+            for (let i = items.length - 1; i >= 0; i--) {
+              const item = items[i];
+    
+              let checkLoc = item.delivery;
+    
+              if (app.deliveryOption !== 'Delivery') {
+                checkLoc = item.locations.find(obj => {
+                  return obj.name === app.favStore.name;
+                });
+              }
+    
+              if (hasGiftCard === false) hasGiftCard = item.gift_card
+    
+              if (checkLoc.inStock < 1 || (app.deliveryOption !== 'Delivery' && item.gift_card === true)) {
+                itemsToRemove++;
+              }
+            }
+    
+            if (itemsToRemove > 0) {
+              return `${itemsToRemove} ${itemsToRemove > 1 ? 'items' : 'item'} 
+                unavailable for ${app.deliveryOption} will be removed from your cart 
+                ${hasGiftCard ? '<br/>' + window.translations.product_stock.giftcards_cart : ''}
+              `;
+            }
+    
+            return '';
+          },
+          productExclusionMessages() {
+            const app = this;
+            const items = app.$data.cart.items;
+    
+            if (app.deliveryOption === 'Delivery') {
+              return '';
+            }
+    
+            const favStoreLocs = items.map(i => i.locations).map(ls => ls.find(l => l.name === app.favStore.name)).filter(m => m !== undefined);
+    
+            if (!(favStoreLocs && favStoreLocs.length > 0)) {
+              return '';
+            }
+    
+            const excludedMessages = favStoreLocs.map(l => l.excludedMessage).filter(m => m !== undefined)
+            const uniqueExcludedMessages = [...new Set(excludedMessages)];
+            return uniqueExcludedMessages.join('<div class="cart_spacer"></div>');
+    
+            return '';
+          },
+          prepareCart(event) {
+            const app = this;
+    
+            $('#checkoutBtn').addClass("uloader utext-hide");
+    
+            if (app.override) {
+              return true;
+            }
+    
+            const updateCartPayload = {};
+    
+            for (let i = app.cart.items.length - 1; i >= 0; i--) {
+              const item = app.cart.items[i];
+              const currentMax = app.currentMax(item);
+              if (item.quantity > currentMax) {
+                // instead of updating product quantity, simply remove the unavailable products instead of adding to the array to update quantities
+                if(currentMax < 1){
+                  CartJS.removeItemById(item.variant_id)
+                }else{
+                  updateCartPayload[item.variant_id] = currentMax;
+                }
+              }
+            }
+    
+            CartJS.updateItemQuantitiesById(updateCartPayload, {
+              success(data) {
+                app.$data.override = true;
+                // Update cart form DOM with updated cart data
+                app.changeWholeData(supplementCart(data), 'cart');
+                // 3 seconds delay to make sure the DOM was updated with the new cart values before submitting the form to checkout
+                setTimeout(function(){
+                  // Trigger manual form submit
+                  $("#checkoutBtn").click()
+                },3000);
+              }
+            });
+    
+            return false;
+          },
+          fakeCheckout(event) {
+            console.log('fakeCheckout', event);
+            const app = this;
+            // execute cart preparation (remove unavailable products if necessary)
+            // For some reason we need this fake checkout button  and trigger button click submit via javascript code to make UFE work
+            $('#fake-checkoutBtn').addClass("uloader utext-hide");
+            app.prepareCart(event);
+          }
         }
-      }
-    });
+      });
+
+    } else if (window.vars.tomItLoaded > 1 && window.cartDisplay) {
+
+      console.log('window.cartDisplay update');
+
+      window.cartDisplay.cart = supplementCart(JSON.parse(JSON.stringify(cart)));
+    }
+    
   } catch(e) {
     console.error('cartDisplay Error', e);
   }
@@ -661,6 +679,7 @@ $(document).on('cart.ready', function (event, cart) {
 });
 
 if( window.clickCollectVersion === 'v1') {
+  
   document.addEventListener('tomitLoaded', async () => {
 
     const { vars, tomitProductInventoryInfo } = window;
@@ -739,12 +758,9 @@ if( window.clickCollectVersion === 'v1') {
 
     invInit = inventoryInfo;
 
+    window.vars.tomItLoaded += 1;
 
-    if(!('tomItLoaded' in window.vars) && !window.vars.tomItLoaded) {
-      console.log('tomItLoaded...')
-      tryInit();
-      window.vars.tomItLoaded = true
-    }
+    tryInit();
 
   });
 }
