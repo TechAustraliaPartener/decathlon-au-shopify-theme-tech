@@ -4,6 +4,13 @@
     <script type="module" src="{{ 'built-product-tile.js' | asset_url }}"></script>
     <script type="module" src="{{ 'built-product-carousel.js' | asset_url }}"></script>
   {% when 'product' %}
+
+    {% assign inventory = product.metafields.tomit_inventory %}
+    {% if inventory.inventory_json.size > 0 %}
+        <script>document.addEventListener('tomitLoaded', function(e) {tomitProductInventoryInfo.productJson = '{{inventory.inventory_json | json}}';});</script>
+    {% endif %}
+    <div id="inventoryLocationInformation"><span class="inventoryLocationLoading"></span></div>
+
     {% if product.metafields.global.features == blank %}
     {% else %}
       {% comment %} Modern Product Page {% endcomment %}
@@ -15,6 +22,9 @@
       {% endcomment %}
       {% include 'moment.js' %}
       {% include 'moment-timezone.js' %}
+
+      
+
       <script>
         window.firstVariant = {{ product.selected_or_first_available_variant | json }};
         {% comment %} Oversell threshold {% endcomment %}

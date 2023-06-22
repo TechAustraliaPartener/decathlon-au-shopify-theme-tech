@@ -335,6 +335,31 @@
     }
   </style>
 
+  {% if template contains 'product' %}
+  <script>
+    document.addEventListener('tomitLoaded', function(e){
+      //console.log('tomitloaded', e); 
+
+      //Custom code to be invoked provided by Tom of TomIT
+      getProductInventoryInformation({{product.id}})
+    })
+  </script>
+  {% endif %}
+
+
+  <script>
+    document.addEventListener('tomitLoaded', function(){ 
+      //console.log("tomit loaded 2");
+
+      let event = new Event("tomitLoadedCustom");
+      window.dispatchEvent(event);
+    })
+  </script>
+
+
+
+
+
   <!-- REAMAZE INTEGRATION START - DO NOT REMOVE -->
 {% render 'reamaze-config' %}
 {% render 'reamaze-sso' %}
@@ -495,6 +520,8 @@
   {{ 'patterns-toolkit.js' | asset_url | script_tag }}
   {% include 'layout-template-scripts' %}
 
+
+
   {% comment %}{% include 'decathlon-wishlist' %}{% endcomment %}
   {% comment %}{% include 'zendesk-chat' %}{% endcomment %}
 
@@ -505,6 +532,12 @@
   {% endif %}
 
   <script>window.shipStates = ['all'];</script>
+
+  <script>
+    document.addEventListener('tomitLoaded', function(){ 
+      console.log("tomit loaded 1");
+    })
+  </script>
 
   <script type="text/javascript">
 	  var mouseflowCrossDomainSupport = true;
@@ -559,6 +592,8 @@
   </script>
   {% include 'js-jsonld-sitelinks-searchbox' %}
   <script src="//instant.page/5.1.0" type="module" integrity="sha384-by67kQnR+pyfy8yWP4kPO12fHKRLHZPfEsiSXR8u2IKcTdxD805MGUXBzVPnkLHw"></script>
+  
+  <script type="text/javascript"  defer src="https://inventory.tom-it.nl/inventory-location.js/decathlon-australia.myshopify.com"></script>
   
  {% include 'smile-initializer' %}
 
