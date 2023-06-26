@@ -22,7 +22,9 @@
   justify-content: center;
   width: 100%;
   height: auto;
+  min-height: 200px;
 }
+
 .three-tile-content .tile-box:nth-of-type(2) {
   flex-direction: row-reverse;
 }
