@@ -1859,31 +1859,6 @@
       "1568939434006": {
         "type": "banner-hero",
         "blocks": {
-          "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_29ee92ce-36d0-463e-a2b2-9ed0db25db86.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_fdfee763-c954-48f0-ac0e-4148120e1625.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "countdown_inline": false,
-              "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/collections\/yoga-sale",
-              "link_title": "",
-              "link_new_window": false,
-              "countdown_date": "",
-              "countdown_time": "",
-              "countdown_position": "flex-start,flex-start",
-              "countdown_bold": false,
-              "countdown_italic": false,
-              "countdown_underline": false,
-              "countdown_colour": "#ffffff",
-              "countdown_font_size_m": "1.75rem",
-              "countdown_font_size_d": "2.75rem"
-            }
-          },
           "623e46b1-2abc-4e5b-8ceb-3ca5e428998a": {
             "type": "slide",
             "settings": {
@@ -1934,69 +1909,19 @@
               "countdown_font_size_d": "2.75rem"
             }
           },
-          "5658b613-5180-4554-b5d3-8a63de506e65": {
+          "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb": {
             "type": "slide",
             "disabled": true,
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_546099f6-34ad-44c0-95a6-c6d0a183e1a6.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_29ee92ce-36d0-463e-a2b2-9ed0db25db86.jpg",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_a7ffbc5f-08c4-49e3-a470-a3607c6e7d58.jpg",
+              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_fdfee763-c954-48f0-ac0e-4148120e1625.jpg",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
               "countdown_inline": false,
               "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/collections\/snow-sale-50-off",
-              "link_title": "",
-              "link_new_window": false,
-              "countdown_date": "",
-              "countdown_time": "",
-              "countdown_position": "flex-start,flex-start",
-              "countdown_bold": false,
-              "countdown_italic": false,
-              "countdown_underline": false,
-              "countdown_colour": "#ffffff",
-              "countdown_font_size_m": "1.75rem",
-              "countdown_font_size_d": "2.75rem"
-            }
-          },
-          "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/red_Homepage_Carousel_Desktop___1440_x_789px.png",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/red_Homepage_Carousel_Mobile___478_x_300px.png",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "countdown_inline": false,
-              "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/collections\/snow-sale",
-              "link_title": "",
-              "link_new_window": false,
-              "countdown_date": "",
-              "countdown_time": "",
-              "countdown_position": "flex-start,flex-start",
-              "countdown_bold": false,
-              "countdown_italic": false,
-              "countdown_underline": false,
-              "countdown_colour": "#ffffff",
-              "countdown_font_size_m": "1.75rem",
-              "countdown_font_size_d": "2.75rem"
-            }
-          },
-          "e9b4daa6-6eee-441b-b76d-9c3ff012fde9": {
-            "type": "slide",
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Desktop_banner_1440_x_789px_28425ed8-ef95-4b5f-a8ce-46d04406efcd.jpg",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Mobile_banner_478_x_300px_3152db3d-5cc9-4205-844e-e8dc13f201e0.jpg",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "countdown_inline": false,
-              "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/collections\/decathlon-clearance",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/yoga-sale",
               "link_title": "",
               "link_new_window": false,
               "countdown_date": "",
@@ -2035,6 +1960,31 @@
               "countdown_font_size_d": "2.75rem"
             }
           },
+          "e9b4daa6-6eee-441b-b76d-9c3ff012fde9": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Desktop_banner_1440_x_789px_28425ed8-ef95-4b5f-a8ce-46d04406efcd.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Mobile_banner_478_x_300px_3152db3d-5cc9-4205-844e-e8dc13f201e0.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "countdown_inline": false,
+              "button_title": "",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/decathlon-clearance",
+              "link_title": "",
+              "link_new_window": false,
+              "countdown_date": "",
+              "countdown_time": "",
+              "countdown_position": "flex-start,flex-start",
+              "countdown_bold": false,
+              "countdown_italic": false,
+              "countdown_underline": false,
+              "countdown_colour": "#ffffff",
+              "countdown_font_size_m": "1.75rem",
+              "countdown_font_size_d": "2.75rem"
+            }
+          },
           "0e3f284b-4302-4200-8eb1-f98ce34415af": {
             "type": "slide",
             "settings": {
@@ -2047,6 +1997,58 @@
               "countdown_inline": false,
               "button_title": "",
               "link_url": "shopify:\/\/pages\/decathlon-membership",
+              "link_title": "",
+              "link_new_window": false,
+              "countdown_date": "",
+              "countdown_time": "",
+              "countdown_position": "flex-start,flex-start",
+              "countdown_bold": false,
+              "countdown_italic": false,
+              "countdown_underline": false,
+              "countdown_colour": "#ffffff",
+              "countdown_font_size_m": "1.75rem",
+              "countdown_font_size_d": "2.75rem"
+            }
+          },
+          "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9": {
+            "type": "slide",
+            "disabled": true,
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/red_Homepage_Carousel_Desktop___1440_x_789px.png",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/red_Homepage_Carousel_Mobile___478_x_300px.png",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "countdown_inline": false,
+              "button_title": "",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/snow-sale",
+              "link_title": "",
+              "link_new_window": false,
+              "countdown_date": "",
+              "countdown_time": "",
+              "countdown_position": "flex-start,flex-start",
+              "countdown_bold": false,
+              "countdown_italic": false,
+              "countdown_underline": false,
+              "countdown_colour": "#ffffff",
+              "countdown_font_size_m": "1.75rem",
+              "countdown_font_size_d": "2.75rem"
+            }
+          },
+          "5658b613-5180-4554-b5d3-8a63de506e65": {
+            "type": "slide",
+            "disabled": true,
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_546099f6-34ad-44c0-95a6-c6d0a183e1a6.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_a7ffbc5f-08c4-49e3-a470-a3607c6e7d58.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "countdown_inline": false,
+              "button_title": "",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/snow-sale-50-off",
               "link_title": "",
               "link_new_window": false,
               "countdown_date": "",
@@ -2166,14 +2168,14 @@
           }
         },
         "block_order": [
-          "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb",
           "623e46b1-2abc-4e5b-8ceb-3ca5e428998a",
           "85c47718-39c5-4752-aa58-3e34ef8c0a97",
-          "5658b613-5180-4554-b5d3-8a63de506e65",
-          "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9",
-          "e9b4daa6-6eee-441b-b76d-9c3ff012fde9",
+          "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb",
           "145847d3-2db7-45f7-8ef6-38db22a4156a",
+          "e9b4daa6-6eee-441b-b76d-9c3ff012fde9",
           "0e3f284b-4302-4200-8eb1-f98ce34415af",
+          "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9",
+          "5658b613-5180-4554-b5d3-8a63de506e65",
           "579ee1c6-8cb9-4350-95e5-fb83a1397d90",
           "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b",
           "748c6a7e-732f-486d-a653-eb425a670bc5",
@@ -2795,7 +2797,7 @@
             "type": "category_tile",
             "settings": {
               "title": "",
-              "image": "shopify:\/\/shop_images\/Discover-Decathlon-1a.jpg",
+              "image": "shopify:\/\/shop_images\/Discover-Decathlon-1A_104d0c7e-e978-4974-a7f3-64ab046a6a00.jpg",
               "link": "https:\/\/decathlon.com.au\/pages\/store-locator"
             }
           },
@@ -2803,7 +2805,7 @@
             "type": "category_tile",
             "settings": {
               "title": "",
-              "image": "shopify:\/\/shop_images\/Discover-Decathlon-2c.jpg",
+              "image": "shopify:\/\/shop_images\/Discover-Decathlon-2A_ebfdd03a-7934-4163-ab0c-16014e09b008.jpg",
               "link": "https:\/\/decathlon.com.au\/pages\/shipping-policy"
             }
           },
@@ -2811,7 +2813,7 @@
             "type": "category_tile",
             "settings": {
               "title": "",
-              "image": "shopify:\/\/shop_images\/Discover-Decathlon-3c.jpg",
+              "image": "shopify:\/\/shop_images\/Discover-Decathlon-3A_70efc80b-883d-47d3-b56a-97e6cf25597f.jpg",
               "link": "shopify:\/\/pages\/workshop-services"
             }
           },
@@ -2819,7 +2821,7 @@
             "type": "category_tile",
             "settings": {
               "title": "",
-              "image": "shopify:\/\/shop_images\/Discover-Decathlon-4a.jpg",
+              "image": "shopify:\/\/shop_images\/Discover-Decathlon-4A_3dcd32d5-1beb-4b63-91b3-7c290810998e.jpg",
               "link": "https:\/\/decathlon.com.au\/pages\/decathlon-membership"
             }
           },
@@ -2827,7 +2829,7 @@
             "type": "category_tile",
             "settings": {
               "title": "",
-              "image": "shopify:\/\/shop_images\/Discover-Decathlon-5_c6a853c9-c772-4e5b-8058-6cfb533e7691.jpg",
+              "image": "shopify:\/\/shop_images\/Discover-Decathlon-5A.jpg",
               "link": "https:\/\/decathlon.com.au\/blogs\/sports-advice"
             }
           },
@@ -2835,7 +2837,7 @@
             "type": "category_tile",
             "settings": {
               "title": "",
-              "image": "shopify:\/\/shop_images\/Discover-Decathlon-6_a1017b08-c5e1-4935-9970-17e948070686.jpg",
+              "image": "shopify:\/\/shop_images\/Discover-Decathlon-6A.jpg",
               "link": "https:\/\/decathlon.com.au\/pages\/careers"
             }
           }
@@ -2855,20 +2857,20 @@
       "16316085202ea5cf79": {
         "type": "trending_categories",
         "blocks": {
-          "e1091c93-4efb-4738-b3f6-3a711db62e82": {
-            "type": "category_tile",
-            "settings": {
-              "title": "Yoga",
-              "image": "shopify:\/\/shop_images\/Yoga-HERO_v1_9bfd1f4b-ffe7-4738-970b-c5b44c7eb74b.jpg",
-              "link": "https:\/\/decathlon.com.au\/collections\/yoga-pilates"
-            }
-          },
           "2161fbad-02eb-48c1-9a11-4481251537ae": {
             "type": "category_tile",
             "settings": {
-              "title": "Layers",
-              "image": "shopify:\/\/shop_images\/Layers-women_CAT_HERO.jpg",
-              "link": "shopify:\/\/collections\/thermal-winter-layers"
+              "title": "Soccer",
+              "image": "shopify:\/\/shop_images\/Football-Woman_CAT_HERO.jpg",
+              "link": "https:\/\/decathlon.com.au\/collections\/soccer-futsal"
+            }
+          },
+          "f553a06c-1d16-4cd4-b9f2-2eea43b5aa9c": {
+            "type": "category_tile",
+            "settings": {
+              "title": "Winter Accessories",
+              "image": "shopify:\/\/shop_images\/Winter-Accesories-HERO.jpg",
+              "link": "https:\/\/decathlon.com.au\/collections\/snow-clothing-accessories"
             }
           },
           "24a46da8-7f15-4e2c-aa20-558f5e037a41": {
@@ -2895,22 +2897,22 @@
               "link": "https:\/\/decathlon.com.au\/collections\/surf-wetsuits"
             }
           },
-          "f553a06c-1d16-4cd4-b9f2-2eea43b5aa9c": {
+          "e1091c93-4efb-4738-b3f6-3a711db62e82": {
             "type": "category_tile",
             "settings": {
-              "title": "Winter Accessories",
-              "image": "shopify:\/\/shop_images\/Winter-Accesories-HERO.jpg",
-              "link": "https:\/\/decathlon.com.au\/collections\/snow-clothing-accessories"
+              "title": "Yoga",
+              "image": "shopify:\/\/shop_images\/Yoga-HERO_v1_9bfd1f4b-ffe7-4738-970b-c5b44c7eb74b.jpg",
+              "link": "https:\/\/decathlon.com.au\/collections\/yoga-pilates"
             }
           }
         },
         "block_order": [
-          "e1091c93-4efb-4738-b3f6-3a711db62e82",
           "2161fbad-02eb-48c1-9a11-4481251537ae",
+          "f553a06c-1d16-4cd4-b9f2-2eea43b5aa9c",
           "24a46da8-7f15-4e2c-aa20-558f5e037a41",
           "e946fff5-5695-4ed3-a886-269cd8000e8d",
           "711f34cb-b34c-4c8f-8e88-ce5c95240666",
-          "f553a06c-1d16-4cd4-b9f2-2eea43b5aa9c"
+          "e1091c93-4efb-4738-b3f6-3a711db62e82"
         ],
         "settings": {
           "title": "Trending Categories"
@@ -3087,37 +3089,37 @@
           "9374bcef-73a6-4b31-8cd4-1c20867784a9": {
             "type": "product",
             "settings": {
-              "product": "hand-warmers-x-10-161196"
+              "product": "mens-waterproof-winter-hiking-jacket-sh100-x-warm-10c"
             }
           },
           "519ef5cd-516d-47fc-82a0-5b9ffe724db8": {
             "type": "product",
             "settings": {
-              "product": "mens-long-football-parka-trx"
+              "product": "womens-waterproof-warm-snow-boots-sh500-x-warm-lacets-high"
             }
           },
           "8940d3cc-61df-4470-a030-0bbcd04cf377": {
             "type": "product",
             "settings": {
-              "product": "feet-warmers-x-10-161192"
+              "product": "womens-alpine-ski-with-binding-cross-950-pink"
             }
           },
           "4c348e96-3b5b-4e05-93cc-509841bc0ec8": {
             "type": "product",
             "settings": {
-              "product": "womens-warm-down-ski-jacket-900-warm-navy-blue"
+              "product": "womens-mountain-trekking-down-jacket-trek-900-purple"
             }
           },
           "bd009634-32db-40cc-b454-825a1b3e3dd0": {
             "type": "product",
             "settings": {
-              "product": "kids-snowboard-jacket-snb-500-teen-girl-pink"
+              "product": "large-deck-snowshoes-sh100-easy-blue"
             }
           },
           "4f4612d2-316c-480b-bc72-71ea88048f52": {
             "type": "product",
             "settings": {
-              "product": "mens-warm-waterproof-snow-hiking-boots-sh500-x-warm-lace"
+              "product": "cn-boy-padded-jkt-xwarm-kid"
             }
           }
         },
@@ -3162,8 +3164,9 @@
       },
       "eebe1a41-f3e2-4f63-8238-9c639f6d6b73": {
         "type": "six-tile-products",
+        "disabled": true,
         "settings": {
-          "title": "30% OFF Yoga - Celebrate International Yoga Day",
+          "title": "30% OFF Yoga",
           "section_collection": "yoga-sale"
         }
       },
