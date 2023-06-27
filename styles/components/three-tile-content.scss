@@ -45,9 +45,18 @@
 }
 
 @media (min-width: 40em) {
-  .three-tile-content .tile-box>* {
-    width: 100%;
-  }
+    .three-tile-content .tile-box {
+        min-height:250px
+    }
+
+    .three-tile-content .tile-image {
+        height: auto;
+        width: 100%
+    }
+
+    .three-tile-content .tile-box>* {
+        width: 100%
+    }
 }
 
 .three-tile-content .tile-content {
