@@ -141,7 +141,8 @@ $( document ).ready(function() {
   if (announcementChecker == 'true' || announcementChecker == null){
       $('#announcement-banner-container').show();
       $('#announcement-banner-container').addClass('announcement-active');
-      $('.de-PageWrap-main').addClass('de-PageWrap-main--announcement-active')
+      // Make sure this class exists for the new hero banner section to work correctly
+      $('.de-PageWrap-main').addClass('de-PageWrap-main--announcement-active');
       sessionStorage.setItem("announcement", true);
       announcement();
       $( "#announcement-close" ).click(function() {
