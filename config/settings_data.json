@@ -32,10 +32,10 @@
     "header_store_label": "Find a Store",
     "header_sign_in_label": "Login",
     "megamenu_set_for_all": "override",
-    "megamenu_image": "shopify:\/\/shop_images\/Mega_menu_tile_315_x_235px_dbcb37ad-7d97-44bb-9d28-8ba87c148188.jpg",
-    "megamenu_title": "SNOW SALE ON NOW!",
+    "megamenu_image": "shopify:\/\/shop_images\/Mega_Menu_315_x_235px.jpg",
+    "megamenu_title": "40% OFF Wheel Sports",
     "megamenu_subtitle": "",
-    "megamenu_link": "https:\/\/decathlon.com.au\/pages\/snow-sale",
+    "megamenu_link": "https:\/\/decathlon.com.au\/collections\/oxelo-skates-and-scooters-sale",
     "megamenu_bg_colour": "#1c82c1",
     "custom_fields_terms_conditions": "I agree to the <a href=\"\/pages\/terms-and-conditions-membership\" target=\"_blank\">T&Cs<\/a> and <a href=\"\/pages\/privacy-policy\" target=\"_blank\">Privacy Policy<\/a> for creating an account.",
     "is_lookbook": false,
@@ -1858,19 +1858,20 @@
       },
       "1568939434006": {
         "type": "banner-hero",
+        "disabled": true,
         "blocks": {
-          "623e46b1-2abc-4e5b-8ceb-3ca5e428998a": {
+          "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/Desktop_banner_1440_x_789px_09aa28a1-18ac-405e-8bc4-5dfd75c8b7b0.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_fc29f653-b6fe-4eca-a251-05ff255f9e77.jpg",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/Mobile_banner_478_x_300px_0bc14437-5c40-4b02-839d-94ea4fe2ed7f.jpg",
+              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_0d251e1b-bb46-4f89-9527-35c2ce93af5a.jpg",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
               "countdown_inline": false,
               "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/collections\/snow-sale",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/best-sellers",
               "link_title": "",
               "link_new_window": false,
               "countdown_date": "",
@@ -1887,15 +1888,40 @@
           "85c47718-39c5-4752-aa58-3e34ef8c0a97": {
             "type": "slide",
             "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_15cf72af-094b-4eae-a4a6-7c47d69bf3c7.jpg",
+              "banner_bg_image": "shopify:\/\/shop_images\/1440_x_789px_62333def-a4b0-48de-b53e-ee8e59ef7a05.jpg",
               "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_6de6be57-95fb-42e2-bb01-bda4776fdb9d.jpg",
+              "banner_mobile_image": "shopify:\/\/shop_images\/478_x_300px_0dceee77-f5d8-4c6d-a49f-6e997ab0dfe9.jpg",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
               "countdown_inline": false,
               "button_title": "",
               "link_url": "https:\/\/decathlon.com.au\/pages\/eofy-sale",
+              "link_title": "",
+              "link_new_window": false,
+              "countdown_date": "",
+              "countdown_time": "",
+              "countdown_position": "flex-start,flex-start",
+              "countdown_bold": false,
+              "countdown_italic": false,
+              "countdown_underline": false,
+              "countdown_colour": "#ffffff",
+              "countdown_font_size_m": "1.75rem",
+              "countdown_font_size_d": "2.75rem"
+            }
+          },
+          "623e46b1-2abc-4e5b-8ceb-3ca5e428998a": {
+            "type": "slide",
+            "settings": {
+              "banner_bg_image": "shopify:\/\/shop_images\/Desktop_banner_1440_x_789px_09aa28a1-18ac-405e-8bc4-5dfd75c8b7b0.jpg",
+              "slide_bg_position": "75% -50px",
+              "banner_mobile_image": "shopify:\/\/shop_images\/Mobile_banner_478_x_300px_0bc14437-5c40-4b02-839d-94ea4fe2ed7f.jpg",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "countdown_inline": false,
+              "button_title": "",
+              "link_url": "https:\/\/decathlon.com.au\/collections\/snow-sale",
               "link_title": "",
               "link_new_window": false,
               "countdown_date": "",
@@ -1997,32 +2023,6 @@
               "countdown_inline": false,
               "button_title": "",
               "link_url": "shopify:\/\/pages\/decathlon-membership",
-              "link_title": "",
-              "link_new_window": false,
-              "countdown_date": "",
-              "countdown_time": "",
-              "countdown_position": "flex-start,flex-start",
-              "countdown_bold": false,
-              "countdown_italic": false,
-              "countdown_underline": false,
-              "countdown_colour": "#ffffff",
-              "countdown_font_size_m": "1.75rem",
-              "countdown_font_size_d": "2.75rem"
-            }
-          },
-          "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9": {
-            "type": "slide",
-            "disabled": true,
-            "settings": {
-              "banner_bg_image": "shopify:\/\/shop_images\/red_Homepage_Carousel_Desktop___1440_x_789px.png",
-              "slide_bg_position": "75% -50px",
-              "banner_mobile_image": "shopify:\/\/shop_images\/red_Homepage_Carousel_Mobile___478_x_300px.png",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "countdown_inline": false,
-              "button_title": "",
-              "link_url": "https:\/\/decathlon.com.au\/collections\/snow-sale",
               "link_title": "",
               "link_new_window": false,
               "countdown_date": "",
@@ -2168,13 +2168,13 @@
           }
         },
         "block_order": [
-          "623e46b1-2abc-4e5b-8ceb-3ca5e428998a",
+          "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9",
           "85c47718-39c5-4752-aa58-3e34ef8c0a97",
+          "623e46b1-2abc-4e5b-8ceb-3ca5e428998a",
           "dac1c1fd-a0b0-4f21-8f5f-73665e90c1fb",
           "145847d3-2db7-45f7-8ef6-38db22a4156a",
           "e9b4daa6-6eee-441b-b76d-9c3ff012fde9",
           "0e3f284b-4302-4200-8eb1-f98ce34415af",
-          "cd66b6ee-dcb3-43b7-97ea-afdabf816fc9",
           "5658b613-5180-4554-b5d3-8a63de506e65",
           "579ee1c6-8cb9-4350-95e5-fb83a1397d90",
           "f9fe4c10-8c40-4ae2-83bb-6ab477d1747b",
@@ -2857,6 +2857,14 @@
       "16316085202ea5cf79": {
         "type": "trending_categories",
         "blocks": {
+          "24a46da8-7f15-4e2c-aa20-558f5e037a41": {
+            "type": "category_tile",
+            "settings": {
+              "title": "Skiing & Snowboarding",
+              "image": "shopify:\/\/shop_images\/Skiing-HERO_d515a3d0-cfff-487e-b39f-aa049df73cde.jpg",
+              "link": "https:\/\/decathlon.com.au\/collections\/skiing-snowboarding"
+            }
+          },
           "2161fbad-02eb-48c1-9a11-4481251537ae": {
             "type": "category_tile",
             "settings": {
@@ -2865,20 +2873,20 @@
               "link": "https:\/\/decathlon.com.au\/collections\/soccer-futsal"
             }
           },
+          "711f34cb-b34c-4c8f-8e88-ce5c95240666": {
+            "type": "category_tile",
+            "settings": {
+              "title": "Hiking Footwear",
+              "image": "shopify:\/\/shop_images\/Hking-CAT-Hero-1.jpg",
+              "link": "https:\/\/decathlon.com.au\/collections\/hiking-footwear"
+            }
+          },
           "f553a06c-1d16-4cd4-b9f2-2eea43b5aa9c": {
             "type": "category_tile",
             "settings": {
-              "title": "Winter Accessories",
-              "image": "shopify:\/\/shop_images\/Winter-Accesories-HERO.jpg",
-              "link": "https:\/\/decathlon.com.au\/collections\/snow-clothing-accessories"
-            }
-          },
-          "24a46da8-7f15-4e2c-aa20-558f5e037a41": {
-            "type": "category_tile",
-            "settings": {
-              "title": "Winter Fleeces",
-              "image": "shopify:\/\/shop_images\/Fleeces-HERO_v1.jpg",
-              "link": "https:\/\/decathlon.com.au\/collections\/challenge-the-cold-fleeces"
+              "title": "Camping",
+              "image": "shopify:\/\/shop_images\/Camping_Autumn-HERO_31e13295-d5b9-49a0-ada6-6b68a6ba222f.jpg",
+              "link": "https:\/\/decathlon.com.au\/collections\/camping"
             }
           },
           "e946fff5-5695-4ed3-a886-269cd8000e8d": {
@@ -2889,29 +2897,21 @@
               "link": "https:\/\/decathlon.com.au\/collections\/hiking-backpacks"
             }
           },
-          "711f34cb-b34c-4c8f-8e88-ce5c95240666": {
-            "type": "category_tile",
-            "settings": {
-              "title": "Wetsuits",
-              "image": "shopify:\/\/shop_images\/Surfing-HERO_e448b65e-3766-43c6-987a-864c5f7c31ec.jpg",
-              "link": "https:\/\/decathlon.com.au\/collections\/surf-wetsuits"
-            }
-          },
           "e1091c93-4efb-4738-b3f6-3a711db62e82": {
             "type": "category_tile",
             "settings": {
-              "title": "Yoga",
-              "image": "shopify:\/\/shop_images\/Yoga-HERO_v1_9bfd1f4b-ffe7-4738-970b-c5b44c7eb74b.jpg",
-              "link": "https:\/\/decathlon.com.au\/collections\/yoga-pilates"
+              "title": "Cycling",
+              "image": "shopify:\/\/shop_images\/Cycling_CAT_HERO.jpg",
+              "link": "https:\/\/decathlon.com.au\/collections\/cycling"
             }
           }
         },
         "block_order": [
-          "2161fbad-02eb-48c1-9a11-4481251537ae",
-          "f553a06c-1d16-4cd4-b9f2-2eea43b5aa9c",
           "24a46da8-7f15-4e2c-aa20-558f5e037a41",
-          "e946fff5-5695-4ed3-a886-269cd8000e8d",
+          "2161fbad-02eb-48c1-9a11-4481251537ae",
           "711f34cb-b34c-4c8f-8e88-ce5c95240666",
+          "f553a06c-1d16-4cd4-b9f2-2eea43b5aa9c",
+          "e946fff5-5695-4ed3-a886-269cd8000e8d",
           "e1091c93-4efb-4738-b3f6-3a711db62e82"
         ],
         "settings": {
@@ -3048,10 +3048,10 @@
             "settings": {
               "countdown_date": "",
               "countdown_time": "",
-              "message": "<p><strong>Offer Extended: 20% OFF Puffer Jackets.  1HR FREE CLICK & COLLECT.  <\/strong><a href=\"https:\/\/decathlon.com.au\/collections\/down-jackets-sale\" title=\"https:\/\/decathlon.com.au\/collections\/down-jackets-sale\"><strong> SHOP NOW<\/strong><\/a><\/p>",
+              "message": "<p>Free Delivery for orders over $150<\/p>",
               "post_message": "",
               "url": "",
-              "bg_colour": "#e51d27",
+              "bg_colour": "#007dbc",
               "font_colour": "#ffffff",
               "scroll_speed": "scroll-normal"
             }
@@ -3145,10 +3145,9 @@
       },
       "eebe1a41-f3e2-4f63-8238-9c639f6d6b73": {
         "type": "six-tile-products",
-        "disabled": true,
         "settings": {
-          "title": "30% OFF Yoga",
-          "section_collection": "yoga-sale"
+          "title": "Cycling For All Ages",
+          "section_collection": "cycling"
         }
       },
       "trending-products": {
@@ -3242,19 +3241,139 @@
       },
       "cad91577-4dc5-49d8-bdfd-1bae2b62b6bb": {
         "type": "hero-banner",
-        "disabled": true,
         "blocks": {
           "352c5dc6-94e7-4f7c-9059-771191d2a63c": {
             "type": "carousel-slide",
             "settings": {
-              "title": "",
+              "title": "40%OFF Oxelo",
+              "link": "https:\/\/decathlon.com.au\/collections\/oxelo-skates-and-scooters-sale",
+              "mobile_image": "shopify:\/\/shop_images\/oxelo_750x620_3c0f06cc-2a3c-4be1-b9e1-7c74583b5996.webp",
+              "mobile_image_alt": "40%OFF Oxelo",
+              "tablet_image": "shopify:\/\/shop_images\/oxelo_2720x760_abaf2eec-7ff7-44cd-94cf-8d08e253a6d5.webp",
+              "tablet_image_alt": "40%OFF Oxelo",
+              "desktop_image": "shopify:\/\/shop_images\/oxelo_2720x760_abaf2eec-7ff7-44cd-94cf-8d08e253a6d5.webp",
+              "desktop_image_alt": "40%OFF Oxelo",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "countdown_inline": false,
+              "button_title": "",
+              "link_url": "",
+              "link_title": "",
+              "link_new_window": false,
+              "countdown_date": "",
+              "countdown_time": "",
+              "countdown_position": "flex-start,flex-start",
+              "countdown_bold": false,
+              "countdown_italic": false,
+              "countdown_underline": false,
+              "countdown_colour": "#ffffff",
+              "countdown_font_size_m": "1.75rem",
+              "countdown_font_size_d": "2.75rem"
+            }
+          },
+          "9b2064e8-e0b1-4149-9940-d79d826ee231": {
+            "type": "carousel-slide",
+            "settings": {
+              "title": "Price Drop",
+              "link": "https:\/\/decathlon.com.au\/pages\/price-drop",
+              "mobile_image": "shopify:\/\/shop_images\/price_drop_750x620_086882b9-4480-494c-85f1-56d81f36d023.webp",
+              "mobile_image_alt": "Price Drop | Spend Less, Play More!",
+              "tablet_image": "shopify:\/\/shop_images\/price_drop_2720x760_3dba1fff-8f64-4d9f-b3ab-faa193e52759.webp",
+              "tablet_image_alt": "Price Drop | Spend Less, Play More!",
+              "desktop_image": "shopify:\/\/shop_images\/price_drop_2720x760_cbb53cec-acc6-4c30-8b22-851eaea363c4.webp",
+              "desktop_image_alt": "Price Drop | Spend Less, Play More!",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "countdown_inline": false,
+              "button_title": "",
+              "link_url": "",
+              "link_title": "",
+              "link_new_window": false,
+              "countdown_date": "",
+              "countdown_time": "",
+              "countdown_position": "flex-start,flex-start",
+              "countdown_bold": false,
+              "countdown_italic": false,
+              "countdown_underline": false,
+              "countdown_colour": "#ffffff",
+              "countdown_font_size_m": "1.75rem",
+              "countdown_font_size_d": "2.75rem"
+            }
+          },
+          "faa59cfa-5150-45ac-9b4f-c829689466e0": {
+            "type": "carousel-slide",
+            "settings": {
+              "title": "Clearance",
+              "link": "https:\/\/decathlon.com.au\/collections\/decathlon-clearance",
+              "mobile_image": "shopify:\/\/shop_images\/clearance_750x620_104ea5ab-a345-4ba7-b3a5-87a5981b1053.webp",
+              "mobile_image_alt": "Clearance",
+              "tablet_image": "shopify:\/\/shop_images\/clearance_2720x760_0b799851-950b-497a-8cf4-a48667a1dca7.webp",
+              "tablet_image_alt": "Clearance",
+              "desktop_image": "shopify:\/\/shop_images\/clearance_2720x760_a1a538b8-dbbe-4c31-944a-30808dca2cd1.webp",
+              "desktop_image_alt": "Clearance",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "countdown_inline": false,
+              "button_title": "",
+              "link_url": "",
+              "link_title": "",
+              "link_new_window": false,
+              "countdown_date": "",
+              "countdown_time": "",
+              "countdown_position": "flex-start,flex-start",
+              "countdown_bold": false,
+              "countdown_italic": false,
+              "countdown_underline": false,
+              "countdown_colour": "#ffffff",
+              "countdown_font_size_m": "1.75rem",
+              "countdown_font_size_d": "2.75rem"
+            }
+          },
+          "a8a332ab-c392-433e-805d-fe77c9930049": {
+            "type": "carousel-slide",
+            "settings": {
+              "title": "MVP",
+              "link": "https:\/\/decathlon.com.au\/pages\/decathlon-membership",
+              "mobile_image": "shopify:\/\/shop_images\/mvp_750x620_7c4d99d5-341a-4eb9-a65a-f8fd0f7a60cd.webp",
+              "mobile_image_alt": "Become an MVP Today!",
+              "tablet_image": "shopify:\/\/shop_images\/mvp_2720x760_98622b48-c0b1-4237-95d7-3c0bc2b0a178.webp",
+              "tablet_image_alt": "Become an MVP Today!",
+              "desktop_image": "shopify:\/\/shop_images\/mvp_2720x760_8aea8e32-392b-4198-a792-f5437fbc59eb.webp",
+              "desktop_image_alt": "Become an MVP Today!",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "countdown_inline": false,
+              "button_title": "",
+              "link_url": "",
+              "link_title": "",
+              "link_new_window": false,
+              "countdown_date": "",
+              "countdown_time": "",
+              "countdown_position": "flex-start,flex-start",
+              "countdown_bold": false,
+              "countdown_italic": false,
+              "countdown_underline": false,
+              "countdown_colour": "#ffffff",
+              "countdown_font_size_m": "1.75rem",
+              "countdown_font_size_d": "2.75rem"
+            }
+          },
+          "4356f112-9ea2-4af3-811f-74641cc98014": {
+            "type": "carousel-slide",
+            "disabled": true,
+            "settings": {
+              "title": "Winter Clearance",
               "link": "",
-              "mobile_image": "shopify:\/\/shop_images\/Wk25_Main_Banner_1_Mobile_63796c7e-382b-479b-83bb-bb6ae69b1495.webp",
-              "mobile_image_alt": "",
-              "tablet_image": "shopify:\/\/shop_images\/yt-landing-main-banner-desktop_v2.jpg",
-              "tablet_image_alt": "",
-              "desktop_image": "shopify:\/\/shop_images\/Wk25_Main_Banner_1_Desktop_1630e499-dd8d-43ab-a7c6-05d89efd78e8.webp",
-              "desktop_image_alt": "",
+              "mobile_image": "shopify:\/\/shop_images\/winter_sale_750x620_18acc901-8e17-42aa-ba95-c8527c265f9e.webp",
+              "mobile_image_alt": "Up to 50% OFF Winter Products",
+              "tablet_image": "shopify:\/\/shop_images\/Desktop_winter_sale_2720x760_f942f57a-128e-4d8b-a8d9-8f7217844d28.webp",
+              "tablet_image_alt": "Up to 50% OFF Winter Product",
+              "desktop_image": "shopify:\/\/shop_images\/Desktop_winter_sale_2720x760_cc0115a2-4424-42db-946f-97138d4488c2.webp",
+              "desktop_image_alt": "Up to 50% OFF Winter Products",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
@@ -3276,16 +3395,94 @@
           }
         },
         "block_order": [
-          "352c5dc6-94e7-4f7c-9059-771191d2a63c"
+          "352c5dc6-94e7-4f7c-9059-771191d2a63c",
+          "9b2064e8-e0b1-4149-9940-d79d826ee231",
+          "faa59cfa-5150-45ac-9b4f-c829689466e0",
+          "a8a332ab-c392-433e-805d-fe77c9930049",
+          "4356f112-9ea2-4af3-811f-74641cc98014"
         ],
         "settings": {
-          "max_percentage_height": "30vh",
+          "max_percentage_height": "60vh",
           "autoplay_delay_time": 5
         }
+      },
+      "fb3b021f-3e3e-451a-8118-3927f942e0ec": {
+        "type": "qualifiers",
+        "blocks": {
+          "7c735fe4-9873-479a-9fb0-457890f40331": {
+            "type": "qualifier",
+            "settings": {
+              "qualifier_bg_color": "",
+              "title": "Free 1H Click & Collect",
+              "title_color": "",
+              "link_label": "Collect your order in 1 Hour",
+              "link": "https:\/\/decathlon.com.au\/pages\/delivery-click-and-collect",
+              "link_color": "",
+              "icon_svg": "shopify:\/\/shop_images\/store-line_e71aefc7-305e-47df-9f05-cd009764eeaa.png"
+            }
+          },
+          "d27e861a-6bd2-420b-b7d1-fef41d055dac": {
+            "type": "qualifier",
+            "settings": {
+              "qualifier_bg_color": "",
+              "title": "Free delivery above $150",
+              "title_color": "",
+              "link_label": "Find out more",
+              "link": "https:\/\/decathlon.com.au\/pages\/shipping-policy",
+              "link_color": "",
+              "icon_svg": "shopify:\/\/shop_images\/test-truck-svg_60x_d6b67384-8fe4-4b15-9bce-49fd66d89228.svg"
+            }
+          },
+          "b67307ce-9c1b-4898-a5fe-38bcd71d9690": {
+            "type": "qualifier",
+            "settings": {
+              "qualifier_bg_color": "",
+              "title": "LifeTime Returns",
+              "title_color": "",
+              "link_label": "View Our Terms & Conditions",
+              "link": "https:\/\/decathlon.com.au\/pages\/terms-of-use",
+              "link_color": "",
+              "icon_svg": "shopify:\/\/shop_images\/refund-line_672b828b-0aca-4068-876a-ebbdb9b8983f.png"
+            }
+          },
+          "171435f2-a179-431c-b701-00591bb179f3": {
+            "type": "qualifier",
+            "settings": {
+              "qualifier_bg_color": "",
+              "title": "Repairs & Services",
+              "title_color": "",
+              "link_label": "Find Out More",
+              "link": "https:\/\/decathlon.com.au\/pages\/workshop-services",
+              "link_color": "",
+              "icon_svg": "shopify:\/\/shop_images\/selected-by-decathlon-line_ce4ff373-8a36-4e66-a20e-8e39f63e1617.png"
+            }
+          },
+          "4be5b64d-338e-42b6-aad6-3ec8d95e3e66": {
+            "type": "qualifier",
+            "settings": {
+              "qualifier_bg_color": "",
+              "title": "Find A store",
+              "title_color": "",
+              "link_label": "View Our Stores",
+              "link": "https:\/\/decathlon.com.au\/pages\/store-locator",
+              "link_color": "",
+              "icon_svg": "shopify:\/\/shop_images\/direction-line_7234d637-1db5-4c4a-81ef-7c59ce71967b.png"
+            }
+          }
+        },
+        "block_order": [
+          "7c735fe4-9873-479a-9fb0-457890f40331",
+          "d27e861a-6bd2-420b-b7d1-fef41d055dac",
+          "b67307ce-9c1b-4898-a5fe-38bcd71d9690",
+          "171435f2-a179-431c-b701-00591bb179f3",
+          "4be5b64d-338e-42b6-aad6-3ec8d95e3e66"
+        ],
+        "settings": {}
       }
     },
     "content_for_index": [
       "cad91577-4dc5-49d8-bdfd-1bae2b62b6bb",
+      "fb3b021f-3e3e-451a-8118-3927f942e0ec",
       "1568939434006",
       "163107170023281063",
       "16316085202ea5cf79",
@@ -3295,7 +3492,14 @@
       "59bd4db6-bdb1-46c5-ab8e-ed6a847dddfe",
       "e2c58312-d869-42de-abd5-868dc6fc879c",
       "163107313302287377"
-    ]
+    ],
+    "blocks": {
+      "855628211100114053": {
+        "type": "shopify:\/\/apps\/klaviyo-email-marketing-sms\/blocks\/klaviyo-onsite-embed\/2632fe16-c075-4321-a88b-50b567f42507",
+        "disabled": false,
+        "settings": {}
+      }
+    }
   },
   "presets": {
     "Default": {
