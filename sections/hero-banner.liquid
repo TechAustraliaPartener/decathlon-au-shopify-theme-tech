@@ -97,11 +97,21 @@ href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
     line-height: 1;
   }
 
+  
+
   .hero-banner .swiper-button-prev,
   .hero-banner .swiper-button-next {
+    display: none;
     background: rgba(0, 0, 0, 0.3) !important;
     width: 60px;
     height: 60px;
+  }
+
+  @media screen and (min-width: 768px) {
+    .hero-banner .swiper-button-prev,
+    .hero-banner .swiper-button-next {
+      display: flex;
+    }
   }
 
   .hero-banner .swiper-button-next:after,
