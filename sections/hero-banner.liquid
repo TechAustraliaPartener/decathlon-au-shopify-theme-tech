@@ -97,6 +97,19 @@ href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
     line-height: 1;
   }
 
+  .hero-banner .swiper-button-prev,
+  .hero-banner .swiper-button-next {
+    background: rgba(0, 0, 0, 0.3) !important;
+    width: 60px;
+    height: 60px;
+  }
+
+  .hero-banner .swiper-button-next:after,
+  .hero-banner .swiper-button-prev:after {
+    font-size: 30px;
+    color: #fff;
+  }
+
 </style>
 {{ 'component-swiper.css' | asset_url | stylesheet_tag }}
 
@@ -229,8 +242,8 @@ href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
     <div class="swiper-pagination"></div>
 
     <!-- If we need navigation buttons -->
-    {% comment %} <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div> {% endcomment %}
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
   </div>
 </div>
 
