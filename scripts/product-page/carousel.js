@@ -396,7 +396,11 @@ const animateBounce  = () => {
  */
 export const init = () => {
   initAllSlideTotalsMatch();
-  initCarousel();
+  
+  window.setTimeout(function() {
+    initCarousel();
+  }, 2000);
+
   handleWindowResize();
   setTimeout(animateBounce, 1000);
 };
