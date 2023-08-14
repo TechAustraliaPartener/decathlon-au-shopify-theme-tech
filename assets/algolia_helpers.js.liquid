@@ -147,9 +147,11 @@
     label: function label() {
       let labels = ((this || {}).named_tags || {}).label;
       let tags = (this || {}).tags;
+      let maxCompareAtPrice = (this || {}).variants_compare_at_price_max 
 
       tags = tags ? (Array.isArray(tags) ? tags : [tags]) : [];
       let hasSaleTag = tags.some(tag => tag.toLowerCase() === 'clearance') || tags.some(tag => tag.toLowerCase() === 'sale');
+      let isRealSale = maxCompareAtPrice > 0;
 
       let labelsOutput = '';
 
@@ -166,7 +168,7 @@
       let innerLabels = labels.map(label => {
         return `<div class="ais-hit--label label_${ handleize(label) }">${ label }</div>`;
       });
-      if (hasSaleTag) {
+      if (hasSaleTag && isRealSale) {
         // COLLECTIONS & SEARCH
         innerLabels.push(`<div class="ais-hit--label clearance">{{ 'products.product.label_clearance' | t }}</div>`);
       }
@@ -204,71 +206,103 @@
     },
     carousel: function() {
       let product = this;
-      let variantImages = JSON.parse(product.meta.variants.images);
-      let variantThumbs = 'thumbs' in variantImages ? variantImages.thumbs : [];
-
-      console.log('carousel init...');
-      console.log(product);
-      console.log(variantThumbs);
+      let variantImages = product.meta.variants?.images ? JSON.parse(product.meta.variants.images) : null;
       let html = '';
-      let modifierClasses = '';
 
-      if(variantThumbs.length == 1) {
-        modifierClasses += ' --hide-main-nav-arrows'
+      if (variantImages){
+        let variantThumbs = 'thumbs' in variantImages ? variantImages.thumbs : [];
+
+        console.log('carousel init...');
+        console.log(product);
+        console.log(variantThumbs);
+        let modifierClasses = '';
+
+        if(variantThumbs.length == 1) {
+          modifierClasses += ' --hide-main-nav-arrows'
+        }
+
+        html += '<section class="main-carousel collection-carousel splide'+ modifierClasses +'">';
+        html += '<div class="splide__track">';
+        html += '<ul class="splide__list">';
+
+        variantThumbs.forEach((variant) => {
+          html += '<li class="splide__slide">';
+          html += '<a href="/products/' + product.handle + '?source=algolia">';
+          html += '<img alt="' + product.title + '" src="' + variant.filename + '" onError="this.onerror=null;this.src=\'' + product.product_image + '\'">';
+          html += '</a>';
+          html += '</li>';
+        });
+
+        html += '</ul>';
+        html += '</div>';
+        html += '</section>';
       }
-
-
-      html += '<section class="main-carousel collection-carousel splide'+ modifierClasses +'">';
-      html += '<div class="splide__track">';
-      html += '<ul class="splide__list">';
-
-      variantThumbs.forEach((variant) => {
+      else {
+        let modifierClasses = '';
+        html += '<section class="main-carousel collection-carousel splide'+ modifierClasses +'">';
+        html += '<div class="splide__track">';
+        html += '<ul class="splide__list">';
         html += '<li class="splide__slide">';
-        html += '<a href="/products/' + variant.url + '&source=algolia">';
-        html += '<img alt="'+ product.title + '" src="' + variant.filename + '">';
+        html += '<a href="/products/' + product.handle + '?source=algolia">';
+        html += '<img alt="'+ product.title + '" src="' + product.product_image +'">';
         html += '</a>';
         html += '</li>';
-      });
-
-      html += '</ul>';
-      html += '</div>';
-      html += '</section>';
+        html += '</ul>';
+        html += '</div>';
+        html += '</section>';
+      }
 
 
       return html;
     },
     carouselThumbs: function() {
       let product = this;
-      let variantImages = JSON.parse(product.meta.variants.images);
-      let variantThumbs = 'thumbs' in variantImages ? variantImages.thumbs : [];
-      let modifierClasses = '';
-      
-      if(variantThumbs.length < 5) {
-        modifierClasses += ' --hide-thumbnail-nav-arrows'
-      }
-
-      if(variantThumbs.length < 4) {
-        modifierClasses += ' --thumbs-less-than-max'
-      }
-
-      console.log('carousel thumbs init...');
-      console.log(product);
-      console.log(variantThumbs);
+      let variantImages = product.meta.variants?.images ? JSON.parse(product.meta.variants.images) : null;
       let html = '';
 
-      html += '<section class="thumbnail-carousel collection-carousel splide '+ modifierClasses +'" data-variants-count="'+ variantThumbs.length +'">';
-      html += '<div class="splide__track">';
-      html += '<ul class="splide__list">';
+      if (variantImages){
+        let variantThumbs = 'thumbs' in variantImages ? variantImages.thumbs : [];
+        let modifierClasses = '';
+        
+        if(variantThumbs.length < 5) {
+          modifierClasses += ' --hide-thumbnail-nav-arrows'
+        }
 
-      variantThumbs.forEach((variant) => {
+        if(variantThumbs.length < 4) {
+          modifierClasses += ' --thumbs-less-than-max'
+        }
+
+        console.log('carousel thumbs init...');
+        console.log(product);
+        console.log(variantThumbs);
+
+
+        html += '<section class="thumbnail-carousel collection-carousel splide '+ modifierClasses +'" data-variants-count="'+ variantThumbs.length +'">';
+        html += '<div class="splide__track">';
+        html += '<ul class="splide__list">';
+
+        variantThumbs.forEach((variant) => {
+          html += '<li class="splide__slide">';
+          html += '<img alt="' + product.title + '" src="' + variant.filename + '" onError="this.onerror=null;this.src=\'' + product.product_image + '\'">';
+          html += '</li>';
+        });
+
+        html += '</ul>';
+        html += '</div>';
+        html += '</section>';
+      }
+      else {
+        let modifierClasses = ' --hide-thumbnail-nav-arrows'
+        html += '<section class="thumbnail-carousel collection-carousel splide '+ modifierClasses +'" data-variants-count="1">';
+        html += '<div class="splide__track">';
+        html += '<ul class="splide__list">';
         html += '<li class="splide__slide">';
-        html += '<img alt="'+ product.title + '" src="' + variant.filename + '">';
+        html += '<img alt="'+ product.title + '" src="' + product.product_image + '">';
         html += '</li>';
-      });
-
-      html += '</ul>';
-      html += '</div>';
-      html += '</section>';
+        html += '</ul>';
+        html += '</div>';
+        html += '</section>';
+      }
 
 
       return html;
