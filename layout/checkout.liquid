@@ -144,31 +144,31 @@
              {% if checkout.attributes.delivery_mode == 'Delivery' %}
               <div class="de-Grid de-Grid--withGutter">
                 <div class="de-pickship-btn-container de-u-size1of1 de-u-spaceBottom">
-                  <button class="btn de-pickship-btn js-de-active-pickship-btn">
+                  <div class="de-pickship-btn js-de-active-pickship-btn">
                     <span class="btn__content">{% include 'ship-icon' %} Delivery</span>
-                  </button>
+                  </div>
                 </div>
               </div>
             {% else %}
               <div class="de-Grid de-Grid--withGutter">
                 <div class="de-pickship-btn-container de-u-size1of1 de-u-spaceBottom">
-                  <button class="btn de-pickship-btn js-de-active-pickship-btn">
+                  <div class="de-pickship-btn js-de-active-pickship-btn">
                     <span class="btn__content">{% include 'pickup-icon' %} Pickup in Store</span>
-                  </button>
+                  </div>
                 </div>
               </div>
             {% endif %}
 
             <div class="de-Grid de-Grid--withGutter" style="display:none;">
               <div class="de-pickship-btn-container de-u-size1of2 de-u-spaceBottom">
-                <button class="btn js-de-toggle-shipping de-pickship-btn de-u-hidden">
+                <div class="js-de-toggle-shipping de-pickship-btn de-u-hidden">
                   <span class="btn__content">{% include 'ship-icon' %} Delivery</span>
-                </button>
+                </div>
               </div>
               <div class="de-pickship-btn-container de-u-size1of2 de-u-spaceBottom">
-                <button class="btn js-de-toggle-pickup de-pickship-btn de-u-hidden">
+                <div class="js-de-toggle-pickup de-pickship-btn de-u-hidden">
                   <span class="btn__content">{% include 'pickup-icon' %} Pickup in Store</span>
-                </button>
+                </div>
               </div>
             </div>
 
