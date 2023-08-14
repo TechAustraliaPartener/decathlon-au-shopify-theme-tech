@@ -712,7 +712,11 @@
       },
       "thank_you": {
         "contact_us_html": "Need help? <a href=\"https:\/\/help.decathlon.com.au\/support\/home\">Contact&nbsp;us<\/a>",
-        "shipping_address_title": "Shipping address"
+        "shipping_address_title": "Shipping address",
+        "ready_for_delivery_title": "Your order is ready for delivery",
+        "ready_for_delivery_description": "We've prepared your order.",
+        "confirmed_title": "Your parcel is ready.",
+        "confirmed_description": "We’ve prepared your order and you can now track your shipment using the link below. "
       },
       "order_summary": {
         "taxes_label": "GST",
