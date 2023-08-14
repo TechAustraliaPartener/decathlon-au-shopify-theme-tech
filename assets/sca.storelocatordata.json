@@ -23,7 +23,11 @@
     ],
     "schedule": "<br>\r<br><strong>Customer Service: <\/strong>02 6181 0987\r<br><br>\r<br><strong>Normal Operating Hours:<\/strong>\r<br>\r<br>Monday: 9:00 am - 8:00 pm\r<br>Tuesday: 9:00 am - 8:00 pm\r<br>Wednesday: 9:00 am - 8:00 pm\r<br>Thursday: 9:00 am - 9:00 pm\r<br>Friday: 9:00 am - 8:00 pm\r<br>Saturday: 9:00 am - 8:00 pm\r<br>Sunday: 9:00 am - 7:00 pm\r<br><br>",
     "marker_image": "https:\/\/cdn.shopify.com\/s\/files\/1\/0066\/6563\/3903\/t\/797\/assets\/scasl_1686286203_marketimagestore_compact.png",
-    "address": "634-726 Princes Hwy, Tempe, NSW 2044",
+    "address": "634-726 Princes Hwy",
+    "country": "Australia",
+    "state": "New South Wales",
+    "city": "Tempe",
+    "postal": "2024",
     "priority": 2,
     "apply_to_type": 1
   },
@@ -157,7 +161,7 @@
     "lat": "-33.7609519",
     "lng": "151.275257",
     "id": 6749584,
-    "name": "The Surfboard Warehouse Brookvale",
+    "name": "Decathlon Partner - The Surfboard Warehouse Brookvale",
     "description": "You can now order your products online and collect them from one of our partners.\r<br>\r<br>Please wait for your ready-to-collect confirmation email before picking up your order.\r<br>\r<br>Most orders are usually ready to collect within 2-3 business days.",
     "phone": "1800 983 227",
     "web": "https:\/\/decathlon.com.au\/pages\/store-brookvalecc2100",
@@ -169,7 +173,7 @@
       }
     ],
     "schedule": "Click & Collect hours might differ during public holidays.\r<br>\r<br>Visit the partner page below to learn more\r<br>\r<br>Mon - Sat | 10:00 am - 3:00 pm\r<br>Sun | Closed",
-    "marker_image": "\/\/cdn.shopify.com\/s\/files\/1\/0066\/6563\/3903\/t\/396\/assets\/scasl_1611181169map-marker-inactive_compact.png",
+    "marker_image": "https:\/\/cdn.shopify.com\/s\/files\/1\/0066\/6563\/3903\/t\/817\/assets\/scasl_1690350116_free-click-and-collect-------expires-on-08-09-2025_compact.png",
     "address": "535 Pittwater Rd",
     "country": "Australia",
     "state": "New South Wales",
@@ -247,8 +251,8 @@
     "lat": "-33.891713",
     "lng": "151.248526",
     "id": 10698985,
-    "name": "Decathlon Bondi Junction",
-    "description": "Decathlon Bondi Junction\r<br>STM Store\r<br>426 Oxford St, Bondi Junction, NSW, 2022",
+    "name": "Decathlon Partner - STM Bondi Store",
+    "description": "You can now order your products online and collect them from one of our partners.",
     "email": "customer.service@decathlon.com",
     "tagsvalue": "Click & Collect in 2 business days,No Instore Shopping",
     "tags": [
@@ -260,8 +264,8 @@
       }
     ],
     "schedule": "<br> \r<br><strong>Normal Operating hours: <\/strong>\r<br>\r<br>Monday 9:00am-5:00pm\r<br>Tuesday 9:00am-5:00pm\r<br>Wednesday 9:00am-5:00pm\r<br>Thursday 9:00am-9:00pm\r<br>Friday 9:00am-5:00pm\r<br>Saturday 9:00am - 5:00pm\r<br>Sunday 9:00am-5:00pm",
-    "address": "STM Store",
-    "address2": "426 Oxford St",
+    "marker_image": "https:\/\/cdn.shopify.com\/s\/files\/1\/0066\/6563\/3903\/t\/817\/assets\/scasl_1690351276_free-click-and-collect-------expires-on-08-09-2025_compact.png",
+    "address": "426 Oxford St",
     "country": "Australia",
     "state": "New South Wales",
     "city": "Bondi Junction",
@@ -273,7 +277,7 @@
     "lat": "-33.8660733",
     "lng": "151.2069659",
     "id": 12668655,
-    "name": "Decathlon Sydney City",
+    "name": "Decathlon Connect George Street",
     "phone": "0450815760",
     "tagsvalue": "Click & Collect in 2 business days,In-store Shopping - Limited Range",
     "tags": [
@@ -298,7 +302,7 @@
     "lat": "-33.883672781884",
     "lng": "151.1949568593967",
     "id": 13078113,
-    "name": "Decathlon Broadway",
+    "name": "Decathlon Connect Broadway",
     "tagsvalue": "Click & Collect in 2 business days,In-store Shopping - Limited Range",
     "tags": [
       {
@@ -322,8 +326,7 @@
     "lat": "-33.933643",
     "lng": "151.0290524",
     "id": 13378374,
-    "name": "Just Sports Bankstown",
-    "description": "You can now order your products online and collect them from one of our partners.",
+    "name": "Decathlon Partner - Just Sports Bankstown",
     "tagsvalue": "Click & Collect in 2 business days",
     "tags": [
       {
@@ -332,8 +335,76 @@
     ],
     "schedule": "<br>\r<br><strong>Store Hours<\/strong>\r<br>\r<br>Monday: 9am - 5.30pm\r<br>Tuesday: 9am - 5.30pm\r<br>Wednesday: 9am - 5.30pm\r<br>Thursday: 9am - 9pm\r<br>Friday: 9am - 5.30pm\r<br>Saturday: 9am - 5pm\r<br>Sunday: 10am - 5pm\r<br><br>",
     "marker_image": "https:\/\/cdn.shopify.com\/s\/files\/1\/0066\/6563\/3903\/t\/797\/assets\/scasl_1686286465_marketimageccstorev2_compact.png",
-    "address": "Unit 15\/173 Canterbury Rd, Bankstown, NSW 2200",
+    "address": "Unit 15\/173 Canterbury Rd",
+    "country": "Australia",
+    "state": "New South Wales",
+    "city": "Bankstown",
+    "postal": "2200",
     "priority": 10,
+    "apply_to_type": 1
+  },
+  {
+    "lat": "-33.97117679999999",
+    "lng": "150.8589981",
+    "id": 13776777,
+    "name": "Decathlon Partner - Just Sports Edmonson Park",
+    "description": "You can now order your products online and collect them from one of our partners.",
+    "phone": "(02) 9829 1937",
+    "tagsvalue": "Click & Collect in 2 business days",
+    "tags": [
+      {
+        "tag": "Click & Collect in 2 business days"
+      }
+    ],
+    "schedule": "<br>\r<br><strong>Store Hours<\/strong>\r<br>\r<br>Monday: 9:00am - 5.30pm\r<br>Tuesday: 9:00am - 5.30pm\r<br>Wednesday: 9:00am - 5.30pm\r<br>Thursday: 9:00am - 9:00pm\r<br>Friday: 9:00am - 5.30pm\r<br>Saturday: 9:00am - 4:00pm\r<br>Sunday: 10:00am - 4:00pm\r<br><br>",
+    "marker_image": "https:\/\/cdn.shopify.com\/s\/files\/1\/0066\/6563\/3903\/t\/817\/assets\/scasl_1690350055_free-click-and-collect-------expires-on-08-09-2025_compact.png",
+    "address": "Ed.Square Shopping Centre - 52 Soldiers Parade",
+    "address2": "52 Soldiers Parade",
+    "country": "Australia",
+    "state": "New South Wales",
+    "city": "Edmondson Park",
+    "postal": "2174",
+    "priority": 1,
+    "apply_to_type": 1
+  },
+  {
+    "lat": "-34.0682928",
+    "lng": "150.8098231",
+    "id": 13776779,
+    "name": "Decathlon Partner - Just Sports Campbelltown",
+    "description": "You can now order your products online and collect them from one of our partners.",
+    "phone": "(02) 4627 5035",
+    "tagsvalue": "Click & Collect in 2 business days",
+    "tags": [
+      {
+        "tag": "Click & Collect in 2 business days"
+      }
+    ],
+    "schedule": "<br>\r<br><strong>Store Hours<\/strong>\r<br>\r<br>Monday: 9:00am - 5.30pm\r<br>Tuesday: 9:00am - 5.30pm\r<br>Wednesday: 9:00am - 5.30pm\r<br>Thursday: 9:00am - 9:00pm\r<br>Friday: 9:00am- 5.30pm\r<br>Saturday: 9:00am - 4:00pm\r<br>Sunday: 10:00am - 4:00pm\r<br><br>",
+    "marker_image": "https:\/\/cdn.shopify.com\/s\/files\/1\/0066\/6563\/3903\/t\/817\/assets\/scasl_1690350094_free-click-and-collect-------expires-on-08-09-2025_compact.png",
+    "address": "271 Queen St, Ground Floor Shop L35\/35A (Queen St Mall)",
+    "country": "Australia",
+    "state": "New South Wales",
+    "city": "Campbelltown",
+    "postal": "2560",
+    "priority": 1,
+    "apply_to_type": 1
+  },
+  {
+    "lat": "-33.90759",
+    "lng": "150.9199396",
+    "id": 13776791,
+    "name": "Decathlon Partner - Just Sports Orange Grove",
+    "description": "You can now order your products online and collect them from one of our partners.",
+    "phone": "(02) 9602 2113",
+    "schedule": "<br>\r<br><strong>Store Hours<\/strong>\r<br>\r<br>Monday: 9:00am - 5.30pm\r<br>Tuesday: 9:00am - 5.30pm\r<br>Wednesday: 9:00am - 5.30pm\r<br>Thursday: 9:00am - 9:00pm\r<br>Friday: 9:00am- 5.30pm\r<br>Saturday: 9:00am - 4:00pm\r<br>Sunday: 10:00am - 4:00pm\r<br><br>",
+    "marker_image": "https:\/\/cdn.shopify.com\/s\/files\/1\/0066\/6563\/3903\/t\/817\/assets\/scasl_1690350074_free-click-and-collect-------expires-on-08-09-2025_compact.png",
+    "address": "Shop 38\/18 Orange Grove Rd, Warwick Farm NSW 2170",
+    "country": "Australia",
+    "state": "New South Wales",
+    "city": "Warwick Farm",
+    "postal": "2170",
+    "priority": 1,
     "apply_to_type": 1
   }
 ]
