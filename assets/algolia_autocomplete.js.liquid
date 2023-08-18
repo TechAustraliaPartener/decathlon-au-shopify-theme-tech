@@ -340,7 +340,7 @@ var maxRecentSearchItems = {{ settings.maximum_recent_searches }};
     });
 
 
-    autocomplete.$input.on('blur', function () {
+    autocomplete.$input.on('blur', function (e) {
       const numberOfRecentSearchTerms = maxRecentSearchItems;
       const currentRecentSearchTerms = localStorage.getItem('DecAURecentSearches');
       let searchTerms;
@@ -348,10 +348,17 @@ var maxRecentSearchItems = {{ settings.maximum_recent_searches }};
       $backdrop.hide();
 
 
+
       if(currentRecentSearchTerms.length >= 1 && numberOfRecentSearchTerms > 0){
         searchTerms = currentRecentSearchTerms.split('|||');
+        
+        // Check if there are changes to the incoming search. 
+        // If there are changes, keep the incoming change keyword.
+        // If there are no changes, then that's the only time you return the last keyword
+        if(!e.target.value) {
+          autocomplete.$input.autocomplete('val', searchTerms[0]);
+        }
 
-        autocomplete.$input.autocomplete('val',searchTerms[0]);
       }
     });
 
