@@ -98,6 +98,7 @@
 
           // send rulesContext for promoted results only if no filters active
           var currentState = helper.getState();
+
           if (_.keys(currentState.facetsRefinements).length === 0 &&
             _.keys(currentState.numericRefinements).length === 0 &&
             _.keys(currentState.disjunctiveFacetsRefinements).length === 0 &&
@@ -112,7 +113,7 @@
               helper.setQueryParameter('ruleContexts', [collectionRulesContextValue.toString()]);
             }
           } else {
-            helper.setQueryParameter('ruleContexts', []);
+            helper.setQueryParameter('ruleContexts', [collectionRulesContextValue.toString()]);
           }
         }
 
