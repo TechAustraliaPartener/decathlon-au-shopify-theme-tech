@@ -17,9 +17,16 @@
 
   <h1 class="h3 accountHeading">{{ account_title }}</h1>
 
+  {% assign customer_tags = customer.tags %}
+  {% for tag in customer_tags %}
+    {% if tag contains "TOKEN_USER" %}
+      {% assign user_token = tag | remove: 'TOKEN_USER: ' %}
+    {% endif %}
+  {% endfor %}
+
   <p class="accountLogout">
     {% if customer_home %}
-      <a class="accountLogout-link btn btn--text js-de-logout" href="{{ settings.logout_portal_url | default: '/account/logout' }}">Logout</a>
+      <a class="accountLogout-link btn btn--text js-de-logout" href="{{ settings.logout_portal_url | default: '/account/logout' }}?logout={{ user_token }}">Logout</a>
     {% else %}
       <a class="btn btn--text" href="/account">Back To My Account</a>
     {% endif %}

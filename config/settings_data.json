@@ -4,9 +4,9 @@
     "use_persistent_cart": false,
     "out_of_stock_handling": "back_in_stock",
     "use_gateway": false,
-    "login_portal_url": "https:\/\/api-global.decathlon.net\/connect\/oauth\/authorize?response_type=code&client_id=e57b2db5-07ff-468e-a8da-85af418a1691&scope=openid+profile+email+contacts+contacts:write+optins+optins:write+sports+sports:write+phone:write&redirect_uri=https%3A%2F%2F1fya2jw7u4.execute-api.ap-southeast-2.amazonaws.com%2FProd%2Flogin",
-    "register_portal_url": "https:\/\/api-global.decathlon.net\/connect\/oauth\/authorize?response_type=code&client_id=e57b2db5-07ff-468e-a8da-85af418a1691&scope=openid+profile+email+contacts+contacts:write+optins+optins:write+sports+sports:write+phone:write&redirect_uri=https%3A%2F%2F1fya2jw7u4.execute-api.ap-southeast-2.amazonaws.com%2FProd%2Flogin",
-    "logout_portal_url": "https:\/\/1fya2jw7u4.execute-api.ap-southeast-2.amazonaws.com\/Prod\/logout",
+    "login_portal_url": "https:\/\/login.decathlon.net\/?client_id=20fefaca-68d7-4fc0-9d16-593778bb1e05&ui_locales=en_AU",
+    "register_portal_url": "https:\/\/login.decathlon.net\/?client_id=20fefaca-68d7-4fc0-9d16-593778bb1e05&ui_locales=en_AU#\/sign-up",
+    "logout_portal_url": "https:\/\/login-australia.decathlon.net\/logout.php",
     "use_adeptmind": false,
     "use_algolia": true,
     "show_write_a_review": false,
@@ -32,10 +32,10 @@
     "header_store_label": "Find a Store",
     "header_sign_in_label": "Login",
     "megamenu_set_for_all": "override",
-    "megamenu_image": "shopify:\/\/shop_images\/Mega_menu_tile__315_x_235px_-_V1.png",
-    "megamenu_title": "20% OFF SITE WIDE",
+    "megamenu_image": "shopify:\/\/shop_images\/Fathers-Day-2023-mobile_18b05300-7873-4c16-88f7-d70ade1bee11.webp",
+    "megamenu_title": "Father's Day Gift Ideas",
     "megamenu_subtitle": "",
-    "megamenu_link": "https:\/\/decathlon.com.au\/collections\/winter-snow-sports",
+    "megamenu_link": "https:\/\/decathlon.com.au\/collections\/gift-ideas-fathers-day",
     "megamenu_bg_colour": "#1c82c1",
     "custom_fields_terms_conditions": "I agree to the <a href=\"\/pages\/terms-and-conditions-membership\" target=\"_blank\">T&Cs<\/a> and <a href=\"\/pages\/privacy-policy\" target=\"_blank\">Privacy Policy<\/a> for creating an account.",
     "is_lookbook": false,
@@ -312,6 +312,8 @@
     "checkout_accent_color": "#1c82c3",
     "checkout_button_color": "#1c82c3",
     "checkout_error_color": "#ff0000",
+    "login_portal_url_failing": "https:\/\/api-global.decathlon.net\/connect\/oauth\/authorize?response_type=code&client_id=e57b2db5-07ff-468e-a8da-85af418a1691&scope=openid+profile+email+contacts+contacts:write+optins+optins:write+sports+sports:write+phone:write&redirect_uri=https%3A%2F%2F1fya2jw7u4.execute-api.ap-southeast-2.amazonaws.com%2FProd%2Flogin",
+    "register_portal_url_failing": "https:\/\/api-global.decathlon.net\/connect\/oauth\/authorize?response_type=code&client_id=e57b2db5-07ff-468e-a8da-85af418a1691&scope=openid+profile+email+contacts+contacts:write+optins+optins:write+sports+sports:write+phone:write&redirect_uri=https%3A%2F%2F1fya2jw7u4.execute-api.ap-southeast-2.amazonaws.com%2FProd%2Flogin",
     "logo_use_image": "img-logos",
     "maximize_logo_space": false,
     "svg_mobile_logo": "2022-10-20-decathlon-logo.svg",
@@ -1315,7 +1317,6 @@
           },
           "8cbab543-44a2-4c2e-9d73-a9e14db66cd1": {
             "type": "store",
-            "disabled": true,
             "settings": {
               "name": "Just Sports Eastern Creek",
               "title": "Just Sports Eastern Creek, 2766, Click & Collect Only",
@@ -1324,7 +1325,7 @@
               "enable_stock_visibility": false,
               "duplicate": "Tempe",
               "test_mode": false,
-              "street1": "159 Rooty Hill Rd S",
+              "street1": "159 Rooty Hill Road South",
               "city": "Eastern Creek",
               "zip": "2766",
               "state": "NSW",
@@ -1333,8 +1334,8 @@
               "email": "customer.service@decathlon.com",
               "phone_number": "(02) 9602 2113",
               "company": "Decathlon",
-              "ready": "Ready to collect in 3 business days.",
-              "ready_checkout": "Ready to collect in 3 business days.",
+              "ready": "Ready to collect in 2 business days.",
+              "ready_checkout": "Ready to collect in 2 business days.",
               "id": "1789-5",
               "tooltip_hours": true,
               "is_same_hours_weekly": false,
@@ -1977,7 +1978,7 @@
           "b6c50233-aad8-4a5a-8216-cdf77b1a7b69": {
             "type": "label",
             "settings": {
-              "title": "Free Delivery*",
+              "title": "Best Seller",
               "bg_colour": "#0082c3",
               "text_colour": "#ffffff"
             }
@@ -2046,26 +2047,6 @@
               "title": "New Release",
               "bg_colour": "#0082c3",
               "text_colour": "#ffffff"
-            }
-          },
-          "21cbe9ff-5012-4881-904e-7443a4af6fcb": {
-            "type": "combo",
-            "settings": {
-              "title": "Sale,Online Only",
-              "bg_colour_1": "#ff0000",
-              "text_colour_1": "#ffffff",
-              "bg_colour_2": "#1c82c3",
-              "text_colour_2": "#fafafa"
-            }
-          },
-          "203eac2f-7a40-47a1-b441-b6edd838f4ca": {
-            "type": "combo",
-            "settings": {
-              "title": "Sale, New Release",
-              "bg_colour_1": "#ff0000",
-              "text_colour_1": "#fafafa",
-              "bg_colour_2": "#1c82c3",
-              "text_colour_2": "#fafafa"
             }
           },
           "4a64b4cb-1338-48f3-9582-151d2698b239": {
@@ -2455,8 +2436,6 @@
           "ad2f449b-334c-4b8e-b29c-caed1367ff3b",
           "9cfe0f64-734f-49b4-b750-6d38e0ed13b6",
           "7b8ddd36-e9ed-4b45-adb6-809e7d0e6755",
-          "21cbe9ff-5012-4881-904e-7443a4af6fcb",
-          "203eac2f-7a40-47a1-b441-b6edd838f4ca",
           "4a64b4cb-1338-48f3-9582-151d2698b239",
           "051b9d5d-329d-4532-8515-a335befea71c",
           "049c5622-6f00-46a8-ba5f-cbc412867ba1",
@@ -2673,9 +2652,9 @@
           "24a46da8-7f15-4e2c-aa20-558f5e037a41": {
             "type": "category_tile",
             "settings": {
-              "title": "Running",
-              "image": "shopify:\/\/shop_images\/Runnin_winter_hero-1_90ecf4a7-7ceb-4c3d-8f0b-a39681dfb52c.jpg",
-              "link": "https:\/\/decathlon.com.au\/collections\/running-gear-clothes"
+              "title": "Indoor Soccer",
+              "image": "shopify:\/\/shop_images\/Futsal-Category-Hero.png",
+              "link": "https:\/\/decathlon.com.au\/collections\/indoor-soccer"
             }
           },
           "e1091c93-4efb-4738-b3f6-3a711db62e82": {
@@ -2840,20 +2819,21 @@
       "banner-announcements": {
         "type": "banner-announcements",
         "blocks": {
-          "543b1783-29d8-4996-80a0-0ad6250c6206": {
+          "b706be1c-0750-47c9-b0f1-8278eddb14fd": {
             "type": "announcement_messages",
+            "disabled": true,
             "settings": {
               "countdown_date": "",
               "countdown_time": "",
-              "message": "<p>20% OFF* SITE WIDE. USE CODE: AFTERPAY20. MIN SPEND $100. T&CS APPLY.<\/p>",
+              "message": "<p>50% off shipping for VIC & QLD orders. Ends Sunday. T&Cs apply.<\/p>",
               "post_message": "",
               "url": "",
-              "bg_colour": "#1c82c3",
+              "bg_colour": "#007dbc",
               "font_colour": "#ffffff",
-              "scroll_speed": "scroll-slow"
+              "scroll_speed": "scroll-normal"
             }
           },
-          "b706be1c-0750-47c9-b0f1-8278eddb14fd": {
+          "2e019f93-7554-4748-a4f2-22ea0c56c29a": {
             "type": "announcement_messages",
             "settings": {
               "countdown_date": "",
@@ -2866,25 +2846,25 @@
               "scroll_speed": "scroll-normal"
             }
           },
-          "353f3f7e-2155-4e09-808a-a110d31d4760": {
+          "543b1783-29d8-4996-80a0-0ad6250c6206": {
             "type": "announcement_messages",
             "disabled": true,
             "settings": {
               "countdown_date": "",
               "countdown_time": "",
-              "message": "<p>Go Matildas! Go Matildas! Go Matildas! Go Matildas!<\/p>",
+              "message": "<p>20% OFF* SITE WIDE. USE CODE: AFTERPAY20. MIN SPEND $100. ENDS MIDNIGHT.<\/p>",
               "post_message": "",
               "url": "",
-              "bg_colour": "#123e34",
-              "font_colour": "#ffb81c",
-              "scroll_speed": "scroll-normal"
+              "bg_colour": "#1c82c3",
+              "font_colour": "#ffffff",
+              "scroll_speed": "scroll-slow"
             }
           }
         },
         "block_order": [
-          "543b1783-29d8-4996-80a0-0ad6250c6206",
           "b706be1c-0750-47c9-b0f1-8278eddb14fd",
-          "353f3f7e-2155-4e09-808a-a110d31d4760"
+          "2e019f93-7554-4748-a4f2-22ea0c56c29a",
+          "543b1783-29d8-4996-80a0-0ad6250c6206"
         ],
         "settings": {
           "show_annoucement_bar": true,
@@ -2897,15 +2877,15 @@
       "59bd4db6-bdb1-46c5-ab8e-ed6a847dddfe": {
         "type": "six-tile-products",
         "settings": {
-          "title": "Let's Go Camping",
-          "section_collection": "camping"
+          "title": "Snow gear, priced to clear!",
+          "section_collection": "ski-snowboard-sale"
         }
       },
       "eebe1a41-f3e2-4f63-8238-9c639f6d6b73": {
         "type": "six-tile-products",
         "settings": {
-          "title": "Play Soccer Anytime Anywhere",
-          "section_collection": "women-soccer-collection"
+          "title": "Sports Innovation",
+          "section_collection": "innovation-by-decathlon"
         }
       },
       "trending-products": {
@@ -3000,17 +2980,17 @@
       "cad91577-4dc5-49d8-bdfd-1bae2b62b6bb": {
         "type": "hero-banner",
         "blocks": {
-          "a8a332ab-c392-433e-805d-fe77c9930049": {
+          "4356f112-9ea2-4af3-811f-74641cc98014": {
             "type": "carousel-slide",
             "settings": {
-              "title": "AfterPay 20%OFF",
-              "link": "https:\/\/decathlon.com.au\/pages\/decathlon-afterpay-day",
-              "mobile_image": "shopify:\/\/shop_images\/Homepage_Carousel_Mobile___750_x_620px_-_V1_630dcda9-7597-4a28-b8d5-31ab9a8d5edb.png",
-              "mobile_image_alt": "AfterPay 20%OFF",
-              "tablet_image": "shopify:\/\/shop_images\/Homepage_Carousel_Desktop___2720_x_760px_-_V1.webp",
-              "tablet_image_alt": "AfterPay 20%OFF",
-              "desktop_image": "shopify:\/\/shop_images\/Homepage_Carousel_Desktop___2720_x_760px_-_V1.webp",
-              "desktop_image_alt": "AfterPay 20%OFF",
+              "title": "Fathers Day",
+              "link": "https:\/\/decathlon.com.au\/pages\/fathers-day-gifts",
+              "mobile_image": "shopify:\/\/shop_images\/father_s_day_HP_mobile_2.png",
+              "mobile_image_alt": "Fathers Day",
+              "tablet_image": "shopify:\/\/shop_images\/father_s_day_HP_desktop_6.png",
+              "tablet_image_alt": "Fathers Day",
+              "desktop_image": "shopify:\/\/shop_images\/father_s_day_HP_desktop_6.png",
+              "desktop_image_alt": "Up to 50% OFF Winter Products",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
@@ -3030,17 +3010,17 @@
               "countdown_font_size_d": "2.75rem"
             }
           },
-          "75ad43bc-a043-4224-b64d-bb90eee5c36f": {
+          "a8a332ab-c392-433e-805d-fe77c9930049": {
             "type": "carousel-slide",
             "settings": {
-              "title": "Kipsta Women",
-              "link": "https:\/\/decathlon.com.au\/collections\/women-soccer-collection",
-              "mobile_image": "shopify:\/\/shop_images\/Mobile_Banner_2_debad469-2a3c-4000-b5d8-3dd552cc2f28.jpg",
-              "mobile_image_alt": "Celebrate Football with KIPSTA",
-              "tablet_image": "shopify:\/\/shop_images\/Desktop_Banner_2_06d9653d-e462-4b1a-8d27-ee43f522825e.jpg",
-              "tablet_image_alt": "Celebrate Football with KIPSTA",
-              "desktop_image": "shopify:\/\/shop_images\/Desktop_Banner_2_fc73a71e-3a75-494f-8e35-9c5fe77ea17f.jpg",
-              "desktop_image_alt": "Celebrate Football with KIPSTA",
+              "title": "Basketball",
+              "link": "https:\/\/decathlon.com.au\/collections\/basketball-gear",
+              "mobile_image": "shopify:\/\/shop_images\/V1_Homepage_Carousel_Mobile_750_x_620px.png",
+              "mobile_image_alt": "Dribble to Victory with TARMAK by DECATHLON",
+              "tablet_image": "shopify:\/\/shop_images\/V1_Homepage_Carousel_Desktop_2720_x_760px.png",
+              "tablet_image_alt": "Dribble to Victory with TARMAK by DECATHLON",
+              "desktop_image": "shopify:\/\/shop_images\/V1_Homepage_Carousel_Desktop_2720_x_760px.png",
+              "desktop_image_alt": "Dribble to Victory with TARMAK by DECATHLON",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
@@ -3062,7 +3042,6 @@
           },
           "352c5dc6-94e7-4f7c-9059-771191d2a63c": {
             "type": "carousel-slide",
-            "disabled": true,
             "settings": {
               "title": "Broadway C&C 10%",
               "link": "https:\/\/decathlon.com.au\/collections\/best-sellers",
@@ -3072,36 +3051,6 @@
               "tablet_image_alt": "15%OFF C&C",
               "desktop_image": "shopify:\/\/shop_images\/Homepage_Carousel_Desktop_2720_x_760px_op1_4b90d24c-9f4d-485a-897c-07f35277d975.png",
               "desktop_image_alt": "",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "countdown_inline": false,
-              "button_title": "",
-              "link_url": "",
-              "link_title": "",
-              "link_new_window": false,
-              "countdown_date": "",
-              "countdown_time": "",
-              "countdown_position": "flex-start,flex-start",
-              "countdown_bold": false,
-              "countdown_italic": false,
-              "countdown_underline": false,
-              "countdown_colour": "#ffffff",
-              "countdown_font_size_m": "1.75rem",
-              "countdown_font_size_d": "2.75rem"
-            }
-          },
-          "9b2064e8-e0b1-4149-9940-d79d826ee231": {
-            "type": "carousel-slide",
-            "settings": {
-              "title": "Price Drop",
-              "link": "https:\/\/decathlon.com.au\/pages\/price-drop",
-              "mobile_image": "shopify:\/\/shop_images\/price_drop_750x620_086882b9-4480-494c-85f1-56d81f36d023.webp",
-              "mobile_image_alt": "Price Drop | Spend Less, Play More!",
-              "tablet_image": "shopify:\/\/shop_images\/price_drop_2720x760_3dba1fff-8f64-4d9f-b3ab-faa193e52759.webp",
-              "tablet_image_alt": "Price Drop | Spend Less, Play More!",
-              "desktop_image": "shopify:\/\/shop_images\/price_drop_2720x760_cbb53cec-acc6-4c30-8b22-851eaea363c4.webp",
-              "desktop_image_alt": "Price Drop | Spend Less, Play More!",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
@@ -3151,6 +3100,66 @@
               "countdown_font_size_d": "2.75rem"
             }
           },
+          "75ad43bc-a043-4224-b64d-bb90eee5c36f": {
+            "type": "carousel-slide",
+            "settings": {
+              "title": "Explore Nature",
+              "link": "https:\/\/decathlon.com.au\/collections\/hiking-trekking",
+              "mobile_image": "shopify:\/\/shop_images\/c._Homepage_Carousel_Mobile_750_x_620px.png",
+              "mobile_image_alt": "Explore Nature",
+              "tablet_image": "shopify:\/\/shop_images\/c._Homepage_Carousel_Desktop_2720_x_760px.png",
+              "tablet_image_alt": "Explore Nature",
+              "desktop_image": "shopify:\/\/shop_images\/c._Homepage_Carousel_Desktop_2720_x_760px.png",
+              "desktop_image_alt": "Explore Nature",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "countdown_inline": false,
+              "button_title": "",
+              "link_url": "",
+              "link_title": "",
+              "link_new_window": false,
+              "countdown_date": "",
+              "countdown_time": "",
+              "countdown_position": "flex-start,flex-start",
+              "countdown_bold": false,
+              "countdown_italic": false,
+              "countdown_underline": false,
+              "countdown_colour": "#ffffff",
+              "countdown_font_size_m": "1.75rem",
+              "countdown_font_size_d": "2.75rem"
+            }
+          },
+          "9b2064e8-e0b1-4149-9940-d79d826ee231": {
+            "type": "carousel-slide",
+            "settings": {
+              "title": "Price Drop",
+              "link": "https:\/\/decathlon.com.au\/pages\/price-drop",
+              "mobile_image": "shopify:\/\/shop_images\/price_drop_750x620_086882b9-4480-494c-85f1-56d81f36d023.webp",
+              "mobile_image_alt": "Price Drop | Spend Less, Play More!",
+              "tablet_image": "shopify:\/\/shop_images\/price_drop_2720x760_3dba1fff-8f64-4d9f-b3ab-faa193e52759.webp",
+              "tablet_image_alt": "Price Drop | Spend Less, Play More!",
+              "desktop_image": "shopify:\/\/shop_images\/price_drop_2720x760_cbb53cec-acc6-4c30-8b22-851eaea363c4.webp",
+              "desktop_image_alt": "Price Drop | Spend Less, Play More!",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "countdown_inline": false,
+              "button_title": "",
+              "link_url": "",
+              "link_title": "",
+              "link_new_window": false,
+              "countdown_date": "",
+              "countdown_time": "",
+              "countdown_position": "flex-start,flex-start",
+              "countdown_bold": false,
+              "countdown_italic": false,
+              "countdown_underline": false,
+              "countdown_colour": "#ffffff",
+              "countdown_font_size_m": "1.75rem",
+              "countdown_font_size_d": "2.75rem"
+            }
+          },
           "faa59cfa-5150-45ac-9b4f-c829689466e0": {
             "type": "carousel-slide",
             "disabled": true,
@@ -3181,47 +3190,16 @@
               "countdown_font_size_m": "1.75rem",
               "countdown_font_size_d": "2.75rem"
             }
-          },
-          "4356f112-9ea2-4af3-811f-74641cc98014": {
-            "type": "carousel-slide",
-            "disabled": true,
-            "settings": {
-              "title": "Winter Clearance",
-              "link": "https:\/\/decathlon.com.au\/collections\/winter-clearance-sale",
-              "mobile_image": "shopify:\/\/shop_images\/winter-sale-750x620_UPDATED.jpg",
-              "mobile_image_alt": "Up to 50% OFF Winter Products",
-              "tablet_image": "shopify:\/\/shop_images\/winter-sale-2720x760-UPDATED.jpg",
-              "tablet_image_alt": "Up to 50% OFF Winter Product",
-              "desktop_image": "shopify:\/\/shop_images\/winter-sale-2720x760-UPDATED.jpg",
-              "desktop_image_alt": "Up to 50% OFF Winter Products",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "countdown_inline": false,
-              "button_title": "",
-              "link_url": "",
-              "link_title": "",
-              "link_new_window": false,
-              "countdown_date": "",
-              "countdown_time": "",
-              "countdown_position": "flex-start,flex-start",
-              "countdown_bold": false,
-              "countdown_italic": false,
-              "countdown_underline": false,
-              "countdown_colour": "#ffffff",
-              "countdown_font_size_m": "1.75rem",
-              "countdown_font_size_d": "2.75rem"
-            }
           }
         },
         "block_order": [
+          "4356f112-9ea2-4af3-811f-74641cc98014",
           "a8a332ab-c392-433e-805d-fe77c9930049",
-          "75ad43bc-a043-4224-b64d-bb90eee5c36f",
           "352c5dc6-94e7-4f7c-9059-771191d2a63c",
-          "9b2064e8-e0b1-4149-9940-d79d826ee231",
           "f57ea9f0-9df8-43b0-a32f-a6924b91e17e",
-          "faa59cfa-5150-45ac-9b4f-c829689466e0",
-          "4356f112-9ea2-4af3-811f-74641cc98014"
+          "75ad43bc-a043-4224-b64d-bb90eee5c36f",
+          "9b2064e8-e0b1-4149-9940-d79d826ee231",
+          "faa59cfa-5150-45ac-9b4f-c829689466e0"
         ],
         "settings": {
           "max_percentage_height": "60vh",
@@ -3368,7 +3346,7 @@
       "641e58e9-60b9-4211-b6be-c6d3a1e99c7b": {
         "type": "six-tile-products",
         "settings": {
-          "title": "Find the perfect Sport gift for Dad!",
+          "title": "Trending Gifts for Dad",
           "section_collection": "gift-ideas-fathers-day"
         }
       }
@@ -3378,10 +3356,10 @@
       "fb3b021f-3e3e-451a-8118-3927f942e0ec",
       "163107170023281063",
       "59e7043f-7c55-4940-a0be-639824815d5c",
-      "eebe1a41-f3e2-4f63-8238-9c639f6d6b73",
+      "59bd4db6-bdb1-46c5-ab8e-ed6a847dddfe",
       "641e58e9-60b9-4211-b6be-c6d3a1e99c7b",
       "16316085202ea5cf79",
-      "59bd4db6-bdb1-46c5-ab8e-ed6a847dddfe",
+      "eebe1a41-f3e2-4f63-8238-9c639f6d6b73",
       "8f7fbe54-e3bd-494e-a735-df53c71ba559",
       "e2c58312-d869-42de-abd5-868dc6fc879c",
       "163107313302287377"

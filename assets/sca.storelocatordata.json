@@ -406,5 +406,27 @@
     "postal": "2170",
     "priority": 1,
     "apply_to_type": 1
+  },
+  {
+    "lat": "-33.783962736495",
+    "lng": "150.85349678993225",
+    "id": 13871890,
+    "name": "Decathlon Partner - Just Sports Eastern Creek",
+    "description": "You can now order your products online and collect them from one of our partners.",
+    "phone": "(02) 9625 3040",
+    "tagsvalue": "Click & Collect in 2 business days",
+    "tags": [
+      {
+        "tag": "Click & Collect in 2 business days"
+      }
+    ],
+    "schedule": "<br>\r<br><strong>Store Hours<\/strong>\r<br>\r<br>Monday: 10:00am - 6:00pm\r<br>Tuesday: 10:00am - 6:00pm\r<br>Wednesday: 10:00am - 6:00pm\r<br>Thursday: 10:00am - 6:00pm\r<br>Friday: 10:00am - 6:00pm\r<br>Saturday: 10:00am - 6:00pm\r<br>Sunday: 10:00am - 4:00pm\r<br><br>",
+    "address": "159 Rooty Hill Road S - Eastern Creek Quarter",
+    "country": "Australia",
+    "state": "New South Wales",
+    "city": "Eastern Creek",
+    "postal": "2766",
+    "priority": 1,
+    "apply_to_type": 1
   }
 ]

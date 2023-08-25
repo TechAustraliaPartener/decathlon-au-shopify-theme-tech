@@ -662,7 +662,7 @@
       "disabled": "Disabled",
       "expired": "Expired on {{ expiry }}",
       "active": "Expires on {{ expiry }}",
-      "redeem": "Use this code at checkout to redeem your gift card",
+      "redeem": "Use this code at checkout online to redeem your gift card",
       "shop_link": "Start shopping",
       "print": "Print",
       "add_to_apple_wallet": "Add to Apple Wallet"

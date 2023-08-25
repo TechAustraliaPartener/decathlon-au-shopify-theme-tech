@@ -528,14 +528,18 @@ svg {
 .de-PageWrap-logoWrap {
     display: flex;
 }
+.de-PageWrap-logo.maximize-container{
+    overflow: hidden;
+}
 
-.de-PageWrap-logo.maximize-container a{
+/* .de-PageWrap-logo.maximize-container a{
   height: 100%;
 }
 
 .de-PageWrap-logo.maximize-container img{
   height: 105%;
 }
+**/
 @media (min-width:60em) {
   .de-PageWrap-logo {
     margin: 6.128px;
@@ -545,15 +549,17 @@ svg {
     padding-right: 3px;
   }
   .de-PageWrap-logo.maximize-container{
-    height: 100%;
+    margin: 0 6.128px;
   }
+  
   .de-PageWrap-logo.maximize-container a{
     height: 100%;
     max-width: 200px;
   }
   
   .de-PageWrap-logo.maximize-container img{
-    height: 105%;
+    height: 120%;
+    margin-top: -5%;
   }
 }
 .de-PageWrap-logoObject {
