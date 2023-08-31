@@ -20,8 +20,10 @@
 <div class="de-ProductFulfillment de-ProductPageTopShelf-fulfillment {{ cnc_active_v2_class }}">
   <div class="de-u-padBottom06" id="fulfillment-info-container">
     <div class="de-u-flex de-ProductFulfillment-option">
-      {% include 'assets-icons-returns'
-        with class: 'de-u-textBlack de-Icon de-u-textGrow6 de-u-spaceRight03' %}
+
+      <div class="uploaded-svg-icon">
+        {{ settings.returns_icon | img_url | img_tag }}
+      </div>
 
       <p class="de-u-spaceNone de-u-textMedium">
         {% assign use_fallback_label = false %}
@@ -90,8 +92,11 @@
     </div>
 
     <div class="de-u-flex de-ProductFulfillment-option">
-      {% include 'assets-icons-delivery-truck'
-        with class: 'de-u-textBlack de-Icon de-u-textGrow6 de-u-spaceRight03' %}
+
+
+      <div class="uploaded-svg-icon">
+        {{ settings.shipping_icon | img_url | img_tag }}
+      </div>
 
       <p class="de-u-spaceNone de-u-textMedium">
         {% unless bulk_shipping %}

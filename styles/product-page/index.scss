@@ -10,3 +10,13 @@
 .de-ProductPageTopShelf .de-ProductPageTopShelf-fulfillment.--cnc-v2-active {
   border-bottom: 3px solid #ffea28;
 }
+
+.uploaded-svg-icon {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.uploaded-svg-icon svg {
+  min-width: 28px;
+  height: auto;
+}

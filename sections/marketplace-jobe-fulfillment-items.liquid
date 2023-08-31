@@ -2,7 +2,9 @@
   {% for block in section.blocks %}
     {% if block.settings.title != blank %}
       <div class="de-u-flex de-ProductFulfillment-option">
-        {{ block.settings.svg_icon }}
+        <div class="uploaded-svg-icon">
+          {{ block.settings.icon_file | img_url | img_tag }}
+        </div>
         <p class="de-u-spaceNone de-u-textMedium">{{ block.settings.title }}</p>
       </div>
     {% endif %}
@@ -39,8 +41,8 @@
             "label": "Title"
           },
           {
-            "type": "html",
-            "id": "svg_icon",
+            "type": "image_picker",
+            "id": "icon_file",
             "label": "SVG Icon"
           }
         ]

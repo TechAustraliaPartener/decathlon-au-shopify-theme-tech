@@ -410,13 +410,23 @@
       },
       {
         "id": "product_returns_text",
-        "type": "text",
+        "type": "inline_richtext",
         "label": "Returns"
       },
       {
+        "type": "image_picker",
+        "id": "returns_icon",
+        "label": "Returns Icon"
+      },
+      {
         "id": "product_shipping_text",
-        "type": "text",
+        "type": "inline_richtext",
         "label": "Shipping"
+      },
+      {
+        "type": "image_picker",
+        "id": "shipping_icon",
+        "label": "Shipping Icon"
       },
       {
         "type": "header",
