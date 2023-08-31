@@ -113,8 +113,10 @@ function addMasterStoresData(inventoryItem, item) {
   var onlineInventoryLocs = locs.filter(loc => window.onlineInventoryStores.indexOf(loc.name) !== -1);
   var onlineInventoryItem;
 
+  // console.log('onlineInventoryLocs', onlineInventoryLocs);
+
   if (onlineInventoryLocs.length > 0) {
-    var totalAvailable = onlineInventoryLocs.map(loc => loc.available).reduce((a, b) => a + b, 0);
+    var totalAvailable = onlineInventoryLocs.map(loc => loc.available).reduce((a, b) => +a + +b, 0);
 
     onlineInventoryItem = {
       name: 'Delivery',
@@ -272,7 +274,11 @@ const initCartDisplay = cart => {
           pickupStores: window.masterStores.filter(loc => window.ccStores.indexOf(loc.name) !== -1),
           favStore: window.vars.favStore || {},
           deliveryOption: window.vars.deliveryOption,
-          override: false
+          override: false,
+          spinnerLoader: window.spinnerLoaderUrl,
+          maxQtyResetMessage: window.maxQtyResetMessage,
+          maxQtyResetDuration: window.maxQtyResetDuration * 1000,
+          resettingCartItem: null
         },
         methods: {
           forceRerender() {
@@ -295,10 +301,29 @@ const initCartDisplay = cart => {
           money(price) {
             return `$${(price / 100).toFixed(2)}`;
           },
-          updateQuantity(lineIndex, newQty) {
-            console.log('updateQuantity');
-            console.log(lineIndex, newQty);
-            CartJS.updateItem(lineIndex, newQty);
+          updateQuantity(lineIndex, newQty, item) {
+            const currentMax = this.currentMax(item);
+            var vueCartThis = this;
+
+            // console.log('updateQuantity');
+            // console.log(lineIndex, newQty, item, currentMax, this);
+
+
+            if(+newQty > +currentMax) {
+              
+              this.resettingCartItem = lineIndex;
+
+              window.setTimeout(() => {
+                item.quantity = +currentMax;
+                CartJS.updateItem(lineIndex, +currentMax);
+                
+                vueCartThis.resettingCartItem = null;
+              }, this.maxQtyResetDuration);
+
+            } else {
+              CartJS.updateItem(lineIndex, newQty);
+            }
+
           },
           setFavStore(event) {
             console.log('setFavStore');
@@ -387,11 +412,15 @@ const initCartDisplay = cart => {
           currentMax(item) {
             // Let availabilities = item.locations.map(a => a.available);
             // return Math.max(checkLoc);
-    
+
             const app = this;
     
             let checkLoc = item.delivery;
     
+
+            // console.log('currentMax 2', checkLoc, app, this.checkIfItemIsAllowedToOversell(item.id), this.checkIfItemIsNonInventory(item))
+    
+
             if (app.deliveryOption !== 'Delivery') {
               checkLoc = item.locations.find(obj => {
                 return obj.name === app.favStore.name;
@@ -400,6 +429,7 @@ const initCartDisplay = cart => {
     
             // We only support overselling for delivery only
             if (app.deliveryOption === 'Delivery' && checkLoc.available === 0) {
+
               checkLoc.available = this.checkIfItemIsAllowedToOversell(item.id) || this.checkIfItemIsNonInventory(item)
             }
     
@@ -442,7 +472,8 @@ const initCartDisplay = cart => {
             const inventoryQuantity = variant ? variant.inventory_quantity : undefined;
             const inventoryPolicy = variant ? variant.inventory_policy : undefined;
             const variantIsAllowedToOversell = inventoryPolicy === 'continue' && inventoryQuantity > oversellThreshold;
-            // console.log({
+
+            // console.log('checkIfItemIsAllowedToOversell',{
             //   oversellThreshold,
             //   inventoryQuantity,
             //   inventoryPolicy,
@@ -622,6 +653,9 @@ const initCartDisplay = cart => {
             for (let i = app.cart.items.length - 1; i >= 0; i--) {
               const item = app.cart.items[i];
               const currentMax = app.currentMax(item);
+
+              // console.log('currentMax', currentMax, item.quantity)
+
               if (item.quantity > currentMax) {
                 // instead of updating product quantity, simply remove the unavailable products instead of adding to the array to update quantities
                 if(currentMax < 1){

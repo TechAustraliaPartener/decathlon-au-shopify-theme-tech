@@ -661,6 +661,13 @@
             "label": "Page"
           }
         ]
+      },
+      {
+        "type": "text",
+        "id": "cart_reset_delay",
+        "label": "Cart item reset delay",
+        "default": "1",
+        "info": "Put in seconds value"
       }
     ]
   },

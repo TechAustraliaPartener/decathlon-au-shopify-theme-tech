@@ -116,7 +116,35 @@
 
   }
 
+  .reset-loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .table--responsive.cart-table .reset-loader img {
+    flex: 1;
+    flex-grow: 0;
+    min-width: 20px;
+    max-width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    margin-left: 0;
+  }
+
+  @media screen and (min-width: 768px) {
+    .reset-loader {
+      justify-content: flex-start;
+    }
+  }
+
 </style>
+
+<script>
+  window.spinnerLoaderUrl = '{{ 'decathlon-loader.gif' | asset_url }}';
+  window.maxQtyResetMessage = '{{ 'cart.general.resetting_max_qty' | t }}';
+  window.maxQtyResetDuration = {{ settings.cart_reset_delay }};
+</script>
 
 {% if settings['is_lookbook'] == false %}
 
@@ -161,7 +189,7 @@
       Loading cart...
     </div>
 
-    <div id="cartDisplay" class="de-u-fade" ref="cartDisplay">
+    <div id="cartDisplay" class="de-u-fade" ref="cartDisplay" >
       {% if settings.click_collect_version == 'v1' %}
       <div class="cart-select-store">
         <div class="d-flex-column">
@@ -220,12 +248,18 @@
                     <div class="item-messages" v-html="availabilityMessages(item)">
 
                     </div>
+                    
+                    
+                    <div class="reset-loader" v-if="resettingCartItem == (index + 1)">
+                      <img :src="spinnerLoader" width="15" height="15">
+                      {{ maxQtyResetMessage }}
+                    </div>
                   </td>
                   {% endraw %}<td data-label="{{ 'cart.label.price' | t }}">{% raw %}
                     <span class="h6 text-center" v-text="money(item.price)"></span>
                   </td>
                   {% endraw %}<td data-label="{{ 'cart.label.quantity' | t }}" class="text-center">{% raw %}
-                    <input type="number" class="js-de-quantity" name="updates[]" v-bind:id="'updates_' + item.id" v-model:value="item.quantity" min="1" style="text-align: center; max-width: 75px;" v-bind:data-price="item.price" v-bind:data-item-variant="item.variant_id" v-bind:data-row="index" v-on:change="updateQuantity(index + 1, $event.target.value)" v-bind:max="currentMax(item)">
+                    <input type="number" class="js-de-quantity" name="updates[]" v-bind:id="'updates_' + item.id" v-model:value="item.quantity" min="1" style="text-align: center; max-width: 75px;" v-bind:data-price="item.price" v-bind:data-item-variant="item.variant_id" v-bind:data-row="index" v-on:change="updateQuantity(index + 1, $event.target.value, item)" v-bind:max="currentMax(item)">
                   </td>
                   {% endraw %}<td data-label="{{ 'cart.label.total' | t }}" class="text-right">{% raw %}
                     <span class="h6 js-de-line_price" v-text="money(item.line_price)"></span>
