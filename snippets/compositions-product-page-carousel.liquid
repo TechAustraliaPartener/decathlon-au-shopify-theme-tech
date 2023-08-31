@@ -114,6 +114,8 @@
     class="de-CarouselContainer
     {% if color == activeColor %}de-is-active{% endif %}
     js-de-SlickCarouselContainer"
+    data-slides-total="{{ product_images | size }}"
+    data-current-template="{{ template }}"
     aria-roledescription="carousel"
     aria-label="Product Image Gallery">
     {% comment %}

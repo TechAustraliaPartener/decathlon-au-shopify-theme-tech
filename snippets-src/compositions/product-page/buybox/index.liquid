@@ -11,9 +11,15 @@
 
 
 <div class="de-ProductPageTopShelf-fulfillment-location">
-{% include 'compositions-product-page-buybox-fulfillment-info' %}
-{% include 'compositions-product-page-buybox-locations-inventory' %}
+  {% include 'compositions-product-page-buybox-fulfillment-info' %}
+
+  {% unless template == "product.marketplace-jobe" %}
+    {% include 'compositions-product-page-buybox-locations-inventory' %}
+  {% else %}
+    <div class="marketplace-jobe-lime-divider"></div>
+  {% endunless %}
 </div>
+
 {% include 'compositions-product-page-buybox-footer' %}
 
 {% capture post_add_to_cart_drawer_content %}

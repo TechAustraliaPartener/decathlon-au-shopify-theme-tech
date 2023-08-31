@@ -13,7 +13,6 @@
   {% assign template_suffix = template.suffix | capitalize %}
   {% assign template_name = template_name | append: ' ' | append: template_suffix %}
 {% endif %}
-
 {% include 'section-clips' %}
 
 {% comment %} `product.metafields.global.videos` returns a hash list {% endcomment %}
@@ -285,7 +284,7 @@
         <span class="visually-hidden">Additional </span>Product Information
       </h2>
     </header>
-    {% if template_name == 'Product Marketplace' or template_name == 'Product Marketplace-duplicate'  %}
+    {% if template_name == 'Product Marketplace' or template_name == 'Product Marketplace-duplicate'  or template_name == 'Product Marketplace-jobe'  %}
       {% capture product_information_accordion_content %}
         <div class="de-u-spaceTop6">
           {{ product.content }}

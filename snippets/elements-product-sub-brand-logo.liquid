@@ -46,7 +46,7 @@
 {% endcapture %}
 
 <div class="sub-brand-container">
-  <a class="sub-brand-link">
+  <a href="/{{ brand_logo_handle }}" class="sub-brand-link">
   {% if product.vendor == no_vendor_testing
         or product.vendor == no_vendor_production
         or logo contains 'Liquid error' %}

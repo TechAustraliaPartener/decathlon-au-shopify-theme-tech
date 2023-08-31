@@ -1,0 +1,50 @@
+<div id="marketplace-duplicate-fulfillment-items-template" class="de-u-hidden">
+  {% for block in section.blocks %}
+    {% if block.settings.title != blank %}
+      <div class="de-u-flex de-ProductFulfillment-option">
+        {{ block.settings.svg_icon }}
+        <p class="de-u-spaceNone de-u-textMedium">{{ block.settings.title }}</p>
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+
+{% if section.blocks.size > 0 %}
+  <script>
+    $(document).ready(function() {
+      var fulfillmentItemsTemplateContainer = document.querySelector('#marketplace-duplicate-fulfillment-items-template');
+      var fulfillmentItemsContainer = document.querySelector('#fulfillment-info-container');
+      console.log('hey', fulfillmentItemsTemplateContainer, fulfillmentItemsContainer);
+      
+      if(fulfillmentItemsContainer && fulfillmentItemsTemplateContainer) {
+        fulfillmentItemsContainer.innerHTML = fulfillmentItemsTemplateContainer.innerHTML;
+      }
+    })
+  </script>
+{% endif %} 
+
+{% schema %}
+  {
+    "name": "Delivery info items",
+    "settings": [
+    ],
+    "blocks": [
+      {
+        "type": "delivery_info_items",
+        "name": "Delivery info item",
+        "settings": [
+          {
+            "type": "inline_richtext",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "html",
+            "id": "svg_icon",
+            "label": "SVG Icon"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

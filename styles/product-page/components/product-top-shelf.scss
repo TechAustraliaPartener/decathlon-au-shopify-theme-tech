@@ -86,3 +86,10 @@
 .de-ProductPageTopShelf-addToCart.product-marketplace-template {
   padding: 20px 0 10px;
 }
+
+
+@media (min-width: $breakpoint-lg) {
+  .marketplace-jobe-lime-divider {
+    border-bottom: 3px solid $color-lime;
+  }
+}

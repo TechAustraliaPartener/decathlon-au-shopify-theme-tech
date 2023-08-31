@@ -20,6 +20,7 @@ const THUMBNAIL_CAROUSEL_ACTIVE_SELECTOR = `${THUMBNAIL_CAROUSEL_SELECTOR}.${IS_
 const SLIDE_CAROUSEL_SELECTOR = `.${JS_PREFIX}SlickCarouselSlide`;
 const $galleryCounter = $(`.${JS_PREFIX}ProductGallery-countValue`);
 
+
 /**
  * Global active carousel index
  */
@@ -54,6 +55,21 @@ const THUMB_SLIDES_SCROLL_GATE = 5;
  * Utility class that adds cursor: grab;
  */
 const THUMB_CURSOR_GRAB_CLASS = `${CSS_UTILITY_PREFIX}cursorGrab`;
+
+/**
+ * DOM element that gets the carousel container;
+ */
+const carouselContainer = document.querySelector(CONTAINER_CAROUSEL_SELECTOR);
+
+/**
+ * Gets the total number of slides
+ */
+const dataSlidesTotal = carouselContainer && carouselContainer.getAttribute('data-slides-total');
+
+/**
+ * Gets the current page template
+ */
+const dataCurrentTemplate = carouselContainer && carouselContainer.getAttribute('data-current-template');
 
 
 /**
@@ -263,12 +279,23 @@ const initCarousel = () => {
     });
     loadImages();
     updateThumbnailCursors(activeSlideTotal);
-    setTimeout(function() {
-      $('.de-CarouselFeature .slick-track').animate({
-        left: '-100px'}, 1000, "swing", function(){
-        $(this).animate({left:'0'})
-      });
-    }, 1000)
+
+    if(dataCurrentTemplate == 'product.marketplace-jobe' && +dataSlidesTotal > 1) {
+      setTimeout(function() {
+        $('.de-CarouselFeature .slick-track').animate({
+          left: '-100px'}, 1000, "swing", function(){
+          $(this).animate({left:'0'})
+        });
+      }, 1000)
+    } else if (dataCurrentTemplate != 'product.marketplace-jobe') {
+      setTimeout(function() {
+        $('.de-CarouselFeature .slick-track').animate({
+          left: '-100px'}, 1000, "swing", function(){
+          $(this).animate({left:'0'})
+        });
+      }, 1000)
+    }
+
   });
 
   
@@ -395,6 +422,7 @@ const animateBounce  = () => {
  * Put all functions that need to run on product-page load here
  */
 export const init = () => {
+
   initAllSlideTotalsMatch();
   
   window.setTimeout(function() {
@@ -402,5 +430,11 @@ export const init = () => {
   }, 2000);
 
   handleWindowResize();
-  setTimeout(animateBounce, 1000);
+
+  if(dataCurrentTemplate == 'product.marketplace-jobe' && +dataSlidesTotal > 1) {
+    setTimeout(animateBounce, 1000);
+  } else if (dataCurrentTemplate != 'product.marketplace-jobe') {
+    setTimeout(animateBounce, 1000);
+  }
+
 };
