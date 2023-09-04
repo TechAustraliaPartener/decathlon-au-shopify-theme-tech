@@ -209,12 +209,11 @@
       let variantImages = product.meta.variants?.images ? JSON.parse(product.meta.variants.images) : null;
       let html = '';
 
-      if (variantImages){
+      if (variantImages && variantImages.thumbs?.length > 0){
         let variantThumbs = 'thumbs' in variantImages ? variantImages.thumbs : [];
-
-        console.log('carousel init...');
+        /*console.log('carousel init...');
         console.log(product);
-        console.log(variantThumbs);
+        console.log(variantThumbs);*/
         let modifierClasses = '';
 
         if(variantThumbs.length == 1) {
@@ -228,7 +227,7 @@
         variantThumbs.forEach((variant) => {
           html += '<li class="splide__slide">';
           html += '<a href="/products/' + product.handle + '?source=algolia">';
-          html += '<img alt="' + product.title + '" src="' + variant.filename + '" onError="this.onerror=null;this.src=\'' + product.product_image + '\'" style="max-width: 249.21px; max-height: 249.21px;">';
+          html += '<img alt="' + product.title + '" src="' + variant.filename + '" onError="this.onerror=null;this.src=\'' + product.product_image + '\'">';
           html += '</a>';
           html += '</li>';
         });
@@ -238,13 +237,13 @@
         html += '</section>';
       }
       else {
-        let modifierClasses = '';
+        let modifierClasses = ' --hide-main-nav-arrows';
         html += '<section class="main-carousel collection-carousel splide'+ modifierClasses +'">';
         html += '<div class="splide__track">';
         html += '<ul class="splide__list">';
         html += '<li class="splide__slide">';
         html += '<a href="/products/' + product.handle + '?source=algolia">';
-        html += '<img alt="'+ product.title + '" src="' + product.product_image +'" style="max-width: 249.21px; max-height: 249.21px;">';
+        html += '<img alt="'+ product.title + '" src="' + product.product_image +'">';
         html += '</a>';
         html += '</li>';
         html += '</ul>';
@@ -260,7 +259,7 @@
       let variantImages = product.meta.variants?.images ? JSON.parse(product.meta.variants.images) : null;
       let html = '';
 
-      if (variantImages){
+      if (variantImages && variantImages.thumbs?.length > 0){
         let variantThumbs = 'thumbs' in variantImages ? variantImages.thumbs : [];
         let modifierClasses = '';
         
@@ -272,9 +271,9 @@
           modifierClasses += ' --thumbs-less-than-max'
         }
 
-        console.log('carousel thumbs init...');
+        /*console.log('carousel thumbs init...');
         console.log(product);
-        console.log(variantThumbs);
+        console.log(variantThumbs);*/
 
 
         html += '<section class="thumbnail-carousel collection-carousel splide '+ modifierClasses +'" data-variants-count="'+ variantThumbs.length +'">';
@@ -292,7 +291,7 @@
         html += '</section>';
       }
       else {
-        let modifierClasses = ' --hide-thumbnail-nav-arrows'
+        let modifierClasses = ' --hide-thumbnail-nav-arrows --thumbs-less-than-max'
         html += '<section class="thumbnail-carousel collection-carousel splide '+ modifierClasses +'" data-variants-count="1">';
         html += '<div class="splide__track">';
         html += '<ul class="splide__list">';
@@ -479,22 +478,22 @@
       return `<div class="product-tile-shipping-info de-u-textShrink1 de-u-textMedium">${ free_pickup }</div>`
     },
     getRRPPrices: function getRRPPrices() {
-      console.log('Checking RRP');
+      //console.log('Checking RRP');
       try {
         if (!window.vars.show_product_rrp_in_algolia_search_result) {
-          console.log('RRP is disabled in the theme settings');
+          //console.log('RRP is disabled in the theme settings');
           return ''
         }
 
         if (!this || !this.meta || !this.meta.global || !this.meta.global.model_RRPprices) {
-          console.log('No RRP', this.meta.global.model_RRPprices);
+          //console.log('No RRP', this.meta.global.model_RRPprices);
           return '';
         }
 
         var rrp_prices = JSON.parse(this.meta.global.model_RRPprices);
 
         if (!rrp_prices.rrp_prices) {
-          console.log('No RRP', this.meta.global.model_RRPprices);
+          //console.log('No RRP', this.meta.global.model_RRPprices);
           return '';
         }
 
@@ -503,12 +502,12 @@
         });
 
         if (!rrp_to_show || !rrp_to_show.PriceRRP) {
-          console.log('No RRP', this.meta.global.model_RRPprices);
+          //console.log('No RRP', this.meta.global.model_RRPprices);
           return '';
         }
 
         if (rrp_to_show.PriceRRP < this.price) {
-          console.log('No RRP', this.meta.global.model_RRPprices);
+          //console.log('No RRP', this.meta.global.model_RRPprices);
           return '';
         }
 
@@ -553,6 +552,6 @@
 }(algoliaShopify));
 
 const handleize = (text) => {
-  console.log(text);
+  //console.log(text);
   return text.toLowerCase().replace(/[^\w\u00C0-\u024f]+/g, "-").replace(/^-+|-+$/g, "").toLocaleString();
 };

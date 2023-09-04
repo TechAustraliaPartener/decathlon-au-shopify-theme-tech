@@ -11,7 +11,7 @@
     "use_algolia": true,
     "show_write_a_review": false,
     "extra_details": "customer_fields",
-    "gtm_id": "GTM-N7M3BZ",
+    "gtm_id": "GTM-M9L3S7N4",
     "google_site_id": "H3gvuVhdiwAhFiz1lmYzb5IL7-c6n_lg9iUZSSik0ZM",
     "pinterest_id": "15f1bb70fdfd58ef2b29026440052233",
     "pickup_display": "au",
@@ -32,10 +32,10 @@
     "header_store_label": "Find a Store",
     "header_sign_in_label": "Login",
     "megamenu_set_for_all": "override",
-    "megamenu_image": "shopify:\/\/shop_images\/Fathers-Day-2023-mobile_18b05300-7873-4c16-88f7-d70ade1bee11.webp",
-    "megamenu_title": "Father's Day Gift Ideas",
+    "megamenu_image": "shopify:\/\/shop_images\/SPRING_MEGA_MENU_BANNER_315_x_235_px.png",
+    "megamenu_title": "Spring Sale Now On!",
     "megamenu_subtitle": "",
-    "megamenu_link": "https:\/\/decathlon.com.au\/collections\/gift-ideas-fathers-day",
+    "megamenu_link": "https:\/\/decathlon.com.au\/collections\/spring-sale",
     "megamenu_bg_colour": "#1c82c1",
     "custom_fields_terms_conditions": "I agree to the <a href=\"\/pages\/terms-and-conditions-membership\" target=\"_blank\">T&Cs<\/a> and <a href=\"\/pages\/privacy-policy\" target=\"_blank\">Privacy Policy<\/a> for creating an account.",
     "is_lookbook": false,
@@ -260,8 +260,8 @@
     "review_title": "We would love to hear from you!",
     "review_text": "Leave a review",
     "review_url": "https:\/\/reviews.decathlon.com\/en_AU\/review\/new\/1126\/6\/DECATHLON-AU\/1",
-    "discount_code_redeem_gift_card_message": "You can redeem your Decathlon gift card at the Payment step.",
-    "discount_code_redeem_gift_card_payment": "If you have a Decathlon gift card you'd like to use, <a href=\"#giftCardModal\" rel=\"modal:open\">get your code here<\/a>.",
+    "discount_code_redeem_gift_card_message": "If you are trying to redeem a gift card purchased in-store, contact our customer service team via live chat or at <a href=\"mailto:contact@decathlon.com.au?subject=Physical%20Gift%20Card%20Redemption&body=Hello,%0A%0AI%20would%20like%20to%20exchange%20my%20Decathlon%20gift%20card%20to%20be%20used%20online%3A%20INSERT%20YOUR%20PHYSICAL%20GIFT%20CARD%20NUMBER%20HERE%0A%0AHere%20is%20the%20email%20I%20would%20like%20the%20new%20gift%20card%20to%20be%20sent%20to%3A%20INSERT%20YOUR%20EMAIL%20HERE%0A%0AThank%20you,\" target=\"_blank\">contact@decathlon.com.au<\/a>.",
+    "discount_code_redeem_gift_card_payment": "If you are trying to redeem a gift card purchased in-store, contact our customer service team via live chat or at <a href=\"mailto:contact@decathlon.com.au?subject=Physical%20Gift%20Card%20Redemption&body=Hello,%0A%0AI%20would%20like%20to%20exchange%20my%20Decathlon%20gift%20card%20to%20be%20used%20online%3A%20INSERT%20YOUR%20PHYSICAL%20GIFT%20CARD%20NUMBER%20HERE%0A%0AHere%20is%20the%20email%20I%20would%20like%20the%20new%20gift%20card%20to%20be%20sent%20to%3A%20INSERT%20YOUR%20EMAIL%20HERE%0A%0AThank%20you,\" target=\"_blank\">contact@decathlon.com.au<\/a>.",
     "invalid_credentials_message": "Looks like something's not quite right, please check your card number and PIN.",
     "general_error_message": "Looks like something went wrong, please <a href=\"https:\/\/help.decathlon.com.au\/support\/home\" target=\"_blank\">contact us<\/a> to use your gift card.",
     "splash_page_enable": false,
@@ -2493,7 +2493,7 @@
             "type": "category",
             "settings": {
               "title": "Mens",
-              "image": "shopify:\/\/shop_images\/men_WEDZE_SKI_P_JKT_100_H_NEW_RED_AH23-removebg-preview_1_009cf6ad-3059-4be5-89d1-e9b00b37d4ee.png",
+              "image": "shopify:\/\/shop_images\/QUECHUA_COLLECTION_FAST_HIKING_PE22-removebg-preview.png",
               "text_color": "#090b0a",
               "background_color": "#eff1f1",
               "hover_background_color": "#f3f3f3",
@@ -2504,7 +2504,7 @@
             "type": "category",
             "settings": {
               "title": "Womens",
-              "image": "shopify:\/\/shop_images\/WEDZE_SKI_P_JKT_180_W_WHITE_AH23-removebg-preview_cab350a0-da90-4aae-adf6-d4b422c0addf.png",
+              "image": "shopify:\/\/shop_images\/TRIBORD_VESTE_SAILING_100_F_BLANC_NEW_PE23-removebg-preview.png",
               "text_color": "#090b0a",
               "background_color": "#eff1f1",
               "hover_background_color": "#f3f3f3",
@@ -2515,7 +2515,7 @@
             "type": "category",
             "settings": {
               "title": "KIDS",
-              "image": "shopify:\/\/shop_images\/luge_bebe_xwarm_AH19-removebg-preview-removebg-preview_c5f0b41a-c2d0-445f-8df8-ec5d14af05fd.png",
+              "image": "shopify:\/\/shop_images\/QUECHUA_CN_MH100_KID_JKT_PE22-removebg-preview.png",
               "text_color": "#090b0a",
               "background_color": "#eff1f1",
               "hover_background_color": "#f3f3f3",
@@ -2526,11 +2526,11 @@
             "type": "category",
             "settings": {
               "title": "Accessories",
-              "image": "shopify:\/\/shop_images\/WEDZE_SKI_P_GL_100_LIGHT_NOIR-removebg-preview_c9b7dd8e-fce2-4ad6-adab-45c79913b4c7.png",
-              "text_color": "#1f1f1f",
+              "image": "shopify:\/\/shop_images\/Hiking-accs_v2.png",
+              "text_color": "#090b0a",
               "background_color": "#eff1f1",
-              "hover_background_color": "#eff1f1",
-              "link": "https:\/\/decathlon.com.au\/collections\/snow-clothing-accessories"
+              "hover_background_color": "#f3f3f3",
+              "link": "https:\/\/decathlon.com.au\/collections\/hiking-accessories"
             }
           },
           "38cf3fa3-23be-4a21-8ce3-5d37ded9f8f4": {
@@ -2821,10 +2821,11 @@
         "blocks": {
           "b706be1c-0750-47c9-b0f1-8278eddb14fd": {
             "type": "announcement_messages",
+            "disabled": true,
             "settings": {
               "countdown_date": "",
               "countdown_time": "",
-              "message": "<p>50% off shipping for VIC & QLD orders. Ends Sunday. T&Cs apply.<\/p>",
+              "message": "<p>Last Minute Father's Day Ideas. FREE 1hr Click & Collect available. <a href=\"https:\/\/decathlon.com.au\/collections\/gift-ideas-fathers-day\" title=\"https:\/\/decathlon.com.au\/collections\/gift-ideas-fathers-day\">SHOP NOW<\/a><\/p>",
               "post_message": "",
               "url": "",
               "bg_colour": "#007dbc",
@@ -2834,7 +2835,6 @@
           },
           "2e019f93-7554-4748-a4f2-22ea0c56c29a": {
             "type": "announcement_messages",
-            "disabled": true,
             "settings": {
               "countdown_date": "",
               "countdown_time": "",
@@ -2980,8 +2980,39 @@
       "cad91577-4dc5-49d8-bdfd-1bae2b62b6bb": {
         "type": "hero-banner",
         "blocks": {
+          "6c90d478-8b23-4f85-90c0-01ba430dacb3": {
+            "type": "carousel-slide",
+            "settings": {
+              "title": "Spring Sale",
+              "link": "https:\/\/decathlon.com.au\/pages\/spring-sale",
+              "mobile_image": "shopify:\/\/shop_images\/SPRING_MOBILE_BANNER_750_x_620px_4cf7b347-1a3c-4402-bc23-a988f5aa0201.png",
+              "mobile_image_alt": "Spring Sale | Gear up & Head out!",
+              "tablet_image": "shopify:\/\/shop_images\/SPRING_DESKTOP_BANNER_2720_x_760px_37d7f2b0-35a2-4c4f-8b62-556e83ac074b.png",
+              "tablet_image_alt": "Spring Sale | Gear up & Head out!",
+              "desktop_image": "shopify:\/\/shop_images\/SPRING_DESKTOP_BANNER_2720_x_760px_37d7f2b0-35a2-4c4f-8b62-556e83ac074b.png",
+              "desktop_image_alt": "Spring Sale | Gear up & Head out!",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "countdown_inline": false,
+              "button_title": "",
+              "link_url": "",
+              "link_title": "",
+              "link_new_window": false,
+              "countdown_date": "",
+              "countdown_time": "24:00",
+              "countdown_position": "flex-start,center",
+              "countdown_bold": false,
+              "countdown_italic": false,
+              "countdown_underline": false,
+              "countdown_colour": "#1a2a34",
+              "countdown_font_size_m": "1.75rem",
+              "countdown_font_size_d": "2.75rem"
+            }
+          },
           "4356f112-9ea2-4af3-811f-74641cc98014": {
             "type": "carousel-slide",
+            "disabled": true,
             "settings": {
               "title": "Fathers Day",
               "link": "https:\/\/decathlon.com.au\/pages\/fathers-day-gifts",
@@ -3040,36 +3071,6 @@
               "countdown_font_size_d": "2.75rem"
             }
           },
-          "352c5dc6-94e7-4f7c-9059-771191d2a63c": {
-            "type": "carousel-slide",
-            "settings": {
-              "title": "Broadway C&C 10%",
-              "link": "https:\/\/decathlon.com.au\/collections\/best-sellers",
-              "mobile_image": "shopify:\/\/shop_images\/10_cc_750x620_bda600b1-7fb0-4c41-a98a-3ff245968b36.webp",
-              "mobile_image_alt": "Broadway C&C 10%",
-              "tablet_image": "shopify:\/\/shop_images\/Homepage_Carousel_Desktop_2720_x_760px_op1_4b90d24c-9f4d-485a-897c-07f35277d975.png",
-              "tablet_image_alt": "15%OFF C&C",
-              "desktop_image": "shopify:\/\/shop_images\/Homepage_Carousel_Desktop_2720_x_760px_op1_4b90d24c-9f4d-485a-897c-07f35277d975.png",
-              "desktop_image_alt": "",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "countdown_inline": false,
-              "button_title": "",
-              "link_url": "",
-              "link_title": "",
-              "link_new_window": false,
-              "countdown_date": "",
-              "countdown_time": "",
-              "countdown_position": "flex-start,flex-start",
-              "countdown_bold": false,
-              "countdown_italic": false,
-              "countdown_underline": false,
-              "countdown_colour": "#ffffff",
-              "countdown_font_size_m": "1.75rem",
-              "countdown_font_size_d": "2.75rem"
-            }
-          },
           "f57ea9f0-9df8-43b0-a32f-a6924b91e17e": {
             "type": "carousel-slide",
             "settings": {
@@ -3100,8 +3101,39 @@
               "countdown_font_size_d": "2.75rem"
             }
           },
+          "352c5dc6-94e7-4f7c-9059-771191d2a63c": {
+            "type": "carousel-slide",
+            "settings": {
+              "title": "Decathlon Buy Back",
+              "link": "https:\/\/decathlon.com.au\/pages\/decathlon-buy-back",
+              "mobile_image": "shopify:\/\/shop_images\/BUY_BACK_MOBILE_750_x_620_px.png",
+              "mobile_image_alt": "Decathlon Buy Back",
+              "tablet_image": "shopify:\/\/shop_images\/BUY_BACK_HP_BANNER.png",
+              "tablet_image_alt": "15%OFF C&C",
+              "desktop_image": "shopify:\/\/shop_images\/BUY_BACK_HP_BANNER.png",
+              "desktop_image_alt": "",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "countdown_inline": false,
+              "button_title": "",
+              "link_url": "",
+              "link_title": "",
+              "link_new_window": false,
+              "countdown_date": "",
+              "countdown_time": "",
+              "countdown_position": "flex-start,flex-start",
+              "countdown_bold": false,
+              "countdown_italic": false,
+              "countdown_underline": false,
+              "countdown_colour": "#ffffff",
+              "countdown_font_size_m": "1.75rem",
+              "countdown_font_size_d": "2.75rem"
+            }
+          },
           "75ad43bc-a043-4224-b64d-bb90eee5c36f": {
             "type": "carousel-slide",
+            "disabled": true,
             "settings": {
               "title": "Explore Nature",
               "link": "https:\/\/decathlon.com.au\/collections\/hiking-trekking",
@@ -3193,10 +3225,11 @@
           }
         },
         "block_order": [
+          "6c90d478-8b23-4f85-90c0-01ba430dacb3",
           "4356f112-9ea2-4af3-811f-74641cc98014",
           "a8a332ab-c392-433e-805d-fe77c9930049",
-          "352c5dc6-94e7-4f7c-9059-771191d2a63c",
           "f57ea9f0-9df8-43b0-a32f-a6924b91e17e",
+          "352c5dc6-94e7-4f7c-9059-771191d2a63c",
           "75ad43bc-a043-4224-b64d-bb90eee5c36f",
           "9b2064e8-e0b1-4149-9940-d79d826ee231",
           "faa59cfa-5150-45ac-9b4f-c829689466e0"
@@ -3346,8 +3379,8 @@
       "641e58e9-60b9-4211-b6be-c6d3a1e99c7b": {
         "type": "six-tile-products",
         "settings": {
-          "title": "Trending Gifts for Dad",
-          "section_collection": "gift-ideas-fathers-day"
+          "title": "Trending Spring Deals!",
+          "section_collection": "spring-sale"
         }
       },
       "marketplace-duplicate-fulfillment-items": {
@@ -3360,16 +3393,24 @@
               "svg_icon": "<svg viewbox=\"0 0 32 24\" class=\"de-u-textBlack de-Icon de-u-textGrow6 de-u-spaceRight03\">\n  <rect x=\"2.67317\" y=\"4.84032\" width=\"5.12569\" height=\"1.02514\"><\/rect>\n  <path d=\"M27.28548,13.06656h-7.185V8.966h5.13469Zm-6.15983-1.02514h4.502L24.60248,9.99114H21.12565Z\"><\/path>\n  <polygon points=\"10.724 7.066 9.999 7.79 12.2 9.991 4.723 9.991 4.723 11.016 12.279 11.016 9.983 13.542 10.741 14.23 14.145 10.487 10.724 7.066\"><\/polygon>\n  <path d=\"M29.20865,12.20911l-2.9643-5.2934h-7.169V1.79H.62289V20.24249H5.42441a3.05715,3.05715,0,0,0,5.77319,0h10.629a3.06635,3.06635,0,0,0,2.88708,2.0503q.05539.001.1109,0a3.01215,3.01215,0,0,0,2.79371-2.0503h3.1831l.5387-1.34747.037-5.05963Zm-23.86743,6.251c-.01007.03962-.02753.07593-.03607.11615a3.09369,3.09369,0,0,0-.05854.53638c-.00091.02649-.00824.05109-.00848.0777l-.007.027H1.648V18.19226H5.42679C5.3978,18.28137,5.36459,18.36847,5.34122,18.46014Zm.808-1.42767a1.67849,1.67849,0,0,0-.113.13464H1.648V2.81519H18.0502V17.16711H10.58871c-.0354-.03979-.064-.08551-.10168-.12323-.0141-.01409-.03156-.02441-.0459-.03826a3.08521,3.08521,0,0,0-.408-.33661c-.02612-.0177-.05639-.02887-.08313-.04578a3.04657,3.04657,0,0,0-.43738-.23737c-.04077-.01727-.08606-.025-.12768-.04058a3.02276,3.02276,0,0,0-.447-.13874c-.05811-.012-.12036-.01086-.17963-.01953a3.04145,3.04145,0,0,0-.42047-.04565c-.0058-.00006-.01111.00158-.01691.00158l-.00946-.001c-.07434,0-.144.01672-.217.02191a3.13912,3.13912,0,0,0-.39252.03955c-.08245.0166-.15832.04883-.23822.07184a3.07423,3.07423,0,0,0-.3377.1048c-.09021.03778-.17127.09082-.2569.13671-.0885.04749-.18134.08783-.26441.1435a3.07579,3.07579,0,0,0-.25817.20947C6.281,16.92456,6.20987,16.97241,6.14926,17.03247ZM8.31137,21.2677a2.05032,2.05032,0,0,1-2.05023-2.05035c0-.04285.01-.08289.01257-.12506a2.04554,2.04554,0,0,1,.14856-.673,2.02391,2.02391,0,0,1,.11884-.219c.02447-.04248.0429-.08881.07025-.12934a2.04633,2.04633,0,0,1,.14422-.1748c.036-.04242.06678-.0893.10614-.12866A2.05031,2.05031,0,1,1,8.31137,21.2677Zm3.07556-2.05029a3.04133,3.04133,0,0,0-.18841-1.02515H18.0502v1.02515Zm13.32672,2.05023a2.05628,2.05628,0,0,1-2.05029-2.05023v-.00006a2.05632,2.05632,0,0,1,.04-.39667l.00171-.01679a2.04927,2.04927,0,0,1,4.05646.38947l.00238.02405.00006.00018A2.05032,2.05032,0,0,1,24.71365,21.26764Zm5.63825-2.66193-.2453.6117H27.789v-.00006c.00025-.02228.00025-.0445,0-.06678a3.0422,3.0422,0,0,0-3.07538-3.00866H24.707a3.082,3.082,0,0,0-3.08874,3.07544H19.07541V7.94086h6.56824l2.723,4.8634L30.3519,14.348Z\"><\/path>\n<\/svg>"
             }
           },
+          "bcd3c084-fbe3-4c62-9751-d2a633ed4359": {
+            "type": "delivery_info_items",
+            "settings": {
+              "title": "Free Shipping Over $99*",
+              "svg_icon": "<svg viewbox=\"0 0 32 24\" class=\"de-u-textBlack de-Icon de-u-textGrow6 de-u-spaceRight03\">\n  <rect x=\"2.67317\" y=\"4.84032\" width=\"5.12569\" height=\"1.02514\"><\/rect>\n  <path d=\"M27.28548,13.06656h-7.185V8.966h5.13469Zm-6.15983-1.02514h4.502L24.60248,9.99114H21.12565Z\"><\/path>\n  <polygon points=\"10.724 7.066 9.999 7.79 12.2 9.991 4.723 9.991 4.723 11.016 12.279 11.016 9.983 13.542 10.741 14.23 14.145 10.487 10.724 7.066\"><\/polygon>\n  <path d=\"M29.20865,12.20911l-2.9643-5.2934h-7.169V1.79H.62289V20.24249H5.42441a3.05715,3.05715,0,0,0,5.77319,0h10.629a3.06635,3.06635,0,0,0,2.88708,2.0503q.05539.001.1109,0a3.01215,3.01215,0,0,0,2.79371-2.0503h3.1831l.5387-1.34747.037-5.05963Zm-23.86743,6.251c-.01007.03962-.02753.07593-.03607.11615a3.09369,3.09369,0,0,0-.05854.53638c-.00091.02649-.00824.05109-.00848.0777l-.007.027H1.648V18.19226H5.42679C5.3978,18.28137,5.36459,18.36847,5.34122,18.46014Zm.808-1.42767a1.67849,1.67849,0,0,0-.113.13464H1.648V2.81519H18.0502V17.16711H10.58871c-.0354-.03979-.064-.08551-.10168-.12323-.0141-.01409-.03156-.02441-.0459-.03826a3.08521,3.08521,0,0,0-.408-.33661c-.02612-.0177-.05639-.02887-.08313-.04578a3.04657,3.04657,0,0,0-.43738-.23737c-.04077-.01727-.08606-.025-.12768-.04058a3.02276,3.02276,0,0,0-.447-.13874c-.05811-.012-.12036-.01086-.17963-.01953a3.04145,3.04145,0,0,0-.42047-.04565c-.0058-.00006-.01111.00158-.01691.00158l-.00946-.001c-.07434,0-.144.01672-.217.02191a3.13912,3.13912,0,0,0-.39252.03955c-.08245.0166-.15832.04883-.23822.07184a3.07423,3.07423,0,0,0-.3377.1048c-.09021.03778-.17127.09082-.2569.13671-.0885.04749-.18134.08783-.26441.1435a3.07579,3.07579,0,0,0-.25817.20947C6.281,16.92456,6.20987,16.97241,6.14926,17.03247ZM8.31137,21.2677a2.05032,2.05032,0,0,1-2.05023-2.05035c0-.04285.01-.08289.01257-.12506a2.04554,2.04554,0,0,1,.14856-.673,2.02391,2.02391,0,0,1,.11884-.219c.02447-.04248.0429-.08881.07025-.12934a2.04633,2.04633,0,0,1,.14422-.1748c.036-.04242.06678-.0893.10614-.12866A2.05031,2.05031,0,1,1,8.31137,21.2677Zm3.07556-2.05029a3.04133,3.04133,0,0,0-.18841-1.02515H18.0502v1.02515Zm13.32672,2.05023a2.05628,2.05628,0,0,1-2.05029-2.05023v-.00006a2.05632,2.05632,0,0,1,.04-.39667l.00171-.01679a2.04927,2.04927,0,0,1,4.05646.38947l.00238.02405.00006.00018A2.05032,2.05032,0,0,1,24.71365,21.26764Zm5.63825-2.66193-.2453.6117H27.789v-.00006c.00025-.02228.00025-.0445,0-.06678a3.0422,3.0422,0,0,0-3.07538-3.00866H24.707a3.082,3.082,0,0,0-3.08874,3.07544H19.07541V7.94086h6.56824l2.723,4.8634L30.3519,14.348Z\"><\/path>\n<\/svg>"
+            }
+          },
           "f404c2e2-8c6c-432a-a14d-08e7a0dcd949": {
             "type": "delivery_info_items",
             "settings": {
-              "title": "Partner's <a href=\"https:\/\/decathlon.com.au\/pages\/jobe-watersports-general-terms-and-conditions\" target=\"_blank\" title=\"https:\/\/decathlon.com.au\/pages\/jobe-watersports-general-terms-and-conditions\">shipping information and refund policy.<\/a>",
+              "title": "Easy 21-Days Return. Partner's <a href=\"https:\/\/decathlon.com.au\/pages\/jobe-watersports-general-terms-and-conditions\" target=\"_blank\" title=\"https:\/\/decathlon.com.au\/pages\/jobe-watersports-general-terms-and-conditions\">shipping information and refund policy.<\/a>",
               "svg_icon": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewbox=\"0 0 24 24\" class=\"de-u-textBlack de-Icon de-u-textGrow6 de-u-spaceRight03\">\n  <path d=\"M.656,18.41782l11.2192,4.5411h.20548l11.2055-4.52055a.31508.31508,0,0,0,.23288-.30137V4.726a.09587.09587,0,0,0,0-.04794h0a.14438.14438,0,0,0,0-.0411.34255.34255,0,0,0-.09589-.06849L19.17657,3.23971l-3.42466-.9726-3.63014-1.226h-.19864L.66284,5.274a.13012.13012,0,0,0-.06849.03425V5.3493h0v.04795h0L.47791,5.5v12.6644A.32875.32875,0,0,0,.656,18.41782Zm22.26716-.5h-.03424L12.3067,22.1918V9.4178h.03424L22.92316,5.24656ZM22.32726,4.8493,11.99848,8.88356h0L9.01217,7.9315l.13014-.0548,5.47946-2.19863L19.156,3.863ZM15.68342,2.85615l2.49315.71918-.137.05479L8.08066,7.637h0L6.1971,7.08218l.63014-.28082,8.84248-3.94521ZM7.79984,8.19177v3H7.73135l-2.1096-.73973v-2.911Zm4.19179-6.54795h0l2.80137.91781-3.35617,1.5137L5.30668,6.81506h0L1.656,5.54108ZM1.067,5.97259h.06849L5.019,7.34246v3.28767a.30139.30139,0,0,0,.20548.28083l2.78768.9863H8.2108a.28767.28767,0,0,0,.19178-.274V8.36986L11.69026,9.4178v12.774h-.0685L1.0738,17.94522Z\"><\/path><path d=\"M20.04644,15.32192a2.69864,2.69864,0,0,0-.75343-3.73973h0a.26029.26029,0,0,0-.21233-.0411.26713.26713,0,0,0-.17808.11644.2603.2603,0,0,0-.0411.21233.26715.26715,0,0,0,.11644.17809,2.13694,2.13694,0,0,1,.911,1.36986,2.178,2.178,0,0,1-.30822,1.60959,2.137,2.137,0,0,1-1.36986.90411,2.1027,2.1027,0,0,1-1.60275-.30822,2.14385,2.14385,0,0,1-.59589-2.96576,2.23277,2.23277,0,0,1,.63014-.60958l.10274-.0685-.23288.96576a.28767.28767,0,0,0,.20548.34246h.0685a.28766.28766,0,0,0,.274-.21233l.363-1.50685V11.4863a.39711.39711,0,0,0-.05479-.15068h0a.26719.26719,0,0,0-.137-.0822h-.03424l-1.5822-.363h-.06849a.29458.29458,0,0,0-.15069.0411.30133.30133,0,0,0-.12328.17808.32183.32183,0,0,0,0,.21233.274.274,0,0,0,.17808.12329l.80822.18493-.089.06849a2.70832,2.70832,0,1,0,3.84247,3.69864Z\"><\/path>\n<\/svg>"
             }
           }
         },
         "block_order": [
           "46c242e1-2c0d-4711-ae2a-2c8eb2a9d080",
+          "bcd3c084-fbe3-4c62-9751-d2a633ed4359",
           "f404c2e2-8c6c-432a-a14d-08e7a0dcd949"
         ],
         "settings": {}
@@ -3380,8 +3421,8 @@
       "fb3b021f-3e3e-451a-8118-3927f942e0ec",
       "163107170023281063",
       "59e7043f-7c55-4940-a0be-639824815d5c",
-      "59bd4db6-bdb1-46c5-ab8e-ed6a847dddfe",
       "641e58e9-60b9-4211-b6be-c6d3a1e99c7b",
+      "59bd4db6-bdb1-46c5-ab8e-ed6a847dddfe",
       "16316085202ea5cf79",
       "eebe1a41-f3e2-4f63-8238-9c639f6d6b73",
       "8f7fbe54-e3bd-494e-a735-df53c71ba559",

@@ -1,8 +1,9 @@
+{% comment %}
 {%- capture HTML_TEMPLATE_GIFT_CARD -%}
 
-  {% comment %}
+
     Gift Card
-  {% endcomment %}
+
   <div class="section section--gift-card">
     <div class="section__content">
       <h2 class="section__title layout-flex__item layout-flex__item--stretch">{{ 'checkout_gift_card.gift_card_title' | t }}</h2>
@@ -38,6 +39,7 @@
   </div>
 
 {%- endcapture -%}
+{% endcomment %}
 {%- capture HTML_TEMPLATE_DISCOUNT_MESSAGE -%}
   <p>{{ settings.discount_code_redeem_gift_card_payment }}</p>
 {%- endcapture -%}

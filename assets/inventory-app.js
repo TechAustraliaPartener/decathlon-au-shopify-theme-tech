@@ -112,7 +112,7 @@ var tomitProductInventoryInfo = {
 	getVariantInventory: function(variantId) {
 		return new Promise(function(n, o) {
             // This endpoint doesn't have fallback functionality as it's out of scope
-			let e = "https://inventory.tom-it.nl/variant/" + Shopify.shop + "/" + variantId + '/' + tomitProductInventoryInfo.customerPos;
+			let e = "https://shopify-inventory-app-dot-decathlonau-hxbx.ts.r.appspot.com/variant/" + variantId;
 			r = new XMLHttpRequest();
 			r.open("GET", e, !0), r.onload = function() {
 				if (200 === r.status) {
