@@ -51,12 +51,12 @@
     "autoplay_feature_product_carousel_speed": 5,
     "autoplay_feature_product_carousel_delay": 3,
     "show_associated_products_carousel_on_product_page": true,
-    "show_similar_products_carousel_on_product_page": false,
-    "show_recently_viewed_carousel_on_product_page": false,
+    "show_similar_products_carousel_on_product_page": true,
+    "show_recently_viewed_carousel_on_product_page": true,
     "algolia_variant_image_dimensions": "600x600",
     "algolia_size_sorting_order": "3XS,2XS,XS,XS-S,XS\/S,S,S-M,S\/M,M,M-L,M\/L,L,L-XL,L\/XL,XL,2XL,3XL,4XL,5XL",
-    "show_recently_viewed_carousel_on_collection_page": false,
-    "show_recently_viewed_carousel_on_search_page": false,
+    "show_recently_viewed_carousel_on_collection_page": true,
+    "show_recently_viewed_carousel_on_search_page": true,
     "footer_nav_menu": "footer",
     "footer_slider_products": true,
     "footer_slider_products_title": "",
@@ -2886,6 +2886,52 @@
       },
       "eebe1a41-f3e2-4f63-8238-9c639f6d6b73": {
         "type": "six-tile-products",
+        "blocks": {
+          "3ad69928-a348-4b36-8a78-e9bb778dc8d7": {
+            "type": "product",
+            "settings": {
+              "product": "486521003-jobe-parana-11-6-bamboo-paddle-board"
+            }
+          },
+          "22c9bc95-2a7e-4cc7-bfce-15852c0c4fac": {
+            "type": "product",
+            "settings": {
+              "product": "100-adult-horse-riding-socks-2707"
+            }
+          },
+          "634bf1c3-8b5e-4e59-86cb-ba9eebc39bc1": {
+            "type": "product",
+            "settings": {
+              "product": "100-baby-anti-slip-gym-socks-twin-pack-143693"
+            }
+          },
+          "70f92d80-5663-4233-8068-661b7788d0da": {
+            "type": "product",
+            "settings": {
+              "product": "1-kg-medicine-ball"
+            }
+          },
+          "cd4080e3-b218-4fa6-b985-ef44f135ad52": {
+            "type": "product",
+            "settings": {
+              "product": "1-2-person-inflatable-cruising-kayak-163732"
+            }
+          },
+          "49106aaa-0e1c-44b3-bd8e-38b8fa115c20": {
+            "type": "product",
+            "settings": {
+              "product": "10-speed-mtb-cassette-11x36-100606"
+            }
+          }
+        },
+        "block_order": [
+          "3ad69928-a348-4b36-8a78-e9bb778dc8d7",
+          "22c9bc95-2a7e-4cc7-bfce-15852c0c4fac",
+          "634bf1c3-8b5e-4e59-86cb-ba9eebc39bc1",
+          "70f92d80-5663-4233-8068-661b7788d0da",
+          "cd4080e3-b218-4fa6-b985-ef44f135ad52",
+          "49106aaa-0e1c-44b3-bd8e-38b8fa115c20"
+        ],
         "settings": {
           "title": "Back to Swimming",
           "section_collection": "back-to-swimming"
@@ -3409,7 +3455,6 @@
         },
         "block_order": [
           "46c242e1-2c0d-4711-ae2a-2c8eb2a9d080",
-          "bcd3c084-fbe3-4c62-9751-d2a633ed4359",
           "f404c2e2-8c6c-432a-a14d-08e7a0dcd949"
         ],
         "settings": {}

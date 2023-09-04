@@ -2,3 +2,53 @@
     display: inline-flex;
     width: 100%;
   }
+
+.swiper-product-tile-image-container .splide__slide {
+  position: relative;
+}
+
+.swiper-product-tile-image-container .splide__slide a {
+  display: block;
+  width: 100%;
+  position: relative;
+}
+
+.swiper-product-tile-image-container .splide__slide a:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
+.swiper-product-tile-image-container .splide__slide img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  object-fit: contain;
+}
+
+.collection-carousel .splide__slide {
+  position: relative;
+}
+
+.collection-carousel .splide__slide a {
+  display: block;
+  width: 100%;
+  position: relative;
+}
+
+.collection-carousel .splide__slide a:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
+.collection-carousel .splide__slide img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  object-fit: contain;
+}
