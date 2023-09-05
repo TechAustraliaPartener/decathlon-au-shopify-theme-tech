@@ -3,6 +3,9 @@
 
 {% if settings.click_collect_version == 'v1' %}
 
+  {% comment %}   
+    Case 1 - Stock is available
+  {% endcomment %}
   {% unless available_variants.size == 0 %}
   <div id="addToCartButton" v-cloak>
     {% raw %}
@@ -28,21 +31,31 @@
   </div>
   {% else  %}
 
+  {% comment %}   
+    Case 2 - Stock is unavailable
+  {% endcomment %}
   <div id="addToCartButton" v-cloak>
     {% raw %}
       <button 
         v-bind:disabled="true"
-        v-bind:class="{ alt: !(!available && (!tagged_bis_hidden || !artificially_unavailable) && is_size_selected) }"
         v-on:click="showModal(id, (!available && (!tagged_bis_hidden || !artificially_unavailable) && is_size_selected), $event)"
         type="submit"
         name="add"
         id="AddToCart"
-        class="de-Button btn btn-dec btn-yellow de-u-sizeFull de-u-textSizeBase js-de-AddToCart-btn addToCart js-de-Drawer-toggle" 
+        class="de-Button btn btn-dec btn-yellow de-u-sizeFull de-u-textSizeBase js-de-AddToCart-btn addToCart" 
         data-drawer-id="post-add-to-cart-drawer"
         {% endraw %}{% if settings.add_to_cart_drawer_enabled %}data-drawer-action="open"{% endif %}{% raw %}
         data-drawer-prevent-default="false" >{% endraw %}
         {% raw %}
-        <span>{% endraw %}{{ 'products.product.out_of_stock' | t }}{% raw %}</span>
+        <span>{% endraw %}
+
+        {% if product.tags contains 'bis-hidden' %}
+          {{ 'products.product.out_of_stock' | t }}
+        {% else %}
+        {{ 'products.product.email_when_available' | t }}
+        {% endif %}
+
+        {% raw %}</span>
       </button>
     {% endraw %}
   </div>

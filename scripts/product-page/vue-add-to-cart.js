@@ -9,9 +9,13 @@ import {
 
 const validationTextEl = document.querySelector('.js-de-validation-message');
 const variantInventory = window.firstVariant;
+
 variantInventory.tagged_bis_hidden = window.vars.productJSON.tags.includes('bis-hidden');
 variantInventory.is_size_selected = false;
 variantInventory.artificially_unavailable = false;
+variantInventory.isDisabled = false
+
+
 
 const translations = window.translations.product_stock;
 const LOADING_CLASS = 'loading';
@@ -19,6 +23,8 @@ const IN_STOCK_CLASS = 'in_stock';
 const LOW_STOCK_CLASS = 'low_stock';
 const OVERSELL_CLASS = 'oversell';
 const addToCartDrawerEnabled = window.add_to_cart_drawer_enabled;
+
+
 
 const initVueATC = () => {
   window.vueATC = new Vue({
@@ -79,6 +85,8 @@ const initVueATC = () => {
           return loc.available > 0;
         });
 
+        
+
         const filteredOnline = online.filter(item => {
           return item.available > 0;
         });
@@ -108,12 +116,14 @@ const initVueATC = () => {
         });
         let locationsAvailable = 0;
         if (availablePerLocation.length > 0) {
-          locationsAvailable = availablePerLocation.reduce((a, b) => a + b, 0);
+          locationsAvailable = availablePerLocation.reduce((a, b) => +a + +b, 0);
         }
 
         let stockInfoMessage = '';
         let stockAddClass = '';
         let stockRemoveClass = '';
+
+
 
         // If variant is in stock for delivery in locations contributing to online inventory
         if (delivery.available > 2) {
@@ -143,6 +153,7 @@ const initVueATC = () => {
             }
           }
         } else if (variantIsNonInventory) {
+          console.log('stockInfoMessage', 'check 4')
           stockInfoMessage = translations.in_stock;
           stockAddClass = IN_STOCK_CLASS;
           stockRemoveClass = LOW_STOCK_CLASS;
@@ -152,12 +163,13 @@ const initVueATC = () => {
           delivery.availability.text = translations.in_stock
         } else {
           // If variant is NOT in stock for delivery but available in locations offering Click & Collect
-          if (locationsAvailable > 0) {
+          if (window.productJSON.available && locationsAvailable > 0) {
             stockInfoMessage = translations.pickup_only;
             stockAddClass = LOW_STOCK_CLASS;
             stockRemoveClass = IN_STOCK_CLASS;
           }
         }
+
 
         // Gift card availability message override
         if (window.vars.productJSON.gift_card === true && // product is a gift card
@@ -170,8 +182,14 @@ const initVueATC = () => {
           stockRemoveClass = LOW_STOCK_CLASS;
         }
 
-        // Enable add to cart button once stock data has been retrieve
-        $('#AddToCart').prop('disabled', false);
+        // Do not remove disabled if product is tagged bis-hidden
+        if(!this.$data.tagged_bis_hidden) {
+          // Enable add to cart button once stock data has been retrieve
+          $('#AddToCart').prop('disabled', false);
+        } else if(window.productJSON.available) {
+          $('#AddToCart').prop('disabled', false);
+        }
+
 
         $('.js-de-stock-info-message .message').html(stockInfoMessage);
         $('.js-de-stock-info-message').addClass(stockAddClass).removeClass(stockRemoveClass).removeClass(LOADING_CLASS);
@@ -183,6 +201,8 @@ const initVueATC = () => {
         }
 
         $('.js-de-stock-info-message .lds-ring').css({"display":"none"});
+
+
 
         return mutatedInventory;
       },
@@ -205,6 +225,7 @@ const initVueATC = () => {
           return;
         }
 
+
         // Opens Back in Stock Popover Modal
         if (isEmailButton) {
           event.preventDefault();
@@ -226,6 +247,8 @@ const initVueATC = () => {
             $('#addToCartButton .js-de-Drawer-toggle').attr("data-drawer-action", 'open');
           }
         }
+
+
       }
     }
   });

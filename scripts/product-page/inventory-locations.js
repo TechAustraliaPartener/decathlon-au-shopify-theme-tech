@@ -104,7 +104,6 @@ function addMasterStoresData(inventoryItem, state) {
       thisLoc.title = masterLoc.title;
       thisLoc.enableStockVisibility = masterLoc['enable_stock_visibility'];
 
-      // console.log('thisLoc', thisLoc);
 
       // Exclude products by tags set in section settings
       const productTags = window.vars.productJSON.tags;
