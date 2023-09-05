@@ -10,6 +10,7 @@ import {
 const validationTextEl = document.querySelector('.js-de-validation-message');
 const variantInventory = window.firstVariant;
 
+variantInventory.available_across_all = window.productJSON.available;
 variantInventory.tagged_bis_hidden = window.vars.productJSON.tags.includes('bis-hidden');
 variantInventory.is_size_selected = false;
 variantInventory.artificially_unavailable = false;
@@ -215,6 +216,7 @@ const initVueATC = () => {
           $('.js-de-stock-info-message .message').text('');
           return;
         }
+
 
         // Trying to add a product to cart when variant doesn't exist
         const variant = window.productJSON.variants.find(v => v.id === variantId);

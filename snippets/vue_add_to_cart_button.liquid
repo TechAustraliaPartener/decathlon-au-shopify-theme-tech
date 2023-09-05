@@ -4,7 +4,7 @@
 {% if settings.click_collect_version == 'v1' %}
 
   {% comment %}   
-    Case 1 - Stock is available
+    Case 1 - Stock is available and multiple variants
   {% endcomment %}
   {% unless available_variants.size == 0 %}
   <div id="addToCartButton" v-cloak>
@@ -18,6 +18,7 @@
         id="AddToCart"
         class="de-Button btn btn-dec btn-yellow de-u-sizeFull de-u-textSizeBase js-de-AddToCart-btn addToCart js-de-Drawer-toggle" 
         data-drawer-id="post-add-to-cart-drawer"
+        :data-variant-available="$data.available"
         {% endraw %}{% if settings.add_to_cart_drawer_enabled %}data-drawer-action="open"{% endif %}{% raw %}
         data-drawer-prevent-default="false">
         <span v-text="{% endraw %}available ? '{{ 'products.product.add_to_cart' | t }}' : !is_size_selected ?
@@ -38,13 +39,14 @@
     {% raw %}
       <button 
         v-bind:disabled="true"
-        v-on:click="showModal(id, (!available && (!tagged_bis_hidden || !artificially_unavailable) && is_size_selected), $event)"
+        v-on:click="showModal(id, (!available_across_all && (!tagged_bis_hidden || !artificially_unavailable) && is_size_selected), $event)"
         type="submit"
         name="add"
         id="AddToCart"
-        class="de-Button btn btn-dec btn-yellow de-u-sizeFull de-u-textSizeBase js-de-AddToCart-btn addToCart" 
+        class="de-Button btn btn-dec btn-yellow de-u-sizeFull de-u-textSizeBase js-de-AddToCart-btn addToCart js-de-Drawer-toggle" 
         data-drawer-id="post-add-to-cart-drawer"
-        {% endraw %}{% if settings.add_to_cart_drawer_enabled %}data-drawer-action="open"{% endif %}{% raw %}
+        {% endraw %}
+        {% if settings.add_to_cart_drawer_enabled %}data-drawer-action="open"{% endif %}{% raw %}
         data-drawer-prevent-default="false" >{% endraw %}
         {% raw %}
         <span>{% endraw %}

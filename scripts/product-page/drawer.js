@@ -420,12 +420,15 @@ const toggleHandler = function(event) {
   const {
     drawerAction,
     drawerId,
-    drawerPreventDefault = 'true'
+    drawerPreventDefault = 'true',
+    variantAvailable
   } = /** @type {DrawerToggleDataAttributes} */ event.currentTarget.dataset;
 
   if (drawerPreventDefault.toLowerCase() === 'true') {
     event.preventDefault();
   }
+
+
 
   const drawerEl = document.getElementById(drawerId);
 
@@ -440,6 +443,10 @@ const toggleHandler = function(event) {
   }
 
   const isOpen = isActionOpen(drawerAction);
+
+  if(isOpen && !variantAvailable) {
+    return;
+  }
 
   const newState = {
     isOpen,
