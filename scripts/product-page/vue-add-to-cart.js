@@ -6,6 +6,7 @@ import {
   checkIfVariantIsAllowedToOversell,
   checkIfVariantIsNonInventory
 } from './product-data';
+import { PRODUCT_PAGE_COPY } from './constants';
 
 const validationTextEl = document.querySelector('.js-de-validation-message');
 const variantInventory = window.firstVariant;
@@ -15,6 +16,7 @@ variantInventory.tagged_bis_hidden = window.vars.productJSON.tags.includes('bis-
 variantInventory.is_size_selected = false;
 variantInventory.artificially_unavailable = false;
 variantInventory.isDisabled = false
+variantInventory.totalAvailableQuantity = 0;
 
 
 
@@ -25,7 +27,10 @@ const LOW_STOCK_CLASS = 'low_stock';
 const OVERSELL_CLASS = 'oversell';
 const addToCartDrawerEnabled = window.add_to_cart_drawer_enabled;
 
+// Tracker of variant quantity
+window.variantQtyTracker = {};
 
+window.variantQtyTrackOutOfStock = [];
 
 const initVueATC = () => {
   window.vueATC = new Vue({
@@ -37,14 +42,20 @@ const initVueATC = () => {
           tagged_bis_hidden: window.vars.productJSON.tags.includes('bis-hidden'),
           is_size_selected: newData && newData.option2 ? true : false
         }
+
+
         newData = { ...newData, ...extraData };
         Object.keys(this.$data).forEach(key => (this.$data[key] = null));
         Object.entries(newData).forEach(entry =>
           Vue.set(this.$data, entry[0], entry[1])
         );
+
+
+
       },
-      changeVariant(variant) {
+      changeVariant(variant, source) {
         const variantInventory = window.productJSON.variants.find(v => v.id === variant);
+
 
         // Use Shopify availability on load while remote inventory is being loaded
         if( window.clickCollectVersion === 'v1'){
@@ -60,11 +71,17 @@ const initVueATC = () => {
         }
 
         const variantLocationsInventory = (window.inventories || {})[variant];
-        const calculatedInventory = variantLocationsInventory ? this.mutateWithLocations(variantInventory, variantLocationsInventory) : variantInventory;
+
+
+        const calculatedInventory = variantLocationsInventory ? this.mutateWithLocations(variantInventory, variantLocationsInventory, source) : variantInventory;
+        
 
         this.changeWholeData(calculatedInventory);
+        
+        console.log('data', calculatedInventory, this.$data);
+
       },
-      mutateWithLocations(variantInventory, variantLocationsInventory) {
+      mutateWithLocations(variantInventory, variantLocationsInventory, source) {
         var mutatedInventory = variantInventory;
 
         const { inventoryItem, id } = variantLocationsInventory;
@@ -74,7 +91,8 @@ const initVueATC = () => {
         // Oversell flags
         const variantIsAllowedToOversell = checkIfVariantIsAllowedToOversell(variantId);
         // Non-inventory flags
-        const variantIsNonInventory = checkIfVariantIsNonInventory(variantId)
+        const variantIsNonInventory = checkIfVariantIsNonInventory(variantId);
+
 
         /*
           'locations' from itemInventory already only account for stores which have Click & Collect enabled in Settings
@@ -86,21 +104,44 @@ const initVueATC = () => {
           return loc.available > 0;
         });
 
-        
 
         const filteredOnline = online.filter(item => {
           return item.available > 0;
         });
 
+        let totalAvailableQuantity = filteredLocations.reduce(function(total, location) {
+          return total + +location.available
+        }, 0);
+
+        totalAvailableQuantity = filteredOnline.reduce(function(total, location) {
+          return total + +location.available
+        }, totalAvailableQuantity)
+
+        if(variantId in window.variantQtyTracker) {
+          totalAvailableQuantity = window.variantQtyTracker[variantId]
+        } else {
+          window.variantQtyTracker[variantId] = totalAvailableQuantity;
+        }
+
+        mutatedInventory.totalAvailableQuantity = totalAvailableQuantity;
+
+        if(totalAvailableQuantity <= 0) {
+          delivery.available == totalAvailableQuantity
+        }
+
+        console.log('mutateWithLocations', variantId, filteredLocations, filteredOnline, totalAvailableQuantity);
+
         // item is available if there is at least one stock in any location or delivery/online
         // mutatedInventory.available = (delivery.available > 0 || filteredLocations.length > 0 || filteredOnline.length > 0);
         mutatedInventory.available = (
-          filteredLocations.length > 0 || 
-          delivery.available > 0 || 
+          filteredLocations.length > 0 && totalAvailableQuantity > 0 || 
+          delivery.available > 0 && totalAvailableQuantity > 0 || 
           (delivery.available === 0 && variantIsAllowedToOversell === true) ||
           variantIsNonInventory === true
         );
         mutatedInventory.artificially_unavailable = (locations.length < 1 && delivery.available < 1);
+
+
 
         if( window.clickCollectVersion === 'v1') {
           if (filteredLocations.length < 1 && 
@@ -164,12 +205,13 @@ const initVueATC = () => {
           delivery.availability.text = translations.in_stock
         } else {
           // If variant is NOT in stock for delivery but available in locations offering Click & Collect
-          if (window.productJSON.available && locationsAvailable > 0) {
+          if (window.productJSON.available && locationsAvailable > 0 && totalAvailableQuantity > 0) {
             stockInfoMessage = translations.pickup_only;
             stockAddClass = LOW_STOCK_CLASS;
             stockRemoveClass = IN_STOCK_CLASS;
           }
         }
+
 
 
         // Gift card availability message override
@@ -192,6 +234,7 @@ const initVueATC = () => {
         }
 
 
+
         $('.js-de-stock-info-message .message').html(stockInfoMessage);
         $('.js-de-stock-info-message').addClass(stockAddClass).removeClass(stockRemoveClass).removeClass(LOADING_CLASS);
 
@@ -203,6 +246,28 @@ const initVueATC = () => {
 
         $('.js-de-stock-info-message .lds-ring').css({"display":"none"});
 
+
+        // Override messaging and button state to make way for products already maximized in the user's cart
+        window.setTimeout(function() {
+
+          console.log('hey', window.variantQtyTrackOutOfStock, variantId)
+          
+
+          if((!variantIsAllowedToOversell ||
+            !variantIsNonInventory) 
+            && variantId in window.variantQtyTracker 
+            && !mutatedInventory.available 
+            &&  window.variantQtyTrackOutOfStock.includes(+variantId)) {
+              console.log('hey this is firing.')
+
+              $('#AddToCart').prop('disabled', true);
+              $('#AddToCart span').text('Add to Cart');
+              $('.js-de-stock-info-message').css({"display":"none"});
+              $('.js-de-validation-message').text(PRODUCT_PAGE_COPY.ALL_AVAILABLE_PRODUCTS_IN_CART);
+
+          }
+
+        }, 10)
 
 
         return mutatedInventory;

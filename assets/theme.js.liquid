@@ -228,10 +228,12 @@ theme.enableAjax = function () {
           var response = data.description;
           var status = XMLHttpRequest.status;
           $addToCartBtn.removeClass('btn--loading');
+
+          console.log('fail');
+
           if (status === 422 && $('#productSelect option').length === 1) {
             $addToCartBtnText.text("{{ 'products.product.sold_out' | t }}");
-          }
-          else {
+          } else {
             $addToCartBtn.prop('disabled', false).removeClass('disabled');
             $addToCartBtnText.text($addToCartBtn.attr('data-add-to-cart'));
           }

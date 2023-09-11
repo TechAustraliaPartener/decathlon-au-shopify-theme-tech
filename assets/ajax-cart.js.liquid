@@ -81,6 +81,8 @@ ShopifyAPI.onError = function(XMLHttpRequest, textStatus) {
     - Allow custom error callback
 ==============================================================================*/
 ShopifyAPI.addItemFromForm = function(form, callback, errorCallback) {
+  const formDataJSON = jQuery(form).serializeObject();
+
   var $body = $(document.body),
   params = {
     type: 'POST',
@@ -91,6 +93,21 @@ ShopifyAPI.addItemFromForm = function(form, callback, errorCallback) {
       $body.trigger('beforeAddItem.ajaxCart', form);
     },
     success: function(line_item) {
+
+      if(formDataJSON.id in window.variantQtyTracker && window.variantQtyTracker[formDataJSON.id] > 0) {
+        window.variantQtyTracker[formDataJSON.id] = window.variantQtyTracker[formDataJSON.id] - 1;
+
+
+        // Push only variants that was interacted with already
+        if(window.variantQtyTracker[formDataJSON.id] <= 0) {
+          window.variantQtyTrackOutOfStock.push(+formDataJSON.id);
+        }
+
+        console.log('success', window.variantQtyTracker[formDataJSON.id])
+        window.vueATC.changeVariant(+formDataJSON.id, 'variant-qty-tracker')
+        
+      }
+
       if ((typeof callback) === 'function') {
         callback(line_item, form);
       }
@@ -100,6 +117,12 @@ ShopifyAPI.addItemFromForm = function(form, callback, errorCallback) {
       $body.trigger('afterAddItem.ajaxCart', [line_item, form]);
     },
     error: function(XMLHttpRequest, textStatus) {
+      console.log('fail', formDataJSON);
+
+      if(formDataJSON.id in window.variantQtyTracker) {
+        window.variantQtyTracker[formDataJSON.id] = 0;
+      }
+
       if ((typeof errorCallback) === 'function') {
         errorCallback(XMLHttpRequest, textStatus);
       }
@@ -107,6 +130,15 @@ ShopifyAPI.addItemFromForm = function(form, callback, errorCallback) {
         ShopifyAPI.onError(XMLHttpRequest, textStatus);
       }
       $body.trigger('errorAddItem.ajaxCart', [XMLHttpRequest, textStatus]);
+
+      // Auto close drawer when add to cart fails.
+      $('#drawer-trigger-post-add-to-cart-drawer-close').click();
+
+      // Update list of out of stock items that was interacted with
+      window.variantQtyTrackOutOfStock.push(+formDataJSON.id);
+
+      // Update button state
+      window.vueATC.changeVariant(+formDataJSON.id, 'variant-qty-tracker')
     },
     complete: function(jqxhr, text) {
       $body.trigger('completeAddItem.ajaxCart', [this, jqxhr, text]);

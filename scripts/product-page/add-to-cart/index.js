@@ -72,6 +72,9 @@ $('body').on('addItemError.ajaxCart', (e, { description }) => {
 
   if (!description || !currentVariant) return;
 
+
+  console.log('addItemError.ajaxCart', description)
+
   // Update the state with the proper error message/UI state
   state.updateState({
     ...DEFAULT_MODULE_STATE,
