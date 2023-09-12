@@ -52,3 +52,7 @@
   top: 0;
   object-fit: contain;
 }
+
+.de-u-overflowYNone #reamaze-widget-label .rmz-label-text {
+  display: none;
+}
