@@ -51,12 +51,12 @@
     "autoplay_feature_product_carousel_speed": 5,
     "autoplay_feature_product_carousel_delay": 3,
     "show_associated_products_carousel_on_product_page": true,
-    "show_similar_products_carousel_on_product_page": true,
+    "show_similar_products_carousel_on_product_page": false,
     "show_recently_viewed_carousel_on_product_page": true,
     "algolia_variant_image_dimensions": "600x600",
     "algolia_size_sorting_order": "3XS,2XS,XS,XS-S,XS\/S,S,S-M,S\/M,M,M-L,M\/L,L,L-XL,L\/XL,XL,2XL,3XL,4XL,5XL",
-    "show_recently_viewed_carousel_on_collection_page": true,
-    "show_recently_viewed_carousel_on_search_page": true,
+    "show_recently_viewed_carousel_on_collection_page": false,
+    "show_recently_viewed_carousel_on_search_page": false,
     "footer_nav_menu": "footer",
     "footer_slider_products": true,
     "footer_slider_products_title": "",
@@ -3486,14 +3486,14 @@
       "marketplace-trnr-fulfillment-items": {
         "type": "marketplace-trnr-fulfillment-items",
         "blocks": {
-          "f2edbc1e-0618-42e4-b4d7-0dbc4e415fc2": {
+          "45e9b7cd-5016-4f32-a6a7-a800f3fb33d2": {
             "type": "delivery_info_items",
             "settings": {
               "title": "Sold and shipped by TRNR",
               "icon_file": "shopify:\/\/shop_images\/delivery_small_26161694-77b1-440a-bd75-55366e6d513a.svg"
             }
           },
-          "7fc03138-0e4f-469d-93fd-af06111ebb2a": {
+          "2bcfaada-abe3-4ec3-8260-8c616c2c8490": {
             "type": "delivery_info_items",
             "settings": {
               "title": "Partner's shipping information and refund policy apply.",
@@ -3502,8 +3502,8 @@
           }
         },
         "block_order": [
-          "f2edbc1e-0618-42e4-b4d7-0dbc4e415fc2",
-          "7fc03138-0e4f-469d-93fd-af06111ebb2a"
+          "45e9b7cd-5016-4f32-a6a7-a800f3fb33d2",
+          "2bcfaada-abe3-4ec3-8260-8c616c2c8490"
         ],
         "settings": {}
       }
