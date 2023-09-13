@@ -539,7 +539,7 @@
             "settings": {
               "name": "Auburn",
               "title": "Auburn Store, 2144",
-              "online_inventory_source": false,
+              "online_inventory_source": true,
               "enable_c_c": true,
               "enable_stock_visibility": true,
               "duplicate": "",
@@ -2636,6 +2636,14 @@
       "16316085202ea5cf79": {
         "type": "trending_categories",
         "blocks": {
+          "2161fbad-02eb-48c1-9a11-4481251537ae": {
+            "type": "category_tile",
+            "settings": {
+              "title": "Our Innovations",
+              "image": "shopify:\/\/shop_images\/Innovation-Home-Page.png",
+              "link": "https:\/\/decathlon.com.au\/collections\/innovation-by-decathlon"
+            }
+          },
           "e946fff5-5695-4ed3-a886-269cd8000e8d": {
             "type": "category_tile",
             "settings": {
@@ -2668,14 +2676,6 @@
               "link": "https:\/\/decathlon.com.au\/collections\/golf-clothing-golf-equipment"
             }
           },
-          "2161fbad-02eb-48c1-9a11-4481251537ae": {
-            "type": "category_tile",
-            "settings": {
-              "title": "Hiking",
-              "image": "shopify:\/\/shop_images\/Hiking-HERO_21c0f5dc-ee04-4606-9148-b0d7ae6de280.jpg",
-              "link": "https:\/\/decathlon.com.au\/collections\/hiking-trekking"
-            }
-          },
           "711f34cb-b34c-4c8f-8e88-ce5c95240666": {
             "type": "category_tile",
             "settings": {
@@ -2686,15 +2686,15 @@
           }
         },
         "block_order": [
+          "2161fbad-02eb-48c1-9a11-4481251537ae",
           "e946fff5-5695-4ed3-a886-269cd8000e8d",
           "f553a06c-1d16-4cd4-b9f2-2eea43b5aa9c",
           "24a46da8-7f15-4e2c-aa20-558f5e037a41",
           "e1091c93-4efb-4738-b3f6-3a711db62e82",
-          "2161fbad-02eb-48c1-9a11-4481251537ae",
           "711f34cb-b34c-4c8f-8e88-ce5c95240666"
         ],
         "settings": {
-          "title": "Discover Our Sports"
+          "title": "Popular right now"
         }
       },
       "product_page_bnpl": {
@@ -2824,20 +2824,20 @@
         "blocks": {
           "b706be1c-0750-47c9-b0f1-8278eddb14fd": {
             "type": "announcement_messages",
-            "disabled": true,
             "settings": {
               "countdown_date": "",
               "countdown_time": "",
-              "message": "<p>Last Minute Father's Day Ideas. FREE 1hr Click & Collect available. <a href=\"https:\/\/decathlon.com.au\/collections\/gift-ideas-fathers-day\" title=\"https:\/\/decathlon.com.au\/collections\/gift-ideas-fathers-day\">SHOP NOW<\/a><\/p>",
+              "message": "<p>Join us on World Cleanup Day this Saturday and receive a $20 voucher* <a href=\"https:\/\/decathlon.com.au\/pages\/decathlon-world-cleanup-day\" title=\"https:\/\/decathlon.com.au\/pages\/decathlon-world-cleanup-day\">Sign up<\/a> today<\/p>",
               "post_message": "",
               "url": "",
-              "bg_colour": "#007dbc",
+              "bg_colour": "#4d6f56",
               "font_colour": "#ffffff",
-              "scroll_speed": "scroll-normal"
+              "scroll_speed": "scroll-slow"
             }
           },
           "2e019f93-7554-4748-a4f2-22ea0c56c29a": {
             "type": "announcement_messages",
+            "disabled": true,
             "settings": {
               "countdown_date": "",
               "countdown_time": "",
@@ -2887,8 +2887,8 @@
       "eebe1a41-f3e2-4f63-8238-9c639f6d6b73": {
         "type": "six-tile-products",
         "settings": {
-          "title": "Sports Innovation",
-          "section_collection": "innovation-by-decathlon"
+          "title": "Back to Swimming",
+          "section_collection": "back-to-swimming"
         }
       },
       "trending-products": {
@@ -3012,17 +3012,77 @@
               "countdown_font_size_d": "2.75rem"
             }
           },
+          "9b2064e8-e0b1-4149-9940-d79d826ee231": {
+            "type": "carousel-slide",
+            "settings": {
+              "title": "Price Drop",
+              "link": "https:\/\/decathlon.com.au\/pages\/price-drop",
+              "mobile_image": "shopify:\/\/shop_images\/Price_Drop_-_Homepage_Carousel_Mobile_750_x_620px.png",
+              "mobile_image_alt": "Price Drop | Spend Less, Play More!",
+              "tablet_image": "shopify:\/\/shop_images\/Price_Drop_-_Homepage_Carousel_Desktop___2720_x_760px.png",
+              "tablet_image_alt": "Price Drop | Spend Less, Play More!",
+              "desktop_image": "shopify:\/\/shop_images\/Price_Drop_-_Homepage_Carousel_Desktop___2720_x_760px.png",
+              "desktop_image_alt": "Price Drop | Spend Less, Play More!",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "countdown_inline": false,
+              "button_title": "",
+              "link_url": "",
+              "link_title": "",
+              "link_new_window": false,
+              "countdown_date": "",
+              "countdown_time": "",
+              "countdown_position": "flex-start,flex-start",
+              "countdown_bold": false,
+              "countdown_italic": false,
+              "countdown_underline": false,
+              "countdown_colour": "#ffffff",
+              "countdown_font_size_m": "1.75rem",
+              "countdown_font_size_d": "2.75rem"
+            }
+          },
           "a8a332ab-c392-433e-805d-fe77c9930049": {
             "type": "carousel-slide",
             "settings": {
-              "title": "Basketball",
-              "link": "https:\/\/decathlon.com.au\/collections\/basketball-gear",
-              "mobile_image": "shopify:\/\/shop_images\/V1_Homepage_Carousel_Mobile_750_x_620px.png",
-              "mobile_image_alt": "Dribble to Victory with TARMAK by DECATHLON",
-              "tablet_image": "shopify:\/\/shop_images\/V1_Homepage_Carousel_Desktop_2720_x_760px.png",
-              "tablet_image_alt": "Dribble to Victory with TARMAK by DECATHLON",
-              "desktop_image": "shopify:\/\/shop_images\/V1_Homepage_Carousel_Desktop_2720_x_760px.png",
+              "title": "Marathon",
+              "link": "https:\/\/decathlon.com.au\/collections\/marathon-clothing-gear",
+              "mobile_image": "shopify:\/\/shop_images\/Marathon-Essentials_Mobile.png",
+              "mobile_image_alt": "Gear up For Marathon",
+              "tablet_image": "shopify:\/\/shop_images\/Marathon-Essentias-Desk.png",
+              "tablet_image_alt": "Gear up For Marathon",
+              "desktop_image": "shopify:\/\/shop_images\/Marathon-Essentias-Desk.png",
               "desktop_image_alt": "Dribble to Victory with TARMAK by DECATHLON",
+              "banner_intro": "",
+              "banner_title": "",
+              "banner_subtitle": "",
+              "countdown_inline": false,
+              "button_title": "",
+              "link_url": "",
+              "link_title": "",
+              "link_new_window": false,
+              "countdown_date": "",
+              "countdown_time": "",
+              "countdown_position": "flex-start,flex-start",
+              "countdown_bold": false,
+              "countdown_italic": false,
+              "countdown_underline": false,
+              "countdown_colour": "#ffffff",
+              "countdown_font_size_m": "1.75rem",
+              "countdown_font_size_d": "2.75rem"
+            }
+          },
+          "4356f112-9ea2-4af3-811f-74641cc98014": {
+            "type": "carousel-slide",
+            "settings": {
+              "title": "Quechua Packpack",
+              "link": "https:\/\/decathlon.com.au\/products\/isothermal-backpack-20l-nh-ice-compact-100?variant=40917340225647",
+              "mobile_image": "shopify:\/\/shop_images\/Homepage_Carousel_Mobile___750_x_620px_966c8053-05b4-46b9-86a7-18bfba08290d.png",
+              "mobile_image_alt": "School Holidays Must Have - Quechua Isothermal Backpack",
+              "tablet_image": "shopify:\/\/shop_images\/Homepage_Carousel_Desktop___2720_x_760px_82f67594-30b0-4a12-94a7-a4531611dd50.png",
+              "tablet_image_alt": "School Holidays Must Have - Quechua Isothermal Backpack",
+              "desktop_image": "shopify:\/\/shop_images\/Homepage_Carousel_Desktop___2720_x_760px_82f67594-30b0-4a12-94a7-a4531611dd50.png",
+              "desktop_image_alt": "School Holidays Must Have - Quechua Isothermal Backpack",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
@@ -3102,36 +3162,6 @@
               "countdown_font_size_d": "2.75rem"
             }
           },
-          "9b2064e8-e0b1-4149-9940-d79d826ee231": {
-            "type": "carousel-slide",
-            "settings": {
-              "title": "Price Drop",
-              "link": "https:\/\/decathlon.com.au\/pages\/price-drop",
-              "mobile_image": "shopify:\/\/shop_images\/Price_Drop_-_Homepage_Carousel_Mobile_750_x_620px.png",
-              "mobile_image_alt": "Price Drop | Spend Less, Play More!",
-              "tablet_image": "shopify:\/\/shop_images\/Price_Drop_-_Homepage_Carousel_Desktop___2720_x_760px.png",
-              "tablet_image_alt": "Price Drop | Spend Less, Play More!",
-              "desktop_image": "shopify:\/\/shop_images\/Price_Drop_-_Homepage_Carousel_Desktop___2720_x_760px.png",
-              "desktop_image_alt": "Price Drop | Spend Less, Play More!",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "countdown_inline": false,
-              "button_title": "",
-              "link_url": "",
-              "link_title": "",
-              "link_new_window": false,
-              "countdown_date": "",
-              "countdown_time": "",
-              "countdown_position": "flex-start,flex-start",
-              "countdown_bold": false,
-              "countdown_italic": false,
-              "countdown_underline": false,
-              "countdown_colour": "#ffffff",
-              "countdown_font_size_m": "1.75rem",
-              "countdown_font_size_d": "2.75rem"
-            }
-          },
           "75ad43bc-a043-4224-b64d-bb90eee5c36f": {
             "type": "carousel-slide",
             "disabled": true,
@@ -3144,37 +3174,6 @@
               "tablet_image_alt": "Explore Nature",
               "desktop_image": "shopify:\/\/shop_images\/c._Homepage_Carousel_Desktop_2720_x_760px.png",
               "desktop_image_alt": "Explore Nature",
-              "banner_intro": "",
-              "banner_title": "",
-              "banner_subtitle": "",
-              "countdown_inline": false,
-              "button_title": "",
-              "link_url": "",
-              "link_title": "",
-              "link_new_window": false,
-              "countdown_date": "",
-              "countdown_time": "",
-              "countdown_position": "flex-start,flex-start",
-              "countdown_bold": false,
-              "countdown_italic": false,
-              "countdown_underline": false,
-              "countdown_colour": "#ffffff",
-              "countdown_font_size_m": "1.75rem",
-              "countdown_font_size_d": "2.75rem"
-            }
-          },
-          "4356f112-9ea2-4af3-811f-74641cc98014": {
-            "type": "carousel-slide",
-            "disabled": true,
-            "settings": {
-              "title": "Fathers Day",
-              "link": "https:\/\/decathlon.com.au\/pages\/fathers-day-gifts",
-              "mobile_image": "shopify:\/\/shop_images\/father_s_day_HP_mobile_2.png",
-              "mobile_image_alt": "Fathers Day",
-              "tablet_image": "shopify:\/\/shop_images\/father_s_day_HP_desktop_6.png",
-              "tablet_image_alt": "Fathers Day",
-              "desktop_image": "shopify:\/\/shop_images\/father_s_day_HP_desktop_6.png",
-              "desktop_image_alt": "Up to 50% OFF Winter Products",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
@@ -3228,17 +3227,17 @@
         },
         "block_order": [
           "6c90d478-8b23-4f85-90c0-01ba430dacb3",
+          "9b2064e8-e0b1-4149-9940-d79d826ee231",
           "a8a332ab-c392-433e-805d-fe77c9930049",
+          "4356f112-9ea2-4af3-811f-74641cc98014",
           "f57ea9f0-9df8-43b0-a32f-a6924b91e17e",
           "352c5dc6-94e7-4f7c-9059-771191d2a63c",
-          "9b2064e8-e0b1-4149-9940-d79d826ee231",
           "75ad43bc-a043-4224-b64d-bb90eee5c36f",
-          "4356f112-9ea2-4af3-811f-74641cc98014",
           "faa59cfa-5150-45ac-9b4f-c829689466e0"
         ],
         "settings": {
           "max_percentage_height": "60vh",
-          "autoplay_delay_time": 20
+          "autoplay_delay_time": 40
         }
       },
       "fb3b021f-3e3e-451a-8118-3927f942e0ec": {
@@ -3381,8 +3380,8 @@
       "641e58e9-60b9-4211-b6be-c6d3a1e99c7b": {
         "type": "six-tile-products",
         "settings": {
-          "title": "Trending Spring Deals!",
-          "section_collection": "spring-sale"
+          "title": "Hiking & Trekking Essentials",
+          "section_collection": "hiking-trekking"
         }
       },
       "marketplace-duplicate-fulfillment-items": {
@@ -3438,6 +3437,30 @@
           "76252f34-eef7-47ad-b2ef-99ffc9558d8f"
         ],
         "settings": {}
+      },
+      "marketplace-trnr-fulfillment-items": {
+        "type": "marketplace-trnr-fulfillment-items",
+        "blocks": {
+          "f2edbc1e-0618-42e4-b4d7-0dbc4e415fc2": {
+            "type": "delivery_info_items",
+            "settings": {
+              "title": "Sold and shipped by TRNR",
+              "icon_file": "shopify:\/\/shop_images\/delivery_small_26161694-77b1-440a-bd75-55366e6d513a.svg"
+            }
+          },
+          "7fc03138-0e4f-469d-93fd-af06111ebb2a": {
+            "type": "delivery_info_items",
+            "settings": {
+              "title": "Partner's shipping information and refund policy apply.",
+              "icon_file": "shopify:\/\/shop_images\/returns_9b61ab8a-c9bb-4f67-a89d-5012903b9dfc.svg"
+            }
+          }
+        },
+        "block_order": [
+          "f2edbc1e-0618-42e4-b4d7-0dbc4e415fc2",
+          "7fc03138-0e4f-469d-93fd-af06111ebb2a"
+        ],
+        "settings": {}
       }
     },
     "content_for_index": [
@@ -3445,10 +3468,10 @@
       "fb3b021f-3e3e-451a-8118-3927f942e0ec",
       "163107170023281063",
       "59e7043f-7c55-4940-a0be-639824815d5c",
-      "641e58e9-60b9-4211-b6be-c6d3a1e99c7b",
-      "59bd4db6-bdb1-46c5-ab8e-ed6a847dddfe",
-      "16316085202ea5cf79",
       "eebe1a41-f3e2-4f63-8238-9c639f6d6b73",
+      "641e58e9-60b9-4211-b6be-c6d3a1e99c7b",
+      "16316085202ea5cf79",
+      "59bd4db6-bdb1-46c5-ab8e-ed6a847dddfe",
       "8f7fbe54-e3bd-494e-a735-df53c71ba559",
       "e2c58312-d869-42de-abd5-868dc6fc879c",
       "163107313302287377"
