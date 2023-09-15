@@ -13,7 +13,7 @@
 <div class="de-ProductPageTopShelf-fulfillment-location">
   {% include 'compositions-product-page-buybox-fulfillment-info' %}
 
-  {% unless template == "product.marketplace-jobe" or template == "product.marketplace-trnr" %}
+  {% unless template == "product.marketplace-jobe" or template == "product.marketplace-trnr" or template == "product.marketplace-forceusa" %}
     {% include 'compositions-product-page-buybox-locations-inventory' %}
   {% else %}
     <div class="marketplace-jobe-lime-divider"></div>
