@@ -80,9 +80,11 @@ const initVueATC = () => {
         
         console.log('data', calculatedInventory, this.$data);
 
+        this.$forceUpdate();
       },
       mutateWithLocations(variantInventory, variantLocationsInventory, source) {
         var mutatedInventory = variantInventory;
+        var vueData = this.$data;
 
         const { inventoryItem, id } = variantLocationsInventory;
         const variantId = id;
@@ -129,7 +131,7 @@ const initVueATC = () => {
           delivery.available == totalAvailableQuantity
         }
 
-        console.log('mutateWithLocations', variantId, filteredLocations, filteredOnline, totalAvailableQuantity);
+        // console.log('cdebug 1', variantId, locations, filteredLocations, filteredOnline, totalAvailableQuantity);
 
         // item is available if there is at least one stock in any location or delivery/online
         // mutatedInventory.available = (delivery.available > 0 || filteredLocations.length > 0 || filteredOnline.length > 0);
@@ -156,6 +158,9 @@ const initVueATC = () => {
         const availablePerLocation = filteredLocations.map(location => {
           return location.available;
         });
+
+        // console.log('cdebug', availablePerLocation)
+
         let locationsAvailable = 0;
         if (availablePerLocation.length > 0) {
           locationsAvailable = availablePerLocation.reduce((a, b) => +a + +b, 0);
@@ -173,6 +178,8 @@ const initVueATC = () => {
           stockAddClass = IN_STOCK_CLASS;
           stockRemoveClass = LOW_STOCK_CLASS;
         } else if (delivery.available <= 2 && delivery.available > 0) {
+          // console.log('cdebug', 'case 2')
+
           stockInfoMessage = translations.low_stock;
           stockAddClass = LOW_STOCK_CLASS;
           stockRemoveClass = IN_STOCK_CLASS;
@@ -213,6 +220,8 @@ const initVueATC = () => {
         }
 
 
+        // console.log('cdebug', window.productJSON.available, locationsAvailable, totalAvailableQuantity)
+
 
         // Gift card availability message override
         if (window.vars.productJSON.gift_card === true && // product is a gift card
@@ -248,31 +257,63 @@ const initVueATC = () => {
 
 
         // Override messaging and button state to make way for products already maximized in the user's cart
-        window.setTimeout(function() {
+        window.setTimeout(() => {
 
-          console.log('hey', window.variantQtyTrackOutOfStock, variantId)
-          
+          // console.log('cdebug', variantIsAllowedToOversell, variantIsNonInventory, variantId, mutatedInventory )
+          // console.log('cdebug', this.$data);
 
           if((!variantIsAllowedToOversell ||
             !variantIsNonInventory) 
             && variantId in window.variantQtyTracker 
             && !mutatedInventory.available 
             &&  window.variantQtyTrackOutOfStock.includes(+variantId)) {
-              console.log('hey this is firing.')
+              // console.log('cdebug', 'hey this is firing.')
 
               $('#AddToCart').prop('disabled', true);
               $('#AddToCart span').text('Add to Cart');
               $('.js-de-stock-info-message').css({"display":"none"});
               $('.js-de-validation-message').text(PRODUCT_PAGE_COPY.ALL_AVAILABLE_PRODUCTS_IN_CART);
+          } else if(window.productJSON.available && mutatedInventory.available && !mutatedInventory.is_size_selected) {
+            $('#AddToCart span').text('Add to Cart');
+            $('#AddToCart').prop('disabled', false);
+            // console.log('cdebug', 'hey this is firing. 2')
 
+          } else if(!mutatedInventory.available && window.vars.productJSON.tags.includes('bis-hidden')) {
+            $('#AddToCart span').text('Out of Stock');
+            $('#AddToCart').prop('disabled', true);
+            
+            console.log('cdebug', 'hey this is firing. 3')
+          } else if (!mutatedInventory.available && !window.vars.productJSON.tags.includes('bis-hidden')) {
+            $('#AddToCart span').text('Email me when available');
+            $('#AddToCart').prop('disabled', false);
+            // console.log('cdebug', 'hey this is firing. 4')
+            
+          } else if(!mutatedInventory.available && mutatedInventory.artificially_unavailable) {
+            $('#AddToCart span').text('Out of Stock');
+            $('#AddToCart').prop('disabled', true);
+            
+            // console.log('cdebug', 'hey this is firing. 5')
+          } else if(!mutatedInventory.available) {
+            $('#AddToCart span').text('Out of Stock');
+            $('#AddToCart').prop('disabled', true);
+
+            // console.log('cdebug', 'hey this is firing. 6')
           }
 
-        }, 10)
+        }, 10);
+
+        // If the WHOLE product, regardless of variant is not available and even if there are available
+        // locations and available quantity
+        if(!window.productJSON.available && (!variantIsAllowedToOversell || !variantIsNonInventory)) {
+          $('.js-de-stock-info-message').css({"display":"none"});
+        }
 
 
         return mutatedInventory;
       },
       showModal(variantId, isEmailButton, event) {
+
+
         $('.js-de-Drawer-toggle').data("drawer-action", '')
         // Trying to add a product to cart without selecting a size
         if (!this.$data.is_size_selected) {
@@ -296,6 +337,9 @@ const initVueATC = () => {
         // Opens Back in Stock Popover Modal
         if (isEmailButton) {
           event.preventDefault();
+
+          // console.log('cdebug', variantId, isEmailButton, event)
+
           window.BISPopover.show({ variantId: variantId });
 
           $('#addToCartButton .js-de-Drawer-toggle').attr("data-drawer-action", '');
