@@ -870,7 +870,7 @@
               "validated": false
             }
           },
-          "c6351114-ec6d-4359-b44d-d4c29baed848": {
+          "55ddea78-6f35-4740-9c7d-403009a970d4": {
             "type": "store",
             "settings": {
               "name": "George Street, 2000",
@@ -885,11 +885,11 @@
               "zip": "2000",
               "state": "NSW",
               "country": "AU",
-              "checkout_image": "shopify:\/\/shop_images\/Untitled_design_2_0f709ec8-ff65-4914-abf1-5a3b7ae2966e.png",
+              "checkout_image": "shopify:\/\/shop_images\/Decathlon-Connect-Georger-Street.webp",
               "email": "customer.service@decathlon.com",
               "phone_number": "(02) 9157 5799",
               "company": "Decathlon",
-              "ready": "Order before 12pm and collect in 24 hours. Get 10% OFF at checkout with code: <strong>GEORGEST10<\/strong>",
+              "ready": "Order before 12pm and collect in 24 hours.",
               "ready_checkout": "Order online. Pick up 24 hours.",
               "id": "1789-0015",
               "tooltip_hours": true,
@@ -945,7 +945,7 @@
               "email": "customer.service@decathlon.com",
               "phone_number": "0491 761 112",
               "company": "Decathlon",
-              "ready": "Order before 12pm and collect in 24 hours. Get 10% OFF at checkout with code: <strong>BROADWAY10<\/strong>",
+              "ready": "Order before 12pm and collect in 24 hours.",
               "ready_checkout": "Order online. Pick up in 24 hours* (*If order is placed by 12pm the previous day)",
               "id": "1789-0016",
               "tooltip_hours": true,
@@ -1953,7 +1953,7 @@
           "1573530372429",
           "81a3d3c6-c69a-4593-8e50-a00364330f37",
           "1584595062323",
-          "c6351114-ec6d-4359-b44d-d4c29baed848",
+          "55ddea78-6f35-4740-9c7d-403009a970d4",
           "3bbe2824-687e-4a95-80f7-1650ce4e4831",
           "439603b4-c7c5-475d-a765-2d3d92e529fa",
           "1585053394899",
@@ -1984,48 +1984,6 @@
               "title": "Best Seller",
               "bg_colour": "#0082c3",
               "text_colour": "#ffffff"
-            }
-          },
-          "20b61059-76ee-4b7e-b4fe-991d89326d8e": {
-            "type": "label",
-            "settings": {
-              "title": "FREE STRINGING*",
-              "bg_colour": "#1c82c3",
-              "text_colour": "#ffffff"
-            }
-          },
-          "5ee40677-48a0-43eb-9280-2af48a62e84c": {
-            "type": "label",
-            "settings": {
-              "title": "Important Notice",
-              "bg_colour": "#ff0000",
-              "text_colour": "#ffffff"
-            }
-          },
-          "0f36b1a2-5147-4867-a4ed-3943761dfb9a": {
-            "type": "combo",
-            "settings": {
-              "title": "Lowest Price,Best Value",
-              "bg_colour_1": "#1c82c3",
-              "text_colour_1": "#ffffff",
-              "bg_colour_2": "#ffea28",
-              "text_colour_2": "#1f1f1f"
-            }
-          },
-          "e27f167b-9a15-49c6-86cc-d5749a582ffc": {
-            "type": "label",
-            "settings": {
-              "title": "Lowest Price",
-              "bg_colour": "#1783c4",
-              "text_colour": "#ffffff"
-            }
-          },
-          "add54ffc-96a7-4a8e-9da6-0cd98b86bb70": {
-            "type": "label",
-            "settings": {
-              "title": "Best Value",
-              "bg_colour": "#f9ec24",
-              "text_colour": "#1f1f1f"
             }
           },
           "ad2f449b-334c-4b8e-b29c-caed1367ff3b": {
@@ -2300,6 +2258,14 @@
               "text_colour": "#ffffff"
             }
           },
+          "eee99682-561e-49b9-abbd-3b5427320720": {
+            "type": "label",
+            "settings": {
+              "title": "WAS $40",
+              "bg_colour": "#1c82c3",
+              "text_colour": "#ffffff"
+            }
+          },
           "84eba477-38ca-4c72-a5cf-b88ce00595b6": {
             "type": "label",
             "settings": {
@@ -2431,11 +2397,6 @@
         },
         "block_order": [
           "b6c50233-aad8-4a5a-8216-cdf77b1a7b69",
-          "20b61059-76ee-4b7e-b4fe-991d89326d8e",
-          "5ee40677-48a0-43eb-9280-2af48a62e84c",
-          "0f36b1a2-5147-4867-a4ed-3943761dfb9a",
-          "e27f167b-9a15-49c6-86cc-d5749a582ffc",
-          "add54ffc-96a7-4a8e-9da6-0cd98b86bb70",
           "ad2f449b-334c-4b8e-b29c-caed1367ff3b",
           "9cfe0f64-734f-49b4-b750-6d38e0ed13b6",
           "7b8ddd36-e9ed-4b45-adb6-809e7d0e6755",
@@ -2470,6 +2431,7 @@
           "a23ae95a-dabf-4adc-adb3-1bbf8e5680de",
           "87f18909-453f-46ea-a6cc-4b968733d57e",
           "de31599f-8db8-461a-92cb-2aa7d4130373",
+          "eee99682-561e-49b9-abbd-3b5427320720",
           "84eba477-38ca-4c72-a5cf-b88ce00595b6",
           "520a0cb6-c4d9-429e-9ad0-767ea3ecfe69",
           "d287ec1c-b576-4c57-950a-644ae4abe647",
@@ -2647,9 +2609,9 @@
           "e946fff5-5695-4ed3-a886-269cd8000e8d": {
             "type": "category_tile",
             "settings": {
-              "title": "Swimming",
-              "image": "shopify:\/\/shop_images\/Swimminh-CAT_HERO_7313e27e-a6ef-4d17-967d-d96fdd625137.jpg",
-              "link": "https:\/\/decathlon.com.au\/collections\/swimming"
+              "title": "Surfing",
+              "image": "shopify:\/\/shop_images\/Surfing-HERO_02c434f7-668a-4909-b773-8df6f25a9a37.jpg",
+              "link": "https:\/\/decathlon.com.au\/collections\/surfing"
             }
           },
           "f553a06c-1d16-4cd4-b9f2-2eea43b5aa9c": {
@@ -2822,8 +2784,22 @@
       "banner-announcements": {
         "type": "banner-announcements",
         "blocks": {
+          "2e019f93-7554-4748-a4f2-22ea0c56c29a": {
+            "type": "announcement_messages",
+            "settings": {
+              "countdown_date": "",
+              "countdown_time": "",
+              "message": "<p>Free 1 Hour Click & Collect available | Free Delivery on orders over $150<\/p>",
+              "post_message": "",
+              "url": "",
+              "bg_colour": "#007dbc",
+              "font_colour": "#ffffff",
+              "scroll_speed": "scroll-normal"
+            }
+          },
           "b706be1c-0750-47c9-b0f1-8278eddb14fd": {
             "type": "announcement_messages",
+            "disabled": true,
             "settings": {
               "countdown_date": "",
               "countdown_time": "",
@@ -2833,20 +2809,6 @@
               "bg_colour": "#4d6f56",
               "font_colour": "#ffffff",
               "scroll_speed": "scroll-slow"
-            }
-          },
-          "2e019f93-7554-4748-a4f2-22ea0c56c29a": {
-            "type": "announcement_messages",
-            "disabled": true,
-            "settings": {
-              "countdown_date": "",
-              "countdown_time": "",
-              "message": "<p>Free Delivery on orders over $150<\/p>",
-              "post_message": "",
-              "url": "",
-              "bg_colour": "#007dbc",
-              "font_colour": "#ffffff",
-              "scroll_speed": "scroll-normal"
             }
           },
           "543b1783-29d8-4996-80a0-0ad6250c6206": {
@@ -2865,8 +2827,8 @@
           }
         },
         "block_order": [
-          "b706be1c-0750-47c9-b0f1-8278eddb14fd",
           "2e019f93-7554-4748-a4f2-22ea0c56c29a",
+          "b706be1c-0750-47c9-b0f1-8278eddb14fd",
           "543b1783-29d8-4996-80a0-0ad6250c6206"
         ],
         "settings": {
@@ -2880,60 +2842,14 @@
       "59bd4db6-bdb1-46c5-ab8e-ed6a847dddfe": {
         "type": "six-tile-products",
         "settings": {
-          "title": "Snow gear, priced to clear!",
-          "section_collection": "ski-snowboard-sale"
+          "title": "Havaianas Special Deals",
+          "section_collection": "havaianas-sale"
         }
       },
       "eebe1a41-f3e2-4f63-8238-9c639f6d6b73": {
         "type": "six-tile-products",
-        "blocks": {
-          "3ad69928-a348-4b36-8a78-e9bb778dc8d7": {
-            "type": "product",
-            "settings": {
-              "product": "486521003-jobe-parana-11-6-bamboo-paddle-board"
-            }
-          },
-          "22c9bc95-2a7e-4cc7-bfce-15852c0c4fac": {
-            "type": "product",
-            "settings": {
-              "product": "100-adult-horse-riding-socks-2707"
-            }
-          },
-          "634bf1c3-8b5e-4e59-86cb-ba9eebc39bc1": {
-            "type": "product",
-            "settings": {
-              "product": "100-baby-anti-slip-gym-socks-twin-pack-143693"
-            }
-          },
-          "70f92d80-5663-4233-8068-661b7788d0da": {
-            "type": "product",
-            "settings": {
-              "product": "1-kg-medicine-ball"
-            }
-          },
-          "cd4080e3-b218-4fa6-b985-ef44f135ad52": {
-            "type": "product",
-            "settings": {
-              "product": "1-2-person-inflatable-cruising-kayak-163732"
-            }
-          },
-          "49106aaa-0e1c-44b3-bd8e-38b8fa115c20": {
-            "type": "product",
-            "settings": {
-              "product": "10-speed-mtb-cassette-11x36-100606"
-            }
-          }
-        },
-        "block_order": [
-          "3ad69928-a348-4b36-8a78-e9bb778dc8d7",
-          "22c9bc95-2a7e-4cc7-bfce-15852c0c4fac",
-          "634bf1c3-8b5e-4e59-86cb-ba9eebc39bc1",
-          "70f92d80-5663-4233-8068-661b7788d0da",
-          "cd4080e3-b218-4fa6-b985-ef44f135ad52",
-          "49106aaa-0e1c-44b3-bd8e-38b8fa115c20"
-        ],
         "settings": {
-          "title": "Back to Swimming",
+          "title": "Get Back into Swimming",
           "section_collection": "back-to-swimming"
         }
       },
@@ -3058,17 +2974,17 @@
               "countdown_font_size_d": "2.75rem"
             }
           },
-          "9b2064e8-e0b1-4149-9940-d79d826ee231": {
+          "75ad43bc-a043-4224-b64d-bb90eee5c36f": {
             "type": "carousel-slide",
             "settings": {
-              "title": "Price Drop",
-              "link": "https:\/\/decathlon.com.au\/pages\/price-drop",
-              "mobile_image": "shopify:\/\/shop_images\/Price_Drop_-_Homepage_Carousel_Mobile_750_x_620px.png",
-              "mobile_image_alt": "Price Drop | Spend Less, Play More!",
-              "tablet_image": "shopify:\/\/shop_images\/Price_Drop_-_Homepage_Carousel_Desktop___2720_x_760px.png",
-              "tablet_image_alt": "Price Drop | Spend Less, Play More!",
-              "desktop_image": "shopify:\/\/shop_images\/Price_Drop_-_Homepage_Carousel_Desktop___2720_x_760px.png",
-              "desktop_image_alt": "Price Drop | Spend Less, Play More!",
+              "title": "Explore Nature",
+              "link": "https:\/\/decathlon.com.au\/collections\/hiking-trekking",
+              "mobile_image": "shopify:\/\/shop_images\/c._Homepage_Carousel_Mobile_750_x_620px.png",
+              "mobile_image_alt": "Explore Nature",
+              "tablet_image": "shopify:\/\/shop_images\/c._Homepage_Carousel_Desktop_2720_x_760px.png",
+              "tablet_image_alt": "Explore Nature",
+              "desktop_image": "shopify:\/\/shop_images\/c._Homepage_Carousel_Desktop_2720_x_760px.png",
+              "desktop_image_alt": "Explore Nature",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
@@ -3088,17 +3004,17 @@
               "countdown_font_size_d": "2.75rem"
             }
           },
-          "a8a332ab-c392-433e-805d-fe77c9930049": {
+          "9b2064e8-e0b1-4149-9940-d79d826ee231": {
             "type": "carousel-slide",
             "settings": {
-              "title": "Marathon",
-              "link": "https:\/\/decathlon.com.au\/collections\/marathon-clothing-gear",
-              "mobile_image": "shopify:\/\/shop_images\/Marathon-Essentials_Mobile.png",
-              "mobile_image_alt": "Gear up For Marathon",
-              "tablet_image": "shopify:\/\/shop_images\/Marathon-Essentias-Desk.png",
-              "tablet_image_alt": "Gear up For Marathon",
-              "desktop_image": "shopify:\/\/shop_images\/Marathon-Essentias-Desk.png",
-              "desktop_image_alt": "Dribble to Victory with TARMAK by DECATHLON",
+              "title": "Price Drop",
+              "link": "https:\/\/decathlon.com.au\/pages\/price-drop",
+              "mobile_image": "shopify:\/\/shop_images\/Price_Drop_-_Homepage_Carousel_Mobile_750_x_620px.png",
+              "mobile_image_alt": "Price Drop | Spend Less, Play More!",
+              "tablet_image": "shopify:\/\/shop_images\/Price_Drop_-_Homepage_Carousel_Desktop___2720_x_760px.png",
+              "tablet_image_alt": "Price Drop | Spend Less, Play More!",
+              "desktop_image": "shopify:\/\/shop_images\/Price_Drop_-_Homepage_Carousel_Desktop___2720_x_760px.png",
+              "desktop_image_alt": "Price Drop | Spend Less, Play More!",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
@@ -3208,18 +3124,18 @@
               "countdown_font_size_d": "2.75rem"
             }
           },
-          "75ad43bc-a043-4224-b64d-bb90eee5c36f": {
+          "a8a332ab-c392-433e-805d-fe77c9930049": {
             "type": "carousel-slide",
             "disabled": true,
             "settings": {
-              "title": "Explore Nature",
-              "link": "https:\/\/decathlon.com.au\/collections\/hiking-trekking",
-              "mobile_image": "shopify:\/\/shop_images\/c._Homepage_Carousel_Mobile_750_x_620px.png",
-              "mobile_image_alt": "Explore Nature",
-              "tablet_image": "shopify:\/\/shop_images\/c._Homepage_Carousel_Desktop_2720_x_760px.png",
-              "tablet_image_alt": "Explore Nature",
-              "desktop_image": "shopify:\/\/shop_images\/c._Homepage_Carousel_Desktop_2720_x_760px.png",
-              "desktop_image_alt": "Explore Nature",
+              "title": "Marathon",
+              "link": "https:\/\/decathlon.com.au\/collections\/marathon-clothing-gear",
+              "mobile_image": "shopify:\/\/shop_images\/Marathon-Essentials_Mobile.png",
+              "mobile_image_alt": "Gear up For Marathon",
+              "tablet_image": "shopify:\/\/shop_images\/Marathon-Essentias-Desk.png",
+              "tablet_image_alt": "Gear up For Marathon",
+              "desktop_image": "shopify:\/\/shop_images\/Marathon-Essentias-Desk.png",
+              "desktop_image_alt": "Dribble to Victory with TARMAK by DECATHLON",
               "banner_intro": "",
               "banner_title": "",
               "banner_subtitle": "",
@@ -3273,12 +3189,12 @@
         },
         "block_order": [
           "6c90d478-8b23-4f85-90c0-01ba430dacb3",
+          "75ad43bc-a043-4224-b64d-bb90eee5c36f",
           "9b2064e8-e0b1-4149-9940-d79d826ee231",
-          "a8a332ab-c392-433e-805d-fe77c9930049",
           "4356f112-9ea2-4af3-811f-74641cc98014",
           "f57ea9f0-9df8-43b0-a32f-a6924b91e17e",
           "352c5dc6-94e7-4f7c-9059-771191d2a63c",
-          "75ad43bc-a043-4224-b64d-bb90eee5c36f",
+          "a8a332ab-c392-433e-805d-fe77c9930049",
           "faa59cfa-5150-45ac-9b4f-c829689466e0"
         ],
         "settings": {
@@ -3365,17 +3281,17 @@
           "bce85a7f-49e5-4057-95fd-4d01a0796777": {
             "type": "category_tile",
             "settings": {
-              "title": "Rain Protection",
-              "image": "shopify:\/\/shop_images\/Rain_Protection_1_700c978d-558f-4f18-bf1b-f47cbea54f84.png",
-              "link": "https:\/\/decathlon.com.au\/collections\/sport-under-the-rain"
+              "title": "Sun Protection",
+              "image": "shopify:\/\/shop_images\/Sun_Essentials.png",
+              "link": "https:\/\/decathlon.com.au\/collections\/sun-protective-gear-upf-50"
             }
           },
           "2df6f164-118b-40b1-be90-adcfdd69f523": {
             "type": "category_tile",
             "settings": {
-              "title": "Backyard Games",
-              "image": "shopify:\/\/shop_images\/Backyard_Games_1_d0bbcbcd-e42f-49de-aa5e-b48405e55b47.png",
-              "link": "https:\/\/decathlon.com.au\/collections\/backyard-games"
+              "title": "Beach Games",
+              "image": "shopify:\/\/shop_images\/Beach-Sports.png",
+              "link": "https:\/\/decathlon.com.au\/collections\/beach-sports"
             }
           },
           "bfd96dc7-8490-4306-b37b-9ad49dd57f4f": {
@@ -3397,7 +3313,7 @@
           "5519bfeb-0d0d-48cf-a536-5dfab0b483c3": {
             "type": "category_tile",
             "settings": {
-              "title": "Bags",
+              "title": "Bags & Backpacks",
               "image": "shopify:\/\/shop_images\/Bags.png",
               "link": "https:\/\/decathlon.com.au\/collections\/backpacks-travelling-bags-sports-bags"
             }
@@ -3506,6 +3422,13 @@
           "2bcfaada-abe3-4ec3-8260-8c616c2c8490"
         ],
         "settings": {}
+      },
+      "19afcf3a-5c90-49bb-ae76-144058ce9fe4": {
+        "type": "six-tile-products",
+        "settings": {
+          "title": "Catch some Waves this weekend!",
+          "section_collection": "surfing"
+        }
       }
     },
     "content_for_index": [
@@ -3514,9 +3437,10 @@
       "163107170023281063",
       "59e7043f-7c55-4940-a0be-639824815d5c",
       "eebe1a41-f3e2-4f63-8238-9c639f6d6b73",
-      "641e58e9-60b9-4211-b6be-c6d3a1e99c7b",
+      "19afcf3a-5c90-49bb-ae76-144058ce9fe4",
       "16316085202ea5cf79",
       "59bd4db6-bdb1-46c5-ab8e-ed6a847dddfe",
+      "641e58e9-60b9-4211-b6be-c6d3a1e99c7b",
       "8f7fbe54-e3bd-494e-a735-df53c71ba559",
       "e2c58312-d869-42de-abd5-868dc6fc879c",
       "163107313302287377"
