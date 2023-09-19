@@ -102,22 +102,32 @@ const initVueATC = () => {
         */
 
         // Filter locations that have at least one available product in stock
-        const filteredLocations = locations.filter(loc => {
-          return loc.available > 0;
-        });
-
-
         const filteredOnline = online.filter(item => {
-          return item.available > 0;
+          return +(item.available);
         });
 
-        let totalAvailableQuantity = filteredLocations.reduce(function(total, location) {
+        const onlineStoresList = filteredOnline.map((store) => {
+          return store.name
+        });
+
+        let filteredLocations = locations.filter(loc => {
+          // Location is greater than 0 and location is not yet registered in online stores list
+          return +(loc.available) && !onlineStoresList.includes(loc.name);
+        });
+
+        // console.log('cdebug 0', online, onlineStoresList, filteredLocations);
+
+        let totalAvailableQuantity = filteredOnline.reduce(function(total, location) {
           return total + +location.available
         }, 0);
 
-        totalAvailableQuantity = filteredOnline.reduce(function(total, location) {
+        // console.log('cdebug 01', totalAvailableQuantity);
+
+        totalAvailableQuantity = filteredLocations.reduce(function(total, location) {
           return total + +location.available
-        }, totalAvailableQuantity)
+        }, totalAvailableQuantity);
+
+        // console.log('cdebug 02', totalAvailableQuantity);
 
         if(variantId in window.variantQtyTracker) {
           totalAvailableQuantity = window.variantQtyTracker[variantId]
@@ -282,8 +292,10 @@ const initVueATC = () => {
             $('#AddToCart span').text('Out of Stock');
             $('#AddToCart').prop('disabled', true);
             
-            console.log('cdebug', 'hey this is firing. 3')
+            // console.log('cdebug', 'hey this is firing. 3')
           } else if (!mutatedInventory.available && !window.vars.productJSON.tags.includes('bis-hidden')) {
+
+            $('.js-de-validation-message').text(PRODUCT_PAGE_COPY.OUT_OF_STOCK);
             $('#AddToCart span').text('Email me when available');
             $('#AddToCart').prop('disabled', false);
             // console.log('cdebug', 'hey this is firing. 4')
@@ -304,7 +316,7 @@ const initVueATC = () => {
 
         // If the WHOLE product, regardless of variant is not available and even if there are available
         // locations and available quantity
-        if(!window.productJSON.available && (!variantIsAllowedToOversell || !variantIsNonInventory)) {
+        if((!window.productJSON.available || totalAvailableQuantity <= 0) && (!variantIsAllowedToOversell || !variantIsNonInventory)) {
           $('.js-de-stock-info-message').css({"display":"none"});
         }
 
