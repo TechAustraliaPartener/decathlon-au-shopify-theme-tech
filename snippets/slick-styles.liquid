@@ -7,7 +7,7 @@
 {% endif %}
   
   {% comment %} The jquery.slick feature only exists on specific pages {% endcomment %}
-  {% if template == 'index' or template == 'product' or template == 'product.marketplace' or template == "product.marketplace-duplicate" or template == "product.marketplace-jobe" or template == "product.marketplace-trnr" or template == 'cart' or template == 'collection.hypervisual' or display_recently_viewed %}
+  {% if template == 'index' or template == 'product' or template == 'product.marketplace' or template == "product.marketplace-duplicate" or template == "product.marketplace-jobe" or template == "product.marketplace-trnr" or template == "product.marketplace-forceusa" or template == "product.marketplace-outwestsport" or template == "product.marketplace-tackleworld" or template == 'cart' or template == 'collection.hypervisual' or display_recently_viewed %}
     {{ 'slick.scss.css' | asset_url | stylesheet_tag }}
     {{ 'slick-theme.css' | asset_url | stylesheet_tag }}
   {% endif %}
